@@ -1383,22 +1383,20 @@
 	"npc_dota_hero_oracle_ebf"
 	{
 		"override_hero"			"npc_dota_hero_oracle"
-		"AbilityLayout"			"5"
-		"Ability1"				"oracle_fortunes_end"					// Ability 2
-		"Ability2"				"oracle_fate_extension"
-		"Ability3"				"oracle_purifying_flames_damage"
-		"Ability4"				"oracle_purifying_flames_heal"
-		"Ability5"				"generic_hidden"
-		"Ability6"				"oracle_false_promise"
+		"Ability1"				"oracle_fortunes"
+		"Ability2"				"oracle_fates"
+		"Ability3"				"oracle_flames"
+		"Ability4"				"oracle_innate"
+		"Ability6"				"oracle_promise"
 		
-		"Ability10"		"special_bonus_unique_oracle_2"
-		"Ability11"		"special_bonus_cooldown_reduction_12"
-		"Ability12"		"special_bonus_cast_range_150"
-		"Ability13"		"special_bonus_all_stats_12"
-		"Ability14"		"special_bonus_movement_speed_75"
-		"Ability15"		"special_bonus_unique_oracle_4"
-		"Ability16"		"special_bonus_unique_oracle_3"
-		"Ability17"		"special_bonus_unique_oracle"
+		"Ability10"				"special_bonus_unique_oracle_fortunes_1"
+		"Ability11"				"special_bonus_unique_oracle_fortunes_2"
+		"Ability12"				"special_bonus_unique_oracle_fates_1"
+		"Ability13"				"special_bonus_unique_oracle_fates_2"
+		"Ability14"      	 	"special_bonus_unique_oracle_flames_1"
+	    "Ability15"      	 	"special_bonus_unique_oracle_flames_2"
+	    "Ability16"    		   	"special_bonus_unique_oracle_promise_1"
+	    "Ability17"  	     	"special_bonus_unique_oracle_promise_2"
 	}
 
 	//=================================================================================================================

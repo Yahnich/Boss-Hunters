@@ -17,17 +17,23 @@ function dw_crown:OnSpellStart()
 	EmitSoundOn("Hero_DarkWillow.Ley.Cast", caster)
 	EmitSoundOn("Hero_DarkWillow.Ley.Target", caster)
 
+	local delay = self:GetTalentSpecialValueFor("delay")
+
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_dark_willow/dark_willow_ley_cast.vpcf", PATTACH_POINT, caster)
 				ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack1", caster:GetAbsOrigin(), true)
 				ParticleManager:SetParticleControlEnt(nfx, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 				ParticleManager:ReleaseParticleIndex(nfx)
 
-	target:AddNewModifier(caster, self, "modifier_dw_crown", {Duration = self:GetTalentSpecialValueFor("delay")})
+	target:AddNewModifier(caster, self, "modifier_dw_crown", {Duration = delay})
+
+	self:StartDelayedCooldown(delay + self:GetTalentSpecialValueFor("duration"))
 end
 
 modifier_dw_crown = class({})
 function modifier_dw_crown:OnCreated(table)
 	if IsServer() then
+		self:SetDuration(self:GetTalentSpecialValueFor("delay"), true)
+
 		self.radius = self:GetTalentSpecialValueFor("radius")
 		self.duration = self:GetTalentSpecialValueFor("duration")
 
@@ -93,4 +99,16 @@ end
 
 function modifier_dw_crown:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
+function modifier_dw_crown:IsDebuff()
+	return true
+end
+
+function modifier_dw_crown:IsPurgable()
+	return false
+end
+
+function modifier_dw_crown:IsPurgeException()
+	return false
 end

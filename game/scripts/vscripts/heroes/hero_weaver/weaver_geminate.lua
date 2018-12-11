@@ -40,7 +40,7 @@ function modifier_weaver_geminate:OnAttack(params)
 
             if ability:IsCooldownReady() and not caster:IsInAbilityAttackMode() then
                 Timers:CreateTimer(delay, function()
-                    if maxAttacks > 0 then
+                    if maxAttacks > 0 and not caster:IsInvisible() then
                         if RollPercentage(50) then
                             ability:FireTrackingProjectile(caster:GetProjectileModel(), target, caster:GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, false, 0)
                         else
