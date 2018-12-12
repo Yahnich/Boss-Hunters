@@ -36,6 +36,8 @@ function batrider_lasso:OnSpellStart()
 			maxTargets = maxTargets - 1
 		end
 	end
+
+	self:StartDelayedCooldown(duration)
 end
 
 modifier_batrider_lasso = class({})

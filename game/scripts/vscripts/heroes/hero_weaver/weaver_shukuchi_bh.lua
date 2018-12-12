@@ -3,31 +3,34 @@ LinkLuaModifier( "modifier_weaver_shukuchi_bh", "heroes/hero_weaver/weaver_shuku
 LinkLuaModifier( "modifier_weaver_shukuchi_bh_scepter", "heroes/hero_weaver/weaver_shukuchi_bh.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function weaver_shukuchi_bh:IsStealable()
-	return true
+    return true
 end
 
 function weaver_shukuchi_bh:IsHiddenWhenStolen()
-	return false
+    return false
 end
 
 function weaver_shukuchi_bh:OnSpellStart()
-	local caster = self:GetCaster()
-	local fadeTime = self:GetTalentSpecialValueFor("fade_time")
+    local caster = self:GetCaster()
+    local fadeTime = self:GetTalentSpecialValueFor("fade_time")
 
-	EmitSoundOn("Hero_Weaver.Shukuchi", caster)
+    EmitSoundOn("Hero_Weaver.Shukuchi", caster)
 
-	Timers:CreateTimer(fadeTime, function()
+    Timers:CreateTimer(fadeTime, function()
         ProjectileManager:ProjectileDodge(caster)
-		caster:AddNewModifier(caster, self, "modifier_weaver_shukuchi_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
-	end)
+        caster:AddNewModifier(caster, self, "modifier_weaver_shukuchi_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
+    end)
 end
 
 modifier_weaver_shukuchi_bh = class({})
 function modifier_weaver_shukuchi_bh:OnCreated(table)
     self.bonus_ms = self:GetTalentSpecialValueFor("speed")
 
-	if IsServer() then
+    if IsServer() then
         local caster = self:GetCaster()
+
+        self:GetParent():SetThreat(0)
+        self:GetParent():Stop()
 
         if caster:HasTalent("special_bonus_unique_weaver_shukuchi_bh_2") then
             self.talent = true
@@ -42,16 +45,16 @@ function modifier_weaver_shukuchi_bh:OnCreated(table)
         self.radius = self:GetTalentSpecialValueFor("radius")
         self.damage = self:GetTalentSpecialValueFor("damage")
 
-		self:GetCaster():CalculateStatBonus()
-		self:StartIntervalThink(0.05)
-		self:GetAbility():StartDelayedCooldown()
-	end
+        self:GetCaster():CalculateStatBonus()
+        self:StartIntervalThink(0.05)
+        self:GetAbility():StartDelayedCooldown()
+    end
 end
 
 function modifier_weaver_shukuchi_bh:OnRefresh(table)
     self.bonus_ms = self:GetTalentSpecialValueFor("speed")
 
-	if IsServer() then 
+    if IsServer() then 
         local caster = self:GetCaster()
 
         if caster:HasTalent("special_bonus_unique_weaver_shukuchi_bh_2") then
@@ -63,10 +66,10 @@ function modifier_weaver_shukuchi_bh:OnRefresh(table)
         self.radius = self:GetTalentSpecialValueFor("radius")
         self.damage = self:GetTalentSpecialValueFor("damage")
 
-		self:GetCaster():CalculateStatBonus()
-		self:StartIntervalThink(0.05)
-		self:GetAbility():StartDelayedCooldown()
-	end
+        self:GetCaster():CalculateStatBonus()
+        self:StartIntervalThink(0.05)
+        self:GetAbility():StartDelayedCooldown()
+    end
 end
 
 function modifier_weaver_shukuchi_bh:OnIntervalThink()
@@ -74,22 +77,22 @@ function modifier_weaver_shukuchi_bh:OnIntervalThink()
 
     local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self.radius)
     for _,enemy in pairs(enemies) do
-    	if not self.hitUnits[enemy:entindex()] then
-    		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_weaver/weaver_shukuchi_damage.vpcf", PATTACH_POINT_FOLLOW, caster)
+        if not self.hitUnits[enemy:entindex()] then
+            local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_weaver/weaver_shukuchi_damage.vpcf", PATTACH_POINT_FOLLOW, caster)
                         ParticleManager:SetParticleControlEnt(nfx, 0, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
                         ParticleManager:SetParticleControlEnt(nfx, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
                         ParticleManager:ReleaseParticleIndex(nfx)
 
             enemy:Paralyze(self:GetAbility(), caster, self:GetTalentSpecialValueFor("duration"))
 
-    		self:GetAbility():DealDamage(caster, enemy, self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+            self:GetAbility():DealDamage(caster, enemy, self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 
             if caster:HasScepter() then
                 caster:AddNewModifier(caster, self:GetAbility(), "modifier_weaver_shukuchi_bh_scepter", {Duration = 10}):AddIndependentStack(10)
             end
 
-    		self.hitUnits[enemy:entindex()] = true
-    	end
+            self.hitUnits[enemy:entindex()] = true
+        end
     end
 end
 
@@ -114,8 +117,8 @@ function modifier_weaver_shukuchi_bh:GetMoveSpeedLimitBonus()
 end
 
 function modifier_weaver_shukuchi_bh:CheckState()
-	local state = { [MODIFIER_STATE_INVISIBLE] = true,
-					[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+    local state = { [MODIFIER_STATE_INVISIBLE] = true,
+                    [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
                     [MODIFIER_STATE_UNSLOWABLE] = true}
 
     if self.talent then
@@ -125,11 +128,11 @@ function modifier_weaver_shukuchi_bh:CheckState()
                 [MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true}
     end
 
-	return state
+    return state
 end
 
 function modifier_weaver_shukuchi_bh:GetActivityTranslationModifiers()
-	return "shukuchi"
+    return "shukuchi"
 end
 
 function modifier_weaver_shukuchi_bh:OnAbilityExecuted(params)
@@ -141,11 +144,11 @@ function modifier_weaver_shukuchi_bh:OnAbilityExecuted(params)
 end
 
 function modifier_weaver_shukuchi_bh:OnAttack(params)
-	if IsServer() then
-		if params.attacker == self:GetParent() then
-			self:Destroy()
-		end
-	end
+    if IsServer() then
+        if params.attacker == self:GetParent() then
+            self:Destroy()
+        end
+    end
 end
 
 function modifier_weaver_shukuchi_bh:OnRemoved()
