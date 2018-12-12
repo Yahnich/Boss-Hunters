@@ -39,7 +39,7 @@ function undying_soul_rip_bh:OnSpellStart()
 	for _, unit in ipairs( units ) do
 		if not unit:IsSameTeam(caster) or caster:HasTalent("special_bonus_unique_undying_soul_rip_1") then
 			self:DealDamage( caster, unit, hploss, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DAMAGE_FLAGS_HPLOSS})
-			ParticleManager:FireRopeParticle(ripFX, PATTACH_ABSORIGIN_FOLLOW, target, unit)
 		end
+		ParticleManager:FireRopeParticle(ripFX, PATTACH_ABSORIGIN_FOLLOW, target, unit)
 	end
 end

@@ -111,7 +111,6 @@ function Timers:Think()
     if now >= v.endTime then
       -- Remove from timers list
       Timers.timers[k] = nil
-
       Timers.runningTimer = k
       Timers.removeSelf = false
       

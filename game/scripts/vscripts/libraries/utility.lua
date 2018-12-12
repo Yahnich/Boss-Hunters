@@ -122,6 +122,25 @@ function GetPerpendicularVector(vector)
 	return Vector(vector.y, -vector.x)
 end
 
+function FindLineIntersection( tLinePoints1, tLinePoints2 )
+	-- derive line equations through x1 and x2 and y1 and y2; form C = Ax + By
+	local a1 = tLinePoints1[2].y - tLinePoints1[1].y
+	local b1 =  tLinePoints1[2].x - tLinePoints1[1].x
+	local c1 = a1 * tLinePoints1[1].x + b1 * tLinePoints1[1].y
+	
+	local a2 = tLinePoints2[2].y - tLinePoints2[1].y
+	local b2 =  tLinePoints2[2].x - tLinePoints2[1].x
+	local c2 = a2 * tLinePoints2[1].x + b1 * tLinePoints2[1].y
+	
+	local determinant = a1 * b2 - a2 * b1
+	if determinant == 0 then
+		return error("lines are parallel")
+	end
+	local intersectX = ( b2 * c1 - b1 * c2 ) / determinant
+	local intersectY = ( a1 * c2 - a2 * c1 ) / determinant
+	return Vector( intersectX, intersectY )
+end
+
 function ActualRandomVector(maxLength, flMinLength)
 	local minLength = flMinLength or 0
 	return RandomVector(RandomInt(minLength, maxLength))

@@ -363,19 +363,24 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_pct"					"20"
+				"damage_pct"					"35"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"health_pct"					"10"
+				"health_pct"					"20"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"duration"						"45"
+				"boss_duration"					"30"
 			}
 			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"mob_duration"					"15"
+			}
+			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"radius"						"900"

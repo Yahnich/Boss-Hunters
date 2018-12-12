@@ -85,7 +85,7 @@ LinkLuaModifier("modifier_huskar_raging_berserker_effect", "heroes/hero_huskar/h
 function modifier_huskar_raging_berserker_effect:OnCreated()
 	self.damage = self:GetTalentSpecialValueFor("maximum_damage")
 	self.mr = self:GetTalentSpecialValueFor("maximum_resistance")
-	self.regen = self:GetTalentSpecialValueFor("maximum_armor")
+	self.regen = self:GetTalentSpecialValueFor("maximum_regen")
 	self.hpThreshold = self:GetTalentSpecialValueFor("hp_threshold_max")
 	self.hpPct = math.min(1, (100 - self:GetParent():GetHealthPercent()) / (100 - self.hpThreshold) )
 	self:StartIntervalThink(0.3)
@@ -97,7 +97,7 @@ end
 function modifier_huskar_raging_berserker_effect:OnRefresh()
 	self.damage = self:GetTalentSpecialValueFor("maximum_damage")
 	self.mr = self:GetTalentSpecialValueFor("maximum_resistance")
-	self.regen = self:GetTalentSpecialValueFor("maximum_armor")
+	self.regen = self:GetTalentSpecialValueFor("maximum_regen")
 	self.hpThreshold = self:GetTalentSpecialValueFor("hp_threshold_max")
 	self.hpPct = math.min(1, (100 - self:GetParent():GetHealthPercent()) / (100 - self.hpThreshold) )
 end
