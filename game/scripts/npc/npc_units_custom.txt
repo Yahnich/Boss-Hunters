@@ -3254,8 +3254,8 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"12"			// Physical protection.
-		"MagicalResistance"			"10"		// Magical protection.
+		"ArmorPhysical"				"10"			// Physical protection.
+		"MagicalResistance"			"15"		// Magical protection.
 		
 		// Attack
 		//----------------------------------------------------------------
@@ -5464,7 +5464,7 @@
 		"AttackDamageMin"			"100"		// Damage range min.
 		"AttackDamageMax"			"150"		// Damage range max.
 		"AttackRate"				"3"		// Speed of attack.
-		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
 		"AnimationPlaybackRate"		"0.33"
 		"AttackAcquisitionRange"	"8000"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
@@ -5534,17 +5534,14 @@
 		// General
 		//
 		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
-		"Model"						"models/heroes/obsidian_destroyer/obsidian_destroyer.vmdl"	// Model.
+		"Model"						"models/heroes/furion/furion.vmdl"	// Model.
 		"SoundSet"					"Hero_Invoker"					// Name of sound set.
-		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_obsidian_destroyer.vsndevts"
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
 		"ModelScale"				"1.2"
-		"Level"						"200"
-		"IsCelestial"				"1"
-		"IsDemon"					"1"
+		"Level"						"10"
 		"IsWild"					"1"
-		"IsUndead"					"1"
 		"MinimapIcon"				"minimap_roshancamp"
-		"MinimapIconSize"			"180"
+		"MinimapIconSize"			"120"
 		"vscripts"					"ai/ai_valgraduth"
 		
 		"precache"
@@ -5556,17 +5553,17 @@
 		// Abilities
 		//----------------------------------------------------------------
 		
-		"Ability1"					"boss_valgraduth_the_end"
-		"Ability2"					"boss_valgraduth_judge_the_cowards"
+		"Ability1"					"boss_valgraduth_breath_of_the_wild"
+		"Ability2"					"boss_valgraduth_entangling_grip"
 		
-		"Ability4"					"boss_valgraduth_ruthless_hunter"
-		"Ability5"					"boss_valgraduth_decimate"
-		"Ability6"					"boss_valgraduth_rampage"
+		"Ability4"					"boss_valgraduth_forests_protection"
+		"Ability5"					"boss_valgraduth_roots_grip"
+		"Ability6"					"boss_valgraduth_bomb_spores"
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"35"		// Physical protection.
-		"MagicalResistance"			"50"		// Magical protection.
+		"ArmorPhysical"				"5"		// Physical protection.
+		"MagicalResistance"			"35"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -5574,11 +5571,11 @@
 		"AttackDamageMin"			"100"		// Damage range min.
 		"AttackDamageMax"			"150"		// Damage range max.
 		"AttackRate"				"3"		// Speed of attack.
-		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
 		"AnimationPlaybackRate"		"0.33"
 		"AttackAcquisitionRange"	"8000"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
-		"ProjectileModel"			"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_arcane_orb.vpcf"			// Particle system model for projectile.
+		"ProjectileModel"			"particles/units/heroes/hero_furion/furion_base_attack.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"900"			// Speed of projectile.
 	
 		// Bounty
@@ -5591,7 +5588,7 @@
 		//----------------------------------------------------------------
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
 		"RingRadius"				"120"
-		"HealthBarOffset"			"600"
+		"HealthBarOffset"			"300"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -5631,11 +5628,12 @@
 		{
 			"AttachWearables"
 			{
-				"Wearable1"{"ItemDef"			"9795"}
-				"Wearable2"{"ItemDef"			"9369"}
-				"Wearable3"{"ItemDef"			"9367"}
-				"Wearable4"{"ItemDef"			"9370"}
-				"Wearable4"{"ItemDef"			"533"}
+				"Wearable1"{"ItemDef"			"7278"}
+				"Wearable2"{"ItemDef"			"6748"}
+				"Wearable3"{"ItemDef"			"9000"}
+				"Wearable4"{"ItemDef"			"9003"}
+				"Wearable4"{"ItemDef"			"8999"}
+				"Wearable4"{"ItemDef"			"6743"}
 			}
 		}
 	}
@@ -5644,17 +5642,14 @@
 		// General
 		//
 		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
-		"Model"						"models/heroes/obsidian_destroyer/obsidian_destroyer.vmdl"	// Model.
-		"SoundSet"					"Hero_Invoker"					// Name of sound set.
-		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_obsidian_destroyer.vsndevts"
-		"ModelScale"				"1.2"
-		"Level"						"200"
-		"IsCelestial"				"1"
-		"IsDemon"					"1"
-		"IsWild"					"1"
+		"Model"						"models/heroes/viper/viper.vmdl"	// Model.
+		"SoundSet"					"Hero_Viper"					// Name of sound set.
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
+		"ModelScale"				"1.1"
+		"Level"						"20"
 		"IsUndead"					"1"
 		"MinimapIcon"				"minimap_roshancamp"
-		"MinimapIconSize"			"180"
+		"MinimapIconSize"			"120"
 		"vscripts"					"ai/ai_arthromos"
 		
 		"precache"
@@ -5666,18 +5661,18 @@
 		// Abilities
 		//----------------------------------------------------------------
 		
-		"Ability1"					"boss_arthromos_the_end"
-		"Ability2"					"boss_arthromos_judge_the_cowards"
-		"Ability3"					"boss_arthromos_shield_of_valhalla"
+		"Ability1"					"boss_arthromos_touch_of_decay"
+		"Ability2"					"boss_arthromos_hellraiser"
+		"Ability3"					"boss_arthromos_plague_aura"
 		
-		"Ability4"					"boss_arthromos_ruthless_hunter"
-		"Ability5"					"boss_arthromos_decimate"
-		"Ability6"					"boss_arthromos_rampage"
+		"Ability4"					"boss_arthromos_virulent_swarm"
+		"Ability5"					"boss_arthromos_pestilence"
+		"Ability6"					"boss_arthromos_dessicate"
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"35"		// Physical protection.
-		"MagicalResistance"			"50"		// Magical protection.
+		"ArmorPhysical"				"10"		// Physical protection.
+		"MagicalResistance"			"40"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -5685,11 +5680,11 @@
 		"AttackDamageMin"			"100"		// Damage range min.
 		"AttackDamageMax"			"150"		// Damage range max.
 		"AttackRate"				"3"		// Speed of attack.
-		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
 		"AnimationPlaybackRate"		"0.33"
 		"AttackAcquisitionRange"	"8000"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
-		"ProjectileModel"			"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_arcane_orb.vpcf"			// Particle system model for projectile.
+		"ProjectileModel"			"particles/econ/items/viper/viper_ti7_immortal/viper_poison_attack_ti7.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"900"			// Speed of projectile.
 	
 		// Bounty
@@ -5702,7 +5697,7 @@
 		//----------------------------------------------------------------
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
 		"RingRadius"				"120"
-		"HealthBarOffset"			"600"
+		"HealthBarOffset"			"300"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -5731,8 +5726,8 @@
 	
 		//Precache
 		//------------------------------------------------------------------
-		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_broodmother.vsndevts"
-		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
+		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_viper.vsndevts"
+		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
 	
 		"ShouldDoFlyHeightVisual" "0"
 	
@@ -5742,11 +5737,9 @@
 		{
 			"AttachWearables"
 			{
-				"Wearable1"{"ItemDef"			"9795"}
-				"Wearable2"{"ItemDef"			"9369"}
-				"Wearable3"{"ItemDef"			"9367"}
-				"Wearable4"{"ItemDef"			"9370"}
-				"Wearable4"{"ItemDef"			"533"}
+				"Wearable1"{"ItemDef"			"7811"}
+				"Wearable2"{"ItemDef"			"9758"}
+				"Wearable3"{"ItemDef"			"9233"}
 			}
 		}
 	}
@@ -5755,17 +5748,14 @@
 		// General
 		//
 		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
-		"Model"						"models/heroes/obsidian_destroyer/obsidian_destroyer.vmdl"	// Model.
+		"Model"						"models/heroes/bane/bane.vmdl"	// Model.
 		"SoundSet"					"Hero_Invoker"					// Name of sound set.
-		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_obsidian_destroyer.vsndevts"
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
 		"ModelScale"				"1.2"
-		"Level"						"200"
-		"IsCelestial"				"1"
+		"Level"						"30"
 		"IsDemon"					"1"
-		"IsWild"					"1"
-		"IsUndead"					"1"
 		"MinimapIcon"				"minimap_roshancamp"
-		"MinimapIconSize"			"180"
+		"MinimapIconSize"			"120"
 		"vscripts"					"ai/ai_durva"
 		
 		"precache"
@@ -5777,18 +5767,19 @@
 		// Abilities
 		//----------------------------------------------------------------
 		
-		"Ability1"					"boss_durva_the_end"
-		"Ability2"					"boss_durva_judge_the_cowards"
-		"Ability3"					"boss_durva_shield_of_valhalla"
-		"Ability4"					"boss_durva_ruthless_hunter"
-		"Ability5"					"boss_durva_decimate"
-		"Ability6"					"boss_durva_rampage"
-		"Ability7"					"boss_durva_focused_beam"
+		"Ability1"					"boss_durva_gorged_core"
+		"Ability2"					"boss_durva_soul_barrier"
+		"Ability3"					"boss_durva_all_is_linked"
+		
+		"Ability4"					"boss_durva_consume_soul"
+		"Ability5"					"boss_durva_feast_on_their_eyes"
+		"Ability6"					"boss_durva_purgatory"
+		"Ability7"					"boss_durva_filled_to_burst"
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"35"		// Physical protection.
-		"MagicalResistance"			"50"		// Magical protection.
+		"ArmorPhysical"				"15"		// Physical protection.
+		"MagicalResistance"			"45"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -5796,11 +5787,11 @@
 		"AttackDamageMin"			"100"		// Damage range min.
 		"AttackDamageMax"			"150"		// Damage range max.
 		"AttackRate"				"3"		// Speed of attack.
-		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
 		"AnimationPlaybackRate"		"0.33"
 		"AttackAcquisitionRange"	"8000"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
-		"ProjectileModel"			"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_arcane_orb.vpcf"			// Particle system model for projectile.
+		"ProjectileModel"			"particles/units/heroes/hero_bane/bane_projectile.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"900"			// Speed of projectile.
 	
 		// Bounty
@@ -5813,7 +5804,7 @@
 		//----------------------------------------------------------------
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
 		"RingRadius"				"120"
-		"HealthBarOffset"			"600"
+		"HealthBarOffset"			"300"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -5853,11 +5844,11 @@
 		{
 			"AttachWearables"
 			{
-				"Wearable1"{"ItemDef"			"9795"}
-				"Wearable2"{"ItemDef"			"9369"}
-				"Wearable3"{"ItemDef"			"9367"}
-				"Wearable4"{"ItemDef"			"9370"}
-				"Wearable4"{"ItemDef"			"533"}
+				"Wearable1"{"ItemDef"			"7941"}
+				"Wearable2"{"ItemDef"			"7692"}
+				"Wearable3"{"ItemDef"			"8549"}
+				"Wearable4"{"ItemDef"			"8548"}
+				"Wearable4"{"ItemDef"			"503"}
 			}
 		}
 	}
@@ -5866,17 +5857,14 @@
 		// General
 		//
 		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
-		"Model"						"models/heroes/obsidian_destroyer/obsidian_destroyer.vmdl"	// Model.
-		"SoundSet"					"Hero_Invoker"					// Name of sound set.
-		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_obsidian_destroyer.vsndevts"
-		"ModelScale"				"1.2"
-		"Level"						"200"
+		"Model"						"models/heroes/visage/visage.vmdl"	// Model.
+		"SoundSet"					"Hero_Visage"					// Name of sound set.
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_visage.vsndevts"
+		"ModelScale"				"1.15"
+		"Level"						"40"
 		"IsCelestial"				"1"
-		"IsDemon"					"1"
-		"IsWild"					"1"
-		"IsUndead"					"1"
 		"MinimapIcon"				"minimap_roshancamp"
-		"MinimapIconSize"			"180"
+		"MinimapIconSize"			"120"
 		"vscripts"					"ai/ai_ammetot"
 		
 		"precache"
@@ -5888,15 +5876,15 @@
 		// Abilities
 		//----------------------------------------------------------------
 		
-		"Ability1"					"boss_ammetot_the_end"
-		"Ability2"					"boss_ammetot_judge_the_cowards"
-		"Ability3"					"boss_ammetot_shield_of_valhalla"
-		"Ability4"					"boss_ammetot_ruthless_hunter"
+		"Ability1"					"boss_ammetot_see_all"
+		"Ability2"					"boss_ammetot_gatekeeper"
+		"Ability3"					"boss_ammetot_unbound"
+		"Ability4"					"boss_ammetot_fate_acceptance"
 		
-		"Ability5"					"boss_ammetot_decimate"
-		"Ability6"					"boss_ammetot_rampage"
-		"Ability7"					"boss_ammetot_focused_beam"
-		"Ability8"					"boss_ammetot_latent_potential"
+		"Ability5"					"boss_ammetot_restless_warden"
+		"Ability6"					"boss_ammetot_illusion_of_inevitability"
+		"Ability7"					"boss_ammetot_willing_prisoner"
+		"Ability8"					"boss_ammetot_death_is_lonely"
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -5909,11 +5897,11 @@
 		"AttackDamageMin"			"100"		// Damage range min.
 		"AttackDamageMax"			"150"		// Damage range max.
 		"AttackRate"				"3"		// Speed of attack.
-		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
 		"AnimationPlaybackRate"		"0.33"
 		"AttackAcquisitionRange"	"8000"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
-		"ProjectileModel"			"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_arcane_orb.vpcf"			// Particle system model for projectile.
+		"ProjectileModel"			"particles/units/heroes/hero_visage/visage_base_attack.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"900"			// Speed of projectile.
 	
 		// Bounty
@@ -5926,7 +5914,7 @@
 		//----------------------------------------------------------------
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
 		"RingRadius"				"120"
-		"HealthBarOffset"			"600"
+		"HealthBarOffset"			"300"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -5966,11 +5954,9 @@
 		{
 			"AttachWearables"
 			{
-				"Wearable1"{"ItemDef"			"9795"}
-				"Wearable2"{"ItemDef"			"9369"}
-				"Wearable3"{"ItemDef"			"9367"}
-				"Wearable4"{"ItemDef"			"9370"}
-				"Wearable4"{"ItemDef"			"533"}
+				"Wearable1"{"ItemDef"			"7997"}
+				"Wearable2"{"ItemDef"			"9051"}
+				"Wearable3"{"ItemDef"			"543"}
 			}
 		}
 	}

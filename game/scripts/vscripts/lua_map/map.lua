@@ -22,7 +22,7 @@ function MapHandler:CheckAndResolvePositions(hero)
 	if MapHandler:IsOutsideMapBounds(hero) or ( edgeBox and not edgeBox:IsTouching(hero) ) then
 		FindClearSpaceForUnit(hero, hero.lastAllowedPosition, true)
 		hero:StopMotionControllers(true)
-		if edgeBox and not edgeBox:IsTouching(hero) then
+		if edgeBox and not edgeBox:IsTouching(hero) and RoundManager:GetCurrentEvent() then
 			if hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
 				hero.lastAllowedPosition = RoundManager:GetCurrentEvent():GetHeroSpawnPosition()
 			else
@@ -56,6 +56,7 @@ function OnWaterExit(trigger)
 end
 
 function MapHandler:IsOutsideMapBounds(unit)
+	if not unit or unit:IsNull() then return end
 	local unitPos = unit:GetAbsOrigin()
 	return (unitPos.x > MAX_POS_X or unitPos.x < MIN_POS_X) or (unitPos.y > MAX_POS_Y or unitPos.y < MIN_POS_Y) or (unitPos.z < MIN_POS_Z)
 end
