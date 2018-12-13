@@ -4,7 +4,7 @@ modifier_accuracy_handler = class({})
 function modifier_accuracy_handler:OnCreated()
 	self:SetStackCount(1)
 	if IsServer() then
-		self:StartIntervalThink(0.33)
+		self:StartIntervalThink(0.1)
 	end
 end
 

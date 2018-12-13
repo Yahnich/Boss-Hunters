@@ -24,7 +24,6 @@ function oracle_innate:GetAbilityTextureName()
 	    --Balance
 	    else
 	    	return "custom/oracle_balance"
-
 	    end
 	end
 end
@@ -63,7 +62,7 @@ end
 
 function modifier_oracle_innate_offense:DeclareFunctions()
 	local funcs = { MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
-					MODIFIER_PROPERTY_MANACOST_PERCENTAGE}
+					MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING}
 	return funcs
 end
 
@@ -75,8 +74,8 @@ function modifier_oracle_innate_offense:GetModifierTotalDamageOutgoing_Percentag
 	return self.damage
 end
 
-function modifier_oracle_innate_offense:GetModifierPercentageManacost()
-	return self.mana
+function modifier_oracle_innate_offense:GetModifierPercentageManacostStacking()
+	return self.mana  * (-1)
 end
 
 function modifier_oracle_innate_offense:GetTexture()
@@ -110,7 +109,7 @@ end
 
 function modifier_oracle_innate_defense:DeclareFunctions()
 	local funcs = {	MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
-					MODIFIER_PROPERTY_MANACOST_PERCENTAGE}
+					MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING}
 	return funcs
 end
 
@@ -122,8 +121,8 @@ function modifier_oracle_innate_defense:GetModifierTotalDamageOutgoing_Percentag
 	return self.damage
 end
 
-function modifier_oracle_innate_defense:GetModifierPercentageManacost()
-	return self.mana
+function modifier_oracle_innate_defense:GetModifierPercentageManacostStacking()
+	return self.mana * (-1)
 end
 
 function modifier_oracle_innate_defense:GetTexture()

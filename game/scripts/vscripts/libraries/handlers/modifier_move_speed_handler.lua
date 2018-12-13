@@ -3,7 +3,7 @@ INTERNAL_MOVESPEED_CAP = 550
 if IsServer() then
 	function modifier_move_speed_handler:OnCreated()
 		self:SetStackCount( INTERNAL_MOVESPEED_CAP )
-		self:StartIntervalThink(0.33)
+		self:StartIntervalThink(0.1)
 		self:GetParent():AddNewModifier(self:GetParent(), nil, "modifier_bloodseeker_thirst", {})
 	end
 	

@@ -4,7 +4,7 @@ INTERNAL_ATTACK_SPEED_CAP = 600
 if IsServer() then
 	function modifier_attack_speed_handler:OnCreated()
 		self:SetStackCount( 0 )
-		self:StartIntervalThink(0.33)
+		self:StartIntervalThink(0.1)
 	end
 
 	function modifier_attack_speed_handler:OnIntervalThink()

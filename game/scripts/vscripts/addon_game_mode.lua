@@ -1035,26 +1035,19 @@ function CHoldoutGameMode:DegradeThreat()
 end
 
 function CHoldoutGameMode:CheckHP()
-	local dontdelete = {["npc_dota_lone_druid_bear"] = true}
-	for _,unit in ipairs ( FindAllEntitiesByClassname("npc_dota_creature")) do
-		if unit:GetAbsOrigin().z < GetGroundHeight(unit:GetAbsOrigin(), unit) or unit:GetAbsOrigin().z > 1800 +  GetGroundHeight(unit:GetAbsOrigin(), unit) then
-			local currOrigin = unit:GetAbsOrigin()
-			FindClearSpaceForUnit(unit, GetGroundPosition(currOrigin, unit), true)
-		end
-		if ( unit:GetHealth() <= 0 and unit:IsAlive() ) or ( unit:GetHealth() > 0 and not unit:IsAlive() ) then
-			if not unit:IsNull() then
-				unit:SetBaseMaxHealth( 1 )
-				unit:SetMaxHealth( 1 )
-				unit:SetHealth( 1 )
-				
-				unit:ForceKill( false )
+	if not GameRules:IsGamePaused() then
+		for _,unit in ipairs ( FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0), nil, -1, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, FIND_ANY_ORDER, false) ) do
+			MapHandler:CheckAndResolvePositions(unit)
+			if ( unit:GetHealth() <= 0 and unit:IsAlive() ) or ( unit:GetHealth() > 0 and not unit:IsAlive() ) then
+				if not unit:IsNull() then
+					unit:SetBaseMaxHealth( 1 )
+					unit:SetMaxHealth( 1 )
+					unit:SetHealth( 1 )
+					
+					unit:ForceKill( false )
+				end
 			end
 		end
-	end
-	for _,unit in ipairs ( FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0), nil, -1, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, FIND_ANY_ORDER, false) ) do
-		MapHandler:CheckAndResolvePositions(unit)
-	end
-	if not GameRules:IsGamePaused() then
 		local playerData = {}
 		for _, hero in ipairs ( HeroList:GetAllHeroes() ) do
 			if not hero:IsFakeHero() then
