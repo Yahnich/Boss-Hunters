@@ -1,6 +1,14 @@
 zeus_chain_lightning = class({})
 LinkLuaModifier("modifier_zeus_chain_lightning", "heroes/hero_zeus/zeus_chain_lightning", LUA_MODIFIER_MOTION_NONE)
 
+function zeus_chain_lightning:IsStealable()
+    return true
+end
+
+function zeus_chain_lightning:IsHiddenWhenStolen()
+    return false
+end
+
 function zeus_chain_lightning:GetBehavior(iLvl)
 	if self:GetCaster():HasTalent("special_bonus_unique_zeus_chain_lightning_1") then
 		return DOTA_ABILITY_BEHAVIOR_POINT

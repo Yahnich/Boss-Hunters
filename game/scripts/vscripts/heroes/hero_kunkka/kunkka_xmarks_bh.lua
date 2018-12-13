@@ -2,7 +2,7 @@ kunkka_xmarks_bh = class({})
 LinkLuaModifier("modifier_kunkka_xmarks_bh", "heroes/hero_kunkka/kunkka_xmarks_bh", LUA_MODIFIER_MOTION_NONE)
 
 function kunkka_xmarks_bh:IsStealable()
-    return true
+    return false
 end
 
 function kunkka_xmarks_bh:IsHiddenWhenStolen()

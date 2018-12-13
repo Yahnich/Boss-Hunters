@@ -1,6 +1,6 @@
 chen_angel_persuasion = class({})
 function chen_angel_persuasion:IsStealable()
-	return true
+	return false
 end
 
 function chen_angel_persuasion:IsHiddenWhenStolen()

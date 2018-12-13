@@ -3,6 +3,14 @@ LinkLuaModifier( "modifier_zeus_olympus_calls", "heroes/hero_zeus/zeus_olympus_c
 LinkLuaModifier( "modifier_zeus_olympus_calls_ally", "heroes/hero_zeus/zeus_olympus_calls.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_zeus_olympus_calls_talent", "heroes/hero_zeus/zeus_olympus_calls.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function zeus_olympus_calls:IsStealable()
+    return true
+end
+
+function zeus_olympus_calls:IsHiddenWhenStolen()
+    return false
+end
+
 function zeus_olympus_calls:GetIntrinsicModifierName()
 	if self:GetCaster():HasTalent("special_bonus_unique_zeus_olympus_calls_1") then
 		return "modifier_zeus_olympus_calls_talent"

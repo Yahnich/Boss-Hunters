@@ -173,6 +173,7 @@
 #base "heroes/hero_dark_willow.txt"
 #base "heroes/hero_enchantress.txt"
 #base "heroes/hero_oracle.txt"
+#base "heroes/hero_rubick.txt"
 
 "DOTAAbilities"
 {

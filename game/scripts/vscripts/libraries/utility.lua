@@ -213,7 +213,7 @@ end
 
 function CDOTA_BaseNPC_Hero:CreateSummon(unitName, position, duration, bControllable)
 	local summon = CreateUnitByName(unitName, position, true, self, nil, self:GetTeam())
-	if bControllable then summon:SetControllableByPlayer( self:GetPlayerID(),  true ) end
+	if not bControllable then summon:SetControllableByPlayer( self:GetPlayerID(),  true ) end
 	self.summonTable = self.summonTable or {}
 	table.insert(self.summonTable, summon)
 	summon:SetOwner(self)

@@ -1,6 +1,14 @@
 zeus_nimbus_storm = class({})
 LinkLuaModifier("modifier_zeus_nimbus_storm", "heroes/hero_zeus/zeus_nimbus_storm", LUA_MODIFIER_MOTION_NONE)
 
+function zeus_nimbus_storm:IsStealable()
+    return true
+end
+
+function zeus_nimbus_storm:IsHiddenWhenStolen()
+    return false
+end
+
 function zeus_nimbus_storm:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
