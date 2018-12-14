@@ -1,7 +1,7 @@
 espirit_rock = class({})
 
 function espirit_rock:IsStealable()
-	return true
+	return false
 end
 
 function espirit_rock:IsHiddenWhenStolen()

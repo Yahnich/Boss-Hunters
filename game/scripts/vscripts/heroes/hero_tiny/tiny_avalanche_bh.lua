@@ -1,6 +1,14 @@
 --Thanks Dota Imba
 tiny_avalanche_bh = class({})
 
+function tiny_avalanche_bh:IsStealable()
+    return true
+end
+
+function tiny_avalanche_bh:IsHiddenWhenStolen()
+    return false
+end
+
 function tiny_avalanche_bh:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
     if self:GetCaster():HasTalent("special_bonus_unique_tiny_avalanche_bh_1") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_tiny_avalanche_bh_1") end

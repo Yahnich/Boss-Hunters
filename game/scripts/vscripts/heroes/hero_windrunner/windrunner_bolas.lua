@@ -2,6 +2,14 @@ windrunner_bolas = class({})
 LinkLuaModifier("modifier_windrunner_bolas_primary", "heroes/hero_windrunner/windrunner_bolas", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_windrunner_bolas_secondary", "heroes/hero_windrunner/windrunner_bolas", LUA_MODIFIER_MOTION_NONE)
 
+function windrunner_bolas:IsStealable()
+    return true
+end
+
+function windrunner_bolas:IsHiddenWhenStolen()
+    return false
+end
+
 function windrunner_bolas:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()

@@ -1,5 +1,13 @@
 zeus_thunder_bolt = class({})
 
+function zeus_thunder_bolt:IsStealable()
+    return true
+end
+
+function zeus_thunder_bolt:IsHiddenWhenStolen()
+    return false
+end
+
 function zeus_thunder_bolt:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
     if self:GetCaster():HasTalent("special_bonus_unique_zeus_thunder_bolt_2") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_zeus_thunder_bolt_2") end

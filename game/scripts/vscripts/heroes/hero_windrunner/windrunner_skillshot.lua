@@ -1,6 +1,14 @@
 windrunner_skillshot = class({})
 LinkLuaModifier("modifier_windrunner_skillshot_handle", "heroes/hero_windrunner/windrunner_skillshot", LUA_MODIFIER_MOTION_NONE)
 
+function windrunner_skillshot:IsStealable()
+    return true
+end
+
+function windrunner_skillshot:IsHiddenWhenStolen()
+    return false
+end
+
 function windrunner_skillshot:GetIntrinsicModifierName()
 	return "modifier_windrunner_skillshot_handle"
 end

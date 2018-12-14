@@ -3,6 +3,14 @@ LinkLuaModifier("modifier_tiny_toss_bh", "heroes/hero_tiny/tiny_toss_bh", LUA_MO
 LinkLuaModifier("modifier_tiny_toss_bh_rock", "heroes/hero_tiny/tiny_toss_bh", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_tiny_toss_bh_charge_handle", "heroes/hero_tiny/tiny_toss_bh", LUA_MODIFIER_MOTION_NONE)
 
+function tiny_toss_bh:IsStealable()
+    return true
+end
+
+function tiny_tree_bh:IsHiddenWhenStolen()
+    return false
+end
+
 function tiny_toss_bh:PiercesDisableResistance()
 	return true
 end

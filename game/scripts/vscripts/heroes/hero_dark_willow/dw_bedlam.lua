@@ -3,7 +3,7 @@ LinkLuaModifier("modifier_dw_bedlam", "heroes/hero_dark_willow/dw_bedlam", LUA_M
 LinkLuaModifier("modifier_dw_bedlam_bug", "heroes/hero_dark_willow/dw_bedlam", LUA_MODIFIER_MOTION_NONE)
 
 function dw_bedlam:IsStealable()
-    return true
+    return false
 end
 
 function dw_bedlam:IsHiddenWhenStolen()

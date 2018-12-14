@@ -2,6 +2,10 @@
 tiny_grow_bh = class({})
 LinkLuaModifier("modifier_tiny_grow_bh", "heroes/hero_tiny/tiny_grow_bh", LUA_MODIFIER_MOTION_NONE)
 
+function tiny_grow_bh:IsStealable()
+    return false
+end
+
 function tiny_grow_bh:GetIntrinsicModifierName()
 	return "modifier_tiny_grow_bh"
 end

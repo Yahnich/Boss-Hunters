@@ -2,7 +2,7 @@ visage_familiars = class({})
 LinkLuaModifier( "modifier_visage_familiars", "heroes/hero_visage/visage_familiars.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function visage_familiars:IsStealable()
-    return true
+    return false
 end
 
 function visage_familiars:IsHiddenWhenStolen()

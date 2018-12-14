@@ -1,6 +1,14 @@
 tiny_tree_bh = class({})
 LinkLuaModifier("modifier_tiny_tree_bh", "heroes/hero_tiny/tiny_tree_bh", LUA_MODIFIER_MOTION_NONE)
 
+function tiny_tree_bh:IsStealable()
+    return false
+end
+
+function tiny_tree_bh:IsHiddenWhenStolen()
+    return false
+end
+
 function tiny_tree_bh:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
     if self:GetCaster():HasTalent("special_bonus_unique_tiny_tree_bh_1") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_tiny_tree_bh_1") end
