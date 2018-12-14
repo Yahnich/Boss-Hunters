@@ -4,7 +4,7 @@ if IsServer() then
 	function modifier_stunned_generic:OnCreated(kv)
 		self:GetParent():Interrupt()
 		self:GetParent():Stop()
-		self:GetParent():StopMotionControllers(false)
+		self:GetParent():StopMotionControllers(true)
 		if kv.delay == nil or toboolean(kv.delay) == true and not self:GetParent():IsRoundBoss() then
 			self.delay = true
 			self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)
@@ -16,9 +16,7 @@ if IsServer() then
 end
 
 function modifier_stunned_generic:CheckState()
-	if not self:GetParent():IsRoundBoss() then
-		return { [MODIFIER_STATE_STUNNED] = true }
-	end
+	return { [MODIFIER_STATE_STUNNED] = true }
 end
 
 function modifier_stunned_generic:DeclareFunctions()
@@ -34,9 +32,7 @@ function modifier_stunned_generic:DeclareFunctions()
 end
 
 function modifier_stunned_generic:GetOverrideAnimation( params )
-	if not self:GetParent():IsRoundBoss() then
-		return ACT_DOTA_DISABLED
-	end
+	return ACT_DOTA_DISABLED
 end
 
 function modifier_stunned_generic:GetModifierFixedAttackRate( params )
@@ -82,9 +78,7 @@ function modifier_stunned_generic:IsDebuff()
 end
 
 function modifier_stunned_generic:GetEffectName()
-	if not self:GetParent():IsRoundBoss() then
-		return "particles/generic_gameplay/generic_stunned.vpcf"
-	end
+	return "particles/generic_gameplay/generic_stunned.vpcf"
 end
 
 function modifier_stunned_generic:GetEffectAttachType()

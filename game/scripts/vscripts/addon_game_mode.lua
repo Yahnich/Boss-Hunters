@@ -1,5 +1,5 @@
 MAXIMUM_ATTACK_SPEED	= 9999
-MINIMUM_ATTACK_SPEED	= 20
+MINIMUM_ATTACK_SPEED	= 50
 
 ROUND_END_DELAY = 3
 
@@ -208,7 +208,7 @@ function CHoldoutGameMode:InitGameMode()
 	for i = 3, GAME_MAX_LEVEL do
 		GameRules.XP_PER_LEVEL[i] = GameRules.XP_PER_LEVEL[i-1] + i * 100
 	end
-
+	
 	GameRules:GetGameModeEntity():SetUseCustomHeroLevels( true )
     GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel( GameRules.XP_PER_LEVEL )
 	
@@ -833,7 +833,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 		hero:AddItemByName("item_potion_of_essence")
 		
 		hero:AddExperience(GameRules.XP_PER_LEVEL[7],false,false)
-		hero:SetBaseMagicalResistanceValue(0)
+		hero:SetBaseMagicalResistanceValue(15)
 		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage
 		local ID = hero:GetPlayerID()
 		if not ID then return end

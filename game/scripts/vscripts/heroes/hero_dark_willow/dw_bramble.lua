@@ -149,6 +149,7 @@ end
 
 function modifier_dw_bramble_damage:OnIntervalThink()
 	if IsServer() then
+		local caster = self:GetCaster()
 		self.damage = self:GetTalentSpecialValueFor("damage") * 0.5
 		
 		if caster:HasTalent("special_bonus_unique_dw_bramble_1") then

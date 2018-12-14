@@ -17,13 +17,12 @@ function dw_terrorize:OnAbilityPhaseStart()
 
 	local radius = self:GetTalentSpecialValueFor("radius")
 
-	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_marker.vpcf", PATTACH_POINT, caster)
-				ParticleManager:SetParticleControl(nfx, 0, point)
-				ParticleManager:SetParticleControl(nfx, 1, Vector(radius, 2, 1000))
-				ParticleManager:ReleaseParticleIndex(nfx)
+	self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_marker.vpcf", PATTACH_POINT, caster)
+				ParticleManager:SetParticleControl(self.nfx, 0, point)
+				ParticleManager:SetParticleControl(self.nfx, 1, Vector(radius, 2, 1000))
 
 	self.bug = caster:CreateSummon("npc_dota_dark_willow_creature", caster:GetAbsOrigin(), 10)
-	self.bug:AddNewModifier(caster, self, "modifier_dw_terrorize", {})
+	self.fear = self.bug:AddNewModifier(caster, self, "modifier_dw_terrorize", {})
 
 	EmitSoundOn("Hero_DarkWillow.Fear.Cast", caster)
 
@@ -35,11 +34,17 @@ function dw_terrorize:OnAbilityPhaseStart()
 	return true
 end
 
+function dw_terrorize:OnAbilityPhaseInterrupted()
+	self.fear:OnRemoved(true)
+	ParticleManager:ClearParticle( self.nfx )
+	StopSoundOn("Hero_DarkWillow.Fear.Cast", caster)
+end
+
 function dw_terrorize:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 	
-	EmitSoundOnLocationWithCaster(point, "Hero_DarkWillow.Fear.Location", caster)
+	self.fear:OnIntervalThink()
 end
 
 modifier_dw_terrorize = class({})
@@ -66,8 +71,6 @@ function modifier_dw_terrorize:OnCreated(table)
 		self.height = 300
 
 		self.distanceTraveled = 0
-
-		self:StartIntervalThink(self:GetAbility():GetCastPoint())
 	end
 end
 
@@ -91,39 +94,40 @@ function modifier_dw_terrorize:OnIntervalThink()
 	self:StartIntervalThink(0.03)
 end
 
-function modifier_dw_terrorize:OnRemoved()
+function modifier_dw_terrorize:OnRemoved(bIgnore)
 	if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
-		local point = GetGroundPosition(parent:GetAbsOrigin(), parent)
+		if not bIgnore then
+			local point = GetGroundPosition(parent:GetAbsOrigin(), parent)
 
-		local radius = self:GetTalentSpecialValueFor("radius")
-		local duration = self:GetTalentSpecialValueFor("duration")
+			local radius = self:GetTalentSpecialValueFor("radius")
+			local duration = self:GetTalentSpecialValueFor("duration")
 
-		StopSoundOn("Hero_DarkWillow.Fear.Wisp", parent)
+			StopSoundOn("Hero_DarkWillow.Fear.Wisp", parent)
+			EmitSoundOnLocationWithCaster(point, "Hero_DarkWillow.Fear.Location", caster)
+			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell.vpcf", PATTACH_POINT, caster)
+						ParticleManager:SetParticleControl(nfx, 0, point)
+						ParticleManager:SetParticleControl(nfx, 1, Vector(radius, 2, 1000))
+						ParticleManager:ReleaseParticleIndex(nfx)
 
-		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell.vpcf", PATTACH_POINT, caster)
-					ParticleManager:SetParticleControl(nfx, 0, point)
-					ParticleManager:SetParticleControl(nfx, 1, Vector(radius, 2, 1000))
-					ParticleManager:ReleaseParticleIndex(nfx)
+			local enemies = caster:FindEnemyUnitsInRadius(point, radius)
+			for _,enemy in pairs(enemies) do
+				EmitSoundOn("Hero_DarkWillow.Fear.Target", enemy)
+				
+				enemy:Fear(self:GetAbility(), caster, duration)
 
-		local enemies = caster:FindEnemyUnitsInRadius(point, radius)
-		for _,enemy in pairs(enemies) do
-			EmitSoundOn("Hero_DarkWillow.Fear.Target", enemy)
-			
-			enemy:Fear(self:GetAbility(), caster, duration)
+				if caster:HasTalent("special_bonus_unique_dw_terrorize_1") then
+					enemy:AddNewModifier(caster, self:GetAbility(), "modifier_dw_terrorize_damage", {Duration = duration})
+				end
 
-			if caster:HasTalent("special_bonus_unique_dw_terrorize_1") then
-				enemy:AddNewModifier(caster, self:GetAbility(), "modifier_dw_terrorize_damage", {Duration = duration})
-			end
-
-			if caster:HasTalent("special_bonus_unique_dw_terrorize_2") then
-				Timers:CreateTimer(duration, function()
-					enemy:Daze(self:GetAbility(), caster, 2)
-				end)
+				if caster:HasTalent("special_bonus_unique_dw_terrorize_2") then
+					Timers:CreateTimer(duration, function()
+						enemy:Daze(self:GetAbility(), caster, 2)
+					end)
+				end
 			end
 		end
-
 		UTIL_Remove(parent)
 	end
 end

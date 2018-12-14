@@ -1,5 +1,10 @@
 dazzle_shadow_wave_bh = class({})
 
+function dazzle_shadow_wave_bh:CastFilterResultTarget( target )
+	local targetTeam = TernaryOperator( DOTA_UNIT_TARGET_TEAM_BOTH, self:GetCaster():HasTalent("special_bonus_unique_dazzle_shadow_wave_1"), DOTA_UNIT_TARGET_TEAM_FRIENDLY )
+	return UnitFilter(target, targetTeam, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, self:GetCaster():GetTeamNumber() )
+end
+
 function dazzle_shadow_wave_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()

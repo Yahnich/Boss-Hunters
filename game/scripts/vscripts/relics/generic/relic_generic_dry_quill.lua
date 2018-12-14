@@ -9,7 +9,7 @@ function relic_generic_dry_quill:GetModifierAttackSpeedBonus()
 end
 
 function relic_generic_dry_quill:GetCooldownReduction()
-	return 5
+	return 8
 end
 
 function relic_generic_dry_quill:GetModifierPreAttack_BonusDamage()

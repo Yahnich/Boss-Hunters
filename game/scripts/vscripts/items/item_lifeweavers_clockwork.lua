@@ -8,7 +8,8 @@ end
 modifier_item_lifeweavers_clockwork_passive = class(itemBaseClass)
 
 function modifier_item_lifeweavers_clockwork_passive:OnCreated()
-	self.cdr = self:GetSpecialValueFor("cooldown_reduction")
+	self.status_amp = self:GetSpecialValueFor("status_amp")
+	self.spell_amp = self:GetSpecialValueFor("bonus_spell_amp")
 	self.mr = self:GetSpecialValueFor("bonus_mana_regen")
 	self.intellect = self:GetSpecialValueFor("bonus_intellect")
 	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
@@ -19,6 +20,7 @@ end
 function modifier_item_lifeweavers_clockwork_passive:DeclareFunctions()
 	return {MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 			MODIFIER_PROPERTY_MANA_BONUS,
+			MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
 			MODIFIER_EVENT_ON_TAKEDAMAGE}
 end
 
@@ -36,8 +38,12 @@ function modifier_item_lifeweavers_clockwork_passive:OnTakeDamage(params)
 	end
 end
 
-function modifier_item_lifeweavers_clockwork_passive:GetCooldownReduction(params)
-	return self.cdr
+function modifier_item_lifeweavers_clockwork_passive:GetModifierSpellAmplify_Percentage(params)
+	return self.spell_amp
+end
+
+function modifier_item_lifeweavers_clockwork_passive:GetModifierStatusAmplify_Percentage(params)
+	return self.status_amp
 end
 
 function modifier_item_lifeweavers_clockwork_passive:GetModifierManaBonus()

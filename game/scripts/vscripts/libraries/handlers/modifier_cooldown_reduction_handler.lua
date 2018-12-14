@@ -9,8 +9,11 @@ if IsServer() then
 	function modifier_cooldown_reduction_handler:OnIntervalThink()
 		local stacks = 1
 		for _, modifier in ipairs( self:GetParent():FindAllModifiers() ) do
-			if modifier.GetCooldownReduction and modifier:GetCooldownReduction() then
-				stacks = stacks * (1 - modifier:GetCooldownReduction() / 100) 
+			if modifier.GetCooldownReduction then
+				local cdr = modifier:GetCooldownReduction() 
+				if cdr then
+					stacks = stacks * (1 - cdr / 100)
+				end
 			end
 		end
 		stacks = (1 - stacks) * 100 * 100 -- support decimal values

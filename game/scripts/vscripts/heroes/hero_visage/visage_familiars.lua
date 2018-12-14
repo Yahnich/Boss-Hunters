@@ -72,7 +72,8 @@ end
 
 function modifier_visage_familiars:CheckState()
 	if not self:GetParent():HasModifier("modifier_visage_stone") then
-		return { [MODIFIER_STATE_FLYING] = true }
+		return {[MODIFIER_STATE_FLYING] = true,
+				[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
 	end
 end
 

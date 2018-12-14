@@ -57,9 +57,14 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cooldown_reduction"	"15"
+				"status_amp"			"15"
 			}
 			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_spell_amp"		"15"
+			}
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_intellect"		"20"

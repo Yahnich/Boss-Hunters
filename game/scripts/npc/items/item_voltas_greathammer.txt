@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"2500"	
+		"ItemCost"						"1775"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_voltas_greathammer"
 		"ItemRequirements"
 		{
-			"01"						"item_lightningrod;item_broadsword;item_gauntlet_of_alacrity"
+			"01"						"item_lightningrod;item_broadsword;item_soldiers_pike"
 		}
 	}
 	"item_voltas_greathammer"
@@ -67,34 +67,44 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_attack_speed"	"80"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_damage"			"35"
+				"bonus_attack_range"	"150"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"radius"				"625"
+				"melee_attack_range"	"75"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"strike_chance"			"25"
+				"bonus_regen"			"4"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"strike_damage"			"175"
+				"bonus_damage"			"90"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"strike_bounces"		"8"
+				"radius"				"625"
 			}
 			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"strike_chance"			"25"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"strike_damage"			"175"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"strike_bounces"		"8"
+			}
+			"10"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"paralyze_duration"		"1"

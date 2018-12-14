@@ -19,7 +19,8 @@ end
 
 modifier_item_lightningrod_handle = class(itemBaseClass)
 function modifier_item_lightningrod_handle:OnCreated()
-	self.attackspeed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
+	self.regen = self:GetSpecialValueFor("bonus_regen")
 end
 
 function modifier_item_lightningrod_handle:GetAttributes()
@@ -28,11 +29,17 @@ end
 
 function modifier_item_lightningrod_handle:DeclareFunctions()
 	return {
-			MODIFIER_EVENT_ON_ATTACK_LANDED}
+			MODIFIER_EVENT_ON_ATTACK_LANDED,
+			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
 end
 
-function modifier_item_lightningrod_handle:GetModifierAttackSpeedBonus()
-	return self.attackspeed
+function modifier_item_lightningrod_handle:GetModifierPreAttack_BonusDamage()
+	return self.damage
+end
+
+function modifier_item_lightningrod_handle:GetModifierConstantHealthRegen()
+	return self.regen
 end
 
 function modifier_item_lightningrod_handle:OnAttackLanded(params)

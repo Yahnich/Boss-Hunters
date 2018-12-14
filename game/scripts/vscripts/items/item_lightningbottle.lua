@@ -16,14 +16,15 @@ end
 
 modifier_item_lightningbottle_handle = class(itemBaseClass)
 function modifier_item_lightningbottle_handle:OnCreated()
-	self.attackspeed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
+	self.regen = self:GetSpecialValueFor("bonus_regen")
+	self.status_amp = self:GetSpecialValueFor("status_amp")
 	
 	self.mRestore = self:GetSpecialValueFor("mana_restore")
 	self.hRestore = self:GetSpecialValueFor("heal_restore")
 	
 	self.mRestoreL = self:GetSpecialValueFor("mana_restore_lightning")
 	self.hRestoreL = self:GetSpecialValueFor("heal_restore_lightning")
-	self.cdr = self:GetSpecialValueFor("cdr")
 end
 
 function modifier_item_lightningbottle_handle:GetAttributes()
@@ -32,16 +33,22 @@ end
 
 function modifier_item_lightningbottle_handle:DeclareFunctions()
 	return {
-			MODIFIER_EVENT_ON_ABILITY_FULLY_CAST
+			MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
+			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT
 		}
 end
 
-function modifier_item_lightningbottle_handle:GetModifierAttackSpeedBonus()
-	return self.attackspeed
+function modifier_item_lightningbottle_handle:GetModifierPreAttack_BonusDamage()
+	return self.damage
 end
 
-function modifier_item_lightningbottle_handle:GetCooldownReduction(params)
-	return self.cdr
+function modifier_item_lightningbottle_handle:GetModifierConstantHealthRegen()
+	return self.regen
+end
+
+function modifier_item_lightningbottle_handle:GetModifierStatusAmplify_Percentage(params)
+	return self.status_amp
 end
 
 function modifier_item_lightningbottle_handle:OnAbilityFullyCast(params)

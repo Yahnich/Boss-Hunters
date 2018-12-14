@@ -9,5 +9,5 @@ function relic_generic_scrap_of_paper:GetModifierPhysicalArmorBonus()
 end
 
 function relic_generic_scrap_of_paper:GetCooldownReduction()
-	return 8
+	return 12
 end

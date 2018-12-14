@@ -23,7 +23,7 @@
 		"ItemResult"					"item_blood_gods_mask"
 		"ItemRequirements"
 		{
-			"01"						"item_gauntlet_of_alacrity;item_sanguine_mask"
+			"01"						"item_crystal_of_life;item_sanguine_mask"
 		}
 	}
 	//=================================================================================================================
@@ -183,7 +183,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"25"
+				"bonus_health"			"400 500 600 700 800"
 			}
 			"04"
 			{
@@ -265,7 +265,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"25"
+				"bonus_health"			"400 500 600 700 800"
 			}
 			"04"
 			{
@@ -347,7 +347,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"25"
+				"bonus_health"			"400 500 600 700 800"
 			}
 			"04"
 			{
@@ -429,7 +429,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"25"
+				"bonus_health"			"400 500 600 700 800"
 			}
 			"04"
 			{
@@ -511,7 +511,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"25"
+				"bonus_health"			"400 500 600 700 800"
 			}
 			"04"
 			{

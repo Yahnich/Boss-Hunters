@@ -192,7 +192,7 @@
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"mana_drain"					"5"
+				"mana_drain"					"3.5"
 			}
 		}
 	}

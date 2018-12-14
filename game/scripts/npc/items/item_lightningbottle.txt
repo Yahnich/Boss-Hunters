@@ -71,35 +71,40 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_attack_speed"	"35"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"35"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"radius"				"625"
+				"bonus_regen"			"2.5"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"strike_chance"			"15"
+				"radius"				"625"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"strike_damage"			"125"
+				"strike_chance"			"15"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
+				"strike_damage"			"125"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
 				"strike_bounces"		"4"
 			}
-			"10"
+			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"heal_restore"			"30" //percent
 			}
-			"11"
+			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"mana_restore"			"10" //percent
@@ -114,27 +119,27 @@
 				"var_type"				"FIELD_FLOAT"
 				"mana_restore_lightning""5" //percent
 			}
-			"10"
+			"12"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"heal_restore_shield"	"15" //percent
 			}
-			"11"
+			"13"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"mana_restore_shield"	"8" //percent
 			}
-			"12"
+			"14"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"15"
 			}
-			"13"
+			"15"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cdr"					"15"
+				"status_amp"			"15"
 			}
-			"14"
+			"16"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"paralyze_duration"		"0.25"

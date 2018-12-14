@@ -3,6 +3,10 @@ modifier_base_attack_time_handler = class({})
 if IsServer() then
 	function modifier_base_attack_time_handler:OnCreated()
 		self.baseAttackTime = self:GetParent():GetBaseAttackTime() * 100
+		if self:GetParent():IsRealHero() then
+			self.baseAttackTime = self.baseAttackTime * 1.5
+		end
+		self.baseAttackTime =  math.ceil( self.baseAttackTime )
 		self:SetStackCount( self.baseAttackTime )
 		self:StartIntervalThink(0.1)
 	end

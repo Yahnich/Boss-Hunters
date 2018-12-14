@@ -213,7 +213,7 @@ end
 
 function CDOTA_BaseNPC_Hero:CreateSummon(unitName, position, duration, bControllable)
 	local summon = CreateUnitByName(unitName, position, true, self, nil, self:GetTeam())
-	if bControllable then summon:SetControllableByPlayer( self:GetPlayerID(),  true ) end
+	if bControllable or bControllable == nil then summon:SetControllableByPlayer( self:GetPlayerID(),  true ) end
 	self.summonTable = self.summonTable or {}
 	table.insert(self.summonTable, summon)
 	summon:SetOwner(self)
@@ -1090,32 +1090,32 @@ function CDOTABaseAbility:IsDelayedCooldown()
 end
 
 function CDOTABaseAbility:StartDelayedCooldown(flDelay, newCD)
-	self:EndDelayedCooldown()
-	self:EndCooldown()
-	self:UseResources(false, false, true)
-	local cd = newCD or self:GetCooldownTimeRemaining()
-	local ability = self
-	self:SetActivated(false)
-	self.delayedCooldownTimer = Timers:CreateTimer(FrameTime(), function()
-		if not ability or ability:IsNull() then return end
-		ability:EndCooldown()
-		ability:StartCooldown(cd)
-		return FrameTime()
-	end)
-	if flDelay then
-		if self.automaticDelayedCD then
-			Timers:RemoveTimer(self.automaticDelayedCD)
-		end
-		self.automaticDelayedCD = Timers:CreateTimer(flDelay, function() ability:EndDelayedCooldown() end)
-	end
+	-- self:EndDelayedCooldown()
+	-- self:EndCooldown()
+	-- self:UseResources(false, false, true)
+	-- local cd = newCD or self:GetCooldownTimeRemaining()
+	-- local ability = self
+	-- self:SetActivated(false)
+	-- self.delayedCooldownTimer = Timers:CreateTimer(FrameTime(), function()
+		-- if not ability or ability:IsNull() then return end
+		-- ability:EndCooldown()
+		-- ability:StartCooldown(cd)
+		-- return FrameTime()
+	-- end)
+	-- if flDelay then
+		-- if self.automaticDelayedCD then
+			-- Timers:RemoveTimer(self.automaticDelayedCD)
+		-- end
+		-- self.automaticDelayedCD = Timers:CreateTimer(flDelay, function() ability:EndDelayedCooldown() end)
+	-- end
 end
 
 function CDOTABaseAbility:EndDelayedCooldown()
-	if self.delayedCooldownTimer then
-		Timers:RemoveTimer(self.delayedCooldownTimer)
-		self.delayedCooldownTimer = nil
-	end
-	self:SetActivated(true)
+	-- if self.delayedCooldownTimer then
+		-- Timers:RemoveTimer(self.delayedCooldownTimer)
+		-- self.delayedCooldownTimer = nil
+	-- end
+	-- self:SetActivated(true)
 end
 
 function CDOTABaseAbility:ModifyCooldown(amt)
@@ -1476,7 +1476,7 @@ end
 
 function CDOTA_Modifier_Lua:StopMotionController(bForceDestroy)
 	FindClearSpaceForUnit(self:GetParent(), self:GetParent():GetAbsOrigin(), true)
-	Timers:RemoveTimer(self.controlledMotionTimer)
+	if self.controlledMotionTimer then Timers:RemoveTimer(self.controlledMotionTimer) end
 	if bForceDestroy then self:Destroy() end
 end
 

@@ -38,6 +38,10 @@ function modifier_treant_leech_seed_bh_handler:OnAttackLanded(params)
 	end
 end
 
+function modifier_treant_leech_seed_bh_handler:IsHidden()
+	return true
+end
+
 modifier_treant_leech_seed_bh_debuff = class({})
 LinkLuaModifier("modifier_treant_leech_seed_bh_debuff", "heroes/hero_treant_protector/treant_leech_seed_bh", LUA_MODIFIER_MOTION_NONE)
 
