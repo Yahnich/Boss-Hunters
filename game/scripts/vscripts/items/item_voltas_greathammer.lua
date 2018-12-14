@@ -20,22 +20,31 @@ end
 
 modifier_item_voltas_greathammer_handle = class(itemBaseClass)
 function modifier_item_voltas_greathammer_handle:OnCreated()
-	self.attackspeed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.regen = self:GetSpecialValueFor("bonus_regen")
 	self.damage = self:GetSpecialValueFor("bonus_damage")
+	self.range = self:GetSpecialValueFor("bonus_attack_range")
+	if not self:GetParent():IsRangedAttacker() then
+		self.range = self:GetSpecialValueFor("melee_attack_range")
+	end
 end
 
 function modifier_item_voltas_greathammer_handle:DeclareFunctions()
-	return {
+	return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+			MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 			MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
 
-function modifier_item_voltas_greathammer_handle:GetModifierAttackSpeedBonus()
-	return self.attackspeed
-end
-
 function modifier_item_voltas_greathammer_handle:GetModifierPreAttack_BonusDamage()
 	return self.damage
+end
+
+function modifier_item_voltas_greathammer_handle:GetModifierConstantHealthRegen()
+	return self.regen
+end
+
+function modifier_item_voltas_greathammer_handle:GetModifierAttackRangeBonus()
+	return self.range
 end
 
 function modifier_item_voltas_greathammer_handle:OnAttackLanded(params)

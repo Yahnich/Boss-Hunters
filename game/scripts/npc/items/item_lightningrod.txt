@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"965"	
+		"ItemCost"						"690"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_lightningrod"
 		"ItemRequirements"
 		{
-			"01"						"item_gauntlet_of_alacrity"
+			"01"						"item_broadsword;item_ruby_ring"
 		}
 	}
 	"item_lightningrod"
@@ -69,30 +69,35 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_attack_speed"	"35"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"35"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"radius"				"625"
+				"bonus_regen"			"2.5"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"strike_chance"			"15"
+				"radius"				"625"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"strike_damage"			"125"
+				"strike_chance"			"15"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"strike_bounces"		"4"
+				"strike_damage"			"125"
 			}
 			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"strike_bounces"		"4"
+			}
+			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"paralyze_duration"		"0.25"

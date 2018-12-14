@@ -60,7 +60,6 @@
 		"item"		"item_orb_of_essence"
 		"item"		"item_titan_blade"
 		"item"		"item_power_core"
-		"item"		"item_aeon_shard"
 		"item"		"item_siegebreaker"
 		"item"		"item_trebuchet"
 		"item"		"item_winters_breath"

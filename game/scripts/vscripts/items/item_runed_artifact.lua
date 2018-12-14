@@ -8,13 +8,13 @@ end
 modifier_item_runed_artifact_passive = class(itemBaseClass)
 
 function modifier_item_runed_artifact_passive:OnCreated()
-	self.cdr = self:GetSpecialValueFor("cooldown_reduction")
+	self.status_amp = self:GetSpecialValueFor("status_amp")
 end
 
 function modifier_item_runed_artifact_passive:DeclareFunctions()
 	return {}
 end
 
-function modifier_item_runed_artifact_passive:GetCooldownReduction()
-	return self.cdr
+function modifier_item_runed_artifact_passive:GetModifierStatusAmplify_Percentage()
+	return self.status_amp
 end

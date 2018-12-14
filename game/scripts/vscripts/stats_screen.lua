@@ -29,9 +29,9 @@ function StatsScreen:StartStatsScreen()
 	self.mpr = 2
 	self.ha = {0,1,2,3,4,5}
 	
-	self.ad = 15
-	self.sa = 8
-	self.cdr = {0,1,2,3,4,5}
+	self.ad = 20
+	self.sa = 10
+	-- self.cdr = {0,1,2,3,4,5}
 	self.as = 10
 	self.sta = {0,1,2,3,4,5}
 	self.acc = {0,1,2,3,4,5}
@@ -60,7 +60,7 @@ function StatsScreen:RegisterPlayer(hero, bRespec)
 	
 	stats.ad = 0
 	stats.sa = 0
-	stats.cdr = 0
+	-- stats.cdr = 0
 	stats.as = 0
 	stats.sta = 0
 	stats.acc = 0

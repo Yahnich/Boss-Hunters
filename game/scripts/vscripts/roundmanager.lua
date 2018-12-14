@@ -103,7 +103,7 @@ function RoundManager:OnNPCSpawned(event)
 		return
 	end
 	Timers:CreateTimer(function()
-		if spawnedUnit then
+		if spawnedUnit and not spawnedUnit:IsNull() then
 			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_cooldown_reduction_handler", {})
 			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_base_attack_time_handler", {})
 			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_accuracy_handler", {})
@@ -586,15 +586,15 @@ function RoundManager:InitializeUnit(unit, bElite)
 	unit.NPCIsElite = bElite
 	local expectedHP = unit:GetBaseMaxHealth() * RandomFloat(0.9, 1.1)
 	local expectedDamage = ( unit:GetAverageBaseDamage() + (RoundManager:GetEventsFinished() * 2) ) * RandomFloat(0.85, 1.15)
-	local playerHPMultiplier = 0.25
+	local playerHPMultiplier = 0.20
 	local playerDMGMultiplier = 0.075
-	local playerArmorMultiplier = 0.05
+	local playerArmorMultiplier = 0.03
 	if GameRules:GetGameDifficulty() == 4 then 
-		expectedHP = expectedHP * 1.5
+		expectedHP = expectedHP * 1.35
 		expectedDamage = expectedDamage * 1.2
-		playerHPMultiplier = 0.33
+		playerHPMultiplier = 0.25
 		playerDMGMultiplier = 0.1
-		playerArmorMultiplier = 0.12
+		playerArmorMultiplier = 0.08
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
 	
@@ -613,16 +613,15 @@ function RoundManager:InitializeUnit(unit, bElite)
 	effPlayerDMGMult = math.min( effPlayerDMGMult, maxPlayerDMGMult )
 	effPlayerDMGMult = effPlayerDMGMult * ( 1 + RoundManager:GetAscensions() * 1 )  * (1 + effective_multiplier * playerDMGMultiplier )
 	
-	effPlayerArmorMult = effPlayerArmorMult * ( 1 + RoundManager:GetAscensions() * 0.5 )
+	effPlayerArmorMult = effPlayerArmorMult * ( 1 + RoundManager:GetAscensions() * 0.35 )
 	
-	if not unit:IsRoundBoss() then
+	if unit:IsMinion() then
 		effPlayerHPMult = effPlayerHPMult / 2
 		effPlayerDMGMult = effPlayerDMGMult / 2
 		effPlayerArmorMult = effPlayerArmorMult / 2
 	end
 	
-	
-	if bElite then
+	if bElite and not unit:IsMinion() then
 		effPlayerHPMult = effPlayerHPMult * 1.35
 		effPlayerDMGMult = effPlayerDMGMult * 1.2
 		

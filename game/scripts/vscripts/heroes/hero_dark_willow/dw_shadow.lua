@@ -11,6 +11,14 @@ function dw_shadow:IsHiddenWhenStolen()
     return false
 end
 
+function dw_shadow:GetManaCost( iLvl )
+	if self:GetCaster():HasModifier("modifier_dw_shadow") then
+		return 0
+	else
+		return self.BaseClass.GetManaCost( self, iLvl )
+	end
+end
+
 function dw_shadow:OnSpellStart()
 	local caster = self:GetCaster()
 
@@ -18,7 +26,6 @@ function dw_shadow:OnSpellStart()
 
 	if caster:HasModifier("modifier_dw_shadow") then
 		caster:RemoveModifierByName("modifier_dw_shadow")
-		self:RefundManaCost()
 	else
 		EmitSoundOn("Hero_DarkWillow.Shadow_Realm", caster)
 

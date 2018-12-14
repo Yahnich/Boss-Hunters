@@ -278,10 +278,10 @@
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"275"
 			}
-			"04"
+			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_cost"				"170 160 150 140 130 120 110"
+				"var_type"				"FIELD_FLOAT"
+				"scepter_mana_cost"		"1.5"
 			}
 			
 		}
@@ -362,7 +362,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_ar"				"50"
+				"bonus_ar"				"100"
 			}
 			"02"
 			{
@@ -372,7 +372,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"slow_as"				"-25"
+				"slow_as"				"-20"
 			}
 		}
 	}

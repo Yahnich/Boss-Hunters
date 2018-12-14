@@ -1,4 +1,4 @@
-dw_crown = class({})
+ dw_crown = class({})
 LinkLuaModifier("modifier_dw_crown", "heroes/hero_dark_willow/dw_crown", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_dw_crown_damage", "heroes/hero_dark_willow/dw_crown", LUA_MODIFIER_MOTION_NONE)
 

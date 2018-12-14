@@ -36,8 +36,8 @@ MANA_REGEN_TABLE = 1.5
 HEAL_AMP_TABLE = [0,15,30,45,60,75]
 
 // OFFENSE
-ATTACK_DAMAGE_TABLE = 15
-SPELL_AMP_TABLE = 8
+ATTACK_DAMAGE_TABLE = 20
+SPELL_AMP_TABLE = 10
 COOLDOWN_REDUCTION_TABLE = [0,10,15,20,25,30]
 ATTACK_SPEED_TABLE = 10
 STATUS_AMP_TABLE = [0,10,15,20,25,30]
@@ -241,7 +241,7 @@ function LoadOffenseLayout()
 	CreateAttributePanel( statsNetTable.ad, ATTACK_DAMAGE_TABLE, "ad", "STATS_TYPE_ATTACK_DAMAGE", "" )
 	CreateAttributePanel( statsNetTable.as, ATTACK_SPEED_TABLE, "as", "STATS_TYPE_ATTACK_SPEED", "" )
 	CreateAttributePanel( statsNetTable.sa, SPELL_AMP_TABLE, "sa", "STATS_TYPE_SPELL_AMP", "%" )
-	CreateAttributePanel( statsNetTable.cdr, COOLDOWN_REDUCTION_TABLE, "cdr", "STATS_TYPE_COOLDOWN_REDUCTION", "%" )
+	// CreateAttributePanel( statsNetTable.cdr, COOLDOWN_REDUCTION_TABLE, "cdr", "STATS_TYPE_COOLDOWN_REDUCTION", "%" )
 	CreateAttributePanel( statsNetTable.sta, STATUS_AMP_TABLE, "sta", "STATS_TYPE_STATUS_AMP", "%" )
 	CreateAttributePanel( statsNetTable.acc, ACCURACY_TABLE, "acc", "STATS_TYPE_ACCURACY", "%" )
 	

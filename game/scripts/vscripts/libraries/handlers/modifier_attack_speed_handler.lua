@@ -1,5 +1,5 @@
 modifier_attack_speed_handler = class({})
-INTERNAL_ATTACK_SPEED_CAP = 600
+INTERNAL_ATTACK_SPEED_CAP = 750
 
 if IsServer() then
 	function modifier_attack_speed_handler:OnCreated()

@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1550"	
+		"ItemCost"						"1200"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_arcane_accelerator"
 		"ItemRequirements"
 		{
-			"01"						"item_runed_artifact;item_staff_of_magi;item_strange_trinket"
+			"01"						"item_runed_artifact;item_staff_of_magi;item_strange_trinket;item_sorcerers_staff"
 		}
 	}
 	"item_arcane_accelerator"
@@ -57,9 +57,14 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cooldown_reduction"	"15"
+				"status_amp"			"15"
 			}
 			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_spell_amp"		"15"
+			}
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_intellect"		"20"

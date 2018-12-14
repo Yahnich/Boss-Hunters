@@ -21,7 +21,7 @@ function enchantress_attendants:GetManaCost(iLevel)
 	if self:GetCaster():HasScepter() then
     	return 0
     end
-    return self:GetTalentSpecialValueFor("mana_cost")
+    return self.BaseClass.GetManaCost( self, iLevel )
 end
 
 function enchantress_attendants:OnSpellStart()
@@ -47,8 +47,9 @@ function enchantress_attendants:OnToggle()
 
 	if caster:HasModifier("modifier_enchantress_attendants_fake") or caster:HasModifier("modifier_enchantress_attendants") then
 		caster:RemoveModifierByName("modifier_enchantress_attendants_fake")
-		caster:RemoveModifierByName("modifier_enchantress_attendants")
-
+		for i=1,count do
+			caster:RemoveModifierByName("modifier_enchantress_attendants")
+		end
 	else
 		caster:AddNewModifier(caster, self, "modifier_enchantress_attendants_fake", {})
 
@@ -61,7 +62,19 @@ end
 
 modifier_enchantress_attendants_fake = class({})
 function modifier_enchantress_attendants_fake:OnCreated(table)
-	EmitSoundOn("Hero_Enchantress.NaturesAttendantsCast", parent)
+	EmitSoundOn("Hero_Enchantress.NaturesAttendantsCast", self:GetParent())
+	if self:GetParent():HasScepter() and IsServer() then
+		self:StartIntervalThink(0.03)
+	end
+end
+
+function modifier_enchantress_attendants_fake:OnIntervalThink()
+	local caster = self:GetCaster()
+	if caster:GetMana() >= caster:GetMaxMana() * (self:GetTalentSpecialValueFor("scepter_mana_cost")/100) * 0.03 then
+		caster:SpendMana(caster:GetMaxMana() * (self:GetTalentSpecialValueFor("scepter_mana_cost")/100) * 0.03, self:GetAbility())
+	else
+		self:ToggleAbility()
+	end
 end
 
 function modifier_enchantress_attendants_fake:OnRemoved()
@@ -101,16 +114,14 @@ function modifier_enchantress_attendants:OnIntervalThink()
 			self:GetAbility():DealDamage(caster, enemy, self.heal, {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		end
 	end
-
+	ParticleManager:SetParticleControlEnt(self.pWispy, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
 	local allies = parent:FindFriendlyUnitsInRadius(parent:GetAbsOrigin(), self.radius)
 	for _,ally in pairs(allies) do
-		ParticleManager:SetParticleControlEnt(self.pWispy, 0, ally, PATTACH_POINT_FOLLOW, "attach_hitloc", ally:GetAbsOrigin(), true)
-		ally:HealEvent(self.heal, self:GetAbility(), caster, false)
-		break
-	end
-
-	if caster:HasScepter() then
-		caster:SpendMana(caster:GetMana() * 1/100, self:GetAbility())
+		if ally:GetHealth() < ally:GetMaxHealth() then
+			ParticleManager:SetParticleControlEnt(self.pWispy, 0, ally, PATTACH_POINT_FOLLOW, "attach_hitloc", ally:GetAbsOrigin(), true)
+			ally:HealEvent(self.heal, self:GetAbility(), caster, false)
+			break
+		end
 	end
 end
 

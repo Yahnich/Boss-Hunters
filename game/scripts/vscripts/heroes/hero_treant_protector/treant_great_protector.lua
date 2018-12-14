@@ -24,7 +24,7 @@ function treant_great_protector:OnSpellStart()
 		local tree = caster:FindAbilityByName("treant_little_tree")
 		local overgrowth = caster:FindAbilityByName("treant_overgrowth_bh")
 		local armor = caster:FindAbilityByName("treant_living_armor_bh")
-		for _, unit in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), -1 ) ) do
+		for _, unit in ipairs( caster:FindAllUnitsInRadius( caster:GetAbsOrigin(), -1 ) ) do
 			if unit:IsSameTeam( caster ) and armor then
 				armor:ApplyLivingArmor( unit )
 			elseif not unit:IsSameTeam( caster ) and overgrowth then

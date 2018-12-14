@@ -20,14 +20,26 @@ function modifier_item_rising_salt_passive:OnCreated()
 	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
 	self.bonus_cdr = self:GetSpecialValueFor("bonus_cdr")
 	self.stat = self:GetSpecialValueFor("bonus_all")
+	self.spellamp = self:GetSpecialValueFor("bonus_spell_amp")
+	self.manacost = self:GetSpecialValueFor("mana_cost_reduction")
 end
 
 function modifier_item_rising_salt_passive:DeclareFunctions()
-	return {	MODIFIER_PROPERTY_MANA_BONUS,
+	return {	MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+				MODIFIER_PROPERTY_MANACOST_PERCENTAGE,
+				MODIFIER_PROPERTY_MANA_BONUS,
 				MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 				MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 				MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 			 	MODIFIER_EVENT_ON_ABILITY_FULLY_CAST}
+end
+
+function modifier_item_rising_salt_passive:GetModifierSpellAmplify_Percentage()
+	return self.spellamp
+end
+
+function modifier_item_rising_salt_passive:GetModifierPercentageManacost()
+	return self.manacost
 end
 
 function modifier_item_rising_salt_passive:GetModifierManaBonus()

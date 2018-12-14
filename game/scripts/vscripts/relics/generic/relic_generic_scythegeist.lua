@@ -9,5 +9,5 @@ function relic_generic_scythegeist:GetModifierPreAttack_BonusDamage()
 end
 
 function relic_generic_scythegeist:GetCooldownReduction()
-	return 5
+	return 8
 end

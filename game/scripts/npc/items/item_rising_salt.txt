@@ -23,7 +23,7 @@
 		"ItemResult"					"item_rising_salt"
 		"ItemRequirements"
 		{
-			"01"						"item_strange_trinket;item_runed_artifact;item_power_core"
+			"01"						"item_strange_trinket;item_warlocks_reliquary;item_power_core"
 		}
 	}
 	//=================================================================================================================
@@ -71,13 +71,18 @@
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_cdr"				"17.5"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all"				"10"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_all"				"10"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_spell_amp"		"25"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_cost_reduction"	"25"
 			}
 		}
 	}

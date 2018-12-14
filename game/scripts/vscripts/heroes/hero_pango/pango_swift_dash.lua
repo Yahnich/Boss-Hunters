@@ -13,7 +13,11 @@ end
 function pango_swift_dash:OnSpellStart()
 	EmitSoundOn("Hero_Pangolier.Swashbuckle.Cast", self:GetCaster())
 	EmitSoundOn("Hero_Pangolier.Swashbuckle.Layer", self:GetCaster())
-    self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_pango_swift_dash", {})
+	
+	local distance = CalculateDistance(self:GetCursorPosition(), self:GetCaster():GetAbsOrigin())
+	local speed = self:GetTalentSpecialValueFor("speed")
+	local duration = distance / speed
+    self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_pango_swift_dash", {duration = duration})
 
     ProjectileManager:ProjectileDodge(self:GetCaster())
 end
@@ -23,9 +27,10 @@ function modifier_pango_swift_dash:OnCreated(table)
 	if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
+		self.endPos = self:GetAbility():GetCursorPosition()
 		self.dir = CalculateDirection(self:GetAbility():GetCursorPosition(), self:GetParent():GetAbsOrigin())
 		self.distance = CalculateDistance(self:GetAbility():GetCursorPosition(), parent:GetAbsOrigin())
-
+		self.speed = self:GetTalentSpecialValueFor("speed")
 		self.hitUnits = {}
 
 		if caster:HasTalent("special_bonus_unique_pango_swift_dash_1") then
@@ -50,11 +55,11 @@ end
 function modifier_pango_swift_dash:DoControlledMotion()
 	local parent = self:GetParent()
 	if self.distance > 0 then
-		local speed = self:GetTalentSpecialValueFor("speed") * 0.03
+		local speed = self.speed * 0.03
 		self.distance = self.distance - speed
 		parent:SetAbsOrigin(GetGroundPosition(parent:GetAbsOrigin(), parent) + self.dir*speed)
 	else
-		FindClearSpaceForUnit(parent, parent:GetAbsOrigin(), true)
+		parent:SetAbsOrigin( self.endPos )
 		self:Destroy()
 		return nil
 	end

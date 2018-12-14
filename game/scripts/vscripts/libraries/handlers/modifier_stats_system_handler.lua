@@ -7,8 +7,8 @@ MANA_TABLE = 200
 MANA_REGEN_TABLE = 1.5
 HEAL_AMP_TABLE = {0,15,30,45,60,75}
 -- OFFENSE
-ATTACK_DAMAGE_TABLE = 15
-SPELL_AMP_TABLE = 8
+ATTACK_DAMAGE_TABLE = 20
+SPELL_AMP_TABLE = 10
 COOLDOWN_REDUCTION_TABLE = {0,10,15,20,25,30}
 ATTACK_SPEED_TABLE = 10
 STATUS_AMP_TABLE = {0,10,15,20,25,30}
@@ -47,7 +47,7 @@ function modifier_stats_system_handler:UpdateStatValues()
 	-- OFFENSE
 	self.ad = ATTACK_DAMAGE_TABLE * tonumber(netTable["ad"])
 	self.sa = SPELL_AMP_TABLE * tonumber(netTable["sa"])
-	self.cdr = COOLDOWN_REDUCTION_TABLE[tonumber(netTable["cdr"]) + 1]
+	-- self.cdr = COOLDOWN_REDUCTION_TABLE[tonumber(netTable["cdr"]) + 1]
 	self.as = ATTACK_SPEED_TABLE * tonumber(netTable["as"])
 	self.sta = STATUS_AMP_TABLE[tonumber(netTable["sta"]) + 1]
 	self.acc = ACCURACY_TABLE[tonumber(netTable["acc"]) + 1]
@@ -78,6 +78,7 @@ function modifier_stats_system_handler:DeclareFunctions()
 		MODIFIER_PROPERTY_MANA_BONUS,
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+		MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
 		
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
@@ -99,10 +100,16 @@ function modifier_stats_system_handler:GetModifierManaBonus() return 500 + (self
 function modifier_stats_system_handler:GetModifierConstantManaRegen() return (self.mpr or 0) end
 function modifier_stats_system_handler:GetModifierHealAmplify_Percentage() return self.ha or 0 end
 
-function modifier_stats_system_handler:GetModifierPreAttack_BonusDamage() return 10 + (self.ad or 0) end
-function modifier_stats_system_handler:GetModifierSpellAmplify_Percentage() return self:GetParent():GetIntellect() * 0.13333 + (self.sa or 0) end
-function modifier_stats_system_handler:GetCooldownReduction() return self.cdr or 0 end
-function modifier_stats_system_handler:GetModifierAttackSpeedBonus() return self.as or 0 end
+function modifier_stats_system_handler:GetModifierPreAttack_BonusDamage() return (self.ad or 0) end
+function modifier_stats_system_handler:GetModifierBaseAttack_BonusDamage() return 10 end
+	
+function modifier_stats_system_handler:GetModifierSpellAmplify_Percentage()
+	local int_multiplier = TernaryOperator( 0.1, self:GetParent():GetPrimaryAttribute() == DOTA_ATTRIBUTE_INTELLECT, 0.08 )
+	return self:GetParent():GetIntellect() * int_multiplier + (self.sa or 0) 
+end
+
+-- function modifier_stats_system_handler:GetCooldownReduction() return self.cdr or 0 end
+function modifier_stats_system_handler:GetModifierAttackSpeedBonus() return 25 + (self.as or 0) end
 function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage() return self.sta or 0 end
 function modifier_stats_system_handler:GetAccuracy() return self.acc or 0 end
 
