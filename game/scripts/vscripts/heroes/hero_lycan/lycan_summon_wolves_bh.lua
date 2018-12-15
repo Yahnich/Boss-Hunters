@@ -54,7 +54,12 @@ function lycan_summon_wolves_bh:CreateWolf(position, duration)
 		wolf:SetUnitCanRespawn(true)
 		wolf:SetCanSellItems(true)
 	end
-	
+	if self:GetLevel() > 1 then
+		wolf:AddAbility("lycan_summon_wolves_critical_strike")
+	end
+	if self:GetLevel() >= 4 then
+		wolf:AddAbility("lycan_summon_wolves_invisibility")
+	end
 	self:ScaleWolf( wolf )
 end
 
@@ -64,12 +69,11 @@ function lycan_summon_wolves_bh:ScaleWolf( wolf )
 	wolf:SetCoreHealth(wolfHP)
 	wolf:SetAverageBaseDamage(wolfDamage, 15)
 	wolf:SetModelScale(0.8 + (self:GetLevel()/2)/10)
-	
 	if self:GetLevel() > 1 then
-		wolf:AddAbility("lycan_summon_wolves_critical_strike"):SetLevel( self:GetLevel() - 1 )
+		wolf:FindAbilityByName("lycan_summon_wolves_critical_strike"):SetLevel( self:GetLevel() - 1 )
 	end
 	if self:GetLevel() >= 4 then
-		wolf:AddAbility("lycan_summon_wolves_invisibility"):SetLevel( 1 )
+		wolf:FindAbilityByName("lycan_summon_wolves_invisibility"):SetLevel( 1 )
 	end
 	if self:GetLevel() >= 5 then
 		wolf:SetBaseHealthRegen(25 + (self:GetLevel() - 5) * 15)

@@ -364,9 +364,11 @@
 		"ScriptFile"					"heroes/hero_naga_siren/naga_siren_ebb_and_flow"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"FightRecapLevel"				"1"
+		"HasScepterUpgrade"				"1"
 		"AbilityTextureName"			"custom/naga_siren_ebb_and_flow"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
+		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -380,6 +382,11 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"proc_value"				"35"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_radius"			"900"
 			}
 		}
 	}

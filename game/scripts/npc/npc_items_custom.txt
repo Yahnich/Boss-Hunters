@@ -23,7 +23,7 @@
 #base "items/item_ice_fang.txt"
 #base "items/item_worn_cloak.txt"
 #base "items/item_broadsword.txt"
-#base "items/item_aeon_shard.txt"
+// #base "items/item_aeon_shard.txt"
 #base "items/item_power_core.txt"
 #base "items/item_strange_trinket.txt"
 
