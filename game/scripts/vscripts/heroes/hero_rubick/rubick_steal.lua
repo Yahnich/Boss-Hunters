@@ -35,6 +35,10 @@ end
 rubick_steal.failState = nil
 function rubick_steal:CastFilterResultTarget( hTarget )
 	if IsServer() then
+		if hTarget == self:GetCaster() then
+			self.failState = "caster"
+			return UF_FAIL_CUSTOM
+		end
 		if self:GetLastSpell( hTarget ) == nil then
 			self.failState = "nevercast"
 			return UF_FAIL_CUSTOM
@@ -57,9 +61,14 @@ function rubick_steal:CastFilterResultTarget( hTarget )
 end
 
 function rubick_steal:GetCustomCastErrorTarget( hTarget )
-	if self.failState and self.failState == "nevercast" then
+	if self.failState then
+		local fail = self.failState
 		self.failState = nil
-		return "Target never casted an ability"
+		if fail == "nevercast" then
+			return "Target never casted an ability"
+		elseif fail == "caster" then
+			return "Cannot target self"
+		end
 	end
 	
 	return ""
