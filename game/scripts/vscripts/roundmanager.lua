@@ -598,7 +598,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
 	
-	local HPMultiplierFunc = function( events, raids, zones ) return (0.8 + (events * 0.08)) * ( 1 + raids * 0.33 ) * ( 1 + zones * 0.12 ) end
+	local HPMultiplierFunc = function( events, raids, zones ) return (0.8 + (events * 0.08)) * ( 1 + raids * 0.30 ) * ( 1 + zones * 0.10 ) end
 	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.5 + (events * 0.05)) * ( 1 + raids * 0.075) * ( 1 + zones * 0.03 ) end
 	
 	local effPlayerHPMult =  HPMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
