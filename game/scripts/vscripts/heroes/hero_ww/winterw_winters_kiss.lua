@@ -38,7 +38,7 @@ function winterw_winters_kiss:OnSpellStart()
         end
     end
 	target:AddNewModifier(caster, self, "modifier_winters_kiss", {Duration = self:GetTalentSpecialValueFor("duration")})
-    self:StartDelayedCooldown(self:GetTalentSpecialValueFor("duration"))
+    -- self:StartDelayedCooldown(self:GetTalentSpecialValueFor("duration"))
 end
 
 modifier_winters_kiss = ({})

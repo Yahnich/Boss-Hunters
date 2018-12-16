@@ -104,7 +104,7 @@ function modifier_stats_system_handler:GetModifierPreAttack_BonusDamage() return
 function modifier_stats_system_handler:GetModifierBaseAttack_BonusDamage() return 10 end
 	
 function modifier_stats_system_handler:GetModifierSpellAmplify_Percentage()
-	local int_multiplier = TernaryOperator( 0.1, self:GetParent():GetPrimaryAttribute() == DOTA_ATTRIBUTE_INTELLECT, 0.08 )
+	local int_multiplier = TernaryOperator( 0.06, self:GetParent():GetPrimaryAttribute() == DOTA_ATTRIBUTE_INTELLECT, 0.04 )
 	return self:GetParent():GetIntellect() * int_multiplier + (self.sa or 0) 
 end
 

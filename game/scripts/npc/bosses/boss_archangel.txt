@@ -77,7 +77,7 @@
 		
 		"AbilityCastRange"				"900"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCastPoint"				"1 0.75"
 		"AbilityCooldown"				"24 20"
 	
 		"precache"
@@ -90,12 +90,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"325 350"
+				"radius"					"325"
 			}
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"60 75"
+				"damage"					"40 50"
 			}
 			"01"
 			{

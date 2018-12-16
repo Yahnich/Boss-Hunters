@@ -19,7 +19,7 @@ end
 
 function modifier_turtle_shell:DeclareFunctions()
     funcs = {
-                MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
+                MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
             }
     return funcs
 end
@@ -28,7 +28,7 @@ function modifier_turtle_shell:IsHidden()
     return true
 end
 
-function modifier_turtle_shell:GetModifierPhysical_ConstantBlock(params)
+function modifier_turtle_shell:GetModifierTotal_ConstantBlock(params)
     if IsServer() then
         self.currBlock = self:GetParent():GetPhysicalArmorValue() * self.blockPct
         if RollPercentage(self.crit) and self:GetAbility():IsCooldownReady() then 

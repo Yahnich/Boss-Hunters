@@ -41,7 +41,7 @@ function modifier_boss_wolves_critical_cripple:OnCreated()
 	self.as = self:GetSpecialValueFor("as")
 	self.ms = self:GetSpecialValueFor("ms")
 	self.bleed = self:GetSpecialValueFor("bleed")
-	if self.bleed > 0 then
+	if self.bleed > 0 and IsServer() then
 		self:StartIntervalThink(1)
 	end
 end

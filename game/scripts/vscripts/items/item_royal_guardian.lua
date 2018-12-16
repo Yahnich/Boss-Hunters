@@ -45,7 +45,7 @@ function modifier_item_royal_guardian:GetModifierPhysicalArmorBonus()
 end
 
 function modifier_item_royal_guardian:GetModifierTotal_ConstantBlock(params)
-	if RollPercentage(self.chance) and params.attacker ~= self:GetParent() then
+	if self:RollPRNG(self.chance) and params.attacker ~= self:GetParent() then
 		return self.block
 	end
 end

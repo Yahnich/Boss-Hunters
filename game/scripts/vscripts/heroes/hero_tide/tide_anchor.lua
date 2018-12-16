@@ -22,16 +22,19 @@ function tide_anchor:OnSpellStart()
     local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_tidehunter/tidehunter_anchor_hero.vpcf", PATTACH_POINT, caster)
     ParticleManager:SetParticleControl(nfx, 0, point)
     ParticleManager:ReleaseParticleIndex(nfx)
+	
+	local damage = self:GetTalentSpecialValueFor("damage")
+	local radius = self:GetTalentSpecialValueFor("radius")
     
-    local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius"), {})
+    local enemies = caster:FindEnemyUnitsInRadius(point, radius, {})
     for _,enemy in pairs(enemies) do
-        self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+		caster:PerformAbilityAttack(enemy, true, ability, damage, false, false)
         enemy:AddNewModifier(caster, self, "modifier_anchor", {Duration = self:GetTalentSpecialValueFor("duration")})
     end
 
-    local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius")/2, {})
+    local enemies = caster:FindEnemyUnitsInRadius(point, radius/2, {})
     for _,enemy in pairs(enemies) do
-        enemy:ApplyKnockBack(point, 0.25, 0.25, self:GetTalentSpecialValueFor("radius")/2, 0, caster, self)
+        enemy:ApplyKnockBack(point, 200 / 600, 200 / 600, 200, 0, caster, self)
     end
 end
 

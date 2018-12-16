@@ -44,7 +44,7 @@ function modifier_elite_piercing_buff:OnAttackLanded(params)
                     ParticleManager:SetParticleControlForward( nFXIndex, 1, params.attacker:GetForwardVector() )
                     ParticleManager:SetParticleControlEnt( nFXIndex, 10, params.target, PATTACH_ABSORIGIN_FOLLOW, nil, params.target:GetOrigin(), true )
                     ParticleManager:ReleaseParticleIndex( nFXIndex )
-		self:GetAbility():DealDamage(params.attacker, params.target, params.damage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+		self:GetAbility():DealDamage(params.attacker, params.target, params.original_damage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 		self:Destroy()
 	end
 end

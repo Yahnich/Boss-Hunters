@@ -727,7 +727,7 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 	
 	if not hero then return end
 	if not abilityname then return end
-	AddFOWViewer(DOTA_TEAM_BADGUYS, hero:GetAbsOrigin(), 256, 3, false)
+	AddFOWViewer(DOTA_TEAM_BADGUYS, hero:GetAbsOrigin(), 256, 1.5, false)
 	local abilityused = hero:FindAbilityByName(abilityname)
 	if not abilityused then abilityused = hero:FindItemByName(abilityname, false) end
 	if not abilityused then return end
@@ -757,24 +757,21 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 			CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
 		end
 	end
-	if abilityused and abilityused:HasPureCooldown() then
-		if abilityname == "viper_nethertoxin" and not hero:HasTalent("special_bonus_unique_viper_3") then return end
-		abilityused:EndCooldown()
-		if abilityused:GetDuration() > 0 then
-			local duration = abilityused:GetDuration()
-			for _, modifier in ipairs( hero:FindAllModifiers() ) do
-				if modifier.GetModifierStatusAmplify_Percentage then
-					duration = duration * (1 + modifier:GetModifierStatusAmplify_Percentage( params )/100)
-				end
-			end
-			abilityused:StartDelayedCooldown(duration)
-		else
-			abilityused:StartCooldown(abilityused:GetCooldown(-1))
-		end
-	end
-	if abilityname == "pangolier_shield_crash" then
-		hero:AddNewModifier(hero, abilityused, "modifier_pangolier_shield_crash_buff", {duration = abilityused:GetTalentSpecialValueFor("duration")}):SetStackCount( abilityused:GetTalentSpecialValueFor("hero_stacks") )
-	end
+	-- if abilityused and abilityused:HasPureCooldown() then
+		-- if abilityname == "viper_nethertoxin" and not hero:HasTalent("special_bonus_unique_viper_3") then return end
+		-- abilityused:EndCooldown()
+		-- if abilityused:GetDuration() > 0 then
+			-- local duration = abilityused:GetDuration()
+			-- for _, modifier in ipairs( hero:FindAllModifiers() ) do
+				-- if modifier.GetModifierStatusAmplify_Percentage then
+					-- duration = duration * (1 + modifier:GetModifierStatusAmplify_Percentage( params )/100)
+				-- end
+			-- end
+			-- abilityused:StartDelayedCooldown(duration)
+		-- else
+			-- abilityused:StartCooldown(abilityused:GetCooldown(-1))
+		-- end
+	-- end
 end
 
 function CHoldoutGameMode:Tell_threat(event)
@@ -1036,7 +1033,7 @@ end
 
 function CHoldoutGameMode:CheckHP()
 	if not GameRules:IsGamePaused() then
-		for _,unit in ipairs ( FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0), nil, -1, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, FIND_ANY_ORDER, false) ) do
+		for _,unit in ipairs ( FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0), nil, -1, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD, FIND_ANY_ORDER, false) ) do
 			MapHandler:CheckAndResolvePositions(unit)
 			if ( unit:GetHealth() <= 0 and unit:IsAlive() ) or ( unit:GetHealth() > 0 and not unit:IsAlive() ) then
 				if not unit:IsNull() then

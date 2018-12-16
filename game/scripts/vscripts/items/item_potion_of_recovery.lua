@@ -1,6 +1,18 @@
 item_potion_of_recovery = class({})
 LinkLuaModifier( "modifier_item_potion_of_recovery_handle_heal", "items/item_potion_of_recovery.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function item_potion_of_recovery:CastFilterResultTarget( target )
+	if target:HasModifier("modifier_restoration_disable") then
+		return UF_FAIL_CUSTOM 
+	else
+		return UnitFilter( target, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, self:GetCaster():GetTeamNumber() )
+	end
+end
+
+function item_potion_of_recovery:GetCustomCastErrorTarget( target )
+	return "Target has all forms of restoration disabled"
+end 
+
 function item_potion_of_recovery:OnSpellStart()
 	EmitSoundOn("DOTA_Item.HealingSalve.Activate", self:GetCaster() )
 	self:GetCursorTarget():AddNewModifier(self:GetCaster(), self, "modifier_item_potion_of_recovery_handle_heal", {Duration = self:GetSpecialValueFor("duration")})
