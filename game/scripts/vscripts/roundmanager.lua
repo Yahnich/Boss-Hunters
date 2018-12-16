@@ -70,7 +70,7 @@ function RoundManager:VoteNewGame(userid, event)
 	local nonVotes = HeroList:GetActiveHeroCount() - self.votedToNG
 	CustomGameEventManager:Send_ServerToAllClients("bh_update_votes_prep_time", {yes = self.votedToNG, no = noVotes, ascension = true})
 	if self.prepTimer <= 0 then return end
-	if noVotes <= self.votedToNG and not self.ng then	
+	if noVotes <= self.votedToNG and not self.ng then
 		self.ng = true
 		self.votedToNG = 0
 		self.votedNoNg = 0
@@ -561,6 +561,7 @@ function RoundManager:GameIsFinished(bWon)
 						RoundManager:StartGame()
 					end
 					CustomGameEventManager:Send_ServerToAllClients("bh_end_prep_time", {})
+					CustomGameEventManager:Send_ServerToAllClients("bh_end_ng_vote", {})
 					self.ng = false
 				else
 					self.prepTimer = self.prepTimer - 1
@@ -598,8 +599,8 @@ function RoundManager:InitializeUnit(unit, bElite)
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
 	
-	local HPMultiplierFunc = function( events, raids, zones ) return (0.8 + (events * 0.08)) * ( 1 + raids * 0.33 ) * ( 1 + zones * 0.12 ) end
-	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.5 + (events * 0.05)) * ( 1 + raids * 0.075) * ( 1 + zones * 0.03 ) end
+	local HPMultiplierFunc = function( events, raids, zones ) return (0.45 + (events * 0.095)) * ( 1 + raids * 0.33 ) * ( 1 + zones * 0.12 ) end
+	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.35 + (events * 0.05)) * ( 1 + raids * 0.075) * ( 1 + zones * 0.03 ) end
 	
 	local effPlayerHPMult =  HPMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
 	local effPlayerDMGMult = DMGMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )

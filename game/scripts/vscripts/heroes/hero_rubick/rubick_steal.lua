@@ -13,11 +13,9 @@ LinkLuaModifier("modifier_rubick_spellsteal_movespeed", "heroes/hero_rubick/rubi
 --------------------------------------------------------------------------------
 -- Passive Modifier
 --------------------------------------------------------------------------------
-rubick_steal.firstTime = true
 function rubick_steal:OnHeroCalculateStatBonus()
-	if self.firstTime then
+	if not self:GetCaster():HasModifier("modifier_rubick_spellsteal_hidden") then
 		self:GetCaster():AddNewModifier(self:GetCaster(),self,"modifier_rubick_spellsteal_hidden",	{})
-		self.firstTime = false
 	end
 end
 
@@ -32,9 +30,12 @@ end
 --------------------------------------------------------------------------------
 -- Ability Cast Filter
 --------------------------------------------------------------------------------
-rubick_steal.failState = nil
 function rubick_steal:CastFilterResultTarget( hTarget )
 	if IsServer() then
+		if hTarget == self:GetCaster() then
+			self.failState = "caster"
+			return UF_FAIL_CUSTOM
+		end
 		if self:GetLastSpell( hTarget ) == nil then
 			self.failState = "nevercast"
 			return UF_FAIL_CUSTOM
@@ -57,9 +58,14 @@ function rubick_steal:CastFilterResultTarget( hTarget )
 end
 
 function rubick_steal:GetCustomCastErrorTarget( hTarget )
-	if self.failState and self.failState == "nevercast" then
+	if self.failState then
+		local fail = self.failState
 		self.failState = nil
-		return "Target never casted an ability"
+		if fail == "nevercast" then
+			return "Target never casted an ability"
+		elseif fail == "caster" then
+			return "Cannot target self"
+		end
 	end
 	
 	return ""
@@ -328,17 +334,13 @@ end
 
 function modifier_rubick_spellsteal_hidden:OnAbilityFullyCast( params )
 	if IsServer() then
-		if params.unit==self:GetParent() and (not params.ability:IsItem()) then
+		if params.unit == self:GetParent() 
+		or params.ability:IsItem() 
+		or params.unit:IsIllusion() 
+		or not params.ability:IsStealable() then
 			return
 		end
-		-- Filter illusions
-		if params.unit:IsIllusion() then
-			return
-		end
-		-- Is Stealable?
-		if not params.ability:IsStealable() then
-			return
-		end
+		
 		self:GetAbility():SetLastSpell( params.unit, params.ability )
 	end
 end

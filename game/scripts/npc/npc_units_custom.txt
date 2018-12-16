@@ -1862,8 +1862,8 @@
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"			"160"		// Damage range min.1
 		"AttackDamageMax"			"240"		// Damage range max.	
-		"AttackRate"				"12.0"		// Speed of attack.
-		"AttackAnimationPoint"		"2.4"		// Normalized time in animation cycle to attack.
+		"AttackRate"				"8.0"		// Speed of attack.
+		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"300"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_goodguy.vpcf" // Particle system model for projectile.
@@ -2171,7 +2171,7 @@
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
-		"ModelScale" 				"2"
+		"ModelScale" 				"1.4"
 		"IsAncient"					"0"
 		"IsWild"					"1"
 		"IsCelestial"				"1"
@@ -3235,8 +3235,8 @@
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"30"
-		"ModelScale" 				"2"
-		"IsAncient"			"0"
+		"ModelScale" 				"1.4"
+		"IsAncient"					"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsUndead"					"1"
@@ -3254,7 +3254,7 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"10"			// Physical protection.
+		"ArmorPhysical"				"8"			// Physical protection.
 		"MagicalResistance"			"15"		// Magical protection.
 		
 		// Attack
@@ -5999,8 +5999,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"75"		// Damage range min.
-		"AttackDamageMax"			"100"		// Damage range max.
+		"AttackDamageMin"			"80"		// Damage range min.
+		"AttackDamageMax"			"110"		// Damage range max.
 		"AttackRate"				"6"		// Speed of attack.
 		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"8000"		// Range within a target can be acquired.
@@ -6430,7 +6430,7 @@
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"			"150"		// Damage range min.
 		"AttackDamageMax"			"175"		// Damage range max.
-		"AttackRate"				"8"		// Speed of attack.
+		"AttackRate"				"6"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"128"		// Range within a target can be attacked.
@@ -6454,7 +6454,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"3500"		// Base health.
+		"StatusHealth"				"5000"		// Base health.
 		"StatusHealthRegen"			"2"			// Health regeneration rate.
 		"StatusMana"				"200"		// Base mana.
 		"StatusManaRegen"			"5"			// Mana regeneration rate.
@@ -8001,9 +8001,9 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"35"		// Damage range min.
-		"AttackDamageMax"			"50"		// Damage range max.
-		"AttackRate"				"2"		// Speed of attack.
+		"AttackDamageMin"			"60"		// Damage range min.
+		"AttackDamageMax"			"80"		// Damage range max.
+		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"128"		// Range within a target can be attacked.
@@ -8025,12 +8025,12 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
-		"MovementSpeed"				"120"		// Speed
+		"MovementSpeed"				"200"		// Speed
 		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"75"		// Base health.
+		"StatusHealth"				"200"		// Base health.
 		"StatusHealthRegen"			"2"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.

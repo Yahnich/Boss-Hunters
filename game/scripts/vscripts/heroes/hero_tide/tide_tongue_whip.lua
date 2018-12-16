@@ -89,7 +89,7 @@ function tide_tongue_whip:OnSpellStart()
             local hook_pfx2 = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_meathook_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
             ParticleManager:ReleaseParticleIndex(hook_pfx2)
 
-            if not target:IsAlive() then
+            if not target:IsAlive() and not target:IsMinion() then
                 caster:AddNewModifier(caster, self, "modifier_tongue_whip_health", {}):IncrementStackCount()
                 caster:CalculateStatBonus()
             end
@@ -130,7 +130,7 @@ function tide_tongue_whip:OnSpellStart()
 
                     -- Remove the target's modifiers
                     target:RemoveModifierByName("modifier_tongue_whip")
-					if target:AttemptKill(self, caster) then
+					if target:AttemptKill(self, caster) and not target:IsMinion() then
 						caster:AddNewModifier(caster, self, "modifier_tongue_whip_health", {}):IncrementStackCount()
 						caster:CalculateStatBonus()
 					end

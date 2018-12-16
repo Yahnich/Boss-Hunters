@@ -5,12 +5,14 @@ function doom_infernal_blade_ebf:GetIntrinsicModifierName()
 end
 
 function doom_infernal_blade_ebf:OnAbilityPhasteStart()
+	self.autocast = true
 	self:StartInfernalBlade()
 	return true
 end
 
 function doom_infernal_blade_ebf:OnSpellStart()
 	local target = self:GetCursorTarget()
+	self.autocast = false
 	self:InfernalBlade(target)
 end
 
@@ -71,7 +73,7 @@ if IsServer() then
 	end
 end
 function modifier_doom_infernal_blade_ebf_autocast:GetActivityTranslationModifiers(params)
-	if self:GetAbility():IsCooldownReady() and IsServer() then
+	if IsServer() and (self:GetAbility():IsCooldownReady() and self:GetAbility():GetAutoCastState()) or self:GetAbility().autocast then
 		return "infernal_blade"
 	end
 end

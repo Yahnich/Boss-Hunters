@@ -66,12 +66,12 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"bonus_attack_range"	"150"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"melee_attack_range"	"75"
 			}
 			"04"

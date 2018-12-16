@@ -47,7 +47,7 @@
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"enrage_dmg"				"50 75"
+				"enrage_dmg"				"35 50"
 			}
 			"07"
 			{
@@ -283,7 +283,7 @@
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"200 225"
+				"radius"					"150 175"
 			}
 			"07"
 			{
@@ -320,7 +320,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"max_hp_damage"				"10 15"
+				"max_hp_damage"				"8 12"
 			}
 			"02"
 			{

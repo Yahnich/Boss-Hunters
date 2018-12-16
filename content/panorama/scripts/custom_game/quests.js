@@ -25,12 +25,13 @@ GameEvents.Subscribe( "bh_start_prep_time", StartPrepVote);
 GameEvents.Subscribe( "bh_end_prep_time", RemovePrepVotes);
 
 GameEvents.Subscribe( "bh_start_ng_vote", StartNGVote)
+GameEvents.Subscribe( "bh_end_ng_vote", EndNGVote)
 Initialize()
 
 var pressed = false
 function StartNGVote(args)
 {
-	$("#QuestsAscensionVoteHolder").visible =  true
+	$("#QuestsAscensionVoteHolder").style.visibility = "visible";
 	
 	var voteYes = $("#QuestAscensionVoteConfirmButton")
 	var voteNo = $("#QuestAscensionVoteDeclineButton")
@@ -53,6 +54,11 @@ function StartNGVote(args)
 	voteNo.SetPanelEvent("onmouseover", function(){voteNo.SetHasClass("ButtonHover", true);});
 	voteNo.SetPanelEvent("onmouseout", function(){voteNo.SetHasClass("ButtonHover", false);});
 	voteNo.SetPanelEvent("onactivate", function(){ VoteNG(false) });
+}
+
+function EndNGVote(arg)
+{
+	$("#QuestsAscensionVoteHolder").style.visibility = "collapse";
 }
 
 function VoteNG(bVote)

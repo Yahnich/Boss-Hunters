@@ -55,6 +55,10 @@ function modifier_elite_overgrown_dummy:OnIntervalThink()
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
 	local ability = self:GetAbility()
+	if not caster or caster:IsNull() then
+		self:Destroy()
+		return
+	end
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), self.radius ) ) do
 		enemy:AddNewModifier( caster, ability, "modifier_elite_overgrown_root", {duration = self.root} )
 		self:Destroy()

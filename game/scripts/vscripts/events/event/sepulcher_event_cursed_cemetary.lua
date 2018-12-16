@@ -46,6 +46,7 @@ local function StartCombat(self, bFight)
 			end
 			local spawn = CreateUnitByName(boss, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundBoss = true
+			spawn:SetCoreHealth(2750)
 			self.undying = self.undying - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if self.undying > 0 then

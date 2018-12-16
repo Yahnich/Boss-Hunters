@@ -37,12 +37,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"110 160 210 260 310 360 410"
-				"LinkedSpecialBonus"	"special_bonus_unique_tide_hydro_cannon_1"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"4"
+				"duration"				"7"
 			}
 			"03"
 			{
@@ -258,7 +257,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"75 125 175 225 275 325 375"
+				"damage"				"60 100 140 180 220 260 300"
 			}
 			"02"
 			{
@@ -351,7 +350,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction_mult"	"10"
+				"damage_reduction_mult"	"6"
 			}
 			"02"
 			{
@@ -361,7 +360,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"critical_heal"			"15"
+				"critical_heal"			"10"
 			}
 		}
 	}
