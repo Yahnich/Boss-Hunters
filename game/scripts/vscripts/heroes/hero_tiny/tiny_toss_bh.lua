@@ -7,7 +7,7 @@ function tiny_toss_bh:IsStealable()
     return true
 end
 
-function tiny_tree_bh:IsHiddenWhenStolen()
+function tiny_toss_bh:IsHiddenWhenStolen()
     return false
 end
 
@@ -230,7 +230,7 @@ if IsServer() then
             self:StartIntervalThink(duration)
 		end
 
-        if self:GetStackCount() == 0 then
+        if self:GetStackCount() == 0 and not self:IsHidden() then
             self:GetAbility():StartCooldown(self:GetRemainingTime())
         end
     end

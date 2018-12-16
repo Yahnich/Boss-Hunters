@@ -25,7 +25,7 @@ function nyx_int_burn:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
-	local damage = caster:GetIntellect() * self:GetTalentSpecialValueFor("damage")/100
+	local damage = caster:GetIntellect() * self:GetTalentSpecialValueFor("damage")
 
 	EmitSoundOn("Hero_NyxAssassin.ManaBurn.Cast", caster)
 	EmitSoundOn("Hero_NyxAssassin.ManaBurn.Cast", target)

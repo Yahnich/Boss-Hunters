@@ -106,7 +106,7 @@ function modifier_pango_ball_movement:OnIntervalThink()
 			if not parent:HasModifier("modifier_pango_shield_movement") then
 				local direction = parent:GetForwardVector()
 
-				if not parent:HasModifier("modifier_pango_shield_movement") then
+				if not parent:HasModifier("modifier_pango_shield_movement") and not parent:HasFlyMovementCapability( ) then
 					local expected_location = GetGroundPosition(parent:GetAbsOrigin(), parent) + direction * self.speed
 					if not GridNav:IsTraversable(expected_location) then
 						EmitSoundOn("Hero_Pangolier.Gyroshell.Carom", parent)

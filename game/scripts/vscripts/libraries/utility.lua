@@ -263,8 +263,13 @@ function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability, flBonusDama
 
 	if flBonusDamage then
 		if bDamagePct then
+			local bonusDamage = flBonusDamage
+			if type(flBonusDamage) == "number" then
+				bonusDamage = bDamagePct
+			end
 			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus_pct", {damage = flBonusDamage})
-		else
+		end
+		if flBonusDamage and bDamagePct == false or bDamagePct == nil then
 			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus", {damage = flBonusDamage})
 		end
 	end
@@ -1082,7 +1087,57 @@ function CDOTABaseAbility:SetCooldown(fCD)
 end
 
 function CDOTABaseAbility:SpendMana()
-	self:UseResources(true, false, false)
+	if self.ShouldUseResources then
+		self:UseResources(true, false, false)
+	else
+		self:PayManaCost( )
+	end
+end
+
+function CDOTA_BaseNPC:SpendMana( flMana, bForced )
+	local cost = flMana * self:GetManaCostReduction()
+	print(cost)
+	self:ReduceMana( cost ) 
+end
+
+function CDOTA_BaseNPC:GetManaCostReduction( )
+	local mcReduction = 0
+	local mcReductionStack = 0
+	for _, modifier in ipairs( self:FindAllModifiers() ) do
+		if modifier.GetModifierPercentageManacostStacking then
+			mcReductionStack = mcReductionStack + (modifier:GetModifierPercentageManacostStacking(params) or 0)
+		end
+		if modifier.GetModifierPercentageManacost and modifier:GetModifierPercentageManacost(params) and modifier:GetModifierPercentageManacost(params) > mcReduction then
+			mcReduction = modifier:GetModifierPercentageManacost( params )
+		end
+	end
+	return (1 - mcReduction/100) * (1 - mcReductionStack/100)
+end
+
+function CDOTA_BaseNPC:GetStatusAmplification( tParams )
+	local params = tParams or {}
+	local amp = 0
+	for _, modifier in ipairs( self:FindAllModifiers() ) do
+		if modifier.GetModifierStatusAmplify_Percentage then
+			amp = amp + (modifier:GetModifierStatusAmplify_Percentage( params ) or 0)
+		end
+	end
+	return math.max( 0.25, 1 + (amp / 100) )
+end
+
+function CDOTA_BaseNPC:GetStatusResistance( tParams)
+	local params = tParams or {}
+	local resistance = 0
+	local stackResist = 0
+	for _, modifier in ipairs( self:FindAllModifiers() ) do
+		if modifier.GetModifierStatusResistanceStacking then
+			stackResist = stackResist + (modifier:GetModifierStatusResistanceStacking(params) or 0)
+		end
+		if modifier.GetModifierStatusResistance and modifier:GetModifierStatusResistance(params) and modifier:GetModifierStatusResistance(params) > resistance then
+			resistance = modifier:GetModifierStatusResistance( params )
+		end
+	end
+	return math.max(0.10, (1 - resistance/100)) * math.max(0.10, (1 - stackResist/100))
 end
 
 function CDOTABaseAbility:IsDelayedCooldown()

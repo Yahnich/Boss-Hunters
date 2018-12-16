@@ -83,7 +83,7 @@ modifier_huskar_raging_berserker_effect = class({})
 LinkLuaModifier("modifier_huskar_raging_berserker_effect", "heroes/hero_huskar/huskar_raging_berserker", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_huskar_raging_berserker_effect:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("maximum_damage")
+	self.as = self:GetTalentSpecialValueFor("maximum_as")
 	self.mr = self:GetTalentSpecialValueFor("maximum_resistance")
 	self.regen = self:GetTalentSpecialValueFor("maximum_regen")
 	self.hpThreshold = self:GetTalentSpecialValueFor("hp_threshold_max")
@@ -95,7 +95,7 @@ function modifier_huskar_raging_berserker_effect:OnCreated()
 end
 
 function modifier_huskar_raging_berserker_effect:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("maximum_damage")
+	self.as = self:GetTalentSpecialValueFor("maximum_as")
 	self.mr = self:GetTalentSpecialValueFor("maximum_resistance")
 	self.regen = self:GetTalentSpecialValueFor("maximum_regen")
 	self.hpThreshold = self:GetTalentSpecialValueFor("hp_threshold_max")
@@ -114,17 +114,17 @@ function modifier_huskar_raging_berserker_effect:OnIntervalThink()
 	if IsServer() then
 		ParticleManager:SetParticleControl(self.glowFX, 1, Vector(self.hpPct * 100, 0, 0) )
 	end
-	self.total_dmg = self.damage * self.hpPct 
+	self.total_as = self.as * self.hpPct 
 	self.total_mr = self.mr * self.hpPct 
 	self.total_regen = self.regen * self.hpPct 
 end
 
 function modifier_huskar_raging_berserker_effect:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE, MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT, MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, MODIFIER_PROPERTY_MODEL_SCALE}
+	return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT, MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, MODIFIER_PROPERTY_MODEL_SCALE}
 end
 
-function modifier_huskar_raging_berserker_effect:GetModifierPreAttack_BonusDamage()
-	return self.total_dmg
+function modifier_huskar_raging_berserker_effect:GetModifierAttackSpeedBonus()
+	return self.total_as
 end
 function modifier_huskar_raging_berserker_effect:GetModifierConstantHealthRegen()
 	return self.total_regen

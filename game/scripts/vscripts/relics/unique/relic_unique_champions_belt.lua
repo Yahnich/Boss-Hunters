@@ -4,7 +4,7 @@ function relic_unique_champions_belt:OnCreated()
 	self.str = self:GetParent():GetStrength() * 0.2
 	self.agi = self:GetParent():GetAgility() * 0.2
 	if IsServer() then self:GetParent():CalculateStatBonus() end
-	self:StartIntervalThink(0)
+	self:StartIntervalThink(0.1)
 end
 
 function relic_unique_champions_belt:OnIntervalThink()
