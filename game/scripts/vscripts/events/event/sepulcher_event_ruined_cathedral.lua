@@ -35,7 +35,7 @@ local function StartCombat(self, bFight)
 		self.timeRemaining = 0
 		self.combatStarted = true
 		self.prophets = 1
-		self.undying = 1 + RoundManager:GetRaidTier()
+		self.undying = 1 + RoundManager:GetCurrentRaidTier()
 		self.minions = math.floor( math.log(2 + RoundManager:GetEventsFinished() ) * HeroList:GetActiveHeroCount() / 1.5 )
 		self.enemiesToSpawn = self.prophets + self.undying + self.minions
 		Timers:CreateTimer(3, function()

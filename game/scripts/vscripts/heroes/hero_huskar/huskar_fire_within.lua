@@ -22,6 +22,7 @@ function huskar_fire_within:OnSpellStart()
 	
 	local delay
 	local stacks = 0
+	local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius )
 	for _, enemy in ipairs( enemies ) do
 		self:DealDamage( caster, enemy, damage )
 		enemy:ApplyKnockBack(caster:GetAbsOrigin(), kbDuration, kbDuration, math.max(50, kbDistance - CalculateDistance(enemy, caster)), 0, caster, self, false)
