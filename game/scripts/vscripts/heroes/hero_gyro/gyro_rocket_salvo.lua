@@ -56,10 +56,10 @@ function modifier_rocket_salvo:OnIntervalThink()
 	caster:StartGestureWithPlaybackRate(ACT_DOTA_OVERRIDE_ABILITY_1, 0.5)
 	self.drainThink = self.drainThink + self.tick
 	if self.drainThink >= 1 then
-		self:GetAbility():SpendMana()
+		caster:SpendMana( self:GetAbility():GetManaCost(-1) )
 		self.drainThink = 0
 	end
-	if caster:GetMana() >= self:GetAbility():GetManaCost(self:GetAbility():GetLevel()) then
+	if caster:GetMana() >= self:GetAbility():GetManaCost(-1) then
 		local currentTargets = 0
 		local enemies = caster:FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), caster:GetAttackRange() + self:GetSpecialValueFor("radius"), {})
 		if #enemies > 0 then
