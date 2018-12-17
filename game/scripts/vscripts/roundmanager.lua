@@ -591,11 +591,11 @@ function RoundManager:InitializeUnit(unit, bElite)
 	local playerDMGMultiplier = 0.075
 	local playerArmorMultiplier = 0.03
 	if GameRules:GetGameDifficulty() == 4 then 
-		expectedHP = expectedHP * 1.35
+		expectedHP = expectedHP * 1.5
 		expectedDamage = expectedDamage * 1.2
-		playerHPMultiplier = 0.25
+		playerHPMultiplier = 0.33
 		playerDMGMultiplier = 0.1
-		playerArmorMultiplier = 0.08
+		playerArmorMultiplier = 0.12
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
 	
@@ -657,7 +657,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	local msBonus = unit:GetBaseMoveSpeed() * 0.035 * effective_multiplier * (GameRules:GetGameDifficulty() / 2)
 	unit:SetBaseMoveSpeed( unit:GetBaseMoveSpeed() + msBonus )
 	
-	local bonusArmor = math.min( RoundManager:GetRaidsFinished() + RoundManager:GetZonesFinished() * 2.5, 60 )
+	local bonusArmor = math.min( RoundManager:GetRaidsFinished() * 2.5 + RoundManager:GetZonesFinished() * 5, 80 )
 	if not unit:IsRoundBoss() then
 		bonusArmor =  math.min( RoundManager:GetRaidsFinished(), 20 )
 	end

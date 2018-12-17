@@ -106,7 +106,7 @@ function sd_disruption:floatyOrb()
 			
 		return true
 	end
-	ProjectileHandler:CreateProjectile(ProjectileThink, ProjectileHit, {  FX = "particles/units/heroes/hero_shadow_demon/shadow_demon_disruption.vpcf",
+	ProjectileHandler:CreateProjectile(ProjectileThink, ProjectileHit, {  FX = "particles/units/heroes/hero_shadow_demon/shadow_demon_distruption_orb.vpcf",
 																		  position = position,
 																		  caster = caster,
 																		  ability = self,
