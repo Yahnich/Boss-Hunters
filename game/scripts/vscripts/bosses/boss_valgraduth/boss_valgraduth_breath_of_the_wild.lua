@@ -1,0 +1,1 @@
+boss_valgraduth_breath_of_the_wild = class({})

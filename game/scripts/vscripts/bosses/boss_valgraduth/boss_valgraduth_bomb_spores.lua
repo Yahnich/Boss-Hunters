@@ -1,0 +1,1 @@
+boss_valgraduth_roots_grip = class({})

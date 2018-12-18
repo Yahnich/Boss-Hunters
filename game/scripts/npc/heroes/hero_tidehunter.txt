@@ -349,8 +349,8 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_reduction_mult"	"6"
+				"var_type"				"FIELD_FLOAT"
+				"damage_reduction_mult"	"2.5"
 			}
 			"02"
 			{
@@ -360,7 +360,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"critical_heal"			"10"
+				"critical_heal"			"12"
 			}
 		}
 	}
@@ -458,7 +458,7 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"value"					"1000"
 			}
 		}
