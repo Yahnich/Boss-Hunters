@@ -1,6 +1,5 @@
 zeus_static_field = class({})
 LinkLuaModifier( "modifier_zeus_static_field", "heroes/hero_zeus/zeus_static_field.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_zeus_static_field_static_charge", "heroes/hero_zeus/zeus_static_field.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function zeus_static_field:GetIntrinsicModifierName()
     return "modifier_zeus_static_field"
@@ -14,10 +13,10 @@ function zeus_static_field:ApplyStaticShock(target)
 	ParticleManager:ReleaseParticleIndex(particle)
 	-- Plays the sound on the target
 	EmitSoundOn("Hero_Zuus.StaticField", target)
-	local stacks = target:AddNewModifier(self:GetCaster(), self, "modifier_zeus_static_field_static_charge", {duration = self.stack_duration}):GetStackCount()
-	local damage_health_pct = self.hpdamage + stacks * self.pct_per_stack
+	-- local stacks = target:AddNewModifier(self:GetCaster(), self, "modifier_zeus_static_field_static_charge", {duration = self.stack_duration}):GetStackCount()
+	local damage_health_pct = TernaryOperator(self.miniondamage, target:IsMinion(), self.hpdamage)
 	-- Deals the damage based on the target's current health
-	self:DealDamage(self:GetCaster(), target, target:GetHealth() * damage_health_pct, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, 0)
+	self:DealDamage(self:GetCaster(), target, target:GetHealth() * damage_health_pct, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_HPLOSS})
 end
 
 modifier_zeus_static_field = class({})
@@ -39,8 +38,7 @@ if IsServer() then
 	function modifier_zeus_static_field:OnCreated()
 		self.radius = self:GetAbility():GetTalentSpecialValueFor("radius")
 		self:GetAbility().hpdamage = self:GetAbility():GetTalentSpecialValueFor("damage_health_pct") / 100
-		self:GetAbility().pct_per_stack = self:GetAbility():GetTalentSpecialValueFor("pct_per_stack") / 100
-		self:GetAbility().stack_duration = self:GetAbility():GetTalentSpecialValueFor("stack_duration")
+		self:GetAbility().miniondamage = self:GetAbility():GetTalentSpecialValueFor("minion_damage_pct") / 100
 	end
 
 	function modifier_zeus_static_field:OnAbilityFullyCast(params)
@@ -53,16 +51,5 @@ if IsServer() then
 				self:GetAbility():ApplyStaticShock(unit)
 			end
 		end
-	end
-end
-
-modifier_zeus_static_field_static_charge = class({})
-
-if IsServer() then
-	function modifier_zeus_static_field_static_charge:OnCreated()
-		self:SetStackCount(1)
-	end
-	function modifier_zeus_static_field_static_charge:OnRefresh()
-		self:IncrementStackCount()
 	end
 end
