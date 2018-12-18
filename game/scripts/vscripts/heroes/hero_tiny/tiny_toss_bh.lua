@@ -271,7 +271,7 @@ if IsServer() then
 			self.kv.max_count = self:GetCaster():FindTalentValue("special_bonus_unique_tiny_toss_bh_2")
 			
             local ability = params.ability
-            if ability == self:GetAbility() then
+            if ability == self:GetAbility() and not self:IsHidden() then
                 self:DecrementStackCount()
 				ability:EndCooldown()
                 self:Update()

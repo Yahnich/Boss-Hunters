@@ -35,6 +35,10 @@ function modifier_worked_up:IsHidden()
 	return true
 end
 
+function modifier_worked_up:IsPurgable()
+	return false
+end
+
 modifier_worked_up_stack = class({})
 function modifier_worked_up_stack:OnCreated(kv)
 	if IsServer() then
