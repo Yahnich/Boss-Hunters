@@ -7,14 +7,10 @@ end
 function item_wrathbearers_robes:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local threatgain = self:GetSpecialValueFor("threat_gain")
-	local threatpUnit = self:GetSpecialValueFor("threat_gain_per_unit")
 	local tauntDur = self:GetSpecialValueFor("duration")
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self:GetSpecialValueFor("radius") ) ) do
 		enemy:Taunt(self, caster, tauntDur)
-		threatgain = threatgain + threatpUnit
 	end
-	caster:ModifyThreat(threatgain)
 	caster:AddNewModifier(caster, self, "modifier_item_wrathbearers_robes_active", {duration = self:GetSpecialValueFor("duration")})
 	EmitSoundOn("DOTA_Item.BladeMail.Activate", caster)
 end
@@ -25,6 +21,8 @@ function modifier_item_wrathbearers_robes_passive:OnCreated()
 	self.reflect = self:GetSpecialValueFor("reflect")
 	self.activereflect = self:GetSpecialValueFor("active_reflect")
 	self.bonusThreat = self:GetSpecialValueFor("bonus_threat")
+	self.threatGain = self:GetSpecialValueFor("threat_gain")
+	self.threatGainUlt = self:GetSpecialValueFor("threat_gain_ult")
 	
 	self.armor = self:GetSpecialValueFor("bonus_armor")
 	self.magicResist = self:GetSpecialValueFor("bonus_magic_resist")
@@ -63,7 +61,15 @@ end
 function modifier_item_wrathbearers_robes_passive:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_TAKEDAMAGE,
 			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-			MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,}
+			MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+			MODIFIER_EVENT_ON_ABILITY_FULLY_CAST}
+end
+
+function modifier_item_wrathbearers_robes_passive:OnAbilityFullyCast(params)
+	if params.unit == self:GetParent() then
+		local threat = TernaryOperator( self.threatGainUlt, params.ability:GetAbilityType( ) == DOTA_ABILITY_TYPE_ULTIMATE, self.threatGain)
+		params.unit:ModifyThreat( threat )
+	end
 end
 
 function modifier_item_wrathbearers_robes_passive:Bonus_ThreatGain()
@@ -145,7 +151,7 @@ function modifier_wrathbearers_robes_debuff:OnRefresh()
 end
 
 function modifier_wrathbearers_robes_debuff:OnIntervalThink()
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetCaster():GetHealth() * self.damage, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetCaster():GetThreat() * self.damage, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 end
 
 function modifier_wrathbearers_robes_debuff:DeclareFunctions()

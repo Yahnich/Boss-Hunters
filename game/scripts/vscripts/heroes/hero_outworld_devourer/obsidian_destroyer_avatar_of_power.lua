@@ -98,7 +98,7 @@ function modifier_obsidian_destroyer_avatar_of_power_passive:OnSpentMana(params)
 			local manaGain = math.ceil( self:GetCaster():GetMaxMana() * self.essence )
 			ParticleManager:FireParticle("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster() )
 			EmitSoundOn("Hero_ObsidianDestroyer.EssenceAura", self:GetCaster() )
-			self:GetCaster():GiveMana( manaGain )
+			self:GetCaster():RestoreMana( manaGain )
 		end
 	end
 end

@@ -3,11 +3,15 @@ function item_anvil:GetIntrinsicModifierName()
 	return "modifier_item_anvil_handle"
 end
 
+function item_anvil:ShouldUseResources()
+	return true
+end
+
 modifier_item_anvil_handle = class({})
 LinkLuaModifier( "modifier_item_anvil_handle", "items/item_anvil.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_anvil_handle:OnCreated()
-	self.bash_chance = self:GetSpecialValueFor("bash_chance")
+	self.bash_chance = TernaryOperator( self:GetSpecialValueFor("bash_chance_ranged"), self:GetParent():IsRangedAttacker(), self:GetSpecialValueFor("bash_chance") )
 	self.bash_duration = self:GetSpecialValueFor("bash_duration")
 	
 	self.strength = self:GetSpecialValueFor("bonus_strength")
@@ -34,7 +38,7 @@ function modifier_item_anvil_handle:GetModifierPreAttack_BonusDamage()
 end
 
 function modifier_item_anvil_handle:OnAttackLanded(params)
-	if params.attacker == self:GetParent() and self:GetAbility():IsCooldownReady() and RollPercentage( self.bash_chance ) then
+	if params.attacker == self:GetParent() and self:GetAbility():IsCooldownReady() and self:RollPRNG( self.bash_chance ) then
 		self:GetAbility():SetCooldown()
 		self:GetAbility():Stun(params.target, self.bash_duration, true)
 		EmitSoundOn("DOTA_Item.SkullBasher", params.target)

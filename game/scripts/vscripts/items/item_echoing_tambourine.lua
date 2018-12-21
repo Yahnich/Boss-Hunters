@@ -45,7 +45,7 @@ end
 function modifier_item_echoing_tambourine_passive:OnAbilityFullyCast(params)
 	local caster = params.unit
 	if params.unit == self:GetParent() and params.ability:GetCooldown(-1) > 0 then
-		self:GetParent():GiveMana(self.mRestore)
+		self:GetParent():RestoreMana(self.mRestore)
 		self:GetParent():HealEvent(self.hRestore, self:GetAbility(), self:GetParent())
 		
 		ParticleManager:FireParticle("particles/neutral_fx/neutral_centaur_khan_war_stomp.vpcf", PATTACH_POINT_FOLLOW, caster, {[1] = Vector( self.daze_radius, self.daze_radius, self.daze_radius )})

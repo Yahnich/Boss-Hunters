@@ -18,6 +18,6 @@ function relic_cursed_icon_of_gluttony:OnDeath(params)
 		local hero = self:GetParent()
 		if not params.unit.Holdout_IsCore then heal = 0.01 end
 		hero:HealEvent( hero:GetMaxHealth() * heal, nil, nil )
-		hero:GiveMana( hero:GetMaxMana() * heal )
+		hero:RestoreMana( hero:GetMaxMana() * heal )
 	end
 end

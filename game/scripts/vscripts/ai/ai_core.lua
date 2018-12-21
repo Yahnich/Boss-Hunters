@@ -200,16 +200,16 @@ function AICore:AttackHighestPriority( entity )
 		target = target or weakestInRange or closestUnit	
 		if target then
 			entity.AIprevioustarget = target
-			entity.AIprevioustargetPosition = target:GetAbsOrigin()
+			entity.AIprevioustargetPosition = target:GetAbsOrigin() + CalculateDirection( target, entity ) * 150
 		end
-		if not target and entity.AIprevioustargetPosition and CalculateDistance(entity.AIprevioustargetPosition, entity) > 100 then
+		if not target and entity.AIprevioustargetPosition and CalculateDistance(entity.AIprevioustargetPosition, entity) > 20 then
 			ExecuteOrderFromTable({
 				UnitIndex = entity:entindex(),
 				OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE,
 				Position = entity.AIprevioustargetPosition,
 			})
 			return AI_THINK_RATE
-		elseif not target and entity.AIprevioustargetPosition and CalculateDistance(entity.AIprevioustargetPosition, entity) <= 100 then
+		elseif not target and entity.AIprevioustargetPosition and CalculateDistance(entity.AIprevioustargetPosition, entity) <= 20 then
 			entity.AIprevioustargetPosition = nil
 		end
 		if target and not target:IsNull() and RollPercentage(80) then

@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1800"	
+		"ItemCost"						"800"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_anvil"
 		"ItemRequirements"
 		{
-			"01"						"item_titan_blade"
+			"01"						"item_titan_blade;item_titan_blade"
 		}
 	}
 	//=================================================================================================================
@@ -54,7 +54,7 @@
 			"particle"					"particles/items_fx/blink_dagger_end.vpcf"
 		}
 		
-		"AbilityCooldown"				"2"
+		"AbilityCooldown"				"3"
 
 		
 		// Special	
@@ -77,6 +77,11 @@
 				"bash_chance"			"25"
 			}
 			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bash_chance_ranged"	"15"
+			}
+			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"bash_duration"			"1"

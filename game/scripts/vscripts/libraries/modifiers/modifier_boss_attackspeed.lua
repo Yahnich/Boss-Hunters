@@ -43,7 +43,6 @@ function modifier_boss_attackspeed:DeclareFunctions()
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
-		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
 		MODIFIER_EVENT_ON_ABILITY_START,
 		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS
 	}
@@ -65,19 +64,6 @@ end
 function modifier_boss_attackspeed:GetModifierManaBonus( params )
 	return self:GetStackCount()*250
 end]]
-
-function modifier_boss_attackspeed:GetModifierPreAttack_CriticalStrike( params )
-	local maxTick = math.floor( 100 / ( 5 * self:GetStackCount() ) + 0.5 )
-	self.ticks = (self.ticks or 0) + 1
-	if self.ticks >= maxTick then	
-		self.ticks = 0
-		if self:GetParent():HasModifier("modifier_elite_assassin") then
-			return 250
-		else
-			return 175
-		end
-	end
-end
 
 function modifier_boss_attackspeed:GetModifierPhysicalArmorBonus( params )
 	local bonusarmor = self:GetStackCount()

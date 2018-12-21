@@ -31,7 +31,7 @@ function boss_doom_infernal_wave:OnSpellStart()
 	Timers:CreateTimer(0, function()
 		waves = waves - 1
 		
-		
+		if not ability or ability:IsNull() then return
 		ability:CreateRazeLine(ogPos, normal)
 		ogPos = ogPos + direction * wSpacing
 		startPos = startPos + direction * wSpacing

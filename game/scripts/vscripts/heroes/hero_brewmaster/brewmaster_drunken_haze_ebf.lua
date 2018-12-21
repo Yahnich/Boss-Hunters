@@ -8,32 +8,33 @@ function brewmaster_drunken_haze_ebf:IsHiddenWhenStolen()
 	return false
 end
 
-if IsServer() then
-	function brewmaster_drunken_haze_ebf:OnSpellStart()
-		local caster = self:GetCaster()
-		local target = self:GetCursorTarget()
-		if caster:HasScepter() then
-			for _, unit in ipairs( caster:FindAllUnitsInRadius( target:GetAbsOrigin(), self:GetTalentSpecialValueFor("scepter_radius") ) ) do
-				self:FireTrackingProjectile("particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze.vpcf", unit, 1300)
-			end
-		else
-			self:FireTrackingProjectile("particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze.vpcf", target, 1300)
-		end
-		EmitSoundOn("Hero_Brewmaster.DrunkenHaze.Cast", caster)
-	end
+function brewmaster_drunken_haze_ebf:GetAOERadius()
+	return self:GetTalentSpecialValueFor("scepter_radius")
+end
 
-	function brewmaster_drunken_haze_ebf:OnProjectileHit(target, position)
-		local caster = self:GetCaster()
-		local duration = self:GetTalentSpecialValueFor("duration")
-		EmitSoundOn("Hero_Brewmaster.DrunkenHaze.Target", target)
-		if target:GetTeam() == caster:GetTeam() then
-			target:AddNewModifier(caster, self, "modifier_brewmaster_drunken_haze_buff", {duration = duration})
-			self:Daze(self, caster, duration)
-		else
-			target:AddNewModifier(caster, self, "modifier_brewmaster_drunken_haze_debuff", {duration = duration})
+function brewmaster_drunken_haze_ebf:OnSpellStart()
+	local caster = self:GetCaster()
+	local target = self:GetCursorTarget()
+	if caster:HasScepter() then
+		for _, unit in ipairs( caster:FindAllUnitsInRadius( target:GetAbsOrigin(), self:GetTalentSpecialValueFor("scepter_radius") ) ) do
+			self:FireTrackingProjectile("particles/units/heroes/hero_brewmaster/brewmaster_cinder_brew_cast.vpcf", unit, 1300, nil, DOTA_PROJECTILE_ATTACHMENT_ATTACK_2)
 		end
-		
+	else
+		self:FireTrackingProjectile("particles/units/heroes/hero_brewmaster/brewmaster_cinder_brew_cast_projectile.vpcf", target, 1300, nil, DOTA_PROJECTILE_ATTACHMENT_ATTACK_2)
 	end
+	EmitSoundOn("Hero_Brewmaster.CinderBrew.Cast", caster)
+end
+
+function brewmaster_drunken_haze_ebf:OnProjectileHit(target, position)
+	local caster = self:GetCaster()
+	local duration = self:GetTalentSpecialValueFor("duration")
+	EmitSoundOn("Hero_Brewmaster.CinderBrew.Target", target)
+	if target:GetTeam() == caster:GetTeam() then
+		target:AddNewModifier(caster, self, "modifier_brewmaster_drunken_haze_buff", {duration = duration})
+	else
+		target:AddNewModifier(caster, self, "modifier_brewmaster_drunken_haze_debuff", {duration = duration})
+	end
+	target:Daze(self, caster, duration)
 end
 
 LinkLuaModifier( "modifier_brewmaster_drunken_haze_buff", "heroes/hero_brewmaster/brewmaster_drunken_haze_ebf.lua", LUA_MODIFIER_MOTION_NONE )

@@ -5,7 +5,7 @@ function item_cursed_amulet:GetIntrinsicModifierName()
 end
 
 modifier_item_cursed_amulet = class(itemBaseClass)
-LinkLuaModifier( "modifier_item_cursed_amulet", "items/item_cursed_amulet.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_item_cursed_amulet", "items/item_cursed_amulet.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_cursed_amulet:OnCreated()
 	self.duration = self:GetSpecialValueFor("duration")

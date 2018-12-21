@@ -35,7 +35,7 @@ function modifier_pugna_power_vacuum:OnTakeDamage(params)
 		if params.attacker:GetHealth() < params.attacker:GetMaxHealth() then
 			params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
 		else
-			params.attacker:GiveMana( flHeal )
+			params.attacker:RestoreMana( flHeal )
 		end
 	end
 end

@@ -46,7 +46,7 @@ end
 
 function modifier_green_dragon_etheral_armor:OnIntervalThink()
 	local caster = self:GetCaster()
-	caster:GiveMana(caster:GetMaxMana()*0.1/self:GetSpecialValueFor("duration"))
+	caster:RestoreMana(caster:GetMaxMana()*0.1/self:GetSpecialValueFor("duration"))
 	if caster:IsAlive() then
 		if RollPercentage(25) then
 			ProjectileManager:ProjectileDodge(caster)

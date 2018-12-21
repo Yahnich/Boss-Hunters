@@ -12,7 +12,7 @@ function item_archmages_orb:OnSpellStart()
 	local managain = self:GetSpecialValueFor("mana_restore") / 100
 	local minRestore = self:GetSpecialValueFor("min_restore")
 	for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), self:GetSpecialValueFor("radius") ) ) do
-		ally:GiveMana( math.max(minRestore, ally:GetMaxMana() * managain) )
+		ally:RestoreMana( math.max(minRestore, ally:GetMaxMana() * managain) )
 		ParticleManager:FireParticle("particles/items3_fx/warmage_recipient.vpcf", PATTACH_POINT_FOLLOW, ally)
 	end
 end

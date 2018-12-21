@@ -79,12 +79,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain"			"40"
+				"threat_gain"			"5"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain_per_unit"	"10"
+				"threat_gain_ult"		"20"
 			}
 			"06"
 			{
@@ -108,20 +108,15 @@
 			}
 			"10"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"50"
+				"var_type"				"FIELD_FLOAT"
+				"damage"				"100"
 			}
 			"11"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"1.5"
-			}
-			"12"
-			{
-				"var_type"				"FIELD_FLOAT"
 				"blind"					"25"
 			}
-			"13"
+			"12"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"radius"				"900"

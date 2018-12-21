@@ -550,6 +550,7 @@ function LungeHorizonal( keys )
 		ability.leap_traveled = ability.leap_traveled + ability.leap_speed
 	else
 		caster:InterruptMotionControllers(true)
+		ResolveNPCPositions( caster:GetAbsOrigin(), 150 )
 		local predator = caster:FindAbilityByName("skinwalker_predator_form")
 		for i = 1, ability:GetTalentSpecialValueFor("bleed_stacks") do
 			if target:IsAlive() then

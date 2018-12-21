@@ -8,7 +8,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"3226"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_amulet_of_aggression"
 		"AbilityTextureName"			"custom/amulet_of_aggression"
@@ -36,7 +36,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_threat"			"35"
+				"threat_gain"			"5"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"threat_gain_ult"		"20"
 			}
 		}
 	}

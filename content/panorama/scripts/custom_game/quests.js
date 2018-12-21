@@ -24,8 +24,10 @@ GameEvents.Subscribe( "bh_update_votes_prep_time", UpdatePrepVote);
 GameEvents.Subscribe( "bh_start_prep_time", StartPrepVote);
 GameEvents.Subscribe( "bh_end_prep_time", RemovePrepVotes);
 
-GameEvents.Subscribe( "bh_start_ng_vote", StartNGVote)
-GameEvents.Subscribe( "bh_end_ng_vote", EndNGVote)
+GameEvents.Subscribe( "bh_start_ng_vote", StartNGVote);
+GameEvents.Subscribe( "bh_end_ng_vote", EndNGVote);
+GameEvents.Subscribe("bh_show_error_message", DisplayErrorMessage);
+
 Initialize()
 
 var pressed = false
@@ -353,9 +355,11 @@ var DELAYED_COOLDOWN = {"omniknight_repel_ebf":true,
 						"nyx_vendetta":true,
 						}
 
-function UpdateTooltipUI(id, abilityname, abilityid){
+function UpdateTooltipUI(id, abilityname, abilityid)
+{
 	var tooltips = dotaHud.FindChildTraverse("DOTAAbilityTooltip")
-	if(tooltips != null){
+	if(tooltips != null)
+	{
 		// if( DELAYED_COOLDOWN != null && DELAYED_COOLDOWN[abilityname] != null){
 			// tooltips.FindChildTraverse("AbilityCooldown").style.backgroundImage = "url('file://{images}/custom_game/ability_delayed_cooldown_png.vtex')";
 		// } else {
@@ -437,4 +441,32 @@ function UpdateBoss(arg){
 	$("#QuestBossText").visible =  true
 	$.Msg( arg )
 	$("#QuestBossText").text = "UPCOMING BOSS - " + $.Localize( "#event_" + arg.bossName, $("#QuestBossText") )
+}
+
+var error = null;
+function DisplayErrorMessage(event)
+{
+	if(error != null){
+		HideError()
+	}
+	error = $.CreatePanel('DOTAErrorMsg', $.GetContextPanel(), 'customErrorMessage');
+	error.AddClass('VisGroup_Top')
+	error.AddClass('PopOutEffect')
+	error.SetHasClass("ShowErrorMsg", true)
+	error.style.opacity = 1.0;
+	var errorLabel = $.CreatePanel('Label', error, 'customErrorMessageLabel');
+	errorLabel.style.marginTop = "4px;";
+	errorLabel.style.horizontalAlign = "middle";
+	errorLabel.style.color = "white";
+	errorLabel.style.fontSize = "28px";
+	errorLabel.text = event._error
+	$.Schedule(1.5, HideError)
+}
+
+function HideError()
+{
+	if(error != null){
+		error.DeleteAsync( 0 );
+		error = null;
+	}
 }

@@ -19,7 +19,7 @@ function modifier_item_pages_buckler:DeclareFunctions()
 end
 
 function modifier_item_pages_buckler:GetModifierTotal_ConstantBlock(params)
-	if RollPercentage(self.chance) and params.attacker ~= self:GetParent() and self:GetParent():IsRealHero() then
+	if self:RollPRNG(self.chance) and params.attacker ~= self:GetParent() and self:GetParent():IsRealHero() then
 		return self.block
 	end
 end

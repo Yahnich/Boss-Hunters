@@ -87,7 +87,7 @@ function medusa_snake:OnProjectileHit( hTarget, vLocation )
 		-- Snake is hitting Medusa, give her the collected mana
 		if hTarget == caster then
 			EmitSoundOn("Hero_Medusa.MysticSnake.Return", caster)
-			caster:GiveMana( self.nTotalMana )
+			caster:RestoreMana( self.nTotalMana )
 			SendOverheadEventMessage( caster:GetPlayerOwner(), OVERHEAD_ALERT_MANA_ADD, caster, self.nTotalMana, nil )
 
 			for k in pairs( self.hHitEntities ) do

@@ -1,5 +1,9 @@
 dazzle_poison_touch_bh = class({})
 
+function dazzle_poison_touch_bh:GetManaCost( iLvl ) 
+	return self.BaseClass.GetManaCost( self, iLvl ) + self:GetCaster():GetModifierStackCount( "modifier_dazzle_weave_bh_handler", self:GetCaster() )
+end
+
 function dazzle_poison_touch_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
@@ -8,8 +12,12 @@ function dazzle_poison_touch_bh:OnSpellStart()
 	local length = self:GetTalentSpecialValueFor("end_distance") + caster:GetHullRadius() + caster:GetCollisionPadding()
 	local speed = self:GetTalentSpecialValueFor("projectile_speed")
 	local direction = CalculateDirection( target, caster )
+	
+	self:FireTrackingProjectile("particles/units/heroes/hero_dazzle/dazzle_poison_touch.vpcf", target, speed)
 	for _, enemy in ipairs( caster:FindEnemyUnitsInCone(direction, caster:GetAbsOrigin(), endRadius, length) ) do
-		self:FireTrackingProjectile("particles/units/heroes/hero_dazzle/dazzle_poison_touch.vpcf", enemy, speed)
+		if enemy ~= target then
+			self:FireTrackingProjectile("particles/units/heroes/hero_dazzle/dazzle_poison_touch.vpcf", enemy, speed)
+		end
 	end
 end
 

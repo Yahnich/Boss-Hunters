@@ -92,7 +92,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"disable_chance"		"25"
+				"disable_chance"		"33"
 			}
 
 		}

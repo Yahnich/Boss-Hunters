@@ -35,14 +35,14 @@ function modifier_kotl_chakra_magic_int_gain:OnCreated()
     self.spellAmp = self:GetCaster():FindTalentValue("special_bonus_unique_kotl_chakra_magic_1")
 
     if IsServer() then
-        self:GetParent():GiveMana(self.intgain*12)
+        self:GetParent():RestoreMana(self.intgain*12)
     end
 end
 
 function modifier_kotl_chakra_magic_int_gain:OnRefresh()
     self.intgain = self:GetAbility():GetTalentSpecialValueFor("int_gain")
     if IsServer() then
-        self:GetParent():GiveMana(self.intgain*12)
+        self:GetParent():RestoreMana(self.intgain*12)
     end
 end
 
