@@ -1,5 +1,9 @@
 dazzle_shallow_grave_bh = class({})
 
+function dazzle_shallow_grave_bh:GetManaCost( iLvl ) 
+	return self.BaseClass.GetManaCost( self, iLvl ) + self:GetCaster():GetModifierStackCount( "modifier_dazzle_weave_bh_handler", self:GetCaster() )
+end
+
 function dazzle_shallow_grave_bh:GetCastRange( target, position )
 	return self:GetTalentSpecialValueFor("radius")
 end

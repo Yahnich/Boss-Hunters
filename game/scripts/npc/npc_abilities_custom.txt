@@ -276,7 +276,7 @@
 			{
 				"UnitName"			"npc_dota_boss5b"
 				"UnitCount"			"%number_of_zombies"
-				"UnitLimit"			"6"
+				"UnitLimit"			"9"
 				"SpawnRadius"		"750"
 				"Target"			"CASTER"
 				"OnSpawn"
@@ -1093,7 +1093,7 @@
 			{
 				"UnitName"			"npc_dota_boss8c"
 				"UnitCount"			"1"
-				"UnitLimit"			"4"
+				"UnitLimit"			"20"
 				"SpawnRadius"		"200"
 				"Target"			"CASTER"
 				"OnSpawn"
@@ -1701,7 +1701,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60"
+		"AbilityCooldown"				"25"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -1709,7 +1709,7 @@
 		
 		// Cast Range
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1000"
+		"AbilityCastRange"				"700"
 			
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -1721,37 +1721,32 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"12.0"
+				"var_type"							"FIELD_FLOAT"
+				"duration"							"12.0"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"movement_damage_pct"		"25"
+				"var_type"							"FIELD_INTEGER"
+				"movement_damage_pct"				"8"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_cap_amount"			"1150"
+				"var_type"							"FIELD_INTEGER"
+				"damage_cap_amount"					"200"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"damage_cap_interval"		"0.25"
+				"var_type"							"FIELD_INTEGER"
+				"cast_range_tooltip"				"700 800 900"
 			}
 			"05"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"cast_range_tooltip"		"1000"
+				"var_type"							"FIELD_INTEGER"
+				"max_charges_scepter"				"2"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"max_charges_scepter"		"2 3 4 5 6 7 8"
-			}
-			"07"
-			{
-				"var_type"			"FIELD_INTEGER"
+				"var_type"							"FIELD_INTEGER"
 				"charge_restore_time_scepter"		"40"
 			}
 		}
@@ -2097,7 +2092,7 @@
 			{
 				"UnitName"			"npc_dota_mini_tree"
 				"UnitCount"			"%number_of_zombies"
-				"UnitLimit"			"5"
+				"UnitLimit"			"20"
 				"SpawnRadius"		"750"
 				"Target"			"CASTER"
 				"OnSpawn"
@@ -2235,7 +2230,7 @@
 			{
 				"UnitName"			"npc_dota_mini_tree2"
 				"UnitCount"			"%number_of_zombies"
-				"UnitLimit"			"3"
+				"UnitLimit"			"6"
 				"SpawnRadius"		"1250"
 				"Target"			"CASTER"
 				"OnSpawn"
@@ -2321,228 +2316,6 @@
 			}
 		}
 	}
-	//=================================================================================================================
-	// Dark Seer: Adamantium Shielding
-	//=================================================================================================================
-	"dark_seer_adamantium_shell"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL" 
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityCooldown"				"15"
-		"AbilityDuration"				"8"
-		"AbilityCastRange"				"900"
-		
-		"MaxLevel"						"7"
-		"HasScepterUpgrade"				"1"
-		"HasPureCooldown"				"1"
-		
-	
-		"AbilityTextureName"			"custom/dark_seer_adamantium_shell"
-		"precache"
-		{
-			"particle"		"particles/adamantium_shield.vpcf"
-			"particle"		"particles/units/heroes/hero_dark_seer/dark_seer_surge.vpcf"
-			"particle"		"particles/adamantium_burst.vpcf"
-			"soundfile"    "soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
-			"soundfile"    "soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
-		}
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_DarkSeer.PreAttack"
-				"Target"		"CASTER"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Dark_Seer.Surge"
-				"Target"		"TARGET"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/darkseer.lua"
-				"Function"		"AdamantiumShell"
-			}
-		}
-		"Modifiers"
-		{
-			"shell_autocast_aura"
-			{	
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-	
-				"Aura" "shell_autocast_check"
-				"Aura_Radius" "99999"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
-				"OnUnitMoved"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/darkseer.lua"
-						"Function"		"AdamantiumShellScepter"
-					}
-				}
-			}
-			"shell_autocast_check"
-			{	
-				"IsHidden"	 "1"
-				"OnAttackStart"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/autocast.lua"
-						"Function"		"AdamantiumShellAutoCast"
-					}
-				}
-			}
-			"modifier_shell_protection"
-			{
-				"EffectName"	"particles/units/heroes/hero_dark_seer/dark_seer_surge.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "-100"
-					"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN"		"550"
-				}
-				"OnTakeDamage"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/darkseer.lua"
-						"Function"		"AdamantiumShellHit"
-					}
-				}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/darkseer.lua"
-						"Function"		"AdamantiumShellPop"
-					}
-					"FireSound"
-					{
-						"EffectName"	"Hero_Abaddon.AphoticShield.Destroy"
-						"Target"		"CASTER"
-					}					
-				}
-			}
-		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"charges"				"2 3 4 5 6 7 8"
-				"LinkedSpecialBonus"	"special_bonus_unique_dark_seer_4"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"			"8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"magic_burst"			"100 180 260 340 420 500 580"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"550"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"distance_scepter"		"1000"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Dark Seer: Battlemaster's Command
-	//=================================================================================================================
-	"dark_seer_battlemaster_command"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"MaxLevel"						"7"
-	
-		"AbilityTextureName"			"dark_seer_wall_of_replica"
-	
-	
-		"Modifiers"
-		{
-			"bm_passive"
-			{	
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"		"%bonus_evasion"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor"
-				}
-			}
-			"bm_active aoe"
-			{
-				"Passive" "1"
-				"IsHidden" "1"
-				"Aura" "bm_aura"
-				"Aura_Radius" "%radius"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
-			}
-			"bm_aura"
-			{	
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"			"%bonus_evasion_aura"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor_aura"
-				}
-			}
-		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_evasion"			"5 10 15 20 25 30"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"7 9 11 13 15 17"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"1700"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_evasion_aura"	"15"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor_aura"		"1 2 3 4 5 6 7"
-			}
-		}
-	}
 	//-------------------
 	// Dummy stuff
 	//-------------------
@@ -2569,79 +2342,6 @@
 		  }
 		}
 	}
-	"enchantress_siegebreaker"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_lua"
-		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityTextureName"	"custom/enchantress_siegebreaker"
-		"MaxLevel"				"7"
-		"ScriptFile"			"lua_abilities/heroes/enchantress_siegebreaker"
-		
-		"AbilityCastPoint"		"0.3"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"bonus_attack_range"					"100 150 200 250 300 350 400"
-			}
-			"02"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"bonus_projectile_speed"				"100 350 600 850 1100 1600 2100"
-			}
-			"03"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"bonus_projectile_speed_tooltip"		"1000 1250 1500 1750 2000 2500 3000"
-			}
-			"04"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"damage_amp"							"25"
-			}
-			"05"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"moveslow"								"-500"
-				"LinkedSpecialBonus"					"special_bonus_unique_enchantress_1"
-			}
-		}
-	}
-	"hide_hero"
-	{
-		"BaseClass"             		"ability_datadriven"
-		"MaxLevel" 						"1"
-		//"DisplayAdditionalHeroes"       "1"
-	
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"Modifiers"
-		{
-			"modifier_hidden"
-			{
-				"Passive"			"1"
-				"IsHidden"			"1"
-				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"	
-				"States"
-				{
-					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_ROOTED"				"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_ATTACK_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_DISARMED"			"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_UNSELECTABLE"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}		
-	}	
 	"invincibility"
 	{
 		"BaseClass"             		"ability_datadriven"
@@ -2796,440 +2496,6 @@
 			}
 		}
 	}
-	"oracle_fate_extension"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
-		"AbilityTextureName"			"oracle_fates_edict"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_NO"
-		"MaxLevel"						"7"
-		
-		"precache"
-		{
-			"particle"		"particles/units/heroes/hero_oracle/oracle_fatesedict.vpcf"
-			"particle"		"particles/oracle_fate_delay_buff.vpcf"
-			"particle"		"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_death.vpcf"
-			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_oracle.vsndevts"
-		}
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"900"
-		"AOERadius"						"900"
-		"AbilityCastPoint"				"0.3"
-		"AbilityThreat"					"6"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"22.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"150"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"block"					"70 80 90 100 110 120 130"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6.0"
-				"LinkedSpecialBonus"	"special_bonus_unique_oracle_3"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
-			}
-		}
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/oracle"
-				"Function"		"FateDelay"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Oracle.FatesEdict.Cast"
-				"Target"		"CASTER"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_oracle_fate_extension_visual"
-			{
-				"EffectName"		"particles/oracle_fate_delay_buff.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"IsPurgable"	"1"
-				"IsBuff"	"1"
-			}
-			"modifier_oracle_fate_extension_block"
-			{
-				"EffectName"		"particles/units/heroes/hero_oracle/oracle_fatesedict.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"IsPurgable"	"1"
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK"		"%block"
-				}
-			}
-		}
-	}
-	"oracle_purifying_flames_damage"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"custom/oracle_purifying_flames_damage"
-		"MaxLevel"                      "7"
-		"HasScepterUpgrade"				"1"
-		
-		"precache"
-		{
-			"particle"		"particles/units/heroes/hero_oracle/oracle_purifyingflames_hit.vpcf"
-			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_oracle.vsndevts"
-		}
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"750"
-		"AbilityCastPoint"				"0.3"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"2.5"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"80 85 90 95 100 105 110"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{		
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"90 180 270 360 450 540 630"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"magic_reduction_scepter"	"-5"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration_scepter"			"9.0"
-			}
-		}
-		"OnUpgrade"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/oracle.lua"
-				"Function"		"ShareUpgrade"
-				"twin"			"oracle_purifying_flames_heal"
-			}
-		}
-		"OnSpellStart"
-		{
-			"FireEffect"
-			{
-				"EffectName" "particles/units/heroes/hero_oracle/oracle_purifyingflames_hit.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"Target"			"TARGET"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Oracle.PurifyingFlames"
-				"Target"		"CASTER"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Oracle.PurifyingFlames.Damage"
-				"Target"		"CASTER"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/oracle.lua"
-				"Function"		"AghsCheck"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/oracle.lua"
-				"Function"		"FlameDamage"
-				"damage"		"%damage"
-			}
-			
-		}
-		"Modifiers"
-		{
-			"purifying_flames_scepter"
-			{
-				"Duration"	"%duration_scepter"
-				"IsHidden"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_reduction_scepter"
-				}
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/oracle.lua"
-						"Function"		"AghsCounterUp"
-					}
-				}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/oracle.lua"
-						"Function"		"AghsCounterDown"
-					}
-				}
-			}
-			"purifying_flames_scepter_counter"
-			{
-				"Duration"	"%duration_scepter"
-				"IsBuff"	"1"
-			}
-		}
-	}
-	"oracle_purifying_flames_heal"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
-		"AbilityTextureName"			"custom/oracle_purifying_flames_heal"
-		"MaxLevel"                      "7"
-		"HasScepterUpgrade"				"1"
-		
-		"precache"
-		{
-			"particle"		"particles/oracle_purifyingheal_hit.vpcf"
-			"particle"		"particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf"
-			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_oracle.vsndevts"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"750"
-		"AbilityCastPoint"				"0.3"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"2.5"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"80 85 90 95 100 105 110"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal_per_second"		"11 22 33 44 55 66 77"
-			}			
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"9.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"tick_rate"				"1.0"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_reduction_scepter"	"-5"
-			}
-		}
-		"OnUpgrade"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/oracle.lua"
-				"Function"		"ShareUpgrade"
-				"twin"			"oracle_purifying_flames_damage"
-			}
-		}
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"purifying_flames_heal_tick"
-				"Target"	"TARGET"
-				"Duration"	"%duration"
-			}
-			"FireEffect"
-			{
-				"EffectName" "particles/oracle_purifyingheal_hit.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"Target"			"TARGET"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Oracle.PurifyingFlames"
-				"Target"		"CASTER"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Oracle.PurifyingFlames.Damage"
-				"Target"		"CASTER"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/oracle.lua"
-				"Function"		"AghsCheck"
-			}
-		}
-		"Modifiers"
-		{
-			"purifying_flames_heal_tick"
-			{
-				"IsHidden"		"1"
-				"IsBuff"		"1"
-				"IsPurgable"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/oracle.lua"
-						"Function"		"FlameHealCreate"
-					}
-				}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/oracle.lua"
-						"Function"		"FlameHealDestroy"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"		"%heal_per_second"
-				}
-			}
-			"purifying_flames_heal_counter"
-			{
-				"Duration"	"%duration"
-				"IsBuff"	"1"
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName" "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf"
-						"EffectAttachType"	"attach_origin"
-						"Target"			"TARGET"
-					}
-				}
-			}
-			"purifying_flames_scepter"
-			{
-				"Duration"	"%duration_scepter"
-				"IsHidden"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "%damage_reduction_scepter"
-				}
-			}
-		}
-	}
-	"rubick_lift_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/rubick"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"rubick_telekinesis"
-		"MaxLevel"						"7"
-		
-		"precache"
-		{
-			"particle"			"particles/econ/items/rubick/rubick_force_ambient/rubick_telekinesis_land_force.vpcf"
-			"soundfile"			"sounds/weapons/hero/rubick/telekinesis_cast.vsnd"
-			"soundfile"			"sounds/weapons/hero/rubick/telekinesis_stun.vsnd"
-		}
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.1"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"22"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"120 120 120 120"
-		
-		// Cast Range
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"550 575 600 625 650 700 800"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"stun_duration"				"2.0"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slam_damage"				"100 150 200 250 300 350 400"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slam_radius"				"400"
-				"LinkedSpecialBonus"		"special_bonus_unique_rubick"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cast_range_tooltip"		"550 575 600 625 650 700 800"
-			}
-		}
-	}	
 	"skinwalker_call_of_nature_fortress"
 	{
 		// General
@@ -4873,204 +4139,6 @@
 				"value"				"120"
 			}
 		}
-	}
-	"spirit_breaker_ground_smash"
-	{
-	
-		// General
-	    //-------------------------------------------------------------------------------------------------------------
-	    "BaseClass"                     "ability_datadriven"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
-	    "AbilityTextureName"			"custom/ground_smash"
-	    "MaxLevel"                      "7"
-	
-	
-		"AOERadius" "500 575 650 725 800 875 950"
-		
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"	// Activity
-		"AnimationPlaybackRate"			"1.0"						// Animation speed multiplier
-		"AnimationIgnoresModelScale"	"1"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20.0"
-		"AbilityCastPoint"				"1.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"               "100 115 130 145 160 175 190"
-		"AbilityCastRange"				"500 575 650 725 800 875 950"
-	
-		"precache"
-		{
-			"particle"	"particles/ground_smash_aoe.vpcf"
-		}		     
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "damage"     					"100 150 200 250 300 350 400"
-	        }
-	        "02"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "slow_movement_speed"     		"-40 -50 -60 -70 -80 -90 -100"
-	        }
-			"03"
-	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "bonus_movement_speed"    		"10 12.5 15 17.5 20 22.5 25"
-	        }
-	        "04"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "radius"     					"500 575 650 725 800 875 950"
-	        }
-	    }
-	    "OnSpellStart"
-	    {
-	        "RunScript"
-	        {
-	            "ScriptFile"                        "lua_abilities/heroes/spirit_breaker"
-	            "Function"                          "ground_smash"
-	        }
-			"DestroyTrees"
-			{
-				"Radius"		"%radius"
-				"Target"		"CASTER"
-			}
-	    }
-	    
-	    "Modifiers"
-	    {
-	        "slow_ground_smash"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "0"
-	            "IsDebuff"          "1"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	            "duration" "20"
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"      "%slow_movement_speed"
-	            }
-	        }
-			"bonus_ground_smash"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	            "duration" "10"
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "%bonus_movement_speed"
-	            }
-	        }
-	    }
-	}
-	"spirit_breaker_haste_armor"
-	{
-	
-		// General
-	    //-------------------------------------------------------------------------------------------------------------
-	    "BaseClass"                     "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityTextureName"			"spirit_breaker_charge_of_darkness_alt"
-	    "MaxLevel"                      "7"
-		
-		"precache"
-		{
-			"particle"	"particles/spirit_breaker_haste_armor.vpcf"
-		}
-		     
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"                      	"FIELD_FLOAT"
-	            "speed_to_armor_percent_tooltip"    "4.4 5 5.6 6.2 6.8 7.4 8"
-	        }
-	        "01"
-	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "speed_to_armor"     			"0.045 0.05 0.055 0.06 0.065 0.07"
-	        }
-	    }
-	    "OnUpgrade"
-	    {
-	    	"RunScript"
-			{
-			   	"ScriptFile"                        "lua_abilities/heroes/spirit_breaker"
-			   	"Function"                          "refresh_haste_armor"
-			}
-			"RemoveModifier"
-			{
-				"ModifierName" 	"modifier_bloodseeker_thirst"
-				"Target"		"CASTER"
-			}
-			"ApplyModifier"
-			{
-				"ModifierName" 	"modifier_bloodseeker_thirst"
-				"Target"		"CASTER"
-			}
-		}
-		"OnOwnerSpawned"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName" 	"modifier_bloodseeker_thirst"
-				"Target"		"CASTER"
-			}
-		}
-	    "Modifiers"
-	    {
-			"haste_armor_movespeed_limit"
-			{
-			"Passive"	"1"
-			"IsHidden"	"1"
-			"Properties"
-	            {
-					"MODIFIER_PROPERTY_MOVESPEED_MAX"			"9999"
-					"MODIFIER_PROPERTY_MOVESPEED_LIMIT"			"9999"
-	            }
-			}
-	        "haste_armor_bonus"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"      "%speed_to_armor"
-	            }
-	        }
-	        "haste_armor_tooltip"
-	        {	
-	        	"Passive"           "1"
-	        	"IsHidden"          "1"
-		        "OnCreated"
-		        {
-		        	"RunScript"
-			        {
-			            "ScriptFile"                        "lua_abilities/heroes/spirit_breaker"
-			            "Function"                          "haste_armor"
-			        }
-			    }
-	    	}
-	    }
 	}
 	"storm_spirit_electric_dynamo"
 	{

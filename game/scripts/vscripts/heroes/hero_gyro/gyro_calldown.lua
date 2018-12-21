@@ -5,7 +5,7 @@ LinkLuaModifier( "modifier_gyro_calldown_slow2", "heroes/hero_gyro/gyro_calldown
 
 function gyro_calldown:GetCastRange( target, position )
 	if self:GetCaster():HasTalent("special_bonus_unique_gyrocopter_calldown_2") then
-		return -1
+		return 0
 	else
 		return self.BaseClass.GetCastRange( self, target, position )
 	end

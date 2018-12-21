@@ -1,0 +1,1 @@
+boss_valgraduth_forests_protection = class({})

@@ -12,6 +12,10 @@ function gyro_bombing_run:IsHiddenWhenStolen()
 	return false
 end
 
+function gyro_bombing_run:GetCastRange( target, position )
+	return self:GetTalentSpecialValueFor("max_distance")
+end
+
 function gyro_bombing_run:OnSpellStart()
 	local caster = self:GetCaster()
 

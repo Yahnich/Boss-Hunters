@@ -1,7 +1,7 @@
 modifier_restoration_disable = class({})
 
 function modifier_restoration_disable:OnCreated()
-	if IsServer() then
+	if IsServer() and self:GetParent():IsRealHero() then
 		self.mana = self:GetParent():GetMana()
 		self:StartIntervalThink(0)
 	end

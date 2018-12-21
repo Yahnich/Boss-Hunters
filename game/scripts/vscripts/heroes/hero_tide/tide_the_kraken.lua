@@ -72,10 +72,12 @@ function modifier_the_kraken:OnCreated()
         self:StartIntervalThink(0.5)
 		
 		local distance = 0
+		local position = target:GetAbsOrigin()
 		if caster:HasTalent("special_bonus_unique_tide_the_kraken_2") then
 			distance = math.min( caster:FindTalentValue("special_bonus_unique_tide_the_kraken_2"), CalculateDistance(caster, target) - 150 )
+			position = caster:GetAbsOrigin()
 		end
-        self:GetParent():ApplyKnockBack(self:GetParent():GetAbsOrigin(), 0.5, 0.5, distance, 350, self:GetCaster(), self:GetAbility())
+        self:GetParent():ApplyKnockBack(position, 0.5, 0.5, distance * (-1), 350, self:GetCaster(), self:GetAbility())
     end
 end
 

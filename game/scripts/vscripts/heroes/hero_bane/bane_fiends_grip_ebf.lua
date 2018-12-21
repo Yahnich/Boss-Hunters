@@ -73,7 +73,7 @@ if IsServer() then
 				self.tick = self:GetTalentSpecialValueFor("fiend_grip_tick_interval")
 				ability:DealDamage( caster, parent, self.damage, {damage_type = DAMAGE_TYPE_MAGICAL} )
 				local drain = self.drain * parent:GetMaxMana()
-				caster:GiveMana(drain)
+				caster:RestoreMana(drain)
 				parent:ReduceMana( drain )
 				if caster:HasTalent("special_bonus_unique_bane_fiends_grip_ebf_1") then
 					for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_bane_fiends_grip_ebf_1") ) ) do

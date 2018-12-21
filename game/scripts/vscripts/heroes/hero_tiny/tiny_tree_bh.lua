@@ -45,7 +45,7 @@ end
 
 function tiny_tree_bh:GetCastRange(vLocation, hTarget)
 	if self:GetCaster():HasModifier("modifier_tiny_tree_bh") then
-		return self:GetSpecialValueFor("range")
+		return self:GetTalentSpecialValueFor("range")
 	end
 	return self:GetCaster():GetAttackRange()
 end
@@ -65,21 +65,24 @@ function tiny_tree_bh:OnSpellStart()
     	local point = self:GetCursorPosition()
 
     	local direction = CalculateDirection(point, caster:GetAbsOrigin())
-    	local distance = self:GetSpecialValueFor("range")
-    	local speed = self:GetSpecialValueFor("speed")
+    	local distance = self:GetTalentSpecialValueFor("range")
+    	local speed = self:GetTalentSpecialValueFor("speed")
     	local velocity = direction * speed
-    	local width = self:GetSpecialValueFor("width")
+    	local width = self:GetTalentSpecialValueFor("width")
 
     	self:FireLinearProjectile("particles/units/heroes/hero_tiny/tiny_tree_linear_proj.vpcf", velocity, distance, width, {}, true, true, 300)
     	caster:RemoveModifierByName("modifier_tiny_tree_bh")
     	self:RefundManaCost()
+		self:EndCooldown()
+		self:StartCooldown( self.cdRemaining - (GameRules:GetGameTime() - self.useTime) )
     else
 	    local target = self:GetCursorTarget()
 	    EmitSoundOn("Hero_Tiny.Tree.Grab", caster)
 
 	    caster:AddNewModifier(caster, self, "modifier_tiny_tree_bh", {})
 	    target:CutDown(caster:GetTeam())
-
+		self.cdRemaining = self:GetCooldownTimeRemaining()
+		self.useTime = GameRules:GetGameTime()
 	    self:EndCooldown()
 	end
 end
@@ -89,14 +92,14 @@ function tiny_tree_bh:OnProjectileHitHandle(hTarget, vLocation, iProjectileHandl
 
 	if hTarget then
 		EmitSoundOn("Hero_Tiny.Tree.Target", hTarget)
-		local damage = caster:GetAttackDamage() * self:GetSpecialValueFor("toss_splash_damage")/100
+		local bonusDamagePct = self:GetTalentSpecialValueFor("toss_splash_damage")
+		local bonus_damage = 0
 		if caster:HasTalent("special_bonus_unique_tiny_tree_bh_2") then
-			damage = damage + caster:GetPhysicalArmorValue() * caster:FindTalentValue("special_bonus_unique_tiny_tree_bh_2")/100
+			bonus_damage = bonus_damage + caster:GetPhysicalArmorValue() * caster:FindTalentValue("special_bonus_unique_tiny_tree_bh_2")/100
 		end
-		local enemies = caster:FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetSpecialValueFor("splash_radius"))
+		local enemies = caster:FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetTalentSpecialValueFor("splash_radius"))
 		for _,enemy in pairs(enemies) do
-			caster:PerformAttack(enemy, true, true, true, true, false, true, true)
-			self:DealDamage(caster, enemy, damage, {}, 0)
+			caster:PerformAbilityAttack(enemy, true, self, bonus_damage, bonusDamagePct, false)
 		end
 		ProjectileManager:DestroyLinearProjectile(iProjectileHandle)
 	else
@@ -138,12 +141,11 @@ function modifier_tiny_tree_bh:OnAttackLanded(params)
 		local caster = params.attacker
 		if caster == self:GetCaster() then
 			EmitSoundOn("Hero_Tiny.Tree.Target", caster)
-			--DoCleaveAttack(caster, params.target, self:GetAbility(), self:GetSpecialValueFor("splash_pct"), self:GetSpecialValueFor("splash_width"), self:GetSpecialValueFor("splash_range"), self:GetCaster():GetAttackRange(), "particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_crit.vpcf")
 			local hitTargets = {}
-			local endPos = caster:GetAbsOrigin() + caster:GetForwardVector() * self:GetSpecialValueFor("splash_range")
-			local damage = caster:GetAttackDamage() * self:GetSpecialValueFor("splash_pct")/100
+			local endPos = caster:GetAbsOrigin() + caster:GetForwardVector() * self:GetTalentSpecialValueFor("splash_range")
+			local damage = params.original_damage * self:GetTalentSpecialValueFor("splash_pct")/100
 			local i = 0
-			local enemies = caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), endPos, self:GetSpecialValueFor("splash_width"), {})
+			local enemies = caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), endPos, self:GetTalentSpecialValueFor("splash_width"), {})
 			for _,enemy in pairs(enemies) do
 				local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_tiny/tiny_craggy_cleave.vpcf", PATTACH_POINT, caster)
 							ParticleManager:SetParticleControl(nfx, 0, enemy:GetAbsOrigin())
@@ -153,28 +155,15 @@ function modifier_tiny_tree_bh:OnAttackLanded(params)
 				hitTargets[i] = enemy
 				self:GetAbility():DealDamage(caster, enemy, damage, {}, 0)
 			end
-			local enemies = caster:FindEnemyUnitsInRadius(endPos, self:GetSpecialValueFor("splash_width"))
-			for _,enemy in pairs(enemies) do
-				for _,enemy2 in pairs(hitTargets) do
-					if enemy ~= enemy2 then
-						local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_tiny/tiny_craggy_cleave.vpcf", PATTACH_POINT, caster)
-							ParticleManager:SetParticleControl(nfx, 0, enemy:GetAbsOrigin())
-							ParticleManager:SetParticleControl(nfx, 1, enemy:GetAbsOrigin())
-							ParticleManager:SetParticleControlForward(nfx, 2, caster:GetForwardVector())
-							ParticleManager:ReleaseParticleIndex(nfx)
-						self:GetAbility():DealDamage(caster, enemy, damage, {}, 0)
-					end
-				end
-			end
 		end
 	end
 end
 
 
 function modifier_tiny_tree_bh:GetModifierAttackRangeBonus()
-	return self:GetSpecialValueFor("attack_range")
+	return self:GetTalentSpecialValueFor("attack_range")
 end
 
 function modifier_tiny_tree_bh:GetModifierBaseDamageOutgoing_Percentage()
-	return self:GetSpecialValueFor("bonus_damage")
+	return self:GetTalentSpecialValueFor("bonus_damage")
 end

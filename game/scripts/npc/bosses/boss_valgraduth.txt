@@ -7,7 +7,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_valgraduth/boss_valgraduth_breath_of_the_wild"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"faceless_void_time_walk"
+		"AbilityTextureName"			"furion_wrath_of_nature"
 		"MaxLevel"						"3"
 	
 		"precache"
@@ -20,17 +20,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"growth_rate"			"1.0"
+				"spawn_rate"			"35 20"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"0.75 1"
+				"base_health"			"1000"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"1 2"
+				"base_damage"			"50"
 			}
 		}
 	}
@@ -49,22 +49,19 @@
 			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
 		}
 		
+		"AbilityCooldown"				"4"
+		
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"growth_rate"			"1.0"
+				"entangle_chance"		"20"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"0.75 1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"1 2"
+				"entangle_duration"		"2 3"
 			}
 		}
 	}
@@ -82,7 +79,7 @@
 		"AbilityCastRange"				"800"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"				"1.5 1"
-		"AbilityCooldown"				"160"
+		"AbilityCooldown"				"20"
 	
 		"precache"
 		{
@@ -94,17 +91,12 @@
 			"01"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "total_armor_reduction"     	"60 80"
+                "block_count"   			  	"4 5"
             }
     		"02"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "duration"     					"60 80"
-            }
-    		"03"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "radius"     					"350 500"
+                "block_amount"     				"60 80"
             }
 		}
 	}
@@ -121,7 +113,7 @@
 		"AbilityCastRange"				"800"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"				"1.5 1"
-		"AbilityCooldown"				"160"
+		"AbilityCooldown"				"50 40"
 	
 		"precache"
 		{
@@ -133,17 +125,7 @@
 			"01"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "total_armor_reduction"     	"60 80"
-            }
-    		"02"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "duration"     					"60 80"
-            }
-    		"03"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "radius"     					"350 500"
+                "root_duration"     			"6 8"
             }
 		}
 	}
@@ -153,14 +135,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_valgraduth/boss_valgraduth_bomb_spores"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"dazzle_weave"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED"
+		"AbilityTextureName"			"techies_land_mine"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"800"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"				"1.5 1"
-		"AbilityCooldown"				"160"
+		"AbilityCooldown"				"35"
+		"AbilityChannelTime"			"10"
 	
 		"precache"
 		{
@@ -172,18 +155,43 @@
 			"01"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "total_armor_reduction"     	"60 80"
+                "damage"     					"200 300"
             }
     		"02"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "duration"     					"60 80"
+                "explosion_radius"     			"350 500"
             }
     		"03"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "radius"     					"350 500"
+                "trigger_radius"     			"200 350"
+            }
+			"04"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "linger_duration"     			"8 10"
+            }
+			"05"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "spores_per_second"     		"3 4"
+            }
+			"06"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "spore_speed"     				"150"
+            }
+			"07"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "spore_max_distance"     		"600"
+            }
+			"08"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "sporE_min_distance"     		"150"
             }
 		}
 	}
-}
+}  

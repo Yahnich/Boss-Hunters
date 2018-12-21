@@ -121,6 +121,18 @@ function RoundManager:OnNPCSpawned(event)
 					GridNav:DestroyTreesAroundPoint(spawnedUnit:GetAbsOrigin(), spawnedUnit:GetHullRadius() + spawnedUnit:GetCollisionPadding() + 350, true)
 					FindClearSpaceForUnit(spawnedUnit, spawnedUnit:GetAbsOrigin(), true)
 				end
+				if spawnedUnit:IsWild() then
+					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_type_wild_tag", {})
+				end
+				if spawnedUnit:IsUndead() then
+					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_type_undead_tag", {})
+				end
+				if spawnedUnit:IsDemon() then
+					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_type_demonic_tag", {})
+				end
+				if spawnedUnit:IsCelestial() then
+					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_type_celestial_tag", {})
+				end
 			elseif spawnedUnit:IsRealHero() then
 				Timers:CreateTimer(0.1, function() spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_tombstone_respawn_immunity", {duration = 2.9}) end)
 			elseif spawnedUnit:IsIllusion() and spawnedUnit:GetPlayerOwnerID() and PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerOwnerID() ) and spawnedUnit:FindModifierByName("modifier_stats_system_handler") then
@@ -294,6 +306,7 @@ end
 
 function RoundManager:StartPrepTime(fPrep)
 	local PrepCatch = function( ... )
+		self.lastPrepTimeDuration = fPrep
 		if self.zones[self.currentZone] and self.zones[self.currentZone][1] and not self.prepTimeTimer then
 			local event = RoundManager:GetCurrentEvent()
 			event._playerChoices = {}
@@ -373,7 +386,7 @@ end
 
 function RoundManager:StartEvent()
 	local StartEventCatch = function( ... )
-		GameRules:RefreshPlayers( GameRules:GetGameDifficulty() >= 3 ) 
+		GameRules:RefreshPlayers( GameRules:GetGameDifficulty() >= 3, self.lastPrepTimeDuration ) 
 		EmitGlobalSound("Round.Start")
 		
 		local playerData = {}
@@ -389,6 +402,11 @@ function RoundManager:StartEvent()
 			event.eventHasStarted = true
 			event.eventEnded = false
 			event:StartEvent()
+			if event:GetEventType() == EVENT_TYPE_BOSS then
+				Notifications:BottomToAll({text="A great foe is nearby.", duration=3.5})
+			elseif event:GetEventType() == EVENT_TYPE_ELITE then
+				Notifications:BottomToAll({text="The horde seems stronger.", duration=3.5})
+			end
 			return true
 		else
 			RoundManager:GameIsFinished(true)
@@ -591,11 +609,11 @@ function RoundManager:InitializeUnit(unit, bElite)
 	local playerDMGMultiplier = 0.075
 	local playerArmorMultiplier = 0.03
 	if GameRules:GetGameDifficulty() == 4 then 
-		expectedHP = expectedHP * 1.35
+		expectedHP = expectedHP * 1.5
 		expectedDamage = expectedDamage * 1.2
-		playerHPMultiplier = 0.25
+		playerHPMultiplier = 0.33
 		playerDMGMultiplier = 0.1
-		playerArmorMultiplier = 0.08
+		playerArmorMultiplier = 0.12
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
 	
@@ -657,7 +675,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	local msBonus = unit:GetBaseMoveSpeed() * 0.035 * effective_multiplier * (GameRules:GetGameDifficulty() / 2)
 	unit:SetBaseMoveSpeed( unit:GetBaseMoveSpeed() + msBonus )
 	
-	local bonusArmor = math.min( RoundManager:GetRaidsFinished() + RoundManager:GetZonesFinished() * 2.5, 60 )
+	local bonusArmor = math.min( RoundManager:GetRaidsFinished() * 2.5 + RoundManager:GetZonesFinished() * 5, 80 )
 	if not unit:IsRoundBoss() then
 		bonusArmor =  math.min( RoundManager:GetRaidsFinished(), 20 )
 	end
@@ -679,7 +697,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	unit:AddNewModifier(unit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
 	if unit:IsRoundBoss() then
 		local evasion = unit:AddNewModifier(unit, nil, "modifier_boss_evasion", {})
-		if evasion then evasion:SetStackCount( 2.5 * RoundManager:GetRaidsFinished() ) end
+		if evasion then evasion:SetStackCount( RoundManager:GetRaidsFinished() ) end
 		if RoundManager:GetAscensions() > 0 then unit:AddNewModifier(unit, nil, "modifier_boss_ascension", {}) end
 	end
 	

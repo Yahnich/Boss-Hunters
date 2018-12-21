@@ -18,7 +18,6 @@ function gyro_rocket_salvo:OnToggle()
 		self:EndCooldown()
 	else
 		caster:RemoveModifierByName("modifier_rocket_salvo")
-		self:RefundManaCost()
 		self:SetCooldown()
 	end
 end
@@ -57,12 +56,12 @@ function modifier_rocket_salvo:OnIntervalThink()
 	caster:StartGestureWithPlaybackRate(ACT_DOTA_OVERRIDE_ABILITY_1, 0.5)
 	self.drainThink = self.drainThink + self.tick
 	if self.drainThink >= 1 then
-		caster:SpendMana( self:GetAbility():GetManaCost(-1), self:GetAbility() )
+		caster:SpendMana( self:GetAbility():GetManaCost(-1) )
 		self.drainThink = 0
 	end
-	if caster:GetMana() >= self:GetAbility():GetManaCost(self:GetAbility():GetLevel()) then
+	if caster:GetMana() >= self:GetAbility():GetManaCost(-1) then
 		local currentTargets = 0
-		local enemies = caster:FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
+		local enemies = caster:FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), caster:GetAttackRange() + self:GetSpecialValueFor("radius"), {})
 		if #enemies > 0 then
 			EmitSoundOn("Hero_Gyrocopter.Rocket_Barrage.Launch", caster)
 			

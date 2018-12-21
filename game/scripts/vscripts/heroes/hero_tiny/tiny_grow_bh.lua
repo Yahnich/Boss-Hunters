@@ -16,17 +16,17 @@ function tiny_grow_bh:OnUpgrade()
 		if level == 1 then -- model bullshit
 			self:Grow(2)
 		elseif level == 2 then
-			self:GetCaster():SetModelScale(1.25)
-		elseif level == 3 then
 			self:GetCaster():SetModelScale(1.1)
+		elseif level == 3 then
+			self:GetCaster():SetModelScale(1.0)
 			self:Grow(3)
 		elseif level == 4 then
-			self:GetCaster():SetModelScale(1.35)
-		elseif level == 5 then
 			self:GetCaster():SetModelScale(1.2)
+		elseif level == 5 then
+			self:GetCaster():SetModelScale(1.1)
 			self:Grow(4)
 		elseif level == 6 then
-			self:GetCaster():SetModelScale(1.45)
+			self:GetCaster():SetModelScale(1.3)
 		end
 		-- Effects
 		self:GetCaster():StartGesture(ACT_TINY_GROWL)

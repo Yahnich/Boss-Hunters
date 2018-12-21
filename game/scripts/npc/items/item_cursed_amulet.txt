@@ -35,9 +35,9 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"chance"				"20"
+				"chance"				"25"
 			}
-			"01"
+			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"2"

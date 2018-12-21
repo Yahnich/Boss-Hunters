@@ -92,12 +92,17 @@
 				"var_type"				"FIELD_INTEGER"
 				"active_threat"			"50"
 			}
-			"06"
+			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_consume"		"15"
+				"threat_consume"		"5"
 			}
-			"06"
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"threat_consume_ult"	"20"
+			}
+			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"active_radius"			"600"

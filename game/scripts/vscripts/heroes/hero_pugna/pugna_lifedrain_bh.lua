@@ -118,7 +118,7 @@ function modifier_pugna_life_drain_bh:OnIntervalThink()
 			parent:HealEvent( damage, ability, caster )
 			ParticleManager:SetParticleControl( self.beamFX, 11, Vector(0,0,0) )
 		else
-			parent:GiveMana( damage )
+			parent:RestoreMana( damage )
 			ParticleManager:SetParticleControl( self.beamFX, 11, Vector(1,0,0) )
 		end
 	else
@@ -127,7 +127,7 @@ function modifier_pugna_life_drain_bh:OnIntervalThink()
 			caster:HealEvent( damage, ability, caster )
 			ParticleManager:SetParticleControl( self.beamFX, 11, Vector(0,0,0) )
 		else
-			caster:GiveMana( damage )
+			caster:RestoreMana( damage )
 			ParticleManager:SetParticleControl( self.beamFX, 11, Vector(1,0,0) )
 		end
 	end

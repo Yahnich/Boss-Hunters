@@ -83,7 +83,7 @@ function modifier_item_blood_gods_mask:OnTakeDamage(params)
 end
 
 function modifier_item_blood_gods_mask:GetModifierHealthBonus()
-	return self.health
+	return self.bonus_health
 end
 
 function modifier_item_blood_gods_mask:IsHidden()

@@ -79,12 +79,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain"			"40"
+				"threat_gain"			"5"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain_per_unit"	"10"
+				"threat_gain_ult"		"20"
 			}
 			"06"
 			{

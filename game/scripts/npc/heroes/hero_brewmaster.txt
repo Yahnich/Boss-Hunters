@@ -14,7 +14,6 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"brewmaster_thunder_clap"
 		"MaxLevel"						"7"
-		"AbilityThreat"					"50"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -135,7 +134,6 @@
 		"AbilityTextureName"			"brewmaster_drunken_haze"
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
-		"AbilityThreat"					"35"
 		
 		"AoERadius"						"500"
 		
@@ -365,7 +363,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"25.0"
+		"AbilityCooldown"				"40.0"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -378,7 +376,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_reduction"				"-40"
+				"damage_reduction"				"-35"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"02"
@@ -396,7 +394,7 @@
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"tick_interval"					"0.1"
+				"tick_interval"					"0.5"
 			}
 			"05"
 			{

@@ -7,6 +7,6 @@ end
 function relic_unique_perpetuum_mobile:OnSpentMana(params)
 	if params.unit == self:GetParent() then
 		SendOverheadEventMessage(self:GetParent(), OVERHEAD_ALERT_MANA_ADD , self:GetParent(), 10, self:GetParent())
-		self:GetParent():GiveMana(10)
+		self:GetParent():RestoreMana(10)
 	end
 end

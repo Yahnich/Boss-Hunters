@@ -55,12 +55,12 @@ function modifier_item_lightningbottle_handle:OnAbilityFullyCast(params)
 	local caster = params.unit
 	local ability = self:GetAbility()
 	if params.unit == self:GetParent() and params.ability:GetCooldown(-1) > 0 then
-		self:GetParent():GiveMana(self.mRestore)
+		self:GetParent():RestoreMana(self.mRestore)
 		self:GetParent():HealEvent(self.hRestore, self:GetAbility(), self:GetParent())
 		local paralyze = ability:GetSpecialValueFor("paralyze_duration")
 		local enemies = self:GetParent():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius"))
 		for _,enemy in pairs(enemies) do
-			self:GetParent():GiveMana(self.mRestoreL)
+			self:GetParent():RestoreMana(self.mRestoreL)
 			self:GetParent():HealEvent(self.hRestoreL, self:GetAbility(), self:GetParent())
 
 			ParticleManager:FireRopeParticle("particles/items_fx/chain_lightning.vpcf", PATTACH_POINT_FOLLOW, self:GetParent(), enemy, {})
@@ -98,7 +98,7 @@ function modifier_item_lightningbottle_handle_shield:OnTakeDamage(params)
 
 			local damage = caster:GetPrimaryStatValue() * self:GetSpecialValueFor("primary_to_damage") / 100
 			self:GetAbility():DealDamage(caster, attacker, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
-			self:GetParent():GiveMana(self.mRestoreS)
+			self:GetParent():RestoreMana(self.mRestoreS)
 			self:GetParent():HealEvent(self.hRestoreS, self:GetAbility(), self:GetParent())
 			attacker:Paralyze(ability, caster, ability:GetSpecialValueFor("paralyze_duration"))
 		end

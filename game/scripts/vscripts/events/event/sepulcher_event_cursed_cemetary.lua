@@ -34,7 +34,7 @@ local function StartCombat(self, bFight)
 		self.combatStarted = true
 		self.eventType = EVENT_TYPE_ELITE
 		
-		self.undying = math.min(2, 0 + math.ceil(RoundManager:GetRaidsFinished() / 2))
+		self.undying = 1 + RoundManager:GetCurrentRaidTier()
 		self.zombos = math.floor( (2 + RoundManager:GetRaidsFinished() ) * HeroList:GetActiveHeroCount() / 1.5 )
 		self.enemiesToSpawn = self.undying + self.zombos
 		Timers:CreateTimer(3, function()
@@ -46,7 +46,7 @@ local function StartCombat(self, bFight)
 			end
 			local spawn = CreateUnitByName(boss, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundBoss = true
-			spawn:SetCoreHealth(2750)
+			spawn:SetCoreHealth(2250)
 			self.undying = self.undying - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if self.undying > 0 then
@@ -59,12 +59,13 @@ local function StartCombat(self, bFight)
 				zombie = "npc_dota_boss3b"
 			end
 			local spawn = CreateUnitByName(zombie, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+			spawn:SetCoreHealth(500)
 			spawn.unitIsRoundBoss = true
-			
+			spawn.unitIsMinion = true
 			self.zombos = self.zombos - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if self.zombos > 0 then
-				return 5
+				return 3
 			end
 		end)
 		Timers:CreateTimer(5, function()

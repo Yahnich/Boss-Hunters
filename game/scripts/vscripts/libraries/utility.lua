@@ -263,8 +263,13 @@ function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability, flBonusDama
 
 	if flBonusDamage then
 		if bDamagePct then
+			local bonusDamage = flBonusDamage
+			if type(flBonusDamage) == "number" then
+				bonusDamage = bDamagePct
+			end
 			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus_pct", {damage = flBonusDamage})
-		else
+		end
+		if flBonusDamage and bDamagePct == false or bDamagePct == nil then
 			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus", {damage = flBonusDamage})
 		end
 	end
@@ -398,8 +403,8 @@ function CDOTA_PlayerResource:IsVIP(id)
 end
 
 function CDOTA_BaseNPC:IsUndead()
-	local resourceType = GameRules.UnitKV[self:GetUnitName()]["IsUndead"]
-	if resourceType == 1 or self.Holdout_IsCore then
+	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsUndead"]
+	if monsterType == 1 then
 		return true
 	else
 		return false
@@ -407,8 +412,8 @@ function CDOTA_BaseNPC:IsUndead()
 end
 
 function CDOTA_BaseNPC:IsWild()
-	local resourceType = GameRules.UnitKV[self:GetUnitName()]["IsWild"]
-	if resourceType == 1 or self.Holdout_IsCore then
+	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsWild"]
+	if monsterType == 1 then
 		return true
 	else
 		return false
@@ -416,8 +421,8 @@ function CDOTA_BaseNPC:IsWild()
 end
 
 function CDOTA_BaseNPC:IsDemon()
-	local resourceType = GameRules.UnitKV[self:GetUnitName()]["IsDemon"]
-	if resourceType == 1 or self.Holdout_IsCore then
+	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsDemon"]
+	if monsterType == 1 then
 		return true
 	else
 		return false
@@ -425,8 +430,8 @@ function CDOTA_BaseNPC:IsDemon()
 end
 
 function CDOTA_BaseNPC:IsCelestial()
-	local resourceType = GameRules.UnitKV[self:GetUnitName()]["IsCelestial"]
-	if resourceType == 1 or self.Holdout_IsCore then
+	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsCelestial"]
+	if monsterType == 1 then
 		return true
 	else
 		return false
@@ -885,8 +890,11 @@ function CDOTA_BaseNPC:ModifyThreat(val)
 			newVal = newVal + ( math.abs(val) * ( modifier:Bonus_ThreatGain()/100 ) )
 		end
 	end
-	self.threat = math.min(math.max(0, (self.threat or 0) + newVal ), 10000)
-	if not self:IsFakeHero() then 
+	local reduction = 0.5 ^ math.floor( self.threat / 100 )
+	-- Every 100 threat, threat gain effectiveness is reduced
+	local threatgainCap = math.max( 100, self.threat * 4 )
+	self.threat = math.min( math.max(0, (self.threat or 0) + math.min(newVal * reduction, threatgainCap ) ), 1000)
+	if self:IsRealHero() then
 		local player = PlayerResource:GetPlayer( self:GetOwner():GetPlayerID() )
 
 		PlayerResource:SortThreat()
@@ -1082,7 +1090,57 @@ function CDOTABaseAbility:SetCooldown(fCD)
 end
 
 function CDOTABaseAbility:SpendMana()
-	self:UseResources(true, false, false)
+	if self.ShouldUseResources then
+		self:UseResources(true, false, false)
+	else
+		self:PayManaCost( )
+	end
+end
+
+function CDOTA_BaseNPC:SpendMana( flMana, bForced )
+	local cost = flMana * self:GetManaCostReduction()
+	print(cost)
+	self:ReduceMana( cost ) 
+end
+
+function CDOTA_BaseNPC:GetManaCostReduction( )
+	local mcReduction = 0
+	local mcReductionStack = 0
+	for _, modifier in ipairs( self:FindAllModifiers() ) do
+		if modifier.GetModifierPercentageManacostStacking then
+			mcReductionStack = mcReductionStack + (modifier:GetModifierPercentageManacostStacking(params) or 0)
+		end
+		if modifier.GetModifierPercentageManacost and modifier:GetModifierPercentageManacost(params) and modifier:GetModifierPercentageManacost(params) > mcReduction then
+			mcReduction = modifier:GetModifierPercentageManacost( params )
+		end
+	end
+	return (1 - mcReduction/100) * (1 - mcReductionStack/100)
+end
+
+function CDOTA_BaseNPC:GetStatusAmplification( tParams )
+	local params = tParams or {}
+	local amp = 0
+	for _, modifier in ipairs( self:FindAllModifiers() ) do
+		if modifier.GetModifierStatusAmplify_Percentage then
+			amp = amp + (modifier:GetModifierStatusAmplify_Percentage( params ) or 0)
+		end
+	end
+	return math.max( 0.25, 1 + (amp / 100) )
+end
+
+function CDOTA_BaseNPC:GetStatusResistance( tParams)
+	local params = tParams or {}
+	local resistance = 0
+	local stackResist = 0
+	for _, modifier in ipairs( self:FindAllModifiers() ) do
+		if modifier.GetModifierStatusResistanceStacking then
+			stackResist = stackResist + (modifier:GetModifierStatusResistanceStacking(params) or 0)
+		end
+		if modifier.GetModifierStatusResistance and modifier:GetModifierStatusResistance(params) and modifier:GetModifierStatusResistance(params) > resistance then
+			resistance = modifier:GetModifierStatusResistance( params )
+		end
+	end
+	return math.max(0.10, (1 - resistance/100)) * math.max(0.10, (1 - stackResist/100))
 end
 
 function CDOTABaseAbility:IsDelayedCooldown()
@@ -1852,16 +1910,16 @@ function CDOTABaseAbility:CastSpell(target)
 	self:CastAbility()
 end
 
-function CDOTA_BaseNPC:DisableHealing(Duration)
+function CDOTA_BaseNPC:DisableHealing(Duration, caster, ability)
 	if Duration == -1 or Duration == nil then
-		self:AddNewModifier(nil, nil, "modifier_healing_disable", {})
+		self:AddNewModifier(caster or self, ability, "modifier_bh_heal_disable", {})
 	else
-		self:AddNewModifier(nil, nil, "modifier_healing_disable", {Duration = Duration})
+		self:AddNewModifier(caster or self, ability, "modifier_bh_heal_disable", {Duration = Duration})
 	end
 end
 
 function CDOTA_BaseNPC:IsHealingDisabled()
-	if self:HasModifier("modifier_healing_disable") then
+	if self:HasModifier("modifier_bh_heal_disable") then
 		return true
 	else
 		return false
@@ -1869,8 +1927,8 @@ function CDOTA_BaseNPC:IsHealingDisabled()
 end
 
 function CDOTA_BaseNPC:EnableHealing()
-	if self:HasModifier("modifier_healing_disable") then
-		self:RemoveModifierByName("modifier_healing_disable")
+	if self:HasModifier("modifier_bh_heal_disable") then
+		self:RemoveModifierByName("modifier_bh_heal_disable")
 	end
 end
 
@@ -2065,7 +2123,16 @@ function CDOTA_BaseNPC:FindEnemyUnitsInCone(vDirection, vPosition, flSideRadius,
 	else return {} end
 end
 
-function GameRules:RefreshPlayers(bDontHealFull)
+function CDOTA_BaseNPC:RestoreMana( flMana )
+	SendOverheadEventMessage(self:GetPlayerOwner(),OVERHEAD_ALERT_MANA_ADD ,self,flMana,self:GetPlayerOwner())
+	self:GiveMana( flMana )
+end
+
+function GameRules:RefreshPlayers(bDontHealFull, flPrepTime)
+	local activePlayers = HeroList:GetActiveHeroCount()
+	local playerMult = (GameRules.BasePlayers - activePlayers)
+	local healMult = 0.25 + 0.0375 * playerMult
+	local manaMult = 0.25 + 0.0375 * playerMult
 	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
 		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
 			if PlayerResource:HasSelectedHero( nPlayerID ) then
@@ -2080,8 +2147,13 @@ function GameRules:RefreshPlayers(bDontHealFull)
 						hero:SetHealth( hero:GetMaxHealth() )
 						hero:SetMana( hero:GetMaxMana() )
 					else
-						hero:HealEvent( hero:GetMaxHealth() * 0.25, nil, hero )
-						hero:GiveMana( hero:GetMaxMana() * 0.25 )
+						if flPrepTime then
+							hero:HealEvent( hero:GetHealthRegen() * flPrepTime, nil, hero )
+							hero:RestoreMana( hero:GetManaRegen() * flPrepTime )
+						else
+							hero:HealEvent( hero:GetMaxHealth() * healMult, nil, hero )
+							hero:RestoreMana( hero:GetMaxMana() * manaMult )
+						end
 					end
 					hero.threat = 0
 					ResolveNPCPositions( hero:GetAbsOrigin(), hero:GetHullRadius() + hero:GetCollisionPadding() )

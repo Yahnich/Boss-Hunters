@@ -12,6 +12,9 @@ function modifier_dazzle_weave_bh_handler:OnCreated()
 	self.mana_cost = self:GetTalentSpecialValueFor("mana_cost")
 	self.radius = self:GetTalentSpecialValueFor("radius")
 	self.duration = self:GetTalentSpecialValueFor("duration")
+	if IsServer() then
+		self:SetStackCount( self.mana_cost )
+	end
 end
 
 function modifier_dazzle_weave_bh_handler:OnRefresh()
@@ -28,7 +31,6 @@ function modifier_dazzle_weave_bh_handler:OnAbilityFullyCast(params)
 	if caster == self:GetCaster() and not castedAbility:IsOrbAbility() and castedAbility:GetCooldownTimeRemaining() > 0 then
 		local ability = self:GetAbility()
 		local casterPos = caster:GetAbsOrigin()
-		caster:SpendMana( self.mana_cost, castedAbility )
 		caster:EmitSound("Hero_Dazzle.Weave")
 		for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( casterPos, self.radius ) ) do
 			ally:AddNewModifier( caster, ability, "modifier_dazzle_weave_bh", {duration = self.duration} )

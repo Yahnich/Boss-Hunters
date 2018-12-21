@@ -38,7 +38,7 @@ function lich_dark_sacrifice:OnSpellStart()
 	if buff then
 		buff:SetStackCount(restoration)
 		caster:CalculateStatBonus()
-		caster:GiveMana( restoration )
+		caster:RestoreMana( restoration )
 		caster:HealEvent( restoration, self, caster )
 	end
 end

@@ -16,7 +16,7 @@ function item_lazarus_rags:OnSpellStart()
 		ParticleManager:FireParticle("particles/items3_fx/warmage_recipient.vpcf", PATTACH_POINT_FOLLOW, ally)
 		EmitSoundOn("DOTA_Item.Mekansm.Target", ally)
 		ally:HealEvent(math.max(minRestore, healPct * ally:GetMaxHealth() ), self, caster)
-		ally:GiveMana( math.max(minRestore, ally:GetMaxMana() * managain ) )
+		ally:RestoreMana( math.max(minRestore, ally:GetMaxMana() * managain ) )
 	end
 
 	ParticleManager:FireParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf", PATTACH_POINT_FOLLOW, caster)

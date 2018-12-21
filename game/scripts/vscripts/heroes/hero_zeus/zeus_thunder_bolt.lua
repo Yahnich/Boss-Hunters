@@ -10,7 +10,7 @@ end
 
 function zeus_thunder_bolt:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
-    if self:GetCaster():HasTalent("special_bonus_unique_zeus_thunder_bolt_2") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_zeus_thunder_bolt_2") end
+	-- if self:GetCaster():HasTalent("special_bonus_unique_zeus_thunder_bolt_2") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_zeus_thunder_bolt_2") end
     return cooldown
 end
 
@@ -25,19 +25,34 @@ function zeus_thunder_bolt:OnSpellStart()
 
 	EmitSoundOn("Hero_Zuus.LightningBolt.Cast", caster)
 	local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("search_radius"), {order=FIND_CLOSEST})
-	if #enemies > 0 then
-		for _,enemy in pairs(enemies) do
-			point = enemy:GetAbsOrigin()
-			EmitSoundOn("Hero_Zuus.LightningBolt", enemy)
-			ParticleManager:FireRopeParticle("particles/units/heroes/hero_zeus/zeus_thunder_bolt.vpcf", PATTACH_POINT, caster, point, {[0]=point+Vector(0,0,1000)})
-			self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
-			self:Stun(enemy, self:GetTalentSpecialValueFor("duration"), false)
-			break
-		end
+	if enemies[1] then
+		local enemy = enemies[2]
+		point = enemy:GetAbsOrigin()
+		EmitSoundOn("Hero_Zuus.LightningBolt", enemy)
+		ParticleManager:FireRopeParticle("particles/units/heroes/hero_zeus/zeus_thunder_bolt.vpcf", PATTACH_POINT, caster, point, {[0]=point+Vector(0,0,1000)})
+		self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+		self:Stun(enemy, self:GetTalentSpecialValueFor("duration"), false)
 	else
 		EmitSoundOnLocationWithCaster(point, "Hero_Zuus.LightningBolt", caster)
 		ParticleManager:FireRopeParticle("particles/units/heroes/hero_zeus/zeus_thunder_bolt.vpcf", PATTACH_POINT, caster, point, {[0]=point+Vector(0,0,1000)})
 	end
-
+	if caster:HasTalent("special_bonus_unique_zeus_thunder_bolt_2") then
+		caster:AddNewModifier( caster, self, "modifier_zeus_thunder_bolt_talent", {duration = caster:FindTalentValue("special_bonus_unique_zeus_thunder_bolt_2", "duration")})
+	end
 	AddFOWViewer(caster:GetTeam(), point, self:GetTalentSpecialValueFor("vision_radius"), self:GetTalentSpecialValueFor("vision_duration"), false)
+end
+
+modifier_zeus_thunder_bolt_talent = class({})
+LinkLuaModifier("modifier_zeus_thunder_bolt_talent", "heroes/hero_zeus/zeus_thunder_bolt", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_zeus_thunder_bolt_talent:OnCreated()
+	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_zeus_thunder_bolt_2")
+end
+
+function modifier_zeus_thunder_bolt_talent:OnCreated()
+	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_zeus_thunder_bolt_2")
+end
+
+function modifier_zeus_thunder_bolt_talent:GetModifierAttackSpeedBonus()
+	return self.as
 end

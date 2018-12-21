@@ -33,6 +33,10 @@ function modifier_item_berserkers_cape_visual:GetTexture()
 	return "custom/berserkers_cape_on"
 end
 
+function modifier_item_berserkers_cape_visual:IsPurgable()
+	return false
+end
+
 LinkLuaModifier( "modifier_item_berserkers_cape_active", "items/item_berserkers_cape.lua", LUA_MODIFIER_MOTION_NONE )
 modifier_item_berserkers_cape_active = class({})
 function modifier_item_berserkers_cape_active:OnCreated()
@@ -64,15 +68,15 @@ function modifier_item_berserkers_cape_active:IsHidden()
 	return true
 end
 
+function modifier_item_berserkers_cape_active:IsPurgable()
+	return false
+end
+
 LinkLuaModifier( "modifier_item_berserkers_cape", "items/item_berserkers_cape.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_item_berserkers_cape = class({})
 function modifier_item_berserkers_cape:OnCreated()
 	self.attackspeed = self:GetSpecialValueFor("bonus_attack_speed")
 	self.armor = self:GetSpecialValueFor("bonus_armor")
-end
-
-function modifier_item_berserkers_cape:OnDestroy()
-	self:GetParent():RemoveModifierByName("modifier_item_berserkers_cape_active")
 end
 
 function modifier_item_berserkers_cape:OnDestroy()

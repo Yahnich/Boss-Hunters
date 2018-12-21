@@ -36,7 +36,7 @@ function modifier_sd_void_release_handle:OnTakeDamage(params)
 		local caster = self:GetCaster()
 		if params.attacker == caster and params.unit ~= caster then
 			if params.inflictor and params.inflictor ~= self:GetParent():FindAbilityByName("sd_void_release") and not params.inflictor:IsItem() then
-				if self:PRNG(self:GetSpecialValueFor("chance")) then
+				if self:RollPRNG(self:GetSpecialValueFor("chance")) then
 					if params.unit:HasModifier("modifier_sd_shadow_poison") then
 						self:GetAbility():FireTrackingProjectile("particles/units/heroes/hero_shadow_demon/shadow_demon_projection.vpcf", params.unit, 500, {}, DOTA_PROJECTILE_ATTACHMENT_HITLOCATION, true, true, 500)
 					end
