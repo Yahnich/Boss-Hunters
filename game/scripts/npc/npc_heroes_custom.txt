@@ -1923,16 +1923,20 @@
 	"npc_dota_hero_storm_spirit_ebf"
 	{
 		"override_hero"			"npc_dota_hero_storm_spirit"
-		"Ability2"				"storm_spirit_electric_dynamo"
-		"Ability3"				"storm_spirit_overload_ebf"
+		"Ability1"				"ss_static_remnant"
+		"Ability2"				"ss_electric_vortex"
+		"Ability3"				"ss_thunder_punch"
+		"Ability4"				"ss_overload"
+		"Ability6"				"ss_ball_lightning"
 		
-		"Ability11"		"special_bonus_mp_100"
-		"Ability12"		"special_bonus_unique_storm_spirit_5"
-		"Ability13"		"special_bonus_hp_300"
-		"Ability14"		"special_bonus_unique_storm_spirit"
-		"Ability15"		"special_bonus_attack_speed_30"
-		"Ability16"		"special_bonus_unique_storm_spirit_2"
-		"Ability17"		"special_bonus_unique_storm_spirit_4"
+		"Ability10"				"special_bonus_unique_ss_static_remnant_1"
+		"Ability11"				"special_bonus_unique_ss_static_remnant_2"
+		"Ability12"				"special_bonus_unique_ss_electric_vortex_1"
+		"Ability13"				"special_bonus_unique_ss_electric_vortex_2"
+		"Ability14"				"special_bonus_unique_ss_thunder_punch_1"
+		"Ability15"				"special_bonus_unique_ss_thunder_punch_2"
+		"Ability16"				"special_bonus_unique_ss_ball_lightning_1"
+		"Ability17"				"special_bonus_unique_ss_ball_lightning_2"
 	}
 	"npc_dota_hero_sven" // Guardian
 	{
