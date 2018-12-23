@@ -691,7 +691,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	unit:AddNewModifier(unit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
 	if unit:IsRoundNecessary() then
 		local evasion = unit:AddNewModifier(unit, nil, "modifier_boss_evasion", {})
-		if evasion then evasion:SetStackCount( RoundManager:GetRaidsFinished() ) end
+		if evasion then evasion:SetStackCount( RoundManager:GetAscensions() * 100 + math.min( RoundManager:GetRaidsFinished(), RAIDS_PER_ZONE * ZONE_COUNT ) ) end
 		if RoundManager:GetAscensions() > 0 then unit:AddNewModifier(unit, nil, "modifier_boss_ascension", {}) end
 	end
 	

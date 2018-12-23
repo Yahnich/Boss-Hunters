@@ -551,7 +551,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	    	start = false
 	    	hero.first_damage_time = GameRules:GetGameTime()
 	   	end
-		GameRules.TeamDamage = GameRules.TeamDamage + damage
+		GameRules.TeamDamage = (GameRules.TeamDamage or 0 ) + damage
     end
     return true
 end

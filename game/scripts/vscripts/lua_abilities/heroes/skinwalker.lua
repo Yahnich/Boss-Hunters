@@ -92,6 +92,13 @@ function modifier_skinwalker_fortress_form:OnCreated()
 	end
 end
 
+function modifier_skinwalker_fortress_form:OnRefresh()
+	self.bonushp = self:GetAbility():GetTalentSpecialValueFor("bonus_hp")
+	if IsServer() then
+		self:StartIntervalThink(0.5)
+	end
+end
+
 function modifier_skinwalker_fortress_form:OnIntervalThink()
 	if self:GetCaster():HasTalent("special_bonus_unique_lone_druid_2") then
 		self:GetCaster():FindAbilityByName("skinwalker_fortress_form"):SetOverrideCastPoint(0)
@@ -110,6 +117,14 @@ function modifier_skinwalker_fortress_form:RemoveOnDeath()
 end
 
 function modifier_skinwalker_fortress_form:IsHidden()
+	return true
+end
+
+function modifier_skinwalker_fortress_form:IsPurgable()
+	return false
+end
+
+function modifier_skinwalker_fortress_form:IsPermanent()
 	return true
 end
 
@@ -159,6 +174,15 @@ function modifier_skinwalker_predator_form:OnCreated()
 	end
 end
 
+function modifier_skinwalker_predator_form:OnRefresh()
+	self.attackspeed = self:GetAbility():GetTalentSpecialValueFor("bonus_attackspeed")
+	self.chance = self:GetAbility():GetTalentSpecialValueFor("bleed_chance")
+	self.duration = self:GetAbility():GetTalentSpecialValueFor("bleed_duration")
+	if IsServer() then
+		self:StartIntervalThink(0.5)
+	end
+end
+
 function modifier_skinwalker_predator_form:OnIntervalThink()
 	if self:GetCaster():HasTalent("special_bonus_unique_lone_druid_2") then
 		self:GetCaster():FindAbilityByName("skinwalker_fortress_form"):SetOverrideCastPoint(0)
@@ -180,6 +204,14 @@ function modifier_skinwalker_predator_form:RemoveOnDeath()
 end
 
 function modifier_skinwalker_predator_form:IsHidden()
+	return true
+end
+
+function modifier_skinwalker_predator_form:IsPurgable()
+	return false
+end
+
+function modifier_skinwalker_predator_form:IsPermanent()
 	return true
 end
 
@@ -260,6 +292,14 @@ function modifier_skinwalker_human_form:OnCreated()
 	end
 end
 
+function modifier_skinwalker_human_form:OnRefresh()
+	self.manaregen = self:GetAbility():GetTalentSpecialValueFor("base_mana_regen")
+	self.range = self:GetAbility():GetTalentSpecialValueFor("bonus_range")
+	if IsServer() then
+		self:StartIntervalThink(0.5)
+	end
+end
+
 function modifier_skinwalker_human_form:OnIntervalThink()
 	if self:GetCaster():HasTalent("special_bonus_unique_lone_druid_2") then
 		self:GetCaster():FindAbilityByName("skinwalker_fortress_form"):SetOverrideCastPoint(0)
@@ -280,18 +320,26 @@ end
 function modifier_skinwalker_human_form:IsHidden()
 	return true
 end
+
+function modifier_skinwalker_human_form:IsPurgable()
+	return false
+end
+
+function modifier_skinwalker_human_form:IsPermanent()
+	return true
+end
 --------------------------------------------------------------------------------
 
 function modifier_skinwalker_human_form:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_BASE_MANA_REGEN,
+		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_EVENT_ON_RESPAWN,
 	}
 	return funcs
 end
 
-function modifier_skinwalker_human_form:GetModifierBaseRegen()
+function modifier_skinwalker_human_form:GetModifierConstantManaRegen()
 	return self.manaregen
 end
 
@@ -342,7 +390,6 @@ function MoonRay(keys)
 	if target:HasModifier("modifier_solarbolt_moon_bonus") then damage = damage*1.4 end
 	if target:GetTeamNumber() == caster:GetTeamNumber() then
 		target:HealEvent(damage, ability, caster)
-		SendOverheadEventMessage( target, OVERHEAD_ALERT_HEAL , target, damage, caster )
 	else
 		SendOverheadEventMessage( target, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE , target, damage, caster )
 		ApplyDamage({victim = target, attacker = caster, damage = damage, damage_type = ability:GetAbilityDamageType(), ability = ability})
