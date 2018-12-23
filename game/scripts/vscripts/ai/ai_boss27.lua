@@ -31,18 +31,6 @@ if IsServer() then
 		thisEntity.GetTotalBearCount = function(thisEntity) return thisEntity:GetBigBearCount() + thisEntity:GetSmallBearCount() end
 		thisEntity.GetMaxTotalBearCount = function(thisEntity) return thisEntity:GetMaxBigBearCount() + thisEntity:GetMaxSmallBearCount() end
 		
-		AITimers:CreateTimer(1, function()
-			for i = 30, 1, -1 do
-				if thisEntity.bigBearsTable[ì] and ( thisEntity.bigBearsTable[ì]:IsNull() or not thisEntity.bigBearsTable[ì]:IsAlive() ) then
-					table.remove( thisEntity.bigBearsTable, i )
-				end
-				if thisEntity.smallBearsTable[ì] and ( thisEntity.smallBearsTable[ì]:IsNull() or not thisEntity.smallBearsTable[ì]:IsAlive() ) then
-					table.remove( thisEntity.smallBearsTable, i )
-				end
-			end
-			return 1
-		end)
-		
 		AITimers:CreateTimer(0.1, function()
 			if  math.floor(GameRules.gameDifficulty + 0.5) <= 2 then
 				thisEntity.mark:SetLevel(1)
@@ -63,6 +51,16 @@ if IsServer() then
 
 	function AIThink(thisEntity)
 		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
+			for id, bigbear in pairs(thisEntity.bigBearsTable) do
+				if bigbear:IsNull() or not bigbear:IsAlive() then
+					table.remove( thisEntity.bigBearsTable, id )
+				end
+			end
+			for id, smallbear in pairs(thisEntity.smallBearsTable) do
+				if smallbear:IsNull() or not smallbear:IsAlive() then
+					table.remove( thisEntity.smallBearsTable, id )
+				end
+			end
 			if AICore:BeingAttacked( thisEntity ) > 0 then
 				local nearest = AICore:NearestEnemyHeroInRange( thisEntity, thisEntity:GetIdealSpeed() * 1.5 + thisEntity:GetAttackRange(), true )
 				if thisEntity:GetTotalBearCount() == 0 then
@@ -159,7 +157,7 @@ if IsServer() then
 						return thisEntity.mark:GetCastPoint() + 0.1
 					end
 				end				
-				if thisEntity.destroy:IsFullyCastable() and ( thisEntity:GetTotalBearCount() >= math.floor( GetMaxTotalBearCount / 2 ) or RollPercentage(15) ) then
+				if thisEntity.destroy:IsFullyCastable() and ( thisEntity:GetTotalBearCount() >= math.floor( thisEntity:GetMaxTotalBearCount() / 2 ) or RollPercentage(15) ) then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,

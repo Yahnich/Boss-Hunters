@@ -5,7 +5,7 @@ local function StartEvent(self)
 	self.eventHandler = Timers:CreateTimer(3, function()
 		local spawn = CreateUnitByName("npc_dota_boss_warlock", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 		spawn:SetCoreHealth( 1750 )
-		spawn.unitIsRoundBoss = true
+		spawn.unitIsRoundNecessary = true
 		
 		spawn:FindAbilityByName("boss_warlock_ultimate_form"):SetActivated(false)
 		

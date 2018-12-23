@@ -19,10 +19,14 @@ function modifier_item_visionarys_cutlass:DeclareFunctions()
 			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
 end
 
-function modifier_item_visionarys_cutlass:GetAccuracy()
-	self.miss = self:RollPRNG(self.chance)
-	if self.miss then
-		return 100
+function modifier_item_visionarys_cutlass:GetAccuracy(bInfo)
+	if not bInfo then
+		self.miss = self:RollPRNG(self.chance)
+		if self.miss then
+			return 100
+		end
+	else
+		return self.chance
 	end
 end
 

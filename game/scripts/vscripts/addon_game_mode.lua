@@ -495,21 +495,16 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			attacker = attacker:GetOwner()
 		end
 	end
-
-	if original_attacker:GetTeam() == DOTA_TEAM_BADGUYS then
-		AddFOWViewer(DOTA_TEAM_GOODGUYS, original_attacker:GetAbsOrigin(), 256, 1, false)
-	else
-		AddFOWViewer(DOTA_TEAM_BADGUYS, original_attacker:GetAbsOrigin(), 256, 1, false)
+	if not victim:CanEntityBeSeenByMyTeam(original_attacker) then
+		if original_attacker:GetTeam() == DOTA_TEAM_BADGUYS then
+			AddFOWViewer(DOTA_TEAM_GOODGUYS, original_attacker:GetAbsOrigin(), 256, 1, false)
+		else
+			AddFOWViewer(DOTA_TEAM_BADGUYS, original_attacker:GetAbsOrigin(), 256, 1, false)
+		end
 	end
 	--- THREAT AND UI NO MORE DAMAGE MANIPULATION ---
 	local damage = filterTable["damage"]
 	local attacker = original_attacker
-	if attacker:GetPlayerOwnerID() then 
-		local mainHero = PlayerResource:GetSelectedHeroEntity( attacker:GetPlayerOwnerID() )
-		if mainHero and mainHero ~= attacker then 
-			mainHero.statsDamageDealt = (mainHero.statsDamageDealt or 0) + math.min(victim:GetHealth(), damage)
-		end
-	end
 	if attacker:IsCreature() then
 		victim.statsDamageTaken = (victim.statsDamageTaken or 0) + math.min(victim:GetHealth(), damage)
 		return true 
@@ -548,33 +543,15 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	    if hero.damageDone == 0 and damage>0 then 
 	    	start = true
 	    end
+		if hero and hero ~= attacker then 
+			hero.statsDamageDealt = (hero.statsDamageDealt or 0) + math.min(victim:GetHealth(), damage)
+		end
 	    hero.damageDone = math.floor(hero.damageDone + damage)
 	    if start == true then 
 	    	start = false
 	    	hero.first_damage_time = GameRules:GetGameTime()
 	   	end
-	   	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-			if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
-				if PlayerResource:HasSelectedHero( nPlayerID ) then
-					local hero = PlayerResource:GetSelectedHeroEntity(nPlayerID)
-					if hero then
-						total_damage_team = hero.damageDone + total_damage_team	
-					end
-				end
-			end
-		end
-		GameRules.TeamDamage = total_damage_team
-		for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-			if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
-				if PlayerResource:HasSelectedHero( nPlayerID ) then
-					local hero = PlayerResource:GetSelectedHeroEntity(nPlayerID)
-					if hero then
-						local key = "player_"..hero:GetPlayerID()
-					    -- CustomNetTables:SetTableValue( "Damage",key, {Team_Damage = total_damage_team , Hero_Damage = hero.damageDone , First_hit = hero.first_damage_time} )
-					end
-				end
-			end
-		end
+		GameRules.TeamDamage = GameRules.TeamDamage + damage
     end
     return true
 end
@@ -926,110 +903,70 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 	end
 end
 
-function CHoldoutGameMode:DegradeThreat()
-	if not GameRules:IsGamePaused() then
-		local heroes = HeroList:GetAllHeroes()
-		local holdaggro = { ["item_asura_plate"] = true, 
-							["item_bahamut_chest"] = true, 
-							["item_divine_armor"] = true, 
-							["item_titan_armor"] = true, 
-							["item_assault"] = true,
-							["item_blade_mail"] = true,
-							["item_blade_mail2"] = true,
-							["item_blade_mail3"] = true,
-							["item_blade_mail4"] = true}
-		local currTime = GameRules:GetGameTime()
-		decayDelay = 2
-		for _,hero in pairs(heroes) do
-			for i=0, 5, 1 do
-				local current_item = hero:GetItemInSlot(i)
-				if current_item ~= nil and holdaggro[ current_item:GetName() ] then
-					decayDelay = 5
-				end
-			end
-			if hero.threat then
-				if not hero:IsAlive() then
-					hero.threat = 0
-				end
-				if hero.threat < 0 then hero.threat = 0 end
-			else hero.threat = 0 end
-			if hero.lastHit then
-				if hero.lastHit + decayDelay <= currTime and hero.threat > 0 then
-					hero.threat = hero.threat - (hero.threat/10)
-				end
-			else hero.lastHit = currTime end
-			PlayerResource:SortThreat()
-			local event_data =
-			{
-				threat = hero.threat,
-				lastHit = hero.lastHit,
-				aggro = hero.aggro or 0
-			}
-			local player = hero:GetPlayerOwner()
-			if player then
-				CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
-			end
-		end
-	end
-end
-
-function CHoldoutGameMode:CheckHP()
-	if not GameRules:IsGamePaused() then
-		for _,unit in ipairs ( FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0), nil, -1, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD, FIND_ANY_ORDER, false) ) do
-			MapHandler:CheckAndResolvePositions(unit)
-			if ( unit:GetHealth() <= 0 and unit:IsAlive() ) or ( unit:GetHealth() > 0 and not unit:IsAlive() ) then
-				if not unit:IsNull() then
-					unit:SetBaseMaxHealth( 1 )
-					unit:SetMaxHealth( 1 )
-					unit:SetHealth( 1 )
-					
-					unit:ForceKill( false )
-				end
-			end
-		end
-		local playerData = {}
-		for _, hero in ipairs ( HeroList:GetAllHeroes() ) do
-			if not hero:IsFakeHero() then
-				local data = CustomNetTables:GetTableValue("hero_properties", hero:GetUnitName()..hero:entindex() ) or {}
-				if hero:GetMaxHealth() <= 0 then
-					hero:SetMaxHealth(1)
-					hero:SetHealth(1)
-				end
-				
-				data.strength = hero:GetStrength()
-				data.intellect = hero:GetIntellect()
-				data.agility = hero:GetAgility()
-				if hero:GetPlayerOwner() and hero:GetAttackTarget() then
-					CustomGameEventManager:Send_ServerToPlayer( hero:GetPlayerOwner(), "bh_update_attack_target", {entindex = hero:GetAttackTarget():entindex()} )
-				end
-				CustomNetTables:SetTableValue("hero_properties", hero:GetUnitName()..hero:entindex(), data )
-				playerData[hero:GetPlayerID()] = {DT = hero.statsDamageTaken or 0, DD = hero.statsDamageDealt or 0, DH = hero.statsDamageHealed or 0}
-			end
-		end
-		CustomGameEventManager:Send_ServerToAllClients( "player_update_stats", playerData )
-	end
-end
-
 function CHoldoutGameMode:OnThink()
 	DAY_TIME = 1
 	NIGHT_TIME = 0
 	TEMPORARY_NIGHT = 2
 	NIGHT_STALKER_NIGHT = 3
 	local timeofday = 1
+	
+	if GameRules:IsGamePaused() then return 1 end
 	if not GameRules:IsDaytime() then timeofday = NIGHT_TIME end
 	if GameRules:IsTemporaryNight() then timeofday = TEMPORARY_NIGHT end
 	if GameRules:IsNightstalkerNight() then timeofday = NIGHT_STALKER_NIGHT end
 	CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = timeofday} )
 	if GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
 		local OnPThink = function(self)
-			status, err, ret = xpcall(self.CheckHP, debug.traceback, self)
-			if not status  and not self.gameHasBeenBroken then
-				SendErrorReport(err, self)
+			local playerData = {}
+			local currTime = GameRules:GetGameTime()
+			for _,unit in ipairs ( FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0), nil, -1, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD, FIND_ANY_ORDER, false) ) do
+				MapHandler:CheckAndResolvePositions(unit)
+				if ( unit:GetHealth() <= 0 and unit:IsAlive() ) or ( unit:GetHealth() > 0 and not unit:IsAlive() ) then
+					if not unit:IsNull() then
+						unit:SetBaseMaxHealth( 1 )
+						unit:SetMaxHealth( 1 )
+						unit:SetHealth( 1 )
+						
+						unit:ForceKill( false )
+					end
+				end
+				if not unit:IsFakeHero() then
+					local data = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex() ) or {}
+					
+					data.strength = unit:GetStrength()
+					data.intellect = unit:GetIntellect()
+					data.agility = unit:GetAgility()
+					if unit:GetPlayerOwner() and unit:GetAttackTarget() then
+						CustomGameEventManager:Send_ServerToPlayer( unit:GetPlayerOwner(), "bh_update_attack_target", {entindex = unit:GetAttackTarget():entindex()} )
+					end
+					CustomNetTables:SetTableValue("hero_properties", unit:GetUnitName()..unit:entindex(), data )
+					playerData[unit:GetPlayerID()] = {DT = unit.statsDamageTaken or 0, DD = unit.statsDamageDealt or 0, DH = unit.statsDamageHealed or 0}
+					CustomGameEventManager:Send_ServerToAllClients( "player_update_stats", playerData )
+					-- Threat
+					if unit.threat then
+					if not unit:IsAlive() then
+						unit.threat = 0
+					end
+					if unit.threat < 0 then unit.threat = 0 end
+					else unit.threat = 0 end
+					if unit.lastHit then
+						if unit.lastHit + 2 <= currTime and unit.threat > 0 then
+							unit.threat = unit.threat - (unit.threat/10)
+						end
+					else unit.lastHit = currTime end
+					local event_data =
+					{
+						threat = unit.threat,
+						lastHit = unit.lastHit,
+						aggro = unit.aggro or 0
+					}
+					local player = unit:GetPlayerOwner()
+					if player then
+						CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+					end
+				end
 			end
-			status, err, ret = xpcall(self.DegradeThreat, debug.traceback, self)
-			if not status  and not self.gameHasBeenBroken then
-				SendErrorReport(err, self)
-			end
+			PlayerResource:SortThreat()
 		end
 		status, err, ret = xpcall(OnPThink, debug.traceback, self)
 		if not status  and not self.gameHasBeenBroken then

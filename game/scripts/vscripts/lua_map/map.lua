@@ -93,8 +93,6 @@ end
 
 function FindNearestBoundPosition( trigger, position )
 	local nearestPoint, nearestPoint2, lineSegment
-	
-	print("bounds")
 	for tag, vector in pairs( trigger:GetBounds() ) do
 		if not nearestPoint or CalculateDistance( nearestPoint, position ) > CalculateDistance( vector, position ) then
 			nearestPoint2 = nearestPoint
@@ -121,7 +119,6 @@ function LeftBoundingBox(trigger)
 		if not unit or unit:IsNull() then return end
 		if RoundManager.boundingBox and unit and edge then
 			if MapHandler:IsOutsideMapBounds(unit) then
-				print( CalculateDistance( edge, unit ) - FindRadius( edge ) )
 				local newPos = unit:GetAbsOrigin() + CalculateDirection( edge, unit:GetAbsOrigin() ) * math.max( 0, CalculateDistance( edge, unit ) - FindRadius( edge ) )
 				FindClearSpaceForUnit( unit, GetGroundPosition( newPos, unit ), true )
 				GridNav:DestroyTreesAroundPoint( newPos, 120, true )

@@ -2,30 +2,15 @@ modifier_cooldown_reduction_handler = class({})
 
 if IsServer() then
 	function modifier_cooldown_reduction_handler:OnCreated()
-		self:SetStackCount(1)
-		self:StartIntervalThink(0.1)
-	end
-
-	function modifier_cooldown_reduction_handler:OnIntervalThink()
-		local stacks = 1
-		for _, modifier in ipairs( self:GetParent():FindAllModifiers() ) do
-			if modifier.GetCooldownReduction then
-				local cdr = modifier:GetCooldownReduction() 
-				if cdr then
-					stacks = stacks * (1 - cdr / 100)
-				end
-			end
-		end
-		stacks = (1 - stacks) * 100 * 100 -- support decimal values
-		self:SetStackCount(stacks)
+		self:SetStackCount(0)
 	end
 end
 	
 function modifier_cooldown_reduction_handler:DeclareFunctions()
-	return {MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE}
+	return {MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING}
 end
 
-function modifier_cooldown_reduction_handler:GetModifierPercentageCooldown()
+function modifier_cooldown_reduction_handler:GetModifierPercentageCooldownStacking()
 	return self:GetStackCount() / 100
 end
 

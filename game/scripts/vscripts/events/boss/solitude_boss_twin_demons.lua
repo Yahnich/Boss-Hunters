@@ -4,9 +4,9 @@ local function StartEvent(self)
 	self.eventEnded = false
 	self.eventHandler = Timers:CreateTimer(3, function()
 		local spawn = CreateUnitByName("npc_dota_boss33_a", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-		spawn.unitIsRoundBoss = true
+		spawn.unitIsRoundNecessary = true
 		local spawn2 = CreateUnitByName("npc_dota_boss33_b", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-		spawn2.unitIsRoundBoss = true
+		spawn2.unitIsRoundNecessary = true
 		
 		spawn.twinDemon = spawn2
 		spawn2.twinDemon = spawn

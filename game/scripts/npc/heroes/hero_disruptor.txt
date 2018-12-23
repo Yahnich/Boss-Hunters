@@ -372,7 +372,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"pulses"					"20"
+				"pulses"					"10"
 			}
 			"03"
 			{
@@ -392,7 +392,7 @@
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"pulses_scepter"			"28"
+				"pulses_scepter"			"14"
 			}
 		}
 	}

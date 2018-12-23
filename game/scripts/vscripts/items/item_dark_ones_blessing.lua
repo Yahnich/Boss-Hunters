@@ -111,7 +111,10 @@ function modifier_item_dark_ones_blessing_aura:GetModifierBaseDamageOutgoing_Per
 end
 
 function modifier_item_dark_ones_blessing_aura:OnTakeDamage(params)
-	if params.attacker == self:GetParent() and params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK  and self:GetParent():GetHealth() > 0 and self:GetParent():IsRealHero() and not params.inflictor then
+	if params.attacker == self:GetParent() 
+	and ( ( params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK and not params.inflictor) or HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE) )
+	and self:GetParent():GetHealth() > 0 
+	and self:GetParent():IsRealHero()  then
 		local flHeal = params.damage * self.lifesteal
 		params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
 	end

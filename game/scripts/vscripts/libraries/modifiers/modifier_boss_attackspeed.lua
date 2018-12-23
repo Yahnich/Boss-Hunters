@@ -24,10 +24,8 @@ function modifier_boss_attackspeed:OnIntervalThink()
 	end
 end
 
-function modifier_boss_attackspeed:CheckState()
-	if IsServer() then
-		return {[MODIFIER_STATE_CANNOT_MISS] = self:RollPRNG( math.min( 8 + self:GetStackCount() * 2 + RoundManager:GetZonesFinished() * 2.5, 65 ) ) }
-	end
+function modifier_boss_attackspeed:GetAccuracy()
+	return math.min( 8 + self:GetStackCount() * 2 + RoundManager:GetZonesFinished() * 2.5, 65 )
 end
 
 function modifier_boss_attackspeed:GetPriority()

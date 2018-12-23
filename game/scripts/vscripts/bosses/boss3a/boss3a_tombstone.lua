@@ -28,7 +28,7 @@ end
 function modifier_boss3a_tombstone_passive:OnDeath(params)
 	if params.unit == self:GetParent() and params.unit:HasModifier("modifier_boss3a_tombstone_thinker") then
 		local torso = CreateUnitByName("npc_dota_boss3a_b", params.unit:GetAbsOrigin(), true, nil, nil, params.unit:GetTeam())
-		torso.unitIsRoundBoss = true
+		torso.unitIsRoundNecessary = true
 	end
 end
 

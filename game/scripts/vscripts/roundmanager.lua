@@ -104,20 +104,16 @@ function RoundManager:OnNPCSpawned(event)
 	end
 	Timers:CreateTimer(function()
 		if spawnedUnit and not spawnedUnit:IsNull() then
-			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_cooldown_reduction_handler", {})
-			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_base_attack_time_handler", {})
-			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_accuracy_handler", {})
-			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_attack_speed_handler", {})
-			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_move_speed_handler", {})
-			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_health_handler", {})
+			-- set up handlers
+			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_handler_handler", {})
 			if spawnedUnit:IsAlive() and spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS then
 				AddFOWViewer(DOTA_TEAM_GOODGUYS, spawnedUnit:GetAbsOrigin(), 516, 3, false) -- show spawns
-				if spawnedUnit:IsRoundBoss() then
+				if spawnedUnit:IsRoundNecessary() then
 					ParticleManager:FireParticle("particles/econ/events/nexon_hero_compendium_2014/blink_dagger_end_nexon_hero_cp_2014.vpcf", PATTACH_POINT_FOLLOW, spawnedUnit)
 					EmitSoundOn("DOTA_Item.BlinkDagger.NailedIt", spawnedUnit)
 				end
 				if not spawnedUnit.hasBeenInitialized then
-					RoundManager:InitializeUnit(spawnedUnit, spawnedUnit:IsRoundBoss() and ( (RoundManager:GetCurrentEvent() and RoundManager:GetCurrentEvent():IsElite()) or RoundManager:GetAscensions() > 0) )
+					RoundManager:InitializeUnit(spawnedUnit, spawnedUnit:IsRoundNecessary() and ( (RoundManager:GetCurrentEvent() and RoundManager:GetCurrentEvent():IsElite()) or RoundManager:GetAscensions() > 0) )
 					GridNav:DestroyTreesAroundPoint(spawnedUnit:GetAbsOrigin(), spawnedUnit:GetHullRadius() + spawnedUnit:GetCollisionPadding() + 350, true)
 					FindClearSpaceForUnit(spawnedUnit, spawnedUnit:GetAbsOrigin(), true)
 				end
@@ -133,18 +129,16 @@ function RoundManager:OnNPCSpawned(event)
 				if spawnedUnit:IsCelestial() then
 					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_type_celestial_tag", {})
 				end
+				if spawnedUnit:IsMinion() then
+					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_minion_tag", {})
+				end
+				if spawnedUnit:IsBoss() or spawnedUnit:IsElite() then
+					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_tag", {})
+				end
 			elseif spawnedUnit:IsRealHero() then
 				Timers:CreateTimer(0.1, function() spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_tombstone_respawn_immunity", {duration = 2.9}) end)
 			elseif spawnedUnit:IsIllusion() and spawnedUnit:GetPlayerOwnerID() and PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerOwnerID() ) and spawnedUnit:FindModifierByName("modifier_stats_system_handler") then
 				spawnedUnit:FindModifierByName("modifier_stats_system_handler"):SetStackCount( PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerOwnerID() ):entindex() )
-			end
-			if spawnedUnit:GetTeam() == DOTA_TEAM_GOODGUYS then
-				if not spawnedUnit:HasModifier("modifier_cooldown_reduction_handler") then
-					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_cooldown_reduction_handler", {})
-				end
-				if not spawnedUnit:HasModifier("modifier_base_attack_time_handler") then
-					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_base_attack_time_handler", {})
-				end
 			end
 		end
 	end)
@@ -520,7 +514,7 @@ function RoundManager:RaidIsFinished()
 				CustomGameEventManager:Send_ServerToAllClients( "bh_move_camera_position", { position = RoundManager:GetHeroSpawnPosition() } )
 				local position = RoundManager:GetHeroSpawnPosition() + RandomVector(64)
 				FindClearSpaceForUnit(hero, position, true)
-				hero:SetRespawnPosition( hero:GetAbsOrigin() )
+				hero:SetRespawnPosition( position )
 			end
 		end
 		
@@ -632,7 +626,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	effPlayerDMGMult = math.min( effPlayerDMGMult, maxPlayerDMGMult )
 	effPlayerDMGMult = effPlayerDMGMult * ( 1 + RoundManager:GetAscensions() * 1 )  * (1 + effective_multiplier * playerDMGMultiplier )
 	
-	effPlayerArmorMult = effPlayerArmorMult * ( 1 + RoundManager:GetAscensions() * 0.35 )
+	effPlayerArmorMult = effPlayerArmorMult * ( 1 + RoundManager:GetAscensions() * 0.15 )
 	
 	if unit:IsMinion() then
 		effPlayerHPMult = effPlayerHPMult / 2
@@ -675,12 +669,12 @@ function RoundManager:InitializeUnit(unit, bElite)
 	local msBonus = unit:GetBaseMoveSpeed() * 0.035 * effective_multiplier * (GameRules:GetGameDifficulty() / 2)
 	unit:SetBaseMoveSpeed( unit:GetBaseMoveSpeed() + msBonus )
 	
-	local bonusArmor = math.min( RoundManager:GetRaidsFinished() * 2.5 + RoundManager:GetZonesFinished() * 5, 80 )
-	if not unit:IsRoundBoss() then
+	local bonusArmor = math.min( RoundManager:GetRaidsFinished() * 2 + RoundManager:GetZonesFinished() * 4, 50 )
+	if not unit:IsRoundNecessary() then
 		bonusArmor =  math.min( RoundManager:GetRaidsFinished(), 20 )
 	end
 	if unit:IsRangedAttacker() then
-		bonusArmor = math.floor( bonusArmor * 0.6 )
+		bonusArmor = math.floor( bonusArmor * 0.75 )
 	end
 	
 	unit:SetPhysicalArmorBaseValue( (unit:GetPhysicalArmorBaseValue() + bonusArmor ) * effPlayerArmorMult )
@@ -695,7 +689,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	
 	if powerScale then powerScale:SetStackCount( spellAmpScale ) end
 	unit:AddNewModifier(unit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
-	if unit:IsRoundBoss() then
+	if unit:IsRoundNecessary() then
 		local evasion = unit:AddNewModifier(unit, nil, "modifier_boss_evasion", {})
 		if evasion then evasion:SetStackCount( RoundManager:GetRaidsFinished() ) end
 		if RoundManager:GetAscensions() > 0 then unit:AddNewModifier(unit, nil, "modifier_boss_ascension", {}) end

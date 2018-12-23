@@ -11,6 +11,7 @@ function relic_unique_eldritch_rune:GetModifierTotalDamageOutgoing_Percentage(pa
 		if params.damage_type == DAMAGE_TYPE_PURE or ability.eldritchRunePreventLoop then return end
 		if params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
 			params.damage_flags = bit.bor(params.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION)
+			params.damage_flags = bit.bor(params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE)
 		end
 		ability.eldritchRunePreventLoop = true
 		if params.damage_type == DAMAGE_TYPE_PHYSICAL then

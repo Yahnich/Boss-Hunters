@@ -402,47 +402,6 @@ function CDOTA_PlayerResource:IsVIP(id)
 	return (tag and tag == "vip") or false
 end
 
-function CDOTA_BaseNPC:IsUndead()
-	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsUndead"]
-	if monsterType == 1 then
-		return true
-	else
-		return false
-	end
-end
-
-function CDOTA_BaseNPC:IsWild()
-	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsWild"]
-	if monsterType == 1 then
-		return true
-	else
-		return false
-	end
-end
-
-function CDOTA_BaseNPC:IsDemon()
-	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsDemon"]
-	if monsterType == 1 then
-		return true
-	else
-		return false
-	end
-end
-
-function CDOTA_BaseNPC:IsCelestial()
-	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsCelestial"]
-	if monsterType == 1 then
-		return true
-	else
-		return false
-	end
-end
-
-function CDOTA_BaseNPC:IsElite()
-	self.NPCIsElite = self.NPCIsElite or false
-	return self.NPCIsElite
-end
-
 function CDOTA_BaseNPC:HasTalent(talentName)
 	local unit = self
 	if self:GetParentUnit() then
@@ -721,12 +680,6 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 		end
 		
 		illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", { duration = duration })
-		illusion:AddNewModifier( illusion, nil, "modifier_cooldown_reduction_handler", {})
-		illusion:AddNewModifier( illusion, nil, "modifier_base_attack_time_handler", {})
-		illusion:AddNewModifier( illusion, nil, "modifier_accuracy_handler", {})
-		illusion:AddNewModifier( illusion, nil, "modifier_attack_speed_handler", {})
-		illusion:AddNewModifier( illusion, nil, "modifier_move_speed_handler", {})
-		illusion:AddNewModifier( illusion, nil, "modifier_health_handler", {})
 		-- Recreate the items of the caster
 		for itemSlot=0,5 do
 			local item = self:GetItemInSlot(itemSlot)
@@ -755,17 +708,14 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 				newWearable:SetModel(wearable:GetModelName())
 				newWearable:AddNewModifier(nil, nil, "modifier_wearable", {})
 				newWearable:AddNewModifier(owner, ability, "modifier_kill", { duration = duration })
-				newWearable:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration })
-				if specIllusionModifier then
-					newWearable:AddNewModifier(owner, ability, specIllusionModifier, { duration = duration })
-				end
+				newWearable:AddNewModifier(owner, ability, specIllusionModifier or "modifier_illusion", { duration = duration })
 				newWearable:MakeIllusion()
 				newWearable:SetParent(illusion, nil)
 				newWearable:FollowEntity(illusion, true)
 				-- newWearable:SetRenderColor(100,100,255)
 				Timers:CreateTimer(1, function()
 					if illusion and not illusion:IsNull() and illusion:IsAlive() then
-						return 0.25
+						return 1
 					else
 						UTIL_Remove( newWearable )
 					end
@@ -893,7 +843,7 @@ function CDOTA_BaseNPC:ModifyThreat(val)
 	local reduction = 0.5 ^ math.floor( self.threat / 100 )
 	-- Every 100 threat, threat gain effectiveness is reduced
 	local threatgainCap = math.max( 100, self.threat * 4 )
-	self.threat = math.min( math.max(0, (self.threat or 0) + math.min(newVal * reduction, threatgainCap ) ), 1000)
+	self.threat = math.min( math.max(0, (self.threat or 0) + math.min(newVal * reduction, threatgainCap ) ), 999 )
 	if self:IsRealHero() then
 		local player = PlayerResource:GetPlayer( self:GetOwner():GetPlayerID() )
 
@@ -911,12 +861,57 @@ function CDOTA_BaseNPC:ModifyThreat(val)
 end
 
 
-function CDOTA_BaseNPC:IsRoundBoss()
-	return self.unitIsRoundBoss == true
+function CDOTA_BaseNPC:IsRoundNecessary()
+	return self.unitIsRoundNecessary == true
+end
+
+function CDOTA_BaseNPC:IsBoss()
+	return self.unitIsBoss == true
 end
 
 function CDOTA_BaseNPC:IsMinion()
-	return self.unitIsRoundBoss ~= true or self.unitIsMinion
+	return self.unitIsRoundNecessary ~= true or self.unitIsMinion
+end
+
+function CDOTA_BaseNPC:IsUndead()
+	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsUndead"]
+	if monsterType == 1 then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:IsWild()
+	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsWild"]
+	if monsterType == 1 then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:IsDemon()
+	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsDemon"]
+	if monsterType == 1 then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:IsCelestial()
+	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsCelestial"]
+	if monsterType == 1 then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:IsElite()
+	self.NPCIsElite = self.NPCIsElite or false
+	return self.NPCIsElite
 end
 
 function CDOTA_BaseNPC:IsSlowed()
@@ -1099,7 +1094,6 @@ end
 
 function CDOTA_BaseNPC:SpendMana( flMana, bForced )
 	local cost = flMana * self:GetManaCostReduction()
-	print(cost)
 	self:ReduceMana( cost ) 
 end
 

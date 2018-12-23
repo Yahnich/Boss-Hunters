@@ -5,7 +5,7 @@ if IsServer() then
 		self:GetParent():Interrupt()
 		self:GetParent():Stop()
 		self:GetParent():StopMotionControllers(true)
-		if kv.delay == nil or toboolean(kv.delay) == true and not self:GetParent():IsRoundBoss() then
+		if kv.delay == nil or toboolean(kv.delay) == true and not self:GetParent():IsRoundNecessary() then
 			self.delay = true
 			self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)
 		end
@@ -36,19 +36,19 @@ function modifier_stunned_generic:GetOverrideAnimation( params )
 end
 
 function modifier_stunned_generic:GetModifierFixedAttackRate( params )
-	if self:GetParent():IsRoundBoss() then
+	if self:GetParent():IsRoundNecessary() then
 		return self:GetParent():GetBaseAttackTime() * 2
 	end
 end
 
 function modifier_stunned_generic:GetModifierMoveSpeedOverride( params )
-	if self:GetParent():IsRoundBoss() then
+	if self:GetParent():IsRoundNecessary() then
 		return 100
 	end
 end
 
 function modifier_stunned_generic:GetMoveSpeedLimitBonus( params )
-	if self:GetParent():IsRoundBoss() then
+	if self:GetParent():IsRoundNecessary() then
 		return -450
 	end
 end

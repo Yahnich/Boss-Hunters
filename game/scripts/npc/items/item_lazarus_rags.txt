@@ -85,7 +85,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"60"
+				"bonus_ms"				"18"
 			}
 			"07"
 			{

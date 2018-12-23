@@ -12,24 +12,24 @@ local function StartEvent(self)
 		if self.type == 1 then
 			if self.enemiesToSpawn == 6 then
 				local champion = CreateUnitByName("npc_dota_boss_satyr_champion", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-				champion.unitIsRoundBoss = true
+				champion.unitIsRoundNecessary = true
 				
 				local mage = CreateUnitByName("npc_dota_boss_satyr_mage", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-				mage.unitIsRoundBoss = true
+				mage.unitIsRoundNecessary = true
 				
 				self.enemiesToSpawn = self.enemiesToSpawn - 2
 			else
 				local follower = CreateUnitByName("npc_dota_boss_satyr_follower", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-				follower.unitIsRoundBoss = true
+				follower.unitIsRoundNecessary = true
 				self.enemiesToSpawn = self.enemiesToSpawn - 1
 			end
 		elseif self.type == 2 then
 			if self.enemiesToSpawn == 4 then
 				local champion = CreateUnitByName("npc_dota_boss_satyr_champion", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-				champion.unitIsRoundBoss = true
+				champion.unitIsRoundNecessary = true
 			else
 				local mage = CreateUnitByName("npc_dota_boss_satyr_mage", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-				mage.unitIsRoundBoss = true
+				mage.unitIsRoundNecessary = true
 			end
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 		else
@@ -39,7 +39,7 @@ local function StartEvent(self)
 				local number = 2
 				for i = 1, number do
 					local follower = CreateUnitByName("npc_dota_boss_satyr_follower", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-					follower.unitIsRoundBoss = true
+					follower.unitIsRoundNecessary = true
 					self.enemiesToSpawn = self.enemiesToSpawn - 1
 				end
 				self.enemiesToSpawn = self.enemiesToSpawn - number

@@ -80,7 +80,7 @@ function modifier_bh_track:OnDeath(params)
 		local caster = self:GetCaster()
 		if params.unit == self:GetParent() then
 			local gold = self:GetTalentSpecialValueFor("bonus_gold")
-			if not params.unit:IsRoundBoss() then
+			if not params.unit:IsRoundNecessary() then
 				gold = gold * self:GetSpecialValueFor("trash_gold_reduc")/100
 			end
 			local allies = caster:FindFriendlyUnitsInRadius(self:GetParent():GetAbsOrigin(), FIND_UNITS_EVERYWHERE)

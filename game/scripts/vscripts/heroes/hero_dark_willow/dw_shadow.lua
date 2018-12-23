@@ -1,6 +1,7 @@
-dw_shadow = class({})
+	dw_shadow = class({})
 LinkLuaModifier("modifier_dw_shadow", "heroes/hero_dark_willow/dw_shadow", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_dw_shadow_damage", "heroes/hero_dark_willow/dw_shadow", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_dw_shadow_talent", "heroes/hero_dark_willow/dw_shadow", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_dw_shadow_bonus_as", "heroes/hero_dark_willow/dw_shadow", LUA_MODIFIER_MOTION_NONE)
 
 function dw_shadow:IsStealable()
@@ -44,10 +45,10 @@ function dw_shadow:OnProjectileHit(hTarget, vLocation)
 		
 		self:DealDamage(caster, hTarget, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 
-		if caster:HasTalent("special_bonus_unique_dw_shadow_1") then
-			local ability = caster:FindAbilityByName("dw_bramble")
-			ability:PlantBush(vLocation)
-		end
+		-- if caster:HasTalent("special_bonus_unique_dw_shadow_1") then
+			-- local ability = caster:FindAbilityByName("dw_bramble")
+			-- ability:PlantBush(vLocation)
+		-- end
 	end
 end
 
@@ -68,7 +69,7 @@ function modifier_dw_shadow:OnCreated(table)
     		self.bonus_as = caster:FindTalentValue("special_bonus_unique_dw_shadow_2") * FrameTime() / self:GetDuration()
     		self.Talent = true
     	end
-
+		self.talent1 = caster:HasTalent("special_bonus_unique_dw_shadow_1")
     	self:StartIntervalThink(FrameTime())
     end
 end
@@ -79,7 +80,7 @@ function modifier_dw_shadow:OnRefresh(table)
     	self.damage = self:GetTalentSpecialValueFor("damage") * FrameTime()
 
     	self.manaDrain = self:GetParent():GetMaxMana() * self:GetTalentSpecialValueFor("mana_drain")/100 * FrameTime()
-
+		self.talent1 = caster:HasTalent("special_bonus_unique_dw_shadow_1")
     	if caster:HasTalent("special_bonus_unique_dw_shadow_2") then
     		self:GetAbility().bonus_as = 0
     		self.bonus_as = caster:FindTalentValue("special_bonus_unique_dw_shadow_2") * FrameTime() / self:GetDuration()
@@ -136,6 +137,82 @@ function modifier_dw_shadow:OnRemoved()
 			parent:AddNewModifier(caster, ability, "modifier_dw_shadow_bonus_as", {Duration = 4})
 		end
 	end
+end
+
+function modifier_dw_shadow:IsAura()
+	return self.talent1
+end
+
+function modifier_dw_shadow:GetModifierAura()
+	return "modifier_dw_shadow_talent"
+end
+
+function modifier_dw_shadow:GetAuraRadius()
+	return 900
+end
+
+function modifier_dw_shadow:GetAuraDuration()
+	return 0.5
+end
+
+function modifier_dw_shadow:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+
+function modifier_dw_shadow:GetAuraSearchType()    
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+
+function modifier_dw_shadow:GetAuraSearchFlags()    
+	return DOTA_UNIT_TARGET_FLAG_NONE
+end
+
+modifier_dw_shadow_talent = class({})
+function modifier_dw_shadow_talent:OnCreated(kv)
+	local caster = self:GetCaster()
+	self.tick = caster:FindTalentValue("special_bonus_unique_dw_shadow_1", "tick")
+    self.max_damage = self:GetTalentSpecialValueFor("duration") * self:GetTalentSpecialValueFor("damage") * caster:FindTalentValue("special_bonus_unique_dw_shadow_1", "damage") / 100
+	self.max_slow = caster:FindTalentValue("special_bonus_unique_dw_shadow_1") * (-1)
+	self.damage_growth = self.max_damage * self.tick / self:GetTalentSpecialValueFor("duration")
+	self.slow_growth = self.max_slow * self.tick / self:GetTalentSpecialValueFor("duration")
+	self.damage = self.damage_growth
+	self.slow = self.slow_growth
+	self:StartIntervalThink( self.tick )
+end
+
+function modifier_dw_shadow_talent:OnRefresh(kv)
+	self:OnCreated(kv)
+end
+
+function modifier_dw_shadow_talent:OnIntervalThink()	
+	local caster = self:GetCaster()
+	local parent = self:GetParent()
+	local ability = self:GetAbility()
+	if IsServer() then
+		ability:DealDamage( caster, parent, self.damage )
+		if self.damage < self.max_damage then
+			self.damage = math.min( self.max_damage, self.damage + self.damage_growth )
+		end
+	end
+	if self.slow > self.max_slow then
+		self.slow = math.max( self.max_slow, self.slow + self.slow_growth )
+	end
+end
+
+function modifier_dw_shadow_talent:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+end
+
+function modifier_dw_shadow_talent:GetModifierMoveSpeedBonus_Percentage()
+	return self.slow
+end
+
+function modifier_dw_shadow_talent:GetEffectName()
+	return "particles/units/heroes/hero_dark_willow/dark_willow_shadow_realm_charge.vpcf"
+end
+
+function modifier_dw_shadow_talent:IsDebuff()
+	return true
 end
 
 modifier_dw_shadow_damage = class({})

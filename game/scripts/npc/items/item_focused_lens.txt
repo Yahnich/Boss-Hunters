@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"2400"
+		"ItemCost"						"1500"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_focused_lens"
 		"ItemRequirements"
 		{
-			"01"						"item_spell_refinery"
+			"01"						"item_spell_refinery;item_staff_of_magi"
 		}
 	}
 	"item_focused_lens"
@@ -68,10 +68,15 @@
 			}
 			"02"
 			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int"				"10"
+			}
+			"03"
+			{
 				"var_type"				"FIELD_FLOAT"
 				"target_amp"			"20"
 			}
-			"03"
+			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"target_cast_range"		"225"

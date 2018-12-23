@@ -17,7 +17,7 @@ function crystal_maiden_frostbite_bh:OnSpellStart()
 	local target = self:GetCursorTarget()
 	
 	local freezeDur = self:GetTalentSpecialValueFor("freeze_duration")
-	local rootDur = TernaryOperator( self:GetTalentSpecialValueFor("root_duration"), target:IsRoundBoss(), self:GetTalentSpecialValueFor("creep_duration") )
+	local rootDur = TernaryOperator( self:GetTalentSpecialValueFor("root_duration"), target:IsRoundNecessary(), self:GetTalentSpecialValueFor("creep_duration") )
 	local totDur = rootDur + freezeDur
 	
 	local chill = target:GetChillCount()

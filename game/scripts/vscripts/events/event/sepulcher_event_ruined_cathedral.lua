@@ -40,7 +40,7 @@ local function StartCombat(self, bFight)
 		self.enemiesToSpawn = self.prophets + self.undying + self.minions
 		Timers:CreateTimer(3, function()
 			local spawn = CreateUnitByName("npc_dota_boss22", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-			spawn.unitIsRoundBoss = true
+			spawn.unitIsRoundNecessary = true
 			self.prophets = self.prophets - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if self.prophets > 0 then
@@ -49,7 +49,7 @@ local function StartCombat(self, bFight)
 		end)
 		Timers:CreateTimer(5, function()
 			local spawn = CreateUnitByName("npc_dota_boss4", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-			spawn.unitIsRoundBoss = true
+			spawn.unitIsRoundNecessary = true
 			spawn:SetCoreHealth(2500)
 			self.undying = self.undying - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
@@ -59,7 +59,7 @@ local function StartCombat(self, bFight)
 		end)
 		Timers:CreateTimer(2, function()
 			local spawn = CreateUnitByName("npc_dota_boss3b", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-			spawn.unitIsRoundBoss = false
+			spawn.unitIsRoundNecessary = false
 			
 			self.minions = self.minions - 1
 			

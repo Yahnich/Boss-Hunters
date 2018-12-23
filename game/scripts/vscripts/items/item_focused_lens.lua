@@ -18,11 +18,12 @@ LinkLuaModifier( "modifier_item_focused_lens_passive", "items/item_focused_lens.
 modifier_item_focused_lens_passive = class(itemBaseClass)
 function modifier_item_focused_lens_passive:OnCreated()
 	self.castrange = self:GetAbility():GetSpecialValueFor("bonus_cast_range")
+	self.stat = self:GetSpecialValueFor("bonus_int")
 	self.targetrange = self:GetAbility():GetSpecialValueFor("target_cast_range")
 end
 
 function modifier_item_focused_lens_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_CAST_RANGE_BONUS}
+	return {MODIFIER_PROPERTY_CAST_RANGE_BONUS, MODIFIER_PROPERTY_STATS_INTELLECT_BONUS}
 end
 
 function modifier_item_focused_lens_passive:GetModifierCastRangeBonus()
@@ -32,6 +33,10 @@ function modifier_item_focused_lens_passive:GetModifierCastRangeBonus()
 		castrange = castrange + self.targetrange
 	end
 	return castrange
+end
+
+function modifier_item_focused_lens_passive:GetModifierBonusStats_Intellect()
+	return self.stat
 end
 
 function modifier_item_focused_lens_passive:IsHidden()

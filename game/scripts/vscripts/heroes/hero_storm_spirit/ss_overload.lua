@@ -104,3 +104,7 @@ end
 function modifier_ss_overload_attack:IsPurgeException()
 	return false
 end
+
+function modifier_ss_overload_attack:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE
+end

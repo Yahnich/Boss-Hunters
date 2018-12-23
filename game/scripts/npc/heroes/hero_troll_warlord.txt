@@ -442,6 +442,7 @@
 		"FightRecapLevel"				"2"
 		"AbilitySound"					"Hero_TrollWarlord.BattleTrance.Cast"
 		"MaxLevel"						"6"
+		"HasScepterUpgrade"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -486,6 +487,16 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"lifesteal"				"50"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_cleave"		"35"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_attack_range"	"4000"
 			}
 		}
 	}

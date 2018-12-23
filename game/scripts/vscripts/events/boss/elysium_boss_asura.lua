@@ -4,7 +4,7 @@ local function StartEvent(self)
 	self.enemiesToSpawn = 1
 	self.eventHandler = Timers:CreateTimer(3, function()
 		local spawn = CreateUnitByName("npc_dota_boss36_guardian", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-		spawn.unitIsRoundBoss = true
+		spawn.unitIsRoundNecessary = true
 		
 		spawn.shield = spawn:FindAbilityByName("boss_evil_guardian_fire_shield")
 		spawn.purge = spawn:FindAbilityByName("boss_evil_guardian_purge_their_sin")

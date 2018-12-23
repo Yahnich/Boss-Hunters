@@ -3,14 +3,9 @@ relic_cursed_unchanging_globe = class(relicBaseClass)
 function relic_cursed_unchanging_globe:OnCreated()
 	self.mana = -(self:GetParent():GetMaxMana() * 0.8)
 	self:SetStackCount( 0 )
-	if IsServer() then 
+	if IsServer() then
 		self:GetParent():CalculateStatBonus()
-		local result = ( ( self:GetParent():GetManaRegen() - ( self:GetParent():GetBaseManaRegen() + self:GetParent():GetBonusManaRegen() ) ) * 0.5 ) / self:GetParent():GetManaRegenMultiplier()
-		for _, modifier in ipairs( params.unit:FindAllModifiers() ) do
-			if modifier.GetModifierTotalPercentageManaRegen and modifier:GetModifierTotalPercentageManaRegen() then
-				result = result - (params.unit:GetMaxMana() - self.mana) * modifier:GetModifierTotalPercentageManaRegen() / 100
-			end
-		end
+		local result = self:GetParent():GetManaRegen() * 0.5
 		self:SetStackCount( math.ceil( result * 100 ) )
 		self:GetParent():CalculateStatBonus()
 	end
@@ -47,12 +42,7 @@ function relic_cursed_unchanging_globe:OnModifierAdded(params)
 		self.mana = -(self:GetParent():GetMaxMana() * 0.8)
 		if IsServer() then 
 			self:GetParent():CalculateStatBonus()
-			local result = ( ( self:GetParent():GetManaRegen() - ( self:GetParent():GetBaseManaRegen() + self:GetParent():GetBonusManaRegen() ) ) * 0.5 ) / self:GetParent():GetManaRegenMultiplier()
-			for _, modifier in ipairs( params.unit:FindAllModifiers() ) do
-				if modifier.GetModifierTotalPercentageManaRegen and modifier:GetModifierTotalPercentageManaRegen() then
-					result = result - (params.unit:GetMaxMana() - self.mana) * modifier:GetModifierTotalPercentageManaRegen() / 100
-				end
-			end
+			local result = self:GetParent():GetManaRegen() * 0.5
 			self:SetStackCount( math.ceil( result * 100 ) )
 		end
 		if IsServer() then self:GetParent():CalculateStatBonus() end

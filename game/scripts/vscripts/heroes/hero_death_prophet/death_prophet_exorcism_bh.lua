@@ -191,7 +191,7 @@ end
 function modifier_death_prophet_exorcism_bh_talent:OnDeath(params)
 	if params.attacker == self:GetParent() and self:GetParent():HasTalent("special_bonus_unique_death_prophet_exorcism_2") then
 		local ghosts = 1
-		if params.unit:IsRoundBoss() then
+		if params.unit:IsRoundNecessary() then
 			ghosts = 4
 		end
 		for i = 1, ghosts do

@@ -120,7 +120,8 @@ function modifier_ss_ball_lightning:OnIntervalThink()
 end
 
 function modifier_ss_ball_lightning:CheckState()
-	local state = { [MODIFIER_STATE_ROOTED] = true}
+	local state = { [MODIFIER_STATE_ROOTED] = true,
+					[MODIFIER_STATE_INVULNERABLE] = true,}
 	return state
 end
 

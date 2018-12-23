@@ -33,7 +33,7 @@ end
 
 function modifier_silencer_feed_the_mind:OnDeath(params)
 	if params.attacker == self:GetParent() or CalculateDistance( self:GetParent(), params.unit ) <= self.radius then
-		if params.unit:IsRoundBoss() then
+		if params.unit:IsRoundNecessary() then
 			for i = 1, self.bossInt do
 				self:IncrementStackCount()
 			end

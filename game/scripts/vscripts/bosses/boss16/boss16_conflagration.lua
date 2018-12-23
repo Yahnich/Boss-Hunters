@@ -46,7 +46,7 @@ function boss16_conflagration:CreateFirePath(direction)
 		endPos = endPos + direction * self:GetSpecialValueFor("length") 
 	end
 	
-	local fireFX = ParticleManager:CreateParticle("particles/units/heroes/hero_jakiro/jakiro_macropyre.vpcf", PATTACH_CUSTOMORIGIN, nil)
+	local fireFX = ParticleManager:CreateParticle("particles/units/bosses/boss_dragon/boss_dragon_conflagration.vpcf", PATTACH_CUSTOMORIGIN, nil)
 	ParticleManager:SetParticleControl(fireFX, 0, initialPosition)
 	ParticleManager:SetParticleControl(fireFX, 1, endPos)
 	ParticleManager:SetParticleControl(fireFX, 2, Vector(duration, 0, 0))

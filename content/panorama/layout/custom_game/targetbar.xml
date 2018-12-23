@@ -16,9 +16,10 @@
 	</snippets>
 	<Panel class="targetPanelRoot" hittest="false">
 		<DOTAAbilityImage id="currentlyCastAbility" abilityname="generic_hidden"/>
+		
 		<Panel id="targetPanelMain" hittest="false">
 			<Panel id="bossNameContainer" hittestchildren="false">
-				<Label hittest="false" id="bossNameLabel" text="Dildo King" />
+				<Label hittest="false" id="bossNameLabel" text="Dildo King" />s
 			</Panel>
 			<Panel id="hpBarRoot" hittestchildren="false">
 				<Panel id="hpBarCurrent" hittestchildren="false"/>
@@ -28,11 +29,19 @@
 				<Panel id="mpBarCurrent" hittestchildren="false"/>
 				<Label hittest="false" class="barCurrentText" id="mpBarCurrentText" text="10" />
 			</Panel>
-			<Button id="threatButton" onactivate='tell_threat()'>
-				<Label hittest="true" id="threatLabel" text= "85.3"/>
-			</Button>
+			<Panel id="bottomContainer" hittestchildren="true">
+				<Button id="threatButton" onactivate='tell_threat()'>
+					<Label hittest="true" id="threatLabel" text= "85.3"/>
+				</Button>
+				<Image src="file://{images}/custom_game/icons/bossBorder.png" id="MinionTypeIcon" hittest="true"/>
+				<Panel id="TypeInfoContainer">
+					<Image src="file://{images}/custom_game/icons/celestialTypeIcon.png" id="CelestialTypeIcon" class="TypeIcon" hittest="true"/>
+					<Image src="file://{images}/custom_game/icons/demonicTypeIcon.png" id="DemonicTypeIcon" class="TypeIcon" hittest="true"/>
+					<Image src="file://{images}/custom_game/icons/undeadTypeIcon.png" id="UndeadTypeIcon" class="TypeIcon" hittest="true"/>
+					<Image src="file://{images}/custom_game/icons/wildTypeIcon.png" id="WildTypeIcon" class="TypeIcon" hittest="true"/>
+				</Panel>
+			</Panel>
 			<Panel id="informationRoot" hittestchildren="true">
-				
 				<Panel id="buffBar" hittestchildren="true"/>
 				<Panel id="debuffBar" hittestchildren="true"/>
 			</Panel>

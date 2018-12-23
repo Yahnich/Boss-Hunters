@@ -402,23 +402,23 @@
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"2.25 2.5 2.75 3 3.25 3.5"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"2.25 2.5 2.75 3 3.25 3.5"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_duration"			"0.125"
+				"var_type"						"FIELD_FLOAT"
+				"bonus_duration"				"0.125"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"600"
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"600"
 			}
 			"05"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"bounce_rate"				"140"
+				"var_type"						"FIELD_FLOAT"
+				"bounce_rate"					"140"
 			}
 		}
 	}

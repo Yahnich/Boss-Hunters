@@ -89,7 +89,7 @@ function modifier_ss_electric_vortex:OnRemoved()
 end
 
 function modifier_ss_electric_vortex:CheckState()
-	return {[MODIFIER_STATE_ROOTED] = true}
+	return {[MODIFIER_STATE_STUNNED] = true}
 end
 
 function modifier_ss_electric_vortex:IsDebuff()

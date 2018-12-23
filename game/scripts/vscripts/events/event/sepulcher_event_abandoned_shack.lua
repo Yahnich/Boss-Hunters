@@ -79,7 +79,7 @@ local function StartCombat(self, bFight, bBoss)
 		
 		Timers:CreateTimer(1, function()
 			local spawn = CreateUnitByName(mobToSpawn, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-			spawn.unitIsRoundBoss = true
+			spawn.unitIsRoundNecessary = true
 			if not bBoss then spawn:SetCoreHealth( 100 * GameRules:GetGameDifficulty() ) end
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if self.enemiesToSpawn > 0 then

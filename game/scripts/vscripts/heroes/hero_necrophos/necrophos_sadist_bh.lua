@@ -28,7 +28,7 @@ end
 function modifier_necrophos_sadist_bh:OnDeath(params)
 	if CalculateDistance( params.unit, self:GetParent() ) <= self.radius or params.attacker == self:GetParent() then
 		local stacks = 1
-		if params.unit:IsRealHero() or params.unit:IsRoundBoss() then
+		if params.unit:IsRealHero() or params.unit:IsRoundNecessary() then
 			stacks = stacks * self.big_mult
 		end
 		if params.attacker == self:GetParent() then

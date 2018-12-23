@@ -25,7 +25,7 @@ function modifier_boss_evasion:DeclareFunctions()
 end
 
 
-function modifier_boss_attackspeed:GetModifierPreAttack_CriticalStrike( params )
+function modifier_boss_evasion:GetModifierPreAttack_CriticalStrike( params )
 	self.ticks = (self.ticks or 0) + 1
 	if self.ticks >= self.critDelay then	
 		self.ticks = 0
@@ -44,7 +44,7 @@ function modifier_boss_evasion:GetModifierEvasion_Constant()
 	return math.min( 80, 10 + (2.5 * raidsBeaten) + (5 * zonesBeaten) + (7.5 * math.floor(zonesBeaten / 2) ) )
 end
 
-function modifier_boss_attackspeed:GetModifierMagicalResistanceBonus( params )
+function modifier_boss_evasion:GetModifierMagicalResistanceBonus( params )
 	return self:GetStackCount() * 10
 end
 

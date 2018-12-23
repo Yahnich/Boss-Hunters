@@ -9,7 +9,7 @@ local function StartEvent(self)
 	self.eventHandler = Timers:CreateTimer(3, function()
 		if wolves > 0 then
 			local wolf = CreateUnitByName("npc_dota_boss_wolf", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-			wolf.unitIsRoundBoss = true
+			wolf.unitIsRoundNecessary = true
 			
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			wolves = wolves - 1
@@ -18,7 +18,7 @@ local function StartEvent(self)
 		delay = delay - tick
 		if delay <= 0 and alpha > 0 then
 			local alphaWolf = CreateUnitByName("npc_dota_boss_alpha_wolf", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-			alphaWolf.unitIsRoundBoss = true
+			alphaWolf.unitIsRoundNecessary = true
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			alpha = alpha - 1
 		end

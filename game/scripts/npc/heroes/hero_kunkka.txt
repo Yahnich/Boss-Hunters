@@ -210,7 +210,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"-1.25"
+				"value"						"-1.5"
 			}
 		}
 	}

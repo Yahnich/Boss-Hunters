@@ -53,7 +53,7 @@ if IsServer() then
 		self.tick = self:GetRemainingTime() / self:GetCaster():FindTalentValue("special_bonus_unique_death_prophet_crypt_swarm_1", "duration")
 		self.damage = self:GetTalentSpecialValueFor("damage")
 		self.lifesteal = 1
-		if not self:GetParent():IsRoundBoss() then
+		if not self:GetParent():IsRoundNecessary() then
 			self.lifesteal = 0.25
 		end
 		self:StartIntervalThink(self.tick)
@@ -66,7 +66,7 @@ if IsServer() then
 		end
 		self.damage = self:GetTalentSpecialValueFor("damage")
 		self.lifesteal = 1
-		if not self:GetParent():IsRoundBoss() then
+		if not self:GetParent():IsRoundNecessary() then
 			self.lifesteal = 0.25
 		end
 	end

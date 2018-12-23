@@ -18,7 +18,7 @@ function queenofpain_scream_of_pain_bh:OnProjectileHit( target, position )
 		local damage = self:DealDamage( caster, target )
 		if caster:HasTalent("special_bonus_unique_queenofpain_scream_of_pain_1") then
 			local heal = caster:FindTalentValue("special_bonus_unique_queenofpain_scream_of_pain_1")
-			if not target:IsRoundBoss() then
+			if not target:IsRoundNecessary() then
 				heal = caster:FindTalentValue("special_bonus_unique_queenofpain_scream_of_pain_1", "value2" )
 			end
 			caster:HealEvent( damage * heal / 100, self, caster )

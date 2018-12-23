@@ -18,7 +18,7 @@ local function StartEvent(self)
 		end
 		if self.greymane > 0 then
 			local spawn = CreateUnitByName("npc_dota_boss_greymane", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-			spawn.unitIsRoundBoss = true
+			spawn.unitIsRoundNecessary = true
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			self.greymane = self.greymane - 1
 		end

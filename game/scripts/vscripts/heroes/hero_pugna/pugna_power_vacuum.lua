@@ -28,7 +28,7 @@ function modifier_pugna_power_vacuum:OnTakeDamage(params)
 	and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL) )
 	and params.inflictor then
 		local flHeal = params.damage * self.mob
-		if params.unit:IsRoundBoss() then
+		if params.unit:IsRoundNecessary() then
 			flHeal = params.damage * self.boss
 		end
 		ParticleManager:FireParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self)

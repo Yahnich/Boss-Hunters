@@ -17,7 +17,7 @@ function undying_decay_bh:OnSpellStart()
 	
 	local modifierName = TernaryOperator("modifier_undying_decay_bh_talent", caster:HasTalent("special_bonus_unique_undying_decay_2"), "modifier_undying_decay_bh")
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius) ) do
-		local str = TernaryOperator( bossStr, enemy:IsRoundBoss(), mobStr )
+		local str = TernaryOperator( bossStr, enemy:IsRoundNecessary(), mobStr )
 		for i = 1, str do
 			caster:AddNewModifier(caster, self, modifierName, {duration = duration})
 		end

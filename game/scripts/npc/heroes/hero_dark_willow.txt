@@ -215,7 +215,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"40"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"30"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tick"						"0.25"
 			}
 		}
 	}

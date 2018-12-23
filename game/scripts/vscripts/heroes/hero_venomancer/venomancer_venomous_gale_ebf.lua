@@ -75,7 +75,7 @@ if IsServer() then
 				ability = self
 			}
 			ApplyDamage( damage )
-			if caster:HasTalent("special_bonus_unique_venomancer_venomous_gale_1") and hTarget:IsRoundBoss() then
+			if caster:HasTalent("special_bonus_unique_venomancer_venomous_gale_1") and hTarget:IsRoundNecessary() then
 				local ward = caster:FindAbilityByName("venomancer_plague_ward_ebf")
 				for i = 1, 2 do
 					local position  = hTarget:GetAbsOrigin() + RandomVector(250)

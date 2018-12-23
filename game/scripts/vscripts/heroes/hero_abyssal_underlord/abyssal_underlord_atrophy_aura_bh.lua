@@ -59,7 +59,7 @@ function modifier_abyssal_underlord_atrophy_aura_bh:OnDeath(params)
 	local parent = self:GetParent()
 	if not params.unit:IsSameTeam( parent ) and ( CalculateDistance(params.unit, parent) <= self.radius or params.attacker == parent ) then
 		local duration = TernaryOperator( self.scepterDuration, parent:HasScepter(), self.duration )
-		local stacks = TernaryOperator( self.bossStacks, params.unit:IsRoundBoss(), self.minionStacks )
+		local stacks = TernaryOperator( self.bossStacks, params.unit:IsRoundNecessary(), self.minionStacks )
 		self:AddIndependentStack( duration, nil, nil, {stacks = stacks} )
 		if duration > self:GetRemainingTime() then
 			self:SetDuration(duration+0.1, true)

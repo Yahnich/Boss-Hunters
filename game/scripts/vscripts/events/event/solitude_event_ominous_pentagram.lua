@@ -46,7 +46,7 @@ local function StartCombat(self, bFight, bHard)
 		local START_VECTOR = RoundManager:PickRandomSpawn()
 		Timers:CreateTimer(5, function()
 			local spawn = CreateUnitByName("npc_dota_boss36_guardian", START_VECTOR, true, nil, nil, DOTA_TEAM_BADGUYS)
-			spawn.unitIsRoundBoss = true
+			spawn.unitIsRoundNecessary = true
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if bHard then
 				spawn:SetAverageBaseDamage(spawn:GetAverageBaseDamage() * 1.5, 30)
