@@ -3,14 +3,14 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_plate_of_the_unbreakable"
+	"item_recipe_armor_of_invasion"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3235"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7091"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe_assault"
+		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -20,43 +20,36 @@
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_plate_of_the_unbreakable"
+		"ItemResult"					"item_armor_of_invasion"
 		"ItemRequirements"
 		{
-			"01"						"item_purging_stone;item_mithril_armor"
+			"01"						"item_mithril_armor;item_gauntlet_of_alacrity;item_reaping_scythe"
 		}
 	}
-	//=================================================================================================================
-	// TITAN Armor
-	//=================================================================================================================
-	"item_plate_of_the_unbreakable"
+	"item_armor_of_invasion"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3236"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+		"ID"							"7092"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_plate_of_the_unbreakable"
-		"AbilityTextureName"			"blade_mail_axe_pw"
+		"ScriptFile"					"items/item_armor_of_invasion"
+		"AbilityTextureName"			"assault"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"400"
-		"ItemShopTags"					"heal;purge;dispel;armor"
+		"ItemShopTags"					"armor;aura;utility;tank"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"plate of the unbreakable;unbreakable"
+		"ItemAliases"					"assault cuirass;ac;armor of invasion"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"particle"
+		"precache"
 		{
-			"particle"					"particles/generic_gameplay/generic_purge.vpcf"
-			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
-	
-		"AbilityCooldown"				"25"
-		
+
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -64,22 +57,32 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor"					"5"
+				"bonus_armor"			"10"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"heal"					"275"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_damage"			"60"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_aura"			"5"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_attack_speed"	"20"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
+				"var_type"				"FIELD_FLOAT"
+				"aura_armor"			"5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_attack_speed"		"20"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_radius"			"900"
 			}
 		}
 	}

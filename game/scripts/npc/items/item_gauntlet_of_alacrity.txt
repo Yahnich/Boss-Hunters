@@ -29,7 +29,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed"		"25"
+				"bonus_attackspeed"		"20"
 			}
 		}
 	}

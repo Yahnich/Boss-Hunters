@@ -3,60 +3,53 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_plate_of_the_unbreakable"
+	"item_recipe_death_sentence"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3235"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7095"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe_assault"
+		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1200"	
+		"ItemCost"						"600"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_plate_of_the_unbreakable"
+		"ItemResult"					"item_death_sentence"
 		"ItemRequirements"
 		{
-			"01"						"item_purging_stone;item_mithril_armor"
+			"01"						"item_focused_lens;item_blade_of_alacrity;item_blade_of_alacrity;item_hawks_feather;item_broadsword"
 		}
 	}
-	//=================================================================================================================
-	// TITAN Armor
-	//=================================================================================================================
-	"item_plate_of_the_unbreakable"
+	"item_death_sentence"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3236"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+		"ID"							"7096"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_plate_of_the_unbreakable"
-		"AbilityTextureName"			"blade_mail_axe_pw"
+		"ScriptFile"					"items/item_death_sentence"
+		"AbilityTextureName"			"item_"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"400"
-		"ItemShopTags"					"heal;purge;dispel;armor"
+		"ItemShopTags"					"intelligence;mana regen"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"plate of the unbreakable;unbreakable"
+		"ItemAliases"					"energy booster;orb of essence"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"particle"
+		"precache"
 		{
-			"particle"					"particles/generic_gameplay/generic_purge.vpcf"
-			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
-	
-		"AbilityCooldown"				"25"
-		
+
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -64,22 +57,42 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor"					"5"
+				"bonus_cast_range"		"400"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"275"
+				"bonus_damage"			"50"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_aura"			"5"
+				"bonus_accuracy"		"40"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
+				"bonus_int"				"10"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agi"				"20"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"target_amp"			"30"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"target_cast_range"		"250"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"target_accuracy"		"40"
 			}
 		}
 	}

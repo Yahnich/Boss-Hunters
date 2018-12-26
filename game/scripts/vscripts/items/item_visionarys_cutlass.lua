@@ -11,6 +11,7 @@ function modifier_item_visionarys_cutlass:OnCreated()
 	self.chance = self:GetSpecialValueFor("pierce_chance")
 	self.damage = self:GetSpecialValueFor("pierce_damage")
 	
+	self.bonus_attack_speed = self:GetSpecialValueFor("bonus_attack_speed")
 	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
 end
 
@@ -39,4 +40,8 @@ end
 
 function modifier_item_visionarys_cutlass:GetModifierPreAttack_BonusDamage()
 	return self.bonus_damage
+end
+
+function modifier_item_antique_battlestaff:GetModifierAttackSpeedBonus()
+	return self.bonus_attack_speed
 end

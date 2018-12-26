@@ -3,53 +3,53 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_guillotine"
+	"item_recipe_spellslayers_dirk"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"6613"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7097"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1400"	
+		"ItemCost"						"1050"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_guillotine"
+		"ItemResult"					"item_spellslayers_dirk"
 		"ItemRequirements"
 		{
-			"01"						"item_executioners_blade;item_broadsword"
+			"01"						"item_purging_stone;item_blade_of_agility;item_blade_of_agility;item_staff_of_magi"
 		}
 	}
-	"item_guillotine"
+	"item_spellslayers_dirk"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"6614"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7098"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_guillotine"
-		"AbilityTextureName"			"item_lesser_crit"
+		"ScriptFile"					"items/item_spellslayers_dirk"
+		"AbilityTextureName"			"diffusal_blade"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemShopTags"					"damage;crit"
+		"ItemShopTags"					"int;agi;purge;heal"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"crystalys;guillotine"
+		"ItemAliases"					"diffusal;dirk;spellslayer"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"75"
 		"precache"
 		{
 			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
-
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -58,17 +58,27 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"critical_chance"		"27"
+				"bonus_intellect"		"15"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"critical_damage"		"285"
+				"bonus_agility"			"25"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"70"
+				"var_type"				"FIELD_FLOAT"
+				"active_healdamage"		"200"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"onhit_damage"			"20"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"onhit_damage_illu"		"10"
 			}
 		}
 	}

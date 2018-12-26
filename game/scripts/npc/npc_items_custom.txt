@@ -139,14 +139,20 @@
 #base "items/item_boomstick.txt"
 #base "items/item_ferrum_ascensus.txt"
 
-// #base "items/item_illusionists_charm.txt"
-// #base "items/item_tricksters_blade.txt"
-// #base "items/item_mirrors_edge.txt"
+#base "items/item_illusionists_charm.txt"
+#base "items/item_tricksters_blade.txt"
+#base "items/item_mirrors_edge.txt"
 
 #base "items/item_protection_sphere.txt"
 #base "items/item_ward_of_life.txt"
 
-// Next ID is 7089
+#base "items/item_spellslayers_dirk.txt"
+#base "items/item_borealis cloak.txt"
+#base "items/item_armor_of_invasion.txt"
+#base "items/item_trinity.txt"
+#base "items/item_death_sentence.txt"
+
+// Next ID is 7099
 
 "DOTAAbilities"
 {
@@ -244,17 +250,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_str"				"8"
+				"bonus_str"				"10"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_agi"				"8"
+				"bonus_agi"				"10"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_int"				"8"
+				"bonus_int"				"10"
 			}
 			"05"
 			{

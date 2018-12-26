@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"2750"	
+		"ItemCost"						"2225"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_blade_of_storm"
 		"ItemRequirements"
 		{
-			"01"						"item_broadsword;item_breeze_amulet;item_orb_of_haste"
+			"01"						"item_broadsword;item_breeze_amulet;item_orb_of_haste;item_iron_rod"
 		}
 	}
 	"item_blade_of_storm"

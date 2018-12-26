@@ -261,13 +261,13 @@ function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability, flBonusDama
 	self.autoAttackFromAbilityState = {} -- basically the same as setting it to true
 	self.autoAttackFromAbilityState.ability = ability
 
-	if flBonusDamage then
+	if flBonusDamage or bDamagePct then
 		if bDamagePct then
 			local bonusDamage = flBonusDamage
-			if type(flBonusDamage) == "number" then
+			if type(bDamagePct) == "number" then
 				bonusDamage = bDamagePct
 			end
-			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus_pct", {damage = flBonusDamage})
+			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus_pct", {damage = bonusDamage})
 		end
 		if flBonusDamage and bDamagePct == false or bDamagePct == nil then
 			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus", {damage = flBonusDamage})

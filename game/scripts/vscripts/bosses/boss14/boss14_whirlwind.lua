@@ -45,7 +45,6 @@ end
 
 function modifier_boss14_whirlwind:OnIntervalThink()
 	local caster = self:GetCaster()
-	self.ms = self:GetParent():GetIdealSpeedNoSlows()
 	caster:StartGestureWithPlaybackRate( ACT_DOTA_CAST_ABILITY_3, 3 )
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self.radius, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
 	ParticleManager:FireParticle("particles/units/heroes/hero_axe/axe_attack_blur_counterhelix.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
@@ -53,7 +52,7 @@ function modifier_boss14_whirlwind:OnIntervalThink()
 	ProjectileManager:ProjectileDodge(self:GetParent())
 	AddFOWViewer(DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), self.radius, 0.5, false)
 	for _, enemy in ipairs(enemies) do
-		caster:PerformAbilityAttack(enemy, true, self:GetAbility())
+		caster:PerformAbilityAttack(enemy, false, self:GetAbility(), nil, nil, false)
 	end
 end
 
@@ -94,8 +93,4 @@ end
 
 function modifier_boss14_whirlwind:GetModifierTurnRate_Percentage()
 	return 99
-end
-
-function modifier_boss14_whirlwind:GetModifierMoveSpeed_AbsoluteMin()
-	return self.ms
 end

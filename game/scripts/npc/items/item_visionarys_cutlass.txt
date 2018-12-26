@@ -23,7 +23,7 @@
 		"ItemResult"					"item_visionarys_cutlass"
 		"ItemRequirements"
 		{
-			"01"						"item_broadsword;item_hawks_feather;item_iron_rod"
+			"01"						"item_broadsword;item_hawks_feather;item_iron_rod;"
 		}
 	}
 	//=================================================================================================================
@@ -60,10 +60,15 @@
 			}
 			"02"
 			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"20"
+			}
+			"03"
+			{
 				"var_type"				"FIELD_FLOAT"
 				"pierce_chance"			"65"
 			}
-			"03"
+			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"pierce_damage"			"80"

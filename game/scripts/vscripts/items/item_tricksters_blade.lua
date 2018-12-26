@@ -17,9 +17,18 @@ function item_tricksters_blade:OnSpellStart()
 	ParticleManager:FireParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, caster, {[0] = caster:GetAbsOrigin()})
 	EmitSoundOn("DOTA_Item.BlinkDagger.NailedIt", caster)
 	
-	local illusion = caster:ConjureImage( ogPos, self:GetSpecialValueFor("duration"), -(100 - self:GetSpecialValueFor("illu_outgoing_damage")), self:GetSpecialValueFor("illu_incoming_damage") - 100 )
-	illusion:SetThreat( caster:GetThreat() )
-	caster:SetThreat( 0 )
+	for _, illusion in ipairs( self.illusionTable or {} ) do
+		if not illusion:IsNull() and illusion:IsAlive() then
+			illusion:ForceKill( true )
+		end
+	end
+	self.illusionTable = {}
+	local callback = (function(illusion)
+		illusion:SetThreat( caster:GetThreat() )
+		caster:SetThreat( 0 )
+		table.insert( self.illusionTable, illusion )
+	end)
+	caster:ConjureImage( ogPos, self:GetSpecialValueFor("duration"), -(100 - self:GetSpecialValueFor("illu_outgoing_damage")), self:GetSpecialValueFor("illu_incoming_damage") - 100, nil, self, true, caster, callback )
 end
 
 
