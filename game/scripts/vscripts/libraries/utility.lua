@@ -675,11 +675,10 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 				if caster == self then
 					caster = illusion
 				end
-				illusion:AddNewModifier( caster, modifier:GetAbility(), modifier:GetName(), { duration = modifier:GetRemainingTime() })
+				illusion:AddNewModifier( caster, modifier:GetAbility(), modifier:GetName(), { duration = modifier:GetDuration() })
 			end
 		end
 		
-		illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", { duration = duration })
 		-- Recreate the items of the caster
 		for itemSlot=0,5 do
 			local item = self:GetItemInSlot(itemSlot)
@@ -697,10 +696,11 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 		-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
 		illusion:AddNewModifier(owner, ability, "modifier_kill", { duration = duration })
 		illusion:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
-		if specIllusionModifier then
+		if specIllusionModifier and specIllusionModifier ~= "" then
 			illusion:AddNewModifier(owner, ability, specIllusionModifier, { duration = duration })
 		end
-		
+		illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", { duration = duration })
+		illusion.wearableList = {}
 		for _, wearable in ipairs( self:GetChildren() ) do
 			if wearable:GetClassname() == "dota_item_wearable" and wearable:GetModelName() ~= "" then
 				local newWearable = CreateUnitByName("wearable_dummy", illusion:GetAbsOrigin(), false, nil, nil, self:GetTeam())
@@ -713,13 +713,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 				newWearable:SetParent(illusion, nil)
 				newWearable:FollowEntity(illusion, true)
 				-- newWearable:SetRenderColor(100,100,255)
-				Timers:CreateTimer(1, function()
-					if illusion and not illusion:IsNull() and illusion:IsAlive() then
-						return 1
-					else
-						UTIL_Remove( newWearable )
-					end
-				end)
+				table.insert( illusion.wearableList, newWearable )
 			end
 		end
 		if callback then

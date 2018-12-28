@@ -110,10 +110,39 @@ end
 modifier_naga_siren_song_of_the_siren_song_sleep = class({})
 LinkLuaModifier("modifier_naga_siren_song_of_the_siren_song_sleep", "heroes/hero_naga_siren/naga_siren_song_of_the_siren_bh", LUA_MODIFIER_MOTION_NONE)
 
+if IsServer() then
+	function modifier_naga_siren_song_of_the_siren_song_sleep:OnCreated()
+		local nfx = ParticleManager:CreateParticle("particles/generic/charm_debuff/charm_generic_overhead.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+					ParticleManager:SetParticleControlEnt(nfx, 0, self:GetParent(), PATTACH_OVERHEAD_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
+					ParticleManager:SetParticleControlEnt(nfx, 1, self:GetParent(), PATTACH_OVERHEAD_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
+
+		self:AttachEffect(nfx)
+
+		self:StartIntervalThink(0.5)
+	end
+	
+	function modifier_naga_siren_song_of_the_siren_song_sleep:OnIntervalThink()
+		local direction = CalculateDirection(self:GetCaster(), self:GetParent())
+		local oldPos = self:GetParent():GetAbsOrigin()
+		local newPos = oldPos + direction * self:GetParent():GetIdealSpeed() * 0.5
+		if not GridNav:CanFindPath(oldPos, newPos) then
+			while not GridNav:CanFindPath(oldPos, newPos) do
+				newPos = self:GetParent():GetAbsOrigin() + RandomVector(1):Normalized() * self:GetParent():GetIdealSpeed() * 0.5
+			end
+		end
+		self:GetParent():MoveToPosition(newPos)
+	end
+end
+
 function modifier_naga_siren_song_of_the_siren_song_sleep:CheckState()
-	return {[MODIFIER_STATE_INVULNERABLE] = not self:GetCaster():HasTalent("special_bonus_unique_naga_siren_song_of_the_siren_1"),
-			[MODIFIER_STATE_STUNNED] = true,
-			[MODIFIER_STATE_FROZEN] = true}
+	local state = {	[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
+					[MODIFIER_STATE_DISARMED] = true,
+					[MODIFIER_STATE_SILENCED] = true,
+					[MODIFIER_STATE_PROVIDES_VISION] = true,}
+	if not self:GetCaster():HasTalent("special_bonus_unique_naga_siren_song_of_the_siren_1") then
+		state[MODIFIER_STATE_INVULNERABLE] = true
+	end
+	return statekil
 end
 
 function modifier_naga_siren_song_of_the_siren_song_sleep:GetEffectName()

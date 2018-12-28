@@ -15,11 +15,40 @@ end
 function naga_siren_liquid_form:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget() or caster
-	target:AddNewModifier(caster, self, "modifier_naga_siren_liquid_form", {duration = self:GetSpecialValueFor("duration")})
+	target:AddNewModifier(caster, self, "modifier_naga_siren_liquid_form", {duration = self:GetTalentSpecialValueFor("illu_duration")})
 	target:Dispel(caster, false)
 	target:EmitSound("Hero_NagaSiren.MirrorImage")
 	local nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_siren/naga_siren_mirror_image.vpcf", PATTACH_POINT_FOLLOW, target)
 	Timers:CreateTimer(0.5, function() ParticleManager:ClearParticle(nFX) end)
+	
+	
+	local out = self:GetTalentSpecialValueFor("out_damage")
+	local incomingDamage = self:GetTalentSpecialValueFor("inc_damage")
+	local illuDur = self:GetTalentSpecialValueFor("illu_duration")
+	
+	target.liquidFormIllusions = target.liquidFormIllusions or {}
+	for _, illusion in ipairs( target.liquidFormIllusions ) do
+		if not illusion:IsNull() and illusion:IsAlive() then
+			illusion:ForceKill( false )
+		end
+	end
+	Timers:CreateTimer(self:GetTalentSpecialValueFor("duration"), function()
+		for _, illusion in ipairs( target.liquidFormIllusions ) do
+			if illusion:IsAlive() then
+				return 1
+			end
+			target:RemoveModifierByName("modifier_naga_siren_liquid_form")
+			return nil
+		end
+	end)
+	local callback = 	(function(illusion, parent, caster, ability )
+							illusion:AddNewModifier(caster, ability, "modifier_naga_siren_liquid_form", {duration = ability:GetTalentSpecialValueFor("illu_duration")})
+							table.insert( parent.liquidFormIllusions, illusion )
+						end)
+			
+	for i = i, self:GetTalentSpecialValueFor("max_illusions") do
+		target:ConjureImage( params.attacker:GetAbsOrigin() + RandomVector( 150 ), illuDur, out - 100, incomingDamage - 100, nil, self:GetAbility(), true, caster, callback )
+	end
 end
 
 modifier_naga_siren_liquid_form = class({})
@@ -29,54 +58,17 @@ function modifier_naga_siren_liquid_form:OnCreated()
 	self.evasion = self:GetTalentSpecialValueFor("bonus_evasion")
 	self.health_regen = self:GetTalentSpecialValueFor("bonus_hp_regen")
 	self.water_regen = self:GetTalentSpecialValueFor("water_hp_regen")
-	self.movespeed = self:GetTalentSpecialValueFor("water_bonus_ms")
-	
-	self.out = self:GetTalentSpecialValueFor("out_damage")
-	self.incomingDamage = self:GetTalentSpecialValueFor("inc_damage")
-	self.illuDur = self:GetTalentSpecialValueFor("illu_duration")
-	
-	self:GetParent().liquidIllusions = self:GetParent().liquidIllusions or {}
 end
 
 function modifier_naga_siren_liquid_form:OnRefresh()
 	self.evasion = self:GetTalentSpecialValueFor("bonus_evasion")
 	self.health_regen = self:GetTalentSpecialValueFor("bonus_hp_regen")
 	self.water_regen = self:GetTalentSpecialValueFor("water_hp_regen")
-	self.movespeed = self:GetTalentSpecialValueFor("water_bonus_ms")
-	
-	self.out = self:GetTalentSpecialValueFor("out_damage")
-	self.incomingDamage = self:GetTalentSpecialValueFor("inc_damage")
-	self.illuDur = self:GetTalentSpecialValueFor("illu_duration")
-	self:GetParent().liquidIllusions = self:GetParent().liquidIllusions or {}
-end
-
-function modifier_naga_siren_liquid_form:CheckState()
-	return {[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
 end
 
 function modifier_naga_siren_liquid_form:DeclareFunctions()
 	return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-			MODIFIER_PROPERTY_EVASION_CONSTANT,
-			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-			MODIFIER_EVENT_ON_ATTACK_FAIL}
-end
-
-function modifier_naga_siren_liquid_form:OnAttackFail(params)
-	if params.target == self:GetParent() and self:GetParent():IsRealHero() then
-		local parent = self:GetParent()
-		for i = #parent.liquidIllusions, 1, -1 do
-			local illusion = parent.liquidIllusions[i]
-			if not illusion or illusion:IsNull() or not illusion:IsAlive() then
-				table.remove( parent.liquidIllusions, i )
-			end
-		end
-		if #parent.liquidIllusions < 3 then
-				local callback = (function(illusion, parent)
-				table.insert( parent.liquidIllusions, illusion )
-			end)
-			local illusion = parent:ConjureImage( params.attacker:GetAbsOrigin() + RandomVector( 150 ), self.illuDur, self.out - 100, self.incomingDamage - 100, nil, self:GetAbility(), true, parent, callback )
-		end
-	end
+			MODIFIER_PROPERTY_EVASION_CONSTANT}
 end
 
 function modifier_naga_siren_liquid_form:GetModifierConstantHealthRegen()
@@ -89,12 +81,6 @@ end
 
 function modifier_naga_siren_liquid_form:GetModifierEvasion_Constant()
 	return self.evasion
-end
-
-function modifier_naga_siren_liquid_form:GetModifierMoveSpeedBonus_Percentage()
-	if self:GetParent():InWater() then
-		return self.movespeed
-	end
 end
 
 function modifier_naga_siren_liquid_form:GetEffectName()

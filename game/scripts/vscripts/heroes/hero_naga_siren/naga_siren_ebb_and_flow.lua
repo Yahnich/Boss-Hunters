@@ -45,7 +45,7 @@ modifier_naga_siren_ebb_and_flow_buff = class({})
 LinkLuaModifier("modifier_naga_siren_ebb_and_flow_buff", "heroes/hero_naga_siren/naga_siren_ebb_and_flow", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_naga_siren_ebb_and_flow_buff:OnCreated()
-	self.chance = self:GetTalentSpecialValueFor("proc_chance")
+	self.chance = TernaryOperator( self:GetTalentSpecialValueFor("scepter_proc_chance"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("proc_chance") )
 	self.value = self:GetTalentSpecialValueFor("proc_value")
 	if IsServer() then
 		self:StartIntervalThink(0.33)
@@ -53,7 +53,12 @@ function modifier_naga_siren_ebb_and_flow_buff:OnCreated()
 end
 
 function modifier_naga_siren_ebb_and_flow_buff:OnRefresh()
-	self.chance = self:GetTalentSpecialValueFor("proc_chance")
+	self.chance = TernaryOperator( self:GetTalentSpecialValueFor("scepter_proc_chance"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("proc_chance") )
+	self.value = self:GetTalentSpecialValueFor("proc_value")
+end
+
+function modifier_naga_siren_ebb_and_flow_buff:OnIntervalThink()
+	self.chance = TernaryOperator( self:GetTalentSpecialValueFor("scepter_proc_chance"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("proc_chance") )
 	self.value = self:GetTalentSpecialValueFor("proc_value")
 end
 
@@ -62,7 +67,7 @@ function modifier_naga_siren_ebb_and_flow_buff:DeclareFunctions()
 end
 
 function modifier_naga_siren_ebb_and_flow_buff:OnAttackLanded(params)
-	if params.attacker == self:GetParent() then
+	if params.attacker == self:GetParent() or ( params.target == self:GetParent() and self:GetCaster():HasScepter() ) then
 		if self:RollPRNG( self.chance ) then
 			local caster = self:GetCaster()
 			if not caster:IsRealHero() then
@@ -70,7 +75,7 @@ function modifier_naga_siren_ebb_and_flow_buff:OnAttackLanded(params)
 			end
 			local wave = caster:FindAbilityByName("naga_siren_tidal_waves")
 			if wave then
-				wave:FireTidal( params.attacker, self.value )
+				wave:FireTidal( caster, self.value )
 			end
 		end
 	end

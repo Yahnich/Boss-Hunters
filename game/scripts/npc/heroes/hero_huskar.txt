@@ -220,7 +220,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"-200"
+				"value"					"-250"
 			}
 			"02"
 			{
@@ -318,7 +318,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
+				"value"					"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cost"					"100"
 			}
 		}
 	}
@@ -337,7 +342,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"0"
+				"value"					"50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cost"					"-100"
 			}
 		}
 	}
@@ -375,7 +385,9 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"maximum_regen"					"15 25 35 45 55 65 75"
+				"maximum_regen"					"100"
+				"LinkedSpecialBonus"			"special_bonus_unique_huskar_ignited_spears_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"04"
 			{
@@ -404,7 +416,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"7"
+				"duration"				"9"
 			}
 		}
 	}
@@ -423,7 +435,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"450"
+				"value"					"600"
 			}
 		}
 	}
@@ -512,7 +524,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
-		"AbilityCooldown"				"1"
+		"AbilityCooldown"				"0.5"
 	
 		"AbilityTextureName"			"custom/huskar_sacred_inferno"
 		
@@ -552,7 +564,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"-7"
+				"value"					"2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"2"
 			}
 		}
 	}
@@ -571,7 +588,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"10"
+				"value"					"-4"
 			}
 		}
 	}

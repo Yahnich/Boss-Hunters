@@ -23,7 +23,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"2"
+		"AbilityCooldown"				"2.5"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -42,24 +42,25 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"				"60 80 100 120 140 160 180"
+				"var_type"						"FIELD_FLOAT"
+				"damage"						"60 80 100 120 140 160 180"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"int_multiplier"		"160"
-				"LinkedSpecialBonus"	"special_bonus_unique_skywrath_arcane_2"
+				"var_type"						"FIELD_FLOAT"
+				"int_multiplier"				"160"
+				"LinkedSpecialBonus"			"special_bonus_unique_skywrath_arcane_2"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"500"
+				"var_type"						"FIELD_INTEGER"
+				"speed"							"500"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"vision"				"325"
+				"var_type"						"FIELD_INTEGER"
+				"vision"						"325"
 			}
 		}
 	}
@@ -81,7 +82,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"66"
+				"value"						"100"
 			}
 			"02"
 			{
@@ -108,11 +109,10 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"50"
+				"value"						"40"
 			}
 		}
 	}
-
 	"skywrath_concussive"
 	{
 		// General
@@ -156,39 +156,39 @@
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"damage"			"70 140 210 280 350 420 490"
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"70 140 210 280 350 420 490"
 			}
 			"02"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"250"
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"250"
 				"LinkedSpecialBonus"	"special_bonus_unique_skywrath_concussive_2"
 			}
 			"03"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"slow"				"30"
+				"var_type"				"FIELD_INTEGER"
+				"slow"					"30"
 			}
 			"04"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"slow_duration"		"4"
+				"var_type"				"FIELD_FLOAT"
+				"slow_duration"			"4"
 			}
 			"05"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"speed"				"800"
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"450"
 			}
 			"06"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"vision"			"300"
+				"var_type"				"FIELD_INTEGER"
+				"vision"				"300"
 			}
 			"07"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"search_range"		"1600"
+				"var_type"				"FIELD_INTEGER"
+				"search_range"			"1600"
 			}
 		}
 	}
@@ -254,7 +254,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"700"
-		"AbilityCastPoint"				"0.1"
+		"AbilityCastPoint"				"0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 		
 		// Time		
@@ -391,7 +391,6 @@
 		"precache"
 		{
 			"particle"                  "particles/units/heroes/hero_skywrath_mage/skywrath_mage_mystic_flare_ambient.vpcf"
-
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
 		}
 		
@@ -401,26 +400,26 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"600 1000 1400 1800 2200 2600"
-				"LinkedSpecialBonus"	"special_bonus_unique_skywrath_flare_1"
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"600 1000 1400 1800 2200 2600"
+				"LinkedSpecialBonus"			"special_bonus_unique_skywrath_flare_1"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"2.4"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"2.4"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"170"
-				"LinkedSpecialBonus"	"special_bonus_unique_skywrath_flare_2"
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"170"
+				"LinkedSpecialBonus"			"special_bonus_unique_skywrath_flare_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"tick_rate"				"0.1"
+				"var_type"						"FIELD_FLOAT"
+				"tick_rate"						"0.1"
 			}
 		}
 	}

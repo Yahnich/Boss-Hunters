@@ -85,9 +85,10 @@ LinkLuaModifier("modifier_huskar_raging_berserker_effect", "heroes/hero_huskar/h
 function modifier_huskar_raging_berserker_effect:OnCreated()
 	self.as = self:GetTalentSpecialValueFor("maximum_as")
 	self.mr = self:GetTalentSpecialValueFor("maximum_resistance")
-	self.regen = self:GetTalentSpecialValueFor("maximum_regen")
+	self.regen = self:GetParent():GetStrength() * self:GetTalentSpecialValueFor("maximum_regen") / 100
 	self.hpThreshold = self:GetTalentSpecialValueFor("hp_threshold_max")
 	self.hpPct = math.min(1, (100 - self:GetParent():GetHealthPercent()) / (100 - self.hpThreshold) )
+	self.rTalent1 = self:GetCaster():FindTalentValue("special_bonus_unique_huskar_sunder_life_1")
 	self:StartIntervalThink(0.3)
 	if IsServer() then
 		self.glowFX = ParticleManager:CreateParticle("particles/units/heroes/hero_huskar/huskar_berserkers_blood_glow.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
@@ -97,7 +98,7 @@ end
 function modifier_huskar_raging_berserker_effect:OnRefresh()
 	self.as = self:GetTalentSpecialValueFor("maximum_as")
 	self.mr = self:GetTalentSpecialValueFor("maximum_resistance")
-	self.regen = self:GetTalentSpecialValueFor("maximum_regen")
+	self.regen = self:GetParent():GetStrength() * self:GetTalentSpecialValueFor("maximum_regen") / 100
 	self.hpThreshold = self:GetTalentSpecialValueFor("hp_threshold_max")
 	self.hpPct = math.min(1, (100 - self:GetParent():GetHealthPercent()) / (100 - self.hpThreshold) )
 end
@@ -114,9 +115,16 @@ function modifier_huskar_raging_berserker_effect:OnIntervalThink()
 	if IsServer() then
 		ParticleManager:SetParticleControl(self.glowFX, 1, Vector(self.hpPct * 100, 0, 0) )
 	end
+	self.regen = self:GetParent():GetStrength() * self:GetTalentSpecialValueFor("maximum_regen") / 100
 	self.total_as = self.as * self.hpPct 
 	self.total_mr = self.mr * self.hpPct 
-	self.total_regen = self.regen * self.hpPct 
+	self.total_regen = self.regen * self.hpPct
+	
+	if self:GetCaster():HasModifier("modifier_huskar_sunder_life_talent") then
+		self.total_as = self.total_as * self.rTalent1
+		self.total_mr = math.min( self.total_mr * self.rTalent1, 99 )
+		self.total_regen = self.total_regen * self.rTalent1
+	end
 end
 
 function modifier_huskar_raging_berserker_effect:DeclareFunctions()
@@ -126,9 +134,11 @@ end
 function modifier_huskar_raging_berserker_effect:GetModifierAttackSpeedBonus()
 	return self.total_as
 end
+
 function modifier_huskar_raging_berserker_effect:GetModifierConstantHealthRegen()
 	return self.total_regen
 end
+
 function modifier_huskar_raging_berserker_effect:GetModifierMagicalResistanceBonus()
 	return self.total_mr
 end

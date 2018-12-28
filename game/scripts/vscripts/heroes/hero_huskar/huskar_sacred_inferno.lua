@@ -1,7 +1,19 @@
 huskar_sacred_inferno = class({})
 
+function huskar_sacred_inferno:GetCooldown( iLvl )
+	local cd = self.BaseClass.GetCooldown( self, iLvl )
+	if self:GetCaster():HasTalent("special_bonus_unique_huskar_ignited_spears_1") then
+		cd = 0
+	end
+	return cd
+end
+
 function huskar_sacred_inferno:GetIntrinsicModifierName()
 	return "modifier_huskar_sacred_inferno_passive"
+end
+
+function huskar_sacred_inferno:ShouldUseResources()
+	return true
 end
 
 function huskar_sacred_inferno:FireSacredInferno(target)
