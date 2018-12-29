@@ -813,6 +813,9 @@ function CDOTA_BaseNPC:SetThreat(val)
 	self.threat = math.min(math.max(0, (self.threat or 0) + newVal ), 10000)
 	if self:IsHero() and not self:IsFakeHero() then 
 		local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
+		local data = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex() ) or {}
+		data.threat = self.threat
+		CustomNetTables:SetTableValue("hero_properties", self:GetUnitName()..self:entindex(), data )
 		PlayerResource:SortThreat()
 		local event_data =
 		{

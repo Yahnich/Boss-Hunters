@@ -4,8 +4,8 @@ function tell_threat()
 	GameEvents.SendCustomGameEventToServer( "Tell_Threat", { pID: ID} );
 }
 
-GameEvents.Subscribe("dota_player_update_selected_unit", UpdatedSelection);
 GameEvents.Subscribe("dota_player_update_query_unit", UpdatedSelection);
+GameEvents.Subscribe("dota_player_update_selected_unit", UpdatedSelection);
 GameEvents.Subscribe("bh_update_attack_target", UpdatedAttack);
 
 
@@ -74,7 +74,6 @@ function UpdateCurrentTarget(entindex)
 			debuff.style.visibility = "collapse";
 			debuff.DeleteAsync(0)
 		}
-		
 		currPID = Particles.CreateParticle( "particles/ui_mouseactions/unit_highlight.vpcf", ParticleAttachment_t.PATTACH_POINT_FOLLOW, newestBoss );
 		Particles.SetParticleControl(currPID, 0, Entities.GetAbsOrigin(newestBoss) );
 		Particles.SetParticleControl(currPID, 1, [255,0,0] );
@@ -216,6 +215,7 @@ function UpdateHealthBar()
 		
 		var buffContainer = $("#buffBar");
 		for( var buff of buffContainer.Children() ){
+			
 			if( buff != null && Buffs.GetName(sUnit, buff.buffID )  == "" && Buffs.GetParent( sUnit, buff.buffID ) != sUnit){
 				buff.style.visibility = "collapse";
 				buff.DeleteAsync(0)
@@ -300,9 +300,9 @@ function CreateMainBuff(heroID, buffID, heroName)
 		buffHolder.SetPanelEvent("onmouseout", buffHolder.onMouseOut );
 		buffHolder.SetPanelEvent("onactivate", buffHolder.onActivate );
 	} else {
-		buffBorder = buffHolder.FindChild( "BuffBorder"+Buffs.GetName(heroID, buffID )+"Main" )
-		buff = buffHolder.FindChild( "Buff"+Buffs.GetName(heroID, buffID )+"Main" )
-		buffLabel =  buffHolder.FindChild( "BuffLabel"+Buffs.GetName(heroID, buffID )+"Main");
+		buff = buffHolder.GetChild( 0 )
+		buffBorder = buffHolder.GetChild( 1 )
+		buffLabel =  buff.FindChild( "BuffLabel"+Buffs.GetName(heroID, buffID )+"Main");
 	}
 	var completion = Math.max( 0, 360 * (Buffs.GetRemainingTime(heroID, buffID ) / Buffs.GetDuration(heroID, buffID )) )
 	if(Buffs.GetDuration( heroID, buffID ) == -1 || Buffs.GetRemainingTime(heroID, buffID ) < 0){ completion = 360; }

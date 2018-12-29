@@ -986,9 +986,6 @@ function CDOTA_PlayerResource:SortThreat()
 	for _,unit in pairs ( HeroList:GetAllHeroes()) do
 		if not unit.threat then unit.threat = 0 end
 		if not unit:IsFakeHero() then
-			local data = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex() ) or {}
-			data.threat = unit.threat
-			CustomNetTables:SetTableValue("hero_properties", unit:GetUnitName()..unit:entindex(), data )
 			if unit.threat > currThreat then
 				currThreat = unit.threat
 				aggrounit = unit

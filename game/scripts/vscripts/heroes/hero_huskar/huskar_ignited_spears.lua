@@ -9,7 +9,7 @@ function huskar_ignited_spears:IsHiddenWhenStolen()
 end
 
 function huskar_ignited_spears:OnAbilityPhaseStart()
-	self:SetOverrideCastPoint( self:GetCaster():GetSecondsPerAttack() )
+	self:SetOverrideCastPoint( self:GetCaster():GetCastPoint(true) )
 	return true
 end
 
@@ -30,7 +30,7 @@ function huskar_ignited_spears:LaunchSpear(target, bAttack)
 	local caster = self:GetCaster()
 	caster:SetProjectileModel("particles/empty_projectile.vcpf")
 	EmitSoundOn("Hero_Huskar.Burning_Spear.Cast", caster)
-	local cost = self:GetTalentSpecialValueFor("health_cost") * ( 1 + caster:HasTalent("special_bonus_unique_huskar_ignited_spears_1")/100 + caster:HasTalent("special_bonus_unique_huskar_ignited_spears_2")/100 )
+	local cost = self:GetTalentSpecialValueFor("health_cost") * ( 1 + caster:FindTalentValue("special_bonus_unique_huskar_ignited_spears_1", "cost")/100 + caster:FindTalentValue("special_bonus_unique_huskar_ignited_spears_2", "cost")/100 )
 	if cost > 0 then
 		local newHP = math.max( caster:GetHealth() - cost, 1 )
 		caster:ModifyHealth( newHP, self, false, 0)

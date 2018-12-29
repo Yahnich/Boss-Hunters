@@ -88,7 +88,6 @@ function modifier_huskar_raging_berserker_effect:OnCreated()
 	self.regen = self:GetParent():GetStrength() * self:GetTalentSpecialValueFor("maximum_regen") / 100
 	self.hpThreshold = self:GetTalentSpecialValueFor("hp_threshold_max")
 	self.hpPct = math.min(1, (100 - self:GetParent():GetHealthPercent()) / (100 - self.hpThreshold) )
-	self.rTalent1 = self:GetCaster():FindTalentValue("special_bonus_unique_huskar_sunder_life_1")
 	self:StartIntervalThink(0.3)
 	if IsServer() then
 		self.glowFX = ParticleManager:CreateParticle("particles/units/heroes/hero_huskar/huskar_berserkers_blood_glow.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
@@ -120,6 +119,7 @@ function modifier_huskar_raging_berserker_effect:OnIntervalThink()
 	self.total_mr = self.mr * self.hpPct 
 	self.total_regen = self.regen * self.hpPct
 	
+	self.rTalent1 = self:GetCaster():FindTalentValue("special_bonus_unique_huskar_sunder_life_1")
 	if self:GetCaster():HasModifier("modifier_huskar_sunder_life_talent") then
 		self.total_as = self.total_as * self.rTalent1
 		self.total_mr = math.min( self.total_mr * self.rTalent1, 99 )

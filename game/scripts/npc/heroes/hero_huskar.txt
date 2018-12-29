@@ -387,7 +387,6 @@
 				"var_type"						"FIELD_INTEGER"
 				"maximum_regen"					"100"
 				"LinkedSpecialBonus"			"special_bonus_unique_huskar_ignited_spears_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"04"
 			{
