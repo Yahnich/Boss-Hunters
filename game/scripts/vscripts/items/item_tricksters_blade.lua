@@ -23,9 +23,9 @@ function item_tricksters_blade:OnSpellStart()
 		end
 	end
 	self.illusionTable = {}
-	local callback = (function(illusion)
-		illusion:SetThreat( caster:GetThreat() )
-		caster:SetThreat( 0 )
+	local callback = (function(illusion, parent)
+		illusion:SetThreat( parent:GetThreat() )
+		parent:SetThreat( 0 )
 		table.insert( self.illusionTable, illusion )
 	end)
 	caster:ConjureImage( ogPos, self:GetSpecialValueFor("duration"), -(100 - self:GetSpecialValueFor("illu_outgoing_damage")), self:GetSpecialValueFor("illu_incoming_damage") - 100, nil, self, true, caster, callback )

@@ -117,20 +117,12 @@ if IsServer() then
 					ParticleManager:SetParticleControlEnt(nfx, 1, self:GetParent(), PATTACH_OVERHEAD_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
 
 		self:AttachEffect(nfx)
-
+		self:OnIntervalThink()
 		self:StartIntervalThink(0.5)
 	end
 	
 	function modifier_naga_siren_song_of_the_siren_song_sleep:OnIntervalThink()
-		local direction = CalculateDirection(self:GetCaster(), self:GetParent())
-		local oldPos = self:GetParent():GetAbsOrigin()
-		local newPos = oldPos + direction * self:GetParent():GetIdealSpeed() * 0.5
-		if not GridNav:CanFindPath(oldPos, newPos) then
-			while not GridNav:CanFindPath(oldPos, newPos) do
-				newPos = self:GetParent():GetAbsOrigin() + RandomVector(1):Normalized() * self:GetParent():GetIdealSpeed() * 0.5
-			end
-		end
-		self:GetParent():MoveToPosition(newPos)
+		self:GetParent():MoveToNPC( self:GetCaster() )
 	end
 end
 
@@ -142,7 +134,15 @@ function modifier_naga_siren_song_of_the_siren_song_sleep:CheckState()
 	if not self:GetCaster():HasTalent("special_bonus_unique_naga_siren_song_of_the_siren_1") then
 		state[MODIFIER_STATE_INVULNERABLE] = true
 	end
-	return statekil
+	return state
+end
+
+function modifier_naga_siren_song_of_the_siren_song_sleep:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+end
+
+function modifier_naga_siren_song_of_the_siren_song_sleep:GetModifierMoveSpeedBonus_Percentage()
+	return -999
 end
 
 function modifier_naga_siren_song_of_the_siren_song_sleep:GetEffectName()

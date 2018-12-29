@@ -147,7 +147,7 @@
 #base "items/item_ward_of_life.txt"
 
 #base "items/item_spellslayers_dirk.txt"
-#base "items/item_borealis cloak.txt"
+#base "items/item_borealis_cloak.txt"
 #base "items/item_armor_of_invasion.txt"
 #base "items/item_trinity.txt"
 #base "items/item_death_sentence.txt"

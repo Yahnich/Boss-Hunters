@@ -377,8 +377,10 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
     local parent = EntIndexToHScript( parent_index )
     local caster = EntIndexToHScript( caster_index )
 	local ability = EntIndexToHScript( ability_index )
-	local name = filterTable["name_const"]	
-	if parent and caster and duration ~= -1 then
+	local name = filterTable["name_const"]
+	print(name, duration)
+	if duration == -1 then return true end
+	if parent and caster then
 		local params = {caster = caster, target = parent, duration = duration, ability = ability, modifier_name = name}
 		filterTable["duration"] = filterTable["duration"] * parent:GetStatusAmplification( params )
 		if parent:GetTeam() ~= caster:GetTeam() then
@@ -386,8 +388,8 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 		end
 	end
 	if filterTable["duration"] == 0 then return false end
-	if caster:GetTeam() == DOTA_TEAM_GOODGUYS and duration ~= -1 then
-		caster:ModifyThreat( filterTable["duration"] )
+	if caster:GetTeam() == DOTA_TEAM_GOODGUYS then
+		caster:ModifyThreat( filterTable["duration"]^0.75 )
 	end
 	return true
 end

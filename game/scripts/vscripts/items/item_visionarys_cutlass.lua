@@ -21,7 +21,7 @@ function modifier_item_visionarys_cutlass:DeclareFunctions()
 end
 
 function modifier_item_visionarys_cutlass:GetAccuracy(bInfo)
-	if not bInfo then
+	if bInfo ~= true then
 		self.miss = self:RollPRNG(self.chance)
 		if self.miss then
 			return 100
@@ -42,6 +42,6 @@ function modifier_item_visionarys_cutlass:GetModifierPreAttack_BonusDamage()
 	return self.bonus_damage
 end
 
-function modifier_item_antique_battlestaff:GetModifierAttackSpeedBonus()
+function modifier_item_visionarys_cutlass:GetModifierAttackSpeedBonus()
 	return self.bonus_attack_speed
 end

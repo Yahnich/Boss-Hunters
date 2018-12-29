@@ -18,7 +18,7 @@ function modifier_item_lance_of_longinus:DeclareFunctions()
 end
 
 function modifier_item_lance_of_longinus:GetAccuracy(bInfo)
-	if not bInfo then
+	if bInfo ~= true then
 		self.miss = self:RollPRNG(self.chance)
 		if self.miss then
 			return 100

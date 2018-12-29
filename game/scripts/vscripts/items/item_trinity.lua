@@ -6,6 +6,10 @@ function item_trinity:GetIntrinsicModifierName()
 	return "modifier_item_trinity_handle"
 end
 
+function item_trinity:GetAOERadius()
+	return self:GetSpecialValueFor("debuff_radius")
+end
+
 function item_trinity:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
@@ -16,7 +20,7 @@ function item_trinity:OnSpellStart()
 	ParticleManager:FireParticle("particles/items2_fx/veil_of_discord.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = point, [1] = Vector(radius,1,1)})
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( point, radius ) ) do
 		ParticleManager:FireParticle("particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", PATTACH_ABSORIGIN, enemy, {[1] = enemy:GetAbsOrigin(), [0] = enemy:GetAbsOrigin() + Vector(0,0,1600)})
-		enemy:AddNewModifier(caster, self, "modifier_trinity_debuff", {duration = duration})
+		enemy:AddNewModifier(caster, self, "modifier_item_trinity_debuff", {duration = duration})
 		enemy:Paralyze(self, caster, self:GetSpecialValueFor("paralyze_duration"))	
 	end
 end
@@ -31,6 +35,8 @@ function modifier_item_trinity_handle:OnCreated()
 	self.int = self:GetAbility():GetSpecialValueFor("bonus_intellect")
 	self.manacost = self:GetSpecialValueFor("mana_cost_reduction")
 	self.armor = self:GetSpecialValueFor("bonus_armor")
+	
+	self.duration = self:GetSpecialValueFor("debuff_duration")
 end
 
 function modifier_item_trinity_handle:DeclareFunctions()

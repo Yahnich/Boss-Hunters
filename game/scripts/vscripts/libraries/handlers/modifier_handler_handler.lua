@@ -46,7 +46,7 @@ function modifier_handler_handler:OnIntervalThink()
 	self.ms:SetStackCount(0)
 	parent:CalculateStatBonus()
 	-- accuracy ------------------------------------------
-	local accuracyStacks = 0
+	local accuracyStacks = 1
 	-- attack speed --------------------------------------
 	local returnAttackSpeed = 0
 	local attackSpeedPct = 1

@@ -43,9 +43,16 @@ function modifier_item_death_sentence_passive:GetModifierCastRangeBonus()
 end
 
 function modifier_item_death_sentence_passive:GetAccuracy(params)
-	acc = self.accuracy
-	if params.target == self:GetAbility().currTarget then
-		local acc = acc + self.target_acc
+	if params == true then
+		acc = self.accuracy
+		if self:GetAbility().currTarget then
+			local acc = acc + self.target_acc
+		end
+	else
+		acc = self.accuracy
+		if params.target == self:GetAbility().currTarget then
+			local acc = acc + self.target_acc
+		end
 	end
 	return acc
 end

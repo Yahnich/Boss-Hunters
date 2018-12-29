@@ -46,6 +46,7 @@ function pudge_dismember_lua:OnChannelThink(flInterval)
 	local caster = self:GetCaster()
 	local endPoint = caster:GetAbsOrigin() + caster:GetForwardVector() * self:GetTrueCastRange()
 	local speed = self:GetTalentSpecialValueFor("speed")*flInterval
+	print("?")
 	self.counter = self.counter + flInterval
 	local enemies = caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), endPoint, self:GetTalentSpecialValueFor("width"), {})
 	for _,enemy in pairs(enemies) do
@@ -67,7 +68,7 @@ function pudge_dismember_lua:OnChannelThink(flInterval)
 		end
 		for _,enemy in pairs(enemies) do
 			if not enemy:HasModifier("modifier_pudge_dismember_lua") then
-				enemy:AddNewModifier(caster, self, "modifier_pudge_dismember_lua", {})
+				enemy:AddNewModifier(caster, self, "modifier_pudge_dismember_lua", {duration = self:GetTalentSpecialValueFor("duration")})
 			end
 			local damage = self:GetTalentSpecialValueFor("damage") + self:GetTalentSpecialValueFor("str_damage")/100 * caster:GetStrength()
 			damage = damage * 0.25
@@ -79,18 +80,6 @@ function pudge_dismember_lua:OnChannelThink(flInterval)
 	end
 end
 
-function pudge_dismember_lua:OnChannelFinish( bInterrupted )
-	self:GetCaster():RemoveModifierByName("modifier_pudge_dismember_lua_armor")
-
-	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {flag=DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
-	for _,enemy in pairs(enemies) do
-		if enemy:HasModifier("modifier_pudge_dismember_lua") then
-			enemy:RemoveModifierByName("modifier_pudge_dismember_lua")
-			FindClearSpaceForUnit(enemy, enemy:GetAbsOrigin(), true)
-		end
-	end
-end
-
 modifier_pudge_dismember_lua = class({})
 
 function modifier_pudge_dismember_lua:OnCreated(table)
@@ -99,6 +88,13 @@ function modifier_pudge_dismember_lua:OnCreated(table)
 		ParticleManager:SetParticleAlwaysSimulate(self.nfx)
 		ParticleManager:SetParticleControlEnt(self.nfx, 3, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true)
 		ParticleManager:SetParticleControlEnt(self.nfx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
+		self:StartIntervalThink( 0.33 )
+	end
+end
+
+function modifier_pudge_dismember_lua:OnIntervalThink()
+	if not self:GetCaster():IsChanneling() then
+		self:Destroy()
 	end
 end
 
@@ -142,6 +138,20 @@ function modifier_pudge_dismember_lua:GetEffectName()
 end
 
 modifier_pudge_dismember_lua_armor = class({})
+
+
+function modifier_pudge_dismember_lua:OnCreated(table)
+	if IsServer() then
+		self:StartIntervalThink( 0.33 )
+	end
+end
+
+function modifier_pudge_dismember_lua:OnIntervalThink()
+	if not self:GetCaster():IsChanneling() then
+		self:Destroy()
+	end
+end
+
 function modifier_pudge_dismember_lua_armor:IsDebuff()
 	return false
 end

@@ -33,7 +33,7 @@ function skywrath_arcane:OnProjectileHit(hTarget, vLocation)
     if hTarget then
         EmitSoundOn("Hero_SkywrathMage.ArcaneBolt.Impact", hTarget)
         local baseDamage = self:GetTalentSpecialValueFor("damage")
-		local scaleDmg = self:GetTalentSpecialValueFor("int_multiplier")/100 * caster:GetIntellect()
+		local scaleDmg =  caster:GetIntellect() * self:GetTalentSpecialValueFor("int_multiplier")/100
         self:DealDamage(caster, hTarget, baseDamage)
 		self:DealDamage(caster, hTarget, scaleDmg, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 		if caster:HasTalent("special_bonus_unique_skywrath_arcane_1") then

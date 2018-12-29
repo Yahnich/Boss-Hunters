@@ -26,7 +26,7 @@ function modifier_item_antique_battlestaff:DeclareFunctions()
 end
 
 function modifier_item_antique_battlestaff:GetAccuracy(bInfo)
-	if not bInfo then
+	if bInfo ~= true then
 		self.miss = self:RollPRNG(self.chance)
 		if self.miss then
 			return 100

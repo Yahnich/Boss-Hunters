@@ -691,10 +691,9 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 				end
 			end
 		end
-
+	
 		-- Set the unit as an illusion
 		-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
-		illusion:AddNewModifier(owner, ability, "modifier_kill", { duration = duration })
 		illusion:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
 		if specIllusionModifier and specIllusionModifier ~= "" then
 			illusion:AddNewModifier(owner, ability, specIllusionModifier, { duration = duration })
@@ -707,8 +706,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 				newWearable:SetOriginalModel(wearable:GetModelName())
 				newWearable:SetModel(wearable:GetModelName())
 				newWearable:AddNewModifier(nil, nil, "modifier_wearable", {})
-				newWearable:AddNewModifier(owner, ability, "modifier_kill", { duration = duration })
-				newWearable:AddNewModifier(owner, ability, specIllusionModifier or "modifier_illusion", { duration = duration })
+				newWearable:AddNewModifier(owner, ability, specIllusionModifier or "modifier_illusion", { duration = -1 })
 				newWearable:MakeIllusion()
 				newWearable:SetParent(illusion, nil)
 				newWearable:FollowEntity(illusion, true)
@@ -837,6 +835,7 @@ function CDOTA_BaseNPC:ModifyThreat(val)
 			newVal = newVal + ( math.abs(val) * ( modifier:Bonus_ThreatGain()/100 ) )
 		end
 	end
+	self.threat = self.threat or 0
 	local reduction = 0.5 ^ math.floor( self.threat / 100 )
 	-- Every 100 threat, threat gain effectiveness is reduced
 	local threatgainCap = math.max( 100, self.threat * 4 )

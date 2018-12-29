@@ -19,7 +19,7 @@ LinkLuaModifier( "modifier_boss_apotheosis_the_end", "bosses/boss_apotheosis/bos
 
 if IsServer() then
 	function modifier_boss_apotheosis_the_end:OnCreated()
-		self:SetDuration( self:GetSpecialValueFor("death_timer") )
+		self:SetDuration( self:GetSpecialValueFor("death_timer"), true )
 		self:StartIntervalThink( self:GetSpecialValueFor("death_timer") - 0.1 )
 	end
 	

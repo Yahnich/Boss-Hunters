@@ -84,11 +84,11 @@ function modifier_oracle_fortunes_channel:OnCreated(table)
 
 		self.target = self:GetAbility():GetCursorTarget()
 
-		self.damageIncrement = self:GetTalentSpecialValueFor("damage") * self:GetDuration() * 0.1
+		self.damageIncrement = ( self:GetTalentSpecialValueFor("damage") / self:GetDuration() ) * 0.1
 		self.damage = 0
-
-		self.rootIncrement = self:GetTalentSpecialValueFor("max_duration") * self:GetDuration() * 0.1
+		
 		self.root = self:GetTalentSpecialValueFor("min_duration")
+		self.rootIncrement = ( ( self:GetTalentSpecialValueFor("max_duration") - self.root ) / self:GetDuration() ) * 0.1
 
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_oracle/oracle_fortune_channel.vpcf", PATTACH_POINT_FOLLOW, parent)
 					ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_POINT_FOLLOW, "attach_attack1", parent:GetAbsOrigin(), true)
@@ -104,11 +104,12 @@ function modifier_oracle_fortunes_channel:OnRefresh(table)
 	if IsServer() then
 		self.target = self:GetAbility():GetCursorTarget()
 
-		self.damageIncrement = self:GetTalentSpecialValueFor("damage") * self:GetDuration() * 0.1
+		self.damageIncrement = ( self:GetTalentSpecialValueFor("damage") / self:GetDuration() ) * 0.1
 		self.damage = 0
-
-		self.rootIncrement = self:GetTalentSpecialValueFor("max_duration") * self:GetDuration() * 0.1
+		
 		self.root = self:GetTalentSpecialValueFor("min_duration")
+		self.rootIncrement = ( ( self:GetTalentSpecialValueFor("max_duration") - self.root ) / self:GetDuration() ) * 0.1
+		
 
 		self:StartIntervalThink(0.1)
 	end

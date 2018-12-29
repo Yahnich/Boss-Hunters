@@ -11,7 +11,7 @@ function modifier_armor_of_invasion_passive:OnCreated()
 	self.armor = self:GetSpecialValueFor("bonus_armor")
 	self.attackspeed = self:GetSpecialValueFor("bonus_attack_speed")
 	self.damage = self:GetSpecialValueFor("bonus_damage")
-	self.radius = self:GetSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("aura_radius")
 end
 
 function modifier_armor_of_invasion_passive:DeclareFunctions()

@@ -32,9 +32,10 @@ function naga_siren_liquid_form:OnSpellStart()
 			illusion:ForceKill( false )
 		end
 	end
+	target.liquidFormIllusions = {}
 	Timers:CreateTimer(self:GetTalentSpecialValueFor("duration"), function()
 		for _, illusion in ipairs( target.liquidFormIllusions ) do
-			if illusion:IsAlive() then
+			if not illusion:IsNull() and illusion:IsAlive() then
 				return 1
 			end
 			target:RemoveModifierByName("modifier_naga_siren_liquid_form")
@@ -46,8 +47,8 @@ function naga_siren_liquid_form:OnSpellStart()
 							table.insert( parent.liquidFormIllusions, illusion )
 						end)
 			
-	for i = i, self:GetTalentSpecialValueFor("max_illusions") do
-		target:ConjureImage( params.attacker:GetAbsOrigin() + RandomVector( 150 ), illuDur, out - 100, incomingDamage - 100, nil, self:GetAbility(), true, caster, callback )
+	for i = 1, self:GetTalentSpecialValueFor("max_illusions") do
+		target:ConjureImage( target:GetAbsOrigin() + RandomVector( 150 ), illuDur, out - 100, incomingDamage - 100, nil, self, true, caster, callback )
 	end
 end
 

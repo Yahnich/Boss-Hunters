@@ -31,7 +31,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"7090"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE |DOTA_ABILITY_BEHAVIOR_AOE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_trinity"
 		"AbilityTextureName"			"bloodthorn"

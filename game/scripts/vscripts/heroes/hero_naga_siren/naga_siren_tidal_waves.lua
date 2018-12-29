@@ -27,11 +27,10 @@ function naga_siren_tidal_waves:OnSpellStart()
 		self:EndCooldown()
 	end
 	
-	if caster.liquidIllusions then
-		for _, illusion in ipairs( caster.liquidIllusions ) do
-			if not illusion:IsNull() and illusion:IsAlive() then
-				self:FireTidal( illusion )
-			end
+	local illusions = caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), -1 )
+	for _, illusion in ipairs( illusions ) do
+		if illusion:IsIllusion() then
+			self:FireTidal( illusion )
 		end
 	end
 	self:FireTidal( caster )

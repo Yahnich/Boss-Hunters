@@ -75,7 +75,7 @@ function modifier_naga_siren_ebb_and_flow_buff:OnAttackLanded(params)
 			end
 			local wave = caster:FindAbilityByName("naga_siren_tidal_waves")
 			if wave then
-				wave:FireTidal( caster, self.value )
+				wave:FireTidal( self:GetParent(), self.value )
 			end
 		end
 	end

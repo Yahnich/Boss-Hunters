@@ -1,53 +1,57 @@
-item_mirrors_edge = class({})
+item_spellslayers_dirk = class({})
 
-function item_mirrors_edge:OnSpellStart()
+function item_spellslayers_dirk:OnSpellStart()
 	local caster = self:GetCaster()
-	local targetPos = self:GetCursorPosition()
-	local ogPos = caster:GetAbsOrigin()
+	local target = self:GetCursorTarget()
 	
-	local maxIllus = self:GetSpecialValueFor("illusion_count")
+	caster:Dispel(caster, false)
+	target:Dispel(caster, false)
 	
-	for _, illusion in ipairs( self.illusionTable or {} ) do
-		if not illusion:IsNull() and illusion:IsAlive() then
-			illusion:ForceKill( true )
-		end
+	local healdamage = self:GetSpecialValueFor("active_healdamage")
+	caster:HealEvent(healdamage, self, caster )
+	self:DealDamage( caster, target, healdamage )
+	
+	caster:EmitSound("DOTA_Item.DiffusalBlade.Activate")
+	target:EmitSound("DOTA_Item.DiffusalBlade.Target")
+	
+	ParticleManager:FireParticle("particles/generic_gameplay/generic_purge.vpcf", PATTACH_POINT_FOLLOW, caster)
+	ParticleManager:FireParticle("particles/generic_gameplay/generic_purge.vpcf", PATTACH_POINT_FOLLOW, target)
+end
+
+function item_spellslayers_dirk:GetIntrinsicModifierName()
+	return "modifier_item_spellslayers_dirk"
+end
+
+modifier_item_spellslayers_dirk = class(itemBaseClass)
+LinkLuaModifier("modifier_item_spellslayers_dirk", "items/item_spellslayers_dirk", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_item_spellslayers_dirk:OnCreated()
+	self.agi = self:GetSpecialValueFor("bonus_agility")
+	self.int = self:GetSpecialValueFor("bonus_intellect")
+	if IsServer() then
+		self.onhit = TernaryOperator( self:GetSpecialValueFor("onhit_damage_illu"), self:GetParent():IsIllusion(), self:GetSpecialValueFor("onhit_damage") )
 	end
-	self.illusionTable = {}
-	
-	local callback = (function(illusion)
-		illusion:SetThreat( caster:GetThreat() )
-		caster:SetThreat( 0 )
-		table.insert( self.illusionTable, illusion )
-	end)
-	
-	for i = 1, maxIllus do
-		local illusion = caster:ConjureImage( ogPos + RandomVector(150), self:GetSpecialValueFor("duration"), -(100 - self:GetSpecialValueFor("illu_outgoing_damage")), self:GetSpecialValueFor("illu_incoming_damage") - 100, nil, self, true, caster, callback )
-		illusion:SetThreat( caster:GetThreat() )
-	end
 end
 
-function item_mirrors_edge:GetIntrinsicModifierName()
-	return "modifier_item_mirrors_edge"
-end
-
-modifier_item_mirrors_edge = class(itemBaseClass)
-LinkLuaModifier("modifier_item_mirrors_edge", "items/item_mirrors_edge", LUA_MODIFIER_MOTION_NONE)
-
-function modifier_item_mirrors_edge:OnCreated()
-	self.agility = self:GetSpecialValueFor("bonus_agility")
-	self.attackSpeed = self:GetSpecialValueFor("bonus_attackspeed")
-end
-
-function modifier_item_mirrors_edge:DeclareFunctions()
+function modifier_item_spellslayers_dirk:DeclareFunctions()
 	return {
 			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+			MODIFIER_EVENT_ON_ATTACK_LANDED
 			}
 end
 
-function modifier_item_mirrors_edge:GetModifierAttackSpeedBonus()
-	return self.attackSpeed
+function modifier_item_spellslayers_dirk:GetModifierAttackSpeedBonus()
+	return self.agi
 end
 
-function modifier_item_mirrors_edge:GetModifierBonusStats_Agility()
-	return self.agility
+function modifier_item_spellslayers_dirk:GetModifierBonusStats_Intellect()
+	return self.int
+end
+
+function modifier_item_spellslayers_dirk:OnAttackLanded(params)
+	if params.attacker == self:GetParent() then
+		self:GetAbility():DealDamage( params.attacker, params.target, self.onhit )
+		ParticleManager:FireParticle("particles/generic_gameplay/generic_manaburn.vpcf", PATTACH_POINT_FOLLOW, params.target )
+	end
 end
