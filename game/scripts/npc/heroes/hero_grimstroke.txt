@@ -1,0 +1,556 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Stroke of Fate
+	//=================================================================================================================
+	"grimstroke_stroke"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_grimstroke/grimstroke_stroke"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityTextureName"			"grimstroke_dark_artistry"
+		"MaxLevel"						"7"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.8"
+		"AbilityCastRange"				"1400"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"15 13 11 9 7 5 3"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 110 120 130 140 150 160"
+		
+		"precache"
+		{
+			"particle"  				"particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_proj.vpcf"
+			"particle"  				"particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_dmg.vpcf"
+			"particle"  				"particles/units/heroes/hero_grimstroke/grimstroke_cast2_ground.vpcf"
+			"particle"  				"particles/units/heroes/hero_grimstroke/grimstroke_blood_stroke.vpcf"
+			"particle"  				"particles/econ/items/spectre/spectre_transversant_soul/spectre_ti7_crimson_spectral_dagger.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_grimstroke.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"120 180 240 300 360 420 480"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage_per_target"	"16 24 32 40 48 56 64"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"movement_slow_pct"			"-30 -40 -50 -60 -70 -80 -90"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"slow_duration"				"1.5"
+			}			
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_grimstroke_stroke_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_grimstroke_stroke_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Phantom's Embrace
+	//=================================================================================================================
+	"grimstroke_phantom"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_grimstroke/grimstroke_phantom"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityTextureName"			"grimstroke_ink_creature"
+		"MaxLevel"						"7"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+		"AbilityCastRange"				"900"
+		"AbilityCastAnimation"			"ACT_DOTA_GS_INK_CREATURE"
+		"AbilityCastGestureSlot"		"DEFAULT"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"40 36 32 28 24 20 16"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"110 120 130 140 150 160 170"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_grimstroke/grimstroke_phantom_ambient.vpcf"
+			"particle"  				"particles/units/heroes/hero_grimstroke/grimstroke_phantom_marker.vpcf"
+			"particle"  				"particles/units/heroes/hero_grimstroke/grimstroke_phantom_return.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_grimstroke.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"attack_rate"				"0.5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_per_second"			"6 14 22 30 38 46 54"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_burst"				"120 200 280 360 440 520 600"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"2.5"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_grimstroke_phantom_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_grimstroke_phantom_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ink Swell
+	//=================================================================================================================
+	"grimstroke_ink"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_grimstroke/grimstroke_ink"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityTextureName"			"grimstroke_spirit_walk"
+		"MaxLevel"						"7"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.15"
+		"AbilityCastRange"				"400 500 600 700 800 900 1000"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"45 40 35 30 25 20 15"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"90 100 110 120 130 140 150"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_grimstroke/grimstroke_sfm_ink_swell_reveal.vpcf"
+			"particle"					"particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_buff.vpcf"
+			"particle"					"particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_aoe.vpcf"
+			"particle"					"particles/status_fx/status_effect_grimstroke_ink_swell.vpcf"
+			"particle"					"particles/units/heroes/hero_grimstroke/grimstroke_cast_ink_swell.vpcf"
+			"particle"					"particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_tick_damage.vpcf"
+			
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_grimstroke.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range"			"400 500 600 700 800 900 1000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"100 200 300 400 500 600 700"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_per_second"		"25 35 45 55 65 75 85"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms"				"18"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"400"
+				"LinkedSpecialBonus"	"special_bonus_unique_grimstroke_1"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"2"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"tick_rate"				"0.2"
+			}	
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_grimstroke_ink_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_grimstroke_ink_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// grimstroke_blood
+	//=================================================================================================================
+	"grimstroke_blood"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_grimstroke/grimstroke_blood"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_NONE"
+		//"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"custom/bristleback_viscous_nasal_goo_crimson"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+		"HasScepterUpgrade"				"1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		"precache"
+		{	
+			"particle"					"particles/units/heroes/hero_grimstroke/grimstroke_blood_passive.vpcf"
+			"particle"					"particles/units/heroes/hero_grimstroke/grimstroke_base_attack.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_grimstroke.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_creep"			"2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1200"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"search_radius"			"200"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"10"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Soulbind
+	//=================================================================================================================
+	"grimstroke_soul"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_grimstroke/grimstroke_soul"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		//"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityTextureName"			"grimstroke_soul_chain"
+		"MaxLevel"						"6"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.15"
+		"AbilityCastRange"				"700 800 900 1000 1100 1200"
+		"AbilityCastAnimation"			"ACT_DOTA_GS_SOUL_CHAIN"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"150 125 100 75 50 25"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"150 200 250 300 350 400"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_grimstroke/grimstroke_soulchain_marker.vpcf"
+			"particle"					"particles/units/heroes/hero_grimstroke/grimstroke_soulchain_debuff.vpcf"
+			"particle"					"particles/units/heroes/hero_grimstroke/grimstroke_soulchain.vpcf"
+			"particle"					"particles/units/heroes/hero_grimstroke/grimstroke_soulchain_proc.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_grimstroke.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{	
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3 4 5 6 7 8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"550"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"break_distance"		"700"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_ms"				"15 30 45"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range"			"700 800 900 1000 1100 1200"
+			}		
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_grimstroke_soul_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_grimstroke_soul_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+}

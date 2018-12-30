@@ -1,0 +1,134 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf16:version{261b3cba-02c7-424f-854b-c432c6f018d1} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nMaxParticles = 1
+	m_nConstantSequenceNumber = 6
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = 1
+		},
+		{
+			_class = "C_OP_MovementPlaceOnGround"
+			m_flOffset = 150.0
+			m_CollisionGroupName = "DEBRIS"
+			m_nRefCP1 = 0
+			m_nRefCP2 = 0
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 1
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_grimstroke/grimstroke_blood_passive_a.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_grimstroke/grimstroke_blood_passive_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_grimstroke/grimstroke_blood_passive_c.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_grimstroke/grimstroke_blood_passive_d.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_grimstroke/grimstroke_blood_passive_e.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_grimstroke/grimstroke_blood_passive_f.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_grimstroke/grimstroke_blood_passive_g.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_grimstroke/grimstroke_blood_passive_h.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_grimstroke/grimstroke_blood_passive_i.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_grimstroke/grimstroke_blood_passive_j.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_grimstroke/grimstroke_blood_passive_k.vpcf"
+			m_bEndCap = true
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 4
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 5
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 9
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_nBehaviorVersion = 8
+}
