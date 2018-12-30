@@ -175,6 +175,7 @@
 #base "heroes/hero_oracle.txt"
 #base "heroes/hero_rubick.txt"
 #base "heroes/hero_storm_spirit.txt"
+#base "heroes/hero_grimstroke.txt"
 
 "DOTAAbilities"
 {
