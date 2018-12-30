@@ -36,7 +36,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_essence_piercer"
-		"AbilityTextureName"			"orchid"
+		"AbilityTextureName"			"item_orchid"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"

@@ -37,7 +37,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_presence_booster"
-		"AbilityTextureName"			"abyssal_blade"
+		"AbilityTextureName"			"item_abyssal_blade"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"

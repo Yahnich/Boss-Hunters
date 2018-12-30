@@ -31,10 +31,6 @@ modifier_bh_jinada_handler = class({})
 
 function modifier_bh_jinada_handler:IsHidden() return true end
 
-function modifier_bh_jinada_handler:OnRefresh()
-	self:OnCreated()
-end
-
 function modifier_bh_jinada_handler:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
 end

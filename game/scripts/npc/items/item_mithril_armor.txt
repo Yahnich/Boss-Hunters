@@ -16,7 +16,7 @@
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"480"
+		"ItemCost"						"560"
 		"ItemShopTags"					"armor"
 		"ItemQuality"					"component"
 		"ItemAliases"					"chainmail;mithril armor"
@@ -29,7 +29,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"3"
+				"bonus_armor"			"5"
 			}
 		}
 	}

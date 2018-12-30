@@ -36,7 +36,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_death_sentence"
-		"AbilityTextureName"			"greater_crit"
+		"AbilityTextureName"			"item_greater_crit"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"

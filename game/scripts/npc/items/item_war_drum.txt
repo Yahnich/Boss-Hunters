@@ -37,7 +37,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_war_drum"
-		"AbilityTextureName"			"ancient_janggo"
+		"AbilityTextureName"			"item_ancient_janggo"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"

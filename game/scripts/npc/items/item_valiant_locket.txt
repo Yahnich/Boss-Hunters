@@ -39,7 +39,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_valiant_locket"
-		"AbilityTextureName"			"medallion_of_courage"
+		"AbilityTextureName"			"item_medallion_of_courage"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"

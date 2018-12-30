@@ -37,7 +37,7 @@
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ghost_saber"
 		"AbilitySharedCooldown"			"ghost"
-		"AbilityTextureName"			"ethereal_blade"
+		"AbilityTextureName"			"item_ethereal_blade"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"

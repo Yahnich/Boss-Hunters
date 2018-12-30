@@ -34,7 +34,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_iron_rose"
-		"AbilityTextureName"			"lotus_orb"
+		"AbilityTextureName"			"item_lotus_orb"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"

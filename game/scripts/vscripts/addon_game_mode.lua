@@ -378,7 +378,6 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
     local caster = EntIndexToHScript( caster_index )
 	local ability = EntIndexToHScript( ability_index )
 	local name = filterTable["name_const"]
-	print(name, duration)
 	if duration == -1 then return true end
 	if parent and caster then
 		local params = {caster = caster, target = parent, duration = duration, ability = ability, modifier_name = name}

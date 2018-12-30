@@ -19,7 +19,7 @@ function item_trinity:OnSpellStart()
 	EmitSoundOn( "DOTA_Item.VeilofDiscord.Activate", self:GetCaster() )
 	ParticleManager:FireParticle("particles/items2_fx/veil_of_discord.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = point, [1] = Vector(radius,1,1)})
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( point, radius ) ) do
-		ParticleManager:FireParticle("particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", PATTACH_ABSORIGIN, enemy, {[1] = enemy:GetAbsOrigin(), [0] = enemy:GetAbsOrigin() + Vector(0,0,1600)})
+		ParticleManager:FireRopeParticle("particles/items_fx/trinity_active_tendril.vpcf", PATTACH_POINT_FOLLOW, enemy, point)
 		enemy:AddNewModifier(caster, self, "modifier_item_trinity_debuff", {duration = duration})
 		enemy:Paralyze(self, caster, self:GetSpecialValueFor("paralyze_duration"))	
 	end
@@ -108,7 +108,7 @@ function modifier_item_trinity_handle:OnAttackLanded(params)
 			-- Sets the first target as the current target for this instance
 			ability.target[ability.instance] = target
 
-			ParticleManager:FireRopeParticle("particles/items_fx/chain_lightning.vpcf", PATTACH_POINT_FOLLOW, params.attacker, params.target, {})
+			ParticleManager:FireRopeParticle("particles/items_fx/trinity_blood_chain.vpcf", PATTACH_POINT_FOLLOW, params.attacker, params.target, {})
 
 			target:AddNewModifier(caster, ability, "modifier_item_trinity_handle_damage", {})
 			target:AddNewModifier(caster, ability, "modifier_item_trinity_debuff", {duration = self.duration})
@@ -216,7 +216,7 @@ function modifier_item_trinity_handle_damage:OnCreated()
 				-- Checks if there is a new target
 				if new_target ~= nil then
 					-- Creates the particle between the new target and the last target
-					ParticleManager:FireRopeParticle("particles/items_fx/chain_lightning.vpcf", PATTACH_POINT_FOLLOW, target, new_target, {})
+					ParticleManager:FireRopeParticle("particles/items_fx/trinity_blood_chain.vpcf", PATTACH_POINT_FOLLOW, target, new_target, {})
 					-- Sets the new target as the current target for this instance
 					ability.target[current] = new_target
 					-- Applies the modifer to the new target, which runs this function on it
