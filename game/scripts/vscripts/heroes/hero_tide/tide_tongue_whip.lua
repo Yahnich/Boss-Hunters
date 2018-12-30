@@ -33,8 +33,7 @@ function tide_tongue_whip:OnSpellStart()
     local start_loc = caster_loc + ((self:GetCursorPosition() - caster_loc) * Vector(1,1,0)):Normalized() * hook_width
 
     -- Create and set up the Hook dummy unit
-    local hook_dummy = CreateUnitByName("npc_dummy_blank", start_loc + Vector(0, 0, 150), false, caster, caster, caster:GetTeam())
-    hook_dummy:AddAbility("hide_hero"):SetLevel(1)
+    local hook_dummy = caster:CreateDummy( start_loc + Vector(0, 0, 100) )
     hook_dummy:SetForwardVector(caster:GetForwardVector())
     
     -- Attach the Hook particle

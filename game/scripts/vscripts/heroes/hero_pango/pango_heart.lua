@@ -31,7 +31,7 @@ function modifier_pango_heart_handle:OnAttackLanded(params)
 		if attacker == caster and self:RollPRNG(chance) then
 			if not target:HasModifier("modifier_pango_heart_delay") then
 				EmitSoundOn("Hero_Pangolier.HeartPiercer", target)
-				ParticleManager:FireRopeParticle("particles/units/heroes/hero_pangolier/pangolier_heartpiercer_cast.vpcf", PATTACH_POINT_FOLLOW, caster, target, {}, "attach_hitloc")
+				ParticleManager:FireRopeParticle("particles/units/heroes/hero_pangolier/pangolier_luckyshot_disarm_cast.vpcf", PATTACH_POINT_FOLLOW, caster, target, {}, "attach_hitloc")
 				target:AddNewModifier(caster, self:GetAbility(), "modifier_pango_heart_delay", {Duration = self:GetTalentSpecialValueFor("debuff_delay")})
 			end
 		end

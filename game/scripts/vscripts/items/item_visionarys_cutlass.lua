@@ -11,6 +11,7 @@ function modifier_item_visionarys_cutlass:OnCreated()
 	self.chance = self:GetSpecialValueFor("pierce_chance")
 	self.damage = self:GetSpecialValueFor("pierce_damage")
 	
+	self.bonus_attack_speed = self:GetSpecialValueFor("bonus_attack_speed")
 	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
 end
 
@@ -19,10 +20,14 @@ function modifier_item_visionarys_cutlass:DeclareFunctions()
 			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
 end
 
-function modifier_item_visionarys_cutlass:GetAccuracy()
-	self.miss = self:RollPRNG(self.chance)
-	if self.miss then
-		return 100
+function modifier_item_visionarys_cutlass:GetAccuracy(bInfo)
+	if bInfo ~= true then
+		self.miss = self:RollPRNG(self.chance)
+		if self.miss then
+			return 100
+		end
+	else
+		return self.chance
 	end
 end
 
@@ -35,4 +40,8 @@ end
 
 function modifier_item_visionarys_cutlass:GetModifierPreAttack_BonusDamage()
 	return self.bonus_damage
+end
+
+function modifier_item_visionarys_cutlass:GetModifierAttackSpeedBonus()
+	return self.bonus_attack_speed
 end

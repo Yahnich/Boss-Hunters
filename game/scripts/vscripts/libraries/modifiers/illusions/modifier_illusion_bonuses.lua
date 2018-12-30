@@ -9,6 +9,15 @@ function modifier_illusion_bonuses:OnCreated()
 	end
 end
 
+function modifier_illusion_bonuses:OnDestroy()
+	if IsServer() then
+		for _, wearable in ipairs( self:GetParent().wearableList ) do
+			UTIL_Remove( wearable )
+		end
+		self:GetParent().wearableList = nil
+	end
+end
+
 function modifier_illusion_bonuses:DeclareFunctions()
     local funcs = {
 		MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE,

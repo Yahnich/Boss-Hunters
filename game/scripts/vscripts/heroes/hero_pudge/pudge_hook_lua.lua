@@ -39,8 +39,7 @@ function pudge_hook_lua:OnSpellStart()
 	EmitSoundOn("Hero_Pudge.AttackHookExtend", caster)
 
 	-- Create and set up the Hook dummy unit
-	local hook_dummy = CreateUnitByName("npc_dummy_blank", start_loc + Vector(0, 0, 100), false, caster, caster, caster:GetTeam())
-	hook_dummy:AddAbility("hide_hero"):SetLevel(1)
+	local hook_dummy = caster:CreateDummy( start_loc + Vector(0, 0, 100) )
 	hook_dummy:SetForwardVector(caster:GetForwardVector())
 	hook_dummy:SetDayTimeVisionRange(hook_width*4)
 	hook_dummy:SetNightTimeVisionRange(hook_width*4)

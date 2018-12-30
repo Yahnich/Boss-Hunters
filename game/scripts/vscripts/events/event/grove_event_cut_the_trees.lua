@@ -54,7 +54,7 @@ local function StartCombat(self, bFight)
 		self.enemiesToSpawn = self.drowsToSpawn + self.treantsToSpawn + self.furionsToSpawn
 		Timers:CreateTimer(3, function()
 			local spawn = CreateUnitByName("npc_dota_boss28", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-			spawn.unitIsRoundBoss = true
+			spawn.unitIsRoundNecessary = true
 			self.drowsToSpawn = self.drowsToSpawn - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if self.drowsToSpawn > 0 then
@@ -63,7 +63,7 @@ local function StartCombat(self, bFight)
 		end)
 		Timers:CreateTimer(5, function()
 			local spawn = CreateUnitByName("npc_dota_boss18", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-			spawn.unitIsRoundBoss = true
+			spawn.unitIsRoundNecessary = true
 			spawn.armor = spawn:FindAbilityByName("boss_living_armor")
 			if spawn.armor then spawn.armor:SetLevel( math.max(5, self.treesCut ) ) end
 			
@@ -75,7 +75,7 @@ local function StartCombat(self, bFight)
 		end)
 		Timers:CreateTimer(6, function()
 			local spawn = CreateUnitByName("npc_dota_boss19", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-			spawn.unitIsRoundBoss = true
+			spawn.unitIsRoundNecessary = true
 			spawn.armor = spawn:FindAbilityByName("boss_living_armor")
 			if spawn.armor then spawn.armor:SetLevel( math.max(5, self.treesCut ) ) end
 			

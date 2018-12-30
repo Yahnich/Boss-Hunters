@@ -62,7 +62,7 @@ function modifier_item_gauntlet_of_the_void:OnTakeDamage(params)
 		local lifesteal = self.lifesteal
 		if params.inflictor then 
 			ParticleManager:FireParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self)
-			if not params.unit:IsRoundBoss() then
+			if not params.unit:IsRoundNecessary() then
 				lifesteal = self.mLifesteal
 			end
 		end

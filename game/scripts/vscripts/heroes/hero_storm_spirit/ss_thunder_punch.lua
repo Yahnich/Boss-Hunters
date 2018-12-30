@@ -31,8 +31,12 @@ function ss_thunder_punch:OnSpellStart()
 		if caster:HasModifier("modifier_ss_thunder_punch_talent") then
 			self:FireLinearProjectile("particles/units/heroes/hero_storm_spirit/ss_thunder_punch.vpcf", direction*speed, distance, 75, {extraData = {name = "second"}}, true, true, 100)	
 			caster:RemoveModifierByName("modifier_ss_thunder_punch_talent")
+			self:EndCooldown()
+			self:StartCooldown( self.lastCastCD - (GameRules:GetGameTime() - self.lastCastTime) )
 		else
 			self:FireLinearProjectile("particles/units/heroes/hero_storm_spirit/ss_thunder_punch.vpcf", direction*speed, distance, 75, {extraData = {name = "first"}}, true, true, 100)	
+			self.lastCastTime = GameRules:GetGameTime()
+			self.lastCastCD = self:GetCooldownTimeRemaining()
 			self:EndCooldown()
 			caster:AddNewModifier(caster, self, "modifier_ss_thunder_punch_talent", {Duration = 5})
 		end
@@ -78,46 +82,10 @@ function modifier_ss_thunder_punch_talent:IsHidden()
 	return false
 end
 
-modifier_ss_thunder_punch = class({})
-function modifier_ss_thunder_punch:OnCreated(table)
-	if IsServer() then
-		self.caster = self:GetCaster()
-		self.point = self:GetParent():GetAbsOrigin()
-
-		self.damage = self:GetTalentSpecialValueFor("damage")
-		self.damage_radius = self:GetTalentSpecialValueFor("damage_radius")
-		self.search_radius = self:GetTalentSpecialValueFor("search_radius")
-
-		--sequence numbers, look them up in the model viewer for dota 2
-		--local animationSet1 = math.random(46, 52) 
-		local animationSet2 = math.random(37, 52)
-
-		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_stormspirit/stormspirit_static_remnant.vpcf", PATTACH_POINT, self.caster)
-					ParticleManager:SetParticleControl(nfx, 0, self.point)
-					ParticleManager:SetParticleControlEnt(nfx, 1, self.caster, PATTACH_POINT_FOLLOW, "attach_hitloc", self.point, true)
-					ParticleManager:SetParticleControl(nfx, 2, Vector(animationSet2, 1, 0))
-					--ParticleManager:SetParticleControl(nfx, 11, self.point)
-
-		self:AttachEffect(nfx)
-
-		self:StartIntervalThink(self:GetTalentSpecialValueFor("delay"))
-	end
+function modifier_ss_thunder_punch_talent:IsHidden()
+	return false
 end
 
-function modifier_ss_thunder_punch:OnIntervalThink()
-	local enemies = self.caster:FindEnemyUnitsInRadius(self.point, self.search_radius)
-	for _,enemy in pairs(enemies) do
-		self:Destroy()
-		break
-	end
-	self:StartIntervalThink(0.1)
-end
-
-function modifier_ss_thunder_punch:OnRemoved()
-	if IsServer() then
-		local enemies = self.caster:FindEnemyUnitsInRadius(self.point, self.damage_radius)
-		for _,enemy in pairs(enemies) do
-			self:GetAbility():DealDamage(self.caster, enemy, self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-		end
-	end
+function modifier_ss_thunder_punch_talent:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE
 end

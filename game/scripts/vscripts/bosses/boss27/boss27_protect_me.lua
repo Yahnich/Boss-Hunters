@@ -72,7 +72,3 @@ end
 function modifier_boss27_protect_me_buff:GetEffectName()
 	return "particles/econ/events/ti6/teleport_start_ti6_lvl3_shield.vpcf"
 end
-
-function modifier_boss27_protect_me_buff:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
-end

@@ -25,7 +25,7 @@ function modifier_boss_golem_split:OnDeath(params)
 			
 			golem:SetCoreHealth( math.max(1, hp) )
 			
-			golem.unitIsRoundBoss = true
+			golem.unitIsRoundNecessary = true
 			golem.hasBeenInitialized = true
 		end
 	end

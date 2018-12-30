@@ -11,7 +11,7 @@ local function StartEvent(self)
 			spawn.armor = spawn:FindAbilityByName("boss_living_armor")
 			if spawn.armor then spawn.armor:SetLevel( math.max(5, RoundManager:GetRaidsFinished() ) ) end
 		end
-		spawn.unitIsRoundBoss = true
+		spawn.unitIsRoundNecessary = true
 		
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then

@@ -2,13 +2,6 @@ if StatsScreen == nil then
 	print ( 'creating skill selection manager' )
 	StatsScreen = {}
 	StatsScreen.__index = StatsScreen
-	LinkLuaModifier( "modifier_stats_system_handler", "libraries/handlers/modifier_stats_system_handler.lua", LUA_MODIFIER_MOTION_NONE)
-	LinkLuaModifier( "modifier_cooldown_reduction_handler", "libraries/handlers/modifier_cooldown_reduction_handler.lua", LUA_MODIFIER_MOTION_NONE)
-	LinkLuaModifier( "modifier_base_attack_time_handler", "libraries/handlers/modifier_base_attack_time_handler.lua", LUA_MODIFIER_MOTION_NONE)
-	LinkLuaModifier( "modifier_accuracy_handler", "libraries/handlers/modifier_accuracy_handler.lua", LUA_MODIFIER_MOTION_NONE)
-	LinkLuaModifier( "modifier_attack_speed_handler", "libraries/handlers/modifier_attack_speed_handler.lua", LUA_MODIFIER_MOTION_NONE)
-	LinkLuaModifier( "modifier_move_speed_handler", "libraries/handlers/modifier_move_speed_handler.lua", LUA_MODIFIER_MOTION_NONE)
-	LinkLuaModifier( "modifier_health_handler", "libraries/handlers/modifier_health_handler.lua", LUA_MODIFIER_MOTION_NONE)
 end
 
 function StatsScreen:new( o )
@@ -78,7 +71,7 @@ function StatsScreen:RegisterPlayer(hero, bRespec)
 	hero.hasRespecced = bRespec or false
 
 	CustomNetTables:SetTableValue( "stats_panel", tostring(hero:entindex()), stats)
-	print( "registering player" )
+
 	stats = nil
 	CustomNetTables:SetTableValue( "talents", tostring(hero:entindex()), {} )
 	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )

@@ -4,7 +4,7 @@ LinkLuaModifier("modifier_razor_static_link_bh_enemy", "heroes/hero_razor/razor_
 LinkLuaModifier("modifier_razor_static_link_bh_buff", "heroes/hero_razor/razor_static_link_bh", LUA_MODIFIER_MOTION_NONE)
 
 function razor_static_link_bh:CastFilterResultTarget(target)
-	if target:IsRoundBoss() then
+	if target:IsRoundNecessary() then
 		return UnitFilter(target, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, self:GetCaster():GetTeamNumber() )
 	else
 		return UF_FAIL_CUSTOM
@@ -22,7 +22,7 @@ function razor_static_link_bh:OnSpellStart()
 	
 	if caster:HasTalent("special_bonus_unique_razor_static_link_bh_2") then
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_razor_static_link_bh_2") ) ) do
-			if enemy:IsRoundBoss() then
+			if enemy:IsRoundNecessary() then
 				caster:AddNewModifier(caster, self, "modifier_razor_static_link_bh", {Duration = self:GetTalentSpecialValueFor("link_duration"), target = enemy:entindex() })
 			end
 		end

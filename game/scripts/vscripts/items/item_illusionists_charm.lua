@@ -6,9 +6,21 @@ function item_illusionists_charm:OnSpellStart()
 	local ogPos = caster:GetAbsOrigin()
 	
 	local maxIllus = self:GetSpecialValueFor("illusion_count")
+	for _, illusion in ipairs( caster.itemIllusionTable or {} ) do
+		if not illusion:IsNull() and illusion:IsAlive() then
+			illusion:ForceKill( true )
+		end
+	end
+	
+	caster.itemIllusionTable = {}
+	
+	local callback = (function(illusion, parent)
+		illusion:SetThreat( parent:GetThreat() )
+		table.insert( caster.itemIllusionTable, illusion )
+	end)
+	
 	for i = 1, maxIllus do
-		local illusion = caster:ConjureImage( ogPos + RandomVector(150), self:GetSpecialValueFor("duration"), -(100 - self:GetSpecialValueFor("illu_outgoing_damage")), self:GetSpecialValueFor("illu_incoming_damage") - 100 )
-		illusion:SetThreat( caster:GetThreat() )
+		local illusion = caster:ConjureImage( ogPos + RandomVector(150), self:GetSpecialValueFor("duration"), -(100 - self:GetSpecialValueFor("illu_outgoing_damage")), self:GetSpecialValueFor("illu_incoming_damage") - 100, nil, self, true, caster, callback )
 	end
 end
 

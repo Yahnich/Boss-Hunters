@@ -16,14 +16,19 @@ function terrorblade_reflection_bh:OnSpellStart()
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
 		enemy:AddNewModifier( caster, self, "modifier_terrorblade_reflection_bh_slow", {duration = duration})
 	end
-	
-	for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-		if hero:IsAlive() and hero:GetHealth() > 0 then
-			for i = 1, illusions do
-				local reflection = self:CreateReflection( hero, position + ActualRandomVector( radius, 125 ), duration, outgoing, caster )
+	local heroes = HeroList:GetRealHeroes()
+	local maxHeroes = #heroes
+	local i = 1
+	Timers:CreateTimer(function()
+		local hero = heroes[i]
+		if hero then
+			self:CreateReflection( heroes[i], position + ActualRandomVector( radius, 125 ), duration, outgoing, caster )
+			i = i + 1
+			if i <= maxHeroes then
+				return 0.06
 			end
 		end
-	end
+	end)
 end
 
 function terrorblade_reflection_bh:CreateReflection( hero, position, duration, outgoing, caster)

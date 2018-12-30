@@ -66,6 +66,7 @@ end
 modifier_item_everbright_shield_on = class({})
 function modifier_item_everbright_shield_on:OnCreated()
 	self.magic_resist = self:GetAbility():GetSpecialValueFor("active_magic_resist")
+	self.magic_resist = self:GetAbility():GetSpecialValueFor("active_status_resist")
 	if IsServer() then self:GetAbility():StartDelayedCooldown() end
 end
 
@@ -74,11 +75,15 @@ function modifier_item_everbright_shield_on:OnDestroy()
 end
 
 function modifier_item_everbright_shield_on:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
+	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING}
 end
 
 function modifier_item_everbright_shield_on:GetModifierMagicalResistanceBonus()
 	return self.magic_resist
+end
+
+function modifier_item_everbright_shield_on:GetModifierStatusResistanceStacking()
+	return self.status_resist
 end
 
 function modifier_item_everbright_shield_on:GetEffectName()

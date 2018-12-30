@@ -880,7 +880,7 @@
 		// "Ability10"				"special_bonus_unique_kotl_illuminate_1"
 		// "Ability11"				"special_bonus_unique_kotl_illuminate_2"
 		// "Ability12"				"special_bonus_unique_kotl_power_leak_1"
-		"Ability12"				"special_bonus_intelligence_20"
+		"Ability12"					"special_bonus_intelligence_20"
 		// "Ability13"				"special_bonus_unique_kotl_power_leak_2"
 		// "Ability14"				"special_bonus_unique_kotl_chakra_magic_1"
 		// "Ability15"				"special_bonus_unique_kotl_chakra_magic_2"
@@ -893,44 +893,44 @@
 	//=================================================================================================================
 	"npc_dota_hero_kunkka_ebf"
 	{
-		"override_hero"				"npc_dota_hero_kunkka"
-		"AbilityLayout"				"5"
-		"Ability1"					"kunkka_torrent_bh"
-		"Ability2"					"kunkka_tidebringer_bh"
-		"Ability3"					"kunkka_captains_rum"
-		"Ability4"					"kunkka_xmarks_bh"
-		"Ability6"					"kunkka_ghost_ship_bh"
+		"override_hero"					"npc_dota_hero_kunkka"
+		"AbilityLayout"					"5"
+		"Ability1"						"kunkka_torrent_bh"
+		"Ability2"						"kunkka_tidebringer_bh"
+		"Ability3"						"kunkka_captains_rum"
+		"Ability4"						"kunkka_xmarks_bh"
+		"Ability6"						"kunkka_ghost_ship_bh"
 
-		"Ability10"				"special_bonus_unique_kunkka_torrent_bh_1"
-		"Ability11"				"special_bonus_unique_kunkka_torrent_bh_2"
-		"Ability12"				"special_bonus_unique_kunkka_tidebringer_bh_1"
-		"Ability13"				"special_bonus_unique_kunkka_tidebringer_bh_2"
-		"Ability14"				"special_bonus_unique_kunkka_captains_rum_1"
-		"Ability15"				"special_bonus_unique_kunkka_captains_rum_2"
-		"Ability16"				"special_bonus_unique_kunkka_ghost_ship_bh_1"
-		"Ability17"				"special_bonus_unique_kunkka_ghost_ship_bh_2"		
+		"Ability10"				   		"special_bonus_unique_kunkka_torrent_bh_1"
+		"Ability11"				   		"special_bonus_unique_kunkka_torrent_bh_2"
+		"Ability12"				   		"special_bonus_unique_kunkka_tidebringer_bh_1"
+		"Ability13"				   		"special_bonus_unique_kunkka_tidebringer_bh_2"
+		"Ability14"				   		"special_bonus_unique_kunkka_captains_rum_1"
+		"Ability15"				   		"special_bonus_unique_kunkka_captains_rum_2"
+		"Ability16"				   		"special_bonus_unique_kunkka_ghost_ship_bh_1"
+		"Ability17"				   		"special_bonus_unique_kunkka_ghost_ship_bh_2"		
 	}
 	//=================================================================================================================
 	// HERO: Legion comander
 	//=================================================================================================================
 	"npc_dota_hero_legion_commander"
 	{
-		"override_hero"			"npc_dota_hero_legion_commander"
-		"Ability1"				"legion_commander_victorious_advance"
-		"Ability2"				"legion_commander_unbreakable_morale"
-		"Ability3"				"legion_commander_fearless_assault"
-		"Ability4"				"generic_hidden"
-		"Ability5"				"generic_hidden"
-		"Ability6"				"legion_commander_war_fury"
-	
-		"Ability10"				"special_bonus_unique_legion_commander_victorious_advance_1"
-		"Ability11"				"special_bonus_unique_legion_commander_victorious_advance_2"
-		"Ability12"				"special_bonus_unique_legion_commander_unbreakable_morale_1"
-		"Ability13"				"special_bonus_unique_legion_commander_unbreakable_morale_2"
-		"Ability14"				"special_bonus_unique_legion_commander_fearless_assault_1"
-		"Ability15"				"special_bonus_unique_legion_commander_fearless_assault_2"
-		"Ability16"				"special_bonus_unique_legion_commander_war_fury_1"
-		"Ability17"				"special_bonus_unique_legion_commander_war_fury_2"
+		"override_hero"			   		"npc_dota_hero_legion_commander"
+		"Ability1"				   		"legion_commander_victorious_advance"
+		"Ability2"				   		"legion_commander_unbreakable_morale"
+		"Ability3"			   			"legion_commander_fearless_assault"
+		"Ability4"			   			"generic_hidden"
+		"Ability5"				   		"generic_hidden"
+		"Ability6"				   		"legion_commander_war_fury"
+		   	
+		"Ability10"				   		"special_bonus_unique_legion_commander_victorious_advance_1"
+		"Ability11"				   		"special_bonus_unique_legion_commander_victorious_advance_2"
+		"Ability12"				   		"special_bonus_unique_legion_commander_unbreakable_morale_1"
+		"Ability13"				   		"special_bonus_unique_legion_commander_unbreakable_morale_2"
+		"Ability14"				   		"special_bonus_unique_legion_commander_fearless_assault_1"
+		"Ability15"				   		"special_bonus_unique_legion_commander_fearless_assault_2"
+		"Ability16"				   		"special_bonus_unique_legion_commander_war_fury_1"
+		"Ability17"				   		"special_bonus_unique_legion_commander_war_fury_2"
 	}
 	//=================================================================================================================
 	// HERO: Storm
@@ -1382,21 +1382,21 @@
 	}
 	"npc_dota_hero_oracle_ebf"
 	{
-		"override_hero"			"npc_dota_hero_oracle"
-		"Ability1"				"oracle_fortunes"
-		"Ability2"				"oracle_fates"
-		"Ability3"				"oracle_flames"
-		"Ability4"				"oracle_innate"
-		"Ability6"				"oracle_promise"
+		"override_hero"			   		"npc_dota_hero_oracle"
+		"Ability1"				   		"oracle_fortunes"
+		"Ability2"				   		"oracle_fates"
+		"Ability3"				   		"oracle_flames"
+		"Ability4"			   			"oracle_innate"
+		"Ability6"			   			"oracle_promise"
 		
-		"Ability10"				"special_bonus_unique_oracle_fortunes_1"
-		"Ability11"				"special_bonus_unique_oracle_fortunes_2"
-		"Ability12"				"special_bonus_unique_oracle_fates_1"
-		"Ability13"				"special_bonus_unique_oracle_fates_2"
-		"Ability14"      	 	"special_bonus_unique_oracle_flames_1"
-	    "Ability15"      	 	"special_bonus_unique_oracle_flames_2"
-	    "Ability16"    		   	"special_bonus_unique_oracle_promise_1"
-	    "Ability17"  	     	"special_bonus_unique_oracle_promise_2"
+		"Ability10"				   		"special_bonus_unique_oracle_fortunes_1"
+		"Ability11"			   			"special_bonus_unique_oracle_fortunes_2"
+		"Ability12"				   		"special_bonus_unique_oracle_fates_1"
+		"Ability13"			   			"special_bonus_unique_oracle_fates_2"
+		"Ability14"      	   		 	"special_bonus_unique_oracle_flames_1"
+	    "Ability15"      	   		 	"special_bonus_unique_oracle_flames_2"
+	    "Ability16"    		   		   	"special_bonus_unique_oracle_promise_1"
+	    "Ability17"  	  			   	"special_bonus_unique_oracle_promise_2"
 	}
 
 	//=================================================================================================================
@@ -1404,21 +1404,21 @@
 	//=================================================================================================================
 	"npc_dota_hero_pango_ebf"
 	{
-		"override_hero"				"npc_dota_hero_pangolier"
-		"Ability1"					"pango_swashbuckler"
-		"Ability2"					"pango_shield"
-		"Ability3"					"pango_swift_dash"
-		"Ability4"					"pango_heart"
-		"Ability6"					"pango_ball"
+		"override_hero"					"npc_dota_hero_pangolier"
+		"Ability1"						"pango_swashbuckler"
+		"Ability2"						"pango_shield"
+		"Ability3"						"pango_swift_dash"
+		"Ability4"						"pango_heart"
+		"Ability6"						"pango_ball"
 		
-		"Ability10"					"special_bonus_unique_pango_swashbuckler_1"
-		"Ability11"					"special_bonus_unique_pango_swashbuckler_2"
-		"Ability12"					"special_bonus_unique_pango_shield_1"
-		"Ability13"					"special_bonus_unique_pango_shield_2"
-		"Ability14"					"special_bonus_unique_pango_swift_dash_1"
-		"Ability15"					"special_bonus_unique_pango_swift_dash_2"
-		"Ability16"					"special_bonus_unique_pango_ball_1"
-		"Ability17"					"special_bonus_unique_pango_ball_2"
+		"Ability10"						"special_bonus_unique_pango_swashbuckler_1"
+		"Ability11"						"special_bonus_unique_pango_swashbuckler_2"
+		"Ability12"						"special_bonus_unique_pango_shield_1"
+		"Ability13"						"special_bonus_unique_pango_shield_2"
+		"Ability14"						"special_bonus_unique_pango_swift_dash_1"
+		"Ability15"						"special_bonus_unique_pango_swift_dash_2"
+		"Ability16"						"special_bonus_unique_pango_ball_1"
+		"Ability17"						"special_bonus_unique_pango_ball_2"
 	}
 
 	//=================================================================================================================
@@ -1426,7 +1426,7 @@
 	//=================================================================================================================
 	"npc_dota_hero_phantom_assassin"
 	{
-		"override_hero"				"npc_dota_hero_phantom_assassin"
+		"override_hero"					"npc_dota_hero_phantom_assassin"
 	
 		"Ability1"						"pa_kunai_toss"
 		"Ability2"						"pa_flash_step"
@@ -1452,143 +1452,143 @@
 	}
 	"npc_dota_hero_phoenix" // Justicar
 	{
-		"override_hero"			"npc_dota_hero_phoenix"
-		"Ability1"				"phenx_dive"
-		"Ability2"				"phenx_spirits"
-		"Ability3"				"phenx_ray"
-		"Ability4"				"phenx_heart"
-		"Ability6"				"phenx_egg"
+		"override_hero"					"npc_dota_hero_phoenix"
+		"Ability1"						"phenx_dive"
+		"Ability2"						"phenx_spirits"
+		"Ability3"						"phenx_ray"
+		"Ability4"						"phenx_heart"
+		"Ability6"						"phenx_egg"
 	
-		"Ability10"				"special_bonus_unique_phenx_dive_1"
-		"Ability11"				"special_bonus_unique_phenx_dive_2"
-		"Ability12"				"special_bonus_unique_phenx_spirits_1"
-		"Ability13"				"special_bonus_unique_phenx_spirits_2"
-		"Ability14"				"special_bonus_unique_phenx_ray_1"
-		"Ability15"				"special_bonus_unique_phenx_ray_2"
-		"Ability16"				"special_bonus_unique_phenx_egg_1"
-		"Ability17"				"special_bonus_unique_phenx_egg_2"
+		"Ability10"						"special_bonus_unique_phenx_dive_1"
+		"Ability11"						"special_bonus_unique_phenx_dive_2"
+		"Ability12"						"special_bonus_unique_phenx_spirits_1"
+		"Ability13"						"special_bonus_unique_phenx_spirits_2"
+		"Ability14"						"special_bonus_unique_phenx_ray_1"
+		"Ability15"						"special_bonus_unique_phenx_ray_2"
+		"Ability16"						"special_bonus_unique_phenx_egg_1"
+		"Ability17"						"special_bonus_unique_phenx_egg_2"
 	}
 	"npc_dota_hero_puck_ebf"
 	{
-		"override_hero"			"npc_dota_hero_puck"
-		"Ability1"				"puck_illusory_orb_ebf"
-		"Ability2"				"puck_waning_rift_ebf"
-		"Ability3"				"puck_phase_shift_ebf"
-		"Ability4"				"puck_ethereal_jaunt_ebf"
-		"Ability6"				"puck_reverie_snap"
+		"override_hero"					"npc_dota_hero_puck"
+		"Ability1"						"puck_illusory_orb_ebf"
+		"Ability2"						"puck_waning_rift_ebf"
+		"Ability3"						"puck_phase_shift_ebf"
+		"Ability4"						"puck_ethereal_jaunt_ebf"
+		"Ability6"						"puck_reverie_snap"
 		
-		"Ability10"				"special_bonus_unique_puck_illusory_orb_1"
-		"Ability11"				"special_bonus_unique_puck_illusory_orb_2"
-		"Ability12"				"special_bonus_unique_puck_waning_rift_1"
-		"Ability13"				"special_bonus_unique_puck_waning_rift_2"
-		"Ability14"				"special_bonus_unique_puck_phase_shift_1"
-		"Ability15"				"special_bonus_unique_puck_phase_shift_2"
-		"Ability16"				"special_bonus_unique_puck_reverie_snap_1"
-		"Ability17"				"special_bonus_unique_puck_reverie_snap_2"
+		"Ability10"						"special_bonus_unique_puck_illusory_orb_1"
+		"Ability11"						"special_bonus_unique_puck_illusory_orb_2"
+		"Ability12"						"special_bonus_unique_puck_waning_rift_1"
+		"Ability13"						"special_bonus_unique_puck_waning_rift_2"
+		"Ability14"						"special_bonus_unique_puck_phase_shift_1"
+		"Ability15"						"special_bonus_unique_puck_phase_shift_2"
+		"Ability16"						"special_bonus_unique_puck_reverie_snap_1"
+		"Ability17"						"special_bonus_unique_puck_reverie_snap_2"
 	}
 	//=================================================================================================================
 	// HERO: Pudge
 	//=================================================================================================================
 	"npc_dota_hero_pudge_ebf"
 	{
-		"override_hero"			"npc_dota_hero_pudge"
-		"Ability1"				"pudge_hook_lua"
-		"Ability2"				"pudge_rot_lua"	
-		"Ability3"				"pudge_chain_storm"
-		"Ability4"				"pudge_flesh_heap_lua"
-		"Ability6"				"pudge_dismember_lua"
+		"override_hero"					"npc_dota_hero_pudge"
+		"Ability1"						"pudge_hook_lua"
+		"Ability2"						"pudge_rot_lua"	
+		"Ability3"						"pudge_chain_storm"
+		"Ability4"						"pudge_flesh_heap_lua"
+		"Ability6"						"pudge_dismember_lua"
 	
-		"Ability10"		"special_bonus_unique_pudge_hook_lua_1"
-		"Ability11"		"special_bonus_unique_pudge_hook_lua_2"
-		"Ability12"		"special_bonus_unique_pudge_rot_lua_1"
-		"Ability13"		"special_bonus_unique_pudge_rot_lua_2"
-		"Ability14"		"special_bonus_unique_pudge_chain_storm_1"
-		"Ability15"		"special_bonus_unique_pudge_chain_storm_2"
-		"Ability16"		"special_bonus_unique_pudge_dismember_lua_1"
-		"Ability17"		"special_bonus_unique_pudge_dismember_lua_2"
+		"Ability10"						"special_bonus_unique_pudge_hook_lua_1"
+		"Ability11"						"special_bonus_unique_pudge_hook_lua_2"
+		"Ability12"						"special_bonus_unique_pudge_rot_lua_1"
+		"Ability13"						"special_bonus_unique_pudge_rot_lua_2"
+		"Ability14"						"special_bonus_unique_pudge_chain_storm_1"
+		"Ability15"						"special_bonus_unique_pudge_chain_storm_2"
+		"Ability16"						"special_bonus_unique_pudge_dismember_lua_1"
+		"Ability17"						"special_bonus_unique_pudge_dismember_lua_2"
 	}
 	"npc_dota_hero_pugna_ebf"
 	{
-		"override_hero"			"npc_dota_hero_pugna"
-		"Ability1"				"pugna_nether_blast_bh"
-		"Ability2"				"pugna_decrepify_bh"
-		"Ability3"				"pugna_nether_turret"
-		"Ability4"				"pugna_power_vacuum"
-		"Ability6"				"pugna_lifedrain_bh"
+		"override_hero"					"npc_dota_hero_pugna"
+		"Ability1"						"pugna_nether_blast_bh"
+		"Ability2"						"pugna_decrepify_bh"
+		"Ability3"						"pugna_nether_turret"
+		"Ability4"						"pugna_power_vacuum"
+		"Ability6"						"pugna_lifedrain_bh"
 		
-		"Ability10"				"special_bonus_unique_pugna_nether_blast_1"
-		"Ability11"				"special_bonus_unique_pugna_nether_blast_2"
-		"Ability12"				"special_bonus_unique_pugna_decrepify_1"
-		"Ability13"				"special_bonus_unique_pugna_decrepify_2"
-		"Ability14"				"special_bonus_unique_pugna_nether_turret_1"
-		"Ability15"				"special_bonus_unique_pugna_nether_turret_2"
-		"Ability16"				"special_bonus_unique_pugna_lifedrain_1"
-		"Ability17"				"special_bonus_unique_pugna_lifedrain_2"
+		"Ability10"						"special_bonus_unique_pugna_nether_blast_1"
+		"Ability11"						"special_bonus_unique_pugna_nether_blast_2"
+		"Ability12"						"special_bonus_unique_pugna_decrepify_1"
+		"Ability13"						"special_bonus_unique_pugna_decrepify_2"
+		"Ability14"						"special_bonus_unique_pugna_nether_turret_1"
+		"Ability15"						"special_bonus_unique_pugna_nether_turret_2"
+		"Ability16"						"special_bonus_unique_pugna_lifedrain_1"
+		"Ability17"						"special_bonus_unique_pugna_lifedrain_2"
 	}
 	//=================================================================================================================
 	// HERO: Storm
 	//=================================================================================================================
 	"npc_dota_hero_queenofpain"
 	{
-		"override_hero"			"npc_dota_hero_queenofpain"
-		"AbilityLayout"			"5"
-		"Ability1"				"queenofpain_shadow_strike_bh"
-		"Ability2"				"queenofpain_blink_bh"
-		"Ability3"				"queenofpain_scream_of_pain_bh"
-		"Ability4"				"queenofpain_sadomasochism"
-		"Ability6"				"queenofpain_sonic_wave_bh"
+		"override_hero"					"npc_dota_hero_queenofpain"
+		"AbilityLayout"					"5"
+		"Ability1"						"queenofpain_shadow_strike_bh"
+		"Ability2"						"queenofpain_blink_bh"
+		"Ability3"						"queenofpain_scream_of_pain_bh"
+		"Ability4"						"queenofpain_sadomasochism"
+		"Ability6"						"queenofpain_sonic_wave_bh"
 		
-		"Ability10"				"special_bonus_unique_queenofpain_shadow_strike_1"
-		"Ability11"				"special_bonus_unique_queenofpain_shadow_strike_2"
-		"Ability12"				"special_bonus_unique_queenofpain_blink_1"
-		"Ability13"				"special_bonus_unique_queenofpain_blink_2"
-		"Ability14"				"special_bonus_unique_queenofpain_scream_of_pain_1"
-		"Ability15"				"special_bonus_unique_queenofpain_scream_of_pain_2"
-		"Ability16"				"special_bonus_unique_queenofpain_sonic_wave_1"
-		"Ability17"				"special_bonus_unique_queenofpain_sonic_wave_2"
+		"Ability10"						"special_bonus_unique_queenofpain_shadow_strike_1"
+		"Ability11"						"special_bonus_unique_queenofpain_shadow_strike_2"
+		"Ability12"						"special_bonus_unique_queenofpain_blink_1"
+		"Ability13"						"special_bonus_unique_queenofpain_blink_2"
+		"Ability14"						"special_bonus_unique_queenofpain_scream_of_pain_1"
+		"Ability15"						"special_bonus_unique_queenofpain_scream_of_pain_2"
+		"Ability16"						"special_bonus_unique_queenofpain_sonic_wave_1"
+		"Ability17"						"special_bonus_unique_queenofpain_sonic_wave_2"
 	}
 	//=================================================================================================================
 	// HERO: Cockwerk
 	//=================================================================================================================
 	"npc_dota_hero_rattletrap_ebf"
 	{
-		"override_hero"				"npc_dota_hero_rattletrap"
+		"override_hero"					"npc_dota_hero_rattletrap"
 
-		"Ability1"					"rattletrap_battery_assault_ebf"
-		"Ability2"					"rattletrap_aegis_deflector"
-		"Ability3"					"rattletrap_rocket_flare_ebf"
-		"Ability5"					"rattletrap_reactive_shielding"
-		"Ability6"					"rattletrap_automated_artillery"
+		"Ability1"						"rattletrap_battery_assault_ebf"
+		"Ability2"						"rattletrap_aegis_deflector"
+		"Ability3"						"rattletrap_rocket_flare_ebf"
+		"Ability5"						"rattletrap_reactive_shielding"
+		"Ability6"						"rattletrap_automated_artillery"
 		
-		"Ability10"					"special_bonus_unique_rattletrap_aegis_deflector_2"
-		"Ability11"					"special_bonus_unique_rattletrap_aegis_deflector_1"
-		"Ability12"					"special_bonus_unique_rattletrap_rocket_flare_ebf_1"
-		"Ability13"					"special_bonus_unique_rattletrap_rocket_flare_ebf_2"
-		"Ability14"					"special_bonus_unique_rattletrap_battery_assault_1"
-		"Ability15"					"special_bonus_unique_rattletrap_battery_assault_2"
-		"Ability16"					"special_bonus_unique_rattletrap_reactive_shielding_1"
-		"Ability17"					"special_bonus_unique_rattletrap_automated_artillery_1"
+		"Ability10"						"special_bonus_unique_rattletrap_aegis_deflector_2"
+		"Ability11"						"special_bonus_unique_rattletrap_aegis_deflector_1"
+		"Ability12"						"special_bonus_unique_rattletrap_rocket_flare_ebf_1"
+		"Ability13"						"special_bonus_unique_rattletrap_rocket_flare_ebf_2"
+		"Ability14"						"special_bonus_unique_rattletrap_battery_assault_1"
+		"Ability15"						"special_bonus_unique_rattletrap_battery_assault_2"
+		"Ability16"						"special_bonus_unique_rattletrap_reactive_shielding_1"
+		"Ability17"						"special_bonus_unique_rattletrap_automated_artillery_1"
 	}
 	//=================================================================================================================
 	// HERO: Razor
 	//=================================================================================================================
 	"npc_dota_hero_razor_ebf"
 	{
-		"override_hero"			"npc_dota_hero_razor"
-		"Ability1"				"razor_plasma_field_bh"					// Ability 2
-		"Ability2"				"razor_static_link_bh"					// Ability 2
-		"Ability3"				"razor_unstable_current_bh"					// Ability 3
-		"Ability4"				"razor_static_shock"					// Ability 3
-		"Ability6"				"razor_eye_of_the_storm_bh"					// Ability 3
+		"override_hero"					"npc_dota_hero_razor"
+		"Ability1"						"razor_plasma_field_bh"					// Ability 2
+		"Ability2"						"razor_static_link_bh"					// Ability 2
+		"Ability3"						"razor_unstable_current_bh"					// Ability 3
+		"Ability4"						"razor_static_shock"					// Ability 3
+		"Ability6"						"razor_eye_of_the_storm_bh"					// Ability 3
 
-		"Ability10"					"special_bonus_unique_razor_plasma_field_bh_1"
-		"Ability11"					"special_bonus_unique_razor_plasma_field_bh_2"
-		"Ability12"					"special_bonus_unique_razor_static_link_bh_1"
-		"Ability13"					"special_bonus_unique_razor_static_link_bh_2"
-		"Ability14"					"special_bonus_unique_razor_unstable_current_bh_1"
-		"Ability15"					"special_bonus_unique_razor_unstable_current_bh_2"
-		"Ability16"					"special_bonus_unique_razor_eye_of_the_storm_bh_1"
-		"Ability17"					"special_bonus_unique_razor_eye_of_the_storm_bh_2"
+		"Ability10"						"special_bonus_unique_razor_plasma_field_bh_1"
+		"Ability11"						"special_bonus_unique_razor_plasma_field_bh_2"
+		"Ability12"						"special_bonus_unique_razor_static_link_bh_1"
+		"Ability13"						"special_bonus_unique_razor_static_link_bh_2"
+		"Ability14"						"special_bonus_unique_razor_unstable_current_bh_1"
+		"Ability15"						"special_bonus_unique_razor_unstable_current_bh_2"
+		"Ability16"						"special_bonus_unique_razor_eye_of_the_storm_bh_1"
+		"Ability17"						"special_bonus_unique_razor_eye_of_the_storm_bh_2"
 		
 	}
 	//=================================================================================================================
@@ -1596,21 +1596,21 @@
 	//=================================================================================================================
 	"npc_dota_hero_riki_ebf"
 	{
-		"override_hero"		"npc_dota_hero_riki"
-		"Ability1"			"riki_smoke_bomb"
-		"Ability2"			"riki_dance"
-		"Ability3"			"riki_dagger"
-		"Ability4"			"riki_cloak"
-		"Ability6"			"riki_traded_tricks"
+		"override_hero"			 		"npc_dota_hero_riki"
+		"Ability1"					 	"riki_smoke_bomb"
+		"Ability2"				 		"riki_dance"
+		"Ability3"				 		"riki_dagger"
+		"Ability4"				 		"riki_cloak"
+		"Ability6"				 		"riki_traded_tricks"
 	
-		"Ability10"       	"special_bonus_unique_riki_smoke_bomb_1"
-	    "Ability11"       	"special_bonus_unique_riki_smoke_bomb_2"
-	    "Ability12"       	"special_bonus_unique_riki_dance_1"
-	    "Ability13"       	"special_bonus_unique_riki_dance_2"
-	    "Ability14"       	"special_bonus_unique_riki_dagger_1"
-	    "Ability15"       	"special_bonus_unique_riki_dagger_2"
-	    "Ability16"       	"special_bonus_unique_riki_traded_tricks_1"
-	    "Ability17"       	"special_bonus_unique_riki_traded_tricks_2"
+		"Ability10"     		 	  	"special_bonus_unique_riki_smoke_bomb_1"
+	    "Ability11"     		 	  	"special_bonus_unique_riki_smoke_bomb_2"
+	    "Ability12"    			 	   	"special_bonus_unique_riki_dance_1"
+	    "Ability13"    			 	   	"special_bonus_unique_riki_dance_2"
+	    "Ability14"   		 	    	"special_bonus_unique_riki_dagger_1"
+	    "Ability15"   		 	    	"special_bonus_unique_riki_dagger_2"
+	    "Ability16"      			 	"special_bonus_unique_riki_traded_tricks_1"
+	    "Ability17"      			 	"special_bonus_unique_riki_traded_tricks_2"
 		
 	}
 	//=================================================================================================================
@@ -1618,43 +1618,43 @@
 	//=================================================================================================================
 	"npc_dota_hero_rubick_ebf"
 	{
-		"override_hero"				"npc_dota_hero_rubick"
-		"Ability1"					"rubick_lift"
-		"Ability2"					"rubick_bolt"
-		"Ability3"					"rubick_arcane"
-		"Ability5"					"rubick_echo"
-		"Ability6"					"rubick_steal"
+		"override_hero"					"npc_dota_hero_rubick"
+		"Ability1"						"rubick_lift"
+		"Ability2"						"rubick_bolt"
+		"Ability3"						"rubick_arcane"
+		"Ability5"						"rubick_echo"
+		"Ability6"						"rubick_steal"
 		
-		"Ability11"					"special_bonus_unique_rubick_lift_1"
-		"Ability12"					"special_bonus_unique_rubick_lift_2"
-		"Ability13"					"special_bonus_unique_rubick_bolt_1"
-		"Ability14"					"special_bonus_unique_rubick_bolt_2"
-		"Ability15"					"special_bonus_unique_rubick_arcane_1"
-		"Ability16"					"special_bonus_unique_rubick_arcane_2"
-		"Ability17"					"special_bonus_unique_rubick_steal_1"
-		"Ability18"					"special_bonus_unique_rubick_steal_2"
+		"Ability11"						"special_bonus_unique_rubick_lift_1"
+		"Ability12"						"special_bonus_unique_rubick_lift_2"
+		"Ability13"						"special_bonus_unique_rubick_bolt_1"
+		"Ability14"						"special_bonus_unique_rubick_bolt_2"
+		"Ability15"						"special_bonus_unique_rubick_arcane_1"
+		"Ability16"						"special_bonus_unique_rubick_arcane_2"
+		"Ability17"						"special_bonus_unique_rubick_steal_1"
+		"Ability18"						"special_bonus_unique_rubick_steal_2"
 	}
 	//=================================================================================================================
 	// HERO: Darude
 	//=================================================================================================================
 	"npc_dota_hero_sand_king"
 	{
-		"override_hero"				"npc_dota_hero_sand_king"
-		"AbilityLayout"				"5"
-		"Ability1"					"sand_burrow"
-		"Ability2"					"sand_sandstorm"
-		"Ability3"					"sand_claw_impact"
-		"Ability4"					"sand_caustics"
-		"Ability6"					"sand_tremors"
+		"override_hero"					"npc_dota_hero_sand_king"
+		"AbilityLayout"					"5"
+		"Ability1"						"sand_burrow"
+		"Ability2"						"sand_sandstorm"
+		"Ability3"						"sand_claw_impact"
+		"Ability4"						"sand_caustics"
+		"Ability6"						"sand_tremors"
 		
-		"Ability10"					"special_bonus_unique_sand_burrow_1"
-		"Ability11"					"special_bonus_unique_sand_burrow_2"
-		"Ability12"					"special_bonus_unique_sand_sandstorm_1"
-		"Ability13"					"special_bonus_unique_sand_sandstorm_2"
-		"Ability14"					"special_bonus_unique_sand_claw_impact_1"
-		"Ability15"					"special_bonus_unique_sand_claw_impact_2"
-		"Ability16"					"special_bonus_unique_sand_tremors_1"
-		"Ability17"					"special_bonus_unique_sand_tremors_2"
+		"Ability10"						"special_bonus_unique_sand_burrow_1"
+		"Ability11"						"special_bonus_unique_sand_burrow_2"
+		"Ability12"						"special_bonus_unique_sand_sandstorm_1"
+		"Ability13"						"special_bonus_unique_sand_sandstorm_2"
+		"Ability14"						"special_bonus_unique_sand_claw_impact_1"
+		"Ability15"						"special_bonus_unique_sand_claw_impact_2"
+		"Ability16"						"special_bonus_unique_sand_tremors_1"
+		"Ability17"						"special_bonus_unique_sand_tremors_2"
 	}
 
 	//=================================================================================================================
@@ -1684,20 +1684,20 @@
 	//=================================================================================================================
 	"npc_dota_hero_shadow_shaman_ebf"
 	{
-		"override_hero"				"npc_dota_hero_shadow_shaman"
-		"Ability1"					"shadow_shaman_ether_lightning"
-		"Ability2"					"shadow_shaman_ignited_voodoo"
-		"Ability3"					"shadow_shaman_binding_shackle"
-		"Ability6"					"shadow_shaman_snake_totem"
+		"override_hero"					"npc_dota_hero_shadow_shaman"
+		"Ability1"						"shadow_shaman_ether_lightning"
+		"Ability2"						"shadow_shaman_ignited_voodoo"
+		"Ability3"						"shadow_shaman_binding_shackle"
+		"Ability6"						"shadow_shaman_snake_totem"
 		
-		"Ability10"					"special_bonus_unique_shadow_shaman_ether_lightning_1"
-		"Ability11"					"special_bonus_unique_shadow_shaman_ether_lightning_2"
-		"Ability12"					"special_bonus_unique_shadow_shaman_ignited_voodoo_1"
-		"Ability13"					"special_bonus_unique_shadow_shaman_ignited_voodoo_2"
-		"Ability14"					"special_bonus_unique_shadow_shaman_binding_shackle_1"
-		"Ability15"					"special_bonus_unique_shadow_shaman_binding_shackle_2"
-		"Ability16"					"special_bonus_unique_shadow_shaman_snake_totem_1"
-		"Ability17"					"special_bonus_unique_shadow_shaman_snake_totem_2"
+		"Ability10"						"special_bonus_unique_shadow_shaman_ether_lightning_1"
+		"Ability11"						"special_bonus_unique_shadow_shaman_ether_lightning_2"
+		"Ability12"						"special_bonus_unique_shadow_shaman_ignited_voodoo_1"
+		"Ability13"						"special_bonus_unique_shadow_shaman_ignited_voodoo_2"
+		"Ability14"						"special_bonus_unique_shadow_shaman_binding_shackle_1"
+		"Ability15"						"special_bonus_unique_shadow_shaman_binding_shackle_2"
+		"Ability16"						"special_bonus_unique_shadow_shaman_snake_totem_1"
+		"Ability17"						"special_bonus_unique_shadow_shaman_snake_totem_2"
 	}
 	"npc_dota_hero_shredder"
 	{
@@ -2289,7 +2289,7 @@
 	}
 	"npc_dota_hero_windrunner" // Windranger WindRunner
 	{
-		"override_hero"				"npc_dota_hero_windrunner"
+		"override_hero"					"npc_dota_hero_windrunner"
 		
 		"Ability1"						"windrunner_bolas"
 		"Ability2"						"windrunner_powershot_bh"

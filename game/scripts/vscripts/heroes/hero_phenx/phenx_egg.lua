@@ -139,7 +139,7 @@ function modifier_phenx_egg_form:GetModifierIncomingDamage_Percentage(params)
 	local attacker = params.attacker
 	local numAttacked = egg.supernova_numAttacked or 0
 	local damage = 1
-	if attacker:IsRoundBoss() then damage = 2 end
+	if attacker:IsRoundNecessary() then damage = 2 end
 	numAttacked = numAttacked + damage
 	egg.supernova_numAttacked = numAttacked
 

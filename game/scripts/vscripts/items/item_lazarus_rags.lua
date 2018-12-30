@@ -74,7 +74,3 @@ end
 function modifier_item_lazarus_rags:IsHidden()
 	return true
 end
-
-function modifier_item_lazarus_rags:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end

@@ -31,7 +31,7 @@ function modifier_undying_the_undying:OnDeath(params)
 	if not params.unit:IsSameTeam( self:GetParent() )
 	and CalculateDistance( params.unit, self:GetParent() ) <= self.radius
 	and self:GetParent():IsAlive() then
-		local duration = TernaryOperator( self.bDuration, params.unit:IsRoundBoss(), self.mDuration)
+		local duration = TernaryOperator( self.bDuration, params.unit:IsRoundNecessary(), self.mDuration)
 		self:GetAbility():SummonZombie( params.unit:GetAbsOrigin(), params.unit:GetMaxHealth() * self.health_pct, params.unit:GetAverageBaseDamage() * self.damage_pct, duration )
 	end
 end

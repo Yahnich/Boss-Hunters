@@ -230,7 +230,7 @@ function C_DOTA_BaseNPC:InWater()
 	return self:HasModifier("modifier_in_water")
 end
 
-function C_DOTA_BaseNPC:IsRoundBoss()
+function C_DOTA_BaseNPC:IsRoundNecessary()
 	return self:HasModifier("modifier_boss_evasion")
 end
 

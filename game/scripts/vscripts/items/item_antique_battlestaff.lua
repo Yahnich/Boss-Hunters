@@ -25,10 +25,14 @@ function modifier_item_antique_battlestaff:DeclareFunctions()
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,}
 end
 
-function modifier_item_antique_battlestaff:GetAccuracy()
-	self.miss = self:RollPRNG(self.chance)
-	if self.miss then
-		return 100
+function modifier_item_antique_battlestaff:GetAccuracy(bInfo)
+	if bInfo ~= true then
+		self.miss = self:RollPRNG(self.chance)
+		if self.miss then
+			return 100
+		end
+	else
+		return self.chance
 	end
 end
 

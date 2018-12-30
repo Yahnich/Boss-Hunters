@@ -4,7 +4,7 @@ local function StartEvent(self)
 	self.eventEnded = false
 	self.eventHandler = Timers:CreateTimer(3, function()
 		local spawn = CreateUnitByName("npc_dota_boss34", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-		spawn.unitIsRoundBoss = true
+		spawn.unitIsRoundNecessary = true
 		
 		spawn:FindAbilityByName("boss_necro_plague_wave"):SetActivated(false)
 		spawn:SetCoreHealth(2000)

@@ -26,16 +26,13 @@ function zeus_thunder_bolt:OnSpellStart()
 	EmitSoundOn("Hero_Zuus.LightningBolt.Cast", caster)
 	local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("search_radius"), {order=FIND_CLOSEST})
 	if enemies[1] then
-		local enemy = enemies[2]
+		local enemy = enemies[1]
 		point = enemy:GetAbsOrigin()
-		EmitSoundOn("Hero_Zuus.LightningBolt", enemy)
-		ParticleManager:FireRopeParticle("particles/units/heroes/hero_zeus/zeus_thunder_bolt.vpcf", PATTACH_POINT, caster, point, {[0]=point+Vector(0,0,1000)})
 		self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
 		self:Stun(enemy, self:GetTalentSpecialValueFor("duration"), false)
-	else
-		EmitSoundOnLocationWithCaster(point, "Hero_Zuus.LightningBolt", caster)
-		ParticleManager:FireRopeParticle("particles/units/heroes/hero_zeus/zeus_thunder_bolt.vpcf", PATTACH_POINT, caster, point, {[0]=point+Vector(0,0,1000)})
 	end
+	EmitSoundOnLocationWithCaster(point, "Hero_Zuus.LightningBolt", caster)
+	ParticleManager:FireRopeParticle("particles/units/heroes/hero_zeus/zeus_thunder_bolt.vpcf", PATTACH_POINT, caster, point, {[0]=point+Vector(0,0,1000)})
 	if caster:HasTalent("special_bonus_unique_zeus_thunder_bolt_2") then
 		caster:AddNewModifier( caster, self, "modifier_zeus_thunder_bolt_talent", {duration = caster:FindTalentValue("special_bonus_unique_zeus_thunder_bolt_2", "duration")})
 	end

@@ -7,4 +7,3 @@ end
 function modifier_type_celestial_tag:IsHidden()
 	return true
 end
-

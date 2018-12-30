@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1750"	
+		"ItemCost"						"1400"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -58,12 +58,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"critical_chance"		"25"
+				"critical_chance"		"27"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"critical_damage"		"275"
+				"critical_damage"		"285"
 			}
 			"03"
 			{

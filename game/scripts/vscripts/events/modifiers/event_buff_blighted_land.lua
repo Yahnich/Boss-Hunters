@@ -9,7 +9,7 @@ function event_buff_blighted_land_blessing_1:DeclareFunctions()
 end
 
 function event_buff_blighted_land_blessing_1:GetModifierExtraHealthBonus( params )
-    return 800
+    return 1500
 end
 
 event_buff_blighted_land_blessing_2 = class(relicBaseClass)
@@ -25,21 +25,21 @@ function event_buff_blighted_land_blessing_2:DeclareFunctions()
 end
 
 function event_buff_blighted_land_blessing_2:GetModifierBonusStats_Intellect( )
-    return 15
+    return 18
 end
 
 function event_buff_blighted_land_blessing_2:GetModifierBonusStats_Strength( )
-    return 15
+    return 18
 end
 
 function event_buff_blighted_land_blessing_2:GetModifierBonusStats_Agility( )
-    return 15
+    return 18
 end
 
 event_buff_blighted_land_curse = class(relicBaseClass)
 
 function event_buff_blighted_land_curse:GetModifierHealAmplify_Percentage( params )
-    return -25
+    return -20
 end
 
 function event_buff_blighted_land_curse:IsDebuff( )

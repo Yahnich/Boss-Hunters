@@ -36,7 +36,7 @@ end
 function modifier_undying_flesh_golem_bh:OnDeath(params)
 	if not params.unit:IsSameTeam( self:GetParent() )
 	and CalculateDistance( params.unit, self:GetParent() ) <= self.radius then
-		local heal = TernaryOperator(self.bHeal, params.unit:IsRoundBoss(), self.mHeal)
+		local heal = TernaryOperator(self.bHeal, params.unit:IsRoundNecessary(), self.mHeal)
 		caster:HealEvent( caster:GetMaxHealth() * heal, self:GetAbility(), caster )
 		ParticleManager:FireRopeParticle("particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster, params.unit)
 	end

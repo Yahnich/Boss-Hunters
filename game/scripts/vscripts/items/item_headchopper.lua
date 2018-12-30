@@ -12,6 +12,8 @@ function modifier_item_headchopper_handle:OnCreated()
 	
 	self.strength = self:GetSpecialValueFor("bonus_strength")
 	self.damage = self:GetSpecialValueFor("bonus_damage")
+	
+	self.effect_damage = self:GetSpecialValueFor("effect_bonus_damage")
 end
 
 function modifier_item_headchopper_handle:GetAttributes()
@@ -21,8 +23,28 @@ end
 function modifier_item_headchopper_handle:DeclareFunctions()
 	return {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
 			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE 
-			}
+			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+			MODIFIER_EVENT_ON_ATTACK_START,
+			MODIFIER_EVENT_ON_ATTACK_LANDED}
+end
+
+function modifier_item_headchopper_handle:OnAttackStart(params)
+	if params.attacker == self:GetParent() then
+		if self.effect_modifier then
+			self.effect_modifier:Destroy()
+		end
+		if params.target:IsHealingDisabled() then
+			self.effect_modifier = params.attacker:AddNewModifier(caster, nil, "modifier_generic_attack_bonus_pct", {damage = self.effect_damage})
+		end
+	end
+end
+
+function modifier_item_headchopper_handle:OnAttackLanded(params)
+	if params.attacker == self:GetParent() then
+		if self.effect_modifier then
+			self.effect_modifier:Destroy()
+		end
+	end
 end
 
 function modifier_item_headchopper_handle:GetModifierBonusStats_Strength()

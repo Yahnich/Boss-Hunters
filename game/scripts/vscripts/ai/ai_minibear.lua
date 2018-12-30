@@ -28,7 +28,7 @@ end
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 		local target = thisEntity:GetTauntTarget() or FindMarkedTarget(thisEntity) or AttackingMaster(thisEntity) or AICore:GetHighestPriorityTarget(thisEntity)
-		if target then
+		if target and thisEntity.ankle:IsFullyCastable() then
 			ExecuteOrderFromTable({
 				UnitIndex = thisEntity:entindex(),
 				OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
@@ -44,7 +44,7 @@ function AIThink(thisEntity)
 				OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
 				TargetIndex = target:entindex(),
 			})
-			return thisEntity:GetSecondsPerAttack()
+			return thisEntity:GetCastPoint(true) + 0.1
 		end
 		return AICore:AttackHighestPriority( thisEntity )
 	else return 0.25 end

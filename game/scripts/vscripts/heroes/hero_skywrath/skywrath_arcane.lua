@@ -32,14 +32,16 @@ function skywrath_arcane:OnProjectileHit(hTarget, vLocation)
 
     if hTarget then
         EmitSoundOn("Hero_SkywrathMage.ArcaneBolt.Impact", hTarget)
-        local damage = self:GetTalentSpecialValueFor("damage") + self:GetTalentSpecialValueFor("int_multiplier")/100 * caster:GetIntellect()
-        self:DealDamage(caster, hTarget, damage, {}, 0)
+        local baseDamage = self:GetTalentSpecialValueFor("damage")
+		local scaleDmg =  caster:GetIntellect() * self:GetTalentSpecialValueFor("int_multiplier")/100
+        self:DealDamage(caster, hTarget, baseDamage)
+		self:DealDamage(caster, hTarget, scaleDmg, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 		if caster:HasTalent("special_bonus_unique_skywrath_arcane_1") then
-			local spreadDamage = damage * caster:FindTalentValue("special_bonus_unique_skywrath_arcane_1") / 100
+			local spreadPct = caster:FindTalentValue("special_bonus_unique_skywrath_arcane_1") / 100
 			local radius = caster:FindTalentValue("special_bonus_unique_skywrath_arcane_1", "radius")
 			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( hTarget:GetAbsOrigin(), radius ) ) do
 				if enemy ~= hTarget then
-					self:DealDamage( caster, enemy, spreadDamage )
+					self:DealDamage( caster, enemy, baseDamage * spreadPct )
 				end
 			end
 		end

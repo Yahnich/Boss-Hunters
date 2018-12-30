@@ -12,7 +12,7 @@ function relic_unique_deathrow:GetModifierPreAttack_CriticalStrike()
 end
 
 function relic_unique_deathrow:OnDeath(params)
-	if params.attacker == self:GetParent() and params.unit:IsRoundBoss() then
+	if params.attacker == self:GetParent() and params.unit:IsRoundNecessary() then
 		self.kills = self.kills + 1
 		if self.kills >= math.ceil(self:GetStackCount() / 10) then
 			self:IncrementStackCount()

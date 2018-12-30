@@ -4,24 +4,43 @@ function tell_threat()
 	GameEvents.SendCustomGameEventToServer( "Tell_Threat", { pID: ID} );
 }
 
-GameEvents.Subscribe("dota_player_update_selected_unit", UpdatedSelection);
 GameEvents.Subscribe("dota_player_update_query_unit", UpdatedSelection);
-GameEvents.Subscribe("npc_spawned", UpdatedSpawned);
+GameEvents.Subscribe("dota_player_update_selected_unit", UpdatedSelection);
 GameEvents.Subscribe("bh_update_attack_target", UpdatedAttack);
 
 
 
 var newestBoss
+var prevBoss
 var currPID
 var localID = Game.GetLocalPlayerID()
 $("#targetPanelMain").visible = false;
 
-function UpdatedSpawned(arg)
-{
-	if($("#targetPanelMain").visible == false && newestBoss != arg.entindex && (Entities.GetTeamNumber( arg.entindex ) != Players.GetTeam( localID ))){
-		UpdateCurrentTarget(arg.entindex);
-	}
-}
+(function(){
+	var wildTypeIcon = $("#WildTypeIcon")
+	wildTypeIcon.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", wildTypeIcon, "This enemy is a Wild type enemy")} );
+	wildTypeIcon.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", wildTypeIcon)} );
+	
+	var undeadTypeIcon = $("#UndeadTypeIcon")
+	undeadTypeIcon.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", undeadTypeIcon, "This enemy is a Undead type enemy")} );
+	undeadTypeIcon.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", undeadTypeIcon)} );
+	
+	var demonicTypeIcon = $("#DemonicTypeIcon")
+	demonicTypeIcon.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", demonicTypeIcon, "This enemy is a Demonic type enemy")} );
+	demonicTypeIcon.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", demonicTypeIcon)} );
+	
+	var celestialTypeIcon = $("#CelestialTypeIcon")
+	celestialTypeIcon.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", celestialTypeIcon, "This enemy is a Celestial type enemy")} );
+	celestialTypeIcon.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", celestialTypeIcon)} );
+	
+	var minionTypeIcon = $("#MinionTypeIcon")
+	minionTypeIcon.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", minionTypeIcon, "This enemy is a Minion.")} );
+	minionTypeIcon.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", minionTypeIcon)} );
+	
+	var threatButton = $("#threatButton")
+	threatButton.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", threatButton, "This is your current threat. Threat dictates who is targeted by the enemy.\n\nRed threat means you have the highest amount of threat in your team, orange means you are second.")} );
+	threatButton.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", threatButton)} );
+})();
 
 function UpdatedSelection()
 {
@@ -55,7 +74,6 @@ function UpdateCurrentTarget(entindex)
 			debuff.style.visibility = "collapse";
 			debuff.DeleteAsync(0)
 		}
-		
 		currPID = Particles.CreateParticle( "particles/ui_mouseactions/unit_highlight.vpcf", ParticleAttachment_t.PATTACH_POINT_FOLLOW, newestBoss );
 		Particles.SetParticleControl(currPID, 0, Entities.GetAbsOrigin(newestBoss) );
 		Particles.SetParticleControl(currPID, 1, [255,0,0] );
@@ -65,16 +83,15 @@ function UpdateCurrentTarget(entindex)
 
 UpdateHealthBar()
 var currBossAbility = "generic_hidden"
-function UpdateHealthBar(unit)
+function UpdateHealthBar()
 {
-	var sUnit = unit;
-	if(unit == null){sUnit = newestBoss}
+	var sUnit = newestBoss
 	if(GameUI.IsAltDown()){
 		$.GetContextPanel().style.marginTop = "9%";
 	} else {
 		$.GetContextPanel().style.marginTop = "3.5%";
 	}
-	if(sUnit == null || !Entities.IsAlive( sUnit )){
+	if(sUnit == null || !Entities.IsAlive( sUnit ) && $("#targetPanelMain").visible){
 		$("#targetPanelMain").visible = false;
 		var localAbility = $("#currentlyCastAbility")
 		localAbility.abilityname = "generic_hidden"
@@ -82,27 +99,26 @@ function UpdateHealthBar(unit)
 		localAbility.SetPanelEvent("onmouseout", function(){} );
 		localAbility.SetPanelEvent("onmouseover", function(){} );
 		localAbility.SetPanelEvent("onactivate", function(){} );
-	} else {
-		$("#targetPanelMain").visible = true;
-		var nameMod = "_h"
-		var difficulty = CustomNetTables.GetTableValue( "game_info", "difficulty" ).difficulty
-		if(difficulty > 2){
-			nameMod = "_vh"
+	} else if(sUnit != null && Entities.IsAlive( sUnit ) ){
+		if(!$("#targetPanelMain").visible){
+			$("#targetPanelMain").visible = true;
 		}
-		var unitName = 	Entities.GetUnitName( sUnit )
-		if((unitName.match(/_h/g) != null || unitName.match(/_vh/g) != null)){
-			nameMod = ""
-		}
-		if( (nameMod != "") && ($.Localize("#" + unitName + nameMod) == unitName + nameMod) ){
-			nameMod = ""
-		}
-		$("#bossNameLabel").text = $.Localize("#" + unitName + nameMod);
-		$("#hpBarCurrentText").text = Entities.GetHealth( sUnit ) + " / " + Entities.GetMaxHealth( sUnit );
-		if(Entities.GetMaxHealth( sUnit ) > 0)
-		{
-			var hpPct = Entities.GetHealth( sUnit )/Entities.GetMaxHealth( sUnit ) * 100
-			$("#hpBarCurrent").style.clip = "rect( 0% ," + hpPct + "%" + ", 100% ,0% )";
-			
+		// target got changed, refresh name and typing
+		if (prevBoss != sUnit){
+			prevBoss = sUnit
+			var nameMod = "_h"
+			var difficulty = CustomNetTables.GetTableValue( "game_info", "difficulty" ).difficulty
+			if(difficulty > 2){
+				nameMod = "_vh"
+			}
+			var unitName = 	Entities.GetUnitName( sUnit )
+			if((unitName.match(/_h/g) != null || unitName.match(/_vh/g) != null)){
+				nameMod = ""
+			}
+			if( (nameMod != "") && ($.Localize("#" + unitName + nameMod) == unitName + nameMod) ){
+				nameMod = ""
+			}
+			$("#bossNameLabel").text = $.Localize("#" + unitName + nameMod);
 			var elite = ""
 			for (var i = 0; i < Entities.GetAbilityCount( sUnit ); i++) {
 				var abilityID = Entities.GetAbility( sUnit, i )
@@ -112,6 +128,39 @@ function UpdateHealthBar(unit)
 					$("#bossNameLabel").text = $.Localize( "#DOTA_Tooltip_ability_" + abilityName ) + " " + $("#bossNameLabel").text
 				}
 			}
+			$("#WildTypeIcon").visible = false;
+			$("#UndeadTypeIcon").visible = false;
+			$("#DemonicTypeIcon").visible = false;
+			$("#CelestialTypeIcon").visible = false;
+			// 1 is minion and 2 is boss, 0 is neither
+			var minionType = 0
+			for (var i = 0; i < Entities.GetNumBuffs(sUnit); i++) {
+				var buffID = Entities.GetBuff(sUnit, i)
+				if (Buffs.GetName(sUnit, buffID ) == "modifier_type_wild_tag" ){$("#WildTypeIcon").visible = true;}
+				if (Buffs.GetName(sUnit, buffID ) == "modifier_type_undead_tag" ){$("#UndeadTypeIcon").visible = true;}
+				if (Buffs.GetName(sUnit, buffID ) == "modifier_type_demonic_tag" ){$("#DemonicTypeIcon").visible = true;}
+				if (Buffs.GetName(sUnit, buffID ) == "modifier_type_celestial_tag" ){$("#CelestialTypeIcon").visible = true;}
+				if (Buffs.GetName(sUnit, buffID ) == "modifier_minion_tag" ){minionType = 1}
+				if (Buffs.GetName(sUnit, buffID ) == "modifier_boss_tag" ){minionType = 2}
+			}
+			var minionTypeIcon = $("#MinionTypeIcon")
+			if(minionType == 1){
+				minionTypeIcon.SetImage("file://{images}/custom_game/icons/minionBorder.png")
+				minionTypeIcon.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", minionTypeIcon, "This enemy is a Minion.")} );
+			}else if(minionType == 2){
+				minionTypeIcon.SetImage("file://{images}/custom_game/icons/bossBorder.png")
+				minionTypeIcon.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", minionTypeIcon, "This enemy is a Boss.")} );
+			} else {
+				minionTypeIcon.SetImage("file://{images}/custom_game/icons/eliteBorder.png")
+				minionTypeIcon.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", minionTypeIcon, "This enemy is a Monster.")} );
+			}
+		};
+		$("#hpBarCurrentText").text = Entities.GetHealth( sUnit ) + " / " + Entities.GetMaxHealth( sUnit );
+		if(Entities.GetMaxHealth( sUnit ) > 0)
+		{
+			var hpPct = Entities.GetHealth( sUnit )/Entities.GetMaxHealth( sUnit ) * 100
+			$("#hpBarCurrent").style.clip = "rect( 0% ," + hpPct + "%" + ", 100% ,0% )";
+			
 			var maxMana = Entities.GetMaxMana( sUnit )
 			if(maxMana > 0){
 				$("#mpBarRoot").visible = true;
@@ -166,6 +215,7 @@ function UpdateHealthBar(unit)
 		
 		var buffContainer = $("#buffBar");
 		for( var buff of buffContainer.Children() ){
+			
 			if( buff != null && Buffs.GetName(sUnit, buff.buffID )  == "" && Buffs.GetParent( sUnit, buff.buffID ) != sUnit){
 				buff.style.visibility = "collapse";
 				buff.DeleteAsync(0)
@@ -185,7 +235,7 @@ function UpdateHealthBar(unit)
 			}
 		}
 	}
-	$.Schedule( 0.33, UpdateHealthBar )
+	$.Schedule( 0.15, UpdateHealthBar )
 }
 
 function CreateMainBuff(heroID, buffID, heroName)
@@ -250,12 +300,12 @@ function CreateMainBuff(heroID, buffID, heroName)
 		buffHolder.SetPanelEvent("onmouseout", buffHolder.onMouseOut );
 		buffHolder.SetPanelEvent("onactivate", buffHolder.onActivate );
 	} else {
-		buffBorder = buffHolder.FindChild( "BuffBorder"+Buffs.GetName(heroID, buffID )+"Main" )
-		buff = buffHolder.FindChild( "Buff"+Buffs.GetName(heroID, buffID )+"Main" )
-		buffLabel =  buffHolder.FindChild( "BuffLabel"+Buffs.GetName(heroID, buffID )+"Main");
+		buff = buffHolder.GetChild( 0 )
+		buffBorder = buffHolder.GetChild( 1 )
+		buffLabel =  buff.FindChild( "BuffLabel"+Buffs.GetName(heroID, buffID )+"Main");
 	}
 	var completion = Math.max( 0, 360 * (Buffs.GetRemainingTime(heroID, buffID ) / Buffs.GetDuration(heroID, buffID )) )
-	if(Buffs.GetDuration( heroID, buffID ) == -1){ completion = 360; }
+	if(Buffs.GetDuration( heroID, buffID ) == -1 || Buffs.GetRemainingTime(heroID, buffID ) < 0){ completion = 360; }
 	buffBorder.style.clip = "radial(50% 50%, 0deg, " + completion + "deg)";
 	var stacks = Buffs.GetStackCount(heroID, buffID )
 	if(stacks > 0 && buffLabel == null){

@@ -32,7 +32,7 @@ function AIThink(thisEntity)
 	if thisEntity and not thisEntity:IsNull() then
 		if not thisEntity:IsDominated() then
 			if thisEntity.decay:IsFullyCastable() and AICore:NearestEnemyHeroInRange( thisEntity, thisEntity.decay:GetTrueCastRange()) then
-				local position = AICore:OptimalHitPosition( thisEntity, thisEntity.decay:GetTrueCastRange(), thisEntity.decay:GetSpecialValueFor("radius") )
+				local position = AICore:OptimalHitPosition( thisEntity, thisEntity.decay:GetTrueCastRange(), thisEntity.decay:GetSpecialValueFor("radius") * 1.25 )
 				return CastDecay(thisEntity, position)
 			end
 			return AICore:AttackHighestPriority( thisEntity )

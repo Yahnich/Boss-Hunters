@@ -4,7 +4,6 @@ function boss27_ursa_warrior:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
 	EmitSoundOn("Hero_Ursa.Enrage", caster)
 	self.warmUpFX = ParticleManager:CreateParticle("particles/bosses/boss27/boss27_summon_lilbears_summon.vpcf", PATTACH_POINT_FOLLOW, caster)
-	caster.smallBearsTable = caster.smallBearsTable or {}
 	return true
 end
 

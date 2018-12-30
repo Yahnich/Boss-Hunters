@@ -36,7 +36,7 @@ function clinkz_pact:OnSpellStart()
                 ParticleManager:SetParticleControlEnt(nfx, 5, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
                 ParticleManager:ReleaseParticleIndex(nfx)
 
-    if target:IsRoundBoss() then
+    if target:IsRoundNecessary() then
         self:DealDamage(caster, target, damage, {damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, 0)
     else
         target:ForceKill(false)

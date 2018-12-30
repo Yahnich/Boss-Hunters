@@ -48,7 +48,7 @@ local function StartCombat(self, bFight)
 		Timers:CreateTimer(5, function()
 			for i = 1, self.enemiesToSpawn do
 				local spawn = CreateUnitByName("npc_dota_boss_warlock", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-				spawn.unitIsRoundBoss = true
+				spawn.unitIsRoundNecessary = true
 			end
 			self.enemiesToSpawn = 0
 			if self.enemiesToSpawn > 0 then

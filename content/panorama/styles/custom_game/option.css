@@ -1,4 +1,4 @@
-.option_panel
+	.option_panel
 {
     width: 100%;
     height: 100%;
@@ -462,23 +462,54 @@ margin-right: 300px;
 	height: fill-parent-flow( 1.0 );
 	flow-children: down;
 }
-#threatButton
+
+#bottomContainer
 {
 	horizontal-align: middle;
-	flow-children: down;
-	margin-top: -3px;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111FF ), to( #222222FF ) );
+	width: 100%;
+	flow-children: right;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111ff ), to( #22222200 ) );
+	margin-top: -2px;
 }
+
+#TypeInfoContainer
+{
+	flow-children: right;
+	horizontal-align: right;
+	margin-right: 5px;
+	margin-top: 5px;
+}
+
+.TypeIcon
+{
+	width: 24px;
+	height: 24px;
+}
+
+#MinionTypeIcon
+{
+	width: 36px;
+	height: 36px;
+}
+
+#threatButton
+{
+	height: 36px;
+	width: 64px;
+	horizontal-align: center;
+	flow-children: down;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111FF ), to( #222222ff ) );
+}
+
 #threatLabel
 {
 	align: center center;
 	font-family: Radiance;
 	text-transform: uppercase;
 	color: #FFFFFF;
-	font-size: 16px;
+	font-size: 18px;
+	margin-top: 1px;
 	text-align: center;
-	padding-left: 5px;
-	padding-right: 5px;
 }
 #hpBarRoot
 {

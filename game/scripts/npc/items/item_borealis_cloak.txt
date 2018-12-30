@@ -1,0 +1,109 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_borealis_cloak"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7093"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1200"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_borealis_cloak"
+		"ItemRequirements"
+		{
+			"01"						"item_mithril_armor;item_orb_of_essence;item_ice_fang"
+		}
+	}
+	"item_borealis_cloak"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7094"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_borealis_cloak"
+		"AbilityTextureName"			"shivas_guard"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemShopTags"					"intelligence;tank;durable"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"shivas guard;shiva;borealis;cloak"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"precache"					"soundevents/game_sounds_items.vsndevts"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"12"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_mana_regen"		"3.5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_damage"			"225"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_radius"			"1200"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_speed"			"350"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"debuff_ms"				"-35"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"debuff_as"				"-80"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"debuff_damage"			"50"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"debuff_duration"		"5.0"
+			}
+		}
+	}
+}

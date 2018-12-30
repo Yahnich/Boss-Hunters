@@ -23,7 +23,7 @@ function modifier_frozen_generic:OnIntervalThink()
 end
 
 function modifier_frozen_generic:CheckState()
-	if not self:GetParent():IsRoundBoss() then
+	if not self:GetParent():IsRoundNecessary() then
 		local state = { [MODIFIER_STATE_STUNNED] = true,
 						[MODIFIER_STATE_FROZEN] = true}
 		return state
@@ -45,7 +45,7 @@ function modifier_frozen_generic:DeclareFunctions()
 end
 
 function modifier_frozen_generic:GetModifierAttackSpeedBonus( params )
-	if self:GetParent():IsRoundBoss() then
+	if self:GetParent():IsRoundNecessary() then
 		return -1000
 	end
 end

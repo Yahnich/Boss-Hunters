@@ -7,7 +7,7 @@ local function StartEvent(self)
 			zombieName = "npc_dota_boss3b"
 		end
 		local spawn = CreateUnitByName(zombieName, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-		spawn.unitIsRoundBoss = true
+		spawn.unitIsRoundNecessary = true
 		
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then

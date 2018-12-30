@@ -25,27 +25,28 @@ function modifier_boss_evasion:DeclareFunctions()
 end
 
 
-function modifier_boss_attackspeed:GetModifierPreAttack_CriticalStrike( params )
+function modifier_boss_evasion:GetModifierPreAttack_CriticalStrike( params )
 	self.ticks = (self.ticks or 0) + 1
 	if self.ticks >= self.critDelay then	
 		self.ticks = 0
 		if self:GetParent():HasModifier("modifier_elite_assassin") then
-			return 220 + 7.5 * self:GetStackCount()
+			return math.min( 300, 220 + 7.5 * self:GetStackCount() )
 		else
-			return 165 + 5 * self:GetStackCount()
+			return math.min( 200, 165 + 5 * self:GetStackCount() )
 		end
 	end
 end
 
 function modifier_boss_evasion:GetModifierEvasion_Constant()
-	local raidsBeaten = self:GetStackCount()
+	local raidsBeaten = self:GetStackCount() % 100
 	local zonesBeaten = math.floor( raidsBeaten / 2 )
 	local raidTier = (raidsBeaten % 2) + 1
-	return math.min( 80, 10 + (2.5 * raidsBeaten) + (5 * zonesBeaten) + (7.5 * math.floor(zonesBeaten / 2) ) )
+	local ascensions = math.floor( self:GetStackCount() / 100 )
+	return math.min( 80, 10 + (2.5 * raidsBeaten) + (5 * zonesBeaten) + (7.5 * math.floor(zonesBeaten / 2) ) + 10 * math.max(0, ascensions - 1) )
 end
 
-function modifier_boss_attackspeed:GetModifierMagicalResistanceBonus( params )
-	return self:GetStackCount() * 10
+function modifier_boss_evasion:GetModifierMagicalResistanceBonus( params )
+	return math.min( 50, self:GetStackCount() * 5 )
 end
 
 function modifier_boss_evasion:IsHidden()

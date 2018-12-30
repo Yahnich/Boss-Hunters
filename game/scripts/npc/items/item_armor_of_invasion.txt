@@ -1,0 +1,89 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_armor_of_invasion"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7091"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1200"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_armor_of_invasion"
+		"ItemRequirements"
+		{
+			"01"						"item_mithril_armor;item_gauntlet_of_alacrity;item_reaping_scythe"
+		}
+	}
+	"item_armor_of_invasion"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7092"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_armor_of_invasion"
+		"AbilityTextureName"			"assault"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemShopTags"					"armor;aura;utility;tank"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"assault cuirass;ac;armor of invasion"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"precache"					"soundevents/game_sounds_items.vsndevts"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"10"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_damage"			"60"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_attack_speed"	"20"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_armor"			"5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_attack_speed"		"20"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_radius"			"900"
+			}
+		}
+	}
+}

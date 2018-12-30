@@ -7,7 +7,7 @@ local function StartEvent(self)
 			vhoulName = "npc_dota_boss2"
 		end
 		local spawn = CreateUnitByName(vhoulName, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-		spawn.unitIsRoundBoss = true
+		spawn.unitIsRoundNecessary = true
 		
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then

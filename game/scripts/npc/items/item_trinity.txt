@@ -1,0 +1,149 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_trinity"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7089"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"600"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_trinity"
+		"ItemRequirements"
+		{
+			"01"						"item_crystalline_staff;item_cultists_veil;item_lightningrod"
+		}
+	}
+	"item_trinity"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7090"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE |DOTA_ABILITY_BEHAVIOR_AOE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_trinity"
+		"AbilityTextureName"			"bloodthorn"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemShopTags"					"damage;int;dps"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"bloodthorn;trinity;mjollnir"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"precache"					"soundevents/game_sounds_items.vsndevts"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"40"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_damage"			"50"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_armor"			"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_regen"			"4"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_cast_range"		"500"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_spell_amp"		"40"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_cost_reduction"	"25"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_damage_taken"	"50"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"proc_chance"			"17"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"proc_bounces"			"5"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"proc_damage"			"150"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"proc_radius"			"500"
+			}
+			"13"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"paralyze_duration"		"0.4"
+			}
+			"14"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"debuff_mr"				"-30"
+			}
+			"15"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"debuff_int_dmg"		"250"
+			}
+			"16"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"debuff_duration"		"5"
+			}
+			"17"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"debuff_tick_rate"		"0.5"
+			}
+			"18"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"debuff_radius"			"650"
+			}
+		}
+	}
+}

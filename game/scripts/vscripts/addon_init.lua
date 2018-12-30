@@ -13,7 +13,6 @@ LinkLuaModifier( "modifier_charm_generic", "libraries/modifiers/modifier_charm_g
 LinkLuaModifier( "modifier_stun_immunity", "libraries/modifiers/modifier_stun_immunity.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_restoration_disable", "libraries/modifiers/modifier_restoration_disable.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_boss_ascension", "libraries/modifiers/modifier_boss_ascension.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_illusion_tag", "libraries/modifiers/illusions/modifier_illusion_tag.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_illusion_bonuses", "libraries/modifiers/illusions/modifier_illusion_bonuses.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_blind_generic", "libraries/modifiers/modifier_blind_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_wearable", "libraries/modifiers/modifier_wearable.lua", LUA_MODIFIER_MOTION_NONE)
@@ -42,6 +41,24 @@ LinkLuaModifier( "modifier_generic_attack_bonus_pct", "libraries/modifiers/modif
 LinkLuaModifier( "modifier_power_scaling", "libraries/modifiers/modifier_power_scaling.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_boss_evasion", "libraries/modifiers/modifier_boss_evasion.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_boss_hard_enrage", "libraries/modifiers/modifier_boss_hard_enrage.lua", LUA_MODIFIER_MOTION_NONE)
+
+LinkLuaModifier( "modifier_stats_system_handler", "libraries/handlers/modifier_stats_system_handler.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_cooldown_reduction_handler", "libraries/handlers/modifier_cooldown_reduction_handler.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_base_attack_time_handler", "libraries/handlers/modifier_base_attack_time_handler.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_accuracy_handler", "libraries/handlers/modifier_accuracy_handler.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_attack_speed_handler", "libraries/handlers/modifier_attack_speed_handler.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_move_speed_handler", "libraries/handlers/modifier_move_speed_handler.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_health_handler", "libraries/handlers/modifier_health_handler.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_handler_handler", "libraries/handlers/modifier_handler_handler.lua", LUA_MODIFIER_MOTION_NONE)
+
+
+LinkLuaModifier( "modifier_boss_tag", "libraries/modifiers/tags/modifier_boss_tag.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_minion_tag", "libraries/modifiers/tags/modifier_minion_tag.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_type_celestial_tag", "libraries/modifiers/tags/modifier_type_celestial_tag.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_type_demonic_tag", "libraries/modifiers/tags/modifier_type_demonic_tag.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_type_undead_tag", "libraries/modifiers/tags/modifier_type_undead_tag.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_type_wild_tag", "libraries/modifiers/tags/modifier_type_wild_tag.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_illusion_tag", "libraries/modifiers/illusions/modifier_illusion_tag.lua", LUA_MODIFIER_MOTION_NONE)
 
 if IsClient() then -- Load clientside utility lib
 	print("client-side has been initialized")

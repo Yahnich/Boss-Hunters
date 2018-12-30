@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"900"	
+		"ItemCost"						"1500"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -43,9 +43,9 @@
 		"ItemDroppable"					"1"
 		"ItemStackable"					"1"
 		
-		"ItemShopTags"					"blink;mobility"
+		"ItemShopTags"					"crits;damage"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blink dagger;warp staff"
+		"ItemAliases"					"daedalus;crystalys;boomstick"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		

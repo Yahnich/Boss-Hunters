@@ -24,7 +24,7 @@ function witch_doctor_paralyzing_cask_bh:OnProjectileHit_ExtraData(target, vLoca
 	local caster = self:GetCaster()
 	if not target then return end
 	local stunDuration = self:GetSpecialValueFor("creep_duration")
-	if target:IsRealHero() or target:IsRoundBoss() then
+	if target:IsRealHero() or target:IsRoundNecessary() then
 		if extraData.bounces then extraData.bounces = extraData.bounces - 1 end
 		stunDuration = self:GetSpecialValueFor("hero_duration")
 	end

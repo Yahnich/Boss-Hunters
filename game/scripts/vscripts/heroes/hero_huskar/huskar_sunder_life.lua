@@ -9,7 +9,7 @@ function huskar_sunder_life:IsHiddenWhenStolen()
 end
 
 function huskar_sunder_life:GetCooldown(iLvl)
-	return self.BaseClass.GetCooldown(self, iLvl) + self:GetCaster():FindTalentValue("special_bonus_unique_huskar_sunder_life_1")
+	return self.BaseClass.GetCooldown(self, iLvl) + self:GetCaster():FindTalentValue("special_bonus_unique_huskar_sunder_life_2")
 end
 
 function huskar_sunder_life:OnSpellStart()
@@ -25,15 +25,24 @@ end
 function huskar_sunder_life:SunderLife(position)
 	local caster = self:GetCaster()
 	local damagePct = TernaryOperator(self:GetTalentSpecialValueFor("health_damage_scepter"), caster:HasScepter(), self:GetTalentSpecialValueFor("health_cost_percent")) / 100
-	local damage = caster:GetHealth() * damagePct + caster:GetMaxHealth() * caster:FindTalentValue("special_bonus_unique_huskar_sunder_life_2") / 100
+	local damage = caster:GetHealth() * damagePct + caster:GetMaxHealth()
 	self:DealDamage( caster, caster, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NON_LETHAL})
-	
+	if caster:HasTalent("special_bonus_unique_huskar_sunder_life_1") then
+		caster:AddNewModifier( caster, self, "modifier_huskar_sunder_life_talent", {duration = caster:FindTalentValue("special_bonus_unique_huskar_sunder_life_1", "duration")} )
+	end
 	local enemies = caster:FindEnemyUnitsInRadius(position, self:GetTalentSpecialValueFor("damage_radius"))
 	for _, enemy in ipairs( enemies ) do
-		local eDamage = enemy:GetHealth() * damagePct + caster:GetMaxHealth() * caster:FindTalentValue("special_bonus_unique_huskar_sunder_life_2") / 100
+		local eDamage = enemy:GetHealth() * damagePct + caster:GetMaxHealth()
 		self:DealDamage( caster, enemy, eDamage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 		enemy:AddNewModifier(caster, self, "modifier_huskar_sunder_life_debuff", {duration = self:GetTalentSpecialValueFor("slow_duration")})
 	end
+end
+
+modifier_huskar_sunder_life_talent = class({})
+LinkLuaModifier("modifier_huskar_sunder_life_talent", "heroes/hero_huskar/huskar_sunder_life", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_huskar_sunder_life_talent:IsHidden()
+	return true
 end
 
 modifier_huskar_sunder_life_movement = class({})
@@ -64,17 +73,16 @@ if IsServer() then
 		if self:GetParent():IsNull() then return end
 		local parent = self:GetParent()
 		self.distanceTraveled =  self.distanceTraveled or 0
-		if parent:IsAlive() and self.distanceTraveled < self.distance then
+		if parent:IsAlive() then
 			local newPos = GetGroundPosition(parent:GetAbsOrigin() + self.direction * self.speed, parent) 
 			parent:SetAbsOrigin( newPos )
-			
-			self.distanceTraveled = self.distanceTraveled + self.speed
-		else
-			FindClearSpaceForUnit(parent, parent:GetAbsOrigin(), true)
-			self:Destroy()
-			return nil
-		end       
-		
+			if self.distanceTraveled < self.distance then
+				self.distanceTraveled = self.distanceTraveled + self.speed
+			else
+				self:Destroy()
+				return nil
+			end       
+		end
 	end
 end
 

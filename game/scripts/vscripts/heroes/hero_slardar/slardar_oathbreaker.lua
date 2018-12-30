@@ -50,7 +50,7 @@ function modifier_slardar_oathbreaker:OnAttackLanded(params)
 		end
 		local ability = self:GetAbility()
 		ability:DealDamage( params.attacker, params.target, self.damage )
-		local duration = TernaryOperator( self.stunBoss, params.target:IsRoundBoss(), self.stunMinion )
+		local duration = TernaryOperator( self.stunBoss, params.target:IsRoundNecessary(), self.stunMinion )
 		ability:Stun( params.target, duration )
 		params.target:EmitSound("Hero_Slardar.Bash")
 	end

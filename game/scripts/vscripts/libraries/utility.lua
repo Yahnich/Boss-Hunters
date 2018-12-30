@@ -261,13 +261,13 @@ function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability, flBonusDama
 	self.autoAttackFromAbilityState = {} -- basically the same as setting it to true
 	self.autoAttackFromAbilityState.ability = ability
 
-	if flBonusDamage then
+	if flBonusDamage or bDamagePct then
 		if bDamagePct then
 			local bonusDamage = flBonusDamage
-			if type(flBonusDamage) == "number" then
+			if type(bDamagePct) == "number" then
 				bonusDamage = bDamagePct
 			end
-			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus_pct", {damage = flBonusDamage})
+			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus_pct", {damage = bonusDamage})
 		end
 		if flBonusDamage and bDamagePct == false or bDamagePct == nil then
 			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus", {damage = flBonusDamage})
@@ -400,47 +400,6 @@ function CDOTA_PlayerResource:IsVIP(id)
 	local tag = self.VIP[tostring(steamID)]
 
 	return (tag and tag == "vip") or false
-end
-
-function CDOTA_BaseNPC:IsUndead()
-	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsUndead"]
-	if monsterType == 1 then
-		return true
-	else
-		return false
-	end
-end
-
-function CDOTA_BaseNPC:IsWild()
-	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsWild"]
-	if monsterType == 1 then
-		return true
-	else
-		return false
-	end
-end
-
-function CDOTA_BaseNPC:IsDemon()
-	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsDemon"]
-	if monsterType == 1 then
-		return true
-	else
-		return false
-	end
-end
-
-function CDOTA_BaseNPC:IsCelestial()
-	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsCelestial"]
-	if monsterType == 1 then
-		return true
-	else
-		return false
-	end
-end
-
-function CDOTA_BaseNPC:IsElite()
-	self.NPCIsElite = self.NPCIsElite or false
-	return self.NPCIsElite
 end
 
 function CDOTA_BaseNPC:HasTalent(talentName)
@@ -716,17 +675,10 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 				if caster == self then
 					caster = illusion
 				end
-				illusion:AddNewModifier( caster, modifier:GetAbility(), modifier:GetName(), { duration = modifier:GetRemainingTime() })
+				illusion:AddNewModifier( caster, modifier:GetAbility(), modifier:GetName(), { duration = modifier:GetDuration() })
 			end
 		end
 		
-		illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", { duration = duration })
-		illusion:AddNewModifier( illusion, nil, "modifier_cooldown_reduction_handler", {})
-		illusion:AddNewModifier( illusion, nil, "modifier_base_attack_time_handler", {})
-		illusion:AddNewModifier( illusion, nil, "modifier_accuracy_handler", {})
-		illusion:AddNewModifier( illusion, nil, "modifier_attack_speed_handler", {})
-		illusion:AddNewModifier( illusion, nil, "modifier_move_speed_handler", {})
-		illusion:AddNewModifier( illusion, nil, "modifier_health_handler", {})
 		-- Recreate the items of the caster
 		for itemSlot=0,5 do
 			local item = self:GetItemInSlot(itemSlot)
@@ -739,37 +691,27 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 				end
 			end
 		end
-
+	
 		-- Set the unit as an illusion
 		-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
-		illusion:AddNewModifier(owner, ability, "modifier_kill", { duration = duration })
 		illusion:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
-		if specIllusionModifier then
+		if specIllusionModifier and specIllusionModifier ~= "" then
 			illusion:AddNewModifier(owner, ability, specIllusionModifier, { duration = duration })
 		end
-		
+		illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", { duration = duration })
+		illusion.wearableList = {}
 		for _, wearable in ipairs( self:GetChildren() ) do
 			if wearable:GetClassname() == "dota_item_wearable" and wearable:GetModelName() ~= "" then
 				local newWearable = CreateUnitByName("wearable_dummy", illusion:GetAbsOrigin(), false, nil, nil, self:GetTeam())
 				newWearable:SetOriginalModel(wearable:GetModelName())
 				newWearable:SetModel(wearable:GetModelName())
 				newWearable:AddNewModifier(nil, nil, "modifier_wearable", {})
-				newWearable:AddNewModifier(owner, ability, "modifier_kill", { duration = duration })
-				newWearable:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration })
-				if specIllusionModifier then
-					newWearable:AddNewModifier(owner, ability, specIllusionModifier, { duration = duration })
-				end
+				newWearable:AddNewModifier(owner, ability, specIllusionModifier or "modifier_illusion", { duration = -1 })
 				newWearable:MakeIllusion()
 				newWearable:SetParent(illusion, nil)
 				newWearable:FollowEntity(illusion, true)
 				-- newWearable:SetRenderColor(100,100,255)
-				Timers:CreateTimer(1, function()
-					if illusion and not illusion:IsNull() and illusion:IsAlive() then
-						return 0.25
-					else
-						UTIL_Remove( newWearable )
-					end
-				end)
+				table.insert( illusion.wearableList, newWearable )
 			end
 		end
 		if callback then
@@ -869,6 +811,9 @@ function CDOTA_BaseNPC:SetThreat(val)
 	self.threat = math.min(math.max(0, (self.threat or 0) + newVal ), 10000)
 	if self:IsHero() and not self:IsFakeHero() then 
 		local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
+		local data = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex() ) or {}
+		data.threat = self.threat
+		CustomNetTables:SetTableValue("hero_properties", self:GetUnitName()..self:entindex(), data )
 		PlayerResource:SortThreat()
 		local event_data =
 		{
@@ -890,10 +835,11 @@ function CDOTA_BaseNPC:ModifyThreat(val)
 			newVal = newVal + ( math.abs(val) * ( modifier:Bonus_ThreatGain()/100 ) )
 		end
 	end
+	self.threat = self.threat or 0
 	local reduction = 0.5 ^ math.floor( self.threat / 100 )
 	-- Every 100 threat, threat gain effectiveness is reduced
 	local threatgainCap = math.max( 100, self.threat * 4 )
-	self.threat = math.min( math.max(0, (self.threat or 0) + math.min(newVal * reduction, threatgainCap ) ), 1000)
+	self.threat = math.min( math.max(0, (self.threat or 0) + math.min(newVal * reduction, threatgainCap ) ), 999 )
 	if self:IsRealHero() then
 		local player = PlayerResource:GetPlayer( self:GetOwner():GetPlayerID() )
 
@@ -911,12 +857,57 @@ function CDOTA_BaseNPC:ModifyThreat(val)
 end
 
 
-function CDOTA_BaseNPC:IsRoundBoss()
-	return self.unitIsRoundBoss == true
+function CDOTA_BaseNPC:IsRoundNecessary()
+	return self.unitIsRoundNecessary == true
+end
+
+function CDOTA_BaseNPC:IsBoss()
+	return self.unitIsBoss == true
 end
 
 function CDOTA_BaseNPC:IsMinion()
-	return self.unitIsRoundBoss ~= true or self.unitIsMinion
+	return self.unitIsRoundNecessary ~= true or self.unitIsMinion
+end
+
+function CDOTA_BaseNPC:IsUndead()
+	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsUndead"]
+	if monsterType == 1 then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:IsWild()
+	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsWild"]
+	if monsterType == 1 then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:IsDemon()
+	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsDemon"]
+	if monsterType == 1 then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:IsCelestial()
+	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsCelestial"]
+	if monsterType == 1 then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:IsElite()
+	self.NPCIsElite = self.NPCIsElite or false
+	return self.NPCIsElite
 end
 
 function CDOTA_BaseNPC:IsSlowed()
@@ -1099,7 +1090,6 @@ end
 
 function CDOTA_BaseNPC:SpendMana( flMana, bForced )
 	local cost = flMana * self:GetManaCostReduction()
-	print(cost)
 	self:ReduceMana( cost ) 
 end
 

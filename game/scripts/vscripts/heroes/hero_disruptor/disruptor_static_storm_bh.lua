@@ -45,6 +45,7 @@ function modifier_disruptor_static_storm_bh:OnCreated()
 				end
 			end
 		end
+		self:OnIntervalThink()
 	end
 end
 

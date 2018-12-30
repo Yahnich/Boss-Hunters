@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"900"	
+		"ItemCost"						"900"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_headchopper"
 		"ItemRequirements"
 		{
-			"01"						"item_titan_blade;item_executioners_blade"
+			"01"						"item_titan_blade;item_executioners_blade;item_cursed_amulet"
 		}
 	}
 	//=================================================================================================================
@@ -84,7 +84,16 @@
 				"var_type"				"FIELD_FLOAT"
 				"curse_duration"		"3"
 			}
-			
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"curse_duration"		"3"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"effect_bonus_damage"	"25"
+			}
 		}
 	}
 }

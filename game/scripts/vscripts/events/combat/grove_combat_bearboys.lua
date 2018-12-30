@@ -13,7 +13,7 @@ local function StartEvent(self)
 			spawn:SetCoreHealth(1450)
 		end
 		
-		spawn.unitIsRoundBoss = true
+		spawn.unitIsRoundNecessary = true
 		
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then

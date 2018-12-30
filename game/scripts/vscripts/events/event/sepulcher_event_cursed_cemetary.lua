@@ -45,7 +45,7 @@ local function StartCombat(self, bFight)
 				boss = "npc_dota_boss22"
 			end
 			local spawn = CreateUnitByName(boss, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-			spawn.unitIsRoundBoss = true
+			spawn.unitIsRoundNecessary = true
 			spawn:SetCoreHealth(2250)
 			self.undying = self.undying - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
@@ -60,7 +60,7 @@ local function StartCombat(self, bFight)
 			end
 			local spawn = CreateUnitByName(zombie, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn:SetCoreHealth(500)
-			spawn.unitIsRoundBoss = true
+			spawn.unitIsRoundNecessary = true
 			spawn.unitIsMinion = true
 			self.zombos = self.zombos - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
@@ -74,7 +74,7 @@ local function StartCombat(self, bFight)
 				zombie = "npc_dota_boss3b"
 			end
 			local spawn = CreateUnitByName(zombie, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-			spawn.unitIsRoundBoss = true
+			spawn.unitIsRoundNecessary = true
 			
 			self.zombos = self.zombos - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
