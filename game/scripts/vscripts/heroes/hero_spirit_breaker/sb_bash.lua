@@ -14,7 +14,7 @@ function sb_bash:GetIntrinsicModifierName()
 	return "modifier_sb_bash_handle"
 end
 
-function sb_bash:Bash(target, distance)
+function sb_bash:Bash(target, distance, bBuff)
     local caster = self:GetCaster()
 
     local stunDuration = self:GetTalentSpecialValueFor("duration")
@@ -46,8 +46,9 @@ function sb_bash:Bash(target, distance)
             self:Stun(target, stunDuration, false)
         end
     end)
-
-    caster:AddNewModifier(caster, self, "modifier_sb_bash_ms", {Duration = self:GetTalentSpecialValueFor("ms_duration")})
+	if bBuff ~= false then
+		caster:AddNewModifier(caster, self, "modifier_sb_bash_ms", {Duration = self:GetTalentSpecialValueFor("ms_duration")})
+	end
     self:DealDamage(caster, target, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 end
 
@@ -65,12 +66,13 @@ function modifier_sb_bash_handle:OnAttackLanded(params)
     local attacker = params.attacker
     local target = params.target
     local ability = self:GetAbility()
-
-    if attacker == caster and ability:IsCooldownReady() then
-        if self:RollPRNG( self:GetTalentSpecialValueFor("chance") ) then
+    if attacker == caster and ( ability:IsCooldownReady() or caster:IsInAbilityAttackMode() ) then
+        if self:RollPRNG( self:GetTalentSpecialValueFor("chance") ) or caster:IsInAbilityAttackMode() then
             local distance = self:GetTalentSpecialValueFor("knockback_distance")
             ability:Bash(target, distance)
-            ability:SetCooldown()
+            if not caster:IsInAbilityAttackMode() then
+				ability:SetCooldown()
+			end
         end
     end
 end

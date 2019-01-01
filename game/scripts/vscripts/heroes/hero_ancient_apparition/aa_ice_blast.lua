@@ -1,5 +1,5 @@
 aa_ice_blast = class({})
-LinkLuaModifier("modifier_aa_ice_blast", "heroes/hero_aa/aa_ice_blast", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_aa_ice_blast", "heroes/hero_ancient_apparition/aa_ice_blast", LUA_MODIFIER_MOTION_NONE)
 
 function aa_ice_blast:OnSpellStart()
 	local caster = self:GetCaster()

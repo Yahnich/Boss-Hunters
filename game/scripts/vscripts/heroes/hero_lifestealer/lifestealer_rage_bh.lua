@@ -9,14 +9,18 @@ end
 
 modifier_lifestealer_rage_bh = class({})
 
-if IsServer() then
-	function modifier_lifestealer_rage_bh:OnCreated(table)
+
+function modifier_lifestealer_rage_bh:OnCreated(table)
+	self.damage = self:GetTalentSpecialValueFor("damage_bonus")
+	if IsServer() then
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_life_stealer/life_stealer_rage.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 					ParticleManager:SetParticleControlEnt(nfx, 2, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloch", self:GetParent():GetAbsOrigin(), true)
 		self:AttachEffect(nfx)
 		self:GetAbility():StartDelayedCooldown()
 	end
+end
 
+if IsServer() then
 	function modifier_lifestealer_rage_bh:OnRefresh()
 		self:GetAbility():StartDelayedCooldown()
 	end
@@ -29,7 +33,7 @@ end
 function modifier_lifestealer_rage_bh:DeclareFunctions()
     funcs = {
                 MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-                
+                MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE
             }
     return funcs
 end
@@ -40,11 +44,11 @@ function modifier_lifestealer_rage_bh:CheckState()
 end
 
 function modifier_lifestealer_rage_bh:GetModifierMagicalResistanceBonus()
-    return 1000
+    return 100
 end
 
-function modifier_lifestealer_rage_bh:GetModifierAttackSpeedBonus()
-    return self:GetTalentSpecialValueFor("attack_speed_bonus")
+function modifier_lifestealer_rage_bh:GetModifierBaseDamageOutgoing_Percentage()
+    return self.damage
 end
 
 function modifier_lifestealer_rage_bh:IsHidden()

@@ -7,6 +7,7 @@ local function StartEvent(self)
 		local greenPool = spawn:FindAbilityByName("green_dragon_toxic_pool")
 		if greenPool then greenPool:StartCooldown(10) end
 		spawn.unitIsRoundNecessary = true
+		spawn.unitIsBoss = true
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then
 			return 10

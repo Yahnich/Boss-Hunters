@@ -111,7 +111,13 @@ end
 -- function modifier_stats_system_handler:GetCooldownReduction() return self.cdr or 0 end
 function modifier_stats_system_handler:GetModifierAttackSpeedBonus() return 50 + (self.as or 0) end
 function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage() return self.sta or 0 end
-function modifier_stats_system_handler:GetAccuracy() return self.acc or 0 end
+function modifier_stats_system_handler:GetAccuracy(params)
+	local accuracy = self.acc or 0
+	if not self:GetParent():IsRangedAttacker() then
+		accuracy = accuracy + 35
+	end
+	return accuracy
+end
 
 function modifier_stats_system_handler:GetModifierPhysicalArmorBonus()
 	local bonusarmor = 0

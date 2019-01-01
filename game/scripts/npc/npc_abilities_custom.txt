@@ -2,7 +2,6 @@
 #base "bosses/boss1b.txt"
 #base "bosses/boss3.txt"
 #base "bosses/boss4.txt"
-#base "bosses/boss12.txt"
 #base "bosses/boss14.txt"
 #base "bosses/boss15.txt"
 #base "bosses/boss16.txt"

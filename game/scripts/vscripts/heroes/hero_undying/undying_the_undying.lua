@@ -33,6 +33,10 @@ function modifier_undying_the_undying:OnDeath(params)
 	and self:GetParent():IsAlive() then
 		local duration = TernaryOperator( self.bDuration, params.unit:IsRoundNecessary(), self.mDuration)
 		self:GetAbility():SummonZombie( params.unit:GetAbsOrigin(), params.unit:GetMaxHealth() * self.health_pct, params.unit:GetAverageBaseDamage() * self.damage_pct, duration )
+	elseif params.unit:GetUnitName() == "npc_dota_unit_undying_zombie" then
+		Timers:CreateTimer(3, function()
+			if not params.unit:IsNull() then UTIL_Remove( params.unit ) end
+		end)
 	end
 end
 
@@ -45,11 +49,13 @@ LinkLuaModifier( "modifier_undying_the_undying_zombie", "heroes/hero_undying/und
 
 if IsServer() then
 	function modifier_undying_the_undying_zombie:OnCreated()
-		self:GetParent():MoveToPositionAggressive( self:GetCaster():GetAbsOrigin() + RandomVector(350) )
+		self.parent = self:GetParent()
+		self.caster = self:GetCaster()
+		self.parent:MoveToPositionAggressive( self.caster:GetAbsOrigin() + RandomVector(350) )
 		self:StartIntervalThink(2)
 	end
 	
 	function modifier_undying_the_undying_zombie:OnIntervalThink()
-		self:GetParent():MoveToPositionAggressive( self:GetCaster():GetAbsOrigin() + RandomVector(350) )
+		self.parent:MoveToPositionAggressive( self.caster:GetAbsOrigin() + RandomVector(350) )
 	end
 end

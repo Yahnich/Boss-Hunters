@@ -33,14 +33,6 @@ function abaddon_death_coil_ebf:OnSpellStart()
 	local self_heal = self:GetTalentSpecialValueFor( "self_heal" )
 
 	self:CreateMistCoil(target, source)
-	if caster:HasTalent("special_bonus_unique_abaddon_death_coil_1") then
-		for _, enemy in ipairs( caster:FindAllUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_abaddon_death_coil_1") ) ) do
-			if enemy ~= target and enemy ~= caster then
-				self:CreateMistCoil(enemy, target)
-				break
-			end
-		end
-	end
 	caster:HealEvent(self_heal + caster:GetMaxHealth()*heal_pct, self, caster)
 end
 
@@ -72,6 +64,42 @@ function abaddon_death_coil_ebf:OnProjectileHit(target, position)
 			ApplyDamage({ victim = target, attacker = caster, damage = damage,	damage_type = DAMAGE_TYPE_MAGICAL, ability = self})
 		else
 			target:HealEvent(heal + target:GetMaxHealth()*heal_pct, self, caster)
+		end
+		if caster:HasTalent("special_bonus_unique_abaddon_death_coil_1") and not self.duplicateProjectile then
+			self.duplicateProjectile = true
+			local search_radius = caster:FindTalentValue("special_bonus_unique_abaddon_death_coil_1")
+			local allies = caster:FindFriendlyUnitsInRadius( target:GetAbsOrigin(), search_radius )
+			local targetAllies = RollPercentage(50) and (#allies > 0)
+			if targetAllies then
+				for _, ally in ipairs( allies ) do
+					if ally:IsRealHero() and not ally:IsFakeHero() and ally ~= target then
+						self:CreateMistCoil(ally, target)
+						return
+					end
+				end
+				for _, ally in ipairs( allies ) do
+					if ally ~= target then
+						self:CreateMistCoil(ally, target)
+						return
+					end
+				end
+			else
+				local enemies = caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), search_radius )
+				for _, enemy in ipairs( enemies ) do
+					if not enemy:IsMinion() and enemy ~= target then
+						self:CreateMistCoil(enemy, target)
+						return
+					end
+				end
+				for _, enemy in ipairs( enemies ) do
+					if enemy ~= target then
+						self:CreateMistCoil(enemy, target)
+						return
+					end
+				end
+			end
+		elseif self.duplicateProjectile then
+			self.duplicateProjectile = false
 		end
 	end
 end

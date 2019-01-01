@@ -51,7 +51,7 @@ function bane_nightmare_prison_sleep:DeclareFunctions()
 end
 
 function bane_nightmare_prison_sleep:GetModifierIncomingDamage_Percentage()
-	return -5
+	return 5
 end
 
 function bane_nightmare_prison_sleep:OnTakeDamage(params)

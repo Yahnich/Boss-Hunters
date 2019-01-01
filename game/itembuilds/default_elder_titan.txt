@@ -23,7 +23,7 @@
 		}
 		"#DOTA_Item_Build_Core_Items"
 		{
-		    "item"  "item_blade_of_dominion
+		    "item"  "item_blade_of_dominion"
 			"item"	"item_frostfire_brand"
             "item"  "item_emission"
             "item"  "item_gauntlet_of_might"

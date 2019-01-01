@@ -363,6 +363,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"MaxLevel"						"1"
 		"AbilityTextureName"			"arc_warden_tempest_double"
+		"HasScepterUpgrade"				"1"
 		"InnateAbility"					"1"
 		
 		// Time		
@@ -423,7 +424,7 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityChannelTime"			"5"
-		"AbilityCooldown"				"40 35 30 25 20 15"
+		"AbilityCooldown"				"40 36 32 28 24 20"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -456,7 +457,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"total_damage"			"100 125 150 175 200 225"
+				"total_damage"			"100 145 190 235 280 325"
 			}
 		}
 	}

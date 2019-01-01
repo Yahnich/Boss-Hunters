@@ -48,14 +48,19 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bash_radius"			"300"
+				"status_resistance"		"50"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"vision_radius"			"400"
+				"bash_radius"			"350"
 			}
 			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vision_radius"			"400"
+			}
+			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"vision_duration"		"0.94"
@@ -152,12 +157,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_ms_self"			"8 12 16 20 24 28 32"
+				"bonus_ms_self"			"12 16 20 24 28 32 36"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_ms_allies"		"4 6 8 10 12 14 16"
+				"bonus_ms_allies"		"6 8 10 12 14 16 18"
 			}
 			"03"
 			{
@@ -270,7 +275,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.2 1.4 1.6 1.8"
+				"duration"				"1.4"
 			}
 			"04"
 			{
@@ -280,7 +285,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"knockback_distance"	"143 153 163 173 183 193 203"
+				"knockback_distance"	"125"
 			}
 			"06"
 			{
@@ -372,7 +377,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"ms_to_armor"			"8"
+				"ms_to_armor"			"4"
 			}
 		}
 	}
@@ -383,7 +388,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_spirit_breaker/sb_nether_strike"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET |DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
@@ -469,7 +474,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"100"
 			}
 		}
 	}
@@ -491,7 +496,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"10"
 			}
 		}
 	}

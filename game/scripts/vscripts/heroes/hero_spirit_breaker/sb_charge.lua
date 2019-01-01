@@ -16,13 +16,14 @@ end
 function sb_charge:OnSpellStart()
 	EmitSoundOn("Hero_Spirit_Breaker.ChargeOfDarkness", self:GetCaster())
 	local duration = 1000 / ( self:GetTalentSpecialValueFor("movement_speed") + self:GetCaster():GetIdealSpeed() )
-    self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_sb_charge", {duration =  duration + 0.1})
+    self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_sb_charge", {duration = duration + 0.1})
 end
 
 modifier_sb_charge = class({})
 function modifier_sb_charge:OnCreated(table)
 	self.ms = self:GetTalentSpecialValueFor("movement_speed")
 	self.basems = self:GetParent():GetIdealSpeed()
+	self.sr = self:GetTalentSpecialValueFor("status_resistance")
 	if IsServer() then
 		local parent = self:GetParent()
 
@@ -45,7 +46,7 @@ function modifier_sb_charge:DoControlledMotion()
 	if self.distance > 0 then
 		local speed = self.ms
 		speed = self:GetParent():GetIdealSpeed() * FrameTime()
-		local radius = 100
+		local radius = 150
 		self.distance = self.distance - speed
 		GridNav:DestroyTreesAroundPoint(parent:GetAbsOrigin(), radius, true)
 
@@ -60,7 +61,7 @@ function modifier_sb_charge:DoControlledMotion()
 
 				local ability2 = parent:FindAbilityByName("sb_bash")
 				if ability2 and ability2:IsTrained() then
-					ability2:Bash(enemy, ability2:GetTalentSpecialValueFor("knockback_distance"))
+					ability2:Bash(enemy, ability2:GetTalentSpecialValueFor("knockback_distance"), false)
 				end
 				self.hitUnits[enemy:entindex()] = true
 			end
@@ -85,6 +86,7 @@ function modifier_sb_charge:DeclareFunctions()
         MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
         MODIFIER_PROPERTY_EVASION_CONSTANT,
 		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
+		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING 
     }
     return funcs
 end
@@ -93,6 +95,10 @@ function modifier_sb_charge:GetModifierMoveSpeed_AbsoluteMin()
 	if self.basems then
 		return self.basems + self.ms
 	end
+end
+
+function modifier_sb_charge:GetModifierStatusResistanceStacking()
+	return self.sr
 end
 
 function modifier_sb_charge:GetActivityTranslationModifiers()

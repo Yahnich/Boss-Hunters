@@ -1,5 +1,5 @@
 aa_cold_feet = class({})
-LinkLuaModifier("modifier_aa_cold_feet", "heroes/hero_aa/aa_cold_feet", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_aa_cold_feet", "heroes/hero_ancient_apparition/aa_cold_feet", LUA_MODIFIER_MOTION_NONE)
 
 function aa_cold_feet:OnSpellStart()
 	local caster = self:GetCaster()

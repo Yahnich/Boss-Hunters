@@ -2,6 +2,10 @@ phenx_heart = class({})
 LinkLuaModifier( "modifier_phenx_heart_caster", "heroes/hero_phenx/phenx_heart.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_phenx_heart_burn", "heroes/hero_phenx/phenx_heart.lua", LUA_MODIFIER_MOTION_NONE )
 
+function phenx_heart:GetCastRange()
+	return self:GetTalentSpecialValueFor("radius")
+end
+
 function phenx_heart:GetIntrinsicModifierName()
     return "modifier_phenx_heart_caster"
 end
@@ -19,19 +23,34 @@ end
 
 modifier_phenx_heart_caster = class({})
 function modifier_phenx_heart_caster:OnCreated(table)
+	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.delay = self:GetTalentSpecialValueFor("tree_destroy_delay")
+	self.trees = {}
     if IsServer() then
-		if not self:GetAbility().nfx then
-			self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_ember_spirit/ember_spirit_flameguard.vpcf", PATTACH_ABSORIGIN, self:GetCaster())
-			ParticleManager:SetParticleControlEnt(self.nfx, 0, self:GetCaster(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true)
-			ParticleManager:SetParticleControlEnt(self.nfx, 1, self:GetCaster(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true)
-			ParticleManager:SetParticleControl(self.nfx, 2, Vector(self:GetTalentSpecialValueFor("radius"),self:GetTalentSpecialValueFor("radius"),self:GetTalentSpecialValueFor("radius")))
-		end
+		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_ember_spirit/ember_spirit_flameguard.vpcf", PATTACH_ABSORIGIN, self:GetCaster())
+		ParticleManager:SetParticleControlEnt(nfx, 0, self:GetCaster(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(nfx, 1, self:GetCaster(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true)
+		ParticleManager:SetParticleControl(nfx, 2, Vector(self:GetTalentSpecialValueFor("radius"),self:GetTalentSpecialValueFor("radius"),self:GetTalentSpecialValueFor("radius")))
+		self:AddEffect( nfx )
 		self:StartIntervalThink(0.25)
     end
 end
 
 function modifier_phenx_heart_caster:OnIntervalThink()
-    GridNav:DestroyTreesAroundPoint(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), false)
+	local trees = GridNav:GetAllTreesAroundPoint( self:GetParent():GetAbsOrigin(), self.radius, true )
+	for _, tree in ipairs( trees ) do
+		if tree:IsStanding() then
+			if not self.trees[tree] then
+				self.trees[tree] = 0
+			else
+				self.trees[tree] = self.trees[tree] + 0.25
+				if self.trees[tree] >= self.delay then
+					self.trees[tree] = nil
+					tree:CutDown( self:GetParent():GetTeam() )
+				end
+			end
+		end
+	end
 end
 
 function modifier_phenx_heart_caster:IsAura()
@@ -43,7 +62,7 @@ function modifier_phenx_heart_caster:GetAuraDuration()
 end
 
 function modifier_phenx_heart_caster:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self.radius
 end
 
 function modifier_phenx_heart_caster:GetAuraSearchFlags()

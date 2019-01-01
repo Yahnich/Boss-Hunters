@@ -35,7 +35,7 @@ function modifier_item_rapture:DeclareFunctions()
 end
 
 function modifier_item_rapture:GetModifierConstantHealthRegen()
-	if self:GetStackCount() ~= 0 then return self.hp_regen end
+	return self.hp_regen
 end
 
 function modifier_item_rapture:GetModifierPhysicalArmorBonus()
@@ -51,7 +51,7 @@ function modifier_item_rapture:GetModifierTotal_ConstantBlock(params)
 end
 
 function modifier_item_rapture:GetModifierBonusStats_Strength()
-	if self:GetStackCount() ~= 0 then return self.strength end
+	return self.strength
 end
 
 function modifier_item_rapture:GetModifierEvasion_Constant()
@@ -95,10 +95,6 @@ function modifier_rapture_enemy:DeclareFunctions()
 			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 			MODIFIER_PROPERTY_DISABLE_HEALING,}
-end
-
-function modifier_rapture_enemy:GetModifierConstantHealthRegen()
-	return self.hp_regen
 end
 
 function modifier_rapture_enemy:GetModifierEvasion_Constant()

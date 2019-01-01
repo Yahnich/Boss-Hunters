@@ -11,12 +11,17 @@ end
 
 modifier_lifestealer_flesh_wounds = class({})
 function modifier_lifestealer_flesh_wounds:OnCreated(table)
-    if IsServer() then self:StartIntervalThink(0.5) end
+	self.slow = self:GetTalentSpecialValueFor("slow")
+	self.slow_decay = ( self.slow / self:GetRemainingTime() ) * 0.5
+    self:StartIntervalThink(0.5)
 end
 
 function modifier_lifestealer_flesh_wounds:OnIntervalThink()
-    local damage = self:GetParent():GetHealth() * self:GetTalentSpecialValueFor("damage")/100
-    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), damage, {damage_flags=DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_DAMAGE)
+	self.slow = self.slow - self.slow_decay
+	if IsServer() then 
+		local damage = self:GetParent():GetHealth() * self:GetTalentSpecialValueFor("damage")/100
+		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), damage * 0.5, {damage_flags=DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_DAMAGE)
+	 end
 end
 
 function modifier_lifestealer_flesh_wounds:DeclareFunctions()
@@ -38,7 +43,7 @@ function modifier_lifestealer_flesh_wounds:OnTakeDamage(params)
 end
 
 function modifier_lifestealer_flesh_wounds:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("slow")
+    return self.slow
 end
 
 function modifier_lifestealer_flesh_wounds:IsDebuff()

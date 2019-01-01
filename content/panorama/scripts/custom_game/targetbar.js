@@ -9,6 +9,13 @@ GameEvents.Subscribe("dota_player_update_selected_unit", UpdatedSelection);
 GameEvents.Subscribe("bh_update_attack_target", UpdatedAttack);
 
 
+BH_MINION_TYPE_WILD = 1
+BH_MINION_TYPE_UNDEAD = BH_MINION_TYPE_WILD << 1
+BH_MINION_TYPE_DEMONIC = BH_MINION_TYPE_UNDEAD << 1
+BH_MINION_TYPE_CELESTIAL = BH_MINION_TYPE_DEMONIC << 1
+
+BH_MINION_TYPE_MINION = BH_MINION_TYPE_CELESTIAL << 1
+BH_MINION_TYPE_BOSS = BH_MINION_TYPE_MINION << 1
 
 var newestBoss
 var prevBoss
@@ -136,12 +143,26 @@ function UpdateHealthBar()
 			var minionType = 0
 			for (var i = 0; i < Entities.GetNumBuffs(sUnit); i++) {
 				var buffID = Entities.GetBuff(sUnit, i)
-				if (Buffs.GetName(sUnit, buffID ) == "modifier_type_wild_tag" ){$("#WildTypeIcon").visible = true;}
-				if (Buffs.GetName(sUnit, buffID ) == "modifier_type_undead_tag" ){$("#UndeadTypeIcon").visible = true;}
-				if (Buffs.GetName(sUnit, buffID ) == "modifier_type_demonic_tag" ){$("#DemonicTypeIcon").visible = true;}
-				if (Buffs.GetName(sUnit, buffID ) == "modifier_type_celestial_tag" ){$("#CelestialTypeIcon").visible = true;}
-				if (Buffs.GetName(sUnit, buffID ) == "modifier_minion_tag" ){minionType = 1}
-				if (Buffs.GetName(sUnit, buffID ) == "modifier_boss_tag" ){minionType = 2}
+				if (Buffs.GetName(sUnit, buffID ) == "modifier_typing_tag" ){
+					if( (Buffs.GetStackCount(sUnit, buffID ) & BH_MINION_TYPE_WILD) == BH_MINION_TYPE_WILD ){
+						$("#WildTypeIcon").visible = true;
+					}
+					if( (Buffs.GetStackCount(sUnit, buffID ) & BH_MINION_TYPE_UNDEAD) == BH_MINION_TYPE_UNDEAD ){
+						$("#UndeadTypeIcon").visible = true;
+					}
+					if( (Buffs.GetStackCount(sUnit, buffID ) & BH_MINION_TYPE_DEMONIC) == BH_MINION_TYPE_DEMONIC ){
+						$("#DemonicTypeIcon").visible = true;
+					}
+					if( (Buffs.GetStackCount(sUnit, buffID ) & BH_MINION_TYPE_CELESTIAL) == BH_MINION_TYPE_CELESTIAL ){
+						$("#CelestialTypeIcon").visible = true;
+					}
+					if( ( Buffs.GetStackCount(sUnit, buffID ) & BH_MINION_TYPE_MINION) == BH_MINION_TYPE_MINION ){
+						minionType = 1
+					}
+					if( ( Buffs.GetStackCount(sUnit, buffID ) & BH_MINION_TYPE_BOSS ) == BH_MINION_TYPE_BOSS ){
+						minionType = 2
+					}
+				}
 			}
 			var minionTypeIcon = $("#MinionTypeIcon")
 			if(minionType == 1){
@@ -267,8 +288,15 @@ function CreateMainBuff(heroID, buffID, heroName)
 		buffHolder.buffName = $.Localize( "#DOTA_Tooltip_" + Buffs.GetName(heroID, buffID ) )
 		buffHolder.hittest = true;
 		
+		var ability = Buffs.GetAbility(heroID, buffID );
+		if( !Abilities.IsItem( ability ) ){
+			buff = $.CreatePanel( "DOTAAbilityImage", buffHolder, "Buff"+Buffs.GetName(heroID, buffID )+"Main");
+			buff.abilityname = Abilities.GetAbilityName( ability );
+		} else{
+			buff = $.CreatePanel( "DOTAItemImage", buffHolder, "Buff"+Buffs.GetName(heroID, buffID )+"Main");
+			buff.itemname = Abilities.GetAbilityName( ability );
+		}
 		
-		buff = $.CreatePanel( "DOTAAbilityImage", buffHolder, "Buff"+Buffs.GetName(heroID, buffID )+"Main");
 		buffBorder =  $.CreatePanel( "Panel", buffHolder, "BuffBorder"+Buffs.GetName(heroID, buffID )+"Main");
 		buff.AddClass("PlayerMainModifier")
 		if(Buffs.IsDebuff(heroID, buffID) ){
@@ -276,7 +304,6 @@ function CreateMainBuff(heroID, buffID, heroName)
 		} else {
 			buffBorder.AddClass("IsBuff")
 		}
-		buff.abilityname = Abilities.GetAbilityName( Buffs.GetAbility(heroID, buffID ) );
 		buffHolder.onMouseOver = function()
 		{
 			var queryUnit = buffHolder.heroID;

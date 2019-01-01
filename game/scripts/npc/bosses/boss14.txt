@@ -48,9 +48,9 @@
 	
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20 15"
-		"AbilityCastPoint"				"1.5 1"
-		"AbilityCastRange"				"200 250"
+		"AbilityCooldown"				"30"
+		"AbilityCastPoint"				"2 1.5"
+		"AbilityCastRange"				"250"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 	
 		// Cost
@@ -64,7 +64,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"execution_damage"		"50"
+				"execution_damage"		"25 33"
 			}
 		}
 		"precache"

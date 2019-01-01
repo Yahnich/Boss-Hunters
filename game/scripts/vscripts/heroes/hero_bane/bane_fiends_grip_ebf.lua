@@ -98,7 +98,7 @@ function modifier_bane_fiends_grip_ebf:DeclareFunctions()
 end
 
 function modifier_bane_fiends_grip_ebf:GetModifierIncomingDamage_Percentage()
-	return -5
+	return 5
 end
 
 function modifier_bane_fiends_grip_ebf:GetOverrideAnimation()

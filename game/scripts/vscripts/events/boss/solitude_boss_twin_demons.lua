@@ -8,6 +8,8 @@ local function StartEvent(self)
 		local spawn2 = CreateUnitByName("npc_dota_boss33_b", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 		spawn2.unitIsRoundNecessary = true
 		
+		spawn.unitIsBoss = true
+		spawn2.unitIsBoss = true
 		spawn.twinDemon = spawn2
 		spawn2.twinDemon = spawn
 		

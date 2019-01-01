@@ -1,5 +1,5 @@
 aa_chilling_touch = class({})
-LinkLuaModifier("modifier_aa_chilling_touch", "heroes/hero_aa/aa_chilling_touch", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_aa_chilling_touch", "heroes/hero_ancient_apparition/aa_chilling_touch", LUA_MODIFIER_MOTION_NONE)
 
 function aa_chilling_touch:OnSpellStart()
 	local caster = self:GetCaster()

@@ -43,24 +43,31 @@ modifier_bane_enfeeble_debuff = class({})
 LinkLuaModifier("modifier_bane_enfeeble_debuff", "heroes/hero_bane/bane_enfeeble_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_bane_enfeeble_debuff:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("enfeeble_attack_reduction")
+	self.damage = self:GetTalentSpecialValueFor("dmg_reduction")
+	self.status_amp = self:GetTalentSpecialValueFor("status_amp_reduction")
 end
 
 function modifier_bane_enfeeble_debuff:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("enfeeble_attack_reduction")
+	self.damage = self:GetTalentSpecialValueFor("dmg_reduction")
+	self.status_amp = self:GetTalentSpecialValueFor("status_amp_reduction")
 end
 
 function modifier_bane_enfeeble_debuff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+	return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE ,
 			MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
 end
 
 function modifier_bane_enfeeble_debuff:GetModifierIncomingDamage_Percentage()
-	return -5
+	return 5
 end
 
-function modifier_bane_enfeeble_debuff:GetModifierPreAttack_BonusDamage()
+function modifier_bane_enfeeble_debuff:GetModifierTotalDamageOutgoing_Percentage()
+	print(damage)
 	return self.damage
+end
+
+function modifier_bane_enfeeble_debuff:GetModifierStatusAmplify_Percentage()
+	return self.status_amp
 end
 
 function modifier_bane_enfeeble_debuff:GetEffectName()
@@ -75,19 +82,25 @@ modifier_bane_enfeeble_buff = class({})
 LinkLuaModifier("modifier_bane_enfeeble_buff", "heroes/hero_bane/bane_enfeeble_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_bane_enfeeble_buff:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("enfeeble_attack_reduction") * (-1)
+	self.damage = -self:GetTalentSpecialValueFor("dmg_reduction")
+	self.status_amp = -self:GetTalentSpecialValueFor("status_amp_reduction")
 end
 
 function modifier_bane_enfeeble_buff:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("enfeeble_attack_reduction") * (-1)
+	self.damage = -self:GetTalentSpecialValueFor("dmg_reduction")
+	self.status_amp = -self:GetTalentSpecialValueFor("status_amp_reduction")
 end
 
 function modifier_bane_enfeeble_buff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
+	return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE}
 end
 
-function modifier_bane_enfeeble_buff:GetModifierPreAttack_BonusDamage()
+function modifier_bane_enfeeble_buff:GetModifierTotalDamageOutgoing_Percentage()
 	return self.damage
+end
+
+function modifier_bane_enfeeble_buff:GetModifierStatusAmplify_Percentage()
+	return self.status_amp
 end
 
 function modifier_bane_enfeeble_buff:GetEffectName()

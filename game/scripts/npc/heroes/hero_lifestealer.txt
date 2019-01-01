@@ -39,7 +39,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"attack_speed_bonus"	"40 50 60 70 80 90 100"
+				"damage_bonus"			"40 50 60 70 80 90 100"
 				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_rage_bh_2"
 			}
 			"02"
@@ -90,7 +90,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"30"
+				"value"						"25"
 			}
 		}
 	}
@@ -104,8 +104,6 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"life_stealer_feast"
 		"MaxLevel"						"7"
-		
-		"AbilityCastRange"				"900 950 1000 1050 1100 1150 1200"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -113,32 +111,31 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"max_damage_amp"		"40 50 60 70 80 90 100"
-				"CalculateSpellDamageTooltip"	"0"
+				"var_type"						"FIELD_FLOAT"
+				"max_attack_speed"				"80 120 160 200 240 280 320"
+				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_hunger_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"max_lifesteal"			"40 50 60 70 80 90 100"
+				"var_type"						"FIELD_FLOAT"
+				"max_lifesteal"					"40 50 60 70 80 90 100"
+				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_hunger_1"
+				"LinkedSpecialBonusField"		"value2"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"min_damage_amp"		"1"
-				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_hunger_1"
-				"CalculateSpellDamageTooltip"	"0"
+				"var_type"						"FIELD_FLOAT"
+				"min_attack_speed"				"10 20 30 40 50 60 70"
+				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_hunger_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"min_lifesteal"			"1"
-				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_hunger_1"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"900 950 1000 1050 1100 1150 1200"
+				"var_type"						"FIELD_FLOAT"
+				"min_lifesteal"					"1"
+				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_hunger_1"
+				"LinkedSpecialBonusField"		"value2"
 			}
 		}
 	}
@@ -160,7 +157,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"14"
+				"value"						"1.15"
+			}
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"15"
 			}
 		}
 	}
@@ -183,6 +185,11 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"value"						"5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"cd"						"18"
 			}
 		}
 	}
@@ -232,26 +239,26 @@
 		{
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"				"0.5 1 1.5 2 2.5 3 3.5"
-				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_flesh_wounds_2"
+				"var_type"						"FIELD_FLOAT"
+				"damage"						"1 1.25 1.5 1.75 2 2.25 2.5"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"heal_percent"			"35"
-				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_flesh_wounds_1"
+				"var_type"						"FIELD_INTEGER"
+				"heal_percent"					"35"
+				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_flesh_wounds_1"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"slow"					"-70"
+				"var_type"						"FIELD_FLOAT"
+				"slow"							"-70"
+				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_flesh_wounds_2"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"5 6 7 8 9 10 11"
+				"var_type"						"FIELD_INTEGER"
+				"duration"						"5 6 7 8 9 10 11"
 			}
 		}
 	}
@@ -295,7 +302,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
+				"value"						"-50"
 			}
 		}
 	}
@@ -430,7 +437,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_lifestealer/lifestealer_rend.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
@@ -498,7 +505,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"20"
+				"value"						"0"
 			}
 		}
 	}

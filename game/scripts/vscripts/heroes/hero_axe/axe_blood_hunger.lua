@@ -15,23 +15,23 @@ function axe_blood_hunger:OnSpellStart()
 
 	local maxUnits = self:GetTalentSpecialValueFor("max_units")
 	local currentUnits = 0
-	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
+	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
 	for _,enemy in pairs(enemies) do
 		if currentUnits < maxUnits then
 			EmitSoundOn("Hero_Axe.Battle_Hunger", enemy)
-			enemy:AddNewModifier(caster, self, "modifier_blood_hunger", {Duration = self:GetSpecialValueFor("duration")})
-			caster:AddNewModifier(caster, self, "modifier_blood_hunger_strength", {Duration = self:GetSpecialValueFor("duration")}):AddIndependentStack()
+			enemy:AddNewModifier(caster, self, "modifier_blood_hunger", {Duration = self:GetTalentSpecialValueFor("duration")})
+			caster:AddNewModifier(caster, self, "modifier_blood_hunger_strength", {Duration = self:GetTalentSpecialValueFor("duration")}):AddIndependentStack()
 			currentUnits = currentUnits + 1
 		end
 	end
 
 	if caster:HasTalent("special_bonus_unique_axe_blood_hunger_2") then
-		local allies = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
+		local allies = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
 		for _,ally in pairs(allies) do
 			if ally ~= caster then
 				EmitSoundOn("Hero_Axe.Battle_Hunger", ally)
-				ally:AddNewModifier(caster, self, "modifier_blood_hunger", {Duration = self:GetSpecialValueFor("duration")})
-				caster:AddNewModifier(caster, self, "modifier_blood_hunger_strength", {Duration = self:GetSpecialValueFor("duration")}):AddIndependentStack()
+				ally:AddNewModifier(caster, self, "modifier_blood_hunger", {Duration = self:GetTalentSpecialValueFor("duration")})
+				caster:AddNewModifier(caster, self, "modifier_blood_hunger_strength", {Duration = self:GetTalentSpecialValueFor("duration")}):AddIndependentStack()
 			end
 			break
 		end
@@ -41,26 +41,41 @@ end
 modifier_blood_hunger = class({})
 
 function modifier_blood_hunger:OnCreated(table)
-	if IsServer() then
+	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.slow = self:GetTalentSpecialValueFor("move_slow")
+	self.as = self:GetTalentSpecialValueFor("bonus_as")
+	self.blind = self:GetTalentSpecialValueFor("blind")
+	
+	self.duration = self:GetTalentSpecialValueFor("duration")
+	self.chance = self:GetTalentSpecialValueFor("chance")
+	self.radius = self:GetTalentSpecialValueFor("radius")
+	
+	self.accuracy = 0
+	self.damageReduction = self:GetCaster():FindTalentValue("special_bonus_unique_axe_blood_hunger_1")
+	if self:GetCaster():IsSameTeam( self:GetParent() ) then
+		self.accuracy = -self.blind
+		self.blind = 0
+		self.damageReduction = -self.damageReduction
+		self.slow = -self.slow
+	elseif IsServer() then
 		self:StartIntervalThink(1.0)
 	end
 end
 
 function modifier_blood_hunger:OnIntervalThink()
 	local caster = self:GetCaster()
-
-	if self:GetParent():GetTeam() ~= self:GetCaster():GetTeam() then
-		self:GetAbility():DealDamage(caster, self:GetParent(), self:GetSpecialValueFor("damage"), nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
-		if self:GetParent():IsTaunted() then
-			if RollPercentage(self:GetSpecialValueFor("chance")) then
-				local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
-				for _,enemy in pairs(enemies) do
-					if enemy ~= self:GetParent() then
-						EmitSoundOn("Hero_Axe.Battle_Hunger", enemy)
-						enemy:AddNewModifier(caster, self:GetAbility(), "modifier_blood_hunger", {Duration = self:GetSpecialValueFor("duration")})
-						caster:AddNewModifier(caster, self:GetAbility(), "modifier_blood_hunger_strength", {Duration = self:GetSpecialValueFor("duration")}):AddIndependentStack()
-						break
-					end
+	local parent = self:GetParent()
+	local ability = self:GetAbility()
+	ability:DealDamage(caster, parent, self.damage, nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
+	if parent:IsTaunted() then
+		if self:RollPRNG(self.chance) then
+			local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self.radius, {})
+			for _,enemy in pairs(enemies) do
+				if enemy ~= parent then
+					EmitSoundOn("Hero_Axe.Battle_Hunger", enemy)
+					enemy:AddNewModifier(caster, ability, "modifier_blood_hunger", {Duration = self.duration})
+					caster:AddNewModifier(caster, ability, "modifier_blood_hunger_strength", {Duration = self.duration}):AddIndependentStack()
+					break
 				end
 			end
 		end
@@ -70,26 +85,30 @@ end
 function modifier_blood_hunger:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		
-		MODIFIER_PROPERTY_MISS_PERCENTAGE
+		MODIFIER_PROPERTY_MISS_PERCENTAGE,
+		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE
 	}
 	return funcs
 end
 
 function modifier_blood_hunger:GetModifierMoveSpeedBonus_Percentage()
-	return self:GetSpecialValueFor("move_slow")
+	return self.slow
 end
 
 function modifier_blood_hunger:GetModifierAttackSpeedBonus()
-	return self:GetSpecialValueFor("bonus_as")
+	return self.as
 end
 
 function modifier_blood_hunger:GetModifierMiss_Percentage()
-	local blind = self:GetSpecialValueFor("blind")
-	if self:GetParent():GetTeam() == self:GetCaster():GetTeam() then
-		blind = 0
-	end
-	return blind
+	return self.blind
+end
+
+function modifier_blood_hunger:GetAccuracy(params)
+	return self.accuracy
+end
+
+function modifier_blood_hunger:GetModifierBaseDamageOutgoing_Percentage(params)
+	return self.damageReduction
 end
 
 function modifier_blood_hunger:GetEffectName()
