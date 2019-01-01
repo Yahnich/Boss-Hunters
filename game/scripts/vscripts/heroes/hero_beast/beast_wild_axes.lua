@@ -5,14 +5,22 @@ function beast_wild_axes:OnSpellStart()
 	local target = self:GetCursorPosition()
 	
 	local distance = CalculateDistance( caster, target )
-	local direction = CalculateDirection( caster, target )
+	local direction = CalculateDirection( target, caster )
 	
-	caster:EmitSoundOn("Hero_Beastmaster.Wild_Axes")
-	local ProjectileHit = 	function(self, target, position)
+	local amp = self:GetTalentSpecialValueFor("duration")
+	local radius = self:GetTalentSpecialValueFor("radius")
+	local damage = self:GetTalentSpecialValueFor("axe_damage")
+	local speed = math.max(1200, distance)
+	caster:EmitSound("Hero_Beastmaster.Wild_Axes")
+	local ProjectileHit = function(self, target, position)
 								if not target then return end
 								if target ~= nil and ( not target:IsMagicImmune() ) and ( not target:IsInvulnerable() ) and target:GetTeam() ~= self:GetCaster():GetTeam() then
 									if not self.hitUnits[target:entindex()] then
-										self:GetAbility():DealDamage( self:GetCaster(), target, self.damage )
+										if self:GetCaster():HasScepter() then
+											self:GetCaster():PerformAbilityAttack(target, true, self:GetAbility(), self.damage, nil, true)
+										else
+											self:GetAbility():DealDamage( self:GetCaster(), target, self.damage )
+										end
 										target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_beast_wild_axes", {duration = self.amp})
 										EmitSoundOn("Hero_Beastmaster.Wild_Axes_Damage", target)
 										self.hitUnits[target:entindex()] = true
@@ -22,33 +30,23 @@ function beast_wild_axes:OnSpellStart()
 							end
 	
 	local ProjectileThink = function(self, target, position)
-								local position = self:GetPosition()
 								local velocity = self:GetVelocity()
 								
-								local offset = 128 * ( 0.5 * self.lifetime )
-								
+								local offset = 150 * (self.length/656) * math.sin( 2 * math.pi * self.lifetime * (656/self.length))
 								self.distanceTraveled = self.distanceTraveled + speed * FrameTime()
-								local position = original_position + direction * self.distanceTraveled
-								if self.distanceTraveled > self.distance then
-									position = end_position - direction * (self.distanceTraveled - self.distance)
+								local position
+								if self.distanceTraveled > self.length then
+									position = self.end_position + CalculateDirection( self:GetCaster():GetAbsOrigin(), self.end_position ) * (self.distanceTraveled - self.length)
+									self.lifetime = self.lifetime - FrameTime()
+								else
+									position = self.original_position + self.direction * self.distanceTraveled
+									self.lifetime = self.lifetime + FrameTime()
 								end
-								local offsetVect = self.state * GetPerpendicularVector( position:Normalized() ) * offset
+								local offsetVect = self.state * GetPerpendicularVector( self.direction ) * offset
+								GridNav:DestroyTreesAroundPoint( position + offsetVect, 175, true )
 								self:SetPosition( position + offsetVect )
-								
-								-- if velocity.z > 0 then velocity.z = 0 end
-								-- local angularVel = ( self.speed / self.range )
-								-- direction = CalculateDirection( position, self:GetCaster() )
-								-- if self.aliveTime >= self.duration / 2 then
-									-- self.range = self.range - self.radialSpeed * FrameTime()
-									-- direction = -direction
-								-- else
-									-- self.range = self.range + self.radialSpeed * FrameTime()
-								-- end
-								-- self.angle = self.angle + angularVel
-								-- local newPosition = caster:GetAbsOrigin() + RotateVector2D(self:GetVelocity(), ToRadians( self.angle ) ) * self.range
-								-- self:SetPosition( newPosition + Vector(0,0,128) )
 							end
-	local position = caster:GetAbsOrigin() - vDir * radius + Vector(0,0,256)
+	local position = caster:GetAbsOrigin()
 	ProjectileHandler:CreateProjectile(ProjectileThink, ProjectileHit, { FX = "particles/units/heroes/hero_beastmaster/beastmaster_wildaxe.vpcf",
 																	  position = position,
 																	  caster = self:GetCaster(),
@@ -58,16 +56,60 @@ function beast_wild_axes:OnSpellStart()
 																	  speed = speed,
 																	  radius = radius,
 																	  direction = direction,
-																	  velocity = -vDir * speed,
-																	  distance = distance,
+																	  velocity = -direction * speed,
+																	  length = distance,
+																	  distance = distance * 2,
 																	  hitUnits = {},
 																	  range = radius,
 																	  damage = damage,
-																	  self.lifetime = 0,
-																	  self.distanceTraveled = 0,
-																	  self.state = -1
+																	  lifetime = 0,
+																	  distanceTraveled = 0,
+																	  state = -1,
+																	  amp = amp} )
+	ProjectileHandler:CreateProjectile(ProjectileThink, ProjectileHit, { FX = "particles/units/heroes/hero_beastmaster/beastmaster_wildaxe.vpcf",
+																	  position = position,
+																	  caster = self:GetCaster(),
+																	  original_position = position,
+																	  end_position = target,
+																	  ability = self,
+																	  speed = speed,
+																	  radius = radius,
+																	  direction = direction,
+																	  velocity = -direction * speed,
+																	  length = distance,
+																	  distance = distance * 2,
+																	  hitUnits = {},
+																	  range = radius,
+																	  damage = damage,
+																	  lifetime = 0,
+																	  distanceTraveled = 0,
+																	  state = 1,
 																	  amp = amp})
 end
 
 modifier_beast_wild_axes = class({})
 LinkLuaModifier( "modifier_beast_wild_axes", "heroes/hero_beast/beast_wild_axes.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+function modifier_beast_wild_axes:OnCreated()
+	self.amp = self:GetTalentSpecialValueFor("damage_amp")
+	if IsServer() then
+		self:SetStackCount(1)
+	end
+end
+
+function modifier_beast_wild_axes:OnRefresh()
+	self.amp = self:GetTalentSpecialValueFor("damage_amp")
+	if IsServer() then
+		self:IncrementStackCount()
+	end
+end
+
+function modifier_beast_wild_axes:DeclareFunctions()
+	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+end
+
+function modifier_beast_wild_axes:GetModifierIncomingDamage_Percentage(params)
+	if params.attacker == self:GetCaster() then
+		return self.amp * self:GetStackCount()
+	end
+end

@@ -12,7 +12,7 @@ function beast_wild_axes:OnSpellStart()
 	local damage = self:GetTalentSpecialValueFor("axe_damage")
 	local speed = math.max(1200, distance)
 	caster:EmitSound("Hero_Beastmaster.Wild_Axes")
-	local ProjectileHit = 	function(self, target, position)
+	local ProjectileHit = function(self, target, position)
 								if not target then return end
 								if target ~= nil and ( not target:IsMagicImmune() ) and ( not target:IsInvulnerable() ) and target:GetTeam() ~= self:GetCaster():GetTeam() then
 									if not self.hitUnits[target:entindex()] then
@@ -34,11 +34,12 @@ function beast_wild_axes:OnSpellStart()
 								
 								local offset = 150 * (self.length/656) * math.sin( 2 * math.pi * self.lifetime * (656/self.length))
 								self.distanceTraveled = self.distanceTraveled + speed * FrameTime()
-								local position = self.original_position + self.direction * self.distanceTraveled
+								local position
 								if self.distanceTraveled > self.length then
 									position = self.end_position + CalculateDirection( self:GetCaster():GetAbsOrigin(), self.end_position ) * (self.distanceTraveled - self.length)
 									self.lifetime = self.lifetime - FrameTime()
 								else
+									position = self.original_position + self.direction * self.distanceTraveled
 									self.lifetime = self.lifetime + FrameTime()
 								end
 								local offsetVect = self.state * GetPerpendicularVector( self.direction ) * offset

@@ -2141,6 +2141,8 @@ function GameRules:RefreshPlayers(bDontHealFull, flPrepTime)
 					if not bDontHealFull then
 						hero:SetHealth( hero:GetMaxHealth() )
 						hero:SetMana( hero:GetMaxMana() )
+						
+						hero:RefreshAllCooldowns(true)
 					else
 						if flPrepTime then
 							hero:HealEvent( hero:GetHealthRegen() * flPrepTime, nil, hero )
