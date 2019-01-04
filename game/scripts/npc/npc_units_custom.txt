@@ -1084,7 +1084,7 @@
 		//
 		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/creeps/neutral_creeps/n_creep_golem_a/neutral_creep_golem_a.vmdl"	// Model.
-		"ModelScale"				"1.6"
+		"ModelScale"				"1.8"
 		"Level"						"12"
 		"IsAncient"					"0"
 		"IsWild"					"1"
@@ -9949,7 +9949,7 @@
 		//----------------------------------------------------------------
 		
 		"AbilityLayout"				"6"
-		"Ability1"					"generic_gold_dropper"			// Ability 1.
+		"Ability1"					"generic_hp_limiter"			// Ability 1.
 		"Ability2"					""			// Ability 2.
 		"Ability3"					""			// Ability 2.
 		"Ability4"					""			// Ability 2.

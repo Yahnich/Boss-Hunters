@@ -21,12 +21,6 @@ function espirit_rock_punch:OnSpellStart()
     if self:GetCursorTarget() then
     	point = self:GetCursorTarget():GetAbsOrigin()
     end
-	
-	if caster:HasTalent("special_bonus_unique_espirit_rock_punch_2") then
-		if caster:FindAbilityByName("espirit_rock") then
-			caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(caster:GetAbsOrigin())
-		end
-	end
 
     self.dummy = self:CreateDummy(point)
 
@@ -66,37 +60,39 @@ function espirit_rock_punch:OnProjectileHit(hTarget, vLocation)
 		ParticleManager:SetParticleControl(nfx2, 1, vLocation)
 		ParticleManager:ReleaseParticleIndex(nfx2)
 
-		local rocks = 1
-
-		local stones = caster:FindFriendlyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"), {type = DOTA_UNIT_TARGET_ALL})
+		local rocks = false
+		local remnants = caster:FindAbilityByName("espirit_rock")
+		local talent2 = caster:HasTalent("special_bonus_unique_espirit_rock_punch_2")
+		local stones = caster:FindFriendlyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"), {type = DOTA_UNIT_TARGET_ALL, flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE })
 		for _,stone in pairs(stones) do
 			if stone:GetUnitName() == "npc_dota_earth_spirit_stone" then
-				rocks = rocks + 1
+				rocks = true
 				stone:ForceKill(false)
 			end
 		end
 		
-		local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"), {})
-		local damage = self:GetTalentSpecialValueFor("rock_damage") * rocks
-		for _,enemy in pairs(enemies) do
-			if caster:HasTalent("special_bonus_unique_espirit_rock_punch_1") then
-				self:Stun(enemy, caster:FindTalentValue("special_bonus_unique_espirit_rock_punch_1"), false)
-			end
-			self:DealDamage(caster, enemy, damage, {}, 0)
+		local knockUp = 0
+		if rocks then
+			knockUp = self:GetTalentSpecialValueFor("knockup_duration")
 		end
-			
+		
+		local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"), {})
+		local damage = self:GetTalentSpecialValueFor("rock_damage")
+		for _,enemy in pairs(enemies) do
+			self:DealDamage(caster, enemy, damage, {}, 0)
+			if rocks then
+				enemy:ApplyKnockBack(enemy:GetAbsOrigin(), knockUp, knockUp, 0, 300, caster, self)
+			end
+			if talent2 and not enemy:IsMinion() and remnants then
+				remnants:CreateStoneRemnant( enemy:GetAbsOrigin() )
+			end
+		end
 			
 		local pointRando = vLocation + ActualRandomVector(100, 25)
-		if caster:FindAbilityByName("espirit_rock") then
-			caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(pointRando)
+		if remnants then
+			remnants:CreateStoneRemnant(pointRando)
 		end
-			
-		if caster:HasTalent("special_bonus_unique_espirit_rock_punch_2") then
-    		pointRando = vLocation + ActualRandomVector(100, 25)
-			if caster:FindAbilityByName("espirit_rock") then
-				caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(pointRando)
-			end
-		end
+		
 		hTarget:ForceKill(false)
 	end
 end

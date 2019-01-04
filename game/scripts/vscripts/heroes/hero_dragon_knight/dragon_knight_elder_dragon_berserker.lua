@@ -12,7 +12,7 @@ function dragon_knight_elder_dragon_berserker:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	EmitSoundOn("Hero_DragonKnight.ElderDragonForm", caster)
-	caster:AddNewModifier(caster, self, "modifier_dragon_knight_elder_dragon_berserker_active", {duration = self:GetTalentSpecialValueFor("duration") })
+	caster:AddNewModifier(caster, self, "modifier_dragon_knight_elder_dragon_berserker_active", {duration = 5 or self:GetTalentSpecialValueFor("duration")})
 	ParticleManager:FireParticle("particles/units/heroes/hero_dragon_knight/dragon_knight_transform_red.vpcf", PATTACH_POINT_FOLLOW, caster)
 end
 
@@ -28,8 +28,11 @@ function modifier_dragon_knight_elder_dragon_berserker_active:OnCreated()
 	self.heal = self:GetTalentSpecialValueFor("heal_amount") / 100
 	self.healChance = self:GetTalentSpecialValueFor("heal_chance")
 	self.cd = self:GetTalentSpecialValueFor("internal_cooldown")
-	if IsServer() then 
-		self:StartIntervalThink(self.tick)
+	if IsServer() then
+		local caster = self:GetCaster()
+		local nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_dragon_knight/dragon_knight_dragon_berserker.vpcf", PATTACH_POINT_FOLLOW, caster)
+		ParticleManager:SetParticleControlEnt(nFX, 0, caster, PATTACH_POINT_FOLLOW, "attach_body", caster:GetAbsOrigin(), true)	
+		self:AddEffect( nFX )
 		self:GetAbility():StartDelayedCooldown()
 	end
 end
@@ -45,15 +48,10 @@ function modifier_dragon_knight_elder_dragon_berserker_active:OnRefresh()
 	self.cd = self:GetTalentSpecialValueFor("internal_cooldown")
 end
 
-function modifier_dragon_knight_elder_dragon_berserker_active:OnIntervalThink()
-	local caster = self:GetParent()
-	if not caster:IsRealHero() then return end
-	local threat = self.threat * self.tick
-	if not caster:HasTalent("special_bonus_unique_dragon_knight_elder_dragon_berserker_2") then caster:ModifyThreat( threat ) end
-end
-
 function modifier_dragon_knight_elder_dragon_berserker_active:OnDestroy()
-	if IsServer() then self:GetAbility():EndDelayedCooldown() end
+	if IsServer() then
+		self:GetAbility():EndDelayedCooldown()
+	end
 end
 
 function modifier_dragon_knight_elder_dragon_berserker_active:DeclareFunctions()

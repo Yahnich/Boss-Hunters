@@ -53,14 +53,14 @@
 			}
 			"04"
 			{
-				"var_type"						"FIELD_INTEGER"
+				"var_type"						"FIELD_FLOAT"
 				"bonus_as"						"30 45 60 75 90 105 120"
 				"LinkedSpecialBonus"			"special_bonus_unique_chen_penitence_ebf_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"05"
 			{
-				"var_type"						"FIELD_INTEGER"
+				"var_type"						"FIELD_FLOAT"
 				"buff_duration"					"2"
 			}
 			"06"
@@ -383,6 +383,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedAbilityName"				"chen_divine_favor_bh"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -405,6 +406,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_chen_divine_favor_bh"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

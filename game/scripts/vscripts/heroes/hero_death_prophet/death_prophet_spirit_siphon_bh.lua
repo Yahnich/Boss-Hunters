@@ -38,10 +38,11 @@ modifier_death_prophet_spirit_siphon_bh_debuff = class({})
 LinkLuaModifier( "modifier_death_prophet_spirit_siphon_bh_debuff", "heroes/hero_death_prophet/death_prophet_spirit_siphon_bh.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_death_prophet_spirit_siphon_bh_debuff:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("damage_pct") / 100
 	self.slow = math.abs( self:GetTalentSpecialValueFor("movement_slow") ) * (-1)
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_death_prophet_spirit_siphon_1")
 	if IsServer() then
+		self.damage = self:GetTalentSpecialValueFor("base_damage") * ( 1 + self:GetCaster():GetSpellAmplification(false) ) + self:GetParent():GetMaxHealth() * self:GetTalentSpecialValueFor("damage_pct") / 100
+		print( self:GetTalentSpecialValueFor("base_damage"), self:GetCaster():GetSpellAmplification(false) * 100 )
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
 		local ability = self:GetAbility()
@@ -52,32 +53,32 @@ function modifier_death_prophet_spirit_siphon_bh_debuff:OnCreated()
 		ParticleManager:SetParticleControl(self.nFX, 5, Vector(self:GetRemainingTime(), 0,0 ) )
 		self:GetParent():EmitSound("Hero_DeathProphet.SpiritSiphon.Target")
 		if self.talent1 then
-			local damage = self:GetParent():GetMaxHealth() * self.damage * self:GetRemainingTime()
-			local heal = ability:DealDamage( caster, parent, damage )
+			local damage = self.damage * self:GetRemainingTime()
+			local heal = ability:DealDamage( caster, parent, damage, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 			caster:HealEvent( heal, ability, caster)
 			self:StartIntervalThink(1)
 		else
-			self:StartIntervalThink( 0.2 * self:GetRemainingTime() / self:GetTalentSpecialValueFor("haunt_duration") )
+			self:StartIntervalThink( 0.2 )
 		end
 	end
 end
 
 function modifier_death_prophet_spirit_siphon_bh_debuff:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("damage_pct") / 100
 	self.slow = math.abs( self:GetTalentSpecialValueFor("movement_slow") ) * (-1)
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_death_prophet_spirit_siphon_1")
 	if IsServer() then
+		self.damage = self:GetTalentSpecialValueFor("base_damage") * ( 1 + self:GetCaster():GetSpellAmplification(false) ) + self:GetParent():GetMaxHealth() * self:GetTalentSpecialValueFor("damage_pct") / 100
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
 		local ability = self:GetAbility()
 		self.range = self:GetAbility():GetTrueCastRange() + self:GetTalentSpecialValueFor("siphon_buffer")
 		if self.talent1 then
-			local damage = self:GetParent():GetMaxHealth() * self.damage * self:GetRemainingTime()
-			local heal = ability:DealDamage( caster, parent, damage )
+			local damage = self.damage * self:GetRemainingTime()
+			local heal = ability:DealDamage( caster, parent, damage, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 			caster:HealEvent( heal, ability, caster)
 			self:StartIntervalThink(1)
 		else
-			self:StartIntervalThink( 0.2 * self:GetRemainingTime() / self:GetTalentSpecialValueFor("haunt_duration") )
+			self:StartIntervalThink( 0.2 )
 		end
 	end
 end
@@ -90,7 +91,7 @@ function modifier_death_prophet_spirit_siphon_bh_debuff:OnIntervalThink()
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
 		local ability = self:GetAbility()
-		local heal = ability:DealDamage( caster, parent, parent:GetMaxHealth() * self.damage * 0.2 )
+		local heal = ability:DealDamage( caster, parent, self.damage * 0.2, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 		caster:HealEvent( heal, ability, caster)
 		if CalculateDistance( caster, parent ) > self.range then
 			self:Destroy()

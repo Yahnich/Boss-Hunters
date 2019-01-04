@@ -1,0 +1,60 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf16:version{261b3cba-02c7-424f-854b-c432c6f018d1} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_RemapVisibilityScalar"
+			m_nFieldOutput = 16
+			m_flInputMax = 0.1
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 1
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_earth_spirit/earth_spirit_remnant_shatter_warp.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_earth_spirit/earth_spirit_remnant_shatter_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_earth_spirit/earth_spirit_remnant_shatter_ring.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_earth_spirit/earth_spirit_remnant_shatter_ring_dust.vpcf"
+		},
+	]
+	m_PreEmissionOperators = [  ]
+	m_nBehaviorVersion = 5
+}

@@ -29,6 +29,15 @@ function modifier_generic_hp_limiter:GetModifierIncomingDamage_Percentage(params
 	end
 end
 
+function modifier_generic_hp_limiter:GetModifierHealAmplify_Percentage( params )
+	if not params.ability then
+		return -999
+	else
+		heal = math.floor( 8 / GameRules:GetGameDifficulty() )
+		parent:SetHealth( hp + heal )
+	end
+end
+
 function modifier_generic_hp_limiter:IsHidden()
 	return false
 end

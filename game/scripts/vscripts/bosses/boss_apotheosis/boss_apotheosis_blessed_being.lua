@@ -46,7 +46,7 @@ function modifier_boss_apotheosis_blessed_being:OnIntervalThink()
 	if self.delay > self.interval then
 		self.delay = 0
 		parent:Dispel(parent, true)
-		parent:AddNewModifier(parent, self:GetAbility(), "modifier_status_immunity", {duration = self.duration})
+		parent:AddNewModifier(parent, self:GetAbility(), "modifier_boss_apotheosis_blessed_being_immunity", {duration = self.duration})
 		ParticleManager:FireParticle("particles/items_fx/immunity_sphere.vpcf", PATTACH_POINT_FOLLOW, parent)
 	end
 end
@@ -57,4 +57,15 @@ end
 
 function modifier_boss_apotheosis_blessed_being:IsPurgable()
 	return false
+end
+
+modifier_boss_apotheosis_blessed_being_immunity = class({})
+LinkLuaModifier("modifier_boss_apotheosis_blessed_being_immunity", "bosses/boss_apotheosis/boss_apotheosis_blessed_being", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_boss_apotheosis_blessed_being_immunity:GetModifierStatusResistance()
+	return 100
+end
+
+function modifier_boss_apotheosis_blessed_being_immunity:GetEffectName()
+	return "particles/items_fx/black_king_bar_avatar.vpcf"
 end

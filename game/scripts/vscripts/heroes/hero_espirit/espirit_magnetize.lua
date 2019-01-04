@@ -24,7 +24,7 @@ function espirit_magnetize:OnSpellStart()
     	caster:AddNewModifier(caster, self, "modifier_magnetize_stone", {Duration = self:GetTalentSpecialValueFor("duration")})
     end
 
-    local stones = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {type = DOTA_UNIT_TARGET_ALL})
+    local stones = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {type = DOTA_UNIT_TARGET_ALL, flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE })
     for _,stone in pairs(stones) do
     	if stone:GetName() == "npc_dota_earth_spirit_stone" then
     		if not stone:HasModifier("modifier_magnetize_stone") then
@@ -80,7 +80,7 @@ function modifier_magnetize:OnIntervalThink()
     	self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
     end
 
-	local stones = caster:FindFriendlyUnitsInRadius(target:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {{type = DOTA_UNIT_TARGET_ALL}})
+	local stones = caster:FindFriendlyUnitsInRadius(target:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {type = DOTA_UNIT_TARGET_ALL, flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE })
     for _,stone in pairs(stones) do
     	if stone:GetName() == "npc_dota_earth_spirit_stone" then
     		if not stone:HasModifier("modifier_magnetize_stone") then
@@ -115,7 +115,7 @@ function modifier_magnetize_stone:OnIntervalThink()
 	ParticleManager:SetParticleControl(nfx, 2, Vector(self:GetTalentSpecialValueFor("radius"), self:GetTalentSpecialValueFor("radius"), self:GetTalentSpecialValueFor("radius")))
 	ParticleManager:ReleaseParticleIndex(nfx)
 
-	local stones = caster:FindFriendlyUnitsInRadius(stone:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {{type = DOTA_UNIT_TARGET_ALL}})
+	local stones = caster:FindFriendlyUnitsInRadius(stone:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {type = DOTA_UNIT_TARGET_ALL, flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE })
     for _,stone2 in pairs(stones) do
     	if stone2:GetName() == "npc_dota_earth_spirit_stone" then
     		if not stone2:HasModifier("modifier_magnetize_stone") then

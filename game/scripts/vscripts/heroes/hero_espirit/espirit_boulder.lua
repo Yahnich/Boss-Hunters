@@ -37,7 +37,7 @@ function espirit_boulder:LaunchBoulder(direction)
     	Source = caster,
     	bHasFrontalCone = false,
     	bReplaceExisting = false,
-    	iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_BOTH,
+    	iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
     	iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
     	iUnitTargetType = DOTA_UNIT_TARGET_ALL,
     	fExpireTime = GameRules:GetGameTime() + 10.0,
@@ -48,35 +48,28 @@ function espirit_boulder:LaunchBoulder(direction)
 		iVisionTeamNumber = caster:GetTeamNumber()
 	}
 	ProjectileManager:CreateLinearProjectile(info)
+	self.projectileTable = self.projectileTable or {}
 end
 
-function espirit_boulder:OnProjectileHit(hTarget, vLocation)
+function espirit_boulder:OnProjectileHitHandle(hTarget, vLocation, projID)
 	local caster = self:GetCaster()
 
 	if hTarget ~= nil then
-        
-		if hTarget:GetUnitName() == "npc_dota_earth_spirit_stone" then
-			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_earth_spirit/espirit_spawn.vpcf", PATTACH_POINT, caster)
-			ParticleManager:SetParticleControl(nfx, 0, hTarget:GetAbsOrigin())
-			ParticleManager:SetParticleControl(nfx, 1, hTarget:GetAbsOrigin())
-			ParticleManager:ReleaseParticleIndex(nfx)
-
-            EmitSoundOn("Hero_EarthSpirit.RollingBoulder.Stone", hTarget)
-
-			local enemies = caster:FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetTalentSpecialValueFor("rock_radius"), {})
-			for _,enemy in pairs(enemies) do
-				self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("rock_damage"), {}, 0)
-			end
-			hTarget:ForceKill(false)
+		local damage = self:GetTalentSpecialValueFor("damage")
+		local slow = false
+		local duration = self:GetTalentSpecialValueFor("duration")
+		if self.projectileTable[projID] then
+			damage = damage + self:GetTalentSpecialValueFor("rock_damage")
+			slow = true
+			self.projectileTable[projID] = nil
 		end
-
-		if hTarget:GetTeam() ~= caster:GetTeam() then
-            EmitSoundOn("Hero_EarthSpirit.RollingBoulder.Target", hTarget)
-			if caster:HasTalent("special_bonus_unique_espirit_boulder_1") then
-				hTarget:AddNewModifier(caster, self, "modifier_boulder_slow", {Duration = caster:FindTalentValue("special_bonus_unique_espirit_boulder_1", "duration")})
-			end
-			self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
+		EmitSoundOn("Hero_EarthSpirit.RollingBoulder.Target", hTarget)
+		if slow and caster:HasTalent("special_bonus_unique_espirit_boulder_1") then
+			hTarget:Paralyze(self, caster, duration)
+		elseif slow or caster:HasTalent("special_bonus_unique_espirit_boulder_1") then
+			hTarget:AddNewModifier(caster, self, "modifier_boulder_slow", {Duration = duration})
 		end
+		self:DealDamage(caster, hTarget, damage, {}, 0)
 	else
 		if caster:HasTalent("special_bonus_unique_espirit_boulder_2") then
 			if caster:HasTalent("special_bonus_unique_espirit_boulder_2") then
@@ -95,11 +88,29 @@ function espirit_boulder:OnProjectileHit(hTarget, vLocation)
 	end
 end
 
-function espirit_boulder:OnProjectileThink(vLocation)
-	GridNav:DestroyTreesAroundPoint(vLocation, self:GetTalentSpecialValueFor("width"), false)
+function espirit_boulder:OnProjectileThinkHandle(projID)
+	local caster = self:GetCaster()
+	local position = ProjectileManager:GetLinearProjectileLocation( projID )
+	local radius = self:GetTalentSpecialValueFor("width")
+	GridNav:DestroyTreesAroundPoint(position, radius, false)
+	local stones = caster:FindFriendlyUnitsInRadius(position, radius, {type = DOTA_UNIT_TARGET_ALL, flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE })
+	for _,stone in pairs(stones) do
+		if stone:GetUnitName() == "npc_dota_earth_spirit_stone" then
+			self.projectileTable[projID] = true
+			stone:ForceKill(false)
+		end
+	end
 end
 
 modifier_boulder_slow = class({})
+function modifier_boulder_slow:OnCreated()
+	self.slow = self:GetTalentSpecialValueFor("slow")
+end
+
+function modifier_boulder_slow:OnRefresh()
+	self.slow = self:GetTalentSpecialValueFor("slow")
+end
+
 function modifier_boulder_slow:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
@@ -108,5 +119,5 @@ function modifier_boulder_slow:DeclareFunctions()
 end
 
 function modifier_boulder_slow:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetCaster():FindTalentValue("special_bonus_unique_espirit_boulder_1")
+    return self.slow
 end

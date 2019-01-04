@@ -253,12 +253,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"chance"				"12"
+				"chance"				"25"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"silence_duration"		"0.35"
+				"silence_duration"		"0.75"
 			}
 			"03"
 			{
@@ -270,6 +270,11 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"damage"				"25 50 75 100 125 150 175"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"1.5"
 			}
 		}
 	}
@@ -318,7 +323,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"cd"						"10"
+				"cd"						"7"
 			}
 		}
 	}
