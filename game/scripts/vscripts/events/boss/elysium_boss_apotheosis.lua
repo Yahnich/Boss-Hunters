@@ -11,10 +11,16 @@ local function StartEvent(self)
 		position = Entities:FindByName(nil, RoundManager.boundingBox.."_edge_collider"):GetAbsOrigin()
 	end
 	
+	local nFX = ParticleManager:CreateParticle("particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf", PATTACH_ABSORIGIN, nil)
+	ParticleManager:SetParticleControl( nFX, 0, position + Vector(0,0,128) ) 
+	ParticleManager:SetParticleControl( nFX, 6, position + Vector(0,0,128) ) 
+	ParticleManager:SetParticleControl( nFX, 60, Vector(168, 100, 219) ) 
+	ParticleManager:SetParticleControl( nFX, 61, Vector(168, 100, 219) ) 
 	self.eventHandler = Timers:CreateTimer(10, function()
 		local spawn = CreateUnitByName("npc_dota_boss_apotheosis", position or RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 		spawn.unitIsRoundNecessary = true
 		spawn.unitIsBoss = true
+		ParticleManager:ClearParticle( nFX )
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then
 			return 10

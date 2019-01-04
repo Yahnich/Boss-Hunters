@@ -3,7 +3,7 @@ boss_apotheosis_focused_beam = class({})
 function boss_apotheosis_focused_beam:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
 	local casterPos = caster:GetAbsOrigin()
-	ParticleManager:FireLinearWarningParticle( casterPos, casterPos + caster:GetForwardVector() * self:GetTrueCastRange() )
+	ParticleManager:FireLinearWarningParticle( casterPos, casterPos + caster:GetForwardVector() * self:GetTrueCastRange(), self:GetSpecialValueFor("width") * 2 )
 	return true
 end
 
@@ -23,10 +23,9 @@ function boss_apotheosis_focused_beam:OnSpellStart()
 	pfx = ParticleManager:CreateParticle( "particles/units/heroes/hero_phoenix/phoenix_sunray.vpcf", PATTACH_ABSORIGIN, caster )
 	ParticleManager:SetParticleControlEnt( pfx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true )
 	ParticleManager:SetParticleControl( pfx, 1, endPos )
-	caster:Root(self, caster, duration)
-	caster:Disarm(self, caster, duration)
+	caster:AddNewModifier(caster, self, "modifier_boss_apotheosis_focused_beam_root", {duration = duration})
 	Timers:CreateTimer(0, function()
-		if duration > 0 and caster:IsAlive() then
+		if duration > 0 and caster:IsAlive() and caster:HasModifier("modifier_boss_apotheosis_focused_beam_root") then
 			duration = duration - FrameTime()
 			thinker = thinker + FrameTime()
 			endPos = caster:GetAbsOrigin() + caster:GetForwardVector() * pathLength
@@ -43,8 +42,44 @@ function boss_apotheosis_focused_beam:OnSpellStart()
 			return 0
 		else
 			endPos = 0
+			caster:RemoveModifierByName("modifier_boss_apotheosis_focused_beam_root")
 			ParticleManager:DestroyParticle(pfx, false)
 			return nil
 		end
 	end)
+end
+
+modifier_boss_apotheosis_focused_beam_root = class({})
+LinkLuaModifier("modifier_boss_apotheosis_focused_beam_root", "bosses/boss_apotheosis/boss_apotheosis_focused_beam", LUA_MODIFIER_MOTION_NONE )
+function modifier_boss_apotheosis_focused_beam_root:OnCreated()
+	self.turnslow = self:GetSpecialValueFor("turn_slow")
+	if IsServer() then
+		self.check = 0
+		self.timer = self:GetSpecialValueFor("no_target_timer")
+		self.radius = self:GetAbility():GetTrueCastRange()
+		self:StartIntervalThink(0.2) 
+	end
+end
+
+function modifier_boss_apotheosis_focused_beam_root:OnIntervalThink()
+	for _, enemy in ipairs( self:GetCaster():FindEnemyUnitsInRadius( self:GetCaster():GetAbsOrigin(), self.radius ) ) do
+		return
+	end
+	self.check = self.check + 0.2
+	if self.check >= self.timer then
+		self:Destroy()
+	end
+end
+
+function modifier_boss_apotheosis_focused_beam_root:CheckState()
+	return {[MODIFIER_STATE_SILENCED] = true,
+			[MODIFIER_STATE_ROOTED] = true}
+end
+
+function modifier_boss_apotheosis_focused_beam_root:DeclareFunctions()
+	return {MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE}
+end
+
+function modifier_boss_apotheosis_focused_beam_root:GetModifierTurnRate_Percentage()
+	return self.turnslow
 end

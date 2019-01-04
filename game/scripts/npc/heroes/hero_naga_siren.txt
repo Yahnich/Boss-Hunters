@@ -241,7 +241,7 @@
 		}
 	}
 	//=================================================================================================================
-	// Chaos Knight: Chaos Strike
+	// Naga	Siren: Rip Tide	
 	//=================================================================================================================
 	"naga_siren_tidal_waves"
 	{
@@ -286,6 +286,7 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"armor_reduction"				"-2 -3 -4 -5 -6 -7 -8"
+				"LinkedSpecialBonus"			"special_bonus_unique_naga_siren_tidal_waves_2"
 			}
 			"02"
 			{
@@ -300,16 +301,13 @@
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"radius"						"320"
-				"LinkedSpecialBonus"			"special_bonus_unique_naga_siren_tidal_waves_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"radius"						"325"
+				"LinkedSpecialBonus"			"special_bonus_unique_naga_siren_tidal_waves_1"
 			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"8.0"
-				"LinkedSpecialBonus"			"special_bonus_unique_naga_siren_tidal_waves_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 		}
 	}
@@ -328,8 +326,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
-			}	
+				"value"					"175"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cd"					"-4"
+			}
 		}
 	}
 	"special_bonus_unique_naga_siren_tidal_waves_2" 
@@ -347,7 +350,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
+				"value"					"-4"
 			}
 		}
 	}

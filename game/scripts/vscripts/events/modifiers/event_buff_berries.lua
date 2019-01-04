@@ -12,6 +12,7 @@ function event_buff_berries_curse:OnEventFinished(args)
 	if args.eventType ~= EVENT_TYPE_EVENT then
 		self:DecrementStackCount()
 		if self:GetStackCount() == 0 then
+			self:RewardBlessing()
 			self:Destroy()
 		end
 	end
@@ -20,10 +21,11 @@ end
 function event_buff_berries_curse:OnDestroy()
 	if IsServer() then
 		EventManager:UnsubscribeListener("boss_hunters_event_finished", self.funcID)
-		if self:GetParent():IsAlive() then
-			self:GetParent():AddNewModifier(self:GetParent(), nil, "event_buff_berries_blessing", {})
-		end
 	end
+end
+
+function event_buff_berries_curse:RewardBlessing()
+	self:GetParent()::AddBlessing( "event_buff_berries_blessing" )
 end
 
 function event_buff_berries_curse:DeclareFunctions()

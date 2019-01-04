@@ -44,9 +44,8 @@ function boss_apotheosis_decimate:CreateFlare(position, radius)
 	local casterPos = caster:GetAbsOrigin()
 	local damage = self:GetSpecialValueFor("damage")
 	local delay = self:GetSpecialValueFor("delay")
-	ParticleManager:FireWarningParticle(position, radius)
 	ParticleManager:FireParticle("particles/units/heroes/hero_invoker/invoker_sun_strike_team.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(radius,1,1)})
-	Timers:CreateTimer(delay, function()
+	Timers:CreateTimer(delay + RandomFloat( 0.1, 0.4 ), function()
 		for _, hero in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
 			self:DealDamage( caster, hero, damage )
 		end

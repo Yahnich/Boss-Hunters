@@ -37,7 +37,7 @@ if IsServer() then
 		FindClearSpaceForUnit(parent, parentPos, true)
 		if parent:IsFrozen() then return end
 		local ability = self:GetAbility()
-		local damage = math.max( 100, self:GetSpecialValueFor("base_damage") + self:GetSpecialValueFor("base_damage") * (parent:GetModelScale() - 1) * 0.5 )
+		local damage = math.max( 75, self:GetSpecialValueFor("base_damage") + self:GetSpecialValueFor("base_damage") * (parent:GetModelScale() - 1) * 0.5 )
 		local radius = math.max( 175, self:GetSpecialValueFor("base_radius") * parent:GetModelScale() )
 		
 		ParticleManager:FireParticle("particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", PATTACH_ABSORIGIN, parent, {[1] = Vector(radius, 1, 1)})

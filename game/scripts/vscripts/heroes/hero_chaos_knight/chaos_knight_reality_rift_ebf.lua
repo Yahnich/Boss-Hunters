@@ -116,10 +116,12 @@ LinkLuaModifier("modifier_chaos_knight_reality_rift_ebf", "heroes/hero_chaos_kni
 
 function modifier_chaos_knight_reality_rift_ebf:OnCreated()
 	self.armor = self:GetTalentSpecialValueFor("armor_reduction")
+	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_chaos_knight_reality_rift_2", "as")
 end
 
 function modifier_chaos_knight_reality_rift_ebf:OnRefresh()
 	self.armor = self:GetTalentSpecialValueFor("armor_reduction")
+	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_chaos_knight_reality_rift_2", "as")
 end
 
 function modifier_chaos_knight_reality_rift_ebf:DeclareFunctions()
@@ -128,6 +130,10 @@ end
 
 function modifier_chaos_knight_reality_rift_ebf:GetModifierPhysicalArmorBonus()
 	return self.armor
+end
+
+function modifier_chaos_knight_reality_rift_ebf:GetModifierAttackSpeedBonus()
+	return self.as
 end
 
 function modifier_chaos_knight_reality_rift_ebf:GetEffectName()

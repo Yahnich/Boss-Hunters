@@ -642,15 +642,11 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			end
 		end
 		
-		-- Make illusion look like owner
-		illusion:SetBaseMaxHealth( self:GetMaxHealth() )
-		illusion:SetMaxHealth( self:GetMaxHealth() )
-		illusion:SetHealth( self:GetHealth() )
-		
-		illusion:SetAverageBaseDamage( self:GetAverageBaseDamage(), 15 )
-		illusion:SetPhysicalArmorBaseValue( self:GetPhysicalArmorValue() )
+		illusion:SetBaseDamageMax( self:GetBaseDamageMax() - 10 )
+		illusion:SetBaseDamageMin( self:GetBaseDamageMin() - 10 )
+		illusion:SetPhysicalArmorBaseValue( self:GetPhysicalArmorBaseValue() )
 		illusion:SetBaseAttackTime( self:GetBaseAttackTime() )
-		illusion:SetBaseMoveSpeed( self:GetIdealSpeed() )
+		illusion:SetBaseMoveSpeed( self:GetBaseMoveSpeed() )
 		
 		illusion:SetOriginalModel( self:GetOriginalModel() )
 		illusion:SetModel( self:GetOriginalModel() )
@@ -719,6 +715,12 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 				end
 			end
 		end
+		
+		-- Make illusion look like owner
+		local maxHealthFromBuffs = illusion:GetMaxHealth()
+		illusion:SetBaseMaxHealth( self:GetBaseMaxHealth() )
+		illusion:SetMaxHealth( self:GetMaxHealth() - maxHealthFromBuffs )
+		illusion:SetHealth( self:GetHealth() )
 		if not self.wearableTable then
 			self.wearableTable = wearableWorker
 		end

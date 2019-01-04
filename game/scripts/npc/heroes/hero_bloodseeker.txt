@@ -416,8 +416,13 @@
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"charges"				"2"
+				"var_type"						"FIELD_INTEGER"
+				"scepter_charges"				"2"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"scepter_charge_restore_time"	"40"
 			}
 		}
 	}

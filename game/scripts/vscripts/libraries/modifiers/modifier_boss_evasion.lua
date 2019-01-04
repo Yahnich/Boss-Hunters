@@ -46,7 +46,7 @@ function modifier_boss_evasion:GetModifierEvasion_Constant()
 end
 
 function modifier_boss_evasion:GetModifierMagicalResistanceBonus( params )
-	return math.min( 50, self:GetStackCount() * 5 )
+	return math.min( 50, self:GetStackCount() * 3.5 )
 end
 
 function modifier_boss_evasion:IsHidden()

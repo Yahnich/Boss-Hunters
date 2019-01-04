@@ -155,23 +155,23 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"cooldown_day"				"12"
+				"cooldown_day"				"18"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"cooldown_night"			"6"
+				"cooldown_night"			"12"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius_day"				"250"
+				"radius_day"				"500"
 				"LinkedSpecialBonus"		"special_bonus_unique_night_stalker_crippling_fear_1"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius_night"				"500"
+				"radius_night"				"750"
 				"LinkedSpecialBonus"		"special_bonus_unique_night_stalker_crippling_fear_1"
 			}
 			"05"
@@ -197,7 +197,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"300"
+				"value"					"250"
 			}
 		}
 	}
@@ -331,7 +331,7 @@
 		"AbilityCastPoint"				"0.3 0.3 0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 
-		"AbilityCooldown"				"160 140 120 100 80 60"
+		"AbilityCooldown"				"60"
 		"AbilityManaCost"				"125 175 225 275 325 375"
 			
 		// Special
@@ -341,7 +341,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"30.0"
+				"duration"						"15 20 25 30 35 40"
 				"LinkedSpecialBonus"			"special_bonus_unique_night_stalker_dark_ascension_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}

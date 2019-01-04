@@ -23,7 +23,7 @@ end
 function modifier_boss_apotheosis_latent_potential:OnIntervalThink()
 	if not self:GetParent():PassivesDisabled() then
 		self:StartIntervalThink(self.interval)
-		self:SetStackCount( self:GetStackCount() * 2 )
+		self:SetStackCount( math.max( 1000, self:GetStackCount() * 2 ) )
 	else
 		self:StartIntervalThink( 1 )
 	end

@@ -616,9 +616,9 @@ function RoundManager:InitializeUnit(unit, bElite)
 	if GameRules:GetGameDifficulty() == 4 then 
 		expectedHP = expectedHP * 1.5
 		expectedDamage = expectedDamage * 1.2
-		playerHPMultiplier = 0.33
+		playerHPMultiplier = 0.30
 		playerDMGMultiplier = 0.1
-		playerArmorMultiplier = 0.12
+		playerArmorMultiplier = 0.075
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
 	

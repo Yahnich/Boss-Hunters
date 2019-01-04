@@ -3,7 +3,7 @@ boss26_ravage = class({})
 function boss26_ravage:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
 	local newPos = caster:GetAbsOrigin() + CalculateDirection(self:GetCursorPosition(), caster) * self:GetSpecialValueFor("jump_distance")
-	ParticleManager:FireLinearWarningParticle(caster:GetAbsOrigin(), newPos)
+	ParticleManager:FireLinearWarningParticle(caster:GetAbsOrigin(), newPos, 150 * 2 )
 	EmitSoundOn("Hero_Ursa.Enrage", caster)
 	return true
 end
@@ -26,7 +26,7 @@ function boss26_ravage:OnSpellStart()
 	local distTravel = 0
 	Timers:CreateTimer(function()
 		local newPos = GetGroundPosition(caster:GetAbsOrigin(), caster) + vDir * speed
-		local enemies = caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), newPos, 100)
+		local enemies = caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), newPos, 150 )
 		for _, enemy in ipairs(enemies) do
 			if enemy:TriggerSpellAbsorb(self) then return end
 			ability:DealDamage(caster, enemy, damage)
@@ -42,7 +42,7 @@ function boss26_ravage:OnSpellStart()
 			return FrameTime()
 		else
 			ParticleManager:ClearParticle(self.blurFX)
-			ResolveNPCPositions(caster:GetAbsOrigin(), caster:GetHullRadius() * 3)
+			ResolveNPCPositions(caster:GetAbsOrigin(), 150 )
 		end
 	end)
 end

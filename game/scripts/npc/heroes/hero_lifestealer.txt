@@ -39,7 +39,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_bonus"			"40 50 60 70 80 90 100"
+				"damage_bonus"			"35"
 				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_rage_bh_2"
 			}
 			"02"
@@ -213,7 +213,6 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.2"
-		"AbilityCastRange"				"200 300 400 500 600 700 800"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 		
 		// Time		
@@ -259,6 +258,11 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"duration"						"5 6 7 8 9 10 11"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"cast_range"					"200 300 400 500 600 700 800"
 			}
 		}
 	}
@@ -461,19 +465,18 @@
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"damage"			"15 20 25 30 35 40"
-				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_rend_1"
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"5 10 15 20 25 30"
 			}
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"heal"				"100"
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"100"
 			}
 			"02"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"duration"			"5"
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"5"
 				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_rend_2"
 			}
 		}

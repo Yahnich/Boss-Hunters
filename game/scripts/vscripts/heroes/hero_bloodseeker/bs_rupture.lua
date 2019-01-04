@@ -130,8 +130,8 @@ end
 modifier_bs_rupture_charges = class({})
 if IsServer() then
     function modifier_bs_rupture_charges:Update()
-		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+		self.kv.replenish_time = self:GetTalentSpecialValueFor("scepter_charge_restore_time") * self:GetCaster():GetCooldownReduction()
+		self.kv.max_count = self:GetTalentSpecialValueFor("scepter_charges")
 
 		if self:GetStackCount() == self.kv.max_count then
 			self:SetDuration(-1, true)
@@ -139,7 +139,7 @@ if IsServer() then
 			self:SetDuration(-1, true)
 			self:SetStackCount(self.kv.max_count)
 		elseif self:GetStackCount() < self.kv.max_count then
-			local duration = self.kv.replenish_time* self:GetCaster():GetCooldownReduction()
+			local duration = self.kv.replenish_time
             self:SetDuration(duration, true)
             self:StartIntervalThink(duration)
 		end
@@ -151,8 +151,8 @@ if IsServer() then
 
     function modifier_bs_rupture_charges:OnCreated()
 		kv = {
-			max_count = self:GetTalentSpecialValueFor("charges"),
-			replenish_time = self:GetAbility():GetTrueCooldown()
+			max_count = self:GetTalentSpecialValueFor("scepter_charges"),
+			replenish_time = self:GetTalentSpecialValueFor("scepter_charge_restore_time") * self:GetCaster():GetCooldownReduction()
 		}
         self:SetStackCount(kv.start_count or kv.max_count)
         self.kv = kv
@@ -163,8 +163,8 @@ if IsServer() then
     end
 	
 	function modifier_bs_rupture_charges:OnRefresh()
-		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
-		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
+		self.kv.max_count = self:GetTalentSpecialValueFor("scepter_charges")
+		self.kv.replenish_time = self:GetTalentSpecialValueFor("scepter_charge_restore_time") * self:GetCaster():GetCooldownReduction()
         if self:GetStackCount() ~= kv.max_count then
             self:Update()
         end
@@ -180,8 +180,8 @@ if IsServer() then
 
     function modifier_bs_rupture_charges:OnAbilityFullyCast(params)
         if params.unit == self:GetParent() then
-			self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-			self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+			self.kv.replenish_time = self:GetTalentSpecialValueFor("scepter_charge_restore_time") * self:GetCaster():GetCooldownReduction()
+			self.kv.max_count = self:GetTalentSpecialValueFor("scepter_charges")
 			
             local ability = params.ability
             if params.ability == self:GetAbility() then
@@ -202,8 +202,8 @@ if IsServer() then
 		local caster = self:GetCaster()
 		local octarine = caster:GetCooldownReduction()
 		
-		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+		self.kv.replenish_time = self:GetTalentSpecialValueFor("scepter_charge_restore_time") * octarine
+		self.kv.max_count = self:GetTalentSpecialValueFor("scepter_charges")
 		
         if stacks < self.kv.max_count then
             self:IncrementStackCount()

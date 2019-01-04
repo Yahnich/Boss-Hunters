@@ -14,31 +14,30 @@ modifier_omniknight_heavenly_grace_bh = class({})
 LinkLuaModifier("modifier_omniknight_heavenly_grace_bh", "heroes/hero_omniknight/omniknight_heavenly_grace_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_omniknight_heavenly_grace_bh:OnCreated()
-	self.status_resist = self:GetTalentSpecialValueFor("status_resist")
+	self.damage_resist = self:GetTalentSpecialValueFor("damage_resist")
 	self.regen = self:GetTalentSpecialValueFor("health_regen")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_omniknight_heavenly_grace_1")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_omniknight_heavenly_grace_2")
 	if self.talent1 then
-		self.magic_resist = self.status_resist
-		self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_omniknight_heavenly_grace_1")
-	end
-	if self.talent2 then
-		self.status_amp = self.status_resist * self:GetCaster():FindTalentValue("special_bonus_unique_omniknight_heavenly_grace_2") / 100
+		self.damage_resist_growth = ( 100 - self.damage_resist / self:GetRemainingTime() ) * 0.25
+		self.damage_resist = 100
+		self:StartIntervalThink(0.25)
 	end
 end
 
 function modifier_omniknight_heavenly_grace_bh:OnRefresh()
-	self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_omniknight_heavenly_grace_1")
-	self.status_resist = self:GetTalentSpecialValueFor("status_resist")
+	self.damage_resist = self:GetTalentSpecialValueFor("damage_resist")
 	self.regen = self:GetTalentSpecialValueFor("health_regen")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_omniknight_heavenly_grace_1")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_omniknight_heavenly_grace_2")
 	if self.talent1 then
-		self.magic_resist = self.status_resist
+		self.damage_resist_growth = ( 100 - self.damage_resist / self:GetRemainingTime() ) * 0.25
+		self.damage_resist = 100
 	end
-	if self.talent2 then
-		self.status_amp = self.status_resist * self:GetCaster():FindTalentValue("special_bonus_unique_omniknight_heavenly_grace_2") / 100
-	end
+end
+
+function modifier_omniknight_heavenly_grace_bh:OnIntervalThink()
+	self.damage_resist = self.damage_resist - self.damage_resist_growth
 end
 
 function modifier_omniknight_heavenly_grace_bh:OnDestroy()
@@ -46,31 +45,21 @@ function modifier_omniknight_heavenly_grace_bh:OnDestroy()
 end
 
 function modifier_omniknight_heavenly_grace_bh:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-			MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-			MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING}
+	return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+			MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE}
 			
-end
-
-function modifier_omniknight_heavenly_grace_bh:GetModifierPhysicalArmorBonus()
-	return self.armor
 end
 
 function modifier_omniknight_heavenly_grace_bh:GetModifierConstantHealthRegen()
 	return self.regen
 end
 
-function modifier_omniknight_heavenly_grace_bh:GetModifierMagicalResistanceBonus()
-	return self.magic_resist
-end
-
-function modifier_omniknight_heavenly_grace_bh:GetModifierStatusResistanceStacking()
-	return self.status_resist
+function modifier_omniknight_heavenly_grace_bh:GetModifierTotalDamageOutgoing_Percentage()
+	return self.damage_resist
 end
 
 function modifier_omniknight_heavenly_grace_bh:GetModifierStatusAmplify_Percentage()
-	return self.status_amp
+	if self.talent2 then return self.damage_resist * self:GetCaster():FindTalentValue("special_bonus_unique_omniknight_heavenly_grace_2") / 100 end
 end
 
 function modifier_omniknight_heavenly_grace_bh:GetEffectName()

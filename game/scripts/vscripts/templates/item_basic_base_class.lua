@@ -12,10 +12,6 @@ function itemBasicBaseClass:IsPurgeException()
 	return false
 end
 
-function itemBasicBaseClass:RemoveOnDeath()
-	return false
-end
-
 function itemBasicBaseClass:IsPassive()
 	return true
 end

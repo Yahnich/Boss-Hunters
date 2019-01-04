@@ -9,14 +9,16 @@ LinkLuaModifier("modifier_boss_apotheosis_blessed_being", "bosses/boss_apotheosi
 
 function modifier_boss_apotheosis_blessed_being:OnCreated()
 	self.interval = self:GetSpecialValueFor("debuff_limit")
+	self.duration = self:GetSpecialValueFor("buff_duration")
 	self.delay = 0
 	if IsServer() then
 		self:StartIntervalThink(0.33)
 	end
 end
 
-function modifier_boss_apotheosis_blessed_being:OnCreated()
+function modifier_boss_apotheosis_blessed_being:OnRefresh()
 	self.interval = self:GetSpecialValueFor("debuff_limit")
+	self.duration = self:GetSpecialValueFor("buff_duration")
 	self.delay = 0
 	if IsServer() then
 		self:StartIntervalThink(0.33)
@@ -44,6 +46,7 @@ function modifier_boss_apotheosis_blessed_being:OnIntervalThink()
 	if self.delay > self.interval then
 		self.delay = 0
 		parent:Dispel(parent, true)
+		parent:AddNewModifier(parent, self:GetAbility(), "modifier_status_immunity", {duration = self.duration})
 		ParticleManager:FireParticle("particles/items_fx/immunity_sphere.vpcf", PATTACH_POINT_FOLLOW, parent)
 	end
 end

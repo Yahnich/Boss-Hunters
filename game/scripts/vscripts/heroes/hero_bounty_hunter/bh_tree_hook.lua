@@ -160,7 +160,6 @@ function modifier_bh_tree_hook_pull:OnIntervalThink()
     for _,enemy in pairs(enemies) do
 		if not self.hitUnits[enemy] then
 			EmitSoundOn("Hero_Meepo.Earthbind.Target", enemy)
-            self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_DAMAGE)
             enemy:AddNewModifier(caster, self:GetAbility(), "modifier_bh_tree_root", {Duration = self:GetTalentSpecialValueFor("root_duration")})
 			caster:AddNewModifier(caster, self:GetAbility(), "modifier_bh_tree_ms", {Duration = self:GetTalentSpecialValueFor("root_duration")})
 			self.hitUnits[enemy] = true
@@ -181,6 +180,21 @@ function modifier_bh_tree_hook_pull:IsHidden()
 end
 
 modifier_bh_tree_root = class({})
+function modifier_bh_tree_root:OnCreated()
+	self.damage = self:GetSpecialValueFor("damage")
+	if IsServer() then
+		self:StartIntervalThink(0.99)
+	end
+end
+
+function modifier_bh_tree_root:OnRefresh()
+	self.damage = self:GetSpecialValueFor("damage")
+end
+
+function modifier_bh_tree_root:OnIntervalThink()
+	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {}, OVERHEAD_ALERT_DAMAGE)
+end
+
 function modifier_bh_tree_root:IsDebuff()
     return true
 end

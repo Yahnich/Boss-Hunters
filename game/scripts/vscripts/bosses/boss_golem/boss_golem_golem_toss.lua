@@ -22,13 +22,13 @@ function boss_golem_golem_toss:OnSpellStart()
 	golem:SetAverageBaseDamage( caster:GetAverageBaseDamage() * 0.8, 25 )
 	golem.unitIsRoundNecessary = true
 	golem:SetCoreHealth( math.max(1, golemHP) )
-	if golem:GetModelScale() < self:GetSpecialValueFor("minimum_scale") then
+	if golem:GetModelScale() <= self:GetSpecialValueFor("minimum_scale") then
 		golem:FindAbilityByName("boss_golem_golem_toss"):SetActivated(false)
 	else
 		golem:FindAbilityByName("boss_golem_golem_toss"):SetCooldown()
 	end
 	
-	if caster:GetModelScale() < self:GetSpecialValueFor("minimum_scale") then
+	if caster:GetModelScale() <= self:GetSpecialValueFor("minimum_scale") then
 		golem:FindAbilityByName("boss_golem_golem_toss"):SetActivated(false)
 	end
 	golem:FindAbilityByName("boss_golem_split"):SetActivated(false)
@@ -70,7 +70,7 @@ if IsServer() then
 		FindClearSpaceForUnit(parent, parentPos, true)
 		if parent:IsFrozen() then return end
 		local ability = self:GetAbility()
-		local damage = math.max( 100, self:GetSpecialValueFor("base_damage") + self:GetSpecialValueFor("base_damage") * (parent:GetModelScale() - 1) * 0.5 )
+		local damage = math.max( 75, self:GetSpecialValueFor("base_damage") + self:GetSpecialValueFor("base_damage") * (parent:GetModelScale() - 1) * 0.5 )
 		local radius = math.max( 175, self:GetSpecialValueFor("base_radius") * parent:GetModelScale() )
 		
 		ParticleManager:FireParticle("particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", PATTACH_ABSORIGIN, parent, {[1] = Vector(radius, 1, 1)})

@@ -10,7 +10,7 @@ end
 
 function lifestealer_hunger:GetCooldown(iLevel)
     if self:GetCaster():HasTalent("special_bonus_unique_lifestealer_hunger_2") then
-        return self:GetCaster():HasTalent("special_bonus_unique_lifestealer_hunger_2", "cd")
+        return self:GetCaster():FindTalentValue("special_bonus_unique_lifestealer_hunger_2", "cd")
     else
         return 0
     end
@@ -33,6 +33,8 @@ function modifier_lifestealer_hunger_handle:OnCreated(kv)
 	self.max_lifesteal = self:GetTalentSpecialValueFor("max_lifesteal")
 	self.min_as = self:GetTalentSpecialValueFor("min_attack_speed")
 	self.max_as = self:GetTalentSpecialValueFor("max_attack_speed")
+	self.lifesteal = self.max_lifesteal
+	self.attackspeed = self.max_as
     if IsServer() then
         self:StartIntervalThink(0.1)
     end
@@ -53,10 +55,10 @@ function modifier_lifestealer_hunger_handle:OnIntervalThink()
 		self.attackspeed = self.max_as
 	elseif target then
 		local hpPct = target:GetHealth() / target:GetMaxHealth()
-		self.lifesteal = math.max( self.min_lifesteal, self.max_lifesteal * hpPct )
+		self.lifesteal = math.max( self.min_lifesteal, self.max_lifesteal * hpPct ) / 100
 		self.attackspeed = math.max( self.min_as, self.max_as * hpPct )
 	else
-		self.lifesteal = self.min_lifesteal
+		self.lifesteal = self.min_lifesteal / 100
 		self.attackspeed = self.min_as
 	end
 end

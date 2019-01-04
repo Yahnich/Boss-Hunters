@@ -151,7 +151,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"9"
 		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_SOUL_RIP"
-		"AbilityManaCost"				"100 110 120 130 140 150 160"		
+		"AbilityManaCost"				"80"		
 		
 		"AbilityCastRange"				"1200"
 		"AbilityCastPoint"				"0.3 0.3 0.3"
@@ -164,6 +164,9 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"enemy_hp_loss"					"36 44 52 60 68 76 84"
+				"CalculateSpellDamageTooltip"	"1"
+				"LinkedSpecialBonus"			"special_bonus_unique_undying_soul_rip_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
 			{
@@ -197,7 +200,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"2"
+				"value"						"2.5"
 			}
 		}
 	}
@@ -218,8 +221,13 @@
 		{
 			"01"
 			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"100"
+			}
+			"02"
+			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"5"
+				"duration"					"10"
 			}
 		}
 	}
@@ -335,7 +343,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"50"
+				"value"						"75"
 			}
 		}
 	}

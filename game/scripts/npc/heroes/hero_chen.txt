@@ -43,24 +43,30 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"8"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_movement_speed"	"-14 -18 -22 -26 -30 -34 -38"
+				"var_type"						"FIELD_INTEGER"
+				"bonus_movement_speed"			"-14 -18 -22 -26 -30 -34 -38"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage_taken"	"14 18 22 26 30 34 38"
-				"LinkedSpecialBonus"	"special_bonus_unique_chen_penitence_ebf_1"
+				"var_type"						"FIELD_INTEGER"
+				"bonus_as"						"30 45 60 75 90 105 120"
+				"LinkedSpecialBonus"			"special_bonus_unique_chen_penitence_ebf_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
-			"04"
+			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"500"
+				"var_type"						"FIELD_INTEGER"
+				"buff_duration"					"2"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"minion_radius"					"625"
 			}
 		}
 	}
@@ -81,8 +87,8 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"20"
+				"var_type"					"FIELD_FLOAT"
+				"value"						"1.5"
 			}
 		}
 	}
@@ -305,6 +311,109 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"3"
+			}
+		}
+	}
+	"chen_divine_favor_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_chen/chen_divine_favor_bh.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityTextureName"			"chen_divine_favor"
+		"MaxLevel"						"7"
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_chen.vsndevts"
+			"particle"			"particles/units/heroes/hero_chen/chen_test_of_faith.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCooldown"				"26 24 22 20 18 16 14"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"110"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"health_regeneration"	"7 13 19 25 31 37 43"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_dmg"				"20 30 40 50 60 70 80"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"heal_amp"				"25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"12"
+			}
+		}
+	}
+		//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_chen_divine_favor_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_chen_divine_favor_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"33"
 			}
 		}
 	}

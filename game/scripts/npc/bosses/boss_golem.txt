@@ -37,7 +37,7 @@
 			"02"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "minimum_scale"       	"0.8 0.6"
+	            "minimum_scale"       	"0.8 0.7"
 	        }
 	    }
 	}
@@ -151,7 +151,7 @@
 			"02"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "minimum_scale"       	"0.8 0.6"
+	            "minimum_scale"       	"0.8 0.7"
 	        }
 		}
 	}

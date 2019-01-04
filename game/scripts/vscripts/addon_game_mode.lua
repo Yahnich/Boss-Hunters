@@ -527,18 +527,13 @@ function CHoldoutGameMode:FilterDamage( filterTable )
     if attackerID and PlayerResource:HasSelectedHero( attackerID ) then
 	    local hero = PlayerResource:GetSelectedHeroEntity(attackerID)
 	    local player = PlayerResource:GetPlayer(attackerID)
-	    local start = false
-	    if hero.damageDone == 0 and damage>0 then 
-	    	start = true
-	    end
-		if hero and hero ~= attacker then 
+		if hero then 
 			hero.statsDamageDealt = (hero.statsDamageDealt or 0) + math.min(victim:GetHealth(), damage)
+			if hero.damageDone == 0 and damage > 0 then 
+				hero.first_damage_time = GameRules:GetGameTime()
+			end
+			hero.damageDone = math.floor(hero.damageDone + damage)
 		end
-	    hero.damageDone = math.floor(hero.damageDone + damage)
-	    if start == true then 
-	    	start = false
-	    	hero.first_damage_time = GameRules:GetGameTime()
-	   	end
 		GameRules.TeamDamage = (GameRules.TeamDamage or 0 ) + damage
     end
     return true

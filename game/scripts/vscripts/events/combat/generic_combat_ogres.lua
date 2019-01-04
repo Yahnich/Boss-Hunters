@@ -19,16 +19,17 @@ local function StartEvent(self)
 		self.noSmash = 1 + RoundManager:GetCurrentRaidTier() * 2
 	end
 	self.enemiesToSpawn = self.noSmash + self.wizardSmash + self.smallSmash + self.bigSmash
-	local bigSpawnDelay = 15
-	local smallSpawnDelay = 10
-	local wizardSpawnDelay = 10
-	local noSpawnDelay = 5
+	local bigSpawnDelay = 7
+	local smallSpawnDelay = 6
+	local wizardSpawnDelay = 3
+	local noSpawnDelay = 1
 	self.eventHandler = Timers:CreateTimer(3, function()
 		if self.bigSmash > 0 then
 			if bigSpawnDelay <= 0 then
 				local spawn = CreateUnitByName("npc_dota_boss16", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 				spawn.unitIsRoundNecessary = true
 				bigSpawnDelay = 15
+				self.enemiesToSpawn = self.enemiesToSpawn - 1
 			else
 				bigSpawnDelay = bigSpawnDelay - 1
 			end
@@ -38,6 +39,7 @@ local function StartEvent(self)
 				local spawn = CreateUnitByName("npc_dota_boss14", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 				spawn.unitIsRoundNecessary = true
 				wizardSpawnDelay = 10
+				self.enemiesToSpawn = self.enemiesToSpawn - 1
 			else
 				wizardSpawnDelay = wizardSpawnDelay - 1
 			end
@@ -47,6 +49,7 @@ local function StartEvent(self)
 				local spawn = CreateUnitByName("npc_dota_boss15", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 				spawn.unitIsRoundNecessary = true
 				smallSpawnDelay = 10
+				self.enemiesToSpawn = self.enemiesToSpawn - 1
 			else
 				smallSpawnDelay = smallSpawnDelay - 1
 			end
@@ -57,11 +60,11 @@ local function StartEvent(self)
 				spawn.unitIsRoundNecessary = true
 				spawn.unitIsMinion = true
 				noSpawnDelay = 5
+				self.enemiesToSpawn = self.enemiesToSpawn - 1
 			else
 				noSpawnDelay = noSpawnDelay - 1
 			end
 		end
-		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then
 			return 1
 		end

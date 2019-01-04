@@ -14,16 +14,21 @@ function bh_jinada:GetIntrinsicModifierName()
 	return "modifier_bh_jinada_handler"
 end
 
-function bh_jinada:TriggerJinada(target)
+function bh_jinada:TriggerJinada(target, bShuriken)
 	local caster = self:GetCaster()
 	EmitSoundOn("Hero_BountyHunter.Jinada", target)
 
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinda_slow.vpcf", PATTACH_POINT, caster)
 				ParticleManager:SetParticleControl(nfx, 0, target:GetAbsOrigin())
 				ParticleManager:ReleaseParticleIndex(nfx)
-
-	target:AddNewModifier(caster, self, "modifier_bh_jinada_maim", {Duration = self:GetTalentSpecialValueFor("duration")})
-	caster:AddGold( self:GetTalentSpecialValueFor("gold_steal") )
+	if bShuriken then
+		target:AddNewModifier(caster, self, "modifier_bh_jinada_maim_shuriken", {Duration = self:GetTalentSpecialValueFor("duration")})
+		caster:AddGold( self:GetTalentSpecialValueFor("gold_steal") * 2)
+	else
+		target:AddNewModifier(caster, self, "modifier_bh_jinada_maim", {Duration = self:GetTalentSpecialValueFor("duration")})
+		caster:AddGold( self:GetTalentSpecialValueFor("gold_steal") )
+	end
+	
 	self:SetCooldown()
 end
 
@@ -71,5 +76,32 @@ function modifier_bh_jinada_maim:StatusEffectPriority()
 end
 
 function modifier_bh_jinada_maim:IsDebuff()
+	return true
+end
+
+
+modifier_bh_jinada_maim_shuriken = class({})
+
+function modifier_bh_jinada_maim_shuriken:GetModifierStatusResistanceStacking()
+	return self:GetTalentSpecialValueFor("sr_red") * 2
+end
+
+function modifier_bh_jinada_maim_shuriken:GetModifierAttackSpeedBonus()
+	return self:GetTalentSpecialValueFor("slow_as") * 2
+end
+
+function modifier_bh_jinada_maim_shuriken:GetEffectName()
+	return "particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinda_slow.vpcf"
+end
+
+function modifier_bh_jinada_maim_shuriken:GetStatusEffectName()
+	return "particles/units/heroes/hero_bounty_hunter/status_effect_bounty_hunter_jinda_slow.vpcf"
+end
+
+function modifier_bh_jinada_maim_shuriken:StatusEffectPriority()
+	return 10
+end
+
+function modifier_bh_jinada_maim_shuriken:IsDebuff()
 	return true
 end
