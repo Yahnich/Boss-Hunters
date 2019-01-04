@@ -42,7 +42,7 @@ end
 modifier_beast_mode_allies = class({})
 function modifier_beast_mode_allies:DeclareFunctions()
 	local funcs = {
-		
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE
 	}
 	return funcs
 end
@@ -53,6 +53,10 @@ end
 
 function modifier_beast_mode_allies:GetModifierAttackSpeedBonus()
 	return self:GetTalentSpecialValueFor("bonus_attackspeed")
+end
+
+function modifier_beast_mode_allies:GetModifierSpellAmplify_Percentage()
+	if self:GetCaster():HasTalent("special_bonus_unique_beast_beast_mode_1") then return self:GetTalentSpecialValueFor("bonus_cdr") end
 end
 
 function modifier_beast_mode_allies:IsDebuff()

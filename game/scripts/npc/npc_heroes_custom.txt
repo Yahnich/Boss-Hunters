@@ -182,6 +182,7 @@
 	"npc_dota_hero_beastmaster_ebf"
 	{
 		"override_hero"			"npc_dota_hero_beastmaster"
+		"Ability1"				"beast_wild_axes"
 		"Ability2"				"beast_boar_spirit"
 		"Ability3"				"beast_hawk_spirit"
 		"Ability4"				"beast_beast_mode"
@@ -191,8 +192,8 @@
 		"Ability11"				"special_bonus_unique_beast_boar_spirit_2"
 		"Ability12"				"special_bonus_unique_beast_hawk_spirit_2"
 		"Ability13"				"special_bonus_unique_beast_hawk_spirit_1"
-		"Ability14"				"special_bonus_unique_beastmaster"
-		"Ability15"				"special_bonus_spell_amplify_10"
+		"Ability14"				"special_bonus_unique_beast_beast_mode_1"
+		"Ability15"				"special_bonus_unique_beast_wild_axes_1"
 		"Ability16"				"special_bonus_unique_beast_roar_1"
 		"Ability17"				"special_bonus_unique_beast_roar_2"
 	}
@@ -1937,6 +1938,9 @@
 		"Ability15"				"special_bonus_unique_sb_bash_2"
 		"Ability16"				"special_bonus_unique_sb_nether_strike_1"
 		"Ability17"				"special_bonus_unique_sb_nether_strike_2"
+		
+		"AttackRate"			"1.700000"
+		"MovementTurnRate"		"0.700000"
 	}
 	//=================================================================================================================
 	// HERO: Storm

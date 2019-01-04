@@ -23,7 +23,7 @@
 		"ItemResult"					"item_death_sentence"
 		"ItemRequirements"
 		{
-			"01"						"item_focused_lens;item_blade_of_alacrity;item_blade_of_alacrity;item_hawks_feather;item_broadsword"
+			"01"						"item_focused_lens;item_blade_of_agility;item_blade_of_agility;item_hawks_feather;item_broadsword"
 		}
 	}
 	"item_death_sentence"
@@ -36,7 +36,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_death_sentence"
-		"AbilityTextureName"			"greater_crit"
+		"AbilityTextureName"			"item_greater_crit"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"

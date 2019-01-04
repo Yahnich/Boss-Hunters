@@ -10,6 +10,13 @@ local function StartEvent(self)
 		if enemyName == "npc_dota_boss18" then
 			spawn.armor = spawn:FindAbilityByName("boss_living_armor")
 			if spawn.armor then spawn.armor:SetLevel( math.max(5, RoundManager:GetRaidsFinished() ) ) end
+		else
+			spawn.conflag = spawn:AddAbility("boss16_conflagration")
+			if  math.floor(GameRules.gameDifficulty + 0.5) < 2 then 
+				spawn.conflag:SetLevel(1)
+			else
+				spawn.conflag:SetLevel(2)
+			end
 		end
 		spawn.unitIsRoundNecessary = true
 		

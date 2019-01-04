@@ -23,7 +23,7 @@
 		"ItemResult"					"item_armor_of_invasion"
 		"ItemRequirements"
 		{
-			"01"						"item_mithril_armor;item_gauntlet_of_alacrity;item_reaping_scythe"
+			"01"						"item_mithril_armor;item_mithril_armor;item_gauntlet_of_alacrity;item_reaping_scythe"
 		}
 	}
 	"item_armor_of_invasion"
@@ -34,7 +34,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_armor_of_invasion"
-		"AbilityTextureName"			"assault"
+		"AbilityTextureName"			"item_assault"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"

@@ -1,8 +1,8 @@
 local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
 	self.greymane = 1
-	self.alpha = 1 + math.floor( math.log( RoundManager:GetRaidsFinished() + 1 ) + 0.5 )
-	self.wolf = 2 + math.floor( math.log( RoundManager:GetEventsFinished() + 1 ) + 0.5 )
+	self.alpha = RoundManager:GetCurrentRaidTier() * RoundManager:GetAscensions()
+	self.wolf =  ( 1 + RoundManager:GetCurrentRaidTier() ) * RoundManager:GetAscensions()
 	self.enemiesToSpawn = self.greymane
 	self.eventEnded = false
 	self.eventHandler = Timers:CreateTimer(3, function()
@@ -18,6 +18,7 @@ local function StartEvent(self)
 		end
 		if self.greymane > 0 then
 			local spawn = CreateUnitByName("npc_dota_boss_greymane", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+			spawn.unitIsBoss = true
 			spawn.unitIsRoundNecessary = true
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			self.greymane = self.greymane - 1

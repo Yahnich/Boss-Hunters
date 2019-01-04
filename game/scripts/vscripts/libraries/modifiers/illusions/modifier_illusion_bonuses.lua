@@ -11,10 +11,12 @@ end
 
 function modifier_illusion_bonuses:OnDestroy()
 	if IsServer() then
-		for _, wearable in ipairs( self:GetParent().wearableList ) do
-			UTIL_Remove( wearable )
+		if self:GetParent().wearableList then
+			for _, wearable in ipairs( self:GetParent().wearableList ) do
+				UTIL_Remove( wearable )
+			end
+			self:GetParent().wearableList = nil
 		end
-		self:GetParent().wearableList = nil
 	end
 end
 

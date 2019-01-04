@@ -260,7 +260,7 @@ end
 function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability, flBonusDamage, bDamagePct, bNeverMiss)
 	self.autoAttackFromAbilityState = {} -- basically the same as setting it to true
 	self.autoAttackFromAbilityState.ability = ability
-
+	
 	if flBonusDamage or bDamagePct then
 		if bDamagePct then
 			local bonusDamage = flBonusDamage
@@ -269,11 +269,12 @@ function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability, flBonusDama
 			end
 			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus_pct", {damage = bonusDamage})
 		end
-		if flBonusDamage and bDamagePct == false or bDamagePct == nil then
+		if flBonusDamage and not bDamagePct then
 			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus", {damage = flBonusDamage})
 		end
 	end
-	self:PerformAttack(target,bProcs,bProcs,true,false,false,false,bNeverMiss or true)
+	miss = (bNeverMiss ~= false)
+	self:PerformAttack(target,bProcs,bProcs,true,false,false,false,miss)
 	self.autoAttackFromAbilityState = nil
 
 	self:RemoveModifierByName("modifier_generic_attack_bonus")
@@ -463,7 +464,7 @@ end
 function CDOTA_BaseNPC:SetAverageBaseDamage(average, variance) -- variance is in percent (50 not 0.5)
 	local var = variance or ((self:GetBaseDamageMax() / self:GetBaseDamageMin()) * 100 )
 	self:SetBaseDamageMax(math.ceil(average*(1+(var/100))))
-	self:SetBaseDamageMin(math.floor(average*(1-(var/100))))
+	self:SetBaseDamageMin(math.max(1, math.ceil(average*(1-(var/100)))))
 end
 
 function CDOTABaseAbility:Refresh()
@@ -626,7 +627,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 	-- handle_UnitOwner needs to be nil, else it will crash the game.
 	local illusionIndex = CreateUnitByNameAsync("npc_illusion_template", origin, true, owner, owner, owner:GetTeamNumber(), function( illusion )
 		if bControl then illusion:SetControllableByPlayer(player, true) end
-		for abilitySlot=0,15 do
+		for abilitySlot=0,25 do
 			local abilityillu = self:GetAbilityByIndex(abilitySlot)
 			if abilityillu ~= nil then
 				local abilityLevel = abilityillu:GetLevel()
@@ -700,26 +701,30 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 		end
 		illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", { duration = duration })
 		illusion.wearableList = {}
-		for _, wearable in ipairs( self:GetChildren() ) do
+		local wearableWorker = {}
+		for _, wearable in ipairs( self.wearableTable or self:GetChildren() ) do
 			if wearable:GetClassname() == "dota_item_wearable" and wearable:GetModelName() ~= "" then
-				local newWearable = CreateUnitByName("wearable_dummy", illusion:GetAbsOrigin(), false, nil, nil, self:GetTeam())
-				newWearable:SetOriginalModel(wearable:GetModelName())
-				newWearable:SetModel(wearable:GetModelName())
-				newWearable:AddNewModifier(nil, nil, "modifier_wearable", {})
-				newWearable:AddNewModifier(owner, ability, specIllusionModifier or "modifier_illusion", { duration = -1 })
-				newWearable:MakeIllusion()
-				newWearable:SetParent(illusion, nil)
-				newWearable:FollowEntity(illusion, true)
-				-- newWearable:SetRenderColor(100,100,255)
-				table.insert( illusion.wearableList, newWearable )
+				CreateUnitByNameAsync("wearable_dummy", origin, true, owner, owner, owner:GetTeamNumber(), function( newWearable )
+					newWearable:SetOriginalModel(wearable:GetModelName())
+					newWearable:SetModel(wearable:GetModelName())
+					newWearable:AddNewModifier(nil, nil, "modifier_wearable", {})
+					newWearable:AddNewModifier(owner, ability, specIllusionModifier or "modifier_illusion", { duration = -1 })
+					newWearable:SetParent(illusion, nil)
+					newWearable:FollowEntity(illusion, true)
+					newWearable:SetRenderColor(100,100,255)
+					table.insert( illusion.wearableList, newWearable )
+				end)
+				if not self.wearableTable then
+					table.insert( wearableWorker, wearable )
+				end
 			end
+		end
+		if not self.wearableTable then
+			self.wearableTable = wearableWorker
 		end
 		if callback then
 			callback( illusion, self, caster, ability )
 		end
-		-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
-		illusion:MakeIllusion()
-		illusion.isCustomIllusion = true
 	end )
 end
 
@@ -842,15 +847,15 @@ function CDOTA_BaseNPC:ModifyThreat(val)
 	self.threat = math.min( math.max(0, (self.threat or 0) + math.min(newVal * reduction, threatgainCap ) ), 999 )
 	if self:IsRealHero() then
 		local player = PlayerResource:GetPlayer( self:GetOwner():GetPlayerID() )
-
-		PlayerResource:SortThreat()
-		local event_data =
-		{
-			threat = self.threat,
-			lastHit = self.lastHit,
-			aggro = self.aggro
-		}
-		if player then
+		if player and GameRules:GetGameTime() > (player.getLastHitTime or 0) + 0.2 then
+			PlayerResource:SortThreat()
+			local event_data =
+			{
+				threat = self.threat,
+				lastHit = self.lastHit,
+				aggro = self.aggro
+			}
+			player.getLastHitTime = GameRules:GetGameTime()
 			CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
 		end
 	end
@@ -2136,6 +2141,8 @@ function GameRules:RefreshPlayers(bDontHealFull, flPrepTime)
 					if not bDontHealFull then
 						hero:SetHealth( hero:GetMaxHealth() )
 						hero:SetMana( hero:GetMaxMana() )
+						
+						hero:RefreshAllCooldowns(true)
 					else
 						if flPrepTime then
 							hero:HealEvent( hero:GetHealthRegen() * flPrepTime, nil, hero )

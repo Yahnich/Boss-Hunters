@@ -1,5 +1,112 @@
 "DOTAAbilities"
 {	
+	"bane_enfeeble_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_bane/bane_enfeeble_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"bane_enfeeble"
+		"MaxLevel"						"7"
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"		
+			"particle"		"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
+			"particle"  	"particles/units/heroes/hero_bane/bane_enfeeble_projectile.vpcf"		
+		}
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_ENFEEBLE"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"16"
+		"AbilityDuration"				"8.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"95"		
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"dmg_reduction"					"-10 -12.5 -15 -17.5 -20 -22.5 -25"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"status_amp_reduction"			"-10 -12.5 -15 -17.5 -20 -22.5 -25"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"debuff_duration"				"8.0"
+			}
+		}
+	}
+	"special_bonus_unique_bane_enfeeble_ebf_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_bane_enfeeble_ebf_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"3000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"start_radius"			"200"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"end_radius"			"450"
+			}
+		}
+	}
 	"bane_brain_feast"
 	{
 		// General
@@ -62,6 +169,11 @@
 				"var_type"						"FIELD_FLOAT"
 				"scepter_cooldown"				"1.5"
 			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"s"				"0.6"
+			}
 		}
 	}
 	"special_bonus_unique_bane_brain_feast_1" 
@@ -99,109 +211,6 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"value"					"900"
-			}
-		}
-	}
-	"bane_enfeeble_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_bane/bane_enfeeble_ebf"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"bane_enfeeble"
-		"MaxLevel"						"7"
-	
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"		
-			"particle"		"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
-			"particle"  	"particles/units/heroes/hero_bane/bane_enfeeble_projectile.vpcf"		
-		}
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1000"
-		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
-		"AbilityCastAnimation"			"ACT_DOTA_ENFEEBLE"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16"
-		"AbilityDuration"				"8.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"95"		
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"enfeeble_attack_reduction"		"-40 -80 -120 -160 -200 -240 -280"
-				"LinkedSpecialBonus"			"special_bonus_unique_bane_1"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"debuff_duration"				"8.0"
-			}
-		}
-	}
-	"special_bonus_unique_bane_enfeeble_ebf_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
-		}
-	}
-	"special_bonus_unique_bane_enfeeble_ebf_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"3000"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"start_radius"			"200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"end_radius"			"450"
 			}
 		}
 	}

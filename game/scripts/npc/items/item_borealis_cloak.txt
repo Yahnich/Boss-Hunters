@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1200"	
+		"ItemCost"						"1350"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_borealis_cloak"
 		"ItemRequirements"
 		{
-			"01"						"item_mithril_armor;item_orb_of_essence;item_ice_fang"
+			"01"						"item_mithril_armor;item_mithril_armor;item_orb_of_essence;item_ice_fang"
 		}
 	}
 	"item_borealis_cloak"
@@ -34,7 +34,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_borealis_cloak"
-		"AbilityTextureName"			"shivas_guard"
+		"AbilityTextureName"			"item_shivas_guard"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -44,6 +44,8 @@
 		"ItemAliases"					"shivas guard;shiva;borealis;cloak"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"125"
 		
 		"precache"
 		{

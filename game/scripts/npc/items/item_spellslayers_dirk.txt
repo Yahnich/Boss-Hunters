@@ -37,7 +37,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_spellslayers_dirk"
-		"AbilityTextureName"			"diffusal_blade"
+		"AbilityTextureName"			"item_diffusal_blade"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -49,6 +49,7 @@
 		
 		"AbilityCooldown"				"20"
 		"AbilityManaCost"				"75"
+		
 		"precache"
 		{
 			"precache"					"soundevents/game_sounds_items.vsndevts"

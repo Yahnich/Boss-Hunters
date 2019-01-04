@@ -8,6 +8,10 @@ local function StartEvent(self)
 			enemyName = "npc_dota_boss24_stomper"
 		end
 		local spawn = CreateUnitByName(enemyName, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+		if RoundManager:GetCurrentRaidTier() == 1 and enemyName == "npc_dota_boss24_archer" then
+			spawn:SetBaseDamageMax(60)
+			spawn:SetBaseDamageMin(80)
+		end
 		spawn.unitIsRoundNecessary = true
 		
 		self.enemiesToSpawn = self.enemiesToSpawn - 1

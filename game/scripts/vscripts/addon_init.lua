@@ -52,12 +52,7 @@ LinkLuaModifier( "modifier_health_handler", "libraries/handlers/modifier_health_
 LinkLuaModifier( "modifier_handler_handler", "libraries/handlers/modifier_handler_handler.lua", LUA_MODIFIER_MOTION_NONE)
 
 
-LinkLuaModifier( "modifier_boss_tag", "libraries/modifiers/tags/modifier_boss_tag.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_minion_tag", "libraries/modifiers/tags/modifier_minion_tag.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_type_celestial_tag", "libraries/modifiers/tags/modifier_type_celestial_tag.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_type_demonic_tag", "libraries/modifiers/tags/modifier_type_demonic_tag.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_type_undead_tag", "libraries/modifiers/tags/modifier_type_undead_tag.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_type_wild_tag", "libraries/modifiers/tags/modifier_type_wild_tag.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_typing_tag", "libraries/modifiers/tags/modifier_typing_tag.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_illusion_tag", "libraries/modifiers/illusions/modifier_illusion_tag.lua", LUA_MODIFIER_MOTION_NONE)
 
 if IsClient() then -- Load clientside utility lib

@@ -37,7 +37,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_rising_salt"
-		"AbilityTextureName"			"iron_talon"
+		"AbilityTextureName"			"item_iron_talon"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"

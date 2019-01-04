@@ -2,8 +2,7 @@ axe_cleave_strike = class({})
 LinkLuaModifier( "modifier_cleave_strike", "heroes/hero_axe/axe_cleave_strike.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function axe_cleave_strike:GetCooldown(iLvl)
-	if self:GetCaster():HasTalent("special_bonus_unique_axe_cleave_strike_1") then return 0 end
-	return self.BaseClass.GetCooldown(self, iLvl)
+	return self.BaseClass.GetCooldown(self, iLvl) - self:GetCaster():FindTalentValue("special_bonus_unique_axe_cleave_strike_1")
 end
 
 function axe_cleave_strike:GetCastRange(target, position)
@@ -18,17 +17,18 @@ modifier_cleave_strike = class({})
 
 function modifier_cleave_strike:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_TAKEDAMAGE,
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
 	}
 	return funcs
 end
 
-function modifier_cleave_strike:OnTakeDamage(params)
+function modifier_cleave_strike:OnAttackLanded(params)
 	if IsServer() then
 		if (params.unit == self:GetCaster() or ( params.attacker == self:GetCaster() and self:GetCaster():HasTalent("special_bonus_unique_axe_cleave_strike_2") ) ) 
 		and self:GetAbility():IsCooldownReady() 
 		and self:GetParent():IsAlive()
-		and RollPercentage(self:GetTalentSpecialValueFor("chance")) then
+		and RollPercentage(self:GetTalentSpecialValueFor("chance")) 
+		and not self.procsDisabled then
 			-- Ternary Operator x ? y: z; TernaryOperator(passvalue, checkvalue, defaultvalue); if checkvalue is true then passvalue else return defaultvalue
 			local target = TernaryOperator(self:GetParent(), params.attacker == self:GetCaster(), params.attacker)
 			self:Spin(target)
@@ -37,22 +37,25 @@ function modifier_cleave_strike:OnTakeDamage(params)
 end
 
 function modifier_cleave_strike:Spin(target)
-	EmitSoundOn("Hero_Axe.CounterHelix_Blood_Chaser", self:GetCaster())
-	local armorDamage = self:GetCaster():GetStrength() * self:GetTalentSpecialValueFor("str_to_damage")/100
-	local nfx = ParticleManager:CreateParticle("particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster())
-	ParticleManager:SetParticleControlEnt( nfx, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true )
+	local caster = self:GetCaster()
+	local ability = self:GetAbility()
+	EmitSoundOn("Hero_Axe.CounterHelix_Blood_Chaser", caster)
+	local armorDamage = caster:GetStrength() * self:GetTalentSpecialValueFor("str_to_damage")/100
+	local nfx = ParticleManager:CreateParticle("particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser.vpcf", PATTACH_POINT_FOLLOW, caster)
+	ParticleManager:SetParticleControlEnt( nfx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true )
 	ParticleManager:ReleaseParticleIndex(nfx)
 
-	self:GetCaster():StartGesture(ACT_DOTA_CAST_ABILITY_3)
+	caster:StartGesture(ACT_DOTA_CAST_ABILITY_3)
 
-	target:Taunt(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("duration"))
+	target:Taunt(ability, caster, self:GetTalentSpecialValueFor("duration"))
 
-	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
+	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
+	self.procsDisabled = true
 	for _,enemy in pairs(enemies) do
-		self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetCaster():GetAttackDamage() + armorDamage, {}, 0)
+		caster:PerformAbilityAttack(enemy, true, ability, armorDamage, false, false)
 	end
-
-	self:GetAbility():SetCooldown()
+	self.procsDisabled = false
+	ability:SetCooldown()
 end
 
 function modifier_cleave_strike:IsHidden()

@@ -1,7 +1,7 @@
 aa_ice_vortex = class({})
-LinkLuaModifier("modifier_aa_ice_vortex", "heroes/hero_aa/aa_ice_vortex", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_aa_ice_vortex_effect", "heroes/hero_aa/aa_ice_vortex", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_aa_ice_vortex_aa", "heroes/hero_aa/aa_ice_vortex", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_aa_ice_vortex", "heroes/hero_ancient_apparition/aa_ice_vortex", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_aa_ice_vortex_effect", "heroes/hero_ancient_apparition/aa_ice_vortex", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_aa_ice_vortex_aa", "heroes/hero_ancient_apparition/aa_ice_vortex", LUA_MODIFIER_MOTION_NONE)
 
 function aa_ice_vortex:GetAOERadius()
 	return self:GetSpecialValueFor("radius")

@@ -23,7 +23,7 @@
 		"ItemAliases"					"shadow amulet;orb of shadows"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"AbilityCooldown"				"18"
+		"AbilityCooldown"				"28"
 		"AbilityManaCost"				"30"
 
 		// Special	
@@ -33,7 +33,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"5"
+				"duration"				"8"
 			}
 		}
 	}

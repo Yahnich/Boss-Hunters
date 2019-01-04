@@ -49,7 +49,7 @@ function modifier_hawk_spirit:OnCreated(table)
 		ParticleManager:SetParticleControlEnt(self.nfx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), false)
 		ParticleManager:SetParticleControl(self.nfx, 1, Vector(self:GetTalentSpecialValueFor("radius"), 0, 0))
 
-		self:StartIntervalThink(FrameTime())
+		self:StartIntervalThink(0.1)
 	end
 end
 
@@ -97,20 +97,30 @@ function modifier_hawk_spirit:IsDebuff()
 end
 
 modifier_hawk_spirit_ally = class({})
+function modifier_hawk_spirit_ally:OnCreated()
+	self.mana_regeneration = self:GetTalentSpecialValueFor("mana_regen")
+	self.health_regeneration = self:GetTalentSpecialValueFor("health_regen")
+end
+
+function modifier_hawk_spirit_ally:OnRefresh()
+	self.mana_regeneration = self:GetTalentSpecialValueFor("mana_regen")
+	self.health_regeneration = self:GetTalentSpecialValueFor("health_regen")
+end
+
 function modifier_hawk_spirit_ally:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
+		MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE,
 	}
 	return funcs
 end
 
-function modifier_hawk_spirit_ally:GetModifierConstantManaRegen()
-	return self:GetTalentSpecialValueFor("mana_regen")
+function modifier_hawk_spirit_ally:GetModifierTotalPercentageManaRegen()
+	return self.mana_regeneration
 end
 
 function modifier_hawk_spirit_ally:GetModifierHealthRegenPercentage()
-	return self:GetTalentSpecialValueFor("health_regen")
+	return self.health_regeneration
 end
 
 function modifier_hawk_spirit_ally:IsDebuff()

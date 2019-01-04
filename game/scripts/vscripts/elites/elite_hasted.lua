@@ -26,3 +26,7 @@ end
 function modifier_elite_hasted:GetEffectName()
 	return "particles/generic_gameplay/rune_haste_owner.vpcf"
 end
+
+function modifier_elite_hasted:IsHidden()
+	return true
+end

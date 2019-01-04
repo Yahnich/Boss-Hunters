@@ -16,7 +16,7 @@ function itemBasicBaseClass:RemoveOnDeath()
 	return false
 end
 
-function itemBasicBaseClass:IsPermanent()
+function itemBasicBaseClass:IsPassive()
 	return true
 end
 
@@ -25,5 +25,5 @@ function itemBasicBaseClass:AllowIllusionDuplicate()
 end
 
 function itemBasicBaseClass:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT + MODIFIER_ATTRIBUTE_MULTIPLE
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_MULTIPLE
 end

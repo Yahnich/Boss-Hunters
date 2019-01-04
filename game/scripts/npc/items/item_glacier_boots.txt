@@ -77,17 +77,17 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_armor"			"15"
+				"active_armor"			"10"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_as"				"-150"
+				"active_as"				"-100"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aura_slow"				"-50"
+				"aura_slow"				"-35"
 			}
 			"07"
 			{

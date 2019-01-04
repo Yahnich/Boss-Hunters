@@ -11,7 +11,9 @@ function modifier_cooldown_reduction_handler:DeclareFunctions()
 end
 
 function modifier_cooldown_reduction_handler:GetModifierPercentageCooldownStacking()
-	return self:GetStackCount() / 100
+	if self:GetStackCount() > 0 then
+		return (self:GetStackCount() + 1) / 100
+	end
 end
 
 function modifier_cooldown_reduction_handler:IsHidden()

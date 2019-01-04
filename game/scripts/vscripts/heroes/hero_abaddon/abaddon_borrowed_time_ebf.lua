@@ -24,14 +24,27 @@ function abaddon_borrowed_time_ebf:Activate()
 		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), -1)
 		for _, enemy in ipairs( enemies ) do
 			enemy:Taunt(self, caster, duration)
+			enemy:AddNewModifier(caster, self, "modifier_abaddon_borrowed_time_talent", {duration = duration})
 		end
-	elseif caster:HasTalent("special_bonus_unique_abaddon_borrowed_time_2") then
+	end
+	if caster:HasTalent("special_bonus_unique_abaddon_borrowed_time_2") then
 		caster:SetThreat(0)
 	end
 end
 
 function abaddon_borrowed_time_ebf:OnSpellStart()
 	self:Activate()
+end
+
+modifier_abaddon_borrowed_time_talent = class({})
+LinkLuaModifier("modifier_abaddon_borrowed_time_talent", "heroes/hero_abaddon/abaddon_borrowed_time_ebf", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_abaddon_borrowed_time_talent:OnCreated()
+	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_abaddon_borrowed_time_1")
+end
+
+function modifier_abaddon_borrowed_time_talent:GetModifierAttackSpeedBonus()
+	return self.as
 end
 
 modifier_abaddon_borrowed_time_ebf_passive = class({})
@@ -62,6 +75,7 @@ LinkLuaModifier("modifier_abaddon_borrowed_time_active", "heroes/hero_abaddon/ab
 
 function modifier_abaddon_borrowed_time_active:OnCreated()
 	self.aura_radius = self:GetTalentSpecialValueFor("redirect_range_scepter")
+	self.ms = self:GetCaster():FindTalentValue("special_bonus_unique_abaddon_borrowed_time_2")
 	if IsServer() then
 		self:GetAbility():StartDelayedCooldown()
 	end
@@ -93,7 +107,8 @@ function modifier_abaddon_borrowed_time_active:StatusEffectPriority()
 end
 
 function modifier_abaddon_borrowed_time_active:DeclareFunctions()
-	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
 end
 
 function modifier_abaddon_borrowed_time_active:GetModifierIncomingDamage_Percentage(params)
@@ -101,6 +116,10 @@ function modifier_abaddon_borrowed_time_active:GetModifierIncomingDamage_Percent
 	parent:HealEvent( params.damage, self:GetAbility(), self:GetCaster() )
 	ParticleManager:FireParticle("particles/units/heroes/hero_abaddon/abaddon_borrowed_time_heal.vpcf", PATTACH_POINT_FOLLOW, parent )
 	return -999
+end
+
+function modifier_abaddon_borrowed_time_active:GetModifierMoveSpeedBonus_Percentage()
+	return self.ms
 end
 
 function modifier_abaddon_borrowed_time_active:IsAura()

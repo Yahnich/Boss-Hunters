@@ -9,7 +9,7 @@
 		"BaseClass"						"item_lua"
 		"AbilitySharedCooldown"			"ghost"
 		"ScriptFile"					"items/item_phantom_staff"
-		"AbilityTextureName"			"ghost"
+		"AbilityTextureName"			"item_ghost"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"

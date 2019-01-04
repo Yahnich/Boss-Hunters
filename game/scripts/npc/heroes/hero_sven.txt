@@ -167,7 +167,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"armor_damage"				"8 8.5 9 9.5 10 10.5 11"
+				"armor_damage"				"10 10.75 11.5 12.25 13 13.75 14.5"
 			}
 			"04"
 			{
@@ -177,7 +177,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"movespeed"					"550"
+				"movespeed"					"200"
 			}
 		}
 	}

@@ -1,13 +1,6 @@
 GameEvents.Subscribe( "player_update_stats", UpdateStats);
-GameEvents.Subscribe( "player_update_gold", UpdateGold);
 GameEvents.Subscribe( "round_has_ended", ToggleStats);
 
-function UpdateGold(arg)
-{
-	// if (typeof arg != 'undefined') {
-		// $("#midasGoldLabel").text = arg.gold + " Total\n ( +" + arg.interest + " This round)";
-	// }
-}
 
 function UpdateStats(arg)
 {

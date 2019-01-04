@@ -44,9 +44,7 @@
 		"ItemAliases"					"radiance;cloak_of_the_hunter"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"AbilityCooldown"				"15"
-		"HasPureCooldown"				"1"
-		"Abilityduration"				"7"
+		"AbilityCooldown"				"20"
 		
 		"precache"
 		{
@@ -60,7 +58,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"invis_duration"		"7"
+				"invis_duration"		"8"
 			}
 			"02"
 			{

@@ -378,7 +378,6 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
     local caster = EntIndexToHScript( caster_index )
 	local ability = EntIndexToHScript( ability_index )
 	local name = filterTable["name_const"]
-	print(name, duration)
 	if duration == -1 then return true end
 	if parent and caster then
 		local params = {caster = caster, target = parent, duration = duration, ability = ability, modifier_name = name}
@@ -522,19 +521,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		local addedthreat = math.min( (damage / roundCurrTotalHP)*#enemies*100, (victim:GetHealth() * #enemies * 100) / roundCurrTotalHP )
 		if addedthreat > 0.01 then
 			attacker:ModifyThreat( addedthreat )
-			attacker.lastHit = GameRules:GetGameTime()
-			attacker.statsDamageDealt = (attacker.statsDamageDealt or 0) + math.min(victim:GetHealth(), damage)
-			PlayerResource:SortThreat()
-			local event_data =
-			{
-				threat = attacker.threat,
-				lastHit = attacker.lastHit,
-				aggro = attacker.aggro
-			}
-			local player = attacker:GetPlayerOwner()
-			if player then
-				CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
-			end
 		end
 	end
     local attackerID = attacker:GetPlayerOwnerID()
@@ -777,21 +763,15 @@ function CHoldoutGameMode:OnHeroPick (event)
 				ParticleManager:FireParticle("particles/roles/dev/vip_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
 			end
 		end
-		local gold = 250 + 150 * ( GameRules.BasePlayers - PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS) )
+		local gold = 400 + 150 * ( GameRules.BasePlayers - PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS) )
 		hero:SetGold( 0, true )
 		if PlayerResource:HasRandomed( ID ) then
 			gold = gold + 350
 		end
 		hero:SetGold( gold, true )
 		
-		hero:SetDayTimeVisionRange(hero:GetDayTimeVisionRange() * 1.5)
-		hero:SetNightTimeVisionRange(hero:GetNightTimeVisionRange() * 1.25)
-
-			
-		local player = PlayerResource:GetPlayer(ID)
-		if not player then return end
-		player.HB = true
-		player.Health_Bar_Open = false
+		hero:SetDayTimeVisionRange(hero:GetDayTimeVisionRange())
+		hero:SetNightTimeVisionRange(hero:GetNightTimeVisionRange())
 	end)
 end
 
@@ -921,18 +901,23 @@ function CHoldoutGameMode:OnThink()
 		local OnPThink = function(self)
 			local playerData = {}
 			local currTime = GameRules:GetGameTime()
-			for _,unit in ipairs ( FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0), nil, -1, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD, FIND_ANY_ORDER, false) ) do
-				MapHandler:CheckAndResolvePositions(unit)
-				if ( unit:GetHealth() <= 0 and unit:IsAlive() ) or ( unit:GetHealth() > 0 and not unit:IsAlive() ) then
-					if not unit:IsNull() then
-						unit:SetBaseMaxHealth( 1 )
-						unit:SetMaxHealth( 1 )
-						unit:SetHealth( 1 )
-						
-						unit:ForceKill( false )
+			for _,unit in ipairs ( FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0), nil, -1, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_DEAD, FIND_ANY_ORDER, false) ) do
+				if not unit:IsNull() and unit:GetHealth() <= 0 and not unit.confirmTheKill then
+					unit.confirmTheKill = true
+					unit:SetHealth(1)
+					unit:ForceKill( false )
+					if not unit:IsRealHero() and not unit:UnitCanRespawn() then
+						Timers:CreateTimer(1, function()
+							if not unit:IsNull() then UTIL_Remove( unit ) end
+						end)
+					end
+				else
+					-- source of lag, optimize or try to delete
+					if RoundManager:GetBoundingBox() then
+						MapHandler:CheckAndResolvePositions(unit, RoundManager:GetBoundingBox() )
 					end
 				end
-				if not unit:IsFakeHero() then
+				if unit:IsRealHero() and not unit:IsFakeHero() then
 					local data = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex() ) or {}
 					
 					data.strength = unit:GetStrength()
@@ -943,7 +928,6 @@ function CHoldoutGameMode:OnThink()
 					end
 					CustomNetTables:SetTableValue("hero_properties", unit:GetUnitName()..unit:entindex(), data )
 					playerData[unit:GetPlayerID()] = {DT = unit.statsDamageTaken or 0, DD = unit.statsDamageDealt or 0, DH = unit.statsDamageHealed or 0}
-					CustomGameEventManager:Send_ServerToAllClients( "player_update_stats", playerData )
 					-- Threat
 					if unit.threat then
 					if not unit:IsAlive() then
@@ -966,8 +950,9 @@ function CHoldoutGameMode:OnThink()
 					if player then
 						CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
 					end
-				end
+				end	
 			end
+			CustomGameEventManager:Send_ServerToAllClients( "player_update_stats", playerData )
 			PlayerResource:SortThreat()
 		end
 		status, err, ret = xpcall(OnPThink, debug.traceback, self)

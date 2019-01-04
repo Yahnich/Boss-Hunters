@@ -402,14 +402,19 @@
 		{
 			"01"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"hp_percent"		"2"
+				"var_type"					"FIELD_FLOAT"
+				"hp_percent"				"2"
 			}
 			"02"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"600"
-			}			
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"600"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tree_destroy_delay"		"5"
+			}
 		}
 	}
 

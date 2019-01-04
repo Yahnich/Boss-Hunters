@@ -91,6 +91,14 @@ function RoundManager:VoteNewGame(userid, event)
 	end
 end
 
+BH_MINION_TYPE_WILD = 1
+BH_MINION_TYPE_UNDEAD = bit.lshift(BH_MINION_TYPE_WILD, 1)
+BH_MINION_TYPE_DEMONIC = bit.lshift(BH_MINION_TYPE_UNDEAD, 1)
+BH_MINION_TYPE_CELESTIAL = bit.lshift(BH_MINION_TYPE_DEMONIC, 1)
+
+BH_MINION_TYPE_MINION = bit.lshift(BH_MINION_TYPE_CELESTIAL, 1)
+BH_MINION_TYPE_BOSS = bit.lshift(BH_MINION_TYPE_MINION, 1)
+
 function RoundManager:OnNPCSpawned(event)
 	local spawnedUnit = EntIndexToHScript( event.entindex )
 	if not spawnedUnit 
@@ -99,7 +107,8 @@ function RoundManager:OnNPCSpawned(event)
 	or spawnedUnit:GetUnitName() == "" 
 	or spawnedUnit:IsFakeHero() 
 	or spawnedUnit:GetUnitName() == "npc_dummy_unit" 
-	or spawnedUnit:GetUnitName() == "npc_dummy_blank" then
+	or spawnedUnit:GetUnitName() == "npc_dummy_blank" 
+	or spawnedUnit:GetUnitName() == "wearable_dummy" then
 		return
 	end
 	Timers:CreateTimer(function()
@@ -117,23 +126,24 @@ function RoundManager:OnNPCSpawned(event)
 					GridNav:DestroyTreesAroundPoint(spawnedUnit:GetAbsOrigin(), spawnedUnit:GetHullRadius() + spawnedUnit:GetCollisionPadding() + 350, true)
 					FindClearSpaceForUnit(spawnedUnit, spawnedUnit:GetAbsOrigin(), true)
 				end
+				local typeModifier = spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_typing_tag", {})
 				if spawnedUnit:IsWild() then
-					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_type_wild_tag", {})
+					typeModifier:SetStackCount( BH_MINION_TYPE_WILD )
 				end
 				if spawnedUnit:IsUndead() then
-					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_type_undead_tag", {})
+					typeModifier:SetStackCount( typeModifier:GetStackCount() + BH_MINION_TYPE_UNDEAD )
 				end
 				if spawnedUnit:IsDemon() then
-					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_type_demonic_tag", {})
+					typeModifier:SetStackCount( typeModifier:GetStackCount() + BH_MINION_TYPE_DEMONIC )
 				end
 				if spawnedUnit:IsCelestial() then
-					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_type_celestial_tag", {})
+					typeModifier:SetStackCount( typeModifier:GetStackCount() + BH_MINION_TYPE_CELESTIAL )
 				end
 				if spawnedUnit:IsMinion() then
-					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_minion_tag", {})
+					typeModifier:SetStackCount( typeModifier:GetStackCount() + BH_MINION_TYPE_MINION )
 				end
 				if spawnedUnit:IsBoss() or spawnedUnit:IsElite() then
-					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_tag", {})
+					typeModifier:SetStackCount( typeModifier:GetStackCount() + BH_MINION_TYPE_BOSS )
 				end
 			elseif spawnedUnit:IsRealHero() then
 				Timers:CreateTimer(0.1, function() spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_tombstone_respawn_immunity", {duration = 2.9}) end)
@@ -474,6 +484,7 @@ function RoundManager:LoadSpawns()
 	
 	RoundManager.raidNumber = (RoundManager.raidNumber or 0) + 1
 	RoundManager.boundingBox = string.lower(zoneName).."_raid_"..RoundManager.raidNumber
+	RoundManager.boundingBoxEntity = Entities:FindByName(nil, RoundManager.boundingBox.."_edge_collider")
 	for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
 		table.insert( RoundManager.spawnPositions, spawnPos:GetAbsOrigin() )
 	end
@@ -761,6 +772,10 @@ end
 
 function RoundManager:GetCurrentZone()
 	return self.currentZone
+end
+
+function RoundManager:GetBoundingBox()
+	return RoundManager.boundingBoxEntity
 end
 
 function RoundManager:GetCurrentRaidTier()

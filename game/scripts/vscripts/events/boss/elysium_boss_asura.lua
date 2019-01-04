@@ -5,7 +5,7 @@ local function StartEvent(self)
 	self.eventHandler = Timers:CreateTimer(3, function()
 		local spawn = CreateUnitByName("npc_dota_boss36_guardian", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 		spawn.unitIsRoundNecessary = true
-		
+		spawn.unitIsBoss = true
 		spawn.shield = spawn:FindAbilityByName("boss_evil_guardian_fire_shield")
 		spawn.purge = spawn:FindAbilityByName("boss_evil_guardian_purge_their_sin")
 		spawn.pool = spawn:FindAbilityByName("boss_evil_guardian_hell_on_earth")
@@ -35,12 +35,6 @@ local function StartEvent(self)
 			spawn.fist:SetLevel(2)
 			spawn.stun:SetLevel(2)
 		end
-		
-		if RoundManager:GetRaidsFinished() < 4 then
-			spawn.pool:SetActivated(false)
-			spawn.stun:SetLevel(1)
-		end
-
 		
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then

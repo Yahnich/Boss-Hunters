@@ -20,7 +20,7 @@ function modifier_boss_golem_split:OnDeath(params)
 			golem = CreateUnitByName("npc_dota_boss12_golem", self:GetParent():GetAbsOrigin() + RandomVector(250), true, nil, nil, self:GetParent():GetTeamNumber())
 			
 			golem:SetModelScale( scale )
-			golem:SetBaseMoveSpeed( math.min( 300, golem:GetBaseMoveSpeed() / scale ) )
+			golem:SetBaseMoveSpeed( math.min( 300, golem:GetBaseMoveSpeed() / ( scale / 1.6 )) )
 			golem:SetAverageBaseDamage( golem:GetAverageBaseDamage() * math.min(scale * 2, 1), 25 )
 			
 			golem:SetCoreHealth( math.max(1, hp) )

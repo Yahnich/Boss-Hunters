@@ -37,7 +37,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_shadow_blade"
-		"AbilityTextureName"			"invis_sword"
+		"AbilityTextureName"			"item_invis_sword"
 		"AbilitySharedCooldown"			"invis"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"

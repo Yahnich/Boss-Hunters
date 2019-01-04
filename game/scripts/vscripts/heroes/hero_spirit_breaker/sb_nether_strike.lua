@@ -22,6 +22,12 @@ function sb_nether_strike:GetCastRange(vLocation, hTarget)
 	return self:GetTalentSpecialValueFor("range")
 end
 
+function sb_nether_strike:GetAOERadius()
+	if self:GetCaster():HasTalent() or self:GetCaster():HasScepter() then 
+		return self:GetTalentSpecialValueFor("bash_radius_scepter")
+	end
+end
+
 function sb_nether_strike:OnAbilityPhaseStart()
 	EmitSoundOn("Hero_Spirit_Breaker.NetherStrike.Begin", self:GetCaster())
 	return true
@@ -49,32 +55,17 @@ function sb_nether_strike:OnSpellStart()
 	FindClearSpaceForUnit(caster, tpPoint, true)
 	caster:FaceTowards(target:GetAbsOrigin())
 
-	if caster:HasTalent("special_bonus_unique_sb_nether_strike_2") then
-		caster:PerformAttack(target, true, true, true, true, true, false, true)
-	end
-
-	if target and target:IsAlive() then
-		if caster:HasTalent("special_bonus_unique_sb_nether_strike_1") then
-			local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("bash_radius_scepter"))
-			for _,enemy in pairs(enemies) do
-				self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
-			end
-		else
-			self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
-		end
-	end
-
-	if target and target:IsAlive() then
-		local ability = caster:FindAbilityByName("sb_bash")
-		if ability and ability:IsTrained() then
-			if caster:HasScepter() then
-				local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("bash_radius_scepter"))
-				for _,enemy in pairs(enemies) do
-					ability:Bash(enemy, ability:GetTalentSpecialValueFor("knockback_distance")*2)
-				end
-			else
-				ability:Bash(target, ability:GetTalentSpecialValueFor("knockback_distance")*2)
-			end
+	local radius = TernaryOperator( self:GetTalentSpecialValueFor("bash_radius_scepter"), caster:HasScepter(), 0 )
+	local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), radius)
+	local damage = self:GetTalentSpecialValueFor("damage") + caster:GetIdealSpeed() * caster:FindTalentValue("special_bonus_unique_sb_nether_strike_1") / 100
+	
+	local talent = caster:HasTalent("special_bonus_unique_sb_nether_strike_2")
+	local tDur = caster:FindTalentValue("special_bonus_unique_sb_nether_strike_2")
+	for _,enemy in pairs(enemies) do
+		caster:PerformAbilityAttack(enemy, true, self)
+		self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
+		if talent then
+			enemy:Paralyze(self, caster, tDur)
 		end
 	end
 end

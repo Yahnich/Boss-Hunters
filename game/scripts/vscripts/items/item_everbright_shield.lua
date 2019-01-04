@@ -2,13 +2,13 @@ item_everbright_shield = class({})
 LinkLuaModifier( "modifier_item_everbright_shield_on", "items/item_everbright_shield.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_item_everbright_shield_off", "items/item_everbright_shield.lua" ,LUA_MODIFIER_MOTION_NONE )
 
-function item_everbright_shield:GetAbilityTextureName()
-	if self:GetCaster():HasModifier("modifier_item_everbright_shield_on") then
-		return "custom/everbright_shield"
-	else
-		return "custom/everbright_shield_off"
-	end
-end
+-- function item_everbright_shield:GetAbilityTextureName()
+	-- if self:GetCaster():HasModifier("modifier_item_everbright_shield_on") then
+		-- return "custom/everbright_shield"
+	-- else
+		-- return "custom/everbright_shield_off"
+	-- end
+-- end
 
 function item_everbright_shield:GetIntrinsicModifierName()
 	return "modifier_item_everbright_shield_off"
@@ -16,6 +16,7 @@ end
 
 function item_everbright_shield:OnSpellStart()
 	local caster = self:GetCaster()
+	caster:EmitSound("DOTA_Item.BlackKingBar.Activate")
 	caster:AddNewModifier(caster, self, "modifier_item_everbright_shield_on", {duration = self:GetSpecialValueFor("duration")})
 end
 
@@ -87,7 +88,7 @@ function modifier_item_everbright_shield_on:GetModifierStatusResistanceStacking(
 end
 
 function modifier_item_everbright_shield_on:GetEffectName()
-	return "particles/items_fx/everbright_shield_active.vpcf"
+	return "particles/items_fx/black_king_bar_avatar.vpcf"
 end
 
 function modifier_item_everbright_shield_on:IsHidden()

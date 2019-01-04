@@ -18,7 +18,7 @@ function boss_golem_golem_toss:OnSpellStart()
 	local golemScale = caster:GetModelScale() * 0.6
 	
 	golem:SetModelScale( math.max(golemScale, self:GetSpecialValueFor("minimum_scale") ) )
-	golem:SetBaseMoveSpeed( math.min( 300, golem:GetBaseMoveSpeed() / scale ) )
+	golem:SetBaseMoveSpeed( math.min( 300, golem:GetBaseMoveSpeed() / ( scale / 1.6 ) ) )
 	golem:SetAverageBaseDamage( caster:GetAverageBaseDamage() * 0.8, 25 )
 	golem.unitIsRoundNecessary = true
 	golem:SetCoreHealth( math.max(1, golemHP) )
@@ -70,8 +70,8 @@ if IsServer() then
 		FindClearSpaceForUnit(parent, parentPos, true)
 		if parent:IsFrozen() then return end
 		local ability = self:GetAbility()
-		local damage = self:GetSpecialValueFor("base_damage") * parent:GetModelScale()
-		local radius = self:GetSpecialValueFor("base_radius") * parent:GetModelScale()
+		local damage = math.max( 100, self:GetSpecialValueFor("base_damage") + self:GetSpecialValueFor("base_damage") * (parent:GetModelScale() - 1) * 0.5 )
+		local radius = math.max( 175, self:GetSpecialValueFor("base_radius") * parent:GetModelScale() )
 		
 		ParticleManager:FireParticle("particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", PATTACH_ABSORIGIN, parent, {[1] = Vector(radius, 1, 1)})
 		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parentPos, radius ) ) do

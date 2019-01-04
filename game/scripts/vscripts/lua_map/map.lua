@@ -10,11 +10,9 @@ MIN_POS_Z = 0
 
 SPAWN_POS = GetGroundPosition(Vector(6456, 6944, 0), nil)
 
-function MapHandler:CheckAndResolvePositions(hero)
+function MapHandler:CheckAndResolvePositions(hero, edgeBox)
 	if not hero or not hero.GetAbsOrigin then return end
 	hero.lastAllowedPosition = hero.lastAllowedPosition or hero:GetAbsOrigin()
-	if not RoundManager.boundingBox then return end
-	local edgeBox = Entities:FindByName(nil, RoundManager.boundingBox.."_edge_collider")
 	if hero:GetAbsOrigin().z < GetGroundHeight(hero:GetAbsOrigin(), hero) or hero:GetAbsOrigin().z > 1800 + GetGroundHeight(hero:GetAbsOrigin(), hero) then
 		local currOrigin = hero:GetAbsOrigin()
 		FindClearSpaceForUnit(hero, GetGroundPosition(currOrigin, hero), true)

@@ -55,7 +55,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"35 40 45 47 55 70 80"
+				"damage"				"35 45 55 65 75 85 95"
 			}
 			"05"
 			{
@@ -66,7 +66,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"max_units"				"1"
-				"LinkedSpecialBonus"	"special_bonus_unique_axe_blood_hunger_1"
 			}
 			"07"
 			{
@@ -108,7 +107,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
+				"value"					"-25"
 			}
 		}
 	}
@@ -138,18 +137,18 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_axe/axe_cleave_strike.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"axe_counter_helix"
-		"MaxLevel"						"7"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_axe/axe_cleave_strike.lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"						"1"
+		"AbilityTextureName"					"axe_counter_helix"
+		"MaxLevel"								"7"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"0.25"
+		"AbilityCooldown"						"0.5 0.45 0.4 0.35 0.3 0.25 0.2"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -157,23 +156,24 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"str_to_damage"			"100 105 110 115 120 125 130"
+				"var_type"						"FIELD_FLOAT"
+				"str_to_damage"					"60 65 70 75 80 85 90"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"chance"				"15"
+				"var_type"						"FIELD_INTEGER"
+				"chance"						"25"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"2"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"2"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"375"
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"375"
 			}
 		}
 	
@@ -199,7 +199,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
+				"value"					"-0.2"
 			}
 		}
 	}
@@ -247,7 +247,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
+		"AbilityCooldown"				"26"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -260,18 +260,18 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_bonus"			"40"
+				"armor_bonus"			"40 50 60 70 80 90 100"
 				"LinkedSpecialBonus"	"special_bonus_unique_axe_forced_shout_1"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_bonus_base"		"100"
+				"armor_bonus_base"		"25"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"5.5"
+				"duration"				"4 4.5 5 5.5 6 6.5 7"
 				"LinkedSpecialBonus"	"special_bonus_unique_axe_forced_shout_2"
 			}
 			"04"
@@ -379,33 +379,44 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"150 250 350 450 550 650"
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"150 250 350 450 550 650"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"daze_duration"			"3.0"
+				"var_type"						"FIELD_FLOAT"
+				"daze_duration"					"3.0"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6.0"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"6.0"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"kill_threshold"		"250 450 650 850 1050 1250"
+				"var_type"						"FIELD_INTEGER"
+				"kill_threshold"				"250 450 650 850 1050 1250"
+				"CalculateSpellDamageTooltip"	"1"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"move_slow"				"-25"
+				"var_type"						"FIELD_INTEGER"
+				"move_slow"						"-25"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"350"
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"350"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage_str_bonus"				"100"
+			}
+			"08"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"kill_str_bonus"				"150"
 			}
 		}
 	

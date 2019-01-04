@@ -6,6 +6,12 @@ function bane_brain_feast:GetCooldown(iLvl)
 	return cd
 end
 
+function bane_brain_feast:GetManaCost(iLvl)
+	local mc = self.BaseClass.GetManaCost(self, iLvl)
+	if self:GetCaster():HasScepter() then mc = mc * self:GetTalentSpecialValueFor("scepter_manacost") end
+	return mc
+end
+
 function bane_brain_feast:GetCastPoint()
 	if self:GetCaster():HasScepter() then
 		return 0.15
@@ -62,7 +68,7 @@ function modifier_bane_brain_feast_debuff:DeclareFunctions()
 end
 
 function modifier_bane_brain_feast_debuff:GetModifierIncomingDamage_Percentage()
-	return -5
+	return 5
 end
 
 function modifier_bane_brain_feast_debuff:OnAbilityFullyCast(params)

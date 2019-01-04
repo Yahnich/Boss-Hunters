@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1800"	
+		"ItemCost"						"1400"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_visionarys_cutlass"
 		"ItemRequirements"
 		{
-			"01"						"item_broadsword;item_hawks_feather;item_iron_rod;"
+			"01"						"item_broadsword;item_hawks_feather;item_iron_rod;gauntlet_of_alacrity"
 		}
 	}
 	//=================================================================================================================

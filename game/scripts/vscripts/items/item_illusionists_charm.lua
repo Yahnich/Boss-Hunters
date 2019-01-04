@@ -18,10 +18,13 @@ function item_illusionists_charm:OnSpellStart()
 		illusion:SetThreat( parent:GetThreat() )
 		table.insert( caster.itemIllusionTable, illusion )
 	end)
-	
-	for i = 1, maxIllus do
+	Timers:CreateTimer(function()
 		local illusion = caster:ConjureImage( ogPos + RandomVector(150), self:GetSpecialValueFor("duration"), -(100 - self:GetSpecialValueFor("illu_outgoing_damage")), self:GetSpecialValueFor("illu_incoming_damage") - 100, nil, self, true, caster, callback )
-	end
+		maxIllus = maxIllus - 1
+		if maxIllus > 0 then
+			return 0.2
+		end
+	end)
 end
 
 function item_illusionists_charm:GetIntrinsicModifierName()
