@@ -11,7 +11,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_soldiers_pike"
-		"AbilityTextureName"			"item_javelin"
+		"AbilityTextureName"			"item_dragon_lance"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -19,7 +19,7 @@
 		"ItemCost"						"325"
 		"ItemShopTags"					"range"
 		"ItemQuality"					"component"
-		"ItemAliases"					"javelin;soldiers pike"
+		"ItemAliases"					"dragon lance;soldiers pike"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		"precache"

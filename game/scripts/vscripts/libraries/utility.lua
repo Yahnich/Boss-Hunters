@@ -605,6 +605,15 @@ function CDOTA_BaseNPC:RefreshAllCooldowns(bItems, bNoUltimate)
 	end
 end
 
+
+function CDOTA_BaseNPC:GetPrimaryAttribute()
+	if self:IsIllusion() then
+		return self:GetParentUnit():GetPrimaryAttribute()
+	else
+		return DOTA_ATTRIBUTE_INVALID
+	end
+end
+
 function CDOTA_BaseNPC:IsIllusion()
 	local isIllusion = false
 	if self:GetPlayerOwnerID() ~= -1 then
@@ -685,6 +694,8 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 				if newItem then
 					newItem:SetStacksWithOtherOwners(true)
 					newItem:SetPurchaser(nil)
+					newItem:SetSellable(false)
+					newItem:SetDroppable(false)
 				end
 			end
 		end
@@ -724,6 +735,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 		if not self.wearableTable then
 			self.wearableTable = wearableWorker
 		end
+		illusion:MakeIllusion()
 		if callback then
 			callback( illusion, self, caster, ability )
 		end
@@ -2054,6 +2066,7 @@ end
 function CBaseEntity:RollPRNG( percentage )
 	local internalInt = (100/percentage)
 	local startingRoll = internalInt^2
+	
 	self.internalPRNGCounter = self.internalPRNGCounter or (1/internalInt)^2
 	if RollPercentage(self.internalPRNGCounter * 100) then
 		self.internalPRNGCounter = (1/internalInt)^2

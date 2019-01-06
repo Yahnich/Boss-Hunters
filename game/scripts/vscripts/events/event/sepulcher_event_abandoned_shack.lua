@@ -63,7 +63,7 @@ local function StartCombat(self, bFight, bBoss)
 		self.timeRemaining = 0
 		self.combatStarted = true
 		local mobToSpawn = "npc_dota_boss22b"
-		local spawnRate = 3
+		local spawnRate = 4
 		self.eventType = EVENT_TYPE_COMBAT
 		if bBoss then
 			self.eventType = EVENT_TYPE_ELITE
@@ -73,14 +73,20 @@ local function StartCombat(self, bFight, bBoss)
 			spawnRate = 12
 		else
 			CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 3})
-			self.enemiesToSpawn = 2 * math.floor( math.log( (RoundManager:GetRaidsFinished() + 1) * math.floor( HeroList:GetActiveHeroCount() / 2 ) ) )
+			self.enemiesToSpawn = 1 + RoundManager:GetCurrentRaidTier() * math.floor( HeroList:GetActiveHeroCount() / 2 ) ) )
 			mobToSpawn = "npc_dota_boss_phantom"
 		end
 		
 		Timers:CreateTimer(1, function()
 			local spawn = CreateUnitByName(mobToSpawn, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundNecessary = true
-			if not bBoss then spawn:SetCoreHealth( 100 * GameRules:GetGameDifficulty() ) end
+			if not bBoss then spawn:SetCoreHealth( 500 * GameRules:GetGameDifficulty() ) end
+			for i = 1, spawnRate / 2 do
+				CreateUnitByNameAsync(mobToSpawn, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS, function(spook)
+					spook:SetCoreHealth( 100 * GameRules:GetGameDifficulty() )
+					spook:SetAverageBaseDamage( 80, 25)
+				end)
+			end
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if self.enemiesToSpawn > 0 then
 				return spawnRate

@@ -11,15 +11,15 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_iron_rod"
-		"AbilityTextureName"			"custom/iron_rod"
+		"AbilityTextureName"			"item_javelin"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
 		"ItemCost"						"525"
-		"ItemShopTags"					"barrier"
+		"ItemShopTags"					"damage;dps"
 		"ItemQuality"					"component"
-		"ItemAliases"					"faerie fire"
+		"ItemAliases"					"javelin;iron rod"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 
 

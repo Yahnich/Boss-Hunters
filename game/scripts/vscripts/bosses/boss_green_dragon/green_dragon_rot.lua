@@ -9,24 +9,7 @@ end
 
 modifier_green_dragon_rot_handle = class({})
 function modifier_green_dragon_rot_handle:OnCreated(table)
-	if IsServer() then
-		self:StartIntervalThink(FrameTime())
-	end
-end
-
-function modifier_green_dragon_rot_handle:OnIntervalThink()
-	local caster = self:GetCaster()
-	caster:SpendMana(33, self:GetAbility())
-	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
-	for _,enemy in pairs(enemies) do
-		if enemy:IsHero() and (not enemy:IsMagicImmune()) and (not enemy:IsInvulnerable()) and (not enemy:HasModifier("modifier_green_dragon_rot")) and (not caster:HasModifier("modifier_green_dragon_etheral_armor")) then
-			if not enemy:TriggerSpellAbsorb(self) then
-				enemy:AddNewModifier(caster, self:GetAbility(), "modifier_green_dragon_rot", {Duration = self:GetSpecialValueFor("duration")})
-			end
-			break
-		end
-	end
-	self:StartIntervalThink(self:GetSpecialValueFor("duration")+math.random(1,3))
+	self.duration = self:GetSpecialValueFor("duration")
 end
 
 function modifier_green_dragon_rot_handle:IsHidden()
@@ -38,14 +21,48 @@ function modifier_green_dragon_rot_handle:CheckState()
 	return state
 end
 
+function modifier_green_dragon_rot_handle:DeclareFunctions()
+	return {}
+end
+
+function modifier_green_dragon_rot_handle:OnAttackLanded(params)
+	local caster = self:GetCaster()
+	if params.attacker ~= caster or not ability:IsCooldownReady() or caster:PassivesDisabled() then return end
+	local enemy = params.target
+	if enemy:IsHero() and (not enemy:IsMagicImmune()) and (not enemy:IsInvulnerable()) and (not enemy:HasModifier("modifier_green_dragon_rot")) then
+		if not enemy:TriggerSpellAbsorb(self) then
+			enemy:AddNewModifier(caster, self:GetAbility(), "modifier_green_dragon_rot", {Duration = self.duration})
+		end
+		caster:SpendMana(33)
+		self:GetAbility():StartCooldown(self.duration+math.random(1,3))
+		break
+	end
+end
+
 modifier_green_dragon_rot = class({})
 function modifier_green_dragon_rot:OnCreated(table)
+	self.duration = self:GetRemainingTime()
+	self.lifetime = 0
+	self.tick = 0
+	self.tickProc = self:GetSpecialValueFor("tick_rate")
 	if IsServer() then
 		self:StartIntervalThink(0.1)
 	end
 end
 
 function modifier_green_dragon_rot:OnIntervalThink()
+	self.tick = self.tick + 0.1
+	self.lifetime = self.lifetime + 0.1
+	if self.tick >= self.tickProc then
+		self.tick = 0
+		self:Poison()
+	end
+	if self.lifetime >= self.duration - 0.15 then
+		self:OnExpire()
+	end
+end
+
+function modifier_green_dragon_rot:Poison()
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
 	if not caster or caster:IsNull() then return end
@@ -60,15 +77,16 @@ function modifier_green_dragon_rot:OnIntervalThink()
 	for _,enemy in pairs(enemies) do
 		self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
 	end
-	self:StartIntervalThink(self:GetSpecialValueFor("tick_rate"))
 end
 
-function modifier_green_dragon_rot:OnRemoved()
+function modifier_green_dragon_rot:OnExpire()
     if IsServer() then
     	local caster = self:GetCaster()
     	local parent = self:GetParent()
     	local ability = caster:FindAbilityByName("green_dragon_toxic_pool")
     	ability:CreateToxicPool( parent:GetAbsOrigin() )
+		self:Poison()
+		self:Destroy()
     end
 end
 

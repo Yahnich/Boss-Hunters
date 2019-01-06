@@ -26,7 +26,11 @@ function pudge_hook_lua:OnSpellStart()
 	local hook_width = self:GetTalentSpecialValueFor("width")
 	local hook_range = self:GetTrueCastRange()
 	local hook_damage = self:GetTalentSpecialValueFor("damage")
-	if caster:HasScepter() then hook_damage = self:GetTalentSpecialValueFor("scepter_damage") end
+	local minion_damage = self:GetTalentSpecialValueFor("minion_damage")
+	if caster:HasScepter() then 
+		hook_damage = self:GetTalentSpecialValueFor("scepter_damage") 
+		minion_damage = self:GetTalentSpecialValueFor("scepter_minion_damage")
+	end
 	local caster_loc = caster:GetAbsOrigin()
 	local direction = CalculateDirection(self:GetCursorPosition(), caster_loc)
 	local start_loc = GetGroundPosition(caster_loc + direction * hook_width, caster) + Vector(0,0,100)
@@ -95,7 +99,7 @@ function pudge_hook_lua:OnSpellStart()
 
 			-- Apply stun/root modifier, and damage if the target is an enemy
 			if caster:GetTeam() ~= target:GetTeam() then
-				self:DealDamage(caster, target, hook_damage, {}, OVERHEAD_ALERT_DAMAGE)
+				self:DealDamage(caster, target, TernaryOperator( minion_damage, target:IsMinion(), hook_damage ), {}, OVERHEAD_ALERT_DAMAGE)
 				target:AddNewModifier(caster, self, "modifier_meat_hook_lua", {})
 				caster:ModifyThreat(self:GetTalentSpecialValueFor("threat_gain"))
 			else
@@ -157,7 +161,10 @@ function pudge_hook_lua:OnSpellStart()
 			if direction:Length2D() < hook_speed or current_tick > 300 then
 
 				-- Stop moving the target
-				if target_hit then
+				if target_hit and not target:IsNull() then
+					if not target:IsAlive() then
+						self:EndCooldown()
+					end
 					local final_loc = caster_loc + caster:GetForwardVector() * 100
 					FindClearSpaceForUnit(target, target:GetAbsOrigin(), false)
 
@@ -189,7 +196,7 @@ function pudge_hook_lua:OnSpellStart()
 				ParticleManager:SetParticleControl(hook_pfx, 1, hook_loc + hook_step)
 				ParticleManager:SetParticleControl(hook_pfx, 6, hook_loc + hook_step)
 
-				if target_hit then
+				if target_hit and not target:IsNull() then
 					target:SetAbsOrigin(hook_dummy:GetAbsOrigin()-Vector(0,0,100))
 					target:SetForwardVector(direction:Normalized())
 				end
@@ -203,8 +210,10 @@ end
 modifier_meat_hook_lua = class({})
 
 function modifier_meat_hook_lua:OnCreated(table)
-	self.damage = self:GetTalentSpecialValueFor("damage")
-	if self:GetCaster():HasScepter() then self.damage = self:GetTalentSpecialValueFor("scepter_damage") end
+	self.damage = TernaryOperator( self:GetTalentSpecialValueFor("minion_damage"), self:GetParent():IsMinion(), self:GetTalentSpecialValueFor("damage") )
+	if self:GetCaster():HasScepter() then 
+		self.damage = TernaryOperator( self:GetTalentSpecialValueFor("scepter_minion_damage"), self:GetParent():IsMinion(), self:GetTalentSpecialValueFor("scepter_damage") )
+	end
 	self.max_damage = 0
 	if IsServer() then self:StartIntervalThink(FrameTime()) end
 end

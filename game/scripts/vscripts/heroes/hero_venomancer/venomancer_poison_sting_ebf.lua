@@ -53,20 +53,6 @@ function modifier_venomancer_poison_sting_handler:OnAttackLanded(params)
 				local modifier = params.attacker:AddNewModifier(caster, self:GetAbility(), "modifier_venomancer_poison_sting_cancer", {duration = self.duration})
 				modifier:SetStackCount(self.initial)
 			end
-			for _, enemy in ipairs( params.target:FindEnemyUnitsInRadius( params.target:GetAbsOrigin(), params.target:FindTalentValue("special_bonus_unique_venomancer_poison_sting_1") ) ) do
-				if enemy ~= params.attacker then
-					if enemy:HasModifier("modifier_venomancer_poison_sting_cancer") then
-						local modifier = enemy:FindModifierByName("modifier_venomancer_poison_sting_cancer")
-						modifier:SetStackCount(modifier:GetStackCount() + self.initial)
-						modifier:SetDuration(self.duration, true)
-					elseif enemy:IsAlive() then
-						local caster = self:GetParent()
-						if not caster:IsHero() then caster = caster:GetOwnerEntity() end
-						local modifier = enemy:AddNewModifier(caster, self:GetAbility(), "modifier_venomancer_poison_sting_cancer", {duration = self.duration})
-						modifier:SetStackCount(self.initial)
-					end
-				end
-			end
 		end
 	end
 end

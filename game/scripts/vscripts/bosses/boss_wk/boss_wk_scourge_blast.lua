@@ -1,5 +1,13 @@
 boss_wk_scourge_blast = class({})
 
+function boss_wk_scourge_blast:GetCastPoint()
+	if self:GetCaster():HasModifier("modifier_boss_wk_reincarnation_enrage") then
+		return self.BaseClass.GetCastPoint(self) + 1
+	else
+		return self.BaseClass.GetCastPoint(self)
+	end
+end
+
 function boss_wk_scourge_blast:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorPosition()

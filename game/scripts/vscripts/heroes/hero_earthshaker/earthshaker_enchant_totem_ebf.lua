@@ -10,7 +10,7 @@ end
 
 function earthshaker_enchant_totem_ebf:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_earthshaker_enchant_totem_ebf", {duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_earthshaker_enchant_totem_ebf", {duration = 100 or self:GetTalentSpecialValueFor("duration")})
 	
 	EmitSoundOn("Hero_EarthShaker.Totem", caster)
 end

@@ -7,13 +7,13 @@
 	"bh_raid_casual"
 	{
 		"MaxPlayers"                    "5"
-		"Lives"							"5"
+		"Lives"							"4"
 		"Difficulty"					"2"
 	}
 	"bh_raid_hardcore"
 	{
 		"MaxPlayers"                    "5"
-		"Lives"							"3"
+		"Lives"							"2"
 		"Difficulty"					"4"
 	}
 }

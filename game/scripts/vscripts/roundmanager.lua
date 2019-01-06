@@ -442,6 +442,10 @@ function RoundManager:EndEvent(bWonRound)
 				if self.zones[self.currentZone][1][1] == nil then RoundManager:RaidIsFinished() end
 				EmitGlobalSound("Round.Won")
 			else
+				local gold = ( 800 + math.min( 4, RoundManager:GetZonesFinished() + 1 ) ) * ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() )
+				for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+					hero:AddGold( gold )
+				end
 				GameRules._lives = GameRules._lives - 1
 				event:HandoutRewards(false)
 				EmitGlobalSound("Round.Lost")
@@ -622,7 +626,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
 	
-	local HPMultiplierFunc = function( events, raids, zones ) return (0.45 + (events * 0.095)) * ( 1 + raids * 0.33 ) * ( 1 + zones * 0.12 ) end
+	local HPMultiplierFunc = function( events, raids, zones ) return (0.45 + (events * 0.095)) * ( 1 + raids * 0.33 ) * ( 1 + zones * 0.10 ) end
 	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.35 + (events * 0.05)) * ( 1 + raids * 0.075) * ( 1 + zones * 0.03 ) end
 	
 	local effPlayerHPMult =  HPMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
@@ -740,7 +744,6 @@ end
 
 function RoundManager:EvaluateLoss()
 	for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-		print("u dead bruh? ", hero:NotDead())
 		if hero:NotDead() then return false end
 	end
 	return true

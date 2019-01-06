@@ -1,12 +1,37 @@
 local function StartEvent(self)
-	self.enemiesToSpawn = 5 + RoundManager:GetCurrentRaidTier() * 3
+	local bansheeSpawn = 20 / GameRules:GetGameDifficulty()
+	local ghostSpawn = 10 / GameRules:GetGameDifficulty()
+	local bTimer = 0
+	local gTimer = 0
+	self.bToSpawn = 2 + RoundManager:GetCurrentRaidTier() * 2
+	self.gToSpawn = 4 + RoundManager:GetCurrentRaidTier() * 4
+	self.enemiesToSpawn = self.bToSpawn + self.gToSpawn
 	self.eventHandler = Timers:CreateTimer(3, function()
-		local spawn = CreateUnitByName("npc_dota_boss_phantom", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-		spawn.unitIsRoundNecessary = true
-		
-		self.enemiesToSpawn = self.enemiesToSpawn - 1
+		if self.bToSpawn > 0 then
+			bTimer = bTimer + 1
+			if bTimer >= bansheeSpawn then
+				local spawn = CreateUnitByName("npc_dota_boss_phantom", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+				spawn.unitIsRoundNecessary = true
+				self.bToSpawn = self.bToSpawn - 1
+				self.enemiesToSpawn = self.enemiesToSpawn - 1
+				bTimer = 0
+			end
+		end
+		if self.gToSpawn > 0 then
+			gTimer = gTimer + 1
+			if gTimer >= ghostSpawn then
+				local spawn = CreateUnitByName("npc_dota_boss22b", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+				spawn:SetCoreHealth(1250)
+				spawn:SetBaseAverageDamage( 100, 25 )
+				spawn.unitIsMinion = true
+				spawn.unitIsRoundNecessary = true
+				self.gToSpawn = self.gToSpawn - 1
+				self.enemiesToSpawn = self.enemiesToSpawn - 1
+				gTimer = 0
+			end
+		end
 		if self.enemiesToSpawn > 0 then
-			return 10 / GameRules:GetGameDifficulty()
+			return 1
 		end
 	end)
 	

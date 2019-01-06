@@ -19,7 +19,9 @@ function clinkz_arrows:GetCastRange(vLocation, hTarget)
 end
 
 function clinkz_arrows:GetCastPoint()
-	return self:GetCaster():GetSecondsPerAttack()
+	if IsServer() then 
+		return self:GetCaster():GetCastPoint( true ) / self:GetCaster():GetAttackSpeed()
+	end
 end
 
 function clinkz_arrows:GetManaCost(iLvl)
@@ -73,10 +75,10 @@ function clinkz_arrows:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 	if hTarget then
 		local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"), {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
-		local damage = self:GetTalentSpecialValueFor("damage") / #enemies
+		local damage = self:GetTalentSpecialValueFor("damage")
 		for _,enemy in pairs(enemies) do
 			EmitSoundOn("Hero_Clinkz.SearingArrows.Impact", enemy)
-			self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_DAMAGE)
+			self:DealDamage(caster, enemy, damage)
 		end
 	end
 end
@@ -111,7 +113,7 @@ function modifier_clinkz_arrows_caster:OnAttack(keys)
 		local attacker = keys.attacker
 		local ability = self:GetAbility()
 
-		if caster == attacker and ability:IsOwnersManaEnough() and ability:GetAutoCastState() then
+		if caster == attacker and ( ability:IsOwnersManaEnough() and ability:GetAutoCastState() or caster.forceSearingArrows ) then
 			EmitSoundOn("Hero_Clinkz.SearingArrows", caster)
 
 			ability:FireTrackingProjectile("particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf", target, caster:GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 50)	
@@ -135,8 +137,10 @@ function modifier_clinkz_arrows_caster:OnAttack(keys)
 					self.current = self.current + 1
 				end
 			end
-
-			ability:UseResources(true, false, false)
+			if not caster.forceSearingArrows then
+				ability:UseResources(true, false, false)
+			end
+			caster.forceSearingArrows = false
 		end
 	end
 end

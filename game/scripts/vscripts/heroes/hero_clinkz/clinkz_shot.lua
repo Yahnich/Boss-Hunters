@@ -44,6 +44,7 @@ function modifier_clinkz_shot_caster:OnIntervalThink()
 			for _,enemy in pairs(enemies) do
 				StartAnimation(caster, {duration=caster:GetSecondsPerAttack(), activity=ACT_DOTA_ATTACK, rate=1/caster:GetSecondsPerAttack()})
 				ability:SetCooldown()
+				caster.forceSearingArrows = true
 				caster:PerformAttack(enemy, true, true, true, true, true, false, false)
 				break
 			end

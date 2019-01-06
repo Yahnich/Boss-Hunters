@@ -3,7 +3,8 @@ modifier_boss_hard_enrage = class({})
 function modifier_boss_hard_enrage:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING
     }
 
     return funcs
@@ -14,15 +15,19 @@ function modifier_boss_hard_enrage:GetModifierPercentageCooldown()
 end
 
 function modifier_boss_hard_enrage:GetModifierAttackSpeedBonus()
-	return 300
+	return 450
 end
 
 function modifier_boss_hard_enrage:GetModifierMoveSpeedBonus_Percentage()
-	return 100
+	return 50
+end
+
+function modifier_boss_hard_enrage:GetModifierStatusResistanceStacking()
+	return 50
 end
 
 function modifier_boss_hard_enrage:GetEffectName()
-	return "particles/items2_fx/mask_of_madness.vpcf"
+	return "particles/units/bosses/boss_hard_enrage.vpcf"
 end
 
 function modifier_boss_hard_enrage:GetStatusEffectName()

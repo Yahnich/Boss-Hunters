@@ -36,6 +36,7 @@ function modifier_boss_flesh_behemoth_meat_pile:OnTakeDamage(params)
 			end
 		end
 		zombie:SetCoreHealth( self.hp + bonusHP )
+		zombie:SetAverageBaseDamage( 110, 35 )
 		self:GetAbility():SetCooldown()
 	end
 end

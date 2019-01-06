@@ -20,8 +20,26 @@ end
 modifier_windrunner_windrun_bh_handle = class({})
 function modifier_windrunner_windrun_bh_handle:OnCreated(table)
     if self:GetCaster():HasTalent("special_bonus_unique_windrunner_windrun_bh_2") then
-        self.invis = 10
+		self.fade_delay = 1
+        if IsServer() then
+			self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_invisible", {}):SetDuration(self:GetRemainingTime(), true)
+			self:StartIntervalThink(0.1)
+		end
     end
+end
+
+function modifier_windrunner_windrun_bh_handle:OnIntervalThink()
+	if IsServer() then
+		if self:GetParent():HasModifier("modifier_invisible") then
+			self.think = 0
+			return
+		else
+			self.think = (self.think or 0) + 0.1
+			if self.think >= self.fade_delay then
+				self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_invisible", {}):SetDuration(self:GetRemainingTime(), true)
+			end
+		end 
+	end
 end
 
 function modifier_windrunner_windrun_bh_handle:CheckState()
@@ -45,7 +63,7 @@ function modifier_windrunner_windrun_bh_handle:DeclareFunctions()
 end
 
 function modifier_windrunner_windrun_bh_handle:GetModifierInvisibilityLevel()
-    return self.invis
+    return self.fade_delay / 2
 end
 
 function modifier_windrunner_windrun_bh_handle:GetModifierMoveSpeedBonus_Percentage()

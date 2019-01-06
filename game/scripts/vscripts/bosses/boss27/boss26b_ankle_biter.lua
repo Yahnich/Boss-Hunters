@@ -54,7 +54,7 @@ function boss26b_ankle_biter:Grab(target)
 			caster:SetAbsOrigin(target:GetAbsOrigin())
 			self.initialDistance = CalculateDistance(caster, target)
 			return FrameTime()
-		else 
+		elseif caster and not caster:IsNull() then
 			caster:Stop()
 			caster:Interrupt()
 			caster:AddNewModifier(caster, ability, "modifier_stunned_generic", {duration = ability:GetSpecialValueFor("duration"), delay = false})

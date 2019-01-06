@@ -558,7 +558,7 @@
 		"Ability14"				"special_bonus_unique_earthshaker_echo_slam_ebf_1"
 		"Ability15"				"special_bonus_unique_earthshaker_echo_slam_ebf_2"
 		"Ability16"				"special_bonus_unique_earthshaker_fissure_ebf_1"
-		"Ability17"				"special_bonus_unique_earthshaker_aftershock_ebf_1"
+		"Ability17"				"special_bonus_unique_earthshaker_fissure_ebf_2"
 	}
 	//=================================================================================================================
 	// HERO: es

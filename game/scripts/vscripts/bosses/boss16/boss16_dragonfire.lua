@@ -2,13 +2,13 @@ boss16_dragonfire = class({})
 
 function boss16_dragonfire:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
-	ParticleManager:FireLinearWarningParticle(caster:GetAbsOrigin(), caster:GetAbsOrigin() + CalculateDirection(self:GetCursorPosition(), self:GetCaster()) * self:GetSpecialValueFor("range"))
+	ParticleManager:FireLinearWarningParticle(caster:GetAbsOrigin(), caster:GetAbsOrigin() + CalculateDirection(self:GetCursorPosition(), self:GetCaster()) * self:GetSpecialValueFor("range"), self:GetSpecialValueFor("end_radius"))
 	return true
 end
 
 function boss16_dragonfire:OnSpellStart()
 	EmitSoundOn( "Hero_DragonKnight.BreathFire", self:GetCaster() )
-	self:FireLinearProjectile("particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf", self:GetSpecialValueFor("speed") * CalculateDirection(self:GetCursorPosition(), self:GetCaster()), self:GetSpecialValueFor("range"), self:GetSpecialValueFor("start_radius"), {width_end = self:GetSpecialValueFor("")})
+	self:FireLinearProjectile("particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf", self:GetSpecialValueFor("speed") * CalculateDirection(self:GetCursorPosition(), self:GetCaster()), self:GetSpecialValueFor("range"), self:GetSpecialValueFor("start_radius"), {width_end = self:GetSpecialValueFor("end_radius")})
 end
 
 function boss16_dragonfire:OnProjectileHit(hTarget, vPosition)
