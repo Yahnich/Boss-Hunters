@@ -31,7 +31,7 @@ function modifier_boss_hard_enrage:GetEffectName()
 end
 
 function modifier_boss_hard_enrage:GetStatusEffectName()
-	return "particles/status_fx/status_effect_bloodrage.vpcf"
+	return "particles/status_fx/status_effect_avatar.vpcf"
 end
 
 function modifier_boss_hard_enrage:StatusEffectPriority()
@@ -39,7 +39,7 @@ function modifier_boss_hard_enrage:StatusEffectPriority()
 end
 
 function modifier_boss_hard_enrage:IsHidden()
-    return true
+    return false
 end
 
 function modifier_boss_hard_enrage:IsPurgable()

@@ -118,13 +118,9 @@ function AITimers:Think()
       -- Run the callback
       local status, nextCall
       if v.context then
-        status, nextCall = xpcall(function() return v.callback(v.context, v) end, function (msg)
-                                    return msg..'\n'..debug.traceback()..'\n'
-                                  end)
+        status, nextCall = pcall(v.callback, v.context, v)
       else
-        status, nextCall = xpcall(function() return v.callback(v) end, function (msg)
-                                    return msg..'\n'..debug.traceback()..'\n'
-                                  end)
+        status, nextCall = pcall(v.callback, v)
       end
 
       AITimers.runningTimer = nil

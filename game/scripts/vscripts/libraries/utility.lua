@@ -213,7 +213,7 @@ end
 
 function CDOTA_BaseNPC_Hero:CreateSummon(unitName, position, duration, bControllable)
 	local summon = CreateUnitByName(unitName, position, true, self, nil, self:GetTeam())
-  if bControllable or bControllable == nil then summon:SetControllableByPlayer( self:GetPlayerID(),  true ) end
+	if bControllable or bControllable == nil then summon:SetControllableByPlayer( self:GetPlayerID(),  true ) end
 	self.summonTable = self.summonTable or {}
 	table.insert(self.summonTable, summon)
 	summon:SetOwner(self)
@@ -1444,7 +1444,7 @@ function ParticleManager:FireParticle(effect, attach, owner, cps)
 			if type(value) == "userdata" then
 				ParticleManager:SetParticleControl(FX, tonumber(cp), value)
 			elseif type(value) == "table" then
-				ParticleManager:SetParticleControlEnt(FX, cp, value.owner or owner, value.attach or attach, value.point or "attach_hitloc", owner:GetAbsOrigin(), true)
+				ParticleManager:SetParticleControlEnt(FX, cp, value.owner or owner, value.attach or attach, value.point or "attach_hitloc", (value.owner or owner):GetAbsOrigin(), true)
 			else
 				ParticleManager:SetParticleControlEnt(FX, cp, owner, attach, value, owner:GetAbsOrigin(), true)
 			end
@@ -1597,6 +1597,11 @@ function CDOTABaseAbility:Stun(target, duration, bDelay)
 	local delay = false
 	if bDelay then delay = Bdelay end
 	return target:AddNewModifier(self:GetCaster(), self, "modifier_stunned_generic", {duration = duration, delay = delay})
+end
+
+function CDOTABaseAbility:Sleep(target, duration, min_duration)
+	if not target or target:IsNull() then return end
+	return target:AddNewModifier(self:GetCaster(), self, "modifier_sleep_generic", {duration = duration, min_duration = min_duration or 0})
 end
 
 function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, data, bDelete, bVision, vision)

@@ -10,7 +10,7 @@ end
 function modifier_boss_evasion:OnIntervalThink()
 	self:StartIntervalThink(-1)
 	self:GetParent():EmitSound("hero_bloodseeker.rupture.cast")
-	self:GetParent():AddNewModifier(nil, nil, "modifier_boss_hard_enrage", {})
+	self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_boss_hard_enrage", {})
 end
 
 function modifier_boss_evasion:DeclareFunctions()

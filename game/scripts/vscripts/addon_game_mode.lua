@@ -950,7 +950,7 @@ function CHoldoutGameMode:OnThink()
 			CustomGameEventManager:Send_ServerToAllClients( "player_update_stats", playerData )
 			PlayerResource:SortThreat()
 		end
-		status, err, ret = xpcall(OnPThink, debug.traceback, self)
+		status, err, ret = pcall(OnPThink, self)
 		if not status  and not self.gameHasBeenBroken then
 			SendErrorReport(err, self)
 		end

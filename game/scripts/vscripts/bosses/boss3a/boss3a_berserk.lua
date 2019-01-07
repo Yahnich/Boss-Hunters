@@ -20,6 +20,10 @@ function modifier_boss3a_berserk:OnCreated()
 	self.as = self:GetSpecialValueFor("bonus_attack_speed")
 end
 
+function modifier_boss3a_berserk:CheckState()
+	return {[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
+end
+
 function modifier_boss3a_berserk:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, }
 end

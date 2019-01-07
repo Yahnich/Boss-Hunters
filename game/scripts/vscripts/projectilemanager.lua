@@ -25,7 +25,7 @@ end
 function ProjectileHandler:ProjectileThink()
 	if not GameRules:IsGamePaused() then
 		for id, projectile in pairs( self.projectiles ) do
-			local status, err, ret = xpcall (projectile.ProjectileThink, debug.traceback, projectile)
+			local status, err, ret = pcall (projectile.ProjectileThink, projectile)
 			if not status then
 				print(err)
 				projectile:Remove()
@@ -34,7 +34,7 @@ function ProjectileHandler:ProjectileThink()
 			projectile.distanceTravelled = (projectile.distanceTravelled or 0) + projectile:GetVelocity():Length2D() * FrameTime()
 			if (projectile.aliveTime and projectile.duration and projectile.aliveTime >= projectile.duration) or (projectile.distance and projectile.distanceTravelled and projectile.distance <= projectile.distanceTravelled) then
 				local position = projectile:GetPosition()
-				local status, err, ret = xpcall(projectile.hitBehavior, debug.traceback, projectile, nil, position)
+				local status, err, ret = pcall(projectile.hitBehavior, projectile, nil, position)
 				projectile:Remove()
 			end
 		end

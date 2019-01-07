@@ -6,6 +6,10 @@ function boss_alpha_wolf_howl:OnSpellStart()
 	for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), -1 ) ) do
 		ally:AddNewModifier( caster, self, "modifier_boss_alpha_wolf_howl", {duration = self:GetSpecialValueFor("duration")})
 	end
+	caster:EmitSound("Hero_Lycan.Howl")
+	caster:EmitSound("Hero_Lycan.Howl.Team")
+	
+	ParticleManager:FireParticle("particles/units/heroes/hero_lycan/lycan_howl_cast.vpcf", PATTACH_POINT_FOLLOW, caster)
 end
 
 modifier_boss_alpha_wolf_howl = class({})
@@ -31,4 +35,8 @@ end
 
 function modifier_boss_alpha_wolf_howl:GetModifierDamageOutgoing_Percentage()
 	return self.damage
+end
+
+function modifier_boss_alpha_wolf_howl:GetEffectName()
+	return "particles/units/heroes/hero_lycan/lycan_howl_buff.vpcf"
 end

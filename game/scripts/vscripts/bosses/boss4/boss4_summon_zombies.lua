@@ -18,11 +18,11 @@ function boss4_summon_zombies:OnChannelFinish(bInterrupted)
 			local zombiePos = caster:GetAbsOrigin() + ActualRandomVector(zombieSpawnRadius, 150)
 			local zombie = CreateUnitByName("npc_dota_mini_boss1", zombiePos, true, caster, caster, caster:GetTeamNumber())
 			ParticleManager:FireParticle("particles/bosses/boss4/boss4_summon_zombies_spawn.vpcf", PATTACH_POINT_FOLLOW, zombie)
-			zombie:FindAbilityByName("boss4_horde_power"):SetLevel(self:GetLevel())
 			self.zombies[zombie] = true
 			EmitSoundOn("Creature.ZombieSpawn", zombie)
 		end
 	end
+	print( self:GetZombieCount() )
 end
 
 function boss4_summon_zombies:GetZombieCount()

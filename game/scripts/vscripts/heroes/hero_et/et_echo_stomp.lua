@@ -56,8 +56,11 @@ function et_echo_stomp:OnSpellStart()
 
 	EmitSoundOn("Hero_ElderTitan.EchoStomp", caster)
 
-	local damage = self:GetSpecialValueFor("damage")
-
+	local damage = self:GetTalentSpecialValueFor("damage")
+	local duration = self:GetTalentSpecialValueFor("duration")
+	local min_duration = self:GetTalentSpecialValueFor("min_duration")
+	
+	local talent1 = caster:HasTalent("special_bonus_unique_et_echo_stomp_1")
 	if not caster:HasModifier("modifier_elder_spirit") then
 		local spirits = caster:FindFriendlyUnitsInRadius(point, FIND_UNITS_EVERYWHERE, {flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE})
 		for _,spirit in pairs(spirits) do
@@ -70,21 +73,22 @@ function et_echo_stomp:OnSpellStart()
 				spirit:FindAbilityByName(self:GetAbilityName()):StartCooldown(spirit:FindAbilityByName(self:GetAbilityName()):GetTrueCooldown())
 			end
 		end
-
-		if caster:HasTalent("special_bonus_unique_et_echo_stomp_1") then
-			damage = damage + damage*caster:FindTalentValue("special_bonus_unique_et_echo_stomp_1")/100
-		end
-
    		if caster:FindAbilityByName("et_elder_spirit") and caster:FindAbilityByName("et_elder_spirit"):IsTrained() then
    			if caster:HasModifier("modifier_elder_spirit_check") then
    				ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_physical.vpcf", PATTACH_POINT, caster, {[0] = point})
 
-				local enemies = caster:FindEnemyUnitsInRadius(point, self:GetSpecialValueFor("radius"), {})
+				local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius"), {})
 				for _,enemy in pairs(enemies) do
-					self:Stun(enemy, self:GetSpecialValueFor("duration"), false)
-
-					self:DealDamage(caster, enemy, damage/2, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
-					self:DealDamage(caster, enemy, damage/2, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+					local sleep = self:Sleep(enemy, duration, min_duration)
+					if talent1 then
+						sleep.OnDestroy = function(sleep)
+							local damage = self:GetTalentSpecialValueFor("damage")
+							sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+							sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+						end
+					end
+					self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+					self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
 
 					if caster:HasTalent("special_bonus_unique_et_echo_stomp_2") then
 						enemy:Taunt(self, caster, caster:FindTalentValue("special_bonus_unique_et_echo_stomp_2"))
@@ -92,10 +96,17 @@ function et_echo_stomp:OnSpellStart()
 				end
    			else
    				ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_physical.vpcf", PATTACH_POINT, caster:GetOwner(), {[0] = point})
-
-				local enemies = caster:FindEnemyUnitsInRadius(point, self:GetSpecialValueFor("radius"), {})
+   				ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_magical.vpcf", PATTACH_POINT, caster, {[0] = point})
+				local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius"), {})
 				for _,enemy in pairs(enemies) do
-					self:Stun(enemy, self:GetSpecialValueFor("duration"), false)
+					local sleep = self:Sleep(enemy, duration, min_duration)
+					if talent1 then
+						sleep.OnDestroy = function(sleep)
+							local damage = self:GetTalentSpecialValueFor("damage")
+							sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+							sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+						end
+					end
 
 					self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
 
@@ -106,13 +117,21 @@ function et_echo_stomp:OnSpellStart()
    			end
    		else
    			ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_physical.vpcf", PATTACH_POINT, caster, {[0] = point})
-
-			local enemies = caster:FindEnemyUnitsInRadius(point, self:GetSpecialValueFor("radius"), {})
+   			ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_magical.vpcf", PATTACH_POINT, caster, {[0] = point})
+			
+			local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius"), {})
 			for _,enemy in pairs(enemies) do
-				self:Stun(enemy, self:GetSpecialValueFor("duration"), false)
+				local sleep = self:Sleep(enemy, duration, min_duration)
+				if talent1 then
+					sleep.OnDestroy = function(sleep)
+						local damage = self:GetTalentSpecialValueFor("damage")
+						sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+						sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+					end
+				end
 
-				self:DealDamage(caster, enemy, damage/2, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
-				self:DealDamage(caster, enemy, damage/2, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+				self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+				self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
 
 				if caster:HasTalent("special_bonus_unique_et_echo_stomp_2") then
 					enemy:Taunt(self, caster, caster:FindTalentValue("special_bonus_unique_et_echo_stomp_2"))
@@ -120,15 +139,11 @@ function et_echo_stomp:OnSpellStart()
 			end
    		end
    else
-   		if caster:GetOwner():HasTalent("special_bonus_unique_et_echo_stomp_1") then
-			damage = damage + damage*caster:GetOwner():FindTalentValue("special_bonus_unique_et_echo_stomp_1")/100
-		end
-
    		ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_magical.vpcf", PATTACH_POINT, caster, {[0] = point})
 
-		local enemies = caster:FindEnemyUnitsInRadius(point, self:GetSpecialValueFor("radius"), {})
+		local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius"), {})
 		for _,enemy in pairs(enemies) do
-			self:Stun(enemy, self:GetSpecialValueFor("duration"), false)
+			self:Stun(enemy, self:GetTalentSpecialValueFor("duration"), false)
 
 			self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
 

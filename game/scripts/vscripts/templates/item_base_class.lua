@@ -12,14 +12,6 @@ function itemBaseClass:IsPurgeException()
 	return false
 end
 
-function itemBaseClass:RemoveOnDeath()
-	return false
-end
-
-function itemBaseClass:AllowIllusionDuplicate()
-	return true
-end
-
 function itemBaseClass:GetAttributes()
 	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE
 end

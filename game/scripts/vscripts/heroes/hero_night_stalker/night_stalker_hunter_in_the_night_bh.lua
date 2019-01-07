@@ -1,6 +1,5 @@
 night_stalker_hunter_in_the_night_bh = class({})
 
-
 if IsClient() then -- thanks valve
 	if GameRules.IsDaytime == nil then
 		GameRules.IsDaytime = function()

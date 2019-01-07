@@ -18,11 +18,7 @@ function boss_troll_warlord_axe_fury:OnSpellStart()
 	caster:AddNewModifier(caster, self, "modifier_boss_troll_warlord_axe_fury", {Duration = self:GetTalentSpecialValueFor("duration")})
 end
 
-function boss_troll_warlord_axe_fury:OnProjectileThink(vLocation)
-	GridNav:DestroyTreesAroundPoint(vLocation, self:GetTalentSpecialValueFor("width"), false)
-end
-
-function boss_troll_warlord_axe_fury:OnProjectileHitHandle(hTarget, vLocation, iProjectileHandle)
+function boss_troll_warlord_axe_fury:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 
 	if hTarget then
@@ -36,7 +32,7 @@ modifier_boss_troll_warlord_axe_fury = class({})
 function modifier_boss_troll_warlord_axe_fury:OnCreated(table)
 	if IsServer() then
 		self:GetCaster():FindAbilityByName("boss_troll_warlord_savage_leap"):SetActivated(false)
-		self:StartIntervalThink(FrameTime())
+		self:StartIntervalThink(0.2)
 	end
 end
 
@@ -74,5 +70,5 @@ function modifier_boss_troll_warlord_axe_fury:DeclareFunctions()
 end
 
 function modifier_boss_troll_warlord_axe_fury:GetModifierTurnRate_Percentage()
-	return -80
+	return -95
 end

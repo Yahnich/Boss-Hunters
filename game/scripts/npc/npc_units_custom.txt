@@ -7990,7 +7990,6 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"boss4_horde_power"
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -10087,7 +10086,7 @@
 		// Status
 		//----------------------------------------------------------------
 		"StatusHealth"				"2500"		// Base health.
-		"StatusHealthRegen"			"500"			// Health regeneration rate.
+		"StatusHealthRegen"			"0"			// Health regeneration rate.
 		"StatusMana"				"100"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
 		

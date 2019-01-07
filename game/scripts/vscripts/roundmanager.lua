@@ -612,8 +612,8 @@ end
 function RoundManager:InitializeUnit(unit, bElite)
 	unit.hasBeenInitialized = true
 	unit.NPCIsElite = bElite
-	local expectedHP = unit:GetBaseMaxHealth() * RandomFloat(0.9, 1.1)
-	local expectedDamage = ( unit:GetAverageBaseDamage() + (RoundManager:GetEventsFinished() * 2) ) * RandomFloat(0.85, 1.15)
+	local expectedHP = unit:GetBaseMaxHealth() * RandomFloat(0.95, 1.05)
+	local expectedDamage = ( unit:GetAverageBaseDamage() + (RoundManager:GetEventsFinished() * 1.5) ) * RandomFloat(0.90, 1.10)
 	local playerHPMultiplier = 0.20
 	local playerDMGMultiplier = 0.075
 	local playerArmorMultiplier = 0.03
@@ -626,7 +626,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
 	
-	local HPMultiplierFunc = function( events, raids, zones ) return (0.45 + (events * 0.095)) * ( 1 + raids * 0.33 ) * ( 1 + zones * 0.10 ) end
+	local HPMultiplierFunc = function( events, raids, zones ) return (0.45 + (events * 0.095)) * ( 1 + raids * 0.25 ) * ( 1 + zones * 0.10 ) end
 	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.35 + (events * 0.05)) * ( 1 + raids * 0.075) * ( 1 + zones * 0.03 ) end
 	
 	local effPlayerHPMult =  HPMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )

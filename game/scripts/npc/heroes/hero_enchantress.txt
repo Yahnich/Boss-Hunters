@@ -54,13 +54,19 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"6"
-				"LinkedSpecialBonus"	"special_bonus_unique_enchantress_untouchable_bh_1"
+				"passive_as"			"-24 -36 -48 -60 -72 -84 -96"	
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"300"
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6"
+				"LinkedSpecialBonus"	"special_bonus_unique_enchantress_untouchable_bh_1"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"500"
+				"LinkedSpecialBonus"	"special_bonus_unique_enchantress_attendants_2"
 			}		
 		}
 	}
@@ -75,6 +81,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_enchantress_untouchable_bh"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -84,6 +91,16 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"value"						"-2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"ms"						"-50"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"passive_ms"				"-20"
 			}
 		}
 	}
@@ -104,8 +121,13 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"var_type"					"FIELD_FLOAT"
+				"value"						"1.5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"cast_range"				"500"
 			}
 		}
 	}
@@ -184,7 +206,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"14"
+				"value"						"15"
 			}
 		}
 	}
@@ -260,7 +282,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"count"					"2 4 6 8 10 12 14"
+				"count"					"4 6 8 10 12 14 16"
 				"LinkedSpecialBonus"	"special_bonus_unique_enchantress_attendants_2"
 			}
 			"02"
@@ -374,6 +396,16 @@
 				"var_type"				"FIELD_FLOAT"
 				"slow_as"				"-20"
 			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_acc"				"50"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_dmg"				"20"
+			}
 		}
 	}
 
@@ -386,7 +418,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_enchantress/enchantress_impetus_bh"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"

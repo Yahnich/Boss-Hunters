@@ -22,12 +22,12 @@ function modifier_green_dragon_rot_handle:CheckState()
 end
 
 function modifier_green_dragon_rot_handle:DeclareFunctions()
-	return {}
+	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
 
 function modifier_green_dragon_rot_handle:OnAttackLanded(params)
 	local caster = self:GetCaster()
-	if params.attacker ~= caster or not ability:IsCooldownReady() or caster:PassivesDisabled() then return end
+	if params.attacker ~= caster or not self:GetAbility():IsCooldownReady() or caster:PassivesDisabled() then return end
 	local enemy = params.target
 	if enemy:IsHero() and (not enemy:IsMagicImmune()) and (not enemy:IsInvulnerable()) and (not enemy:HasModifier("modifier_green_dragon_rot")) then
 		if not enemy:TriggerSpellAbsorb(self) then
@@ -35,7 +35,6 @@ function modifier_green_dragon_rot_handle:OnAttackLanded(params)
 		end
 		caster:SpendMana(33)
 		self:GetAbility():StartCooldown(self.duration+math.random(1,3))
-		break
 	end
 end
 

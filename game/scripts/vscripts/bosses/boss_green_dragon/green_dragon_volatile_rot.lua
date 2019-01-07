@@ -10,14 +10,14 @@ ROT_SPEED = 600
 function green_dragon_volatile_rot:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
 	local startPos = caster:GetAbsOrigin()
-	local endPos = startPos + CalculateDirection( caster, self:GetCursorPosition() ) * ROT_DISTANCE
-	ParticleManager:FireLinearWarningParticle(startPos, endPos, ROT_RADIUS)
+	local endPos = startPos + CalculateDirection( self:GetCursorPosition(), caster ) * ROT_DISTANCE
+	ParticleManager:FireLinearWarningParticle(startPos, endPos, ROT_RADIUS * 2)
 	return true
 end
 
 function green_dragon_volatile_rot:OnSpellStart()
 	local caster = self:GetCaster()
-	local direction = CalculateDirection( caster, self:GetCursorPosition() )
+	local direction = CalculateDirection( self:GetCursorPosition(), caster )
 	self:FireLinearProjectile("particles/econ/items/venomancer/veno_ti8_immortal_head/veno_ti8_immortal_gale.vpcf", ROT_SPEED * direction, ROT_DISTANCE, ROT_RADIUS)
 end
 
@@ -48,17 +48,16 @@ function modifier_green_dragon_volatile_rot:OnIntervalThink()
 			ability:CreateToxicPool(pos)
 		end
     	
-    	
-    	local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
+    	local radius = self:GetSpecialValueFor("radius")
+    	local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), radius)
     	for _,enemy in pairs(enemies) do
 			local nfx = ParticleManager:CreateParticle("particles/bosses/boss_green_dragon/boss_green_dragon_volatile_rot.vpcf", PATTACH_POINT_FOLLOW, enemy)
 						ParticleManager:SetParticleControlEnt(nfx, 0, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
 						ParticleManager:SetParticleControl(nfx, 1, enemy:GetAbsOrigin())
 						ParticleManager:ReleaseParticleIndex(nfx)
 
-			local distance = CalculateDistance(enemy, caster)
-
-    		self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("damage")/distance, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
+			local distance = CalculateDistance(enemy, parent)
+    		self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("damage") * ( (500 - distance)/500 ), {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
     	end
     end
 end

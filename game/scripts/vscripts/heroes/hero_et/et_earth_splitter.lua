@@ -84,14 +84,14 @@ function et_earth_splitter:OnSpellStart()
 			if not caster:HasModifier("modifier_elder_spirit") then
 				if caster:FindAbilityByName("et_elder_spirit") and caster:FindAbilityByName("et_elder_spirit"):IsTrained() then
 					if caster:HasModifier("modifier_elder_spirit_check") then
-						self:DealDamage(caster, enemy, damage/2, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
-						self:DealDamage(caster, enemy, damage/2, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
+						self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
+						self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
 					else
 						self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
 					end
 				else
-					self:DealDamage(caster, enemy, damage/2, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
-					self:DealDamage(caster, enemy, damage/2, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
+					self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
+					self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
 				end
 
 				if caster:HasTalent("special_bonus_unique_et_earth_splitter_1") then
@@ -116,21 +116,21 @@ function et_earth_splitter:OnProjectileHit(hTarget, vLocation)
 		if not caster:HasModifier("modifier_elder_spirit") then
 			if caster:FindAbilityByName("et_elder_spirit") and caster:FindAbilityByName("et_elder_spirit"):IsTrained() then
 				if caster:HasModifier("modifier_elder_spirit_check") then
-					self:DealDamage(caster, hTarget, damage/2, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
-					self:DealDamage(caster, hTarget, damage/2, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+					self:DealDamage(caster, hTarget, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+					self:DealDamage(caster, hTarget, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
 				else
-					self:DealDamage(caster, hTarget, damage/2, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+					self:DealDamage(caster, hTarget, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
 				end
 			else
-				self:DealDamage(caster, hTarget, damage/2, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
-				self:DealDamage(caster, hTarget, damage/2, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+				self:DealDamage(caster, hTarget, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+				self:DealDamage(caster, hTarget, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
 			end
 
 			if caster:HasTalent("special_bonus_unique_et_earth_splitter_2") then
 				hTarget:AddNewModifier(caster, self, "modifier_et_earth_splitter_slow", {Duration = caster:FindTalentValue("special_bonus_unique_et_earth_splitter_2", "duration")})
 			end
 		else
-			self:DealDamage(caster, hTarget, damage/2, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+			self:DealDamage(caster, hTarget, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
 
 			if caster:GetOwner():HasTalent("special_bonus_unique_et_earth_splitter_2") then
 				hTarget:AddNewModifier(caster:GetOwner(), self, "modifier_et_earth_splitter_slow", {Duration = caster:GetOwner():FindTalentValue("special_bonus_unique_et_earth_splitter_2", "duration")})

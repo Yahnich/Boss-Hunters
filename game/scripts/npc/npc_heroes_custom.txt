@@ -692,6 +692,7 @@
 		"Ability1"						"enigma_malefice_bh"
 		"Ability2"						"enigma_white_hole"
 		"Ability3"						"enigma_midnight_pulse_bh"
+		"Ability4"						"enigma_shattered_mass"
 		"Ability6"						"enigma_black_hole_bh"
 		
 		"Ability10"						"special_bonus_unique_enigma_malefice_1"

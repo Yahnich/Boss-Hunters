@@ -41,7 +41,7 @@ function death_prophet_exorcism_bh:CreateGhost(position, duration)
 			local distance = self.orbitRadius - casterDistance
 			local direction = CalculateDirection( position, caster)
 			self:SetVelocity( GetPerpendicularVector( direction ) * speed * (-1)^self.orientation + direction * distance )
-			self:SetPosition( position + (velocity*FrameTime()) )
+			self:SetPosition( GetGroundPosition( position + (velocity*FrameTime()), nil ) )
 			if caster:GetAttackTarget() or caster.nearbyEnemies[RandomInt(1, #caster.nearbyEnemies)] then
 				self.seekTarget = caster:GetAttackTarget() or caster.nearbyEnemies[RandomInt(1, #caster.nearbyEnemies)]
 				self.state = stateList.SEEKING
@@ -64,8 +64,19 @@ function death_prophet_exorcism_bh:CreateGhost(position, duration)
 				end
 				angle = math.abs( angle )
 				local direction = RotateVector2D( velocity, ToRadians( math.min( self.turn_speed, angle ) ) * FrameTime() )
-				self:SetVelocity( direction * speed + CalculateDirection( self.seekTarget, position ) * math.max(100, (350 - distance) ) )
-				self:SetPosition( position + (velocity*FrameTime()) )
+				self:SetVelocity( direction * speed + CalculateDirection( self.seekTarget, position ) * math.max(100, (500 - distance) ) )
+				local newPosition = GetGroundPosition( position + (velocity*FrameTime()), nil )
+				self:SetPosition( newPosition )
+				if CalculateDistance( self.seekTarget, newPosition ) <= self:GetRadius() then
+					local status, err, ret = pcall(self.hitBehavior, self, self.seekTarget, newPosition)
+					if not status then
+						print(err)
+						self:Remove()
+					elseif not err then -- if no errors then xpcall doesn't return to err; so ret gets shoved back
+						self:Remove()
+						return nil
+					end
+				end
 			else
 				self.state = stateList.RETURNING
 			end
@@ -87,7 +98,7 @@ function death_prophet_exorcism_bh:CreateGhost(position, duration)
 			angle = math.abs( angle )
 			local direction = RotateVector2D( velocity, math.min( self.turn_speed, angle ) * sign * FrameTime() )
 			self:SetVelocity( direction * speed + CalculateDirection( caster, position ) * math.max(100, (350 - distance) ) )
-			self:SetPosition( position + (velocity*FrameTime()) )
+			self:SetPosition( GetGroundPosition( position + (velocity*FrameTime()), nil ) )
 			if casterDistance < ( self.radius + caster:GetHullRadius() ) then
 				self.state = stateList.ORBITING
 			end
@@ -112,7 +123,7 @@ function death_prophet_exorcism_bh:CreateGhost(position, duration)
 																		  caster = caster,
 																		  ability = self,
 																		  speed = speed,
-																		  radius = 10,
+																		  radius = 16,
 																		  velocity = speed * caster:GetForwardVector(),
 																		  turn_speed = turnSpeed,
 																		  state = stateList.ORBITING,
@@ -123,7 +134,8 @@ function death_prophet_exorcism_bh:CreateGhost(position, duration)
 																		  giveUpDistance = give_up_distance,
 																		  orientation = RandomInt(1,10),
 																		  damageDealt = 0,
-																		  duration = duration})
+																		  duration = duration,
+																		  isUniqueProjectile = true})
 	return projectile
 end
 

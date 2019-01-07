@@ -1,128 +1,5 @@
 "DOTAAbilities"
 {
-	"et_earthbreaker"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_et/et_earthbreaker.lua"
-		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
-		"AbilityTextureName"			"custom/elder_titan_earthbreaker"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"MaxLevel"						"7"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1000"
-		"AbilityCastPoint"				"0.3"
-		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"6.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"90"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"75 150 225 300 375 450 525"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"250"
-			}
-		}
-	
-		"precache"
-		{
-			"particle"  "particles/units/heroes/hero_et/et_earthbreaker.vpcf"
-			"particle"  "particles/units/heroes/hero_earthshaker/earthshaker_totem_leap_impact.vpcf"
-			
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
-		}
-	}
-	"et_earth_splitter"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_et/et_earth_splitter.lua"
-		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
-		"AbilityTextureName"			"elder_titan_earth_splitter"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"						"6"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"2400"
-		"AbilityCastPoint"				"0.4"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"100"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"125 175 225 275 325 375"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"crack_time"				"3.14"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"18"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"wave_damage"				"100 180 260 340 420 500"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"distance"					"2400"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"width"						"300"
-			}
-		}
-	
-		"precache"
-		{
-			"particle"  "particles/units/heroes/hero_elder_titan/elder_titan_earth_splitter.vpcf"
-			
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts"
-		}
-	}
 	"et_echo_stomp"
 	{
 		// General
@@ -164,7 +41,12 @@
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"2 2.25 2.5 2.75 3 3.25 3.5"
+				"duration"						"3 3.5 4 4.5 5 5.5 6"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"min_duration"					"1"
 			}
 			"03"
 			{
@@ -183,6 +65,44 @@
 			"particle"  "particles/econ/items/elder_titan/elder_titan_ti7/elder_titan_echo_stomp_cast_arc_pnt_ti7.vpcf"
 			
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts"
+		}
+	}
+	"special_bonus_unique_et_echo_stomp_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"50"
+			}
+		}
+	}
+	"special_bonus_unique_et_echo_stomp_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"11"
+			}
 		}
 	}
 	"et_elder_spirit"
@@ -255,42 +175,96 @@
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts"
 		}
 	}
-	"et_natural_order"
+	"special_bonus_unique_et_elder_spirit_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_et/et_natural_order.lua"
-		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"elder_titan_natural_order"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"1"
-		"InnateAbility"					"1"
-		"HasScepterUpgrade"				"1"
-
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"reduc"							"-40"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"500"
+				"var_type"				"FIELD_INTEGER"
+				"value"					"15"
 			}
 		}
-
+	}
+	"special_bonus_unique_et_elder_spirit_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+		}
+	}
+	"et_earthbreaker"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_et/et_earthbreaker.lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityTextureName"			"custom/elder_titan_earthbreaker"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"MaxLevel"						"7"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"90"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"120 200 280 360 440 520 600"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"250"
+			}
+		}
+	
 		"precache"
 		{
-			"particle"  "particles/units/heroes/hero_elder_titan/elder_titan_natural_order_magical.vpcf"
-			"particle"  "particles/units/heroes/hero_elder_titan/elder_titan_natural_order_physical.vpcf"
+			"particle"  "particles/units/heroes/hero_et/et_earthbreaker.vpcf"
+			"particle"  "particles/units/heroes/hero_earthshaker/earthshaker_totem_leap_impact.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
 		}
 	}
 	"special_bonus_unique_et_earthbreaker_1" 
@@ -329,6 +303,113 @@
 				"var_type"				"FIELD_FLOAT"
 				"value"					"5"
 			}
+		}
+	}
+	"et_natural_order"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_et/et_natural_order.lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"elder_titan_natural_order"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+		"HasScepterUpgrade"				"1"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"reduc"							"-40"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"500"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_elder_titan/elder_titan_natural_order_magical.vpcf"
+			"particle"  "particles/units/heroes/hero_elder_titan/elder_titan_natural_order_physical.vpcf"
+		}
+	}
+	"et_earth_splitter"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_et/et_earth_splitter.lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityTextureName"			"elder_titan_earth_splitter"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"						"6"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"2400"
+		"AbilityCastPoint"				"0.4"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"100"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"125 175 225 275 325 375"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"crack_time"					"3.14"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"12 14 16 18 20 22"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"wave_damage"					"150 200 250 300 350 400"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"distance"						"2400"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"width"							"300"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_elder_titan/elder_titan_earth_splitter.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts"
 		}
 	}
 	"special_bonus_unique_et_earth_splitter_1" 
@@ -371,82 +452,6 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"5"
-			}
-		}
-	}
-	"special_bonus_unique_et_echo_stomp_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"50"
-			}
-		}
-	}
-	"special_bonus_unique_et_echo_stomp_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"11"
-			}
-		}
-	}
-	"special_bonus_unique_et_elder_spirit_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"15"
-			}
-		}
-	}
-	"special_bonus_unique_et_elder_spirit_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
 			}
 		}
 	}

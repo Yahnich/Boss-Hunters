@@ -1,5 +1,9 @@
 enigma_malefice_bh = class({})
 
+function enigma_malefice_bh:GetCooldown(lvl)
+	return self.BaseClass.GetCooldown(self, lvl) + self:GetCaster():FindTalentValue("special_bonus_unique_enigma_malefice_2")
+end
+
 function enigma_malefice_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()

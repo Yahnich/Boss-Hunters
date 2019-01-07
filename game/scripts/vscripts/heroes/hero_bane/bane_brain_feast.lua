@@ -8,7 +8,7 @@ end
 
 function bane_brain_feast:GetManaCost(iLvl)
 	local mc = self.BaseClass.GetManaCost(self, iLvl)
-	if self:GetCaster():HasScepter() then mc = mc * self:GetTalentSpecialValueFor("scepter_manacost") end
+	if self:GetCaster():HasScepter() then mc = mc * self:GetTalentSpecialValueFor("scepter_mana_cost") end
 	return mc
 end
 

@@ -73,7 +73,7 @@ local function StartCombat(self, bFight, bBoss)
 			spawnRate = 12
 		else
 			CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 3})
-			self.enemiesToSpawn = 1 + RoundManager:GetCurrentRaidTier() * math.floor( HeroList:GetActiveHeroCount() / 2 ) ) )
+			self.enemiesToSpawn = 1 + RoundManager:GetCurrentRaidTier() * math.floor( HeroList:GetActiveHeroCount() / 2 )
 			mobToSpawn = "npc_dota_boss_phantom"
 		end
 		

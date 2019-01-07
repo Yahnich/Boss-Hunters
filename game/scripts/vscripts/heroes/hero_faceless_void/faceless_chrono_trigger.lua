@@ -10,6 +10,33 @@ function faceless_chrono_trigger:IsStealable()
 	return false
 end
 
+function faceless_chrono_trigger:TimeLock(target)
+	local caster = self:GetCaster()
+	EmitSoundOn("Hero_FacelessVoid.TimeLockImpact", target)
+	if caster:HasTalent("special_bonus_unique_faceless_clock_stopper_1") and caster:HasModifier("modifier_faceless_clock_stopper_buff") then
+		local nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_faceless_void/faceless_void_time_lock_bash.vpcf", PATTACH_WORLDORIGIN, caster)
+		ParticleManager:SetParticleControl(nFX, 0, target:GetAbsOrigin() )
+		ParticleManager:SetParticleControl(nFX, 1, target:GetAbsOrigin() )
+		ParticleManager:SetParticleControl(nFX, 2, Vector(1,1,1) )
+		ParticleManager:SetParticleControl(nFX, 4, target:GetAbsOrigin() )
+		ParticleManager:SetParticleControl(nFX, 5, Vector(1,1,1) )
+		ParticleManager:ReleaseParticleIndex(nFX)
+		Timers:CreateTimer(0.25, function()
+			self:Stun(target, self:GetTalentSpecialValueFor("duration"), false)
+			self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			caster:PerformGenericAttack(target, true)
+		end)
+		local clockstopper = caster:FindModifierByName("modifier_faceless_clock_stopper_buff")
+		if clockstopper then
+			clockstopper:SetDuration( clockstopper:GetRemainingTime() + caster:FindTalentValue("special_bonus_unique_faceless_clock_stopper_1"), true )
+		end
+	else
+		ParticleManager:FireParticle("particles/units/heroes/hero_faceless_void/faceless_void_time_lock_bash_hit.vpcf", PATTACH_POINT, target, {})
+		self:Stun(target, self:GetTalentSpecialValueFor("duration"), false)
+		self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+	end
+end
+
 modifier_faceless_chrono_trigger_handle = class({}) 
 function modifier_faceless_chrono_trigger_handle:IsPurgable()  return false end
 function modifier_faceless_chrono_trigger_handle:IsDebuff()    return false end
@@ -42,27 +69,7 @@ function modifier_faceless_chrono_trigger_handle:OnAttackLanded(params)
 		local target = params.target
 
 		if caster == self:GetParent() and caster:RollPRNG(self:GetTalentSpecialValueFor("chance")) then
-			EmitSoundOn("Hero_FacelessVoid.TimeLockImpact", target)
-			ParticleManager:FireParticle("particles/units/heroes/hero_faceless_void/faceless_clock_stopper.vpcf", PATTACH_POINT, caster, {})
-
-			if not target:IsStunned() then
-				self:GetAbility():Stun(target, self:GetTalentSpecialValueFor("duration"), false)
-			end
-			self:GetAbility():DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-
-			local reduction = self:GetTalentSpecialValueFor("cd_reduc")
-			for i=0,caster:GetAbilityCount()-1 do 
-				if caster:GetAbilityByIndex(i) ~= nil then
-					local skill = caster:GetAbilityByIndex(i)
-					if skill and not skill:IsCooldownReady() and skill ~= self:GetAbility() then
-						local timeleft = skill:GetCooldownTimeRemaining()
-						skill:EndCooldown()
-						if timeleft > reduction then
-							skill:StartCooldown(timeleft-reduction)
-						end
-					end
-				end
-			end
+			self:GetAbility():TimeLock(target)
 		end
 	end
 end
@@ -88,20 +95,6 @@ function modifier_faceless_chrono_trigger_handle:OnTakeDamage( keys )
             if unit:RollPRNG( self:GetTalentSpecialValueFor("backtrack_chance") ) then
             	EmitSoundOn("Hero_FacelessVoid.TimeWalk", caster)
             	ParticleManager:FireParticle("particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf", PATTACH_POINT, caster, {})
-
-            	local reduction = self:GetTalentSpecialValueFor("cd_reduc")
-				for i=0,caster:GetAbilityCount()-1 do 
-					if caster:GetAbilityByIndex(i) ~= nil then
-						local skill = caster:GetAbilityByIndex(i)
-						if skill and not skill:IsCooldownReady() and skill ~= self:GetAbility() then
-							local timeleft = skill:GetCooldownTimeRemaining()
-							skill:EndCooldown()
-							if timeleft > reduction then
-								skill:StartCooldown(timeleft-reduction)
-							end
-						end
-					end
-				end
 
 		        -- Heal recent damage
 			    if caster.time_walk_damage_taken then

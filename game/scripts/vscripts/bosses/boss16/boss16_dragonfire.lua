@@ -13,7 +13,7 @@ end
 
 function boss16_dragonfire:OnProjectileHit(hTarget, vPosition)
 	if hTarget and hTarget:TriggerSpellAbsorb(self) then return true end
-	if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
+	if hTarget ~= nil and not hTarget:IsSameTeam( self:GetCaster() ) and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
 		local caster = self:GetCaster()
 		local damage = self:GetSpecialValueFor("initial_damage")
 		local duration = self:GetSpecialValueFor("duration")

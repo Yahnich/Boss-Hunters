@@ -26,8 +26,9 @@ end
 modifier_enchantress_take_root = class({})
 function modifier_enchantress_take_root:OnCreated(table)
 	self.bonus_ar = self:GetParent():GetAttackRange() * self:GetTalentSpecialValueFor("bonus_ar")/100
-	
-	self.slow_as = self:GetParent():GetAttackSpeed() * self:GetTalentSpecialValueFor("slow_as")/100 * 100 --because attack speed returns 1.0 if 100 AS in game.
+	self.slow_as = self:GetTalentSpecialValueFor("slow_as")
+	self.bonus_dmg = self:GetTalentSpecialValueFor("bonus_dmg")
+	self.bonus_acc = self:GetTalentSpecialValueFor("bonus_acc")
 	
 	if IsServer() then
 		local parent = self:GetParent()
@@ -43,7 +44,8 @@ end
 
 function modifier_enchantress_take_root:DeclareFunctions()
 	return {MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-			MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS}
+			MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS,
+			MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE}
 end
 
 function modifier_enchantress_take_root:GetModifierAttackRangeBonus()
@@ -54,8 +56,16 @@ function modifier_enchantress_take_root:GetModifierProjectileSpeedBonus()
 	return self.bonus_proj_speed
 end
 
-function modifier_enchantress_take_root:GetModifierAttackSpeedBonus()
+function modifier_enchantress_take_root:GetModifierAttackSpeedBonusPercentage()
 	return self.slow_as
+end
+
+function modifier_enchantress_take_root:GetAccuracy()
+	return self.bonus_acc
+end
+
+function modifier_enchantress_take_root:GetModifierDamageOutgoing_Percentage()
+	return self.bonus_dmg
 end
 
 function modifier_enchantress_take_root:GetEffectName()
