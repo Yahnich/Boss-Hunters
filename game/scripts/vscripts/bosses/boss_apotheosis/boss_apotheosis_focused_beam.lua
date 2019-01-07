@@ -53,16 +53,20 @@ modifier_boss_apotheosis_focused_beam_root = class({})
 LinkLuaModifier("modifier_boss_apotheosis_focused_beam_root", "bosses/boss_apotheosis/boss_apotheosis_focused_beam", LUA_MODIFIER_MOTION_NONE )
 function modifier_boss_apotheosis_focused_beam_root:OnCreated()
 	self.turnslow = self:GetSpecialValueFor("turn_slow")
+	self.width = self:GetSpecialValueFor("width")
 	if IsServer() then
 		self.check = 0
 		self.timer = self:GetSpecialValueFor("no_target_timer")
-		self.radius = self:GetAbility():GetTrueCastRange()
 		self:StartIntervalThink(0.2) 
 	end
 end
 
 function modifier_boss_apotheosis_focused_beam_root:OnIntervalThink()
-	for _, enemy in ipairs( self:GetCaster():FindEnemyUnitsInRadius( self:GetCaster():GetAbsOrigin(), self.radius ) ) do
+	local caster = self:GetCaster()
+	local endPos = caster:GetAbsOrigin() + caster:GetForwardVector() * self:GetAbility():GetTrueCastRange()
+	endPos = GetGroundPosition(endPos, nil)
+	endPos.z = GetGroundHeight(caster:GetAbsOrigin(), caster) + 92
+	for _,enemy in pairs(caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), endPos, self.width * 2, {})) do
 		return
 	end
 	self.check = self.check + 0.2
@@ -81,5 +85,5 @@ function modifier_boss_apotheosis_focused_beam_root:DeclareFunctions()
 end
 
 function modifier_boss_apotheosis_focused_beam_root:GetModifierTurnRate_Percentage()
-	return self.turnslow
+	return -100
 end

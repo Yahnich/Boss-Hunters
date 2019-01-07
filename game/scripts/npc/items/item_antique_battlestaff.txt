@@ -61,7 +61,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_agility"			"10"
+				"bonus_agility"			"15"
 			}
 			"03"
 			{

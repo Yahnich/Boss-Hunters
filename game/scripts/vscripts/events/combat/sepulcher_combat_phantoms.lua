@@ -22,7 +22,7 @@ local function StartEvent(self)
 			if gTimer >= ghostSpawn then
 				local spawn = CreateUnitByName("npc_dota_boss22b", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 				spawn:SetCoreHealth(1250)
-				spawn:SetBaseAverageDamage( 100, 25 )
+				spawn:SetAverageBaseDamage( 100, 25 )
 				spawn.unitIsMinion = true
 				spawn.unitIsRoundNecessary = true
 				self.gToSpawn = self.gToSpawn - 1

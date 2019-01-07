@@ -1,8 +1,16 @@
 modifier_attack_speed_handler = class({})
 
-if IsServer() then
-	function modifier_attack_speed_handler:OnCreated()
-		self:SetStackCount( 0 )
+function modifier_attack_speed_handler:OnCreated()
+	self.attackspeed = 0
+end
+
+function modifier_attack_speed_handler:OnStackCountChanged()
+	local attackSpeed = self:GetStackCount()
+	-- check sign
+	if attackSpeed % 10 == 0 then
+		self.attackspeed = math.floor( attackSpeed / 10 )
+	else
+		self.attackspeed = math.floor( attackSpeed / 10 ) * (-1)
 	end
 end
 	
@@ -11,13 +19,7 @@ function modifier_attack_speed_handler:DeclareFunctions()
 end
 
 function modifier_attack_speed_handler:GetModifierAttackSpeedBonus_Constant()
-	local attackSpeed = self:GetStackCount()
-	-- check sign
-	if attackSpeed % 10 == 0 then
-		return math.floor( attackSpeed / 10 )
-	else
-		return math.floor( attackSpeed / 10 ) * (-1)
-	end
+	return self.attackspeed
 end
 
 function modifier_attack_speed_handler:IsHidden()

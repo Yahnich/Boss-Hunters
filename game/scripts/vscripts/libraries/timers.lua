@@ -151,7 +151,6 @@ function Timers:Think()
       end
     end
   end
-
   return TIMERS_THINK
 end
 

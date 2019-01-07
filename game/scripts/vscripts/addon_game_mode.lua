@@ -370,26 +370,38 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	local parent_index = filterTable["entindex_parent_const"]
     local caster_index = filterTable["entindex_caster_const"]
 	local ability_index = filterTable["entindex_ability_const"]
-    if not parent_index or not caster_index or not ability_index then
+    if not parent_index or not caster_index then
         return true
     end
 	local duration = filterTable["duration"]
     local parent = EntIndexToHScript( parent_index )
     local caster = EntIndexToHScript( caster_index )
-	local ability = EntIndexToHScript( ability_index )
+	local ability 
+	if ability_index then
+		ability = EntIndexToHScript( ability_index )
+	end
 	local name = filterTable["name_const"]
-	if duration == -1 then return true end
-	if parent and caster then
+	
+	if duration ~= 1 and parent and caster then
 		local params = {caster = caster, target = parent, duration = duration, ability = ability, modifier_name = name}
-		filterTable["duration"] = filterTable["duration"] * parent:GetStatusAmplification( params )
+		duration = duration * caster:GetStatusAmplification( params )
 		if parent:GetTeam() ~= caster:GetTeam() then
-			filterTable["duration"] = filterTable["duration"] * parent:GetStatusResistance( params )
+			duration = duration * parent:GetStatusResistance( params )
 		end
 	end
-	if filterTable["duration"] == 0 then return false end
-	if caster:GetTeam() == DOTA_TEAM_GOODGUYS then
-		caster:ModifyThreat( filterTable["duration"]^0.75 )
+	
+	if parent then
+		local handler = parent:FindModifierByName("modifier_handler_handler")
+		Timers:CreateTimer(function()
+			if handler then handler:CheckIfUpdateNeeded( name, ability, duration ) end
+		end)
 	end
+	
+	if duration == 0 then return false end
+	if caster:GetTeam() == DOTA_TEAM_GOODGUYS then
+		caster:ModifyThreat( duration^0.75 )
+	end
+	filterTable["duration"] = duration
 	return true
 end
 

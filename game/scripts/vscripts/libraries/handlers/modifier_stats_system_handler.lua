@@ -25,6 +25,10 @@ STATUS_REDUCTION_TABLE = {0,10,20,30,40,50}
 
 ALL_STATS = 2
 
+function modifier_stats_system_handler:OnCreated()
+	self:UpdateStatValues()
+end
+
 function modifier_stats_system_handler:OnStackCountChanged(iStacks)
 	self:UpdateStatValues()
 end
@@ -40,19 +44,19 @@ function modifier_stats_system_handler:UpdateStatValues()
 	self.ms = MOVESPEED_TABLE * tonumber(netTable["ms"])
 	self.mp = MANA_TABLE * tonumber(netTable["mp"])
 	self.mpr = MANA_REGEN_TABLE * tonumber(netTable["mpr"])
-	self.ha = HEAL_AMP_TABLE[math.max(#HEAL_AMP_TABLE, tonumber(netTable["ha"]) + 1)]
+	self.ha = HEAL_AMP_TABLE[math.min(#HEAL_AMP_TABLE, tonumber(netTable["ha"]) + 1)]
 	
 	-- OFFENSE
 	self.ad = ATTACK_DAMAGE_TABLE * tonumber(netTable["ad"])
 	self.sa = SPELL_AMP_TABLE * tonumber(netTable["sa"])
 	-- self.cdr = COOLDOWN_REDUCTION_TABLE[tonumber(netTable["cdr"]) + 1]
 	self.as = ATTACK_SPEED_TABLE * tonumber(netTable["as"])
-	self.sta = STATUS_AMP_TABLE[math.max(#STATUS_AMP_TABLE, tonumber(netTable["sta"]) + 1)]
-	self.acc = ACCURACY_TABLE[math.max(#ACCURACY_TABLE, tonumber(netTable["acc"]) + 1)]
+	self.sta = STATUS_AMP_TABLE[math.min(#STATUS_AMP_TABLE, tonumber(netTable["sta"]) + 1)]
+	self.acc = ACCURACY_TABLE[math.min(#ACCURACY_TABLE, tonumber(netTable["acc"]) + 1)]
 	
 	-- DEFENSE
 	self.pr = ARMOR_TABLE * tonumber(netTable["pr"]) + 1
-	self.mr = MAGIC_RESIST_TABLE[math.max(#MAGIC_RESIST_TABLE, tonumber(netTable["mr"]) + 1)]
+	self.mr = MAGIC_RESIST_TABLE[math.min(#MAGIC_RESIST_TABLE, tonumber(netTable["mr"]) + 1)]
 	
 	if self:GetParent():IsRangedAttacker() then 
 		self.ar = ATTACK_RANGE_TABLE * tonumber(netTable["ar"])
@@ -62,7 +66,7 @@ function modifier_stats_system_handler:UpdateStatValues()
 	
 	self.hp = HEALTH_TABLE * tonumber(netTable["hp"])
 	self.hpr = HEALTH_REGEN_TABLE * tonumber(netTable["hpr"])
-	self.sr = STATUS_REDUCTION_TABLE[math.max(#STATUS_REDUCTION_TABLE, tonumber(netTable["sr"]) + 1)]
+	self.sr = STATUS_REDUCTION_TABLE[math.min(#STATUS_REDUCTION_TABLE, tonumber(netTable["sr"]) + 1)]
 	
 	self.allStats =  ALL_STATS * tonumber(netTable["all"])
 	
@@ -112,7 +116,7 @@ function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage() ret
 function modifier_stats_system_handler:GetAccuracy(params)
 	local accuracy = self.acc or 0
 	if not self:GetParent():IsRangedAttacker() then
-		accuracy = accuracy + 35
+		accuracy = accuracy + 25
 	end
 	return accuracy
 end

@@ -43,15 +43,16 @@ modifier_earthshaker_aftershock_ebf_passive = class({})
 LinkLuaModifier("modifier_earthshaker_aftershock_ebf_passive", "heroes/hero_earthshaker/earthshaker_aftershock_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_earthshaker_aftershock_ebf_passive:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ABILITY_EXECUTED}
+	return {MODIFIER_EVENT_ON_ABILITY_FULLY_CAST}
 end
 
-function modifier_earthshaker_aftershock_ebf_passive:OnAbilityExecuted( params )
+function modifier_earthshaker_aftershock_ebf_passive:OnAbilityFullyCast( params )
 	if ( params.unit == self:GetParent() 
 	or params.unit:IsSameTeam( self:GetParent() )
 	and self:GetParent():HasTalent("special_bonus_unique_earthshaker_enchant_totem_ebf_2") 
 	and self:GetParent():HasModifier("modifier_earthshaker_enchant_totem_ebf") )
-	and params.unit:HasAbility( params.ability:GetName() ) then
+	and params.unit:HasAbility( params.ability:GetName() )
+	and params.ability:GetCooldownTimeRemaining() > 0 then
 		self:GetAbility():Aftershock( params.unit:GetAbsOrigin() )
 	end
 end

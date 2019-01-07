@@ -95,6 +95,7 @@ function StatsScreen:ProcessStatsUpgrade(userid, event)
 	
 	if hero:GetAttributePoints() <= 0 or ( type(self[skill]) == "table" and not self[skill][ tonumber( netTable[skill] ) + 1 ] ) then return end
 	if type(self[skill]) == "table" then
+		print( math.min( #self[skill], tonumber(netTable[skill]) + 1 ) )
 		netTable[skill] = tostring( math.min( #self[skill], tonumber(netTable[skill]) + 1 ) )
 	else
 		netTable[skill] = tostring(tonumber(netTable[skill]) + 1)

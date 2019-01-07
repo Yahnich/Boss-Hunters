@@ -95,7 +95,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"20"
+				"value"						"22"
 			}
 		}
 	}
@@ -285,7 +285,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"12 16 20 24 28 32 36"
+				"damage"				"10 16 24 30 36 42 48"
 			}
 			"02"
 			{

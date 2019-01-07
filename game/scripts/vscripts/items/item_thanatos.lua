@@ -27,7 +27,7 @@ end
 
 function modifier_item_thanatos:OnAttackLanded(params)
 	if IsServer() then
-		if params.attacker == self:GetParent() and GameRules:GetGameTime() >= (self.lastThanathosDebuff or 0) + 0.25 then
+		if params.attacker == self:GetParent() then
 			if params.target:HasModifier("modifier_thanatos_debuff") and params.attacker:IsIllusion() then
 				params.target:FindModifierByName("modifier_thanatos_debuff"):SetDuration(self.duration, true)
 			else

@@ -154,6 +154,11 @@
 				"var_type"				"FIELD_FLOAT"
 				"spawn_radius"			"600"
 			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_zombies"			"15 20"
+			}
 		}
 	}
 	"boss4_tombstone"

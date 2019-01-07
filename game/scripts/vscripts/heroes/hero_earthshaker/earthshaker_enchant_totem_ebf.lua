@@ -10,7 +10,7 @@ end
 
 function earthshaker_enchant_totem_ebf:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_earthshaker_enchant_totem_ebf", {duration = 100 or self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_earthshaker_enchant_totem_ebf", {duration = self:GetTalentSpecialValueFor("duration")})
 	
 	EmitSoundOn("Hero_EarthShaker.Totem", caster)
 end
@@ -28,7 +28,8 @@ function modifier_earthshaker_enchant_totem_ebf:OnCreated()
 end
 
 function modifier_earthshaker_enchant_totem_ebf:OnRefresh()
-	self.amp = self:GetTalentSpecialValueFor("totem_damage_percentage")
+	self.dmg = self:GetTalentSpecialValueFor("bonus_attack_damage")
+	self.amp = self:GetTalentSpecialValueFor("bonus_spell_damage")
 	self.cdr = self:GetParent():FindTalentValue("special_bonus_unique_earthshaker_enchant_totem_ebf_1")
 end
 
@@ -63,7 +64,7 @@ function modifier_earthshaker_enchant_totem_ebf:GetCooldownReduction()
 end
 
 function modifier_earthshaker_enchant_totem_ebf:GetModifierBaseDamageOutgoing_Percentage()
-	return self.amp
+	return self.dmg
 end
 
 function modifier_earthshaker_enchant_totem_ebf:GetHeroEffectName()
