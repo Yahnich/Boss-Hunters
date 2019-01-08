@@ -349,6 +349,7 @@
 		"AbilityTextureName"			"custom/lion_mana_aura"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
+		"HasScepterUpgrade"				"1"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -358,6 +359,26 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"mana_regen"				"1.5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"curr_mana_death"			"100"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"death_radius"				"500"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"scepter_curr_mana_dmg"		"15"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"scepter_cd"				"6"
 			}
 		}	
 	}
@@ -376,7 +397,6 @@
 		"AbilityTextureName"			"custom/lion_refiend_fireblast"
 		"MaxLevel"						"1"
 		"IsGrantedByScepter"			"1"
-		"HasScepterUpgrade"				"1"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -480,12 +500,12 @@
 				"var_type"					"FIELD_INTEGER"
 				"minion_bonus"				"5"
 			}
-			"03"
+			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"bonus"						"25"
 			}
-			"03"
+			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"boss_bonus"				"100"

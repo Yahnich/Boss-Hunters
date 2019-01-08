@@ -27,7 +27,7 @@ function gyro_rocket_salvo:OnProjectileHit(hTarget, vLocation)
 	self:DealDamage( self:GetCaster(), hTarget, self:GetSpecialValueFor("damage") )
 end
 
-modifier_rocket_salvo = class({})
+modifier_rocket_salvo = class(toggleModifierBaseClass)
 
 function modifier_rocket_salvo:OnCreated(table)
 	if IsServer() then

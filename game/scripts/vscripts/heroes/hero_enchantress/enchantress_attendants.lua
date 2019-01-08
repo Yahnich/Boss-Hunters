@@ -144,5 +144,5 @@ function modifier_enchantress_attendants:IsHidden()
 end
 
 function modifier_enchantress_attendants:IsPurgable()
-	return true
+	return not self:GetCaster():HasScepter()
 end

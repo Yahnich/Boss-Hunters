@@ -1667,6 +1667,7 @@ function CDOTA_BaseNPC:FireAbilityAutoAttack( target, ability, FX )
 end
 
 function CDOTABaseAbility:ApplyAOE(eventTable)
+	if not self or self:IsNull() or not self:GetCaster() or self:GetCaster():IsNull() then return end
     if eventTable.duration == nil and eventTable.modifier then
         eventTable.duration = self:GetAbilityDuration()
 	elseif not eventTable.duration then

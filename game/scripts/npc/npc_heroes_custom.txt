@@ -1042,7 +1042,7 @@
 		"Ability2"						"lion_frogger"
 		"Ability3"						"lion_meteor"
 		"Ability4"						"lion_mana_aura"
-		"Ability5"						"lion_refined_fireblast"
+		// "Ability5"						"lion_refined_fireblast"
 		"Ability6"						"lion_death_finger"
 		
 		"Ability10"						"special_bonus_unique_lion_earth_spike_1"

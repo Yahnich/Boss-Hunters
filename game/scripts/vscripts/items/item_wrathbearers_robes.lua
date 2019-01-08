@@ -86,6 +86,7 @@ end
 
 function modifier_item_wrathbearers_robes_passive:OnTakeDamage(params)
 	local hero = self:GetParent()
+	if hero:IsIllusion() then return end
     local dmg = params.original_damage
 	local dmgtype = params.damage_type
 	local attacker = params.attacker

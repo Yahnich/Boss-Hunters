@@ -132,7 +132,7 @@ function modifier_batrider_napalm_debuff:OnTakeDamage(params)
     	local unit = params.unit
     	local attacker = params.attacker
 
-        if unit == parent and attacker == caster then
+        if unit == parent and attacker == caster and params.inflictor and caster:HasAbility( params.inflictor:GetName() ) and params.inflictor:GetName() ~= "batrider_concoction" then
         	local ability = self:GetAbility()
 
         	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_batrider/batrider_napalm_damage_debuff.vpcf", PATTACH_POINT, caster)

@@ -9,6 +9,10 @@ function lion_death_finger:IsHiddenWhenStolen()
     return false
 end
 
+function lion_death_finger:GetIntrinsicModifierName()
+	return "modifier_lion_death_finger_grow"
+end
+
 function lion_death_finger:OnSpellStart()
     local caster = self:GetCaster()
 
@@ -16,6 +20,10 @@ function lion_death_finger:OnSpellStart()
 
     local radius = self:GetTalentSpecialValueFor("radius")
 	local damage = self:GetTalentSpecialValueFor("damage")
+	local growth = caster:FindModifierByName("modifier_lion_death_finger_grow")
+	if growth then
+		damage = damage + growth:GetStackCount() * 5
+	end
     local startPos = caster:GetAbsOrigin()
     local endPos = startPos + CalculateDirection(point, caster)*self:GetTrueCastRange()
 
@@ -27,6 +35,17 @@ function lion_death_finger:OnSpellStart()
         self:RefundManaCost()
         self:EndCooldown()
     end
+	
+	if caster:HasScepter() and caster:HasModifier("modifier_lion_mana_aura_scepter") then
+		local innate = caster:FindAbilityByName("lion_mana_aura")
+		if innate then
+			local manaDamage = caster:GetMana() * innate:GetTalentSpecialValueFor("scepter_curr_mana_dmg") / 100
+			caster:SpendMana(manaDamage)
+		end
+	end
+	local minion_bonus = self:GetTalentSpecialValueFor("minion_bonus")
+	local bonus = self:GetTalentSpecialValueFor("bonus")
+	local boss_bonus = self:GetTalentSpecialValueFor("boss_bonus")
     for _,enemy in pairs(enemies) do
         local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_lion/lion_spell_finger_of_death.vpcf", PATTACH_POINT, caster)
         ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT, "attach_attack2", caster:GetAbsOrigin(), true)
@@ -40,10 +59,25 @@ function lion_death_finger:OnSpellStart()
         ParticleManager:ReleaseParticleIndex(nfx)
 
         self:DealDamage(caster, enemy, damage, {}, 0)
+		
+		if enemy:IsAlive() then
+			if caster:HasScepter() and caster:HasModifier("modifier_lion_mana_aura_scepter") then
+				self:DealDamage( caster, enemy, manaDamage, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+				ParticleManager:FireRopeParticle("particles/items2_fx/necronomicon_archer_manaburn.vpcf", PATTACH_POINT_FOLLOW, caster, enemy)
+			end
 
-        if caster:HasTalent("special_bonus_unique_lion_death_finger_2") then
-            enemy:AddNewModifier(caster, self, "modifier_lion_death_finger_root", {Duration = caster:FindTalentValue("special_bonus_unique_lion_death_finger_2")})
-        end
+			if caster:HasTalent("special_bonus_unique_lion_death_finger_2") then
+				enemy:AddNewModifier(caster, self, "modifier_lion_death_finger_root", {Duration = caster:FindTalentValue("special_bonus_unique_lion_death_finger_2")})
+			end
+		elseif growth then
+			local numbers = bonus
+			if enemy:IsMinion() then
+				numbers = minion_bonus
+			elseif enemy:IsBoss() then
+				numbers = boss_bonus
+			end
+			growth:SetStackCount( growth:GetStackCount() + numbers / 5 )
+		end
     end
 
     if caster:HasTalent("special_bonus_unique_lion_death_finger_1") then
@@ -59,11 +93,33 @@ function lion_death_finger:OnSpellStart()
                     ParticleManager:ReleaseParticleIndex(nfx)
 
                     self:DealDamage(caster, enemy, damage * dmgFactor, {}, 0)
+					
+					if enemy:IsAlive() then
+						if caster:HasScepter() and caster:HasModifier("modifier_lion_mana_aura_scepter") then
+							self:DealDamage( caster, enemy, manaDamage, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+							ParticleManager:FireRopeParticle("particles/items2_fx/necronomicon_archer_manaburn.vpcf", PATTACH_POINT_FOLLOW, caster, enemy)
+						end
+
+						if caster:HasTalent("special_bonus_unique_lion_death_finger_2") then
+							enemy:AddNewModifier(caster, self, "modifier_lion_death_finger_root", {Duration = caster:FindTalentValue("special_bonus_unique_lion_death_finger_2")})
+						end
+					elseif growth then
+						local numbers = bonus
+						if enemy:IsMinion() then
+							numbers = minion_bonus
+						elseif enemy:IsBoss() then
+							numbers = boss_bonus
+						end
+						growth:SetStackCount( growth:GetStackCount() + numbers / 5 )
+					end
                 end
             end
         end)
     end
 end
+
+modifier_lion_death_finger_grow = class({})
+LinkLuaModifier( "modifier_lion_death_finger_grow", "heroes/hero_lion/lion_death_finger.lua",LUA_MODIFIER_MOTION_NONE )
 
 modifier_lion_death_finger_root = class({})
 function modifier_lion_death_finger_root:CheckState()

@@ -210,7 +210,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"-1.5"
+				"value"						"-6"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"5"
 			}
 		}
 	}
@@ -232,7 +237,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
+				"value"						"1"
 			}
 		}
 	}

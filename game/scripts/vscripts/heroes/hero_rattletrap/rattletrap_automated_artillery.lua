@@ -108,3 +108,7 @@ function modifier_rattletrap_automated_artillery:OnDestroy()
 		self:GetAbility():EndDelayedCooldown()
 	end
 end
+
+function modifier_rattletrap_automated_artillery:IsPurgable()
+	return not self:GetCaster():HasTalent("special_bonus_unique_rattletrap_automated_artillery_1")
+end

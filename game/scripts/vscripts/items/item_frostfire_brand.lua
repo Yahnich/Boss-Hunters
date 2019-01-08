@@ -59,7 +59,7 @@ end
 
 
 LinkLuaModifier( "modifier_item_frostfire_brand", "items/item_frostfire_brand.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_frostfire_brand = class(itemBaseClass)
+modifier_item_frostfire_brand = class(toggleModifierBaseClass)
 function modifier_item_frostfire_brand:OnCreated()
 	self.radius = self:GetSpecialValueFor("radius")
 end
@@ -102,10 +102,6 @@ end
 
 function modifier_item_frostfire_brand:IsHidden()    
 	return false
-end
-
-function modifier_item_frostfire_brand:GetAttributes()
-	return MODIFIER_ATTRIBUTE_PERMANENT 
 end
 
 LinkLuaModifier( "modifier_frostfire_brand_debuff", "items/item_frostfire_brand.lua" ,LUA_MODIFIER_MOTION_NONE )

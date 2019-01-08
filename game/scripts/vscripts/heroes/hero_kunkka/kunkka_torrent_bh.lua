@@ -25,7 +25,7 @@ function kunkka_torrent_bh:CreateTorrent(position)
 
     local bubbles = ParticleManager:CreateParticle("particles/units/heroes/hero_kunkka/kunkka_spell_torrent_bubbles.vpcf", PATTACH_POINT, caster)
                     ParticleManager:SetParticleControl(bubbles, 0, position)
-	
+	local slow = self:GetTalentSpecialValueFor("slow_duration")
     Timers:CreateTimer(self:GetTalentSpecialValueFor("delay"), function()
         ParticleManager:ClearParticle(bubbles)
         StopSoundOn("Ability.pre.Torrent", caster)
@@ -34,8 +34,12 @@ function kunkka_torrent_bh:CreateTorrent(position)
         local enemies = caster:FindEnemyUnitsInRadius(position, self:GetTalentSpecialValueFor("radius"))
         for _,enemy in pairs(enemies) do
             enemy:ApplyKnockBack(enemy:GetAbsOrigin(), self:GetTalentSpecialValueFor("stun_duration"), self:GetTalentSpecialValueFor("stun_duration"), 0, 350, caster, self)
-            enemy:AddNewModifier(caster, self, "modifier_kunkka_torrent_bh", {Duration = self:GetTalentSpecialValueFor("slow_duration")})
+            enemy:AddNewModifier(caster, self, "modifier_kunkka_torrent_bh", {Duration = slow})
             self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"))
+        end
+		local allies = caster:FindFriendlyUnitsInRadius(position, self:GetTalentSpecialValueFor("radius"))
+		for _,ally in pairs(allies) do
+            ally:AddNewModifier(caster, self, "modifier_in_water", {Duration = slow})
         end
     end)
 end

@@ -8,24 +8,28 @@ function modifier_boss_attackspeed:OnCreated()
 	if IsServer() then
 		self:SetStackCount(math.floor(GameRules.gameDifficulty + 0.5) + RoundManager:GetAscensions())
 		self.thinkTime = 0
-		self:StartIntervalThink(0.1)
+		self:StartIntervalThink(0.33)
+		self.acc = math.min( 8 + self:GetStackCount() * 2 + RoundManager:GetZonesFinished() * 2.5, 65 )
+		self.thinkLimit = 2.5 * self:GetStackCount()
 	end
 end
 
 function modifier_boss_attackspeed:OnIntervalThink()
 	local parent = self:GetParent()
+	local position = self:GetParent():GetAbsOrigin()
 	if not parent:IsInvisible() then
-		self.thinkTime = self.thinkTime + 0.1
-		if self.thinkTime >= 2.5 * self:GetStackCount() then
+		self.thinkTime = self.thinkTime + 0.33
+		self.radius = self.radius or parent:GetHullRadius() + parent:GetCollisionPadding()
+		if self.thinkTime >=  then
 			self.thinkTime = 0
-			AddFOWViewer(DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), 516, 1, false)
+			AddFOWViewer(DOTA_TEAM_GOODGUYS, position, 516, 1, false)
 		end
-		GridNav:DestroyTreesAroundPoint(parent:GetAbsOrigin(), parent:GetHullRadius() + 5, true)
 	end
+	GridNav:DestroyTreesAroundPoint(position, self.radius, true)
 end
 
 function modifier_boss_attackspeed:GetAccuracy()
-	return math.min( 8 + self:GetStackCount() * 2 + RoundManager:GetZonesFinished() * 2.5, 65 )
+	return self.acc
 end
 
 function modifier_boss_attackspeed:GetPriority()

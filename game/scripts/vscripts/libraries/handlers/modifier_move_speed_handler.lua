@@ -1,5 +1,40 @@
 modifier_move_speed_handler = class({})
+
+INTERNAL_MOVESPEED_CAP = 550
+
+if IsServer() then
+	function modifier_move_speed_handler:OnCreated()
+		local parent = self:GetParent()
+		local newLimit = INTERNAL_MOVESPEED_CAP
+		local msStacks = math.min( parent:GetIdealSpeed(), newLimit )
+		self:SetStackCount( msStacks )
+		self.msModifiers = self.msModifiers or {}
+		parent:CalculateStatBonus()
+		self:StartIntervalThink(0.33)
+	end
 	
+	function modifier_move_speed_handler:OnIntervalThink()
+		local parent = self:GetParent()
+		local msLimitMod = 0
+		self:SetStackCount(0)
+		parent:CalculateStatBonus()
+		for id, modifier in ipairs( self.msModifiers ) do
+			if modifier and not modifier:IsNull() then
+				local bonus = modifier:GetMoveSpeedLimitBonus()
+				if bonus then
+					msLimitMod = msLimitMod + bonus
+				end
+			else
+				table.remove(self.msModifiers, id)
+			end
+		end
+		local newLimit = INTERNAL_MOVESPEED_CAP + msLimitMod
+		local msStacks = math.min( parent:GetIdealSpeed(), newLimit )
+		if self:GetStackCount() ~= msStacks then self:SetStackCount( msStacks ) end
+		parent:CalculateStatBonus()
+	end
+end
+
 function modifier_move_speed_handler:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE}
 end

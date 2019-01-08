@@ -23,7 +23,7 @@ function enchantress_take_root:OnToggle()
 	end
 end
 
-modifier_enchantress_take_root = class({})
+modifier_enchantress_take_root = class(toggleModifierBaseClass)
 function modifier_enchantress_take_root:OnCreated(table)
 	self.bonus_ar = self:GetParent():GetAttackRange() * self:GetTalentSpecialValueFor("bonus_ar")/100
 	self.slow_as = self:GetTalentSpecialValueFor("slow_as")

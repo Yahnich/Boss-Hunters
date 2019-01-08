@@ -21,7 +21,7 @@ function item_incandescance:GetIntrinsicModifierName()
 end
 
 LinkLuaModifier( "modifier_item_incandescance", "items/item_incandescance.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_incandescance = class(itemBaseClass)
+modifier_item_incandescance = class(toggleModifierBaseClass)
 
 function modifier_item_incandescance:OnCreated()
 	self.radius = self:GetSpecialValueFor("radius")
@@ -68,10 +68,6 @@ end
 
 function modifier_item_incandescance:IsHidden()    
 	return true
-end
-
-function modifier_item_incandescance:GetAttributes()
-	return MODIFIER_ATTRIBUTE_PERMANENT 
 end
 
 LinkLuaModifier( "modifier_incandescance_debuff", "items/item_incandescance.lua" ,LUA_MODIFIER_MOTION_NONE )

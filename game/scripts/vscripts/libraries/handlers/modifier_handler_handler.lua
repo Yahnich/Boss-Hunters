@@ -32,7 +32,7 @@ function modifier_handler_handler:OnCreated()
 		self.batModifiers = {}
 		self.cdrModifiers = {}
 		self.hpModifiers = {}
-		self.msModifiers = {}
+		self.ms.msModifiers = {}
 		self.state = 1
 		for id, modifier in ipairs( self:GetParent():FindAllModifiers() ) do
 			-- accuracy --------------------------------------
@@ -60,7 +60,7 @@ function modifier_handler_handler:OnCreated()
 			end
 			-- movespeed --------------------------------------
 			if modifier.GetMoveSpeedLimitBonus then
-				table.insert(self.msModifiers, modifier)
+				table.insert(self.ms.msModifiers, modifier)
 			end
 		end
 	end
@@ -104,13 +104,6 @@ function modifier_handler_handler:OnIntervalThink()
 			end
 		end
 		if self.state == 6 then
-			self.state = 7
-			if #self.msModifiers > 0 then
-				self:UpdateMoveSpeed()
-				return
-			end
-		end
-		if self.state == 7 then
 			self.state = 1
 			if #self.accModifiers > 0
 			and #self.asModifiers > 0
@@ -207,6 +200,7 @@ end
 
 function modifier_handler_handler:UpdateCooldownReduction()
 	local cdrStacks = 1
+	local parent = self:GetParent()
 	for id, modifier in ipairs( self.cdrModifiers ) do
 		if modifier and not modifier:IsNull() then
 			local cdr = modifier:GetCooldownReduction() 
@@ -219,14 +213,23 @@ function modifier_handler_handler:UpdateCooldownReduction()
 	end
 	cdrStacks = (1 - cdrStacks) * 100 * 100 -- support decimal values
 	if self.cdr:GetStackCount() ~= cdrStacks then self.cdr:SetStackCount(cdrStacks) end
+	parent:CalculateStatBonus()
 end
 
 function modifier_handler_handler:UpdateHealth()
 	local parent = self:GetParent()
 	local hpPct = parent:GetHealth() / parent:GetMaxHealth()
-	self.hp:SetStackCount(0)
-	parent:CalculateStatBonus()
-	self.baseMaxHealth = self:GetParent():GetMaxHealth()
+	local buffHP = self.hp:GetStackCount()
+	if buffHP ~= 0 then
+		-- check sign
+		if buffHP % 10 == 0 then
+			buffHP = math.floor( buffHP / 10 )
+		else
+			buffHP = math.floor( buffHP / 10 ) * (-1)
+		end
+	end
+	self.baseMaxHealth = self:GetParent():GetMaxHealth() - buffHP
+	print( self.baseMaxHealth, self:GetParent():GetMaxHealth(), buffHP)
 	local bonusPctHP = self.baseMaxHealth
 	if bonusPctHP <= 0 then
 		bonusPctHP = self.baseMaxHealth * (-1) + 1
@@ -249,32 +252,17 @@ function modifier_handler_handler:UpdateHealth()
 		bonusHP = math.abs(bonusHP).."1"
 	end
 	local hpStacks = tonumber(bonusHP)
-	if hpStacks ~= self.hp:GetStackCount() then self.hp:SetStackCount( hpStacks ) end
-	parent:CalculateStatBonus()
-	if IsServer() and parent:IsAlive() and parent:GetHealth() ~= parent:GetMaxHealth() * (hpPct or 100) then
-		parent:SetHealth( parent:GetMaxHealth() * (hpPct or 100) )
-	end
-end
-
-function modifier_handler_handler:UpdateMoveSpeed()
-	local parent = self:GetParent()
-	local msLimitMod = 0
-	for id, modifier in ipairs( self.msModifiers ) do
-		if modifier and not modifier:IsNull() then
-			local bonus = modifier:GetMoveSpeedLimitBonus()
-			if bonus then
-				msLimitMod = msLimitMod + bonus
-			end
-		else
-			table.remove(self.msModifiers, id)
+	if hpStacks ~= self.hp:GetStackCount() then 
+		if parent:IsAlive() and parent:GetHealth() ~= parent:GetMaxHealth() * (hpPct or 100) then
+			parent:SetHealth( parent:GetMaxHealth() * (hpPct or 100) )
 		end
+		self.hp:SetStackCount( hpStacks ) 
 	end
-	local newLimit = INTERNAL_MOVESPEED_CAP + msLimitMod
-	local msStacks = math.min( parent:GetIdealSpeed(), newLimit )
-	if self.ms:GetStackCount() ~= msStacks then self.ms:SetStackCount( msStacks ) end
+	parent:CalculateStatBonus()
 end
 
 function modifier_handler_handler:CheckIfUpdateNeeded(name, ability, duration)
+	if not self or self:IsNull() or not self:GetParent() or self:GetParent():IsNull() then return end
 	local parent = self:GetParent()
 	local newestModifier
 	local lastTime = -9999
@@ -309,7 +297,7 @@ function modifier_handler_handler:CheckIfUpdateNeeded(name, ability, duration)
 		end
 		-- movespeed --------------------------------------
 		if newestModifier.GetMoveSpeedLimitBonus then
-			table.insert(self.msModifiers, newestModifier)
+			table.insert(self.ms.msModifiers, newestModifier)
 		end
 		--------------------------------
 		--- UPDATE ---------------------

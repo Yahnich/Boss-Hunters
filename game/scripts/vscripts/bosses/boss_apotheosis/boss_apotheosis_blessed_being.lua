@@ -67,5 +67,5 @@ function modifier_boss_apotheosis_blessed_being_immunity:GetModifierStatusResist
 end
 
 function modifier_boss_apotheosis_blessed_being_immunity:GetEffectName()
-	return "particles/items_fx/black_king_bar_avatar.vpcf"
+	return "particles/items3_fx/lotus_orb_shell.vpcf"
 end

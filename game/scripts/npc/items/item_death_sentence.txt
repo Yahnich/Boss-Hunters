@@ -23,7 +23,7 @@
 		"ItemResult"					"item_death_sentence"
 		"ItemRequirements"
 		{
-			"01"						"item_focused_lens;item_blade_of_agility;item_blade_of_agility;item_hawks_feather;item_broadsword"
+			"01"						"item_focused_lens;item_blade_of_agility;item_blade_of_agility;item_broadsword"
 		}
 	}
 	"item_death_sentence"

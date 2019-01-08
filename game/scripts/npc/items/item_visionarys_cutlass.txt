@@ -23,7 +23,7 @@
 		"ItemResult"					"item_visionarys_cutlass"
 		"ItemRequirements"
 		{
-			"01"						"item_broadsword;item_hawks_feather;item_iron_rod;item_gauntlet_of_alacrity"
+			"01"						"item_broadsword;item_iron_rod;item_gauntlet_of_alacrity"
 		}
 	}
 	//=================================================================================================================

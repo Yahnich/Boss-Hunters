@@ -77,3 +77,7 @@ end
 function modifier_slark_dark_pact_effect:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+
+function modifier_slark_dark_pact_effect:IsPurgable()
+	return not self:GetCaster():HasTalent("special_bonus_unique_slark_dark_pact_1")
+end

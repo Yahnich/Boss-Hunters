@@ -33,8 +33,9 @@ function modifier_generic_hp_limiter:GetModifierHealAmplify_Percentage( params )
 	if not params.ability then
 		return -999
 	else
+		local hp = self:GetParent():GetHealth()
 		heal = math.floor( 8 / GameRules:GetGameDifficulty() )
-		parent:SetHealth( hp + heal )
+		self:GetParent():SetHealth( hp + heal )
 	end
 end
 

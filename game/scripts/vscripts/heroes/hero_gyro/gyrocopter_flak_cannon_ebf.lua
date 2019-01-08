@@ -26,7 +26,7 @@ function gyrocopter_flak_cannon_ebf:OnToggle()
 	end
 end
 
-modifier_gyrocopter_flak_cannon_active = class({})
+modifier_gyrocopter_flak_cannon_active = class(toggleModifierBaseClass)
 LinkLuaModifier( "modifier_gyrocopter_flak_cannon_active", "heroes/hero_gyro/gyrocopter_flak_cannon_ebf.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_gyrocopter_flak_cannon_active:DeclareFunctions()

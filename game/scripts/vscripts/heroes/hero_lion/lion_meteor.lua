@@ -27,6 +27,19 @@ function lion_meteor:OnSpellStart()
 
     EmitSoundOn("Hero_Invoker.ChaosMeteor.Cast", caster)
 	self:FireMeteor(point, radius)
+	
+	if caster:HasScepter() and caster:HasModifier("modifier_lion_mana_aura_scepter") then
+		local innate = caster:FindAbilityByName("lion_mana_aura")
+		if innate then
+			local manaDamage = caster:GetMana() * innate:GetTalentSpecialValueFor("scepter_curr_mana_dmg") / 100
+			caster:SpendMana(manaDamage)
+			for _,enemy in pairs( caster:FindEnemyUnitsInRadius( point, self:GetTalentSpecialValueFor("radius") ) ) do
+				self:DealDamage( caster, enemy, manaDamage, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+				ParticleManager:FireRopeParticle("particles/items2_fx/necronomicon_archer_manaburn.vpcf", PATTACH_POINT_FOLLOW, caster, enemy)
+			end
+		end
+	end
+	
     if caster:HasTalent("special_bonus_unique_lion_meteor_2") then
         local meteors = caster:FindTalentValue("special_bonus_unique_lion_meteor_2", "count")
 		local newDistance = caster:FindTalentValue("special_bonus_unique_lion_meteor_2")

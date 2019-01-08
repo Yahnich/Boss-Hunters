@@ -91,7 +91,7 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_spectre_dispersion_buff:GetModifierIncomingDamage_Percentage(params)
-	if HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) then return end
+	if HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) or self:GetParent():IsIllusion() then return end
     local hero = self:GetParent()
 	local dmgtype = params.damage_type
 	local attacker = params.attacker
@@ -115,7 +115,7 @@ function modifier_spectre_dispersion_buff:GetModifierIncomingDamage_Percentage(p
 				if distance <= self.min_range or talent then dmgmod = 1 end
 				
 				self:GetAbility().damage_flags = DOTA_DAMAGE_FLAG_HPLOSS
-				ApplyDamage({victim = unit, attacker = hero, damage = dmg*dmgmod, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION, damage_type = dmgtype, ability = self:GetAbility()})
+				ApplyDamage({victim = unit, attacker = hero, damage = dmg*dmgmod, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_REFLECTION, damage_type = dmgtype, ability = self:GetAbility()})
 				local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_dispersion.vpcf",PATTACH_POINT_FOLLOW,unit)
 				ParticleManager:SetParticleControl(particle, 0, unit:GetAbsOrigin())
 				ParticleManager:SetParticleControl(particle, 1, hero:GetAbsOrigin())

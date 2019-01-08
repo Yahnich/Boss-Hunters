@@ -48,6 +48,7 @@ function modifier_enigma_shattered_mass:OnAttackLanded(params)
 			self.attacks = 0
 			self:GetAbility():CreateEidolon( self:GetParent():GetAbsOrigin(), "lesser_")
 		end
+		self:SetStackCount(self.attacks)
 	end
 end
 
@@ -73,6 +74,7 @@ end
 function modifier_enigma_shattered_mass_eidolon:OnAttackLanded(params)
 	if params.attacker == self:GetParent() then
 		self.attacks = self.attacks + 1
+		self:SetStackCount(self.attacks)
 		if self.attacks >= self.attacks_to_split then
 			self.attacks = 0
 			if params.attacker:GetUnitName() == "npc_dota_lesser_eidolon" then

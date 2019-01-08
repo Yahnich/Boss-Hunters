@@ -36,7 +36,7 @@ function modifier_item_arcane_reaver_debuff:GetModifierMagicalResistanceBonus()
 	return self.mr
 end
 
-modifier_item_arcane_reaver_active = class({})
+modifier_item_arcane_reaver_active = class(toggleModifierBaseClass)
 LinkLuaModifier( "modifier_item_arcane_reaver_active", "items/item_arcane_reaver.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_arcane_reaver_active:GetTexture()

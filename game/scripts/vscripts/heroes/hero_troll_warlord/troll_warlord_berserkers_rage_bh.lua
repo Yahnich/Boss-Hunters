@@ -37,7 +37,7 @@ function troll_warlord_berserkers_rage_bh:OnToggle()
 	caster:SetHealth( caster:GetMaxHealth() * hpPct )
 end
 
-modifier_troll_warlord_berserkers_rage_bh_melee = class({})
+modifier_troll_warlord_berserkers_rage_bh_melee = class(toggleModifierBaseClass)
 LinkLuaModifier("modifier_troll_warlord_berserkers_rage_bh_melee", "heroes/hero_troll_warlord/troll_warlord_berserkers_rage_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_troll_warlord_berserkers_rage_bh_melee:OnCreated()

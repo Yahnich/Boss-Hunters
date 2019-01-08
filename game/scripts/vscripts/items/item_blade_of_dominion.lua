@@ -106,7 +106,7 @@ function modifier_item_blade_of_dominion_stats:IsHidden()
 end
 
 LinkLuaModifier( "modifier_item_blade_of_dominion", "items/item_blade_of_dominion.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_blade_of_dominion = class({})
+modifier_item_blade_of_dominion = class(toggleModifierBaseClass)
 function modifier_item_blade_of_dominion:OnCreated()
 	self.radius = self:GetSpecialValueFor("radius")
 end

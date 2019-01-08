@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"405"	
+		"ItemCost"						"730"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_cloak_of_the_hunter"
 		"ItemRequirements"
 		{
-			"01"						"item_hawks_feather;item_gauntlet_of_alacrity;item_orb_of_shadows;item_power_core"
+			"01"						"item_gauntlet_of_alacrity;item_orb_of_shadows;item_power_core"
 		}
 	}
 	"item_cloak_of_the_hunter"

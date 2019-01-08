@@ -370,6 +370,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilityTextureName"			"ursa_enrage"
 		"MaxLevel"						"6"
+		"HasScepterUpgrade"				"1"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
