@@ -9,15 +9,10 @@ modifier_item_siegebreaker = class(itemBaseClass)
 
 function modifier_item_siegebreaker:OnCreated()
 	self.range = self:GetSpecialValueFor("bonus_range")
-	self.chance = self:GetSpecialValueFor("pierce_chance")
 end
 
 function modifier_item_siegebreaker:DeclareFunctions()
 	return {MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,}
-end
-
-function modifier_item_siegebreaker:GetAccuracy()
-	return self.chance
 end
 
 function modifier_item_siegebreaker:GetModifierAttackRangeBonus()

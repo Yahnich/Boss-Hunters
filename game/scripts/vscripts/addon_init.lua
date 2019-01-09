@@ -49,6 +49,7 @@ LinkLuaModifier( "modifier_base_attack_time_handler", "libraries/handlers/modifi
 LinkLuaModifier( "modifier_accuracy_handler", "libraries/handlers/modifier_accuracy_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_attack_speed_handler", "libraries/handlers/modifier_attack_speed_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_move_speed_handler", "libraries/handlers/modifier_move_speed_handler.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_evasion_handler", "libraries/handlers/modifier_evasion_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_health_handler", "libraries/handlers/modifier_health_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_handler_handler", "libraries/handlers/modifier_handler_handler.lua", LUA_MODIFIER_MOTION_NONE)
 

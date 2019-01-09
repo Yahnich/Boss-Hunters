@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"690"	
+		"ItemCost"						"350"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_lightningrod"
 		"ItemRequirements"
 		{
-			"01"						"item_broadsword;item_ruby_ring"
+			"01"						"item_broadsword;item_ruby_ring;item_iron_rod"
 		}
 	}
 	"item_lightningrod"

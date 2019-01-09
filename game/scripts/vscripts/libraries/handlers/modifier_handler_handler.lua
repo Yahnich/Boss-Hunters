@@ -15,6 +15,7 @@ function modifier_handler_handler:OnCreated()
 		self.cdr = parent:AddNewModifier(self:GetParent(), nil, "modifier_cooldown_reduction_handler", {})
 		self.hp = parent:AddNewModifier(self:GetParent(), nil, "modifier_health_handler", {})
 		self.ms = parent:AddNewModifier(self:GetParent(), nil, "modifier_move_speed_handler", {})
+		self.ms.evasion = parent:AddNewModifier(self:GetParent(), nil, "modifier_evasion_handler", {})
 		-- base attack time init
 		self.baseAttackTime = self:GetParent():GetBaseAttackTime() * 100
 		if parent:IsRealHero() then

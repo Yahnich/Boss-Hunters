@@ -9,8 +9,6 @@ modifier_item_trebuchet = class(itemBaseClass)
 
 function modifier_item_trebuchet:OnCreated()
 	self.range = self:GetSpecialValueFor("bonus_range")
-	self.chance = self:GetSpecialValueFor("pierce_chance")
-	
 	self.stat = self:GetSpecialValueFor("bonus_all")
 end
 
@@ -19,10 +17,6 @@ function modifier_item_trebuchet:DeclareFunctions()
 			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS}
-end
-
-function modifier_item_trebuchet:GetAccuracy()
-	return self.chance
 end
 
 function modifier_item_trebuchet:GetModifierBonusStats_Strength()

@@ -66,11 +66,6 @@
 				"var_type"				"FIELD_INTEGER"
 				"bonus_damage"			"50"
 			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_accuracy"		"40"
-			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
@@ -94,7 +89,7 @@
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"target_accuracy"		"40"
+				"target_accuracy"		"-40"
 			}
 		}
 	}
