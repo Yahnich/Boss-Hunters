@@ -146,7 +146,12 @@ function RoundManager:OnNPCSpawned(event)
 					typeModifier:SetStackCount( typeModifier:GetStackCount() + BH_MINION_TYPE_BOSS )
 				end
 			elseif spawnedUnit:IsRealHero() then
-				Timers:CreateTimer(0.1, function() spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_tombstone_respawn_immunity", {duration = 2.9}) end)
+				Timers:CreateTimer(0.1, function() 
+					if RoundManager:GetBoundingBox() and not RoundManager:GetBoundingBox():IsTouching(spawnedUnit) then
+						FindClearSpaceForUnit( spawnedUnit, RoundManager:GetHeroSpawnPosition(), true ) 
+					end
+					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_tombstone_respawn_immunity", {duration = 2.9}) 
+				end)
 			elseif spawnedUnit:IsIllusion() and spawnedUnit:GetPlayerOwnerID() and PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerOwnerID() ) and spawnedUnit:FindModifierByName("modifier_stats_system_handler") then
 				spawnedUnit:FindModifierByName("modifier_stats_system_handler"):SetStackCount( PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerOwnerID() ):entindex() )
 			end

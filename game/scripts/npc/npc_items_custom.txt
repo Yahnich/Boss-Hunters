@@ -112,7 +112,7 @@
 #base "items/item_iron_rose.txt"
 #base "items/item_kitteh_amulet.txt"
 #base "items/item_lightningbottle.txt"
-#base "items/item_hawks_feather.txt"
+// #base "items/item_hawks_feather.txt"
 #base "items/item_iron_rod.txt"
 #base "items/item_visionarys_cutlass.txt"
 
