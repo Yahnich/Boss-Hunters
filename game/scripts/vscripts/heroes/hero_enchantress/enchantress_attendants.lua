@@ -111,7 +111,7 @@ function modifier_enchantress_attendants:OnIntervalThink()
 	if caster:HasTalent("special_bonus_unique_enchantress_attendants_1") then
 		local enemies = parent:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.radius)
 		for _,enemy in pairs(enemies) do
-			self:GetAbility():DealDamage(caster, enemy, self.heal, {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			self:GetAbility():DealDamage(caster, enemy, self.heal, {damage_type = DAMAGE_TYPE_PURE}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		end
 	end
 	ParticleManager:SetParticleControlEnt(self.pWispy, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
@@ -144,5 +144,5 @@ function modifier_enchantress_attendants:IsHidden()
 end
 
 function modifier_enchantress_attendants:IsPurgable()
-	return true
+	return not self:GetCaster():HasScepter()
 end

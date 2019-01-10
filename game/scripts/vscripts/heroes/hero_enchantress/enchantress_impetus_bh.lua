@@ -21,35 +21,17 @@ function enchantress_impetus_bh:GetCastRange(Location, Target)
 end
 
 function enchantress_impetus_bh:GetCastPoint()
-	return self:GetCaster():GetSecondsPerAttack()
-end
-
-function enchantress_impetus_bh:OnAbilityPhaseStart()
-	local caster = self:GetCaster()
-	caster:StartGesture(ACT_DOTA_ATTACK)
-	return true
+	return 0
 end
 
 function enchantress_impetus_bh:OnSpellStart()
 	local target = self:GetCursorTarget()
-	local caster = self:GetCaster()
-
-	EmitSoundOn("Hero_Enchantress.Impetus", caster)
-
-	local distance = CalculateDistance(caster, target)
-	local extraData = {distance = distance}
-	self:FireTrackingProjectile("particles/units/heroes/hero_enchantress/enchantress_impetus.vpcf", target, caster:GetProjectileSpeed(), {extraData = extraData}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 50)	
-
-	if caster:HasTalent("special_bonus_unique_enchantress_impetus_bh_1") then
-		local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), 250)
-		for _,enemy in pairs(enemies) do
-			if enemy ~= target then
-				self:FireTrackingProjectile("particles/units/heroes/hero_enchantress/enchantress_impetus.vpcf", enemy, caster:GetProjectileSpeed(), {extraData = extraData}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 50)	
-				break
-			end
-		end
-	end
+	self.forceCast = true
+	self:RefundManaCost()
+	self:GetCaster():SetAttacking( target )
+	self:GetCaster():MoveToTargetToAttack( target )
 end
+
 
 function enchantress_impetus_bh:OnProjectileHit_ExtraData(hTarget, vLocation, table)
 	local caster = self:GetCaster()
@@ -92,10 +74,9 @@ function modifier_enchantress_impetus_bh_handle:OnAttack(keys)
 		local target = keys.target
 		local attacker = keys.attacker
 		local ability = self:GetAbility()
-
-		if caster == attacker and ability:IsOwnersManaEnough() and ability:IsCooldownReady() and ability:GetAutoCastState() and not ability:IsHidden() and not target:IsMagicImmune() then
+		if caster == attacker and ( ability:IsOwnersManaEnough() and ability:GetAutoCastState() or ability.forceCast ) and not target:IsMagicImmune() then
 			EmitSoundOn("Hero_Enchantress.Impetus", attacker)
-
+			ability.forceCast = false
 			local distance = CalculateDistance(attacker, target)
 			local extraData = {distance = distance}
 			ability:FireTrackingProjectile("particles/units/heroes/hero_enchantress/enchantress_impetus.vpcf", target, caster:GetProjectileSpeed(), {extraData = extraData}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 50)	
@@ -110,7 +91,7 @@ function modifier_enchantress_impetus_bh_handle:OnAttack(keys)
 				end
 			end
 
-			caster:SpendMana(ability:GetManaCost(ability:GetLevel()), ability)
+			caster:SpendMana( ability:GetManaCost(-1) )
 		end
 	end
 end

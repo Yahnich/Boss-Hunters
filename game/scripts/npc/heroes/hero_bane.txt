@@ -169,10 +169,10 @@
 				"var_type"						"FIELD_FLOAT"
 				"scepter_cooldown"				"1.5"
 			}
-			"04"
+			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"s"				"0.6"
+				"scepter_mana_cost"				"0.6"
 			}
 		}
 	}

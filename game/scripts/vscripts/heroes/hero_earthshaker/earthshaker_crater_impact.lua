@@ -14,9 +14,10 @@ end
 
 function earthshaker_crater_impact:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_earthshaker_crater_impact_movement", {duration = self:GetTalentSpecialValueFor("jump_duration") + 0.01})
+	local duration =  self:GetTalentSpecialValueFor("jump_duration") + 0.01
+	caster:AddNewModifier(caster, self, "modifier_earthshaker_crater_impact_movement", {duration = duration})
 	if caster:HasTalent("special_bonus_unique_earthshaker_crater_impact_2") then
-		caster:AddNewModifier(caster, self, "modifier_earthshaker_crater_impact_talent", {duration = caster:FindTalentValue("special_bonus_unique_earthshaker_crater_impact_2", "duration")})
+		caster:AddNewModifier(caster, self, "modifier_earthshaker_crater_impact_talent", {duration = duration + caster:FindTalentValue("special_bonus_unique_earthshaker_crater_impact_2", "duration")})
 	end
 end
 
@@ -25,10 +26,14 @@ function earthshaker_crater_impact:CreateQuake(position, radius, damage)
 	EmitSoundOn("Hero_Leshrac.Split_Earth", caster)
 	ParticleManager:FireParticle("particles/units/heroes/hero_earthshaker/earthshaker_crater_impact.vpcf", PATTACH_ABSORIGIN, caster, {[1] = Vector(radius, radius, radius)})
 	
+	local talent2 = caster:HasTalent("special_bonus_unique_earthshaker_crater_impact_2")
 	local stunDuration = self:GetTalentSpecialValueFor("duration")
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
 		self:DealDamage(caster, enemy, damage)
 		self:Stun(enemy, stunDuration, false)
+		if talent2 then
+			enemy:Taunt(self, caster, caster:FindTalentValue("special_bonus_unique_earthshaker_crater_impact_2", "duration") )
+		end
 	end
 end
 

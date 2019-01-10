@@ -23,7 +23,7 @@
 		"ItemResult"					"item_siegebreaker"
 		"ItemRequirements"
 		{
-			"01"						"item_soldiers_pike;item_hawks_feather"
+			"01"						"item_soldiers_pike;"
 		}
 	}
 	"item_siegebreaker"

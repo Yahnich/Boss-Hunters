@@ -206,7 +206,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"900"
+				"value"					"600"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"as"					"-80"
 			}
 		}
 	}
@@ -285,7 +290,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"8"
+				"value"					"9"
 			}
 		}
 	}

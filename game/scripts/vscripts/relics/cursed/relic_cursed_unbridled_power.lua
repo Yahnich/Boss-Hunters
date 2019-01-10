@@ -18,7 +18,8 @@ function relic_cursed_unbridled_power:GetModifierTotalDamageOutgoing_Percentage(
 			params.damage_flags = bit.bor(params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE)
 		end
 		ability.unbridledPowerPreventLoop = true
-		ability:DealDamage( params.attacker, params.target,  params.original_damage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = params.damage_flags} )
+		ability:DealDamage( params.attacker, params.target, params.original_damage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = params.damage_flags} )
+		ability.unbridledPowerPreventLoop = false
 		return -999
 	end
 end

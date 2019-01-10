@@ -1,7 +1,6 @@
 boss_golem_golem_leap = class({})
 
 function boss_golem_golem_leap:OnAbilityPhaseStart()
-	ParticleManager:FireWarningParticle( self:GetCursorPosition(), self:GetSpecialValueFor("base_radius") * self:GetCaster():GetModelScale() )
 	return true
 end
 
@@ -27,6 +26,8 @@ if IsServer() then
 		self.height = self.initHeight
 		self.maxHeight = 650
 		self:StartMotionController()
+		local radius = math.max( 175, math.min( self:GetSpecialValueFor("base_radius"), self:GetSpecialValueFor("base_radius") * parent:GetModelScale() / 1.8 ) )
+		ParticleManager:FireWarningParticle( self.endPos, radius )
 	end
 	
 	
@@ -37,9 +38,8 @@ if IsServer() then
 		FindClearSpaceForUnit(parent, parentPos, true)
 		if parent:IsFrozen() then return end
 		local ability = self:GetAbility()
-		local damage = math.max( 100, self:GetSpecialValueFor("base_damage") + self:GetSpecialValueFor("base_damage") * (parent:GetModelScale() - 1) * 0.5 )
-		local radius = math.max( 175, self:GetSpecialValueFor("base_radius") * parent:GetModelScale() )
-		
+		local damage = math.max( 75, math.min( self:GetSpecialValueFor("base_damage"), self:GetSpecialValueFor("base_damage") * parent:GetModelScale() / 1.8 ) )
+		local radius = math.max( 175, math.min( self:GetSpecialValueFor("base_radius"), self:GetSpecialValueFor("base_radius") * parent:GetModelScale() / 1.8 ) )
 		ParticleManager:FireParticle("particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", PATTACH_ABSORIGIN, parent, {[1] = Vector(radius, 1, 1)})
 		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parentPos, radius ) ) do
 			if not enemy:TriggerSpellAbsorb(self) then

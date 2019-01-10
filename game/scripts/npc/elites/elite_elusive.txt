@@ -24,7 +24,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"detection_radius"		"350"
+				"detection_radius"		"650"
 			}
 			"02"
 			{

@@ -45,10 +45,13 @@ function earthshaker_fissure_ebf:LaunchFissure(position, direction, fissureDurat
 	local caster = self:GetCaster()
 	local count = math.ceil( self:GetTrueCastRange() / PSO_RADIUS )
 	local psoPos = position
+	
+	local posTable = {}
 	for i = 1, count do
 		psoPos = psoPos + direction * PSO_RADIUS
 		local pso = SpawnEntityFromTableSynchronous('point_simple_obstruction', {origin = GetGroundPosition(psoPos, caster)}) 
 		table.insert(deleteTable, pso)
+		table.insert(posTable, psoPos)
 	end
 	local aftershock = caster:FindAbilityByName("earthshaker_aftershock_ebf")
 	local echo = caster:FindAbilityByName("earthshaker_echo_slam_ebf")
@@ -60,8 +63,16 @@ function earthshaker_fissure_ebf:LaunchFissure(position, direction, fissureDurat
 		if caster:HasTalent("special_bonus_unique_earthshaker_fissure_ebf_1") then
 			aftershock:Aftershock( enemy:GetAbsOrigin(),  radius)
 		end
-		if caster:HasTalent("special_bonus_unique_earthshaker_fissure_ebf_2") then
-			echo:ModifyCooldown( caster:FindTalentValue("special_bonus_unique_earthshaker_fissure_ebf_2") )
+	end
+	if caster:HasTalent("special_bonus_unique_earthshaker_fissure_ebf_2") then	
+		for _, enemy in ipairs( caster:FindEnemyUnitsInLine(position, psoPos, 500 or caster:FindTalentValue("special_bonus_unique_earthshaker_fissure_ebf_2", "radius") ) ) do
+			local enemyVector = CalculateDirection( enemy, position )
+			local angle = math.acos( enemyVector:Dot(direction) )
+			local fissureDirection = (GetPerpendicularVector( direction ) * -enemyVector:Cross(direction).z):Normalized()
+			local oppositeLength = math.sin(angle) * CalculateDistance( enemy, position )
+			local fissurePosition = enemy:GetAbsOrigin() + fissureDirection:Normalized() * oppositeLength
+			local distance = math.min( 500, math.max( 0, CalculateDistance( fissurePosition, enemy ) - (PSO_RADIUS + 32) ) )
+			enemy:ApplyKnockBack(fissurePosition, 0.5, 0.5, -distance, 0, caster, self)
 		end
 	end
 	ParticleManager:FireParticle("particles/units/heroes/hero_earthshaker/earthshaker_fissure.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position + direction * PSO_RADIUS, [1] = psoPos, [2] = Vector( fissureDuration, 0, 0)})

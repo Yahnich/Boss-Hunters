@@ -26,7 +26,7 @@ function morph_str_morph:OnToggle()
 	end
 end
 
-modifier_morph_str_morph = class({})
+modifier_morph_str_morph = class(toggleModifierBaseClass)
 function modifier_morph_str_morph:OnCreated(table)
 	if IsServer() then
 		local caster = self:GetCaster()

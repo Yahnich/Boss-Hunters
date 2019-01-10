@@ -31,6 +31,7 @@ function modifier_disruptor_tesla_field:OnCreated()
 	self.duration = self:GetTalentSpecialValueFor("silence_duration")
 	self.damage = self:GetTalentSpecialValueFor("damage")
 	self.chance = self:GetTalentSpecialValueFor("chance")
+	self.cooldown = self:GetTalentSpecialValueFor("cooldown")
 end
 
 function modifier_disruptor_tesla_field:OnRefresh()
@@ -38,6 +39,7 @@ function modifier_disruptor_tesla_field:OnRefresh()
 	self.duration = self:GetTalentSpecialValueFor("silence_duration")
 	self.damage = self:GetTalentSpecialValueFor("damage")
 	self.chance = self:GetTalentSpecialValueFor("chance")
+	self.cooldown = self:GetTalentSpecialValueFor("cooldown")
 end
 
 function modifier_disruptor_tesla_field:DeclareFunctions()
@@ -46,12 +48,11 @@ end
 
 function modifier_disruptor_tesla_field:OnTakeDamage(params)
 	if params.attacker == self:GetParent() then
-		print( params.damage, "tesla field" )
-		if params.damage <= 0 then return end
+		if params.damage <= 0 or params.target:HasModifier("modifier_disruptor_tesla_field_debuff") then return end
 		local talentActivated = ( self:GetParent():HasTalent("special_bonus_unique_disruptor_kinetic_charge_1") and params.unit:HasModifier("modifier_disruptor_kinetic_charge_pull") )
 		local roll = RollPercentage( self.chance )
 		local talent1 = self:GetCaster():HasTalent("special_bonus_unique_disruptor_tesla_field_1")
-		if ( ( CalculateDistance( params.attacker, params.unit ) < self.radius or talent1) and roll ) or talentActivated then
+		if ( ( CalculateDistance( params.attacker, params.unit ) < self.radius or talent1) and roll and modifier_disruptor_tesla_field_debuff) or talentActivated then
 			local caster = self:GetCaster()
 			local ability = self:GetAbility()
 			if params.inflictor == ability then return end
@@ -59,6 +60,7 @@ function modifier_disruptor_tesla_field:OnTakeDamage(params)
 			ability:DealDamage( caster, enemy, self.damage )
 			enemy:Silence(ability, caster, self.duration)
 			enemy:Root(ability, caster, self.duration)
+			params.target:AddNewModifier(caster, ability, "modifier_disruptor_tesla_field_debuff", {duration = self.cooldown})
 			ParticleManager:FireRopeParticle("particles/units/heroes/hero_rhasta/rhasta_spell_forked_lightning.vpcf", PATTACH_POINT_FOLLOW , caster, enemy)
 		end
 	end
@@ -80,3 +82,6 @@ end
 function modifier_disruptor_tesla_field:IsHidden()
 	return true
 end
+
+modifier_disruptor_tesla_field_debuff = class({})
+LinkLuaModifier("modifier_disruptor_tesla_field_debuff", "heroes/hero_disruptor/disruptor_tesla_field", LUA_MODIFIER_MOTION_NONE)

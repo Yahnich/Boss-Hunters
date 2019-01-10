@@ -1,8 +1,11 @@
 modifier_cooldown_reduction_handler = class({})
 
-if IsServer() then
-	function modifier_cooldown_reduction_handler:OnCreated()
-		self:SetStackCount(0)
+function modifier_cooldown_reduction_handler:OnStackCountChanged()
+	local cdr = self:GetStackCount()
+	if cdr ~= 0 then
+		if cdr > 0 then
+			self.cdr = (cdr + 1) / 100
+		end
 	end
 end
 	
@@ -11,9 +14,7 @@ function modifier_cooldown_reduction_handler:DeclareFunctions()
 end
 
 function modifier_cooldown_reduction_handler:GetModifierPercentageCooldownStacking()
-	if self:GetStackCount() > 0 then
-		return (self:GetStackCount() + 1) / 100
-	end
+	return self.cdr or 0
 end
 
 function modifier_cooldown_reduction_handler:IsHidden()

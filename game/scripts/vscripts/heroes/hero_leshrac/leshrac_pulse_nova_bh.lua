@@ -26,7 +26,7 @@ function leshrac_pulse_nova_bh:OnToggle()
 	end
 end
 
-modifier_leshrac_pulse_nova_bh = class({})
+modifier_leshrac_pulse_nova_bh = class(toggleModifierBaseClass)
 LinkLuaModifier( "modifier_leshrac_pulse_nova_bh", "heroes/hero_leshrac/leshrac_pulse_nova_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_leshrac_pulse_nova_bh:OnCreated()

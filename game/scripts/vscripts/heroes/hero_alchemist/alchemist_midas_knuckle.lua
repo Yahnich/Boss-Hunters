@@ -29,9 +29,8 @@ function alchemist_midas_knuckle:MidasKnuckle(target)
 	local caster = self:GetCaster()
 	local damage = self:GetTalentSpecialValueFor("base_dmg")
 	local bonusdamage = self:GetTalentSpecialValueFor("net_worth_bonus_dmg")
-	self.goldDamage = ( self.goldDamage or 0 ) + self:GetGoldCost(-1)
-	print(self.goldDamage)
-	local totDmg = damage + self.goldDamage * bonusdamage
+	self.goldDamage = ( self.goldDamage or 0 ) + self:GetGoldCost(-1) * bonusdamage
+	local totDmg = damage + self.goldDamage
 	
 	self:DealDamage(caster, target, totDmg)
 	

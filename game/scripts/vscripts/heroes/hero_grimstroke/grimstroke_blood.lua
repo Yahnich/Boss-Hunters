@@ -124,7 +124,7 @@ function modifier_grimstroke_blood_thing:OnIntervalThink()
 	end
 end
 
-modifier_grimstroke_blood_toggle = class({})
+modifier_grimstroke_blood_toggle = class(toggleModifierBaseClass)
 
 function modifier_grimstroke_blood_toggle:OnCreated(table)
 	self.cdr = 25

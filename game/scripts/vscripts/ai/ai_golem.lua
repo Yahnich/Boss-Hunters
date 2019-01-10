@@ -38,7 +38,7 @@ function AIThink(thisEntity)
 	if thisEntity and not thisEntity:IsNull() then
 		if not thisEntity:IsDominated() then
 			local target = AICore:GetHighestPriorityTarget( thisEntity )
-			if thisEntity.smash:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity.smash:GetTrueCastRange()) >= 1 then
+			if thisEntity.smash:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity.smash:GetTrueCastRange() * 0.75 ) >= 1 then
 				return Smash()
 			end
 			if target then

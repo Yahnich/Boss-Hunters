@@ -1,5 +1,28 @@
 luna_lunar_blessing_bh = class({})
 
+if IsClient() then -- thanks valve
+	if GameRules.IsDaytime == nil then
+		GameRules.IsDaytime = function()
+			local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
+			return timeofday["timeofday"] == 1
+		end
+	end
+	
+	if GameRules.IsTemporaryNight == nil then
+		GameRules.IsTemporaryNight = function()
+			local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
+			return timeofday["timeofday"] == 2
+		end
+	end
+	
+	if GameRules.IsNightstalkerNight == nil then
+		GameRules.IsNightstalkerNight = function()
+			local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
+			return timeofday["timeofday"] == 3
+		end
+	end
+end
+
 function luna_lunar_blessing_bh:GetIntrinsicModifierName()
 	return "modifier_luna_lunar_blessing_passive"
 end

@@ -5,7 +5,7 @@ function boss16_conflagration:OnAbilityPhaseStart()
 	local position = self:GetCursorPosition()
 	local direction = CalculateDirection(position, caster)
 	
-	if caster:GetHealthPercent() < 66 then
+	if caster:GetHealthPercent() < 66 and self:GetLevel() > 2 then
 		local startPos = caster:GetAbsOrigin() + direction * 128
 		local endPos = startPos + direction * self:GetSpecialValueFor("length") 
 		ParticleManager:FireLinearWarningParticle(startPos, endPos, self:GetSpecialValueFor("radius"))
@@ -46,7 +46,7 @@ function boss16_conflagration:CreateFirePath(direction)
 		endPos = endPos + direction * self:GetSpecialValueFor("length") 
 	end
 	
-	local fireFX = ParticleManager:CreateParticle("particles/units/bosses/boss_dragon/boss_dragon_conflagration.vpcf", PATTACH_CUSTOMORIGIN, nil)
+	local fireFX = ParticleManager:CreateParticle("particles/units/bosses/boss_dragon/boss_dragon_conflagragation.vpcf", PATTACH_CUSTOMORIGIN, nil)
 	ParticleManager:SetParticleControl(fireFX, 0, initialPosition)
 	ParticleManager:SetParticleControl(fireFX, 1, endPos)
 	ParticleManager:SetParticleControl(fireFX, 2, Vector(duration, 0, 0))

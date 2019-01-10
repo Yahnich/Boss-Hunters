@@ -58,7 +58,7 @@ function modifier_stunned_generic:GetModifierPercentageCasttime()
 end
 
 function modifier_stunned_generic:GetModifierTurnRate_Percentage()
-	return -100
+	return 95
 end
 
 function modifier_stunned_generic:IsPurgable()

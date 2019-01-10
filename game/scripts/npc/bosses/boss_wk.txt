@@ -64,6 +64,11 @@
 				"var_type"					"FIELD_INTEGER"
 				"revive_bonus_dmg"			"5 20"
 			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"revive_hp_loss"			"35 25"
+			}
 		}
 	}
 	//=================================================================================================================
@@ -245,7 +250,7 @@
 		
 		"AbilityCastRange"				"800 1000"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"				"1.25 1"
+		"AbilityCastPoint"				"1.5 1"
 		"AbilityCooldown"				"16 14"
 	
 		"precache"

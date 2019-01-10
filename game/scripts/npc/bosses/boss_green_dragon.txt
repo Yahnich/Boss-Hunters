@@ -153,7 +153,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"15"
+		"AbilityCooldown"				"15 12"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -199,10 +199,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_green_dragon/green_dragon_volatile_rot.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"custom/undying_decay_pale"
@@ -211,10 +208,11 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"24"
+		"AbilityCastPoint"				"1.5 1"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"10 20"
+		"AbilityManaCost"				"33"
 	
 		"precache"
 		{
@@ -237,11 +235,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"200 300"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"24"
 			}
 		}
 	}
@@ -276,7 +269,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"02"
+			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"200 250"

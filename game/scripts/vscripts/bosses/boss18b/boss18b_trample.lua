@@ -20,6 +20,7 @@ function boss18b_trample:OnSpellStart()
 	local position = caster:GetAbsOrigin() + vDir * jump_distance
 	local growth = self:GetSpecialValueFor("radius_growth")
 	Timers:CreateTimer(function()
+		if not caster or caster:IsNull() then return end
 		position = caster:GetAbsOrigin() + vDir * jump_distance
 		local blocked = self:BlinkAndBreak(position, radius)
 		if blocked then return end

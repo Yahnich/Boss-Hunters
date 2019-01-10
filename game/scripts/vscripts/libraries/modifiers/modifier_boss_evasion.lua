@@ -3,15 +3,14 @@ modifier_boss_evasion = class({})
 function modifier_boss_evasion:OnCreated()
 	if IsServer() then
 		self.critDelay = math.floor( 100 / ( 5 * GameRules:GetGameDifficulty() ) + 0.5 )
-		self:StartIntervalThink(210 - GameRules:GetGameDifficulty() * 15)
+		self:StartIntervalThink(310 - GameRules:GetGameDifficulty() * 20 - HeroList:GetActiveHeroCount() * 10 )
 	end
 end
 
 function modifier_boss_evasion:OnIntervalThink()
 	self:StartIntervalThink(-1)
 	self:GetParent():EmitSound("hero_bloodseeker.rupture.cast")
-	self:GetParent():AddNewModifier(nil, nil, "modifier_boss_hard_enrage", {})
-	self:GetParent():AddNewModifier(nil, nil, "modifier_status_immunity", {})
+	self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_boss_hard_enrage", {})
 end
 
 function modifier_boss_evasion:DeclareFunctions()
@@ -46,7 +45,7 @@ function modifier_boss_evasion:GetModifierEvasion_Constant()
 end
 
 function modifier_boss_evasion:GetModifierMagicalResistanceBonus( params )
-	return math.min( 50, self:GetStackCount() * 5 )
+	return math.min( 50, self:GetStackCount() * 3.5 )
 end
 
 function modifier_boss_evasion:IsHidden()

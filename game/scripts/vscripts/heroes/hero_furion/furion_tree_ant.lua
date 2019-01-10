@@ -36,19 +36,19 @@ function furion_tree_ant:OnSpellStart()
 	end
 end
 
-function furion_tree_ant:SpawnTreant(position, bSpawnedFromBoss)
+function furion_tree_ant:SpawnTreant(position, bWasMinion)
 	local caster = self:GetCaster()
 	local tree = caster:CreateSummon("npc_dota_furion_treant", position, self:GetTalentSpecialValueFor("treant_duration"))
 	FindClearSpaceForUnit(tree, position, true)
 	local maxHP = self:GetTalentSpecialValueFor("treant_health") + caster:GetMaxHealth() * self:GetTalentSpecialValueFor("treant_health_pct") / 100
-	if bSpawnedFromBoss then
+	if not bWasMinion then
 		maxHP = maxHP * 4
 	end
 	tree:SetBaseMaxHealth(maxHP)
 	tree:SetMaxHealth(self:GetTalentSpecialValueFor("treant_health"))
 	tree:SetHealth(self:GetTalentSpecialValueFor("treant_health"))
 	local ad = caster:GetAverageTrueAttackDamage(caster) * self:GetTalentSpecialValueFor("treant_damage")/100
-	if bSpawnedFromBoss then
+	if bWasMinion then
 		ad = ad * 4
 	end
 	tree:SetBaseDamageMax(ad)

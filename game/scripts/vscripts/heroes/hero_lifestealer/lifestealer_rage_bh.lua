@@ -1,9 +1,14 @@
 lifestealer_rage_bh = class({})
 LinkLuaModifier( "modifier_lifestealer_rage_bh", "heroes/hero_lifestealer/lifestealer_rage_bh.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function lifestealer_rage_bh:GetCastRange( target, position )
+	return self:GetTalentSpecialValueFor("cast_range")
+end
+
 function lifestealer_rage_bh:OnSpellStart()
     local caster = self:GetCaster()
     caster:StartGesture(ACT_DOTA_LIFESTEALER_RAGE)
+	caster:EmitSound("Hero_LifeStealer.Rage")
     caster:AddNewModifier(caster, self, "modifier_lifestealer_rage_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
 end
 

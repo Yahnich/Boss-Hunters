@@ -1,5 +1,5 @@
 modifier_base_attack_time_handler = class({})
-	
+
 function modifier_base_attack_time_handler:DeclareFunctions()
 	return {MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT}
 end

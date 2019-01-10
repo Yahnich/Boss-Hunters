@@ -41,7 +41,7 @@ function modifier_item_spellslayers_dirk:DeclareFunctions()
 			}
 end
 
-function modifier_item_spellslayers_dirk:GetModifierAttackSpeedBonus()
+function modifier_item_spellslayers_dirk:GetModifierBonusStats_Agility()
 	return self.agi
 end
 

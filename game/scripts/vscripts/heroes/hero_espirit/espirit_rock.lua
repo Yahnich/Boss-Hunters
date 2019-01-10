@@ -56,6 +56,8 @@ LinkLuaModifier( "modifier_espirit_rock_remnant", "heroes/hero_espirit/espirit_r
 
 function modifier_espirit_rock_remnant:OnCreated(table)
 	if IsServer() then
+		self.damage = self:GetTalentSpecialValueFor("remnant_damage")
+		self.radius = self:GetTalentSpecialValueFor("radius")
 		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_earth_spirit/espirit_stoneremnant.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControl(self.nfx, 0, self:GetParent():GetAbsOrigin())
 		ParticleManager:SetParticleControl(self.nfx, 1, self:GetParent():GetAbsOrigin())
@@ -81,8 +83,7 @@ end
 function modifier_espirit_rock_remnant:CheckState()
 	local state = { [MODIFIER_STATE_ATTACK_IMMUNE] = true,
 					[MODIFIER_STATE_MAGIC_IMMUNE] = true,
-					[MODIFIER_STATE_UNSELECTABLE] = true,
-					[MODIFIER_STATE_UNTARGETABLE] = true,
+					[MODIFIER_STATE_INVULNERABLE] = true,
 					[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 					[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
 					[MODIFIER_STATE_NO_HEALTH_BAR] = true,
@@ -93,6 +94,13 @@ end
 
 function modifier_espirit_rock_remnant:OnRemoved()
 	if IsServer() then
+		local caster = self:GetCaster()
+		local ability = self:GetAbility()
+		
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), self.radius ) ) do
+			ability:DealDamage( caster, enemy, self.damage, {damage_type = DAMAGE_TYPE_MAGICAL} )
+		end
+		ParticleManager:FireParticle("particles/units/heroes/hero_earth_spirit/earth_spirit_remnant_shatter.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		ParticleManager:DestroyParticle(self.nfx, false)
 		StopSoundOn("Hero_EarthSpirit.StoneRemnant.Impact", self:GetParent())
 		EmitSoundOn("Hero_EarthSpirit.StoneRemnant.Destroy", self:GetParent())

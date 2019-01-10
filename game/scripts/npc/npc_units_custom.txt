@@ -1084,7 +1084,7 @@
 		//
 		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/creeps/neutral_creeps/n_creep_golem_a/neutral_creep_golem_a.vmdl"	// Model.
-		"ModelScale"				"1.6"
+		"ModelScale"				"1.8"
 		"Level"						"12"
 		"IsAncient"					"0"
 		"IsWild"					"1"
@@ -2543,12 +2543,12 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"280"		// Speed.
+		"MovementSpeed"				"220"		// Speed.
 		"MovementTurnRate"			"0.1"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"2000"		// Base health.
+		"StatusHealth"				"1800"		// Base health.
 		"StatusHealthRegen"			"2"			// Health regeneration rate.
 		"StatusMana"				"2000"			// Base mana.
 		"StatusManaRegen"			"10"			// Mana regeneration rate.		 
@@ -3083,7 +3083,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"1500"		// Base health.
+		"StatusHealth"				"1250"		// Base health.
 		"StatusHealthRegen"			"4"			// Health regeneration rate.
 		"StatusMana"				"400"			// Base mana.
 		"StatusManaRegen"			"10"			// Mana regeneration rate.		 
@@ -3572,7 +3572,7 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"20"			// Physical protection.
+		"ArmorPhysical"				"16"			// Physical protection.
 		"MagicalResistance"			"20"		// Magical protection.
 		
 		// Attack
@@ -5486,7 +5486,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"350"		// Speed
-		"MovementTurnRate"			"0.25"		// Turning rate.
+		"MovementTurnRate"			"0.4"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -6224,7 +6224,7 @@
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"			"70"		// Damage range min.
 		"AttackDamageMax"			"80"		// Damage range max.
-		"AttackRate"				"3.0"		// Speed of attack.
+		"AttackRate"				"1.5"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"128"		// Range within a target can be attacked.
@@ -7093,14 +7093,14 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"4"			// Physical protection.
+		"ArmorPhysical"				"-2"			// Physical protection.
 		"MagicalResistance"			"0"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"110"		// Damage range min.
-		"AttackDamageMax"			"125"		// Damage range max.
+		"AttackDamageMin"			"100"		// Damage range min.
+		"AttackDamageMax"			"120"		// Damage range max.
 		"AttackRate"				"2.1"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
@@ -7123,7 +7123,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
-		"MovementSpeed"				"250"		// Speed
+		"MovementSpeed"				"235"		// Speed
 		"MovementTurnRate"			"0.1"		// Turning rate.
 	
 		// Status
@@ -7628,7 +7628,7 @@
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"			"80"		// Damage range min.
 		"AttackDamageMax"			"120"		// Damage range max.
-		"AttackRate"				"3"		// Speed of attack.
+		"AttackRate"				"4"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
 		"AttackRange"				"128"		// Range within a target can be attacked.
@@ -7650,7 +7650,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
-		"MovementSpeed"				"335"		// Speed
+		"MovementSpeed"				"315"		// Speed
 		"MovementTurnRate"			"0.3"		// Turning rate.
 		
 		// Status
@@ -7990,7 +7990,6 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"boss4_horde_power"
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -8315,7 +8314,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"0"			// Physical protection.
-		"MagicalResistance"			"60"		// Magical protection.
+		"MagicalResistance"			"75"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -8344,12 +8343,12 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
-		"MovementSpeed"				"280"		// Speed
+		"MovementSpeed"				"340"		// Speed
 		"MovementTurnRate"			"0.25"		// Turning rate.
 		
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"120"		// Base health.
+		"StatusHealth"				"140"		// Base health.
 		"StatusHealthRegen"			"1"		// Health regeneration rate.
 		"StatusMana"				"205"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -9222,7 +9221,7 @@
 	    "AttackDamageMin"     "1"     // Damage range min.
 	    "AttackDamageMax"     "5"     // Damage range max.
 	    "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
-	    "AttackRate"        "1"     // Speed of attack.
+	    "AttackRate"        "3"     // Speed of attack.
 	    "AttackAnimationPoint"    "0.5"   // Normalized time in animation cycle to attack.
 	    "AttackAcquisitionRange"  "250"   // Range within a target can be acquired.
 	    "AttackRange"       "300"   // Range within a target can be attacked.
@@ -9416,6 +9415,7 @@
 		"BaseClass"     			"npc_dota_creature"
 		"Model"						"models/heroes/brewmaster/brewmaster_earthspirit.vmdl"
 		"IsSummoned"				"1"
+		"ConsideredHero"			"1"
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		
@@ -9949,7 +9949,7 @@
 		//----------------------------------------------------------------
 		
 		"AbilityLayout"				"6"
-		"Ability1"					"generic_gold_dropper"			// Ability 1.
+		"Ability1"					"generic_hp_limiter"			// Ability 1.
 		"Ability2"					""			// Ability 2.
 		"Ability3"					""			// Ability 2.
 		"Ability4"					""			// Ability 2.
@@ -10087,7 +10087,7 @@
 		// Status
 		//----------------------------------------------------------------
 		"StatusHealth"				"2500"		// Base health.
-		"StatusHealthRegen"			"500"			// Health regeneration rate.
+		"StatusHealthRegen"			"0"			// Health regeneration rate.
 		"StatusMana"				"100"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
 		

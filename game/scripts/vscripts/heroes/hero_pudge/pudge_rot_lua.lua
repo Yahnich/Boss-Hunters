@@ -20,7 +20,7 @@ function pudge_rot_lua:OnToggle()
 	end
 end
 
-modifier_rot_lua = class({})
+modifier_rot_lua = class(toggleModifierBaseClass)
 function modifier_rot_lua:OnCreated(table)
     if IsServer() then
     	local radius = self:GetTalentSpecialValueFor("radius")

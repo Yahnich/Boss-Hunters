@@ -21,30 +21,35 @@ function modifier_windrunner_focusfire_bh:OnCreated(table)
 	self.bat = self:GetTalentSpecialValueFor("bonus_at")
 	self.dmg = TernaryOperator( self:GetTalentSpecialValueFor("scepter_dmg_reduction"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("dmg_reduction") )
     if IsServer() then
-        self:StartIntervalThink(self:GetCaster():GetSecondsPerAttack())
+		local caster = self:GetCaster()
+		self:StartIntervalThink( math.max( 0.31, ( caster:GetLastAttackTime( ) - GameRules:GetGameTime() ) + caster:GetSecondsPerAttack() ) )
     end
 end
 
 function modifier_windrunner_focusfire_bh:OnIntervalThink()
     local caster = self:GetCaster()
-    if not caster:IsAttacking() and (not caster:IsChanneling()) then
-        local enemies = self:GetCaster():FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:GetAttackRange())
-        if #enemies > 0 then
-            caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 1/caster:GetSecondsPerAttack())
+    if not caster:HasActiveAbility() and ( GameRules:GetGameTime() - caster:GetLastAttackTime( ) ) >= caster:GetSecondsPerAttack() then
+		self.lastAttackTarget = caster:GetAttackTarget() or self.lastAttackTarget
+		if not self.lastAttackTarget or ( self.lastAttackTarget and CalculateDistance( self.lastAttackTarget, caster ) > caster:GetAttackRange() ) then
+			self.lastAttackTarget = nil
+			local enemies = self:GetCaster():FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:GetAttackRange())
+			for _,enemy in pairs(enemies) do
+				self.lastAttackTarget = enemy
+				break
+			end
+		end
+        if self.lastAttackTarget then
+			caster:SetForwardVector( CalculateDirection(self.lastAttackTarget, caster ) )
+			caster:PerformAttack(self.lastAttackTarget, true, true, true, true, true, false, false)
+            caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 1.7/caster:GetAttackSpeed())
         else
             caster:RemoveGesture(ACT_DOTA_ATTACK)
         end
-        for _,enemy in pairs(enemies) do
-            if not caster:IsMoving() then
-                caster:FaceTowards(enemy:GetAbsOrigin())
-            end
-            caster:PerformAttack(enemy, true, true, true, true, true, false, false)
-            break
-        end
+		self:StartIntervalThink( self:GetCaster():GetSecondsPerAttack( ) - 0.03 )
     else
         caster:RemoveGesture(ACT_DOTA_ATTACK)
+		self:StartIntervalThink(0)
     end
-    self:StartIntervalThink(self:GetCaster():GetSecondsPerAttack())
 end
 
 function modifier_windrunner_focusfire_bh:OnRemoved()

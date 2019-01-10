@@ -112,6 +112,10 @@ function modifier_dw_bedlam:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
+function modifier_dw_bedlam:IsPurgable()
+	return not self:GetCaster():HasScepter()
+end
+
 modifier_dw_bedlam_bug = class({})
 function modifier_dw_bedlam_bug:OnCreated(table)
 	if IsServer() then

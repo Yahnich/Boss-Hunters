@@ -12,7 +12,7 @@ function obsidian_destroyer_avatar_of_power:OnToggle()
 	end
 end
 
-modifier_obsidian_destroyer_avatar_of_power_active = class({})
+modifier_obsidian_destroyer_avatar_of_power_active = class(toggleModifierBaseClass)
 LinkLuaModifier("modifier_obsidian_destroyer_avatar_of_power_active", "heroes/hero_outworld_devourer/obsidian_destroyer_avatar_of_power", 0)
 
 function modifier_obsidian_destroyer_avatar_of_power_active:OnCreated()

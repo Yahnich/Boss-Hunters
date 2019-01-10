@@ -21,7 +21,7 @@ function medusa_shield:OnToggle()
 	end
 end
 
-modifier_medusa_shield = class({})
+modifier_medusa_shield = class(toggleModifierBaseClass)
 
 function modifier_medusa_shield:OnCreated(table)
 	if IsServer() then

@@ -21,6 +21,7 @@ modifier_item_lightningrod_handle = class(itemBaseClass)
 function modifier_item_lightningrod_handle:OnCreated()
 	self.damage = self:GetSpecialValueFor("bonus_damage")
 	self.regen = self:GetSpecialValueFor("bonus_regen")
+	self.chance = self:GetSpecialValueFor("strike_chance")
 end
 
 function modifier_item_lightningrod_handle:GetAttributes()
@@ -42,9 +43,20 @@ function modifier_item_lightningrod_handle:GetModifierConstantHealthRegen()
 	return self.regen
 end
 
+function modifier_item_lightningrod_handle:GetAccuracy(bInfo)
+	if bInfo ~= true then
+		self.miss = self:RollPRNG(self.chance)
+		if self.miss then
+			return 100
+		end
+	else
+		return self.chance
+	end
+end
+
 function modifier_item_lightningrod_handle:OnAttackLanded(params)
 	if IsServer() then
-		if params.attacker == self:GetParent() and params.target:IsAlive() and RollPercentage(self:GetSpecialValueFor("strike_chance")) then
+		if params.attacker == self:GetParent() and params.target:IsAlive() and self.miss then
 			local caster = params.attacker
 			local ability = self:GetAbility()
 			local target = params.target

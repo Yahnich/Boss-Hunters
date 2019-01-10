@@ -24,7 +24,7 @@ end
 
 function EventManager:FireEvent(event, args)
 	for id, callback in pairs( PUBLIC_EVENTS[event] ) do
-		status, err, ret = xpcall(callback, debug.traceback, args)
+		status, err, ret = pcall(callback, args)
 		if not status  and not self.gameHasBeenBroken then
 			self:SendErrorReport(err)
 		end

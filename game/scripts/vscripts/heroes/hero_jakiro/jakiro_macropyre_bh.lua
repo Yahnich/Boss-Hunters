@@ -177,6 +177,7 @@ end
 
 function modifier_jakiro_macropyre_bh_talent:OnIntervalThink()
 	local caster = self:GetCaster()
+	local ability = self:GetAbility()
 	local width = self:GetTalentSpecialValueFor("width")
 	local damage = self:GetTalentSpecialValueFor("damage")
 
@@ -187,9 +188,26 @@ function modifier_jakiro_macropyre_bh_talent:OnIntervalThink()
 	local enemies = caster:FindEnemyUnitsInLine(self.start_pos, self.end_pos, width, {})
 	for _,enemy in pairs(enemies) do
 		if not enemy:IsMagicImmune() and not enemy:IsInvulnerable() then
-			self:GetAbility():DealDamage(caster, enemy, damage*0.5, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			ability:DealDamage(caster, enemy, damage*0.5, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		elseif not enemy:IsInvulnerable() and caster:HasTalent("special_bonus_unique_jakiro_macropyre_bh_1") then
-			self:GetAbility():DealDamage(caster, enemy, damage*0.5, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			ability:DealDamage(caster, enemy, damage*0.5, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		end
+		local modifier = enemy:AddNewModifier(caster, ability, "modifier_jakiro_macropyre_bh_talent_slow", {} )
+		modifier:SetDuration(0.5, false)
 	end
+end
+
+modifier_jakiro_macropyre_bh_talent_slow = class({})
+LinkLuaModifier("modifier_jakiro_macropyre_bh_talent_slow", "heroes/hero_jakiro/jakiro_macropyre_bh", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_jakiro_macropyre_bh_talent_slow:OnCreated()
+	self.slow = self:GetTalentSpecialValueFor("special_bonus_unique_jakiro_macropyre_bh_2")
+end
+
+function modifier_jakiro_macropyre_bh_talent_slow:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+end
+
+function modifier_jakiro_macropyre_bh_talent_slow:GetModifierMoveSpeedBonus_Percentage(params)
+	return self.slow
 end

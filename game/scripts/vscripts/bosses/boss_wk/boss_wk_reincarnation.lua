@@ -11,6 +11,16 @@ function modifier_boss_wk_reincarnation:OnCreated()
 	self.cd = self:GetSpecialValueFor("reincarnation_cd")
 	self.delay = self:GetSpecialValueFor("reincarnation_delay")
 	self.addedCD = self:GetSpecialValueFor("phase_bonus_cd")
+	self.hpLoss = 1 - self:GetSpecialValueFor("revive_hp_loss") / 100
+	self.bonusCD = 0
+	self.revives = 0
+end
+
+function modifier_boss_wk_reincarnation:OnRefresh()
+	self.cd = self:GetSpecialValueFor("reincarnation_cd")
+	self.delay = self:GetSpecialValueFor("reincarnation_delay")
+	self.addedCD = self:GetSpecialValueFor("phase_bonus_cd")
+	self.hpLoss = 1 - self:GetSpecialValueFor("revive_hp_loss") / 100
 	self.bonusCD = 0
 	self.revives = 0
 end
@@ -25,6 +35,7 @@ function modifier_boss_wk_reincarnation:OnTakeDamage(params)
 		self:GetAbility():StartCooldown( self.cd + self.bonusCD )
 		parent:AddNewModifier(parent, self:GetAbility(), "modifier_boss_wk_reincarnation_enrage", {duration = self.cd + self.bonusCD}):SetStackCount( self.revives )
 		self.bonusCD = self.bonusCD + self.addedCD
+		parent:SetCoreHealth( math.ceil( parent:GetMaxHealth() * self.hpLoss ) )
 		parent:SetHealth( parent:GetMaxHealth() / 2 )
 		parent:HealEvent( parent:GetMaxHealth(), source, parent )
 		self.revives = self.revives + 1
@@ -49,7 +60,8 @@ modifier_boss_wk_reincarnation_enrage = class({})
 LinkLuaModifier("modifier_boss_wk_reincarnation_enrage", "bosses/boss_wk/boss_wk_reincarnation", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_boss_wk_reincarnation_enrage:OnCreated()
-	self.as = self:GetSpecialValueFor("enrage_as") + self:GetSpecialValueFor("revive_bonus_as") * self:GetStackCount()
+	self.as = self:GetSpecialValueFor("enrage_as") 
+	self.bonus_as = self:GetSpecialValueFor("revive_bonus_as")
 	self.ms = self:GetSpecialValueFor("enrage_ms")
 	self.radius = self:GetSpecialValueFor("enrage_radius")
 	if IsServer() then
@@ -68,7 +80,7 @@ function modifier_boss_wk_reincarnation_enrage:OnDestroy()
 end
 
 function modifier_boss_wk_reincarnation_enrage:IsAura()
-	return true
+	return (not self:GetCaster():PassivesDisabled())
 end
 
 function modifier_boss_wk_reincarnation_enrage:GetModifierAura()
@@ -100,7 +112,7 @@ function modifier_boss_wk_reincarnation_enrage:DeclareFunctions()
 end
 
 function modifier_boss_wk_reincarnation_enrage:GetModifierAttackSpeedBonus()
-	return self.as
+	return self.as + self.bonus_as * self:GetStackCount()
 end
 
 function modifier_boss_wk_reincarnation_enrage:GetModifierMoveSpeedBonus_Percentage()
@@ -119,8 +131,10 @@ modifier_boss_wk_reincarnation_aura = class({})
 LinkLuaModifier("modifier_boss_wk_reincarnation_aura", "bosses/boss_wk/boss_wk_reincarnation", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_boss_wk_reincarnation_aura:OnCreated()
-	self.dmg = self:GetSpecialValueFor("enrage_dmg") + self:GetSpecialValueFor("revive_bonus_dmg") * self:GetCaster():GetModifierStackCount("modifier_boss_wk_reincarnation_enrage", self:GetCaster())
-	if IsServer() then self:StartIntervalThink(1) end
+	if IsServer() then
+		self.dmg = self:GetSpecialValueFor("enrage_dmg") + self:GetSpecialValueFor("revive_bonus_dmg") * self:GetCaster():GetModifierStackCount("modifier_boss_wk_reincarnation_enrage", self:GetCaster())
+		self:StartIntervalThink(1) 
+	end
 end
 
 function modifier_boss_wk_reincarnation_aura:OnIntervalThink()

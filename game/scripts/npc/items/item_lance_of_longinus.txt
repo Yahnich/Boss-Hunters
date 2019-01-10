@@ -23,7 +23,7 @@
 		"ItemResult"					"item_lance_of_longinus"
 		"ItemRequirements"
 		{
-			"01"						"item_soldiers_pike;item_hawks_feather;item_iron_rod"
+			"01"						"item_soldiers_pike;item_iron_rod"
 		}
 	}
 	"item_lance_of_longinus"

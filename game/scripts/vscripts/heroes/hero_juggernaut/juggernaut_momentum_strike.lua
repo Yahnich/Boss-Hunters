@@ -112,7 +112,7 @@ function modifier_juggernaut_momentum_strike_passive:IsHidden()
 	return true
 end
 
-modifier_juggernaut_momentum_strike_momentum = class({})
+modifier_juggernaut_momentum_strike_momentum = class(toggleModifierBaseClass)
 LinkLuaModifier("modifier_juggernaut_momentum_strike_momentum", "heroes/hero_juggernaut/juggernaut_momentum_strike", LUA_MODIFIER_MOTION_NONE)
 
 if IsServer() then

@@ -23,6 +23,7 @@ function modifier_item_voltas_greathammer_handle:OnCreated()
 	self.regen = self:GetSpecialValueFor("bonus_regen")
 	self.damage = self:GetSpecialValueFor("bonus_damage")
 	self.range = self:GetSpecialValueFor("bonus_attack_range")
+	self.chance = self:GetSpecialValueFor("strike_chance")
 	if not self:GetParent():IsRangedAttacker() then
 		self.range = self:GetSpecialValueFor("melee_attack_range")
 	end
@@ -47,9 +48,20 @@ function modifier_item_voltas_greathammer_handle:GetModifierAttackRangeBonus()
 	return self.range
 end
 
+function modifier_item_voltas_greathammer_handle:GetAccuracy(bInfo)
+	if bInfo ~= true then
+		self.miss = self:RollPRNG(self.chance)
+		if self.miss then
+			return 100
+		end
+	else
+		return self.chance
+	end
+end
+
 function modifier_item_voltas_greathammer_handle:OnAttackLanded(params)
 	if IsServer() then
-		if params.attacker == self:GetParent() and params.target:IsAlive() and RollPercentage(self:GetSpecialValueFor("strike_chance")) then
+		if params.attacker == self:GetParent() and params.target:IsAlive() and self.miss then
 			local caster = params.attacker
 			local ability = self:GetAbility()
 			local target = params.target

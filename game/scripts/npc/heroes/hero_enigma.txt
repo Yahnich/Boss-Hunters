@@ -56,7 +56,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"0.5"
+				"stun_duration"				"0.4 0.5 0.6 0.7 0.8 0.9 1.0"
 			}
 			"03"
 			{
@@ -160,7 +160,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"30 29 28 27 26 25 24"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -258,7 +258,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_enigma/enigma_midnight_pulse_bh"	
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"enigma_midnight_pulse"
 		"FightRecapLevel"				"1"
@@ -267,16 +267,16 @@
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"700"
+		"AbilityCastRange"				"350"
 		"AbilityCastPoint"				"0.3"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"45"
+		"AbilityCooldown"				"46 45 44 43 42 41 40"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"95 110 125 140 155 170 185"
+		"AbilityManaCost"				"110 150 190 230 270 310 350"
 		
 		"precache"
 		{
@@ -296,7 +296,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"damage_percent"				"1.25"
+				"damage_percent"				"1"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
@@ -357,6 +357,100 @@
 		}
 	}
 	//=================================================================================================================
+	// Enigma: Demonic Conversion
+	//=================================================================================================================
+	"enigma_shattered_mass"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_enigma/enigma_shattered_mass"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"AbilitySound"					"Hero_Enigma.Demonic_Conversion"
+		"AbilityTextureName"			"enigma_demonic_conversion"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"35.0 35.0 35.0 35.0"
+		"AbilityDuration"				"35.0 35.0 35.0 35.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"140 150 160 170"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"split_attack_count"	"12"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"evolve_attack_count"	"6"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lesser_eidolon_hp"		"200"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"eidolon_hp"			"400"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"greater_eidolon_hp"	"800"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dire_eidolon_hp"		"1600"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lesser_eidolon_dmg"	"25"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"eidolon_dmg"			"50"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"greater_eidolon_dmg"	"75"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dire_eidolon_dmg"		"100"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"60"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+	}
+	//=================================================================================================================
 	// Enigma: Black Hole
 	//=================================================================================================================
 	"enigma_black_hole_bh"
@@ -383,7 +477,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"100.0"
+		"AbilityCooldown"				"130 120 110 100 90 80"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------

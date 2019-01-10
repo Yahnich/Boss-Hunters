@@ -93,7 +93,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"75"
+				"value"						"120"
 			}
 		}
 	}
@@ -168,7 +168,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"15 22 30 37 45 52 60"
+				"damage"				"15 25 35 45 55 65 75"
 			}
 			"02"
 			{

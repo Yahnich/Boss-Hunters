@@ -177,10 +177,10 @@
 	
 		"precache"
 		{
-			"particle"					"particles/bosses/boss_wolves/boss_boss_alpha_wolf_howl.vpcf"
-			"particle"  				"particles/econ/items/viper/viper_ti7_immortal/viper_poison_crimson_debuff_ti7.vpcf"
+			"particle"					"particles/units/heroes/hero_lycan/lycan_howl_buff.vpcf"
+			"particle"  				"particles/units/heroes/hero_lycan/lycan_howl_cast.vpcf"
 
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts"
 		}
 		
 		// Special

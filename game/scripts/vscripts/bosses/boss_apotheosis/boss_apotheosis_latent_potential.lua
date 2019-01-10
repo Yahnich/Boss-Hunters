@@ -12,7 +12,9 @@ function modifier_boss_apotheosis_latent_potential:OnCreated()
 	self.interval = self:GetSpecialValueFor("double_timer")
 	self:SetStackCount( 1 )
 	
-	self:StartIntervalThink( self.interval)
+	if IsServer() then
+		self:StartIntervalThink( self.interval)
+	end
 end
 
 function modifier_boss_apotheosis_latent_potential:OnRefresh()
@@ -23,7 +25,10 @@ end
 function modifier_boss_apotheosis_latent_potential:OnIntervalThink()
 	if not self:GetParent():PassivesDisabled() then
 		self:StartIntervalThink(self.interval)
-		self:SetStackCount( self:GetStackCount() * 2 )
+		self:SetStackCount( math.min( 1000, self:GetStackCount() * 2 ) )
+		if self:GetStackCount() >= 1000 then
+			self:StartIntervalThink(-1)
+		end
 	else
 		self:StartIntervalThink( 1 )
 	end

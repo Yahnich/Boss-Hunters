@@ -186,7 +186,7 @@
 		"MaxLevel"						"2"
 		
 		"AbilityCooldown"				"12"
-		"AbilityCastPoint"				"2 1.5"
+		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		
 		"precache"
@@ -337,7 +337,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"-70 -80"
+				"damage_reduction"		"-50 -65"
 			}
 			"02"
 			{
@@ -357,7 +357,7 @@
 		"AbilityTextureName"			"ursa_enrage"
 		"MaxLevel"						"2"
 		
-		"AbilityCooldown"				"50 40"
+		"AbilityCooldown"				"55 45"
 		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
 		"AbilityCastPoint"				"1.5 1"
 		
@@ -398,7 +398,7 @@
 		"AbilityTextureName"			"custom/ursa_claw"
 		"MaxLevel"						"2"
 		
-		"AbilityCooldown"				"40 30"
+		"AbilityCooldown"				"45 35"
 		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
 		"AbilityCastPoint"				"1.5 1"
 		

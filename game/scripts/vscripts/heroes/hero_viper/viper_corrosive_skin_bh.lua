@@ -34,7 +34,7 @@ function modifier_viper_corrosive_skin_bh:DeclareFunctions()
 end
 
 function modifier_viper_corrosive_skin_bh:OnTakeDamage(params)
-	if params.unit == self:GetParent() then
+	if params.unit == self:GetParent() and not params.attacker:IsSameTeam( params.unit ) then
 		params.attacker:EmitSound("hero_viper.CorrosiveSkin")
 		params.attacker:AddNewModifier( params.unit, self:GetAbility(), "modifier_viper_corrosive_skin_bh_debuff", {duration = self.duration} )
 	end

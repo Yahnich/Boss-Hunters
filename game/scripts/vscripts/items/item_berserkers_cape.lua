@@ -27,18 +27,14 @@ item_berserkers_cape_3 = class(item_berserkers_cape)
 item_berserkers_cape_4 = class(item_berserkers_cape)
 
 LinkLuaModifier( "modifier_item_berserkers_cape_visual", "items/item_berserkers_cape.lua", LUA_MODIFIER_MOTION_NONE )
-modifier_item_berserkers_cape_visual = class({})
+modifier_item_berserkers_cape_visual = class(toggleModifierBaseClass)
 
 function modifier_item_berserkers_cape_visual:GetTexture()
 	return "custom/berserkers_cape_on"
 end
 
-function modifier_item_berserkers_cape_visual:IsPurgable()
-	return false
-end
-
 LinkLuaModifier( "modifier_item_berserkers_cape_active", "items/item_berserkers_cape.lua", LUA_MODIFIER_MOTION_NONE )
-modifier_item_berserkers_cape_active = class({})
+modifier_item_berserkers_cape_active = class(toggleModifierBaseClass)
 function modifier_item_berserkers_cape_active:OnCreated()
 	self.damagePct = self:GetSpecialValueFor("max_hp_damage") / 100
 	self.drain = self:GetSpecialValueFor("max_hp_drain") / 100
@@ -66,10 +62,6 @@ end
 
 function modifier_item_berserkers_cape_active:IsHidden()
 	return true
-end
-
-function modifier_item_berserkers_cape_active:IsPurgable()
-	return false
 end
 
 LinkLuaModifier( "modifier_item_berserkers_cape", "items/item_berserkers_cape.lua" ,LUA_MODIFIER_MOTION_NONE )

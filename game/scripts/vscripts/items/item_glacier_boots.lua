@@ -21,7 +21,7 @@ function item_glacier_boots:GetIntrinsicModifierName()
 end
 
 LinkLuaModifier( "modifier_item_glacier_boots_toggle", "items/item_glacier_boots.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_glacier_boots_toggle = class(itemBaseClass)
+modifier_item_glacier_boots_toggle = class(toggleModifierBaseClass)
 
 function modifier_item_glacier_boots_toggle:OnCreated()
 	self.slow = self:GetSpecialValueFor("active_ms")

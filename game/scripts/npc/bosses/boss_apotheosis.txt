@@ -20,7 +20,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_hp_dmg"			"1.5 1"
+				"max_hp_dmg"			"8 5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"break_hp_dmg"			"24 15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"min_block"				"40 60"
 			}
 		}
 	}
@@ -45,6 +55,11 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"debuff_limit"			"7.5 5.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"buff_duration"			"2 3"
 			}
 		}
 	}
@@ -129,7 +144,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"width"						"200 250"
+				"width"						"175"
 			}
 			"02"
 			{
@@ -145,6 +160,16 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"duration"					"14"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"turn_slow"					"-95 -90"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"no_target_timer"			"6 3"
 			}
 		}
 	}
@@ -180,7 +205,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"250 350"
+				"damage"					"220 280"
 			}
 			"03"
 			{
@@ -210,7 +235,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"MaxLevel"						"3"
 		
-		"AbilityChannelTime"			"2 1"
+		"AbilityChannelTime"			"1.5 1"
 		"AbilityChannelAnimation"		"ACT_DOTA_TELEPORT"
 		"AbilityCastPoint"				"1"
 		"AbilityCooldown"				"60 45"
@@ -225,7 +250,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"channel_time"				"2 1"
+				"channel_time"				"1.5 1"
 			}
 			"02"
 			{
@@ -245,12 +270,12 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"sunstrikes_per_hero"		"2 3"
+				"sunstrikes_per_hero"		"1 2"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"delay"						"1.5 1"
+				"delay"						"2 1.5"
 			}
 		}
 	}
@@ -377,12 +402,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"slow"						"-60"
+				"slow"						"-25 -33"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"6 10"
+				"duration"					"10 15"
 			}
 		}
 	}

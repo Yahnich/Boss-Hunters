@@ -14,42 +14,41 @@ function espirit_rock_pull:GetAOERadius()
 	return self:GetTalentSpecialValueFor("radius")
 end
 
+function espirit_rock_pull:CastFilterResultTarget( target )
+	if target:GetName() == "npc_dota_earth_spirit_stone" then
+		return UF_SUCCESS
+	else
+		return UnitFilter( target, TernaryOperator( DOTA_UNIT_TARGET_TEAM_BOTH ,self:GetCaster():HasTalent("special_bonus_unique_espirit_rock_pull_1"), DOTA_UNIT_TARGET_TEAM_ENEMY ), DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0,self:GetCaster():GetTeam() )
+	end
+end
+
 function espirit_rock_pull:OnSpellStart()
     local caster = self:GetCaster()
-    local point = self:GetCursorPosition()
+    local target = self:GetCursorTarget()
 
     EmitSoundOn("Hero_EarthSpirit.GeomagneticGrip.Cast", caster)
 
     local maxTargets = 1
     local curTargets = 0
-
     if caster:HasTalent("special_bonus_unique_espirit_rock_pull_2") then
     	maxTargets = maxTargets + caster:FindTalentValue("special_bonus_unique_espirit_rock_pull_2")
     end
-
-    local stones = caster:FindFriendlyUnitsInRadius(point, self:GetSpecialValueFor("radius"), {type = DOTA_UNIT_TARGET_ALL})
-    for _,stone in pairs(stones) do
-    	if curTargets < maxTargets then
-			if stone:GetName() == "npc_dota_earth_spirit_stone" then
-				EmitSoundOn("Hero_EarthSpirit.GeomagneticGrip.Target", stone)
-				stone:AddNewModifier(caster, self, "modifier_rock_pull", {})
-				curTargets = curTargets + 1
-			end
-		else
-			break
-		end
-    end
-
-    if curTargets < 1 then
-    	self:RefundManaCost()
-    	self:EndCooldown()
-    end
+	if target:GetName() == "npc_dota_earth_spirit_stone" or self:GetCaster():HasTalent("special_bonus_unique_espirit_rock_pull_1") and target:IsSameTeam(caster) then
+		target:AddNewModifier(caster, self, "modifier_rock_pull", {})
+	elseif not target:IsSameTeam(caster) then
+		target:AddNewModifier(caster, self, "modifier_rock_pull_enemy", {duration = 0.5})
+	end
+	EmitSoundOn("Hero_EarthSpirit.GeomagneticGrip.Target", target)
 end
 
 modifier_rock_pull = class({})
 
 function modifier_rock_pull:OnCreated(table)
 	if IsServer() then
+		caster = self:GetCaster()
+		target = self:GetParent()
+		self.buffer = target:GetHullRadius() + target:GetCollisionPadding() + caster:GetHullRadius() + caster:GetCollisionPadding()
+		self.silence = self:GetTalentSpecialValueFor("duration")
 		self:StartIntervalThink(FrameTime())
 	end
 end
@@ -65,18 +64,14 @@ function modifier_rock_pull:OnIntervalThink()
 	local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), self:GetSpecialValueFor("radius"))
 	for _,enemy in pairs(enemies) do
 		if not enemy:HasModifier("modifier_rock_pull_enemy") then
-			if caster:HasTalent("special_bonus_unique_espirit_rock_pull_1") then
-				EmitSoundOn("Hero_EarthSpirit.BoulderSmash.Silence", enemy)
-				enemy:AddNewModifier(caster, ability, "modifier_silence", {Duration = caster:FindTalentValue("special_bonus_unique_espirit_rock_pull_1")})
-			end
-
+			EmitSoundOn("Hero_EarthSpirit.BoulderSmash.Silence", enemy)
+			enemy:Silence(ability, caster, self.silence)
 			enemy:AddNewModifier(caster, ability, "modifier_rock_pull_enemy", {Duration = 0.5})
 		end
 	end
 
-	if distance > 20 then
-		target:SetForwardVector(direction)
-		target:SetAbsOrigin(target:GetAbsOrigin() - direction * 50)
+	if distance > self.buffer then
+		target:SetAbsOrigin(target:GetAbsOrigin() - direction * 20)
 	else
 		FindClearSpaceForUnit(target, target:GetAbsOrigin(), true)
 		self:Destroy()
@@ -93,7 +88,14 @@ modifier_rock_pull_enemy = class({})
 function modifier_rock_pull_enemy:OnCreated(table)
 	if IsServer() then
 		EmitSoundOn("Hero_EarthSpirit.GeomagneticGrip.Damage", self:GetParent())
-
 		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetSpecialValueFor("damage"), {}, 0)
 	end
+end
+
+function modifier_rock_pull_enemy:IsHidden()
+	return true
+end
+
+function modifier_rock_pull_enemy:GetEffectName()
+	return "particles/units/heroes/hero_earth_spirit/espirit_geomagentic_target_sphere.vpcf"
 end

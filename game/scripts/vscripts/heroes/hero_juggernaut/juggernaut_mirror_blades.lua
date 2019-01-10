@@ -1,4 +1,4 @@
-juggernaut_mirror_blades = class({})
+	juggernaut_mirror_blades = class({})
 
 function juggernaut_mirror_blades:OnToggle()
 	local caster = self:GetCaster()
@@ -13,7 +13,7 @@ function juggernaut_mirror_blades:ShouldUseResources()
 	return true
 end
 
-modifier_juggernaut_mirror_blades = class({})
+modifier_juggernaut_mirror_blades = class(toggleModifierBaseClass)
 LinkLuaModifier("modifier_juggernaut_mirror_blades", "heroes/hero_juggernaut/juggernaut_mirror_blades", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_juggernaut_mirror_blades:OnCreated()

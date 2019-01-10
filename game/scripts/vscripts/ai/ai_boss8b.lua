@@ -38,7 +38,7 @@ function AIThink(thisEntity)
 		if thisEntity:IsChanneling() then return AI_THINK_RATE end
 		local danger = AICore:NearestEnemyHeroInRange( thisEntity, 600, true )
 		if danger then 
-			if thisEntity.march:IsFullyCastable() then
+			if thisEntity.march:IsFullyCastable() and RollPercentage( 50 ) then
 				ExecuteOrderFromTable({
 					UnitIndex = thisEntity:entindex(),
 					OrderType = DOTA_UNIT_ORDER_CAST_POSITION,

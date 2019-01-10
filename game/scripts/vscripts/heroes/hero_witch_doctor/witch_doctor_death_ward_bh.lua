@@ -36,7 +36,9 @@ end
 function witch_doctor_death_ward_bh:OnProjectileHit_ExtraData(target, vLocation, extraData)
 	if not self.death_ward:IsNull() then
 		local fixedDamage = self.wardDamage - self:GetCaster():GetAttackDamage()
-		self:GetCaster():PerformAbilityAttack(target, self:GetCaster():HasTalent("special_bonus_unique_witch_doctor_death_ward_1"), self, fixedDamage, false, false)
+		local procs = self:GetCaster():HasTalent("special_bonus_unique_witch_doctor_death_ward_1") and self:GetTalentSpecialValueFor("bounces_scepter") == tonumber( extraData.bounces_left )
+		print( procs )
+		self:GetCaster():PerformAbilityAttack(target, procs, self, fixedDamage, false, false)
 		if extraData.bounces_left > 0 and self:GetCaster():HasScepter() then
 			extraData.bounces_left = extraData.bounces_left - 1
 			extraData[tostring(target:GetEntityIndex())] = 1
@@ -67,6 +69,7 @@ function witch_doctor_death_ward_bh:CreateBounceAttack(originalTarget, extraData
 			}
 			ProjectileManager:CreateTrackingProjectile(projectile)
             extraData.bounces_left = extraData.bounces_left - 1
+			break
         end
     end
 	EmitSoundOn("Hero_Jakiro.Attack" ,originalTarget)

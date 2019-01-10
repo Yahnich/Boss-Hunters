@@ -6,7 +6,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_furion/furion_tree_jail.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityTextureName"			"custom/furion_sprout_ebf"
 		"MaxLevel"						"7"
 
@@ -95,7 +95,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"15"
+				"value"					"1"
 			}
 		}
 	}
@@ -416,7 +416,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"110 140 170 200 230 260"
+				"damage"						"120 170 220 270 320 370"
 			}
 			"02"
 			{

@@ -351,7 +351,7 @@
 		"AbilityLayout"				"5"
 		"Ability1"					"chen_penitence_ebf"
 		"Ability2"					"chen_test_of_faith_ebf"
-		"Ability3"					"chen_test_of_faith_heal_ebf"
+		"Ability3"					"chen_divine_favor_bh"
 		"Ability4"					"chen_angel_persuasion"
 		"Ability6"					"chen_god_hand"
 		
@@ -359,8 +359,8 @@
 		"Ability11"					"special_bonus_unique_chen_penitence_ebf_2"
 		"Ability12"					"special_bonus_unique_chen_test_of_faith_ebf_1"
 		"Ability13"					"special_bonus_unique_chen_test_of_faith_ebf_2"
-		"Ability14"					"special_bonus_unique_chen_test_of_faith_heal_ebf_1"
-		"Ability15"					"special_bonus_unique_chen_test_of_faith_heal_ebf_2"
+		"Ability14"					"special_bonus_unique_chen_divine_favor_1"
+		"Ability15"					"special_bonus_unique_chen_divine_favor_2"
 		"Ability16"					"special_bonus_unique_chen_god_hand_1"
 		"Ability17"					"special_bonus_unique_chen_god_hand_2"
 	}
@@ -558,7 +558,7 @@
 		"Ability14"				"special_bonus_unique_earthshaker_echo_slam_ebf_1"
 		"Ability15"				"special_bonus_unique_earthshaker_echo_slam_ebf_2"
 		"Ability16"				"special_bonus_unique_earthshaker_fissure_ebf_1"
-		"Ability17"				"special_bonus_unique_earthshaker_aftershock_ebf_1"
+		"Ability17"				"special_bonus_unique_earthshaker_fissure_ebf_2"
 	}
 	//=================================================================================================================
 	// HERO: es
@@ -573,12 +573,12 @@
 		"Ability5"						"espirit_stone_rip"
 		"Ability6"						"espirit_magnetize"
 
-		"Ability10"						"special_bonus_unique_espirit_rock_punch_1"
+		"Ability10"						"special_bonus_unique_espirit_rock_punch_2"
 		"Ability11"  				    "special_bonus_unique_espirit_rock_3"
 		"Ability12"   					"special_bonus_unique_espirit_boulder_1"
 		"Ability13"						"special_bonus_unique_espirit_boulder_2"
 		"Ability14"						"special_bonus_unique_espirit_rock_pull_1"
-		"Ability15"						"special_bonus_unique_espirit_rock_2"
+		"Ability15"						"special_bonus_unique_espirit_rock_punch_1"
 		"Ability16"						"special_bonus_unique_espirit_rock_1"
 		"Ability17"						"special_bonus_unique_espirit_magnetize_1"
 	}
@@ -692,6 +692,7 @@
 		"Ability1"						"enigma_malefice_bh"
 		"Ability2"						"enigma_white_hole"
 		"Ability3"						"enigma_midnight_pulse_bh"
+		"Ability4"						"enigma_shattered_mass"
 		"Ability6"						"enigma_black_hole_bh"
 		
 		"Ability10"						"special_bonus_unique_enigma_malefice_1"
@@ -1041,7 +1042,7 @@
 		"Ability2"						"lion_frogger"
 		"Ability3"						"lion_meteor"
 		"Ability4"						"lion_mana_aura"
-		"Ability5"						"lion_refined_fireblast"
+		// "Ability5"						"lion_refined_fireblast"
 		"Ability6"						"lion_death_finger"
 		
 		"Ability10"						"special_bonus_unique_lion_earth_spike_1"

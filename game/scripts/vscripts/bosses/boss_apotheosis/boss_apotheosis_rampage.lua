@@ -54,7 +54,11 @@ function modifier_boss_apotheosis_rampage:OnIntervalThink()
 	local ability = self:GetAbility()
 	local casterPos = caster:GetAbsOrigin()
 	for _, hero in ipairs( caster:FindEnemyUnitsInRadius( casterPos, -1 ) ) do
-		self:GetAbility():FireOrb(hero:GetAbsOrigin(), self.speed)
+		if RollPercentage( 50 ) then
+			self:GetAbility():FireOrb(hero:GetAbsOrigin(), self.speed)
+		else
+			self:GetAbility():FireOrb(casterPos + ActualRandomVector( 1200, 300 ), self.speed )
+		end
 		orbsPerShot = orbsPerShot - 1
 		if orbsPerShot == 0 then
 			break

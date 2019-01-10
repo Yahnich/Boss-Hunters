@@ -143,6 +143,10 @@ function modifier_arctic_sting:IsDebuff()
     return false
 end
 
+function modifier_arctic_sting:IsPurgable()
+	return not self:GetCaster():HasScepter()
+end
+
 function modifier_arctic_sting:GetEffectName()
     return "particles/units/heroes/hero_winter_wyvern/wyvern_arctic_burn_buff.vpcf"
 end

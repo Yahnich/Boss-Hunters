@@ -3,30 +3,29 @@ LinkLuaModifier( "modifier_green_dragon_volatile_rot_handle", "bosses/boss_green
 LinkLuaModifier( "modifier_green_dragon_volatile_rot", "bosses/boss_green_dragon/green_dragon_volatile_rot", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_green_dragon_toxic_pool", "bosses/boss_green_dragon/green_dragon_toxic_pool", LUA_MODIFIER_MOTION_NONE )
 
-function green_dragon_volatile_rot:GetIntrinsicModifierName()
-	return "modifier_green_dragon_volatile_rot_handle"
-end
+ROT_RADIUS = 100
+ROT_DISTANCE = 900
+ROT_SPEED = 600
 
-modifier_green_dragon_volatile_rot_handle = class({})
-function modifier_green_dragon_volatile_rot_handle:OnCreated(table)
-	if IsServer() then
-		self:StartIntervalThink(self:GetSpecialValueFor("cooldown"))
-	end
-end
-
-function modifier_green_dragon_volatile_rot_handle:OnIntervalThink()
+function green_dragon_volatile_rot:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
-	if caster:GetAttackTarget() and caster:GetAttackTarget():IsAlive() and caster:GetAttackTarget():IsHero() and (not caster:HasModifier("modifier_green_dragon_etheral_armor")) then
-		caster:SpendMana(33, self:GetAbility())
-		if enemy:TriggerSpellAbsorb(self) then return end
-		caster:GetAttackTarget():AddNewModifier(caster, self:GetAbility(), "modifier_green_dragon_volatile_rot", {Duration = self:GetSpecialValueFor("duration")})
-		return self:StartIntervalThink(0.1)
-	end
-	return self:StartIntervalThink(self:GetSpecialValueFor("cooldown"))
+	local startPos = caster:GetAbsOrigin()
+	local endPos = startPos + CalculateDirection( self:GetCursorPosition(), caster ) * ROT_DISTANCE
+	ParticleManager:FireLinearWarningParticle(startPos, endPos, ROT_RADIUS * 2)
+	return true
 end
 
-function modifier_green_dragon_volatile_rot_handle:IsHidden()
-	return true
+function green_dragon_volatile_rot:OnSpellStart()
+	local caster = self:GetCaster()
+	local direction = CalculateDirection( self:GetCursorPosition(), caster )
+	self:FireLinearProjectile("particles/econ/items/venomancer/veno_ti8_immortal_head/veno_ti8_immortal_gale.vpcf", ROT_SPEED * direction, ROT_DISTANCE, ROT_RADIUS)
+end
+
+function green_dragon_volatile_rot:OnProjectileHit(target, position)
+	local caster = self:GetCaster()
+	if target and not target:TriggerSpellAbsorb(self) then
+		target:AddNewModifier(caster, self, "modifier_green_dragon_volatile_rot", {Duration = self:GetSpecialValueFor("duration")})
+	end
 end
 
 modifier_green_dragon_volatile_rot = class({})
@@ -49,17 +48,16 @@ function modifier_green_dragon_volatile_rot:OnIntervalThink()
 			ability:CreateToxicPool(pos)
 		end
     	
-    	
-    	local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
+    	local radius = self:GetSpecialValueFor("radius")
+    	local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), radius)
     	for _,enemy in pairs(enemies) do
 			local nfx = ParticleManager:CreateParticle("particles/bosses/boss_green_dragon/boss_green_dragon_volatile_rot.vpcf", PATTACH_POINT_FOLLOW, enemy)
 						ParticleManager:SetParticleControlEnt(nfx, 0, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
 						ParticleManager:SetParticleControl(nfx, 1, enemy:GetAbsOrigin())
 						ParticleManager:ReleaseParticleIndex(nfx)
 
-			local distance = CalculateDistance(enemy, caster)
-
-    		self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("damage")/distance, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
+			local distance = CalculateDistance(enemy, parent)
+    		self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("damage") * ( (500 - distance)/500 ), {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
     	end
     end
 end

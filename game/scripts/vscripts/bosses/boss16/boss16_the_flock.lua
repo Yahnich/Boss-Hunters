@@ -86,6 +86,6 @@ function modifier_boss16_the_flock_manager:OnDeath(params)
 			drake.owningDragon = dragon
 			table.insert(dragonAb.drakeCount, drake)
 		end
-		dragonAb:StartCooldown(5)
+		dragonAb:StartCooldown(15)
 	end
 end

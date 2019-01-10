@@ -121,8 +121,8 @@ function et_earthbreaker:OnProjectileHit_ExtraData(hTarget, vLocation, table)
 		end
 
 		if table.name == "bothDamage" then
-			self:DealDamage(caster, hTarget, damage/2, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
-			self:DealDamage(caster, hTarget, damage/2, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+			self:DealDamage(caster, hTarget, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+			self:DealDamage(caster, hTarget, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
 		elseif table.name == "magDamage" then
 			self:DealDamage(caster, hTarget, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
 		elseif table.name == "physDamage" then

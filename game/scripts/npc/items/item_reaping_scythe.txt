@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1680"	
+		"ItemCost"						"1255"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_reaping_scythe"
 		"ItemRequirements"
 		{
-			"01"						"item_gem_of_corruption"
+			"01"						"item_gem_of_corruption;item_broadsword"
 		}
 	}
 	"item_reaping_scythe"
@@ -67,7 +67,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"35"
+				"bonus_damage"			"40"
 			}
 		}
 	}

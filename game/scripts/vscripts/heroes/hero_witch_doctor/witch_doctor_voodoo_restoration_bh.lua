@@ -24,7 +24,7 @@ function witch_doctor_voodoo_restoration_bh:OnToggle()
 	end
 end
 
-witch_doctor_voodoo_restoration_bh_handler = class({})
+witch_doctor_voodoo_restoration_bh_handler = class(toggleModifierBaseClass)
 
 function witch_doctor_voodoo_restoration_bh_handler:OnCreated()
 	self.interval = self:GetAbility():GetTalentSpecialValueFor("heal_interval")

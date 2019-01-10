@@ -36,10 +36,6 @@ function furion_natures_wrath:OnSpellStart()
 				--Spare ourselves sound complaints
 				--EmitSoundOn("Hero_Furion.WrathOfNature_Damage.Creep", enemy)
 				hitTable[enemy:entindex()] = true
-					
-				if caster:HasTalent("special_bonus_unique_furion_natures_wrath_1") and enemy:HasModifier("modifier_entangle_enemy") then
-					self:Stun(enemy, 0.25, false)
-				end
 
 				if caster:HasTalent("special_bonus_unique_furion_natures_wrath_2") and RollPercentage( talent2Chance ) then
 					enemy:AddNewModifier(caster, entangle, "modifier_entangle_enemy", {duration = talent2Duration})
@@ -79,6 +75,6 @@ end
 function modifier_furion_natures_wrath_revive:OnDeath(params)
 	if params.unit == self:GetParent() then
 		local treants = self:GetCaster():FindAbilityByName("furion_tree_ant")
-		if treants then treants:SpawnTreant( self:GetParent():GetAbsOrigin(), params.unit:IsRoundNecessary() ) end
+		if treants then treants:SpawnTreant( self:GetParent():GetAbsOrigin(), params.unit:IsMinion() ) end
 	end
 end

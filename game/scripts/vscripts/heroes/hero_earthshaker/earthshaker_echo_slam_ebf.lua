@@ -18,7 +18,6 @@ function earthshaker_echo_slam_ebf:OnSpellStart()
 	EmitSoundOn( "Hero_EarthShaker.EchoSlam", caster )
 	
 	ParticleManager:FireParticle("particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start.vpcf", PATTACH_ABSORIGIN, caster, {[1] = Vector(5750,0,0)})
-	EmitSoundOn("Hero_EarthShaker.EchoSlam", caster)
 	local baseDamage = self:GetTalentSpecialValueFor("main_damage")
 	local echoDamage = self:GetTalentSpecialValueFor("echo_damage")
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), -1)
@@ -27,6 +26,7 @@ function earthshaker_echo_slam_ebf:OnSpellStart()
 		local radiusDamage = baseDamage / sqRad
 		self:DealDamage( caster, enemy, radiusDamage )
 		ParticleManager:FireParticle("particles/units/heroes/hero_earthshaker/earthshaker_echoslam_end.vpcf", PATTACH_POINT_FOLLOW, enemy)
+		EmitSoundOn("Hero_EarthShaker.EchoSlamEcho", origin)
 		for _, echoTarget in ipairs( enemies ) do
 			if enemy:entindex() ~= echoTarget:entindex() then
 				self:CreateEcho( enemy, echoTarget, echoDamage )
@@ -48,10 +48,13 @@ function earthshaker_echo_slam_ebf:CreateEcho(origin, target, damage)
 		bDodgeable = false,
 		ExtraData = {damage = damage}
 	}
-	EmitSoundOn("Hero_EarthShaker.EchoSlamEcho", caster)
 	ProjectileManager:CreateTrackingProjectile(info)
 	if caster:HasTalent("special_bonus_unique_earthshaker_echo_slam_ebf_1") then
-		Timers:CreateTimer(0.25, function() ProjectileManager:CreateTrackingProjectile(info) end)
+		Timers:CreateTimer(0.25, function() 
+			if target:IsAlive() then
+				ProjectileManager:CreateTrackingProjectile(info)
+			end
+		end)
 	end
 end
 

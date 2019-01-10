@@ -100,6 +100,7 @@ end
 
 function modifier_item_iron_rose_aura:OnTakeDamage(params)
 	local hero = self:GetParent()
+	if hero:IsIllusion() then return end
     local dmg = params.original_damage
 	local dmgtype = params.damage_type
 	local attacker = params.attacker

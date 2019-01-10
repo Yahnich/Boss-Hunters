@@ -29,10 +29,22 @@ function lion_frogger:OnSpellStart()
         self:RefundManaCost()
         self:EndCooldown()
     end
+	
+	local manaDamage = 0
+	if caster:HasScepter() and caster:HasModifier("modifier_lion_mana_aura_scepter") then
+		local innate = caster:FindAbilityByName("lion_mana_aura")
+		if innate then
+			manaDamage = caster:GetMana() * innate:GetTalentSpecialValueFor("scepter_curr_mana_dmg") / 100
+			caster:SpendMana(manaDamage)
+		end
+	end
     
     for _,enemy in pairs(enemies) do
         ParticleManager:FireParticle("particles/units/heroes/hero_lion/lion_spell_voodoo.vpcf", PATTACH_POINT, enemy, {})
-
+		if caster:HasScepter() and caster:HasModifier("modifier_lion_mana_aura_scepter") then
+			self:DealDamage( caster, enemy, manaDamage, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+			ParticleManager:FireRopeParticle("particles/items2_fx/necronomicon_archer_manaburn.vpcf", PATTACH_POINT_FOLLOW, caster, enemy)
+		end
         enemy:AddNewModifier(caster, self, "modifier_lion_frogger", {Duration = self:GetTalentSpecialValueFor("duration")})
         enemy:DisableHealing(self:GetTalentSpecialValueFor("duration"))
     end

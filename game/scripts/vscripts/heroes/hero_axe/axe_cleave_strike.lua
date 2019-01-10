@@ -24,7 +24,7 @@ end
 
 function modifier_cleave_strike:OnAttackLanded(params)
 	if IsServer() then
-		if (params.unit == self:GetCaster() or ( params.attacker == self:GetCaster() and self:GetCaster():HasTalent("special_bonus_unique_axe_cleave_strike_2") ) ) 
+		if (params.target == self:GetParent() or ( params.attacker == self:GetCaster() and self:GetCaster():HasTalent("special_bonus_unique_axe_cleave_strike_2") ) ) 
 		and self:GetAbility():IsCooldownReady() 
 		and self:GetParent():IsAlive()
 		and RollPercentage(self:GetTalentSpecialValueFor("chance")) 

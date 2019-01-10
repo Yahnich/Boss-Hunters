@@ -99,7 +99,7 @@ function modifier_shadow_fiend_necro_handle:RemoveOnDeath()
 	return false
 end
 
-modifier_shadow_fiend_necro = class({})
+modifier_shadow_fiend_necro = class(toggleModifierBaseClass)
 
 if IsServer() then
 	function modifier_shadow_fiend_necro:OnCreated()

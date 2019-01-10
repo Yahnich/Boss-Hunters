@@ -9,10 +9,14 @@ LinkLuaModifier( "modifier_boss_apotheosis_impervious", "bosses/boss_apotheosis/
 
 function modifier_boss_apotheosis_impervious:OnCreated()
 	self.limit = self:GetSpecialValueFor("max_hp_dmg") / 100
+	self.breakLim = self:GetSpecialValueFor("break_hp_dmg") / 100
+	self.minBlock = self:GetSpecialValueFor("min_block")
 end
 
 function modifier_boss_apotheosis_impervious:OnRefresh()
 	self.limit = self:GetSpecialValueFor("max_hp_dmg") / 100
+	self.breakLim = self:GetSpecialValueFor("break_hp_dmg") / 100
+	self.minBlock = self:GetSpecialValueFor("min_block")
 end
 
 function modifier_boss_apotheosis_impervious:DeclareFunctions()
@@ -20,8 +24,12 @@ function modifier_boss_apotheosis_impervious:DeclareFunctions()
 end
 
 function modifier_boss_apotheosis_impervious:GetModifierTotal_ConstantBlock(params)
-	if params.damage > self:GetParent():GetMaxHealth() * self.limit * ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) and not self:GetParent():PassivesDisabled() then
-		return params.damage - self:GetParent():GetMaxHealth() * self.limit
+	local limit = TernaryOperator( self.breakLim, self:GetParent():PassivesDisabled(), self.limit )
+	local maxHPBlock = self:GetParent():GetMaxHealth() * limit * ( 1 + (GameRules.BasePlayers - HeroList:GetActiveHeroCount()) )
+	if params.damage > maxHPBlock then
+		return math.max( self.minBlock, params.damage - maxHPBlock )
+	elseif not self:GetParent():PassivesDisabled() then
+		return self.minBlock
 	end
 end
 

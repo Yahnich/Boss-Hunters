@@ -64,13 +64,15 @@ end
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 		local target = AICore:GetHighestPriorityTarget(thisEntity)
+		local lastHealth = thisEntity.lastKnownHealth or thisEntity:GetHealth()
+		thisEntity.lastKnownHealth = thisEntity:GetHealth()
 		local totalHeroes = thisEntity:FindEnemyUnitsInRadius( thisEntity:GetAbsOrigin(), -1, {type = DOTA_UNIT_TARGET_HERO} )
 		if thisEntity.kill:IsFullyCastable() and #totalHeroes > 1 then
 			local killTarget = totalHeroes[RandomInt( #totalHeroes, 1 )]
 			return CastTheEnd(thisEntity, killTarget )
 		end
 		if thisEntity.shield:IsFullyCastable() then
-			if thisEntity:PassivesDisabled() or AICore:BeingAttacked( thisEntity ) >= math.ceil(#HeroList:GetActiveHeroes() / 2) then
+			if thisEntity:PassivesDisabled() or AICore:BeingAttacked( thisEntity ) >= math.ceil(#HeroList:GetActiveHeroes() / 2) or thisEntity.lastKnownHealth <= lastHealth * 0.85 then
 				return CastShieldOfValhalla( thisEntity )
 			end
 		end

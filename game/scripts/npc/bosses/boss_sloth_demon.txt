@@ -68,7 +68,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attack_slow"			"-10 -15"
+				"attack_slow"			"-7.5 -10"
 			}
 			"02"
 			{
@@ -168,7 +168,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attacks_per_hero"		"4 5"
+				"attacks_per_hero"		"2 3"
 			}
 			"03"
 			{

@@ -81,79 +81,80 @@ function AITimers:start()
 end
 
 function AITimers:Think()
-  --if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
-    --return
-  --end
+	--if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
+	--return
+	--end
+	local AIThink = function(self)
+		-- Track game time, since the dt passed in to think is actually wall-clock time not simulation time.
+		local now = GameRules:GetGameTime()
 
-  -- Track game time, since the dt passed in to think is actually wall-clock time not simulation time.
-  local now = GameRules:GetGameTime()
+		-- Process timers
+		for k,v in pairs(AITimers.timers) do
+			local bUseGameTime = true
+			if v.useGameTime ~= nil and v.useGameTime == false then
+			  bUseGameTime = false
+			end
+			local bOldStyle = false
+			if v.useOldStyle ~= nil and v.useOldStyle == true then
+			  bOldStyle = true
+			end
 
-  -- Process timers
-  for k,v in pairs(AITimers.timers) do
-    local bUseGameTime = true
-    if v.useGameTime ~= nil and v.useGameTime == false then
-      bUseGameTime = false
-    end
-    local bOldStyle = false
-    if v.useOldStyle ~= nil and v.useOldStyle == true then
-      bOldStyle = true
-    end
+			local now = GameRules:GetGameTime()
+			if not bUseGameTime then
+			  now = Time()
+			end
 
-    local now = GameRules:GetGameTime()
-    if not bUseGameTime then
-      now = Time()
-    end
+			if v.endTime == nil then
+			  v.endTime = now
+			end
+			-- Check if the timer has finished
+			if now >= v.endTime then
+			  -- Remove from timers list
+			  AITimers.timers[k] = nil
 
-    if v.endTime == nil then
-      v.endTime = now
-    end
-    -- Check if the timer has finished
-    if now >= v.endTime then
-      -- Remove from timers list
-      AITimers.timers[k] = nil
+			  AITimers.runningTimer = k
+			  AITimers.removeSelf = false
+			  
+			  -- Run the callback
+			  local status = true
+			  local nextCall
+			  if v.context then
+				nextCall = v.callback(v.context, v)
+			  else
+				nextCall = v.callback(v)
+			  end
 
-      AITimers.runningTimer = k
-      AITimers.removeSelf = false
-      
-      -- Run the callback
-      local status, nextCall
-      if v.context then
-        status, nextCall = xpcall(function() return v.callback(v.context, v) end, function (msg)
-                                    return msg..'\n'..debug.traceback()..'\n'
-                                  end)
-      else
-        status, nextCall = xpcall(function() return v.callback(v) end, function (msg)
-                                    return msg..'\n'..debug.traceback()..'\n'
-                                  end)
-      end
+			  AITimers.runningTimer = nil
 
-      AITimers.runningTimer = nil
+			  -- Make sure it worked
+			  if status then
+				-- Check if it needs to loop
+				if nextCall and not AITimers.removeSelf then
+				  -- Change its end time
 
-      -- Make sure it worked
-      if status then
-        -- Check if it needs to loop
-        if nextCall and not AITimers.removeSelf then
-          -- Change its end time
+				  if bOldStyle then
+					v.endTime = v.endTime + nextCall - now
+				  else
+					v.endTime = v.endTime + nextCall
+				  end
 
-          if bOldStyle then
-            v.endTime = v.endTime + nextCall - now
-          else
-            v.endTime = v.endTime + nextCall
-          end
+				  AITimers.timers[k] = v
+				end
 
-          AITimers.timers[k] = v
-        end
-
-        -- Update timer data
-        --self:UpdateTimerData()
-      else
-        -- Nope, handle the error
-        AITimers:HandleEventError('Timer', k, nextCall)
-      end
-    end
-  end
-
-  return TIMERS_THINK
+				-- Update timer data
+				--self:UpdateTimerData()
+			  else
+				-- Nope, handle the error
+				AITimers:HandleEventError('Timer', k, nextCall)
+			  end
+			end
+		end
+	end
+	status, err, ret = xpcall(AIThink, debug.traceback, self, fPrep )
+	if not status then
+		print(err)
+	end
+	return TIMERS_THINK
 end
 
 function AITimers:HandleEventError(name, event, err)

@@ -421,12 +421,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"60 105 150 195 240 285"
+				"damage"				"120 210 300 390 480 570"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_attack_time"		"0.15"
+				"base_attack_time"		"0.3"
 			}
 			"03"
 			{

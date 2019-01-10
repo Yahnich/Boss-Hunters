@@ -213,7 +213,7 @@ end
 
 function CDOTA_BaseNPC_Hero:CreateSummon(unitName, position, duration, bControllable)
 	local summon = CreateUnitByName(unitName, position, true, self, nil, self:GetTeam())
-  if bControllable or bControllable == nil then summon:SetControllableByPlayer( self:GetPlayerID(),  true ) end
+	if bControllable or bControllable == nil then summon:SetControllableByPlayer( self:GetPlayerID(),  true ) end
 	self.summonTable = self.summonTable or {}
 	table.insert(self.summonTable, summon)
 	summon:SetOwner(self)
@@ -605,6 +605,15 @@ function CDOTA_BaseNPC:RefreshAllCooldowns(bItems, bNoUltimate)
 	end
 end
 
+
+function CDOTA_BaseNPC:GetPrimaryAttribute()
+	if self:IsIllusion() then
+		return self:GetParentUnit():GetPrimaryAttribute()
+	else
+		return DOTA_ATTRIBUTE_INVALID
+	end
+end
+
 function CDOTA_BaseNPC:IsIllusion()
 	local isIllusion = false
 	if self:GetPlayerOwnerID() ~= -1 then
@@ -642,15 +651,11 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			end
 		end
 		
-		-- Make illusion look like owner
-		illusion:SetBaseMaxHealth( self:GetMaxHealth() )
-		illusion:SetMaxHealth( self:GetMaxHealth() )
-		illusion:SetHealth( self:GetHealth() )
-		
-		illusion:SetAverageBaseDamage( self:GetAverageBaseDamage(), 15 )
-		illusion:SetPhysicalArmorBaseValue( self:GetPhysicalArmorValue() )
+		illusion:SetBaseDamageMax( self:GetBaseDamageMax() - 10 )
+		illusion:SetBaseDamageMin( self:GetBaseDamageMin() - 10 )
+		illusion:SetPhysicalArmorBaseValue( self:GetPhysicalArmorBaseValue() )
 		illusion:SetBaseAttackTime( self:GetBaseAttackTime() )
-		illusion:SetBaseMoveSpeed( self:GetIdealSpeed() )
+		illusion:SetBaseMoveSpeed( self:GetBaseMoveSpeed() )
 		
 		illusion:SetOriginalModel( self:GetOriginalModel() )
 		illusion:SetModel( self:GetOriginalModel() )
@@ -689,6 +694,8 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 				if newItem then
 					newItem:SetStacksWithOtherOwners(true)
 					newItem:SetPurchaser(nil)
+					newItem:SetSellable(false)
+					newItem:SetDroppable(false)
 				end
 			end
 		end
@@ -719,9 +726,16 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 				end
 			end
 		end
+		
+		-- Make illusion look like owner
+		local maxHealthFromBuffs = illusion:GetMaxHealth()
+		illusion:SetBaseMaxHealth( self:GetBaseMaxHealth() )
+		illusion:SetMaxHealth( self:GetMaxHealth() - maxHealthFromBuffs )
+		illusion:SetHealth( self:GetHealth() )
 		if not self.wearableTable then
 			self.wearableTable = wearableWorker
 		end
+		illusion:MakeIllusion()
 		if callback then
 			callback( illusion, self, caster, ability )
 		end
@@ -1430,7 +1444,7 @@ function ParticleManager:FireParticle(effect, attach, owner, cps)
 			if type(value) == "userdata" then
 				ParticleManager:SetParticleControl(FX, tonumber(cp), value)
 			elseif type(value) == "table" then
-				ParticleManager:SetParticleControlEnt(FX, cp, value.owner or owner, value.attach or attach, value.point or "attach_hitloc", owner:GetAbsOrigin(), true)
+				ParticleManager:SetParticleControlEnt(FX, cp, value.owner or owner, value.attach or attach, value.point or "attach_hitloc", (value.owner or owner):GetAbsOrigin(), true)
 			else
 				ParticleManager:SetParticleControlEnt(FX, cp, owner, attach, value, owner:GetAbsOrigin(), true)
 			end
@@ -1585,6 +1599,11 @@ function CDOTABaseAbility:Stun(target, duration, bDelay)
 	return target:AddNewModifier(self:GetCaster(), self, "modifier_stunned_generic", {duration = duration, delay = delay})
 end
 
+function CDOTABaseAbility:Sleep(target, duration, min_duration)
+	if not target or target:IsNull() then return end
+	return target:AddNewModifier(self:GetCaster(), self, "modifier_sleep_generic", {duration = duration, min_duration = min_duration or 0})
+end
+
 function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, data, bDelete, bVision, vision)
 	local internalData = data or {}
 	local delete = false
@@ -1648,6 +1667,7 @@ function CDOTA_BaseNPC:FireAbilityAutoAttack( target, ability, FX )
 end
 
 function CDOTABaseAbility:ApplyAOE(eventTable)
+	if not self or self:IsNull() or not self:GetCaster() or self:GetCaster():IsNull() then return end
     if eventTable.duration == nil and eventTable.modifier then
         eventTable.duration = self:GetAbilityDuration()
 	elseif not eventTable.duration then
@@ -2052,6 +2072,7 @@ end
 function CBaseEntity:RollPRNG( percentage )
 	local internalInt = (100/percentage)
 	local startingRoll = internalInt^2
+	
 	self.internalPRNGCounter = self.internalPRNGCounter or (1/internalInt)^2
 	if RollPercentage(self.internalPRNGCounter * 100) then
 		self.internalPRNGCounter = (1/internalInt)^2

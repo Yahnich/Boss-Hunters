@@ -23,7 +23,7 @@
 		"ItemResult"					"item_death_sentence"
 		"ItemRequirements"
 		{
-			"01"						"item_focused_lens;item_blade_of_agility;item_blade_of_agility;item_hawks_feather;item_broadsword"
+			"01"						"item_focused_lens;item_blade_of_agility;item_blade_of_agility;item_broadsword"
 		}
 	}
 	"item_death_sentence"
@@ -66,11 +66,6 @@
 				"var_type"				"FIELD_INTEGER"
 				"bonus_damage"			"50"
 			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_accuracy"		"40"
-			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
@@ -94,7 +89,7 @@
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"target_accuracy"		"40"
+				"target_accuracy"		"-40"
 			}
 		}
 	}

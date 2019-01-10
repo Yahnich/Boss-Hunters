@@ -53,19 +53,6 @@ modifier_furion_sprout_sleep_thinker = class({})
 
 function modifier_furion_sprout_sleep_thinker:OnCreated( kv )
 	self.aura_radius = self:GetAbility():GetTalentSpecialValueFor( "sleep_radius" )
-	if IsServer() then
-		self:StartIntervalThink(1.0)
-	end
-end
-
-function modifier_furion_sprout_sleep_thinker:OnIntervalThink()
-	if self:GetCaster():FindAbilityByName("furion_entangle") and RollPercentage(self:GetCaster():FindAbilityByName("furion_entangle"):GetTalentSpecialValueFor("chance")) and self:GetCaster():HasTalent("special_bonus_unique_furion_tree_jail_1") then
-		local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self.aura_radius, {})
-		for _,enemy in pairs(enemies) do
-			enemy:AddNewModifier(self:GetCaster(), self:GetCaster():FindAbilityByName("furion_entangle"), "modifier_entangle_enemy", {Duration = self:GetCaster():FindAbilityByName("furion_entangle"):GetTalentSpecialValueFor("duration")})
-			break
-		end
-	end
 end
 
 function modifier_furion_sprout_sleep_thinker:OnDestroy( kv )
@@ -167,6 +154,12 @@ function modifier_furion_sprout_sleep:OnTakeDamage(params)
 	if IsServer() then
 		if params.unit == self:GetParent() and params.inflictor ~= self:GetAbility() and self:GetElapsedTime() > 1 then
 			if params.inflictor and params.inflictor:GetName() == "furion_entangle" then return end
+			if self:GetCaster():HasTalent("special_bonus_unique_furion_tree_jail_1") and self:GetCaster():FindAbilityByName("furion_entangle") then
+				local entangle = self:GetCaster():FindAbilityByName("furion_entangle")
+				if entangle then
+					enemy:AddNewModifier(self:GetCaster(), entangle, "modifier_entangle_enemy", {Duration = entangle:GetTalentSpecialValueFor("duration")})
+				end
+			end
 			self:Destroy()
 		end
 	end

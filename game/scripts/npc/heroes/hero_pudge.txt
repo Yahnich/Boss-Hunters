@@ -58,33 +58,43 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"distance"				"1000 1100 1200 1300 1400 1500 1600"
+				"minion_damage"			"270 540 810 1080 1350 1620 1890"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"speed"					"2900"
+				"distance"				"1000 1100 1200 1300 1400 1500 1600"
 			}
 			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"2900"
+			}
+			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"threat_gain"			"20"
 				"LinkedSpecialBonus"	"special_bonus_unique_pudge_hook_lua_2"
 			}
-			"05"
+			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"width"					"100"
 			}
-			"06"
+			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"scepter_cooldown"		"4.0"
 			}
-			"07"
+			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"scepter_damage"		"180 270 360 450 540 630 720"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_minion_damage"	"540 810 1080 1350 1620 1890 2160"
 			}
 		}
 	}

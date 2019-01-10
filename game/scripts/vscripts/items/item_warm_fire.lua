@@ -20,7 +20,7 @@ function item_warm_fire:GetIntrinsicModifierName()
 	return "modifier_item_warm_fire"
 end
 
-modifier_item_warm_fire = class(itemBaseClass)
+modifier_item_warm_fire = class(toggleModifierBaseClass)
 LinkLuaModifier( "modifier_item_warm_fire", "items/item_warm_fire.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_warm_fire:OnCreated()

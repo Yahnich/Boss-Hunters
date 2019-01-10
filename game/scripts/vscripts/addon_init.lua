@@ -9,6 +9,7 @@ DMG_PER_AGI = 0.5
 CDR_PER_INT = 0.385
 SPELL_AMP_PER_INT = 0.0075
 
+LinkLuaModifier( "modifier_sleep_generic", "libraries/modifiers/modifier_sleep_generic.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_charm_generic", "libraries/modifiers/modifier_charm_generic.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_stun_immunity", "libraries/modifiers/modifier_stun_immunity.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_restoration_disable", "libraries/modifiers/modifier_restoration_disable.lua", LUA_MODIFIER_MOTION_NONE )
@@ -48,9 +49,9 @@ LinkLuaModifier( "modifier_base_attack_time_handler", "libraries/handlers/modifi
 LinkLuaModifier( "modifier_accuracy_handler", "libraries/handlers/modifier_accuracy_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_attack_speed_handler", "libraries/handlers/modifier_attack_speed_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_move_speed_handler", "libraries/handlers/modifier_move_speed_handler.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_evasion_handler", "libraries/handlers/modifier_evasion_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_health_handler", "libraries/handlers/modifier_health_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_handler_handler", "libraries/handlers/modifier_handler_handler.lua", LUA_MODIFIER_MOTION_NONE)
-
 
 LinkLuaModifier( "modifier_typing_tag", "libraries/modifiers/tags/modifier_typing_tag.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_illusion_tag", "libraries/modifiers/illusions/modifier_illusion_tag.lua", LUA_MODIFIER_MOTION_NONE)
@@ -102,3 +103,4 @@ end
 require("templates/relic_base_class")
 require("templates/item_base_class")
 require("templates/item_basic_base_class")
+require("templates/toggle_modifier_base_class")

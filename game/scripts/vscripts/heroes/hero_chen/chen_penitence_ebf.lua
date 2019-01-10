@@ -1,5 +1,4 @@
 chen_penitence_ebf = class({})
-LinkLuaModifier( "modifier_chen_penitence_ebf", "heroes/hero_chen/chen_penitence_ebf.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function chen_penitence_ebf:IsStealable()
 	return true
@@ -10,7 +9,7 @@ function chen_penitence_ebf:IsHiddenWhenStolen()
 end
 
 function chen_penitence_ebf:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetTalentSpecialValueFor("minion_radius")
 end
 
 function chen_penitence_ebf:OnSpellStart()
@@ -18,11 +17,10 @@ function chen_penitence_ebf:OnSpellStart()
 
 	self:FireTrackingProjectile("particles/units/heroes/hero_chen/chen_penitence_proj.vpcf", self:GetCursorTarget(), 2000, {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, false, true, 200)
 
-	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetCursorTarget():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
+	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetCursorTarget():GetAbsOrigin(), self:GetTalentSpecialValueFor("minion_radius"), {})
 	for _,enemy in pairs(enemies) do
-		if enemy ~= self:GetCursorTarget() then
+		if enemy ~= self:GetCursorTarget() and enemy:IsMinion() then
 			self:FireTrackingProjectile("particles/units/heroes/hero_chen/chen_penitence_proj.vpcf", enemy, 2000, {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, false, true, 200)
-			break
 		end
 	end
 end
@@ -44,13 +42,16 @@ function chen_penitence_ebf:OnProjectileHit(hTarget, vLocation)
 end
 
 modifier_chen_penitence_ebf = class({})
+LinkLuaModifier( "modifier_chen_penitence_ebf", "heroes/hero_chen/chen_penitence_ebf.lua" ,LUA_MODIFIER_MOTION_NONE )
 
-function modifier_chen_penitence_ebf:IsDebuff()
-	return true
+function modifier_chen_penitence_ebf:OnCreated()
+	self.duration = self:GetTalentSpecialValueFor("buff_duration")
+	self.ms = self:GetTalentSpecialValueFor("bonus_movement_speed")
 end
 
-function modifier_chen_penitence_ebf:IsPurgable()
-	return false
+function modifier_chen_penitence_ebf:OnRefresh()
+	self.duration = self:GetTalentSpecialValueFor("buff_duration")
+	self.ms = self:GetTalentSpecialValueFor("bonus_movement_speed")
 end
 
 function modifier_chen_penitence_ebf:GetEffectName()
@@ -60,15 +61,36 @@ end
 function modifier_chen_penitence_ebf:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-        MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE
+        MODIFIER_EVENT_ON_ATTACK_LANDED,
     }
     return funcs
 end
 
 function modifier_chen_penitence_ebf:GetModifierMoveSpeedBonus_Percentage()
-	return self:GetTalentSpecialValueFor("bonus_movement_speed")
+	return self.ms
 end
 
-function modifier_chen_penitence_ebf:GetModifierIncomingDamage_Percentage()
-	return self:GetTalentSpecialValueFor("bonus_damage_taken")
+function modifier_chen_penitence_ebf:OnAttackLanded(params)
+	if self:GetParent() == params.target then
+		params.attacker:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_chen_penitence_ebf_buff", {duration = self.duration})
+	end
+end
+
+function modifier_chen_penitence_ebf:IsDebuff()
+	return true
+end
+
+modifier_chen_penitence_ebf_buff = class({})
+LinkLuaModifier( "modifier_chen_penitence_ebf_buff", "heroes/hero_chen/chen_penitence_ebf.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+function modifier_chen_penitence_ebf_buff:OnCreated()
+	self.as = self:GetTalentSpecialValueFor("bonus_as")
+end
+
+function modifier_chen_penitence_ebf_buff:OnRefresh()
+	self.as = self:GetTalentSpecialValueFor("bonus_as")
+end
+
+function modifier_chen_penitence_ebf_buff:GetModifierAttackSpeedBonus()
+	return self.as
 end

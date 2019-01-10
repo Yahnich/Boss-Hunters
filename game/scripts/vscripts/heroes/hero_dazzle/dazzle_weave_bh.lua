@@ -34,11 +34,15 @@ function modifier_dazzle_weave_bh_handler:OnAbilityFullyCast(params)
 		caster:EmitSound("Hero_Dazzle.Weave")
 		for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( casterPos, self.radius ) ) do
 			ally:AddNewModifier( caster, ability, "modifier_dazzle_weave_bh", {duration = self.duration} )
-			break
+			if not caster:HasScepter() then
+				break
+			end
 		end
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( casterPos, self.radius ) ) do
 			enemy:AddNewModifier( caster, ability, "modifier_dazzle_weave_bh", {duration = self.duration} )
-			break
+			if not caster:HasScepter() then
+				break
+			end
 		end
 	end
 end

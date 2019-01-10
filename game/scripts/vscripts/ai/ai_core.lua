@@ -125,6 +125,7 @@ function AICore:BeingAttacked( entity )
 end
 
 function AICore:BeingAttackedBy( entity )
+	if entity:IsNull() then return end
 	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, 9999, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
 	local attackers = {}
 	
@@ -233,7 +234,7 @@ function AICore:AttackHighestPriority( entity )
 					TargetIndex = target:entindex()
 				})
 			end
-			return ( entity:GetAttackAnimationPoint() / entity:GetAttackSpeed( ) ) + 0.1
+			return ( ( entity:GetAttackAnimationPoint() / entity:GetAttackSpeed( ) ) + 0.1 ) + AI_THINK_RATE
 		else
 			AICore:RunToRandomPosition( entity, 100, true )
 			return AI_THINK_RATE

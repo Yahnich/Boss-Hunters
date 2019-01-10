@@ -35,7 +35,7 @@ function modifier_item_trinity_handle:OnCreated()
 	self.int = self:GetAbility():GetSpecialValueFor("bonus_intellect")
 	self.manacost = self:GetSpecialValueFor("mana_cost_reduction")
 	self.armor = self:GetSpecialValueFor("bonus_armor")
-	
+	self.chance = self:GetSpecialValueFor("proc_chance")
 	self.duration = self:GetSpecialValueFor("debuff_duration")
 end
 
@@ -85,9 +85,20 @@ function modifier_item_trinity_handle:GetModifierBonusStats_Intellect()
 	return self.int
 end
 
+function modifier_item_trinity_handle:GetAccuracy(bInfo)
+	if bInfo ~= true then
+		self.miss = self:RollPRNG(self.chance)
+		if self.miss then
+			return 100
+		end
+	else
+		return self.chance
+	end
+end
+
 function modifier_item_trinity_handle:OnAttackLanded(params)
 	if IsServer() then
-		if params.attacker == self:GetParent() and params.target:IsAlive() and self:RollPRNG(self:GetSpecialValueFor("proc_chance")) then
+		if params.attacker == self:GetParent() and params.target:IsAlive() and self.miss then
 			local caster = params.attacker
 			local ability = self:GetAbility()
 			local target = params.target

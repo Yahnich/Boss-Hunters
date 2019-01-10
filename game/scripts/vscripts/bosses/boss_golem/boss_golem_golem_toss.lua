@@ -1,7 +1,6 @@
 boss_golem_golem_toss = class({})
 
 function boss_golem_golem_toss:OnAbilityPhaseStart()
-	ParticleManager:FireWarningParticle( self:GetCursorPosition(), self:GetSpecialValueFor("base_radius") * self:GetCaster():GetModelScale() * 0.35 )
 	return true
 end
 
@@ -9,7 +8,6 @@ function boss_golem_golem_toss:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	golem = CreateUnitByName("npc_dota_boss12_golem", caster:GetAbsOrigin(), false, nil, nil, caster:GetTeamNumber())
-	golem:AddNewModifier( caster, self, "modifier_boss_golem_golem_toss_movement", {})
 	EmitSoundOn("Ability.TossThrow", golem)
 	local hp = caster:GetMaxHealth()
 	local golemHP = math.max(10, hp * self:GetSpecialValueFor("max_health_cost") / 100)
@@ -18,18 +16,18 @@ function boss_golem_golem_toss:OnSpellStart()
 	local golemScale = caster:GetModelScale() * 0.6
 	
 	golem:SetModelScale( math.max(golemScale, self:GetSpecialValueFor("minimum_scale") ) )
-	golem:SetBaseMoveSpeed( math.min( 300, golem:GetBaseMoveSpeed() / ( scale / 1.6 ) ) )
+	golem:SetBaseMoveSpeed( math.min( 300, golem:GetBaseMoveSpeed() / ( scale / 1.8 ) ) )
 	golem:SetAverageBaseDamage( caster:GetAverageBaseDamage() * 0.8, 25 )
 	golem.unitIsRoundNecessary = true
 	golem:SetCoreHealth( math.max(1, golemHP) )
-	if golem:GetModelScale() < self:GetSpecialValueFor("minimum_scale") then
+	if golem:GetModelScale() <= self:GetSpecialValueFor("minimum_scale") then
 		golem:FindAbilityByName("boss_golem_golem_toss"):SetActivated(false)
 	else
 		golem:FindAbilityByName("boss_golem_golem_toss"):SetCooldown()
 	end
 	
-	if caster:GetModelScale() < self:GetSpecialValueFor("minimum_scale") then
-		golem:FindAbilityByName("boss_golem_golem_toss"):SetActivated(false)
+	if caster:GetModelScale() <= self:GetSpecialValueFor("minimum_scale") then
+		caster:FindAbilityByName("boss_golem_golem_toss"):SetActivated(false)
 	end
 	golem:FindAbilityByName("boss_golem_split"):SetActivated(false)
 	golem:FindAbilityByName("boss_golem_cracked_mass"):SetActivated(false)
@@ -42,6 +40,8 @@ function boss_golem_golem_toss:OnSpellStart()
 	caster:SetMaxHealth( math.max(1, hp - golemHP) )
 	caster:SetBaseMoveSpeed( caster:GetBaseMoveSpeed() / scale )
 	caster:SetAverageBaseDamage( caster:GetAverageBaseDamage() * 0.9, 25 )
+	
+	golem:AddNewModifier( caster, self, "modifier_boss_golem_golem_toss_movement", {})
 end
 
 
@@ -60,6 +60,8 @@ if IsServer() then
 		self.height = self.initHeight
 		self.maxHeight = 650
 		self:StartMotionController()
+		local radius = math.max( 175, math.min( self:GetSpecialValueFor("base_radius"), self:GetSpecialValueFor("base_radius") * parent:GetModelScale() / 1.8 ) )
+		ParticleManager:FireWarningParticle( self.endPos, radius )
 	end
 	
 	
@@ -70,9 +72,8 @@ if IsServer() then
 		FindClearSpaceForUnit(parent, parentPos, true)
 		if parent:IsFrozen() then return end
 		local ability = self:GetAbility()
-		local damage = math.max( 100, self:GetSpecialValueFor("base_damage") + self:GetSpecialValueFor("base_damage") * (parent:GetModelScale() - 1) * 0.5 )
-		local radius = math.max( 175, self:GetSpecialValueFor("base_radius") * parent:GetModelScale() )
-		
+		local damage = math.max( 75, math.min( self:GetSpecialValueFor("base_damage"), self:GetSpecialValueFor("base_damage") * parent:GetModelScale() / 1.8 ) )
+		local radius = math.max( 175, math.min( self:GetSpecialValueFor("base_radius"), self:GetSpecialValueFor("base_radius") * parent:GetModelScale() / 1.8 ) )
 		ParticleManager:FireParticle("particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", PATTACH_ABSORIGIN, parent, {[1] = Vector(radius, 1, 1)})
 		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parentPos, radius ) ) do
 			if not enemy:TriggerSpellAbsorb(self) then

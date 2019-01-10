@@ -51,10 +51,12 @@ function modifier_faceless_time_walk:OnCreated(table)
         local caster = self:GetParent()
         self.direction = CalculateDirection(self:GetAbility():GetCursorPosition(), caster:GetAbsOrigin())
         self.currentDistance = CalculateDistance(self:GetAbility():GetCursorPosition(), caster:GetAbsOrigin())
-
+		self.damage = self:GetTalentSpecialValueFor("damage")
         local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_faceless_void/faceless_void_chrono_speed.vpcf", PATTACH_POINT_FOLLOW, caster)
         self:AttachEffect(nfx)
-
+		self.hitUnits = {}
+		self.talent2 = caster:HasTalent("special_bonus_unique_faceless_time_walk_2")
+		self.lock = caster:FindAbilityByName("faceless_chrono_trigger")
         self:StartIntervalThink(FrameTime())
         self:StartMotionController()
     end
@@ -72,11 +74,13 @@ function modifier_faceless_time_walk:OnIntervalThink()
 
     local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:GetAttackRange())
     for _,enemy in pairs(enemies) do
-        if caster:HasTalent("special_bonus_unique_faceless_time_walk_2") then
-            ability:Stun(enemy, self:GetTalentSpecialValueFor("daze_duration"), false)
-        else
-            enemy:Daze(ability, caster, self:GetTalentSpecialValueFor("daze_duration"))
-        end
+		if not self.hitUnits[enemy] then
+			if self.talent2 and self.lock and self.lock:IsTrained() then
+				self.lock:TimeLock(enemy)
+			end
+			ability:DealDamage( caster, enemy, self.damage )
+			self.hitUnits[enemy] = true
+		end
     end
 end
 

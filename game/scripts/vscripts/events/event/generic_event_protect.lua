@@ -27,7 +27,6 @@ local function StartCombat(self)
 	self.timeRemaining = 60
 	self.eventType = EVENT_TYPE_COMBAT
 	self.totemUnit = CreateUnitByName("npc_dota_event_totem", RoundManager:GetHeroSpawnPosition(), true, nil, nil, DOTA_TEAM_GOODGUYS)
-	local ability = self.totemUnit:AddAbility("generic_hp_limiter")
 	self.totemUnit:SetThreat(5000)
 	AddFOWViewer(DOTA_TEAM_BADGUYS, self.totemUnit:GetAbsOrigin(), 312, self.timeRemaining, false)
 	
@@ -45,6 +44,8 @@ local function StartCombat(self)
 	end)
 	
 	Timers:CreateTimer(1, function()
+		if not self.totemUnit or self.totemUnit:IsNull() then return end
+		if self.totemUnit:IsAlive() then self.totemUnit:SetThreat(5000) end
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then

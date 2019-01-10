@@ -68,20 +68,6 @@ local function StartCombat(self, bFight)
 				return 3
 			end
 		end)
-		Timers:CreateTimer(5, function()
-			local zombie = "npc_dota_boss3a"
-			if RollPercentage(33) then
-				zombie = "npc_dota_boss3b"
-			end
-			local spawn = CreateUnitByName(zombie, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-			spawn.unitIsRoundNecessary = true
-			
-			self.zombos = self.zombos - 1
-			self.enemiesToSpawn = self.enemiesToSpawn - 1
-			if self.zombos > 0 then
-				return 5
-			end
-		end)
 	else
 		self:EndEvent(true)
 	end

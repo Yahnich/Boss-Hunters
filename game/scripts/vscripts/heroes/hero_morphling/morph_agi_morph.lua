@@ -30,7 +30,7 @@ function morph_agi_morph:OnToggle()
 	end
 end
 
-modifier_morph_agi_morph = class({})
+modifier_morph_agi_morph = class(toggleModifierBaseClass)
 function modifier_morph_agi_morph:OnCreated(table)
 	if IsServer() then
 		local caster = self:GetCaster()

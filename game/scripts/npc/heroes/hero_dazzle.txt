@@ -142,6 +142,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"7"
+		"HasScepterUpgrade"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -345,8 +346,6 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Dazzle.Shallow_Grave"
 		"MaxLevel"						"6"
-
-		"HasScepterUpgrade"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

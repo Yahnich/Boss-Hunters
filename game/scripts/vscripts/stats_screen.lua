@@ -93,9 +93,13 @@ function StatsScreen:ProcessStatsUpgrade(userid, event)
 	if entindex ~= PlayerResource:GetSelectedHeroEntity( pID ):entindex() then return end -- calling
 	local netTable = CustomNetTables:GetTableValue("stats_panel", tostring(entindex))
 	
-	if hero:GetAttributePoints() <= 0 or ( type(self[skill]) == "table" and not self[skill][ tonumber( netTable[skill] + 1 ) ] ) then return end
-	
-	netTable[skill] = tostring(tonumber(netTable[skill]) + 1)
+	if hero:GetAttributePoints() <= 0 or ( type(self[skill]) == "table" and not self[skill][ tonumber( netTable[skill] ) + 1 ] ) then return end
+	if type(self[skill]) == "table" then
+		print( math.min( #self[skill], tonumber(netTable[skill]) + 1 ) )
+		netTable[skill] = tostring( math.min( #self[skill], tonumber(netTable[skill]) + 1 ) )
+	else
+		netTable[skill] = tostring(tonumber(netTable[skill]) + 1)
+	end
 	CustomNetTables:SetTableValue("stats_panel", tostring(entindex), netTable)
 	hero:ModifyAttributePoints( -1 )
 	hero:FindModifierByName("modifier_stats_system_handler"):IncrementStackCount()

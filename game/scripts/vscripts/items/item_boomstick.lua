@@ -41,7 +41,6 @@ function modifier_item_boomstick_handle:OnCreated()
 	self.crit_chance = self:GetSpecialValueFor("critical_chance")
 	self.damage = self:GetSpecialValueFor("bonus_damage")
 	self.range = self:GetSpecialValueFor("bonus_range")
-	self.accuracy = self:GetSpecialValueFor("bonus_accuracy")
 end
 
 function modifier_item_boomstick_handle:GetAttributes()
@@ -54,10 +53,6 @@ function modifier_item_boomstick_handle:DeclareFunctions()
 			MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 			MODIFIER_EVENT_ON_ATTACK_LANDED
 			}
-end
-
-function modifier_item_boomstick_handle:GetAccuracy()
-	return self.accuracy
 end
 
 function modifier_item_boomstick_handle:OnAttackLanded(params)

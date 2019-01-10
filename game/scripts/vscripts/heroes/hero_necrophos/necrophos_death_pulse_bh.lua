@@ -60,7 +60,7 @@ function necrophos_death_pulse_bh:OnProjectileHit( target, position )
 	end
 end
 
-modifier_necrophos_death_pulse_bh_talent = class({})
+modifier_necrophos_death_pulse_bh_talent = class(toggleModifierBaseClass)
 LinkLuaModifier( "modifier_necrophos_death_pulse_bh_talent", "heroes/hero_necrophos/necrophos_death_pulse_bh", LUA_MODIFIER_MOTION_NONE )
 
 if IsServer() then
@@ -74,8 +74,4 @@ if IsServer() then
 		self:GetAbility():PayManaCost()
 		if self:GetParent():GetMana() <= 0 then self:GetAbility():ToggleAbility() end
 	end
-end
-
-function modifier_necrophos_death_pulse_bh_talent:IsPurgable()
-	return false
 end

@@ -261,7 +261,6 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"venomancer_plague_ward"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 
 		// Casting

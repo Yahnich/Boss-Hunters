@@ -31,9 +31,9 @@ if IsServer() then
 
 
 	function AIThink(thisEntity)
-		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
+		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() and not thisEntity:HasModifier("modifier_green_dragon_etheral_armor") then
 			local target = AICore:GetHighestPriorityTarget(thisEntity)
-			if target and not thisEntity:HasModifier("modifier_green_dragon_etheral_armor") then
+			if target then
 				if thisEntity.toxic_pool:IsFullyCastable() then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
@@ -42,6 +42,15 @@ if IsServer() then
 						AbilityIndex = thisEntity.toxic_pool:entindex()
 					})
 					return thisEntity.toxic_pool:GetCastPoint() + 0.1
+				end
+				if thisEntity.volatile_rot:IsFullyCastable() then
+					ExecuteOrderFromTable({
+						UnitIndex = thisEntity:entindex(),
+						OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+						Position = target:GetAbsOrigin(),
+						AbilityIndex = thisEntity.volatile_rot:entindex()
+					})
+					return thisEntity.volatile_rot:GetCastPoint() + 0.1
 				end
 			end
 			return AICore:AttackHighestPriority( thisEntity )

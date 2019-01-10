@@ -16,10 +16,10 @@ end
 
 modifier_ursa_fury_swipes_bh_handle = class({})
 function modifier_ursa_fury_swipes_bh_handle:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL}
+	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
 
-function modifier_ursa_fury_swipes_bh_handle:GetModifierProcAttack_BonusDamage_Physical(params)
+function modifier_ursa_fury_swipes_bh_handle:OnAttackLanded(params)
 	if IsServer() then
 		local caster = self:GetCaster()
 		local target = params.target
@@ -70,8 +70,8 @@ function modifier_ursa_fury_swipes_bh_handle:GetModifierProcAttack_BonusDamage_P
 			if caster:HasModifier("modifier_ursa_enrage_bh") then
 				damage = damage * enrageMultiplier
 			end
-
-			return damage
+			print(damage)
+			ability:DealDamage( caster, target, damage, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_PROPERTY_FIRE } )
 		end
 	end
 end

@@ -53,7 +53,7 @@
 				"var_type"			"FIELD_INTEGER"
 				"duration"			"2"
 			}
-			"03"
+			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"damage"			"120 200 280 360 440 520 600"

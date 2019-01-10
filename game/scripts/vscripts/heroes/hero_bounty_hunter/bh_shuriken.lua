@@ -65,7 +65,7 @@ function bh_shuriken:OnProjectileHit_ExtraData( target, position, extraData )
 		if caster:HasTalent("special_bonus_unique_bh_jinada_1") then
 			local ability = caster:FindAbilityByName("bh_jinada")
 			if ability:IsCooldownReady() then
-				ability:TriggerJinada(target)
+				ability:TriggerJinada(target, true)
 			end
 		end
 
