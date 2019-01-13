@@ -31,6 +31,7 @@ function archangel_holy_bolt:OnSpellStart()
 	local speed = self:GetSpecialValueFor("speed")
 	local radius = self:GetSpecialValueFor("radius")
 	local damage = self:GetSpecialValueFor("damage")
+	local slow_duration = self:GetSpecialValueFor("slow_duration")
 	
 	local ProjectileHit = function(self, target, position)
 		local caster = self:GetCaster()
@@ -38,6 +39,7 @@ function archangel_holy_bolt:OnSpellStart()
 		if target:TriggerSpellAbsorb(self) then return false end
 		EmitSoundOn("Hero_SkywrathMage.ArcaneBolt.Impact", target)
 		ability:DealDamage( caster, target, self.damage )
+		target:AddNewModifier( caster, ability, "modifier_archangel_holy_bolt", {duration = self.slow_duration})
 		return false
 	end
 	caster:EmitSound("Hero_SkywrathMage.ArcaneBolt.Cast")
@@ -64,6 +66,34 @@ function archangel_holy_bolt:OnSpellStart()
 																				radius = radius,
 																				velocity = speed * direction,
 																				distance = distance,
+																				slow_duration = slow_duration,
 																				damage = damage})
 	end
+end
+
+modifier_archangel_holy_bolt = class({})
+LinkLuaModifier( "modifier_archangel_holy_bolt", "bosses/boss_archangel/archangel_holy_bolt.lua", LUA_MODIFIER_MOTION_NONE )
+
+function modifier_archangel_holy_bolt:OnCreated()
+	self.slow = self:GetSpecialValueFor("slow")
+end
+
+function modifier_archangel_holy_bolt:OnRefresh()
+	self.slow = self:GetSpecialValueFor("slow")
+end
+
+function modifier_archangel_holy_bolt:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+end
+
+function modifier_archangel_holy_bolt:GetModifierMoveSpeedBonus_Percentage()
+	return self.slow
+end
+
+function modifier_archangel_holy_bolt:GetEffectName()
+	return "particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_slow_debuff.vpcf"
+end
+
+function modifier_archangel_holy_bolt:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
 end

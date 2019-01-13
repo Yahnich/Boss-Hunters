@@ -38,7 +38,7 @@ function boss18b_trample:BlinkAndBreak(newPos, radius)
 	local caster = self:GetCaster()
 	caster:SmoothFindClearSpace(newPos)
 	
-	local enemies = caster:FindEnemyUnitsInRadius(newPos, radius)
+	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
 	
 	local stunDuration = self:GetSpecialValueFor("stun_duration")
 	local damage = self:GetSpecialValueFor("damage")

@@ -35,17 +35,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-2"
+				"armor_reduction"		"-4"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"7.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"15"
 			}
 		}
 	}

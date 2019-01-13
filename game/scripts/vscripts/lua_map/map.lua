@@ -112,7 +112,6 @@ end
 function LeftBoundingBox(trigger)
 	local unit = trigger.activator
 	local edge = trigger.caller
-	local distance = 0
 	Timers:CreateTimer(function()
 		if not unit or unit:IsNull() then return end
 		if RoundManager.boundingBox and unit and edge then

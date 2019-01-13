@@ -27,7 +27,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
+		"AbilityManaCost"				"100 105 110 115 120 125 130"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -36,12 +36,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"75 150 225 300 375 450 525"
+				"damage"					"80 120 160 200 240 280 320"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_flame"				"18 37 56 75 93 112 131"
+				"damage_flame"				"30 55 80 105 130 155 180"
 			}
 			"03"
 			{
@@ -206,7 +206,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1.8"
+				"value"					"2"
 			}
 		}
 	}
@@ -260,7 +260,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"120"
+		"AbilityManaCost"				"120 130 140 150 160 170 180"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -359,17 +359,32 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"attack_speed_bonus"			"20"	
+				"attack_speed_bonus"			"25"	
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"move_speed_bonus"				"13"
+				"move_speed_bonus"				"8"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"stack_duration"				"20"
+				"stack_duration"				"12"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"max_stacks"					"6"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"scepter_bonus_damage"			"5"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"scepter_spell_amp"				"5"
 			}
 		}
 	}

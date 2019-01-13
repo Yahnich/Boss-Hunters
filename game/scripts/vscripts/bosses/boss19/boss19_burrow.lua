@@ -30,6 +30,9 @@ function boss19_burrow:OnSpellStart()
 	
 	if self.recast_count > 0 and caster:GetHealthPercent() < 40 then
 		local newPos = position + ActualRandomVector(1000, 400)
+		if RoundManager:GetBoundingBox() then
+			newPos = RoundManager:GetBoundingBox():GetAbsOrigin() + ActualRandomVector( FindRadius( RoundManager:GetBoundingBox() ) * 0.75, 150 )
+		end
 		caster:SetCursorPosition( newPos )
 		self:OnAbilityPhaseStart(true)
 		Timers:CreateTimer(self:GetCastPoint(), function() self:OnSpellStart() end)

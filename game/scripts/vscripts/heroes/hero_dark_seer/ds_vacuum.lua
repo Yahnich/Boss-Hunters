@@ -60,18 +60,14 @@ function ds_vacuum:Vacuum(vlocation, iRadius)
 				ParticleManager:ReleaseParticleIndex(nfx)
 
 	local enemies = caster:FindEnemyUnitsInRadius(vlocation, radius)
+	local talent2 = caster:HasTalent("special_bonus_unique_ds_vacuum_2")
 	for _,enemy in pairs(enemies) do
 		if not self.hitUnits[enemy:entindex()] then
-			
-			FindClearSpaceForUnit(enemy, vlocation, true)
-			self:Stun(enemy, duration, false)
-			self:DealDamage(caster, enemy, damage)
-
-			if caster:HasTalent("special_bonus_unique_ds_vacuum_2") and enemy:IsAlive() then
-				Timers:CreateTimer(duration, function()
-					enemy:Paralyze(self, caster, 1)
-				end)
-			end
+			local knockback = enemy:ApplyKnockBack(vlocation, duration, duration, -CalculateDistance(enemy, vlocation), 0, caster, self)
+			Timers:CreateTimer(duration, function()
+				self:DealDamage(caster, enemy, damage)
+				if talent2 and enemy:IsAlive() then enemy:Paralyze(self, caster, 1) end
+			end)
 
 			self.hitUnits[enemy:entindex()] = true
         end

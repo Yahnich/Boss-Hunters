@@ -20,21 +20,23 @@ end
 function modifier_boss_necro_vile_aura:OnIntervalThink()
 	local parent = self:GetParent()
 	local position = parent:GetAbsOrigin() + ActualRandomVector(600, 250)
+	if RoundManager:GetBoundingBox() then
+		position = RoundManager:GetBoundingBox():GetAbsOrigin() + ActualRandomVector( FindRadius( RoundManager:GetBoundingBox() ) * 0.75, 150 )
+	end
 	if parent:IsStunned() or parent:IsSilenced() or parent:IsRooted() then
 		self:StartIntervalThink( 0.5 )
 		return
 	end
 	if RollPercentage(50) then -- random position
-		if parent:GetTauntTarget() then
-			position = parent:GetTauntTarget():GetAbsOrigin() + ActualRandomVector(600, 250)
-		else
-			for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), -1 ) ) do
-				if RollPercentage(60) then
-					position = enemy:GetAbsOrigin() + ActualRandomVector(600, 250)
-					break
-				end
+		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), -1 ) ) do
+			if RollPercentage(75) then
+				position = enemy:GetAbsOrigin() + ActualRandomVector(600, 250)
+				break
 			end
 		end
+	end
+	if parent:GetTauntTarget() then
+		position = parent:GetTauntTarget():GetAbsOrigin() + ActualRandomVector(600, 250)
 	end
 	self:StartIntervalThink( -1 )
 	ParticleManager:FireWarningParticle( position, self:GetParent():GetHullRadius() * 2.5 )

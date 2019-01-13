@@ -90,12 +90,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"325"
+				"radius"					"275"
 			}
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"40 50"
+				"damage"					"20 30"
 			}
 			"01"
 			{
@@ -139,17 +139,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"3"
+				"duration"					"3 5"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"bonus_magic_damage"		"35 50"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"slow"						"-50 -60"
 			}
 		}
 	}
@@ -198,12 +193,21 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"63 75"
+				"radius"					"100"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"distance"					"2000 3000"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"slow"						"-50 -60"
+			}"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"slow_duration"				"8 12"
 			}
 		}
 	}

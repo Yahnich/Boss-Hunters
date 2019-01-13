@@ -37,7 +37,7 @@ function modifier_ds_shell:OnCreated(table)
 
 		EmitSoundOn("Hero_Dark_Seer.Ion_Shield_lp", parent)
 
-		self.damage = self:GetTalentSpecialValueFor("damage") * 0.1
+		self.damage = self:GetTalentSpecialValueFor("damage") * 0.25
 		self.radius = self:GetTalentSpecialValueFor("radius")
 
 		local particleRadius = 50
@@ -47,13 +47,13 @@ function modifier_ds_shell:OnCreated(table)
 					ParticleManager:SetParticleControl(nfx, 1, Vector(particleRadius, particleRadius, particleRadius))
 		self:AttachEffect(nfx)
 
-		self:StartIntervalThink(0.1)
+		self:StartIntervalThink(0.25)
 	end
 end
 
 function modifier_ds_shell:OnRefresh(table)
 	if IsServer() then
-		self.damage = self:GetTalentSpecialValueFor("damage") * 0.1
+		self.damage = self:GetTalentSpecialValueFor("damage") * 0.25
 		self.radius = self:GetTalentSpecialValueFor("radius")
 	end
 end

@@ -27,7 +27,7 @@ function StatsScreen:StartStatsScreen()
 	-- self.cdr = {0,1,2,3,4,5}
 	self.as = 10
 	self.sta = {0,1,2,3,4,5}
-	self.acc = {0,1,2,3,4,5}
+	-- self.acc = {0,1,2,3,4,5}
 	
 	self.pr = 1
 	self.mr = {0,1,2,3,4,5}
@@ -56,7 +56,7 @@ function StatsScreen:RegisterPlayer(hero, bRespec)
 	-- stats.cdr = 0
 	stats.as = 0
 	stats.sta = 0
-	stats.acc = 0
+	-- stats.acc = 0
 	
 	stats.pr = 0
 	stats.mr = 0
@@ -80,7 +80,7 @@ function StatsScreen:RegisterPlayer(hero, bRespec)
 	hero.talentsSkilled = 0
 	
 	hero:SetAttributePoints( 0 )
-	
+	print("?")
 	hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
 end
 

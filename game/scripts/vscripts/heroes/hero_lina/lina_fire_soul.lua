@@ -1,12 +1,22 @@
 lina_fire_soul = class({})
-LinkLuaModifier( "modifier_lina_fire_soul_handle", "heroes/hero_lina/lina_fire_soul.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_lina_fire_soul", "heroes/hero_lina/lina_fire_soul.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function lina_fire_soul:GetIntrinsicModifierName()
     return "modifier_lina_fire_soul_handle"
 end
 
 modifier_lina_fire_soul_handle = class({})
+LinkLuaModifier( "modifier_lina_fire_soul_handle", "heroes/hero_lina/lina_fire_soul.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+function modifier_lina_fire_soul_handle:OnCreated()
+	self.duration = self:GetTalentSpecialValueFor("stack_duration")
+	self.max_stacks = self:GetTalentSpecialValueFor("max_stacks")
+end
+
+function modifier_lina_fire_soul_handle:OnRefresh()
+	self.duration = self:GetTalentSpecialValueFor("stack_duration")
+	self.max_stacks = self:GetTalentSpecialValueFor("max_stacks")
+end
+
 function modifier_lina_fire_soul_handle:DeclareFunctions()
     local funcs = {
         MODIFIER_EVENT_ON_ABILITY_EXECUTED
@@ -17,7 +27,10 @@ end
 
 function modifier_lina_fire_soul_handle:OnAbilityExecuted(params)
     if params.unit == self:GetCaster() and params.ability:GetCooldown(-1) > 0 then
-        self:GetCaster():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_lina_fire_soul", {Duration = self:GetSpecialValueFor("stack_duration")}):AddIndependentStack(self:GetSpecialValueFor("stack_duration"))
+        local souls = self:GetCaster():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_lina_fire_soul", {Duration = self.duration})
+		if souls then
+			souls:SetStackCount( math.min( (souls:GetStackCount() or 0) + 1, self.max_stacks ) )
+		end
     end
 end
 
@@ -26,32 +39,44 @@ function modifier_lina_fire_soul_handle:IsHidden()
 end
 
 modifier_lina_fire_soul = class({})
-function modifier_lina_fire_soul:OnCreated(table)
-    if self:GetCaster():HasScepter() then
-        self.damage = 10
-    else
-        self.damage = 0
-    end
+LinkLuaModifier( "modifier_lina_fire_soul", "heroes/hero_lina/lina_fire_soul.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+function modifier_lina_fire_soul:OnCreated(kv)
+    self.as = self:GetTalentSpecialValueFor("attack_speed_bonus")
+	self.ms = self:GetTalentSpecialValueFor("move_speed_bonus")
+	self.dmg = TernaryOperator( self:GetTalentSpecialValueFor("scepter_bonus_damage"), self:GetCaster():HasScepter(), 0 )
+	self.amp = TernaryOperator( self:GetTalentSpecialValueFor("scepter_spell_amp"), self:GetCaster():HasScepter(), 0 )
+end
+
+function modifier_lina_fire_soul:OnRefresh(kv)
+    self.as = self:GetTalentSpecialValueFor("attack_speed_bonus")
+	self.ms = self:GetTalentSpecialValueFor("move_speed_bonus")
+	self.dmg = TernaryOperator( self:GetTalentSpecialValueFor("scepter_bonus_damage"), self:GetCaster():HasScepter(), 0 )
+	self.amp = TernaryOperator( self:GetTalentSpecialValueFor("scepter_spell_amp"), self:GetCaster():HasScepter(), 0 )
 end
 
 function modifier_lina_fire_soul:DeclareFunctions()
     local funcs = {
-        
-        MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
+        MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+        MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
     }
 
     return funcs
 end
 
-function modifier_lina_fire_soul:GetModifierDamageOutgoing_Percentage()
-    return self.damage * self:GetStackCount()
+function modifier_lina_fire_soul:GetModifierSpellAmplify_Percentage()
+    return self.dmg * self:GetStackCount()
+end
+
+function modifier_lina_fire_soul:GetModifierBaseDamageOutgoing_Percentage()
+    return self.amp * self:GetStackCount()
 end
 
 function modifier_lina_fire_soul:GetModifierAttackSpeedBonus()
-    return self:GetSpecialValueFor("attack_speed_bonus") * self:GetStackCount()
+    return self.as * self:GetStackCount()
 end
 
 function modifier_lina_fire_soul:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetSpecialValueFor("move_speed_bonus") * self:GetStackCount()
+    return self.ms * self:GetStackCount()
 end

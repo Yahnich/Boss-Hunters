@@ -707,6 +707,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			illusion:AddNewModifier(owner, ability, specIllusionModifier, { duration = duration })
 		end
 		illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", { duration = duration })
+		illusion:AddNewModifier( self, nil, "modifier_stats_system_handler", {})
 		illusion.wearableList = {}
 		local wearableWorker = {}
 		for _, wearable in ipairs( self.wearableTable or self:GetChildren() ) do
@@ -1590,6 +1591,7 @@ end
 function CDOTA_BaseNPC:SmoothFindClearSpace(position)
 	self:SetAbsOrigin(position)
 	ResolveNPCPositions(position, self:GetHullRadius() + self:GetCollisionPadding())
+	Timers:CreateTimer(function() FindClearSpaceForUnit(self, position, true) end)
 end
 
 function CDOTABaseAbility:Stun(target, duration, bDelay)

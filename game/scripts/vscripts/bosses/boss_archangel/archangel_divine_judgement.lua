@@ -20,12 +20,10 @@ LinkLuaModifier( "modifier_archangel_divine_judgement", "bosses/boss_archangel/a
 
 function modifier_archangel_divine_judgement:OnCreated()
 	self.bonus_dmg = self:GetSpecialValueFor("bonus_magic_damage")
-	self.slow = self:GetSpecialValueFor("slow")
 end
 
 function modifier_archangel_divine_judgement:OnCreated()
 	self.bonus_dmg = self:GetSpecialValueFor("bonus_magic_damage")
-	self.slow = self:GetSpecialValueFor("slow")
 end
 
 function modifier_archangel_divine_judgement:CheckState()
@@ -33,15 +31,11 @@ function modifier_archangel_divine_judgement:CheckState()
 end
 
 function modifier_archangel_divine_judgement:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
+	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
 end
 
 function modifier_archangel_divine_judgement:GetModifierMagicalResistanceBonus()
 	return self.bonus_dmg
-end
-
-function modifier_archangel_divine_judgement:GetModifierMoveSpeedBonus_Percentage()
-	return self.slow
 end
 
 function modifier_archangel_divine_judgement:GetEffectName()

@@ -31,7 +31,7 @@
 				"var_type"				"FIELD_FLOAT"
 				"max_hp_dmg"			"100"
 			}
-			"02"
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"325"

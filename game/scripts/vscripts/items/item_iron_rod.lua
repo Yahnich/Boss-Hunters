@@ -16,8 +16,20 @@ function modifier_item_iron_rod:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
 
+function modifier_item_iron_rod:GetAccuracy(bInfo)
+	if bInfo ~= true then
+		self.miss = self:RollPRNG(self.chance)
+		if self.miss then
+			return 100
+		end
+	else
+		return self.chance
+	end
+end
+
 function modifier_item_iron_rod:OnAttackLanded(params)
-	if params.attacker == self:GetParent() and self:RollPRNG(self.chance) then
+	if params.attacker == self:GetParent() and self.miss then
+		self.miss = false
 		self:GetAbility():DealDamage(params.attacker, params.target, self.damage, {damage_type = DAMAGE_TYPE_MAGICAL})
 	end
 end

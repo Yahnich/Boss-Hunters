@@ -12,7 +12,7 @@ function dragon_knight_elder_dragon_berserker:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	EmitSoundOn("Hero_DragonKnight.ElderDragonForm", caster)
-	caster:AddNewModifier(caster, self, "modifier_dragon_knight_elder_dragon_berserker_active", {duration = 5 or self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_dragon_knight_elder_dragon_berserker_active", {duration = self:GetTalentSpecialValueFor("duration")})
 	ParticleManager:FireParticle("particles/units/heroes/hero_dragon_knight/dragon_knight_transform_red.vpcf", PATTACH_POINT_FOLLOW, caster)
 end
 

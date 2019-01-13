@@ -24,7 +24,7 @@ function visage_familiars:OnSpellStart()
 
 	EmitSoundOn("Hero_Visage.SummonFamiliars.Cast", caster)
 
-	local units = caster:FindAllUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
+	local units = caster:FindAllUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE })
 	for _,unit in pairs(units) do
 		if unit:GetOwner() == caster and unit:GetUnitLabel() == "visage_familiars" then
 			unit:ForceKill(false)

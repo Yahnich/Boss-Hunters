@@ -1006,7 +1006,7 @@ function CHoldoutGameMode:SpawnTestElites(elite, amount, bossname)
 			spawnName = "npc_dota_treasure"
 		end
 		for i = 1, spawns do
-			local spawnLoc = Vector(900,300)
+			local spawnLoc = RoundManager:PickRandomSpawn()
 			PrecacheUnitByNameAsync( spawnName, function()
 				local entUnit = CreateUnitByName( spawnName, spawnLoc, true, nil, nil, DOTA_TEAM_BADGUYS )
 				if elite then

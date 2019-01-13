@@ -25,7 +25,7 @@ function event_buff_berries_curse:OnDestroy()
 end
 
 function event_buff_berries_curse:RewardBlessing()
-	self:GetParent()::AddBlessing( "event_buff_berries_blessing" )
+	self:GetParent():AddBlessing( "event_buff_berries_blessing" )
 end
 
 function event_buff_berries_curse:DeclareFunctions()

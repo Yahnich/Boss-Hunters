@@ -22,6 +22,8 @@ function modifier_elite_pulsar:OnDeath(params)
 		local position = caster:GetAbsOrigin()
 		
 		ParticleManager:FireWarningParticle(position, radius)
+		
+		ParticleManager:FireParticle("particles/units/heroes/hero_pugna/pugna_netherblast_pre.vpcf", PATTACH_POINT_FOLLOW, caster, {[1] = Vector(radius,delay,delay)})
 		ParticleManager:FireParticle("particles/bosses/boss_green_dragon/boss_green_dragon_explosion_prep.vpcf", PATTACH_POINT_FOLLOW, caster)
 		Timers:CreateTimer(delay, function()
 			ParticleManager:FireParticle("particles/bosses/boss_green_dragon/boss_green_dragon_rot_explosion.vpcf", PATTACH_POINT_FOLLOW, caster)

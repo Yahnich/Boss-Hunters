@@ -176,6 +176,7 @@
 #base "heroes/hero_storm_spirit.txt"
 #base "heroes/hero_grimstroke.txt"
 #base "heroes/hero_lone_druid.txt"
+#base "heroes/hero_wisp.txt"
 
 "DOTAAbilities"
 {

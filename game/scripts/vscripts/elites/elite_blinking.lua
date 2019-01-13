@@ -24,7 +24,7 @@ if IsServer() then
 	function modifier_elite_blinking:OnIntervalThink()
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
-		if not ability:IsFullyCastable() or caster:IsStunned() or caster:IsSilenced() or caster:GetCurrentActiveAbility() then return end
+		if not ability:IsFullyCastable() or caster:IsStunned() or caster:IsSilenced() or caster:GetCurrentActiveAbility() or caster:IsHexed() then return end
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), -1) ) do
 			ability:CastSpell( enemy:GetAbsOrigin() )
 			break
