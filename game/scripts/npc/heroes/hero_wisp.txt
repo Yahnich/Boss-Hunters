@@ -171,7 +171,11 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
+<<<<<<< HEAD
 				"hit_radius"				"75"
+=======
+				"hit_radius"				"150"
+>>>>>>> 4359de20b3a163f67394a2f7c5338c27f7fa8374
 			}
 			"06"
 			{
