@@ -1,0 +1,49 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Meepo Haste Rune
+	//=================================================================================================================
+	"item_meepo_rune_haste"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7103"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_meepo_rune_haste"
+		"AbilityTextureName"			"item_tome_of_knowledge"
+		"ItemKillable"					"1"
+		"ItemSellable"					"0"
+		"ItemDroppable"					"1"
+		"Model"							"models/props_gameplay/rune_haste01.vmdl"	
+
+		"precache"
+		{
+			"particle"					"particles/generic_gameplay/rune_haste.vpcf"
+			"particle"					"particles/generic_gameplay/rune_haste_owner.vpcf"
+			
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"22"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms"				"100"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_as"				"100"
+			}
+		}
+	}
+}
