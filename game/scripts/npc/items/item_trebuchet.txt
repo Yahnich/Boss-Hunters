@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1250"	
+		"ItemCost"						"250"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_trebuchet"
 		"ItemRequirements"
 		{
-			"01"						"item_siegebreaker;item_power_core"
+			"01"						"item_siegebreaker;item_force_boots;item_power_core"
 		}
 	}
 	//=================================================================================================================
@@ -34,7 +34,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"6666"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_trebuchet"
 		"AbilityTextureName"			"custom/trebuchet"
@@ -55,6 +55,7 @@
 		}
 	
 		"AbilityCooldown"				"15"
+		"AbilityManaCost"				"50"
 
 		
 		// Special	
@@ -68,13 +69,43 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_range"			"400"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_range"			"500"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_all"				"20"
+				"bonus_movement_speed"  "18"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_str"				"20"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agi"				"20"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int"				"20"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"30"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"push_distance"			"-900"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"active_duration"		"3"
 			}
 		}
 	}

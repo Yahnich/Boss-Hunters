@@ -34,16 +34,11 @@ local function StartCombat(self, bFight)
 		self.combatStarted = true
 		self.eventType = EVENT_TYPE_ELITE
 		
-		self.undying = 1 + RoundManager:GetCurrentRaidTier()
+		self.undying = RoundManager:GetCurrentRaidTier()
 		self.zombos = math.floor( (2 + RoundManager:GetRaidsFinished() ) * HeroList:GetActiveHeroCount() / 1.5 )
 		self.enemiesToSpawn = self.undying + self.zombos
 		Timers:CreateTimer(3, function()
 			local boss = "npc_dota_boss4"
-			if RollPercentage(33) then
-				boss = "npc_dota_boss7"
-			elseif RollPercentage(20) then
-				boss = "npc_dota_boss22"
-			end
 			local spawn = CreateUnitByName(boss, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundNecessary = true
 			spawn:SetCoreHealth(2250)
@@ -134,6 +129,7 @@ local function HandoutRewards(self, bWon)
 			local pID = hero:GetPlayerOwnerID()
 			for i = 1, 2 do
 				local dropTable = {}
+				table.insert( dropTable, RelicManager:RollRandomGenericRelicForPlayer(pID) )
 				if RollPercentage(65) then
 					table.insert( dropTable, RelicManager:RollRandomUniqueRelicForPlayer(pID) )
 				else

@@ -2,11 +2,7 @@ modifier_cooldown_reduction_handler = class({})
 
 function modifier_cooldown_reduction_handler:OnStackCountChanged()
 	local cdr = self:GetStackCount()
-	if cdr ~= 0 then
-		if cdr > 0 then
-			self.cdr = (cdr + 1) / 100
-		end
-	end
+	self.cdr = (cdr) / 100
 end
 	
 function modifier_cooldown_reduction_handler:DeclareFunctions()

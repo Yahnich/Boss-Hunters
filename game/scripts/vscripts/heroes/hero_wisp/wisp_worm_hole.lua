@@ -121,7 +121,11 @@ modifier_wisp_worm_hole_end = class({})
 
 function modifier_wisp_worm_hole_end:OnCreated(table)
 	if IsServer() then
+<<<<<<< HEAD
+		local nfx = ParticleManager:CreateParticle("particles/econ/items/wisp/wisp_relocate_marker_ti7_endpoint.vpcf", PATTACH_POINT, self:GetCaster())
+=======
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_wisp/wisp_worm_hole_end.vpcf", PATTACH_POINT, self:GetCaster())
+>>>>>>> 4359de20b3a163f67394a2f7c5338c27f7fa8374
 					ParticleManager:SetParticleControl(nfx, 0, self:GetParent():GetAbsOrigin())
 		self:AttachEffect(nfx)
 

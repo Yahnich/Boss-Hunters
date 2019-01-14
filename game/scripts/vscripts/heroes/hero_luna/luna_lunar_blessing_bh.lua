@@ -52,11 +52,11 @@ LinkLuaModifier( "modifier_luna_lunar_blessing_passive", "heroes/hero_luna/luna_
 modifier_luna_lunar_blessing_passive = class({})
 
 function modifier_luna_lunar_blessing_passive:OnCreated()
-	self.aura_radius = self:GetAbility():GetSpecialValueFor("radius")
+	self.aura_radius = self:GetAbility():GetTalentSpecialValueFor("radius")
 end
 
 function modifier_luna_lunar_blessing_passive:OnRefresh()
-	self.aura_radius = self:GetAbility():GetSpecialValueFor("radius")
+	self.aura_radius = self:GetAbility():GetTalentSpecialValueFor("radius")
 end
 
 function modifier_luna_lunar_blessing_passive:IsHidden()
@@ -105,18 +105,31 @@ LinkLuaModifier( "modifier_luna_lunar_blessing_bh_aura", "heroes/hero_luna/luna_
 modifier_luna_lunar_blessing_bh_aura = class({})
 
 function modifier_luna_lunar_blessing_bh_aura:OnCreated()
-    self.damage = self:GetAbility():GetSpecialValueFor("bonus_damage")
-	self.dmg_pct = self:GetAbility():GetSpecialValueFor("bonus_damage_pct")
+    self.str = TernaryOperator( self:GetAbility():GetTalentSpecialValueFor("bonus_primary"), self:GetParent():GetPrimaryAttribute() == DOTA_ATTRIBUTE_STRENGTH, 0 )
+    self.agi = TernaryOperator( self:GetAbility():GetTalentSpecialValueFor("bonus_primary"), self:GetParent():GetPrimaryAttribute() == DOTA_ATTRIBUTE_AGILITY, 0 )
+    self.int = TernaryOperator( self:GetAbility():GetTalentSpecialValueFor("bonus_primary"), self:GetParent():GetPrimaryAttribute() == DOTA_ATTRIBUTE_INTELLECT, 0 )
+	
+	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_2", "as")
+	self.ms = self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_2", "ms")
+	self.dmg_pct = self:GetAbility():GetTalentSpecialValueFor("bonus_damage_pct")
 end
 
 function modifier_luna_lunar_blessing_bh_aura:OnRefresh()
-    self.damage = self:GetAbility():GetSpecialValueFor("bonus_damage")
-	self.dmg_pct = self:GetAbility():GetSpecialValueFor("bonus_damage_pct")
+    self.str = TernaryOperator( self:GetAbility():GetTalentSpecialValueFor("bonus_primary"), self:GetParent():GetPrimaryAttribute() == DOTA_ATTRIBUTE_STRENGTH, 0 )
+    self.agi = TernaryOperator( self:GetAbility():GetTalentSpecialValueFor("bonus_primary"), self:GetParent():GetPrimaryAttribute() == DOTA_ATTRIBUTE_AGILITY, 0 )
+    self.int = TernaryOperator( self:GetAbility():GetTalentSpecialValueFor("bonus_primary"), self:GetParent():GetPrimaryAttribute() == DOTA_ATTRIBUTE_INTELLECT, 0 )
+	
+	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_2", "as")
+	self.ms = self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_2", "ms")
+	self.mult = self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_1")
+	self.dmg_pct = self:GetAbility():GetTalentSpecialValueFor("bonus_damage_pct")
 end
 
 function modifier_luna_lunar_blessing_bh_aura:DeclareFunctions()
 	funcs = {
-				MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+				MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+				MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+				MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 				MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 				
 				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
@@ -125,52 +138,45 @@ function modifier_luna_lunar_blessing_bh_aura:DeclareFunctions()
 	return funcs
 end
 
-if GameRules == nil and IsClient() then
-	GameRules = class({})
-	
-	GameRules.IsDaytime = function()
-		local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
-		return tonumber(timeofday["timeofday"]) == 1
-	end
-	
-	GameRules.IsTemporaryNight = function()
-		local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
-		return tonumber(timeofday["timeofday"]) == 2
-	end
-	
-	GameRules.IsNightstalkerNight = function()
-		local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
-		return tonumber(timeofday["timeofday"]) == 3
-	end
+function modifier_luna_lunar_blessing_bh_aura:GetModifierBonusStats_Strength()
+	local damage = self.str
+	if damage <= 0 then return end
+	if self:GetCaster():HasModifier("modifier_luna_lunar_blessing_active") then damage = damage * self.mult end
+    return damage
 end
-	
 
-function modifier_luna_lunar_blessing_bh_aura:GetModifierPreAttack_BonusDamage()
-	local damage = self.damage
-	if self:GetCaster():HasModifier("modifier_luna_lunar_blessing_active") then damage = damage * self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_1") end
+function modifier_luna_lunar_blessing_bh_aura:GetModifierBonusStats_Agility()
+	local damage = self.agi
+	if damage <= 0 then return end
+	if self:GetCaster():HasModifier("modifier_luna_lunar_blessing_active") then damage = damage * self.mult end
+    return damage
+end
+
+function modifier_luna_lunar_blessing_bh_aura:GetModifierBonusStats_Intellect()
+	local damage = self.int
+	if damage <= 0 then return end
+	if self:GetCaster():HasModifier("modifier_luna_lunar_blessing_active") then damage = damage * self.mult end
     return damage
 end
 
 function modifier_luna_lunar_blessing_bh_aura:GetModifierBaseDamageOutgoing_Percentage()
 	if not GameRules:IsDaytime() then
 		local damage = self.dmg_pct
-		if self:GetCaster():HasModifier("modifier_luna_lunar_blessing_active") then damage = damage * self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_1") end
+		if self:GetCaster():HasModifier("modifier_luna_lunar_blessing_active") then damage = damage * self.mult end
 		return damage
 	end
 end
 
 function modifier_luna_lunar_blessing_bh_aura:GetModifierAttackSpeedBonus()
-	if not GameRules:IsDaytime() and self:GetCaster():HasTalent("special_bonus_unique_luna_lunar_blessing_2") then
-		local as = self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_2", "as")
-		if self:GetCaster():HasModifier("modifier_luna_lunar_blessing_active") then as = as * self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_1") end
-		return as
-	end
+	local as = self.as
+	if as > 0 then return end
+	if self:GetCaster():HasModifier("modifier_luna_lunar_blessing_active") then as = as * self.mult end
+	return as
 end
 
 function modifier_luna_lunar_blessing_bh_aura:GetModifierMoveSpeedBonus_Percentage()
-	if not GameRules:IsDaytime() and self:GetCaster():HasTalent("special_bonus_unique_luna_lunar_blessing_2") then
-		local ms = self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_2", "ms")
-		if self:GetCaster():HasModifier("modifier_luna_lunar_blessing_active") then ms = ms * self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_1") end
-		return ms
-	end
+	local ms = self.ms
+	if ms > 0 then return end
+	if self:GetCaster():HasModifier("modifier_luna_lunar_blessing_active") then ms = ms * self.mult end
+	return ms
 end

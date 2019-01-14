@@ -152,8 +152,6 @@ function RoundManager:OnNPCSpawned(event)
 					end
 					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_tombstone_respawn_immunity", {duration = 2.9}) 
 				end)
-			elseif spawnedUnit:IsIllusion() and spawnedUnit:GetPlayerOwnerID() and PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerOwnerID() ) and spawnedUnit:FindModifierByName("modifier_stats_system_handler") then
-				spawnedUnit:FindModifierByName("modifier_stats_system_handler"):SetStackCount( PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerOwnerID() ):entindex() )
 			end
 		end
 	end)
@@ -494,6 +492,8 @@ function RoundManager:LoadSpawns()
 	RoundManager.raidNumber = (RoundManager.raidNumber or 0) + 1
 	RoundManager.boundingBox = string.lower(zoneName).."_raid_"..RoundManager.raidNumber
 	RoundManager.boundingBoxEntity = Entities:FindByName(nil, RoundManager.boundingBox.."_edge_collider")
+	
+	print( RoundManager.boundingBox, zoneName, "loading spawns")
 	for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
 		table.insert( RoundManager.spawnPositions, spawnPos:GetAbsOrigin() )
 	end
@@ -501,6 +501,9 @@ function RoundManager:LoadSpawns()
 	for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_heroes") ) do
 		RoundManager.heroSpawnPosition = spawnPos:GetAbsOrigin()
 		break
+	end
+	for _,spawnEnt in ipairs( Entities:FindAllByClassname("info_player_start_goodguys") ) do
+		spawnEnt:SetAbsOrigin( RoundManager.heroSpawnPosition + RandomVector(128) )
 	end
 end
 

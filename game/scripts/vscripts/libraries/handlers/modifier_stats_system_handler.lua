@@ -12,7 +12,7 @@ SPELL_AMP_TABLE = 10
 COOLDOWN_REDUCTION_TABLE = {0,10,15,20,25,30}
 ATTACK_SPEED_TABLE = 10
 STATUS_AMP_TABLE = {0,10,15,20,25,30}
-ACCURACY_TABLE = {0,15,30,45,60,75}
+-- ACCURACY_TABLE = {0,15,30,45,60,75}
 
 -- DEFENSE
 ARMOR_TABLE = 1
@@ -36,11 +36,10 @@ end
 function modifier_stats_system_handler:UpdateStatValues()
 	-- OTHER
 	local entindex = self:GetCaster():entindex()
-	if not self:GetCaster():IsRealHero() then
-		entindex = self:GetStackCount()
-	end
 	
+	print( sentindex )
 	local netTable = CustomNetTables:GetTableValue("stats_panel", tostring(entindex) ) or {}
+		
 	self.ms = MOVESPEED_TABLE * tonumber(netTable["ms"])
 	self.mp = MANA_TABLE * tonumber(netTable["mp"])
 	self.mpr = MANA_REGEN_TABLE * tonumber(netTable["mpr"])
@@ -52,7 +51,7 @@ function modifier_stats_system_handler:UpdateStatValues()
 	-- self.cdr = COOLDOWN_REDUCTION_TABLE[tonumber(netTable["cdr"]) + 1]
 	self.as = ATTACK_SPEED_TABLE * tonumber(netTable["as"])
 	self.sta = STATUS_AMP_TABLE[math.min(#STATUS_AMP_TABLE, tonumber(netTable["sta"]) + 1)]
-	self.acc = ACCURACY_TABLE[math.min(#ACCURACY_TABLE, tonumber(netTable["acc"]) + 1)]
+	-- self.acc = ACCURACY_TABLE[math.min(#ACCURACY_TABLE, tonumber(netTable["acc"]) + 1)]
 	
 	-- DEFENSE
 	self.pr = ARMOR_TABLE * tonumber(netTable["pr"]) + 1
@@ -164,8 +163,4 @@ end
 
 function modifier_stats_system_handler:GetAttributes()
 	return MODIFIER_ATTRIBUTE_PERMANENT
-end
-
-function modifier_stats_system_handler:AllowIllusionDuplicate()
-	return true
 end

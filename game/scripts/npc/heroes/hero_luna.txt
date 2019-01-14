@@ -10,7 +10,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_luna/luna_lucent_beam_bh"
 		"AbilityTextureName"			"luna_lucent_beam"	
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
@@ -53,17 +53,29 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.2"
+				"stun_duration"			"0.4"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"beam_damage"			"100 175 250 325 400 475 550"
+				"var_type"				"FIELD_FLOAT"
+				"stun_night"			"0.8"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"night_beam_damage"		"150 250 350 450 550 650 750"
+				"beam_damage"			"75 150 225 300 375 450 525"
+				"LinkedSpecialBonus"	"special_bonus_unique_luna_lucent_beam_2"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"night_beam_damage"		"115 225 335 445 555 665 775"
+				"LinkedSpecialBonus"	"special_bonus_unique_luna_lucent_beam_2"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"beam_radius"			"175"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
@@ -91,7 +103,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"150"
+				"cd"						"4"
 			}
 		}
 	}
@@ -113,7 +125,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"-4"
+				"value"						"100"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cd"						"-4"
 			}
 		}
 	}
@@ -264,22 +281,14 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"20 35 50 65 80 95 110"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage_pct"			"20"
+				"bonus_primary"				"6 12 18 24 30 36 42"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_lucent_targets"		"1 2 2 3 4 4 5"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_beam_radius"			"750"
+				"bonus_damage_pct"			"20"
+				"LinkedSpecialBonus"		"special_bonus_unique_luna_lunar_blessing_2"
+				"LinkedSpecialBonusField"	"dmg"
 			}
 		}
 	}
@@ -293,6 +302,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_luna_lunar_blessing_bh_aura"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -325,6 +335,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_luna_lunar_blessing_bh_aura"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -333,12 +344,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"as"						"12"
+				"ms"						"15"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"ms"						"80"
+				"as"						"50"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"dmg"						"20"
 			}
 		}
 	}
@@ -439,34 +455,24 @@
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"beam_interval_scepter"			"0.4"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
 				"duration_tooltip"				"12"
 			}
-			"06"
+			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"radius"						"675 675 675"
 			}	
-			"07"
+			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"beams_scepter"					"30"
 			}
-			"08"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"hit_count_scepter"				"30"
-			}
-			"09"
+			"07"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration_tooltip_scepter"		"12"
 			}
-			"10"
+			"08"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"cast_range_tooltip_scepter"	"2500"

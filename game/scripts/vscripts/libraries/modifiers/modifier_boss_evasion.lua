@@ -28,11 +28,17 @@ function modifier_boss_evasion:GetModifierPreAttack_CriticalStrike( params )
 	self.ticks = (self.ticks or 0) + 1
 	if self.ticks >= self.critDelay then	
 		self.ticks = 0
+		local critDamage = 165 + 5 * self:GetStackCount()
+		local critMax = 200
 		if self:GetParent():HasModifier("modifier_elite_assassin") then
-			return math.min( 300, 220 + 7.5 * self:GetStackCount() )
-		else
-			return math.min( 200, 165 + 5 * self:GetStackCount() )
+			critDamage = 220 + 7.5 * self:GetStackCount()
+			critMax = 300
 		end
+		if self:GetParent():IsRangedAttacker() then
+			critDamage = critDamage - 25
+			critMax = critMax - 25
+		end
+		return math.min( critMax, critDamage )
 	end
 end
 

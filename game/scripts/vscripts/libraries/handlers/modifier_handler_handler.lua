@@ -230,7 +230,6 @@ function modifier_handler_handler:UpdateHealth()
 		end
 	end
 	self.baseMaxHealth = self:GetParent():GetMaxHealth() - buffHP
-	print( self.baseMaxHealth, self:GetParent():GetMaxHealth(), buffHP)
 	local bonusPctHP = self.baseMaxHealth
 	if bonusPctHP <= 0 then
 		bonusPctHP = self.baseMaxHealth * (-1) + 1

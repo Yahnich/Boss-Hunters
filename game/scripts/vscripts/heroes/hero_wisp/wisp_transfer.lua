@@ -66,7 +66,11 @@ function modifier_wisp_transfer:OnCreated(table)
 
 		EmitSoundOn("Hero_Wisp.Tether", caster)
 
+<<<<<<< HEAD
+		local nfx = ParticleManager:CreateParticle("particles/wisp_eviltether.vpcf", PATTACH_POINT, parent)
+=======
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_wisp/wisp_evil_tether.vpcf", PATTACH_POINT, parent)
+>>>>>>> 4359de20b3a163f67394a2f7c5338c27f7fa8374
 					ParticleManager:SetParticleControlEnt(nfx, 1, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
 					ParticleManager:SetParticleControlEnt(nfx, 0, self.target, PATTACH_POINT_FOLLOW, "attach_hitloc", self.target:GetAbsOrigin(), true)
 

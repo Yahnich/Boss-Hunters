@@ -69,7 +69,11 @@ function modifier_wisp_spirits_bh:OnCreated(table)
 
 		self.distanceTick = self.speed/3 * FrameTime()
 
+<<<<<<< HEAD
+		self.time = (360/self.speed)/(self.max_wisps + 1)
+=======
 		self.time = 360/self.speed/self.max_wisps
+>>>>>>> 4359de20b3a163f67394a2f7c5338c27f7fa8374
 
 		self.elaspedTime = 0
 

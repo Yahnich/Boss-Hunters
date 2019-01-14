@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1500"	
+		"ItemCost"						"800"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_boomstick"
 		"ItemRequirements"
 		{
-			"01"						"item_siegebreaker;item_executioners_blade;item_gem_of_corruption"
+			"01"						"item_siegebreaker;item_reaping_scythe;item_blade_of_agility"
 		}
 	}
 	//=================================================================================================================
@@ -63,55 +63,40 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"critical_chance"		"20"
+				"var_type"				"FIELD_FLOAT"
+				"armor_shred"			"-6"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"critical_damage"		"225"
+				"shred_duration"		"7"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"armor_shred"			"-3"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"35"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"shred_duration"		"7"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_range"			"350"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"55"
+				"bonus_agi"				"15"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_accuracy"		"40"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_range"			"300"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
 				"active_shred"			"-8"
 			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_crit"			"300"
-			}
-			"10"
+			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"active_duration"		"6"
 			}
-			"11"
+			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"active_distance"		"1000"

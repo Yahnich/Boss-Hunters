@@ -2,7 +2,7 @@ lion_mana_aura = class({})
 LinkLuaModifier( "modifier_lion_mana_aura", "heroes/hero_lion/lion_mana_aura.lua",LUA_MODIFIER_MOTION_NONE )
 
 function lion_mana_aura:GetCooldown(lvl)
-	return TernaryOperator( self:GetTalentSpecialValueFor("scepter_cooldown"), self:GetCaster():HasScepter(), 0 )
+	return TernaryOperator( self:GetTalentSpecialValueFor("scepter_cd"), self:GetCaster():HasScepter(), 0 )
 end
 
 function lion_mana_aura:GetBehavior()
@@ -50,7 +50,7 @@ function modifier_lion_mana_aura:OnDeath(params)
 		local origin = params.unit:GetAbsOrigin()
 		local ability = self:GetAbility()
 		for _, enemy in ipairs( params.unit:FindEnemyUnitsInRadius( origin, self.radius ) ) do
-			ability:DealDamage( params.unit, enemy, damage, {damage_type = DAMAGE_FLAG_MAGICAL, damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+			ability:DealDamage( params.unit, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 		end
 		params.unit:EmitSound("Hero_Lion.TauntToHell")
 		ParticleManager:FireParticle("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_area.vpcf", PATTACH_ABSORIGIN, params.unit, {[0] = origin,

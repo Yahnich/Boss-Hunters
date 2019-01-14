@@ -986,6 +986,7 @@
 		"Ability1"						"lich_frost_nova_bh"
 		"Ability2"						"lich_frost_armor_bh"
 		"Ability3"						"lich_chain_frost_bh"
+		"Ability4"						"lich_cold_front"
 		"Ability6"						"lich_dark_sacrifice"
 		
 		"Ability10"						"special_bonus_unique_lich_frost_nova_1"
@@ -1224,7 +1225,7 @@
 		"Ability15"						"special_bonus_unique_morph_str_strike_2"
 		"Ability16"						"special_bonus_unique_morph_morph_1"
 		"Ability17"						"special_bonus_unique_morph_morph_2"
-		"Ability18"						"special_bonus_attack_speed_30"
+		"Ability18"						""
 		"Ability19"						""
 		"Ability20"						""
 		"Ability21"						""

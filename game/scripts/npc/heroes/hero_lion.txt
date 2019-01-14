@@ -527,12 +527,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"0.25"
+				"value"					"0.5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"dmgFactor"					"0.6"
+				"dmgFactor"				"0.6"
 			}
 		}
 	}

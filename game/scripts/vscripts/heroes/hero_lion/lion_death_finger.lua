@@ -81,7 +81,8 @@ function lion_death_finger:OnSpellStart()
     end
 
     if caster:HasTalent("special_bonus_unique_lion_death_finger_1") then
-        Timers:CreateTimer(caster:FindTalentValue("special_bonus_unique_lion_death_finger_1"), function()
+		local delay = caster:FindTalentValue("special_bonus_unique_lion_death_finger_1")
+        Timers:CreateTimer(delay, function()
             local enemies = caster:FindEnemyUnitsInLine(startPos, endPos, self:GetTalentSpecialValueFor("radius"), {flag=DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
 			local dmgFactor = caster:FindTalentValue("special_bonus_unique_lion_death_finger_1", "dmgFactor")
             if #enemies > 0 then
@@ -120,6 +121,22 @@ end
 
 modifier_lion_death_finger_grow = class({})
 LinkLuaModifier( "modifier_lion_death_finger_grow", "heroes/hero_lion/lion_death_finger.lua",LUA_MODIFIER_MOTION_NONE )
+
+function modifier_lion_death_finger_grow:DeclareFunctions()
+	return {MODIFIER_PROPERTY_TOOLTIP}
+end
+
+function modifier_lion_death_finger_grow:OnTooltip()
+	return self:GetStackCount() * 5
+end
+
+function modifier_lion_death_finger_grow:IsPurgable()
+	return false
+end
+
+function modifier_lion_death_finger_grow:RemoveOnDeath()
+	return false
+end
 
 modifier_lion_death_finger_root = class({})
 function modifier_lion_death_finger_root:CheckState()

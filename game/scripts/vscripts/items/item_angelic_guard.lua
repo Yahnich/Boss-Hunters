@@ -9,11 +9,11 @@ function item_angelic_guard:OnSpellStart()
 	local caster = self:GetCaster()
 	local healPct = self:GetSpecialValueFor("heal") / 100
 	local minRestore = self:GetSpecialValueFor("min_heal")
+	caster:Dispel(caster, false)
 	for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), self:GetSpecialValueFor("radius") ) ) do
 		ParticleManager:FireParticle("particles/items2_fx/mekanism_recipient.vpcf", PATTACH_POINT_FOLLOW, ally)
 		EmitSoundOn("DOTA_Item.Mekansm.Target", ally)
 		ally:HealEvent( math.max(minRestore, healPct * ally:GetMaxHealth()), self, caster)
-		ally:Dispel(caster, false)
 	end
 	ParticleManager:FireParticle("particles/items2_fx/mekanism.vpcf", PATTACH_POINT_FOLLOW, caster)
 	EmitSoundOn("DOTA_Item.Mekansm.Activate", caster)

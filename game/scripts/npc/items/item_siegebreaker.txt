@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1650"	
+		"ItemCost"						"975"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_siegebreaker"
 		"ItemRequirements"
 		{
-			"01"						"item_soldiers_pike;"
+			"01"						"item_soldiers_pike;item_soldiers_pike"
 		}
 	}
 	"item_siegebreaker"
@@ -62,7 +62,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_range"			"300"
+				"bonus_range"			"350"
 			}
 		}
 	}

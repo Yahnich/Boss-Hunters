@@ -13,7 +13,7 @@ function naga_siren_tidal_waves:OnSpellStart()
 	
 	local illusions = caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), -1 )
 	for _, illusion in ipairs( illusions ) do
-		if illusion:IsIllusion() then
+		if illusion:IsIllusion() and illusion:GetParentUnit() == caster then
 			self:FireTidal( illusion )
 		end
 	end

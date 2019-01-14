@@ -1,7 +1,27 @@
 lycan_apex_predator = class({})
 
-print(GameRules)
-print(GameRules.IsDaytime)
+if IsClient() then -- thanks valve
+	if GameRules.IsDaytime == nil then
+		GameRules.IsDaytime = function()
+			local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
+			return timeofday["timeofday"] == 1
+		end
+	end
+	
+	if GameRules.IsTemporaryNight == nil then
+		GameRules.IsTemporaryNight = function()
+			local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
+			return timeofday["timeofday"] == 2
+		end
+	end
+	
+	if GameRules.IsNightstalkerNight == nil then
+		GameRules.IsNightstalkerNight = function()
+			local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
+			return timeofday["timeofday"] == 3
+		end
+	end
+end
 
 function lycan_apex_predator:GetIntrinsicModifierName()
 	return "modifier_lycan_apex_predator"

@@ -57,7 +57,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-5"
+				"armor_reduction"		"-6"
 			}
 			"02"
 			{
@@ -67,7 +67,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"40"
+				"bonus_damage"			"35"
 			}
 		}
 	}

@@ -30,7 +30,7 @@ function modifier_item_trinity_handle:OnCreated()
 	self.damage = self:GetSpecialValueFor("bonus_damage")
 	self.regen = self:GetSpecialValueFor("bonus_regen")
 	self.castrange = self:GetAbility():GetSpecialValueFor("bonus_cast_range")
-	self.spellamp = self:GetAbility():GetSpecialValueFor("bonus_spell_damage")
+	self.spellamp = self:GetAbility():GetSpecialValueFor("bonus_spell_amp")
 	self.bonusdamage = self:GetAbility():GetSpecialValueFor("bonus_damage_taken")
 	self.int = self:GetAbility():GetSpecialValueFor("bonus_intellect")
 	self.manacost = self:GetSpecialValueFor("mana_cost_reduction")
@@ -136,8 +136,8 @@ LinkLuaModifier("modifier_item_trinity_debuff", "items/item_trinity", LUA_MODIFI
 
 function modifier_item_trinity_debuff:OnCreated()
 	self.mr = self:GetSpecialValueFor("debuff_mr")
-	self.damage = self:GetCaster():GetIntellect() * self:GetSpecialValueFor("debuff_int_dmg") / 100
 	self.tick = self:GetSpecialValueFor("debuff_tick_rate")
+	self.damage = (self:GetCaster():GetIntellect() * self:GetSpecialValueFor("debuff_int_dmg") / 100) * self.tick / self:GetRemainingTime()
 	if IsServer() then
 		self:StartIntervalThink( self.tick )
 	end
@@ -145,12 +145,12 @@ end
 
 function modifier_item_trinity_debuff:OnRefresh()
 	self.mr = self:GetSpecialValueFor("debuff_mr")
-	self.damage = self:GetCaster():GetIntellect() * self:GetSpecialValueFor("debuff_int_dmg") / 100
 	self.tick = self:GetSpecialValueFor("debuff_tick_rate")
+	self.damage = (self:GetCaster():GetIntellect() * self:GetSpecialValueFor("debuff_int_dmg") / 100) * self.tick / self:GetRemainingTime()
 end
 
 function modifier_item_trinity_debuff:OnIntervalThink()
-	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self.damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
+	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self.damage, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 end
 
 function modifier_item_trinity_debuff:DeclareFunctions()

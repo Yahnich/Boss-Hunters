@@ -25,22 +25,19 @@ function item_boomstick:OnSpellStart()
 	Timers:CreateTimer(distance/speed, function()
 		ParticleManager:ClearParticle(shotFX)
 	end)
-	caster:AddNewModifier(caster, self, "modifier_item_boomstick_crit", {})
 	for _, enemy in ipairs( caster:FindEnemyUnitsInLine(startPos, endPos, 128) ) do
 		enemy:AddNewModifier(caster, self, "modifier_boomstick_active_debuff", {duration = duration})
 		caster:PerformAbilityAttack(enemy, true, self)
 	end
-	caster:RemoveModifierByName("modifier_item_boomstick_crit")
 end
 
 modifier_item_boomstick_handle = class({})
 LinkLuaModifier( "modifier_item_boomstick_handle", "items/item_boomstick.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_boomstick_handle:OnCreated()
-	self.crit_damage = self:GetSpecialValueFor("critical_damage")
-	self.crit_chance = self:GetSpecialValueFor("critical_chance")
 	self.damage = self:GetSpecialValueFor("bonus_damage")
 	self.range = self:GetSpecialValueFor("bonus_range")
+	self.agi = self:GetSpecialValueFor("bonus_agi")
 end
 
 function modifier_item_boomstick_handle:GetAttributes()
@@ -48,9 +45,9 @@ function modifier_item_boomstick_handle:GetAttributes()
 end
 
 function modifier_item_boomstick_handle:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
-			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 			MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 			MODIFIER_EVENT_ON_ATTACK_LANDED
 			}
 end
@@ -67,14 +64,12 @@ function modifier_item_boomstick_handle:GetModifierPreAttack_BonusDamage()
 	return self.damage
 end
 
-function modifier_item_boomstick_handle:GetModifierAttackRangeBonus()
-	if self:GetParent():IsRangedAttacker() then return self.range end
+function modifier_item_boomstick_handle:GetModifierBonusStats_Agility()
+	return self.agi
 end
 
-function modifier_item_boomstick_handle:GetModifierPreAttack_CriticalStrike()
-	if RollPercentage( self.crit_chance ) then
-		return self.crit_damage
-	end
+function modifier_item_boomstick_handle:GetModifierAttackRangeBonus()
+	if self:GetParent():IsRangedAttacker() then return self.range end
 end
 
 function modifier_item_boomstick_handle:IsHidden()
@@ -121,28 +116,4 @@ end
 
 function modifier_boomstick_active_debuff:GetModifierPhysicalArmorBonus()
 	return self.armor
-end
-
-modifier_item_boomstick_crit = class({})
-LinkLuaModifier( "modifier_item_boomstick_crit", "items/item_boomstick.lua", LUA_MODIFIER_MOTION_NONE )
-
-function modifier_item_boomstick_crit:OnCreated()
-	self.crit_damage = self:GetSpecialValueFor("active_crit")
-end
-
-function modifier_item_boomstick_crit:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
-function modifier_item_boomstick_crit:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE
-			}
-end
-
-function modifier_item_boomstick_crit:GetModifierPreAttack_CriticalStrike()
-	return self.crit_damage
-end
-
-function modifier_item_boomstick_crit:IsHidden()
-	return true
 end

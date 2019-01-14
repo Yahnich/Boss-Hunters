@@ -58,6 +58,10 @@ function modifier_lycan_shapeshift_bh:GetBaseAttackTime_Bonus()
 	return self.bat
 end
 
+function modifier_lycan_shapeshift_bh:IsPurgable()
+	return false
+end
+
 modifier_lycan_shapeshift_bh_wolf = class({})
 LinkLuaModifier("modifier_lycan_shapeshift_bh_wolf", "heroes/hero_lycan/lycan_shapeshift_bh", LUA_MODIFIER_MOTION_NONE)
 
@@ -77,4 +81,8 @@ end
 
 function modifier_lycan_shapeshift_bh_wolf:IsHidden()
 	return true
+end
+
+function modifier_lycan_shapeshift_bh_wolf:IsPurgable()
+	return false
 end
