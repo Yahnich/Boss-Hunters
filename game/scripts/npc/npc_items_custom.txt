@@ -152,7 +152,17 @@
 #base "items/item_trinity.txt"
 #base "items/item_death_sentence.txt"
 
-// Next ID is 7099
+//Meepo Runes for ult
+#base "items/item_meepo_rune_dd.txt"
+#base "items/item_meepo_rune_regen.txt"
+#base "items/item_meepo_rune_arcane.txt"
+#base "items/item_meepo_rune_bounty.txt"
+#base "items/item_meepo_rune_invis.txt"
+#base "items/item_meepo_rune_illusion.txt"
+#base "items/item_meepo_rune_haste.txt"
+#base "items/item_meepo_rune_reduc.txt"
+
+// Next ID is 7107
 
 "DOTAAbilities"
 {

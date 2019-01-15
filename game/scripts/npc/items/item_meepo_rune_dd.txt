@@ -1,0 +1,44 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Meepo Double Damage
+	//=================================================================================================================
+	"item_meepo_rune_dd"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7099"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_meepo_rune_dd"
+		"AbilityTextureName"			"item_tome_of_knowledge"
+		"ItemKillable"					"1"
+		"ItemSellable"					"0"
+		"ItemDroppable"					"1"
+		"Model"							"models/props_gameplay/rune_doubledamage01.vmdl"	
+
+		"precache"
+		{
+			"particle"					"particles/generic_gameplay/rune_doubledamage.vpcf"
+			"particle"					"particles/generic_gameplay/rune_doubledamage_owner.vpcf"
+			
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"100"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"45"
+			}
+		}
+	}
+}

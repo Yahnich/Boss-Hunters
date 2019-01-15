@@ -1,0 +1,36 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Meepo Damage Reduction Rune
+	//=================================================================================================================
+	"item_meepo_rune_reduc"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7106"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_meepo_rune_reduc"
+		"AbilityTextureName"			"item_tome_of_knowledge"
+		"ItemKillable"					"1"
+		"ItemSellable"					"0"
+		"ItemDroppable"					"1"
+		"Model"							"models/props_gameplay/refresher_shard.vmdl"	
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduc"			"30"
+			}
+		}
+	}
+}

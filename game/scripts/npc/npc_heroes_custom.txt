@@ -1167,6 +1167,27 @@
 		"Ability17"						"special_bonus_unique_medusa_gaze_2"
 	}
 	//=================================================================================================================
+	// HERO: Meepo
+	//=================================================================================================================
+	"npc_dota_hero_meepo_ebf"
+	{
+		"override_hero"					"npc_dota_hero_meepo"
+		"Ability1"						"meepo_earthbind_bh"
+		"Ability2"						"meepo_poof_bh"					
+		"Ability3"						"meepo_ransack_bh"
+		"Ability4"						"meepo_divided"						
+		"Ability6"						"meepo_dig"
+		
+		"Ability10"						"special_bonus_unique_meepo_earthbind_bh_1"
+		"Ability11"						"special_bonus_unique_meepo_earthbind_bh_2"
+		"Ability12"						"special_bonus_unique_meepo_poof_bh_1"
+		"Ability13"						"special_bonus_unique_meepo_poof_bh_2"
+		"Ability14"						"special_bonus_unique_meepo_ransack_bh_1"
+		"Ability15"						"special_bonus_unique_meepo_ransack_bh_2"
+		"Ability16"						"special_bonus_unique_meepo_dig_1"
+		"Ability17"						"special_bonus_unique_meepo_dig_2"
+	}
+	//=================================================================================================================
 	// HERO: Mirana
 	//=================================================================================================================
 	"npc_dota_hero_mirana_ebf"
