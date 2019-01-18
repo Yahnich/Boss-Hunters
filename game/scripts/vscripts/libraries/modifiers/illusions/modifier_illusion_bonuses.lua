@@ -11,12 +11,16 @@ function modifier_illusion_bonuses:OnCreated()
 	end
 	self.ar = self:GetCaster():GetAttackRange()
 	if IsServer() then
+		EmitSoundOn("General.Illusion.Create", self:GetParent())
+
 		self.ps = self:GetCaster():GetProjectileSpeed()
 	end
 end
 
 function modifier_illusion_bonuses:OnDestroy()
 	if IsServer() then
+		EmitSoundOn("General.Illusion.Destroy", self:GetParent())
+		
 		if self:GetParent().wearableList then
 			for _, wearable in ipairs( self:GetParent().wearableList ) do
 				UTIL_Remove( wearable )

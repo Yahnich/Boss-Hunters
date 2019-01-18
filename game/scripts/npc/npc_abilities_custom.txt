@@ -178,6 +178,8 @@
 #base "heroes/hero_lone_druid.txt"
 #base "heroes/hero_wisp.txt"
 #base "heroes/hero_meepo.txt"
+#base "heroes/hero_phantom_lancer.txt"
+#base "heroes/hero_invoker.txt"
 
 "DOTAAbilities"
 {
