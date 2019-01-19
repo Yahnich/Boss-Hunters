@@ -1,0 +1,555 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Spirit Lance
+	//=================================================================================================================
+	"pl_spirit_lance"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_phantom_lancer/pl_spirit_lance"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"phantom_lancer_spirit_lance"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"MaxLevel"						"7"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"525 600 675 750 825 900 975"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"7"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"125 130 135 140 145 150 155"
+		
+		"precache"
+		{
+			"particle"  				"particles/units/heroes/hero_phantom_lancer/phantomlancer_spiritlance_projectile.vpcf"
+			"particle"  				"particles/units/heroes/hero_phantom_lancer/phantomlancer_spiritlance_caster.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_phantomlancer.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cast_range"				"525 600 675 750 825 900 975"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"100 150 200 250 300 350 400"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"slow_duration"				"3.25"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"illusion_duration"			"3"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_in"				"400"				
+				"LinkedSpecialBonus"		"special_bonus_unique_pl_spirit_lance_2"
+				"LinkedSpecialBonusField"	"in_damage"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_out"				"20"
+				"LinkedSpecialBonus"		"special_bonus_unique_pl_spirit_lance_2"
+				"LinkedSpecialBonusField"	"out_damage"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_pl_spirit_lance_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bounces"					"5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"400"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_pl_spirit_lance_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"in_damage"					"-100"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"out_damage"				"15"
+			}
+		}
+	}
+
+	"pl_doppelganger"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_phantom_lancer/pl_doppelganger"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName"			"phantom_lancer_doppelwalk"
+		"MaxLevel"						"7"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastRange"				"600"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"40 35 30 25 20 15 10"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_phantom_lancer/phantom_lancer_doppleganger_illlmove.vpcf"
+			"particle"					"particles/units/heroes/hero_phantom_lancer/phantom_lancer_doppleganger_aoe.vpcf"
+			"particle"  				"particles/units/heroes/hero_phantom_lancer/phantom_lancer_spawn.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_phantomlancer.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_1_in"				"100"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_1_out"			"0"
+				"LinkedSpecialBonus"		"special_bonus_unique_pl_doppelganger_1"
+				"LinkedSpecialBonusField"	"out_1"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_2_in"				"600"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_2_out"			"20"
+				"LinkedSpecialBonus"		"special_bonus_unique_pl_doppelganger_1"
+				"LinkedSpecialBonusField"	"out_2"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"target_aoe"				"325"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"search_radius"				"900"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"delay"						"1"
+			}			
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"illusion_duration"			"3"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"illusion_extended_duration"			"2"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_pl_doppelganger_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"out_1"						"20"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"out_2"						"-50"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_pl_doppelganger_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"-3"
+			}
+		}
+	}
+
+	"pl_false_edge"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_phantom_lancer/pl_false_edge"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/phantom_lancer_sunwarrior_phantom_edge"
+		"MaxLevel"						"7"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"0"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"22 21 20 19 18 17 16"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+		
+		"precache"
+		{
+			"particle"  				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+			"particle"  				"particles/econ/items/earthshaker/earthshaker_totem_ti6/earthshaker_totem_ti6_cast.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_as"					"20 40 60 80 100 120 140"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_accuracy"			"20 25 30 35 40 45 50"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"6"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_pl_false_edge_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_pl_false_edge_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"300"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Phantom Rush
+	//=================================================================================================================
+	"pl_phantom_rush"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_phantom_lancer/pl_phantom_rush"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"phantom_lancer_phantom_edge"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+		"HasScepterUpgrade"				"1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"4"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_phantom_lancer/phantomlancer_edge_boost.vpcf"
+			
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_phantomlancer.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"min_distance"				"150"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_distance"				"1200"
+				"LinkedSpecialBonus"		"special_bonus_unique_phantom_lancer"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_speed"				"800"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_agility"				"10"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"agility_duration"			"2"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"illusion_duration_scepter"	"3"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_in_scepter"		"400"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_out_scepter"		"20"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Juxtapose
+	//=================================================================================================================
+	"pl_juxtapose"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_phantom_lancer/pl_juxtapose"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"phantom_lancer_juxtapose"
+		"MaxLevel"						"6"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		"precache"
+		{	
+			"particle"					"particles/units/heroes/hero_phantom_lancer/phantomlancer_illusion_destroy.vpcf"
+			"particle"					"particles/units/heroes/hero_phantom_lancer/phantom_lancer_spawn_illusion.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_phantomlancer.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_illusions"				"1 2 3 4 5 6"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"chance"					"40 45 50 55 60 65"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_chance"			"8"
+			}			
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_duration"			"3"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_in"				"650"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_out"				"16"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_pl_juxtapose_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"25"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_pl_juxtapose_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+}
