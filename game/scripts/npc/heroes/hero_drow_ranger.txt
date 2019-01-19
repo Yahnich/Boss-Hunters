@@ -395,7 +395,6 @@
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"MaxLevel"						"6"
 		"AbilityTextureName"			"drow_ranger_marksmanship"
-
 		"HasScepterUpgrade"				"1"
 		
 		"precache"

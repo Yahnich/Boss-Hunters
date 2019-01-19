@@ -78,9 +78,10 @@ function mk_command:OnProjectileHit(hTarget, vLocation)
 			self:DealDamage(caster, hTarget, damage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_DAMAGE)
 			bonusDamage = 0
 		end
-
+		local orgPos = caster:GetAbsOrigin()
+		caster:SetAbsOrigin(vLocation)
 		caster:PerformAbilityAttack(hTarget, true, self, bonusDamage, true, bCantMiss)
-
+		caster:SetAbsOrigin(orgPos)
 		--Talent 1
 		if caster:HasTalent("special_bonus_unique_mk_command_1") then
 			return true

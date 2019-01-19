@@ -12,11 +12,11 @@ function relic_cursed_cursed_dice:OnCreated()
 		for i = 1, rerolls + bonusRolls do
 			local roll = RandomInt( 1, 3 )
 			if roll == 1 then
-				self:GetParent():AddRelic( RelicManager:RollRandomGenericRelicForPlayer(pID), "relic_cursed_cursed_dice" )
+				self:GetParent():AddRelic( RelicManager:RollRandomGenericRelicForPlayer(pID, "relic_cursed_cursed_dice") )
 			elseif roll == 2 then
-				self:GetParent():AddRelic( RelicManager:RollRandomCursedRelicForPlayer(pID), "relic_cursed_cursed_dice" )
+				self:GetParent():AddRelic( RelicManager:RollRandomCursedRelicForPlayer(pID, "relic_cursed_cursed_dice") )
 			else
-				self:GetParent():AddRelic( RelicManager:RollRandomUniqueRelicForPlayer(pID), "relic_cursed_cursed_dice" )
+				self:GetParent():AddRelic( RelicManager:RollRandomUniqueRelicForPlayer(pID, "relic_cursed_cursed_dice") )
 			end
 		end
 		self:GetAbility().diceHasBeenRolled = true

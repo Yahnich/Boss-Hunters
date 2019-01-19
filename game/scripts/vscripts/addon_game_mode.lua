@@ -164,11 +164,13 @@ function CHoldoutGameMode:InitGameMode()
 	
 	self._message = false
 	
-	GameRules:SetHeroSelectionTime( 80.0 )
+	
 	if IsInToolsMode() then
 		GameRules:SetPreGameTime( 9999.0 )
+		GameRules:SetHeroSelectionTime( 9999.0 )
 	else
 		GameRules:SetPreGameTime( 30.0 )
+		GameRules:SetHeroSelectionTime( 80.0 )
 	end
 	GameRules:SetShowcaseTime( 0 )
 	GameRules:SetStrategyTime( 0 )

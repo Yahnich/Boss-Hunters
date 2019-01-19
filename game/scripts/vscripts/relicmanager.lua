@@ -256,6 +256,12 @@ function RelicManager:RollRandomGenericRelicForPlayer(pID, notThisRelic)
 		dropTable = TableToWeightedArray(hero.internalRNGPools[1])
 	end
 	
+	for i = #dropTable, 1, -1 do
+		if dropTable[i] == notThisRelic then
+			table.remove(dropTable, i)
+		end
+	end
+	
 	if dropTable[1] ~= nil then
 		local relic = dropTable[RandomInt(1, #dropTable)]
 		hero.internalRNGPools[1][relic] = nil
@@ -275,6 +281,12 @@ function RelicManager:RollRandomCursedRelicForPlayer(pID, notThisRelic)
 		dropTable = TableToWeightedArray(hero.internalRNGPools[2])
 	end
 	
+	for i = #dropTable, 1, -1 do
+		if dropTable[i] == notThisRelic then
+			table.remove(dropTable, i)
+		end
+	end
+	
 	if dropTable[1] ~= nil then
 		local relic = dropTable[RandomInt(1, #dropTable)]
 		hero.internalRNGPools[2][relic] = nil
@@ -292,6 +304,12 @@ function RelicManager:RollRandomUniqueRelicForPlayer(pID, notThisRelic)
 	if dropTable[1] == nil then
 		hero.internalRNGPools[3] = table.copy(self.uniqueDropTable)
 		dropTable = TableToWeightedArray(hero.internalRNGPools[3])
+	end
+	
+	for i = #dropTable, 1, -1 do
+		if dropTable[i] == notThisRelic then
+			table.remove(dropTable, i)
+		end
 	end
 	
 	if dropTable[1] ~= nil then
