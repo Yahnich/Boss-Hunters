@@ -13,6 +13,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"bounty_hunter_shuriken_toss"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
 	
 		// Casting

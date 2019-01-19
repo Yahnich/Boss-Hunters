@@ -10,6 +10,8 @@ DOTA_LIFESTEAL_SOURCE_ABILITY = 2
 MAP_CENTER = Vector(332, -1545)
 GAME_MAX_LEVEL = 400
 
+HERO_SELECTION_TIME = 80
+
 GLOBAL_STUN_LIST = {}
 
 if CHoldoutGameMode == nil then
@@ -167,11 +169,12 @@ function CHoldoutGameMode:InitGameMode()
 	
 	if IsInToolsMode() then
 		GameRules:SetPreGameTime( 9999.0 )
-		GameRules:SetHeroSelectionTime( 9999.0 )
+		HERO_SELECTION_TIME = 9999
 	else
 		GameRules:SetPreGameTime( 30.0 )
-		GameRules:SetHeroSelectionTime( 80.0 )
 	end
+	
+	GameRules:SetHeroSelectionTime( HERO_SELECTION_TIME )
 	GameRules:SetShowcaseTime( 0 )
 	GameRules:SetStrategyTime( 0 )
 	GameRules:SetCustomGameSetupAutoLaunchDelay( 0 ) -- fix valve bullshit
@@ -860,14 +863,12 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 		end
 		
 		ClientServer:Initialize()
-		Timers:CreateTimer(79,function()
-			if GameRules:State_Get() == 3 then
-				for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-					if not PlayerResource:HasSelectedHero( nPlayerID ) and PlayerResource:GetPlayer( nPlayerID ) then
-						local player = PlayerResource:GetPlayer( nPlayerID )
-						player:MakeRandomHeroSelection()
-						PlayerResource:SetHasRandomed( nPlayerID )
-					end
+		Timers:CreateTimer(HERO_SELECTION_TIME - 1,function()
+			for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+				if not PlayerResource:HasSelectedHero( nPlayerID ) and PlayerResource:GetPlayer( nPlayerID ) then
+					local player = PlayerResource:GetPlayer( nPlayerID )
+					player:MakeRandomHeroSelection()
+					PlayerResource:SetHasRandomed( nPlayerID )
 				end
 			end
 		end)
