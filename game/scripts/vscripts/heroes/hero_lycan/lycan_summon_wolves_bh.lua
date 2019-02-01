@@ -29,7 +29,7 @@ function lycan_summon_wolves_bh:OnSpellStart()
 		local position = RotatePosition(startPos, angPoint, spawnOrigin)
 
 		local wolf = caster.summonedWolves[i]
-		if #caster.summonedWolves < wolfCount or wolf:IsNull() or ( caster:HasTalent("special_bonus_unique_lycan_summon_wolves_2") and  not wolf:UnitCanRespawn() ) then
+		if #caster.summonedWolves < wolfCount or wolf:IsNull() or ( caster:HasTalent("special_bonus_unique_lycan_summon_wolves_2") and not wolf:UnitCanRespawn() ) then
 			self:CreateWolf(position)
 		else
 			wolf:RespawnUnit()

@@ -37,7 +37,6 @@ function modifier_stats_system_handler:UpdateStatValues()
 	-- OTHER
 	local entindex = self:GetCaster():entindex()
 	
-	print( sentindex )
 	local netTable = CustomNetTables:GetTableValue("stats_panel", tostring(entindex) ) or {}
 		
 	self.ms = MOVESPEED_TABLE * tonumber(netTable["ms"])

@@ -62,7 +62,7 @@ if IsServer() then
     function modifier_queenofpain_blink_bh_charges:Update()
 		self.kv.replenish_time = self:GetAbility():GetCooldown(-1) + self:GetCaster():FindTalentValue("special_bonus_unique_queenofpain_blink_2", "bonus_cd")
 		self.kv.max_count = self:GetCaster():FindTalentValue("special_bonus_unique_queenofpain_blink_2")
-		
+		local caster = self:GetCaster()
 		if self:GetStackCount() == self.kv.max_count then
 			self:SetDuration(-1, true)
 		elseif self:GetStackCount() > self.kv.max_count then

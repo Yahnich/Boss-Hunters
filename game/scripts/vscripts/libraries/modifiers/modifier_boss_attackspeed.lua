@@ -36,9 +36,9 @@ function modifier_boss_attackspeed:GetPriority()
 	return MODIFIER_PRIORITY_LOW
 end
 
+
 function modifier_boss_attackspeed:DeclareFunctions()
 	local funcs = {
-		
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_MANA_BONUS,

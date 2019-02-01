@@ -42,8 +42,8 @@ function pl_spirit_lance:doProjectileHitStuff(hTarget, vLocation)
 	local slow_duration = self:GetTalentSpecialValueFor("slow_duration")
 
 	local illusion_duration = self:GetTalentSpecialValueFor("illusion_duration")
-	local illusion_in = self:GetTalentSpecialValueFor("illusion_in")
-	local illusion_out = self:GetTalentSpecialValueFor("illusion_out")
+	local illusion_in = self:GetTalentSpecialValueFor("illusion_in") - 100
+	local illusion_out = self:GetTalentSpecialValueFor("illusion_out") - 100
 
 	hTarget:Paralyze(self, caster, slow_duration)
 
@@ -56,7 +56,7 @@ function pl_spirit_lance:doProjectileHitStuff(hTarget, vLocation)
 		end
 	end)
 
-	local image = caster:ConjureImage( vLocation + RandomVector( 72 ), illusion_duration, illusion_out, illusion_in, "", self, true, caster, callback )
+	local image = caster:ConjureImage( vLocation + RandomVector( 72 ), illusion_duration, illusion_out, illusion_in, "modifier_phantom_lancer_juxtapose_illusion", self, true, caster, callback )
 end
 
 function pl_spirit_lance:OnProjectileHit(hTarget, vLocation)

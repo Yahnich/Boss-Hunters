@@ -403,8 +403,8 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	end
 	
 	if duration == 0 then return false end
-	if caster:GetTeam() == DOTA_TEAM_GOODGUYS and duration > 0 then
-		caster:ModifyThreat( duration^0.75 )
+	if caster:GetTeam() == DOTA_TEAM_GOODGUYS and duration > 0 and name ~= "modifier_illusion" then
+		caster:ModifyThreat( math.log(1 + duration) + 0.2 )
 	end
 	filterTable["duration"] = duration
 	return true

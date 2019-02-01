@@ -11,6 +11,10 @@ function pl_phantom_rush:IsHiddenWhenStolen()
     return false
 end
 
+function pl_phantom_rush:GetCastRange( target, location)
+	return self:GetTalentSpecialValueFor("max_distance")
+end
+
 function pl_phantom_rush:GetIntrinsicModifierName()
     return "modifier_pl_phantom_rush"
 end

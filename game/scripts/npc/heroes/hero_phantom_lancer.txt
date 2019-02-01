@@ -63,7 +63,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"illusion_duration"			"3"
+				"illusion_duration"			"8"
 			}
 			"05"
 			{
@@ -216,7 +216,7 @@
 			"08"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"illusion_duration"			"3"
+				"illusion_duration"			"8"
 			}
 			"09"
 			{
@@ -283,7 +283,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_phantom_lancer/pl_false_edge"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"custom/phantom_lancer_sunwarrior_phantom_edge"
+		"AbilityTextureName"			"custom/phantom_lancer_false_edge"
 		"MaxLevel"						"7"
 	
 		// Casting
@@ -424,12 +424,12 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_agility"				"10"
+				"bonus_agility"				"20"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"agility_duration"			"2"
+				"agility_duration"			"3.5"
 			}
 			"05"
 			{
@@ -478,7 +478,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"max_illusions"				"1 2 3 4 5 6"
+				"max_illusions"				"6"
 			}
 			"02"
 			{
@@ -493,7 +493,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"illusion_duration"			"3"
+				"illusion_duration"			"8"
 			}
 			"05"
 			{
@@ -503,7 +503,7 @@
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"illusion_out"				"16"
+				"illusion_out"				"16 20 24 28 32 36"
 			}
 		}
 	}

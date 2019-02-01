@@ -12,14 +12,14 @@ function modifier_phantom_assassin_coup_de_grace_ebf:DeclareFunctions()
 end
 
 function modifier_phantom_assassin_coup_de_grace_ebf:GetModifierPreAttack_CriticalStrike( params )
-    if RollPercentage(self:GetTalentSpecialValueFor("crit_chance")) and not params.attacker:PassivesDisabled() then
+    if not params.attacker:PassivesDisabled() and self:RollPRNG(self:GetTalentSpecialValueFor("crit_chance")) then
         local parent = self:GetParent()
         self.on_crit = true
         self.direction = -self:GetParent():GetForwardVector()
 		if params.attacker:HasTalent("special_bonus_unique_phantom_assassin_coup_de_grace_2") and not params.attacker:IsInAbilityAttackMode() then
 			params.attacker:RefreshAllCooldowns( false, false )
 		end
-        EmitSoundOn( "Hero_ChaosKnight.ChaosStrike", parent)
+        EmitSoundOn( "Hero_PhantomAssassin.CoupDeGrace", parent)
         return self:GetTalentSpecialValueFor("crit_bonus")
     end
 end

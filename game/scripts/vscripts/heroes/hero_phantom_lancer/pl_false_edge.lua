@@ -46,6 +46,12 @@ function modifier_pl_false_edge:OnCreated(table)
     if self:GetCaster():HasTalent("special_bonus_unique_pl_false_edge_1") then
         self.bonus_ms = self.bonus_as/2
     end
+	if IsServer() then
+		local nFX = ParticleManager:CreateParticle("particles/econ/generic/generic_buff_1/generic_buff_1.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
+		ParticleManager:SetParticleControl(nFX, 14, Vector(1,1,1))
+		ParticleManager:SetParticleControl(nFX, 15, Vector(255,232,130))
+		self:AddEffect(nFX)
+	end
 end
 
 function modifier_pl_false_edge:OnRefresh(table)
@@ -78,10 +84,6 @@ end
 
 function modifier_pl_false_edge:OnTooltip()
     return self.bonus_accuracy
-end
-
-function modifier_pl_false_edge:GetEffectName()
-    return "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
 end
 
 function modifier_pl_false_edge:IsPurgable()

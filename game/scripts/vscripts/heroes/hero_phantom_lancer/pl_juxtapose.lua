@@ -42,14 +42,14 @@ function pl_juxtapose:SpawnIllusion()
 		local origin = caster:GetAbsOrigin() + RandomVector(72)
 
 		local duration = self:GetTalentSpecialValueFor("illusion_duration")
-		local outgoingDamage = self:GetTalentSpecialValueFor("illusion_out")
-		local incomingDamage = self:GetTalentSpecialValueFor("illusion_in")
+		local outgoingDamage = self:GetTalentSpecialValueFor("illusion_out") - 100
+		local incomingDamage = self:GetTalentSpecialValueFor("illusion_in") - 100
 
 		if caster:IsIllusion() then
 			duration = self:GetTalentSpecialValueFor("illusion_duration") / 2
 		end
 
-		local callback = (function(image)
+		local callback = (function( image, parent, caster, ability )
             if image ~= nil then
             	-- This modifier is applied to every illusion to check if they die or expire
 				image:AddNewModifier(caster, self, "modifier_pl_juxtapose_illusion_count", {})
@@ -57,7 +57,7 @@ function pl_juxtapose:SpawnIllusion()
             end
         end)
 
-        local image = original_hero:ConjureImage( origin, duration, outgoingDamage, incomingDamage, "", self, true, original_hero, callback )
+        local image = original_hero:ConjureImage( origin, duration, outgoingDamage, incomingDamage, "modifier_phantom_lancer_juxtapose_illusion", self, true, original_hero, callback )
  
 	end
 end

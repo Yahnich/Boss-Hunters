@@ -33,7 +33,7 @@ local function StartCombat(self, bFight)
 	if bFight then
 		self.timeRemaining = 0
 		self.eventEnded = true
-		RoundManager.zones[RoundManager:GetCurrentZone()][1][1] = RoundManager:RollRandomEvent(RoundManager:GetCurrentZone(), EVENT_TYPE_ELITE) 
+		table.insert( RoundManager.zones[RoundManager:GetCurrentZone()][1], 1 ,RoundManager:RollRandomEvent(RoundManager:GetCurrentZone(), EVENT_TYPE_ELITE) )
 		RoundManager:StartPrepTime(5)
 	else
 		self:EndEvent(false)

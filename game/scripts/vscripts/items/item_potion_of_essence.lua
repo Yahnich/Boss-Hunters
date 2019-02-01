@@ -1,6 +1,10 @@
 item_potion_of_essence = class({})
 LinkLuaModifier( "modifier_item_potion_of_essence_handle_heal", "items/item_potion_of_essence.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function item_potion_of_essence:IsConsumable()
+	return true
+end
+
 function item_potion_of_essence:CastFilterResultTarget( target )
 	if target:HasModifier("modifier_restoration_disable") then
 		return UF_FAIL_CUSTOM 

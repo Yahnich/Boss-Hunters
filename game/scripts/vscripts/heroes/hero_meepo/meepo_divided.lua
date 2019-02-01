@@ -4,19 +4,74 @@ LinkLuaModifier("modifier_meepo_divided_death","heroes/hero_meepo/meepo_divided.
 
 function meepo_divided:OnHeroLevelUp()
     local caster = self:GetCaster()
+    local PID = caster:GetPlayerOwnerID()
+    local mainMeepo = PlayerResource:GetSelectedHeroEntity(PID)
+	if caster == mainMeepo then
+		if caster:GetLevel() == 10 then
+			self:SpawnMeepo()
+		end
 
-    if caster:GetLevel() == 10 then
-    	self:SpawnMeepo()
-    end
+		if caster:GetLevel() == 20 then
+			self:SpawnMeepo()
+		end
 
-    if caster:GetLevel() == 20 then
-    	self:SpawnMeepo()
-    end
+		if caster:GetLevel() == 30 then
+			self:SpawnMeepo()
+		end
+		
+		if caster.meepoList then
+			for _, meepo in ipairs( caster.meepoList ) do
+				if caster:GetLevel() < mainMeepo:GetLevel() and caster ~= meepo then
+					local xp = GameRules.XP_PER_LEVEL[mainMeepo:GetLevel()] - GameRules.XP_PER_LEVEL[caster:GetLevel()]
+					meepo:AddExperience(xp,1,false,false)
+					meepo:SetAbilityPoints( mainMeepo:GetAbilityPoints() )
+				end
+			end
+		end
+	end
+end
 
-    if caster:GetLevel() == 30 then
-    	self:SpawnMeepo()
-    end
-
+function meepo_divided:OnInventoryContentsChanged()
+    local caster = self:GetCaster()
+    local PID = caster:GetPlayerOwnerID()
+    local mainMeepo = PlayerResource:GetSelectedHeroEntity(PID)
+	if caster == mainMeepo and caster.meepoList then
+		local currentItem = mainMeepo:GetItemInSlot(0)
+		local firstItem
+    	if currentItem then
+	        firstItem = currentItem:GetAbilityName()
+			if firstItem == "item_ultimate_scepter" or ( currentItem.IsConsumable and currentItem:IsConsumable() ) or firstItem == "item_ward_observer" then
+				firstItem = nil
+			end
+		end
+		for _, meepo in ipairs( caster.meepoList ) do
+			if caster ~= meepo then
+				for i = 0, 9 do
+					local clonedItem = meepo:GetItemInSlot(i)
+					if clonedItem then UTIL_Remove(clonedItem) end
+				end
+				if firstItem then
+					local itemToClone = meepo:AddItemByName(firstItem)
+					if itemToClone then
+						meepo.ignoreInventoryEvent = true
+						itemToClone:SetStacksWithOtherOwners(true)
+						itemToClone:SetPurchaser(nil)
+						itemToClone:SetSellable(false)
+						itemToClone:SetDroppable(false)
+						itemToClone.isClonedItem = true
+						meepo.ignoreInventoryEvent = false
+					end
+				end
+			end
+		end
+	elseif caster ~= mainMeepo and caster.ignoreInventoryEvent then
+		for i = 0, 9 do
+			local clonedItem = caster:GetItemInSlot(i)
+			if clonedItem and not clonedItem.isClonedItem then 
+				caster:DropItemAtPositionImmediate( clonedItem, caster:GetAbsOrigin() + RandomVector(128) )
+			end
+		end
+	end
 end
 
 function meepo_divided:SpawnMeepo()
@@ -39,15 +94,33 @@ function meepo_divided:SpawnMeepo()
     end
 
     local newMeepo = CreateUnitByName(caster:GetUnitName(), mainMeepo:GetAbsOrigin(), true, mainMeepo, mainMeepo:GetPlayerOwner(), mainMeepo:GetTeamNumber())
-    newMeepo:SetModelScale(0.75)
+    newMeepo:SetModelScale(0.93)
     newMeepo:SetControllableByPlayer(PID, false)
     newMeepo:SetOwner(caster:GetOwner())
+	
+	newMeepo:AddNewModifier( mainMeepo, nil, "modifier_stats_system_handler", {})
     newMeepo:AddNewModifier(mainMeepo, self, "modifier_phased", {Duration = 0.1})
-
     newMeepo:AddNewModifier(mainMeepo, self, "modifier_meepo_divided", {})
+	
+	newMeepo:AddExperience(GameRules.XP_PER_LEVEL[mainMeepo:GetLevel()],1,false,false)
+	newMeepo:SetAbilityPoints( mainMeepo:GetAbilityPoints() )
+	
+	for a=0,caster:GetAbilityCount()-1,1 do
+		local ability = caster:GetAbilityByIndex(a)
+		if ability then
+			local cloneAbility = newMeepo:FindAbilityByName(ability:GetAbilityName())
+			if cloneAbility then
+				cloneAbility:SetLevel(ability:GetLevel())
+			end
+		end
+	end
+	
     list = mainMeepo.meepoList
     table.insert(list, newMeepo)
     mainMeepo.meepoList = list
+	
+	
+	self:OnInventoryContentsChanged()
 end
 
 modifier_meepo_divided = class({})
@@ -73,17 +146,18 @@ end
 
 function modifier_meepo_divided:DeclareFunctions()
     return {MODIFIER_EVENT_ON_ORDER,
-    		MODIFIER_EVENT_ON_DEATH,
-    		MODIFIER_EVENT_ON_RESPAWN,
-    		MODIFIER_EVENT_ON_TAKEDAMAGE}
+    		MODIFIER_EVENT_ON_DEATH}
 end
 
 function modifier_meepo_divided:OnCreated(table)
     if IsServer() then
         self.currentTime = 0
         self.respawnTime = self:GetSpecialValueFor("respawn")
-
-        self:StartIntervalThink(FrameTime())
+		
+		self.statsHandler =  self:GetParent():FindModifierByName("modifier_stats_system_handler")
+		self.mainHandler = self:GetCaster():FindModifierByName("modifier_stats_system_handler")
+		
+        self:StartIntervalThink(0.25)
     end
 end
 
@@ -91,79 +165,50 @@ function modifier_meepo_divided:OnIntervalThink()
     local meepo = self:GetParent()
     local mainMeepo = self:GetCaster()
     local ability = self:GetAbility()
+	
+	if meepo ~= mainMeepo then
+		if not meepo:IsAlive() then
+			if self.currentTime < self.respawnTime then
+				self.currentTime = self.currentTime + 0.25
+			elseif mainMeepo:IsAlive() then
+				meepo:RespawnHero(false, false)
+				self.currentTime = 0
+			end
+		end
+		
+		local strength = mainMeepo:GetBaseStrength()
+		local agility = mainMeepo:GetBaseAgility()
+		local intellect = mainMeepo:GetBaseIntellect()
+		
+		local calculate = strength ~= meepo:GetBaseStrength() and agility ~= meepo:GetBaseAgility() and intellect ~= meepo:GetBaseIntellect()
+		if calculate then
+			meepo:SetBaseStrength(strength)
+			meepo:SetBaseAgility(agility)
+			meepo:SetBaseIntellect(intellect)
+			meepo:CalculateStatBonus()
+		end
+		
+		if self.statsHandler:GetStackCount() ~= self.mainHandler:GetStackCount() then
+			self.statsHandler:SetStackCount( self.mainHandler:GetStackCount() )
+		end
+	end
+end
 
-    if not meepo:IsAlive() then
-        if self.currentTime < self.respawnTime then
-            self.currentTime = self.currentTime + FrameTime()
-        else
-            meepo:RespawnHero(false, false)
-            self.currentTime = 0
-        end
-    end
-
-    if mainMeepo ~= meepo then
-    	if mainMeepo:GetItemInSlot(0) then
-	        local boots = { mainMeepo:GetItemInSlot(0):GetAbilityName() }
-
-	        local item = ""
-
-	        for _, name in pairs(boots) do
-	            if item == "" then
-	                for j=0,5 do
-	                    local it = mainMeepo:GetItemInSlot(j)
-	                    if it and (name == it:GetAbilityName()) and name ~= "item_ultimate_scepter" then
-	                        item = it:GetAbilityName()
-	                    end
-	                end
-	            else
-	               break
-	            end
-	        end
-
-	        if item ~= "" then
-	            if meepo["item"] then
-	                if meepo["item"] ~= item then
-	                    UTIL_Remove( meepo["itemHandle"] )
-	                    local itemHandle = meepo:AddItemByName(item)
-	                    itemHandle:SetDroppable(false)
-	                    itemHandle:SetSellable(false)
-	                    itemHandle:SetCanBeUsedOutOfInventory(true)
-	                    itemHandle:SetPurchaser(mainMeepo)
-	                    meepo["itemHandle"] = itemHandle
-	                    meepo["item"] = item
-	                end
-	            else
-	                meepo["itemHandle"] = meepo:AddItemByName(item)
-	                meepo["item"] = item
-	                meepo["itemHandle"]:SetDroppable(false)
-	                meepo["itemHandle"]:SetSellable(false)
-	                meepo["itemHandle"]:SetCanBeUsedOutOfInventory(false)
-	                meepo["itemHandle"]:SetPurchaser(mainMeepo)
-	            end
-	        end
-
-	        for j=0,5 do
-	            local itemToCheck = meepo:GetItemInSlot(j)
-	            if itemToCheck then
-	                local name = itemToCheck:GetAbilityName()
-	                if name ~= item then
-	                    UTIL_Remove(itemToCheck)
-	                end
-	            end
-	        end
-
-	        meepo:SetBaseStrength(mainMeepo:GetStrength())
-	        meepo:SetBaseAgility(mainMeepo:GetAgility())
-	        meepo:SetBaseIntellect(mainMeepo:GetIntellect())
-	        meepo:CalculateStatBonus()
-
-	        while meepo:GetLevel() < mainMeepo:GetLevel() do
-	            meepo:AddExperience(10,1,false,false)
-	        end
-	    end
-    else
-        LevelAbilitiesForAllMeepos(meepo)
-    end
+function modifier_meepo_divided:OnOrder(params)
+	if params.order_type == DOTA_UNIT_ORDER_TRAIN_ABILITY and params.unit == self:GetParent() then
+		local mainMeepo = self:GetCaster()
+		local parent = self:GetParent()
+		local abilityName = params.ability:GetName()
+		for _, meepo in ipairs( GetAllMeepos(mainMeepo) ) do
+			if meepo ~= parent then
+				local ability = meepo:FindAbilityByName(abilityName)
+				if ability then
+					ability:SetLevel( params.ability:GetLevel() + 1 )
+					meepo:SetAbilityPoints( meepo:GetAbilityPoints() - 1 )
+				end
+			end
+		end
+	end
 end
 
 function modifier_meepo_divided:OnDeath(params)
@@ -181,31 +226,6 @@ function modifier_meepo_divided:OnDeath(params)
         if mainMeepo:IsAlive() then
             local healthLoss = mainMeepo:GetMaxHealth() * self:GetSpecialValueFor("health_remove")/100
             mainMeepo:ModifyHealth(mainMeepo:GetMaxHealth() - healthLoss, self:GetAbility(), true, 0)
-        end
-    end
-end
-
-function LevelAbilitiesForAllMeepos(caster)
-    local PID = caster:GetPlayerOwnerID()
-    local mainMeepo = PlayerResource:GetSelectedHeroEntity(PID)
-    if caster == mainMeepo then
-        for a=0,caster:GetAbilityCount()-1,1 do
-            local ability = caster:GetAbilityByIndex(a)
-            if ability then
-                for _, meepo in pairs(GetAllMeepos(mainMeepo)) do
-
-                    local cloneAbility = meepo:FindAbilityByName(ability:GetAbilityName())
-                    if ability:GetLevel() > cloneAbility:GetLevel() then
-                        cloneAbility:SetLevel(ability:GetLevel())
-                        meepo:SetAbilityPoints(meepo:GetAbilityPoints()-1)
-                    end
-
-                    if ability:GetLevel() < cloneAbility:GetLevel() then
-                        ability:SetLevel(cloneAbility:GetLevel())
-                        mainMeepo:SetAbilityPoints(mainMeepo:GetAbilityPoints()-1)
-                    end
-                end
-            end
         end
     end
 end

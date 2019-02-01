@@ -1,6 +1,10 @@
 item_dust_of_stasis = class({})
 LinkLuaModifier( "modifier_item_dust_of_stasis_stasis", "items/item_dust_of_stasis.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function item_dust_of_stasis:IsConsumable()
+	return true
+end
+
 function item_dust_of_stasis:OnSpellStart()
 	local caster = self:GetCaster()
 	EmitSoundOn("DOTA_Item.DustOfAppearance.Activate", self:GetCaster() )

@@ -98,8 +98,8 @@ function modifier_pl_doppelganger:OnRemoved()
 
             local image_duration = self:GetTalentSpecialValueFor("illusion_duration")
 
-            local image1_in = self:GetTalentSpecialValueFor("illusion_1_in")
-            local image1_out = self:GetTalentSpecialValueFor("illusion_1_out")
+            local image1_in = self:GetTalentSpecialValueFor("illusion_1_in") - 100
+            local image1_out = self:GetTalentSpecialValueFor("illusion_1_out") - 100
 
             local callback = (function(image1)
                 if image1 ~= nil then
@@ -107,18 +107,18 @@ function modifier_pl_doppelganger:OnRemoved()
                 end
             end)
 
-            local image1 = caster:ConjureImage( caster:GetAbsOrigin() + RandomVector( 72 ), image_duration, image1_out, image1_in, "", self, true, caster, callback )
+            local image1 = caster:ConjureImage( caster:GetAbsOrigin() + RandomVector( 72 ), image_duration, image1_out, image1_in, "modifier_phantom_lancer_juxtapose_illusion", self, true, caster, callback )
 
-            local image2_in = self:GetTalentSpecialValueFor("illusion_2_in")
-            local image2_out = self:GetTalentSpecialValueFor("illusion_2_out")
+            local image2_in = self:GetTalentSpecialValueFor("illusion_2_in") - 100
+            local image2_out = self:GetTalentSpecialValueFor("illusion_2_out") - 100
 
-            local callback = (function(image1)
+            local callback = (function(image2)
                 if image2 ~= nil then
                     caster:FindAbilityByName("pl_juxtapose"):GiveFxModifier(image2)
                 end
             end)
 
-            local image2 = caster:ConjureImage( caster:GetAbsOrigin() + RandomVector( 72 ), image_duration, image2_out, image2_in, "", self, true, caster, callback )
+            local image2 = caster:ConjureImage( caster:GetAbsOrigin() + RandomVector( 72 ), image_duration, image2_out, image2_in, "modifier_phantom_lancer_juxtapose_illusion", self, true, caster, callback )
         end
     end
 end

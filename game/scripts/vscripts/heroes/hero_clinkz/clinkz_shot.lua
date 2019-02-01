@@ -9,10 +9,6 @@ function clinkz_shot:IsHiddenWhenStolen()
 	return false
 end
 
-function clinkz_shot:GetCooldown(iLevel)
-	return 2
-end
-
 function clinkz_shot:GetCastRange(vLocation, hTarget)
 	return self:GetCaster():GetAttackRange() + 50
 end

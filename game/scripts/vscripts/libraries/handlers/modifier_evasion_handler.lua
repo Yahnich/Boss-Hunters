@@ -1,11 +1,11 @@
 modifier_evasion_handler = class({})
 
 function modifier_evasion_handler:OnCreated()
-	self.evasion = -self:GetStackCount()
+	self.evasion = -self:GetStackCount() / 10
 end
 
 function modifier_evasion_handler:OnStackCountChanged()
-	self.evasion = -self:GetStackCount()
+	self.evasion = -self:GetStackCount() / 10
 end
 
 function modifier_evasion_handler:DeclareFunctions()

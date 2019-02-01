@@ -529,19 +529,21 @@ function RoundManager:RaidIsFinished()
 		
 		local lastSpawns = RoundManager.boundingBox
 		RoundManager:LoadSpawns()
-		for _, hero in ipairs(HeroList:GetRealHeroes() ) do
+		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			hero.statsDamageTaken = 0
 			hero.statsDamageDealt = 0
 			hero.statsDamageHealed = 0
 			if RoundManager.boundingBox ~= lastSpawns then
 				CustomGameEventManager:Send_ServerToAllClients( "bh_move_camera_position", { position = RoundManager:GetHeroSpawnPosition() } )
 				local position = RoundManager:GetHeroSpawnPosition() + RandomVector(64)
-				FindClearSpaceForUnit(hero, position, true)
 				hero:SetRespawnPosition( position )
 			end
 		end
 		
-		
+		for _, unit in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_FRIENDLY, flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_DEAD + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD }) ) do
+			local position = RoundManager:GetHeroSpawnPosition() + RandomVector(64)
+			FindClearSpaceForUnit(unit, position, true)
+		end
 	end
 	status, err, ret = xpcall(RaidFinishCatch, debug.traceback, self)
 	if not status  and not self.gameHasBeenBroken then
@@ -693,7 +695,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	unit:SetBaseMoveSpeed( unit:GetBaseMoveSpeed() + msBonus )
 	
 	local bonusArmor = math.min( RoundManager:GetRaidsFinished() * 2 + RoundManager:GetZonesFinished() * 4, 50 )
-	if not unit:IsRoundNecessary() then
+	if unit:IsMinion() then
 		bonusArmor =  math.min( RoundManager:GetRaidsFinished(), 20 )
 	end
 	if unit:IsRangedAttacker() then
@@ -712,7 +714,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	
 	if powerScale then powerScale:SetStackCount( spellAmpScale ) end
 	unit:AddNewModifier(unit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
-	if unit:IsRoundNecessary() then
+	if not unit:IsMinion() then
 		local evasion = unit:AddNewModifier(unit, nil, "modifier_boss_evasion", {})
 		if evasion then evasion:SetStackCount( RoundManager:GetAscensions() * 100 + math.min( RoundManager:GetRaidsFinished(), RAIDS_PER_ZONE * ZONE_COUNT ) ) end
 		if RoundManager:GetAscensions() > 0 then unit:AddNewModifier(unit, nil, "modifier_boss_ascension", {}) end
