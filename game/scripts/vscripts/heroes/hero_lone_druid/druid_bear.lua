@@ -122,23 +122,17 @@ LinkLuaModifier("modifier_druid_bear_stats", "heroes/hero_lone_druid/druid_bear"
 function modifier_druid_bear_stats:OnCreated()
 	local caster = self:GetCaster()
 	local percent = self:GetTalentSpecialValueFor("percent")/100
-	local HP_PER_STR = 18
+	local HP_PER_STR = 20
 	local HPR_PER_STR = 0.1
 	local MR_PER_STR = 0.08
-	local AR_PER_AGI = 0.2
-	local AS_PER_AGI = 1.25
-	local MS_PER_AGI = 0.0625
+	local AR_PER_AGI = 0.16
+	local AS_PER_AGI = 1
+	local MS_PER_AGI = 0.05
 	local MP_PER_INT = 12
 	local MPR_PER_INT = 0.05
-	local SA_PER_INT = 0.07
+	local SA_PER_INT = 0.4
 	self.bonusDamage = caster:GetAgility() * percent
 	if self:GetCaster():GetPrimaryAttribute() == DOTA_ATTRIBUTE_STRENGTH  then
-		HP_PER_STR = 22.5
-		HPR_PER_STR = 0.125
-		MR_PER_STR = 0.1
-		AR_PER_AGI = 0.16
-		AS_PER_AGI = 1
-		MS_PER_AGI = 0.05
 		self.bonusDamage = caster:GetStrength() * percent
 	end
 	

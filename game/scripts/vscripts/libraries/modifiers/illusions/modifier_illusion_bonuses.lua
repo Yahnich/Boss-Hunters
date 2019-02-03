@@ -6,13 +6,7 @@ function modifier_illusion_bonuses:OnCreated()
 	local strength = self:GetCaster():GetStrength()
 	self.as = agility * 1
 	self.ms = agility * 0.05
-	self.hp = strength * 18
-	if self:GetCaster():GetPrimaryAttribute() == DOTA_ATTRIBUTE_AGILITY then
-		self.as = self.as * 1.25
-		self.ms = agility * 0.0625
-	elseif self:GetCaster():GetPrimaryAttribute() == DOTA_ATTRIBUTE_STRENGTH then
-		self.hp = strength * 22.5
-	end
+	self.hp = strength * 20
 	
 	self.ar = self:GetCaster():GetAttackRange()
 	if IsServer() then

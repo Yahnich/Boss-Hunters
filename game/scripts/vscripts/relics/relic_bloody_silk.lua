@@ -1,0 +1,1 @@
+relic_bloody_silk = class(relicBaseClass)

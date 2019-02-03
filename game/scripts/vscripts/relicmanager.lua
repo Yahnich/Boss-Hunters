@@ -13,32 +13,36 @@ end
 SKIP_RELIC_CHANCE_INCREASE = 25
 BASE_RELIC_CHANCE = 33
 
+RELIC_RARITY_COMMON = 1
+RELIC_RARITY_UNCOMMON = 2
+RELIC_RARITY_RARE = 3
+RELIC_RARITY_LEGENDARY = 4
+
+COMMON_RELIC_WEIGHT = 60
+UNCOMMON_RELIC_WEIGHT = 30
+RARE_RELIC_WEIGHT = 8
+LEGENDARY_RELIC_WEIGHT = 2
+
 function RelicManager:Initialize()
-  RelicManager = self
-  print("Relic Manager initialized")
-  local relics = LoadKeyValues('scripts/npc/npc_relics_custom.txt')
-  self.genericDropTable = relics.relic_type_generic
-  self.cursedDropTable = relics.relic_type_cursed
-  self.uniqueDropTable = relics.relic_type_unique
-  
-  for relic, weight in pairs( self.genericDropTable ) do
-	LinkLuaModifier( relic, "relics/generic/"..relic, LUA_MODIFIER_MOTION_NONE )
-  end
-  
-  for relic, weight in pairs( self.cursedDropTable ) do
-	LinkLuaModifier( relic, "relics/cursed/"..relic, LUA_MODIFIER_MOTION_NONE )
-  end
-  
-  for relic, weight in pairs( self.uniqueDropTable ) do
-	LinkLuaModifier( relic, "relics/unique/"..relic, LUA_MODIFIER_MOTION_NONE )
-  end
-  
-  CustomGameEventManager:RegisterListener('player_selected_relic', Context_Wrap( RelicManager, 'ConfirmRelicSelection'))
-  CustomGameEventManager:RegisterListener('player_skipped_relic', Context_Wrap( RelicManager, 'SkipRelicSelection'))
-  CustomGameEventManager:RegisterListener('player_notify_relic', Context_Wrap( RelicManager, 'NotifyRelics'))
-  CustomGameEventManager:RegisterListener('dota_player_query_relic_inventory', Context_Wrap( RelicManager, 'SendHeroRelicInventory'))
-  
-  
+	RelicManager = self
+	print("Relic Manager initialized")
+	local relics = LoadKeyValues('scripts/npc/npc_relics_custom.txt')
+	self.commonDropTable = relics.relic_rarity_common
+	self.uncommonDropTable = relics.relic_rarity_uncommon
+	self.rareDropTable = relics.relic_rarity_rare
+	self.legendaryDropTable = relics.relic_rarity_legendary
+	self.eventDropTable = relics.relic_rarity_event
+
+	for rarity, content in pairs( relics ) do
+		for relic, weight in pairs( content ) do
+			LinkLuaModifier( relic, "relics/"..relic, LUA_MODIFIER_MOTION_NONE )
+		end
+	end
+
+	CustomGameEventManager:RegisterListener('player_selected_relic', Context_Wrap( RelicManager, 'ConfirmRelicSelection'))
+	CustomGameEventManager:RegisterListener('player_skipped_relic', Context_Wrap( RelicManager, 'SkipRelicSelection'))
+	CustomGameEventManager:RegisterListener('player_notify_relic', Context_Wrap( RelicManager, 'NotifyRelics'))
+	CustomGameEventManager:RegisterListener('dota_player_query_relic_inventory', Context_Wrap( RelicManager, 'SendHeroRelicInventory'))
 end
 
 function RelicManager:SendHeroRelicInventory(userid, event)
