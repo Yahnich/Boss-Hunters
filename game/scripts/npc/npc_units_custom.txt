@@ -3657,7 +3657,7 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/heroes/drow/drow.vmdl"
+		"Model"						"models/heroes/drow/drow_base.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"

@@ -35,7 +35,7 @@ function modifier_item_behemoths_heart_active:GetModifierHealthRegenPercentage()
 	return self:GetSpecialValueFor("active_regen")
 end
 
-modifier_item_behemoths_heart_passive = class({})
+modifier_item_behemoths_heart_passive = class(itemBaseClass)
 LinkLuaModifier("modifier_item_behemoths_heart_passive", "items/item_behemoths_heart", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_item_behemoths_heart_passive:OnCreated()
@@ -78,11 +78,7 @@ function modifier_item_behemoths_heart_passive:GetModifierExtraHealthBonus()
 	return self:GetParent():GetStrength() * self.hpPerStr + self.bonusHP
 end
 
-function modifier_item_behemoths_heart_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
-modifier_item_behemoths_heart_regen = class({})
+modifier_item_behemoths_heart_regen = class(itemBaseClass)
 LinkLuaModifier("modifier_item_behemoths_heart_regen", "items/item_behemoths_heart", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_item_behemoths_heart_regen:OnCreated()

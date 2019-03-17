@@ -39,11 +39,11 @@ local function SecondChoice(self, userid, event)
 		end
 		if relicList[1] == nil then
 			if rarity == "RARITY_COMMON" then
-				rarity == "RARITY_UNCOMMON"
+				rarity = "RARITY_UNCOMMON"
 			elseif rarity == "RARITY_UNCOMMON" then
-				rarity == "RARITY_RARE"
+				rarity = "RARITY_RARE"
 			elseif rarity == "RARITY_RARE" then
-				rarity == "RARITY_LEGENDARY"
+				rarity = "RARITY_LEGENDARY"
 			end
 		end
 	end

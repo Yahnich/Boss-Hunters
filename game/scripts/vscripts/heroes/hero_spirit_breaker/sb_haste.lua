@@ -101,6 +101,10 @@ function modifier_sb_haste_aura:GetEffectName()
     return "particles/units/heroes/hero_spirit_breaker/spirit_breaker_haste_owner.vpcf"
 end
 
+function modifier_sb_haste_aura:IsPurgable()
+    return false
+end
+
 modifier_sb_haste_aura_buff = class({})
 function modifier_sb_haste_aura_buff:DeclareFunctions()
     local funcs = {
