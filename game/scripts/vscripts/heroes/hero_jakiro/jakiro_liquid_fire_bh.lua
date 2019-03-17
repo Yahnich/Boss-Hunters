@@ -81,7 +81,6 @@ function jakiro_liquid_fire_bh:OnProjectileHit(hTarget, vLocation)
 		for _,enemy in pairs(enemies) do
 			enemy:AddNewModifier(caster, self, modifier_liquid_fire_debuff, { duration = duration })
 		end
-
 		caster:PerformAttack(target, true, true, true, true, false, false, false)
 	end
 end

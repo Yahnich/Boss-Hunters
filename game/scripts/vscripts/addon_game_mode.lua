@@ -369,6 +369,8 @@ function CHoldoutGameMode:InitGameMode()
 	
 	StatsScreen:StartStatsScreen()
 	RelicManager:Initialize()
+	
+	SendToConsole("rate 200000")
 end
 
 function CHoldoutGameMode:FilterModifiers( filterTable )
@@ -730,7 +732,7 @@ end
 function CHoldoutGameMode:OnHeroPick (event)
  	local hero = EntIndexToHScript(event.heroindex)
 	if not hero then return end
-
+	
 	if hero.hasBeenInitialized then return end
 	if hero:IsFakeHero() then return end
 	Timers:CreateTimer(0.03, function()

@@ -18,7 +18,7 @@ end
 function modifier_item_crown_of_thorns_passive:OnTakeDamage(params)
 	local hero = self:GetParent()
 	if not self:GetAbility() or self:GetAbility():IsNull() then self:Destroy() end
-	if hero:IsIllusion() then return end
+	if hero:IsIllusion() or params.unit ~= hero then return end
     local dmg = params.original_damage
 	local dmgtype = params.damage_type
 	local attacker = params.attacker

@@ -29,12 +29,12 @@ function jakiro_macropyre_bh:OnSpellStart()
 	local point = self:GetCursorPosition()
 
 	local direction = CalculateDirection(point, caster:GetAbsOrigin())
-
+	local duration = TernaryOperator(self:GetTalentSpecialValueFor("duration_scepter"), caster:HasScepter(), self:GetTalentSpecialValueFor("duration"))
 	EmitSoundOn("Hero_Jakiro.Macropyre.Cast", caster)
 	--234 is from dota
 	local spawn_point = caster:GetAbsOrigin() + direction * 234
-
-	CreateModifierThinker(caster, self, "modifier_jakiro_macropyre_bh", {Duration = self:GetTalentSpecialValueFor("duration")}, spawn_point, caster:GetTeam(), false)
+	
+	CreateModifierThinker(caster, self, "modifier_jakiro_macropyre_bh", {Duration = duration}, spawn_point, caster:GetTeam(), false)
 
     -- Set QAngles
     local left_QAngle = QAngle(0, 45, 0)
@@ -44,7 +44,7 @@ function jakiro_macropyre_bh:OnSpellStart()
     local left_direction = CalculateDirection(left_spawn_point, caster:GetAbsOrigin())  
 	if caster:HasTalent("special_bonus_unique_jakiro_macropyre_bh_2") then
 		Timers:CreateTimer(0.3, function()
-			CreateModifierThinker(caster, self, "modifier_jakiro_macropyre_bh_talent", {Duration = self:GetTalentSpecialValueFor("duration")}, left_spawn_point + left_direction * 500, caster:GetTeam(), false)
+			CreateModifierThinker(caster, self, "modifier_jakiro_macropyre_bh_talent", {Duration = duration}, left_spawn_point + left_direction * 500, caster:GetTeam(), false)
 		end)
 	end
 end

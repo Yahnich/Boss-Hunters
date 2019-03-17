@@ -2190,16 +2190,18 @@ function CutTreesInRadius(vloc, radius)
 end
 
 function RollPRNGFormula( object, percentage )
-	if object.basePercentage ~= percentage then
-		object.weight = FindProbabilityWeight(percentage)
-		object.basePercentage = percentage
+	if percentage > 0 then
+		if object.basePercentage ~= percentage then
+			object.weight = FindProbabilityWeight(percentage)
+			object.basePercentage = percentage
+		end
+		object.currentPercentage = (object.currentPercentage or 0) + object.weight
+		local roll = RollPercentage( object.currentPercentage )
+		if roll then
+			object.currentPercentage = object.weight
+		end
+		return roll
 	end
-	object.currentPercentage = (object.currentPercentage or 0) + object.weight
-	local roll = RollPercentage( object.currentPercentage )
-	if roll then
-		object.currentPercentage = object.weight
-	end
-	return roll
 end
 
 function FindRelativeProbability( weight )

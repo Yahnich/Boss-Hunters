@@ -86,7 +86,7 @@ end
 
 function modifier_item_wrathbearers_robes_passive:OnTakeDamage(params)
 	local hero = self:GetParent()
-	if hero:IsIllusion() then return end
+	if hero:IsIllusion() or params.unit ~= hero then return end
     local dmg = params.original_damage
 	local dmgtype = params.damage_type
 	local attacker = params.attacker
@@ -95,7 +95,7 @@ function modifier_item_wrathbearers_robes_passive:OnTakeDamage(params)
 		reflectpct = self.activereflect / 100
 	end
 
-	if attacker:GetTeamNumber()  ~= hero:GetTeamNumber() and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ) then
+	if attacker:GetTeamNumber() ~= hero:GetTeamNumber() and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ) then
 		if params.unit == hero then
 			dmg = dmg * reflectpct
 			self:GetAbility():DealDamage( hero, attacker, dmg, {damage_type = dmgtype, damage_flags = DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
