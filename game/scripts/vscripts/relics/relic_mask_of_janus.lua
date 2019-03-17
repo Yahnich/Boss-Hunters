@@ -7,20 +7,13 @@ if IsServer() then
 		if self:GetParent():HasModifier("relic_ritual_candle") then return end
 		local relicList = {}
 		for item, relic in pairs( hero.ownedRelics ) do
-			if relic and relic ~= "relic_mask_of_janus" then
+			if relic.name and relic.name ~= "relic_mask_of_janus" then
 				table.insert(relicList, relic)
 			end
 		end
 		local relic = relicList[RandomInt(1, #relicList)]
 		RelicManager:RemoveRelicOnPlayer(relic, pID)
-		local roll = RandomInt( 1, 3 )
-		if roll == 1 then
-			hero:AddRelic( RelicManager:RollRandomGenericRelicForPlayer(pID) )
-		elseif roll == 2 then
-			hero:AddRelic( RelicManager:RollRandomCursedRelicForPlayer(pID) )
-		else
-			hero:AddRelic( RelicManager:RollRandomUniqueRelicForPlayer(pID) )
-		end
+		hero:AddRelic( RelicManager:RollRandomRelicForPlayer(pID) )
 	end
 end
 
