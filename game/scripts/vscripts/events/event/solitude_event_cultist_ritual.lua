@@ -62,7 +62,7 @@ local function StartCombat(self, bFight)
 				hero:AddCurse("event_buff_cultist_ritual")
 				local pID = hero:GetPlayerOwnerID()
 				for i = 1, 2 do
-					RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomCursedRelicForPlayer(pID)})
+					RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomRelicForPlayer(pID, "RARITY_COMMON", false, true)})
 				end
 			end
 		end)
