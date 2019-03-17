@@ -2,7 +2,7 @@ relic_cold_heart = class(relicBaseClass)
 
 function relic_cold_heart:OnCreated()
 	if IsServer() then
-		LinkLuaModifier( "modifier_relic_cold_heart", "relics/unique/relic_cold_heart", LUA_MODIFIER_MOTION_NONE)
+		LinkLuaModifier( "modifier_relic_cold_heart", "relics/relic_cold_heart", LUA_MODIFIER_MOTION_NONE)
 		self:StartIntervalThink(0.03)
 	end
 end

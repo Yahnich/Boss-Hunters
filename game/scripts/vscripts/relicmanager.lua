@@ -23,19 +23,20 @@ UNCOMMON_RELIC_WEIGHT = 30
 RARE_RELIC_WEIGHT = 8
 LEGENDARY_RELIC_WEIGHT = 2
 
+NATURAL_CURSED_CHANCE = 25
+
 function RelicManager:Initialize()
 	RelicManager = self
 	print("Relic Manager initialized")
-	local relics = LoadKeyValues('scripts/npc/npc_relics_custom.txt')
-	self.commonDropTable = relics.relic_rarity_common
-	self.uncommonDropTable = relics.relic_rarity_uncommon
-	self.rareDropTable = relics.relic_rarity_rare
-	self.legendaryDropTable = relics.relic_rarity_legendary
-	self.eventDropTable = relics.relic_rarity_event
-
-	for rarity, content in pairs( relics ) do
-		for relic, weight in pairs( content ) do
-			LinkLuaModifier( relic, "relics/"..relic, LUA_MODIFIER_MOTION_NONE )
+	self.masterList = LoadKeyValues('scripts/npc/npc_relics_custom.txt')
+	self.cursedRelicPool = {}
+	self.otherRelicPool = {}
+	for relic, data in pairs( self.masterList ) do
+		LinkLuaModifier( relic, "relics/"..relic, LUA_MODIFIER_MOTION_NONE )
+		if data["Cursed"] == 1 then
+			self.cursedRelicPool[relic] = data
+		else
+			self.otherRelicPool[relic] = data
 		end
 	end
 
@@ -43,6 +44,7 @@ function RelicManager:Initialize()
 	CustomGameEventManager:RegisterListener('player_skipped_relic', Context_Wrap( RelicManager, 'SkipRelicSelection'))
 	CustomGameEventManager:RegisterListener('player_notify_relic', Context_Wrap( RelicManager, 'NotifyRelics'))
 	CustomGameEventManager:RegisterListener('dota_player_query_relic_inventory', Context_Wrap( RelicManager, 'SendHeroRelicInventory'))
+	CustomGameEventManager:RegisterListener('dota_player_query_relic_drops', Context_Wrap( RelicManager, 'SendHeroRelicDrops'))
 end
 
 function RelicManager:SendHeroRelicInventory(userid, event)
@@ -54,6 +56,18 @@ function RelicManager:SendHeroRelicInventory(userid, event)
 			CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_update_relic_inventory", {relics = hero.ownedRelics, hero = hero:entindex()})
 		end
 		
+	end
+end
+
+function RelicManager:SendHeroRelicDrops(userid, event)
+	local hero = EntIndexToHScript(event.entindex)
+	local pID = event.playerID
+	if hero and hero:GetPlayerOwner() == PlayerResource:GetPlayer(pID) then
+		local player = PlayerResource:GetPlayer(pID)
+		if player then
+			CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_request_relic_drops", {drops = hero.relicsToSelect, hero = hero:entindex()})
+			CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {drops = hero.relicsToSelect, hero = hero:entindex()})
+		end
 	end
 end
 
@@ -92,28 +106,28 @@ function RelicManager:ConfirmRelicSelection(userid, event)
 	
 	hero:AddRelic(relic)
 	RelicManager:RemoveDropFromTable(pID, true, relic)
-	hero.internalRelicRNG = BASE_RELIC_CHANCE
 end
 
 function RelicManager:RemoveDropFromTable(pID, bRemove, sRemoveSpecific)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
+	
 	if not bRemove then
 		for id, relicName in ipairs( hero.relicsToSelect[1] ) do
+			local pool = "other"
+			local rarity = self.masterList[relicName]["Rarity"]
+			if self.masterList[relicName]["Cursed"] == "1" then
+				pool = "cursed"
+			end
 			if relicName ~= sRemoveSpecific then
-				if string.match(relicName, "unique") then
-					hero.internalRNGPools[3][relicName] = "1"
-				elseif string.match(relicName, "cursed") then
-					hero.internalRNGPools[2][relicName] = "1"
-				else
-					hero.internalRNGPools[1][relicName] = "1"
-				end
+				hero.internalRNGPools[pool][relicName] = rarity
 			end
 		end
 	end
 	table.remove( hero.relicsToSelect, 1 )
 	local player = PlayerResource:GetPlayer(pID)
 	if player then
-		CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {playerID = pID, drops = hero.relicsToSelect})
+		CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_request_relic_drops", {drops = hero.relicsToSelect, playerID = pID})
+		CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {drops = hero.relicsToSelect, playerID = pID})
 	end
 end
 
@@ -128,44 +142,38 @@ function RelicManager:SkipRelicSelection(userid, event)
 	end
 	
 	RelicManager:RemoveDropFromTable(pID, true)
-	hero.internalRelicRNG = math.min( (hero.internalRelicRNG or BASE_RELIC_CHANCE) + SKIP_RELIC_CHANCE_INCREASE, 100 )
 	if hero:HasRelic("relic_unique_mysterious_hourglass") and hero:FindModifierByName("relic_unique_mysterious_hourglass"):GetStackCount() > 0 then
 		hero:FindModifierByName("relic_unique_mysterious_hourglass"):DecrementStackCount()
 		local dropTable = {}
 		for id, relic in pairs( copy ) do
-			if string.match(relic, "unique") then
-				table.insert( dropTable, self:RollRandomUniqueRelicForPlayer(pID) )
-			elseif string.match(relic, "cursed") then
-				table.insert( dropTable, self:RollRandomCursedRelicForPlayer(pID) )
-			else
-				table.insert( dropTable, self:RollRandomGenericRelicForPlayer(pID) )
-			end
+			local rarity = self.masterList[relic]["Rarity"]
+			local cursed = self.masterList[relic]["Cursed"] == "1"
+			table.insert( dropTable, self:RollRandomUniqueRelicForPlayer(pID, rarity, true, cursed) )
 		end
-		table.insert( hero.relicsToSelect, dropTable )
-		local player = PlayerResource:GetPlayer(pID)
-		if player then
-			CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {playerID = pID, drops = hero.relicsToSelect})
-		end
+		RelicManager:PushCustomRelicDropsForPlayer(pID, dropTable)
 		return
 	end
-	if hero:HasRelic("relic_cursed_icon_of_envy") then
-		hero:FindModifierByName("relic_cursed_icon_of_envy"):IncrementStackCount()
+	if hero:HasRelic("relic_icon_of_envy") then
+		hero:FindModifierByName("relic_icon_of_envy"):IncrementStackCount()
 	end
-	if hero:HasRelic("relic_cursed_red_key") then
-		hero:FindModifierByName("relic_cursed_red_key"):SetStackCount(1)
+	if hero:HasRelic("relic_red_key") then
+		hero:FindModifierByName("relic_red_key"):SetStackCount(1)
 	end
-	-- hero:AddRelic( RelicManager:RollRandomGenericRelicForPlayer(pID) )
 end
 
 function RelicManager:RegisterPlayer(pID)
-	local hero = PlayerResource:GetSelectedHeroEntity(pID)
-	hero.internalRelicRNG = BASE_RELIC_CHANCE
-	hero.internalRNGPools = {}
-	table.insert(hero.internalRNGPools, table.copy(self.genericDropTable) )
-	table.insert(hero.internalRNGPools, table.copy(self.cursedDropTable) )
-	table.insert(hero.internalRNGPools, table.copy(self.uniqueDropTable) )
+	self:ResetRelicPool(pID, "cursed")
+	self:ResetRelicPool(pID, "other")
 end
 
+function RelicManager:ResetRelicPool(pID, poolType)
+	local hero = PlayerResource:GetSelectedHeroEntity(pID)
+	hero.internalRNGPools = hero.internalRNGPools or {}
+	hero.internalRNGPools[poolType] = {}
+	for relic, data in pairs ( self[poolType.."RelicPool"] ) do
+		hero.internalRNGPools[poolType][relic] = data["Rarity"]
+	end
+end
 
 function RelicManager:RollBossRelicsForPlayer(pID)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
@@ -176,8 +184,9 @@ function RelicManager:RollBossRelicsForPlayer(pID)
 	hero.relicsToSelect = hero.relicsToSelect or {}
 	local dropTable = {}
 	
-	table.insert( dropTable, self:RollRandomUniqueRelicForPlayer(pID)	)
-	table.insert( dropTable, self:RollRandomCursedRelicForPlayer(pID) )
+	table.insert( dropTable, self:RollRandomRelicForPlayer(pID)	)
+	table.insert( dropTable, self:RollRandomRelicForPlayer(pID)	)
+	table.insert( dropTable, self:RollRandomRelicForPlayer(pID)	)
 	
 	RelicManager:PushCustomRelicDropsForPlayer(pID, dropTable)
 end
@@ -190,9 +199,7 @@ function RelicManager:RollEliteRelicsForPlayer(pID)
 	hero.ownedRelics = hero.ownedRelics or {}
 	hero.relicsToSelect = hero.relicsToSelect or {}
 	local dropTable = {}
-	table.insert( dropTable, self:RollRandomGenericRelicForPlayer(pID) )
-	table.insert( dropTable, self:RollRandomGenericRelicForPlayer(pID) )
-	table.insert( dropTable, self:RollRandomGenericRelicForPlayer(pID) )
+	table.insert( dropTable, self:RollRandomRelicForPlayer(pID) )
 	
 	RelicManager:PushCustomRelicDropsForPlayer(pID, dropTable)
 end
@@ -202,47 +209,14 @@ function RelicManager:PushCustomRelicDropsForPlayer(pID, relicTable)
 	local player = PlayerResource:GetPlayer(pID)
 	if not hero then return end
 	
-	local greed = hero:HasRelic("relic_cursed_icon_of_greed")
-	local pride = hero:HasRelic("relic_cursed_icon_of_pride")
-	local contract = hero:HasRelic("relic_cursed_forbidden_contract")
+	local greed = hero:HasRelic("relic_icon_of_greed")
+	local pride = hero:HasRelic("relic_icon_of_pride")
 	
-	if hero:HasRelic("relic_cursed_red_key") then
-		local newTable = {}
-		for _, relicOption in ipairs( relicTable ) do
-			table.insert( newTable, relicOption )
-			if RollPercentage( 100 / #relicTable ) then
-				if string.match(relicOption, "unique") then
-					table.insert( newTable, self:RollRandomUniqueRelicForPlayer(pID) )
-				elseif string.match(relicOption, "cursed") then
-					table.insert( newTable, self:RollRandomCursedRelicForPlayer(pID) )
-				else
-					table.insert( newTable, self:RollRandomGenericRelicForPlayer(pID) )
-				end
-				break
-			elseif _ == #relicTable then
-				if string.match(relicOption, "unique") then
-					table.insert( newTable, self:RollRandomUniqueRelicForPlayer(pID) )
-				elseif string.match(relicOption, "cursed") then
-					table.insert( newTable, self:RollRandomCursedRelicForPlayer(pID) )
-				else
-					table.insert( newTable, self:RollRandomGenericRelicForPlayer(pID) )
-				end
-				break
-			end
-		end
-		relicTable = newTable
+	if hero:HasRelic("relic_red_key") then
+		table.insert( relicTable, self:RollRandomRelicForPlayer(pID) )
 	end
 	hero.relicsToSelect = hero.relicsToSelect or {}
-	if ( contract and not hero:HasRelic("relic_unique_ritual_candle") ) then
-		local corruptTable = {}
-		for i = 1, #relicTable do
-			table.insert( corruptTable, self:RollRandomCursedRelicForPlayer(pID) )
-		end
-		table.insert( hero.relicsToSelect, corruptTable )
-	else
-		table.insert( hero.relicsToSelect, relicTable )
-	end
-	
+	table.insert( hero.relicsToSelect, relicTable )
 	if ( (greed or pride) and not hero:HasRelic("relic_unique_ritual_candle") ) then
 		RelicManager:RemoveDropFromTable(pID, false)
 	elseif player then
@@ -250,78 +224,77 @@ function RelicManager:PushCustomRelicDropsForPlayer(pID, relicTable)
 	end
 end
 
-function RelicManager:RollRandomGenericRelicForPlayer(pID, notThisRelic)
+function RelicManager:RollRandomRelicForPlayer(pID, cMinRarity, bFixedRarity, bCursed, notThisRelic)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	hero.ownedRelics = hero.ownedRelics or {}
-	local dropTable = TableToWeightedArray(hero.internalRNGPools[1])
 	
-	if dropTable[1] == nil then
-		hero.internalRNGPools[1] = table.copy(self.uniqueDropTable)
-		dropTable = TableToWeightedArray(hero.internalRNGPools[1])
+	local cRarity = cMinRarity or "RARITY_COMMON"
+	local dropTable = {}
+	local endRarity = cRarity
+	
+	-- Forced Cured relic
+	local contractOn = hero:HasRelic("relic_forbidden_contract") and not hero:HasRelic("relic_unique_ritual_candle")
+	local cursedRelic = bCursed or contractOn or ( bCursed == nil and RollPercentage( NATURAL_CURSED_CHANCE ) )
+	local pooltoDraw = "other"
+	if cursedRelic then
+		pooltoDraw = "cursed"
+	end
+	print(cursedRelic, "pull from "..pooltoDraw.." pool")
+	local loopPrevention = false
+	:: fillDropTable ::
+	for relic, rarity in pairs( hero.internalRNGPools[pooltoDraw] ) do
+		if not bFixedRarity then
+			local weight = COMMON_RELIC_WEIGHT
+			if rarity == "RARITY_LEGENDARY" then
+				weight = LEGENDARY_RELIC_WEIGHT
+			elseif rarity == "RARITY_RARE" then
+				weight = RARE_RELIC_WEIGHT
+			elseif rarity == "RARITY_UNCOMMON" then
+				weight = UNCOMMON_RELIC_WEIGHT
+				if cRarity == "RARITY_RARE" then
+					weight = 0
+				end
+			elseif cRarity ~= "RARITY_COMMON" then
+				weight = 0
+			end
+			local relicData = {}
+			relicData.name = relic
+			relicData.rarity = rarity
+			relicData.cursed = cursedRelic
+			if weight > 0 then
+				for i = 1, weight do
+					table.insert( dropTable, relicData )
+				end
+			end
+		elseif rarity == cRarity then
+			relicData.name = relic
+			relicData.rarity = rarity
+			relicData.cursed = cursedRelic
+			table.insert( dropTable, relicData )
+		end
 	end
 	
-	for i = #dropTable, 1, -1 do
-		if dropTable[i] == notThisRelic then
-			table.remove(dropTable, i)
+	if dropTable[1] == nil and not loopPrevention then
+		self:ResetRelicPool(pID, pooltoDraw)
+		loopPrevention = true
+		print("resetting")
+		goto fillDropTable
+	end
+	
+	if notThisRelic then
+		for i = #dropTable, 1, -1 do
+			if dropTable[i] == notThisRelic then
+				table.remove(dropTable, i)
+			end
 		end
 	end
 	
 	if dropTable[1] ~= nil then
 		local relic = dropTable[RandomInt(1, #dropTable)]
-		hero.internalRNGPools[1][relic] = nil
+		hero.internalRNGPools[pooltoDraw][relic] = nil
 		return relic
 	else
-		return "unique_relic_not_found"
-	end
-end
-
-function RelicManager:RollRandomCursedRelicForPlayer(pID, notThisRelic)
-	local hero = PlayerResource:GetSelectedHeroEntity(pID)
-	hero.ownedRelics = hero.ownedRelics or {}
-	local dropTable = TableToWeightedArray(hero.internalRNGPools[2])
-	
-	if dropTable[1] == nil then
-		hero.internalRNGPools[2] = table.copy(self.uniqueDropTable)
-		dropTable = TableToWeightedArray(hero.internalRNGPools[2])
-	end
-	
-	for i = #dropTable, 1, -1 do
-		if dropTable[i] == notThisRelic then
-			table.remove(dropTable, i)
-		end
-	end
-	
-	if dropTable[1] ~= nil then
-		local relic = dropTable[RandomInt(1, #dropTable)]
-		hero.internalRNGPools[2][relic] = nil
-		return relic
-	else
-		return "cursed_relic_not_found"
-	end
-end
-
-function RelicManager:RollRandomUniqueRelicForPlayer(pID, notThisRelic)
-	local hero = PlayerResource:GetSelectedHeroEntity(pID)
-	hero.ownedRelics = hero.ownedRelics or {}
-	local dropTable = TableToWeightedArray(hero.internalRNGPools[3])
-	
-	if dropTable[1] == nil then
-		hero.internalRNGPools[3] = table.copy(self.uniqueDropTable)
-		dropTable = TableToWeightedArray(hero.internalRNGPools[3])
-	end
-	
-	for i = #dropTable, 1, -1 do
-		if dropTable[i] == notThisRelic then
-			table.remove(dropTable, i)
-		end
-	end
-	
-	if dropTable[1] ~= nil then
-		local relic = dropTable[RandomInt(1, #dropTable)]
-		hero.internalRNGPools[3][relic] = nil
-		return relic
-	else
-		return "unique_relic_not_found"
+		return {["name"] = "unique_relic_not_found", ["RARITY_EVENT"] = "Special", ["cursed"] = false}
 	end
 end
 
@@ -333,39 +306,33 @@ end
 function RelicManager:ClearRelics(pID, bHardClear)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	relicCount = 0
-	for item, relic in pairs( hero.ownedRelics ) do
-		if (relic == "relic_cursed_cursed_dice" and bHardClear) or relic ~= "relic_cursed_cursed_dice" then -- cursed dice cannot be removed
+	for item, relicData in pairs( hero.ownedRelics ) do
+		if (relicData.name == "relic_cursed_dice" and bHardClear) or relicData.name ~= "relic_cursed_dice" then -- cursed dice cannot be removed
 			relicCount = relicCount + 1
-			hero:RemoveModifierByName( relic )
+			relicData.modifier:Destroy()
 			UTIL_Remove( EntIndexToHScript(item) )
 			hero.ownedRelics[item] = nil
 		end
 	end
-	hero.internalRNGPools[1] = table.copy(self.genericDropTable)
-	hero.internalRNGPools[2] = table.copy(self.cursedDropTable)
-	hero.internalRNGPools[3] = table.copy(self.uniqueDropTable)
+	self:ResetRelicPool(pID, "cursed")
+	self:ResetRelicPool(pID, "other")
 	return relicCount
 end
 
 function RelicManager:RemoveRelicOnPlayer(relic, pID, bAll)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	
-	
-	for entindex, relicName in pairs(hero.ownedRelics) do
-		if relicName == relic then
+	local pool = "other"
+	local rarity = self.masterList[relic]["Rarity"]
+	if self.masterList[relic]["Cursed"] == "1" then
+		pool = "cursed"
+	end
+	for entindex, relicData in pairs(hero.ownedRelics) do
+		if relicData.name == relic then
 			local item = EntIndexToHScript(entindex)
-			for _, modifier in ipairs( hero:FindAllModifiers() ) do
-				if modifier:GetAbility() == item then modifier:Destroy() end
-			end
+			relicData.modifier:Destroy()
 			UTIL_Remove( item )
-			if string.match(relicName, "unique") then
-				hero.internalRNGPools[3][relicName] = "1"
-			elseif string.match(relicName, "cursed") then
-				hero.internalRNGPools[2][relicName] = "1"
-			else
-				hero.internalRNGPools[1][relicName] = "1"
-			end
-			
+			hero.internalRNGPools[pool][relicData.name] = rarity
 			hero.ownedRelics[entindex] = nil
 			if not bAll then break end
 		end
@@ -375,22 +342,23 @@ end
 function CDOTA_BaseNPC_Hero:AddRelic(relic)
 	self.ownedRelics = self.ownedRelics or {}
 	
-	if string.match(relic, "unique") then
-		self.internalRNGPools[3][relic] = nil
-	elseif string.match(relic, "cursed") then
-		self.internalRNGPools[2][relic] = nil
-	else
-		self.internalRNGPools[1][relic] = nil
-	end
-	
-	if self:HasRelic("relic_cursed_red_key") then
-		self:FindModifierByName("relic_cursed_red_key"):SetStackCount(0)
+	if self:HasRelic("relic_red_key") then
+		self:FindModifierByName("relic_red_key"):SetStackCount(0)
 	end
 	
 	local relicEntity = CreateItem("item_relic_handler", nil, nil)
-	self.ownedRelics[relicEntity:entindex()] = relic
-	self:AddNewModifier( self, relicEntity, relic, {} )
+	local relicData = {}
+	relicData.modifier = self:AddNewModifier( self, relicEntity, relic, {} )
+	relicData.name = relic
+	relicData.rarity = RelicManager.masterList[relic]["Rarity"]
+	relicData.cursed = RelicManager.masterList[relic]["Cursed"]
+	self.ownedRelics[relicEntity:entindex()] = relicData
+	
+	if relicData.cursed == 1 then
+		self.internalRNGPools["cursed"][relic] = nil
+	else
+		self.internalRNGPools["other"][relic] = nil
+	end
 	
 	CustomGameEventManager:Send_ServerToAllClients( "dota_player_update_relic_inventory", { hero = self:entindex(), relics = self.ownedRelics } )
 end
-

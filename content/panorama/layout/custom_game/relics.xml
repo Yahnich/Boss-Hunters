@@ -14,7 +14,6 @@
 		</snippet>
 		<snippet name="RelicChoiceContainer">
 			<Panel class="RelicChoiceContainer" hittest="true">
-				<Label id="RelicTypeSnippet" class="RelicTypeLabel" text="RELIC_TYPE_GENERIC"/>
 				<Label id="RelicNameSnippet" class="RelicNameLabel" text="DOTA_Tooltip_relic_generic_angelic_water"/>
 				<Panel class="RelicDescriptionContainer" hittest="true">
 					<Label id="SnippetRelicDescription" class="RelicDescriptionLabel" text="DOTA_Tooltip_relic_generic_angelic_water_Description"/>
@@ -41,6 +40,9 @@
 			<Button id="RelicInventoryButton" onactivate="OpenRelicInventory()" onmouseover="ShowRelicTooltip()" onmouseout="HideRelicTooltip()" oncancel="HideAll"/>
 			<Panel id="RelicInventoryPanel" hittest="true">
 			</Panel>
+			<Button id="RelicDropNotification" onactivate="SendDropQuery()" hittest="true">
+				<Label id="RelicDropLabel" text="5"/>
+			</Button>
 		</Panel>
 	</Panel>
 </root>

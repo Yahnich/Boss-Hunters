@@ -1123,7 +1123,7 @@ function CDOTA_BaseNPC:FindAllModifiersByAbility(abilityname)
 end
 
 function CDOTA_BaseNPC:FindModifierByNameAndAbility(name, ability)
-	local modifiers = self:FindAllModifiers()
+	local modifiers = self:FindAllModifiersByName(name)
 	local returnTable = {}
 	for _,modifier in ipairs(modifiers) do
 		if ability == modifier:GetAbility() and modifier:GetName() == name then

@@ -2,7 +2,7 @@ relic_hestias_hearth = class(relicBaseClass)
 
 function relic_hestias_hearth:OnCreated()
 	if IsServer() then
-		LinkLuaModifier( "modifier_relic_hestias_hearth", "relics/unique/relic_hestias_hearth", LUA_MODIFIER_MOTION_NONE)
+		LinkLuaModifier( "modifier_relic_hestias_hearth", "relics/relic_hestias_hearth", LUA_MODIFIER_MOTION_NONE)
 		self:StartIntervalThink(0.03)
 	end
 end

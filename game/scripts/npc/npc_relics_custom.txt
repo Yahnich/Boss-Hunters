@@ -1,174 +1,798 @@
 "Relics"
 {
-	"relic_rarity_common"
+	// COMMON RELICS
+	"relic_banshee_tear"
 	{
-		"relic_banshee_tear"					"1"
-		"relic_beast_fang"						"1"
-		"relic_blood_crystal"					"1"
-		"relic_dead_mans_blood"					"1"
-		"relic_giants_toenail"					"1"
-		"relic_hammerhead"						"1"
-		"relic_pure_heart"						"1"
-		"relic_seraphims_feather"				"1"
-		"relic_silver_arrow"					"1"
-		"relic_time_shard"						"1"
-		"relic_unicorn_horn"					"1"
-		"relic_breath_of_life"					"1"
-		"relic_tanned_hide"						"1"
-		"relic_arcane_threads"					"1"
-		"relic_fog_lace"						"1"
-		"relic_worn_spear"						"1"
-		"relic_broken_mirror"					"1"
-		"relic_mystic_gauntlet"					"1"
-		"relic_power_glove"						"1"
-		"relic_dragon_scales"					"1"
-		"relic_ifrit_tear"						"1"
-		"relic_scythegeist"						"1"
-		"relic_stone_fist"						"1"
-		"relic_tiger_blood"						"1"
-		"relic_rich_essence"					"1"
-		"relic_ethereal_gown"					"1"
-		"relic_ectoplasm"						"1"
-		"relic_bowl_of_chi"						"1"
-		"relic_stone_calendar"					"1"
-		"relic_drop_of_all"						"1"
-		"relic_scrap_of_paper"					"1"
-		"relic_dry_quill"						"1"
-		"relic_battle_brew"						"1"
-		"relic_pale_blood"						"1"
-		"relic_paupers_finger"					"1"
-		"relic_bloody_silk"						"1"
-		"relic_mimic_chest"						"1"
-		"relic_grey_fox_tunic"					"1"
-		"relic_icon_of_envy"					"1"
-		"relic_icon_of_wrath"					"1"
-		"relic_icon_of_gluttony"				"1"
-		"relic_mask_of_janus"					"1"
-		"relic_false_idol"						"1"
-		"relic_eye_of_the_oligarch"				"1"
-		"relic_slayers_skinner"					"1"
-		"relic_perpetuum_mobile"				"1"
-		"relic_vampire_eye"						"1"
-		"relic_hawks_eye"						"1"
-		"relic_greased_wheel"					"1"
-		"relic_lunar_needle"					"1"
-		"relic_ring_of_kin"						"1"
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
 	}
-	"relic_rarity_uncommon"
+	"relic_beast_fang"
 	{
-		"relic_angelic_water"					"1"
-		"relic_horn_of_bannermen"				"1"
-		"relic_helm_of_justice"					"1"
-		"relic_crown_of_power"					"1"
-		"relic_spinning_top"					"1"
-		"relic_barbedbell"						"1"
-		"relic_katana"							"1"
-		"relic_champions_spearhead"				"1"
-		"relic_old_sickle"						"1"
-		"relic_draculine_tooth"					"1"
-		"relic_haste_stone"						"1"
-		"relic_amplifier"						"1"	
-		"relic_heavy_rock"						"1"
-		"relic_leather_buckler"					"1"
-		"relic_weighted_gloves"					"1"
-		"relic_feathered_boots"					"1"
-		"relic_dull_razor"						"1"
-		"relic_torn_muscle"						"1"
-		"relic_pickled_brain"					"1"
-		"relic_ornate_timepiece"				"1"
-		"relic_molten_crystal"					"1"
-		"relic_frozen_crystal"					"1"
-		"relic_nautical_scale"					"1"
-		"relic_mystical_coral"					"1"
-		"relic_prismarine_blade"				"1"
-		"relic_cold_heart"						"1"
-		"relic_ofuda"							"1"
-		"relic_rex_dominatur"					"1"
-		"relic_sharp_machete"					"1"
-		"relic_gazaer_tirdh"					"1"
-		"relic_chainsword"						"1"
-		"relic_silent_cloak"					"1"
-		"relic_plasma_ball"						"1"
-		"relic_hestias_hearth"					"1"
-		"relic_icon_of_sloth"					"1"
-		"relic_icon_of_lust"					"1"
-		"relic_hungry_blade"					"1"
-		"relic_hushpuppy"						"1"
-		"relic_first_sin"						"1"
-		"relic_unstoppable_force"				"1"
-		"relic_delirious_cowl"					"1"
-		"relic_whale_heart"						"1"
-		"relic_demon_wings"						"1"
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
 	}
-	"relic_rarity_rare"
+	"relic_blood_crystal"
 	{
-		"relic_stick"							"1"
-		"relic_aghanims_amulet"					"1"
-		"relic_limit_breaker"					"1"
-		"relic_mysterious_hourglass"			"1"
-		"relic_rage_enhancer"					"1"
-		"relic_rapid_totem"						"1"
-		"relic_rolling_boulder"					"1"
-		"relic_rusty_dumbbell"					"1"
-		"relic_sacrificial_dagger"				"1"
-		"relic_oath_of_purity"					"1"
-		"relic_grain_of_sand"					"1"
-		"relic_memory_alloy"					"1"
-		"relic_a_nickel"						"1"
-		"relic_galactic_synapse"				"1"
-		"relic_champions_belt"					"1"
-		"relic_soldiers_banner"					"1"
-		"relic_longbow"							"1"
-		"relic_pocket_sand"						"1"
-		"relic_eldritch_rune"					"1"
-		"relic_eagles_beak"						"1"
-		"relic_deathrow"						"1"
-		"relic_hylophage"						"1"
-		"relic_chlorophyl_cloak"				"1"
-		"relic_anaerobic_ring"					"1"
-		"relic_spirit_painting"					"1"
-		"relic_kashas_wheelbarrow"				"1"
-		"relic_shopkeepers_heart"				"1"
-		"relic_antique_pouch"					"1"
-		"relic_silver_knife"					"1"
-		"relic_reinforced_bar"					"1"
-		"relic_drycicle"						"1"
-		"relic_red_pill"						"1"
-		"relic_adamantium_ingot"				"1"
-		"relic_boiling_blood"					"1"
-		"relic_dice"							"1"
-		"relic_glass_flower"					"1"
-		"relic_loaded_coin"						"1"
-		"relic_mysterious_stone"				"1"
-		"relic_phoenix_down"					"1"
-		"relic_symbiote"						"1"
-		"relic_the_pact"						"1"
-		"relic_titans_jawbone"					"1"
-		"relic_giants_cudgel"					"1"
-		"relic_crystal_skull"					"1"
-		"relic_unchanging_globe"				"1"
-		"relic_immaculate_staff"				"1"
-		"relic_icon_of_pride"					"1"
-		"relic_icon_of_greed"					"1"
-		"relic_heavy_tome"						"1"
-		"relic_thorned_bandages"				"1"
-		"relic_archmages_reliquary"				"1"
-		"relic_crimson_gauntlet"				"1"
-		"relic_torn_prayer_card"				"1"
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
 	}
-	"relic_rarity_legendary"
+	"relic_dead_mans_blood"
 	{
-		"relic_red_key"							"1"
-		"relic_forbidden_contract"				"1"
-		"relic_inversion_stone"					"1"
-		"relic_charons_obol"					"1"
-		"relic_rotting_flesh"					"1"
-		"relic_unbridled_power"					"1"
-		"relic_vertex_shard"					"1"
-		"relic_crystallized_though"				"1"
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
 	}
-	"relic_rarity_event"
+	"relic_giants_toenail"
 	{
-		"relic_ritual_candle"					"1"
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_hammerhead"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_pure_heart"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_seraphims_feather"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_silver_arrow"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_time_shard"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_unicorn_horn"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_breath_of_life"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_tanned_hide"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_arcane_threads"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_fog_lace"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_worn_spear"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_broken_mirror"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_mystic_gauntlet"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_power_glove"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_dragon_scales"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_ifrit_tear"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_scythegeist"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_stone_fist"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_tiger_blood"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_rich_essence"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_ethereal_gown"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_ectoplasm"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_bowl_of_chi"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_stone_calendar"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_drop_of_all"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_scrap_of_paper"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_dry_quill"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_battle_brew"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"1"
+	}
+	"relic_pale_blood"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"1"
+	}
+	"relic_paupers_finger"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"1"
+	}
+	"relic_bloody_silk"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"1"
+	}
+	"relic_mimic_chest"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"1"
+	}
+	"relic_grey_fox_tunic"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"1"
+	}
+	"relic_icon_of_envy"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"1"
+	}
+	"relic_icon_of_wrath"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"1"
+	}
+	"relic_icon_of_gluttony"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"1"
+	}
+	"relic_mask_of_janus"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"1"
+	}
+	"relic_false_idol"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"1"
+	}
+	"relic_eye_of_the_oligarch"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"1"
+	}
+	"relic_slayers_skinner"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_perpetuum_mobile"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_vampire_eye"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_hawks_eye"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_greased_wheel"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_lunar_needle"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	"relic_ring_of_kin"
+	{
+		"Rarity"			"RARITY_COMMON"
+		"Cursed"			"0"
+	}
+	
+	
+	/////////////////////////////////////////////////////////
+	// UNCOMMON RELICS
+	/////////////////////////////////////////////////////////
+	"relic_angelic_water"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_horn_of_bannermen"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_helm_of_justice"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_crown_of_power"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_spinning_top"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_barbedbell"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_katana"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_champions_spearhead"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_old_sickle"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_draculine_tooth"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_haste_stone"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_amplifier"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}	
+	"relic_heavy_rock"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_leather_buckler"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_weighted_gloves"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_feathered_boots"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_dull_razor"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_torn_muscle"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_pickled_brain"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_ornate_timepiece"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_molten_crystal"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_frozen_crystal"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_nautical_scale"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_mystical_coral"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_prismarine_blade"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_cold_heart"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_ofuda"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_rex_dominatur"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_sharp_machete"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_gazaer_tirdh"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_chainsword"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_silent_cloak"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_plasma_ball"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_hestias_hearth"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
+	}
+	"relic_icon_of_sloth"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"1"
+	}
+	"relic_icon_of_lust"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"1"
+	}
+	"relic_hungry_blade"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"1"
+	}
+	"relic_hushpuppy"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"1"
+	}
+	"relic_first_sin"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"1"
+	}
+	"relic_unstoppable_force"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"1"
+	}
+	"relic_delirious_cowl"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"1"
+	}
+	"relic_whale_heart"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"1"
+	}
+	"relic_demon_wings"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"1"
+	}
+	/////////////////////////////////////////////////////////
+	// RARE RELICS
+	/////////////////////////////////////////////////////////
+	"relic_stick"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_aghanims_amulet"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_limit_breaker"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_mysterious_hourglass"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_rage_enhancer"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_rapid_totem"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_rolling_boulder"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_rusty_dumbbell"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_sacrificial_dagger"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_oath_of_purity"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_grain_of_sand"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_memory_alloy"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_a_nickel"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_galactic_synapse"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_champions_belt"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_soldiers_banner"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_longbow"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_pocket_sand"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_eldritch_rune"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_eagles_beak"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_deathrow"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_hylophage"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_chlorophyl_cloak"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_anaerobic_ring"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_spirit_painting"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_kashas_wheelbarrow"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_shopkeepers_heart"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_antique_pouch"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_silver_knife"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_reinforced_bar"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_drycicle"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_red_pill"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"0"
+	}
+	"relic_adamantium_ingot"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_boiling_blood"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_cursed_dice"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_glass_flower"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_loaded_coin"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_mysterious_stone"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_phoenix_down"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_symbiote"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_the_pact"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_titans_jawbone"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_giants_cudgel"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_crystal_skull"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_unchanging_globe"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_immaculate_staff"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_icon_of_pride"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_icon_of_greed"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_heavy_tome"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_thorned_bandages"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_archmages_reliquary"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_crimson_gauntlet"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_torn_prayer_card"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	/////////////////////////////////////////////////////////
+	// LEGENDARY RELICS
+	/////////////////////////////////////////////////////////
+	"relic_red_key"
+	{
+		"Rarity"			"RARITY_LEGENDARY"
+		"Cursed"			"1"
+	}
+	"relic_forbidden_contract"
+	{
+		"Rarity"			"RARITY_LEGENDARY"
+		"Cursed"			"1"
+	}
+	"relic_inversion_stone"
+	{
+		"Rarity"			"RARITY_LEGENDARY"
+		"Cursed"			"0"
+	}
+	"relic_charons_obol"
+	{
+		"Rarity"			"RARITY_LEGENDARY"
+		"Cursed"			"0"
+	}
+	"relic_rotting_flesh"
+	{
+		"Rarity"			"RARITY_LEGENDARY"
+		"Cursed"			"0"
+	}
+	"relic_unbridled_power"
+	{
+		"Rarity"			"RARITY_LEGENDARY"
+		"Cursed"			"1"
+	}
+	"relic_vertex_shard"
+	{
+		"Rarity"			"RARITY_LEGENDARY"
+		"Cursed"			"0"
+	}
+	//"relic_crystallized_though"
+	//{
+	//	"Rarity"			"RARITY_LEGENDARY"
+	//	"Cursed"			"0"
+	//}
+	/////////////////////////////////////////////////////////
+	// EVENT RELICS
+	/////////////////////////////////////////////////////////
+	"relic_ritual_candle"
+	{
+		"Rarity"			"RARITY_EVENT"
+		"Cursed"			"0"
 	}
 }

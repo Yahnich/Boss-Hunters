@@ -288,7 +288,7 @@ function RoundManager:StartGame()
 			if PlayerResource:HasSelectedHero( nPlayerID ) then
 				local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
 				if hero ~=nil then
-					RelicManager:RollEliteRelicsForPlayer( nPlayerID )
+					RelicManager:RollBossRelicsForPlayer( nPlayerID )
 				end
 			end
 		end
