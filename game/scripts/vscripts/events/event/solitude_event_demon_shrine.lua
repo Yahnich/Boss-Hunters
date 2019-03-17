@@ -148,9 +148,9 @@ function HandoutRewards(self, bWon)
 			if bWon then
 				RelicManager:RollEliteRelicsForPlayer(pID)
 				local relicTable = {}
-				table.insert(relicTable, RelicManager:RollRandomCursedRelicForPlayer(pID))
-				table.insert(relicTable, RelicManager:RollRandomCursedRelicForPlayer(pID))
-				table.insert(relicTable, RelicManager:RollRandomCursedRelicForPlayer(pID))
+				table.insert(relicTable, RelicManager:RollRandomRelicForPlayer(pID, "RARITY_COMMON", false, true) )
+				table.insert(relicTable, RelicManager:RollRandomRelicForPlayer(pID, "RARITY_COMMON", false, true) )
+				table.insert(relicTable, RelicManager:RollRandomRelicForPlayer(pID, "RARITY_COMMON", false, true) )
 				RelicManager:PushCustomRelicDropsForPlayer(pID, relicTable)
 			end
 		end

@@ -14,7 +14,7 @@ local function FirstChoice(self, userid, event)
 	if not hero then return end
 	hero:AddGold(-800)
 	if RollPercentage(33) then
-		hero:AddRelic( RelicManager:RollRandomUniqueRelicForPlayer( event.pID ) )
+		RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomRelicForPlayer(pID)})
 		if hero:GetPlayerOwner() then
 			Timers:CreateTimer(0.5, function() CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 1}) end)
 		end
@@ -27,22 +27,31 @@ end
 
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	
-	for entindex, relicName in pairs(hero.ownedRelics) do
-		if string.match(relicName, "cursed") then
-			hero.internalRNGPools[2][relicName] = "1"
-			local item = EntIndexToHScript(entindex)
-			for _, modifier in ipairs( hero:FindAllModifiers() ) do
-				if modifier:GetAbility() == item then modifier:Destroy() end
+
+	local relicList = {}
+	local relicKey
+	local rarity = "RARITY_COMMON"
+	while relicList[1] == nil and rarity ~= "RARITY_LEGENDARY" do
+		for item, relic in pairs( hero.ownedRelics ) do
+			if relic.rarity == rarity then
+				table.insert(relicList, relic)
 			end
-			UTIL_Remove( item )
-			hero.ownedRelics[entindex] = nil
-			
-			hero:AddRelic( RelicManager:RollRandomUniqueRelicForPlayer( event.pID ) )
-			break
+		end
+		if relicList[1] == nil then
+			if rarity == "RARITY_COMMON" then
+				rarity == "RARITY_UNCOMMON"
+			elseif rarity == "RARITY_UNCOMMON" then
+				rarity == "RARITY_RARE"
+			elseif rarity == "RARITY_RARE" then
+				rarity == "RARITY_LEGENDARY"
+			end
 		end
 	end
-	
+	if relicList[1] then
+		local relic = relicList[RandomInt(1, #relicList)]
+		RelicManager:RemoveRelicOnPlayer(relic, event.pID)
+		RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomRelicForPlayer(pID)})
+	end
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
