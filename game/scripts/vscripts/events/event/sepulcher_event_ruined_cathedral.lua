@@ -136,12 +136,8 @@ local function HandoutRewards(self, bWon)
 	if self.combatStarted and bWon then
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			local pID = hero:GetPlayerOwnerID()
-			local generic = {}
-			local cursed = {}
-			table.insert(generic, RelicManager:RollRandomGenericRelicForPlayer(pID) )
-			table.insert(cursed, RelicManager:RollRandomCursedRelicForPlayer(pID) )
-			RelicManager:PushCustomRelicDropsForPlayer(pID, generic)
-			RelicManager:PushCustomRelicDropsForPlayer(pID, cursed)
+			RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomRelicForPlayer(pID, "RARITY_RARE", false)})
+			RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomRelicForPlayer(pID, "RARITY_COMMON", false, true)})
 		end
 	end
 end

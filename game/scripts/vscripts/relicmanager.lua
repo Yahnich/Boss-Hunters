@@ -148,7 +148,7 @@ function RelicManager:SkipRelicSelection(userid, event)
 		for id, relic in pairs( copy ) do
 			local rarity = self.masterList[relic]["Rarity"]
 			local cursed = self.masterList[relic]["Cursed"] == "1"
-			table.insert( dropTable, self:RollRandomUniqueRelicForPlayer(pID, rarity, true, cursed) )
+			table.insert( dropTable, self:RollRandomRelicForPlayer(pID, rarity, true, cursed) )
 		end
 		RelicManager:PushCustomRelicDropsForPlayer(pID, dropTable)
 		return

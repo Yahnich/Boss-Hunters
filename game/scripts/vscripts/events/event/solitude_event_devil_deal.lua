@@ -12,9 +12,7 @@ end
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
 	
-	local relicTable = {}
-	table.insert(relicTable, RelicManager:RollRandomGenericRelicForPlayer(event.pID))
-	RelicManager:PushCustomRelicDropsForPlayer(event.pID, relicTable)
+	RelicManager:PushCustomRelicDropsForPlayer(event.pID, {RelicManager:RollRandomRelicForPlayer(event.pID, "RARITY_COMMON", true)})
 	
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
@@ -24,9 +22,7 @@ local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
 	if not hero then return end
 	hero:AddCurse("event_buff_devil_deal")
-	local relicTable = {}
-	table.insert(relicTable, RelicManager:RollRandomCursedRelicForPlayer(event.pID))
-	RelicManager:PushCustomRelicDropsForPlayer(event.pID, relicTable)
+	RelicManager:PushCustomRelicDropsForPlayer(event.pID, {RelicManager:RollRandomRelicForPlayer(event.pID, "RARITY_UNCOMMON", false, true)})
 	
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
@@ -44,9 +40,7 @@ local function ThirdChoice(self, userid, event)
 	local relic = relicList[RandomInt(1, #relicList)]
 	RelicManager:RemoveRelicOnPlayer(relic, event.pID)
 	
-	local relicTable = {}
-	table.insert(relicTable, RelicManager:RollRandomUniqueRelicForPlayer(event.pID))
-	RelicManager:PushCustomRelicDropsForPlayer(event.pID, relicTable)
+	RelicManager:PushCustomRelicDropsForPlayer(event.pID, {RelicManager:RollRandomRelicForPlayer(event.pID, "RARITY_RARE", true)})
 	
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)

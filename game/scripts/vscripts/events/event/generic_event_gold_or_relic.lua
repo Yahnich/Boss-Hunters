@@ -10,18 +10,7 @@ local function CheckPlayerChoices(self)
 end
 
 local function FirstChoice(self, userid, event)
-	local relicTable = {}
-	local relic = ""
-	local roll = RandomInt(1, 5)
-	if roll == 1 then
-		relic = RelicManager:RollRandomUniqueRelicForPlayer(event.pID)
-	elseif roll == 2 then
-		relic = RelicManager:RollRandomCursedRelicForPlayer(event.pID)
-	else
-		relic = RelicManager:RollRandomGenericRelicForPlayer(event.pID)
-	end
-	table.insert(relicTable, relic)
-	RelicManager:PushCustomRelicDropsForPlayer(event.pID, relicTable)
+	RelicManager:PushCustomRelicDropsForPlayer(event.pID, {RelicManager:RollRandomRelicForPlayer(event.pID)})
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end

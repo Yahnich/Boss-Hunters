@@ -43,7 +43,7 @@ local function RollLoot(self, bRelic)
 	for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 		local pID = hero:GetPlayerOwnerID()
 		if bRelic then
-			RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomGenericRelicForPlayer(pID)})
+			RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomRelicForPlayer(pID)})
 		else
 			hero:AddGold(500)
 		end
