@@ -69,11 +69,7 @@ function modifier_wisp_spirits_bh:OnCreated(table)
 
 		self.distanceTick = self.speed/3 * FrameTime()
 
-<<<<<<< HEAD
 		self.time = (360/self.speed)/(self.max_wisps + 1)
-=======
-		self.time = 360/self.speed/self.max_wisps
->>>>>>> 4359de20b3a163f67394a2f7c5338c27f7fa8374
 
 		self.elaspedTime = 0
 
@@ -240,7 +236,7 @@ function modifier_wisp_spirits_bh_wisp:OnIntervalThink()
 
 	local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.collisionRadius)
 	for _,enemy in pairs(enemies) do
-		if not self.hitUnits[enemy:entindex()] then
+		if not self.hitUnits[enemy:entindex()] and enemy:IsMinion() then
 
 			EmitSoundOn("Hero_Wisp.Spirits.TargetCreep", parent)
 
@@ -254,10 +250,11 @@ function modifier_wisp_spirits_bh_wisp:OnIntervalThink()
 						 	 ParticleManager:ReleaseParticleIndex(nfx2)
 			end
 
-			enemy:Paralyze(self:GetAbility(), caster, self:GetTalentSpecialValueFor("slow_duration"))
-
 			self:GetAbility():DealDamage(caster, enemy, self.collisionDamage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
 			self.hitUnits[enemy:entindex()] = true
+		else
+			spirit:ForceKill(false)
+			return
 		end
 	end
 
@@ -304,8 +301,11 @@ function modifier_wisp_spirits_bh_wisp:OnRemoved()
 					 	 ParticleManager:ReleaseParticleIndex(nfx2)
 		end
 
+		local slow = self:GetTalentSpecialValueFor("slow_duration")
 		local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.endRadius)
 		for _,enemy in pairs(enemies) do
+			
+			enemy:Paralyze(self:GetAbility(), caster, slow)
 			self:GetAbility():DealDamage(caster, enemy, self.endDamage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		end
 	end

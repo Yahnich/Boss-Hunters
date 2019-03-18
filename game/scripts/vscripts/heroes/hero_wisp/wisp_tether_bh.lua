@@ -49,8 +49,8 @@ function wisp_tether_bh:OnSpellStart()
 		local target = self:GetCursorTarget()
 
 		caster:Stop()
-
-		if CalculateDistance(target, caster) > self:GetTrueCastRange()/2 then
+		local pullDistance = self:GetTalentSpecialValueFor("pull_distance")
+		if CalculateDistance(target, caster) > pullDistance then
 			caster:AddNewModifier(caster, self, "modifier_wisp_tether_bh_motion", {Duration = 5})
 		end
 
@@ -69,7 +69,7 @@ function modifier_wisp_tether_bh:OnCreated(table)
 	if IsServer() then
 		local caster = self:GetCaster()
 		self.target = self:GetAbility():GetCursorTarget()
-
+		self.range = self:GetTalentSpecialValueFor("break_distance") + caster:GetBonusCastRange()
 		self.restoreMultiplier = self:GetTalentSpecialValueFor("restore_amp")/100
 
 		EmitSoundOn("Hero_Wisp.Tether", caster)
@@ -90,12 +90,15 @@ end
 
 function modifier_wisp_tether_bh:OnIntervalThink()
 	local caster = self:GetCaster()
-
+	local distance = CalculateDistance(self.target, self:GetCaster())
+	if not self.target or not self.target:HasModifier("modifier_wisp_transfer_target") or distance <= self.range then
+		self:Destroy()
+	end
 	if caster:HasScepter() then
-		if not self.target:HasScepter() then
+		if not self.target:HasScepter() and not self.target:HasModifier("modifier_wisp_tether_bh_aghs") then
 			self.target:AddNewModifier(caster, self:GetAbility(), "modifier_wisp_tether_bh_aghs", {})
 		end
-	else
+	elseif self.target:HasModifier("modifier_wisp_tether_bh_aghs") then
 		self.target:RemoveModifierByNameAndCaster("modifier_wisp_tether_bh_aghs", caster)
 	end
 
@@ -245,7 +248,7 @@ function modifier_wisp_tether_bh_motion:OnCreated(table)
 
 		self.speed = 1000 * FrameTime()
 
-		self.maxDistance = CalculateDistance(self.target, caster) / 2
+		self.maxDistance = self:GetTalentSpecialValueFor("pull_distance")
 
 		self.currentDistance = 0
 

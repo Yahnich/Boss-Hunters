@@ -1,7 +1,24 @@
 phantom_assassin_blur_ebf = class({})
 
+function phantom_assassin_blur_ebf:GetBehavior()
+	if self:GetCaster():HasScepter() then
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+	end
+	return DOTA_ABILITY_BEHAVIOR_PASSIVE
+end
+
+function phantom_assassin_blur_ebf:GetCooldown( iLvl )
+	if self:GetCaster():HasScepter() then return 15 end
+end
+
 function phantom_assassin_blur_ebf:GetIntrinsicModifierName()
     return "modifier_phantom_assassin_blur_ebf"
+end
+
+function phantom_assassin_blur_ebf:OnSpellStart()
+	local caster = self:GetCaster()
+	caster:AddNewModifier( caster, self, "modifier_phantom_assassin_blur_scepter", {duration = self:GetTalentSpecialValueFor("scepter_duration")})
+	caster:AddNewModifier( caster, self, "modifier_invulnerable", {duration = 0.5})
 end
 
 LinkLuaModifier( "modifier_phantom_assassin_blur_ebf", "heroes/hero_pa/phantom_assassin_blur_ebf", LUA_MODIFIER_MOTION_NONE )
@@ -32,7 +49,7 @@ end
 function modifier_phantom_assassin_blur_ebf:OnAttackStart(params)
     if IsServer() then
         if params.target == self:GetParent() then
-            if RollPercentage(self:GetModifierEvasion_Constant()/2) then
+            if RollPercentage(self:GetModifierEvasion_Constant()/2) or self:GetParent():HasModifier("modifier_phantom_assassin_blur_scepter") then
                 params.attacker:AddNewModifier(params.target, self:GetAbility(), "modifier_phantom_assassin_blur_true_evasion", {})
 				if self:GetParent():HasTalent("special_bonus_unique_pa_blur_1") then
 					local kunai = self:GetParent():FindAbilityByName("pa_kunai_toss")

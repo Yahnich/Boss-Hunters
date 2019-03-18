@@ -161,6 +161,7 @@
 		"ScriptFile"					"heroes/hero_pa/phantom_assassin_blur_ebf.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"phantom_assassin_blur"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
 	
 		// Precache
@@ -190,10 +191,15 @@
 				"var_type"					"FIELD_FLOAT"
 				"evasion_chance"			"12.5 15 17.5 20 22.5 25 27.5"
 			}
-			"03"
+			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"evasion_stacks"			"2 4 6 8 10 12 14"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_duration"			"3.5"
 			}
 		}
 	}
