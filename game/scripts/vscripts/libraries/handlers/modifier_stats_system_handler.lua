@@ -95,7 +95,7 @@ function modifier_stats_system_handler:DeclareFunctions()
 	return funcs
 end
 
-function modifier_stats_system_handler:GetModifierMoveSpeedBonus_Constant() return -35 + (self.ms or 0) end
+function modifier_stats_system_handler:GetModifierMoveSpeedBonus_Constant() return (self.ms or 0) end
 function modifier_stats_system_handler:GetModifierManaBonus() return 500 + (self.mp or 0) end
 function modifier_stats_system_handler:GetModifierConstantManaRegen() return (self.mpr or 0) end
 function modifier_stats_system_handler:GetModifierHealAmplify_Percentage() return self.ha or 0 end

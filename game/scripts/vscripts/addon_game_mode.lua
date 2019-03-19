@@ -796,6 +796,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 		
 		hero:SetDayTimeVisionRange(hero:GetDayTimeVisionRange())
 		hero:SetNightTimeVisionRange(hero:GetNightTimeVisionRange())
+		hero:SetBaseMoveSpeed( hero:GetBaseMoveSpeed() - 35 )
 	end)
 end
 

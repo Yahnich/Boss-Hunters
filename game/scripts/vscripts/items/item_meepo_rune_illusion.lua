@@ -17,7 +17,7 @@ function item_meepo_rune_illusion:OnSpellStart()
 				end
 			end)
 
-			local image = caster:ConjureImage( caster:GetAbsOrigin(), duration, outgoing, incoming, "", self, true, caster, callback)
+			local image = caster:ConjureImage( caster:GetAbsOrigin(), duration, outgoing, incoming, nil, self, true, caster, callback)
 		end
 	
 		self:Destroy()

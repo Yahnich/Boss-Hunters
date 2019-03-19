@@ -11,21 +11,21 @@ end
 
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddRelic( "relic_generic_angelic_water" )
+	hero:AddRelic( "relic_angelic_water" )
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
 
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddRelic( "relic_generic_breath_of_life" )
+	hero:AddRelic( "relic_breath_of_life" )
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
 
 local function ThirdChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddRelic( "relic_generic_seraphims_feather" )
+	hero:AddRelic( "relic_seraphims_feather" )
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end

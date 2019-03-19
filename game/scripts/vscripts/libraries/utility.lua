@@ -714,7 +714,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 		
 			-- Set the unit as an illusion
 			-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
-			if specIllusionModifier and specIllusionModifier ~= "" then
+			if specIllusionModifier ~= nil and specIllusionModifier ~= "" then
 				illusion:AddNewModifier(owner, ability, specIllusionModifier, { duration = duration })
 			end
 			illusion:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
@@ -727,8 +727,10 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 					CreateUnitByNameAsync("wearable_dummy", origin, true, owner, owner, owner:GetTeamNumber(), function( newWearable )
 						newWearable:SetOriginalModel(wearable:GetModelName())
 						newWearable:SetModel(wearable:GetModelName())
-						newWearable:AddNewModifier(nil, nil, "modifier_wearable", {})
-						newWearable:AddNewModifier(owner, ability, specIllusionModifier, {duration = duration})
+						newWearable:AddNewModifier(owner, ability, "modifier_wearable", {})
+						if specIllusionModifier ~= nil and specIllusionModifier ~= "" then	
+							newWearable:AddNewModifier(owner, ability, specIllusionModifier, {duration = duration})
+						end
 						newWearable:AddNewModifier(owner, ability, "modifier_illusion", {})
 						newWearable:SetParent(illusion, nil)
 						newWearable:FollowEntity(illusion, true)
@@ -1133,9 +1135,12 @@ function CDOTA_BaseNPC:FindModifierByNameAndAbility(name, ability)
 end
 
 function CDOTA_BaseNPC:IsFakeHero()
-	if self:IsIllusion() or (self:HasModifier("modifier_monkey_king_fur_army_soldier") or self:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) or self:IsTempestDouble() or self:IsClone() then
-		return true
-	else return false end
+	local fakeHero = self.GetPlayerID and self ~= PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() )
+	if not self.GetPlayerID then return true end
+	if PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() ) == nil then
+		return false
+	end
+	return self.GetPlayerID and self ~= PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() )
 end
 
 function CDOTA_BaseNPC:IsRealHero()
@@ -2403,7 +2408,7 @@ function CDOTA_BaseNPC_Hero:ModifyAttributePoints(value)
 	if value > 0 then
 		self.totalGainedTalentPoints = self.totalGainedTalentPoints + value
 	end
-	self.bonusTalentPoints = self.bonusTalentPoints + value
+	self.bonusTalentPoints = (self.bonusTalentPoints or 0) + value
 	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex()) or {}
 	netTable.attribute_points = self.bonusTalentPoints
 	CustomNetTables:SetTableValue("hero_properties", self:GetUnitName()..self:entindex(), netTable)

@@ -11,7 +11,7 @@ end
 
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddRelic( "relic_unique_ritual_candle" )
+	hero:AddRelic( "relic_ritual_candle" )
 	
 	hero:SetGold( 0, true )
 	hero:SetGold( 0, false )
@@ -22,7 +22,7 @@ end
 
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddRelic( "relic_cursed_forbidden_contract" )
+	hero:AddRelic( "relic_forbidden_contract" )
 	
 	hero:SetGold( 0, true )
 	hero:SetGold( 0, false )

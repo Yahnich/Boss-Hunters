@@ -16,6 +16,8 @@ end
 function wisp_tether_bh:CastFilterResultTarget(hTarget)
 	if hTarget == self:GetCaster() then
 		return UF_FAIL_CUSTOM
+	else
+		return UnitFilter( hTarget, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, self:GetCaster():GetTeamNumber() )
 	end
 end
 

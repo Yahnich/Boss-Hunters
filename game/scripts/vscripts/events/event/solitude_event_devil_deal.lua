@@ -12,6 +12,7 @@ end
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
 	
+	PrintAll( {RelicManager:RollRandomRelicForPlayer(event.pID, "RARITY_UNCOMMON", false, true)} )
 	RelicManager:PushCustomRelicDropsForPlayer(event.pID, {RelicManager:RollRandomRelicForPlayer(event.pID, "RARITY_COMMON", true)})
 	
 	self._playerChoices[event.pID] = true

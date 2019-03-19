@@ -45,7 +45,7 @@ function morph_wave:OnSpellStart()
 
 	EmitSoundOn("Hero_Morphling.Waveform", caster)
 
-    caster:AddNewModifier(caster, self, "modifier_morph_wave", {})
+    caster:AddNewModifier(caster, self, "modifier_morph_wave", {duration = (distance / speed) + 0.1})
 
     ProjectileManager:ProjectileDodge(caster)
 

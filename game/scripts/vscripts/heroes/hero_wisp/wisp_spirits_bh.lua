@@ -74,7 +74,7 @@ function modifier_wisp_spirits_bh:OnCreated(table)
 		self.time = (360/self.speed)/(self.max_wisps + 1)
 
 		self.elaspedTime = 0
-		self.cost = self:GetTalentSpecialValueFor("wisp_regen_cost") * caster:GetManaCostReduction()
+		self.cost = self:GetTalentSpecialValueFor("wisp_regen_cost") * self:GetCaster():GetManaCostReduction()
 		self:StartIntervalThink(FrameTime())
 	end
 end

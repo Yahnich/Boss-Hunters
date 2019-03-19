@@ -37,14 +37,12 @@ function modifier_terrorblade_zeal_passive:OnCreated()
 	self.healthregen = self:GetAbility():GetTalentSpecialValueFor("health_regen")
 	self.attackspeed = self:GetAbility():GetTalentSpecialValueFor("attackspeed_bonus")
 	self.increase = 1 + self:GetAbility():GetTalentSpecialValueFor("scepter_increase") / 100
-	print("what", self.healthregen, self.attackspeed)
 end
 
 function modifier_terrorblade_zeal_passive:OnRefresh()
 	self.healthregen = self:GetAbility():GetTalentSpecialValueFor("health_regen")
 	self.attackspeed = self:GetAbility():GetTalentSpecialValueFor("attackspeed_bonus")
 	self.increase = 1 + self:GetAbility():GetTalentSpecialValueFor("scepter_increase") / 100
-	print("what", self.healthregen, self.attackspeed)
 end
 
 function modifier_terrorblade_zeal_passive:DeclareFunctions()

@@ -33,10 +33,12 @@ function RelicManager:Initialize()
 	self.otherRelicPool = {}
 	for relic, data in pairs( self.masterList ) do
 		LinkLuaModifier( relic, "relics/"..relic, LUA_MODIFIER_MOTION_NONE )
-		if data["Cursed"] == 1 then
-			self.cursedRelicPool[relic] = data
-		else
-			self.otherRelicPool[relic] = data
+		if data["Rarity"] ~= "RARITY_EVENT" then
+			if data["Cursed"] == 1 then
+				self.cursedRelicPool[relic] = data
+			else
+				self.otherRelicPool[relic] = data
+			end
 		end
 	end
 
@@ -239,7 +241,6 @@ function RelicManager:RollRandomRelicForPlayer(pID, cMinRarity, bFixedRarity, bC
 	if cursedRelic then
 		pooltoDraw = "cursed"
 	end
-	print(cursedRelic, "pull from "..pooltoDraw.." pool")
 	local loopPrevention = false
 	:: fillDropTable ::
 	for relic, rarity in pairs( hero.internalRNGPools[pooltoDraw] ) do
@@ -267,6 +268,7 @@ function RelicManager:RollRandomRelicForPlayer(pID, cMinRarity, bFixedRarity, bC
 				end
 			end
 		elseif rarity == cRarity then
+			local relicData = {}
 			relicData.name = relic
 			relicData.rarity = rarity
 			relicData.cursed = cursedRelic
@@ -290,9 +292,9 @@ function RelicManager:RollRandomRelicForPlayer(pID, cMinRarity, bFixedRarity, bC
 	end
 	
 	if dropTable[1] ~= nil then
-		local relic = dropTable[RandomInt(1, #dropTable)]
-		hero.internalRNGPools[pooltoDraw][relic] = nil
-		return relic
+		local droppedRelic = dropTable[RandomInt(1, #dropTable)]
+		hero.internalRNGPools[pooltoDraw][droppedRelic.name] = nil
+		return droppedRelic
 	else
 		return {["name"] = "unique_relic_not_found", ["RARITY_EVENT"] = "Special", ["cursed"] = false}
 	end
