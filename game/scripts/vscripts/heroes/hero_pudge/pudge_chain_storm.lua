@@ -44,7 +44,8 @@ function modifier_pudge_chain_storm:OnIntervalThink()
 end
 
 function modifier_pudge_chain_storm:CheckState()
-	return {[MODIFIER_STATE_ROOTED] = true}
+	return {[MODIFIER_STATE_ROOTED] = true,
+			[MODIFIER_STATE_INVISIBLE] = false}
 end
 
 function modifier_pudge_chain_storm:OnRemoved()

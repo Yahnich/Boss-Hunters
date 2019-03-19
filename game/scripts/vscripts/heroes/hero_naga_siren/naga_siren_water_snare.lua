@@ -51,7 +51,8 @@ if IsServer() then
 end
 
 function modifier_naga_siren_water_snare:CheckState()
-	return {[MODIFIER_STATE_ROOTED] = true}
+	return {[MODIFIER_STATE_ROOTED] = true,
+			[MODIFIER_STATE_INVISIBLE] = false}
 end
 
 function modifier_naga_siren_water_snare:DeclareFunctions()

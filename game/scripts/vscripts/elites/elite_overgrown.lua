@@ -77,7 +77,8 @@ LinkLuaModifier("modifier_elite_overgrown_root", "elites/elite_overgrown", LUA_M
 
 function modifier_elite_overgrown_root:CheckState()
 	return {[MODIFIER_STATE_ROOTED] = true,
-			[MODIFIER_STATE_DISARMED] = true,}
+			[MODIFIER_STATE_DISARMED] = true,
+			[MODIFIER_STATE_INVISIBLE] = false}
 end
 
 function modifier_elite_overgrown_root:GetEffectName()

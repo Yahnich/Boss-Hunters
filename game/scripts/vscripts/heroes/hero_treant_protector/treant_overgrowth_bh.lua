@@ -59,7 +59,8 @@ LinkLuaModifier("modifier_treant_overgrowth_bh_root", "heroes/hero_treant_protec
 
 function modifier_treant_overgrowth_bh_root:CheckState()
 	return {[MODIFIER_STATE_ROOTED] = true,
-			[MODIFIER_STATE_DISARMED] = true}
+			[MODIFIER_STATE_DISARMED] = true,
+			[MODIFIER_STATE_INVISIBLE] = false}
 end
 
 function modifier_treant_overgrowth_bh_root:GetEffectName()

@@ -153,7 +153,8 @@ modifier_treant_great_protector_root = class({})
 
 function modifier_treant_great_protector_root:CheckState()
 	return {[MODIFIER_STATE_ROOTED] = true,
-			[MODIFIER_STATE_DISARMED] = true,}
+			[MODIFIER_STATE_DISARMED] = true,
+			[MODIFIER_STATE_INVISIBLE] = false}
 end
 
 function modifier_treant_great_protector_root:GetEffectName()

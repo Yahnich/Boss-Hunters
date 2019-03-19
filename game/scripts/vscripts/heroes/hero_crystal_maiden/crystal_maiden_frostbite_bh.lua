@@ -60,6 +60,7 @@ function modifier_crystal_maiden_frostbite_bh:CheckState()
     local state = {
 		[MODIFIER_STATE_ROOTED] = true,
 		[MODIFIER_STATE_DISARMED] = true,
+		[MODIFIER_STATE_INVISIBLE] = false
 	}
 	return state
 end

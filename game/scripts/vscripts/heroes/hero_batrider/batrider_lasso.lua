@@ -134,7 +134,8 @@ function modifier_batrider_lasso_debuff:CheckState()
 			[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 			[MODIFIER_STATE_PROVIDES_VISION] = true,
 			[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
-			[MODIFIER_STATE_TETHERED] = true}
+			[MODIFIER_STATE_TETHERED] = true,
+			[MODIFIER_STATE_INVISIBLE] = false}
 end
 
 function modifier_batrider_lasso_debuff:DeclareFunctions()
@@ -172,7 +173,8 @@ function modifier_batrider_lasso_debuff_after:OnIntervalThink()
 end
 
 function modifier_batrider_lasso_debuff_after:CheckState()
-	return {[MODIFIER_STATE_ROOTED] = true}
+	return {[MODIFIER_STATE_ROOTED] = true,
+			[MODIFIER_STATE_INVISIBLE] = false}
 end
 
 function modifier_batrider_lasso_debuff_after:GetEffectName()

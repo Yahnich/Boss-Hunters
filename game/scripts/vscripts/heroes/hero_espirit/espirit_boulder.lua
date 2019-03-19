@@ -78,8 +78,10 @@ function espirit_boulder:OnProjectileHitHandle(hTarget, vLocation, projID)
 					caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(pointRando)
 				end
 			end
-			FindClearSpaceForUnit(caster, vLocation, true)
-			ProjectileManager:ProjectileDodge(caster)
+			if not caster:IsRooted() then
+				FindClearSpaceForUnit(caster, vLocation, true)
+				ProjectileManager:ProjectileDodge(caster)
+			end
 		end
 		if caster:FindAbilityByName("espirit_rock") then
 			caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(vLocation)

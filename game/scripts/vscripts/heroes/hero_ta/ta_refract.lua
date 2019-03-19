@@ -70,9 +70,9 @@ function modifier_ta_refract:GetModifierPreAttack_BonusDamage()
 	return self.dmg
 end
 
-function modifier_ta_refract:GetModifierTotal_ConstantBlock()
+function modifier_ta_refract:GetModifierTotal_ConstantBlock(params)
 	if self:GetStackCount() > 0 then
 		self:DecrementStackCount()
-		return params.damage
+		return params.original_damage + 1
 	end
 end

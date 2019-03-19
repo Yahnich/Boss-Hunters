@@ -3,10 +3,19 @@ LinkLuaModifier( "modifier_ta_trap", "heroes/hero_ta/ta_trap.lua" ,LUA_MODIFIER_
 LinkLuaModifier( "modifier_ta_trap_spring", "heroes/hero_ta/ta_trap.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function ta_trap:GetCooldown( iLvl )
-	local cd = self.BaseClass.GetCooldown( self, iLlvl )
+	local cd = self.BaseClass.GetCooldown( self, iLvl )
 	if self:GetCaster():HasScepter() then
 		cd = cd + self:GetTalentSpecialValueFor("scepter_cooldown_reduction")
 	end
+	return cd
+end
+
+function ta_trap:GetAOERadius()
+	local radius = self:GetTalentSpecialValueFor("trap_radius")
+	if self:GetCaster():HasScepter() then
+		radius = radius + self:GetTalentSpecialValueFor("scepter_bonus_radius")
+	end
+	return radius
 end
 
 function ta_trap:IsStealable()

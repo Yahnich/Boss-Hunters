@@ -251,11 +251,11 @@
 		"Rarity"			"RARITY_COMMON"
 		"Cursed"			"0"
 	}
-	"relic_ring_of_kin"
-	{
-		"Rarity"			"RARITY_COMMON"
-		"Cursed"			"0"
-	}
+	//"relic_ring_of_kin"
+	//{
+	//	"Rarity"			"RARITY_COMMON"
+	//	"Cursed"			"0"
+	//}
 	
 	
 	/////////////////////////////////////////////////////////
@@ -777,11 +777,11 @@
 		"Rarity"			"RARITY_LEGENDARY"
 		"Cursed"			"1"
 	}
-	"relic_vertex_shard"
-	{
-		"Rarity"			"RARITY_LEGENDARY"
-		"Cursed"			"0"
-	}
+	//"relic_vertex_shard"
+	//{
+	//	"Rarity"			"RARITY_LEGENDARY"
+	//	"Cursed"			"0"
+	//}
 	//"relic_crystallized_though"
 	//{
 	//	"Rarity"			"RARITY_LEGENDARY"

@@ -423,6 +423,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"morphling_replicate"
 		"MaxLevel"						"6"
+		"HasScepterUpgrade"				"1"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -469,6 +470,26 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"350"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_evasion"		"35"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_radius"		"150"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_duration"		"5"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_damage"		"125"
 			}
 		}
 	}

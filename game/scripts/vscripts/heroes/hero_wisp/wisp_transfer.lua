@@ -51,7 +51,8 @@ function wisp_transfer:OnSpellStart()
 
 		caster:AddNewModifier(caster, self, "modifier_wisp_transfer", {})
 		target:AddNewModifier(caster, self, "modifier_wisp_transfer_target", {})
-		if CalculateDistance( caster, target ) > pullDistance then
+		local pullDistance = self:GetTalentSpecialValueFor("pull_distance")
+		if CalculateDistance( caster, target ) > pullDistance * 2 then
 			caster:AddNewModifier(caster, self, "modifier_wisp_tether_bh_motion", {Duration = 5})
 		end
 		self:EndCooldown()
@@ -65,10 +66,10 @@ function modifier_wisp_transfer:OnCreated(table)
 		local parent = self:GetCaster()
 		self.target = self:GetAbility():GetCursorTarget()
 		
-		self.range = self:GetTalentSpecialValueFor("break_distance") + caster:GetBonusCastRange()
+		self.range = self:GetTalentSpecialValueFor("break_distance") + parent:GetBonusCastRange()
 		self.restoreMultiplier = self:GetTalentSpecialValueFor("restore_amp")/100
 
-		EmitSoundOn("Hero_Wisp.Tether", caster)
+		EmitSoundOn("Hero_Wisp.Tether", parent)
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_wisp/wisp_evil_tether.vpcf", PATTACH_POINT, parent)
 					ParticleManager:SetParticleControlEnt(nfx, 1, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
 					ParticleManager:SetParticleControlEnt(nfx, 0, self.target, PATTACH_POINT_FOLLOW, "attach_hitloc", self.target:GetAbsOrigin(), true)
@@ -83,12 +84,10 @@ end
 
 function modifier_wisp_transfer:OnIntervalThink()
 	local distance = CalculateDistance(self.target, self:GetCaster())
-	
 	if self.target and self.target:IsAlive() and self.target:HasModifier("modifier_wisp_transfer_target") and distance <= self.range and not self:GetCaster():PassivesDisabled() then
 		self:GetAbility():DealDamage(self:GetCaster(), self.target, self.drain, {damage_flags = DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, 0)
 		self:GetCaster():HealEvent(self.drain, self:GetAbility(), self:GetCaster(), false)
-
-	else
+	elseif not self:GetCaster():HasModifier("modifier_wisp_tether_bh_motion") then
 		self:Destroy()
 	end
 end

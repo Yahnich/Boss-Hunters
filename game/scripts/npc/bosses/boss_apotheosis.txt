@@ -144,7 +144,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"width"						"175"
+				"width"						"120"
 			}
 			"02"
 			{
@@ -286,7 +286,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_apotheosis/boss_apotheosis_ruthless_hunter"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName"			"lycan_feral_impulse"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"MaxLevel"						"3"

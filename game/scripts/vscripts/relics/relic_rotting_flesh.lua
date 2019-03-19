@@ -24,8 +24,8 @@ function relic_rotting_flesh:OnDeath(params)
 	if params.unit == self:GetParent() then
 		local modifier = self
 		local parent = self:GetParent()
-		modifier:SetDuration(40.1, true)
-		self:StartIntervalThink(40)
+		modifier:SetDuration(30.1, true)
+		self:StartIntervalThink(30)
 		modifier:SetStackCount(0)
 		
 	end

@@ -208,6 +208,7 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/terrorblade_zeal"
 		"MaxLevel"						"7"
+		"HasScepterUpgrade"				"1"
 		
 		"precache"
 		{
@@ -250,7 +251,22 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"health_regen"					"3 6 9 12 15 18 21"
-			}		
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"scepter_cd"					"22"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"scepter_duration"				"5"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"scepter_increase"				"100"
+			}
 		}
 	}
 	//=================================================================================================================

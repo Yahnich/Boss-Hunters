@@ -403,12 +403,13 @@ function RoundManager:StartEvent()
 			end
 		end
 		CustomGameEventManager:Send_ServerToAllClients( "player_update_stats", playerData )
-		
 		if self.zones[self.currentZone] and self.zones[self.currentZone][1] and self.zones[self.currentZone][1][1] then
 			local event = RoundManager:GetCurrentEvent()
 			event.eventHasStarted = true
 			event.eventEnded = false
 			event:StartEvent()
+			
+			EventManager:FireEvent("boss_hunters_event_started", {eventType = event:GetEventType()})
 			if event:GetEventType() == EVENT_TYPE_BOSS then
 				Notifications:BottomToAll({text="A great foe is nearby.", duration=3.5})
 			elseif event:GetEventType() == EVENT_TYPE_ELITE then

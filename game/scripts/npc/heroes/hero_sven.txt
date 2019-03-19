@@ -120,7 +120,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_sven/sven_valiant_charge"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName"			"custom/sven_valiant_charge"
 		"MaxLevel"						"7"
 	

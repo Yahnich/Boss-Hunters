@@ -24,7 +24,6 @@ function modifier_boss_necro_vile_aura:OnIntervalThink()
 		position = RoundManager:GetBoundingBox():GetAbsOrigin() + ActualRandomVector( FindRadius( RoundManager:GetBoundingBox() ) * 0.75, 150 )
 	end
 	if parent:IsStunned() or parent:IsSilenced() or parent:IsRooted() then
-		self:StartIntervalThink( 0.5 )
 		return
 	end
 	if RollPercentage(50) then -- random position
@@ -42,6 +41,7 @@ function modifier_boss_necro_vile_aura:OnIntervalThink()
 	ParticleManager:FireWarningParticle( position, self:GetParent():GetHullRadius() * 2.5 )
 	local modifier = self
 	Timers:CreateTimer(1.5, function()
+		if parent:IsStunned() or parent:IsSilenced() or parent:IsRooted() then return end
 		parent:Blink(position)
 		if not modifier or modifier:IsNull() then return end
 		if IsServer() then modifier:StartIntervalThink( modifier:GetAbility():GetSpecialValueFor("blink_rate") ) end

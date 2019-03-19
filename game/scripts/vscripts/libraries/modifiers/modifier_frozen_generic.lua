@@ -28,7 +28,8 @@ function modifier_frozen_generic:CheckState()
 						[MODIFIER_STATE_FROZEN] = true}
 		return state
 	else
-		local state = { [MODIFIER_STATE_ROOTED] = true}
+		local state = { [MODIFIER_STATE_ROOTED] = true,
+					[MODIFIER_STATE_INVISIBLE] = false}
 		return state
 	end
 end

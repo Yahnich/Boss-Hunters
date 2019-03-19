@@ -7,8 +7,10 @@ function nyx_vendetta:OnSpellStart()
 	EmitSoundOn("Hero_NyxAssassin.Vendetta", caster)
 
 	ParticleManager:FireParticle("particles/units/heroes/hero_nyx_assassin/nyx_loadout.vpcf", PATTACH_POINT, caster, {})
-	caster:AddNewModifier(caster, self, "modifier_nyx_vendetta", {Duration = self:GetTalentSpecialValueFor("duration")})
-
+	local vendetta = caster:AddNewModifier(caster, self, "modifier_nyx_vendetta", {Duration = self:GetTalentSpecialValueFor("duration")})
+	if caster:HasScepter() then
+		vendetta:SetStackCount( self:GetTalentSpecialValueFor("scepter_charges") )
+	end
 	self:StartDelayedCooldown(self:GetTalentSpecialValueFor("duration"))
 end
 
@@ -27,6 +29,7 @@ function modifier_nyx_vendetta:DeclareFunctions()
         MODIFIER_EVENT_ON_ATTACK_LANDED,
         MODIFIER_EVENT_ON_ABILITY_EXECUTED,
         MODIFIER_EVENT_ON_ATTACK_START,
+        MODIFIER_EVENT_ON_TAKEDAMAGE,
         MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
         MODIFIER_PROPERTY_STATS_INTELLECT_BONUS
     }
@@ -48,7 +51,7 @@ end
 
 function modifier_nyx_vendetta:OnAbilityExecuted(params)
 	if IsServer() then
-		if params.unit == self:GetParent() then
+		if params.unit == self:GetParent() and not self:GetParent():HasScepter() then
 			self:Destroy()
 		end
 	end
@@ -57,7 +60,22 @@ end
 function modifier_nyx_vendetta:OnAttackStart(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() then
-			StartAnimation(self:GetParent(), {duration=self:GetParent():GetSecondsPerAttack(), activity=ACT_DOTA_ATTACK, rate=1/self:GetParent():GetSecondsPerAttack(), translate="vendetta"})
+			StartAnimation(self:GetParent(), {duration=self:GetParent():GetSecondsPerAttack(), activity=ACT_DOTA_ATTACK, rate= 1.7 / self:GetParent():GetSecondsPerAttack(), translate="vendetta"})
+		end
+	end
+end
+
+function modifier_nyx_vendetta:OnTakeDamage(params)
+	if IsServer() then
+		if params.attacker == self:GetParent() and params.inflictor and params.inflictor ~= self:GetAbility() and params.attacker:HasAbility( params.inflictor:GetName() ) then
+			EmitSoundOn("Hero_NyxAssassin.Vendetta.Crit", params.unit)
+			if self:GetParent():HasModifier("modifier_nyx_burrow") then
+				ParticleManager:FireParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_impale_hit.vpcf", PATTACH_POINT, self:GetParent(), {[0]=params.unit:GetAbsOrigin()})
+			end
+			ParticleManager:FireParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf", PATTACH_POINT, params.attacker, {[1]=params.unit:GetAbsOrigin()})
+			self:GetAbility():DealDamage(self:GetParent(), params.unit, self.damage, {}, OVERHEAD_ALERT_DAMAGE)
+			self:DecrementStackCount()
+			if self:GetStackCount() <= 0 then self:Destroy() end
 		end
 	end
 end
@@ -71,7 +89,8 @@ function modifier_nyx_vendetta:OnAttackLanded(params)
 			end
 			ParticleManager:FireParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf", PATTACH_POINT, params.attacker, {[1]=params.target:GetAbsOrigin()})
 			self:GetAbility():DealDamage(self:GetParent(), params.target, self.damage, {}, OVERHEAD_ALERT_DAMAGE)
-			self:Destroy()
+			self:DecrementStackCount()
+			if self:GetStackCount() <= 0 then self:Destroy() end
 		end
 	end
 end

@@ -389,6 +389,15 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	end
 	local name = filterTable["name_const"]
 	
+	if name == "modifier_item_ultimate_scepter" then
+		for i = 0, parent:GetAbilityCount() - 1 do
+			local ability = parent:GetAbilityByIndex( i )
+			if ability and ability.OnInventoryContentsChanged then
+				ability:OnInventoryContentsChanged()
+			end
+		end
+	end
+	
 	if duration ~= -1 and parent and caster then
 		local params = {caster = caster, target = parent, duration = duration, ability = ability, modifier_name = name}
 		duration = duration * caster:GetStatusAmplification( params )

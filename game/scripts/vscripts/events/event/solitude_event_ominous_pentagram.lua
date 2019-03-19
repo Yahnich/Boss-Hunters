@@ -37,6 +37,12 @@ local function StartCombat(self, bFight, bHard)
 		self.eventType = EVENT_TYPE_COMBAT
 		if bHard then
 			self.eventType = EVENT_TYPE_ELITE
+			
+			for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+				hero:ModifyAgility( 15 )
+				hero:ModifyIntellect( 15 )
+				hero:ModifyStrength( 15 )
+			end
 		end
 		self._vEventHandles = {
 			ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),

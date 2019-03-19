@@ -28,7 +28,7 @@ end
 
 function modifier_spectre_dimensional_interjection:OnOrder(params)
 	if IsServer() then
-		if self:GetAbility():IsCooldownReady() and params.unit == self:GetParent() then
+		if self:GetAbility():IsCooldownReady() and params.unit == self:GetParent() and not self:GetParent():IsRooted() then
 			if params.target and params.order_type == DOTA_UNIT_ORDER_ATTACK_MOVE or params.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET 
 			and CalculateDistance( params.target, self:GetParent() ) >= self.search_range then
 				if params.unit:GetAttackRange() < CalculateDistance( params.target, self:GetParent() ) then

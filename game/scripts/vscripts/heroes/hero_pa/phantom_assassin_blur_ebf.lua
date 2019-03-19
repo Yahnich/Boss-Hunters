@@ -19,6 +19,7 @@ function phantom_assassin_blur_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:AddNewModifier( caster, self, "modifier_phantom_assassin_blur_scepter", {duration = self:GetTalentSpecialValueFor("scepter_duration")})
 	caster:AddNewModifier( caster, self, "modifier_invulnerable", {duration = 0.5})
+	caster:EmitSound("Hero_PhantomAssassin.Blur")
 end
 
 LinkLuaModifier( "modifier_phantom_assassin_blur_ebf", "heroes/hero_pa/phantom_assassin_blur_ebf", LUA_MODIFIER_MOTION_NONE )
@@ -86,6 +87,13 @@ end
 
 function modifier_phantom_assassin_blur_ebf:GetModifierEvasion_Constant(params)
     return math.min(100, self.evasion + self:GetStackCount() * self.evasion_stack)
+end
+
+modifier_phantom_assassin_blur_scepter = class({})
+LinkLuaModifier( "modifier_phantom_assassin_blur_scepter", "heroes/hero_pa/phantom_assassin_blur_ebf", LUA_MODIFIER_MOTION_NONE )
+
+function modifier_phantom_assassin_blur_scepter:GetEffectName()
+	return "particles/units/heroes/hero_phantom_assassin/phantom_assassin_active_blur.vpcf"
 end
 
 LinkLuaModifier( "modifier_phantom_assassin_blur_true_evasion", "heroes/hero_pa/phantom_assassin_blur_ebf", LUA_MODIFIER_MOTION_NONE )
