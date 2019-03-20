@@ -10510,7 +10510,7 @@
 		// General
 		//----------------------------------------------------------------
 		"Model"						"models/heroes/lycan/summon_wolves.vmdl"	// Model.
-		"BaseClass"					"npc_dota_creep_neutral"
+		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"Lycan_Wolf"
 		"Level"						"1"
 		"ConsideredHero"			"1"

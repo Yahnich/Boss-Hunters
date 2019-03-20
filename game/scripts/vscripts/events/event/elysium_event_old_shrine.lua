@@ -14,7 +14,7 @@ local function FirstChoice(self, userid, event)
 	if not hero then return end
 	hero:AddGold(-800)
 	if RollPercentage(33) then
-		RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomRelicForPlayer(pID)})
+		RelicManager:PushCustomRelicDropsForPlayer(event.pID, {RelicManager:RollRandomRelicForPlayer(event.pID)})
 		if hero:GetPlayerOwner() then
 			Timers:CreateTimer(0.5, function() CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 1}) end)
 		end
@@ -50,7 +50,7 @@ local function SecondChoice(self, userid, event)
 	if relicList[1] then
 		local relic = relicList[RandomInt(1, #relicList)]
 		RelicManager:RemoveRelicOnPlayer(relic, event.pID)
-		RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomRelicForPlayer(pID)})
+		RelicManager:PushCustomRelicDropsForPlayer(event.pID, {RelicManager:RollRandomRelicForPlayer(event.pID)})
 	end
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)

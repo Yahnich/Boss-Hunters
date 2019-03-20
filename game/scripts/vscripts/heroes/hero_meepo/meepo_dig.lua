@@ -75,7 +75,7 @@ function meepo_dig:OnChannelFinish(bInterrupted)
 			table.insert(runes, "item_meepo_rune_reduc")
 		end
 
-		local rune = runes[ math.random( #runes ) ]
+		local rune = runes[ RandomInt( 1, #runes ) ]
 		local item = CreateItem(rune, caster, caster)
 		local randoPoint = GetGroundPosition(caster:GetAbsOrigin(), caster) + ActualRandomVector(150, 50)
 		CreateItemOnPositionSync(randoPoint, item)
@@ -83,7 +83,7 @@ function meepo_dig:OnChannelFinish(bInterrupted)
 		item:SetCastOnPickup(true)
 
 		if caster:HasScepter() and caster.primaryMeepo then
-			local rune = runes[ math.random( #runes ) ]
+			local rune = runes[ RandomInt( 1, #runes ) ]
 			local item = CreateItem(rune, caster, caster)
 			local randoPoint = GetGroundPosition(caster:GetAbsOrigin(), caster) + ActualRandomVector(150, 50)
 			CreateItemOnPositionSync(randoPoint, item)

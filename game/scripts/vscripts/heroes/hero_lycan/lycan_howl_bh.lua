@@ -35,6 +35,7 @@ function modifier_lycan_howl_bh_buff:OnCreated()
 		self.hp = self:GetTalentSpecialValueFor("unit_bonus_hp")
 		self.damage = self:GetTalentSpecialValueFor("unit_bonus_damage")
 	end
+	print(self.hp)
 	if not GameRules:IsDaytime() then
 		self.hp = self.hp * 2
 		self.damage = self.damage * 2

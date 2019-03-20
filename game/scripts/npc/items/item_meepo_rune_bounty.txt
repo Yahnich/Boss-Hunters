@@ -14,6 +14,7 @@
 		"AbilityTextureName"			"item_tome_of_knowledge"
 		"ItemKillable"					"1"
 		"ItemSellable"					"0"
+		"ItemPurchasable"				"0"
 		"ItemDroppable"					"1"
 		"Model"							"models/props_gameplay/rune_goldxp.vmdl"	
 

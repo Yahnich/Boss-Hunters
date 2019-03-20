@@ -15,6 +15,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"0"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		"Model"							"models/props_gameplay/rune_arcane.vmdl"	
 
 		"precache"

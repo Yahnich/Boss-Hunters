@@ -12,7 +12,7 @@ end
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
 	
-	hero:AddRelic( "relic_generic_stick" )
+	hero:AddRelic( "relic_stick" )
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
