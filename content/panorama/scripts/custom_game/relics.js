@@ -85,15 +85,19 @@ SendDropQuery()
 
 function UpdatePendingDrops(relicTable){
 	var length = 0
-	if( relicTable.drops != null ){
-		for ( relic in 	relicTable.drops ){
-			length++
-		}
-		if( length == 0 ){
-			$("#RelicDropNotification").style.visibility = "collapse";
+	if( lastRememberedHero = Players.GetPlayerHeroEntityIndex( localID ) ){
+		if( relicTable.drops != null ){
+			for ( relic in 	relicTable.drops ){
+				length++
+			}
+			if( length == 0 ){
+				$("#RelicDropNotification").style.visibility = "collapse";
+			} else {
+				$("#RelicDropNotification").style.visibility = "visible";
+				$("#RelicDropLabel").text = length;
+			}
 		} else {
-			$("#RelicDropNotification").style.visibility = "visible";
-			$("#RelicDropLabel").text = length;
+			$("#RelicDropNotification").style.visibility = "collapse";
 		}
 	} else {
 		$("#RelicDropNotification").style.visibility = "collapse";
@@ -102,30 +106,32 @@ function UpdatePendingDrops(relicTable){
 
 function HandleRelicMenu(relicTable)
 {
-	if(relicTable != null && relicTable.drops != null) {
-		if(relicTable.playerID == localID){
-			
-		}
-		var lastDrop = relicTable.drops[1]
-		if(lastDrop != null){
-			var holder = $("#RelicChoiceHolder")
-			for(var choice of holder.Children()){
-				choice.style.visibility = "collapse"
-				choice.RemoveAndDeleteChildren()
-				choice.DeleteAsync(0)
+	if( lastRememberedHero = Players.GetPlayerHeroEntityIndex( localID ) ){
+		if(relicTable != null && relicTable.drops != null) {
+			if(relicTable.playerID == localID){
+				
 			}
-			for(var id in lastDrop){
-				CreateRelicSelection(lastDrop[id])
+			var lastDrop = relicTable.drops[1]
+			if(lastDrop != null){
+				var holder = $("#RelicChoiceHolder")
+				for(var choice of holder.Children()){
+					choice.style.visibility = "collapse"
+					choice.RemoveAndDeleteChildren()
+					choice.DeleteAsync(0)
+				}
+				for(var id in lastDrop){
+					CreateRelicSelection(lastDrop[id])
+				}
+				Game.EmitSound( "Relics.GainedRelic" )
+				$("#RelicRoot").SetHasClass("IsHidden", false)
+			} else {
+				$("#RelicRoot").SetHasClass("IsHidden", true)
 			}
-			Game.EmitSound( "Relics.GainedRelic" )
-			$("#RelicRoot").SetHasClass("IsHidden", false)
 		} else {
 			$("#RelicRoot").SetHasClass("IsHidden", true)
 		}
-	} else {
-		$("#RelicRoot").SetHasClass("IsHidden", true)
+		hasQueuedAction = false
 	}
-	hasQueuedAction = false
 }
 
 function CreateRelicSelection(relic)

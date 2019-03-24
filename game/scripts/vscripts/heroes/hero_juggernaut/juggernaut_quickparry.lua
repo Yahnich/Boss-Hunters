@@ -15,19 +15,25 @@ end
 function juggernaut_quickparry:OnToggle()
 end
 
+function juggernaut_quickparry:QuickParry(caster, target)
+	caster:StartGestureWithPlaybackRate( ACT_DOTA_ATTACK_EVENT, 5 )
+	self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage") )
+	if caster:HasTalent("special_bonus_unique_juggernaut_quickparry_2") then
+		caster:AddNewModifier(caster, self, "modifier_juggernaut_quickparry_talent", {duration = caster:FindTalentValue("special_bonus_unique_juggernaut_quickparry_2", "duration")})
+	end
+end
+
 modifier_juggernaut_quickparry_passive = class({})
 LinkLuaModifier("modifier_juggernaut_quickparry_passive", "heroes/hero_juggernaut/juggernaut_quickparry", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_juggernaut_quickparry_passive:OnCreated()
-	self.chance = self:GetAbility():GetSpecialValueFor("parry_chance")
-	self.damage = self:GetAbility():GetSpecialValueFor("damage")
-	self.cost = self:GetAbility():GetSpecialValueFor("active_momentum_cost")
+	self.chance = self:GetAbility():GetTalentSpecialValueFor("parry_chance")
+	self.cost = self:GetAbility():GetTalentSpecialValueFor("active_momentum_cost")
 end
 
 function modifier_juggernaut_quickparry_passive:OnRefresh()
-	self.chance = self:GetAbility():GetSpecialValueFor("parry_chance")
-	self.damage = self:GetAbility():GetSpecialValueFor("damage")
-	self.cost = self:GetAbility():GetSpecialValueFor("active_momentum_cost")
+	self.chance = self:GetAbility():GetTalentSpecialValueFor("parry_chance")
+	self.cost = self:GetAbility():GetTalentSpecialValueFor("active_momentum_cost")
 end
 
 function modifier_juggernaut_quickparry_passive:DeclareFunctions()
@@ -52,15 +58,6 @@ function modifier_juggernaut_quickparry_passive:GetModifierTotal_ConstantBlock(p
 			ability:QuickParry(caster, params.attacker)
 			return params.damage
 		end
-	end
-end
-
-function juggernaut_quickparry:QuickParry(caster, target)
-	print(ACT_DOTA_ATTACK_EVENT, ACT_DOTA_ATTACK, ACT_DOTA_ATTACK_EVENT)
-	caster:StartGestureWithPlaybackRate( ACT_DOTA_ATTACK_EVENT, 5 )
-	self:DealDamage(caster, target, self.damage )
-	if caster:HasTalent("special_bonus_unique_juggernaut_quickparry_2") then
-		caster:AddNewModifier(caster, self, "modifier_juggernaut_quickparry_talent", {duration = caster:FindTalentValue("special_bonus_unique_juggernaut_quickparry_2", "duration")})
 	end
 end
 

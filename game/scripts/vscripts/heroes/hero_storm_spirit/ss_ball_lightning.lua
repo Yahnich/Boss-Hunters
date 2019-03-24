@@ -139,7 +139,7 @@ end
 function modifier_ss_ball_lightning:OnRemoved()
 	if IsServer() then
 		StopSoundOn("Hero_StormSpirit.BallLightning.Loop", self:GetParent())
-		FindClearSpaceForUnit(self:GetParent(), self:GetParent():GetAbsOrigin(), true)
+		ResolveNPCPositions( self:GetParent():GetAbsOrigin(), self:GetParent():GetHullRadius() * 2 )
 		self.hitUnits = {}
 	end
 end

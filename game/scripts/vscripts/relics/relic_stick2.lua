@@ -15,7 +15,7 @@ function relic_stick2:OnEventFinished(args)
 			local parent = self:GetParent()
 			local ability = self:GetAbility()
 			parent.ownedRelics[ability:entindex()] = "relic_stick3"
-			LinkLuaModifier("relic_stick3", "relics/generic/relic_stick3", LUA_MODIFIER_MOTION_NONE)
+			LinkLuaModifier("relic_stick3", "relics/relic_stick3", LUA_MODIFIER_MOTION_NONE)
 			parent:AddNewModifier( parent, ability, "relic_stick3", {})
 			if parent:GetPlayerOwner() then
 				CustomGameEventManager:Send_ServerToAllClients( "dota_player_update_relic_inventory", { hero = parent:entindex(), relics = parent.ownedRelics } )

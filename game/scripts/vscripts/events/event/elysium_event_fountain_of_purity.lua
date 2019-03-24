@@ -18,7 +18,7 @@ end
 
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddRelic( "relic_unique_ofuda" )
+	hero:AddRelic( "relic_ofuda" )
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end

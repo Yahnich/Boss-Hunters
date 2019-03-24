@@ -11,6 +11,8 @@ function relic_hungry_blade:OnIntervalThink()
 	if RoundManager:IsRoundGoing() and RoundManager:GetCurrentEvent() and not RoundManager:GetCurrentEvent():IsEvent() then
 		self:SetDuration(-1, true)
 		self:StartIntervalThink(0.33)
+		local damage = self:GetParent():GetMaxHealth() * (5 * 0.33) / 100
+	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), damage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL})
 	else
 		self:SetDuration(6, true)
 		self:StartIntervalThink(0.33)
@@ -30,7 +32,11 @@ function relic_hungry_blade:GetModifierAttackSpeedBonus()
 end
 
 function relic_hungry_blade:GetModifierHealthRegenPercentage()
-	if not self:GetParent():HasModifier("relic_ritual_candle") and self:GetDuration() == -1 then return -5 end
+	if IsClient() then
+		if not self:GetParent():HasModifier("relic_ritual_candle") and self:GetDuration() == -1 then 
+			return -5 
+		end
+	end
 end
 
 

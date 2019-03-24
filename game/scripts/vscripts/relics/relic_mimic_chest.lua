@@ -8,9 +8,11 @@ function relic_mimic_chest:OnCreated()
 			table.insert( relicTable, relic )
 		end
 		if #relicTable >= 0 and self:GetParent():HasModifier("relic_ritual_candle") then
-			local dropTable = {}
-			table.insert( dropTable, relicTable[RandomInt(1,#relicTable)] )
-			RelicManager:PushCustomRelicDropsForPlayer(self:GetParent():GetPlayerID(), dropTable)
+			local relicData = {}
+			relicData.name = relicTable[RandomInt(1,#relicTable)]
+			relicData.rarity = RelicManager.masterList[relicData.name]["Rarity"]
+			relicData.cursed = RelicManager.masterList[relicData.name]["Cursed"] == 1
+			RelicManager:PushCustomRelicDropsForPlayer(self:GetParent():GetPlayerID(), {relicData})
 		else
 			self:GetParent():AddRelic( relicTable[RandomInt(1,#relicTable)] )
 		end

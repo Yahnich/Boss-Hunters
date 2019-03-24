@@ -18,10 +18,15 @@ RELIC_RARITY_UNCOMMON = 2
 RELIC_RARITY_RARE = 3
 RELIC_RARITY_LEGENDARY = 4
 
-COMMON_RELIC_WEIGHT = 60
-UNCOMMON_RELIC_WEIGHT = 30
-RARE_RELIC_WEIGHT = 8
-LEGENDARY_RELIC_WEIGHT = 2
+BASE_COMMON_RELIC_WEIGHT = 30
+BASE_UNCOMMON_RELIC_WEIGHT = 15
+BASE_RARE_RELIC_WEIGHT = 4
+BASE_LEGENDARY_RELIC_WEIGHT = 1
+
+COMMON_RELIC_WEIGHT = 30
+UNCOMMON_RELIC_WEIGHT = 15
+RARE_RELIC_WEIGHT = 4
+LEGENDARY_RELIC_WEIGHT = 1
 
 NATURAL_CURSED_CHANCE = 25
 
@@ -31,6 +36,13 @@ function RelicManager:Initialize()
 	self.masterList = LoadKeyValues('scripts/npc/npc_relics_custom.txt')
 	self.cursedRelicPool = {}
 	self.otherRelicPool = {}
+	
+	-- adjust weights to keep in mind the raw amount of relics available
+	local common = 0
+	local uncommon = 0
+	local rare = 0
+	local legendary = 0
+	local totalRelics = 0
 	for relic, data in pairs( self.masterList ) do
 		LinkLuaModifier( relic, "relics/"..relic, LUA_MODIFIER_MOTION_NONE )
 		if data["Rarity"] ~= "RARITY_EVENT" then
@@ -39,8 +51,28 @@ function RelicManager:Initialize()
 			else
 				self.otherRelicPool[relic] = data
 			end
+			if data["Rarity"] == "RARITY_LEGENDARY" then
+				legendary = legendary + 1
+			elseif data["Rarity"] == "RARITY_RARE"  then
+				rare = rare + 1
+			elseif data["Rarity"] == "RARITY_UNCOMMON"  then
+				uncommon = uncommon + 1
+			else
+				common = common + 1
+			end
+			totalRelics = totalRelics + 1
 		end
 	end
+	-- weight adjustment to account for differences in amount of relics per rarity tier; equalizes weights into chance percentage
+	local legendaryAdjustment = totalRelics / legendary
+	local rareAdjustment = totalRelics / rare
+	local uncommonAdjustment = totalRelics / uncommon  
+	local commonAdjustment = totalRelics / common  
+	
+	COMMON_RELIC_WEIGHT = math.floor( BASE_COMMON_RELIC_WEIGHT * commonAdjustment + 0.5 )
+	UNCOMMON_RELIC_WEIGHT = math.floor( BASE_UNCOMMON_RELIC_WEIGHT * uncommonAdjustment + 0.5 )
+	RARE_RELIC_WEIGHT = math.floor( BASE_RARE_RELIC_WEIGHT * rareAdjustment + 0.5 )
+	LEGENDARY_RELIC_WEIGHT = math.floor( BASE_LEGENDARY_RELIC_WEIGHT * legendaryAdjustment + 0.5 )
 
 	CustomGameEventManager:RegisterListener('player_selected_relic', Context_Wrap( RelicManager, 'ConfirmRelicSelection'))
 	CustomGameEventManager:RegisterListener('player_skipped_relic', Context_Wrap( RelicManager, 'SkipRelicSelection'))
@@ -144,8 +176,8 @@ function RelicManager:SkipRelicSelection(userid, event)
 	end
 	
 	RelicManager:RemoveDropFromTable(pID, true)
-	if hero:HasRelic("relic_unique_mysterious_hourglass") and hero:FindModifierByName("relic_unique_mysterious_hourglass"):GetStackCount() > 0 then
-		hero:FindModifierByName("relic_unique_mysterious_hourglass"):DecrementStackCount()
+	if hero:HasRelic("relic_mysterious_hourglass") and hero:FindModifierByName("relic_mysterious_hourglass"):GetStackCount() > 0 then
+		hero:FindModifierByName("relic_mysterious_hourglass"):DecrementStackCount()
 		local dropTable = {}
 		for id, relic in pairs( copy ) do
 			local rarity = self.masterList[relic]["Rarity"]
@@ -219,7 +251,7 @@ function RelicManager:PushCustomRelicDropsForPlayer(pID, relicTable)
 	end
 	hero.relicsToSelect = hero.relicsToSelect or {}
 	table.insert( hero.relicsToSelect, relicTable )
-	if ( (greed or pride) and not hero:HasRelic("relic_unique_ritual_candle") ) then
+	if ( (greed or pride) and not hero:HasRelic("relic_ritual_candle") ) then
 		RelicManager:RemoveDropFromTable(pID, false)
 	elseif player then
 		CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {playerID = pID, drops = hero.relicsToSelect})
@@ -235,7 +267,7 @@ function RelicManager:RollRandomRelicForPlayer(pID, cMinRarity, bFixedRarity, bC
 	local endRarity = cRarity
 	
 	-- Forced Cured relic
-	local contractOn = hero:HasRelic("relic_forbidden_contract") and not hero:HasRelic("relic_unique_ritual_candle")
+	local contractOn = hero:HasRelic("relic_forbidden_contract") and not hero:HasRelic("relic_ritual_candle")
 	local cursedRelic = bCursed or contractOn or ( bCursed == nil and RollPercentage( NATURAL_CURSED_CHANCE ) )
 	local pooltoDraw = "other"
 	if cursedRelic then

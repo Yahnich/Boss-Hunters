@@ -46,14 +46,32 @@ end
 modifier_necrophos_heart_stopper_bh_degen = class({})
 LinkLuaModifier( "modifier_necrophos_heart_stopper_bh_degen", "heroes/hero_necrophos/necrophos_heartstopper_aura_bh", LUA_MODIFIER_MOTION_NONE )
 
+function modifier_necrophos_heart_stopper_bh_degen:OnCreated()
+	self.damage = self::GetTalentSpecialValueFor("aura_damage")
+	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_necrophos_heartstopper_aura_1")
+	if IsServer() then
+		self:StartIntervalThink(0.33)
+	end
+end
+
+function modifier_necrophos_heart_stopper_bh_degen:OnRefresh()
+	self.damage = self::GetTalentSpecialValueFor("aura_damage")
+	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_necrophos_heartstopper_aura_1")
+end
+
+function modifier_necrophos_heart_stopper_bh_degen:OnIntervalThink()
+	local damage = self:GetParent():GetMaxHealth() * (self.damage * 0.33) / 100
+	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), damage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL})
+end
+
 function modifier_necrophos_heart_stopper_bh_degen:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE, }
+	return {MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE}
 end
 
 function modifier_necrophos_heart_stopper_bh_degen:GetModifierHealthRegenPercentage()
-	return self:GetTalentSpecialValueFor("aura_damage") * (-1)
+	if IsClient() then return self.damage * (-1) end
 end
 
 function modifier_necrophos_heart_stopper_bh_degen:GetModifierAttackSpeedBonus()
-	return self:GetCaster():FindTalentValue("special_bonus_unique_necrophos_heartstopper_aura_1")
+	return self.as
 end
