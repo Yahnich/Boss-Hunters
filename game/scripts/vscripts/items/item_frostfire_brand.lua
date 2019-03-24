@@ -13,7 +13,7 @@ function item_frostfire_brand:GetAbilityTextureName()
 end
 
 function item_frostfire_brand:OnToggle()
-	if not self:GetToggleState() then
+	if self:GetToggleState() then
 		self:GetCaster():RemoveModifierByName("modifier_item_frostfire_brand")
 	else
 		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_frostfire_brand", {})
@@ -26,11 +26,15 @@ modifier_item_frostfire_brand_stats = class(itemBaseClass)
 function modifier_item_frostfire_brand_stats:OnCreated()
 	self.damage = self:GetSpecialValueFor("bonus_damage")
 	self.all = self:GetSpecialValueFor("bonus_all")
-	if IsServer() then self:GetAbility():OnToggle() end
+	if IsServer() then
+		self:GetAbility():ToggleAbility()
+	end
 end
 
 function modifier_item_frostfire_brand_stats:OnDestroy()
-	if IsServer() then self:GetAbility():OnToggle() end
+	if IsServer() and self:GetCaster():HasModifier("modifier_item_frostfire_brand") then
+		self:GetAbility():ToggleAbility()
+	end
 end
 
 function modifier_item_frostfire_brand_stats:DeclareFunctions()

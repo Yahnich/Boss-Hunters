@@ -95,6 +95,11 @@ function modifier_furion_sprout_sleep_thinker:GetAuraRadius()
 	return self.aura_radius
 end
 
+function modifier_furion_sprout_sleep_thinker:GetAuraEntityReject( entity )
+	return entity:HasModifier("modifier_furion_sprout_sleep")
+end
+
+
 --------------------------------------------------------------------------------
 function modifier_furion_sprout_sleep_thinker:IsPurgable()
     return false

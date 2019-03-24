@@ -756,6 +756,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			illusion:SetUnitCanRespawn( true )
 			table.insert( self.illusionSpawnPool, illusion )
 			illusion:MakeIllusion()
+			ResolveNPCPositions( illusion:GetAbsOrigin(), 128 )
 		end )
 	else
 		local illusion = respawnedIllusion
@@ -859,6 +860,8 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			if callback then
 				callback( illusion, self, caster, ability )
 			end
+			
+			ResolveNPCPositions( illusion:GetAbsOrigin(), 128 )
 		end)
 	end
 end
@@ -2205,6 +2208,7 @@ function RollPRNGFormula( object, percentage )
 		if roll then
 			object.currentPercentage = object.weight
 		end
+		print( object.basePercentage, object.currentPercentage, object.weight, object:GetName() )
 		return roll
 	end
 end
