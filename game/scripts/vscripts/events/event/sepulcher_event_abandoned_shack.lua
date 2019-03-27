@@ -16,7 +16,6 @@
 			end
 		end
 	end
-	
 	if not self.eventEnded and not self.combatStarted then
 		if votedYes > votedNo + (players - voted) then -- yes votes exceed non-votes and no votes
 			self:RollLoot( RollPercentage(50) )
@@ -30,9 +29,11 @@
 					self:StartCombat(false)
 				end
 			end)
+			CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 			return true
 		elseif votedNo > votedYes + (players - voted) then -- no votes exceed yes and non-votes and every other situation
 			self:StartCombat(false)
+			CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 			return true
 		end
 	end

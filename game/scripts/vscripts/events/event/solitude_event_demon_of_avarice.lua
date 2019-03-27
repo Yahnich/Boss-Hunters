@@ -15,6 +15,7 @@ local function FirstChoice(self, userid, event)
 end
 
 local function StartCombat(self)
+	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	self.eventEnded = true
 	self.combatEnded = false
 	local START_VECTOR = self:GetHeroSpawnPosition()

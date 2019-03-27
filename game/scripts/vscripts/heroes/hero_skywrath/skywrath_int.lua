@@ -7,20 +7,14 @@ end
 
 modifier_skywrath_int = class({})
 function modifier_skywrath_int:OnCreated(table)
-	self.int = self:GetCaster():GetIntellect()*self:GetTalentSpecialValueFor("bonus_int")/100
-	self:StartIntervalThink(FrameTime())
+	self.int = self:GetTalentSpecialValueFor("bonus_int")
 end
 
-function modifier_skywrath_int:OnIntervalThink()
-    self.int = (self:GetCaster():GetIntellect() - self.int)*self:GetTalentSpecialValueFor("bonus_int")/100
+function modifier_skywrath_int:OnRefresh()
+    self.int = self:GetTalentSpecialValueFor("bonus_int")
 end
 
-function modifier_skywrath_int:DeclareFunctions()
-    funcs = {MODIFIER_PROPERTY_STATS_INTELLECT_BONUS}
-    return funcs
-end
-
-function modifier_skywrath_int:GetModifierBonusStats_Intellect()
+function modifier_skywrath_int:GetModifierIntellectBonusPercentage()
     return self.int
 end
 

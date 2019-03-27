@@ -11,12 +11,14 @@ end
 function naga_siren_tidal_waves:OnSpellStart()
 	local caster = self:GetCaster()
 	
+	self.hitUnits = {}
 	local illusions = caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), -1 )
 	for _, illusion in ipairs( illusions ) do
 		if illusion:IsIllusion() and illusion:GetParentUnit() == caster then
 			self:FireTidal( illusion )
 		end
 	end
+	
 	self:FireTidal( caster )
 	self.hitUnits = {}
 end
@@ -32,7 +34,6 @@ function naga_siren_tidal_waves:FireTidal( origin, fProcValue )
 	
 	if fProcValue then
 		self.hitUnits = {}
-		
 	end
 	if caster:HasTalent("special_bonus_unique_naga_siren_tidal_waves_2") then
 		local modifierName = "modifier_naga_siren_tidal_waves_rip_tide_buff"

@@ -57,7 +57,7 @@ function modifier_boss_apotheosis_focused_beam_root:OnCreated()
 	if IsServer() then
 		self.check = 0
 		self.timer = self:GetSpecialValueFor("no_target_timer")
-		self:StartIntervalThink(0.2) 
+		self:StartIntervalThink(FrameTime()) 
 	end
 end
 
@@ -66,24 +66,30 @@ function modifier_boss_apotheosis_focused_beam_root:OnIntervalThink()
 	local endPos = caster:GetAbsOrigin() + caster:GetForwardVector() * self:GetAbility():GetTrueCastRange()
 	endPos = GetGroundPosition(endPos, nil)
 	endPos.z = GetGroundHeight(caster:GetAbsOrigin(), caster) + 92
-	for _,enemy in pairs(caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), endPos, self.width * 2, {})) do
+	for _,enemy in ipairs(caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), endPos, self.width * 2, {})) do
+		local enemyVector = CalculateDirection( enemy, endPos )
+		caster:SetForwardVector( RotateVector2D( caster:GetForwardVector(), 2.5 * FrameTime() * -enemyVector:Cross(caster:GetForwardVector()).z ) )
 		return
 	end
-	self.check = self.check + 0.2
+	for _,enemy in ipairs(caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetAbility():GetTrueCastRange()) ) do
+		local enemyVector = CalculateDirection( enemy, endPos )
+		caster:SetForwardVector( RotateVector2D( caster:GetForwardVector(), 2.5 * FrameTime() * -enemyVector:Cross(caster:GetForwardVector()).z ) )
+		break
+	end
+	self.check = self.check + FrameTime()
 	if self.check >= self.timer then
 		self:Destroy()
 	end
 end
 
 function modifier_boss_apotheosis_focused_beam_root:CheckState()
-	return {[MODIFIER_STATE_SILENCED] = true,
-			[MODIFIER_STATE_ROOTED] = true}
+	return {[MODIFIER_STATE_STUNNED] = true}
 end
 
 function modifier_boss_apotheosis_focused_beam_root:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE}
+	return {MODIFIER_PROPERTY_TURN_RATE_OVERRIDE}
 end
 
-function modifier_boss_apotheosis_focused_beam_root:GetModifierTurnRate_Percentage()
-	return -100
+function modifier_boss_apotheosis_focused_beam_root:GetModifierTurnRate_Override()
+	return 0.01
 end

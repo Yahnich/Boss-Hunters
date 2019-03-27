@@ -979,9 +979,10 @@ function CDOTA_BaseNPC:ModifyThreat(val)
 		end
 	end
 	self.threat = self.threat or 0
-	local reduction = 0.5 ^ math.floor( self.threat / 100 )
+	local reduction = 0.35 ^ math.floor( self.threat / 100 )
 	-- Every 100 threat, threat gain effectiveness is reduced
-	local threatgainCap = math.max( 100, self.threat * 4 )
+	local threatgainCap = math.min( 10, (self.threat + 1) * 4 )
+	print( newVal, reduction, threatgainCap )
 	self.threat = math.min( math.max(0, (self.threat or 0) + math.min(newVal * reduction, threatgainCap ) ), 999 )
 	if self:IsRealHero() then
 		local player = PlayerResource:GetPlayer( self:GetOwner():GetPlayerID() )
@@ -2208,7 +2209,6 @@ function RollPRNGFormula( object, percentage )
 		if roll then
 			object.currentPercentage = object.weight
 		end
-		print( object.basePercentage, object.currentPercentage, object.weight, object:GetName() )
 		return roll
 	end
 end
@@ -2383,8 +2383,8 @@ function CDOTA_BaseNPC:AddCurse(curseName)
 	local curse = self:AddNewModifier(self, nil, curseName, {})
 	if curse then 
 		curse.modifierIsCurse = true
-		if self:HasRelic("relic_unique_ofuda") and self:FindModifierByName("relic_unique_ofuda"):GetStackCount() > 0 then
-			local ofuda = self:FindModifierByName("relic_unique_ofuda")
+		if self:HasRelic("relic_ofuda") and self:FindModifierByName("relic_ofuda"):GetStackCount() > 0 then
+			local ofuda = self:FindModifierByName("relic_ofuda")
 			ofuda:DecrementStackCount()
 			curse:Destroy()
 		end

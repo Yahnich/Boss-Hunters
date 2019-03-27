@@ -8,7 +8,6 @@ function Spawn( entityKeyValues )
 			return AIThink(thisEntity)
 		end
 	end)
-	
 	thisEntity.impervious = thisEntity:FindAbilityByName("boss_apotheosis_impervious")
 	thisEntity.blessed = thisEntity:FindAbilityByName("boss_apotheosis_blessed_being")
 	thisEntity.purifier = thisEntity:FindAbilityByName("boss_apotheosis_purifier")

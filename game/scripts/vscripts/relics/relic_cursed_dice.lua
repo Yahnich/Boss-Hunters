@@ -12,7 +12,7 @@ function relic_cursed_dice:OnCreated()
 		local rerolls = RelicManager:ClearRelics( pID )
 		local bonusRolls = RandomInt(0, math.floor(rerolls/2) )
 		for i = 1, rerolls + bonusRolls do
-			self:GetParent():AddRelic( RelicManager:RollRandomRelicForPlayer(pID, "RARITY_COMMON", false, false, "relic_cursed_dice") )
+			self:GetParent():AddRelic( RelicManager:RollRandomRelicForPlayer(pID, "RARITY_COMMON", false, false, "relic_cursed_dice").name )
 		end
 		self:GetAbility().diceHasBeenRolled = true
 	end

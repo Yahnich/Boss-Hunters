@@ -50,6 +50,7 @@ function modifier_spectre_desolate_bh:OnAttackLanded(params)
 		if params.attacker:HasTalent("special_bonus_unique_spectre_desolate_1") then
 			params.target:Paralyze(self:GetAbility(), params.attacker, params.attacker:FindTalentValue("special_bonus_unique_spectre_desolate_1"))
 		end
+		print( damage )
 		self:GetAbility():DealDamage( params.attacker, params.target, damage )
 	end
 end

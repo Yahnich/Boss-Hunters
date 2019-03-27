@@ -37,11 +37,11 @@ function modifier_wisp_overcharge_bh:OnCreated(table)
 
 	if caster:HasTalent("special_bonus_unique_wisp_overcharge_bh_1") then
 		if parent:GetPrimaryAttribute() == DOTA_ATTRIBUTE_STRENGTH then
-			self.bonus_str = parent:GetPrimaryStatValue() * caster:FindTalentValue("special_bonus_unique_wisp_overcharge_bh_1")/100
+			self.bonus_str = caster:FindTalentValue("special_bonus_unique_wisp_overcharge_bh_1")
 		elseif parent:GetPrimaryAttribute() == DOTA_ATTRIBUTE_AGILITY then
-			self.bonus_agi = parent:GetPrimaryStatValue() * caster:FindTalentValue("special_bonus_unique_wisp_overcharge_bh_1")/100
+			self.bonus_agi = caster:FindTalentValue("special_bonus_unique_wisp_overcharge_bh_1")
 		elseif parent:GetPrimaryAttribute() == DOTA_ATTRIBUTE_INTELLECT then
-			self.bonus_int = parent:GetPrimaryStatValue() * caster:FindTalentValue("special_bonus_unique_wisp_overcharge_bh_1")/100
+			self.bonus_int = caster:FindTalentValue("special_bonus_unique_wisp_overcharge_bh_1")
 		end
 	end
 
@@ -98,15 +98,15 @@ function modifier_wisp_overcharge_bh:OnTooltip()
 	return self.bonus_as
 end
 
-function modifier_wisp_overcharge_bh:GetModifierBonusStats_Strength()
+function modifier_wisp_overcharge_bh:GetModifierStrengthBonusPercentage()
 	return self.bonus_str
 end
 
-function modifier_wisp_overcharge_bh:GetModifierBonusStats_Agility()
+function modifier_wisp_overcharge_bh:GetModifierAgilityBonusPercentage()
 	return self.bonus_agi
 end
 
-function modifier_wisp_overcharge_bh:GetModifierBonusStats_Intellect()
+function modifier_wisp_overcharge_bh:GetModifierIntellectBonusPercentage()
 	return self.bonus_int
 end
 

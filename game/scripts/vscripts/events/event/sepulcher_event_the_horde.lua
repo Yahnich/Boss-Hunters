@@ -21,7 +21,7 @@ local function StartCombat(self)
 	local START_VECTOR = Vector(949, 130)
 	
 	self.timeRemaining = 60
-	
+	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	local activeHeroes = HeroList:GetActiveHeroCount()
 	Timers:CreateTimer(function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})

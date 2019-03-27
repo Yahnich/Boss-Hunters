@@ -146,14 +146,14 @@ function RelicManager:RemoveDropFromTable(pID, bRemove, sRemoveSpecific)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	
 	if not bRemove then
-		for id, relicName in ipairs( hero.relicsToSelect[1] ) do
+		for id, relicData in ipairs( hero.relicsToSelect[1] ) do
 			local pool = "other"
-			local rarity = self.masterList[relicName]["Rarity"]
-			if self.masterList[relicName]["Cursed"] == "1" then
+			local rarity = self.masterList[relicData.name]["Rarity"]
+			if self.masterList[relicData.name]["Cursed"] == "1" then
 				pool = "cursed"
 			end
-			if relicName ~= sRemoveSpecific then
-				hero.internalRNGPools[pool][relicName] = rarity
+			if relicData.name ~= sRemoveSpecific then
+				hero.internalRNGPools[pool][relicData.name] = rarity
 			end
 		end
 	end
@@ -179,9 +179,9 @@ function RelicManager:SkipRelicSelection(userid, event)
 	if hero:HasRelic("relic_mysterious_hourglass") and hero:FindModifierByName("relic_mysterious_hourglass"):GetStackCount() > 0 then
 		hero:FindModifierByName("relic_mysterious_hourglass"):DecrementStackCount()
 		local dropTable = {}
-		for id, relic in pairs( copy ) do
-			local rarity = self.masterList[relic]["Rarity"]
-			local cursed = self.masterList[relic]["Cursed"] == "1"
+		for id, relicData in pairs( copy ) do
+			local rarity = self.masterList[relicData.name]["Rarity"]
+			local cursed = self.masterList[relicData.name]["Cursed"] == "1"
 			table.insert( dropTable, self:RollRandomRelicForPlayer(pID, rarity, true, cursed) )
 		end
 		RelicManager:PushCustomRelicDropsForPlayer(pID, dropTable)
@@ -343,7 +343,11 @@ function RelicManager:ClearRelics(pID, bHardClear)
 	for item, relicData in pairs( hero.ownedRelics ) do
 		if (relicData.name == "relic_cursed_dice" and bHardClear) or relicData.name ~= "relic_cursed_dice" then -- cursed dice cannot be removed
 			relicCount = relicCount + 1
-			relicData.modifier:Destroy()
+			if relicData.modifier and not relicData.modifier:IsNull() then 
+				relicData.modifier:Destroy()
+			else
+				hero:FindModifierByNameAndAbility(relicData.name, item)
+			end
 			UTIL_Remove( EntIndexToHScript(item) )
 			hero.ownedRelics[item] = nil
 		end

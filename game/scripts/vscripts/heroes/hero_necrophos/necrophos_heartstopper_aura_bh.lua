@@ -47,7 +47,7 @@ modifier_necrophos_heart_stopper_bh_degen = class({})
 LinkLuaModifier( "modifier_necrophos_heart_stopper_bh_degen", "heroes/hero_necrophos/necrophos_heartstopper_aura_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_necrophos_heart_stopper_bh_degen:OnCreated()
-	self.damage = self::GetTalentSpecialValueFor("aura_damage")
+	self.damage = self:GetTalentSpecialValueFor("aura_damage")
 	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_necrophos_heartstopper_aura_1")
 	if IsServer() then
 		self:StartIntervalThink(0.33)
@@ -55,7 +55,7 @@ function modifier_necrophos_heart_stopper_bh_degen:OnCreated()
 end
 
 function modifier_necrophos_heart_stopper_bh_degen:OnRefresh()
-	self.damage = self::GetTalentSpecialValueFor("aura_damage")
+	self.damage = self:GetTalentSpecialValueFor("aura_damage")
 	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_necrophos_heartstopper_aura_1")
 end
 

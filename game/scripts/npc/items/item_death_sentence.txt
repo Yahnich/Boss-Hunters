@@ -46,6 +46,9 @@
 		"ItemAliases"					"energy booster;orb of essence"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"35"
+		"AbilityCastRange"				"625"
 		
 		"precache"
 		{

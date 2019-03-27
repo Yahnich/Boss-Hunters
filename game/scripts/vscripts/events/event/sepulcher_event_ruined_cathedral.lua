@@ -29,6 +29,7 @@ local function CheckPlayerChoices(self)
 end
 
 local function StartCombat(self, bFight)
+	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	if bFight then
 		self.combatStarted = true
 		self.eventType = EVENT_TYPE_ELITE

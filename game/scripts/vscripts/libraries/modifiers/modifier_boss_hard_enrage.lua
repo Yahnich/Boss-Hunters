@@ -26,6 +26,11 @@ function modifier_boss_hard_enrage:GetModifierStatusResistanceStacking()
 	return 50
 end
 
+function modifier_boss_hard_enrage:GetModifierHealAmplify_Percentage()
+	return -50
+end
+
+
 function modifier_boss_hard_enrage:GetEffectName()
 	return "particles/units/bosses/boss_hard_enrage.vpcf"
 end

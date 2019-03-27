@@ -62,6 +62,7 @@ modifier_item_penumbra_active = class({})
 function modifier_item_penumbra_active:OnCreated(table)
     self.move = self:GetSpecialValueFor("move_speed")
     self.damage = self:GetSpecialValueFor("damage")
+	self.duration = self:GetSpecialValueFor("break_duration")
 end
 
 function modifier_item_penumbra_active:GetTextureName()

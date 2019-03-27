@@ -96,7 +96,12 @@ function modifier_meepo_ransack_bh:OnAttackLanded(params)
 			self:GetAbility():DealDamage(caster, target, self.health_steal, {damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS}, OVERHEAD_ALERT_DAMAGE)
 			
 			if target:IsAlive() and caster:HasTalent("special_bonus_unique_meepo_ransack_bh_1") then
-				target:AddNewModifier(caster, self:GetAbility(), "modifier_meepo_ransack_bh_geostrike", {Duration = self.duration})
+				local modifier = target:FindModifierByNameAndCaster("modifier_meepo_ransack_bh_geostrike", caster)
+				if modifier then
+					modifier:SetDuration( self.duration, true )
+				else
+					target:AddNewModifier(caster, self:GetAbility(), "modifier_meepo_ransack_bh_geostrike", {Duration = self.duration})
+				end
 			end
 
 			--Heal the other meepos
@@ -125,11 +130,10 @@ end
 
 modifier_meepo_ransack_bh_geostrike = class({})
 function modifier_meepo_ransack_bh_geostrike:OnCreated(table)
+	local caster = self:GetCaster()
 	self.ms_slow = caster:FindTalentValue("special_bonus_unique_meepo_ransack_bh_1", "slow")
 	
 	if IsServer() then
-		local caster = self:GetCaster()
-
 		self.dot = caster:GetAttackDamage() * caster:FindTalentValue("special_bonus_unique_meepo_ransack_bh_1", "damage")/100
 		
 		self:StartIntervalThink(1)
@@ -137,6 +141,7 @@ function modifier_meepo_ransack_bh_geostrike:OnCreated(table)
 end
 
 function modifier_meepo_ransack_bh_geostrike:OnRefresh(table)
+	local caster = self:GetCaster()
 	self.ms_slow = caster:FindTalentValue("special_bonus_unique_meepo_ransack_bh_1", "slow")
 	
 	if IsServer() then
@@ -165,4 +170,8 @@ end
 
 function modifier_meepo_ransack_bh_geostrike:IsDebuff()
 	return true
+end
+
+function modifier_meepo_ransack_bh_geostrike:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE 
 end

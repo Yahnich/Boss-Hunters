@@ -74,7 +74,8 @@ end
 
 function modifier_antimage_hex_guard:OnTakeDamage(params)
 	local parent = self:GetParent()
-	if params.unit == parent and params.damage_type == DAMAGE_TYPE_MAGICAL and parent:HasTalent("special_bonus_unique_antimage_hex_guard_1") then
+	if params.unit == parent and params.damage_type == DAMAGE_TYPE_MAGICAL and parent:HasTalent("special_bonus_unique_antimage_hex_guard_1") 
+	and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ) then
 		local damage = params.original_damage * self.mr / 100
 		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), parent:FindTalentValue("special_bonus_unique_antimage_hex_guard_1") ) ) do
 			self:GetAbility():DealDamage( parent, params.attacker, damage, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_REFLECTION})
