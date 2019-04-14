@@ -30,6 +30,9 @@ function modifier_boss_hard_enrage:GetModifierHealAmplify_Percentage()
 	return -50
 end
 
+function modifier_boss_hard_enrage:GetModifierStatusAmplify_Percentage()
+	return -33
+end
 
 function modifier_boss_hard_enrage:GetEffectName()
 	return "particles/units/bosses/boss_hard_enrage.vpcf"

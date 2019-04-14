@@ -31,7 +31,7 @@ function boss33a_devitalize:OnSpellStart()
 		self:SetVelocity(velocity)
 		self:SetPosition( position + (velocity*FrameTime()) )
 	end
-	if caster:GetHealthPercent() < 50 then
+	if caster:GetHealthPercent() < 50 and not caster:IsMinion() then
 		ProjectileThink = function(self)
 			local position = self:GetPosition()
 			local velocity = self:GetVelocity()

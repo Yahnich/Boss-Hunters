@@ -34,7 +34,7 @@ if IsServer() then
 				local raze1Pos = GetGroundPosition(thisEntity:GetAbsOrigin() + thisEntity:GetForwardVector() * thisEntity.raze1:GetSpecialValueFor("distance"), thisEntity)
 				local raze2Pos = GetGroundPosition(thisEntity:GetAbsOrigin() + thisEntity:GetForwardVector() * thisEntity.raze2:GetSpecialValueFor("distance"), thisEntity)
 				local raze3Pos = GetGroundPosition(thisEntity:GetAbsOrigin() + thisEntity:GetForwardVector() * thisEntity.raze3:GetSpecialValueFor("distance"), thisEntity)
-				local razeRadius = thisEntity.raze1:GetSpecialValueFor("radius")
+				local razeRadius = thisEntity.raze1:GetSpecialValueFor("radius") + 32
 				
 				local raze1Units = thisEntity:FindEnemyUnitsInRadius(raze1Pos, razeRadius)
 				local raze2Units = thisEntity:FindEnemyUnitsInRadius(raze2Pos, razeRadius)
@@ -45,7 +45,7 @@ if IsServer() then
 				if thisEntity.raze2:IsFullyCastable() then razesActive = razesActive + 1 end
 				if thisEntity.raze3:IsFullyCastable() then razesActive = razesActive + 1 end
 
-				if thisEntity.raze1:IsFullyCastable() and ( #raze1Units > 2 or HasValInTable(raze1Units, target) ) or (#raze1Units > 1 and razesActive > 1) then
+				if thisEntity.raze1:IsFullyCastable() and ( #raze1Units > 2 or HasValInTable(raze1Units, target) ) or (#raze1Units > 1 and razesActive < 1) or RollPercentage(15) then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -53,7 +53,7 @@ if IsServer() then
 					})
 					return thisEntity.raze1:GetCastPoint() + 0.1
 				end
-				if thisEntity.raze2:IsFullyCastable() and ( #raze2Units > 2 or HasValInTable(raze2Units, target) ) or (#raze2Units > 1 and razesActive > 1) then
+				if thisEntity.raze2:IsFullyCastable() and ( #raze2Units > 2 or HasValInTable(raze2Units, target) ) or (#raze2Units > 1 and razesActive < 1) or RollPercentage(15) then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -61,7 +61,7 @@ if IsServer() then
 					})
 					return thisEntity.raze2:GetCastPoint() + 0.1
 				end
-				if thisEntity.raze3:IsFullyCastable() and ( #raze3Units > 2 or HasValInTable(raze3Units, target) ) or (#raze3Units > 1 and razesActive > 1) then
+				if thisEntity.raze3:IsFullyCastable() and ( #raze3Units > 2 or HasValInTable(raze3Units, target) ) or (#raze3Units > 1 and razesActive < 1) or RollPercentage(15) then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,

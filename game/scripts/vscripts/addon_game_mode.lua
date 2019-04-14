@@ -145,7 +145,7 @@ function Activate()
 end
 
 function CHoldoutGameMode:InitGameMode()
-	print ("Epic Boss Fight Loaded")
+	print ("Initializing Boss Hunters")
 	GameRules._Elites = LoadKeyValues( "scripts/kv/elites.kv" )
 	GameRules._maxLives = 10
 	GameRules.gameDifficulty = 1
@@ -600,6 +600,8 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 			hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1
 		end
 	end
+	
+	print(hero:GetName(), "leveled up", hero:GetLevel() )
 end
 
 function CHoldoutGameMode:OnAbilityLearned(event)

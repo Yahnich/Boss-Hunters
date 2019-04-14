@@ -68,6 +68,10 @@ modifier_warm_fire_debuff = class({})
 
 function modifier_warm_fire_debuff:OnCreated()
 	if IsServer() then
+		if not self:GetAbility() or self:GetAbility():IsNull() then
+			self:GetCaster():RemoveModifierByName("modifier_item_warm_fire")
+			return
+		end
 		self.damage = self:GetAbility():GetSpecialValueFor("damage")
 		self:StartIntervalThink(1)
 	end

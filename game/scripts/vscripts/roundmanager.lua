@@ -145,6 +145,8 @@ function RoundManager:OnNPCSpawned(event)
 				if spawnedUnit:IsBoss() or spawnedUnit:IsElite() then
 					typeModifier:SetStackCount( typeModifier:GetStackCount() + BH_MINION_TYPE_BOSS )
 				end
+				-- 1 april
+				-- spawnedUnit:AddAbilityPrecache("elite_tiny")
 			elseif spawnedUnit:IsRealHero() then
 				Timers:CreateTimer(0.1, function() 
 					if RoundManager:GetBoundingBox() and not RoundManager:GetBoundingBox():IsTouching(spawnedUnit) then

@@ -33,25 +33,30 @@
 				"var_type"				"FIELD_INTEGER"
 				"damage_per_unit"		"50 75"
 			}
-			"01"
+			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"search_radius"			"900"
 			}
-			"02"
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"115"
 			}
-			"03"
+			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"speed"					"600"
 			}
-			"04"
+			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"distance"				"1200"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_units"				"10 15"
 			}
 		}
 	}

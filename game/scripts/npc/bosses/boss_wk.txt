@@ -47,24 +47,24 @@
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"enrage_dmg"				"35 50"
+				"enrage_dmg"				"25 30"
 			}
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"enrage_radius"				"350 500"
 			}
-			"06"
+			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"revive_bonus_as"			"100 200"
 			}
-			"07"
+			"09"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"revive_bonus_dmg"			"5 20"
 			}
-			"07"
+			"10"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"revive_hp_loss"			"35 25"

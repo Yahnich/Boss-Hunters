@@ -2,9 +2,9 @@ modifier_stats_system_handler = class({})
 
 
 -- OTHER
-MOVESPEED_TABLE = 10
-MANA_TABLE = 200
-MANA_REGEN_TABLE = 1.5
+MOVESPEED_TABLE = 15
+MANA_TABLE = 300
+MANA_REGEN_TABLE = 3
 HEAL_AMP_TABLE = {0,15,30,45,60,75}
 -- OFFENSE
 ATTACK_DAMAGE_TABLE = 20
@@ -13,14 +13,15 @@ COOLDOWN_REDUCTION_TABLE = {0,10,15,20,25,30}
 ATTACK_SPEED_TABLE = 10
 STATUS_AMP_TABLE = {0,10,15,20,25,30}
 -- ACCURACY_TABLE = {0,15,30,45,60,75}
+AREA_DAMAGE_TABLE = {0,10,20,30,40,50}
 
 -- DEFENSE
 ARMOR_TABLE = 1
 MAGIC_RESIST_TABLE = {0,10,15,20,25,30}
 ATTACK_RANGEM_TABLE = 25
 ATTACK_RANGE_TABLE = 50
-HEALTH_TABLE = 150
-HEALTH_REGEN_TABLE = 2
+HEALTH_TABLE = 200
+HEALTH_REGEN_TABLE = 3
 STATUS_REDUCTION_TABLE = {0,10,20,30,40,50}
 
 ALL_STATS = 2
@@ -56,11 +57,7 @@ function modifier_stats_system_handler:UpdateStatValues()
 	self.pr = ARMOR_TABLE * tonumber(netTable["pr"]) + 1
 	self.mr = MAGIC_RESIST_TABLE[math.min(#MAGIC_RESIST_TABLE, tonumber(netTable["mr"]) + 1)]
 	
-	if self:GetParent():IsRangedAttacker() then 
-		self.ar = ATTACK_RANGE_TABLE * tonumber(netTable["ar"])
-	else
-		self.ar = ATTACK_RANGEM_TABLE * tonumber(netTable["ar"])
-	end
+	self.ard = AREA_DAMAGE_TABLE[math.min(#MAGIC_RESIST_TABLE, tonumber(netTable["ard"]) + 1)]
 	
 	self.hp = HEALTH_TABLE * tonumber(netTable["hp"])
 	self.hpr = HEALTH_REGEN_TABLE * tonumber(netTable["hpr"])
@@ -84,7 +81,7 @@ function modifier_stats_system_handler:DeclareFunctions()
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 		-- MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
-		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+		-- MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
@@ -110,6 +107,8 @@ end
 -- function modifier_stats_system_handler:GetCooldownReduction() return self.cdr or 0 end
 function modifier_stats_system_handler:GetModifierAttackSpeedBonus() return 50 + (self.as or 0) end
 function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage() return self.sta or 0 end
+function modifier_stats_system_handler:GetModifierAreaDamage() return self.ard or 0 end
+
 function modifier_stats_system_handler:GetAccuracy(params)
 	local accuracy = self.acc or 0
 	if not self:GetParent():IsRangedAttacker() then
@@ -131,9 +130,9 @@ function modifier_stats_system_handler:GetModifierMagicalResistanceBonus() retur
 	-- end
 -- end
 
-function modifier_stats_system_handler:GetModifierAttackRangeBonus() 
-	return self.ar or 0
-end
+-- function modifier_stats_system_handler:GetModifierAttackRangeBonus() 
+	-- return self.ar or 0
+-- end
 
 function modifier_stats_system_handler:GetModifierExtraHealthBonus() return 400 + (self.hp or 0) end
 function modifier_stats_system_handler:GetModifierConstantHealthRegen() return (self.hpr or 0) end

@@ -56,7 +56,7 @@ function modifier_green_dragon_rot:OnIntervalThink()
 		self.tick = 0
 		self:Poison()
 	end
-	if self.lifetime >= self.duration - 0.15 then
+	if self:GetRemainingTime() <= self.duration - 0.15 then
 		self:OnExpire()
 	end
 end

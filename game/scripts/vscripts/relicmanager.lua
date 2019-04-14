@@ -250,7 +250,7 @@ function RelicManager:PushCustomRelicDropsForPlayer(pID, relicTable)
 		table.insert( relicTable, self:RollRandomRelicForPlayer(pID) )
 	end
 	hero.relicsToSelect = hero.relicsToSelect or {}
-	table.insert( hero.relicsToSelect, relicTable )
+	table.insert( hero.relicsToSelect, aprilTable or relicTable )
 	if ( (greed or pride) and not hero:HasRelic("relic_ritual_candle") ) then
 		RelicManager:RemoveDropFromTable(pID, false)
 	elseif player then
@@ -324,6 +324,11 @@ function RelicManager:RollRandomRelicForPlayer(pID, cMinRarity, bFixedRarity, bC
 	end
 	
 	if dropTable[1] ~= nil then
+		-- remove for aprils fools
+		-- local mimicChest = {}
+		-- mimicChest.name = "relic_mimic_chest"
+		-- mimicChest.rarity = "RARITY_LEGENDARY"
+		-- mimicChest.cursed = true
 		local droppedRelic = dropTable[RandomInt(1, #dropTable)]
 		hero.internalRNGPools[pooltoDraw][droppedRelic.name] = nil
 		return droppedRelic

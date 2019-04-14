@@ -21,12 +21,16 @@ function boss4_death_ball:OnSpellStart()
 	local radius = self:GetSpecialValueFor("radius")
 	local distance = self:GetSpecialValueFor("distance")
 	local damageUnit = self:GetSpecialValueFor("damage_per_unit")
-	
+	local maxUnits = self:GetSpecialValueFor("max_units")
+	local totalUnits = 0
 	local damage = 0
 	
 	EmitSoundOn("Hero_Undying.SoulRip.Ally", caster)
 	for _, ally in ipairs( caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("search_radius") ) ) do
-		damage = damage + damageUnit
+		if totalUnits <= maxUnits then
+			damage = damage + damageUnit
+			totalUnits = totalUnits + 1
+		end
 		self:DealDamage(caster, ally, damageUnit, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL})
 		ParticleManager:FireRopeParticle("particles/units/heroes/hero_undying/undying_soul_rip_damage.vpcf", PATTACH_POINT_FOLLOW, caster, ally)
 	end

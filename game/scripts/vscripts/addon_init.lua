@@ -54,6 +54,7 @@ LinkLuaModifier( "modifier_health_handler", "libraries/handlers/modifier_health_
 LinkLuaModifier( "modifier_strength_handler", "libraries/handlers/modifier_strength_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_agility_handler", "libraries/handlers/modifier_agility_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_intellect_handler", "libraries/handlers/modifier_intellect_handler.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_area_dmg_handler", "libraries/handlers/modifier_area_dmg_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_handler_handler", "libraries/handlers/modifier_handler_handler.lua", LUA_MODIFIER_MOTION_NONE)
 
 

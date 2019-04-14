@@ -3,7 +3,7 @@ boss33a_dark_orb = class({})
 function boss33a_dark_orb:OnAbilityPhaseStart(forceWarning, direction, position)
 	local caster = self:GetCaster()
 	local vDir = CalculateDirection(self:GetCursorPosition(), caster)
-	if caster:GetHealthPercent() >= 50 then
+	if caster:GetHealthPercent() >= 50 and not caster:IsMinion() then
 		ParticleManager:FireLinearWarningParticle(caster:GetAbsOrigin(), caster:GetAbsOrigin() + vDir * self:GetTrueCastRange() )
 	else
 		ParticleManager:FireWarningParticle(caster:GetAbsOrigin(), self:GetTrueCastRange())
@@ -29,7 +29,7 @@ function boss33a_dark_orb:OnSpellStart()
 	
 	EmitSoundOn("Hero_Puck.Illusory_Orb", caster)
 	
-	if not belowHPThreshold or not caster.Holdout_IsCore then
+	if not belowHPThreshold or caster:IsMinion() then
 		self:CreateDarkOrb(direction)
 	else
 		self:CreateDarkOrb(direction)

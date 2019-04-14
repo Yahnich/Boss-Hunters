@@ -58,7 +58,6 @@ function modifier_item_penitent_mail_passive:OnTakeDamage(params)
 	if hero:HasModifier("modifier_item_penitent_mail_active") then
 		reflectpct = self.activereflect / 100
 	end
-	print( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION), "blade mail" )
 	if attacker:GetTeamNumber()  ~= hero:GetTeamNumber() and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ) then
 		if params.unit == hero then
 			dmg = dmg * reflectpct

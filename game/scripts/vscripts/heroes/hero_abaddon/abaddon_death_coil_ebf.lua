@@ -33,7 +33,11 @@ function abaddon_death_coil_ebf:OnSpellStart()
 	local self_heal = self:GetTalentSpecialValueFor( "self_heal" )
 
 	self:CreateMistCoil(target, source)
-	caster:HealEvent(self_heal + caster:GetMaxHealth()*heal_pct, self, caster)
+	if not caster:HasTalent("special_bonus_unique_abaddon_death_coil_2") then
+		self:DealDamage( caster, caster, self_heal, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NON_LETHAL })
+	else
+		caster:HealEvent(self_heal, self, caster)
+	end
 end
 
 function abaddon_death_coil_ebf:CreateMistCoil(target, source)
@@ -57,13 +61,12 @@ function abaddon_death_coil_ebf:OnProjectileHit(target, position)
 		
 		local damage = self:GetTalentSpecialValueFor( "target_damage")
 		local heal = self:GetTalentSpecialValueFor( "heal_amount" )
-		local heal_pct = self:GetTalentSpecialValueFor( "heal_pct" ) / 100
 
 		-- If the target and caster are on a different team, do Damage. Heal otherwise
 		if target:GetTeamNumber() ~= caster:GetTeamNumber() then
 			ApplyDamage({ victim = target, attacker = caster, damage = damage,	damage_type = DAMAGE_TYPE_MAGICAL, ability = self})
 		else
-			target:HealEvent(heal + target:GetMaxHealth()*heal_pct, self, caster)
+			target:HealEvent(heal, self, caster)
 		end
 		if caster:HasTalent("special_bonus_unique_abaddon_death_coil_1") and not self.duplicateProjectile then
 			self.duplicateProjectile = true

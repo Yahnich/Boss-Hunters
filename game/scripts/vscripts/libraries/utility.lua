@@ -982,7 +982,6 @@ function CDOTA_BaseNPC:ModifyThreat(val)
 	local reduction = 0.35 ^ math.floor( self.threat / 100 )
 	-- Every 100 threat, threat gain effectiveness is reduced
 	local threatgainCap = math.min( 10, (self.threat + 1) * 4 )
-	print( newVal, reduction, threatgainCap )
 	self.threat = math.min( math.max(0, (self.threat or 0) + math.min(newVal * reduction, threatgainCap ) ), 999 )
 	if self:IsRealHero() then
 		local player = PlayerResource:GetPlayer( self:GetOwner():GetPlayerID() )
