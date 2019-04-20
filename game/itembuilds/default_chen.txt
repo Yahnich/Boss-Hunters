@@ -1,7 +1,7 @@
 "itembuilds"
 {
 	"author"		"Prune"
-	"hero"			"hero_chen"
+	"hero"			"npc_dota_hero_chen"
 	"Title"			"Chen (Hardcore)"
 	"Items"
 	{	
