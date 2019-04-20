@@ -1,4 +1,4 @@
-"itembuild"
+"itembuilds"
 {
 	"author"		"Prune"
 	"hero"			"hero_chen"
