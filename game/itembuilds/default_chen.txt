@@ -12,7 +12,7 @@
 		"#DOTA_Item_Build_Early_Game"
 		{	
 			"item"	"item_dagger_of_escape"	
-			"item"	ìitem_gem_of_corruptionî
+			"item"	‚Äúitem_gem_of_corruption‚Äù
 			"item"  "item_war_drum"
 		}
 		"#DOTA_Item_Build_Core_Items"
@@ -28,13 +28,13 @@
 			"item" "item_father_pipe"
 			"item" "item_gauntlet_of_the_void"
 		}
-              ì#DOTA_Item_Build_Situationalî
+              "#DOTA_Item_Build_Situational"
               {
 	        "item" "item_dark_ones_blessing"
                 "item" "item_lifeweavers_clockwork"
                 "item" "item_penumbra"
                 "item" "item_galactic_hammer"
-                "item" "item_rising_saltî
+                "item" "item_rising_salt"
                 "item" "item_iron_rose"
                 "item" "item_lightningbottle"
                 "item" "item_blade_of_dominion"
