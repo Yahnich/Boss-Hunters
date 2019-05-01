@@ -7,12 +7,12 @@ function aa_cold_feet:OnSpellStart()
 
 	EmitSoundOn("Hero_Ancient_Apparition.ColdFeetCast", caster)
 	
-	target:AddNewModifier(caster, self, "modifier_aa_cold_feet", {Duration = self:GetSpecialValueFor("duration")})
+	target:AddNewModifier(caster, self, "modifier_aa_cold_feet", {Duration = self:GetTalentSpecialValueFor("duration")})
 
 	if caster:HasTalent("special_bonus_unique_aa_cold_feet_1") then
 		local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_aa_cold_feet_1"))
 		for _,enemy in pairs(enemies) do
-			enemy:AddNewModifier(caster, self, "modifier_aa_cold_feet", {Duration = self:GetSpecialValueFor("duration")})
+			enemy:AddNewModifier(caster, self, "modifier_aa_cold_feet", {Duration = self:GetTalentSpecialValueFor("duration")})
 		end
 	end
 end
@@ -29,7 +29,7 @@ end
 
 function modifier_aa_cold_feet:OnIntervalThink()
 	EmitSoundOn("Hero_Ancient_Apparition.ColdFeetTick", self:GetParent())
-	local damage = self:GetSpecialValueFor("damage")
+	local damage = self:GetTalentSpecialValueFor("damage")
 	if self:GetCaster():HasTalent("special_bonus_unique_aa_cold_feet_2") and self:GetParent():IsChilled() then
 		damage = damage * 2
 	end
@@ -40,7 +40,7 @@ end
 function modifier_aa_cold_feet:OnRemoved()
 	if IsServer() then
 		EmitSoundOn("Hero_Ancient_Apparition.ColdFeetFreeze", self:GetParent())
-		self:GetParent():Freeze(self:GetAbility(), self:GetCaster(), self:GetSpecialValueFor("stun_duration"))
+		self:GetParent():Freeze(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("stun_duration"))
 	end
 end
 

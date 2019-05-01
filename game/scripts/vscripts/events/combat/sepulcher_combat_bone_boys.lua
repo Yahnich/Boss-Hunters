@@ -1,17 +1,23 @@
 local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
-	self.enemiesToSpawn = math.min( 12, 3 + math.floor( RoundManager:GetRaidsFinished() + 0.5 ) )
+	self.set = self.set or RandomInt(1,2)
+	if self.set == 1 then
+		self.reapersToSpawn = 2 + RoundManager:GetCurrentRaidTier()
+		self.vanguardToSpawn = 3
+	else
+		self.reapersToSpawn = 2
+		self.vanguardToSpawn = 3 + RoundManager:GetCurrentRaidTier()
+	end
+	self.enemiesToSpawn = self.reapersToSpawn + self.vanguardToSpawn
+	local maxEnemies = self.enemiesToSpawn
 	self.eventHandler = Timers:CreateTimer(3, function()
 		local enemyName = "npc_dota_boss24_archer"
-		local roll = RandomInt(1, 11)
-		if RollPercentage(50) then
+		if RollPercentage(self.vanguardToSpawn/maxEnemies) or self.reapersToSpawn == 0 then
 			enemyName = "npc_dota_boss24_stomper"
+		else
+			self.reapersToSpawn = self.reapersToSpawn - 1
 		end
 		local spawn = CreateUnitByName(enemyName, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-		if RoundManager:GetCurrentRaidTier() == 1 and enemyName == "npc_dota_boss24_archer" then
-			spawn:SetBaseDamageMax(60)
-			spawn:SetBaseDamageMin(80)
-		end
 		spawn.unitIsRoundNecessary = true
 		
 		self.enemiesToSpawn = self.enemiesToSpawn - 1

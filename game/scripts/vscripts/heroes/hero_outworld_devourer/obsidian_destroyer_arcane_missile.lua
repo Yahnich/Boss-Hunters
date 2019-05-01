@@ -1,5 +1,13 @@
 obsidian_destroyer_arcane_missile = class({})
 
+function obsidian_destroyer_arcane_missile:IsStealable()
+	return false
+end
+
+function obsidian_destroyer_arcane_missile:IsHiddenWhenStolen()
+	return false
+end
+
 function obsidian_destroyer_arcane_missile:GetIntrinsicModifierName()
 	return "modifier_obsidian_destroyer_arcane_missile_autocast"
 end
@@ -10,10 +18,6 @@ function obsidian_destroyer_arcane_missile:OnSpellStart()
 	self:RefundManaCost()
 	self:GetCaster():SetAttacking( target )
 	self:GetCaster():MoveToTargetToAttack( target )
-end
-
-function obsidian_destroyer_arcane_missile:IsStealable()
-	return false
 end
 
 function obsidian_destroyer_arcane_missile:GetCastRange(location, target)
@@ -81,7 +85,7 @@ if IsServer() then
 	
 	function modifier_obsidian_destroyer_arcane_missile_autocast:OnIntervalThink()
 		local caster = self:GetCaster()
-		if self:GetAbility():GetAutoCastState() and self:GetParent():GetMana() > self:GetAbility():GetManaCost(-1) and self:GetParent():GetAttackTarget() and not self:GetParent():GetAttackTarget():IsMagicImmune() then
+		if (self:GetAbility():GetAutoCastState() or self:GetAbility().forceCast) and self:GetParent():GetMana() > self:GetAbility():GetManaCost(-1) and self:GetParent():GetAttackTarget() and not self:GetParent():GetAttackTarget():IsMagicImmune() then
 			caster:SetProjectileModel("particles/empty_projectile.vcpf")
 		else
 			caster:SetProjectileModel("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_base_attack.vpcf")

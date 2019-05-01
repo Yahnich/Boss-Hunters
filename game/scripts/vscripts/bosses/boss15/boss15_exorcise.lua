@@ -58,7 +58,6 @@ function boss15_exorcise:OnProjectileHit( hTarget, vPosition )
 		
 		ParticleManager:FireParticle( "particles/units/heroes/hero_death_prophet/death_prophet_carrion_swarm_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget )
 	end
-	print("what", hTarget)
 	if not hTarget then ParticleManager:ClearParticle( self.exorciseProj ) end
 end
 

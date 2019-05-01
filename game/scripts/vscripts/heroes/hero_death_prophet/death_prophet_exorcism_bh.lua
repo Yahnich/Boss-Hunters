@@ -198,13 +198,16 @@ function modifier_death_prophet_exorcism_bh_talent:DeclareFunctions()
 end
 
 function modifier_death_prophet_exorcism_bh_talent:OnDeath(params)
-	if params.attacker == self:GetParent() and self:GetParent():HasTalent("special_bonus_unique_death_prophet_exorcism_2") then
+	if params.attacker == self:GetParent() and self:GetParent():HasTalent("special_bonus_unique_death_prophet_exorcism_2") and not params.unit:IsMinion() then
 		local ghosts = 1
-		if params.unit:IsRoundNecessary() then
-			ghosts = 4
+		local roll = RollPercentage(50)
+		if params.unit:IsBoss() then
+			ghosts = 2
 		end
-		for i = 1, ghosts do
-			self:GetAbility():CreateGhost( params.unit:GetAbsOrigin(), self:GetAbility():GetDuration() )
+		if roll or params.unit:IsBoss() then
+			for i = 1, ghosts do
+				self:GetAbility():CreateGhost( params.unit:GetAbsOrigin(), self:GetAbility():GetDuration() )
+			end
 		end
 	end
 end

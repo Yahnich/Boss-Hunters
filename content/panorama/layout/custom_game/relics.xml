@@ -37,12 +37,13 @@
 			</Panel>
 		</Panel>
 		<Panel id="RelicInventoryRoot" hittest="false">
+			<Panel id="RelicInventoryNotifyIdiots" hittest="true"/>
 			<Button id="RelicInventoryButton" onactivate="OpenRelicInventory()" onmouseover="ShowRelicTooltip()" onmouseout="HideRelicTooltip()" oncancel="HideAll"/>
 			<Panel id="RelicInventoryPanel" hittest="true">
 			</Panel>
 			<Button id="RelicDropNotification" onactivate="SendDropQuery()" hittest="true">
 				<Label id="RelicDropLabel" text="5"/>
-			</Button>
+			</Button> 
 		</Panel>
 	</Panel>
 </root>

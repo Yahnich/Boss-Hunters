@@ -17,7 +17,7 @@ LinkLuaModifier( "modifier_troll_warlord_battle_trance_bh", "heroes/hero_troll_w
 function modifier_troll_warlord_battle_trance_bh:OnCreated()
 	self.attackspeed = self:GetTalentSpecialValueFor("attack_speed")
 	self.movespeed = self:GetTalentSpecialValueFor("move_speed")
-	self.lifesteal = self:GetTalentSpecialValueFor("lifesteal")
+	self.lifesteal = self:GetTalentSpecialValueFor("lifesteal") / 100
 	
 	self.cleave = self:GetTalentSpecialValueFor("scepter_cleave") / 100
 	self.range = self:GetTalentSpecialValueFor("scepter_attack_range")
@@ -30,7 +30,7 @@ end
 function modifier_troll_warlord_battle_trance_bh:OnRefresh()
 	self.attackspeed = self:GetTalentSpecialValueFor("attack_speed")
 	self.movespeed = self:GetTalentSpecialValueFor("move_speed")
-	self.lifesteal = self:GetTalentSpecialValueFor("lifesteal")
+	self.lifesteal = self:GetTalentSpecialValueFor("lifesteal") / 100
 	
 	self.cleave = self:GetTalentSpecialValueFor("scepter_cleave") / 100
 	self.range = self:GetTalentSpecialValueFor("scepter_attack_range")

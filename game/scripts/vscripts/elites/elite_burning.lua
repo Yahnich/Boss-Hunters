@@ -39,7 +39,6 @@ LinkLuaModifier("modifier_elite_burning_dummy", "elites/elite_burning", LUA_MODI
 
 function modifier_elite_burning_dummy:OnCreated()
 	self.radius = self:GetSpecialValueFor("radius")
-	print("created")
 	if IsServer() then
 		local  macropyre = ParticleManager:CreateParticle("particles/neutral_fx/black_dragon_fireball.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControl(macropyre, 0, self:GetParent():GetAbsOrigin())

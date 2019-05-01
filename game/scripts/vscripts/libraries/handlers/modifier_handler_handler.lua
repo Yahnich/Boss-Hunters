@@ -364,16 +364,20 @@ function modifier_handler_handler:UpdateStats()
 			table.remove(self.intModifiers, id)
 		end
 	end
-	if math.ceil( (parent:GetStrength() - prevStr) * (strStacks/100)) ~= prevStr then
-		self.str:SetStackCount( math.ceil(parent:GetStrength() * (strStacks/100)) )
+	if math.floor( (parent:GetStrength() - prevStr) * (strStacks/100)) ~= prevStr then
+		self.str:SetStackCount( math.floor( (parent:GetStrength() - prevStr) * (strStacks/100)) )
 	end
-	if math.ceil( (parent:GetAgility() - prevAgi) * (agiStacks/100)) ~= prevAgi then
-		self.agi:SetStackCount( math.ceil(parent:GetAgility() * (agiStacks/100)) )
+	if math.floor( (parent:GetAgility() - prevAgi) * (agiStacks/100)) ~= prevAgi then
+		self.agi:SetStackCount( math.floor( (parent:GetAgility() - prevAgi) * (agiStacks/100)) )
 	end
-	if math.ceil( (parent:GetIntellect() - prevInt) * (intStacks/100)) ~= prevInt then
-		self.int:SetStackCount( math.ceil(parent:GetIntellect() * (intStacks/100)) )
+	if math.floor( (parent:GetIntellect() - prevInt) * (intStacks/100)) ~= prevInt then
+		self.int:SetStackCount( math.floor( (parent:GetIntellect() - prevInt) * (intStacks/100) ) )
 	end
+	local hpPct = self:GetParent():GetHealth() / self:GetParent():GetMaxHealth()
 	parent:CalculateStatBonus()
+	if hpPct - 0.1 <= self:GetParent():GetHealth() / self:GetParent():GetMaxHealth() then 
+		parent:SetHealth( hpPct * self:GetParent():GetMaxHealth() )
+	end
 end
 
 function modifier_handler_handler:CheckIfUpdateNeeded(name, ability, duration)

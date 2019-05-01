@@ -12,14 +12,14 @@ end
 
 require("events/base_event")
 
-POSSIBLE_ZONES = {"Grove", "Sepulcher", "Solitude", "Elysium"}
+POSSIBLE_ZONES = POSSIBLE_ZONES or {"Grove", "Sepulcher", "Solitude", "Elysium"}
 
-EVENTS_PER_RAID = 3
+EVENTS_PER_RAID = 4
 RAIDS_PER_ZONE = 2
 ZONE_COUNT = #POSSIBLE_ZONES
 
 COMBAT_CHANCE = 70
-ELITE_CHANCE = 25
+ELITE_CHANCE = 20
 EVENT_CHANCE = 100 - COMBAT_CHANCE
 
 PREP_TIME = 60
@@ -639,8 +639,8 @@ function RoundManager:InitializeUnit(unit, bElite)
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
 	
-	local HPMultiplierFunc = function( events, raids, zones ) return (0.45 + (events * 0.095)) * ( 1 + raids * 0.25 ) * ( 1 + zones * 0.10 ) end
-	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.35 + (events * 0.05)) * ( 1 + raids * 0.075) * ( 1 + zones * 0.03 ) end
+	local HPMultiplierFunc = function( events, raids, zones ) return (0.45 + (events * 0.08)) * ( 1 + raids * 0.22 ) * ( 1 + zones * 0.10 ) end
+	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.35 + (events * 0.05)) * ( 1 + raids * 0.06) * ( 1 + zones * 0.03 ) end
 	
 	local effPlayerHPMult =  HPMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
 	local effPlayerDMGMult = DMGMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )

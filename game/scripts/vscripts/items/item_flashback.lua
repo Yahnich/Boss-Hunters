@@ -8,6 +8,9 @@ end
 function item_flashback:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:RefreshAllCooldowns(true)
+	
+	caster:EmitSound( "DOTA_Item.Refresher.Activate" )
+	ParticleManager:FireParticle("particles/items2_fx/refresher.vpcf", PATTACH_POINT_FOLLOW, caster)
 end
 
 function item_flashback:GetIntrinsicModifierName()

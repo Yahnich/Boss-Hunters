@@ -477,6 +477,9 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 end
 
 function CHoldoutGameMode:FilterOrders( filterTable )
+	if #filterTable.units ~= 1 then return true end
+	local hero = units[1]
+	if not hero:IsRealHero() then return true end
 	if RoundManager:GetCurrentEvent() 
 	and RoundManager:GetCurrentEvent():IsEvent()
 	and RoundManager:GetCurrentEvent()._playerChoices
@@ -600,8 +603,6 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 			hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1
 		end
 	end
-	
-	print(hero:GetName(), "leveled up", hero:GetLevel() )
 end
 
 function CHoldoutGameMode:OnAbilityLearned(event)
@@ -849,7 +850,7 @@ end
 -- When game state changes set state in script
 function CHoldoutGameMode:OnGameRulesStateChange()
 	local nNewState = GameRules:State_Get()
-	if nNewState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit and not IsInToolsMode() and not IsCheatMode() then
+	if nNewState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
 		statCollection:init()
 		customSchema:init()
 		statCollection.doneInit = true

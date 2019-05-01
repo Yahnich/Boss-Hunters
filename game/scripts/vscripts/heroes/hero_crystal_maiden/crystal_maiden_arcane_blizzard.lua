@@ -25,7 +25,6 @@ if IsServer() then
 		self.minDistance = self:GetAbility():GetTalentSpecialValueFor( "explosion_min_dist" )
 		self.maxDistance = self:GetAbility():GetTalentSpecialValueFor( "explosion_max_dist" )
 		self.radius = self:GetAbility():GetTalentSpecialValueFor( "explosion_radius" )
-		print( self.radius ,"?")
 		self.damage = self:GetAbility():GetTalentSpecialValueFor( "damage" )
 		self.tick = self:GetTalentSpecialValueFor("explosion_interval")
 		if self:GetCaster():HasScepter() then self.damage = self:GetAbility():GetTalentSpecialValueFor( "damage_scepter" ) end

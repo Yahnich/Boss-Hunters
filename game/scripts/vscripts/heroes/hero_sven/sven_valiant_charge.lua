@@ -42,6 +42,7 @@ function modifier_sven_valiant_charge:OnIntervalThink()
 				self:GetAbility():Stun( enemy, self.stunDur )
 			else
 				enemy:ApplyKnockBack( parent:GetAbsOrigin(), 0.6, 0.6, self.knockback, 150, parent, self:GetAbility() )
+				enemy:Daze(self:GetAbility(), parent, self.daze_duration)
 			end
 		end
 	end

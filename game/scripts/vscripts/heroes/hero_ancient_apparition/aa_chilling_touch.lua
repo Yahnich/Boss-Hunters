@@ -10,7 +10,7 @@ function aa_chilling_touch:OnSpellStart()
 	local friends = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
 	for _,friend in pairs(friends) do
 		if friend:IsHero() then
-			friend:AddNewModifier(caster, self, "modifier_aa_chilling_touch", {Duration = self:GetSpecialValueFor("duration")})
+			friend:AddNewModifier(caster, self, "modifier_aa_chilling_touch", {Duration = self:GetTalentSpecialValueFor("duration")})
 		end
 	end
 end
@@ -18,7 +18,8 @@ end
 modifier_aa_chilling_touch = class({})
 function modifier_aa_chilling_touch:OnCreated(table)
 	if IsServer() then 
-		self.damage = self:GetSpecialValueFor("bonus_damage")
+		self.damage = self:GetTalentSpecialValueFor("bonus_damage")
+		self.chill = self:GetTalentSpecialValueFor("move_speed_pct")
 	end
 
 	if self:GetParent() == self:GetCaster() and self:GetCaster():HasTalent("special_bonus_unique_aa_chilling_touch_2") then
@@ -30,7 +31,8 @@ end
 
 function modifier_aa_chilling_touch:OnRefresh(table)
 	if IsServer() then 
-		self.damage = self:GetSpecialValueFor("bonus_damage") 
+		self.damage = self:GetTalentSpecialValueFor("bonus_damage")
+		self.chill = self:GetTalentSpecialValueFor("move_speed_pct")
 	end
 
 	if self:GetParent() == self:GetCaster() and self:GetCaster():HasTalent("special_bonus_unique_aa_chilling_touch_2") then
@@ -50,8 +52,13 @@ end
 
 function modifier_aa_chilling_touch:OnAttackLanded(params)
     if IsServer() and params.attacker == self:GetParent() and params.target and params.target:GetTeam() ~= self:GetCaster():GetTeam() then
-    	local damage = self:GetAbility():DealDamage(params.attacker, params.target, self:GetSpecialValueFor("bonus_damage"), {damage_type=DAMAGE_TYPE_MAGICAL,damage_flags=DOTA_DAMAGE_FLAG_NONE}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-    	params.target:AddChill(nil, self:GetCaster(), self:GetSpecialValueFor("duration"))
+    	local damage = self:GetTalentSpecialValueFor("bonus_damage")
+		if params.target:IsFrozenGeneric() then
+			damage = damage * 3
+		end
+		self:GetAbility():DealDamage(params.attacker, params.target, damage, {damage_type=DAMAGE_TYPE_MAGICAL, damage_flags=DOTA_DAMAGE_FLAG_PROPERTY_FIRE}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+		local chill = math.max( self.chill - self:GetChillAmount(), 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) )
+    	params.target:AddChill(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("move_speed_duration"), chill )
     end
 end
 

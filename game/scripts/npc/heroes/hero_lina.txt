@@ -244,9 +244,7 @@
 	    "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"  
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"black_dragon_fireball"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

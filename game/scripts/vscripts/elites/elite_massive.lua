@@ -14,7 +14,6 @@ LinkLuaModifier("modifier_elite_massive", "elites/elite_massive", LUA_MODIFIER_M
 
 if IsServer() then
 	function modifier_elite_massive:OnCreated()
-		print("N")
 		self:StartIntervalThink(1)
 	end
 	

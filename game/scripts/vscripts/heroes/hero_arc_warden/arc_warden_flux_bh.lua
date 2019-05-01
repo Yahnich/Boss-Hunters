@@ -29,7 +29,6 @@ function arc_warden_flux_bh:Flux(target)
 				ParticleManager:SetParticleControlEnt(nfx, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 				ParticleManager:SetParticleControlEnt(nfx, 2, caster, PATTACH_POINT_FOLLOW, "attach_attack2", caster:GetAbsOrigin(), true)
 				ParticleManager:ReleaseParticleIndex(nfx)
-	target:RemoveModifierByName("modifier_arc_warden_flux_bh")
 	target:AddNewModifier(caster, self, "modifier_arc_warden_flux_bh", { duration = self:GetTalentSpecialValueFor("duration")})
 end
 

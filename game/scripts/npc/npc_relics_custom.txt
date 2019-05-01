@@ -246,11 +246,6 @@
 		"Rarity"			"RARITY_COMMON"
 		"Cursed"			"0"
 	}
-	"relic_lunar_needle"
-	{
-		"Rarity"			"RARITY_COMMON"
-		"Cursed"			"0"
-	}
 	//"relic_ring_of_kin"
 	//{
 	//	"Rarity"			"RARITY_COMMON"
@@ -475,6 +470,11 @@
 	{
 		"Rarity"			"RARITY_UNCOMMON"
 		"Cursed"			"1"
+	}
+	"relic_lunar_needle"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"0"
 	}
 	/////////////////////////////////////////////////////////
 	// RARE RELICS

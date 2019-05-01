@@ -33,7 +33,7 @@ function lich_dark_sacrifice:OnSpellStart()
 	ParticleManager:FireRopeParticle("particles/units/heroes/hero_lich/lich_dark_ritual.vpcf", PATTACH_POINT_FOLLOW, target, caster)
 	target:EmitSound("Ability.DarkRitual")
 	
-	local restoration = damage * convHp
+	local restoration = math.max( damage * convHp, 1 )
 	local buff = caster:AddNewModifier( caster, self, "modifier_lich_dark_sacrifice", {duration = duration})
 	if buff then
 		buff:SetStackCount(restoration)

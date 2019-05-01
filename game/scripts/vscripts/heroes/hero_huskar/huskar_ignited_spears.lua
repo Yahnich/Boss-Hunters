@@ -8,19 +8,21 @@ function huskar_ignited_spears:IsHiddenWhenStolen()
 	return false
 end
 
-function huskar_ignited_spears:OnAbilityPhaseStart()
-	self:SetOverrideCastPoint( self:GetCaster():GetCastPoint(true) )
-	return true
-end
-
 function huskar_ignited_spears:GetIntrinsicModifierName()
 	return "modifier_huskar_ignited_spears_autocast"
 end
 
+function huskar_ignited_spears:GetCastPoint()
+	return 0
+end
+
 function huskar_ignited_spears:OnSpellStart()
 	local target = self:GetCursorTarget()
-	self:LaunchSpear(target, true)
+	self.forceCast = true
+	self:GetCaster():SetAttacking( target )
+	self:GetCaster():MoveToTargetToAttack( target )
 end
+
 
 function huskar_ignited_spears:GetCastRange(location, target)
 	return self:GetCaster():GetAttackRange()
@@ -80,7 +82,7 @@ if IsServer() then
 	
 	function modifier_huskar_ignited_spears_autocast:OnIntervalThink()
 		local caster = self:GetCaster()
-		if self:GetAbility():GetAutoCastState() then
+		if (self:GetAbility():GetAutoCastState() or self:GetAbility().forceCast) and self:GetParent():GetMana() > self:GetAbility():GetManaCost(-1) and self:GetParent():GetAttackTarget() and not self:GetParent():GetAttackTarget():IsMagicImmune() then
 			caster:SetProjectileModel("particles/empty_projectile.vcpf")
 		else
 			caster:SetProjectileModel("particles/units/heroes/hero_huskar/huskar_base_attack.vpcf")
@@ -92,8 +94,10 @@ if IsServer() then
 	end
 	
 	function modifier_huskar_ignited_spears_autocast:OnAttack(params)
-		if params.attacker == self:GetParent() and params.target and self:GetAbility():GetAutoCastState() then
+		if params.attacker == self:GetParent() and params.target and (self:GetAbility():GetAutoCastState() or self:GetAbility().forceCast) and ability:IsOwnersManaEnough() and not self:GetParent():GetAttackTarget():IsMagicImmune() then
 			self:GetAbility():LaunchSpear(params.target)
+			self:GetAbility():SpendMana()
+			self:GetAbility().forceCast = false
 		end
 	end
 end

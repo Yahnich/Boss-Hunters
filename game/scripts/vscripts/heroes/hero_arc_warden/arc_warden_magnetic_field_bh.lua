@@ -75,11 +75,17 @@ function arc_warden_magnetic_field_bh_modifier:IsDebuff()
 	return false
 end
 
-function arc_warden_magnetic_field_bh_modifier:OnCreated( event )
+function arc_warden_magnetic_field_bh_modifier:OnCreated(  )
 	self.evasion = self:GetTalentSpecialValueFor("evasion_chance")
 	self.as = self:GetTalentSpecialValueFor("attack_speed_bonus")
+	if IsServer() then
+		self:StartIntervalThink(0.5)
+	end
 end
 
+function arc_warden_magnetic_field_bh_modifier:OnIntervalThink(  )
+	ProjectileManager:ProjectileDodge( self:GetParent() )
+end
 function arc_warden_magnetic_field_bh_modifier:DeclareFunctions()
 	return { MODIFIER_PROPERTY_EVASION_CONSTANT}
 end

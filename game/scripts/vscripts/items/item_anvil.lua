@@ -38,7 +38,7 @@ function modifier_item_anvil_handle:GetModifierPreAttack_BonusDamage()
 end
 
 function modifier_item_anvil_handle:OnAttackLanded(params)
-	if params.attacker == self:GetParent() and self:GetAbility():IsCooldownReady() and self:RollPRNG( self.bash_chance ) then
+	if params.attacker == self:GetParent() and self:GetAbility():IsCooldownReady() and self:RollPRNG( self.bash_chance ) and params.attacker:IsRealHero() then
 		self:GetAbility():SetCooldown()
 		self:GetAbility():Stun(params.target, self.bash_duration, true)
 		EmitSoundOn("DOTA_Item.SkullBasher", params.target)

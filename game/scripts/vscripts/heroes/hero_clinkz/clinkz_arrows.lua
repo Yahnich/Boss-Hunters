@@ -19,10 +19,9 @@ function clinkz_arrows:GetCastRange(vLocation, hTarget)
 end
 
 function clinkz_arrows:GetCastPoint()
-	if IsServer() then 
-		return self:GetCaster():GetCastPoint( true ) / self:GetCaster():GetAttackSpeed()
-	end
+	return 0
 end
+
 
 function clinkz_arrows:GetManaCost(iLvl)
 	if self:GetCaster():GetClassname() == "npc_dota_clinkz_skeleton_archer" then
@@ -32,22 +31,19 @@ function clinkz_arrows:GetManaCost(iLvl)
 	end
 end
 
-function clinkz_arrows:OnAbilityPhaseStart()
-	local caster = self:GetCaster()
-	caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 1/caster:GetSecondsPerAttack())
-	return true
-end
-
 function clinkz_arrows:OnSpellStart()
 	local target = self:GetCursorTarget()
+	self.forceCast = true
+	self:RefundManaCost()
+	self:GetCaster():SetAttacking( target )
+	self:GetCaster():MoveToTargetToAttack( target )
+end
+
+function clinkz_arrows:FireSearingArrow(target)
 	local caster = self:GetCaster()
-	
-	caster:RemoveGesture(ACT_DOTA_ATTACK)
-
+	caster:SetProjectileModel("particles/empty_projectile.vcpf")
 	EmitSoundOn("Hero_Clinkz.SearingArrows", caster)
-	
-	self:FireTrackingProjectile("particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf", target, caster:GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 200)	
-
+	self:FireTrackingProjectile("particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf", target, caster:GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 200)
 	if caster:HasTalent("special_bonus_unique_clinkz_arrows_2") then
 		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:GetAttackRange() + 10)
 		for _,enemy in pairs(enemies) do
@@ -57,7 +53,16 @@ function clinkz_arrows:OnSpellStart()
 			end
 		end
 	end
+	caster:RevertProjectile()
+end
 
+
+function clinkz_arrows:FireSearingArrow(target, bAttack)
+	local caster = self:GetCaster()
+	
+	EmitSoundOn("Hero_Clinkz.SearingArrows", caster)
+	if bAttack then self:GetCaster():PerformGenericAttack(target, false) end
+	self:FireTrackingProjectile("particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf", target, caster:GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 200)	
 	if caster:HasScepter() then
 		local modifier = caster:FindModifierByName("modifier_clinkz_arrows_caster")
 		if modifier.current >= modifier.max then
@@ -106,41 +111,42 @@ function modifier_clinkz_arrows_caster:DeclareFunctions()
 	return funcs
 end
 
+if IsServer() then
+	function modifier_clinkz_arrows_caster:OnCreated()
+		self:StartIntervalThink(0.03)
+	end
+	
+	function modifier_clinkz_arrows_caster:OnIntervalThink()
+		local caster = self:GetCaster()
+		if (self:GetAbility():GetAutoCastState() or self:GetAbility().forceCast) and self:GetParent():GetMana() > self:GetAbility():GetManaCost(-1) and self:GetParent():GetAttackTarget() and not self:GetParent():GetAttackTarget():IsMagicImmune() then
+			caster:SetProjectileModel("particles/empty_projectile.vcpf")
+		else
+			caster:SetProjectileModel("particles/units/heroes/hero_clinkz/clinkz_base_attack.vpcf")
+		end
+	end
+end
+
 function modifier_clinkz_arrows_caster:OnAttack(keys)
 	if IsServer() then
 		local caster = self:GetCaster()
 		local target = keys.target
 		local attacker = keys.attacker
 		local ability = self:GetAbility()
-
-		if caster == attacker and ( ability:IsOwnersManaEnough() and ability:GetAutoCastState() or caster.forceSearingArrows ) then
-			EmitSoundOn("Hero_Clinkz.SearingArrows", caster)
-
-			ability:FireTrackingProjectile("particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf", target, caster:GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 50)	
-			
+		if caster == attacker and target and ability:IsOwnersManaEnough() and ( ability:GetAutoCastState() or ability.forceCast ) and not ability.loopPrevention then
 			if caster:HasTalent("special_bonus_unique_clinkz_arrows_2") then
 				local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:GetAttackRange() + 10)
 				for _,enemy in pairs(enemies) do
 					if enemy ~= target then
-						ability:FireTrackingProjectile("particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf", enemy, caster:GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 50)	
+						ability.loopPrevention = true
+						ability:FireSearingArrow( enemy, true )
+						ability.loopPrevention = false
 						break
 					end
 				end
 			end
-
-			if caster:HasScepter() then
-				if self.current >= self.max then
-					local duration = 5
-					CreateModifierThinker(self:GetCaster(), self:GetAbility(), "modifier_clinkz_arrows_line", {Duration = duration, x = target:GetAbsOrigin().x, y = target:GetAbsOrigin().y, z = target:GetAbsOrigin().z}, self:GetCaster():GetAbsOrigin(), self:GetCaster():GetTeam(), false)
-					self.current = 0
-				else
-					self.current = self.current + 1
-				end
-			end
-			if not caster.forceSearingArrows then
-				ability:UseResources(true, false, false)
-			end
-			caster.forceSearingArrows = false
+			ability:FireSearingArrow( target )
+			ability:SpendMana()
+			ability.forceCast = false
 		end
 	end
 end

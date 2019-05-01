@@ -11,7 +11,8 @@ GameEvents.Subscribe( "dota_player_update_relic_inventory", UpdateRelicInventory
 GameEvents.Subscribe("dota_player_update_query_unit", SendRelicQuery);
 GameEvents.Subscribe("dota_player_update_selected_unit", SendRelicQuery);
 
-var hasQueuedAction = false
+var hasQueuedAction = false;
+var firstRelicOfGame = true;
 
 function SelectRelic(relic)
 {
@@ -85,6 +86,7 @@ SendDropQuery()
 
 function UpdatePendingDrops(relicTable){
 	var length = 0
+	$("#RelicInventoryNotifyIdiots").style.visibility = "collapse";
 	if( lastRememberedHero = Players.GetPlayerHeroEntityIndex( localID ) ){
 		if( relicTable.drops != null ){
 			for ( relic in 	relicTable.drops ){
@@ -95,6 +97,10 @@ function UpdatePendingDrops(relicTable){
 			} else {
 				$("#RelicDropNotification").style.visibility = "visible";
 				$("#RelicDropLabel").text = length;
+				if(firstRelicOfGame){
+					$("#RelicInventoryNotifyIdiots").style.visibility = "visible";
+					firstRelicOfGame = false;
+				}
 			}
 		} else {
 			$("#RelicDropNotification").style.visibility = "collapse";

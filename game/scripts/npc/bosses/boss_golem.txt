@@ -102,7 +102,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"800 1200"
-		"AbilityCastPoint"				"1 0.75" 					// Time before spell goes off when cast
+		"AbilityCastPoint"				"0.5 0.3" 					// Time before spell goes off when cast
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"	// Activity
 		"MaxLevel"						"2"
 	
@@ -176,7 +176,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"650 800"
-		"AbilityCastPoint"				"1 0.75" 						// Time before spell goes off when cast
+		"AbilityCastPoint"				"0.5 0.3" 						// Time before spell goes off when cast
 		"AbilityCastAnimation"			"ACT_DOTA_FLAIL"			// Activity
 		"AnimationPlaybackRate"			"0.5"						// Animation speed multiplier
 		"AnimationIgnoresModelScale"	"1"

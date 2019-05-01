@@ -1,7 +1,7 @@
 alchemist_alchemists_greed = class({})
 
 function alchemist_alchemists_greed:GetCooldown(iLvl)
-	local cd = self.BaseClass.GetCooldown(self, iLvl) - self:GetCaster():FindTalentValue("special_bonus_unique_alchemist_alchemists_greed_2")
+	local cd = self.BaseClass.GetCooldown(self, iLvl)
 	return cd
 end
 

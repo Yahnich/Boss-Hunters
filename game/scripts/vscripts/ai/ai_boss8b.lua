@@ -46,7 +46,7 @@ function AIThink(thisEntity)
 					AbilityIndex = thisEntity.march:entindex()
 				})
 				return AI_THINK_RATE
-			elseif thisEntity.rearm:IsCooldownReady() then
+			elseif thisEntity.rearm:IsCooldownReady() and not thisEntity.march:IsCooldownReady() then
 				ExecuteOrderFromTable({
 					UnitIndex = thisEntity:entindex(),
 					OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,

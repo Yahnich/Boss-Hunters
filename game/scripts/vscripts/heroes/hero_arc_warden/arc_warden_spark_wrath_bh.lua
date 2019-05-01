@@ -10,6 +10,10 @@ function arc_warden_spark_wrath_bh:IsHiddenWhenStolen()
 	return false
 end
 
+function arc_warden_spark_wrath_bh:HasAreaDamage()
+	return true
+end
+
 function arc_warden_spark_wrath_bh:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
     return cooldown

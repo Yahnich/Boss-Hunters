@@ -162,20 +162,17 @@ function UpdateAccuracyTooltip()
 	if(uiTooltip != null){
 		var textLabel = uiTooltip.FindChildTraverse("PhysicalResistLabel");
 		var valueLabel = uiTooltip.FindChildTraverse("PhysicalResist");
-		textLabel.text = "Accuracy:";
+		textLabel.text = "Area Damage:";
 		valueLabel.text = "0%";
 		for (var i = 0; i < Entities.GetNumBuffs(currUnit); i++) {
 			var buffID = Entities.GetBuff(currUnit, i)
 			Buffs.GetName( currUnit, buffID )
-			if (Buffs.GetName( currUnit, buffID ) == "modifier_accuracy_handler"){
+			if (Buffs.GetName( currUnit, buffID ) == "modifier_area_dmg_handler"){
 				valueLabel.text = Buffs.GetStackCount( currUnit, buffID ) + "%";
 			}
 		}
 		
 	}
-	GameUI.GetScreenWorldPosition
-	
-	
 	var mPos = GameUI.GetCursorPosition()
     var gamePos = Game.ScreenXYToWorld(mPos[0], mPos[1])
     if ( gamePos !== null )

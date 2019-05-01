@@ -12,15 +12,19 @@ end
 
 
 function modifier_area_dmg_handler:OnTakeDamage(params)
-	if not params.attacker == self:GetParent() or params.unit:IsSameTeam(params.attacker) or self.lastProc + 0.1 > GameRules:GetGameTime() or self:GetStackCount() == 0 then return end
-	if params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK 
-	or ( params.inflictor 
-		and HasBit( params.inflictor:GetBehavior(), DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) 
-		and not HasBit( params.inflictor:GetBehavior(), DOTA_ABILITY_BEHAVIOR_AOE) 
-		and params.unit == params.inflictor:GetCursorTarget() )
+	local countsAsAttack = ( params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK ) or HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE )
+	if params.attacker ~= self:GetParent() or params.unit:IsSameTeam(params.attacker) or self:GetStackCount() == 0 then return end
+	if countsAsAttack
+	or ( params.inflictor and
+		HasBit( params.inflictor:GetBehavior(), DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) 
+		and not HasBit( params.inflictor:GetBehavior(), DOTA_ABILITY_BEHAVIOR_AOE)
+		and self.lastProc + 0.03 > GameRules:GetGameTime() )
+	or (params.inflictor 
+		and params.inflictor.HasAreaDamage 
+		and params.inflictor:HasAreaDamage() )
 	then
 		local areaDamage = params.original_damage * self:GetStackCount() / 100
-		if params.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK or params.attacker:IsRangedAttacker() then
+		if not countsAsAttack or params.attacker:IsRangedAttacker() then
 			areaDamage = areaDamage / 2
 		end
 		for _, enemy in ipairs( params.attacker:FindEnemyUnitsInRadius( params.unit:GetAbsOrigin(), AREA_DAMAGE_RADIUS ) ) do

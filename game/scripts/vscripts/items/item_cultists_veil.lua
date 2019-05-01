@@ -13,7 +13,6 @@ function item_cultists_veil:OnSpellStart()
 	
 	EmitSoundOn( "DOTA_Item.VeilofDiscord.Activate", self:GetCaster() )
 	ParticleManager:FireParticle("particles/items2_fx/veil_of_discord.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = point, [1] = Vector(radius,1,1)})
-	print( radius, duration )
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( point, radius ) ) do
 		enemy:AddNewModifier(caster, self, "modifier_cultists_veil_debuff", {duration = duration})
 	end

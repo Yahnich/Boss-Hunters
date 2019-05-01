@@ -70,7 +70,6 @@ function modifier_ursa_fury_swipes_bh_handle:OnAttackLanded(params)
 			if caster:HasModifier("modifier_ursa_enrage_bh") then
 				damage = damage * enrageMultiplier
 			end
-			print(damage)
 			ability:DealDamage( caster, target, damage, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_PROPERTY_FIRE } )
 		end
 	end

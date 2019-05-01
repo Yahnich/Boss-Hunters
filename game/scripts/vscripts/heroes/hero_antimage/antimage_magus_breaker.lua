@@ -1,7 +1,37 @@
 antimage_magus_breaker = class ({})
 
+function antimage_magus_breaker:GetBehavior()
+	if self:GetCaster():HasTalent("special_bonus_unique_antimage_magus_breaker_1") then
+		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
+	end
+	return DOTA_ABILITY_BEHAVIOR_PASSIVE
+end
+
+function antimage_magus_breaker:GetCooldown(iLvl)
+	return self:GetCaster():FindTalentValue("special_bonus_unique_antimage_magus_breaker_1", "cd")
+end
+
+function antimage_magus_breaker:GetManaCost(iLvl)
+	return self:GetCaster():FindTalentValue("special_bonus_unique_antimage_magus_breaker_1", "cost")
+end
+
+function antimage_magus_breaker:CastFilterResultTarget( target )
+	return UnitFilter( target, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_NONE, self:GetCaster():GetTeamNumber() )
+end
+
 function antimage_magus_breaker:GetIntrinsicModifierName()
 	return "modifier_antimage_magus_breaker"
+end
+
+function antimage_magus_breaker:OnSpellStart()
+	local caster = self:GetCaster()
+	local target = self:GetCursorTarget()
+	local debuff = target:AddNewModifier(caster, self, "modifier_antimage_magus_breaker_debuff", {duration = self:GetTalentSpecialValueFor("duration")})
+	if debuff then
+		debuff:SetStackCount( debuff:GetStackCount() + caster:FindTalentValue("special_bonus_unique_antimage_magus_breaker_1", "stacks") )
+	end
+	target:EmitSound("Hero_Antimage.ManaBreak")
+	ParticleManager:FireParticle("particles/mage_rage.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 end
 
 modifier_antimage_magus_breaker = class({})
@@ -43,8 +73,8 @@ modifier_antimage_magus_breaker_debuff = class({})
 LinkLuaModifier( "modifier_antimage_magus_breaker_debuff", "heroes/hero_antimage/antimage_magus_breaker", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_antimage_magus_breaker_debuff:OnCreated()
-	self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_antimage_magus_breaker_1")
-	self.mr = self:GetCaster():FindTalentValue("special_bonus_unique_antimage_magus_breaker_2")
+	self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_antimage_magus_breaker_1", "armor")
+	self.mr = self:GetCaster():FindTalentValue("special_bonus_unique_antimage_magus_breaker_1", "mr")
 	self.duration = self:GetTalentSpecialValueFor("duration")
 	if IsServer() then
 		self:SetStackCount( 1 )
