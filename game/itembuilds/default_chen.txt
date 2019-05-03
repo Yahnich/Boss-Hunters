@@ -1,50 +1,45 @@
 "itembuilds"
 {
-	"author"		"Valve"
+	"author"		"Prune"
 	"hero"			"npc_dota_hero_chen"
-	"Title"			"Recommended items for Chen"
-	
+	"Title"			"Chen (Hardcore)"
 	"Items"
 	{	
 		"#DOTA_Item_Build_Starting_Items"
 		{
-		
-			"item"	"item_midas_2"
-			"item"	"item_force_boots"
-			
+			"item"	"item_jar_of_souls"
 		}
 		"#DOTA_Item_Build_Early_Game"
 		{	
-		
-			"item"	"item_midas_3"	
-			"item"	"item_octarine_core3"
-			"item"  "item_redium_lens"
-			"item"	"item_veil_of_discord2"
-			"item"  "item_blink_boots"
-			"item"	"item_pixels_guard"
-			"item"  "item_bloodthorn3"
-			
+			"item"	"item_dagger_of_escape"	
+			"item"	“item_gem_of_corruption”
+			"item"  "item_war_drum"
 		}
 		"#DOTA_Item_Build_Core_Items"
 		{
-		
-			"item"	"item_octarine_core4"
-			"item"  "item_sunium_lens"
-			"item"	"item_veil_of_discord3"
-			"item"  "item_bloodthorn4"
-			"item" "item_moon_crest"
+			"item" "aghanims_scepter"
+			"item" "item_shadow_blade"
+			"item" "item_lucifers_cage"
+			"item" "item_flashback"
+			"item" "item_warp_staff"
+			"item" "item_armor_of_invasion"
+			"item" "item_lucys_ring"
+                        "item" "item_echoing_tambourine"
+			"item" "item_father_pipe"
+			"item" "item_gauntlet_of_the_void"
 		}
-		"#DOTA_Item_Build_End_Game"
-		{
-		
-			
-			"item"	"item_omni_lens"
-			"item"	"item_octarine_core5"
-			"item"	"item_veil_of_discord5"
-			"item"  "item_purethorn"
-			"item" "item_lunar_crest"
-			"item" "item_mekansm5"
-			"item" "item_Dagon_Mystic"
-		}
+              "#DOTA_Item_Build_Situational"
+              {
+	        "item" "item_dark_ones_blessing"
+                "item" "item_lifeweavers_clockwork"
+                "item" "item_penumbra"
+                "item" "item_galactic_hammer"
+                "item" "item_rising_salt"
+                "item" "item_iron_rose"
+                "item" "item_lightningbottle"
+                "item" "item_blade_of_dominion"
+                "item" "item_trinity"
+		"item" "item_inspiring_bongos"
+              }
 	}
 }
