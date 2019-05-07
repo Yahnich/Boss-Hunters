@@ -37,9 +37,10 @@ end
 function modifier_stats_system_handler:UpdateStatValues()
 	-- OTHER
 	local entindex = self:GetCaster():entindex()
-	
+	if self:GetCaster():GetParentUnit() then
+		entindex = self:GetCaster():GetParentUnit():entindex()
+	end
 	local netTable = CustomNetTables:GetTableValue("stats_panel", tostring(entindex) ) or {}
-		
 	self.ms = MOVESPEED_TABLE * tonumber(netTable["ms"])
 	self.mp = MANA_TABLE * tonumber(netTable["mp"])
 	self.mpr = MANA_REGEN_TABLE * tonumber(netTable["mpr"])

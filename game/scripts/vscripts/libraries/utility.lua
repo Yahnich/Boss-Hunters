@@ -2010,7 +2010,6 @@ end
 
 function CDOTA_BaseNPC:AttemptKill(sourceAb, attacker)
 	if not ( self:NoHealthBar() or self:IsOutOfGame() or self:IsNull() or attacker:IsNull() or sourceAb:IsNull() ) then
-		self:SetHealth(1)
 		local damage = ApplyDamage({victim = self, attacker = attacker, ability = sourceAb, damage_type = DAMAGE_TYPE_PURE, damage = self:GetMaxHealth(), damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_IGNORES_MAGIC_ARMOR + DOTA_DAMAGE_FLAG_IGNORES_PHYSICAL_ARMOR})
 		if self:IsNull() then return end
 		return not self:IsAlive()

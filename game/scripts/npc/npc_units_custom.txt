@@ -10821,4 +10821,81 @@
 		//Inventory
 		"HasInventory"				"0"
 	}
+	"npc_dota_arc_warden_tempest_mirage"
+	{
+		// General
+		//----------------------------------------------------------------
+		"BaseClass"					"npc_dota_lone_druid_bear"	// Class of entity of link to.
+		"Model"						"models/heroes/arc_warden/arc_warden.vmdl"// Model.
+		"SoundSet"					"Hero_ArcWarden"					// Name of sound set.
+		"Level"						"1"
+		"ConsideredHero"			"1"
+		"ModelScale"				"1.1"
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					"arc_warden_flux_bh"			// Ability 1.
+		"Ability2"					"arc_warden_magnetic_field_bh"			// Ability 2.
+		"Ability3"					"arc_warden_spark_wrath_bh"			// Ability 3.
+		"Ability4"					"generic_hidden"			// Ability 4.
+		"Ability5"					"generic_hidden"			// Ability 4.
+		"Ability6"					"arc_warden_primordial_current"			// Ability 5.
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"			// Physical protection.
+		"MagicalResistance"			"0"			// Magical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"5"			// Damage range min.
+		"AttackDamageMax"			"5"			// Damage range max.
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"1.7"		// Speed of attack.
+		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"900"		// Range within a target can be acquired.
+		"AttackRange"				"625"		// Range within a target can be attacked.
+		"ProjectileModel"			"particles/units/heroes/hero_arc_warden/arc_warden_base_attack.vpcf" // Particle system model for projectile.
+		"ProjectileSpeed"			"900"		// Speed of projectile.
+
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"HealthBarOffset"			"200"
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+		"MovementSpeed"				"280"			// Speed
+		"MovementTurnRate"			"0.6"		// Turning rate.
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"20"		// Experience earn.
+		"BountyGoldMin"				"20"		// Gold earned min.
+		"BountyGoldMax"				"20"		// Gold earned max.
+
+			// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"200"		// Base health.
+		"StatusHealthRegen"			"0"		// Health regeneration rate.
+		"StatusMana"				"75"			// Base mana.
+		"StatusManaRegen"			"0"			// Mana regeneration rate.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_GOODGUYS"			// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day light.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+		//Inventory
+		"HasInventory"				"1"
+	}
 }

@@ -31,20 +31,30 @@ function beast_wild_axes:OnSpellStart()
 	
 	local ProjectileThink = function(self, target, position)
 								local velocity = self:GetVelocity()
-								
+								-- 656 is just for the curve, experiment if u want
 								local offset = 150 * (self.length/656) * math.sin( 2 * math.pi * self.lifetime * (656/self.length))
 								self.distanceTraveled = self.distanceTraveled + speed * FrameTime()
 								local position
+								local nextPos
+								
 								if self.distanceTraveled > self.length then
 									position = self.end_position + CalculateDirection( self:GetCaster():GetAbsOrigin(), self.end_position ) * (self.distanceTraveled - self.length)
 									self.lifetime = self.lifetime - FrameTime()
+									
+									nextPos = self.end_position + CalculateDirection( self:GetCaster():GetAbsOrigin(), self.end_position ) * ( ( self.distanceTraveled + self:GetSpeed() * FrameTime() ) - self.length)
 								else
 									position = self.original_position + self.direction * self.distanceTraveled
 									self.lifetime = self.lifetime + FrameTime()
+									
+									nextPos = self.original_position + self.direction * ( self.distanceTraveled + self:GetSpeed() * FrameTime() )
 								end
+								local offset2 = 150 * (self.length/656) * math.sin( 2 * math.pi * self.lifetime * (656/self.length))
 								local offsetVect = self.state * GetPerpendicularVector( self.direction ) * offset
-								GridNav:DestroyTreesAroundPoint( position + offsetVect, 175, true )
-								self:SetPosition( position + offsetVect )
+								local calcPos = position + offsetVect
+								local calcNexPos = nextPos + offsetVect
+								self:SetVelocity( CalculateDirection(calc2NexPos, calcPos) * self:GetSpeed() )
+								GridNav:DestroyTreesAroundPoint( calcPos, 175, true )
+								self:SetPosition( calcPos )
 							end
 	local position = caster:GetAbsOrigin()
 	ProjectileHandler:CreateProjectile(ProjectileThink, ProjectileHit, { FX = "particles/units/heroes/hero_beastmaster/beastmaster_wildaxe.vpcf",

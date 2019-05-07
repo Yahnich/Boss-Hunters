@@ -126,7 +126,7 @@ function UpdateHealthBar()
 				nameMod = ""
 			}
 			$("#bossNameLabel").text = $.Localize("#" + unitName + nameMod);
-			var elite = ""
+			var elite = "" 
 			for (var i = 0; i < Entities.GetAbilityCount( sUnit ); i++) {
 				var abilityID = Entities.GetAbility( sUnit, i )
 				var abilityName = 	Abilities.GetAbilityName( abilityID )

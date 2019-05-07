@@ -26,7 +26,7 @@ function modifier_boss_necro_vile_aura:OnIntervalThink()
 	if parent:IsStunned() or parent:IsSilenced() or parent:IsRooted() then
 		return
 	end
-	if RollPercentage(50) then -- random position
+	if RollPercentage(80) then -- random position
 		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), -1 ) ) do
 			if RollPercentage(75) then
 				position = enemy:GetAbsOrigin() + ActualRandomVector(600, 250)
@@ -43,6 +43,8 @@ function modifier_boss_necro_vile_aura:OnIntervalThink()
 	Timers:CreateTimer(1.5, function()
 		if parent:IsStunned() or parent:IsSilenced() or parent:IsRooted() then return end
 		parent:Blink(position)
+		AddFOWViewer( DOTA_TEAM_GOODGUYS, position, 256, 3, false )
+		GridNav:DestroyTreesAroundPoint( position, 256, true)
 		if not modifier or modifier:IsNull() then return end
 		if IsServer() then modifier:StartIntervalThink( modifier:GetAbility():GetSpecialValueFor("blink_rate") ) end
 	end)

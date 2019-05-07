@@ -107,7 +107,7 @@
 		"Ability1"        "arc_warden_flux_bh"
 	    "Ability2"        "arc_warden_magnetic_field_bh" 
 	    "Ability3"        "arc_warden_spark_wrath_bh"
-	    "Ability4"        "arc_warden_echo_ward"
+	    "Ability4"        "arc_warden_tempest_mirage"
 	    "Ability6"        "arc_warden_primordial_current"
 
 	    "Ability10"       "special_bonus_unique_arc_warden_flux_bh_1"
@@ -178,6 +178,8 @@
 		"Ability15"				"special_bonus_unique_batrider_fly_2"
 		"Ability16"				"special_bonus_unique_batrider_lasso_1"
 		"Ability17"				"special_bonus_unique_batrider_lasso_2"
+		
+		"MovementSpeed"			"310"
 	}
 	"npc_dota_hero_beastmaster_ebf"
 	{

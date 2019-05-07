@@ -52,8 +52,8 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"10 15 20 25 30 35 40"
+				"var_type"				"FIELD_FLOAT"
+				"damage_amp"			"5.8 6 6.2 6.4 6.6 6.8 7"
 			}
 			"02"
 			{
@@ -68,7 +68,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"slow_ms"				"-3 -5 -7 -9 -11 -13 -14"
+				"slow_ms"				"-3 -4 -5 -6 -7 -8 -9"
 			}
 			"05"
 			{
@@ -78,7 +78,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_stacks"			"6"
+				"max_stacks"			"10"
 			}
 		}
 	}
@@ -379,7 +379,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"20"
+				"base_damage"			"10"
 			}
 			"02"
 			{

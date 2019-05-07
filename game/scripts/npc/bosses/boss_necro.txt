@@ -32,7 +32,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"blink_rate"				"6 5"
+				"blink_rate"				"10 8"
 			}
 		}
 	}

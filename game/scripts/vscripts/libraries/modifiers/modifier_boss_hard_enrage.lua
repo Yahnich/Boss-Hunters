@@ -1,5 +1,9 @@
 modifier_boss_hard_enrage = class({})
 
+function modifier_boss_hard_enrage:GetTexture()
+	return "axe_berserkers_call"
+end
+
 function modifier_boss_hard_enrage:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,

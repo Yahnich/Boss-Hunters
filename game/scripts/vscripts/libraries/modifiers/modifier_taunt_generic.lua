@@ -1,5 +1,12 @@
 modifier_taunt_generic = class({})
 
+function modifier_taunt_generic:OnCreated()
+	if IsServer() then
+		self:GetParent():Stop()
+		self:GetParent():Interrupt()
+	end
+end
+
 function modifier_taunt_generic:GetTauntTarget()
 	return self:GetCaster()
 end
