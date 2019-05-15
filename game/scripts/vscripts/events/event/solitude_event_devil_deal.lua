@@ -34,11 +34,11 @@ local function ThirdChoice(self, userid, event)
 	local relicList = {}
 	for item, relic in pairs( hero.ownedRelics ) do
 		if relic then
-			table.insert(relicList, relic)
+			table.insert(relicList, relic.name)
 		end
 	end
-	local relic = relicList[RandomInt(1, #relicList)]
-	RelicManager:RemoveRelicOnPlayer(relic, event.pID)
+	local relicName = relicList[RandomInt(1, #relicList)]
+	RelicManager:RemoveRelicOnPlayer(relicName, event.pID)
 	
 	RelicManager:PushCustomRelicDropsForPlayer(event.pID, {RelicManager:RollRandomRelicForPlayer(event.pID, "RARITY_RARE", true)})
 	

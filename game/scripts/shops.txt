@@ -96,6 +96,7 @@
 		"item"		"item_iron_rose"
 		"item"		"item_cloak_of_the_hunter"
 		"item"		"item_keshas_booze_barrel"
+		"item"		"item_tempest_staff"
     }
     "magics"
     {  

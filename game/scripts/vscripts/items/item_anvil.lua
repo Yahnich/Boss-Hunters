@@ -48,7 +48,3 @@ end
 function modifier_item_anvil_handle:IsHidden()
 	return true
 end
-
-function modifier_item_anvil_handle:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end

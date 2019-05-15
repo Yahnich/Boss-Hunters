@@ -81,12 +81,22 @@ function modifier_arc_warden_flux_bh:OnDestroy()
 	local parent = self:GetParent()
 	local caster = self:GetCaster()
 	local ability = self:GetAbility()
-	if IsServer() and caster:HasTalent("special_bonus_unique_arc_warden_flux_bh_1") then
-		local duration = self.duration - self:GetRemainingTime()
-		local damage = duration * self:GetTalentSpecialValueFor("damage_per_second") * caster:FindTalentValue("special_bonus_unique_arc_warden_flux_bh_1", "value2") / 100
-		local radius = caster:FindTalentValue("special_bonus_unique_arc_warden_flux_bh_1")
-		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), radius ) ) do
-			if enemy ~= parent then ability:DealDamage( caster, enemy, damage ) end
+	if IsServer() then
+		if caster:HasTalent("special_bonus_unique_arc_warden_flux_bh_1")  then
+			local duration = self.duration - self:GetRemainingTime()
+			local damage = duration * self:GetTalentSpecialValueFor("damage_per_second") * caster:FindTalentValue("special_bonus_unique_arc_warden_flux_bh_1", "value2") / 100
+			local radius = caster:FindTalentValue("special_bonus_unique_arc_warden_flux_bh_1")
+			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), radius ) ) do
+				if enemy ~= parent then ability:DealDamage( caster, enemy, damage ) end
+			end
+		end
+		if self:GetRemainingTime() > 0.1 then
+			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("jump_radius") ) ) do
+				if enemy ~= parent then
+					enemy:AddNewModifier( caster, ability, "modifier_arc_warden_flux_bh", {duration = self:GetRemainingTime()})
+					break
+				end
+			end
 		end
 	end
 end

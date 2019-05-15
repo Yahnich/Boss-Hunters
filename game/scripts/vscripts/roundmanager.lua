@@ -458,6 +458,10 @@ function RoundManager:EndEvent(bWonRound)
 			end
 		end
 		
+		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+			hero:Dispel(hero, true)
+		end
+		
 		local clearPeriod = 3
 		Timers:CreateTimer(function()
 			for _, unit in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_ENEMY, flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_DEAD + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD}) ) do
@@ -536,6 +540,7 @@ function RoundManager:RaidIsFinished()
 			hero.statsDamageTaken = 0
 			hero.statsDamageDealt = 0
 			hero.statsDamageHealed = 0
+			hero:RefreshAllCooldowns(true)
 			if RoundManager.boundingBox ~= lastSpawns then
 				CustomGameEventManager:Send_ServerToAllClients( "bh_move_camera_position", { position = RoundManager:GetHeroSpawnPosition() } )
 				local position = RoundManager:GetHeroSpawnPosition() + RandomVector(64)

@@ -13,7 +13,7 @@ end
 
 function modifier_area_dmg_handler:OnTakeDamage(params)
 	local countsAsAttack = ( params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK ) or HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE )
-	if params.attacker ~= self:GetParent() or params.unit:IsSameTeam(params.attacker) or self:GetStackCount() == 0 then return end
+	if params.attacker ~= self:GetParent() or params.unit:IsSameTeam(params.attacker) or self:GetStackCount() == 0 or params.damage <= 0 then return end
 	local spellValid = false
 	local spellValidTargeting = false
 	local spellHasTarget = false
