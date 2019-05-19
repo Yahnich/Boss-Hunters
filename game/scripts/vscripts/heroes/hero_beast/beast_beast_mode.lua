@@ -40,23 +40,63 @@ function modifier_beast_mode:IsHidden()
 end
 
 modifier_beast_mode_allies = class({})
+function modifier_beast_mode_allies:OnCreated()
+	self.cdr = self:GetTalentSpecialValueFor("bonus_cdr") 
+	if self:GetCaster():HasTalent("special_bonus_unique_beast_beast_mode_1") then
+		self.amp = self:GetTalentSpecialValueFor("bonus_cdr") 
+	end
+	self.as = self:GetTalentSpecialValueFor("bonus_attackspeed")
+	self.hp = self:GetTalentSpecialValueFor("boar_bonus_health")
+	self.hpr = self:GetTalentSpecialValueFor("boar_bonus_regen")
+	self.ms = self:GetTalentSpecialValueFor("hawk_bonus_ms")
+	self.vis = self:GetTalentSpecialValueFor("hawk_bonus_vision")
+end
+
+function modifier_beast_mode_allies:OnRefresh()
+	self:OnCreated()
+end
+
 function modifier_beast_mode_allies:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_BONUS_DAY_VISION,
+		MODIFIER_PROPERTY_BONUS_NIGHT_VISION
 	}
 	return funcs
 end
 
 function modifier_beast_mode_allies:GetCooldownReduction()
-	return self:GetTalentSpecialValueFor("bonus_cdr")
+	return self.cdr
 end
 
 function modifier_beast_mode_allies:GetModifierAttackSpeedBonus()
-	return self:GetTalentSpecialValueFor("bonus_attackspeed")
+	return self.as
+end
+
+function modifier_beast_mode_allies:GetModifierExtraHealthBonusPercentage()
+	if self:GetCaster():HasModifier("modifier_cotw_boar_spirit") then return self.hp end
+end
+
+function modifier_beast_mode_allies:GetModifierConstantHealthRegen()
+	if self:GetCaster():HasModifier("modifier_cotw_boar_spirit") then return self.hpr end
+end
+
+function modifier_beast_mode_allies:GetModifierMoveSpeedBonus_Percentage()
+	if self:GetCaster():HasModifier("modifier_cotw_hawk_spirit") then return self.ms end
+end
+
+function modifier_beast_mode_allies:GetBonusDayVision()
+	if self:GetCaster():HasModifier("modifier_cotw_hawk_spirit") then return self.vis end
+end
+
+function modifier_beast_mode_allies:GetBonusNightVision()
+	if self:GetCaster():HasModifier("modifier_cotw_hawk_spirit") then return self.vis end
 end
 
 function modifier_beast_mode_allies:GetModifierSpellAmplify_Percentage()
-	if self:GetCaster():HasTalent("special_bonus_unique_beast_beast_mode_1") then return self:GetTalentSpecialValueFor("bonus_cdr") end
+	return self.amp
 end
 
 function modifier_beast_mode_allies:IsDebuff()

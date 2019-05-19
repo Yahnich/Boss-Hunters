@@ -68,7 +68,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_ms"				"900"
+				"active_ms"				"750"
 			}
 			"02"
 			{

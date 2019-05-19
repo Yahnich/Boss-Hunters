@@ -4,7 +4,7 @@ function relic_longbow:OnCreated()
 	if IsServer() then
 		self:GetParent().originalAttackCapability = self:GetParent():GetAttackCapability()
 		self:GetParent():SetAttackCapability( DOTA_UNIT_CAP_RANGED_ATTACK )
-		if self:GetParent().originalAttackCapability ~= DOTA_UNIT_CAP_RANGED_ATTACK then self:GetParent():SetRangedProjectileName( "particles/base_attacks/projectile.vpcf" ) end
+		if self:GetParent().originalAttackCapability ~= DOTA_UNIT_CAP_RANGED_ATTACK then self:GetParent():SetRangedProjectileName( "particles/base_attacks/generic_projectile.vpcf"  ) end
 	end
 end
 

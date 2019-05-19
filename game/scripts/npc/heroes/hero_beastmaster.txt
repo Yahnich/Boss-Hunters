@@ -113,7 +113,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
+				"value"					"50"
 			}
 		}
 	}
@@ -126,13 +126,13 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_beast/beast_cotw_boar.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"beastmaster_call_of_the_wild"
+		"LinkedAbility"					"beast_cotw_hawk"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -142,11 +142,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"6"
+		"AbilityCooldown"				"30"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"80"
+		"AbilityManaCost"				"25"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -155,18 +155,42 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"60 100 140 180 220 260 300"
+				"boar_health"				"1000 1250 1500 1750 2000 2250 2500"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"speed"						"750"
-				"LinkedSpecialBonus"		"special_bonus_unique_beast_boar_spirit_2"
+				"boar_damage"				"60 70 80 90 100 110 120"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"width"						"250"
+				"boar_ms"					"300 310 320 330 340 350 360"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"boar_bat"					"1.0"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"ms_slow"					"-16 -20 -24 -28 -32 -36 -40"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"as_slow"					"-16 -20 -24 -28 -32 -36 -40"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"debuff_duration"			"2"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"respawn_time"				"20"
 			}
 		}
 	
@@ -195,6 +219,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value"					"1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
 			}
 		}
 	}
@@ -230,9 +259,9 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"MaxLevel"						"7"
 		"AbilityTextureName"			"beastmaster_call_of_the_wild_hawk"
+		"LinkedAbility"					"beast_cotw_boar"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -245,7 +274,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50"
+		"AbilityManaCost"				"25"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -253,29 +282,28 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"30"
-				"LinkedSpecialBonus"		"special_bonus_unique_beast_hawk_spirit_1"
+				"var_type"					"FIELD_INTEGER"
+				"hawk_health"				"400 500 600 700 800 900 1000"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"health_regen"				"1.5"
+				"var_type"					"FIELD_INTEGER"
+				"hawk_ms"					"400 425 450 475 500 525 550"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"mana_regen"				"0.75"
+				"var_type"					"FIELD_INTEGER"
+				"hawk_vision"				"1800"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"500"
+				"invis_delay"				"2"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"hits_to_kill"				"4"
+				"respawn_time"				"20"
 			}
 		}
 	
@@ -301,8 +329,13 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-15"
+				"var_type"				"FIELD_FLOAT"
+				"dmg"					"100"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bat"					"0.75"
 			}
 		}
 	}
@@ -348,19 +381,39 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"bonus_cdr"						"7 10 13 16 19 22 25"
+				"radius"						"900"
 			}
 			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_cdr"						"7 10 13 16 19 22 25"
+			}
+			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"bonus_attackspeed"				"20 30 40 50 60 70 80"
 				"LinkedSpecialBonus"			"special_bonus_unique_beast_beast_mode_2"
 				"LinkedSpecialBonusOperator"	"SPECIAL_BONUS_MULTIPLY"
 			}
-			"03"
+			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
+				"var_type"						"FIELD_FLOAT"
+				"boar_bonus_health"				"6 7.5 9 10.5 12 13.5 15"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"boar_bonus_regen"				"4 8 12 16 20 24 28"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"hawk_bonus_ms"					"6 12 18 24 30 36 42"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"hawk_bonus_vision"				"100 200 300 400 500 600 700"
 			}
 		}
 	}
@@ -481,9 +534,26 @@
 			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"cast_range_scepter"		"950"
+				"boar_heal"					"150 225 300 375 450 525"
+				"LinkedSpecialBonus"		"special_bonus_unique_beast_roar_1"
+				"LinkedSpecialBonusField"	"damage"
 			}
 			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"hawk_armor"				"-5 -6 -7 -8 -9 -10"
+			}
+			"10"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"hawk_mr"					"-25 -30 -35 -40 -45 -50"
+			}
+			"11"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cast_range_scepter"		"950"
+			}
+			"12"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"cooldown_scepter"			"45.0"
@@ -517,7 +587,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"175"
+				"damage"				"175"
 			}
 		}
 	}

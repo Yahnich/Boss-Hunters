@@ -44,34 +44,36 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"150 225 300 375 450 525 600"
-				"LinkedSpecialBonus"	"special_bonus_unique_bh_shuriken_1"
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"150 225 300 375 450 525 600"
+				"LinkedSpecialBonus"		"special_bonus_unique_bh_shuriken_1"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"1000"
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"1000"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bounces"				"5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bounce_aoe"			"1200"
+				"var_type"					"FIELD_INTEGER"
+				"max_bounces"				"1"
+				"LinkedSpecialBonus"		"special_bonus_unique_bh_shuriken_1"
+				"LinkedSpecialBonusField"	"bounces"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"ministun"				"0.1"
+				"var_type"					"FIELD_INTEGER"
+				"bounce_aoe"				"1200"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"scepter_ministun"		"0.75"
+				"var_type"					"FIELD_FLOAT"
+				"ministun"					"0.1"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"scepter_ministun"			"0.75"
 			}
 		}
 	}
@@ -94,7 +96,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"120"
+				"value"						"100"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bounces"					"1"
 			}
 		}
 	}
@@ -184,7 +191,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"width"					"50"
+				"width"					"80"
 			}
 			"05"
 			{
@@ -452,11 +459,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
+		"AbilityCooldown"				"4"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"90"
+		"AbilityManaCost"				"65"
 	
 		"precache"
 		{
@@ -475,12 +482,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"critical_strike"		"130 135 140 145 150"
+				"critical_strike"		"125 130 135 140 145 150"
+				"LinkedSpecialBonus"	"special_bonus_unique_bh_track_2"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_gold"			"40 80 120 160 200 240"
+				"bonus_gold"			"100 120 140 160 180 200"
 				"LinkedSpecialBonus"	"special_bonus_unique_bh_track_1"
 			}
 			"03"
@@ -514,7 +522,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"300"
+				"value"						"200"
 			}
 		}
 	}
@@ -536,7 +544,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"3"
+				"value"						"15"
 			}
 		}
 	}

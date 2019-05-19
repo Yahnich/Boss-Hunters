@@ -1,37 +1,54 @@
+//=================================================================================================================
+//Tempest Staff (Euls)
+//Components:
+//Hurricane Blade (2175)
+//Wings of Icarus (2210)
+//Staff of Magi (900)
+//Total: 5285
+//Stats:
+//+20 Str
+//+20 Int
+//+50% Ms
+//+25% Evasion
+//Active: Howling Wind - 
+//When cast on allies or self, 
+//grants flying movement, bonus attack speed, and movement speed for 5 seconds, 
+//When cast on enemies, 
+//Disarm+Root them for 5 seconds. 
+//CD:15s, 
+//Manacost:125
+
 "DOTAAbilities"
 {
 	//=================================================================================================================
 	//Recipie
 	//=================================================================================================================
-
 	"item_recipe_tempest_staff"
 	{
-	"ID"							"7107"														
-
+		"ID"							"7107"														
 		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_assault"
+		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
+		"Itemrecipe" 					"1"
 		"ItemResult"					"item_tempest_staff"
 		"ItemRequirements"
 		{
-			"01"						"item_wings_of_icarus; item_hurricane_blade; item_staff_of_magi"
+			"01"						"item_wings_of_icarus;item_hurricane_blade;item_staff_of_magi"
 		}
 	}
-
 	//=================================================================================================================
 	//Tempest Staff
 	//=================================================================================================================
-
 	"item_tempest_staff"
-	
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"7108"														
-		
-		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		
+		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.	
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -52,12 +69,12 @@
 		"particle"
 		{
 			"particle"					"particles/econ/events/ti6/phase_boots_ti6.vpcf"
-
-			"particle"					"particles/items2_fx/heavens_halberd_debuff_disarm.vpcf"
-			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/rahx/rahx_tornado.vpcf"
 		}
 		
 		"AbilityCooldown"				"15"
+		"AbilityCastRange"				"900"
+		"AbilityManaCost"				"125"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -76,42 +93,27 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intelligence"	"20"
+				"bonus_intellect"		"20"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"50"
+				"bonus_movespeed"		"50"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"ms_duration"			"5.0"
+				"var_type"				"FIELD_INTEGER"
+				"active_movespeed"		"800"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_ms"				"100"
+				"active_attackspeed"	"100"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"as_duration"			"5.0"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_as"				"50"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"disarm_duration"		"5.0"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"root_duration"			"5.0"
+				"active_duration"		"5.0"
 			}
 		}
 	}

@@ -142,13 +142,15 @@ function StatsScreen:RespecAll(userid, event)
 				ability:SetLevel(0)
 			end
 		end
-		for _, modifier in ipairs( modifiers ) do
-			if modifier:GetAbility() then
-				if not modifier:GetAbility():IsInnateAbility() and modifier:GetCaster() == hero and not modifier:GetAbility():IsItem() and modifier:GetAbility():GetName() ~= "item_relic_handler" then -- destroy passive modifiers and any buffs
-					modifier:Destroy()
+		Timers:CreateTimer(function()
+			for _, modifier in ipairs( modifiers ) do
+				if modifier:GetAbility() then
+					if not modifier:GetAbility():IsInnateAbility() and modifier:GetCaster() == hero and not modifier:GetAbility():IsItem() and modifier:GetAbility():GetName() ~= "item_relic_handler" then -- destroy passive modifiers and any buffs
+						modifier:Destroy()
+					end
 				end
 			end
-		end
+		end)
 		hero:CalculateStatBonus()
 		hero.totalGainedTalentPoints = hero.totalGainedTalentPoints or 0
 		hero.bonusSkillPoints = hero.bonusSkillPoints or hero:GetLevel()

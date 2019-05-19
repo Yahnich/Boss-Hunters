@@ -33,6 +33,11 @@ function bh_shuriken:OnSpellStart()
 		for _,enemy in pairs(enemies) do
 			if enemy ~= target then
 				self:TossShuriken(enemy, self:GetTalentSpecialValueFor("damage"), self:GetTalentSpecialValueFor("bounces"), caster, self.shadow_walk)
+				if caster:HasScepter() then
+					Timers:CreateTimer(0.25, function()
+						self:TossShuriken(target, self:GetTalentSpecialValueFor("damage"), self:GetTalentSpecialValueFor("bounces"), caster, self.shadow_walk)
+					end)
+				end
 				break
 			end
 		end
@@ -48,7 +53,7 @@ end
 function bh_shuriken:TossShuriken(target, damage, bounces, source, bShadowWalk)
 	local caster = self:GetCaster()
 	local hSource = source or caster
-	local extraData = {damage = damage, bounces = bounces, shadow_walk = bShadowWalk}
+	local extraData = {damage = damage, shadow_walk = bShadowWalk, units = {}}
 	self:FireTrackingProjectile( "particles/units/heroes/hero_bounty_hunter/bounty_hunter_suriken_toss.vpcf", target, self:GetTalentSpecialValueFor("speed"), {extraData = extraData, source = hSource, origin = hSource:GetAbsOrigin() }, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, false, 0)
 end
 
@@ -68,10 +73,13 @@ function bh_shuriken:OnProjectileHit_ExtraData( target, position, extraData )
 				ability:TriggerJinada(target, true)
 			end
 		end
-
+		local ministun = self:GetTalentSpecialValueFor("ministun")
+		if caster:HasScepter() then
+			ministun = self:GetTalentSpecialValueFor("scepter_ministun")
+		end
 		local refDamage = self:DealDamage(caster, target, damage, {})
-
-
+		self:Stun(target, ministun)
+		
 		if shadow_walk then
 			local ability = caster:FindAbilityByName("bh_shadow_walk")
 			local swDamage = ability:GetTalentSpecialValueFor("damage")

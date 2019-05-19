@@ -146,7 +146,7 @@ end
 -- this is an effect on the target for the duration
 
 function modifier_item_tempest_staff_active_ally:GetEffectName()
-	return "particles/econ/events/ti6/phase_boots_ti6.vpcf"
+	return "particles/econ/events/ti8/phase_boots_ti8.vpcf"
 end
 
 -- casted on enemy functions
@@ -157,7 +157,6 @@ modifier_item_tempest_staff_active_enemy = class({})
 LinkLuaModifier("modifier_item_tempest_staff_active_enemy", "items/item_tempest_staff", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_item_tempest_staff_active_enemy:CheckState()
-
 	return {[MODIFIER_STATE_DISARMED] = true, 
 			[MODIFIER_STATE_ROOTED] = true}
 
