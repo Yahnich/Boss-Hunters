@@ -5,7 +5,11 @@ function relic_silver_arrow:DeclareFunctions()
 end
 
 function relic_silver_arrow:GetModifierAttackRangeBonus()
-	if self:GetParent():IsRangedAttacker() then return 150 end
+	if self:GetParent():IsRangedAttacker() then
+		return 100
+	else
+		return 50 
+	end
 end
 
 function relic_silver_arrow:GetModifierPreAttack_BonusDamage()

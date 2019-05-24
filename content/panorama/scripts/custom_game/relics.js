@@ -169,7 +169,9 @@ function CreateRelicSelection(relic)
 		typeLabel.style.brightness = 0.6;
 	}
 	typeLabel.text = $.Localize( relic.name )
-	relicChoice.FindChildTraverse("SnippetRelicDescription").text = $.Localize( relic.name + "_Description" )
+	var relicDescription = relicChoice.FindChildTraverse("SnippetRelicDescription")
+	relicDescription.html = true;
+	relicDescription.text = $.Localize( relic.name + "_Description" )
 	
 	$.CreatePanel("Panel", holder, "").SetHasClass("VerticalSeperator", true)
 }

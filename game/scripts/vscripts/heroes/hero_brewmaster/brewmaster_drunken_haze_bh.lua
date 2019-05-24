@@ -1,18 +1,20 @@
-brewmaster_drunken_haze_ebf = class({})
+brewmaster_drunken_haze_bh = class({})
 
-function brewmaster_drunken_haze_ebf:IsStealable()
+function brewmaster_drunken_haze_bh:IsStealable()
 	return true
 end
 
-function brewmaster_drunken_haze_ebf:IsHiddenWhenStolen()
+function brewmaster_drunken_haze_bh:IsHiddenWhenStolen()
 	return false
 end
 
-function brewmaster_drunken_haze_ebf:GetAOERadius()
-	return self:GetTalentSpecialValueFor("scepter_radius")
+function brewmaster_drunken_haze_bh:GetAOERadius()
+	if self:GetCaster():HasScepter() then 
+		return self:GetTalentSpecialValueFor("scepter_radius")
+	end
 end
 
-function brewmaster_drunken_haze_ebf:OnSpellStart()
+function brewmaster_drunken_haze_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	if caster:HasScepter() then
@@ -23,9 +25,13 @@ function brewmaster_drunken_haze_ebf:OnSpellStart()
 		self:FireTrackingProjectile("particles/units/heroes/hero_brewmaster/brewmaster_cinder_brew_cast_projectile.vpcf", target, 1300, nil, DOTA_PROJECTILE_ATTACHMENT_ATTACK_2)
 	end
 	EmitSoundOn("Hero_Brewmaster.CinderBrew.Cast", caster)
+	if caster:HasTalent("special_bonus_unique_brewmaster_drunken_haze_1") then
+		caster:AddNewModifier(caster, caster:FindAbilityByName("brewmaster_drunken_brawler_bh"), "modifier_brewmaster_drunken_brawler_bh_crit", {})
+		caster:AddNewModifier(caster, caster:FindAbilityByName("brewmaster_drunken_brawler_bh"), "modifier_brewmaster_drunken_brawler_bh_evade", {})
+	end
 end
 
-function brewmaster_drunken_haze_ebf:OnProjectileHit(target, position)
+function brewmaster_drunken_haze_bh:OnProjectileHit(target, position)
 	local caster = self:GetCaster()
 	local duration = self:GetTalentSpecialValueFor("duration")
 	EmitSoundOn("Hero_Brewmaster.CinderBrew.Target", target)
@@ -34,10 +40,12 @@ function brewmaster_drunken_haze_ebf:OnProjectileHit(target, position)
 	else
 		target:AddNewModifier(caster, self, "modifier_brewmaster_drunken_haze_debuff", {duration = duration})
 	end
-	target:Daze(self, caster, duration)
+	if not target:IsMagicImmune() then
+		target:Daze(self, caster, duration)
+	end
 end
 
-LinkLuaModifier( "modifier_brewmaster_drunken_haze_buff", "heroes/hero_brewmaster/brewmaster_drunken_haze_ebf.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_brewmaster_drunken_haze_buff", "heroes/hero_brewmaster/brewmaster_drunken_haze_bh.lua", LUA_MODIFIER_MOTION_NONE )
 modifier_brewmaster_drunken_haze_buff = class({})
 
 function modifier_brewmaster_drunken_haze_buff:OnCreated()
@@ -69,7 +77,7 @@ function modifier_brewmaster_drunken_haze_buff:GetStatusEffectName()
 	return "particles/status_fx/status_effect_brewmaster_drunken_haze.vpcf"
 end
 
-LinkLuaModifier( "modifier_brewmaster_drunken_haze_debuff", "heroes/hero_brewmaster/brewmaster_drunken_haze_ebf.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_brewmaster_drunken_haze_debuff", "heroes/hero_brewmaster/brewmaster_drunken_haze_bh.lua", LUA_MODIFIER_MOTION_NONE )
 modifier_brewmaster_drunken_haze_debuff = class({})
 
 function modifier_brewmaster_drunken_haze_debuff:OnCreated()

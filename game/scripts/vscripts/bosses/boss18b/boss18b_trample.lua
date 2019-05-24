@@ -51,7 +51,7 @@ function boss18b_trample:BlinkAndBreak(newPos, radius)
 			return true
 		end
 	end
-	
+	GridNav:DestroyTreesAroundPoint( caster:GetAbsOrigin(), radius, true )
 	ParticleManager:FireParticle("particles/test_particle/ogre_melee_smash.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = newPos, [1] = Vector(radius, radius, radius)})
 	EmitSoundOn("Ability.SandKing_BurrowStrike", caster)
 end

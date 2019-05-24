@@ -1,7 +1,7 @@
 relic_false_idol = class(relicBaseClass)
 
 function relic_false_idol:OnCreated()
-	self.damagePct = 0.25
+	self.damagePct = 0.20
 	if IsServer() then
 		self.lastPos = self:GetParent():GetAbsOrigin()
 		self:StartIntervalThink(0.1)
@@ -23,5 +23,5 @@ function relic_false_idol:DeclareFunctions()
 	return {MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING}
 end
 function relic_false_idol:GetModifierCastRangeBonusStacking(params)
-	return 600
+	return 900
 end

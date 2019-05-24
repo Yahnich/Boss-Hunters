@@ -9,12 +9,14 @@ function relic_delirious_cowl:OnAbilityFullyCast(params)
 		local delayedCD = params.ability:IsDelayedCooldown()
 		local cd = params.ability:GetCooldownTimeRemaining()
 		params.ability:Refresh()
-		local maxCD = 1.5
-		if self:GetParent():HasModifier("relic_ritual_candle") then maxCD = 1 end
 		if delayedCD then
-			params.ability:StartDelayedCooldown(false, cd * RandomFloat(0.1, maxCD) )
+			params.ability:StartDelayedCooldown(false, cd * RandomFloat(0.1, 1) )
 		else
-			params.ability:StartCooldown( cd * RandomFloat(0.1, maxCD) )
+			params.ability:StartCooldown( cd * RandomFloat(0.1, 1) )
 		end
 	end
+end
+
+function relic_delirious_cowl:GetCooldownReduction()
+	return -50
 end

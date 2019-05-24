@@ -14,13 +14,7 @@ function Spawn( entityKeyValues )
 	thisEntity.suicide = thisEntity:FindAbilityByName("boss_suicide")
 	thisEntity.mine = thisEntity:FindAbilityByName("boss_proximity")
 	thisEntity.AIstate = RandomInt(1,2)
-	if  math.floor(GameRules.gameDifficulty + 0.5) > 3 then
-		thisEntity.suicide:SetLevel(4)
-		thisEntity.mine:SetLevel(4)
-	elseif  math.floor(GameRules.gameDifficulty + 0.5) == 3 then
-		thisEntity.suicide:SetLevel(3)
-		thisEntity.mine:SetLevel(3)
-	elseif  math.floor(GameRules.gameDifficulty + 0.5) == 2 then
+	if  math.floor(GameRules.gameDifficulty + 0.5) > 2 then
 		thisEntity.suicide:SetLevel(2)
 		thisEntity.mine:SetLevel(2)
 	else

@@ -513,7 +513,7 @@
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"25 40"
+		"AbilityDamage"					"40	60"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -598,25 +598,25 @@
 			}
 		}
 	}
-	"boss_overwhelming_odds"
+	"boss_hail_of_arrows"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss5/boss_hail_of_arrows"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName"			"legion_commander_overwhelming_odds"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"legion_commander_overwhelming_odds"
+		
 		"precache"
 		{
+			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_odds.vpcf"
+			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_odds_buff.vpcf"
+			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_odds_cast.vpcf"
 			"soundfile"	"game_sounds_heroes/game_sounds_legion_commander.vsndevts"
-			"particle"	"particles/units/heroes/hero_legion_commander/legion_commander_odds_cast.vpcf"
-			"particle"	"particles/units/heroes/hero_legion_commander/legion_commander_odds.vpcf"
-			"particle"	"particles/units/heroes/hero_legion_commander/legion_commander_odds_buff.vpcf"
-			"particle"	"particles/generic_radius_warning.vpcf"
 		}
 	
 		// Time		
@@ -632,7 +632,6 @@
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"120"
-	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -655,73 +654,17 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_per_hero"		"200 250"
+				"bonus_speed"			"15"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"illusion_dmg_pct"		"80"
+				"var_type"						"FIELD_FLOAT"
+				"bonus_armor"					"4 6"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_speed_creeps"	"15"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_speed_heroes"	"20"
-			}
-			"08"
-			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"4.0"
-			}
-		}
-		"OnAbilityPhaseStart"
-		{
-			"RunScript"
-	            {
-	            	"ScriptFile"	"lua_boss/boss_5"
-				"Function"		"PreParticles"
-				"Target"		"POINT"		
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_LegionCommander.Overwhelming.Cast"
-				"Target"		"CASTER"
-			}
-		}
-		"OnSpellStart"
-		{
-			"RunScript"
-	            {
-	            	"ScriptFile"	"lua_boss/boss_5"
-				"Function"		"RainOfArrows"
-				"Target"		"POINT"		
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_LegionCommander.Overwhelming.Location"
-				"Target"		"CASTER"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_legion_commander_overwhelming_odds_buff"
-			{
-				"IsBuff"	"1"
-				"IsPurgable"	"1"
-				"EffectName"	"particles/units/heroes/hero_legion_commander/legion_commander_odds_buff.vpcf"
-			}
-			"modifier_legion_commander_overwhelming_odds_buff_stacks"
-			{
-				"IsHidden"	"1"
-				"IsPurgable"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"1"
-				}
 			}
 		}
 	}
@@ -784,6 +727,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"MaxLevel"						"2"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -805,17 +749,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"500"
+				"radius"					"400"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"proximity_threshold"		"2.1"
+				"proximity_threshold"		"1.6 1.4"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"650 700 750 800"
+				"damage"					"600 800"
 			}
 			"04"
 			{
@@ -830,7 +774,7 @@
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"activation_delay"			"2"
+				"activation_delay"			"1 0.5"
 			}
 		}
 	}
@@ -886,7 +830,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.53 0.53 0.53 0.53"
-		"AbilityChannelTime"			"3.0 2.0"
+		"AbilityChannelTime"			"4.0 3.0"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -895,6 +839,7 @@
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"25"
+		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -902,7 +847,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"channel_tooltip"			"3.0 2.0"
+				"channel_tooltip"		"4.0 3.0"
 			}
 		}
 	}
@@ -938,12 +883,12 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"			"90 140"
+				"damage"			"110 170"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"radius"			"15000"
+				"radius"			"1200"
 			}
 			"03"
 			{
@@ -1294,12 +1239,13 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		"MaxLevel"						"2"
 	
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"300 333 366 400"
-		"AbilityCastPoint"				"2.0 1.5"
+		"AbilityCastRange"				"400 600"
+		"AbilityCastPoint"				"1.5 1.0"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -1316,12 +1262,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"250"
+				"radius"					"250 300"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"500 600 700 800"
+				"damage"					"600 800"
 			}
 			"03"
 			{
@@ -1336,7 +1282,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"0.8"
+				"duration"					"0.8 0.75"
 			}
 		}
 	}
@@ -2446,15 +2392,18 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"slark_shadow_dance"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"MaxLevel"						"2"
-	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"HasScepterUpgrade"				"1"
+		"AbilitySound"					"Hero_Slark.ShadowDance"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"50.0"
-	
+		"AbilityCooldown"				"80 70 60"
+
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"		
+		"AbilityManaCost"				"0"			
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -2463,7 +2412,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"2.0 2.5"
+				"duration"					"3"
 				"LinkedSpecialBonus"		"special_bonus_unique_slark_3"
 			}
 			"02"
@@ -2474,12 +2423,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_movement_speed"		"35 50"
+				"bonus_movement_speed"		"20 35 50"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_regen_pct"			"3 5"
+				"bonus_regen_pct"			"3 5 7"
 			}
 			"05"
 			{

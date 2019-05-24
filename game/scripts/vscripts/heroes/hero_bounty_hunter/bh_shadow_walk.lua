@@ -31,7 +31,7 @@ end
 modifier_bh_shadow_walk = class({})
 function modifier_bh_shadow_walk:OnCreated(table)
     self.damage = self:GetTalentSpecialValueFor("damage")
-
+	self.talent = self:GetCaster():HasTalent("special_bonus_unique_bh_shadow_walk_1")
 	if IsServer() then 
 		self:GetCaster():CalculateStatBonus()
 		self:GetAbility():StartDelayedCooldown( self:GetRemainingTime() )
@@ -40,7 +40,7 @@ end
 
 function modifier_bh_shadow_walk:OnRefresh(table)
     self.damage = self:GetTalentSpecialValueFor("damage")
-
+	self.talent = self:GetCaster():HasTalent("special_bonus_unique_bh_shadow_walk_1")
 	if IsServer() then self:GetCaster():CalculateStatBonus() end
 end
 
@@ -53,12 +53,25 @@ end
 function modifier_bh_shadow_walk:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
+		MODIFIER_EVENT_ON_ORDER,
         MODIFIER_EVENT_ON_ATTACK_LANDED,
         MODIFIER_EVENT_ON_ABILITY_EXECUTED,
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
     }
-
     return funcs
+end
+
+function modifier_bh_shadow_walk:OnOrder(params)
+	if IsServer() and self.talent then
+		if params.unit == self:GetParent() 
+		and not self:GetParent():IsRooted() 
+		and params.target 
+		and params.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET then
+			local parentPos = params.target:GetAbsOrigin()
+			local position = parentPos + RandomVector( params.unit:GetAttackRange() )
+			params.unit:Blink( position )
+		end
+	end
 end
 
 function modifier_bh_shadow_walk:CheckState()
@@ -74,11 +87,6 @@ function modifier_bh_shadow_walk:OnAbilityExecuted(params)
 		local ability = params.ability
 
 		if unit == parent then
-			if parent:HasTalent("special_bonus_unique_bh_shadow_walk_1") and ability:GetAbilityName() == "bh_shuriken" then
-				ability:GetCursorTarget():AddNewModifier( unit, self:GetAbility(), "modifier_bh_shadow_walk_slow", {duration = self:GetTalentSpecialValueFor("slow_duration")} )
-				self:GetAbility():DealDamage(parent, ability:GetCursorTarget(), self.damage, {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_DAMAGE)
-			end
-
 			self:Destroy()
 		end
 	end
@@ -88,7 +96,7 @@ function modifier_bh_shadow_walk:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() then
 			params.target:AddNewModifier( params.attacker, self:GetAbility(), "modifier_bh_shadow_walk_slow", {duration = self:GetTalentSpecialValueFor("slow_duration")} )
-			self:Destroy()
+			Timers:CreateTimer(function() self:Destroy() end)
 		end
 	end
 end

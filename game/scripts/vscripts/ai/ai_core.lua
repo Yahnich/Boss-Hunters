@@ -39,7 +39,7 @@ AI_BEHAVIOR_AGGRESSIVE = 1 -- Threat is weighted towards damage
 AI_BEHAVIOR_CAUTIOUS = 2 -- Threat is weighted towards health
 AI_BEHAVIOR_SAFE = 3 -- Threat is weighted towards heals and debuffs, requires bigger threat difference to switch aggro
 
-AI_THINK_RATE = 1
+AI_THINK_RATE = 1.5
 BASE_AGGRO_RADIUS = 600
 
 function AICore:RandomEnemyHeroInRange( entity, range , magic_immune)
@@ -172,7 +172,7 @@ function AICore:AttackHighestPriority( entity )
 				local distanceToEnemy = (entity:GetAbsOrigin() - enemy:GetAbsOrigin()):Length2D()
 				if not enemy.threat then enemy.threat = 0 end
 				if not minThreat then minThreat = 0 end
-				if GridNav:CanFindPath( entity:GetAbsOrigin(), enemy:GetAbsOrigin() ) and entity:CanEntityBeSeenByMyTeam(enemy) and enemy:IsAlive() then
+				if entity:CanEntityBeSeenByMyTeam(enemy) and enemy:IsAlive() then
 					if distanceToEnemy < range then
 						if enemy.threat > minThreat and not entity.AIprevioustarget then
 							minThreat = enemy.threat

@@ -20,7 +20,7 @@ function modifier_boss_phantom_cold_touch:DeclareFunctions()
 end
 
 function modifier_boss_phantom_cold_touch:OnAttackLanded(params)
-	if params.attacker == self:GetParent() and not params.attacker:PassivesDisabled() then
+	if params.attacker == self:GetParent() and not params.attacker:PassivesDisabled() and not params.target:IsMagicImmune() then
 		if not params.target:FindModifierByNameAndCaster("modifier_boss_phantom_cold_touch_debuff", params.attacker) then
 			params.target:AddNewModifier( params.attacker, self:GetAbility(), "modifier_boss_phantom_cold_touch_debuff", {duration = self.duration} )
 		else

@@ -31,7 +31,7 @@ function boss4_summon_zombies:OnChannelFinish(bInterrupted)
 		Timers:CreateTimer(0.1, function()
 			local zombiePos = caster:GetAbsOrigin() + ActualRandomVector(zombieSpawnRadius, 150)
 			local zombie = CreateUnitByName("npc_dota_mini_boss1", zombiePos, true, caster, caster, caster:GetTeamNumber())
-			ParticleManager:FireParticle("particles/bosses/boss4/boss4_summon_zombies_spawn.vpcf", PATTACH_POINT_FOLLOW, zombie)
+			zombie:AddNewModifier( zombie, self, "modifier_phased", {})
 			self.zombies[zombie] = true
 			EmitSoundOn("Creature.ZombieSpawn", zombie)
 			zombieCount = zombieCount - 1

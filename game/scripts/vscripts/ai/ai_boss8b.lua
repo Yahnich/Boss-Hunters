@@ -68,7 +68,7 @@ function AIThink(thisEntity)
 				return AI_THINK_RATE
 			end
 		else
-			if thisEntity.rockets:IsFullyCastable() and AICore:NearestEnemyHeroInRange( thisEntity, 2500, false ) then
+			if thisEntity.rockets:IsFullyCastable() and AICore:NearestEnemyHeroInRange( thisEntity, thisEntity.rockets:GetSpecialValueFor("radius"), false ) then
 				ExecuteOrderFromTable({
 					UnitIndex = thisEntity:entindex(),
 					OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,

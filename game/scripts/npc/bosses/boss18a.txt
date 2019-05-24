@@ -381,6 +381,11 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
+				"players_per_bonus"		"3 2"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
 				"spawn_radius"			"500"
 			}
 		}
@@ -417,9 +422,14 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spawn_count"			"2 3"
+				"spawn_count"			"1 2"
 			}
 			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"players_per_bonus"		"1"
+			}
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"spawn_radius"			"600"

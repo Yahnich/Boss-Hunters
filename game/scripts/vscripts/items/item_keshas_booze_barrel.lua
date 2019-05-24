@@ -6,7 +6,7 @@ function item_keshas_booze_barrel:OnSpellStart()
 	else
 		self:GetCursorTarget():AddNewModifier(self:GetCaster(), self, "modifier_keshas_booze_barrel_enemy", {duration = self:GetSpecialValueFor("disarm_duration")})
 	end
-	self:GetCaster():FindModifierByNameAndAbility("modifier_item_keshas_booze_barrel", self):SetStackCount(0)
+	-- self:GetCaster():FindModifierByNameAndAbility("modifier_item_keshas_booze_barrel", self):SetStackCount(0)
 end
 
 function item_keshas_booze_barrel:GetIntrinsicModifierName()
@@ -91,7 +91,7 @@ modifier_item_keshas_booze_barrel_ally = class(modifier_item_keshas_booze_barrel
 LinkLuaModifier( "modifier_item_keshas_booze_barrel_ally", "items/item_keshas_booze_barrel.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_keshas_booze_barrel_ally:OnDestroy()
-	if IsServer() then self:GetCaster():FindModifierByNameAndAbility("modifier_item_keshas_booze_barrel", self:GetAbility() ):SetStackCount(1) end
+	-- if IsServer() then self:GetCaster():FindModifierByNameAndAbility("modifier_item_keshas_booze_barrel", self:GetAbility() ):SetStackCount(1) end
 end
 
 function modifier_item_keshas_booze_barrel_ally:GetEffectName()
@@ -124,7 +124,7 @@ end
 function modifier_keshas_booze_barrel_enemy:OnRemoved()
 	if IsServer() then 
 		self:GetAbility():EndDelayedCooldown() 
-		self:GetCaster():FindModifierByNameAndAbility( "modifier_item_keshas_booze_barrel", self:GetAbility() ):SetStackCount(1)
+		-- self:GetCaster():FindModifierByNameAndAbility( "modifier_item_keshas_booze_barrel", self:GetAbility() ):SetStackCount(1)
 	end
 end
 

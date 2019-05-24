@@ -36,12 +36,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"block_chance"			"60"
+				"block_chance"			"50"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_block"			"25"
+				"damage_block"			"20"
 			}
 			"03"
 			{

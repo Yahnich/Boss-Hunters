@@ -17,7 +17,7 @@ function boss27_ursa_giant:OnSpellStart()
 	local caster = self:GetCaster()
 	ParticleManager:ClearParticle(self.warmUpFX)
 	
-	local bearCount = self:GetSpecialValueFor("spawn_count")
+	local bearCount = self:GetSpecialValueFor("spawn_count") + math.floor( HeroList:GetActiveHeroCount() / self:GetSpecialValueFor("players_per_bonus") )
 	local bearSpawnRadius = self:GetSpecialValueFor("spawn_radius")
 	for i = 1, bearCount do
 		local bearPos = caster:GetAbsOrigin() + ActualRandomVector(bearSpawnRadius, 150)

@@ -241,7 +241,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"350"
-		"AbilityCastPoint"				"1.5 1.25" 					// Time before spell goes off when cast
+		"AbilityCastPoint"				"2" 					// Time before spell goes off when cast
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"	// Activity
 		"AnimationIgnoresModelScale"	"1"
 	

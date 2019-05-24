@@ -23,7 +23,7 @@ function fallen_one_fade_out:OnSpellStart()
 		end)
 	end)
 	
-	local illusion = target:ConjureImage( caster:GetAbsOrigin(), duration, self:GetSpecialValueFor("illu_out") - 100, self:GetSpecialValueFor("illu_inc") - 100, nil, self, false, callback )
+	local illusion = target:ConjureImage( caster:GetAbsOrigin(), duration, self:GetSpecialValueFor("illu_out") - 100, self:GetSpecialValueFor("illu_inc") - 100, nil, self, false, caster, callback )
 	local invuln = caster:AddNewModifier(caster, self, "modifier_fallen_one_fade_out", {duration = duration})
 end
 

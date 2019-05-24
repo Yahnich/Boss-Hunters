@@ -21,7 +21,7 @@ function modifier_spiky_shell:OnTakeDamage(params)
 		if params.unit == self:GetCaster() then
 			local ability = self:GetCaster():FindAbilityByName("bristleback_quills")
 			if RollPercentage(self:GetTalentSpecialValueFor("chance")) and ability:IsTrained() then
-				ability:Spray(true)
+				ability:Spray()
 			end
 		end
 	end
@@ -32,7 +32,7 @@ function modifier_spiky_shell:OnAttackLanded(params)
 		local roll = self:RollPRNG( self:GetParent():FindTalentValue("special_bonus_unique_bristleback_quills_1") )
 		local ability = self:GetCaster():FindAbilityByName("bristleback_quills")
 		if roll and ability then
-			ability:Spray(true)
+			ability:Spray()
 		end
 	end
 end

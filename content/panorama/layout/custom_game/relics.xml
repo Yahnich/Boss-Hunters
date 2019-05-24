@@ -28,7 +28,7 @@
 		<Panel id="RelicRoot" hittest="true">
 			<Panel class="RelicChoiceRoot" id="RelicChoiceHolder" hittest="true">
 				
-			</Panel>
+			</Panel> 
 			<Panel class="HorizontalSeperator" hittest="true"/>
 			<Panel class="RelicButtonContainer" hittest="true">
 				<Button id="SkipButton" onactivate="SkipRelics()" onmouseover="AddHover('SkipButton')" onmouseout="RemoveHover('SkipButton')">

@@ -5,7 +5,7 @@ function relic_heavy_tome:OnCreated()
 end
 
 function relic_heavy_tome:OnIntervalThink()
-	self.slow = math.min( -10, -100 + (self:GetParent():GetMana() / self:GetParent():GetMaxMana()) * (100) )
+	self.slow = math.min( -10, -100 + (self:GetParent():GetMana() / self:GetParent():GetMaxMana()) * (100) * 2 )
 	if self:GetParent():HasModifier("relic_ritual_candle") then self.slow = 0 end
 end
 

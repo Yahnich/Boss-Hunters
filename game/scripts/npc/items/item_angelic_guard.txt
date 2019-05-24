@@ -80,7 +80,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_block"			"50"
+				"damage_block"			"30"
 			}
 			"05"
 			{

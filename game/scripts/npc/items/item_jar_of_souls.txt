@@ -60,7 +60,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_heal"			"100"
+				"damage_heal"			"25"
 			}
 			"02"
 			{

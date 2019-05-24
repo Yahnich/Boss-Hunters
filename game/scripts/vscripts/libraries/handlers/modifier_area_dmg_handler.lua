@@ -29,7 +29,7 @@ function modifier_area_dmg_handler:OnTakeDamage(params)
 		end
 		for _, enemy in ipairs( params.attacker:FindEnemyUnitsInRadius( params.unit:GetAbsOrigin(), AREA_DAMAGE_RADIUS ) ) do
 			if enemy ~= params.unit then
-				ApplyDamage({victim = enemy, attacker = params.attacker, damage_type = params.damage_type, damage = areaDamage, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+				ApplyDamage({victim = enemy, attacker = params.attacker, damage_type = params.damage_type, damage = areaDamage, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL})
 			end
 		end
 		self.lastProc = GameRules:GetGameTime()

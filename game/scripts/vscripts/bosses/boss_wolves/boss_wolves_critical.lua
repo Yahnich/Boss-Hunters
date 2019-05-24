@@ -25,7 +25,9 @@ end
 
 function modifier_boss_wolves_critical:GetModifierPreAttack_CriticalStrike(params)
 	if self:RollPRNG( self.chance ) and not params.attacker:PassivesDisabled() then
-		params.target:AddNewModifier( params.attacker, self:GetAbility(), "modifier_boss_wolves_critical_cripple", {duration = self.duration})
+		if not params.target:IsMagicImmune() then
+			params.target:AddNewModifier( params.attacker, self:GetAbility(), "modifier_boss_wolves_critical_cripple", {duration = self.duration})
+		end
 		return self.damage
 	end
 end

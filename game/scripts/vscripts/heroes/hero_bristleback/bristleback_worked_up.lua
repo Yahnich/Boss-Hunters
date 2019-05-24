@@ -6,26 +6,17 @@ function bristleback_worked_up:GetIntrinsicModifierName()
 	return "modifier_worked_up"
 end
 
-function bristleback_worked_up:OnUpgrade()
-	if self:GetCaster():HasModifier("modifier_worked_up_stack") then
-		local stacks = self:GetCaster():FindModifierByName("modifier_worked_up_stack"):GetStackCount()
-		self:GetCaster():RemoveModifierByName("modifier_worked_up_stack")
-		local new = self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_worked_up_stack", {Duration = self:GetTalentSpecialValueFor("duration")})
-		new:SetStackCount(stacks)
-	end
-end
-
 modifier_worked_up = class({})
 function modifier_worked_up:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_SPENT_MANA
+		MODIFIER_EVENT_ON_ABILITY_EXECUTED
 	}
 	return funcs
 end
 
-function modifier_worked_up:OnSpentMana(params)
+function modifier_worked_up:OnAbilityExecuted(params)
 	if IsServer() then
-		if params.unit == self:GetCaster() then
+		if params.unit == self:GetCaster() and params.unit:HasAbility( params.ability:GetName() ) then
 			params.unit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_worked_up_stack", {Duration = self:GetTalentSpecialValueFor("duration")})
 		end
 	end
@@ -41,7 +32,11 @@ end
 
 modifier_worked_up_stack = class({})
 function modifier_worked_up_stack:OnCreated(kv)
+	self.as = self:GetTalentSpecialValueFor("bonus_as")
+	self.ms =  self:GetTalentSpecialValueFor("bonus_ms")
+	self.sa =  self:GetCaster():FindTalentValue("special_bonus_unique_bristleback_work_up_2")
 	if IsServer() then
+		self:SetStackCount(1)
 		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_bristleback/bristleback_warpath.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControlEnt(self.nfx, 3, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetCaster():GetAbsOrigin(), true)
 		ParticleManager:SetParticleControlEnt(self.nfx, 4, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_attack2", self:GetCaster():GetAbsOrigin(), true)
@@ -50,7 +45,10 @@ function modifier_worked_up_stack:OnCreated(kv)
 end
 
 function modifier_worked_up_stack:OnRefresh(kv)
-	if IsServer() then self:AddIndependentStack(kv.duration, self:GetTalentSpecialValueFor("max_stacks")) end
+	self.as = self:GetTalentSpecialValueFor("bonus_as")
+	self.ms =  self:GetTalentSpecialValueFor("bonus_ms")
+	self.sa =  self:GetCaster():FindTalentValue("special_bonus_unique_bristleback_work_up_2")
+	if IsServer() then self:IncrementStackCount() end
 end
 
 function modifier_worked_up_stack:OnStackCountChanged(iStacks)
@@ -61,24 +59,23 @@ end
 
 function modifier_worked_up_stack:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE
 		MODIFIER_PROPERTY_MODEL_SCALE
 	}	
 	return funcs
 end
 
-function modifier_worked_up_stack:GetModifierBonusStats_Strength()
-	return self:GetTalentSpecialValueFor("bonus_strength") * self:GetStackCount()
+function modifier_worked_up_stack:GetModifierSpellAmplify_Percentage()
+	return self.sa * self:GetStackCount()
 end
 
 function modifier_worked_up_stack:GetModifierMoveSpeedBonus_Percentage()
-	return self:GetTalentSpecialValueFor("bonus_ms") * self:GetStackCount()
+	return self.ms * self:GetStackCount()
 end
 
 function modifier_worked_up_stack:GetModifierAttackSpeedBonus()
-	return self:GetTalentSpecialValueFor("bonus_as") * self:GetStackCount()
+	return self.as * self:GetStackCount()
 end
 
 function modifier_worked_up_stack:GetModifierModelScale()

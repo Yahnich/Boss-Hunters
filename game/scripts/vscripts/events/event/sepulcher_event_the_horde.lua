@@ -38,6 +38,9 @@ local function StartCombat(self)
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then
+				for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
+					hero:MakeVisibleToTeam( DOTA_TEAM_BADGUYS, 2.5 )
+				end
 				local roll = RandomInt(1, 12)
 				local hp = 150
 				local zombieType = "npc_dota_mini_boss1"
@@ -52,7 +55,7 @@ local function StartCombat(self)
 				end
 				local zombie = CreateUnitByName(zombieType, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 				zombie:SetCoreHealth(hp)
-				zombie:SetAverageBaseDamage( math.min(7, roll) * 10, 35 )
+				zombie:SetAverageBaseDamage( (roll + 8) * 10, 50 )
 				return math.max( 4, (self.timeRemaining or 60) / 15 ) / HeroList:GetActiveHeroCount()
 			end
 		end

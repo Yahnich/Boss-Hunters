@@ -149,7 +149,7 @@
 		"MaxLevel"						"2"
 		
 		"AbilityCooldown"				"10 9"
-		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastPoint"				"0.75 0.6"
 		"AbilityCastAnimation"			"ACT_DOTA_ABILITY_END"
 		
 		"precache"

@@ -81,9 +81,13 @@ local function StartCombat(self, bFight, bBoss)
 		Timers:CreateTimer(1, function()
 			local spawn = CreateUnitByName(mobToSpawn, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundNecessary = true
-			if not bBoss then spawn:SetCoreHealth( 500 * GameRules:GetGameDifficulty() ) end
+			if not bBoss then 
+				spawn:SetCoreHealth( 500 * GameRules:GetGameDifficulty() ) 
+			else
+				spawn:FindAbilityByName("boss15_peel_the_veil"):SetActivated(false)
+			end
 			for i = 1, spawnRate / 2 do
-				CreateUnitByNameAsync(mobToSpawn, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS, function(spook)
+				CreateUnitByNameAsync("npc_dota_boss22b", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS, function(spook)
 					spook:SetCoreHealth( 100 * GameRules:GetGameDifficulty() )
 					spook:SetAverageBaseDamage( 80, 25)
 				end)

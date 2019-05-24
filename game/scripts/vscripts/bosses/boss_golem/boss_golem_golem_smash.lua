@@ -1,5 +1,10 @@
 boss_golem_golem_smash = class({})
 
+function boss_golem_golem_smash:GetCastPoint( )
+	local castPoint = math.max( 1, math.min( self.BaseClass.GetCastPoint( self ), self.BaseClass.GetCastPoint( self ) * self:GetCaster():GetModelScale() / 1.8 ) )
+	return castPoint
+end
+
 function boss_golem_golem_smash:OnAbilityPhaseStart()
 	local radius = math.max( 175, math.min( self:GetSpecialValueFor("base_radius"), self:GetSpecialValueFor("base_radius") * self:GetCaster():GetModelScale() / 1.8 ) )
 	ParticleManager:FireWarningParticle( self:GetCaster():GetAbsOrigin(), radius )

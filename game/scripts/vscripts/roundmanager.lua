@@ -14,9 +14,9 @@ require("events/base_event")
 
 POSSIBLE_ZONES = POSSIBLE_ZONES or {"Grove", "Sepulcher", "Solitude", "Elysium"}
 
-EVENTS_PER_RAID = 4
-RAIDS_PER_ZONE = 2
-ZONE_COUNT = #POSSIBLE_ZONES
+EVENTS_PER_RAID = EVENTS_PER_RAID or 4
+RAIDS_PER_ZONE = RAIDS_PER_ZONE or 2
+ZONE_COUNT = ZONE_COUNT or #POSSIBLE_ZONES
 
 COMBAT_CHANCE = 70
 ELITE_CHANCE = 20
@@ -632,30 +632,31 @@ function RoundManager:InitializeUnit(unit, bElite)
 	unit.NPCIsElite = bElite
 	local expectedHP = unit:GetBaseMaxHealth() * RandomFloat(0.95, 1.05)
 	local expectedDamage = ( unit:GetAverageBaseDamage() + (RoundManager:GetEventsFinished() * 1.5) ) * RandomFloat(0.90, 1.10)
-	local playerHPMultiplier = 0.20
+	local playerHPMultiplier = 0.33
 	local playerDMGMultiplier = 0.075
 	local playerArmorMultiplier = 0.03
 	if GameRules:GetGameDifficulty() == 4 then 
 		expectedHP = expectedHP * 1.5
 		expectedDamage = expectedDamage * 1.2
-		playerHPMultiplier = 0.30
+		playerHPMultiplier = 0.5
 		playerDMGMultiplier = 0.1
 		playerArmorMultiplier = 0.075
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
 	
-	local HPMultiplierFunc = function( events, raids, zones ) return (0.45 + (events * 0.08)) * ( 1 + raids * 0.22 ) * ( 1 + zones * 0.10 ) end
-	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.35 + (events * 0.05)) * ( 1 + raids * 0.06) * ( 1 + zones * 0.03 ) end
+	local HPMultiplierFunc = function( events, raids, zones ) return (0.2 + (events * 0.07)) * ( 1 + raids * 0.18 ) * ( 1 + zones * 0.1 ) end
+	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.25 + (events * 0.05)) * ( 1 + raids * 0.06) * ( 1 + zones * 0.03 ) end
 	
 	local effPlayerHPMult =  HPMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
 	local effPlayerDMGMult = DMGMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
 	local effPlayerArmorMult = 0.7 + (effective_multiplier * playerArmorMultiplier) 
 	
-	maxPlayerHPMult = HPMultiplierFunc( EVENTS_PER_RAID * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
+	maxPlayerHPMult = HPMultiplierFunc( ( EVENTS_PER_RAID + 1 ) * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
+	
 	effPlayerHPMult = math.min( effPlayerHPMult, maxPlayerHPMult )
 	effPlayerHPMult = effPlayerHPMult * ( 1 + RoundManager:GetAscensions() * 0.25 )  * (1 + effective_multiplier * playerHPMultiplier )
-	
-	maxPlayerDMGMult = DMGMultiplierFunc( EVENTS_PER_RAID * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
+
+	maxPlayerDMGMult = DMGMultiplierFunc( ( EVENTS_PER_RAID + 1 ) * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
 	effPlayerDMGMult = math.min( effPlayerDMGMult, maxPlayerDMGMult )
 	effPlayerDMGMult = effPlayerDMGMult * ( 1 + RoundManager:GetAscensions() * 1 )  * (1 + effective_multiplier * playerDMGMultiplier )
 	

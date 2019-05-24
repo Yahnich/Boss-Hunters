@@ -14,20 +14,34 @@ function bristleback_snot:IsHiddenWhenStolen()
 	return false
 end
 
+function bristleback_snot:GetBehavior()
+	if self:GetCaster():HasScepter() then
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_AUTOCAST
+	else
+		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AUTOCAST
+	end
+end
+
 function bristleback_snot:OnSpellStart()
 	local caster = self:GetCaster()
 
 	EmitSoundOn("Hero_Bristleback.ViscousGoo.Cast", caster)
-
-	local enemies = self:GetCaster():FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
-	for _,enemy in pairs(enemies) do
-		if caster:HasScepter() then
+	
+	if caster:HasScepter() then
+		local enemies = self:GetCaster():FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("scepter_radius"), {})
+		for _,enemy in pairs(enemies) do
 			self:FireSnot(enemy)
-		else
+		end
+	elseif self:GetCursorTarget() then
+		self:FireSnot( self:GetCursorTarget() )
+	else
+		local enemies = self:GetCaster():FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTrueCastRange(), {})
+		for _,enemy in pairs(enemies) do
 			self:FireSnot(enemy)
 			break
 		end
 	end
+	
 end
 
 function bristleback_snot:FireSnot(target)
@@ -56,17 +70,10 @@ end
 function bristleback_snot:OnProjectileHit(hTarget, vLocation)
 	if hTarget ~= nil and hTarget:IsAlive() then
 		EmitSoundOn("Hero_Bristleback.ViscousGoo.Target", hTarget)
-		if hTarget:HasModifier("modifier_snot") then
-			if hTarget:FindModifierByName("modifier_snot"):GetStackCount() <= self:GetTalentSpecialValueFor("stack_limit") then
-				hTarget:AddNewModifier(self:GetCaster(), self, "modifier_snot", {Duration = self:GetTalentSpecialValueFor("goo_duration")}):IncrementStackCount()
-			else
-				hTarget:AddNewModifier(self:GetCaster(), self, "modifier_snot", {Duration = self:GetTalentSpecialValueFor("goo_duration")})
-			end
-		else
-			hTarget:AddNewModifier(self:GetCaster(), self, "modifier_snot", {Duration = self:GetTalentSpecialValueFor("goo_duration")}):IncrementStackCount()
+		local snot = hTarget:AddNewModifier(self:GetCaster(), self, "modifier_snot", {Duration = self:GetTalentSpecialValueFor("goo_duration")})
+		if snot then
+			local stacks = math.min( self:GetTalentSpecialValueFor("stack_limit"), snot:GetStackCount() + 1 )
 		end
-
-		self:GetCaster():ModifyThreat(self:GetTalentSpecialValueFor("threat_gain"))
 	end
 end
 
@@ -86,7 +93,7 @@ if IsServer() then
 		and ability:GetManaCost(-1) <= caster:GetMana() 
 		and not caster:HasActiveAbility() then
 			ability:CastSpell()
-		elseif caster:GetMana() < ability:GetManaCost(-1) and ability:GetAutoCastState() then
+		elseif not ability:IsOwnersManaEnough() then
 			ability:ToggleAutoCast()
 		end
 	end
@@ -95,6 +102,17 @@ end
 function modifier_bristleback_snot_autocast:IsHidden() return true end
 
 modifier_snot = class({})
+function modifier_snot:OnCreated()
+	self.slow = self:GetTalentSpecialValueFor("move_slow_per_stack")
+	self.armor = self:GetTalentSpecialValueFor("armor_per_stack")
+	self.as = self:GetTalentSpecialValueFor("attackspeed_loss")
+end
+
+function modifier_snot:OnRefresh()
+	self.slow = self:GetTalentSpecialValueFor("move_slow_per_stack")
+	self.armor = self:GetTalentSpecialValueFor("armor_per_stack")
+	self.as = self:GetTalentSpecialValueFor("attackspeed_loss")
+end
 
 function modifier_snot:DeclareFunctions()
     local funcs = {
@@ -106,15 +124,15 @@ function modifier_snot:DeclareFunctions()
 end
 
 function modifier_snot:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("move_slow_per_stack") * self:GetStackCount()
+    return self.slow * self:GetStackCount()
 end
 
 function modifier_snot:GetModifierPhysicalArmorBonus()
-    return self:GetTalentSpecialValueFor("armor_per_stack") * self:GetStackCount()
+    return self.armor * self:GetStackCount()
 end
 
 function modifier_snot:GetModifierAttackSpeedBonus()
-    return self:GetTalentSpecialValueFor("attackspeed_loss") * self:GetStackCount()
+    return self.as * self:GetStackCount()
 end
 
 function modifier_snot:IsDebuff()
