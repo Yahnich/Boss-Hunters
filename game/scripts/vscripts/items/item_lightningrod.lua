@@ -133,7 +133,7 @@ function modifier_item_lightningrod_handle_damage:OnCreated()
 			ability.strike_bounces[current] = ability.strike_bounces[current] - 1
 		
 			-- Checks if there are jumps left
-			if ability.strike_bounces[current] > 0 then
+			if ability.strike_bounces[current] > 0 and target and not target:IsNull() then
 				-- Finds units in the radius to jump to
 				local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), radius, {})
 				local closest = radius

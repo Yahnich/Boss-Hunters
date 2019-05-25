@@ -19,7 +19,6 @@ function bristleback_quills:GetCooldown( iLvl )
 	if self:GetCaster():HasModifier("modifier_quills_buff") then
 		cd = cd - self:GetTalentSpecialValueFor("cdr_per_stack") * self:GetCaster():GetModifierStackCount( "modifier_quills_buff", self:GetCaster() )
 	end
-	print( cd, IsClient(),  self:GetTalentSpecialValueFor("cdr_per_stack"), self:GetCaster():GetModifierStackCount( "modifier_quills_buff", self:GetCaster() ) )
 	return cd
 end
 
@@ -75,6 +74,6 @@ if IsServer() then
 	end
 	
 	function modifier_quills_buff:OnRefresh(kv)
-		self:IncrementStackCount()
+		self:SetStackCount( math.min( self:GetStackCount() + 1, self:GetTalentSpecialValueFor("quill_max_stacks") ) )
 	end
 end

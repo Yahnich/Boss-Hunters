@@ -18,7 +18,7 @@ end
 
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddGold(1000)
+	hero:AddGold(800)
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end

@@ -13,8 +13,8 @@ function boss15_exorcise:OnSpellStart()
 	end
 	
 	local speed = self:GetSpecialValueFor( "speed" )
-	local width_initial = self:GetSpecialValueFor( "width_initial" ) / 2
-	local width_end = self:GetSpecialValueFor( "width_end" ) / 2
+	local width_initial = self:GetSpecialValueFor( "width_initial" )
+	local width_end = self:GetSpecialValueFor( "width_end" )
 	local distance = self:GetSpecialValueFor( "distance" )
 	local damage = self:GetSpecialValueFor( "damage" ) 
 	local velocity = CalculateDirection( vPos, caster ) * speed

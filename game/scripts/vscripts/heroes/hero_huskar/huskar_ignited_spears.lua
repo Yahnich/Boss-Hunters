@@ -94,7 +94,8 @@ if IsServer() then
 	end
 	
 	function modifier_huskar_ignited_spears_autocast:OnAttack(params)
-		if params.attacker == self:GetParent() and params.target and (self:GetAbility():GetAutoCastState() or self:GetAbility().forceCast) and ability:IsOwnersManaEnough() and not self:GetParent():GetAttackTarget():IsMagicImmune() then
+		local ability = self:GetAbility()
+		if params.attacker == self:GetParent() and params.target and (ability:GetAutoCastState() or ability.forceCast) and ability:IsOwnersManaEnough() and not self:GetParent():GetAttackTarget():IsMagicImmune() then
 			self:GetAbility():LaunchSpear(params.target)
 			self:GetAbility():SpendMana()
 			self:GetAbility().forceCast = false

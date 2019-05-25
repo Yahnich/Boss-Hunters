@@ -106,12 +106,14 @@ function modifier_snot:OnCreated()
 	self.slow = self:GetTalentSpecialValueFor("move_slow_per_stack")
 	self.armor = self:GetTalentSpecialValueFor("armor_per_stack")
 	self.as = self:GetTalentSpecialValueFor("attackspeed_loss")
+	if IsServer() then self:SetStackCount( 1 ) end
 end
 
 function modifier_snot:OnRefresh()
 	self.slow = self:GetTalentSpecialValueFor("move_slow_per_stack")
 	self.armor = self:GetTalentSpecialValueFor("armor_per_stack")
 	self.as = self:GetTalentSpecialValueFor("attackspeed_loss")
+	if IsServer() then self:SetStackCount( math.min( self:GetStackCount() + 1, self:GetTalentSpecialValueFor("stack_limit")) ) end
 end
 
 function modifier_snot:DeclareFunctions()

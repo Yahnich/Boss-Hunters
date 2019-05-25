@@ -55,7 +55,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"magic_damage"			"200 300"
+				"magic_damage"			"100 150"
 			}
 			"01"
 			{

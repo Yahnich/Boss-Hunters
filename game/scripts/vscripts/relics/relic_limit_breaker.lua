@@ -23,7 +23,7 @@ end
 function relic_limit_breaker:OnDestroy()
 	if IsServer() then
 		EventManager:UnsubscribeListener("boss_hunters_event_finished", self.funcIDf)
-		EventManager:UnsubscribeListener("boss_hunters_event_finished", self.funcIDs)
+		EventManager:UnsubscribeListener("boss_hunters_event_started", self.funcIDs)
 	end
 end
 

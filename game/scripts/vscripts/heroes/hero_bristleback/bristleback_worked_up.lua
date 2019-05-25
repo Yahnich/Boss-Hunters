@@ -34,7 +34,7 @@ modifier_worked_up_stack = class({})
 function modifier_worked_up_stack:OnCreated(kv)
 	self.as = self:GetTalentSpecialValueFor("bonus_as")
 	self.ms =  self:GetTalentSpecialValueFor("bonus_ms")
-	self.sa =  self:GetCaster():FindTalentValue("special_bonus_unique_bristleback_work_up_2")
+	self.sa =  self:GetCaster():FindTalentValue("special_bonus_unique_bristleback_work_up_1")
 	if IsServer() then
 		self:SetStackCount(1)
 		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_bristleback/bristleback_warpath.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
@@ -47,8 +47,8 @@ end
 function modifier_worked_up_stack:OnRefresh(kv)
 	self.as = self:GetTalentSpecialValueFor("bonus_as")
 	self.ms =  self:GetTalentSpecialValueFor("bonus_ms")
-	self.sa =  self:GetCaster():FindTalentValue("special_bonus_unique_bristleback_work_up_2")
-	if IsServer() then self:IncrementStackCount() end
+	self.sa =  self:GetCaster():FindTalentValue("special_bonus_unique_bristleback_work_up_1")
+	if IsServer() then self:AddIndependentStack(self:GetDuration()) end
 end
 
 function modifier_worked_up_stack:OnStackCountChanged(iStacks)
@@ -60,7 +60,7 @@ end
 function modifier_worked_up_stack:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_MODEL_SCALE
 	}	
 	return funcs

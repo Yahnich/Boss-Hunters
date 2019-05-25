@@ -178,6 +178,7 @@ function modifier_handler_handler:UpdateAccuracy()
 			table.remove(self.accModifiers, id)
 		end
 	end
+	self.acc.accModifiers = self.accModifiers
 	local accuracy = (1 - accuracyStacks) * 100
 	if self.acc:GetStackCount() ~= math.floor( accuracy ) then self.acc:SetStackCount( math.floor( accuracy ) ) end
 end

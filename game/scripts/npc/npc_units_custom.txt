@@ -2285,14 +2285,14 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"3"			// Physical protection.
-		"MagicalResistance"			"10"		// Magical protection.
+		"ArmorPhysical"				"5"			// Physical protection.
+		"MagicalResistance"			"15"		// Magical protection.
 		
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"80"	// Damage range min.
-		"AttackDamageMax"			"100"		// Damage range max.
+		"AttackDamageMin"			"100"	// Damage range min.
+		"AttackDamageMax"			"120"		// Damage range max.
 		"AttackRate"				"1.8"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
@@ -2320,7 +2320,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"3250"		// Base health.
+		"StatusHealth"				"3750"		// Base health.
 		"StatusHealthRegen"			"1"			// Health regeneration rate.
 		"StatusMana"				"2000"			// Base mana.
 		"StatusManaRegen"			"10"			// Mana regeneration rate.		 
@@ -2738,8 +2738,8 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"0"			// Physical protection.
-		"MagicalResistance"			"0"		// Magical protection.
+		"ArmorPhysical"				"10"			// Physical protection.
+		"MagicalResistance"			"33"		// Magical protection.
 		
 		// Attack
 		//----------------------------------------------------------------
@@ -2773,7 +2773,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"3000"		// Base health.
+		"StatusHealth"				"3500"		// Base health.
 		"StatusHealthRegen"			"2"			// Health regeneration rate.
 		"StatusMana"				"2000"			// Base mana.
 		"StatusManaRegen"			"10"			// Mana regeneration rate.		 
@@ -4486,6 +4486,17 @@
 			"XPGain"					"200"
 			
 			"DefaultState"				"Invade"
+			
+			"AttachWearables"
+			{
+				"Wearable1" { "ItemDef"			"6273" }
+				"Wearable2" { "ItemDef"			"6274" }
+				"Wearable3" { "ItemDef"			"6275" }
+				"Wearable4" { "ItemDef"			"6276" }
+				"Wearable5" { "ItemDef"			"4905" }
+				"Wearable6" { "ItemDef"			"6278" }
+				"Wearable7" { "ItemDef"			"6279" }
+			}
 		}
 	}
 	"npc_dota_boss35"
@@ -6844,9 +6855,9 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"60"		// Damage range min.
-		"AttackDamageMax"			"70"		// Damage range max.
-		"AttackRate"				"4"		// Speed of attack.
+		"AttackDamageMin"			"70"		// Damage range min.
+		"AttackDamageMax"			"80"		// Damage range max.
+		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"0.467"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.

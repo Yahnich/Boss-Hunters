@@ -5,7 +5,7 @@ function relic_paupers_finger:DeclareFunctions()
 end
 
 function relic_paupers_finger:GetBonusExp()
-	return 50
+	return 100
 end
 
 function relic_paupers_finger:GetBonusGold()
