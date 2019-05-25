@@ -64,7 +64,7 @@ function wk_skeletons:SpawnSkeleton(position)
 		health = health * self.stacks
 		damage = damage * self.stacks
 		local mana = caster:GetMaxMana()
-		local armor = caster:GetPhysicalArmorValue()
+		local armor = caster:GetPhysicalArmorValue(false)
 		local attackTime = caster:GetSecondsPerAttack()
 
 		local ability1 = caster:FindAbilityByName("wk_blast")

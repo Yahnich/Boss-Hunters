@@ -40,7 +40,7 @@ end
 --------------------------------------------------------------------------------
 modifier_forced_shout = class({})
 function modifier_forced_shout:OnCreated(table)
-	-- self.armor = self:GetCaster():GetPhysicalArmorValue() + self:GetCaster():GetPhysicalArmorValue() * self:GetTalentSpecialValueFor("armor_bonus")/100
+	-- self.armor = self:GetCaster():GetPhysicalArmorValue(false) + self:GetCaster():GetPhysicalArmorValue(false) * self:GetTalentSpecialValueFor("armor_bonus")/100
 	self.armor = self:GetTalentSpecialValueFor("armor_bonus_base")
 end
 

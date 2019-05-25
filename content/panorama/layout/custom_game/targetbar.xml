@@ -33,7 +33,7 @@
 				<Button id="threatButton" onactivate='tell_threat()'>
 					<Label hittest="true" id="threatLabel" text= "85.3"/>
 				</Button>
-				<Image src="file://{images}/custom_game/icons/bossBorder.png" id="MinionTypeIcon" hittest="true"/>
+				<Image src="file://{images}/custom_game/icons/eliteBorder.png" id="MinionTypeIcon" hittest="true"/>
 				<Panel id="TypeInfoContainer">
 					<Image src="file://{images}/custom_game/icons/celestialTypeIcon.png" id="CelestialTypeIcon" class="TypeIcon" hittest="true"/>
 					<Image src="file://{images}/custom_game/icons/demonicTypeIcon.png" id="DemonicTypeIcon" class="TypeIcon" hittest="true"/>

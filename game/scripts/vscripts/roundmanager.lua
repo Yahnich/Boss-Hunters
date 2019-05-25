@@ -697,7 +697,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	expectedHP = math.max( 1, expectedHP * effPlayerHPMult )
 	unit:SetCoreHealth(expectedHP)
 	
-	unit:SetAverageBaseDamage( expectedDamage * effPlayerDMGMult, 33)
+	unit:SetAverageBaseDamage( math.max( 20 + HeroList:GetActiveHeroCount(), expectedDamage * effPlayerDMGMult ), 33)
 	unit:SetBaseHealthRegen(RoundManager:GetEventsFinished() * RandomFloat(0.85, 1.15) )
 	
 	local msBonus = unit:GetBaseMoveSpeed() * 0.035 * effective_multiplier * (GameRules:GetGameDifficulty() / 2)

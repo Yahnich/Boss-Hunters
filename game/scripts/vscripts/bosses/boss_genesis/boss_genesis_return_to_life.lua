@@ -47,7 +47,7 @@ function  boss_genesis_return_to_life:ConjureImage( target )
 	illusion:SetHealth( target:GetHealth() )
 	
 	illusion:SetAverageBaseDamage( target:GetAverageBaseDamage(), 15 )
-	illusion:SetPhysicalArmorBaseValue( target:GetPhysicalArmorValue() )
+	illusion:SetPhysicalArmorBaseValue( target:GetPhysicalArmorValue(false) )
 	illusion:SetBaseAttackTime( target:GetBaseAttackTime() )
 	illusion:SetBaseMoveSpeed( target:GetBaseMoveSpeed() )
 	

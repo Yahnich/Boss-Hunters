@@ -116,12 +116,12 @@ modifier_earthshaker_crater_impact_talent = class({})
 LinkLuaModifier("modifier_earthshaker_crater_impact_talent", "heroes/hero_earthshaker/earthshaker_crater_impact", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_earthshaker_crater_impact_talent:OnCreated()
-	self.armor = self:GetParent():GetPhysicalArmorValue() * self:GetParent():FindTalentValue("special_bonus_unique_earthshaker_crater_impact_2")
+	self.armor = self:GetParent():GetPhysicalArmorValue(false) * self:GetParent():FindTalentValue("special_bonus_unique_earthshaker_crater_impact_2")
 end
 
 function modifier_earthshaker_crater_impact_talent:OnRefresh()
 	self.armor = 0
-	self.armor = self:GetParent():GetPhysicalArmorValue() * self:GetParent():FindTalentValue("special_bonus_unique_earthshaker_crater_impact_2")
+	self.armor = self:GetParent():GetPhysicalArmorValue(false) * self:GetParent():FindTalentValue("special_bonus_unique_earthshaker_crater_impact_2")
 end
 
 function modifier_earthshaker_crater_impact_talent:DeclareFunctions()

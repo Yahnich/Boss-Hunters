@@ -66,12 +66,12 @@ end
 modifier_pango_heart_debuff = class({})
 
 function modifier_pango_heart_debuff:OnCreated()
-	self.reduction = self:GetParent():GetPhysicalArmorValue() * self:GetTalentSpecialValueFor("armor_reduc")/100
+	self.reduction = self:GetParent():GetPhysicalArmorValue(false) * self:GetTalentSpecialValueFor("armor_reduc")/100
 	self.slow = self:GetTalentSpecialValueFor("slow_pct")
 end
 
 function modifier_pango_heart_debuff:OnRefresh(table)
-	self.reduction = self:GetParent():GetPhysicalArmorValue() * self:GetTalentSpecialValueFor("armor_reduc")/100
+	self.reduction = self:GetParent():GetPhysicalArmorValue(false) * self:GetTalentSpecialValueFor("armor_reduc")/100
 	self.slow = self:GetTalentSpecialValueFor("slow_pct")
 end
 

@@ -21,7 +21,7 @@ LinkLuaModifier("modifier_centaur_champions_presence_buff", "heroes/hero_centaur
 
 function modifier_centaur_champions_presence_buff:OnCreated()
 	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.cdr = self:GetTalentSpecialValueFor("cdr_per_unit")
+	self.dmg = self:GetTalentSpecialValueFor("dmg_per_unit")
 	self.amp = self:GetTalentSpecialValueFor("amp_per_unit")	
 	self.max_amp = self:GetTalentSpecialValueFor("max_amp")
 	
@@ -35,7 +35,7 @@ end
 
 function modifier_centaur_champions_presence_buff:OnRefresh()
 	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.cdr = self:GetTalentSpecialValueFor("cdr_per_unit")
+	self.dmg = self:GetTalentSpecialValueFor("dmg_per_unit")
 	self.amp = self:GetTalentSpecialValueFor("amp_per_unit")
 	self.max_amp = self:GetTalentSpecialValueFor("max_amp")
 end
@@ -56,11 +56,12 @@ function modifier_centaur_champions_presence_buff:OnDestroy()
 end
 
 function modifier_centaur_champions_presence_buff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE}
+	return {MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+			MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE}
 end
 
-function modifier_centaur_champions_presence_buff:GetCooldownReduction()
-	return math.min(self.cdr * self:GetStackCount(), self.max_amp)
+function modifier_centaur_champions_presence_buff:GetModifierBaseDamageOutgoing_Percentage()
+	return math.min(self.dmg * self:GetStackCount(), self.max_amp)
 end
 
 function modifier_centaur_champions_presence_buff:GetModifierSpellAmplify_Percentage()

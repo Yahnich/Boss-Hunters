@@ -131,7 +131,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_radius"			"500"
+				"base_radius"			"475"
 			}
 			"04"
 			{
@@ -201,7 +201,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_radius"			"500"
+				"base_radius"			"475"
 			}
 			"03"
 			{
@@ -260,7 +260,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_radius"			"500"
+				"base_radius"			"475"
 			}
 			"03"
 			{

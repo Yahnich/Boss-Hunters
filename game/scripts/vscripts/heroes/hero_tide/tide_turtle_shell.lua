@@ -30,7 +30,7 @@ end
 
 function modifier_turtle_shell:GetModifierTotal_ConstantBlock(params)
     if IsServer() then
-        self.currBlock = self:GetParent():GetPhysicalArmorValue() * self.blockPct
+        self.currBlock = self:GetParent():GetPhysicalArmorValue(false) * self.blockPct
         if RollPercentage(self.crit) and self:GetAbility():IsCooldownReady() then 
             self.currBlock = self.currBlock * 2
             self:GetParent():HealEvent(self:GetParent():GetMaxHealth() * self.heal, self:GetAbility(), self:GetParent())

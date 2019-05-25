@@ -172,6 +172,8 @@ function modifier_abaddon_borrowed_time_ebf_scepter:DeclareFunctions()
 end
 
 function modifier_abaddon_borrowed_time_ebf_scepter:GetModifierIncomingDamage_Percentage(params)
-	ApplyDamage({victim = self:GetCaster(), attacker = params.attacker, damage = params.damage * (1 - self.redirect/100), damage_flags = params.damage_flags, ability = params.inflictor, damage_type = params.damage_type})
+	if self:GetCaster():HasModifier("modifier_abaddon_borrowed_time_active") then
+		ApplyDamage({victim = self:GetCaster(), attacker = params.attacker, damage = params.damage * (1 - self.redirect/100), damage_flags = params.damage_flags, ability = params.inflictor, damage_type = params.damage_type})
+	end
 	return self.redirect
 end

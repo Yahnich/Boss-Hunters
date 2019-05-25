@@ -37,7 +37,7 @@ function modifier_sven_valiant_charge:OnIntervalThink()
 	for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), parent:GetHullRadius() + parent:GetCollisionPadding() + 64 ) ) do
 		if not self.targets[enemy:entindex()] then
 			self.targets[enemy:entindex()] = true;
-			self:GetAbility():DealDamage( parent, enemy, self.damage * parent:GetPhysicalArmorValue() )
+			self:GetAbility():DealDamage( parent, enemy, self.damage * parent:GetPhysicalArmorValue(false) )
 			if self.talent then
 				self:GetAbility():Stun( enemy, self.stunDur )
 			else
