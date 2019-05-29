@@ -48,16 +48,31 @@
 			}
 			"02"
 			{
+				"var_type"				"FIELD_INTEGER"
+				"evasion_loss"			"25 30 35 40 45 50 55"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_loss"			"5 6 7 8 9 10 11"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mr_loss"				"25 30 35 40 45 50 55"
+			}
+			"05"
+			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"9 10 11 12 13 14 15"
 			}
-			"03"
+			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"max_heal"				"16 19 22 25 28 31 34"
 				"LinkedSpecialBonus"	"special_bonus_unique_bs_bloodrage_2"
 			}
-			"04"
+			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"heal_radius"			"300"
@@ -119,7 +134,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"bloodseeker_blood_bath"
 		"MaxLevel"						"7"
@@ -153,13 +168,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"120 160 200 240 280 320 360"
+				"damage"				"125 175 225 275 325 375 425"
 				"LinkedSpecialBonus"	"special_bonus_unique_bs_blood_rite_1"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"1 1.5 2 2.5 3 3.5 4"
+				"duration"				"3"
 			}
 			"03"
 			{
@@ -169,7 +184,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"600"
+				"radius"				"400 450 500 550 600 650 700"
 			}
 		}
 	}
@@ -228,7 +243,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"bloodseeker_thirst"
 		"MaxLevel"						"7"
@@ -263,8 +278,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"20 40 60 80 100 120 140"
-				"LinkedSpecialBonus"	"special_bonus_unique_bs_devils_blood_1"
+				"damage"				"60 70 80 90 100 110 120"
 			}
 			"02"
 			{
@@ -280,6 +294,23 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"debuff_duration"		"8"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"debuff_slow"			"-25 -30 -35 -40 -45 -50 -55"
+				"LinkedSpecialBonus"	"special_bonus_unique_bs_devils_blood_1"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"debuff_sr"				"-25 -30 -35 -40 -45 -50 -55"
+				"LinkedSpecialBonus"	"special_bonus_unique_bs_devils_blood_1"
 			}
 		}
 	}
@@ -301,7 +332,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"18"
+				"value"						"20"
 			}
 		}
 	}
@@ -364,7 +395,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"bloodseeker_rupture"
@@ -400,19 +431,19 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bleed"					"1"
-				"LinkedSpecialBonus"	"special_bonus_unique_bs_rupture_1"
+				"var_type"						"FIELD_FLOAT"
+				"bleed"							"2.25 2.65 3 3.35 3.75 4.15"
+				"LinkedSpecialBonus"			"special_bonus_unique_bs_rupture_1"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"7 8 9 10 11 12"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"7 8 9 10 11 12"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"tick_rate"				"1"
+				"var_type"						"FIELD_FLOAT"
+				"tick_rate"						"1"
 			}
 			"04"
 			{

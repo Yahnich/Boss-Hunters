@@ -29,8 +29,39 @@ function modifier_item_blade_of_dominion_stats:OnCreated()
 	self.chance = self:GetAbility():GetSpecialValueFor("block_chance")
 	self.hp_regen = self:GetAbility():GetSpecialValueFor("bonus_health_regen")
 	self.spell_amp = self:GetAbility():GetSpecialValueFor("bonus_spell_amp")
-	self.radius = self:GetAbility():GetSpecialValueFor("radius")
-	if IsServer() then self:GetAbility():OnToggle() end
+	self.radius = self:GetSpecialValueFor("radius")
+	self.maxRadius = self:GetSpecialValueFor("radius")
+	self.minRadius = self:GetSpecialValueFor("min_radius")
+	self.radiusDelta = self:GetSpecialValueFor("radius_change")
+	if IsServer() then
+		self:GetAbility():OnToggle()
+		self.cumulativeDist = {}
+		self.lastPos = self:GetCaster():GetAbsOrigin()
+		self:StartIntervalThink(0.1)
+		self.pFX = ParticleManager:CreateParticle("particles/items/item_blade_of_dominion_radius.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
+		ParticleManager:SetParticleControl( self.pFX, 1, Vector(self.radius,0,0) )
+		self:AddEffect( self.pFX )
+	end
+end
+
+function modifier_item_blade_of_dominion_stats:OnIntervalThink()
+	table.insert(self.cumulativeDist, CalculateDistance( self.lastPos, self:GetCaster():GetAbsOrigin() ) )
+	self.lastPos = self:GetCaster():GetAbsOrigin()
+	if #self.cumulativeDist > 9 then
+		table.remove(self.cumulativeDist, 1)
+	end
+	local distance = 0
+	for id, amount in ipairs(self.cumulativeDist) do
+		distance = distance + amount
+	end
+	print(distance, self.radius)
+	if distance > 150 and self.minRadius < self.radius then
+		self.radius = math.max( self.radius - self.radiusDelta * 0.1, self.minRadius )
+		ParticleManager:SetParticleControl( self.pFX, 1, Vector(self.radius,0,0) )
+	elseif distance < 150 and self.maxRadius > self.radius then
+		self.radius = math.min( self.radius + self.radiusDelta * 0.1, self.maxRadius )
+		ParticleManager:SetParticleControl( self.pFX, 1, Vector(self.radius,0,0) )
+	end
 end
 
 function modifier_item_blade_of_dominion_stats:OnDestroy()

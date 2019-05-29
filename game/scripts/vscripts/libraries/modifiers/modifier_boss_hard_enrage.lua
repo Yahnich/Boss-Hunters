@@ -1,5 +1,9 @@
 modifier_boss_hard_enrage = class({})
 
+function modifier_boss_hard_enrage:GetTexture()
+	return "axe_berserkers_call"
+end
+
 function modifier_boss_hard_enrage:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
@@ -24,6 +28,14 @@ end
 
 function modifier_boss_hard_enrage:GetModifierStatusResistanceStacking()
 	return 50
+end
+
+function modifier_boss_hard_enrage:GetModifierHealAmplify_Percentage()
+	return -50
+end
+
+function modifier_boss_hard_enrage:GetModifierStatusAmplify_Percentage()
+	return -33
 end
 
 function modifier_boss_hard_enrage:GetEffectName()

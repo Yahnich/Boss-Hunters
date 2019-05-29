@@ -126,7 +126,7 @@ function UpdateHealthBar()
 				nameMod = ""
 			}
 			$("#bossNameLabel").text = $.Localize("#" + unitName + nameMod);
-			var elite = ""
+			var elite = "" 
 			for (var i = 0; i < Entities.GetAbilityCount( sUnit ); i++) {
 				var abilityID = Entities.GetAbility( sUnit, i )
 				var abilityName = 	Abilities.GetAbilityName( abilityID )
@@ -271,7 +271,7 @@ function CreateMainBuff(heroID, buffID, heroName)
 	} else {
 		parentPanel = buffContainer
 	}
-	var buffHolder = parentPanel.FindChild( "BuffHolder"+Buffs.GetName(heroID, buffID )+"Main" )
+	var buffHolder = parentPanel.FindChild( "BuffHolder"+Buffs.GetName(heroID, buffID )+ buffID )
 	if (buffHolder != null){
 		update = true;
 	}
@@ -280,7 +280,7 @@ function CreateMainBuff(heroID, buffID, heroName)
 	var stacks = Buffs.GetStackCount(heroID, buffID );
 	var buffLabel;
 	if( !update ){
-		buffHolder = $.CreatePanel( "Panel", parentPanel, "BuffHolder"+Buffs.GetName(heroID, buffID )+"Main");
+		buffHolder = $.CreatePanel( "Panel", parentPanel, "BuffHolder"+Buffs.GetName(heroID, buffID )+ buffID);
 		buffHolder.AddClass("PlayerInfoModifierHolder")
 		buffHolder.heroID = heroID;
 		buffHolder.buffID = buffID;
@@ -290,14 +290,14 @@ function CreateMainBuff(heroID, buffID, heroName)
 		
 		var ability = Buffs.GetAbility(heroID, buffID );
 		if( !Abilities.IsItem( ability ) ){
-			buff = $.CreatePanel( "DOTAAbilityImage", buffHolder, "Buff"+Buffs.GetName(heroID, buffID )+"Main");
+			buff = $.CreatePanel( "DOTAAbilityImage", buffHolder, "Buff"+Buffs.GetName(heroID, buffID )+ buffID);
 			buff.abilityname = Abilities.GetAbilityName( ability );
 		} else{
-			buff = $.CreatePanel( "DOTAItemImage", buffHolder, "Buff"+Buffs.GetName(heroID, buffID )+"Main");
+			buff = $.CreatePanel( "DOTAItemImage", buffHolder, "Buff"+Buffs.GetName(heroID, buffID )+ buffID);
 			buff.itemname = Abilities.GetAbilityName( ability );
 		}
 		
-		buffBorder =  $.CreatePanel( "Panel", buffHolder, "BuffBorder"+Buffs.GetName(heroID, buffID )+"Main");
+		buffBorder =  $.CreatePanel( "Panel", buffHolder, "BuffBorder"+Buffs.GetName(heroID, buffID )+ buffID);
 		buff.AddClass("PlayerMainModifier")
 		if(Buffs.IsDebuff(heroID, buffID) ){
 			buffBorder.AddClass("IsDebuff")
@@ -329,14 +329,14 @@ function CreateMainBuff(heroID, buffID, heroName)
 	} else {
 		buff = buffHolder.GetChild( 0 )
 		buffBorder = buffHolder.GetChild( 1 )
-		buffLabel =  buff.FindChild( "BuffLabel"+Buffs.GetName(heroID, buffID )+"Main");
+		buffLabel =  buff.FindChild( "BuffLabel"+Buffs.GetName(heroID, buffID )+ buffID);
 	}
 	var completion = Math.max( 0, 360 * (Buffs.GetRemainingTime(heroID, buffID ) / Buffs.GetDuration(heroID, buffID )) )
 	if(Buffs.GetDuration( heroID, buffID ) == -1 || Buffs.GetRemainingTime(heroID, buffID ) < 0){ completion = 360; }
 	buffBorder.style.clip = "radial(50% 50%, 0deg, " + completion + "deg)";
 	var stacks = Buffs.GetStackCount(heroID, buffID )
 	if(stacks > 0 && buffLabel == null){
-		var buffLabel =  $.CreatePanel( "Label", buff, "BuffLabel"+Buffs.GetName(heroID, buffID )+"Main");
+		var buffLabel =  $.CreatePanel( "Label", buff, "BuffLabel"+Buffs.GetName(heroID, buffID )+ buffID);
 		buffLabel.AddClass("PlayerMainModifierLabel")
 		buffLabel.text = stacks
 	} else if(stacks > 0 && buffLabel.text != stacks) {

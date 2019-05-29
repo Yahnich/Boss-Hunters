@@ -44,7 +44,7 @@
 			"03"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "damage"     					"75 90"
+	            "damage"     					"40 60"
 	        }
 	        "02"
 	        {
@@ -54,7 +54,7 @@
 			"03"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "spread_rad"     				"140"
+	            "spread_rad"     				"165"
 	        }
 	        "04"
 	        {
@@ -199,7 +199,7 @@
 	        "05"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "axe_number"     				"2 3"
+	            "axe_number"     				"2"
 	        }
 		}
 	}
@@ -305,7 +305,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_troll_warlord/boss_troll_warlord_savage_leap.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"

@@ -37,7 +37,6 @@ function witch_doctor_death_ward_bh:OnProjectileHit_ExtraData(target, vLocation,
 	if not self.death_ward:IsNull() then
 		local fixedDamage = self.wardDamage - self:GetCaster():GetAttackDamage()
 		local procs = self:GetCaster():HasTalent("special_bonus_unique_witch_doctor_death_ward_1") and self:GetTalentSpecialValueFor("bounces_scepter") == tonumber( extraData.bounces_left )
-		print( procs )
 		self:GetCaster():PerformAbilityAttack(target, procs, self, fixedDamage, false, false)
 		if extraData.bounces_left > 0 and self:GetCaster():HasScepter() then
 			extraData.bounces_left = extraData.bounces_left - 1

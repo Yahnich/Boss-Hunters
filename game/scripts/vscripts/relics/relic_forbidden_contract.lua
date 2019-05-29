@@ -1,0 +1,1 @@
+relic_forbidden_contract = class(relicBaseClass)

@@ -62,7 +62,6 @@ function modifier_bane_enfeeble_debuff:GetModifierIncomingDamage_Percentage()
 end
 
 function modifier_bane_enfeeble_debuff:GetModifierTotalDamageOutgoing_Percentage()
-	print(damage)
 	return self.damage
 end
 

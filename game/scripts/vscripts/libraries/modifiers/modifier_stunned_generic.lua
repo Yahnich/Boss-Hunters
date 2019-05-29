@@ -7,11 +7,12 @@ if IsServer() then
 		self:GetParent():StopMotionControllers(true)
 		if kv.delay == nil or toboolean(kv.delay) == true and not self:GetParent():IsRoundNecessary() then
 			self.delay = true
-			self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)
+			if self:GetAbility() then self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false) end
 		end
 	end
+	
 	function modifier_stunned_generic:OnDestroy()
-		if self.delay then self:GetAbility():EndDelayedCooldown() end
+		if self.delay and self:GetAbility() then self:GetAbility():EndDelayedCooldown() end
 	end
 end
 

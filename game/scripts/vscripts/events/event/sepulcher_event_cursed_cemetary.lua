@@ -29,6 +29,7 @@ local function CheckPlayerChoices(self)
 end
 
 local function StartCombat(self, bFight)
+	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	if bFight then
 		self.timeRemaining = 0
 		self.combatStarted = true
@@ -42,6 +43,7 @@ local function StartCombat(self, bFight)
 			local spawn = CreateUnitByName(boss, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundNecessary = true
 			spawn:SetCoreHealth(2250)
+			spawn:FindAbilityByName("boss4_sacrifice"):SetActivated(false)
 			self.undying = self.undying - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if self.undying > 0 then
@@ -128,14 +130,7 @@ local function HandoutRewards(self, bWon)
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			local pID = hero:GetPlayerOwnerID()
 			for i = 1, 2 do
-				local dropTable = {}
-				table.insert( dropTable, RelicManager:RollRandomGenericRelicForPlayer(pID) )
-				if RollPercentage(65) then
-					table.insert( dropTable, RelicManager:RollRandomUniqueRelicForPlayer(pID) )
-				else
-					table.insert( dropTable, RelicManager:RollRandomCursedRelicForPlayer(pID) )
-				end
-				RelicManager:PushCustomRelicDropsForPlayer(pID, dropTable)
+				RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomRelicForPlayer(pID)})
 			end
 		end
 	end

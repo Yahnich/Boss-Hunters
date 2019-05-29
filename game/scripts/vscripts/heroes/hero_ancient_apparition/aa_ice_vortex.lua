@@ -4,7 +4,7 @@ LinkLuaModifier("modifier_aa_ice_vortex_effect", "heroes/hero_ancient_apparition
 LinkLuaModifier("modifier_aa_ice_vortex_aa", "heroes/hero_ancient_apparition/aa_ice_vortex", LUA_MODIFIER_MOTION_NONE)
 
 function aa_ice_vortex:GetAOERadius()
-	return self:GetSpecialValueFor("radius")
+	return self:GetTalentSpecialValueFor("radius")
 end
 
 function aa_ice_vortex:GetCooldown(iLvl)
@@ -18,25 +18,25 @@ function aa_ice_vortex:OnSpellStart()
 	local point = self:GetCursorPosition()
 	EmitSoundOn("Hero_Ancient_Apparition.IceVortexCast", caster)
 
-	CreateModifierThinker(caster, self, "modifier_aa_ice_vortex", {Duration = self:GetSpecialValueFor("duration")}, point, caster:GetTeam(), false)
+	CreateModifierThinker(caster, self, "modifier_aa_ice_vortex", {Duration = self:GetTalentSpecialValueFor("duration")}, point, caster:GetTeam(), false)
 end
 
 modifier_aa_ice_vortex = class({})
 function modifier_aa_ice_vortex:OnCreated(table)
+	self.radius = self:GetTalentSpecialValueFor("radius")
     if IsServer() then
     	EmitSoundOn("Hero_Ancient_Apparition.IceVortex", self:GetParent())
-    	self:GetAbility():CreateVisibilityNode(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("vision_aoe"), self:GetDuration())
+    	self:GetAbility():CreateVisibilityNode(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("vision_aoe"), self:GetDuration())
     	self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_ancient_apparition/ancient_ice_vortex.vpcf", PATTACH_ABSORIGIN, self:GetCaster())
     	ParticleManager:SetParticleControl(self.nfx, 0, GetGroundPosition(self:GetParent():GetAbsOrigin(), self:GetParent()) + Vector(0,0,100))
-    	local radius = self:GetSpecialValueFor("radius")
-    	ParticleManager:SetParticleControl(self.nfx, 5, Vector(radius, radius, radius))
+    	ParticleManager:SetParticleControl(self.nfx, 5, Vector(self.radius, self.radius, self.radius))
 
     	self:StartIntervalThink(FrameTime())
     end
 end
 
 function modifier_aa_ice_vortex:OnIntervalThink()
-    local friends = self:GetCaster():FindFriendlyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius"))
+    local friends = self:GetCaster():FindFriendlyUnitsInRadius(self:GetParent():GetAbsOrigin(), self.radius)
     for _,friend in pairs(friends) do
     	if friend == self:GetCaster() then
     		friend:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_aa_ice_vortex_aa", {Duration = 0.5})
@@ -60,7 +60,7 @@ function modifier_aa_ice_vortex:GetAuraDuration()
 end
 
 function modifier_aa_ice_vortex:GetAuraRadius()
-    return self:GetSpecialValueFor("radius")
+    return self.radius
 end
 
 function modifier_aa_ice_vortex:GetAuraSearchFlags()
@@ -89,11 +89,21 @@ end
 
 modifier_aa_ice_vortex_effect = class({})
 function modifier_aa_ice_vortex_effect:OnCreated(table)
-    if IsServer() then self:StartIntervalThink(self:GetSpecialValueFor("tick_rate")) end
+	self.slow = -self:GetTalentSpecialValueFor("slow_move")
+	self.resist = -self:GetTalentSpecialValueFor("magic_resist")
+	self.chill = self:GetTalentSpecialValueFor("chill_dmg") / 100
+	self.freeze = self:GetTalentSpecialValueFor("freeze_dmg")
+    if IsServer() then self:StartIntervalThink(self:GetTalentSpecialValueFor("tick_rate")) end
 end
 
 function modifier_aa_ice_vortex_effect:OnIntervalThink()
     if self:GetParent() and not self:GetParent():IsNull() then self:GetParent():AddChill(self:GetAbility(), self:GetCaster(), 1) end
+	local damage = self:GetParent():GetChillCount() * self.chill
+	if self:GetParent():IsFrozenGeneric() then
+		damage = self.freeze
+	end
+	print(damage)
+	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), damage )
 end
 
 function modifier_aa_ice_vortex_effect:DeclareFunctions()
@@ -105,11 +115,11 @@ function modifier_aa_ice_vortex_effect:DeclareFunctions()
 end
 
 function modifier_aa_ice_vortex_effect:GetModifierMoveSpeedBonus_Percentage()
-    return -self:GetSpecialValueFor("slow_move")
+    return self.slow
 end
 
 function modifier_aa_ice_vortex_effect:GetModifierMagicalResistanceBonus()
-    return -self:GetSpecialValueFor("magic_resist")
+    return self.resist
 end
 
 function modifier_aa_ice_vortex_effect:GetEffectName()
@@ -125,7 +135,7 @@ function modifier_aa_ice_vortex_aa:DeclareFunctions()
 end
 
 function modifier_aa_ice_vortex_aa:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetSpecialValueFor("slow_move")*2
+    return self:GetTalentSpecialValueFor("slow_move")*2
 end
 
 function modifier_aa_ice_vortex_aa:GetEffectName()

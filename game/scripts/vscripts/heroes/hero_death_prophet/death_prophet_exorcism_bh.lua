@@ -41,9 +41,10 @@ function death_prophet_exorcism_bh:CreateGhost(position, duration)
 			local distance = self.orbitRadius - casterDistance
 			local direction = CalculateDirection( position, caster)
 			self:SetVelocity( GetPerpendicularVector( direction ) * speed * (-1)^self.orientation + direction * distance )
-			self:SetPosition( GetGroundPosition( position + (velocity*FrameTime()), nil ) )
-			if caster:GetAttackTarget() or caster.nearbyEnemies[RandomInt(1, #caster.nearbyEnemies)] then
-				self.seekTarget = caster:GetAttackTarget() or caster.nearbyEnemies[RandomInt(1, #caster.nearbyEnemies)]
+			self:SetPosition( GetGroundPosition( position + (self:GetVelocity()*ProjectileManager:FrameTime()), nil ) )
+			local newTarget = caster:GetAttackTarget() or caster.nearbyEnemies[RandomInt(1, #caster.nearbyEnemies)]
+			if newTarget then
+				self.seekTarget = newTarget
 				self.state = stateList.SEEKING
 			end
 		elseif self.state == stateList.SEEKING then
@@ -58,16 +59,12 @@ function death_prophet_exorcism_bh:CreateGhost(position, duration)
 				if angle > 360 then
 					angle = angle - 360
 				end
-				local sign = -1
-				if angle > 0 then
-					sign = 1
-				end
 				angle = math.abs( angle )
-				local direction = RotateVector2D( velocity, ToRadians( math.min( self.turn_speed, angle ) ) * FrameTime() )
+				local direction = RotateVector2D( velocity, ToRadians( math.min( self.turn_speed, angle ) ) * ProjectileManager:FrameTime() )
 				self:SetVelocity( direction * speed + CalculateDirection( self.seekTarget, position ) * math.max(100, (500 - distance) ) )
-				local newPosition = GetGroundPosition( position + (velocity*FrameTime()), nil )
+				local newPosition = GetGroundPosition( position + (velocity*ProjectileManager:FrameTime()), nil )
 				self:SetPosition( newPosition )
-				if CalculateDistance( self.seekTarget, newPosition ) <= self:GetRadius() then
+				if distance <= self:GetRadius() + self.seekTarget:GetHullRadius() + self.seekTarget:GetCollisionPadding() then
 					local status, err, ret = pcall(self.hitBehavior, self, self.seekTarget, newPosition)
 					if not status then
 						print(err)
@@ -91,15 +88,12 @@ function death_prophet_exorcism_bh:CreateGhost(position, duration)
 			if angle > 360 then
 				angle = angle - 360
 			end
-			local sign = -1
-			if angle > 0 then
-				sign = 1
-			end
 			angle = math.abs( angle )
-			local direction = RotateVector2D( velocity, math.min( self.turn_speed, angle ) * sign * FrameTime() )
-			self:SetVelocity( direction * speed + CalculateDirection( caster, position ) * math.max(100, (350 - distance) ) )
-			self:SetPosition( GetGroundPosition( position + (velocity*FrameTime()), nil ) )
-			if casterDistance < ( self.radius + caster:GetHullRadius() ) then
+			
+			local direction = RotateVector2D( velocity, ToRadians( math.min( self.turn_speed, angle ) ) * ProjectileManager:FrameTime() )
+			self:SetVelocity( direction * speed + CalculateDirection( caster, position ) * math.max(100, (500 - distance) ) )
+			self:SetPosition( GetGroundPosition( position + (velocity*ProjectileManager:FrameTime()), nil ) )
+			if casterDistance < ( self:GetRadius() + caster:GetHullRadius() + caster:GetCollisionPadding() ) then
 				self.state = stateList.ORBITING
 			end
 		end
@@ -123,7 +117,7 @@ function death_prophet_exorcism_bh:CreateGhost(position, duration)
 																		  caster = caster,
 																		  ability = self,
 																		  speed = speed,
-																		  radius = 16,
+																		  radius = 24,
 																		  velocity = speed * caster:GetForwardVector(),
 																		  turn_speed = turnSpeed,
 																		  state = stateList.ORBITING,
@@ -204,13 +198,16 @@ function modifier_death_prophet_exorcism_bh_talent:DeclareFunctions()
 end
 
 function modifier_death_prophet_exorcism_bh_talent:OnDeath(params)
-	if params.attacker == self:GetParent() and self:GetParent():HasTalent("special_bonus_unique_death_prophet_exorcism_2") then
+	if params.attacker == self:GetParent() and self:GetParent():HasTalent("special_bonus_unique_death_prophet_exorcism_2") and not params.unit:IsMinion() then
 		local ghosts = 1
-		if params.unit:IsRoundNecessary() then
-			ghosts = 4
+		local roll = RollPercentage(50)
+		if params.unit:IsBoss() then
+			ghosts = 2
 		end
-		for i = 1, ghosts do
-			self:GetAbility():CreateGhost( params.unit:GetAbsOrigin(), self:GetAbility():GetDuration() )
+		if roll or params.unit:IsBoss() then
+			for i = 1, ghosts do
+				self:GetAbility():CreateGhost( params.unit:GetAbsOrigin(), self:GetAbility():GetDuration() )
+			end
 		end
 	end
 end

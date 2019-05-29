@@ -17,32 +17,36 @@ end
 modifier_bristleback_yer_mum = class({})
 LinkLuaModifier("modifier_bristleback_yer_mum", "heroes/hero_bristleback/bristleback_yer_mum", 0)
 
-if IsServer() then
-	function modifier_bristleback_yer_mum:OnCreated()
-		self.chance = self:GetTalentSpecialValueFor("reduction_chance")
-		self.reduction = self:GetTalentSpecialValueFor("damage_reduction")
-		self:GetAbility():StartDelayedCooldown()
-	end
-	
-	function modifier_bristleback_yer_mum:OnRefresh()
-		self.chance = self:GetTalentSpecialValueFor("reduction_chance")
-		self.reduction = self:GetTalentSpecialValueFor("damage_reduction")
-		self:GetAbility():StartDelayedCooldown()
-	end
-	
-	function modifier_bristleback_yer_mum:OnDestroy()
-		self:GetAbility():EndDelayedCooldown()
-	end
+function modifier_bristleback_yer_mum:OnCreated()
+	self.chance = self:GetTalentSpecialValueFor("reduction_chance")
+	self.reduction = self:GetTalentSpecialValueFor("damage_reduction")
+	self.amp = self:GetCaster():FindTalentValue("special_bonus_unique_bristleback_yer_mum_2")
+	self:GetAbility():StartDelayedCooldown()
+end
+
+function modifier_bristleback_yer_mum:OnRefresh()
+	self.chance = self:GetTalentSpecialValueFor("reduction_chance")
+	self.reduction = self:GetTalentSpecialValueFor("damage_reduction")
+	self.amp = self:GetCaster():FindTalentValue("special_bonus_unique_bristleback_yer_mum_2")
+	self:GetAbility():StartDelayedCooldown()
+end
+
+function modifier_bristleback_yer_mum:OnDestroy()
+	self:GetAbility():EndDelayedCooldown()
 end
 
 function modifier_bristleback_yer_mum:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE}
+	return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE, 
+			MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
 end
 
 function modifier_bristleback_yer_mum:GetModifierTotalDamageOutgoing_Percentage(params)
-	if RollPercentage(self.chance) then return self.reduction end
+	if self:RollPRNG(self.chance) then return self.reduction end
 end
 
+function modifier_bristleback_yer_mum:GetModifierTotalDamageOutgoing_Percentage(params)
+	return self.amp
+end
 
 function modifier_bristleback_yer_mum:GetTauntTarget()
 	return self:GetCaster()

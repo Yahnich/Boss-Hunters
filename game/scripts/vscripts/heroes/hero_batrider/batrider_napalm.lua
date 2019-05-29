@@ -53,6 +53,7 @@ modifier_batrider_napalm_debuff = class({})
 function modifier_batrider_napalm_debuff:OnCreated(table)
 	self.slow = self:GetTalentSpecialValueFor("slow_ms") * self:GetStackCount()
 	self.turnRate = self:GetTalentSpecialValueFor("turn_rate_pct")
+	self.amp = self:GetTalentSpecialValueFor("damage_amp") * self:GetStackCount()
 
 	if self:GetCaster():HasTalent("special_bonus_unique_batrider_napalm_1") then
 		self.slow_as = self.slow
@@ -76,6 +77,7 @@ end
 function modifier_batrider_napalm_debuff:OnRefresh(table)
 	self.slow = self:GetTalentSpecialValueFor("slow_ms") * self:GetStackCount()
 	self.turnRate = self:GetTalentSpecialValueFor("turn_rate_pct")
+	self.amp = self:GetTalentSpecialValueFor("damage_amp") * self:GetStackCount()
 
 	if self:GetCaster():HasTalent("special_bonus_unique_batrider_napalm_1") then
 		self.slow_as = self.slow
@@ -97,7 +99,7 @@ end
 function modifier_batrider_napalm_debuff:OnStackCountChanged(iStackCount)
 	self.slow = self:GetTalentSpecialValueFor("slow_ms") * self:GetStackCount()
 	self.turnRate = self:GetTalentSpecialValueFor("turn_rate_pct")
-
+	self.amp = self:GetTalentSpecialValueFor("damage_amp") * self:GetStackCount()
 	if self:GetCaster():HasTalent("special_bonus_unique_batrider_napalm_1") then
 		self.slow_as = self.slow
 	else
@@ -116,7 +118,8 @@ function modifier_batrider_napalm_debuff:OnStackCountChanged(iStackCount)
 end
 
 function modifier_batrider_napalm_debuff:DeclareFunctions()
-    return {MODIFIER_EVENT_ON_TAKEDAMAGE,
+    -- MODIFIER_EVENT_ON_TAKEDAMAGE,
+	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 			MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE}
 end
@@ -125,39 +128,48 @@ function modifier_batrider_napalm_debuff:GetModifierAttackSpeedBonus()
 	return -self.slow_as
 end
 
-function modifier_batrider_napalm_debuff:OnTakeDamage(params)
-    if IsServer() then
-    	local caster = self:GetCaster()
-    	local parent = self:GetParent()
-    	local unit = params.unit
-    	local attacker = params.attacker
-
-        if unit == parent and attacker == caster and params.inflictor and caster:HasAbility( params.inflictor:GetName() ) and params.inflictor:GetName() ~= "batrider_concoction" then
-        	local ability = self:GetAbility()
-
-        	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_batrider/batrider_napalm_damage_debuff.vpcf", PATTACH_POINT, caster)
-        				ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_POINT, "attach_hitloc", parent:GetAbsOrigin(), true)
-        				ParticleManager:ReleaseParticleIndex(nfx)
-
-        	if caster:HasTalent("special_bonus_unique_batrider_napalm_2") then
-        		local radius = caster:FindTalentValue("special_bonus_unique_batrider_napalm_2")
-        		local damage = self:GetTalentSpecialValueFor("damage") * self:GetTalentSpecialValueFor("max_stacks")
-
-        		ParticleManager:FireParticle("particles/units/heroes/hero_jakiro/jakiro_liquid_fire_explosion.vpcf", PATTACH_POINT, unit, {[0]="attach_hitloc", [1]=Vector(radius, radius, radius)})
-
-        		local enemies = caster:FindEnemyUnitsInRadius(unit:GetAbsOrigin(), radius)
-        		for _,enemy in pairs(enemies) do
-        			if enemy ~= unit then
-        				ability:DealDamage(caster, enemy, damage, {damage_flags = DOTA_DAMAGE_FLAG_HPLOSS}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-        			end
-        		end
-        	end
-
-        	parent:AddNewModifier(caster, self:GetAbility(), "modifier_batrider_napalm_fire", {Duration = self:GetTalentSpecialValueFor("duration")}):SetStackCount(self:GetStackCount())
-        	self:Destroy()
-        end
-    end
+function modifier_batrider_napalm_debuff:GetModifierIncomingDamage_Percentage(params)
+	if params.attacker == self:GetCaster() then
+		return self.amp
+	end
 end
+
+-- function modifier_batrider_napalm_debuff:OnTakeDamage(params)
+    -- if IsServer() then
+    	-- local caster = self:GetCaster()
+    	-- local parent = self:GetParent()
+    	-- local unit = params.unit
+    	-- local attacker = params.attacker
+
+        -- if unit == parent and attacker == caster and params.inflictor and caster:HasAbility( params.inflictor:GetName() ) and params.inflictor:GetName() ~= "batrider_concoction" then
+        	-- local ability = self:GetAbility()
+
+        	-- local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_batrider/batrider_napalm_damage_debuff.vpcf", PATTACH_POINT, caster)
+        				-- ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_POINT, "attach_hitloc", parent:GetAbsOrigin(), true)
+        				-- ParticleManager:ReleaseParticleIndex(nfx)
+
+        	-- if caster:HasTalent("special_bonus_unique_batrider_napalm_2") then
+        		-- local radius = caster:FindTalentValue("special_bonus_unique_batrider_napalm_2")
+        		-- local damage = self:GetTalentSpecialValueFor("damage") * self:GetTalentSpecialValueFor("max_stacks")
+
+        		-- ParticleManager:FireParticle("particles/units/heroes/hero_jakiro/jakiro_liquid_fire_explosion.vpcf", PATTACH_POINT, unit, {[0]="attach_hitloc", [1]=Vector(radius, radius, radius)})
+
+        		-- local enemies = caster:FindEnemyUnitsInRadius(unit:GetAbsOrigin(), radius)
+        		-- for _,enemy in pairs(enemies) do
+        			-- if enemy ~= unit then
+        				-- ability:DealDamage(caster, enemy, damage, {damage_flags = DOTA_DAMAGE_FLAG_HPLOSS}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+        			-- end
+        		-- end
+        	-- end
+
+        	-- local modifier = parent:AddNewModifier(caster, self:GetAbility(), "modifier_batrider_napalm_fire", {Duration = self:GetTalentSpecialValueFor("duration")})
+			-- if modifier then 
+				-- modifier:SetStackCount(self:GetStackCount())
+			-- end
+        	-- self:Destroy()
+        -- end
+    -- end
+-- end
 
 function modifier_batrider_napalm_debuff:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow

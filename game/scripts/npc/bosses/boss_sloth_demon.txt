@@ -110,12 +110,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_damage"			"50 75"
+				"base_damage"			"35 50"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stack_damage"			"20 40"
+				"stack_damage"			"15 25"
 			}
 			"03"
 			{

@@ -173,7 +173,8 @@ function modifier_abyssal_underlord_pit_of_malice_bh_root:GetEffectName()
 end
 
 function modifier_abyssal_underlord_pit_of_malice_bh_root:CheckState()
-    local state = { [MODIFIER_STATE_ROOTED] = true}
+    local state = { [MODIFIER_STATE_ROOTED] = true,
+					[MODIFIER_STATE_INVISIBLE] = false}
     return state
 end
 

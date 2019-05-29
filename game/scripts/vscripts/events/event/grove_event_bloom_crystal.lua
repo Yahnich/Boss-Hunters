@@ -18,7 +18,7 @@ end
 
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddGold(1000)
+	hero:AddGold(800)
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
@@ -26,16 +26,7 @@ end
 local function ThirdChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
 	if RollPercentage( 50 ) then
-		local relic = ""
-		local roll = RandomInt(1, 5)
-		if roll == 1 then
-			relic = RelicManager:RollRandomUniqueRelicForPlayer(event.pID)
-		elseif roll == 2 then
-			relic = RelicManager:RollRandomCursedRelicForPlayer(event.pID)
-		else
-			relic = RelicManager:RollRandomGenericRelicForPlayer(event.pID)
-		end
-		RelicManager:PushCustomRelicDropsForPlayer(event.pID, {relic})
+		RelicManager:PushCustomRelicDropsForPlayer(event.pID, {RelicManager:RollRandomRelicForPlayer(event.pID)})
 	end
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)

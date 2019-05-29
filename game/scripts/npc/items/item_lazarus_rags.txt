@@ -90,12 +90,12 @@
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"block_chance"			"100"
+				"block_chance"			"65"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_block"			"50"
+				"damage_block"			"40"
 			}
 			"09"
 			{

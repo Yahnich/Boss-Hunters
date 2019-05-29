@@ -14,7 +14,7 @@ function visage_familiars:OnSpellStart()
 	
 	local totalCount = self:GetTalentSpecialValueFor("familiar_count")
 	local health = caster:GetMaxHealth() * self:GetTalentSpecialValueFor("familiar_hp")/100
-	local armor = caster:GetPhysicalArmorValue() * self:GetTalentSpecialValueFor("familiar_armor")/100
+	local armor = caster:GetPhysicalArmorValue(false) * self:GetTalentSpecialValueFor("familiar_armor")/100
 	local speed = caster:GetIdealSpeedNoSlows()
 	local damage = caster:GetAttackDamage() * self:GetTalentSpecialValueFor("familiar_ad")/100
 

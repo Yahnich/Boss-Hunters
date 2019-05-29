@@ -119,7 +119,17 @@
 			"12"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"radius"				"900"
+				"min_radius"			"150"
+			}
+			"13"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"500"
+			}
+			"14"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius_change"			"70"
 			}
 		}
 	}

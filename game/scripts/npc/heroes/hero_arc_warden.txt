@@ -48,7 +48,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"6"
+				"duration"						"4 5 6 7 8 9 10"
 			}
 			"02"
 			{
@@ -63,7 +63,12 @@
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"move_speed_slow_pct"			"-20 -30 -40 -50 -60 -70 -80"
+				"move_speed_slow_pct"			"-50 -55 -60 -65 -70 -75 -80"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"jump_radius"					"900"
 			}
 		}
 	}
@@ -353,7 +358,6 @@
 			}
 		}
 	}
-
 	"arc_warden_echo_ward"
 	{
 		// General
@@ -398,7 +402,51 @@
 			}
 		}
 	}
-
+	"arc_warden_tempest_mirage"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_arc_warden/arc_warden_tempest_mirage.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"MaxLevel"						"1"
+		"AbilityTextureName"			"arc_warden_tempest_double"
+		"ConsideredHero"				"1"
+		"HasScepterUpgrade"				"1"
+		"InnateAbility"					"1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60"
+		
+		"precache"
+		{
+			"particle"                  "particles/units/heroes/hero_arc_warden/arc_warden_wraith.vpcf"
+			"particle"  				"particles/units/heroes/hero_arc_warden/arc_warden_wraith_prj.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_arc_warden.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pct_cost"				"25"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_casts"			"2"
+			}
+		}
+	}
 	"arc_warden_primordial_current"
 	{
 		// General

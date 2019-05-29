@@ -2,6 +2,22 @@ ta_trap = class({})
 LinkLuaModifier( "modifier_ta_trap", "heroes/hero_ta/ta_trap.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_ta_trap_spring", "heroes/hero_ta/ta_trap.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function ta_trap:GetCooldown( iLvl )
+	local cd = self.BaseClass.GetCooldown( self, iLvl )
+	if self:GetCaster():HasScepter() then
+		cd = cd + self:GetTalentSpecialValueFor("scepter_cooldown_reduction")
+	end
+	return cd
+end
+
+function ta_trap:GetAOERadius()
+	local radius = self:GetTalentSpecialValueFor("trap_radius")
+	if self:GetCaster():HasScepter() then
+		radius = radius + self:GetTalentSpecialValueFor("scepter_bonus_radius")
+	end
+	return radius
+end
+
 function ta_trap:IsStealable()
 	return false
 end
@@ -73,9 +89,15 @@ function modifier_ta_trap:OnCreated()
 		self.tick = self:GetAbility():GetTalentSpecialValueFor("tick_rate")
 		self.dmgPerTick = ( (self.maxDmg - self.minDmg) * self.tick ) / self.maxTimer
 		self.slowPerTick = ( (self.maxSlow - self.minSlow) * self.tick ) / self.maxTimer
-		self:GetParent().currDamage = self.minDmg
+		if self:GetCaster():HasScepter() then
+			self:GetParent().currDamage = self.maxDmg
+		else
+			self:GetParent().currDamage = self.minDmg
+		end
 		self:GetParent().currSlow = self.minSlow
-		self:StartIntervalThink(self.tick)
+		if self:GetParent().currDamage < self.maxDmg then
+			self:StartIntervalThink(self.tick)
+		end
 	end
 end
 

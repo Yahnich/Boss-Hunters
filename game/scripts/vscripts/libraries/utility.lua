@@ -625,122 +625,245 @@ end
 function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, specIllusionModifier, ability, controllable, caster, callback )
 	local owner = caster or self
 	local player = owner:GetPlayerID()
-
+	local respawnedIllusion
 	local unit_name = self:GetUnitName()
 	local origin = position or self:GetAbsOrigin() + RandomVector(100)
 	local outgoingDamage = outgoing or 0
 	local incomingDamage = incoming or 0
 	
+	self.illusionSpawnPool = self.illusionSpawnPool or {}
 	bControl = controllable
 	if bControl == nil then bControl = true end
 	-- handle_UnitOwner needs to be nil, else it will crash the game.
-	local illusionIndex = CreateUnitByNameAsync("npc_illusion_template", origin, true, owner, owner, owner:GetTeamNumber(), function( illusion )
-		if bControl then illusion:SetControllableByPlayer(player, true) end
-		for abilitySlot=0,25 do
-			local abilityillu = self:GetAbilityByIndex(abilitySlot)
-			if abilityillu ~= nil then
-				local abilityLevel = abilityillu:GetLevel()
-				local abilityName = abilityillu:GetAbilityName()
-				if illusion:FindAbilityByName(abilityName) ~= nil then
-					local illusionAbility = illusion:FindAbilityByName(abilityName)
-					illusionAbility:SetLevel(abilityLevel)
-				else
-					local illusionAbility = illusion:AddAbility(abilityName)
-					if illusionAbility then illusionAbility:SetLevel(abilityLevel) end
+	for i = #self.illusionSpawnPool, 1, -1 do
+		local illusion = self.illusionSpawnPool[i]
+		if illusion then
+			if illusion:IsNull() then
+				table.remove( self.illusionSpawnPool, i )
+			elseif not illusion:IsAlive() and not respawnedIllusion then
+				respawnedIllusion = illusion
+			end
+		end
+	end
+	if not respawnedIllusion then
+		local illusionIndex = CreateUnitByNameAsync("npc_illusion_template", origin, true, owner, owner, owner:GetTeamNumber(), function( illusion )
+			if bControl then illusion:SetControllableByPlayer(player, true) end
+			for abilitySlot=0,25 do
+				local abilityillu = self:GetAbilityByIndex(abilitySlot)
+				if abilityillu ~= nil then
+					local abilityLevel = abilityillu:GetLevel()
+					local abilityName = abilityillu:GetAbilityName()
+					if illusion:FindAbilityByName(abilityName) ~= nil then
+						local illusionAbility = illusion:FindAbilityByName(abilityName)
+						illusionAbility:SetLevel(abilityLevel)
+					else
+						local illusionAbility = illusion:AddAbility(abilityName)
+						if illusionAbility then illusionAbility:SetLevel(abilityLevel) end
+					end
 				end
 			end
-		end
-		
-		illusion:SetBaseDamageMax( self:GetBaseDamageMax() - 10 )
-		illusion:SetBaseDamageMin( self:GetBaseDamageMin() - 10 )
-		illusion:SetPhysicalArmorBaseValue( self:GetPhysicalArmorBaseValue() )
-		illusion:SetBaseAttackTime( self:GetBaseAttackTime() )
-		illusion:SetBaseMoveSpeed( self:GetBaseMoveSpeed() )
-		
-		illusion:SetOriginalModel( self:GetOriginalModel() )
-		illusion:SetModel( self:GetOriginalModel() )
-		illusion:SetModelScale( self:GetModelScale() )
-		
-		local moveCap = DOTA_UNIT_CAP_MOVE_NONE
-		if self:HasMovementCapability() then
-			moveCap = DOTA_UNIT_CAP_MOVE_GROUND
-			if self:HasFlyMovementCapability() then
-				moveCap = DOTA_UNIT_CAP_MOVE_FLY
-			end
-		end
-		illusion:SetMoveCapability( moveCap )
-		illusion:SetAttackCapability( self:GetOriginalAttackCapability() )
-		illusion:SetUnitName( self:GetUnitName() )
-		if self:IsRangedAttacker() then
-			illusion:SetRangedProjectileName( self:GetRangedProjectileName() )
-		end
-		
-		for _, modifier in ipairs( self:FindAllModifiers() ) do
-			if modifier.AllowIllusionDuplicate and modifier:AllowIllusionDuplicate() then
-				local caster = modifier:GetCaster()
-				if caster == self then
-					caster = illusion
-				end
-				illusion:AddNewModifier( caster, modifier:GetAbility(), modifier:GetName(), { duration = modifier:GetDuration() })
-			end
-		end
-		
-		-- Recreate the items of the caster
-		for itemSlot=0,5 do
-			local item = self:GetItemInSlot(itemSlot)
-			if item ~= nil then
-				local itemName = item:GetName()
-				local newItem = illusion:AddItemByName(itemName)
-				if newItem then
-					newItem:SetStacksWithOtherOwners(true)
-					newItem:SetPurchaser(nil)
-					newItem:SetSellable(false)
-					newItem:SetDroppable(false)
+			
+			illusion:SetBaseDamageMax( self:GetBaseDamageMax() - 10 )
+			illusion:SetBaseDamageMin( self:GetBaseDamageMin() - 10 )
+			illusion:SetPhysicalArmorBaseValue( self:GetPhysicalArmorBaseValue() )
+			illusion:SetBaseAttackTime( self:GetBaseAttackTime() )
+			illusion:SetBaseMoveSpeed( self:GetBaseMoveSpeed() )
+			
+			illusion:SetOriginalModel( self:GetOriginalModel() )
+			illusion:SetModel( self:GetOriginalModel() )
+			illusion:SetModelScale( self:GetModelScale() )
+			
+			local moveCap = DOTA_UNIT_CAP_MOVE_NONE
+			if self:HasMovementCapability() then
+				moveCap = DOTA_UNIT_CAP_MOVE_GROUND
+				if self:HasFlyMovementCapability() then
+					moveCap = DOTA_UNIT_CAP_MOVE_FLY
 				end
 			end
-		end
-	
-		-- Set the unit as an illusion
-		-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
-		illusion:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
-		if specIllusionModifier and specIllusionModifier ~= "" then
-			illusion:AddNewModifier(owner, ability, specIllusionModifier, { duration = duration })
-		end
-		illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", { duration = duration })
-		illusion:AddNewModifier( self, nil, "modifier_stats_system_handler", {})
-		illusion.wearableList = {}
-		local wearableWorker = {}
-		for _, wearable in ipairs( self.wearableTable or self:GetChildren() ) do
-			if wearable:GetClassname() == "dota_item_wearable" and wearable:GetModelName() ~= "" then
-				CreateUnitByNameAsync("wearable_dummy", origin, true, owner, owner, owner:GetTeamNumber(), function( newWearable )
-					newWearable:SetOriginalModel(wearable:GetModelName())
-					newWearable:SetModel(wearable:GetModelName())
-					newWearable:AddNewModifier(nil, nil, "modifier_wearable", {})
-					newWearable:AddNewModifier(owner, ability, specIllusionModifier or "modifier_illusion", { duration = -1 })
-					newWearable:SetParent(illusion, nil)
-					newWearable:FollowEntity(illusion, true)
-					newWearable:SetRenderColor(100,100,255)
-					table.insert( illusion.wearableList, newWearable )
-				end)
-				if not self.wearableTable then
-					table.insert( wearableWorker, wearable )
+			illusion:SetMoveCapability( moveCap )
+			illusion:SetAttackCapability( self:GetOriginalAttackCapability() )
+			illusion:SetUnitName( self:GetUnitName() )
+			if self:IsRangedAttacker() then
+				illusion:SetRangedProjectileName( self:GetRangedProjectileName() )
+			end
+			
+			for _, modifier in ipairs( self:FindAllModifiers() ) do
+				if modifier.AllowIllusionDuplicate and modifier:AllowIllusionDuplicate() then
+					local caster = modifier:GetCaster()
+					if caster == self then
+						caster = illusion
+					end
+					illusion:AddNewModifier( caster, modifier:GetAbility(), modifier:GetName(), { duration = modifier:GetDuration() })
 				end
 			end
-		end
+			
+			-- Recreate the items of the caster
+			for itemSlot=0,5 do
+				local item = self:GetItemInSlot(itemSlot)
+				if item ~= nil then
+					local itemName = item:GetName()
+					local newItem = illusion:AddItemByName(itemName)
+					if newItem then
+						newItem:SetStacksWithOtherOwners(true)
+						newItem:SetPurchaser(nil)
+						newItem:SetSellable(false)
+						newItem:SetDroppable(false)
+					end
+				end
+			end
 		
-		-- Make illusion look like owner
-		local maxHealthFromBuffs = illusion:GetMaxHealth()
-		illusion:SetBaseMaxHealth( self:GetBaseMaxHealth() )
-		illusion:SetMaxHealth( self:GetMaxHealth() - maxHealthFromBuffs )
-		illusion:SetHealth( self:GetHealth() )
-		if not self.wearableTable then
-			self.wearableTable = wearableWorker
-		end
-		illusion:MakeIllusion()
-		if callback then
-			callback( illusion, self, caster, ability )
-		end
-	end )
+			-- Set the unit as an illusion
+			-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
+			if specIllusionModifier ~= nil and specIllusionModifier ~= "" then
+				illusion:AddNewModifier(owner, ability, specIllusionModifier, { duration = duration })
+			end
+			illusion:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
+			illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", {})
+			illusion:AddNewModifier( self, nil, "modifier_stats_system_handler", {})
+			illusion.wearableList = {}
+			local wearableWorker = {}
+			for _, wearable in ipairs( self.wearableTable or self:GetChildren() ) do
+				if wearable:GetClassname() == "dota_item_wearable" and wearable:GetModelName() ~= "" then
+					CreateUnitByNameAsync("wearable_dummy", origin, true, owner, owner, owner:GetTeamNumber(), function( newWearable )
+						newWearable:SetOriginalModel(wearable:GetModelName())
+						newWearable:SetModel(wearable:GetModelName())
+						newWearable:AddNewModifier(owner, ability, "modifier_wearable", {})
+						if specIllusionModifier ~= nil and specIllusionModifier ~= "" then	
+							newWearable:AddNewModifier(owner, ability, specIllusionModifier, {duration = duration})
+						end
+						newWearable:AddNewModifier(owner, ability, "modifier_illusion", {})
+						newWearable:SetParent(illusion, nil)
+						newWearable:FollowEntity(illusion, true)
+						newWearable:SetRenderColor(100,100,255)
+						table.insert( illusion.wearableList, newWearable )
+					end)
+					if not self.wearableTable then
+						table.insert( wearableWorker, wearable )
+					end
+				end
+			end
+			
+			-- Make illusion look like owner
+			illusion:SetBaseMaxHealth( self:GetBaseMaxHealth() )
+			illusion:SetThreat( self:GetThreat() )
+			
+			if not self.wearableTable then
+				self.wearableTable = wearableWorker
+			end
+			if callback then
+				callback( illusion, self, caster, ability )
+			end
+			illusion:SetUnitCanRespawn( true )
+			table.insert( self.illusionSpawnPool, illusion )
+			illusion:MakeIllusion()
+			ResolveNPCPositions( illusion:GetAbsOrigin(), 128 )
+		end )
+	else
+		local illusion = respawnedIllusion
+		illusion:RespawnUnit()
+		illusion:SetCoreHealth( 100 )
+		FindClearSpaceForUnit( illusion, origin, true )
+		Timers:CreateTimer(function()
+			if not illusion:IsAlive() then
+				illusion:RespawnUnit()
+				illusion:SetCoreHealth( 100 )
+			end
+			if bControl then illusion:SetControllableByPlayer(player, true) end
+			for abilitySlot=0,25 do
+				local abilityillu = self:GetAbilityByIndex(abilitySlot)
+				if abilityillu ~= nil then
+					local abilityLevel = abilityillu:GetLevel()
+					local abilityName = abilityillu:GetAbilityName()
+					if illusion:FindAbilityByName(abilityName) ~= nil then
+						local illusionAbility = illusion:FindAbilityByName(abilityName)
+						illusionAbility:SetLevel(abilityLevel)
+					else
+						local illusionAbility = illusion:AddAbility(abilityName)
+						if illusionAbility then illusionAbility:SetLevel(abilityLevel) end
+					end
+				end
+			end
+			
+			illusion:SetBaseDamageMax( self:GetBaseDamageMax() - 10 )
+			illusion:SetBaseDamageMin( self:GetBaseDamageMin() - 10 )
+			illusion:SetPhysicalArmorBaseValue( self:GetPhysicalArmorBaseValue() )
+			illusion:SetBaseAttackTime( self:GetBaseAttackTime() )
+			illusion:SetBaseMoveSpeed( self:GetBaseMoveSpeed() )
+			
+			local moveCap = DOTA_UNIT_CAP_MOVE_NONE
+			if self:HasMovementCapability() then
+				moveCap = DOTA_UNIT_CAP_MOVE_GROUND
+				if self:HasFlyMovementCapability() then
+					moveCap = DOTA_UNIT_CAP_MOVE_FLY
+				end
+			end
+			illusion:SetMoveCapability( moveCap )
+			illusion:SetAttackCapability( self:GetOriginalAttackCapability() )
+			if self:IsRangedAttacker() then
+				illusion:SetRangedProjectileName( self:GetRangedProjectileName() )
+			end
+			
+			for _, modifier in ipairs( self:FindAllModifiers() ) do
+				if modifier.AllowIllusionDuplicate and modifier:AllowIllusionDuplicate() then
+					local caster = modifier:GetCaster()
+					if caster == self then
+						caster = illusion
+					end
+					illusion:AddNewModifier( caster, modifier:GetAbility(), modifier:GetName(), { duration = modifier:GetDuration() })
+				end
+			end
+			
+			-- Recreate the items of the caster
+			for itemSlot=0,5 do
+				local item = illusion:GetItemInSlot(itemSlot)
+				if item ~= nil then
+					illusion:RemoveItem(item)
+				end
+			end
+			
+			for itemSlot=0,5 do
+				local item = self:GetItemInSlot(itemSlot)
+				if item ~= nil then
+					local itemName = item:GetName()
+					local newItem = illusion:AddItemByName(itemName)
+					if newItem then
+						newItem:SetStacksWithOtherOwners(true)
+						newItem:SetPurchaser(nil)
+						newItem:SetSellable(false)
+						newItem:SetDroppable(false)
+					end
+				end
+			end
+		
+			-- Set the unit as an illusion
+			-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
+			if specIllusionModifier and specIllusionModifier ~= "" then
+				illusion:AddNewModifier(owner, ability, specIllusionModifier, { duration = duration })
+			end
+			
+			illusion:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
+			illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", {})
+			illusion:AddNewModifier( self, nil, "modifier_stats_system_handler", {})
+			
+			illusion:RemoveNoDraw( )
+			for _, wearable in ipairs( illusion.wearableList ) do
+				wearable:RemoveNoDraw( )
+				if specIllusionModifier then
+					wearable:AddNewModifier(owner, ability, specIllusionModifier, {duration = duration})
+				end
+			end
+			
+			-- Make illusion look like owner
+			illusion:SetBaseMaxHealth( self:GetBaseMaxHealth() )
+			illusion:SetHealth( self:GetHealth() )
+			illusion:SetThreat( self:GetThreat() )
+			if callback then
+				callback( illusion, self, caster, ability )
+			end
+			
+			ResolveNPCPositions( illusion:GetAbsOrigin(), 128 )
+		end)
+	end
 end
 
 function CDOTA_BaseNPC:GetAgility()
@@ -856,9 +979,9 @@ function CDOTA_BaseNPC:ModifyThreat(val)
 		end
 	end
 	self.threat = self.threat or 0
-	local reduction = 0.5 ^ math.floor( self.threat / 100 )
+	local reduction = 0.35 ^ math.floor( self.threat / 100 )
 	-- Every 100 threat, threat gain effectiveness is reduced
-	local threatgainCap = math.max( 100, self.threat * 4 )
+	local threatgainCap = math.min( 10, (self.threat + 1) * 4 )
 	self.threat = math.min( math.max(0, (self.threat or 0) + math.min(newVal * reduction, threatgainCap ) ), 999 )
 	if self:IsRealHero() then
 		local player = PlayerResource:GetPlayer( self:GetOwner():GetPlayerID() )
@@ -942,7 +1065,7 @@ function CDOTA_BaseNPC:IsDisabled(bHard)
 end
 
 function CDOTA_BaseNPC:GetPhysicalArmorReduction()
-	local armornpc = self:GetPhysicalArmorValue()
+	local armornpc = self:GetPhysicalArmorValue(false)
 	local armor_reduction = 1 - (0.05 * armornpc) / (1 + (0.05 * math.abs(armornpc)))
 	armor_reduction = 100 - (armor_reduction * 100)
 	return armor_reduction
@@ -1005,7 +1128,7 @@ function CDOTA_BaseNPC:FindAllModifiersByAbility(abilityname)
 end
 
 function CDOTA_BaseNPC:FindModifierByNameAndAbility(name, ability)
-	local modifiers = self:FindAllModifiers()
+	local modifiers = self:FindAllModifiersByName(name)
 	local returnTable = {}
 	for _,modifier in ipairs(modifiers) do
 		if ability == modifier:GetAbility() and modifier:GetName() == name then
@@ -1015,9 +1138,12 @@ function CDOTA_BaseNPC:FindModifierByNameAndAbility(name, ability)
 end
 
 function CDOTA_BaseNPC:IsFakeHero()
-	if self:IsIllusion() or (self:HasModifier("modifier_monkey_king_fur_army_soldier") or self:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) or self:IsTempestDouble() or self:IsClone() then
-		return true
-	else return false end
+	local fakeHero = self.GetPlayerID and self ~= PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() )
+	if not self.GetPlayerID then return true end
+	if PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() ) == nil then
+		return false
+	end
+	return self.GetPlayerID and self ~= PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() )
 end
 
 function CDOTA_BaseNPC:IsRealHero()
@@ -1757,8 +1883,20 @@ function CDOTA_BaseNPC:GetCooldownReduction(bReduced)
 end
 
 function CDOTA_BaseNPC:AddChill(hAbility, hCaster, chillDuration, chillAmount)
-	local modifier = self:AddNewModifier(hCaster, hAbility, "modifier_chill_generic", {Duration = chillDuration})
 	local chillBonus = chillAmount or 1
+	local bonusDur = chillBonus * 0.1
+	local currentChillDuration = 0
+	local currentChill =  self:FindModifierByName("modifier_chill_generic")
+	if currentChill then
+		currentChillDuration = currentChill:GetRemainingTime()
+	end
+	local appliedDuration = chillDuration
+	if currentChillDuration > appliedDuration then
+		appliedDuration = currentChillDuration + bonusDur
+	else
+		appliedDuration = appliedDuration + currentChillDuration
+	end
+	local modifier = self:AddNewModifier(hCaster, hAbility, "modifier_chill_generic", {Duration = appliedDuration})
 	if modifier then
 		modifier:SetStackCount( modifier:GetStackCount() + chillBonus)
 	end
@@ -1872,7 +2010,6 @@ end
 
 function CDOTA_BaseNPC:AttemptKill(sourceAb, attacker)
 	if not ( self:NoHealthBar() or self:IsOutOfGame() or self:IsNull() or attacker:IsNull() or sourceAb:IsNull() ) then
-		self:SetHealth(1)
 		local damage = ApplyDamage({victim = self, attacker = attacker, ability = sourceAb, damage_type = DAMAGE_TYPE_PURE, damage = self:GetMaxHealth(), damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_IGNORES_MAGIC_ARMOR + DOTA_DAMAGE_FLAG_IGNORES_PHYSICAL_ARMOR})
 		if self:IsNull() then return end
 		return not self:IsAlive()
@@ -1894,7 +2031,7 @@ function CDOTA_BaseNPC:ApplyKnockBack(position, stunDuration, knockbackDuration,
 		knockback_height = height or 0,
 	}
 	if bStun == nil or bStun == true then
-		ability:Stun(self, stunDuration)
+		self:AddNewModifier(caster, ability, "modifier_stunned_generic", {duration = stunDuration})
 	end
 	self:AddNewModifier(caster, ability, "modifier_knockback", modifierKnockback )
 end
@@ -2071,47 +2208,71 @@ function CutTreesInRadius(vloc, radius)
 	return #trees
 end
 
-function CBaseEntity:RollPRNG( percentage )
-	local internalInt = (100/percentage)
-	local startingRoll = internalInt^2
-	
-	self.internalPRNGCounter = self.internalPRNGCounter or (1/internalInt)^2
-	if RollPercentage(self.internalPRNGCounter * 100) then
-		self.internalPRNGCounter = (1/internalInt)^2
-		return true
-	else
-		local internalCount = 1/self.internalPRNGCounter
-		self.internalPRNGCounter = 1/( math.max(internalCount - internalInt, 1) )
-		return false
+function RollPRNGFormula( object, percentage )
+	if percentage > 0 then
+		if object.basePercentage ~= percentage then
+			object.weight = FindProbabilityWeight(percentage)
+			object.basePercentage = percentage
+		end
+		object.currentPercentage = (object.currentPercentage or 0) + object.weight
+		local roll = RollPercentage( object.currentPercentage )
+		if roll then
+			object.currentPercentage = object.weight
+		end
+		return roll
 	end
+end
+
+function FindRelativeProbability( weight )
+	if not weight then weight = 1 end
+	pProcOnN = 0.0
+    pProcByN = 0.0
+    sumNpProcOnN = 0.0
+	maxFails = math.ceil(1.0 / weight)
+	for N = 1, maxFails do
+        pProcOnN = min( 1.0, N * weight ) * (1.0 - pProcByN)
+        pProcByN = pProcByN + pProcOnN
+        sumNpProcOnN = sumNpProcOnN + N * pProcOnN
+	end
+    return (1.0 / sumNpProcOnN)
+end
+
+function FindProbabilityWeight(roll)
+	local percent = roll / 100
+    local Cupper = percent;
+    local Clower = 0.0;
+    local Cmid = 0.0;
+	local roll1;
+    local roll2 = 1.0;
+	
+	check = true
+    while check do
+        Cmid = (Cupper + Clower) / 2
+        roll1 = FindRelativeProbability(Cmid)
+        if math.abs(roll1 - roll2) <= 0 then
+			check = false
+            break
+		end
+        if roll1 > percent then
+            Cupper = Cmid
+        else
+            Clower = Cmid
+		end
+        roll2 = roll1
+	end
+    return Cmid * 100
+end
+
+function CBaseEntity:RollPRNG( percentage )
+	return RollPRNGFormula( self, percentage )
 end
 
 function CDOTA_Ability_Lua:RollPRNG( percentage )
-	local internalInt = (100/percentage)
-	local startingRoll = internalInt^2
-	self.internalPRNGCounter = self.internalPRNGCounter or (1/internalInt)^2
-	if RollPercentage(self.internalPRNGCounter * 100) then
-		self.internalPRNGCounter = (1/internalInt)^2
-		return true
-	else
-		local internalCount = 1/self.internalPRNGCounter
-		self.internalPRNGCounter = 1/( math.max(internalCount - internalInt, 1) )
-		return false
-	end
+	return RollPRNGFormula( self, percentage )
 end
 
 function CDOTA_Modifier_Lua:RollPRNG( percentage )
-	local internalInt = (100/percentage)
-	local startingRoll = internalInt^2
-	self.internalPRNGCounter = self.internalPRNGCounter or (1/internalInt)^2
-	if RollPercentage(self.internalPRNGCounter * 100) then
-		self.internalPRNGCounter = (1/internalInt)^2
-		return true
-	else
-		local internalCount = 1/self.internalPRNGCounter
-		self.internalPRNGCounter = 1/( math.max(internalCount - internalInt, 1) )
-		return false
-	end
+	return RollPRNGFormula( self, percentage )
 end
 
 function CDOTA_BaseNPC:FindEnemyUnitsInCone(vDirection, vPosition, flSideRadius, flLength, hData)
@@ -2232,8 +2393,8 @@ function CDOTA_BaseNPC:AddCurse(curseName)
 	local curse = self:AddNewModifier(self, nil, curseName, {})
 	if curse then 
 		curse.modifierIsCurse = true
-		if self:HasRelic("relic_unique_ofuda") and self:FindModifierByName("relic_unique_ofuda"):GetStackCount() > 0 then
-			local ofuda = self:FindModifierByName("relic_unique_ofuda")
+		if self:HasRelic("relic_ofuda") and self:FindModifierByName("relic_ofuda"):GetStackCount() > 0 then
+			local ofuda = self:FindModifierByName("relic_ofuda")
 			ofuda:DecrementStackCount()
 			curse:Destroy()
 		end
@@ -2261,7 +2422,7 @@ function CDOTA_BaseNPC_Hero:ModifyAttributePoints(value)
 	if value > 0 then
 		self.totalGainedTalentPoints = self.totalGainedTalentPoints + value
 	end
-	self.bonusTalentPoints = self.bonusTalentPoints + value
+	self.bonusTalentPoints = (self.bonusTalentPoints or 0) + value
 	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex()) or {}
 	netTable.attribute_points = self.bonusTalentPoints
 	CustomNetTables:SetTableValue("hero_properties", self:GetUnitName()..self:entindex(), netTable)

@@ -24,10 +24,9 @@ function modifier_boss_necro_vile_aura:OnIntervalThink()
 		position = RoundManager:GetBoundingBox():GetAbsOrigin() + ActualRandomVector( FindRadius( RoundManager:GetBoundingBox() ) * 0.75, 150 )
 	end
 	if parent:IsStunned() or parent:IsSilenced() or parent:IsRooted() then
-		self:StartIntervalThink( 0.5 )
 		return
 	end
-	if RollPercentage(50) then -- random position
+	if RollPercentage(80) then -- random position
 		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), -1 ) ) do
 			if RollPercentage(75) then
 				position = enemy:GetAbsOrigin() + ActualRandomVector(600, 250)
@@ -42,14 +41,17 @@ function modifier_boss_necro_vile_aura:OnIntervalThink()
 	ParticleManager:FireWarningParticle( position, self:GetParent():GetHullRadius() * 2.5 )
 	local modifier = self
 	Timers:CreateTimer(1.5, function()
+		if parent:IsStunned() or parent:IsSilenced() or parent:IsRooted() then return end
 		parent:Blink(position)
+		AddFOWViewer( DOTA_TEAM_GOODGUYS, position, 256, 3, false )
+		GridNav:DestroyTreesAroundPoint( position, 256, true)
 		if not modifier or modifier:IsNull() then return end
 		if IsServer() then modifier:StartIntervalThink( modifier:GetAbility():GetSpecialValueFor("blink_rate") ) end
 	end)
 end
 
 function modifier_boss_necro_vile_aura:IsAura()
-	return self:GetCaster():PassivesDisabled()
+	return not self:GetCaster():PassivesDisabled()
 end
 
 function modifier_boss_necro_vile_aura:GetModifierAura()

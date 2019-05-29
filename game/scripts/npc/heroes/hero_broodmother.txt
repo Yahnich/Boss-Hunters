@@ -39,15 +39,8 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"70 140 210 280 350 420 490"
+				"damage"					"80 160 240 320 400 480 560"
 				"LinkedSpecialBonus"		"special_bonus_unique_broodmother_spawn_spiderlings_bh_2"
-			}
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_per_second"			"35 70 105 140 175 210 245"
-				"LinkedSpecialBonus"		"special_bonus_unique_broodmother_spawn_spiderlings_bh_2"
-				"LinkedSpecialBonusField"	"value2"
 			}
 			"02"
 			{
@@ -56,29 +49,39 @@
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"count"					"2"
-				"LinkedSpecialBonus"	"special_bonus_unique_broodmother_spawn_spiderlings_bh_1"
+				"var_type"					"FIELD_INTEGER"
+				"count"						"4"
+				"LinkedSpecialBonus"		"special_bonus_unique_broodmother_spawn_spiderlings_bh_1"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"spider_duration"		"25 28 31 33 36 39 42"
+				"var_type"					"FIELD_FLOAT"
+				"spider_duration"			"60"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"spider_damage"			"33"
+				"var_type"					"FIELD_FLOAT"
+				"spider_damage"				"45 65 85 105 125 145 165"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"spider_health"			"25"
-			}		 
+				"var_type"					"FIELD_FLOAT"
+				"spider_health"				"1000"
+			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"1200"
+				"var_type"					"FIELD_FLOAT"
+				"spider_evasion"			"35"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"spider_mr"					"80"
+			}			
+			"09"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"1200"
 			}
 		}
 	
@@ -132,12 +135,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"150"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value2"					"50"
+				"value"						"200"
 			}
 		}
 	}
@@ -163,7 +161,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"11"
+		"AbilityCooldown"				"8"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -176,17 +174,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"1800"
+				"radius"				"600 700 800 900 1000 1100 1200"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"heath_regen"			"1.5 1.75 2 2.25 2.5 2.75 3"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heath_regen"			"3 5 7 9 11 13 15"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_movespeed"		"40 50 60 70 80 90 100"
+				"bonus_movespeed"		"50"
 			}
 		}
 	
@@ -238,7 +236,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"-100"
 			}
 		}
 	}
@@ -290,19 +288,28 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"spider_duration"		"15"
-				"LinkedSpecialBonus"	"special_bonus_unique_broodmother_spiderite_2"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"spider_damage"			"15"
+				"spider_damage"			"45 55 65 75 85 95 105"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"spider_health"			"15"
+				"spider_health"			"550"
 			}
 			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spider_evasion"		"50"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spider_mr"				"80"
+			}
+			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"squish_radius"			"150"
@@ -449,7 +456,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"lifesteal_pct"			"60 100 140 180 220 260"
+				"lifesteal_pct"			"60 80 100 120 140 160"
 				"LinkedSpecialBonus"	"special_bonus_unique_broodmother_hunger_1"
 			}
 			"03"

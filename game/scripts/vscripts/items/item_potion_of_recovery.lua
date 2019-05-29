@@ -1,6 +1,10 @@
 item_potion_of_recovery = class({})
 LinkLuaModifier( "modifier_item_potion_of_recovery_handle_heal", "items/item_potion_of_recovery.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function item_potion_of_recovery:IsConsumable()
+	return true
+end
+
 function item_potion_of_recovery:CastFilterResultTarget( target )
 	if target:HasModifier("modifier_restoration_disable") then
 		return UF_FAIL_CUSTOM 
@@ -11,7 +15,7 @@ end
 
 function item_potion_of_recovery:GetCustomCastErrorTarget( target )
 	return "Target has all forms of restoration disabled"
-end 
+end
 
 function item_potion_of_recovery:OnSpellStart()
 	EmitSoundOn("DOTA_Item.HealingSalve.Activate", self:GetCaster() )

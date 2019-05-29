@@ -19,8 +19,15 @@ modifier_brewmaster_primal_avatar = class({})
 LinkLuaModifier("modifier_brewmaster_primal_avatar", "heroes/hero_brewmaster/brewmaster_primal_avatar", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_brewmaster_primal_avatar:OnCreated()
-	self.damage_reduction = self:GetTalentSpecialValueFor("damage_reduction")
+	self.area_damage = self:GetTalentSpecialValueFor("area_damage")
+	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
 	self.radius = self:GetTalentSpecialValueFor("aoe_radius")
+	
+	if self:GetCaster():HasTalent("special_bonus_unique_brewmaster_primal_avatar_2") then
+		self.talent_spellamp = self:GetCaster():FindTalentValue("special_bonus_unique_brewmaster_primal_avatar_2", "spell_amp")
+		self.talent_statusamp = self:GetCaster():FindTalentValue("special_bonus_unique_brewmaster_primal_avatar_2", "status_amp")
+	end
+	
 	if IsServer() then
 		local eFX = ParticleManager:CreateParticle("particles/econ/items/sven/sven_warcry_ti5/sven_warcry_ti5_ambient_arcs.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		self:AddEffect(eFX)
@@ -36,8 +43,15 @@ function modifier_brewmaster_primal_avatar:OnCreated()
 end
  
 function modifier_brewmaster_primal_avatar:OnRefresh()
-	self.damage_reduction = self:GetTalentSpecialValueFor("damage_reduction")
+	self.area_damage = self:GetTalentSpecialValueFor("area_damage")
+	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
 	self.radius = self:GetTalentSpecialValueFor("aoe_radius")
+	
+	if self:GetCaster():HasTalent("special_bonus_unique_brewmaster_primal_avatar_2") then
+		self.talent_spellamp = self:GetCaster():FindTalentValue("special_bonus_unique_brewmaster_primal_avatar_2", "spell_amp")
+		self.talent_statusamp = self:GetCaster():FindTalentValue("special_bonus_unique_brewmaster_primal_avatar_2", "status_amp")
+	end
+	
 	if IsServer() then self:GetAbility():StartDelayedCooldown() end
 end
 
@@ -51,7 +65,9 @@ end
 
 function modifier_brewmaster_primal_avatar:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN, 
-			MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+			MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+			
 			MODIFIER_PROPERTY_MODEL_SCALE}
 end
 
@@ -59,8 +75,20 @@ function modifier_brewmaster_primal_avatar:GetModifierMoveSpeed_AbsoluteMin(para
 	return 550
 end
 
-function modifier_brewmaster_primal_avatar:GetModifierIncomingDamage_Percentage(params)
-	return self.damage_reduction
+function modifier_brewmaster_primal_avatar:GetModifierPhysicalArmorBonus(params)
+	return self.armor
+end
+
+function modifier_brewmaster_primal_avatar:GetModifierAreaDamage(params)
+	return self.area_damage
+end
+
+function modifier_brewmaster_primal_avatar:GetModifierSpellAmplify_Percentage(params)
+	return self.talent_spellamp
+end
+
+function modifier_brewmaster_primal_avatar:GetModifierStatusAmplify_Percentage(params)
+	return self.talent_statusamp
 end
 
 function modifier_brewmaster_primal_avatar:GetModifierModelScale(params)

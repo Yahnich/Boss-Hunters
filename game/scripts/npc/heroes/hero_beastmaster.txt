@@ -62,12 +62,12 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"						"10"
+				"duration"					"10"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_amp"				"6 8 10 12 14 16 18"
+				"damage_amp"				"10 11 12 13 14 15 16"
 				"LinkedSpecialBonus"		"special_bonus_unique_beast_wild_axes_1"
 				"LinkedSpecialBonusField"	"amp"
 			}
@@ -91,10 +91,270 @@
 				"var_type"				"FIELD_INTEGER"
 				"value"					"40"
 			}
-			"01"
+			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"amp"					"2"
+			}
+		}
+	}
+	"special_bonus_unique_beast_wild_axes_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"50"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Boar Spirit
+	//=================================================================================================================
+	"beast_cotw_boar"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_beast/beast_cotw_boar.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"MaxLevel"						"7"
+		"AbilityTextureName"			"beastmaster_call_of_the_wild"
+		"LinkedAbility"					"beast_cotw_hawk"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"1000"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"boar_health"				"1000 1250 1500 1750 2000 2250 2500"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"boar_damage"				"60 70 80 90 100 110 120"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"boar_ms"					"300 310 320 330 340 350 360"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"boar_bat"					"1.0"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"ms_slow"					"-16 -20 -24 -28 -32 -36 -40"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"as_slow"					"-16 -20 -24 -28 -32 -36 -40"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"debuff_duration"			"2"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"respawn_time"				"20"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_beast/beast_boar_spirit/beast_boar_spirit.vpcf"
+			//"particle"  "particles/units/heroes/hero_beast/beast_boar_spirit/beast_boar_spirit_2.vpcf"
+			"particle"  "particles/units/heroes/hero_beastmaster/beastmaster_call_bird.vpcf"
+	
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
+		}
+	}
+	"special_bonus_unique_beast_cotw_boar_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+		}
+	}
+	"special_bonus_unique_beast_cotw_boar_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"400"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Hawk Spirit
+	//=================================================================================================================
+	"beast_cotw_hawk"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_beast/beast_cotw_hawk.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"MaxLevel"						"7"
+		"AbilityTextureName"			"beastmaster_call_of_the_wild_hawk"
+		"LinkedAbility"					"beast_cotw_boar"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"hawk_health"				"400 500 600 700 800 900 1000"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"hawk_ms"					"400 425 450 475 500 525 550"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"hawk_vision"				"1800"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"invis_delay"				"2"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"respawn_time"				"20"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_beast/beast_hawk_spirit_aura/beast_hawk_spirit_aura.vpcf"
+			"particle"  "particles/units/heroes/hero_beastmaster/beastmaster_call_bird.vpcf"
+	
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
+		}
+	}
+	"special_bonus_unique_beast_cotw_hawk_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"dmg"					"100"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bat"					"0.75"
+			}
+		}
+	}
+	"special_bonus_unique_beast_cotw_hawk_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"250"
 			}
 		}
 	}
@@ -120,20 +380,40 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_cdr"				"7 10 13 16 19 22 25"
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"900"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed"		"20 30 40 50 60 70 80"
-				"LinkedSpecialBonus"	"special_bonus_unique_beast_beast_mode_1"
-				"LinkedSpecialBonusOperator"	""
+				"var_type"						"FIELD_INTEGER"
+				"bonus_cdr"						"7 10 13 16 19 22 25"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
+				"var_type"						"FIELD_INTEGER"
+				"bonus_attackspeed"				"20 30 40 50 60 70 80"
+				"LinkedSpecialBonus"			"special_bonus_unique_beast_beast_mode_2"
+				"LinkedSpecialBonusOperator"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"boar_bonus_health"				"6 7.5 9 10.5 12 13.5 15"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"boar_bonus_regen"				"4 8 12 16 20 24 28"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"hawk_bonus_ms"					"6 12 18 24 30 36 42"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"hawk_bonus_vision"				"100 200 300 400 500 600 700"
 			}
 		}
 	}
@@ -153,10 +433,186 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_beast_beast_mode_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			""
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
 				"value"					"2"
 			}
 		}
 	}
+	//=================================================================================================================
+	// Roar
+	//=================================================================================================================
+	"beast_roar"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_beast/beast_roar.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"						"6"
+		"AbilityTextureName"			"beastmaster_primal_roar"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.5"
+		"AbilityCastRange"				"1000"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"80 75 70 65 60 55"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"150 175 200 225 250 275"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"150 225 300 375 450 525"
+				"LinkedSpecialBonus"		"special_bonus_unique_beast_roar_1"
+				"LinkedSpecialBonusField"	"damage"
+			}		
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"push_distance"				"400"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"push_duration"				"0.6"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow"						"-50"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"slow_duration"				"2.0 3.0 4.0 5.0 6.0 7.0"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stun_duration"				"3.0"
+				"LinkedSpecialBonus"		"special_bonus_unique_beast_roar_1"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"width"						"300"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"boar_heal"					"150 225 300 375 450 525"
+				"LinkedSpecialBonus"		"special_bonus_unique_beast_roar_1"
+				"LinkedSpecialBonusField"	"damage"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"hawk_armor"				"-5 -6 -7 -8 -9 -10"
+			}
+			"10"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"hawk_mr"					"-25 -30 -35 -40 -45 -50"
+			}
+			"11"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cast_range_scepter"		"950"
+			}
+			"12"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"cooldown_scepter"			"45.0"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_beastmaster/beastmaster_primal_roar.vpcf"
+	
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
+		}
+	}
+	"special_bonus_unique_beast_roar_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"175"
+			}
+		}
+	}
+	"special_bonus_unique_beast_roar_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"5.0"
+			}
+		}
+	}
+	
+	///////////// DEPRECATED /////////////////////////
+	//////////////////////////////////////////////////
 	//=================================================================================================================
 	// Boar Spirit
 	//=================================================================================================================
@@ -362,135 +818,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value"					"250"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Roar
-	//=================================================================================================================
-	"beast_roar"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_beast/beast_roar.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
-	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"						"6"
-		"AbilityTextureName"			"beastmaster_primal_roar"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.5"
-		"AbilityCastRange"				"1000"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"80 75 70 65 60 55"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"150 175 200 225 250 275"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"150 225 300 375 450 525"
-			}		
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"push_distance"				"400"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"push_duration"				"0.6"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow"						"-50"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"slow_duration"				"2.0 3.0 4.0 5.0 6.0 7.0"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"1.0"
-				"LinkedSpecialBonus"		"special_bonus_unique_beast_roar_1"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"width"						"300"
-			}
-			"08"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cast_range_scepter"		"950"
-			}
-			"09"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"cooldown_scepter"			"45.0"
-			}
-		}
-	
-		"precache"
-		{
-			"particle"  "particles/units/heroes/hero_beastmaster/beastmaster_primal_roar.vpcf"
-	
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
-		}
-	}
-	"special_bonus_unique_beast_roar_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"3"
-			}
-		}
-	}
-	"special_bonus_unique_beast_roar_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"5.0"
 			}
 		}
 	}

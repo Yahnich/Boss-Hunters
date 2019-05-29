@@ -20,6 +20,7 @@ local function StartCombat(self)
 	local START_VECTOR = Vector(949, 130)
 	
 	self.timeRemaining = 60
+	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	self.eventType = EVENT_TYPE_COMBAT
 	local activeHeroes = HeroList:GetActiveHeroCount()
 	Timers:CreateTimer(function()
@@ -37,27 +38,24 @@ local function StartCombat(self)
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then
-				for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
-					local roll = RandomInt(1, 13)
-					local demonType = "npc_dota_boss5b"
-					if roll == 10 then
-						demonType = "npc_dota_boss33_a"
-					elseif roll == 11 then
-						demonType = "npc_dota_boss33_b"
-					elseif roll == 12 then
-						demonType = "npc_dota_boss_sloth_demon"
-					end
-					local demon = CreateUnitByName(demonType, hero:GetAbsOrigin() + ActualRandomVector(1200, 600), true, nil, nil, DOTA_TEAM_BADGUYS)
-					if demon then
-						demon:SetAverageBaseDamage( math.min(7, roll) * 15, 35 )
-						if demonType ~= "npc_dota_boss5b" then
-							demon:SetCoreHealth(250)
-						end
-						demon:SetModelScale(1)
-					end
+				local roll = RandomInt(1, 13)
+				local demonType = "npc_dota_boss5b"
+				if roll == 10 then
+					demonType = "npc_dota_boss33_a"
+				elseif roll == 11 then
+					demonType = "npc_dota_boss33_b"
+				elseif roll == 12 then
+					demonType = "npc_dota_boss_sloth_demon"
 				end
-					
-				return math.max( 8, (self.timeRemaining or 60) / 5 )
+				local demon = CreateUnitByName(demonType, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+				if demon then
+					demon:SetAverageBaseDamage( math.min(7, roll) * 15, 35 )
+					if demonType ~= "npc_dota_boss5b" then
+						demon:SetCoreHealth(250)
+					end
+					demon:SetModelScale(1)
+				end
+				return math.max( 4, (self.timeRemaining or 60) / 15 ) / HeroList:GetActiveHeroCount()
 			end
 		end
 	end)

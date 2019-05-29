@@ -98,7 +98,8 @@ function modifier_meepo_earthbind_bh:OnIntervalThink()
 end
 
 function modifier_meepo_earthbind_bh:CheckState()
-	local state = { [MODIFIER_STATE_ROOTED] = true}
+	local state = { [MODIFIER_STATE_ROOTED] = true,
+					[MODIFIER_STATE_INVISIBLE] = false}
 	return state
 end
 

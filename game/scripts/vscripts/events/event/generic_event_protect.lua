@@ -17,6 +17,7 @@ local function FirstChoice(self, userid, event)
 end
 
 local function StartCombat(self)
+	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	self.eventEnded = true
 	self.combatEnded = false
 	Timers:CreateTimer(10, function()

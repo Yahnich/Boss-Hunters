@@ -13,6 +13,7 @@
 		"ScriptFile"					"items/item_meepo_rune_illusion"
 		"AbilityTextureName"			"item_tome_of_knowledge"
 		"ItemKillable"					"1"
+		"ItemPurchasable"				"0"
 		"ItemSellable"					"0"
 		"ItemDroppable"					"1"
 		"Model"							"models/props_gameplay/rune_illusion01.vmdl"	

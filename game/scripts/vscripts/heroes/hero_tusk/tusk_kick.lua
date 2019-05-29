@@ -18,9 +18,10 @@ function tusk_kick:OnSpellStart()
     local target = self:GetCursorTarget()
 
     EmitSoundOn("Hero_Tusk.WalrusKick.Target", target)
-
+	local distance = TernaryOperator( 0, caster:HasScepter(), self:GetTalentSpecialValueFor("push_length") )
+	local height = TernaryOperator( 600, caster:HasScepter(), 100 )
     ParticleManager:FireParticle("particles/units/heroes/hero_tusk/tusk_walruskick_txt_ult.vpcf", PATTACH_POINT, target, {[2]=target:GetAbsOrigin()})
-    target:ApplyKnockBack(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("air_time"), self:GetTalentSpecialValueFor("air_time"), self:GetTalentSpecialValueFor("push_length"), 100, caster, self)
+    target:ApplyKnockBack(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("air_time"), self:GetTalentSpecialValueFor("air_time"), distance, height, caster, self)
     target:AddNewModifier(caster, self, "modifier_tusk_kick", {Duration = self:GetTalentSpecialValueFor("air_time")})
     local damage = caster:GetAttackDamage() * self:GetTalentSpecialValueFor("damage")/100
     self:DealDamage(caster, target, damage, {}, 0)
@@ -46,6 +47,16 @@ end
 function modifier_tusk_kick:OnRemoved()
     if IsServer() then
         ParticleManager:ClearParticle(self.nfx)
+		local caster = self:GetCaster()
+		if caster:HasScepter() then
+			local radius = self:GetTalentSpecialValueFor("scepter_radius")
+			local damage = caster:GetStrength() * self:GetTalentSpecialValueFor("scepter_damage") / 100
+			local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), radius)
+			for _,enemy in pairs(enemies) do
+				self:GetAbility():DealDamage( caster, enemy, damage )
+			end
+			ParticleManager:FireParticle("particles/neutral_fx/neutral_centaur_khan_war_stomp.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent(), {[1] = Vector(radius,1,1)})
+		end
     end
 end
 

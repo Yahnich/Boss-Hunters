@@ -98,8 +98,6 @@ function Timers:Think()
     if v.useOldStyle ~= nil and v.useOldStyle == true then
       bOldStyle = true
     end
-
-    local now = GameRules:GetGameTime()
     if not bUseGameTime then
       now = Time()
     end

@@ -21,6 +21,7 @@
 		{
 			"item"	"item_lazarus_rags"
 			"item"	"item_arcane_accelerator"
+			"item"	"item_ultimate_scepter"
 		}
 		"#DOTA_Item_Build_Luxury"
 		{

@@ -23,25 +23,25 @@ function axe_forced_shout:OnSpellStart()
 	ParticleManager:SetParticleControl(nfx, 0, caster:GetAbsOrigin())
 	ParticleManager:SetParticleControlEnt(nfx, 1, caster, PATTACH_POINT_FOLLOW, "attach_mouth", caster:GetAbsOrigin(), true)
 	
-	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
+	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
 	for _,enemy in pairs(enemies) do
 		if caster:IsAlive() and enemy then
-        	enemy:Taunt(self,caster,self:GetSpecialValueFor("duration"))
+        	enemy:Taunt(self,caster,self:GetTalentSpecialValueFor("duration"))
         else
             enemy:Stop()
         end
 	end
 	caster:AddNewModifier(caster,self,"modifier_forced_shout",{Duration = self:GetTalentSpecialValueFor("duration")})
 
-	self:StartDelayedCooldown(self:GetSpecialValueFor("duration"))
+	self:StartDelayedCooldown(self:GetTalentSpecialValueFor("duration"))
 end
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 modifier_forced_shout = class({})
 function modifier_forced_shout:OnCreated(table)
-	self.armor = self:GetCaster():GetPhysicalArmorValue() + self:GetCaster():GetPhysicalArmorValue() * self:GetTalentSpecialValueFor("armor_bonus")/100
-	self.armor = self.armor + self:GetSpecialValueFor("armor_bonus_base")
+	-- self.armor = self:GetCaster():GetPhysicalArmorValue(false) + self:GetCaster():GetPhysicalArmorValue(false) * self:GetTalentSpecialValueFor("armor_bonus")/100
+	self.armor = self:GetTalentSpecialValueFor("armor_bonus_base")
 end
 
 function modifier_forced_shout:DeclareFunctions()

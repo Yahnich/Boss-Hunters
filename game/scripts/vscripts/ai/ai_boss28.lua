@@ -16,7 +16,7 @@ if IsServer() then
 				thisEntity.trample:SetLevel(1)
 				thisEntity.swipe:SetLevel(1)
 				thisEntity.frenzy:SetLevel(1)
-				if thisEntity.huntress then
+				if thisEntity.huntress and not thisEntity.huntress:IsNull() then
 					thisEntity.huntress:SetLevel(1)
 				elseif thisEntity.corrupt then
 					thisEntity.corrupt:SetLevel(1)
@@ -25,7 +25,7 @@ if IsServer() then
 				thisEntity.trample:SetLevel(2)
 				thisEntity.swipe:SetLevel(2)
 				thisEntity.frenzy:SetLevel(2)
-				if thisEntity.huntress then
+				if thisEntity.huntress and not thisEntity.huntress:IsNull() then
 					thisEntity.huntress:SetLevel(2)
 				elseif thisEntity.corrupt then
 					thisEntity.corrupt:SetLevel(2)

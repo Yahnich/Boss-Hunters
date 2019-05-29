@@ -16,7 +16,6 @@
 			end
 		end
 	end
-	
 	if not self.eventEnded and not self.combatStarted then
 		if votedYes > votedNo + (players - voted) then -- yes votes exceed non-votes and no votes
 			self:RollLoot( RollPercentage(50) )
@@ -30,9 +29,11 @@
 					self:StartCombat(false)
 				end
 			end)
+			CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 			return true
 		elseif votedNo > votedYes + (players - voted) then -- no votes exceed yes and non-votes and every other situation
 			self:StartCombat(false)
+			CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 			return true
 		end
 	end
@@ -43,7 +44,7 @@ local function RollLoot(self, bRelic)
 	for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 		local pID = hero:GetPlayerOwnerID()
 		if bRelic then
-			RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomGenericRelicForPlayer(pID)})
+			RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomRelicForPlayer(pID)})
 		else
 			hero:AddGold(500)
 		end
@@ -80,9 +81,13 @@ local function StartCombat(self, bFight, bBoss)
 		Timers:CreateTimer(1, function()
 			local spawn = CreateUnitByName(mobToSpawn, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundNecessary = true
-			if not bBoss then spawn:SetCoreHealth( 500 * GameRules:GetGameDifficulty() ) end
+			if not bBoss then 
+				spawn:SetCoreHealth( 500 * GameRules:GetGameDifficulty() ) 
+			else
+				spawn:FindAbilityByName("boss15_peel_the_veil"):SetActivated(false)
+			end
 			for i = 1, spawnRate / 2 do
-				CreateUnitByNameAsync(mobToSpawn, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS, function(spook)
+				CreateUnitByNameAsync("npc_dota_boss22b", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS, function(spook)
 					spook:SetCoreHealth( 100 * GameRules:GetGameDifficulty() )
 					spook:SetAverageBaseDamage( 80, 25)
 				end)

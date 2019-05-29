@@ -11,6 +11,8 @@ function shadow_shaman_snake_totem:OnSpellStart()
 		ward:SetMaxHealth( health )
 		ward:SetHealth( health )
 		ward:SetBaseAttackTime( 0.1 )
+		ward:SetBaseDamageMin(0)
+		ward:SetBaseDamageMax(0)
 		ward:SetModelScale( 0.9 + self:GetLevel()/10 )
 		Timers:CreateTimer(0.25, function()
 			local enemy = ward:FindRandomEnemyInRadius(position, ward:GetAttackRange() )
@@ -72,12 +74,13 @@ end
 
 function modifier_shadow_shaman_snake_totem_damage_aura:DeclareFunctions()
 	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+			MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 			MODIFIER_EVENT_ON_ATTACK}
 end
 
 function modifier_shadow_shaman_snake_totem_damage_aura:OnAttack(params)
 	if self.scepter and params.attacker == self:GetParent() and not params.attacker.preventScepterLoop then
-		for _, enemy in ipairs( self:GetCaster():FindEnemyUnitsInRadius( params.attacker:GetAbsOrigin(), self.scepter_radius ) ) do
+		for _, enemy in ipairs( self:GetCaster():FindEnemyUnitsInRadius( params.attacker:GetAbsOrigin(), params.attacker:GetAttackRange() ) ) do
 			if enemy ~= params.target then
 				params.attacker.preventScepterLoop = true
 				params.attacker:PerformAttack(enemy, false, false, false, false, true, false, false)
@@ -94,6 +97,12 @@ function modifier_shadow_shaman_snake_totem_damage_aura:GetModifierIncomingDamag
 		self:GetParent():ForceKill(false)
 	end
 	return -999
+end
+
+function modifier_shadow_shaman_snake_totem_damage_aura:GetModifierAttackRangeBonus(params)
+	if self.scepter then
+		return self.scepter_radius
+	end
 end
 
 modifier_shadow_shaman_snake_totem_damage_buff = class({})

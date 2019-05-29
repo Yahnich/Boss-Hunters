@@ -76,10 +76,6 @@ function modifier_bs_rupture:OnDeath(params)
 	end
 end
 
-function modifier_bs_rupture:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
 function modifier_bs_rupture:GetEffectName()
 	return "particles/units/heroes/hero_bloodseeker/bloodseeker_rupture.vpcf"
 end

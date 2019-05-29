@@ -7,25 +7,33 @@ function modifier_handler_handler:OnCreated()
 	if IsServer() then
 		local parent = self:GetParent()
 		if not parent:HasModifier("modifier_bloodseeker_thirst") then
-			parent:AddNewModifier(self:GetParent(), nil, "modifier_bloodseeker_thirst", {})
+			parent:AddNewModifier(parent, nil, "modifier_bloodseeker_thirst", {})
 		end
-		self.acc = parent:AddNewModifier(self:GetParent(), nil, "modifier_accuracy_handler", {})
-		self.as = parent:AddNewModifier(self:GetParent(), nil, "modifier_attack_speed_handler", {})
-		self.bat = parent:AddNewModifier(self:GetParent(), nil, "modifier_base_attack_time_handler", {})
-		self.cdr = parent:AddNewModifier(self:GetParent(), nil, "modifier_cooldown_reduction_handler", {})
-		self.hp = parent:AddNewModifier(self:GetParent(), nil, "modifier_health_handler", {})
-		self.ms = parent:AddNewModifier(self:GetParent(), nil, "modifier_move_speed_handler", {})
-		self.ms.evasion = parent:AddNewModifier(self:GetParent(), nil, "modifier_evasion_handler", {})
+		self.acc = parent:AddNewModifier(parent, nil, "modifier_accuracy_handler", {})
+		self.as = parent:AddNewModifier(parent, nil, "modifier_attack_speed_handler", {})
+		self.bat = parent:AddNewModifier(parent, nil, "modifier_base_attack_time_handler", {})
+		self.cdr = parent:AddNewModifier(parent, nil, "modifier_cooldown_reduction_handler", {})
+		self.hp = parent:AddNewModifier(parent, nil, "modifier_health_handler", {})
+		self.ms = parent:AddNewModifier(parent, nil, "modifier_move_speed_handler", {})
+		self.ard = parent:AddNewModifier(parent, nil, "modifier_area_dmg_handler", {})
+		self.ms.evasion = parent:AddNewModifier(parent, nil, "modifier_evasion_handler", {})
 		-- base attack time init
-		self.baseAttackTime = self:GetParent():GetBaseAttackTime() * 100
+		self.baseAttackTime = parent:GetBaseAttackTime() * 100
 		if parent:IsRealHero() then
 			self.baseAttackTime = self.baseAttackTime * 1.5
+			self.str = parent:AddNewModifier(parent, nil, "modifier_strength_handler", {})
+			self.agi = parent:AddNewModifier(parent, nil, "modifier_agility_handler", {})
+			self.int = parent:AddNewModifier(parent, nil, "modifier_intellect_handler", {})
+			
+			self.strModifiers = {}
+			self.agiModifiers = {}
+			self.intModifiers = {}
 		end
 		self.baseAttackTime =  math.floor( self.baseAttackTime )
 		self.bat:SetStackCount( self.baseAttackTime )
 		-- health init
-		self.baseMaxHealth = self:GetParent():GetMaxHealth()
-		self.hp.hpPct = self:GetParent():GetHealth() / self:GetParent():GetMaxHealth()
+		self.baseMaxHealth = parent:GetMaxHealth()
+		self.hp.hpPct = parent:GetHealth() / parent:GetMaxHealth()
 		-- ms init
 		self.ms:SetStackCount( parent:GetIdealSpeed() )
 		self.accModifiers = {}
@@ -34,8 +42,9 @@ function modifier_handler_handler:OnCreated()
 		self.cdrModifiers = {}
 		self.hpModifiers = {}
 		self.ms.msModifiers = {}
+		self.ardModifiers = {}
 		self.state = 1
-		for id, modifier in ipairs( self:GetParent():FindAllModifiers() ) do
+		for id, modifier in ipairs( parent:FindAllModifiers() ) do
 			-- accuracy --------------------------------------
 			if modifier.GetAccuracy then
 				table.insert(self.accModifiers, modifier)
@@ -62,6 +71,21 @@ function modifier_handler_handler:OnCreated()
 			-- movespeed --------------------------------------
 			if modifier.GetMoveSpeedLimitBonus then
 				table.insert(self.ms.msModifiers, modifier)
+			end
+			-- area damage --------------------------------------
+			if modifier.GetModifierAreaDamage then
+				table.insert(self.ardModifiers, modifier)
+			end
+			if parent:IsRealHero() then
+				if modifier.GetModifierStrengthBonusPercentage then
+					table.insert(self.strModifiers, modifier)
+				end
+				if modifier.GetModifierAgilityBonusPercentage then
+					table.insert(self.agiModifiers, modifier)
+				end
+				if modifier.GetModifierIntellectBonusPercentage then
+					table.insert(self.intModifiers, modifier)
+				end
 			end
 		end
 	end
@@ -104,14 +128,37 @@ function modifier_handler_handler:OnIntervalThink()
 				return
 			end
 		end
+		if self.state == 5 then
+			self.state = 6
+			if #self.hpModifiers > 0 then
+				self:UpdateHealth()
+				return
+			end
+		end
 		if self.state == 6 then
+			self.state = 7
+			if self:GetParent():IsRealHero() and #self.strModifiers + #self.agiModifiers + #self.intModifiers > 0 then
+				self:UpdateStats()
+				return
+			end
+		end
+		if self.state == 7 then
+			self.state = 8
+			if #self.ardModifiers > 0 then
+				self:UpdateAreaDamage()
+				return
+			end
+		end
+		if self.state == 8 then
 			self.state = 1
-			if #self.accModifiers > 0
-			and #self.asModifiers > 0
-			and #self.batModifiers > 0
-			and #self.cdrModifiers > 0
-			and #self.hpModifiers > 0
-			and #self.msModifiers > 0 then
+			if #self.accModifiers <= 0
+			and #self.asModifiers <= 0
+			and #self.batModifiers <= 0
+			and #self.cdrModifiers <= 0
+			and #self.hpModifiers <= 0
+			and #self.ms.msModifiers <= 0 
+			and (self:GetParent():IsRealHero() and #self.strModifiers + #self.agiModifiers + #self.intModifiers <= 0) 
+			and #self.ardModifiers <= 0 then
 				self:StartIntervalThink(-1)
 			end
 		end
@@ -131,6 +178,7 @@ function modifier_handler_handler:UpdateAccuracy()
 			table.remove(self.accModifiers, id)
 		end
 	end
+	self.acc.accModifiers = self.accModifiers
 	local accuracy = (1 - accuracyStacks) * 100
 	if self.acc:GetStackCount() ~= math.floor( accuracy ) then self.acc:SetStackCount( math.floor( accuracy ) ) end
 end
@@ -217,6 +265,22 @@ function modifier_handler_handler:UpdateCooldownReduction()
 	parent:CalculateStatBonus()
 end
 
+function modifier_handler_handler:UpdateAreaDamage()
+	local ardStacks = 0
+	local parent = self:GetParent()
+	for id, modifier in ipairs( self.ardModifiers ) do
+		if modifier and not modifier:IsNull() then
+			local ard = modifier:GetModifierAreaDamage() 
+			if ard then
+				ardStacks = ardStacks + ard
+			end
+		else
+			table.remove(self.ardModifiers, id)
+		end
+	end
+	if self.ard:GetStackCount() ~= ardStacks then self.ard:SetStackCount(ardStacks) end
+end
+
 function modifier_handler_handler:UpdateHealth()
 	local parent = self:GetParent()
 	local hpPct = parent:GetHealth() / parent:GetMaxHealth()
@@ -261,6 +325,62 @@ function modifier_handler_handler:UpdateHealth()
 	parent:CalculateStatBonus()
 end
 
+function modifier_handler_handler:UpdateStats()
+	local strStacks = 0
+	local intStacks = 0
+	local agiStacks = 0
+	
+	local prevStr = self.str:GetStackCount()
+	local prevAgi = self.agi:GetStackCount()
+	local prevInt = self.int:GetStackCount()
+	
+	local parent = self:GetParent()
+	for id, modifier in ipairs( self.strModifiers ) do
+		if modifier and not modifier:IsNull() then
+			local str = modifier:GetModifierStrengthBonusPercentage() 
+			if str then
+				strStacks = strStacks + str
+			end
+		else
+			table.remove(self.strModifiers, id)
+		end
+	end
+	for id, modifier in ipairs( self.agiModifiers ) do
+		if modifier and not modifier:IsNull() then
+			local agi = modifier:GetModifierAgilityBonusPercentage() 
+			if agi then
+				agiStacks = agiStacks + agi
+			end
+		else
+			table.remove(self.agiModifiers, id)
+		end
+	end
+	for id, modifier in ipairs( self.intModifiers ) do
+		if modifier and not modifier:IsNull() then
+			local int = modifier:GetModifierIntellectBonusPercentage() 
+			if int then
+				intStacks = intStacks + int
+			end
+		else
+			table.remove(self.intModifiers, id)
+		end
+	end
+	if math.floor( (parent:GetStrength() - prevStr) * (strStacks/100)) ~= prevStr then
+		self.str:SetStackCount( math.floor( (parent:GetStrength() - prevStr) * (strStacks/100)) )
+	end
+	if math.floor( (parent:GetAgility() - prevAgi) * (agiStacks/100)) ~= prevAgi then
+		self.agi:SetStackCount( math.floor( (parent:GetAgility() - prevAgi) * (agiStacks/100)) )
+	end
+	if math.floor( (parent:GetIntellect() - prevInt) * (intStacks/100)) ~= prevInt then
+		self.int:SetStackCount( math.floor( (parent:GetIntellect() - prevInt) * (intStacks/100) ) )
+	end
+	local hpPct = self:GetParent():GetHealth() / self:GetParent():GetMaxHealth()
+	parent:CalculateStatBonus()
+	if hpPct - 0.1 <= self:GetParent():GetHealth() / self:GetParent():GetMaxHealth() then 
+		parent:SetHealth( hpPct * self:GetParent():GetMaxHealth() )
+	end
+end
+
 function modifier_handler_handler:CheckIfUpdateNeeded(name, ability, duration)
 	if not self or self:IsNull() or not self:GetParent() or self:GetParent():IsNull() then return end
 	local parent = self:GetParent()
@@ -298,6 +418,22 @@ function modifier_handler_handler:CheckIfUpdateNeeded(name, ability, duration)
 		-- movespeed --------------------------------------
 		if newestModifier.GetMoveSpeedLimitBonus then
 			table.insert(self.ms.msModifiers, newestModifier)
+		end
+		-- area damage ------------------------------------
+		if newestModifier.GetModifierAreaDamage then
+			table.insert(self.ardModifiers, newestModifier)
+		end
+		-- stats ------------------------------------------
+		if parent:IsRealHero() then
+			if newestModifier.GetModifierStrengthBonusPercentage then
+				table.insert(self.strModifiers, newestModifier)
+			end
+			if newestModifier.GetModifierAgilityBonusPercentage then
+				table.insert(self.agiModifiers, newestModifier)
+			end
+			if newestModifier.GetModifierIntellectBonusPercentage then
+				table.insert(self.intModifiers, newestModifier)
+			end
 		end
 		--------------------------------
 		--- UPDATE ---------------------

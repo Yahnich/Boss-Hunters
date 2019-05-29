@@ -95,7 +95,7 @@ function tiny_tree_bh:OnProjectileHitHandle(hTarget, vLocation, iProjectileHandl
 		local bonusDamagePct = self:GetTalentSpecialValueFor("toss_splash_damage")
 		local bonus_damage = 0
 		if caster:HasTalent("special_bonus_unique_tiny_tree_bh_2") then
-			bonus_damage = bonus_damage + caster:GetPhysicalArmorValue() * caster:FindTalentValue("special_bonus_unique_tiny_tree_bh_2")/100
+			bonus_damage = bonus_damage + caster:GetPhysicalArmorValue(false) * caster:FindTalentValue("special_bonus_unique_tiny_tree_bh_2")/100
 		end
 		local enemies = caster:FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetTalentSpecialValueFor("splash_radius"))
 		for _,enemy in pairs(enemies) do

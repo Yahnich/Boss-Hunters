@@ -10,7 +10,8 @@ function EventManager:new( o )
 	return o
 end
 
-PUBLIC_EVENTS = {["boss_hunters_event_finished"] = {},
+PUBLIC_EVENTS = PUBLIC_EVENTS or {["boss_hunters_event_started"] = {},
+				 ["boss_hunters_event_finished"] = {},
 				 ["boss_hunters_raid_finished"] = {},
 				 ["boss_hunters_zone_finished"] = {},
 				 ["boss_hunters_game_finished"] = {}}

@@ -38,7 +38,7 @@ end
 
 function furion_tree_ant:SpawnTreant(position, bWasMinion)
 	local caster = self:GetCaster()
-	local tree = caster:CreateSummon("npc_dota_furion_treant", position, self:GetTalentSpecialValueFor("treant_duration"))
+	local tree = caster:CreateSummon("npc_dota_furion_treant_1", position, self:GetTalentSpecialValueFor("treant_duration"))
 	FindClearSpaceForUnit(tree, position, true)
 	local maxHP = self:GetTalentSpecialValueFor("treant_health") + caster:GetMaxHealth() * self:GetTalentSpecialValueFor("treant_health_pct") / 100
 	if not bWasMinion then
@@ -53,7 +53,7 @@ function furion_tree_ant:SpawnTreant(position, bWasMinion)
 	end
 	tree:SetBaseDamageMax(ad)
 	tree:SetBaseDamageMin(ad)
-	tree:SetPhysicalArmorBaseValue(caster:GetPhysicalArmorValue())
+	tree:SetPhysicalArmorBaseValue(caster:GetPhysicalArmorValue(false))
 	tree:AddAbility("furion_entangle"):SetLevel(1)
 	tree:MoveToPositionAggressive(position)
 	if caster:HasTalent("special_bonus_unique_furion_tree_ant_1") then

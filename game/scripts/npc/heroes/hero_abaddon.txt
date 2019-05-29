@@ -26,7 +26,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50 60 70 80 90 100 110	"
+		"AbilityManaCost"				"20 25 30 35 40 45 50"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -34,8 +34,8 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"projectile_speed"		"1250"
+				"var_type"						"FIELD_INTEGER"
+				"projectile_speed"				"1250"
 			}
 			"02"
 			{
@@ -46,18 +46,13 @@
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"target_damage"			"100 150 200 250 300 350 400"
+				"var_type"						"FIELD_FLOAT"
+				"target_damage"					"175 250 325 400 475 550 625"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"heal_amount"			"100 150 200 250 300 350 400"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal_pct"				"6"
+				"var_type"						"FIELD_INTEGER"
+				"heal_amount"					"175 250 325 400 475 550 625"
 			}
 		}
 	
@@ -107,7 +102,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"1.5"
+				"value"						"1"
 			}
 		}
 	}
@@ -160,7 +155,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_absorb"			"60 105 150 195 240 285 330"
+				"damage_absorb"			"110 140 175 215 260 310 365"
 			}
 			"03"
 			{
@@ -219,15 +214,16 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"					"ability_lua"
 		"ScriptFile"				"heroes/hero_abaddon/abaddon_brume_weaver"
-		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"			"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityTextureName"		"custom/abaddon_brume_weaver"
 		"MaxLevel"					"7"
 		
-		"AbilityCooldown"			"15"
-		"AbilityManaCost"			"15 25 35 45 55 65 75"
+		"AbilityCooldown"			"20"
+		"AbilityManaCost"			"50"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -242,19 +238,14 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"heal_pct"					"20"
+				"LinkedSpecialBonus"		"special_bonus_unique_abaddon_brume_weaver_1"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"base_heal"					"10 15 20 25 30 35 40"
+				"base_heal"					"100 150 200 250 300 350 400"
 			}
 			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"evasion"					"10 12.5 15 17.5 20 22.5 25"
-				"LinkedSpecialBonus"		"special_bonus_unique_abaddon_brume_weaver_2"
-			}
-			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"buff_duration"				"10"
@@ -286,7 +277,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"1"
+				"value"						"10"
 			}
 		}
 	}
@@ -308,7 +299,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"25"
+				"value"						"1"
 			}
 		}
 	}

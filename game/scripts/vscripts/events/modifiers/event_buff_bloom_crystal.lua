@@ -6,9 +6,9 @@ function event_buff_bloom_crystal:DeclareFunctions()
 end
 
 function event_buff_bloom_crystal:GetModifierExtraHealthBonus()
-	return 400
+	return 500
 end
 
 function event_buff_bloom_crystal:GetModifierConstantHealthRegen()
-	return 5
+	return 7
 end

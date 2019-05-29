@@ -47,7 +47,8 @@ function modifier_boss_troll_warlord_ensare:IsDebuff()
 end
 
 function modifier_boss_troll_warlord_ensare:CheckState()
-	local state = { [MODIFIER_STATE_ROOTED] = true}
+	local state = { [MODIFIER_STATE_ROOTED] = true,
+					[MODIFIER_STATE_INVISIBLE] = false}
 	return state
 end
 

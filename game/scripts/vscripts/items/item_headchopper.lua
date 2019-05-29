@@ -30,7 +30,7 @@ end
 
 function modifier_item_headchopper_handle:OnAttackStart(params)
 	if params.attacker == self:GetParent() then
-		if self.effect_modifier then
+		if self.effect_modifier and not self.effect_modifier:IsNull() then
 			self.effect_modifier:Destroy()
 		end
 		if params.target:IsHealingDisabled() then
@@ -41,8 +41,10 @@ end
 
 function modifier_item_headchopper_handle:OnAttackLanded(params)
 	if params.attacker == self:GetParent() then
-		if self.effect_modifier then
+		if self.effect_modifier and not self.effect_modifier:IsNull() then
 			self.effect_modifier:Destroy()
+		else
+			self.effect_modifier = nil
 		end
 	end
 end

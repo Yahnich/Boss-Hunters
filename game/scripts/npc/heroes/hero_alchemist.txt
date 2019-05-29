@@ -70,6 +70,140 @@
 			}
 		}
 	}
+	"special_bonus_unique_alchemist_acid_spray_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-4"
+			}
+		}
+	}
+	"special_bonus_unique_alchemist_acid_spray_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"800"
+			}
+		}
+	}
+	"alchemist_midas_knuckle"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_alchemist/alchemist_midas_knuckle"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"custom/alchemist_midas_knuckle"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK_STATUE"
+		"MaxLevel"						"7"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"150"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12.0"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityGoldCost"				"50"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_dmg"					"125"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"net_worth_bonus_dmg"		"0.2 0.3 0.4 0.5 0.6 0.7 0.8"
+				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_midas_knuckle_2"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"ministun"					"0.5"
+				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_midas_knuckle_1"
+			}
+		}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
+			"particle"	"particles/econ/items/pugna/pugna_ward_golden_nether_lord/pugna_gold_ambient.vpcf"
+			"particle"	"particles/econ/items/necrolyte/necrophos_sullen_gold/necro_sullen_pulse_enemy_explosion_gold.vpcf"
+		}
+	}
+	"special_bonus_unique_alchemist_midas_knuckle_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"2"
+			}
+		}
+	}
+	"special_bonus_unique_alchemist_midas_knuckle_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"0.25"
+			}
+		}
+	}
 	"alchemist_alchemists_greed"
 	{
 		// General
@@ -145,170 +279,38 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"25.0"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"25.0"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"base_attack_time"		"-0.15 -0.3 -0.45 -0.6 -0.75 -0.9"
-				"LinkedSpecialBonus"	"special_bonus_unique_alchemist_chemical_rage_2"
+				"var_type"						"FIELD_FLOAT"
+				"base_attack_time"				"-0.15 -0.3 -0.45 -0.6 -0.75 -0.9"
+				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_chemical_rage_2"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_hp"				"400 800 1200 1600 2000 2400"
+				"var_type"						"FIELD_INTEGER"
+				"bonus_hp"						"400 800 1200 1600 2000 2400"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bonus_health_regen"			"40 48 56 64 72 80"
+				"bonus_health_regen"			"16 32 48 64 80 96"
 				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_chemical_rage_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_mana_regen"		"3.0 7.5 12.0 16.5 21 25.5"
+				"var_type"						"FIELD_FLOAT"
+				"bonus_mana_regen"				"2 4 6 8 10 12"
+				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_chemical_rage_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_movespeed"		"100"
-			}
-		}
-	}
-	"alchemist_midas_knuckle"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_alchemist/alchemist_midas_knuckle"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"custom/alchemist_midas_knuckle"
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK_STATUE"
-		"MaxLevel"						"7"
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.3"
-		"AbilityCastRange"				"150"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12.0"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityGoldCost"				"50"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"base_dmg"					"100 150 200 250 300 350 400"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"net_worth_bonus_dmg"		"0.2 0.3 0.4 0.5 0.6 0.7 0.8"
-				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_midas_knuckle_2"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"ministun"					"0.5"
-				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_midas_knuckle_1"
-			}
-		}
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
-			"particle"	"particles/econ/items/pugna/pugna_ward_golden_nether_lord/pugna_gold_ambient.vpcf"
-			"particle"	"particles/econ/items/necrolyte/necrophos_sullen_gold/necro_sullen_pulse_enemy_explosion_gold.vpcf"
-		}
-	}
-	"special_bonus_unique_alchemist_midas_knuckle_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
-			}
-		}
-	}
-	"special_bonus_unique_alchemist_midas_knuckle_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"0.25"
-			}
-		}
-	}
-	"special_bonus_unique_alchemist_acid_spray_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-4"
-			}
-		}
-	}
-	"special_bonus_unique_alchemist_acid_spray_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"800"
+				"var_type"						"FIELD_INTEGER"
+				"bonus_movespeed"				"100"
 			}
 		}
 	}

@@ -50,7 +50,7 @@ function modifier_luna_eclipse_bh:OnCreated()
 		if self.lucent then 
 			self.beam_radius = self.lucent:GetTalentSpecialValueFor("beam_radius")
 			if self.talent then
-				self.stun_dur = self:GetTalentSpecialValueFor("stun_night")
+				self.stun_dur = self.lucent:GetTalentSpecialValueFor("stun_night")
 			end
 		end
 		self.nightsilver = caster:FindAbilityByName("luna_nightsilver_resolve")

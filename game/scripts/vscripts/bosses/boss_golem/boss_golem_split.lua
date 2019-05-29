@@ -39,8 +39,8 @@ function modifier_boss_golem_split:OnDeath(params)
 			golem.unitIsRoundNecessary = true
 			golem.hasBeenInitialized = true
 		end
+		ResolveNPCPositions( self:GetParent():GetAbsOrigin(), 500 ) 
 	end
-	ResolveNPCPositions( self:GetParent():GetAbsOrigin(), 500 ) 
 end
 
 function modifier_boss_golem_split:GetModifierAttackRangeOverride()

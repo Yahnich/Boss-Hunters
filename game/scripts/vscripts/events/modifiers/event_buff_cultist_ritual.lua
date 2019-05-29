@@ -13,7 +13,7 @@ function event_buff_cultist_ritual:DeclareFunctions()
 end
 
 function event_buff_cultist_ritual:GetDisableHealing()
-    return self:GetStackCount() == 1
+    return 1
 end
 
 function event_buff_cultist_ritual:GetTexture()

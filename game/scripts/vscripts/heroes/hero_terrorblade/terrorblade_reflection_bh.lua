@@ -72,7 +72,10 @@ function modifier_terrorblade_reflection_bh_slow:OnRefresh()
 end
 
 function modifier_terrorblade_reflection_bh_slow:CheckState()
-	return {[MODIFIER_STATE_ROOTED] = self:GetCaster():HasTalent("special_bonus_unique_terrorblade_reflection_2")}
+	if self:GetCaster():HasTalent("special_bonus_unique_terrorblade_reflection_2") then
+		return {[MODIFIER_STATE_ROOTED] = true,
+				[MODIFIER_STATE_INVISIBLE] = false}
+	end
 end
 
 function modifier_terrorblade_reflection_bh_slow:DeclareFunctions()

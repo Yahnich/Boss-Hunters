@@ -23,21 +23,43 @@ function bs_bloodrage:OnSpellStart()
 end
 
 modifier_bs_bloodrage = class({})
+function modifier_bs_bloodrage:OnCreated()
+	self.amp = self:GetTalentSpecialValueFor("amp")
+	self.evasion = self:GetTalentSpecialValueFor("evasion_loss") * (-1)
+	self.armor = self:GetTalentSpecialValueFor("armor_loss") * (-1)
+	self.mr = self:GetTalentSpecialValueFor("mr_loss") * (-1)
+end
+
+function modifier_bs_bloodrage:OnRefresh()
+	self:OnCreated()
+end
+
+
 function modifier_bs_bloodrage:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+		MODIFIER_PROPERTY_EVASION_CONSTANT,
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_EVENT_ON_DEATH
 	}
 	return funcs
 end
 
-function modifier_bs_bloodrage:GetModifierIncomingDamage_Percentage()
-	return self:GetTalentSpecialValueFor("amp")
+function modifier_bs_bloodrage:GetModifierEvasion_Constant()
+	return self.evasion
+end
+
+function modifier_bs_bloodrage:GetModifierPhysicalArmorBonus()
+	return self.armor
+end
+
+function modifier_bs_bloodrage:GetModifierMagicalResistanceBonus()
+	return self.mr
 end
 
 function modifier_bs_bloodrage:GetModifierTotalDamageOutgoing_Percentage()
-	return self:GetTalentSpecialValueFor("amp")
+	return self.amp
 end
 
 function modifier_bs_bloodrage:OnDeath(params)

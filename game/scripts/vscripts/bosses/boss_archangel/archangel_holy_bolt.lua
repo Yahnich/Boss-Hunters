@@ -39,7 +39,7 @@ function archangel_holy_bolt:OnSpellStart()
 		if target:TriggerSpellAbsorb(self) then return false end
 		EmitSoundOn("Hero_SkywrathMage.ArcaneBolt.Impact", target)
 		ability:DealDamage( caster, target, self.damage )
-		target:AddNewModifier( caster, ability, "modifier_archangel_holy_bolt", {duration = self.slow_duration})
+		target:AddNewModifier( caster, ability, "modifier_archangel_holy_bolt", {duration = slow_duration})
 		return false
 	end
 	caster:EmitSound("Hero_SkywrathMage.ArcaneBolt.Cast")

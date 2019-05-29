@@ -176,6 +176,12 @@
 	margin-right: 270px;
 }
 
+.AspectRatio5x4 #RelicInventoryRoot
+{
+	margin-left: 338px;
+	margin-bottom: 160px;
+}
+
 #RelicInventoryPanel
 {
 	width: 100%;
@@ -186,6 +192,97 @@
 	padding-bottom: 20px;
 	flow-children: down;
 	overflow: squish scroll;
+	background-color: #51515155;
+}
+
+#RelicDropNotification
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: bottom;
+	horizontal-align: right;
+	margin-bottom: 8px;
+	margin-right: 24px;
+	background-color: #CC0000;
+	border: 1px solid #AA0000;
+	border-radius: 50% / 50%;
+	z-index: 5;
+	visibility: collapse;
+	
+	animation-name: RelicDroppedPulse;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	
+}
+
+@keyframes 'RelicDroppedPulse'
+{
+	0%
+	{
+		box-shadow: -8px -8px 16px 16px black;
+		border: 1px solid #AA0000;
+    }
+
+    50% 
+	{
+        box-shadow: -16px -16px 32px 32px #AA0000;
+		border: 3px solid #AA0000;
+    }
+
+    100%
+	{
+		box-shadow: -8px -8px 16px 16px black;
+		border: 1px solid #AA0000;
+    }
+}
+
+#RelicDropLabel
+{
+	color: #ffffff;
+	font-size: 20px;
+	text-shadow: 1px 1px 2px 3.0 #00000077;
+	text-align: center;
+	vertical-align: center;
+	horizontal-align: center;
+	z-index: 5;
+}
+
+#RelicInventoryNotifyIdiots
+{
+	width: 100px;
+	height: 160px;
+	vertical-align: bottom;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/compendium/downarrowspinner_psd.vtex");
+	hue-rotation: 180deg;
+	margin-bottom: 50px;
+	margin-right: -10px;
+	z-index: 10;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	visibility: collapse;
+	
+	animation-name: NotifyIdiots;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes 'NotifyIdiots'
+{
+    0%
+    {
+        transform: translateY(10px);
+    }
+    50%
+    {
+        transform: translateY(-10px);
+    }
+    100%
+    {
+        transform: translateY(10px);
+    }
 }
 
 #RelicInventoryButton

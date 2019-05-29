@@ -28,9 +28,12 @@ if IsServer() then
 				table.remove(self.msModifiers, id)
 			end
 		end
+		if not parent:HasModifier("modifier_bloodseeker_thirst") then
+			parent:AddNewModifier(self:GetParent(), nil, "modifier_bloodseeker_thirst", {})
+		end
 		local newLimit = INTERNAL_MOVESPEED_CAP + msLimitMod
 		local msStacks = math.min( parent:GetIdealSpeed(), newLimit )
-		local evasionStacks = msStacks / math.min( newLimit, parent:GetIdealSpeedNoSlows() )
+		local evasionStacks = math.max( 0, math.floor( ( 1 - msStacks / math.min( newLimit, parent:GetIdealSpeedNoSlows() ) ) * 1000 ) )
 		if parent:IsStunned() or parent:IsRooted() then evasionStacks = 999 end
 		if self.evasion:GetStackCount() ~= evasionStacks then 
 			self.evasion:SetStackCount( evasionStacks )

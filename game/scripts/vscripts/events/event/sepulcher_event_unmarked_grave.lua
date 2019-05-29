@@ -12,7 +12,7 @@ end
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
 	
-	hero:AddRelic("relic_unique_rotting_flesh")
+	hero:AddRelic("relic_rotting_flesh")
 	hero:AddCurse("event_buff_unmarked_grave")
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)

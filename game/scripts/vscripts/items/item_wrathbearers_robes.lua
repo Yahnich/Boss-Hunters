@@ -28,6 +28,36 @@ function modifier_item_wrathbearers_robes_passive:OnCreated()
 	self.magicResist = self:GetSpecialValueFor("bonus_magic_resist")
 	
 	self.radius = self:GetSpecialValueFor("radius")
+	self.maxRadius = self:GetSpecialValueFor("radius")
+	self.minRadius = self:GetSpecialValueFor("min_radius")
+	self.radiusDelta = self:GetSpecialValueFor("radius_change")
+	if IsServer() then
+		self.cumulativeDist = {}
+		self.lastPos = self:GetCaster():GetAbsOrigin()
+		self:StartIntervalThink(0.1)
+		self.pFX = ParticleManager:CreateParticle("particles/items/item_warm_fire_radius.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
+		ParticleManager:SetParticleControl( self.pFX, 1, Vector(self.radius,0,0) )
+		self:AddEffect( self.pFX )
+	end
+end
+
+function modifier_item_wrathbearers_robes_passive:OnIntervalThink()
+	table.insert(self.cumulativeDist, CalculateDistance( self.lastPos, self:GetCaster():GetAbsOrigin() ) )
+	self.lastPos = self:GetCaster():GetAbsOrigin()
+	if #self.cumulativeDist > 9 then
+		table.remove(self.cumulativeDist, 1)
+	end
+	local distance = 0
+	for id, amount in ipairs(self.cumulativeDist) do
+		distance = distance + amount
+	end
+	if distance > 150 and self.minRadius < self.radius then
+		self.radius = math.max( self.radius - self.radiusDelta * 0.1, self.minRadius )
+		ParticleManager:SetParticleControl( self.pFX, 1, Vector(self.radius,0,0) )
+	elseif distance < 150 and self.maxRadius > self.radius then
+		self.radius = math.min( self.radius + self.radiusDelta * 0.1, self.maxRadius )
+		ParticleManager:SetParticleControl( self.pFX, 1, Vector(self.radius,0,0) )
+	end
 end
 
 function modifier_item_wrathbearers_robes_passive:IsAura()
@@ -86,7 +116,7 @@ end
 
 function modifier_item_wrathbearers_robes_passive:OnTakeDamage(params)
 	local hero = self:GetParent()
-	if hero:IsIllusion() then return end
+	if hero:IsIllusion() or params.unit ~= hero then return end
     local dmg = params.original_damage
 	local dmgtype = params.damage_type
 	local attacker = params.attacker
@@ -94,8 +124,7 @@ function modifier_item_wrathbearers_robes_passive:OnTakeDamage(params)
 	if hero:HasModifier("modifier_item_wrathbearers_robes_active") then
 		reflectpct = self.activereflect / 100
 	end
-
-	if attacker:GetTeamNumber()  ~= hero:GetTeamNumber() and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ) then
+	if attacker:GetTeamNumber() ~= hero:GetTeamNumber() and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ) then
 		if params.unit == hero then
 			dmg = dmg * reflectpct
 			self:GetAbility():DealDamage( hero, attacker, dmg, {damage_type = dmgtype, damage_flags = DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )

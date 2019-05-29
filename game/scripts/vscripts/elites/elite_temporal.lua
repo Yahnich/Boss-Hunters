@@ -37,7 +37,6 @@ if IsServer() then
 	function modifier_elite_temporal_dummy:OnCreated()
 		self.radius = self:GetSpecialValueFor("bubble_radius")
 		self.cd_per_sec = FrameTime() + self:GetSpecialValueFor("cd_increase_per_sec") * FrameTime()
-		print("bubble duration", self:GetRemainingTime() )
 		if IsServer() then
 			self.bubbleFX = ParticleManager:CreateParticle("particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf", PATTACH_ABSORIGIN, self:GetParent())
 				ParticleManager:SetParticleControl(self.bubbleFX, 1, Vector(self.radius,self.radius,self.radius)) --radius

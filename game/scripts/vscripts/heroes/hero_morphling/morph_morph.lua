@@ -2,6 +2,22 @@ morph_morph = class({})
 LinkLuaModifier( "modifier_morph_morph", "heroes/hero_morphling/morph_morph.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_morph_morph_water", "heroes/hero_morphling/morph_morph.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_morph_morph_clone", "heroes/hero_morphling/morph_morph.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_morph_morph_scepter", "heroes/hero_morphling/morph_morph.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+function morph_morph:OnInventoryContentsChanged()
+	local caster = self:GetCaster()
+	if caster:HasScepter() then
+		caster:AddNewModifier( caster, self, "modifier_morph_morph_scepter", {} )
+	else
+		caster:RemoveModifierByName( "modifier_morph_morph_scepter" )
+	end
+end
+
+function morph_morph:GetIntrinsicModifierName()
+    if self:GetCaster():HasScepter() then
+		return "modifier_morph_morph_scepter"
+	end
+end
 
 function morph_morph:IsStealable()
     return true
@@ -68,16 +84,23 @@ function morph_morph:OnSpellStart()
 		local incoming = self:GetTalentSpecialValueFor("incoming")
 
 		EmitSoundOn("Hero_Morphling.Replicate", caster)
+		
+		local callback = (function( illusion, parent, caster, ability )
+			FindClearSpaceForUnit(illusion, illusion:GetAbsOrigin(), true)
+			local duration = ability:GetTalentSpecialValueFor("duration")
+			caster:AddNewModifier(caster, ability, "modifier_morph_morph", {Duration = duration})
+			illusion:AddNewModifier(caster, ability, "modifier_morph_morph", {Duration = duration})
 
-		self.clone = target:ConjureImage( target:GetAbsOrigin(), duration, outgoing, incoming, "", self, true, caster )
-		FindClearSpaceForUnit(self.clone, self.clone:GetAbsOrigin(), true)
-		caster:AddNewModifier(caster, self, "modifier_morph_morph", {Duration = duration})
-		self.clone:AddNewModifier(caster, self, "modifier_morph_morph", {Duration = duration})
-
-		if caster:HasTalent("special_bonus_unique_morph_morph_2") then
-			self.clone:AddNewModifier(caster, self, "modifier_morph_morph_water", {})
-		end
-
+			if caster:HasTalent("special_bonus_unique_morph_morph_2") then
+				illusion:AddNewModifier(caster, ability, "modifier_morph_morph_water", {})
+			end
+			self.clone = illusion
+			
+			if caster:HasScepter() then
+				illusion:AddNewModifier(caster, ability, "modifier_morph_morph_scepter", {})
+			end
+		end)
+		target:ConjureImage( target:GetAbsOrigin(), duration, outgoing, incoming, nil, self, true, caster, callback )
 		self:EndCooldown()
 	end
 end
@@ -111,7 +134,6 @@ function modifier_morph_morph:OnRemoved()
 				if clone:IsIllusion() then
 					clone:ForceKill(false)
 				end
-				self:GetAbility():SetCooldown()
 			end
 		end
 	end
@@ -182,4 +204,74 @@ end
 
 function modifier_morph_morph_clone:IsHidden()
 	return true
+end
+
+modifier_morph_morph_scepter = class({})
+function modifier_morph_morph_scepter:OnCreated()
+	self.evasion = self:GetTalentSpecialValueFor("scepter_evasion")
+	self.radius = self:GetTalentSpecialValueFor("scepter_radius")
+	self.duration = self:GetTalentSpecialValueFor("scepter_duration")
+	self.damage = (self:GetTalentSpecialValueFor("scepter_damage") / 100) * 0.25
+	if IsServer() then
+		self:StartIntervalThink(0.25)
+	end
+end
+
+function modifier_morph_morph_scepter:OnIntervalThink()
+	local caster = self:GetCaster()
+	local parent = self:GetParent()
+	local ability = self:GetAbility()
+	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), self.radius ) ) do
+		ability:DealDamage( caster, enemy, caster:GetPrimaryStatValue() * self.damage, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
+	end
+end
+
+function modifier_morph_morph_scepter:IsAura()
+    return true
+end
+
+function modifier_morph_morph_scepter:GetAuraDuration()
+    return 5
+end
+
+function modifier_morph_morph_scepter:GetAuraRadius()
+    return 150
+end
+
+function modifier_morph_morph_scepter:GetAuraSearchFlags()
+    return DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+end
+
+function modifier_morph_morph_scepter:GetAuraSearchTeam()
+    return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+
+function modifier_morph_morph_scepter:GetAuraSearchType()
+    return DOTA_UNIT_TARGET_ALL
+end
+
+function modifier_morph_morph_scepter:CheckState()
+	local state = {	[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
+	return state
+end
+
+function modifier_morph_morph_scepter:DeclareFunctions()
+	local state = {MODIFIER_PROPERTY_EVASION_CONSTANT}
+	return state
+end
+
+function modifier_morph_morph_scepter:GetModifierEvasion_Constant()
+    return self.evasion
+end
+
+function modifier_morph_morph_scepter:GetModifierAura()
+    return "modifier_in_water"
+end
+
+function modifier_morph_morph_scepter:IsAuraActiveOnDeath()
+    return false
+end
+
+function modifier_morph_morph_scepter:IsHidden()
+    return true
 end

@@ -52,7 +52,17 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"restore_amp"				"105 120 135 150 165 180 195"
-			}			
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"break_distance"			"1200"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"pull_distance"				"350"
+			}
 		}
 	}
 
@@ -130,7 +140,7 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"110 120 130 140 150 160 170"
+		"AbilityManaCost"				"100"
 		
 		"precache"
 		{
@@ -171,11 +181,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-<<<<<<< HEAD
 				"hit_radius"				"75"
-=======
-				"hit_radius"				"150"
->>>>>>> 4359de20b3a163f67394a2f7c5338c27f7fa8374
 			}
 			"06"
 			{
@@ -191,6 +197,16 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"min_radius"				"100"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"wisp_regen_rate"			"1"
+			}
+			"10"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"wisp_regen_cost"			"5 10 15 20 25 30 35"
 			}
 		}
 	}
@@ -290,29 +306,29 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"bonus_as"					"40 50 60 70 80 90 100"
-				"LinkedSpecialBonus"		"special_bonus_unique_wisp_overcharge_bh_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"var_type"						"FIELD_FLOAT"
+				"bonus_as"						"40 50 60 70 80 90 100"
+				"LinkedSpecialBonus"			"special_bonus_unique_wisp_overcharge_bh_2"
+				"LinkedSpecialBonusField"		"as"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"bonus_reduc"				"5 10 15 20 25 30 35"
-				"LinkedSpecialBonus"		"special_bonus_unique_wisp_overcharge_bh_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"var_type"						"FIELD_FLOAT"
+				"bonus_reduc"					"5 10 15 20 25 30 35"
+				"LinkedSpecialBonus"			"special_bonus_unique_wisp_overcharge_bh_2"
+				"LinkedSpecialBonusField"		"red"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"drain_interval"			"0.2"
+				"var_type"						"FIELD_FLOAT"
+				"drain_interval"				"0.2"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"drain_pct"					"6"
-				"LinkedSpecialBonus"		"special_bonus_unique_wisp_overcharge_bh_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"var_type"						"FIELD_FLOAT"
+				"drain_pct"						"6"
+				"LinkedSpecialBonus"			"special_bonus_unique_wisp_overcharge_bh_2"
+				"LinkedSpecialBonusField"		"drain"
 			}	
 		}
 	}
@@ -335,7 +351,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"150"
+				"value"						"50"
 			}
 		}
 	}
@@ -358,7 +374,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"1.5"
+				"as"						"100"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"red"						"15"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"drain"						"2"
 			}
 		}
 	}
@@ -428,6 +454,16 @@
 				"var_type"				"FIELD_FLOAT"
 				"health_drain"			"0.1"
 			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"break_distance"			"1200"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"pull_distance"				"350"
+			}
 		}
 	}
 
@@ -440,7 +476,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_wisp/wisp_worm_hole"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"

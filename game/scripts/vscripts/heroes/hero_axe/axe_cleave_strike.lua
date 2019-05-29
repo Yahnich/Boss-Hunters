@@ -30,7 +30,7 @@ function modifier_cleave_strike:OnAttackLanded(params)
 		and RollPercentage(self:GetTalentSpecialValueFor("chance")) 
 		and not self.procsDisabled then
 			-- Ternary Operator x ? y: z; TernaryOperator(passvalue, checkvalue, defaultvalue); if checkvalue is true then passvalue else return defaultvalue
-			local target = TernaryOperator(self:GetParent(), params.attacker == self:GetCaster(), params.attacker)
+			local target = TernaryOperator(params.target, params.attacker == self:GetCaster(), params.attacker)
 			self:Spin(target)
 		end
 	end

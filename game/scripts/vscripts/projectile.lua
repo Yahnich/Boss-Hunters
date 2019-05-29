@@ -24,9 +24,9 @@ function Projectile:constructor(thinkBehavior, hitBehavior, data)
 	self.distance = data.distance
 	
 	self.FX = ParticleManager:CreateParticle(data.FX, PATTACH_POINT, self.currentCaster)
-		ParticleManager:SetParticleControl( self.FX, 2, Vector(self.speed,0,0) )
 		ParticleManager:SetParticleControl( self.FX, 0, self.position )
 		ParticleManager:SetParticleControl( self.FX, 1, self.position )
+		ParticleManager:SetParticleControl( self.FX, 2, Vector(self.speed,0,0) )
 		ParticleManager:SetParticleControl( self.FX, 3, self.position )
 		ParticleManager:SetParticleControl( self.FX, 4, Vector(self.duration,0,0) )
 	self.thinkBehavior = thinkBehavior
@@ -35,10 +35,6 @@ end
 
 function Projectile:ProjectileThink()
 	self:thinkBehavior()
-	ParticleManager:SetParticleControl( self.FX, 0, self:GetPosition() )
-	ParticleManager:SetParticleControl( self.FX, 1, self:GetPosition() )
-	ParticleManager:SetParticleControl( self.FX, 2, Vector( self:GetSpeed(), 0, 0 ) )
-	ParticleManager:SetParticleControl( self.FX, 3, self:GetPosition() )
 	local position = self:GetPosition()
 	local radius = self:GetRadius()
 	local caster = self:GetCaster()
@@ -93,6 +89,8 @@ end
 
 function Projectile:SetPosition(pos)
 	self.position = pos
+	ParticleManager:SetParticleControl( self.FX, 1, pos + ( self:GetVelocity() * FrameTime() ) )
+	ParticleManager:SetParticleControl( self.FX, 0, pos )
 end
 
 function Projectile:GetVelocity()
@@ -109,6 +107,9 @@ end
 
 function Projectile:SetSpeed(speed)
 	self.speed = speed
+	if self.FX then
+		ParticleManager:SetParticleControl( self.FX, 2, Vector( speed, 0, 0 ) )
+	end
 end
 
 function Projectile:GetRadius()

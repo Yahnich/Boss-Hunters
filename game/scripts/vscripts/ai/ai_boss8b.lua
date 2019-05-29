@@ -46,7 +46,7 @@ function AIThink(thisEntity)
 					AbilityIndex = thisEntity.march:entindex()
 				})
 				return AI_THINK_RATE
-			elseif thisEntity.rearm:IsCooldownReady() then
+			elseif thisEntity.rearm:IsCooldownReady() and not thisEntity.march:IsCooldownReady() then
 				ExecuteOrderFromTable({
 					UnitIndex = thisEntity:entindex(),
 					OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -68,7 +68,7 @@ function AIThink(thisEntity)
 				return AI_THINK_RATE
 			end
 		else
-			if thisEntity.rockets:IsFullyCastable() and AICore:NearestEnemyHeroInRange( thisEntity, 2500, false ) then
+			if thisEntity.rockets:IsFullyCastable() and AICore:NearestEnemyHeroInRange( thisEntity, thisEntity.rockets:GetSpecialValueFor("radius"), false ) then
 				ExecuteOrderFromTable({
 					UnitIndex = thisEntity:entindex(),
 					OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,

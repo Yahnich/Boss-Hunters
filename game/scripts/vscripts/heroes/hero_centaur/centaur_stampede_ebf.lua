@@ -85,7 +85,11 @@ function modifier_centaur_stampede_ebf:GetEffectName()
 end
 
 function modifier_centaur_stampede_ebf:CheckState()
-	if self:GetCaster():HasScepter() then return {[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true} end
+	local state = {[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
+	if self:GetCaster():HasScepter() then
+		state[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true
+	end
+	return state
 end
 
 function modifier_centaur_stampede_ebf:DeclareFunctions()
@@ -104,11 +108,11 @@ modifier_centaur_stampede_ebf_slow = class({})
 LinkLuaModifier("modifier_centaur_stampede_ebf_slow", "heroes/hero_centaur/centaur_stampede_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_centaur_stampede_ebf_slow:OnCreated()
-	self.ms = self:GetTalentSpecialValueFor("100") * (-1)
+	self.ms = self:GetTalentSpecialValueFor("slow_movement_speed") * (-1)
 end
 
 function modifier_centaur_stampede_ebf_slow:OnRefresh()
-	self.ms = self:GetTalentSpecialValueFor("100") * (-1)
+	self.ms = self:GetTalentSpecialValueFor("slow_movement_speed") * (-1)
 end
 
 function modifier_centaur_stampede_ebf_slow:DeclareFunctions()
@@ -116,6 +120,10 @@ function modifier_centaur_stampede_ebf_slow:DeclareFunctions()
 end
 
 function modifier_centaur_stampede_ebf_slow:GetModifierMoveSpeedBonus_Percentage()
+	return self.ms
+end
+
+function modifier_centaur_stampede_ebf_slow:GetModifierAttackSpeedBonusPercentage()
 	return self.ms
 end
 

@@ -79,8 +79,8 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"pugna_nether_blast"
 		"MaxLevel"						"2"
-		"AbilityCastPoint"				"1.25 0.75"
-		"AbilityCooldown"				"12 8"
+		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCooldown"				"10 6"
 		
 		"AbilityCastRange"				"325"
 	
@@ -93,17 +93,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"325 375"
+				"radius"					"325"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"240 300"
+				"damage"					"300 360"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"delay"						"1"
+				"delay"						"1 0.75"
 			}
 		}
 	}

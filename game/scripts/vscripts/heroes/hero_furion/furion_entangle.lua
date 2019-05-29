@@ -97,7 +97,8 @@ function modifier_entangle_enemy:GetEffectName()
 end
 
 function modifier_entangle_enemy:CheckState()
-	local state = { [MODIFIER_STATE_ROOTED] = true}
+	local state = { [MODIFIER_STATE_ROOTED] = true,
+					[MODIFIER_STATE_INVISIBLE] = false}
 	return state
 end
 

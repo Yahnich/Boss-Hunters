@@ -14,12 +14,16 @@ function ProjectileHandler:new( o )
   return o
 end
 
-PROJECTILE_THINK = 0.01
+PROJECTILE_THINK = 0.03
 
 function ProjectileHandler:start()
   ProjectileHandler = self
   self.projectiles = {}
   GameRules:GetGameModeEntity():SetThink("ProjectileThink", self, "projectileThinker", PROJECTILE_THINK)
+end
+
+function ProjectileManager:FrameTime()
+	return PROJECTILE_THINK
 end
 
 function ProjectileHandler:ProjectileThink()
@@ -31,7 +35,7 @@ function ProjectileHandler:ProjectileThink()
 				projectile:Remove()
 			end
 			projectile.aliveTime = (projectile.aliveTime or 0) + FrameTime()
-			projectile.distanceTravelled = (projectile.distanceTravelled or 0) + projectile:GetVelocity():Length2D() * FrameTime()
+			projectile.distanceTravelled = (projectile.distanceTravelled or 0) + projectile:GetVelocity():Length2D() * PROJECTILE_THINK
 			if (projectile.aliveTime and projectile.duration and projectile.aliveTime >= projectile.duration) or (projectile.distance and projectile.distanceTravelled and projectile.distance <= projectile.distanceTravelled) then
 				local position = projectile:GetPosition()
 				local status, err, ret = pcall(projectile.hitBehavior, projectile, nil, position)

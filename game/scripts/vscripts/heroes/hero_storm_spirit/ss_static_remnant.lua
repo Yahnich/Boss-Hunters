@@ -38,7 +38,7 @@ function ss_static_remnant:CreateRemnant(vLocation)
 
 	local duration = self:GetTalentSpecialValueFor("duration")
 
-	local pos = GetGroundPosition(vLocation, caster)
+	local pos = GetGroundPosition(vLocation or caster:GetAbsOrigin(), caster)
 
 	CreateModifierThinker(caster, self, "modifier_ss_static_remnant", {Duration = duration}, pos, caster:GetTeam(), false)
 end

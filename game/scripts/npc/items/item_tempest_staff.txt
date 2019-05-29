@@ -1,0 +1,120 @@
+//=================================================================================================================
+//Tempest Staff (Euls)
+//Components:
+//Hurricane Blade (2175)
+//Wings of Icarus (2210)
+//Staff of Magi (900)
+//Total: 5285
+//Stats:
+//+20 Str
+//+20 Int
+//+50% Ms
+//+25% Evasion
+//Active: Howling Wind - 
+//When cast on allies or self, 
+//grants flying movement, bonus attack speed, and movement speed for 5 seconds, 
+//When cast on enemies, 
+//Disarm+Root them for 5 seconds. 
+//CD:15s, 
+//Manacost:125
+
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	//Recipie
+	//=================================================================================================================
+	"item_recipe_tempest_staff"
+	{
+		"ID"							"7107"														
+		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_assault"
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"Itemrecipe" 					"1"
+		"ItemResult"					"item_tempest_staff"
+		"ItemRequirements"
+		{
+			"01"						"item_wings_of_icarus;item_hurricane_blade;item_staff_of_magi"
+		}
+	}
+	//=================================================================================================================
+	//Tempest Staff
+	//=================================================================================================================
+	"item_tempest_staff"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7108"														
+		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_tempest_staff"
+		"AbilityTextureName"			"item_cyclone"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"5285"
+		"ItemShopTags"					"evasion;hp;mp;movement"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"euls;tempest staff"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"particle"
+		{
+			"particle"					"particles/econ/events/ti6/phase_boots_ti6.vpcf"
+			"particle"					"particles/rahx/rahx_tornado.vpcf"
+		}
+		
+		"AbilityCooldown"				"15"
+		"AbilityCastRange"				"900"
+		"AbilityManaCost"				"125"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_strength"		"20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_evasion"			"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"20"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movespeed"		"50"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_movespeed"		"800"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_attackspeed"	"100"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"active_duration"		"5.0"
+			}
+		}
+	}
+}

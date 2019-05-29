@@ -25,8 +25,6 @@ function bane_brain_feast:OnSpellStart()
 	local target = self:GetCursorTarget()
 	
 	local damage = self:GetTalentSpecialValueFor("heal_damage")
-	caster:HealEvent(damage, self, caster)
-	
 	if not target.IsNightmared then 
 		target.IsNightmared = function() return target:HasModifier("modifier_bane_nightmare_prison_sleep") or target:HasModifier("modifier_bane_nightmare_prison_fear") end
 	end
@@ -34,7 +32,8 @@ function bane_brain_feast:OnSpellStart()
 	if caster:HasTalent("special_bonus_unique_bane_brain_feast_1") and target:IsNightmared() then
 		damage = damage * caster:FindTalentValue("special_bonus_unique_bane_brain_feast_1")
 	end
-	self:DealDamage(caster, target, damage)
+	local heal = self:DealDamage(caster, target, damage)
+	caster:HealEvent(heal, self, caster)
 	target:AddNewModifier(caster, self, "modifier_bane_brain_feast_debuff", {duration = self:GetTalentSpecialValueFor("debuff_duration")})
 	
 	EmitSoundOn("Hero_Bane.BrainSap.Target", target)
@@ -73,7 +72,7 @@ end
 
 function modifier_bane_brain_feast_debuff:OnAbilityFullyCast(params)
 	if params.unit == self:GetParent() then
-		self:GetAbility():DealDamage( caster, params.unit, self.damage )
+		self:GetAbility():DealDamage( self:GetCaster(), params.unit, self.damage )
 	end
 end
 

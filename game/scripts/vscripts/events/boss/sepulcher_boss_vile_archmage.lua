@@ -1,6 +1,6 @@
 local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
-	self.enemiesToSpawn = 1 + RoundManager:GetCurrentRaidTier() + RoundManager:GetAscensions()
+	self.enemiesToSpawn = 1 + RoundManager:GetAscensions()
 	self.eventEnded = false
 	self.eventHandler = Timers:CreateTimer(3, function()
 		local position = RoundManager:PickRandomSpawn()
@@ -10,7 +10,7 @@ local function StartEvent(self)
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		
 		if self.enemiesToSpawn > 0 then
-			return 30
+			return 20
 		end
 	end)
 	self._vEventHandles = {

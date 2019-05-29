@@ -19,7 +19,7 @@ end
 modifier_boss_warlock_conflagration = class({})
 function modifier_boss_warlock_conflagration:OnCreated(table)
 	if IsServer() then
-		self:StartIntervalThink(FrameTime())
+		self:StartIntervalThink(1)
 	end
 end
 

@@ -35,10 +35,20 @@
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"20"
 			}
-			"01"
+			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"500"
+				"var_type"				"FIELD_FLOAT"
+				"min_radius"			"150"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"350"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius_change"			"50"
 			}
 		}
 	}

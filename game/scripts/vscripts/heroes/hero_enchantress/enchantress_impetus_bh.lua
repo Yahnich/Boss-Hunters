@@ -153,7 +153,8 @@ function modifier_enchantress_impetus_bh_root:GetEffectName()
 end
 
 function modifier_enchantress_impetus_bh_root:CheckState()
-	return {[MODIFIER_STATE_ROOTED] = true}
+	return {[MODIFIER_STATE_ROOTED] = true,
+			[MODIFIER_STATE_INVISIBLE] = false}
 end
 
 function modifier_enchantress_impetus_bh_root:IsDebuff()

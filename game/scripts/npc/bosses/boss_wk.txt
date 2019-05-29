@@ -47,24 +47,24 @@
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"enrage_dmg"				"35 50"
+				"enrage_dmg"				"25 30"
 			}
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"enrage_radius"				"350 500"
 			}
-			"06"
+			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"revive_bonus_as"			"100 200"
 			}
-			"07"
+			"09"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"revive_bonus_dmg"			"5 20"
 			}
-			"07"
+			"10"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"revive_hp_loss"			"35 25"
@@ -250,7 +250,7 @@
 		
 		"AbilityCastRange"				"800 1000"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"				"1.5 1"
+		"AbilityCastPoint"				"1.75 1.25"
 		"AbilityCooldown"				"16 14"
 	
 		"precache"
@@ -517,7 +517,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_wk/boss_reaper_reposition"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName"			"clinkz_wind_walk"
 		"MaxLevel"						"3"
 		

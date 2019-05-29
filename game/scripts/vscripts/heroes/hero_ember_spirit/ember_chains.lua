@@ -138,7 +138,8 @@ function modifier_ember_chains:OnIntervalThink()
 end
 
 function modifier_ember_chains:CheckState()
-	local state = { [MODIFIER_STATE_ROOTED] = true}
+	local state = { [MODIFIER_STATE_ROOTED] = true,
+					[MODIFIER_STATE_INVISIBLE] = false}
 	return state
 end
 

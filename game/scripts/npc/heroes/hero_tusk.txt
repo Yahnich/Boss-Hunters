@@ -338,6 +338,7 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"  
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"tusk_walrus_kick"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"		
 
@@ -378,7 +379,17 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"width"						"150"
-			}	
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_damage"			"150"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_radius"			"500"
+			}
 		}
 
 		// Precache
@@ -436,7 +447,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"air_time"					"2.0"
+				"air_time"					"1.0"
 			}
 			"03"
 			{
@@ -485,7 +496,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"17"
+				"value"					"10"
 			}
 		}
 	}

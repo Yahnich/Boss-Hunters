@@ -5,7 +5,7 @@ function slardar_slithereen_crush_bh:GetAOERadius()
 end
 
 function slardar_slithereen_crush_bh:GetBehavior()
-	if self:GetCaster():HasTalent("special_bonus_unique_slardar_slithereen_crush_1") then
+	if self:GetCaster():HasTalent("special_bonus_unique_slardar_slithereen_crush_1") and not self:GetCaster():IsRooted() then
 		return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AOE
 	else
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET

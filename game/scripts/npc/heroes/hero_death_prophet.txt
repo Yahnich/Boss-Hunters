@@ -341,6 +341,37 @@
 		}
 	}
 	//=================================================================================================================
+	// Death Prophet: Carrion Swarm
+	//=================================================================================================================
+	"death_prophet_occultism"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_death_prophet/death_prophet_occultism"
+		"AbilityTextureName"			"custom/death_prophet_occultism"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_movespeed"				"1"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_attackspeed"				"1"
+			}
+		}
+	}
+	//=================================================================================================================
 	// Death Prophet: Exorcism
 	//=================================================================================================================
 	"death_prophet_exorcism_bh"

@@ -39,6 +39,7 @@
 end
 
 local function StartCombat(self, bFight)
+	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	if bFight then
 		self.foughtElites = true
 		self.eventType = EVENT_TYPE_ELITE
@@ -160,9 +161,9 @@ function HandoutRewards(self, bWon)
 			if bWon then
 				RelicManager:RollEliteRelicsForPlayer(pID)
 				local relicTable = {}
-				table.insert(relicTable, RelicManager:RollRandomCursedRelicForPlayer(pID))
-				table.insert(relicTable, RelicManager:RollRandomCursedRelicForPlayer(pID))
-				table.insert(relicTable, RelicManager:RollRandomCursedRelicForPlayer(pID))
+				table.insert(relicTable, RelicManager:RollRandomRelicForPlayer(pID, "RARITY_COMMON", false, true) )
+				table.insert(relicTable, RelicManager:RollRandomRelicForPlayer(pID, "RARITY_COMMON", false, true) )
+				table.insert(relicTable, RelicManager:RollRandomRelicForPlayer(pID, "RARITY_COMMON", false, true) )
 				RelicManager:PushCustomRelicDropsForPlayer(pID, relicTable)
 			end
 		end

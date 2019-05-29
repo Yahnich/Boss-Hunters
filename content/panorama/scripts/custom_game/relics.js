@@ -5,12 +5,14 @@ RELIC_TYPE_UNIQUE = 3
 var localID = Players.GetLocalPlayer()
 var lastRememberedHero = Players.GetPlayerHeroEntityIndex( localID )
 
-GameEvents.Subscribe( "dota_player_updated_relic_drops", HandleRelicMenu )
+GameEvents.Subscribe( "dota_player_updated_relic_drops", UpdatePendingDrops )
+GameEvents.Subscribe( "dota_player_request_relic_drops", HandleRelicMenu )
 GameEvents.Subscribe( "dota_player_update_relic_inventory", UpdateRelicInventory )
 GameEvents.Subscribe("dota_player_update_query_unit", SendRelicQuery);
 GameEvents.Subscribe("dota_player_update_selected_unit", SendRelicQuery);
 
-var hasQueuedAction = false
+var hasQueuedAction = false;
+var firstRelicOfGame = true;
 
 function SelectRelic(relic)
 {
@@ -51,6 +53,16 @@ function SendRelicQuery(){
 	GameEvents.SendCustomGameEventToServer( "dota_player_query_relic_inventory", {entindex : lastRememberedHero, playerID : localID} )
 }
 
+function SendDropQuery(){
+	lastRememberedHero = Players.GetLocalPlayerPortraitUnit()
+	if ( !Entities.IsRealHero( lastRememberedHero ) ){ 
+		lastRememberedHero = Players.GetPlayerHeroEntityIndex( localID )
+	}
+	if( lastRememberedHero = Players.GetPlayerHeroEntityIndex( localID ) ){
+		GameEvents.SendCustomGameEventToServer( "dota_player_query_relic_drops", {entindex : lastRememberedHero, playerID : localID} )
+	}
+}
+
 function AddHover(panelID)
 {
 	var buttonPanel = $("#"+panelID)
@@ -70,33 +82,62 @@ function RemoveHover(panelID)
 }
 
 $("#RelicRoot").SetHasClass("IsHidden", true)
-HandleRelicMenu()
+SendDropQuery()
+
+function UpdatePendingDrops(relicTable){
+	var length = 0
+	$("#RelicInventoryNotifyIdiots").style.visibility = "collapse";
+	if( lastRememberedHero = Players.GetPlayerHeroEntityIndex( localID ) ){
+		if( relicTable.drops != null ){
+			for ( relic in 	relicTable.drops ){
+				length++
+			}
+			if( length == 0 ){
+				$("#RelicDropNotification").style.visibility = "collapse";
+			} else {
+				$("#RelicDropNotification").style.visibility = "visible";
+				$("#RelicDropLabel").text = length;
+				if(firstRelicOfGame){
+					$("#RelicInventoryNotifyIdiots").style.visibility = "visible";
+					firstRelicOfGame = false;
+				}
+			}
+		} else {
+			$("#RelicDropNotification").style.visibility = "collapse";
+		}
+	} else {
+		$("#RelicDropNotification").style.visibility = "collapse";
+	}
+}
+
 function HandleRelicMenu(relicTable)
 {
-	if(relicTable != null) {
-		if(relicTable.playerID == localID){
-			
-		}
-		var lastDrop = relicTable.drops[1]
-		if(lastDrop != null){
-			var holder = $("#RelicChoiceHolder")
-			for(var choice of holder.Children()){
-				choice.style.visibility = "collapse"
-				choice.RemoveAndDeleteChildren()
-				choice.DeleteAsync(0)
+	if( lastRememberedHero = Players.GetPlayerHeroEntityIndex( localID ) ){
+		if(relicTable != null && relicTable.drops != null) {
+			if(relicTable.playerID == localID){
+				
 			}
-			for(var id in lastDrop){
-				CreateRelicSelection(lastDrop[id], id)
+			var lastDrop = relicTable.drops[1]
+			if(lastDrop != null){
+				var holder = $("#RelicChoiceHolder")
+				for(var choice of holder.Children()){
+					choice.style.visibility = "collapse"
+					choice.RemoveAndDeleteChildren()
+					choice.DeleteAsync(0)
+				}
+				for(var id in lastDrop){
+					CreateRelicSelection(lastDrop[id])
+				}
+				Game.EmitSound( "Relics.GainedRelic" )
+				$("#RelicRoot").SetHasClass("IsHidden", false)
+			} else {
+				$("#RelicRoot").SetHasClass("IsHidden", true)
 			}
-			Game.EmitSound( "Relics.GainedRelic" )
-			$("#RelicRoot").SetHasClass("IsHidden", false)
 		} else {
 			$("#RelicRoot").SetHasClass("IsHidden", true)
 		}
-	} else {
-		$("#RelicRoot").SetHasClass("IsHidden", true)
+		hasQueuedAction = false
 	}
-	hasQueuedAction = false
 }
 
 function CreateRelicSelection(relic)
@@ -105,25 +146,32 @@ function CreateRelicSelection(relic)
 	$.CreatePanel("Panel", holder, "").SetHasClass("VerticalSeperator", true)
 	var relicChoice = $.CreatePanel("Panel", holder, "");
 	relicChoice.BLoadLayoutSnippet("RelicChoiceContainer");
-	var relicType = "";
+	
 	var selectButton = relicChoice.FindChildTraverse("SelectButtonSnippet");
-	selectButton.SetPanelEvent("onactivate", function(){SelectRelic(relic)})
+	selectButton.SetPanelEvent("onactivate", function(){SelectRelic(relic.name)})
 	selectButton.SetPanelEvent("onmouseover", function(){selectButton.SetHasClass("ButtonHover", true)})
 	selectButton.SetPanelEvent("onmouseout", function(){selectButton.SetHasClass("ButtonHover", false)})
-	var typeLabel = relicChoice.FindChildTraverse("RelicTypeSnippet")
-	if(relic.match(/unique/g) != null){
-		relicType = "RELIC_TYPE_UNIQUE"
-		typeLabel.style.color = "#ffd34a"
-	} else if(relic.match(/cursed/g) != null){
-		relicType = "RELIC_TYPE_CURSED"
-		typeLabel.style.color = "#d80f0f"
-	} else{
-		relicType = "RELIC_TYPE_GENERIC"
-		typeLabel.style.color = "#FFFFFF"
+	var typeLabel = relicChoice.FindChildTraverse("RelicNameSnippet")
+	if(relic.rarity == "RARITY_EVENT"){
+		typeLabel.style.color = "#2ce004"
+	} else if(relic.rarity == "RARITY_LEGENDARY"){
+		typeLabel.style.color = "#ff790c"
+	} else if(relic.rarity == "RARITY_RARE"){
+		typeLabel.style.color = "#a100ff"
+	} else if(relic.rarity == "RARITY_UNCOMMON"){
+		typeLabel.style.color = "#0099ff"
+	} else if(relic.rarity == "RARITY_COMMON"){
+		typeLabel.style.color = "#ffffff"
 	}
-	typeLabel.text = $.Localize( relicType )
-	relicChoice.FindChildTraverse("RelicNameSnippet").text = $.Localize( relic )
-	relicChoice.FindChildTraverse("SnippetRelicDescription").text = $.Localize( relic + "_Description" )
+	
+	if( relic.cursed == 1 ){
+		typeLabel.style.saturation = 0.6;
+		typeLabel.style.brightness = 0.6;
+	}
+	typeLabel.text = $.Localize( relic.name )
+	var relicDescription = relicChoice.FindChildTraverse("SnippetRelicDescription")
+	relicDescription.html = true;
+	relicDescription.text = $.Localize( relic.name + "_Description" )
 	
 	$.CreatePanel("Panel", holder, "").SetHasClass("VerticalSeperator", true)
 }
@@ -162,21 +210,40 @@ function UpdateRelicInventory(table){
 	}
 }
 
-function CreateRelicPanel(name)
+function CreateRelicPanel(relic)
 {
 	var inventory = $("#RelicInventoryPanel")
-	var relic = $.CreatePanel("Panel", inventory, "");
-	relic.BLoadLayoutSnippet("RelicInventoryContainer")
-	var relicName = $.Localize( name )
-	var relicDescr = $.Localize( name + "_Description" )
-	relic.FindChildTraverse("RelicLabel").text = relicName
-	relic.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", relic, relicDescr)});
-	relic.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", relic);});
+	var relicPanel = $.CreatePanel("Panel", inventory, "");
+	relicPanel.BLoadLayoutSnippet("RelicInventoryContainer")
+	var relicName = $.Localize( relic.name )
+	var relicDescr = $.Localize( relic.name + "_Description" )
+	var relicLabel = relicPanel.FindChildTraverse("RelicLabel")
+	relicLabel.text = relicName
+	
+	if(relic.rarity == "RARITY_EVENT"){
+		relicLabel.style.color = "#2ce004"
+	} else if(relic.rarity == "RARITY_LEGENDARY"){
+		relicLabel.style.color = "#ff790c"
+	} else if(relic.rarity == "RARITY_RARE"){
+		relicLabel.style.color = "#a100ff"
+	} else if(relic.rarity == "RARITY_UNCOMMON"){
+		relicLabel.style.color = "#0099ff"
+	} else if(relic.rarity == "RARITY_COMMON"){
+		relicLabel.style.color = "#ffffff"
+	}
+	
+	if( relic.cursed == 1 ){
+		relicLabel.style.saturation = 0.8;
+		relicLabel.style.brightness = 0.6;
+	}
+	
+	relicPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", relicPanel, relicDescr)});
+	relicPanel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", relicPanel);});
 	var ownerText = "I have "
 	if( Players.GetLocalPlayerPortraitUnit() != Players.GetPlayerHeroEntityIndex( localID ) ){
 		ownerText = $.Localize( Entities.GetUnitName( Players.GetLocalPlayerPortraitUnit() ) ) + " has "
 	}
-	relic.SetPanelEvent("onactivate", function(){ GameEvents.SendCustomGameEventToServer( "player_notify_relic", {pID : localID, text : ownerText + relicName + " - " + relicDescr} ) });
+	relicPanel.SetPanelEvent("onactivate", function(){ GameEvents.SendCustomGameEventToServer( "player_notify_relic", {pID : localID, text : ownerText + relicName + " - " + relicDescr} ) });
 }
 
 function ShowRelicTooltip()

@@ -40,14 +40,18 @@ function modifier_broodmother_web_aura:OnCreated(table)
                     local radius = self:GetTalentSpecialValueFor("radius")
                     ParticleManager:SetParticleControl(nfx, 1, Vector(radius, radius, radius))
         self:AttachEffect(nfx)
-        self:StartIntervalThink(0.1)
+		if self:GetCaster():HasTalent("special_bonus_unique_broodmother_web_2") then
+			self:StartIntervalThink(0.1)
+		end
     end
 end
 
 function modifier_broodmother_web_aura:OnIntervalThink()
     local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
     for _,enemy in pairs(enemies) do
-        enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_broodmother_web_enemy", {Duration = 0.5})
+		if enemy:IsMinion() then
+			enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_broodmother_web_enemy", {Duration = 0.5})
+		end
     end
 end
 
@@ -133,7 +137,7 @@ function modifier_broodmother_web:GetModifierHealthRegenPercentage()
 end
 
 function modifier_broodmother_web:CheckState()
-    return {[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true
+    return {[MODIFIER_STATE_FLYING] = true
         }
 end
 
@@ -142,18 +146,8 @@ function modifier_broodmother_web_enemy:IsHidden() return false end
 function modifier_broodmother_web_enemy:IsDebuff() return true end
 
 function modifier_broodmother_web_enemy:OnCreated(table)
-    self.move = -self:GetTalentSpecialValueFor("bonus_movespeed")/2
-    if self:GetCaster():HasTalent("special_bonus_unique_broodmother_web_2") then
-        self.move = -self:GetTalentSpecialValueFor("bonus_movespeed")
-    end
+    self.move = self:GetCaster():FindTalentValue("special_bonus_unique_broodmother_web_2")
     self:StartIntervalThink(0.1)
-end
-
-function modifier_broodmother_web_enemy:OnIntervalThink()
-    self.move = -self:GetTalentSpecialValueFor("bonus_movespeed")/2
-    if self:GetCaster():HasTalent("special_bonus_unique_broodmother_web_2") then
-        self.move = -self:GetTalentSpecialValueFor("bonus_movespeed")
-    end
 end
 
 function modifier_broodmother_web_enemy:DeclareFunctions()

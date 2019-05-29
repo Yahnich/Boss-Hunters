@@ -35,10 +35,10 @@ local function GiveRelicChoices(self)
 		local cursedTable = {}
 		local uniqueTable = {}
 		for i = 1, 3 do
-			table.insert(cursedTable, RelicManager:RollRandomCursedRelicForPlayer(pID))
+			table.insert(cursedTable, RelicManager:RollRandomRelicForPlayer(pID, "RARITY_UNCOMMON", false, true) )
 		end
 		for i = 1, 3 do
-			table.insert(uniqueTable, RelicManager:RollRandomUniqueRelicForPlayer(pID))
+			table.insert(uniqueTable, RelicManager:RollRandomRelicForPlayer(pID, "RARITY_UNCOMMON", false, false) )
 		end
 		
 		RelicManager:PushCustomRelicDropsForPlayer(pID, cursedTable)

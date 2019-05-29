@@ -47,7 +47,7 @@ local function StartCombat(self)
 	self.foughtWave = true
 	
 	self.timeRemaining = 60
-	
+	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	self.eventType = EVENT_TYPE_COMBAT
 	
 	self.totemUnit = CreateUnitByName("npc_dota_event_totem", RoundManager:GetHeroSpawnPosition(), true, nil, nil, DOTA_TEAM_GOODGUYS)

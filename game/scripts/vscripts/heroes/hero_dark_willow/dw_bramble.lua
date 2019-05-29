@@ -169,5 +169,6 @@ function modifier_dw_bramble_damage:GetAttributes()
 end
 
 function modifier_dw_bramble_damage:CheckState()
-	return {[MODIFIER_STATE_ROOTED] = true}
+	return {[MODIFIER_STATE_ROOTED] = true,
+			[MODIFIER_STATE_INVISIBLE] = false}
 end

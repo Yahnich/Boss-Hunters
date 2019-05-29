@@ -44,6 +44,7 @@ end
 
 function modifier_boss_troll_warlord_axe_fury:OnIntervalThink()
 	local caster = self:GetCaster()
+	if caster:IsDisarmed() or caster:IsStunned() then return end
 	local fDir = caster:GetForwardVector()
 	local rndAng = math.rad(RandomInt(-self:GetTalentSpecialValueFor("spread_rad")/2, self:GetTalentSpecialValueFor("spread_rad")/2))
 	local dirX = fDir.x * math.cos(rndAng) - fDir.y * math.sin(rndAng); 

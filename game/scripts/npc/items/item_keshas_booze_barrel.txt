@@ -67,7 +67,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_block"			"40"
+				"damage_block"			"30"
 			}
 			"02"
 			{

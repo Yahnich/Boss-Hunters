@@ -50,7 +50,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-1"
+				"cd"					"16"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cost"					"50"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stacks"				"3"
 			}
 		}
 	}
@@ -69,7 +79,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-5"
+				"mr"					"-5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"armor"					"-1"
 			}
 		}
 	}
@@ -161,7 +176,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"0.5"
+				"value"					"1"
 			}
 			"02"
 			{

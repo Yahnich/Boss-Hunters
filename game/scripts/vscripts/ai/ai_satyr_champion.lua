@@ -33,7 +33,6 @@ function AIThink(thisEntity)
 		local target = AICore:GetHighestPriorityTarget( thisEntity )
 		if thisEntity.shock:IsFullyCastable() and ( AICore:NumEnemiesInLine(thisEntity, thisEntity.shock:GetSpecialValueFor("distance"), thisEntity.shock:GetSpecialValueFor("width")) >= 2 or (AICore:NumEnemiesInLine(thisEntity, thisEntity.shock:GetSpecialValueFor("distance"), thisEntity.shock:GetSpecialValueFor("width") ) >= 1 and RollPercentage( 25 ) ) ) then
 			local sTarget = AICore:FindNearestEnemyInLine(thisEntity, thisEntity.shock:GetSpecialValueFor("distance"), thisEntity.shock:GetSpecialValueFor("width") )
-			print(sTarget, "test", thisEntity.shock:GetSpecialValueFor("distance"), thisEntity.shock:GetSpecialValueFor("width") )
 			if sTarget then
 				return CastShockwave(sTarget:GetAbsOrigin(), thisEntity)
 			end

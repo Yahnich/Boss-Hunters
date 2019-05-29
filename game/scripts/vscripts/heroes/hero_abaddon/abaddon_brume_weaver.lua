@@ -9,7 +9,7 @@ function abaddon_brume_weaver:IsHiddenWhenStolen()
 end
 
 function abaddon_brume_weaver:GetIntrinsicModifierName()
-	return "modifier_abaddon_brume_weaver_handler"
+	return "modifier_abaddon_brume_weaver_passive"
 end
 
 function abaddon_brume_weaver:GetCastAnimation()
@@ -18,67 +18,36 @@ end
 
 function abaddon_brume_weaver:OnSpellStart()
 	if IsServer() then
-		local hTarget = self:GetCursorTarget()
-		EmitSoundOn("Hero_Abaddon.CastBrume", hTarget)
-		if not self:GetCaster():HasTalent("special_bonus_unique_abaddon_brume_weaver_1") then self:GetCaster():RemoveModifierByName("modifier_abaddon_brume_weaver_handler_buff") end
-		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_abaddon_brume_weaver_handler_buff_active", {duration = self:GetTalentSpecialValueFor("buff_duration")})
-		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_abaddon_brume_weaver_handler_buff", {duration = self:GetTalentSpecialValueFor("buff_duration")})
+		local caster = self:GetCaster()
+		
+		self:DealDamage( caster, caster, self:GetTalentSpecialValueFor("base_heal"), {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NON_LETHAL} )
+		caster:AddNewModifier( caster, self, "modifier_abaddon_brume_weaver_active", {duration = self:GetTalentSpecialValueFor("buff_duration")})
 	end
 end
 
-LinkLuaModifier( "modifier_abaddon_brume_weaver_handler", "heroes/hero_abaddon/abaddon_brume_weaver" ,LUA_MODIFIER_MOTION_NONE )
-modifier_abaddon_brume_weaver_handler = class({})
+LinkLuaModifier( "modifier_abaddon_brume_weaver_passive", "heroes/hero_abaddon/abaddon_brume_weaver", LUA_MODIFIER_MOTION_NONE )
+modifier_abaddon_brume_weaver_passive = class({})
 
-function modifier_abaddon_brume_weaver_handler:OnCreated()
-	if IsServer() then
-		self:StartIntervalThink(0.03)
-	end
-end
-
-function modifier_abaddon_brume_weaver_handler:IsHidden()
-	return true
-end
-
-function modifier_abaddon_brume_weaver_handler:OnIntervalThink()
-	if not self:GetParent():HasTalent("special_bonus_unique_abaddon_brume_weaver_1") then
-		if  self:GetAbility():IsCooldownReady() then
-			self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_abaddon_brume_weaver_handler_buff", {})
-		elseif not self:GetAbility():IsCooldownReady() and self:GetParent():HasModifier("modifier_abaddon_brume_weaver_handler_buff") and not self:GetParent():HasModifier("modifier_abaddon_brume_weaver_handler_buff_active") then
-			self:GetParent():RemoveModifierByName("modifier_abaddon_brume_weaver_handler_buff")
-		end
-	elseif not self:GetParent():HasModifier("modifier_abaddon_brume_weaver_handler_buff") then
-		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_abaddon_brume_weaver_handler_buff", {})
-	end
-end
-
-LinkLuaModifier( "modifier_abaddon_brume_weaver_handler_buff", "heroes/hero_abaddon/abaddon_brume_weaver", LUA_MODIFIER_MOTION_NONE )
-modifier_abaddon_brume_weaver_handler_buff = class({})
-
-function modifier_abaddon_brume_weaver_handler_buff:OnCreated()
+function modifier_abaddon_brume_weaver_passive:OnCreated()
 	self.healFactor = self:GetAbility():GetTalentSpecialValueFor("heal_pct") / 100
 	self.healDuration = self:GetAbility():GetTalentSpecialValueFor("heal_duration")
 	self.evasion = self:GetAbility():GetTalentSpecialValueFor("evasion")
 end
 
-function modifier_abaddon_brume_weaver_handler_buff:OnRefresh()
+function modifier_abaddon_brume_weaver_passive:OnRefresh()
 	self.healFactor = self:GetAbility():GetTalentSpecialValueFor("heal_pct") / 100
 	self.healDuration = self:GetAbility():GetTalentSpecialValueFor("heal_duration")
 	self.evasion = self:GetAbility():GetTalentSpecialValueFor("evasion")
 end
 
-function modifier_abaddon_brume_weaver_handler_buff:DeclareFunctions()
+function modifier_abaddon_brume_weaver_passive:DeclareFunctions()
 	funcs = {
 				MODIFIER_EVENT_ON_TAKEDAMAGE,
-				MODIFIER_PROPERTY_EVASION_CONSTANT,
 			}
 	return funcs
 end
 
-function modifier_abaddon_brume_weaver_handler_buff:GetModifierEvasion_Constant(params)
-	return self.evasion
-end
-
-function modifier_abaddon_brume_weaver_handler_buff:OnTakeDamage(params)
+function modifier_abaddon_brume_weaver_passive:OnTakeDamage(params)
 	if params.unit == self:GetParent() then
 		local damage = params.damage
 		local flHeal = math.ceil(params.damage * self.healFactor / self.healDuration)
@@ -89,8 +58,12 @@ function modifier_abaddon_brume_weaver_handler_buff:OnTakeDamage(params)
 	end
 end
 
-function modifier_abaddon_brume_weaver_handler_buff:GetEffectName()
+function modifier_abaddon_brume_weaver_passive:GetEffectName()
 	return "particles/units/heroes/hero_abaddon/abaddon_frost_slow.vpcf"
+end
+
+function modifier_abaddon_brume_weaver_passive:IsHidden()
+	return true
 end
 
 LinkLuaModifier( "modifier_abaddon_brume_weaver_handler_heal", "heroes/hero_abaddon/abaddon_brume_weaver", LUA_MODIFIER_MOTION_NONE )
@@ -115,24 +88,35 @@ function modifier_abaddon_brume_weaver_handler_heal:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
-LinkLuaModifier( "modifier_abaddon_brume_weaver_handler_buff_active", "heroes/hero_abaddon/abaddon_brume_weaver", LUA_MODIFIER_MOTION_NONE )
-modifier_abaddon_brume_weaver_handler_buff_active = class({})
+LinkLuaModifier( "modifier_abaddon_brume_weaver_active", "heroes/hero_abaddon/abaddon_brume_weaver", LUA_MODIFIER_MOTION_NONE )
+modifier_abaddon_brume_weaver_active = class({})
 
-function modifier_abaddon_brume_weaver_handler_buff_active:IsHidden()
-	return true
+function modifier_abaddon_brume_weaver_active:OnCreated()
+	self.restoration = self:GetAbility():GetTalentSpecialValueFor("base_heal") / self:GetDuration()
 end
 
-function modifier_abaddon_brume_weaver_handler_buff_active:OnCreated()
-	self.hpRegen = self:GetAbility():GetTalentSpecialValueFor("base_heal")
+function modifier_abaddon_brume_weaver_active:OnRefresh()
+	self.restoration = self:GetAbility():GetTalentSpecialValueFor("base_heal") / self:GetDuration()
 end
 
-function modifier_abaddon_brume_weaver_handler_buff_active:DeclareFunctions()
+function modifier_abaddon_brume_weaver_active:DeclareFunctions()
 	funcs = {
 				MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+				MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 			}
 	return funcs
 end
 
-function modifier_abaddon_brume_weaver_handler_buff_active:GetModifierConstantHealthRegen()
-	return self.hpRegen
+function modifier_abaddon_brume_weaver_active:CheckState()
+	if self:GetCaster():HasTalent("special_bonus_unique_abaddon_brume_weaver_2") then
+		return {MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY, MODIFIER_STATE_NO_UNIT_COLLISION}
+	end
+end
+
+function modifier_abaddon_brume_weaver_active:GetModifierConstantHealthRegen()
+	return self.restoration
+end
+
+function modifier_abaddon_brume_weaver_active:GetModifierConstantManaRegen()
+	return self.restoration
 end

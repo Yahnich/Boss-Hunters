@@ -67,7 +67,17 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"radius"				"900"
+				"min_radius"			"150"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"500"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius_change"			"50"
 			}
 		}
 	}

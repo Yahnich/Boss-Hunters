@@ -13,8 +13,8 @@ function boss15_exorcise:OnSpellStart()
 	end
 	
 	local speed = self:GetSpecialValueFor( "speed" )
-	local width_initial = self:GetSpecialValueFor( "width_initial" ) / 2
-	local width_end = self:GetSpecialValueFor( "width_end" ) / 2
+	local width_initial = self:GetSpecialValueFor( "width_initial" )
+	local width_end = self:GetSpecialValueFor( "width_end" )
 	local distance = self:GetSpecialValueFor( "distance" )
 	local damage = self:GetSpecialValueFor( "damage" ) 
 	local velocity = CalculateDirection( vPos, caster ) * speed
@@ -58,7 +58,6 @@ function boss15_exorcise:OnProjectileHit( hTarget, vPosition )
 		
 		ParticleManager:FireParticle( "particles/units/heroes/hero_death_prophet/death_prophet_carrion_swarm_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget )
 	end
-	print("what", hTarget)
 	if not hTarget then ParticleManager:ClearParticle( self.exorciseProj ) end
 end
 

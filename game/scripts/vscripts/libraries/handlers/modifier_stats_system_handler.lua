@@ -2,9 +2,9 @@ modifier_stats_system_handler = class({})
 
 
 -- OTHER
-MOVESPEED_TABLE = 10
-MANA_TABLE = 200
-MANA_REGEN_TABLE = 1.5
+MOVESPEED_TABLE = 15
+MANA_TABLE = 300
+MANA_REGEN_TABLE = 3
 HEAL_AMP_TABLE = {0,15,30,45,60,75}
 -- OFFENSE
 ATTACK_DAMAGE_TABLE = 20
@@ -13,14 +13,15 @@ COOLDOWN_REDUCTION_TABLE = {0,10,15,20,25,30}
 ATTACK_SPEED_TABLE = 10
 STATUS_AMP_TABLE = {0,10,15,20,25,30}
 -- ACCURACY_TABLE = {0,15,30,45,60,75}
+AREA_DAMAGE_TABLE = {0,10,20,30,40,50}
 
 -- DEFENSE
 ARMOR_TABLE = 1
 MAGIC_RESIST_TABLE = {0,10,15,20,25,30}
 ATTACK_RANGEM_TABLE = 25
 ATTACK_RANGE_TABLE = 50
-HEALTH_TABLE = 150
-HEALTH_REGEN_TABLE = 2
+HEALTH_TABLE = 200
+HEALTH_REGEN_TABLE = 3
 STATUS_REDUCTION_TABLE = {0,10,20,30,40,50}
 
 ALL_STATS = 2
@@ -36,10 +37,10 @@ end
 function modifier_stats_system_handler:UpdateStatValues()
 	-- OTHER
 	local entindex = self:GetCaster():entindex()
-	
-	print( sentindex )
+	if self:GetCaster():GetParentUnit() then
+		entindex = self:GetCaster():GetParentUnit():entindex()
+	end
 	local netTable = CustomNetTables:GetTableValue("stats_panel", tostring(entindex) ) or {}
-		
 	self.ms = MOVESPEED_TABLE * tonumber(netTable["ms"])
 	self.mp = MANA_TABLE * tonumber(netTable["mp"])
 	self.mpr = MANA_REGEN_TABLE * tonumber(netTable["mpr"])
@@ -57,11 +58,7 @@ function modifier_stats_system_handler:UpdateStatValues()
 	self.pr = ARMOR_TABLE * tonumber(netTable["pr"]) + 1
 	self.mr = MAGIC_RESIST_TABLE[math.min(#MAGIC_RESIST_TABLE, tonumber(netTable["mr"]) + 1)]
 	
-	if self:GetParent():IsRangedAttacker() then 
-		self.ar = ATTACK_RANGE_TABLE * tonumber(netTable["ar"])
-	else
-		self.ar = ATTACK_RANGEM_TABLE * tonumber(netTable["ar"])
-	end
+	self.ard = AREA_DAMAGE_TABLE[math.min(#MAGIC_RESIST_TABLE, tonumber(netTable["ard"]) + 1)]
 	
 	self.hp = HEALTH_TABLE * tonumber(netTable["hp"])
 	self.hpr = HEALTH_REGEN_TABLE * tonumber(netTable["hpr"])
@@ -85,7 +82,7 @@ function modifier_stats_system_handler:DeclareFunctions()
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 		-- MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
-		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+		-- MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
@@ -96,22 +93,23 @@ function modifier_stats_system_handler:DeclareFunctions()
 	return funcs
 end
 
-function modifier_stats_system_handler:GetModifierMoveSpeedBonus_Constant() return -35 + (self.ms or 0) end
+function modifier_stats_system_handler:GetModifierMoveSpeedBonus_Constant() return (self.ms or 0) end
 function modifier_stats_system_handler:GetModifierManaBonus() return 500 + (self.mp or 0) end
-function modifier_stats_system_handler:GetModifierConstantManaRegen() return (self.mpr or 0) end
+function modifier_stats_system_handler:GetModifierConstantManaRegen() return 1.5 + (self.mpr or 0) end
 function modifier_stats_system_handler:GetModifierHealAmplify_Percentage() return self.ha or 0 end
 
 function modifier_stats_system_handler:GetModifierPreAttack_BonusDamage() return (self.ad or 0) end
 function modifier_stats_system_handler:GetModifierBaseAttack_BonusDamage() return 10 end
 	
 function modifier_stats_system_handler:GetModifierSpellAmplify_Percentage()
-	local int_multiplier = TernaryOperator( 0.06, self:GetParent():GetPrimaryAttribute() == DOTA_ATTRIBUTE_INTELLECT, 0.04 )
-	return self:GetParent():GetIntellect() * int_multiplier + (self.sa or 0) 
+	return self:GetParent():GetIntellect() * 0.33 + (self.sa or 0) 
 end
 
 -- function modifier_stats_system_handler:GetCooldownReduction() return self.cdr or 0 end
 function modifier_stats_system_handler:GetModifierAttackSpeedBonus() return 50 + (self.as or 0) end
 function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage() return self.sta or 0 end
+function modifier_stats_system_handler:GetModifierAreaDamage() return self.ard or 0 end
+
 function modifier_stats_system_handler:GetAccuracy(params)
 	local accuracy = self.acc or 0
 	if not self:GetParent():IsRangedAttacker() then
@@ -133,9 +131,9 @@ function modifier_stats_system_handler:GetModifierMagicalResistanceBonus() retur
 	-- end
 -- end
 
-function modifier_stats_system_handler:GetModifierAttackRangeBonus() 
-	return self.ar or 0
-end
+-- function modifier_stats_system_handler:GetModifierAttackRangeBonus() 
+	-- return self.ar or 0
+-- end
 
 function modifier_stats_system_handler:GetModifierExtraHealthBonus() return 400 + (self.hp or 0) end
 function modifier_stats_system_handler:GetModifierConstantHealthRegen() return (self.hpr or 0) end

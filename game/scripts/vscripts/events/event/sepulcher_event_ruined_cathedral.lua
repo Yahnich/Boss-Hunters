@@ -29,18 +29,20 @@ local function CheckPlayerChoices(self)
 end
 
 local function StartCombat(self, bFight)
+	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	if bFight then
 		self.combatStarted = true
 		self.eventType = EVENT_TYPE_ELITE
 		self.timeRemaining = 0
 		self.combatStarted = true
 		self.prophets = 1
-		self.undying = 1 + RoundManager:GetCurrentRaidTier()
+		self.undying = math.floor( ( RoundManager:GetCurrentRaidTier() * 2 ) + HeroList:GetActiveHeroCount() ) / 3
 		self.minions = math.floor( math.log(2 + RoundManager:GetEventsFinished() ) * HeroList:GetActiveHeroCount() / 1.5 )
 		self.enemiesToSpawn = self.prophets + self.undying + self.minions
 		Timers:CreateTimer(3, function()
 			local spawn = CreateUnitByName("npc_dota_boss22", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundNecessary = true
+			spawn:FindAbilityByName("boss15_peel_the_veil"):SetActivated(false)
 			self.prophets = self.prophets - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if self.prophets > 0 then
@@ -50,7 +52,7 @@ local function StartCombat(self, bFight)
 		Timers:CreateTimer(5, function()
 			local spawn = CreateUnitByName("npc_dota_boss4", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundNecessary = true
-			spawn:SetCoreHealth(2500)
+			spawn:SetCoreHealth(2250)
 			self.undying = self.undying - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if self.undying > 0 then
@@ -136,12 +138,8 @@ local function HandoutRewards(self, bWon)
 	if self.combatStarted and bWon then
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			local pID = hero:GetPlayerOwnerID()
-			local generic = {}
-			local cursed = {}
-			table.insert(generic, RelicManager:RollRandomGenericRelicForPlayer(pID) )
-			table.insert(cursed, RelicManager:RollRandomCursedRelicForPlayer(pID) )
-			RelicManager:PushCustomRelicDropsForPlayer(pID, generic)
-			RelicManager:PushCustomRelicDropsForPlayer(pID, cursed)
+			RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomRelicForPlayer(pID, "RARITY_RARE", false)})
+			RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomRelicForPlayer(pID, "RARITY_COMMON", false, true)})
 		end
 	end
 end

@@ -47,12 +47,12 @@ end
 modifier_mirana_mooneye_stack = class({})
 LinkLuaModifier( "modifier_mirana_mooneye_stack", "heroes/hero_mirana/mirana_mooneye.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_mirana_mooneye_stack:OnCreated(table)
-    self.agi = self:GetParent():GetAgility() * self:GetSpecialValueFor("agi_mult")/100 * self:GetStackCount()
+    self.agi = self:GetSpecialValueFor("agi_mult")
 end
 
 function modifier_mirana_mooneye_stack:OnRefresh(table)
 	self.agi = 0
-    self.agi = 	self:GetParent():GetAgility() * self:GetSpecialValueFor("agi_mult")/100 * self:GetStackCount()
+    self.agi = self:GetSpecialValueFor("agi_mult")
 end
 
 function modifier_mirana_mooneye_stack:DeclareFunctions()
@@ -62,18 +62,12 @@ function modifier_mirana_mooneye_stack:DeclareFunctions()
     return funcs
 end
 
-function modifier_mirana_mooneye_stack:GetModifierBonusStats_Agility()
-    return self.agi
+function modifier_mirana_mooneye_stack:GetModifierAgilityBonusPercentage()
+    return self.agi * self:GetStackCount()
 end
 
 function modifier_mirana_mooneye_stack:IsDebuff()
     return false
-end
-
-function modifier_mirana_mooneye_stack:OnStackCountChanged(iStacks)
-    if IsServer() then
-        self:GetParent():CalculateStatBonus()
-    end
 end
 
 modifier_mirana_mooneye_scepter = class({})

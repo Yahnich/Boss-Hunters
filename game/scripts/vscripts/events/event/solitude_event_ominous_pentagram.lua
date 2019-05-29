@@ -32,11 +32,18 @@
 end
 
 local function StartCombat(self, bFight, bHard)
+	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	if bFight then
 		self.foughtAsura = true
 		self.eventType = EVENT_TYPE_COMBAT
 		if bHard then
 			self.eventType = EVENT_TYPE_ELITE
+			
+			for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+				hero:ModifyAgility( 15 )
+				hero:ModifyIntellect( 15 )
+				hero:ModifyStrength( 15 )
+			end
 		end
 		self._vEventHandles = {
 			ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
@@ -50,6 +57,7 @@ local function StartCombat(self, bFight, bHard)
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if bHard then
 				spawn:SetAverageBaseDamage(spawn:GetAverageBaseDamage() * 1.5, 30)
+				spawn:SetCoreHealth( 3500 )
 			end
 			if self.enemiesToSpawn > 0 then
 				return 15 / (RoundManager:GetRaidsFinished() + 1)

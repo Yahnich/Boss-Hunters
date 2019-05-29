@@ -16,7 +16,7 @@ function boss_warlock_inferno_spikes:OnSpellStart()
 
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
 	for _,enemy in pairs(enemies) do
-		if enemy:IsHero() and not enemy:IsMagicImmune() and not enemy:IsInvulnerable() and not enemy:IsInvisible() then
+		if enemy:IsRealHero() and not enemy:IsMagicImmune() and not enemy:IsInvulnerable() and not enemy:IsInvisible() then
 			local direction = CalculateDirection(enemy, caster)
 			self:FireLinearProjectile("particles/bosses/boss_warlockgolems/boss_ember_spike.vpcf", direction*speed, range, width, {}, false, false, 0)
 		end
@@ -41,9 +41,13 @@ function modifier_boss_warlock_inferno_spikes:OnCreated(table)
 end
 
 function modifier_boss_warlock_inferno_spikes:OnIntervalThink()
-	local damage = self:GetParent():GetMaxHealth() * self:GetSpecialValueFor("dot")/100
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), damage, {}, 0)
-	self:StartIntervalThink(1)
+	self.damage = self.damage or ( self:GetParent():GetMaxHealth() * (self:GetSpecialValueFor("dot")/100) * 0.25 ) / self:GetRemainingTime()
+	if self:GetParent():InWater() then
+		self:Destroy()
+		return 
+	end
+	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, 0)
+	self:StartIntervalThink(0.25)
 end
 
 function modifier_boss_warlock_inferno_spikes:GetEffectName()

@@ -31,7 +31,7 @@ function boss33b_shadowrazeM:OnSpellStart()
 	
 	local sdDeath = not caster:IsTwinAlive()
 	
-	if sdDeath and caster.Holdout_IsCore then
+	if sdDeath and not caster:IsMinion() then
 		local duration = self:GetSpecialValueFor("sd_death_duration")
 		local bonusRadius = self:GetSpecialValueFor("sd_death_bonus_radius")
 		local cd = self:GetCooldownTimeRemaining()
@@ -51,7 +51,7 @@ end
 
 function boss33b_shadowrazeM:CreateRazePattern(hpThreshold, position, radius, damage)
 	local caster = self:GetCaster()
-	if hpThreshold and caster.Holdout_IsCore then
+	if hpThreshold and not caster:IsMinion() then
 		local count = self:GetSpecialValueFor("phase2_raze_count")
 		for i = 1, count do
 			local newPos = position + RotateVector2D(caster:GetForwardVector(), ToRadians(360*i/count)) * self:GetSpecialValueFor("distance")

@@ -148,7 +148,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"						"0.5 0.45 0.4 0.35 0.3 0.25 0.2"
+		"AbilityCooldown"						"0.35"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -199,7 +199,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"0.2"
+				"value"					"0.35"
 			}
 		}
 	}
@@ -260,13 +260,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_bonus"			"40 50 60 70 80 90 100"
-				"LinkedSpecialBonus"	"special_bonus_unique_axe_forced_shout_1"
+				"armor_bonus"			"0"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_bonus_base"		"25"
+				"armor_bonus_base"		"30 35 40 45 50 55 60"
+				"LinkedSpecialBonus"	"special_bonus_unique_axe_forced_shout_1"
 			}
 			"03"
 			{
@@ -278,16 +278,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"600 650 700 750 800 850 900"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_threat"			"30"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"threat_per_enemy"		"7.5"
 			}
 		}
 	
@@ -313,7 +303,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"80"
+				"value"					"90"
 			}
 		}
 	}
@@ -354,10 +344,6 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"axe_culling_blade"
 		"MaxLevel"						"6"
-		"IsAetherAmplified"				"0"
-	
-		"PiercesDisableReduction"		"1"
-		"AbilityThreat"					"30.0"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -367,7 +353,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"40 38 36 34 32 30 28"
+		"AbilityCooldown"				"30 28 26 24 22 20"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -379,24 +365,23 @@
 		{
 			"01"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"150 250 350 450 550 650"
+				"var_type"						"FIELD_FLOAT"
+				"damage"						"4 4.5 5 5.5 6 6.5"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"daze_duration"					"3.0"
+				"kill_threshold"				"7 8 9 10 11 12"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"6.0"
+				"daze_duration"					"3.0"
 			}
 			"04"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"kill_threshold"				"250 450 650 850 1050 1250"
-				"CalculateSpellDamageTooltip"	"1"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"6.0"
 			}
 			"05"
 			{
@@ -407,16 +392,6 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"radius"						"350"
-			}
-			"07"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_str_bonus"				"100"
-			}
-			"08"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"kill_str_bonus"				"150"
 			}
 		}
 	
@@ -447,6 +422,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value"					"-60"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"					"10"
 			}
 		}
 	}

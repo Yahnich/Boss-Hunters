@@ -23,7 +23,8 @@ end
 
 
 function modifier_root_generic:CheckState()
-	local state = { [MODIFIER_STATE_ROOTED] = true}
+	local state = { [MODIFIER_STATE_ROOTED] = true,
+					[MODIFIER_STATE_INVISIBLE] = false}
 	return state
 end
 

@@ -18,16 +18,17 @@ function bh_track:OnSpellStart()
 	EmitSoundOn("Hero_BountyHunter.Target", caster)
 
 	self:Track(target)
-
-	if caster:HasTalent("special_bonus_unique_bh_track_2") then
-		local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), 500)
-		for _,enemy in pairs(enemies) do
-			if enemy ~= target and currentUnits <= maxUnits then
-				self:Track(enemy)
-				currentUnits = currentUnits + 1
-			end
-		end
-	end
+	
+	-- deprecated multishot talent
+	-- if caster:HasTalent("special_bonus_unique_bh_track_2") then
+		-- local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), 500)
+		-- for _,enemy in pairs(enemies) do
+			-- if enemy ~= target and currentUnits <= maxUnits then
+				-- self:Track(enemy)
+				-- currentUnits = currentUnits + 1
+			-- end
+		-- end
+	-- end
 end
 
 function bh_track:Track(target)
@@ -43,11 +44,11 @@ end
 
 modifier_bh_track = class({})
 function modifier_bh_track:OnCreated(table)
+	local caster = self:GetCaster()
+   	local parent = self:GetParent()
 	self.crit = self:GetTalentSpecialValueFor("critical_strike")
+	self.talent = caster:HasTalent("special_bonus_unique_bh_track_2")
     if IsServer() then
-    	local caster = self:GetCaster()
-    	local parent = self:GetParent()
-
     	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_trail.vpcf", PATTACH_POINT_FOLLOW, caster)
     				ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
     				ParticleManager:SetParticleControlEnt(nfx, 1, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
@@ -66,13 +67,29 @@ function modifier_bh_track:OnIntervalThink()
 end
 
 function modifier_bh_track:DeclareFunctions()
-    local funcs = {MODIFIER_EVENT_ON_DEATH,
-				   MODIFIER_PROPERTY_PREATTACK_TARGET_CRITICALSTRIKE}
+    local funcs = { MODIFIER_EVENT_ON_DEATH,
+				    MODIFIER_PROPERTY_PREATTACK_TARGET_CRITICALSTRIKE,
+					MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
     return funcs
 end
 
 function modifier_bh_track:GetModifierPreAttack_Target_CriticalStrike( params )
-	return self.crit
+	local crit = self.crit
+	if self.talent and params.target:IsMinion() then
+		crit = crit * 2
+	end
+	return crit
+end
+
+function modifier_bh_track:GetModifierIncomingDamage_Percentage( params )
+	if params.attacker == self:GetCaster() and params.inflictor then
+		local crit = self.crit - 100
+		if self.talent and params.target:IsMinion() then
+			crit = crit * 2
+		end
+		SendOverheadEventMessage(params.target:GetPlayerOwner(), OVERHEAD_ALERT_CRITICAL, params.target, params.original_damage * crit/100, params.target:GetPlayerOwner())
+		return crit
+	end
 end
 
 function modifier_bh_track:OnDeath(params)

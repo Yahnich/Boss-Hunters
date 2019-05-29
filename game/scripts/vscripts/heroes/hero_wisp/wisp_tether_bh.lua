@@ -16,6 +16,8 @@ end
 function wisp_tether_bh:CastFilterResultTarget(hTarget)
 	if hTarget == self:GetCaster() then
 		return UF_FAIL_CUSTOM
+	else
+		return UnitFilter( hTarget, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, self:GetCaster():GetTeamNumber() )
 	end
 end
 
@@ -49,15 +51,15 @@ function wisp_tether_bh:OnSpellStart()
 		local target = self:GetCursorTarget()
 
 		caster:Stop()
-
-		if CalculateDistance(target, caster) > self:GetTrueCastRange()/2 then
+		local pullDistance = self:GetTalentSpecialValueFor("pull_distance")
+		if CalculateDistance(target, caster) > pullDistance * 2 then
 			caster:AddNewModifier(caster, self, "modifier_wisp_tether_bh_motion", {Duration = 5})
 		end
 
 		EmitSoundOn("Hero_Wisp.Tether.Target", target)
-
-		caster:AddNewModifier(caster, self, "modifier_wisp_tether_bh", {})
+		
 		target:AddNewModifier(caster, self, "modifier_wisp_tether_bh_target", {})
+		caster:AddNewModifier(caster, self, "modifier_wisp_tether_bh", {})
 		self:EndCooldown()
 	end
 end
@@ -69,7 +71,7 @@ function modifier_wisp_tether_bh:OnCreated(table)
 	if IsServer() then
 		local caster = self:GetCaster()
 		self.target = self:GetAbility():GetCursorTarget()
-
+		self.range = self:GetTalentSpecialValueFor("break_distance") + caster:GetBonusCastRange()
 		self.restoreMultiplier = self:GetTalentSpecialValueFor("restore_amp")/100
 
 		EmitSoundOn("Hero_Wisp.Tether", caster)
@@ -90,12 +92,15 @@ end
 
 function modifier_wisp_tether_bh:OnIntervalThink()
 	local caster = self:GetCaster()
-
+	local distance = CalculateDistance(self.target, self:GetCaster())
+	if not self.target or not self.target:HasModifier("modifier_wisp_tether_bh_target") or ( distance >= self.range and not caster:HasModifier("modifier_wisp_tether_bh_motion") ) then
+		self:Destroy()
+	end
 	if caster:HasScepter() then
-		if not self.target:HasScepter() then
+		if not self.target:HasScepter() and not self.target:HasModifier("modifier_wisp_tether_bh_aghs") then
 			self.target:AddNewModifier(caster, self:GetAbility(), "modifier_wisp_tether_bh_aghs", {})
 		end
-	else
+	elseif self.target:HasModifier("modifier_wisp_tether_bh_aghs") then
 		self.target:RemoveModifierByNameAndCaster("modifier_wisp_tether_bh_aghs", caster)
 	end
 
@@ -245,7 +250,7 @@ function modifier_wisp_tether_bh_motion:OnCreated(table)
 
 		self.speed = 1000 * FrameTime()
 
-		self.maxDistance = CalculateDistance(self.target, caster) / 2
+		self.maxDistance = self:GetTalentSpecialValueFor("pull_distance")
 
 		self.currentDistance = 0
 
@@ -256,7 +261,7 @@ end
 function modifier_wisp_tether_bh_motion:OnIntervalThink()
 	local caster = self:GetCaster()
 
-	if caster:HasModifier("modifier_wisp_tether_bh") then
+	if caster:HasModifier("modifier_wisp_tether_bh") or caster:HasModifier("modifier_wisp_transfer") then
 		local pos = GetGroundPosition(caster:GetAbsOrigin(), caster)
 
 		self.direction = CalculateDirection(self.target, caster)
@@ -267,7 +272,7 @@ function modifier_wisp_tether_bh_motion:OnIntervalThink()
 			caster:SetAbsOrigin(pos + velocity)
 			self.currentDistance = self.currentDistance + self.speed
 		else
-			FindClearSpaceForUnit(caster, pos, true)
+			ResolveNPCPositions( pos, caster:GetHullRadius() * 2 ) 
 			self:Destroy()
 		end
 	else
@@ -288,6 +293,28 @@ function modifier_wisp_tether_bh_motion:IsPurgeException()
 end
 
 modifier_wisp_tether_bh_aghs = class({})
+
+if IsServer() then
+	function modifier_wisp_tether_bh_aghs:OnCreated()
+		local caster = self:GetCaster()
+		for i = 0, caster:GetAbilityCount() - 1 do
+			local ability = caster:GetAbilityByIndex( i )
+			if ability and ability.OnInventoryContentsChanged then
+				ability:OnInventoryContentsChanged()
+			end
+		end
+	end
+	
+	function modifier_wisp_tether_bh_aghs:OnDestroy()
+		local caster = self:GetCaster()
+		for i = 0, caster:GetAbilityCount() - 1 do
+			local ability = caster:GetAbilityByIndex( i )
+			if ability and ability.OnInventoryContentsChanged then
+				ability:OnInventoryContentsChanged()
+			end
+		end
+	end
+end
 
 function modifier_wisp_tether_bh_aghs:GetTexture()
 	return "item_ultimate_scepter"

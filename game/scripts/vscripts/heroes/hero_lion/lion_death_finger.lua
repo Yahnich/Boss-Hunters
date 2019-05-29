@@ -140,7 +140,8 @@ end
 
 modifier_lion_death_finger_root = class({})
 function modifier_lion_death_finger_root:CheckState()
-    local state = {[MODIFIER_STATE_ROOTED] = true}
+    local state = {	[MODIFIER_STATE_ROOTED] = true,
+					[MODIFIER_STATE_INVISIBLE] = false}
     return state
 end
 

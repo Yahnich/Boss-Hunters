@@ -199,7 +199,7 @@ end
 
 modifier_et_natural_order_enemy_both = class({})
 function modifier_et_natural_order_enemy_both:OnCreated(table)
-	self.armor1 = -(self:GetParent():GetPhysicalArmorValue() + self:GetParent():GetPhysicalArmorValue() * self:GetTalentSpecialValueFor("reduc")/100)
+	self.armor1 = -(self:GetParent():GetPhysicalArmorValue(false) + self:GetParent():GetPhysicalArmorValue(false) * self:GetTalentSpecialValueFor("reduc")/100)
 	if IsServer() then
 		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_elder_titan/elder_titan_natural_order_magical.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControl(self.nfx, 0, self:GetParent():GetAbsOrigin())
@@ -234,7 +234,7 @@ end
 
 modifier_et_natural_order_enemy_phys = class({})
 function modifier_et_natural_order_enemy_phys:OnCreated(table)
-	self.armor2 = -(self:GetParent():GetPhysicalArmorValue() + self:GetParent():GetPhysicalArmorValue() * self:GetTalentSpecialValueFor("reduc")/100)
+	self.armor2 = -(self:GetParent():GetPhysicalArmorValue(false) + self:GetParent():GetPhysicalArmorValue(false) * self:GetTalentSpecialValueFor("reduc")/100)
 end
 
 function modifier_et_natural_order_enemy_phys:DeclareFunctions()

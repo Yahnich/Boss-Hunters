@@ -30,9 +30,9 @@ GameEvents.Subscribe("dota_player_update_selected_unit", UpdateStatsPanel);
 GameEvents.Subscribe("dota_player_upgraded_stats", UpdateStatsPanel);
 
 // OTHER
-MOVESPEED_TABLE = 10
-MANA_TABLE = 200
-MANA_REGEN_TABLE = 1.5
+MOVESPEED_TABLE = 15
+MANA_TABLE = 300
+MANA_REGEN_TABLE = 3
 HEAL_AMP_TABLE = [0,15,30,45,60,75]
 
 // OFFENSE
@@ -42,14 +42,15 @@ COOLDOWN_REDUCTION_TABLE = [0,10,15,20,25,30]
 ATTACK_SPEED_TABLE = 10
 STATUS_AMP_TABLE = [0,10,15,20,25,30]
 // ACCURACY_TABLE = [0,15,30,45,60,75]
+AREA_DAMAGE_TABLE = [0,10,20,30,40,50]
 
 // DEFENSE
 ARMOR_TABLE = 1
 MAGIC_RESIST_TABLE = [0,10,15,20,25,30]
 ATTACK_RANGEM_TABLE = 25
 ATTACK_RANGE_TABLE = 50
-HEALTH_TABLE = 150
-HEALTH_REGEN_TABLE = 2
+HEALTH_TABLE = 200
+HEALTH_REGEN_TABLE = 3
 STATUS_REDUCTION_TABLE = [0,10,20,30,40,50]
 
 ALL_STATS = 2
@@ -244,7 +245,7 @@ function LoadOffenseLayout()
 	// CreateAttributePanel( statsNetTable.cdr, COOLDOWN_REDUCTION_TABLE, "cdr", "STATS_TYPE_COOLDOWN_REDUCTION", "%" )
 	CreateAttributePanel( statsNetTable.sta, STATUS_AMP_TABLE, "sta", "STATS_TYPE_STATUS_AMP", "%" )
 	// CreateAttributePanel( statsNetTable.acc, ACCURACY_TABLE, "acc", "STATS_TYPE_ACCURACY", "%" )
-	
+	CreateAttributePanel( statsNetTable.ard, AREA_DAMAGE_TABLE, "ard", "STATS_TYPE_AREA_DAMAGE", "%" )
 }
 
 function LoadDefenseLayout()
@@ -261,11 +262,11 @@ function LoadDefenseLayout()
 	var statsNetTable = CustomNetTables.GetTableValue("stats_panel", lastRememberedHero)
 	CreateAttributePanel( statsNetTable.pr, ARMOR_TABLE, "pr", "STATS_TYPE_ARMOR", "" )
 	CreateAttributePanel( statsNetTable.mr, MAGIC_RESIST_TABLE, "mr", "STATS_TYPE_MAGIC_RESIST", "%" )
-	if ( Entities.IsRangedAttacker( lastRememberedHero ) ){
-		CreateAttributePanel( statsNetTable.ar, ATTACK_RANGE_TABLE, "ar", "STATS_TYPE_ATTACK_RANGE", "" )
-	} else {
-		CreateAttributePanel( statsNetTable.ar, ATTACK_RANGEM_TABLE, "ar", "STATS_TYPE_ATTACK_RANGE", "" )
-	}
+	// if ( Entities.IsRangedAttacker( lastRememberedHero ) ){
+		// CreateAttributePanel( statsNetTable.ar, ATTACK_RANGE_TABLE, "ar", "STATS_TYPE_ATTACK_RANGE", "" )
+	// } else {
+		// CreateAttributePanel( statsNetTable.ar, ATTACK_RANGEM_TABLE, "ar", "STATS_TYPE_ATTACK_RANGE", "" )
+	// }
 	CreateAttributePanel( statsNetTable.hp, HEALTH_TABLE, "hp", "STATS_TYPE_HEALTH", "" )
 	CreateAttributePanel( statsNetTable.hpr, HEALTH_REGEN_TABLE, "hpr", "STATS_TYPE_HEALTH_REGEN", "" )
 	CreateAttributePanel( statsNetTable.sr, STATUS_REDUCTION_TABLE, "sr", "STATS_TYPE_STATUS_REDUCTION", "%" )

@@ -35,36 +35,67 @@ function beast_roar:OnSpellStart()
 	ParticleManager:ReleaseParticleIndex(nfx)
 
 	EmitSoundOn("Hero_Beastmaster.Primal_Roar", caster)
-
-	local enemies = caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), point, self:GetTalentSpecialValueFor("width"), {})
-	for _,enemy in pairs(enemies) do
-		self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-		enemy:ApplyKnockBack(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("push_duration"), self:GetTalentSpecialValueFor("push_duration"), self:GetTalentSpecialValueFor("push_distance"), 0, caster, self)
-		Timers:CreateTimer(self:GetTalentSpecialValueFor("push_duration"), function()
-			self:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), 0)
-		end)
-		Timers:CreateTimer(self:GetTalentSpecialValueFor("stun_duration"), function()
-			enemy:AddNewModifier(caster, self, "modifier_roar_slow", {Duration = self:GetTalentSpecialValueFor("slow_duration")})
+	
+	local damage = self:GetTalentSpecialValueFor("damage")
+	local pushDur = self:GetTalentSpecialValueFor("push_duration")
+	local pushDist = self:GetTalentSpecialValueFor("push_distance")
+	local stunDur = self:GetTalentSpecialValueFor("stun_duration")
+	local totDur = stunDur + self:GetTalentSpecialValueFor("slow_duration")
+	
+	local units = caster:FindAllUnitsInLine(caster:GetAbsOrigin(), point, self:GetTalentSpecialValueFor("width"), {})
+	for _, unit in pairs(units) do
+		if not unit:IsSameTeam( caster ) then
+			self:DealDamage(caster, unit, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			unit:ApplyKnockBack(caster:GetAbsOrigin(), pushDur, pushDur, pushDist, 0, caster, self)
+			Timers:CreateTimer( pushDur, function()
+				self:Stun(unit, stunDur, 0)
+			end)
+			unit:AddNewModifier(caster, self, "modifier_roar_slow", {Duration = totDur})
 			if caster:HasTalent("special_bonus_unique_beast_roar_2") then
-				enemy:Daze(self, caster, caster:FindTalentValue("special_bonus_unique_beast_roar_2"))
+				unit:Daze(self, caster, totDur )
 			end
-		end)
+		else
+			unit:HealEvent( damage, nil, caster )
+		end
 	end
 end
 
 modifier_roar_slow = class({})
+function modifier_roar_slow:OnCreated()
+	self.slow = self:GetTalentSpecialValueFor("slow")
+	self.mr = nil
+	self.armor = nil
+	if self:GetCaster():HasModifier("modifier_cotw_hawk_spirit") then
+		self.mr = self:GetTalentSpecialValueFor("hawk_mr")
+		self.armor = self:GetTalentSpecialValueFor("hawk_armor")
+	end
+end
+
+function modifier_roar_slow:OnRefresh()
+	self:OnCreated()
+end
+
 function modifier_roar_slow:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 	}
 	return funcs
 end
 
 function modifier_roar_slow:GetModifierMoveSpeedBonus_Percentage()
-	return self:GetTalentSpecialValueFor("slow")
+	return self.slow
 end
 
 function modifier_roar_slow:GetModifierAttackSpeedBonus()
-	return self:GetTalentSpecialValueFor("slow")
+	return self.slow
+end
+
+function modifier_roar_slow:GetModifierPhysicalArmorBonus()
+	return self.armor
+end
+
+function modifier_roar_slow:GetModifierMagicalResistanceBonus()
+	return self.mr
 end

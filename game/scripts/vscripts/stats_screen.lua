@@ -17,9 +17,9 @@ function StatsScreen:StartStatsScreen()
 	CustomGameEventManager:RegisterListener('notify_selected_talent', Context_Wrap( StatsScreen, 'NotifyTalent'))
 	CustomGameEventManager:RegisterListener('send_player_respec_talents', Context_Wrap( StatsScreen, 'RespecAll'))
 	
-	self.ms = 10
-	self.mp = 200
-	self.mpr = 2
+	self.ms = 15
+	self.mp = 300
+	self.mpr = 3
 	self.ha = {0,1,2,3,4,5}
 	
 	self.ad = 20
@@ -28,13 +28,14 @@ function StatsScreen:StartStatsScreen()
 	self.as = 10
 	self.sta = {0,1,2,3,4,5}
 	-- self.acc = {0,1,2,3,4,5}
+	self.ard = {0,10,20,30,40,50}
 	
 	self.pr = 1
 	self.mr = {0,1,2,3,4,5}
-	self.arm = 25
-	self.ar = 50
-	self.hp = 150
-	self.hpr = 1.5
+	-- self.arm = 25
+	-- self.ar = 50
+	self.hp = 200
+	self.hpr = 3
 	self.sr = {0,1,2,3,4,5}
 	
 	self.all = 2
@@ -60,7 +61,8 @@ function StatsScreen:RegisterPlayer(hero, bRespec)
 	
 	stats.pr = 0
 	stats.mr = 0
-	stats.ar = 0
+	-- stats.ar = 0
+	stats.ard = 0
 	stats.hp = 0
 	stats.hpr = 0
 	stats.sr = 0
@@ -80,7 +82,7 @@ function StatsScreen:RegisterPlayer(hero, bRespec)
 	hero.talentsSkilled = 0
 	
 	hero:SetAttributePoints( 0 )
-	print("?")
+	print(hero:GetName(), "registered for stats")
 	hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
 end
 
@@ -140,13 +142,15 @@ function StatsScreen:RespecAll(userid, event)
 				ability:SetLevel(0)
 			end
 		end
-		for _, modifier in ipairs( modifiers ) do
-			if modifier:GetAbility() then
-				if not modifier:GetAbility():IsInnateAbility() and modifier:GetCaster() == hero and not modifier:GetAbility():IsItem() and modifier:GetAbility():GetName() ~= "item_relic_handler" then -- destroy passive modifiers and any buffs
-					modifier:Destroy()
+		Timers:CreateTimer(function()
+			for _, modifier in ipairs( modifiers ) do
+				if modifier:GetAbility() then
+					if not modifier:GetAbility():IsInnateAbility() and modifier:GetCaster() == hero and not modifier:GetAbility():IsItem() and modifier:GetAbility():GetName() ~= "item_relic_handler" then -- destroy passive modifiers and any buffs
+						modifier:Destroy()
+					end
 				end
 			end
-		end
+		end)
 		hero:CalculateStatBonus()
 		hero.totalGainedTalentPoints = hero.totalGainedTalentPoints or 0
 		hero.bonusSkillPoints = hero.bonusSkillPoints or hero:GetLevel()

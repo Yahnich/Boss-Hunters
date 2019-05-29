@@ -10,6 +10,8 @@ DOTA_LIFESTEAL_SOURCE_ABILITY = 2
 MAP_CENTER = Vector(332, -1545)
 GAME_MAX_LEVEL = 400
 
+HERO_SELECTION_TIME = 80
+
 GLOBAL_STUN_LIST = {}
 
 if CHoldoutGameMode == nil then
@@ -143,7 +145,7 @@ function Activate()
 end
 
 function CHoldoutGameMode:InitGameMode()
-	print ("Epic Boss Fight Loaded")
+	print ("Initializing Boss Hunters")
 	GameRules._Elites = LoadKeyValues( "scripts/kv/elites.kv" )
 	GameRules._maxLives = 10
 	GameRules.gameDifficulty = 1
@@ -164,12 +166,15 @@ function CHoldoutGameMode:InitGameMode()
 	
 	self._message = false
 	
-	GameRules:SetHeroSelectionTime( 80.0 )
+	
 	if IsInToolsMode() then
 		GameRules:SetPreGameTime( 9999.0 )
+		HERO_SELECTION_TIME = 9999
 	else
 		GameRules:SetPreGameTime( 30.0 )
 	end
+	
+	GameRules:SetHeroSelectionTime( HERO_SELECTION_TIME )
 	GameRules:SetShowcaseTime( 0 )
 	GameRules:SetStrategyTime( 0 )
 	GameRules:SetCustomGameSetupAutoLaunchDelay( 0 ) -- fix valve bullshit
@@ -364,6 +369,8 @@ function CHoldoutGameMode:InitGameMode()
 	
 	StatsScreen:StartStatsScreen()
 	RelicManager:Initialize()
+	
+	SendToConsole("rate 200000")
 end
 
 function CHoldoutGameMode:FilterModifiers( filterTable )
@@ -382,6 +389,15 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	end
 	local name = filterTable["name_const"]
 	
+	if name == "modifier_item_ultimate_scepter" then
+		for i = 0, parent:GetAbilityCount() - 1 do
+			local ability = parent:GetAbilityByIndex( i )
+			if ability and ability.OnInventoryContentsChanged then
+				ability:OnInventoryContentsChanged()
+			end
+		end
+	end
+	
 	if duration ~= -1 and parent and caster then
 		local params = {caster = caster, target = parent, duration = duration, ability = ability, modifier_name = name}
 		duration = duration * caster:GetStatusAmplification( params )
@@ -398,8 +414,8 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	end
 	
 	if duration == 0 then return false end
-	if caster:GetTeam() == DOTA_TEAM_GOODGUYS and duration > 0 then
-		caster:ModifyThreat( duration^0.75 )
+	if caster:GetTeam() == DOTA_TEAM_GOODGUYS and duration > 0 and name ~= "modifier_illusion" then
+		caster:ModifyThreat( math.log(1 + duration) + 0.2 )
 	end
 	filterTable["duration"] = duration
 	return true
@@ -461,6 +477,9 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 end
 
 function CHoldoutGameMode:FilterOrders( filterTable )
+	if #filterTable.units ~= 1 then return true end
+	local hero = units[1]
+	if not hero:IsRealHero() then return true end
 	if RoundManager:GetCurrentEvent() 
 	and RoundManager:GetCurrentEvent():IsEvent()
 	and RoundManager:GetCurrentEvent()._playerChoices
@@ -725,7 +744,7 @@ end
 function CHoldoutGameMode:OnHeroPick (event)
  	local hero = EntIndexToHScript(event.heroindex)
 	if not hero then return end
-
+	
 	if hero.hasBeenInitialized then return end
 	if hero:IsFakeHero() then return end
 	Timers:CreateTimer(0.03, function()
@@ -780,6 +799,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 		
 		hero:SetDayTimeVisionRange(hero:GetDayTimeVisionRange())
 		hero:SetNightTimeVisionRange(hero:GetNightTimeVisionRange())
+		hero:SetBaseMoveSpeed( hero:GetBaseMoveSpeed() - 35 )
 	end)
 end
 
@@ -830,7 +850,7 @@ end
 -- When game state changes set state in script
 function CHoldoutGameMode:OnGameRulesStateChange()
 	local nNewState = GameRules:State_Get()
-	if nNewState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit and not IsInToolsMode() and not IsCheatMode() then
+	if nNewState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
 		statCollection:init()
 		customSchema:init()
 		statCollection.doneInit = true
@@ -858,14 +878,12 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 		end
 		
 		ClientServer:Initialize()
-		Timers:CreateTimer(79,function()
-			if GameRules:State_Get() == 3 then
-				for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-					if not PlayerResource:HasSelectedHero( nPlayerID ) and PlayerResource:GetPlayer( nPlayerID ) then
-						local player = PlayerResource:GetPlayer( nPlayerID )
-						player:MakeRandomHeroSelection()
-						PlayerResource:SetHasRandomed( nPlayerID )
-					end
+		Timers:CreateTimer(HERO_SELECTION_TIME - 1,function()
+			for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+				if not PlayerResource:HasSelectedHero( nPlayerID ) and PlayerResource:GetPlayer( nPlayerID ) then
+					local player = PlayerResource:GetPlayer( nPlayerID )
+					player:MakeRandomHeroSelection()
+					PlayerResource:SetHasRandomed( nPlayerID )
 				end
 			end
 		end)

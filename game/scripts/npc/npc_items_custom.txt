@@ -162,7 +162,9 @@
 #base "items/item_meepo_rune_haste.txt"
 #base "items/item_meepo_rune_reduc.txt"
 
-// Next ID is 7107
+#base "items/item_tempest_staff.txt"
+
+// Next ID is 7110
 
 "DOTAAbilities"
 {

@@ -1,1 +1,0 @@
-relic_cursed_bloody_silk = class(relicBaseClass)

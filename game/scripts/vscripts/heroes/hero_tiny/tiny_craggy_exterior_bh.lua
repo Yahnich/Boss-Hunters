@@ -7,7 +7,7 @@ end
 
 modifier_tiny_craggy_exterior_bh = class({})
 function modifier_tiny_craggy_exterior_bh:OnCreated(table)
-	self.armor = self:GetParent():GetPhysicalArmorValue() * self:GetSpecialValueFor("bonus_armor")/100
+	self.armor = self:GetParent():GetPhysicalArmorValue(false) * self:GetSpecialValueFor("bonus_armor")/100
 end
 
 function modifier_tiny_craggy_exterior_bh:DeclareFunctions()
@@ -23,7 +23,7 @@ function modifier_tiny_craggy_exterior_bh:OnAttackLanded(params)
 						ParticleManager:SetParticleControlForward(nfx, 1, CalculateDirection(params.attacker, self:GetParent()))
 						ParticleManager:ReleaseParticleIndex(nfx)
 
-			local damage = self:GetParent():GetPhysicalArmorValue() * self:GetSpecialValueFor("damage")/100
+			local damage = self:GetParent():GetPhysicalArmorValue(false) * self:GetSpecialValueFor("damage")/100
 			self:GetAbility():Stun(params.attacker, self:GetSpecialValueFor("stun_duration"), false)
 			self:GetAbility():DealDamage(self:GetParent(), params.attacker, damage, {}, 0)
 		end

@@ -48,12 +48,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"regen"					"-0.25 -0.33"
+				"regen"					"-0.33 -0.5"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"regen_buff"			"-1 -1.5"
+				"regen_buff"			"-1.5 -2"
 			}
 		}
 	}
@@ -125,7 +125,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"150 200"
+				"damage"				"300 400"
 			}
 			"03"
 			{

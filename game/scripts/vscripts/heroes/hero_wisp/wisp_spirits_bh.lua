@@ -20,9 +20,11 @@ function wisp_spirits_bh:OnToggle()
 	
 	self.direction = caster:GetForwardVector()
 
-	if caster:HasModifier("modifier_wisp_spirits_bh") then
+	if not self:GetToggleState() then
 		for _,spirit in pairs(self.spirits) do
-			spirit:ForceKill(false)
+			if not spirit:IsNull() then
+				spirit:ForceKill(false)
+			end
 		end
 		
 		caster:RemoveModifierByName("modifier_wisp_spirits_bh")
@@ -44,7 +46,7 @@ function wisp_spirits_bh:CreateSpiritWisp()
 	local wisp = caster:CreateSummon("npc_dota_wisp_spirit", point)
  	wisp:SetAbsOrigin(point)
 	wisp:AddNewModifier(caster, self, "modifier_wisp_spirits_bh_wisp", {})
-
+	caster:SpendMana( self:GetTalentSpecialValueFor("wisp_regen_cost") )
 	table.insert(self.spirits, wisp)
 end
 
@@ -69,27 +71,24 @@ function modifier_wisp_spirits_bh:OnCreated(table)
 
 		self.distanceTick = self.speed/3 * FrameTime()
 
-<<<<<<< HEAD
 		self.time = (360/self.speed)/(self.max_wisps + 1)
-=======
-		self.time = 360/self.speed/self.max_wisps
->>>>>>> 4359de20b3a163f67394a2f7c5338c27f7fa8374
 
 		self.elaspedTime = 0
-
+		self.cost = self:GetTalentSpecialValueFor("wisp_regen_cost") * self:GetCaster():GetManaCostReduction()
 		self:StartIntervalThink(FrameTime())
 	end
 end
 
 function modifier_wisp_spirits_bh:OnIntervalThink()
 	local caster = self:GetCaster()
-
 	if self.elaspedTime < self.time then
 		self.elaspedTime = self.elaspedTime + FrameTime()
 	else
-		if self.wispCount > 0 then
+		if self.wispCount > 0 and caster:GetMana() >= self.cost then
 			self:GetAbility():CreateSpiritWisp()
 			self.wispCount = self.wispCount - 1
+		else
+			self.time = self:GetTalentSpecialValueFor("wisp_regen_rate")
 		end
 		self.elaspedTime = 0
 	end
@@ -240,7 +239,7 @@ function modifier_wisp_spirits_bh_wisp:OnIntervalThink()
 
 	local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.collisionRadius)
 	for _,enemy in pairs(enemies) do
-		if not self.hitUnits[enemy:entindex()] then
+		if not self.hitUnits[enemy:entindex()] and enemy:IsMinion() then
 
 			EmitSoundOn("Hero_Wisp.Spirits.TargetCreep", parent)
 
@@ -254,10 +253,11 @@ function modifier_wisp_spirits_bh_wisp:OnIntervalThink()
 						 	 ParticleManager:ReleaseParticleIndex(nfx2)
 			end
 
-			enemy:Paralyze(self:GetAbility(), caster, self:GetTalentSpecialValueFor("slow_duration"))
-
 			self:GetAbility():DealDamage(caster, enemy, self.collisionDamage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
 			self.hitUnits[enemy:entindex()] = true
+		else
+			parent:ForceKill(false)
+			return
 		end
 	end
 
@@ -304,9 +304,16 @@ function modifier_wisp_spirits_bh_wisp:OnRemoved()
 					 	 ParticleManager:ReleaseParticleIndex(nfx2)
 		end
 
+		local slow = self:GetTalentSpecialValueFor("slow_duration")
 		local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.endRadius)
 		for _,enemy in pairs(enemies) do
+			
+			enemy:Paralyze(self:GetAbility(), caster, slow)
 			self:GetAbility():DealDamage(caster, enemy, self.endDamage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+		end
+		if caster:HasModifier("modifier_wisp_spirits_bh") then
+			local modifier = caster:FindModifierByName("modifier_wisp_spirits_bh")
+			modifier.wispCount = modifier.wispCount + 1
 		end
 	end
 end

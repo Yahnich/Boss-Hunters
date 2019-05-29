@@ -54,7 +54,7 @@ function AIThink(thisEntity)
 		if thisEntity.wave:IsFullyCastable() and RollPercentage(50) then
 			return CastWave( thisEntity )
 		end
-		if thisEntity.weaken:IsFullyCastable() and RollPercentage(20) then
+		if thisEntity.weaken:IsFullyCastable() and HeroList:GetActiveHeroCount() > 1 and RollPercentage(20) then
 			local weakenTarget = AICore:MostDamageEnemyHeroInRange( thisEntity, thisEntity.weaken:GetTrueCastRange() + thisEntity:GetIdealSpeed() , true ) or target
 			if weakenTarget then
 				return CastWeaken( weakenTarget, thisEntity )

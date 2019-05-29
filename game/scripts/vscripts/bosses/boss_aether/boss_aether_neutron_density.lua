@@ -19,12 +19,11 @@ function boss_aether_neutron_density:OnProjectileHit(target, position)
 	local radius = self:GetTalentSpecialValueFor("orb_radius")
 	local damage = self:GetTalentSpecialValueFor("magic_damage")
 	local stun = self:GetTalentSpecialValueFor("stun_duration")
+	local caster = self:GetCaster()
+	
 	if target then
-		self:DealDamage(caster, target, damage)
+		self:DealDamage(self:GetCaster(), target, damage)
 	elseif not target then
-		local caster = self:GetCaster()
-		
-		
 		local enemies = caster:FindEnemyUnitsInRadius(position, radius)
 		for _, enemy in ipairs( enemies ) do
 			if not enemy:TriggerSpellAbsorb(self) then

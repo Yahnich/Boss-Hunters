@@ -18,7 +18,7 @@ function lich_chain_frost_bh:FireChainFrost(target, source, bounces)
 								{source = source or self:GetCaster(),
 								 origin = (source or self:GetCaster()):GetAbsOrigin(),
 								 extraData = {bounces = bounces or self:GetTalentSpecialValueFor("jumps")}}, 
-								DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, 
+								TernaryOperator( DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, self:GetCaster() == source, DOTA_PROJECTILE_ATTACHMENT_HITLOCATION ), 
 								true, 
 								true, 
 								self:GetTalentSpecialValueFor("vision_radius") )
@@ -48,9 +48,27 @@ function lich_chain_frost_bh:OnProjectileHit_ExtraData( target, position, extraD
 					return
 				end
 			end
+			-- no target found
+			if caster:HasTalent("special_bonus_unique_lich_chain_frost_3") then
+				local bouncesDamage = math.min( bounces * caster:FindTalentValue("special_bonus_unique_lich_chain_frost_3") / 100 )
+				if bouncesDamage > 0 then
+					Timers:CreateTimer(0.25, function()
+						target:EmitSound("Hero_Lich.ChainFrostImpact.Hero")
+						ParticleManager:FireParticle("particles/units/heroes/hero_lich/lich_chain_frost_explode.vpcf", PATTACH_POINT, target, {[3] = "attach_hitloc"})
+						self:DealDamage( caster, target, damage )
+						bouncesDamage = bouncesDamage - 1
+						if caster:HasTalent("special_bonus_unique_lich_chain_frost_2") then
+							target:AddChill(self, caster, duration, math.abs( self:GetTalentSpecialValueFor("slow_movement_speed") ) )
+						else
+							target:AddNewModifier( caster, self, "modifier_lich_chain_frost_bh", {duration = duration})
+						end
+						if bouncesDamage > 0 then
+							return 0.25
+						end
+					end)
+				end
+			end
 		end
-	else
-		self.projectileTable[projID] = nil
 	end
 end
 

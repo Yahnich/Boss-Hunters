@@ -17,14 +17,15 @@ end
 function modifier_accuracy_handler:OnAttackStart(params)
 	if not params.attacker == self:GetParent() then return end
 	self.state = false
-	for _, modifier in ipairs( self:GetParent():FindAllModifiers() ) do
+	for _, modifier in ipairs( self.accModifiers or params.attacker:FindAllModifiers() ) do
 		if modifier ~= self and modifier.GetAccuracy then
 			local roll = modifier:GetAccuracy(params) 
-			if roll and not self.state then
-				self.state = self.state or modifier:RollPRNG( roll )
+			if roll and not self.state and roll ~= 0 then
+				self.state = self.state or roll == 100 or modifier:RollPRNG( roll )
 			end
 		end
 	end
+	
 end
 
 function modifier_accuracy_handler:IsHidden()

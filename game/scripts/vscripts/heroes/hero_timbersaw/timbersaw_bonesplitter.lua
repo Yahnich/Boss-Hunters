@@ -72,11 +72,11 @@ function modifier_timbersaw_bonesplitter:IsHidden() return true end
 
 modifier_timbersaw_bonesplitter_enemy = class({})
 function modifier_timbersaw_bonesplitter_enemy:OnCreated(table)
-	self.armor = self:GetParent():GetPhysicalArmorValue()*self:GetTalentSpecialValueFor("debuff")/100
+	self.armor = self:GetParent():GetPhysicalArmorValue(false)*self:GetTalentSpecialValueFor("debuff")/100
 end
 
 function modifier_timbersaw_bonesplitter_enemy:OnRefresh(table)
-	self.armor = self:GetParent():GetPhysicalArmorValue()*self:GetTalentSpecialValueFor("debuff")/100
+	self.armor = self:GetParent():GetPhysicalArmorValue(false)*self:GetTalentSpecialValueFor("debuff")/100
 end
 
 function modifier_timbersaw_bonesplitter_enemy:IsDebuff()

@@ -11,7 +11,7 @@ end
 
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddRelic( "relic_unique_ritual_candle" )
+	hero:AddRelic( "relic_ritual_candle" )
 	
 	hero:SetGold( 0, true )
 	hero:SetGold( 0, false )
@@ -22,7 +22,7 @@ end
 
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddRelic( "relic_cursed_forbidden_contract" )
+	hero:AddRelic( "relic_forbidden_contract" )
 	
 	hero:SetGold( 0, true )
 	hero:SetGold( 0, false )
@@ -33,10 +33,9 @@ end
 
 local function ThirdChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddRelic( RelicManager:RollRandomGenericRelicForPlayer( event.pID ) )
-	hero:AddRelic( RelicManager:RollRandomGenericRelicForPlayer( event.pID ) )
-	hero:AddRelic( RelicManager:RollRandomGenericRelicForPlayer( event.pID ) )
-	
+	RelicManager:PushCustomRelicDropsForPlayer(event.pID, {RelicManager:RollRandomRelicForPlayer(event.pID, "RARITY_COMMON", true, false)})
+	RelicManager:PushCustomRelicDropsForPlayer(event.pID, {RelicManager:RollRandomRelicForPlayer(event.pID, "RARITY_COMMON", true, false)})
+	RelicManager:PushCustomRelicDropsForPlayer(event.pID, {RelicManager:RollRandomRelicForPlayer(event.pID, "RARITY_COMMON", true, false)})
 	hero:SetGold( 0, true )
 	hero:SetGold( 0, false )
 	self._playerChoices[event.pID] = true

@@ -8,7 +8,6 @@ end
 function ta_psi_blades:PsiBlade(hTarget)
 	if hTarget ~= nil then
 		self:DealDamage( self:GetCaster(), hTarget, self:GetCaster():GetAttackDamage(), {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
-		print("?")
 		if self:GetCaster():HasTalent("special_bonus_unique_ta_psi_blades_2") then
 			hTarget:Paralyze(self, self:GetCaster())
 		end

@@ -23,7 +23,7 @@ function sb_bash:Bash(target, distance, bBuff)
 
     local dist = distance or self:GetTalentSpecialValueFor("knockback_distance")
 
-    local damage = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed()) * self:GetTalentSpecialValueFor("damage")/100
+    local damage = caster:GetIdealSpeed() * self:GetTalentSpecialValueFor("damage")/100
 
     local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_spirit_breaker/spirit_breaker_greater_bash.vpcf", PATTACH_POINT, caster)
                 ParticleManager:SetParticleControlEnt(nfx, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)

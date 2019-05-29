@@ -14,7 +14,7 @@ function ta_refract:OnSpellStart()
 
 	EmitSoundOn("Hero_TemplarAssassin.Refraction", caster)
 
-	caster:AddNewModifier(caster, self, "modifier_ta_refract", {Duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_ta_refract", {Duration = self:GetTalentSpecialValueFor("duration")}):SetStackCount(self:GetTalentSpecialValueFor("block_count"))
 end
 
 modifier_ta_refract = ({})
@@ -50,7 +50,7 @@ end
 function modifier_ta_refract:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-        MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+        MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
         MODIFIER_EVENT_ON_ATTACK_LANDED
     }
     return funcs
@@ -70,6 +70,9 @@ function modifier_ta_refract:GetModifierPreAttack_BonusDamage()
 	return self.dmg
 end
 
-function modifier_ta_refract:GetModifierIncomingDamage_Percentage()
-	return -math.abs( self.reduction )
+function modifier_ta_refract:GetModifierTotal_ConstantBlock(params)
+	if self:GetStackCount() > 0 then
+		self:DecrementStackCount()
+		return params.original_damage + 1
+	end
 end

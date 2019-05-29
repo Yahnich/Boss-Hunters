@@ -56,7 +56,6 @@ function boss16_conflagration:CreateFirePath(direction)
 		if not caster or caster:IsNull() then return nil end
 		local enemies = caster:FindEnemyUnitsInLine(initialPosition, endPos, radius)
 		for _, enemy in ipairs(enemies) do
-			print( enemy.lastDamageInstance, GameRules:GetGameTime() )
 			if not enemy.lastDamageInstance or ( enemy.lastDamageInstance < GameRules:GetGameTime() ) then
 				ability:DealDamage(caster, enemy, damage)
 				enemy.lastDamageInstance = GameRules:GetGameTime() + FrameTime()

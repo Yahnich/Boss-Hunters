@@ -34,29 +34,41 @@ end
 modifier_centaur_warchiefs_aegis_return = class({})
 LinkLuaModifier("modifier_centaur_warchiefs_aegis_return", "heroes/hero_centaur/centaur_warchiefs_aegis", LUA_MODIFIER_MOTION_NONE)
 
+function modifier_centaur_warchiefs_aegis_return:OnCreated()
+	self.damage = self:GetTalentSpecialValueFor("level_damage")
+	self.str_bonus = self:GetTalentSpecialValueFor("bonus_strength")
+end
+
+function modifier_centaur_warchiefs_aegis_return:OnRefresh()
+	self.damage = self:GetTalentSpecialValueFor("level_damage")
+	self.str_bonus = self:GetTalentSpecialValueFor("bonus_strength")
+end
+
 function modifier_centaur_warchiefs_aegis_return:ProcReturn(target)
 	if not target:IsSameTeam( self:GetCaster() ) then
-		local strength = self:GetCaster():GetStrength()
-		local damage = strength * self:GetTalentSpecialValueFor("strength_pct") / 100 + self:GetTalentSpecialValueFor("return_damage")
+		local damage = self.damage * self:GetCaster():GetLevel()
 		self:GetAbility():DealDamage( self:GetCaster(), target, damage, {damage_flags = DOTA_DAMAGE_FLAG_REFLECTION})
 		ParticleManager:FireRopeParticle("particles/units/heroes/hero_centaur/centaur_return.vpcf", PATTACH_POINT_FOLLOW, self:GetParent(), target)
 	end
 end
 function modifier_centaur_warchiefs_aegis_return:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK, MODIFIER_EVENT_ON_ATTACK_FAIL}
+	return {MODIFIER_EVENT_ON_TAKEDAMAGE, MODIFIER_EVENT_ON_ATTACK_FAIL}
 end
 
-function modifier_centaur_warchiefs_aegis_return:GetModifierTotal_ConstantBlock( params )
-	local strength = self:GetCaster():GetStrength()
-	local block = self:GetTalentSpecialValueFor("str_to_block") / 100
-	if not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ) then
-		self:ProcReturn(params.attacker)
+function modifier_centaur_warchiefs_aegis_return:OnTakeDamage( params )
+	if params.unit == self:GetParent() then
+		if not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ) then
+			self:ProcReturn(params.attacker)
+		end
 	end
-	if RollPercentage(self:GetTalentSpecialValueFor("block_chance")) and params.attacker ~= self:GetParent() then return strength * block end
 end
 
 function modifier_centaur_warchiefs_aegis_return:OnAttackFail(params)
 	if params.unit == self:GetParent() then
 		self:ProcReturn(params.attacker)
 	end
+end
+
+function modifier_centaur_warchiefs_aegis_return:GetModifierStrengthBonusPercentage(params)
+	return self.str_bonus
 end

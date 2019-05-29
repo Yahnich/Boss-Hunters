@@ -19,7 +19,9 @@ modifier_earthshaker_enchant_totem_ebf = class({})
 LinkLuaModifier("modifier_earthshaker_enchant_totem_ebf", "heroes/hero_earthshaker/earthshaker_enchant_totem_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_earthshaker_enchant_totem_ebf:OnCreated()
-	self.amp = self:GetTalentSpecialValueFor("totem_damage_percentage")
+	self.dmg = self:GetTalentSpecialValueFor("bonus_attack_damage")
+	self.amp = self:GetTalentSpecialValueFor("bonus_spell_damage")
+	self.cdr = self:GetParent():FindTalentValue("special_bonus_unique_earthshaker_enchant_totem_ebf_1")
 	if IsServer() then
 		local bFX = ParticleManager:CreateParticle("particles/units/heroes/hero_earthshaker/earthshaker_totem_buff.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
 		ParticleManager:SetParticleControlEnt(bFX, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_totem", self:GetParent():GetAbsOrigin(), true)
@@ -41,7 +43,9 @@ function modifier_earthshaker_enchant_totem_ebf:OnDestroy()
 end
 
 function modifier_earthshaker_enchant_totem_ebf:DeclareFunctions()
-	return {MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE ,MODIFIER_EVENT_ON_ATTACK}
+	return {MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, 
+			MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
+			MODIFIER_EVENT_ON_ATTACK}
 end
 
 function modifier_earthshaker_enchant_totem_ebf:CheckState()
