@@ -1679,7 +1679,7 @@
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"movement_damage_pct"				"8"
+				"movement_damage_pct"				"20 40"
 			}
 			"03"
 			{

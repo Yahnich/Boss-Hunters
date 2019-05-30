@@ -372,6 +372,7 @@
 			{
 				"var_type"						"FIELD_FLOAT"
 				"kill_threshold"				"7 8 9 10 11 12"
+				"CalculateSpellDamageTooltip"	"1"
 			}
 			"03"
 			{

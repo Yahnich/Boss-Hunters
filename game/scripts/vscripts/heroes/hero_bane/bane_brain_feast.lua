@@ -26,9 +26,8 @@ function bane_brain_feast:OnSpellStart()
 	
 	local damage = self:GetTalentSpecialValueFor("heal_damage")
 	if not target.IsNightmared then 
-		target.IsNightmared = function() return target:HasModifier("modifier_bane_nightmare_prison_sleep") or target:HasModifier("modifier_bane_nightmare_prison_fear") end
+		target.IsNightmared = function() return ( target:HasModifier("modifier_bane_nightmare_prison_sleep") or target:HasModifier("modifier_bane_nightmare_prison_fear") ) end
 	end
-	
 	if caster:HasTalent("special_bonus_unique_bane_brain_feast_1") and target:IsNightmared() then
 		damage = damage * caster:FindTalentValue("special_bonus_unique_bane_brain_feast_1")
 	end

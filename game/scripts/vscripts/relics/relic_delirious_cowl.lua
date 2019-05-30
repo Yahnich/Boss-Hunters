@@ -18,5 +18,5 @@ function relic_delirious_cowl:OnAbilityFullyCast(params)
 end
 
 function relic_delirious_cowl:GetCooldownReduction()
-	return -50
+	if not self:GetParent():HasModifier("relic_ritual_candle") then return -50 end
 end

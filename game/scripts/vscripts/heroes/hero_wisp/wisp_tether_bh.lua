@@ -203,6 +203,12 @@ function modifier_wisp_tether_bh_target:OnCreated(table)
 	self.bonus_ms = self:GetTalentSpecialValueFor("bonus_ms")
 end
 
+function modifier_wisp_tether_bh_target:OnRemoved()
+	if IsServer() and self:GetParent() ~= self:GetCaster() then
+		self:GetParent():RemoveModifierByNameAndCaster("modifier_wisp_overcharge_bh", self:GetCaster())
+	end
+end
+
 function modifier_wisp_tether_bh_target:DeclareFunctions()
 	local funcs = { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 					MODIFIER_EVENT_ON_ATTACK}

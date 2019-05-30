@@ -54,7 +54,7 @@ function modifier_aa_chilling_touch:OnAttackLanded(params)
     if IsServer() and params.attacker == self:GetParent() and params.target and params.target:GetTeam() ~= self:GetCaster():GetTeam() then
     	local damage = self:GetTalentSpecialValueFor("bonus_damage")
 		if params.target:IsFrozenGeneric() then
-			damage = damage * 3
+			damage = damage * params.attacker:FindTalentValue("special_bonus_unique_aa_chilling_touch_1")
 		end
 		self:GetAbility():DealDamage(params.attacker, params.target, damage, {damage_type=DAMAGE_TYPE_MAGICAL, damage_flags=DOTA_DAMAGE_FLAG_PROPERTY_FIRE}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		local chill = math.max( self.chill - self:GetChillAmount(), 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) )
