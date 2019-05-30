@@ -901,26 +901,21 @@
 	}
 	"npc_dota_hero_keeper_of_the_light_ebf"
 	{
-		"override_hero"			"npc_dota_hero_keeper_of_the_light"
-		"AbilityLayout"			"6"
-		// "Ability1"				"kotl_illuminate"
-		// "Ability2"				"kotl_power_leak"
-		// "Ability3"				"kotl_chakra_magic"
-		// "Ability4"				"kotl_recall"
-		// "Ability5"				"kotl_blind"
-		// "Ability6"				"kotl_spirit"
-		// "Ability7"				""
-		// "Ability8"				""
-		// "Ability9"				""
-		// "Ability10"				"special_bonus_unique_kotl_illuminate_1"
-		// "Ability11"				"special_bonus_unique_kotl_illuminate_2"
-		// "Ability12"				"special_bonus_unique_kotl_power_leak_1"
-		"Ability12"					"special_bonus_intelligence_20"
-		// "Ability13"				"special_bonus_unique_kotl_power_leak_2"
-		// "Ability14"				"special_bonus_unique_kotl_chakra_magic_1"
-		// "Ability15"				"special_bonus_unique_kotl_chakra_magic_2"
-		// "Ability16"				"special_bonus_unique_kotl_spirit_1"
-		// "Ability17"				"special_bonus_unique_kotl_spirit_2"
+		"override_hero"				"npc_dota_hero_keeper_of_the_light"
+		 "Ability1"					"kotl_illuminate"
+		 "Ability2"					"kotl_blind"
+		 "Ability3"					"kotl_chakra_magic"
+		 "Ability4"					"kotl_spirit"
+		 "Ability6"					"kotl_wisp"
+
+		 "Ability10"				"special_bonus_unique_kotl_illuminate_1"
+		 "Ability11"				"special_bonus_unique_kotl_illuminate_2"
+		 "Ability12"				"special_bonus_unique_kotl_blind_1"
+		 "Ability13"				"special_bonus_unique_kotl_blind_2"
+		 "Ability14"				"special_bonus_unique_kotl_chakra_magic_1"
+		 "Ability15"				"special_bonus_unique_kotl_chakra_magic_2"
+		 "Ability16"				"special_bonus_unique_kotl_wisp_1"
+		 "Ability17"				"special_bonus_unique_kotl_wisp_2"
 		
 	}
 	//=================================================================================================================
@@ -1397,6 +1392,26 @@
 		
 		"AttackRate"					"2.1"
 		
+	}
+	"npc_dota_hero_mars"
+	{
+		"override_hero"					"npc_dota_hero_mars"
+		"Ability1"						"mars_spear_lua"
+		"Ability2"						"mars_gods_rebuke_lua"
+		"Ability3"						"mars_bulwark_lua"
+		"Ability4"						"mars_innate"
+		//"Ability5"						"ogre_magi_unrefined_fireblast_bh"
+		//"Ability6"						"mars_arena_of_blood_lua"
+		"Ability6"						"mars_ultimate"
+		
+		"Ability10"						"special_bonus_unique_mars_spear_lua_1"
+		"Ability11"						"special_bonus_unique_mars_spear_lua_2"
+		"Ability12"						"special_bonus_unique_mars_gods_rebuke_lua_1"
+		"Ability13"						"special_bonus_unique_mars_gods_rebuke_lua_2"
+		"Ability14"						"special_bonus_unique_mars_bulwark_lua_1"
+		"Ability15"						"special_bonus_unique_mars_bulwark_lua_2"
+		"Ability16"						"special_bonus_unique_mars_ultimate_1"
+		"Ability17"						"special_bonus_unique_mars_ultimate_2"
 	}
 		"npc_dota_hero_ogre_magi"
 	{

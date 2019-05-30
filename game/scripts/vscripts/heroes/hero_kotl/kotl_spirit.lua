@@ -1,99 +1,97 @@
 kotl_spirit = class({})
 LinkLuaModifier( "modifier_kotl_spirit", "heroes/hero_kotl/kotl_spirit.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_kotl_spirit_blind", "heroes/hero_kotl/kotl_spirit.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_kotl_remove_aghs_spirit", "heroes/hero_kotl/kotl_spirit.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function kotl_spirit:IsStealable()
-    return true
+    return false
 end
 
 function kotl_spirit:IsHiddenWhenStolen()
     return false
 end
 
-function kotl_spirit:GetIntrinsicModifierName()
-	if self:GetCaster():HasScepter() then return "modifier_kotl_spirit" end
+function kotl_spirit:CastFilterResult()
+    if self:GetCaster():PassivesDisabled() then
+        return UF_FAIL_CUSTOM
+    end
+    return UF_SUCCESS
 end
 
-function kotl_spirit:OnInventoryContentsChanged()
-    if self:GetCaster():HasScepter() then
-        self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_kotl_spirit", {})
-        self:SetActivated(false)
-    else
-        self:GetCaster():RemoveModifierByName("modifier_kotl_spirit")
-        self:SetActivated(true)
+function kotl_spirit:GetCustomCastError()
+    if self:GetCaster():PassivesDisabled() then
+        return "Innate is currently broken."
     end
 end
 
-function kotl_spirit:OnSpellStart()
+function kotl_spirit:OnToggle()
     local caster = self:GetCaster()
-    EmitSoundOn("Hero_KeeperOfTheLight.SpiritForm", caster)
-    caster:AddNewModifier(caster, self, "modifier_kotl_spirit", {Duration = self:GetSpecialValueFor("duration")})
+
+    if caster:HasModifier("modifier_kotl_spirit") then
+        caster:RemoveModifierByName("modifier_kotl_spirit")
+    else
+        EmitSoundOn("Hero_KeeperOfTheLight.SpiritForm", caster)
+        caster:AddNewModifier(caster, self, "modifier_kotl_spirit", {})
+    end
 end
 
-function kotl_spirit:OnUpgrade()
+function kotl_spirit:OnInventoryContentsChanged()
     local caster = self:GetCaster()
-    caster:FindAbilityByName("kotl_recall"):SetLevel(self:GetLevel())
-    caster:FindAbilityByName("kotl_blind"):SetLevel(self:GetLevel())
 
-    if not caster:HasModifier("modifier_kotl_spirit") then
-        caster:FindAbilityByName("kotl_recall"):SetActivated(false)
-        caster:FindAbilityByName("kotl_blind"):SetActivated(false)
+    if caster:HasScepter() then
+        caster:RemoveModifierByName("modifier_keeper_of_the_light_spirit_form") 
     end
 end
 
 modifier_kotl_spirit = class({})
 function modifier_kotl_spirit:OnCreated(table)
-    self.int = self:GetCaster():GetIntellect()*self:GetSpecialValueFor("bonus_int")/100
-	self.cdr = self:GetCaster():FindTalentValue("special_bonus_unique_kotl_spirit_2")
+    --if not self:GetCaster():HasModifier("modifier_kotl_spirit") then
+        self.bonus_int = self:GetCaster():GetIntellect() * self:GetSpecialValueFor("bonus_int")
+    	self.mana_cost = self:GetSpecialValueFor("mana_cost")
+        print(self.bonus_int)
+    --end
+
+    self.radius = self:GetSpecialValueFor("radius")
 
     if IsServer() then
-        local caster = self:GetCaster()
-        caster:FindAbilityByName("kotl_recall"):SetActivated(true)
-        caster:FindAbilityByName("kotl_blind"):SetActivated(true)
+        EmitSoundOn("Hero_KeeperOfTheLight.SpiritForm", self:GetCaster())
+
+        self.mana_drain = self:GetCaster():GetMaxMana() * self:GetSpecialValueFor("mana_drain")/100 * 0.1
+
+        self:StartIntervalThink(0.1)
     end
-	self:StartIntervalThink(0.03)
-end
-
-function modifier_kotl_spirit:OnRefresh(table)
-	self.cdr = self:GetCaster():FindTalentValue("special_bonus_unique_kotl_spirit_2")
-
-    if IsServer() then
-        local caster = self:GetCaster()
-        caster:FindAbilityByName("kotl_recall"):SetActivated(true)
-        caster:FindAbilityByName("kotl_blind"):SetActivated(true)
-    end
-end
-
-
-function modifier_kotl_spirit:OnIntervalThink()
-	local caster = self:GetCaster()
-	if IsServer() and caster:HasScepter() and GameRules:IsDaytime() then
-		self:GetAbility():CreateVisibilityNode(caster:GetAbsOrigin(), caster:GetDayTimeVisionRange(), 0.04)
-	end
-	self.int = (self:GetCaster():GetIntellect() - self.int)*self:GetSpecialValueFor("bonus_int")/100
 end
 
 function modifier_kotl_spirit:OnRemoved()
     if IsServer() then
-        local caster = self:GetCaster()
-        caster:FindAbilityByName("kotl_recall"):SetActivated(false)
-        caster:FindAbilityByName("kotl_blind"):SetActivated(false)
+        StopSoundOn("Hero_KeeperOfTheLight.SpiritForm", self:GetCaster())
     end
+end
+
+function modifier_kotl_spirit:OnIntervalThink()
+	local caster = self:GetCaster()
+	
+    caster:SetMana(caster:GetMana() - self.mana_drain)
 end
 
 function modifier_kotl_spirit:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+        MODIFIER_PROPERTY_MANACOST_PERCENTAGE,
+        MODIFIER_PROPERTY_INVISIBILITY_LEVEL
     }
     return funcs
 end
 
-function modifier_kotl_spirit:GetCooldownReduction()
-    return self.cdr
+function modifier_kotl_spirit:GetModifierPercentageManacost()
+    return self.mana_cost
 end
 
 function modifier_kotl_spirit:GetModifierBonusStats_Intellect()
-    return self.int
+    return self.bonus_int
+end
+
+function modifier_kotl_spirit:GetModifierInvisibilityLevel()
+    return 0
 end
 
 function modifier_kotl_spirit:GetEffectName()
@@ -109,7 +107,7 @@ function modifier_kotl_spirit:StatusEffectPriority()
 end
 
 function modifier_kotl_spirit:IsAura()
-    return self:GetCaster():HasTalent("special_bonus_unique_kotl_spirit_1")
+    return true
 end
 
 function modifier_kotl_spirit:GetAuraDuration()
@@ -117,7 +115,7 @@ function modifier_kotl_spirit:GetAuraDuration()
 end
 
 function modifier_kotl_spirit:GetAuraRadius()
-    return self:GetCaster():FindTalentValue("special_bonus_unique_kotl_spirit_1", "value")
+    return self.radius
 end
 
 function modifier_kotl_spirit:GetAuraSearchFlags()
@@ -133,42 +131,32 @@ function modifier_kotl_spirit:GetAuraSearchType()
 end
 
 function modifier_kotl_spirit:GetModifierAura()
-    return "modifier_kotl_spirit_blind"
+    return "modifier_blind_generic"
 end
 
 function modifier_kotl_spirit:IsAuraActiveOnDeath()
     return false
 end
 
-modifier_kotl_spirit_blind = class({})
-function modifier_kotl_spirit_blind:CheckState()
-    local state = { [MODIFIER_STATE_BLIND] = true}
-    return state
+modifier_kotl_remove_aghs_spirit = class({})
+function modifier_kotl_remove_aghs_spirit:OnCreated(table)
+    if IsServer() then
+        self:StartIntervalThink(0.1)
+    end
 end
 
-function modifier_kotl_spirit_blind:DeclareFunctions()
-    local funcs = {
-        MODIFIER_PROPERTY_MISS_PERCENTAGE
-    }
-    return funcs
+function modifier_kotl_remove_aghs_spirit:OnIntervalThink()
+    self:GetCaster():RemoveModifierByName("modifier_keeper_of_the_light_spirit_form")
 end
 
-function modifier_kotl_spirit_blind:GetModifierMiss_Percentage()
-    return self:GetCaster():FindTalentValue("special_bonus_unique_kotl_spirit_1", "chance")
-end
-
-function modifier_kotl_spirit_blind:GetEffectName()
-    return "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_blinding_light_debuff.vpcf"
-end
-
-function modifier_kotl_spirit_blind:IsPurgable()
+function modifier_kotl_remove_aghs_spirit:IsHidden()
     return true
 end
 
-function modifier_kotl_spirit_blind:IsPurgeException()
-    return true
+function modifier_kotl_remove_aghs_spirit:IsPurgable()
+    return false
 end
 
-function modifier_kotl_spirit_blind:IsDebuff()
-    return true
+function modifier_kotl_remove_aghs_spirit:IsPurgeException()
+    return false
 end
