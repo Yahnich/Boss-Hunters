@@ -15,7 +15,7 @@ function kotl_illuminate:GetAbilityTextureName()
         return "keeper_of_the_light_illuminate_end"
     end
 
-    if self:GetCaster():HasModifier("modifier_kotl_spirit") then
+    if self:GetCaster():HasScepter() then
         return "keeper_of_the_light_spirit_form_illuminate"
     end
 
@@ -27,7 +27,7 @@ function kotl_illuminate:GetBehavior()
         return DOTA_ABILITY_BEHAVIOR_NO_TARGET
     end
 
-    if self:GetCaster():HasModifier("modifier_kotl_spirit") then
+    if self:GetCaster():HasScepter() then
         return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_DIRECTIONAL
     end
 
@@ -35,7 +35,7 @@ function kotl_illuminate:GetBehavior()
 end
 
 function kotl_illuminate:GetChannelTime()
-    if self:GetCaster():HasModifier("modifier_kotl_spirit") or self:GetCaster():HasModifier("modifier_kotl_illuminate") then
+    if self:GetCaster():HasScepter() or self:GetCaster():HasModifier("modifier_kotl_illuminate") then
         return 0
     end
 
@@ -58,7 +58,7 @@ function kotl_illuminate:OnSpellStart()
         self:RefundManaCost()
         caster:RemoveModifierByName("modifier_kotl_illuminate")
     else
-        if caster:HasModifier("modifier_kotl_spirit") then
+        if caster:HasScepter() then
             local point = self:GetCursorPosition()
             self.dir = CalculateDirection(point, caster:GetAbsOrigin())
 
@@ -86,7 +86,7 @@ function kotl_illuminate:OnSpellStart()
                     StopSoundOn("Hero_KeeperOfTheLight.Illuminate.Charge", caster)
                     ParticleManager:DestroyParticle(self.castNfx2, false)
                     caster:RemoveModifierByName("modifier_kotl_illuminate")
-                    self:LaunchHorses(self.spirit:GetAbsOrigin())
+                    self:LaunchHorses(self.spirit, self.spirit:GetAbsOrigin(), self.spirit:GetForwardVector())
                     self:StartCooldown(self:GetTrueCooldown())
                     self.spirit:StartGesture(ACT_DOTA_CAST_ABILITY_1_END)
                     self.spirit:AddNoDraw()
@@ -128,99 +128,93 @@ function kotl_illuminate:OnSpellStart()
 end
 
 function kotl_illuminate:OnChannelFinish(bInterrupted)
-    if not self:GetCaster():HasModifier("modifier_kotl_spirit") then
-        EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Discharge", caster)
-        StopSoundOn("Hero_KeeperOfTheLight.Illuminate.Charge", caster)
-        self:LaunchHorses(self:GetCaster():GetAbsOrigin())
-        self:GetCaster():StartGesture(ACT_DOTA_CAST_ABILITY_1_END)
-        --self:StartCooldown(self:GetTrueCooldown())
-    end
+    local caster = self:GetCaster()
+
+    EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Discharge", caster)
+    StopSoundOn("Hero_KeeperOfTheLight.Illuminate.Charge", caster)
+    self:LaunchHorses(caster, caster:GetAbsOrigin(), CalculateDirection(self:GetCursorPosition(), caster:GetAbsOrigin()))
+    caster:StartGesture(ACT_DOTA_CAST_ABILITY_1_END)
+
 end
 
 function kotl_illuminate:OnProjectileHit(hTarget, vLocation)
     local caster = self:GetCaster()
 
-    if hTarget ~= nil then
-
+    if hTarget then
         local damage = self:GetTalentSpecialValueFor("damage_per_horse")
-        if caster:HasTalent("special_bonus_unique_kotl_illuminate_2") then
-            damage = damage + damage * caster:FindTalentValue("special_bonus_unique_kotl_illuminate_2")/100
-        end
+
         if hTarget:GetTeam() ~= caster:GetTeam() then
             EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Target", hTarget)
             ParticleManager:FireParticle("particles/units/heroes/hero_keeper_of_the_light/kotl_illuminate_impact_hero.vpcf", PATTACH_POINT, hTarget, {})
-            self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage_per_horse"), {}, 0)
-        elseif caster:HasTalent("special_bonus_unique_kotl_illuminate_1") then
-            EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Target.Secondary", hTarget)
-            hTarget:HealEvent(self:GetTalentSpecialValueFor("damage_per_horse"), self, caster)
+            
+            if caster:HasTalent("special_bonus_unique_kotl_illuminate_2") then
+                local duration = caster:FindTalentValue("special_bonus_unique_kotl_illuminate_2")
+                hTarget:Daze(self, caster, duration)
+            end
+
+            self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage_per_horse"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+
+        else
+            if caster:HasTalent("special_bonus_unique_kotl_illuminate_1") then
+
+                EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Target.Secondary", hTarget)
+                hTarget:HealEvent(damage, self, caster)
+            end
         end
     end
 end
 
-function kotl_illuminate:LaunchHorses(spawnOrigin)
-    local caster = self:GetCaster()
+function kotl_illuminate:LaunchHorses(hCaster, vLocation, direction)
+    local caster = hCaster
 
-    local spawn_point = self.castPoint + self.dir * self:GetTrueCastRange() 
+    local spawn_point = vLocation
 
-    -- Set QAngles
-    local left_QAngle = QAngle(0, 7.5, 0)
-    local left_QAngle2 = QAngle(0, 15, 0)
-    local right_QAngle = QAngle(0, -7.5, 0)
-    local right_QAngle2 = QAngle(0, -15, 0)
+    local speed = self:GetTalentSpecialValueFor("speed")
+    local radius = self:GetTalentSpecialValueFor("radius")
+    local distance = self:GetTrueCastRange()
 
-    local left_spawn_point = RotatePosition(self.castPoint, left_QAngle, spawn_point)
-    local left_self_direction = CalculateDirection(left_spawn_point, self.castPoint)
+    local firstHorse = spawn_point + direction * 150
+    local vel = direction * speed
 
-    local left_spawn_point2 = RotatePosition(self.castPoint, left_QAngle2, spawn_point)
-    local left_self_direction2 = CalculateDirection(left_spawn_point2, self.castPoint)          
+    local left_1_Point = spawn_point - caster:GetRightVector() * 100
+    local left_1_vel = GetPerpendicularVector( CalculateDirection(left_1_Point, vLocation) ) * speed
 
-    local right_spawn_point = RotatePosition(self.castPoint, right_QAngle, spawn_point)
-    local right_self_direction = CalculateDirection(right_spawn_point, self.castPoint)
+    local left_2_Point = spawn_point - caster:GetRightVector() * 200
+    local left_2_Point_2 = left_2_Point + GetPerpendicularVector( CalculateDirection(left_2_Point, vLocation) ) * -150
+    local left_2_vel = GetPerpendicularVector( CalculateDirection(left_2_Point, vLocation) ) * speed
 
-    local right_spawn_point2 = RotatePosition(self.castPoint, right_QAngle2, spawn_point)
-    local right_self_direction2 = CalculateDirection(right_spawn_point2, self.castPoint)
+    local right_1_Point = spawn_point + caster:GetRightVector() * 100
+    local right_1_vel = GetPerpendicularVector( CalculateDirection(right_1_Point, vLocation) ) * -speed
 
-    local vel = 0
+    local right_2_Point = spawn_point + caster:GetRightVector() * 200
+    local right_2_Point_2 = right_2_Point + GetPerpendicularVector( CalculateDirection(right_2_Point, vLocation) ) * 150
+    local right_2_vel = GetPerpendicularVector( CalculateDirection(right_1_Point, vLocation) ) * -speed
+
 
     if self.count == 1 then
-        vel = self.dir * self:GetTalentSpecialValueFor("speed")
-        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius"), {origin=spawnOrigin,team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
+        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, distance, radius, {origin=firstHorse, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
     
     elseif self.count == 2 then
-        vel = left_self_direction * self:GetTalentSpecialValueFor("speed")
-        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius"), {origin=spawnOrigin,team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
-        vel = right_self_direction * self:GetTalentSpecialValueFor("speed")
-        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius"), {origin=spawnOrigin,team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
+        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", left_1_vel, distance, radius, {origin=left_1_Point, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
+        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", right_1_vel, distance, radius, {origin=right_1_Point, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
     
     elseif self.count == 3 then
-        vel = self.dir * self:GetTalentSpecialValueFor("speed")
-        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius"), {origin=spawnOrigin,team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
-        vel = left_self_direction * self:GetTalentSpecialValueFor("speed")
-        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius"), {origin=spawnOrigin,team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
-        vel = right_self_direction * self:GetTalentSpecialValueFor("speed")
-        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius"), {origin=spawnOrigin,team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
+        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, distance, radius, {origin=firstHorse, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
+        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", left_1_vel, distance, radius, {origin=left_1_Point, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
+        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", right_1_vel, distance, radius, {origin=right_1_Point, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
     
     elseif self.count == 4 then
-        vel = left_self_direction * self:GetTalentSpecialValueFor("speed")
-        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius"), {origin=spawnOrigin,team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
-        vel = right_self_direction * self:GetTalentSpecialValueFor("speed")
-        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius"), {origin=spawnOrigin,team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
-        vel = left_self_direction2 * self:GetTalentSpecialValueFor("speed")
-        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius"), {origin=spawnOrigin,team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
-        vel = right_self_direction2 * self:GetTalentSpecialValueFor("speed")
-        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius"), {origin=spawnOrigin,team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
+        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", left_1_vel, distance, radius, {origin=left_1_Point, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
+        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", right_1_vel, distance, radius, {origin=right_1_Point, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
+        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", left_2_vel, distance, radius, {origin=left_2_Point_2, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
+        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", right_2_vel, distance, radius, {origin=right_2_Point_2, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
     
     elseif self.count == 5 then
-        vel = self.dir * self:GetTalentSpecialValueFor("speed")
-        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius"), {origin=spawnOrigin,team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
-        vel = left_self_direction * self:GetTalentSpecialValueFor("speed")
-        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius"), {origin=spawnOrigin,team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
-        vel = right_self_direction * self:GetTalentSpecialValueFor("speed")
-        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius"), {origin=spawnOrigin,team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
-        vel = left_self_direction2 * self:GetTalentSpecialValueFor("speed")
-        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius"), {origin=spawnOrigin,team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
-        vel = right_self_direction2 * self:GetTalentSpecialValueFor("speed")
-        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius"), {origin=spawnOrigin,team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
+        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, distance, radius, {origin=firstHorse, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
+        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", left_1_vel, distance, radius, {origin=left_1_Point, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
+        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", right_1_vel, distance, radius, {origin=right_1_Point, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
+        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", left_2_vel, distance, radius, {origin=left_2_Point_2, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
+        self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", right_2_vel, distance, radius, {origin=right_2_Point_2, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
     
     end
 end
@@ -259,5 +253,5 @@ function modifier_kotl_illuminate_spirit:DeclareFunctions()
 end
 
 function modifier_kotl_illuminate_spirit:GetModifierInvisibilityLevel()
-    return 150
+    return 0
 end

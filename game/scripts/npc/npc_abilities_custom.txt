@@ -180,6 +180,7 @@
 #base "heroes/hero_meepo.txt"
 #base "heroes/hero_phantom_lancer.txt"
 #base "heroes/hero_invoker.txt"
+#base "heroes/hero_mars.txt"
 
 "DOTAAbilities"
 {
