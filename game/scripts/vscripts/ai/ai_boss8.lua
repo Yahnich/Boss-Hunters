@@ -10,13 +10,13 @@ function Spawn( entityKeyValues )
 			return AIThink(thisEntity)
 		end
 	end)
-	thisEntity.spear = thisEntity:FindAbilityByName("boss_spear")
+	thisEntity.spear = thisEntity:FindAbilityByName("boss_clockwerk_spear")
 end
 
 
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
-		local radius = thisEntity.spear:GetCastRange()
+		local radius = thisEntity.spear:GetTrueCastRange()
 		local target = AICore:HighestThreatHeroInRange(thisEntity, radius, 0, false)
 		if not target then target = AICore:WeakestEnemyHeroInRange( thisEntity, radius, false) end
 		if not target then target = AICore:NearestEnemyHeroInRange( thisEntity, radius, false) end

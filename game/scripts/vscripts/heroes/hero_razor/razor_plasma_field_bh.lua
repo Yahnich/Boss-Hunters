@@ -51,11 +51,9 @@ function modifier_razor_plasma_field_bh:OnCreated(table)
 						enemies = caster:FindEnemyUnitsInRing(caster:GetAbsOrigin(), currentRadius, currentRadius-200, {})
 					end
 					for _,enemy in pairs(enemies) do
-						--print("True")
 						self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage_max")*FrameTime(), {}, 0)
 					end
 					currentRadius = currentRadius - maxRadius*FrameTime()
-					--print(currentRadius)
 					return 0.03
 				else
 					return nil

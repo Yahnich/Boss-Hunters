@@ -1,6 +1,5 @@
 clinkz_walk = class({})
 LinkLuaModifier( "modifier_clinkz_walk", "heroes/hero_clinkz/clinkz_walk.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_clinkz_walk_noinvis", "heroes/hero_clinkz/clinkz_walk.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function clinkz_walk:IsStealable()
 	return true
@@ -39,7 +38,7 @@ function clinkz_walk:OnSpellStart()
 	if caster:HasTalent("special_bonus_unique_clinkz_walk_1") then
 		local point = self:GetCursorPosition()
 		FindClearSpaceForUnit(caster, point, true)
-		caster:AddNewModifier(caster, self, "modifier_clinkz_walk_noinvis", {Duration = self:GetTalentSpecialValueFor("duration")/2})
+		caster:AddNewModifier(caster, self, "modifier_clinkz_walk", {Duration = self:GetTalentSpecialValueFor("duration")/2})
 
 		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), 345)
 		for _,enemy in pairs(enemies) do
@@ -57,11 +56,9 @@ end
 modifier_clinkz_walk = class({})
 function modifier_clinkz_walk:OnCreated(table)
     self.bonus_ms = self:GetTalentSpecialValueFor("bonus_ms")
+    self.regen = self:GetCaster():FindTalentValue("special_bonus_unique_clinkz_walk_2")
     self.hitUnits = {}
-
-    if self:GetCaster():HasTalent("special_bonus_unique_clinkz_walk_2") then
-    	self.talent = true
-    end
+	self.talent = self:GetCaster():HasTalent("special_bonus_unique_clinkz_walk_1")
 
 	if IsServer() then 
 		self:GetCaster():CalculateStatBonus()
@@ -71,12 +68,10 @@ end
 
 function modifier_clinkz_walk:OnRefresh(table)
     self.bonus_ms = self:GetTalentSpecialValueFor("bonus_ms")
+    self.regen = self:GetCaster():FindTalentValue("special_bonus_unique_clinkz_walk_2")
     self.hitUnits = {}
-
-    if self:GetCaster():HasTalent("special_bonus_unique_clinkz_walk_2") then
-    	self.talent = true
-    end
-
+	self.talent = self:GetCaster():HasTalent("special_bonus_unique_clinkz_walk_1")
+		
 	if IsServer() then 
 		self:GetCaster():CalculateStatBonus()
 		self:StartIntervalThink(0.1)
@@ -104,6 +99,7 @@ function modifier_clinkz_walk:DeclareFunctions()
         MODIFIER_EVENT_ON_ATTACK_LANDED,
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
         MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
+		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE
     }
 
     return funcs
@@ -113,13 +109,15 @@ function modifier_clinkz_walk:GetMoveSpeedLimitBonus()
     return 99999
 end
 
+function modifier_clinkz_walk:GetModifierHealthRegenPercentage()
+    return self.regen
+end
+
 function modifier_clinkz_walk:CheckState()
 	local state = { [MODIFIER_STATE_INVISIBLE] = true,
 					[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
 	if self.talent then
-		state = { [MODIFIER_STATE_INVISIBLE] = true,
-				  [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-				  [MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true}
+		state = { [MODIFIER_STATE_NO_UNIT_COLLISION] = true}
 	end
 	return state
 end
@@ -138,7 +136,7 @@ function modifier_clinkz_walk:OnAttackLanded(params)
 end
 
 function modifier_clinkz_walk:GetModifierInvisibilityLevel()
-    return 1
+    if not self.talent then return 1 end
 end
 
 function modifier_clinkz_walk:GetModifierMoveSpeedBonus_Percentage()
@@ -163,100 +161,4 @@ end
 
 function modifier_clinkz_walk:GetEffectName()
     return "particles/generic_hero_status/status_invisibility_start.vpcf"
-end
-
-modifier_clinkz_walk_noinvis = class({})
-function modifier_clinkz_walk_noinvis:OnCreated(table)
-    self.bonus_ms = self:GetTalentSpecialValueFor("bonus_ms")
-    self.hitUnits = {}
-
-    if self:GetCaster():HasTalent("special_bonus_unique_clinkz_walk_2") then
-    	self.talent = true
-    end
-
-	if IsServer() then 
-		self:GetCaster():CalculateStatBonus()
-		self:StartIntervalThink(0.1)
-	end
-end
-
-function modifier_clinkz_walk_noinvis:OnRefresh(table)
-    self.bonus_ms = self:GetTalentSpecialValueFor("bonus_ms")
-    self.hitUnits = {}
-
-    if self:GetCaster():HasTalent("special_bonus_unique_clinkz_walk_2") then
-    	self.talent = true
-    end
-
-	if IsServer() then 
-		self:GetCaster():CalculateStatBonus()
-		self:StartIntervalThink(0.1)
-	end
-end
-
-function modifier_clinkz_walk_noinvis:OnIntervalThink()
-    local caster = self:GetParent()
-
-    local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:BoundingRadius2D())
-    for _,enemy in pairs(enemies) do
-    	if not self.hitUnits[enemy:entindex()] then
-    		ParticleManager:FireParticle("particles/units/heroes/hero_clinkz/clinkz_strafe_dodge.vpcf", PATTACH_POINT, enemy, {})
-
-    		self:GetAbility():DealDamage(caster, enemy, caster:GetAttackDamage(), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-
-    		self.hitUnits[enemy:entindex()] = true
-    	end
-    end
-end
-
-function modifier_clinkz_walk_noinvis:DeclareFunctions()
-    local funcs = {
-        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-        MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
-        MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-        MODIFIER_PROPERTY_MOVESPEED_MAX
-    }
-
-    return funcs
-end
-
-function modifier_clinkz_walk_noinvis:GetModifierMoveSpeed_Limit()
-    return 99999
-end
-
-function modifier_clinkz_walk_noinvis:GetModifierMoveSpeed_Max()
-    return 99999
-end
-
-function modifier_clinkz_walk_noinvis:CheckState()
-	local state = {[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
-	if self.talent then
-		state = { [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-				  [MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true}
-	end
-	return state
-end
-
-function modifier_clinkz_walk_noinvis:GetActivityTranslationModifiers()
-	return "windwalk"
-end
-
-function modifier_clinkz_walk_noinvis:GetModifierMoveSpeedBonus_Percentage()
-    return self.bonus_ms
-end
-
-function modifier_clinkz_walk_noinvis:IsHidden()
-    return false
-end
-
-function modifier_clinkz_walk_noinvis:IsPurgable()
-    return false
-end
-
-function modifier_clinkz_walk_noinvis:IsPurgeException()
-    return false
-end
-
-function modifier_clinkz_walk_noinvis:IsDebuff()
-    return false
 end

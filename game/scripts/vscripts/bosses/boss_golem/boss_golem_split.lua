@@ -32,7 +32,7 @@ function modifier_boss_golem_split:OnDeath(params)
 			
 			golem:SetModelScale( scale )
 			golem:SetBaseMoveSpeed( math.min( 300, golem:GetBaseMoveSpeed() / ( scale / 1.8 )) )
-			golem:SetAverageBaseDamage( golem:GetAverageBaseDamage() * math.min(scale * 2, 1), 25 )
+			golem:SetAverageBaseDamage( golem:GetAverageBaseDamage() * 0.8, 25 )
 			
 			golem:SetCoreHealth( math.max(1, hp) )
 			

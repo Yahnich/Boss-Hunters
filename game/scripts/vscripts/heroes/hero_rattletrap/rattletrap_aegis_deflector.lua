@@ -45,7 +45,7 @@ end
 
 
 function modifier_rattletrap_aegis_deflector_passive:OnTakeDamage( params )
-	if params.attacker and params.unit == self:GetParent() and RollPercentage( self.chance ) then
+	if params.attacker and params.unit == self:GetParent() and params.attacker ~= params.unit and RollPercentage( self.chance ) then
 		self:GetAbility():AegisProc(params.attacker, true)
 		if self:GetParent():HasScepter() then
 			local nade = self:GetParent():FindAbilityByName("rattletrap_rocket_flare_ebf")

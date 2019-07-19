@@ -56,6 +56,8 @@ function arc_warden_tempest_mirage:OnSpellStart()
 					end
 					newItem:SetSellable(false)
 					newItem:SetDroppable(false)
+					newItem:SetShareability( ITEM_FULLY_SHAREABLE )
+					newItem:SetPurchaser( nil )
 				end
 			end
 		end

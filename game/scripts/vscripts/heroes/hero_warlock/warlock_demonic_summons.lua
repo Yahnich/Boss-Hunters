@@ -28,7 +28,6 @@ function warlock_demonic_summons:OnSpellStart()
 	local damage = self:GetTalentSpecialValueFor("damage")
 	local duration = self:GetTalentSpecialValueFor("stun_duration")
 	local golemDuration = self:GetTalentSpecialValueFor("golem_duration")
-	--print(maxGolems)
 	local secondGolem
 	EmitSoundOn("Hero_Warlock.RainOfChaos", caster)
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_warlock/warlock_rain_of_chaos_start.vpcf", PATTACH_POINT, caster)

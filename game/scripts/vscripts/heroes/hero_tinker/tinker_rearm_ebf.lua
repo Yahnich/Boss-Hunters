@@ -10,6 +10,14 @@ function tinker_rearm_ebf:OnAbilityPhaseInterrupted()
 	StopSoundOn("Hero_Tinker.RearmStart", self:GetCaster())
 end
 
+function tinker_rearm_ebf:GetManaCost( level )
+	local cost = self.BaseClass.GetManaCost( self, level )
+	if self:GetCaster():HasTalent("special_bonus_unique_tinker_rearm_ebf_1") then
+		cost = cost * self:GetCaster():FindTalentValue("special_bonus_unique_tinker_rearm_ebf_1")
+	end
+	return cost
+end
+
 function tinker_rearm_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 

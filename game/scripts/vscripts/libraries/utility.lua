@@ -162,13 +162,17 @@ function toboolean(thing)
 	end
 end
 
-function CalculateDistance(ent1, ent2)
+function CalculateDistance(ent1, ent2, b3D)
 	local pos1 = ent1
 	local pos2 = ent2
 	if ent1.GetAbsOrigin then pos1 = ent1:GetAbsOrigin() end
 	if ent2.GetAbsOrigin then pos2 = ent2:GetAbsOrigin() end
-	local distance = (pos1 - pos2):Length2D()
-	return distance
+	local vector = (pos1 - pos2)
+	if b3D then
+		return vector:Length()
+	else
+		return vector:Length2D()
+	end
 end
 
 function CalculateDirection(ent1, ent2)
@@ -219,7 +223,8 @@ function CDOTA_BaseNPC_Hero:CreateSummon(unitName, position, duration, bControll
 	summon:SetOwner(self)
 	local summonMod = summon:AddNewModifier(self, nil, "modifier_summon_handler", {duration = duration})
 	if duration and duration > 0 then
-		summon:AddNewModifier(self, nil, "modifier_kill", {duration = duration})
+		local kill = summon:AddNewModifier(self, nil, "modifier_kill", {duration = duration})
+		print( duration, kill:GetDuration(), kill:GetRemainingTime(), "kill" )
 	end
 	StartAnimation(summon, {activity = ACT_DOTA_SPAWN, rate = 1.5, duration = 2})
 	local endDur = summonMod:GetRemainingTime()
@@ -478,7 +483,7 @@ end
 
 function CDOTABaseAbility:GetTrueCastRange()
 	local caster = self:GetCaster()
-	local castrange = self:GetCastRange()
+	local castrange = self:GetCastRange(caster:GetAbsOrigin(), caster)
 	castrange = castrange + caster:GetBonusCastRange()
 	return castrange
 end
@@ -662,6 +667,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 					end
 				end
 			end
+			illusion.hasBeenInitialized = true
 			
 			illusion:SetBaseDamageMax( self:GetBaseDamageMax() - 10 )
 			illusion:SetBaseDamageMin( self:GetBaseDamageMin() - 10 )
@@ -719,7 +725,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			end
 			illusion:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
 			illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", {})
-			illusion:AddNewModifier( self, nil, "modifier_stats_system_handler", {})
+			if self:IsRealHero() then illusion:AddNewModifier( self, nil, "modifier_stats_system_handler", {}) end
 			illusion.wearableList = {}
 			local wearableWorker = {}
 			for _, wearable in ipairs( self.wearableTable or self:GetChildren() ) do
@@ -744,19 +750,23 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			end
 			
 			-- Make illusion look like owner
-			illusion:SetBaseMaxHealth( self:GetBaseMaxHealth() )
+			illusion:SetBaseMaxHealth( math.max( 100, self:GetBaseMaxHealth() ) )
 			illusion:SetThreat( self:GetThreat() )
 			
 			if not self.wearableTable then
 				self.wearableTable = wearableWorker
 			end
-			if callback then
-				callback( illusion, self, caster, ability )
-			end
 			illusion:SetUnitCanRespawn( true )
 			table.insert( self.illusionSpawnPool, illusion )
 			illusion:MakeIllusion()
 			ResolveNPCPositions( illusion:GetAbsOrigin(), 128 )
+			Timers:CreateTimer(function()
+				illusion:SetHealth( math.max( 100, self:GetHealth() ) )
+				illusion:SetMana( math.max( 100, self:GetMana() ) )
+				if callback then
+					callback( illusion, self, caster, ability )
+				end
+			end)
 		end )
 	else
 		local illusion = respawnedIllusion
@@ -783,6 +793,8 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 					end
 				end
 			end
+			
+			illusion.hasBeenInitialized = true
 			
 			illusion:SetBaseDamageMax( self:GetBaseDamageMax() - 10 )
 			illusion:SetBaseDamageMin( self:GetBaseDamageMin() - 10 )
@@ -843,7 +855,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			
 			illusion:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
 			illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", {})
-			illusion:AddNewModifier( self, nil, "modifier_stats_system_handler", {})
+			if self:IsRealHero() then illusion:AddNewModifier( self, nil, "modifier_stats_system_handler", {}) end
 			
 			illusion:RemoveNoDraw( )
 			for _, wearable in ipairs( illusion.wearableList ) do
@@ -854,12 +866,15 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			end
 			
 			-- Make illusion look like owner
-			illusion:SetBaseMaxHealth( self:GetBaseMaxHealth() )
-			illusion:SetHealth( self:GetHealth() )
+			illusion:SetBaseMaxHealth( math.max( 100, self:GetBaseMaxHealth() ) )
 			illusion:SetThreat( self:GetThreat() )
-			if callback then
-				callback( illusion, self, caster, ability )
-			end
+			Timers:CreateTimer( function()
+				illusion:SetHealth( math.max( 100, self:GetHealth() ) )
+				illusion:SetMana( math.max( 100, self:GetMana() ) )
+				if callback then
+					callback( illusion, self, caster, ability )
+				end
+			end)
 			
 			ResolveNPCPositions( illusion:GetAbsOrigin(), 128 )
 		end)
@@ -1675,7 +1690,7 @@ function CDOTA_Modifier_Lua:StopMotionController(bForceDestroy)
 end
 
 function CDOTA_BaseNPC:StopMotionControllers(bForceDestroy)
-	self:InterruptMotionControllers(true)
+	if self.InterruptMotionControllers then self:InterruptMotionControllers(true) end
 	for _, modifier in ipairs( self:FindAllModifiers() ) do
 		if modifier.controlledMotionTimer then 
 			modifier:StopMotionController(bForceDestroy)
@@ -2246,6 +2261,7 @@ function FindProbabilityWeight(roll)
     local roll2 = 1.0;
 	
 	check = true
+	local maxDistr = 20
     while check do
         Cmid = (Cupper + Clower) / 2
         roll1 = FindRelativeProbability(Cmid)
@@ -2259,6 +2275,11 @@ function FindProbabilityWeight(roll)
             Clower = Cmid
 		end
         roll2 = roll1
+		maxDistr = maxDistr - 1
+		if maxDistr < 0 then
+			check = false
+            break
+		end
 	end
     return Cmid * 100
 end

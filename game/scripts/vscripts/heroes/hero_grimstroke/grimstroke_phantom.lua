@@ -35,7 +35,6 @@ function grimstroke_phantom:OnProjectileHit_ExtraData(hTarget, vLocation, table)
 			end
 		else
 			if caster:HasTalent("special_bonus_unique_grimstroke_phantom_1") and table.damage_heal then
-				print("Phantom's Embrace Heal: " .. table.damage_heal)
 				caster:HealEvent(table.damage_heal * 0.75, self, caster, false)
 			end
 			EmitSoundOn("Hero_Grimstroke.InkCreature.Returned", hTarget)

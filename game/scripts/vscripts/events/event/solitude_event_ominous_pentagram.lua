@@ -36,8 +36,10 @@ local function StartCombat(self, bFight, bHard)
 	if bFight then
 		self.foughtAsura = true
 		self.eventType = EVENT_TYPE_COMBAT
+		self.eliteHasBeenInitialized = true
 		if bHard then
-			self.eventType = EVENT_TYPE_ELITE
+			self.eventType = EVENT_TYPE_COMBAT
+		self.eliteHasBeenInitialized = false
 			
 			for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 				hero:ModifyAgility( 15 )

@@ -11,6 +11,9 @@ function modifier_boss_attackspeed:OnCreated()
 		self:StartIntervalThink(0.33)
 		self.acc = math.min( 8 + self:GetStackCount() * 2 + RoundManager:GetZonesFinished() * 2.5, 65 )
 		self.thinkLimit = 2.5 * self:GetStackCount()
+		self.armor = self:GetParent():GetPhysicalArmorBaseValue() * 0.08 * self:GetStackCount() + self:GetStackCount()
+		if self:GetParent():IsRangedAttacker() then self.armor = self.armor / 2 end
+	return 
 	end
 end
 
@@ -68,9 +71,7 @@ function modifier_boss_attackspeed:GetModifierManaBonus( params )
 end]]
 
 function modifier_boss_attackspeed:GetModifierPhysicalArmorBonus( params )
-	local bonusarmor = self:GetStackCount()
-	if self:GetParent():IsRangedAttacker() then bonusarmor = bonusarmor / 2 end
-	return self:GetParent():GetPhysicalArmorBaseValue() * 0.08 * self:GetStackCount() + bonusarmor
+	return self.armor
 end
 
 function modifier_boss_attackspeed:GetModifierMagicalResistanceBonus( params )

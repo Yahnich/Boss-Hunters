@@ -9,7 +9,6 @@ function bane_nightmare_prison:OnSpellStart()
 		modifierName = "modifier_bane_nightmare_prison_fear"
 	end
 	target:AddNewModifier(caster, self, modifierName, {duration = duration})
-	print( target:HasModifier("modifier_bane_nightmare_prison_sleep"), target:HasModifier("modifier_bane_nightmare_prison_fear"), "prison", modifierName )
 	EmitSoundOn("Hero_Bane.Nightmare", target)
 end
 

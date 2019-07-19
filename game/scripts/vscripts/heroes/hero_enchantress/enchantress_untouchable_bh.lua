@@ -36,7 +36,6 @@ function enchantress_untouchable_bh:OnSpellStart()
 
 	local radius = self:GetTalentSpecialValueFor("radius")
 	local duration = self:GetTalentSpecialValueFor("duration")
-	print( duration, radius )
 	if caster:HasTalent("special_bonus_unique_enchantress_untouchable_bh_2") then
 		point = self:GetCursorPosition()
 	end

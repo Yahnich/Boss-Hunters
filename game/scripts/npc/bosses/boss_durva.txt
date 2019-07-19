@@ -7,8 +7,8 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_durva/boss_durva_gorged_core"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"faceless_void_time_walk"
-		"MaxLevel"						"3"
+		"AbilityTextureName"			"nevermore_necromastery"
+		"MaxLevel"						"2"
 	
 		"precache"
 		{
@@ -20,17 +20,37 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"growth_rate"			"1.0"
+				"stack_dmg"				"2 3"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"0.75 1"
+				"stack_as"				"10 12"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"1 2"
+				"stack_ms"				"3 4"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"hero_stacks"			"5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hero_dmg"				"10 15"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"hero_as"				"50 60"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"hero_ms"				"15 20"
 			}
 		}
 	}
@@ -41,8 +61,8 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_durva/boss_durva_soul_barrier"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"faceless_void_time_walk"
-		"MaxLevel"						"3"
+		"AbilityTextureName"			"visage_gravekeepers_cloak"
+		"MaxLevel"						"2"
 	
 		"precache"
 		{
@@ -54,17 +74,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"growth_rate"			"1.0"
+				"dmg_reduction"			"50 60"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"0.75 1"
+				"max_reduction"			"100"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"1 2"
+				"min_reduction"			"50 33"
 			}
 		}
 	}
@@ -75,8 +95,8 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_durva/boss_durva_all_is_linked"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"faceless_void_time_walk"
-		"MaxLevel"						"3"
+		"AbilityTextureName"			"warlock_fatal_bonds"
+		"MaxLevel"						"2"
 	
 		"precache"
 		{
@@ -88,22 +108,15 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"growth_rate"			"1.0"
+				"radius"				"600"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"0.75 1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"1 2"
+				"damage_spread"			"8 12"
 			}
 		}
 	}
-	
-	
 	"boss_durva_consume_soul"
 	{
 		// General
@@ -111,13 +124,14 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_durva/boss_durva_consume_soul"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"dazzle_weave"
-		"MaxLevel"						"3"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"			"bane_brain_sap"
+		"MaxLevel"						"2"
 		
-		"AbilityCastRange"				"800"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"				"1.5 1"
-		"AbilityCooldown"				"160"
+		"AbilityCastRange"				"1800"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCooldown"				"5"
 	
 		"precache"
 		{
@@ -128,18 +142,18 @@
 		{
 			"01"
             {
-                "var_type"                      "FIELD_FLOAT"
-                "total_armor_reduction"     	"60 80"
+                "var_type"				"FIELD_FLOAT"
+                "sap_damage"			"20 24"
             }
-    		"02"
+			"02"
             {
-                "var_type"                      "FIELD_INTEGER"
-                "duration"     					"60 80"
+                "var_type"				"FIELD_FLOAT"
+                "width"					"100"
             }
-    		"03"
+			"03"
             {
-                "var_type"                      "FIELD_FLOAT"
-                "radius"     					"350 500"
+                "var_type"				"FIELD_FLOAT"
+                "speed"					"600"
             }
 		}
 	}
@@ -149,14 +163,14 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_durva/boss_durva_feast_on_their_eyes"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"dazzle_weave"
-		"MaxLevel"						"3"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"night_stalker_void"
+		"MaxLevel"						"2"
 		
-		"AbilityCastRange"				"800"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"				"900 1200"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 		"AbilityCastPoint"				"1.5 1"
-		"AbilityCooldown"				"160"
+		"AbilityCooldown"				"20"
 	
 		"precache"
 		{
@@ -168,17 +182,22 @@
 			"01"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "total_armor_reduction"     	"60 80"
+                "miss"    					 	"40 60"
             }
     		"02"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "duration"     					"60 80"
+                "vision"     					"40 60"
             }
     		"03"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "radius"     					"350 500"
+                "duration"     					"10"
+            }
+			"03"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "radius"     					"900 1200"
             }
 		}
 	}
@@ -188,14 +207,17 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_durva/boss_durva_purgatory"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"dazzle_weave"
-		"MaxLevel"						"3"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityTextureName"			"bane_nightmare"
+		"MaxLevel"						"2"
 		
 		"AbilityCastRange"				"800"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"			"ACT_DOTA_ENFEEBLE"
 		"AbilityCastPoint"				"1.5 1"
-		"AbilityCooldown"				"160"
+		"AbilityCooldown"				"16"
 	
 		"precache"
 		{
@@ -204,20 +226,10 @@
 		}
 		"AbilitySpecial"
 		{
-			"01"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "total_armor_reduction"     	"60 80"
-            }
-    		"02"
+    		"01"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "duration"     					"60 80"
-            }
-    		"03"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "radius"     					"350 500"
+                "duration"     					"3 4"
             }
 		}
 	}
@@ -227,14 +239,16 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_durva/boss_durva_filled_to_burst"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"dazzle_weave"
-		"MaxLevel"						"3"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"nevermore_requiem"
+		"MaxLevel"						"2"
 		
-		"AbilityCastRange"				"800"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"				"1.5 1"
-		"AbilityCooldown"				"160"
+		"AbilityCastRange"				"2000"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AnimationPlaybackRate"			"0.2"
+		"AbilityCastPoint"				"3 2"
+		"AbilityCooldown"				"20"
 	
 		"precache"
 		{
@@ -246,17 +260,32 @@
 			"01"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "total_armor_reduction"     	"60 80"
+                "projectile_damage"     		"300 400"
             }
     		"02"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "duration"     					"60 80"
+                "speed"     					"600"
             }
     		"03"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "radius"     					"350 500"
+                "radius"     					"75"
+            }
+			"04"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "projectile_count"     			"16"
+            }
+			"05"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "slow"     						"20 25"
+            }
+			"06"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "duration"     					"12"
             }
 		}
 	}

@@ -24,13 +24,13 @@ if IsServer() then
 		local spawn = false
 		if self.wolfCounter <= 0 then
 			local wolf = CreateUnitByName("npc_dota_boss_wolf", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-			wolf:SetCoreHealth(500)
+			wolf:SetCoreHealth(750)
 			self.wolfCounter = self.wolf
 			spawn = true
 		end
 		if self.alphaCounter <= 0 then
 			local alpha = CreateUnitByName("npc_dota_boss_alpha_wolf", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-			alpha:SetCoreHealth(850)
+			alpha:SetCoreHealth(1000)
 			self.alphaCounter = self.alpha
 			spawn = true
 		end

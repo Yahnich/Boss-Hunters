@@ -48,11 +48,7 @@ function AICore:RandomEnemyHeroInRange( entity, range , magic_immune)
 		flags = flags + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	end
 	if entity:GetTauntTarget() then return entity:GetTauntTarget() end
-	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, flags, 0, false )
-	
-	if entity:GetTauntTarget() then 
-		return entity:GetTauntTarget()
-	end
+	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, flags, 0, false )
 	
 	if #enemies > 0 then
 		local index = RandomInt( 1, #enemies )

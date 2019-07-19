@@ -8,7 +8,7 @@ DOTA_LIFESTEAL_SOURCE_ATTACK = 1
 DOTA_LIFESTEAL_SOURCE_ABILITY = 2
 
 MAP_CENTER = Vector(332, -1545)
-GAME_MAX_LEVEL = 400
+GAME_MAX_LEVEL = 200
 
 HERO_SELECTION_TIME = 80
 
@@ -294,6 +294,53 @@ function CHoldoutGameMode:InitGameMode()
 												end
 											end
 										end, "adding relics",0)
+	Convars:RegisterCommand( "simulate_round", function(command, cNewRound )
+											if Convars:GetDOTACommandClient() and IsInToolsMode() then
+												local player = Convars:GetDOTACommandClient()
+												local hero = player:GetAssignedHero()
+												
+												local eventsBeaten = tonumber( cNewRound )
+												local currEvents = RoundManager.eventsFinished
+												local currRaids = RoundManager.raidsFinished
+												local currZones = RoundManager.zonesFinished
+												local currAscensions = RoundManager.ascensionLevel
+												if eventsBeaten > currEvents then
+													local moneyGained = 0
+													local xpGained = 0
+													
+													local raidsBeaten = math.floor( eventsBeaten / 5 )
+													local zonesBeaten = math.floor(raidsBeaten / 2 )
+													local ascensionsBeaten = math.floor(zonesBeaten / 4 )
+													
+													RoundManager.eventsFinished = eventsBeaten
+													RoundManager.raidsFinished = raidsBeaten
+													RoundManager.zonesFinished = zonesBeaten
+													RoundManager.ascensionLevel = ascensionsBeaten
+													
+													local playerScaling = GameRules.BasePlayers - HeroList:GetActiveHeroCount()
+													for i = currEvents, eventsBeaten - 1 do
+														local eventScaling = i * 0.75
+														local raidScaling = 1 + math.floor( i / 5 ) * 0.125
+														
+														local baseXP = ( 700 + ( (35 + 10 * playerScaling) * eventScaling ) ) + (250 * raidScaling)
+														local baseGold = ( 200 + ( (20 + 5 * playerScaling) * eventScaling ) ) + (80 * raidScaling)
+														
+														if (i % 5) == 0 then
+															baseXP = baseXP * 1.5
+															baseGold = baseGold * 1.5
+														else
+															baseXP = baseXP * 0.7 
+															baseGold = baseGold * 0.7
+														end
+														
+														moneyGained = moneyGained + baseGold
+														xpGained = xpGained + baseXP
+													end
+													hero:AddGold( moneyGained )
+													hero:AddXP( xpGained )
+												end
+											end
+										end, "simulating round",0)
 	Convars:RegisterCommand( "getdunked", function()
 											if Convars:GetDOTACommandClient() then
 												local player = Convars:GetDOTACommandClient()
@@ -332,8 +379,9 @@ function CHoldoutGameMode:InitGameMode()
 															local info = debug.getinfo(2)
 															local src = tostring(info.short_src)
 															local name = tostring(info.name)
+															local namewhat = tostring(info.namewhat)
 															if name ~= "__index" then
-																print("Call: ".. src .. " -- " .. name)
+																print("Call: ".. src .. " -- " .. name .. " -- " .. namewhat)
 															end
 														end, "c")
 													else
@@ -414,8 +462,9 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	end
 	
 	if duration == 0 then return false end
-	if caster:GetTeam() == DOTA_TEAM_GOODGUYS and duration > 0 and name ~= "modifier_illusion" then
+	if caster:GetTeam() == DOTA_TEAM_GOODGUYS and duration > 0 and name ~= "modifier_illusion" and (caster.lastDebuffTime or 0) + 0.25 < GameRules:GetGameTime() then
 		caster:ModifyThreat( math.log(1 + duration) + 0.2 )
+		caster.lastDebuffTime = GameRules:GetGameTime() 
 	end
 	filterTable["duration"] = duration
 	return true
@@ -477,8 +526,7 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 end
 
 function CHoldoutGameMode:FilterOrders( filterTable )
-	if #filterTable.units ~= 1 then return true end
-	local hero = units[1]
+	local hero = EntIndexToHScript( filterTable.units["0"] )
 	if not hero:IsRealHero() then return true end
 	if RoundManager:GetCurrentEvent() 
 	and RoundManager:GetCurrentEvent():IsEvent()
@@ -490,6 +538,16 @@ function CHoldoutGameMode:FilterOrders( filterTable )
 	or filterTable["order_type"] == DOTA_UNIT_ORDER_DISASSEMBLE_ITEM
 	or filterTable["order_type"] == DOTA_UNIT_ORDER_EJECT_ITEM_FROM_STASH ) then
 		EventManager:ShowErrorMessage(filterTable.issuer_player_id_const, "Cannot manipulate inventory during events.")
+		return false
+	end
+	if GameRules:State_Get() < DOTA_GAMERULES_STATE_GAME_IN_PROGRESS 
+	and ( filterTable["order_type"] == DOTA_UNIT_ORDER_CAST_POSITION
+	or filterTable["order_type"] == DOTA_UNIT_ORDER_CAST_TARGET 
+	or filterTable["order_type"] == DOTA_UNIT_ORDER_CAST_TARGET_TREE 
+	or filterTable["order_type"] == DOTA_UNIT_ORDER_CAST_NO_TARGET 
+	or filterTable["order_type"] == DOTA_UNIT_ORDER_CAST_TOGGLE ) 
+	and not IsInToolsMode() then
+		EventManager:ShowErrorMessage(filterTable.issuer_player_id_const, "Cannot cast abilities during pregame.")
 		return false
 	end
 	if filterTable["order_type"] == DOTA_UNIT_ORDER_TRAIN_ABILITY then
@@ -863,7 +921,7 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 				PlayerResource:SetCustomTeamAssignment(nPlayerID, DOTA_TEAM_GOODGUYS)
 			end
 		end
-	elseif nNewState == 3 then
+	elseif nNewState == DOTA_GAMERULES_STATE_HERO_SELECTION then
 		print("pregame")
 		
 		RoundManager.spawnPositions = {}
@@ -887,7 +945,7 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 				end
 			end
 		end)
-	elseif nNewState == 7 then
+	elseif nNewState == DOTA_GAMERULES_STATE_PRE_GAME then
 		
 		-- Voting system handler
 		-- CHoldoutGameMode:InitializeRoundSystem()
@@ -906,7 +964,7 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 				-- end
 			-- end
 		end)
-	elseif nNewState == 8 then
+	elseif nNewState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 		RoundManager:StartGame()
 	end
 end

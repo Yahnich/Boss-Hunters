@@ -54,7 +54,6 @@ function modifier_item_blade_of_dominion_stats:OnIntervalThink()
 	for id, amount in ipairs(self.cumulativeDist) do
 		distance = distance + amount
 	end
-	print(distance, self.radius)
 	if distance > 150 and self.minRadius < self.radius then
 		self.radius = math.max( self.radius - self.radiusDelta * 0.1, self.minRadius )
 		ParticleManager:SetParticleControl( self.pFX, 1, Vector(self.radius,0,0) )

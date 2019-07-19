@@ -8,7 +8,7 @@
 		"ScriptFile"					"bosses/boss_valgraduth/boss_valgraduth_breath_of_the_wild"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"furion_wrath_of_nature"
-		"MaxLevel"						"3"
+		"MaxLevel"						"2"
 	
 		"precache"
 		{
@@ -20,17 +20,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"spawn_rate"			"35 20"
+				"spawn_rate"			"25"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_health"			"1000"
+				"base_health"			"1000 1500"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"50"
+				"base_damage"			"50 75"
 			}
 		}
 	}
@@ -41,8 +41,8 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_valgraduth/boss_valgraduth_entangling_grip"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"faceless_void_time_walk"
-		"MaxLevel"						"3"
+		"AbilityTextureName"			"lone_druid_spirit_bear_entangle"
+		"MaxLevel"						"2"
 	
 		"precache"
 		{
@@ -72,14 +72,14 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_valgraduth/boss_valgraduth_forests_protection"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"dazzle_weave"
-		"MaxLevel"						"3"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"treant_living_armor"
+		"MaxLevel"						"2"
 		
 		"AbilityCastRange"				"800"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"				"1.5 1"
-		"AbilityCooldown"				"20"
+		"AbilityCooldown"				"15"
 	
 		"precache"
 		{
@@ -91,12 +91,12 @@
 			"01"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "block_count"   			  	"4 5"
+                "block_count"   			  	"4 6"
             }
     		"02"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "block_amount"     				"60 80"
+                "block_amount"     				"60"
             }
 		}
 	}
@@ -106,12 +106,13 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_valgraduth/boss_valgraduth_roots_grip"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"dazzle_weave"
-		"MaxLevel"						"3"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"treant_overgrowth"
+		"MaxLevel"						"2"
 		
 		"AbilityCastRange"				"800"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 		"AbilityCastPoint"				"1.5 1"
 		"AbilityCooldown"				"50 40"
 	
@@ -127,6 +128,16 @@
                 "var_type"                      "FIELD_FLOAT"
                 "root_duration"     			"6 8"
             }
+			"02"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "root_damage"     				"60 80"
+            }
+			"04"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "root_pull"     				"75 100"
+            }
 		}
 	}
 	"boss_valgraduth_bomb_spores"
@@ -135,15 +146,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_valgraduth/boss_valgraduth_bomb_spores"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED"
-		"AbilityTextureName"			"techies_land_mine"
-		"MaxLevel"						"3"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"techies_land_mines"
+		"MaxLevel"						"2"
 		
-		"AbilityCastRange"				"800"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"				"1200"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"				"1.5 1"
 		"AbilityCooldown"				"35"
-		"AbilityChannelTime"			"10"
 	
 		"precache"
 		{
@@ -155,42 +166,47 @@
 			"01"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "damage"     					"200 300"
+                "damage"     					"250 350"
             }
     		"02"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "explosion_radius"     			"350 500"
+                "explosion_radius"     			"350"
             }
     		"03"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "trigger_radius"     			"200 350"
+                "trigger_radius"     			"150"
             }
 			"04"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "linger_duration"     			"8 10"
+                "linger_duration"     			"30"
             }
 			"05"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "spores_per_second"     		"3 4"
+                "spores_per_second"     		"4 5"
             }
 			"06"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "spore_speed"     				"150"
+                "spore_speed"     				"100"
             }
 			"07"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "spore_max_distance"     		"600"
+                "spore_max_distance"     		"1200"
             }
 			"08"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "sporE_min_distance"     		"150"
+                "spore_min_distance"     		"150"
+            }
+			"08"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "spore_duration"     			"10"
             }
 		}
 	}

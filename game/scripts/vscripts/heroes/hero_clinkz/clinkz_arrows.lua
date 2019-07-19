@@ -1,6 +1,7 @@
 clinkz_arrows = class({})
 LinkLuaModifier("modifier_clinkz_arrows_caster", "heroes/hero_clinkz/clinkz_arrows", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_clinkz_arrows_line", "heroes/hero_clinkz/clinkz_arrows", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_clinkz_arrows_debuff", "heroes/hero_clinkz/clinkz_arrows", LUA_MODIFIER_MOTION_NONE)
 
 function clinkz_arrows:IsStealable()
 	return false
@@ -81,6 +82,9 @@ function clinkz_arrows:OnProjectileHit(hTarget, vLocation)
 	if hTarget then
 		local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"), {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
 		local damage = self:GetTalentSpecialValueFor("damage")
+		if caster:HasTalent("special_bonus_unique_clinkz_arrows_1") and not hTarget:HasModifier("modifier_clinkz_arrows_debuff") then
+			hTarget:AddNewModifier( caster, self, "modifier_clinkz_arrows_debuff", {duration = caster:FindTalentValue("special_bonus_unique_clinkz_arrows_1")})
+		end
 		for _,enemy in pairs(enemies) do
 			EmitSoundOn("Hero_Clinkz.SearingArrows.Impact", enemy)
 			self:DealDamage(caster, enemy, damage)
@@ -88,6 +92,21 @@ function clinkz_arrows:OnProjectileHit(hTarget, vLocation)
 	end
 end
 
+modifier_clinkz_arrows_debuff = class({})
+if IsServer() then
+	function modifier_clinkz_arrows_debuff:OnCreated()
+		local caster = self:GetCaster()
+		self:SetDuration( math.min( caster:FindTalentValue("special_bonus_unique_clinkz_arrows_1"), self:GetRemainingTime() ), true )
+		self:StartIntervalThink( self:GetRemainingTime() - 0.1 )
+	end
+	function modifier_clinkz_arrows_debuff:OnIntervalThink()
+		local target = self:GetParent()
+		local caster = self:GetCaster()
+		ParticleManager:FireParticle("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_base_attack_impact.vpcf", PATTACH_POINT_FOLLOW, target, {[1] = "attach_hitloc"})
+		EmitSoundOn("Hero_Clinkz.SearingArrows.Impact", target)
+		self:GetAbility():DealDamage( caster, target, self:GetTalentSpecialValueFor("damage") * caster:FindTalentValue("special_bonus_unique_clinkz_arrows_1"), {damage_type = DAMAGE_TYPE_MAGICAL} )
+	end
+end
 modifier_clinkz_arrows_caster = class({
 	IsHidden				= function(self) return true end,
 	IsPurgable	  			= function(self) return false end,

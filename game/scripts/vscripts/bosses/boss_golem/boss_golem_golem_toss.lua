@@ -39,7 +39,6 @@ function boss_golem_golem_toss:OnSpellStart()
 	caster:SetBaseMaxHealth( math.max(1, hp - golemHP) )
 	caster:SetMaxHealth( math.max(1, hp - golemHP) )
 	caster:SetBaseMoveSpeed( caster:GetBaseMoveSpeed() / scale )
-	caster:SetAverageBaseDamage( caster:GetAverageBaseDamage() * 0.9, 25 )
 	
 	golem:AddNewModifier( caster, self, "modifier_boss_golem_golem_toss_movement", {})
 end

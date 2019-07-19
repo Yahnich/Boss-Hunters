@@ -102,7 +102,6 @@ function modifier_aa_ice_vortex_effect:OnIntervalThink()
 	if self:GetParent():IsFrozenGeneric() then
 		damage = self.freeze
 	end
-	print(damage)
 	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), damage )
 end
 

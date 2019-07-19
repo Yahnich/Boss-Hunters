@@ -38,6 +38,8 @@
 #base "bosses/boss_arthromos.txt"
 #base "bosses/boss_durva.txt"
 #base "bosses/boss_ammetot.txt"
+#base "bosses/boss_leshrac.txt"
+#base "bosses/boss_clockwerk.txt"
 
 #base "elites/elite_accurate.txt"
 #base "elites/elite_assassin.txt"
@@ -264,11 +266,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"OnSpellStart"
 		{
-			"ApplyModifier"
-			{
-				"Target"				"CASTER"
-				"ModifierName"			"channel_started"
-			}
+			
 			
 			"FireSound"
 			{
@@ -369,49 +367,6 @@
 			}
 		}
 	}
-	"boss_fire_aura"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"custom/fire_aura"
-	
-		"AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "armor_debuff"          "-20"
-	        }
-	        "02"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "radius"                "400"
-	        }
-	    }
-	
-	    "Modifiers"
-	    {
-	    	"fire_aura"
-	    	{
-				"Passive" "1"
-				"IsHidden" "1"
-				"Aura" "fire_aura_debuff"
-				"Aura_Radius" "%radius"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
-			}
-			"fire_aura_debuff"
-	    		{
-	    			"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%armor_debuff"
-					"MODIFIER_PROPERTY_DISABLE_HEALING" "1" 
-				}
-		    }
-		}
-	}
 	"boss_lifesteal"
 	{
 		// General
@@ -450,11 +405,10 @@
 	"boss_living_armor"
 	{
 		// General
-		//-------------------------------------------------------------------------------------------------------------												// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
 		"BaseClass"						"treant_living_armor"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING | DOTA_UNIT_TARGET_MECHANICAL"					
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"					
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		
 		"AbilityCastRange"				"0"
@@ -1075,159 +1029,6 @@
 				}
 			}
 		}
-		"Modifiers"
-		{
-			"modifier_phased_camp"
-			{
-				"IsHidden"	"1"
-				"Passive"	"1"
-				"States"
-				{
-					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
-	"boss_spear"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName"			"custom/light_spear"
-		
-		"precache"
-		{
-			"particle"				"particles/light_spear.vpcf"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1000"
-		
-		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"	// Activity
-		"AnimationPlaybackRate"			"0.5"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12"
-		"AbilityCastPoint"				"1.5 1"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0 0 0 0"
-	
-		"OnSpellStart"
-		{
-			"RunScript"
-		    {
-		        "ScriptFile" "lua_abilities/abilities_simple.lua"
-		        "Function" "projectile_spear"
-		    }
-		}
-	
-	
-		// Modifiers
-		//-------------------------------------------------------------------------------------------------------------	
-		"Modifiers"
-		{
-			"stun"
-	        {
-	            "Duration" "%duration"
-				"IsDebuff"	"1"
-				"IsPurgable"	"1"
-				"IsStunDebuff"	"1"
-	            "OverrideAnimation"	"ACT_DOTA_DISABLED"
-				"States"
-				{	
-					"MODIFIER_STATE_STUNNED"  "MODIFIER_STATE_VALUE_ENABLED"
-				}
-	        }
-		}
-		"OnProjectileHitUnit"
-	    {
-	        "DeleteOnHit"                   "1"
-	        
-	        "ApplyModifier"
-	        {
-	            "Target"                    "TARGET"
-	            "ModifierName"              "stun"
-	        }
-	        "Damage"
-			{
-				"Type"			"DAMAGE_TYPE_MAGICAL"
-				"Damage"		"%damage"
-				"Target" "TARGET"
-			}
-	    }
-	    "AbilitySpecial"
-		{
-			"01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "damage"             	"200 300"  //The meteor lands on the ground this many seconds after it was cast.
-	        }
-	        "02"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "duration"              "2"  //The meteor lands on the ground this many seconds after it was cast.
-	        }
-		}
-	}
-	"boss_splash"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	
-		"AbilityTextureName"			"warlock_golem_flaming_fists"
-		"Modifiers"
-	    	{	
-	    		"fury"
-	    		{
-		        "Passive" "1"  
-		        "IsHidden" "1"  
-		        "OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"ScriptFile"			"lua_item/simple_item.lua"
-						"Function"				"Boss_Splash"
-						"damage_on_hit"		"%attack_damage"
-					}
-					"FireEffect"
-					{
-						"EffectName" "particles/storm_fury_effect.vpcf"
-						"Target" "TARGET"
-						"EffectAttachType" "follow_origin"
-						"EffectRadius" "200"
-					}
-					"FireSound"
-					{
-						"Target" "TARGET"
-						"EffectName" "sounds/items/item_armlet_deactivate.vsnd"
-					}
-				}
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"		"325"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"splash_damage"		"25"
-			}
-		}
 	}
 	"boss_suicide"
 	{
@@ -1345,169 +1146,6 @@
 			}
 		}
 	}
-	"creature_aoe_spikes"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName" 			"leshrac_split_earth"
-		
-		"precache"
-		{
-			"particle_folder"				"particles/units/heroes/hero_leshrac"
-			"particle_folder"				"particles/econ/generic/generic_aoe_shockwave_1"
-			"soundfile"					"soundevents/game_sounds/ability_aoe_spikes.vsndevts"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"800"
-		"AbilityCastPoint"				"1.5 1"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"22.0 18.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-	
-		"OnAbilityPhaseStart"
-		{
-			"CreateThinker"
-			{
-				"ModifierName"	"target_telegraph_fx"
-				"Target"		"POINT"
-			}
-		}
-		"OnSpellStart"
-		{
-			"CreateThinker"
-			{
-				"ModifierName"	"aoe_spike_thinker"
-				"Target"		"POINT"
-			}
-		}
-		
-		// Modifiers
-		//-------------------------------------------------------------------------------------------------------------	
-		"Modifiers"
-		{
-			"target_telegraph_fx"
-			{
-				"Duration"				"%think_time"
-	
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"		"particles/generic_radius_warning.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"			"TARGET"
-						"ControlPoints"
-						{
-							"00" "0 0 0"
-							"01" "%impact_radius 0 0"
-						}
-					}
-				}
-			}
-			
-			"aoe_spike_thinker"
-			{
-				"Duration"					"%think_time_extra" // Should work without the added time but appears to have a off by one error so time added so it doesnt destroy itself before occuring
-				"ThinkInterval"				"%think_time"
-				
-				"OnIntervalThink"
-				{
-					"Damage"
-					{
-						"Type"			"DAMAGE_TYPE_MAGICAL"
-						"Damage"		"%damage"
-						"Target"
-						{
-							"Center"	"TARGET"
-							"Radius"	"%impact_radius"
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_OTHER"
-						}
-					}
-					
-					"Stun"
-					{
-						"Duration"		"%stun_duration"
-						"Target"
-						{
-							"Center"	"TARGET"
-							"Radius"	"%impact_radius"
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_OTHER"
-						}
-					}
-					
-					"AttachEffect"
-					{
-						"EffectName"		"particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"			"TARGET"
-						
-						"ControlPoints"
-						{
-							"00"		"0 0 0"
-							"01"		"%impact_radius 0 0"
-							"02"		"0 0 0"
-						}
-					}
-	
-					"DestroyTrees"
-					{
-						"Target"			"TARGET"
-						"Radius"			"%impact_radius"
-					}
-					
-					"FireSound"
-					{
-						"EffectName"		"Creature.AOESpikes.Cast"
-						"Target"			"TARGET"
-					}
-				}
-			}
-		}
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"impact_radius"			"175"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration_stun"			"2.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"400 500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"think_time"			"0.5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"think_time_extra"		"1.5"
-			}
-		}
-	}
 	//=================================================================================================================
 	// Creature: Fire Breath
 	//=================================================================================================================
@@ -1541,7 +1179,7 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
 				"radius"				"200.0"
 			}
 			"02"
@@ -1711,124 +1349,37 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_datadriven"
-		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"	
-		"AbilityTextureName"    "slardar_slithereen_crush"
-	
+		"BaseClass"						"slardar_slithereen_crush"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Slardar.Slithereen_Crush"
+        "HasScepterUpgrade"				"1"
+
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.35"
-	
+		"AbilityCastPoint"				"0.35 0.35 0.35 0.35"
+
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"15"
-		"AbilityDuration"				"1.0"
-	
+		"AbilityCooldown"				"8"
+
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityDamage"					"175 250"
-	
+
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"115"
-	
+
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityModifierSupportValue"	"0.5"	// Applies multiple modifiers
-	
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"Creature.Slithereen_Crush.Cast"
-				"Target"		"CASTER"
-			}
-			
-			"FireEffect"
-			{
-				"EffectName" "particles/units/heroes/hero_slardar/slardar_crush.vpcf"
-				"EffectAttachType" "follow_origin"
-				"ControlPoints"
-				{
-					"00" "0 0 0"
-					"01" "%crush_radius %crush_radius %crush_radius"
-				}
-			}
-	
-			"Damage"
-			{
-				"Type" "DAMAGE_TYPE_PHYSICAL"
-				"Damage" "%AbilityDamage"
-				"Target"
-				{
-					"Center" "CASTER"
-					"Radius" "%crush_radius"
-					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_OTHER"
-				}
-			}
-	
-			"ApplyModifier"
-			{
-				"ModifierName" "creature_slithereen_crush_stun"
-				"Target"
-				{
-					"Center" "CASTER"
-					"Radius" "%crush_radius"
-					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_OTHER"
-				}
-			}
-	
-			"ApplyModifier"
-			{
-				"ModifierName" "creature_slithereen_crush_slow"
-				"Target"
-				{
-					"Center" "CASTER"
-					"Radius" "%crush_radius"
-					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_OTHER"
-				}
-			}
-		}
-	
-		// Modifiers
-		//-------------------------------------------------------------------------------------------------------------
-		"Modifiers"
-		{
-			"creature_slithereen_crush_stun"
-			{
-				"IsHidden"	"1"
-				"IsDebuff"	"1"
-				"IsStunDebuff"	"1"
-				"IsPurgable"	"1"
-				"EffectName" "particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType" "follow_overhead"
-				"Duration"  "%stun_duration"
-				"OverrideAnimation" "ACT_DOTA_DISABLED"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-	
-			"creature_slithereen_crush_slow"
-			{
-				"Duration"	"%slow_duration"
-				"IsDebuff"	"1"
-				"IsPurgable"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%crush_extra_slow"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%crush_extra_slow"
-				}
-			}
-		}
-	
-	
+
+		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -1841,19 +1392,36 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"crush_extra_slow"				"-20"
+				"crush_extra_slow"				"-20 -25 -30 -35"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"slow_duration"					"3 4"
+				"crush_attack_slow_tooltip"		"-20 -25 -30 -35"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
+				"crush_extra_slow_duration"		"3 4 5 6"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
 				"stun_duration"					"1"
+				"LinkedSpecialBonus"			"special_bonus_unique_slardar"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"puddle_duration"				"25"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"puddle_radius"					"550"
 			}
 		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
 	//=================================================================================================================
 	// Ability: Summon Undead
@@ -1888,11 +1456,7 @@
 	
 		"OnSpellStart"
 		{
-			"ApplyModifier"
-			{
-				"Target"				"CASTER"
-				"ModifierName"			"channel_started"
-			}
+			
 			
 			"FireSound"
 			{
@@ -2026,12 +1590,6 @@
 	
 		"OnSpellStart"
 		{
-			"ApplyModifier"
-			{
-				"Target"				"CASTER"
-				"ModifierName"			"channel_started"
-			}
-			
 			"FireSound"
 			{
 				"EffectName"			"Ability.SummonUndead"
@@ -2066,7 +1624,6 @@
 							"05"		"0 0 0"
 						}
 					}
-					
 					"FireSound"
 					{
 						"EffectName"		"Ability.SummonUndeadSuccess"
@@ -2164,11 +1721,7 @@
 	
 		"OnSpellStart"
 		{
-			"ApplyModifier"
-			{
-				"Target"				"CASTER"
-				"ModifierName"			"channel_started"
-			}
+			
 			
 			"FireSound"
 			{
