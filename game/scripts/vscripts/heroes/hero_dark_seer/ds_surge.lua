@@ -92,6 +92,10 @@ function modifier_ds_surge:DeclareFunctions()
         	}
 end
 
+function modifier_ds_surge:CheckState()
+	return {[MODIFIER_STATE_UNSLOWABLE] = true}
+end
+
 function modifier_ds_surge:GetModifierAttackSpeedBonus()
 	return self.bonus_as
 end

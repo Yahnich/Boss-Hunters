@@ -403,6 +403,7 @@
 		"Ability1"						"crystal_maiden_crystal_nova_bh"
 		"Ability2"						"crystal_maiden_frostbite_bh"
 		"Ability3"						"crystal_maiden_crystalline_aura"
+		"Ability4"						"crystal_maiden_icy_veins"
 		"Ability6"						"crystal_maiden_arcane_blizzard"
 		
 		"Ability10"						"special_bonus_unique_crystal_maiden_crystal_nova_1"
@@ -1651,6 +1652,7 @@
 		"Ability1"						"rattletrap_battery_assault_ebf"
 		"Ability2"						"rattletrap_aegis_deflector"
 		"Ability3"						"rattletrap_rocket_flare_ebf"
+		"Ability4"						"rattletrap_hookshot_bh"
 		"Ability5"						"rattletrap_reactive_shielding"
 		"Ability6"						"rattletrap_automated_artillery"
 		

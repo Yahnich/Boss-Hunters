@@ -253,6 +253,12 @@ function AICore:BeAHugeCoward( entity, runbuffer )
 		local distance = (nearest:GetAbsOrigin()-entity:GetAbsOrigin()):Length2D()
 		position = entity:GetAbsOrigin() + (-direction)*entity:GetIdealSpeed() * 0.5
 		if distance < runbuffer then
+			if not GridNav:CanFindPath( entity:GetAbsOrigin(), position ) then
+				position = entity:GetAbsOrigin() + (direction)*entity:GetIdealSpeed() * 2
+			end
+			if not GridNav:CanFindPath( entity:GetAbsOrigin(), position ) then
+				position = entity:GetAbsOrigin() + RandomVector( 400 )
+			end
 			ExecuteOrderFromTable({
 				UnitIndex = entity:entindex(),
 				OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
@@ -265,6 +271,13 @@ function AICore:BeAHugeCoward( entity, runbuffer )
 			UnitIndex = entity:entindex(),
 			OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
 			TargetIndex = entity:GetTauntTarget():entindex()
+		})
+	else
+		position = entity:GetAbsOrigin() + RandomVector( entity:GetIdealSpeed() * 0.5 )
+		ExecuteOrderFromTable({
+			UnitIndex = entity:entindex(),
+			OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+			Position = position
 		})
 	end
 	return position

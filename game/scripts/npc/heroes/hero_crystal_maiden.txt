@@ -282,12 +282,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"0.4"
+				"value"					"0.3"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"self"					"0.8"
+				"self"					"0.6"
 			}
 		}
 	}
@@ -315,6 +315,39 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// Ability: Crystal Maiden's Brilliance Aura
+	//=================================================================================================================
+	"crystal_maiden_icy_veins"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_crystal_maiden/crystal_maiden_icy_veins"
+		"AbilityTextureName"			"custom/crystal_maiden_icy_veins"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"cdr"				"1"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"mana_cost"			"1"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
 	"crystal_maiden_arcane_blizzard"
 	{
 		// General
@@ -333,7 +366,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1200"
-		"AbilityChannelTime"			"15"
+		"AbilityChannelTime"			"10"
 		"AbilityChannelAnimation"		"ACT_DOTA_CAST_ABILITY_4"
 		"AnimationPlaybackRate"			"0.66"
 		"AbilityCastPoint"				"0.3"
@@ -341,7 +374,7 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"90"
-		"AbilityDuration"				"15"
+		"AbilityDuration"				"10"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -410,12 +443,12 @@
 			}
 			"12"
 			{
-				"var_type"			"FIELD_INTEGER"
+				"var_type"				"FIELD_INTEGER"
 				"movespeed_slow_scepter" "-50"
 			}
 			"13"
 			{
-				"var_type"			"FIELD_INTEGER"
+				"var_type"				"FIELD_INTEGER"
 				"attack_slow_scepter"	"-150"
 			}
 			"14"
@@ -430,8 +463,13 @@
 			}
 			"16"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"duration_tooltip"	"10"
+				"var_type"				"FIELD_INTEGER"
+				"duration_tooltip"		"10"
+			}
+			"16"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"20"
 			}
 		}
 		

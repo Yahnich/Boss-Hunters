@@ -55,7 +55,7 @@ local function StartCombat(self)
 				end
 				local zombie = CreateUnitByName(zombieType, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 				zombie:SetCoreHealth(hp)
-				zombie:SetAverageBaseDamage( (roll + 8) * 10, 50 )
+				zombie:SetAverageBaseDamage( (roll + 20) * 10, 25 )
 				return math.max( 4, (self.timeRemaining or 60) / 15 ) / HeroList:GetActiveHeroCount()
 			end
 		end

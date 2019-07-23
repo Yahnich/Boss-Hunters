@@ -28,6 +28,10 @@ function modifier_boss26b_wound_passive:OnAttackLanded(params)
 	end
 end
 
+function modifier_boss26b_wound_passive:IsHidden()
+	return true
+end
+
 modifier_boss26b_wound_stack = class({})
 LinkLuaModifier("modifier_boss26b_wound_stack", "bosses/boss27/boss26b_wound.lua", 0)
 

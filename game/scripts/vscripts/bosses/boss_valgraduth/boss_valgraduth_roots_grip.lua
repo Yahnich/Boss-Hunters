@@ -31,7 +31,7 @@ if IsServer() then
 	
 	function modifier_boss_valgraduth_roots_grip_root:OnIntervalThink()
 		self.damageTick = self.damageTick - FrameTime()
-		if CalculateDistance( self:GetCaster(), self:GetParent() ) >= 150 + self:GetParent():GetHullRadius() + self:GetCaster():GetHullRadius() + self:GetParent():GetCollisionPadding() + self:GetCaster():GetCollisionPadding() then
+		if CalculateDistance( self:GetCaster(), self:GetParent() ) >= 250 + self:GetParent():GetHullRadius() + self:GetCaster():GetHullRadius() + self:GetParent():GetCollisionPadding() + self:GetCaster():GetCollisionPadding() then
 			self:GetParent():SetAbsOrigin( self:GetParent():GetAbsOrigin() + CalculateDirection( self:GetCaster(), self:GetParent() ) * self.pull )
 		else
 			self:Destroy()

@@ -11,7 +11,9 @@ function boss_evil_guardian_rise_of_hell:OnSpellStart()
 	local position = self:GetCursorPosition()
 	
 	caster:StartGesture(ACT_DOTA_ATTACK)
+	EmitSoundOn("Hero_EmberSpirit.SleightOfFist.Cast", caster)
 	local threatTarget
+	local currentTarget = caster
 	local hitUnits = {}
 	caster:AddNewModifier(caster, self, "modifier_boss_evil_guardian_rise_of_hell_punch", {duration = 0.15})
 	Timers:CreateTimer(0.1, function()
@@ -22,15 +24,19 @@ function boss_evil_guardian_rise_of_hell:OnSpellStart()
 				FindClearSpaceForUnit( caster, enemy:GetAbsOrigin() + RandomVector(175), true )
 				caster:PerformGenericAttack(enemy, true)
 				caster:StartGesture(ACT_DOTA_ATTACK)
+				EmitSoundOn("Hero_EmberSpirit.SleightOfFist.Damage", enemy)
 				if not threatTarget then threatTarget = enemy end
 				if enemy:GetThreat() > threatTarget:GetThreat() then threatTarget = enemy end
+				currentTarget = enemy
+				hitUnits[enemy] = true
+				return 0.1
 			end
-			hitUnits[enemy] = true
-			return 0.1
 		end
 		caster:RemoveModifierByName("modifier_boss_evil_guardian_rise_of_hell_punch")
 		threatTarget = threatTarget or caster
-		FindClearSpaceForUnit( caster, threatTarget:GetAbsOrigin() + RandomVector(175), true )
+		if currentTarget ~= threatTarget then
+			FindClearSpaceForUnit( caster, threatTarget:GetAbsOrigin() + RandomVector(175), true )
+		end
 	end)
 end
 

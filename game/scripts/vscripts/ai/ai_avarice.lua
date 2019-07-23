@@ -15,7 +15,8 @@ end
 
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
-		AICore:BeAHugeCoward( thisEntity, 600 )
-		return 0.25
-	else return 0.25 end
+		local newPos = AICore:BeAHugeCoward( thisEntity, 600 )
+		local timeTaken = CalculateDistance( newPos, thisEntity:GetAbsOrigin() ) / thisEntity:GetIdealSpeed()
+		return math.max( timeTaken, 1 )
+	else return 1 end
 end

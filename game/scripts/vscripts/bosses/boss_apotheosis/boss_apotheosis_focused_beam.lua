@@ -68,12 +68,12 @@ function modifier_boss_apotheosis_focused_beam_root:OnIntervalThink()
 	endPos.z = GetGroundHeight(caster:GetAbsOrigin(), caster) + 92
 	for _,enemy in ipairs(caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), endPos, self.width * 2, {})) do
 		local enemyVector = CalculateDirection( enemy, endPos )
-		caster:SetForwardVector( RotateVector2D( caster:GetForwardVector(), 2.5 * FrameTime() * -enemyVector:Cross(caster:GetForwardVector()).z ) )
+		caster:SetForwardVector( RotateVector2D( caster:GetForwardVector(), 3.6 * FrameTime() * -enemyVector:Cross(caster:GetForwardVector()).z ) )
 		return
 	end
 	for _,enemy in ipairs(caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetAbility():GetTrueCastRange()) ) do
 		local enemyVector = CalculateDirection( enemy, endPos )
-		caster:SetForwardVector( RotateVector2D( caster:GetForwardVector(), 2.5 * FrameTime() * -enemyVector:Cross(caster:GetForwardVector()).z ) )
+		caster:SetForwardVector( RotateVector2D( caster:GetForwardVector(), 3.6 * FrameTime() * -enemyVector:Cross(caster:GetForwardVector()).z ) )
 		break
 	end
 	self.check = self.check + FrameTime()

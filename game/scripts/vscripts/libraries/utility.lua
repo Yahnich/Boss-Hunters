@@ -2261,7 +2261,7 @@ function FindProbabilityWeight(roll)
     local roll2 = 1.0;
 	
 	check = true
-	local maxDistr = 20
+	local maxDistr = 1000
     while check do
         Cmid = (Cupper + Clower) / 2
         roll1 = FindRelativeProbability(Cmid)

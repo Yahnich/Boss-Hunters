@@ -195,7 +195,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"125 150"
+				"radius"				"150 175"
 			}
 			"02"
 			{
@@ -255,7 +255,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"125 150"
+				"radius"				"150 175"
 			}
 			"02"
 			{
@@ -316,7 +316,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"125 150"
+				"radius"				"200 225"
 			}
 			"02"
 			{

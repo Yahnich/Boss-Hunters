@@ -47,9 +47,12 @@ local function StartCombat(self)
 				elseif roll == 12 then
 					demonType = "npc_dota_boss_sloth_demon"
 				end
+				for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
+					hero:MakeVisibleToTeam( DOTA_TEAM_BADGUYS, 2.5 )
+				end
 				local demon = CreateUnitByName(demonType, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 				if demon then
-					demon:SetAverageBaseDamage( math.min(7, roll) * 15, 35 )
+					demon:SetAverageBaseDamage( math.min(7, roll) * 20, 35 )
 					if demonType ~= "npc_dota_boss5b" then
 						demon:SetCoreHealth(250)
 					end

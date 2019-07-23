@@ -22,7 +22,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"22 21 20 19 18 17 16"
+		"AbilityCooldown"				"24 23 22 21 20 19 18"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -46,7 +46,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"450"
+				"radius"					"275"
 			}
 			"02"
 			{	
@@ -66,7 +66,44 @@
 			}
 		}
 	}
-	
+	"special_bonus_unique_rattletrap_battery_assault_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"300"
+			}
+		}
+	}
+	"special_bonus_unique_rattletrap_battery_assault_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-0.3"
+			}
+		}
+	}
 	"rattletrap_aegis_deflector"	
 	{
 		// General
@@ -93,12 +130,12 @@
 			"01"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"bonus_armor"						"5 7 9 11 13 15 17"
+				"bonus_armor"						"3 4 5 6 7 8 9"
 			}
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"armor_buff"						"5 10 15 20 25 30"
+				"armor_buff"						"4 10 16 22 28 34 40"
 			}
 			"03"
 			{
@@ -114,7 +151,7 @@
 			"05"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"proc_chance"						"18"
+				"proc_chance"						"17"
 			}
 			"06"
 			{	
@@ -123,17 +160,59 @@
 			}
 			"07"
 			{	
+				"var_type"							"FIELD_FLOAT"
+				"mana_restore"						"50"
+			}
+			"08"
+			{	
 				"var_type"							"FIELD_INTEGER"
 				"push_length"						"250"
 			}
-			"08"
+			"09"
 			{	
 				"var_type"							"FIELD_FLOAT"
 				"push_duration"						"0.85"
 			}
 		}
 	}
-	
+	"special_bonus_unique_rattletrap_aegis_deflector_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"20"
+			}
+		}
+	}
+	"special_bonus_unique_rattletrap_aegis_deflector_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
 	"rattletrap_rocket_flare_ebf"
 	{
 		// General
@@ -192,15 +271,85 @@
 			"04"
 			{	
 				"var_type"				"FIELD_INTEGER"
-				"blind"					"25"
+				"blind"					"20 22 24 26 28 30 32"
 				"LinkedSpecialBonus"	"special_bonus_unique_rattletrap_rocket_flare_ebf_2"
 				
 			}
 			"04"
 			{	
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"100 140 180 220 260 300 340"
+				"damage"				"120 170 220 270 320 370 420"
 				
+			}
+		}
+	}
+	//=================================================================================================================
+	// Rattletrap: Hookshot
+	//=================================================================================================================
+	"rattletrap_hookshot_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_rattletrap/rattletrap_hookshot_bh"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"AbilityTextureName"			"rattletrap_hookshot"
+		"IsGrantedByScepter"			"1"
+		"HasScepterUpgrade"				"1"
+		"FightRecapLevel"				"2"
+		"AbilitySound"					"Hero_Rattletrap.Hookshot.Fire"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		"AbilityCastRange"				"3000"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"latch_radius"		"125"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"stun_radius"		"175"
+			}
+			"03"
+			{	
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"2.0"
+			}
+			
+			"04"
+			{	
+				"var_type"			"FIELD_INTEGER"
+				"speed"				"6000"
+			}
+			"05"
+			{	
+				"var_type"			"FIELD_INTEGER"
+				"tooltip_range"		"3000"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"275"
 			}
 		}
 	}
@@ -321,82 +470,6 @@
 			{	
 				"var_type"					"FIELD_FLOAT"
 				"damage_per_rocket"			"12 17 22 27 32 37"
-			}
-		}
-	}
-	"special_bonus_unique_rattletrap_battery_assault_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"300"
-			}
-		}
-	}
-	"special_bonus_unique_rattletrap_battery_assault_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-0.3"
-			}
-		}
-	}
-	"special_bonus_unique_rattletrap_aegis_deflector_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"20"
-			}
-		}
-	}
-	"special_bonus_unique_rattletrap_aegis_deflector_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"6"
 			}
 		}
 	}

@@ -23,7 +23,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"70 60 50 40 30 20 10"
+		"AbilityCooldown"				"32"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -43,7 +43,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"25 50 75 100 150 200 300"
+				"damage"				"100 200 300 400 500 600 700"
 			}
 			"02"
 			{
@@ -53,7 +53,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"250 300 350 400 450 500 550"
+				"radius"				"400 425 450 475 500 525 550"
 			}			
 		}
 	}
@@ -109,7 +109,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_dark_seer/ds_shell"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
@@ -229,7 +229,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"13 12 11 10 9 8 7"
+		"AbilityCooldown"				"16 14 12 10 8 6 4"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -249,12 +249,12 @@
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_ms"							"200"
+				"bonus_ms"							"25 40 55 70 85 100 115"
 			}
 			"02"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"duration"							"3 3.5 4 4.5 5 6 7.5"
+				"duration"							"6"
 			}
 		}
 	}

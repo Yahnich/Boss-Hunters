@@ -17,8 +17,10 @@ if IsServer() then
 		local oldPos = self:GetParent():GetAbsOrigin()
 		local newPos = oldPos + direction * self:GetParent():GetIdealSpeed() * 0.5
 		if not GridNav:CanFindPath(oldPos, newPos) then
-			while not GridNav:CanFindPath(oldPos, newPos) do
-				newPos = self:GetParent():GetAbsOrigin() + RandomVector(1):Normalized() * self:GetParent():GetIdealSpeed() * 0.5
+			local iteration = 100
+			while not GridNav:CanFindPath(oldPos, newPos) and iteration > 0 do
+				newPos = self:GetParent():GetAbsOrigin() + RandomVector(self:GetParent():GetIdealSpeed() * 0.5)
+				iteration = iteration - 1
 			end
 		end
 		self:GetParent():MoveToPosition(newPos)

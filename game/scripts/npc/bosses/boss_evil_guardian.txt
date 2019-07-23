@@ -318,11 +318,11 @@
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"			"hell_guardian_flaming_fist"
+	    "AbilityTextureName"			"custom/hell_guardian_flaming_fist"
 	    "MaxLevel"                      "2"
 		
 		"AbilityCooldown"				"9"
-		"AbilityCastPoint"				"2 1.5"
+		"AbilityCastPoint"				"0.75 0.5"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 	
 	    // Special
@@ -338,7 +338,7 @@
 			"02"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "radius"				"450"
+	            "radius"				"300 325"
 	        }
 	    }
 	}

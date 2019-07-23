@@ -32,6 +32,7 @@ end
 function boss_doom_demonic_servants:CreateServant(position)
 	local caster = self:GetCaster()
 	local servant = CreateUnitByName( "npc_dota_boss35b", position, true, self:GetCaster(), self:GetCaster(), self:GetCaster():GetTeamNumber() )
+	servant.doom = caster
 	EmitSoundOn("Hero_DragonKnight.ElderDragonForm", servant)
 	ParticleManager:FireParticle("particles/units/heroes/hero_dragon_knight/dragon_knight_transform_red.vpcf", PATTACH_POINT_FOLLOW, servant)
 end

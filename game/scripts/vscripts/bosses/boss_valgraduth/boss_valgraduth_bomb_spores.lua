@@ -38,6 +38,9 @@ if IsServer() then
 	end
 end
 
+function modifier_boss_valgraduth_bomb_spores:CheckState()
+	return {[MODIFIER_STATE_DISARMED] = true}
+end
 
 modifier_boss_valgraduth_bomb_spores_bomb = class({})
 LinkLuaModifier("modifier_boss_valgraduth_bomb_spores_bomb", "bosses/boss_valgraduth/boss_valgraduth_bomb_spores", LUA_MODIFIER_MOTION_NONE)

@@ -143,7 +143,7 @@ function RoundManager:OnNPCSpawned(event)
 				if spawnedUnit:IsMinion() then
 					typeModifier:SetStackCount( typeModifier:GetStackCount() + BH_MINION_TYPE_MINION )
 				end
-				if spawnedUnit:IsBoss() or spawnedUnit:IsElite() then
+				if spawnedUnit:IsBoss() then
 					typeModifier:SetStackCount( typeModifier:GetStackCount() + BH_MINION_TYPE_BOSS )
 				end
 				-- 1 april
@@ -305,8 +305,6 @@ function RoundManager:StartGame()
 		end
 	end
 	self.raidsFinished = (self.raidsFinished or 0) + 1
-	
-	ELITE_ABILITIES_TO_GIVE = math.floor( GameRules:GetGameDifficulty() / 2 )
 	
 	local lastSpawns = RoundManager.boundingBox
 	RoundManager:LoadSpawns()
@@ -698,6 +696,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 		end
 		
 		for i = 1, ELITE_ABILITIES_TO_GIVE do
+			print( i, "giving elite abilities" )
 			local roll = RandomInt(1, #eliteTypes)
 			local eliteAbName = eliteTypes[roll]
 			table.remove(eliteTypes, roll)

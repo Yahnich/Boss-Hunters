@@ -17,13 +17,20 @@ function rattletrap_aegis_deflector:AegisProc(target)
 	caster:AddNewModifier(caster, self, "modifier_rattletrap_aegis_deflector_buff", {duration = duration})
 	
 	target:ApplyKnockBack(caster:GetAbsOrigin(), pushDuration, pushDuration, pushDistance, 0, caster, self)
-	self:DealDamage(caster, target, damage)
-	
+	local damage = self:DealDamage(caster, target, damage)
+	caster:RestoreMana( damage * self:GetTalentSpecialValueFor("mana_restore") )
 	local zap = ParticleManager:CreateParticle("particles/units/heroes/hero_rattletrap/rattletrap_cog_attack.vpcf", PATTACH_POINT_FOLLOW, target)
 	ParticleManager:SetParticleControlEnt(zap, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 	ParticleManager:SetParticleControlEnt(zap, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
 	
 	target:EmitSound("Hero_Rattletrap.Power_Cogs_Impact")
+	
+	-- if caster:HasScepter() then
+		-- local nade = caster:FindAbilityByName("rattletrap_rocket_flare_ebf")
+		-- if nade then
+			-- nade:FireFlashbang( target:GetAbsOrigin() )
+		-- end
+	-- end
 end
 
 modifier_rattletrap_aegis_deflector_passive = class({})
@@ -40,28 +47,16 @@ function modifier_rattletrap_aegis_deflector_passive:OnRefresh()
 end
 
 function modifier_rattletrap_aegis_deflector_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_EVENT_ON_TAKEDAMAGE}
+	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_EVENT_ON_ATTACK_LANDED }
 end
 
 
-function modifier_rattletrap_aegis_deflector_passive:OnTakeDamage( params )
+function modifier_rattletrap_aegis_deflector_passive:OnAttackLanded( params )
 	if params.attacker and params.unit == self:GetParent() and params.attacker ~= params.unit and RollPercentage( self.chance ) then
 		self:GetAbility():AegisProc(params.attacker, true)
-		if self:GetParent():HasScepter() then
-			local nade = self:GetParent():FindAbilityByName("rattletrap_rocket_flare_ebf")
-			if nade then
-				nade:FireFlashbang( params.attacker:GetAbsOrigin() )
-			end
-		end
 	end
 	if not params.inflictor and self:GetParent():HasTalent("special_bonus_unique_rattletrap_aegis_deflector_1") and params.attacker == self:GetParent() and RollPercentage( self:GetParent():FindTalentValue("special_bonus_unique_rattletrap_aegis_deflector_1") ) then
 		self:GetAbility():AegisProc(params.unit, false)
-		if self:GetParent():HasScepter() then
-			local nade = self:GetParent():FindAbilityByName("rattletrap_rocket_flare_ebf")
-			if nade then
-				nade:FireFlashbang( params.unit:GetAbsOrigin() )
-			end
-		end
 	end
 end
 

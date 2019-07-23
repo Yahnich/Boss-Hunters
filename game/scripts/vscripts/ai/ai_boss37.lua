@@ -46,7 +46,7 @@ function AIThink(thisEntity)
 	thisEntity.getLastCheckedHealth = thisEntity.getLastCheckedHealth or thisEntity:GetHealth()
 	if not thisEntity:IsDominated() then
 		local target = AICore:GetHighestPriorityTarget(thisEntity)
-		if thisEntity.getLastCheckedHealth - thisEntity:GetHealth() < thisEntity:GetHealth() * 0.15 and thisEntity.getAIState ~= AI_STATE_COWARD then
+		if thisEntity.getLastCheckedHealth - thisEntity:GetHealth() < thisEntity:GetHealth() * 0.25 and thisEntity.getAIState ~= AI_STATE_COWARD and not thisEntity:HasModifier("modifier_boss_broodmother_arachnids_hunger_active") then
 			thisEntity.getAIState = AI_STATE_COWARD
 			thisEntity.getLastCheckedHealth = thisEntity:GetHealth()
 		elseif thisEntity.getLastCheckedHealth > thisEntity:GetHealth() + thisEntity:GetHealthRegen() and thisEntity.getAIState ~= AI_STATE_AGGRESSIVE then
