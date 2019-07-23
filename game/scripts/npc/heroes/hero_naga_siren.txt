@@ -69,12 +69,14 @@
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"out_damage"					"20 25 30 35 40 45 50"	
+				"out_damage"					"20 25 30 35 40 45 50"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"inc_damage"					"250 225 200 175 150 125 100"	
+				"inc_damage"					"250 225 200 175 150 125 100"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"08"
 			{

@@ -1897,6 +1897,17 @@ function CDOTA_BaseNPC:GetCooldownReduction(bReduced)
 	end
 end
 
+function CDOTABaseAbility:GetChannelTimeRemaining()
+	if self:IsChanneling() then
+		local startTime = self:GetChannelStartTime()
+		local currTime = GameRules:GetGameTime()
+		local channelTime = self:GetChannelTime()
+		return channelTime - ( currTime - startTime )
+	else
+		return 0
+	end
+end
+
 function CDOTA_BaseNPC:AddChill(hAbility, hCaster, chillDuration, chillAmount)
 	local chillBonus = chillAmount or 1
 	local bonusDur = chillBonus * 0.1
