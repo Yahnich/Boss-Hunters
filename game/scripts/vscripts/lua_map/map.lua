@@ -41,9 +41,7 @@ end
 function OnWaterEnter(trigger)
     local ent = trigger.activator
 	if not ent then return end
-    if ent:IsHero() then
-    	ent:AddNewModifier(ent, nil, "modifier_in_water", {})
-    end
+    ent:AddNewModifier(ent, nil, "modifier_in_water", {})
 end
 
 function OnWaterExit(trigger)

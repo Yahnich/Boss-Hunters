@@ -25,6 +25,8 @@
 		"grove_combat_wolves"					"1"
 		"generic_combat_ogres"					"1"
 		"generic_combat_slarks"					"1"
+		"grove_combat_centaurs"					"1"
+		"grove_combat_hellbears"				"1"
 	}
 	// Gods, spirits, elementals
 	"Elysium"

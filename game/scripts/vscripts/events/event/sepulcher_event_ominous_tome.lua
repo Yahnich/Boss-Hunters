@@ -144,11 +144,8 @@ end
 
 function HandoutRewards(self, bWon)
 	if self.foughtElites then
-		local eventScaling = RoundManager:GetEventsFinished()
-		local raidScaling = 1 + RoundManager:GetRaidsFinished() * 0.2
-		local playerScaling = GameRules.BasePlayers - HeroList:GetActiveHeroCount()
-		local baseXP = ( 700 + ( (50 + 10 * playerScaling) * eventScaling ) ) * raidScaling
-		local baseGold = ( 250 + ( (20 + 3 * playerScaling) * eventScaling ) ) * raidScaling
+		local baseXP = self:GetStandardXPReward()
+		local baseGold = self:GetStandardGoldReward()
 		if not bWon then
 			baseXP = baseXP / 4
 			baseGold = baseGold / 4

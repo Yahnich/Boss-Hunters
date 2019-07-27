@@ -136,16 +136,12 @@ end
 
 function HandoutRewards(self, bWon)
 	if self.foughtElites then
-		local eventScaling = RoundManager:GetEventsFinished()
-		local raidScaling = 1 + RoundManager:GetRaidsFinished() * 0.2
-		local playerScaling = GameRules.BasePlayers - HeroList:GetActiveHeroCount()
-		local baseXP = ( 700 + ( (50 + 10 * playerScaling) * eventScaling ) ) * raidScaling * 1.5
-		local baseGold = ( 250 + ( (20 + 3 * playerScaling) * eventScaling ) ) * raidScaling * 1.5
+		local baseXP = self:GetStandardXPReward()
+		local baseGold = self:GetStandardGoldReward()
 		if not bWon then
 			baseXP = baseXP / 4
 			baseGold = baseGold / 4
 		end
-		
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			hero:AddGold( baseGold )
 			hero:AddExperience( baseXP, DOTA_ModifyXP_Unspecified, false, false )

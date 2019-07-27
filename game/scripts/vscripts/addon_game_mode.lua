@@ -526,6 +526,7 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 end
 
 function CHoldoutGameMode:FilterOrders( filterTable )
+	if not filterTable or not filterTable.units then return end
 	local hero = EntIndexToHScript( filterTable.units["0"] )
 	if not hero:IsRealHero() then return true end
 	if RoundManager:GetCurrentEvent() 
@@ -821,7 +822,11 @@ function CHoldoutGameMode:OnHeroPick (event)
 		hero:AddItemByName("item_potion_of_recovery")
 		hero:AddItemByName("item_potion_of_essence")
 		
-		hero:AddExperience(GameRules.XP_PER_LEVEL[7],false,false)
+		-- hero:AddExperience(GameRules.XP_PER_LEVEL[7],false,false)
+		if GameRules:GetGameDifficulty() > 2 then
+		else
+			 hero:AddExperience(GameRules.XP_PER_LEVEL[3],false,false)
+		end
 		hero:SetBaseMagicalResistanceValue(15)
 		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage
 		local ID = hero:GetPlayerID()

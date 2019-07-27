@@ -1,0 +1,190 @@
+"DOTAAbilities"
+{	
+	"boss_slardar_submerge"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_slardar/boss_slardar_submerge"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"slardar_sprint"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+		}
+		
+		"AbilityCastAnimation"			"ACT_DOTA_DIE"	// Activity
+		"AnimationPlaybackRate"			"2"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"35"
+		"AbilityCastPoint"				"0.3"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0 0 0 0"
+
+	    "AbilitySpecial"
+		{
+			"01"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "spawns_sec"            "1 2"  //The meteor lands on the ground this many seconds after it was cast.
+	        }
+			"02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "max_slithereen"        "10"  //The meteor lands on the ground this many seconds after it was cast.
+	        }
+			"02"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "duration"       		"10"  //The meteor lands on the ground this many seconds after it was cast.
+	        }
+		}
+	}
+	"boss_slardar_splash_zone"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_slardar/boss_slardar_splash_zone"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"			"kunkka_torrent"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts"
+		}
+		
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"	// Activity
+		"AnimationPlaybackRate"			"0.6"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
+		"AbilityCastPoint"				"1.25 0.75"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0 0 0 0"
+
+	    "AbilitySpecial"
+		{
+			"01"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "initial_damage"         "125 150"
+	        }
+			"02"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "initial_stun"        	"1"
+	        }
+			"03"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "delay"       			"2.1 1.8"
+	        }
+			"04"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "second_damage"         "200 250"
+	        }
+			"05"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "second_stun"        	"1.6"
+	        }
+			"06"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "radius"        		"325 350"
+	        }
+			"07"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "knockup"        		"350"
+	        }
+			"08"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "pool_duration"        	"10"
+	        }
+			"09"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "pool_radius"        	"600"
+	        }
+		}
+	}
+	"boss_slardar_blessing_of_the_tides"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_slardar/boss_slardar_blessing_of_the_tides"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"tidehunter_gush"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+		}
+	    "AbilitySpecial"
+		{
+			"01"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "bonus_as"            	"50 75"  //The meteor lands on the ground this many seconds after it was cast.
+	        }
+			"02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "bonus_regen"       	 "10 15"  //The meteor lands on the ground this many seconds after it was cast.
+	        }
+		}
+	}
+	"boss_slardar_shin_shatter"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_slardar/boss_slardar_shin_shatter"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"slardar_bash"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+		}
+
+	    "AbilitySpecial"
+		{
+			"01"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "chance"            	"20 25"
+	        }
+			"02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "slow"       			"-20"
+	        }
+			"03"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "duration"       		"2"
+	        }
+		}
+	}
+}

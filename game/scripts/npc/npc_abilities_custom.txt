@@ -40,6 +40,7 @@
 #base "bosses/boss_ammetot.txt"
 #base "bosses/boss_leshrac.txt"
 #base "bosses/boss_clockwerk.txt"
+#base "bosses/boss_slardar.txt"
 
 #base "elites/elite_accurate.txt"
 #base "elites/elite_assassin.txt"
@@ -248,125 +249,6 @@
 			}
 		}
 	}
-	"boss_call_reinforcements"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"MaxLevel"						"4"
-		"AbilityCastAnimation"			"ACT_DOTA_TELEPORT"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"90 75 60 55"
-		"AbilityChannelTime"			"2"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"OnSpellStart"
-		{
-			
-			
-			"FireSound"
-			{
-				"EffectName"			"Ability.SummonUndead"
-				"Target"				"CASTER"
-			}
-		}
-		
-		"OnChannelSucceeded"
-		{
-			"SpawnUnit"
-			{
-				"UnitName"			"npc_dota_boss5b"
-				"UnitCount"			"%number_of_zombies"
-				"UnitLimit"			"9"
-				"SpawnRadius"		"750"
-				"Target"			"CASTER"
-				"OnSpawn"
-				{
-					"AttachEffect"
-					{
-						"EffectName"		"particles/econ/generic/generic_aoe_explosion_sphere_1/generic_aoe_explosion_sphere_1.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"			"UNIT"
-						
-						"ControlPoints"
-						{
-							"00"		"0 0 0"
-							"01"		"50 100 0"
-							"02"		"4 10 .5"
-							"03"		"20 200 0"
-							"04"		"0 0 0"
-							"05"		"0 0 0"
-						}
-					}
-					
-					"FireSound"
-					{
-						"EffectName"		"Ability.SummonUndeadSuccess"
-						"Target"			"CASTER"
-					}
-				}
-			}
-		}
-		
-		"OnChannelFinish"
-		{
-			"RemoveModifier"
-			{
-				"Target"				"CASTER"
-				"ModifierName"			"channel_started"
-			}
-		}
-		
-		// Modifiers
-		//-------------------------------------------------------------------------------------------------------------	
-		"Modifiers"
-		{
-			"channel_started"
-			{
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"		"particles/generic_aoe_persistent_circle_1/death_time_head_timer.vpcf"
-						"EffectAttachType"	"follow_overhead"
-						"Target"			"CASTER"
-					}
-				}
-			}
-			
-			"summoned_units"
-			{				
-				"AttachEffect"
-				{
-					"EffectName"		"particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf"
-					"EffectAttachType"	"follow_origin"
-					"Target"			"TARGET"
-					
-					"ControlPoints"
-					{
-						"00"		"0 0 0"
-						"01"		"200 0 0"
-						"02"		"0 0 0"
-					}
-				}
-			}
-		}
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"number_of_zombies"		"3"
-			}
-		}
-	}
 	"boss_lifesteal"
 	{
 		// General
@@ -429,12 +311,12 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_count"		"2 3"
+				"damage_count"		"2 3 2 3"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"health_regen"		"10"
+				"health_regen"		"3 6 5 10"
 			}
 			"03"
 			{
@@ -517,159 +399,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"distance_scepter"		"1800"
-			}
-		}
-	}
-	"boss_moment_of_courage"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"							"legion_commander_moment_of_courage"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"MaxLevel"						"4"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"2 1.8 1.6 1.4"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"trigger_chance"			"40"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"buff_duration"				"1.0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"hp_leech_percent"			"65"
-			}
-		}
-	}
-	"boss_hail_of_arrows"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss5/boss_hail_of_arrows"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"legion_commander_overwhelming_odds"
-		
-		"precache"
-		{
-			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_odds.vpcf"
-			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_odds_buff.vpcf"
-			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_odds_cast.vpcf"
-			"soundfile"	"game_sounds_heroes/game_sounds_legion_commander.vsndevts"
-		}
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"6.0"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"800"
-		"AbilityCastPoint"				"1.5"
-		"AnimationPlaybackRate"			"0.4"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"120"
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"300"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 225 250 275"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_per_unit"		"60 75"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_speed"			"15"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bonus_armor"					"4 6"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4.0"
-			}
-		}
-	}
-	"boss_press_the_attack"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"legion_commander_press_the_attack"												// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_NO"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"800"
-		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"24 23 22 21.0"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75"
-	
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"3.0"	// Value much higher than cost.
-	
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10.0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"attack_speed"			"150 175 200 250"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hp_regen"				"5 10 15 20"
 			}
 		}
 	}
@@ -1424,140 +1153,6 @@
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
 	//=================================================================================================================
-	// Ability: Summon Undead
-	//=================================================================================================================
-	"creature_summon_slither"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-		"AbilityTextureName" 			"undying_soul_rip"
-		
-		"precache"
-		{
-			"soundfile"					"soundevents/game_sounds/ability_summon_undead.vsndevts"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0"
-		"AbilityChannelTime"			"2.2 2.1 2.0 1.9"
-		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
-	
-		// Time
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10.0 10.0 10.0 10.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 100 100 100"
-	
-		"OnSpellStart"
-		{
-			
-			
-			"FireSound"
-			{
-				"EffectName"			"Ability.SummonUndead"
-				"Target"				"CASTER"
-			}
-		}
-		
-		"OnChannelSucceeded"
-		{
-			"SpawnUnit"
-			{
-				"UnitName"			"npc_dota_mini_slither"
-				"UnitCount"			"%number_of_zombies"
-				"UnitLimit"			"20"
-				"SpawnRadius"		"750"
-				"Target"			"CASTER"
-				"OnSpawn"
-				{
-					"AttachEffect"
-					{
-						"EffectName"		"particles/econ/generic/generic_aoe_explosion_sphere_1/generic_aoe_explosion_sphere_1.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"			"TARGET"
-						
-						"ControlPoints"
-						{
-							"00"		"0 0 0"
-							"01"		"50 100 0"
-							"02"		"4 10 .5"
-							"03"		"20 200 0"
-							"04"		"0 0 0"
-							"05"		"0 0 0"
-						}
-					}
-					
-					"FireSound"
-					{
-						"EffectName"		"Ability.SummonUndeadSuccess"
-						"Target"			"CASTER"
-					}
-				}
-			}
-		}
-		
-		"OnChannelFinish"
-		{
-			"RemoveModifier"
-			{
-				"Target"				"CASTER"
-				"ModifierName"			"channel_started"
-			}
-		}
-		
-		// Modifiers
-		//-------------------------------------------------------------------------------------------------------------	
-		"Modifiers"
-		{
-			"channel_started"
-			{
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"		"particles/generic_aoe_persistent_circle_1/death_time_head_timer.vpcf"
-						"EffectAttachType"	"follow_overhead"
-						"Target"			"CASTER"
-					}
-				}
-			}
-			
-			"summoned_units"
-			{				
-				"AttachEffect"
-				{
-					"EffectName"		"particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf"
-					"EffectAttachType"	"follow_origin"
-					"Target"			"TARGET"
-					
-					"ControlPoints"
-					{
-						"00"		"0 0 0"
-						"01"		"200 0 0"
-						"02"		"0 0 0"
-					}
-				}
-			}
-		}
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"number_of_zombies"		"10"
-			}
-		}
-	}
-	//=================================================================================================================
 	// Ability: Summon Tree1
 	//=================================================================================================================
 	"creature_summon_tree"
@@ -1684,7 +1279,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"number_of_zombies"		"5"
+				"number_of_zombies"		"2 3 3 5"
 			}
 		}
 	}
@@ -1818,7 +1413,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"number_of_zombies"		"3"
+				"number_of_zombies"		"1 2 2 3"
 			}
 		}
 	}

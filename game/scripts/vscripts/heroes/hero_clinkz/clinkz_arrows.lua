@@ -66,6 +66,8 @@ function clinkz_arrows:FireSearingArrow(target, bAttack)
 	self:FireTrackingProjectile("particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf", target, caster:GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 200)	
 	if caster:HasScepter() then
 		local modifier = caster:FindModifierByName("modifier_clinkz_arrows_caster")
+		modifier.max = modifier.max or 5
+		modifier.current = modifier.current or 0
 		if modifier.current >= modifier.max then
 			local duration = 5
 			local endPos = target:GetAbsOrigin()
@@ -115,13 +117,6 @@ modifier_clinkz_arrows_caster = class({
 	AllowIllusionDuplicate	= function(self) return false end
 })
 
-function modifier_clinkz_arrows_caster:OnCreated(table)
-	if IsServer() then
-		self.max = 5
-		self.current = 0
-	end
-end
-
 function modifier_clinkz_arrows_caster:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_ATTACK
@@ -133,6 +128,8 @@ end
 if IsServer() then
 	function modifier_clinkz_arrows_caster:OnCreated()
 		self:StartIntervalThink(0.03)
+		self.max = 5
+		self.current = 0
 	end
 	
 	function modifier_clinkz_arrows_caster:OnIntervalThink()

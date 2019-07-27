@@ -6,12 +6,12 @@ end
 
 function modifier_boss_attackspeed:OnCreated()
 	if IsServer() then
-		self:SetStackCount(math.floor(GameRules.gameDifficulty + 0.5) + RoundManager:GetAscensions())
+		self:SetStackCount(math.floor(GameRules.gameDifficulty + 0.5) + RoundManager:GetAscensions() * 2)
 		self.thinkTime = 0
 		self:StartIntervalThink(0.33)
 		self.acc = math.min( 8 + self:GetStackCount() * 2 + RoundManager:GetZonesFinished() * 2.5, 65 )
 		self.thinkLimit = 2.5 * self:GetStackCount()
-		self.armor = self:GetParent():GetPhysicalArmorBaseValue() * 0.08 * self:GetStackCount() + self:GetStackCount()
+		self.armor = self:GetParent():GetPhysicalArmorBaseValue() * 0.0625 * self:GetStackCount() + self:GetStackCount()
 		if self:GetParent():IsRangedAttacker() then self.armor = self.armor / 2 end
 	return 
 	end
@@ -75,7 +75,7 @@ function modifier_boss_attackspeed:GetModifierPhysicalArmorBonus( params )
 end
 
 function modifier_boss_attackspeed:GetModifierMagicalResistanceBonus( params )
-	return math.min( 3.5 * self:GetStackCount(), 60 )
+	return math.min( 2.75 * self:GetStackCount(), 60 )
 end
 
 function modifier_boss_attackspeed:GetModifierBaseDamageOutgoing_Percentage( params )

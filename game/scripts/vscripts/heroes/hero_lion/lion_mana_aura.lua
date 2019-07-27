@@ -64,7 +64,6 @@ function modifier_lion_mana_aura:IsHidden()
     return true
 end
 
-
 modifier_lion_mana_aura_scepter = class({})
 LinkLuaModifier( "modifier_lion_mana_aura_scepter", "heroes/hero_lion/lion_mana_aura.lua",LUA_MODIFIER_MOTION_NONE )
 

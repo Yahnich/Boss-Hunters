@@ -178,10 +178,8 @@ end
 
 local function HandoutRewards(self)
 	if self.foughtWave then
-		local eventScaling = RoundManager:GetEventsFinished()
-		local playerScaling = GameRules.BasePlayers - HeroList:GetActiveHeroCount()
-		local baseXP = 500 + eventScaling * (100 + 10 * playerScaling)
-		local baseGold = 100 + eventScaling * (25 + 3 * playerScaling)
+		local baseXP = self:GetStandardXPReward()
+		local baseGold = self:GetStandardGoldReward()
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			hero:AddGold( baseGold )
 			hero:AddXP( baseXP )

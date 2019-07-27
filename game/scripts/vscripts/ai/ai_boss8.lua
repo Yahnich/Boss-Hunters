@@ -10,22 +10,38 @@ function Spawn( entityKeyValues )
 			return AIThink(thisEntity)
 		end
 	end)
-	thisEntity.spear = thisEntity:FindAbilityByName("boss_clockwerk_spear")
+	thisEntity.hook = thisEntity:FindAbilityByName("boss_clockwerk_meteor_hook")
+	thisEntity.mark = thisEntity:FindAbilityByName("boss_clockwerk_mark_for_destruction")
+	local level = math.floor(GameRules:GetGameDifficulty()/2)
+	
+	AITimers:CreateTimer(0.1, function() 
+		thisEntity.hook:SetLevel( level )
+		thisEntity.mark:SetLevel( level )
+	end)
 end
 
 
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
-		local radius = thisEntity.spear:GetTrueCastRange()
+		local radius = thisEntity.hook:GetTrueCastRange()
 		local target = AICore:HighestThreatHeroInRange(thisEntity, radius, 0, false)
 		if not target then target = AICore:WeakestEnemyHeroInRange( thisEntity, radius, false) end
 		if not target then target = AICore:NearestEnemyHeroInRange( thisEntity, radius, false) end
-		if target and thisEntity.spear:IsFullyCastable() then
+		if target and thisEntity.mark:IsFullyCastable() then
 			ExecuteOrderFromTable({
 				UnitIndex = thisEntity:entindex(),
 				OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
 				Position = target:GetOrigin(),
-				AbilityIndex = thisEntity.spear:entindex()
+				AbilityIndex = thisEntity.mark:entindex()
+			})
+			return AI_THINK_RATE
+		end
+		if target and thisEntity.hook:IsFullyCastable() then
+			ExecuteOrderFromTable({
+				UnitIndex = thisEntity:entindex(),
+				OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+				Position = target:GetOrigin(),
+				AbilityIndex = thisEntity.hook:entindex()
 			})
 			return AI_THINK_RATE
 		end

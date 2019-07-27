@@ -84,18 +84,32 @@ function BaseEvent:LoadSpawns()
 	end
 end
 
+EVENT_MAX = 5 * 2 * 4
+
 function BaseEvent:GetHeroSpawnPosition()
 	return RoundManager.heroSpawnPosition
 end
 
+function BaseEvent:GetStandardGoldReward()
+	local eventScaling = math.min( RoundManager:GetEventsFinished(), EVENT_MAX ) * 0.75
+	local raidScaling = 1 + math.min( RoundManager:GetRaidsFinished(), EVENT_MAX ) * 0.15
+	local playerScaling = 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) / 10
+	local baseGold = ( ( 200 + ( (25) * eventScaling ) ) + (80 * raidScaling) ) 
+	return baseGold
+end
+
+function BaseEvent:GetStandardXPReward()
+	local eventScaling = math.min( RoundManager:GetEventsFinished(), EVENT_MAX ) * 0.75
+	local raidScaling = 1 + math.min( RoundManager:GetRaidsFinished(), EVENT_MAX ) * 0.15
+	local playerScaling = 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) / 10
+	local baseXP = ( ( 300 + ( (35) * eventScaling ) ) + (275 * raidScaling) )
+	return baseXP
+end
+
 function BaseEvent:HandoutRewards(bWon)
 	if not self:IsEvent() then
-		local EVENT_MAX = 5 * 2 * 4
-		local eventScaling = math.min( RoundManager:GetEventsFinished(), EVENT_MAX ) * 0.75
-		local raidScaling = 1 + math.min( RoundManager:GetRaidsFinished(), EVENT_MAX ) * 0.125
-		local playerScaling = 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) / 10
-		local baseXP = ( ( 700 + ( (45) * eventScaling ) ) + (250 * raidScaling) )
-		local baseGold = ( ( 200 + ( (25) * eventScaling ) ) + (80 * raidScaling) ) 
+		local baseXP = self:GetStandardXPReward()
+		local baseGold = self:GetStandardGoldReward()
 		if not bWon then
 			baseXP = baseXP / 4
 			baseGold = baseGold / 4
