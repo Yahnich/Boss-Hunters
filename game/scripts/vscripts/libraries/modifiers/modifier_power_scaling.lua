@@ -19,3 +19,7 @@ end
 function modifier_power_scaling:IsPurgable()
 	return false
 end
+
+function modifier_power_scaling:AllowIllusionDuplicate()
+	return true
+end

@@ -91,19 +91,11 @@ function BaseEvent:GetHeroSpawnPosition()
 end
 
 function BaseEvent:GetStandardGoldReward()
-	local eventScaling = math.min( RoundManager:GetEventsFinished(), EVENT_MAX ) * 0.75
-	local raidScaling = 1 + math.min( RoundManager:GetRaidsFinished(), EVENT_MAX ) * 0.15
-	local playerScaling = 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) / 10
-	local baseGold = ( ( 200 + ( (25) * eventScaling ) ) + (80 * raidScaling) ) 
-	return baseGold
+	return RoundManager:GetStandardGoldReward()
 end
 
 function BaseEvent:GetStandardXPReward()
-	local eventScaling = math.min( RoundManager:GetEventsFinished(), EVENT_MAX ) * 0.75
-	local raidScaling = 1 + math.min( RoundManager:GetRaidsFinished(), EVENT_MAX ) * 0.15
-	local playerScaling = 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) / 10
-	local baseXP = ( ( 300 + ( (35) * eventScaling ) ) + (275 * raidScaling) )
-	return baseXP
+	return RoundManager:GetStandardXPReward()
 end
 
 function BaseEvent:HandoutRewards(bWon)

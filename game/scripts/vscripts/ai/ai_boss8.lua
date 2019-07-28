@@ -36,14 +36,22 @@ function AIThink(thisEntity)
 			})
 			return AI_THINK_RATE
 		end
-		if target and thisEntity.hook:IsFullyCastable() then
-			ExecuteOrderFromTable({
-				UnitIndex = thisEntity:entindex(),
-				OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
-				Position = target:GetOrigin(),
-				AbilityIndex = thisEntity.hook:entindex()
-			})
-			return AI_THINK_RATE
+		if thisEntity.hook:IsFullyCastable() then
+			for _, unit in ipairs( thisEntity:FindEnemyUnitsInRadius( thisEntity:GetAbsOrigin(), radius, {flag = DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS} ) )
+				if unit:HasModifier("modifier_boss_clockwerk_mark_for_destruction_blind") then
+					target = unit
+					break
+				end
+			end
+			if target then
+				ExecuteOrderFromTable({
+					UnitIndex = thisEntity:entindex(),
+					OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+					Position = target:GetOrigin(),
+					AbilityIndex = thisEntity.hook:entindex()
+				})
+				return AI_THINK_RATE
+			end
 		end
 		return AICore:AttackHighestPriority( thisEntity )
 	else return AI_THINK_RATE end

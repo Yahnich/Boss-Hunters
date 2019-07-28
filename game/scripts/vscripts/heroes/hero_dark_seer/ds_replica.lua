@@ -33,7 +33,7 @@ function ds_replica:OnSpellStart()
 					FindClearSpaceForUnit(image, caster:GetAbsOrigin(), true)
 				end
 			end)
-			ally:ConjureImage( ally:GetAbsOrigin(), duration, outgoing, incoming, nil, self, true, caster, callback )
+			ally:ConjureImage( ally:GetAbsOrigin(), duration, outgoing - 100, incoming - 100, nil, self, true, caster, callback )
 		end
 	end
 end

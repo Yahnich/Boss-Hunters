@@ -30,8 +30,6 @@ BEHAVIOR_NORMAL = 0
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 		local radius = thisEntity.crush:GetSpecialValueFor("radius")
-		and AICore:TotalEnemyHeroesInRange( thisEntity, radius ) ~= 0 ), ( #thisEntity.slardarList > 5
-		and AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity.crush:GetSpecialValueFor("pool_radius") ) > 0 and RollPercentage( 50 ) ) )
 		if thisEntity.crush:IsFullyCastable()
 		and ( AICore:TotalNotDisabledEnemyHeroesInRange( thisEntity, radius * 1.25, false ) >= math.floor(AICore:TotalEnemyHeroesInRange( thisEntity, radius * 1.25 )/2) 
 		and AICore:TotalEnemyHeroesInRange( thisEntity, radius ) ~= 0 )
@@ -50,14 +48,14 @@ function AIThink(thisEntity)
 				table.remove( slardars, i )
 			end
 		end
-		-- if thisEntity.submerge:IsFullyCastable() and #slardars < thisEntity.submerge:GetSpecialValueFor("max_slithereen") and ( RollPercentage(25) or thisEntity:InWater() ) then
-			-- ExecuteOrderFromTable({
-				-- UnitIndex = thisEntity:entindex(),
-				-- OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-				-- AbilityIndex = thisEntity.submerge:entindex()
-			-- })
-			-- return AI_THINK_RATE
-		-- end
+		if thisEntity.submerge:IsFullyCastable() and #slardars < thisEntity.submerge:GetSpecialValueFor("max_slithereen") and ( RollPercentage(25) or thisEntity:InWater() ) then
+			ExecuteOrderFromTable({
+				UnitIndex = thisEntity:entindex(),
+				OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+				AbilityIndex = thisEntity.submerge:entindex()
+			})
+			return AI_THINK_RATE
+		end
 		if thisEntity.submergeLoc then
 			print("seeking location")
 			if CalculateDistance( thisEntity, thisEntity.submergeLoc ) > (thisEntity:GetIdealSpeed() * 0.5) + thisEntity.crush:GetSpecialValueFor("pool_radius") and thisEntity.getBehaviorState ~= BEHAVIOR_RETURNING then

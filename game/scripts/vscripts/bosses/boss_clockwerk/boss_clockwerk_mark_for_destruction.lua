@@ -50,6 +50,7 @@ if IsServer() then
 			enemy:AddNewModifier(caster, self, "modifier_boss_clockwerk_mark_for_destruction_blind", {duration = duration})
 			ApplyDamage({victim = enemy, attacker = caster, damage = self:GetTalentSpecialValueFor("damage"), damage_type = self:GetAbilityDamageType(), ability = self})
 		end
+		AddFOWViewer( caster:GetTeamNumber(), position, radius, 10, false ) 
 	end
 end
 

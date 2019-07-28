@@ -41,6 +41,7 @@
 #base "bosses/boss_leshrac.txt"
 #base "bosses/boss_clockwerk.txt"
 #base "bosses/boss_slardar.txt"
+#base "bosses/boss_legion_commander.txt"
 
 #base "elites/elite_accurate.txt"
 #base "elites/elite_assassin.txt"

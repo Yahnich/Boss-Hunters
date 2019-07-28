@@ -317,13 +317,15 @@ function CHoldoutGameMode:InitGameMode()
 													RoundManager.zonesFinished = zonesBeaten
 													RoundManager.ascensionLevel = ascensionsBeaten
 													
-													local playerScaling = GameRules.BasePlayers - HeroList:GetActiveHeroCount()
+													local playerScaling = 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) / 10
 													for i = currEvents, eventsBeaten - 1 do
 														local eventScaling = i * 0.75
-														local raidScaling = 1 + math.floor( i / 5 ) * 0.125
+														local raidGPScaling = 1 + math.floor( i / 5 ) * 0.125
+														local raidXPScaling = 1 + math.min( RoundManager:GetRaidsFinished(), EVENT_MAX ) * 0.15
+
 														
-														local baseXP = ( 700 + ( (35 + 10 * playerScaling) * eventScaling ) ) + (250 * raidScaling)
-														local baseGold = ( 200 + ( (20 + 5 * playerScaling) * eventScaling ) ) + (80 * raidScaling)
+														local baseXP = ( ( 300 + ( 35 * eventScaling ) ) + (275 * raidXPScaling) ) * playerScaling
+														local baseGold = ( ( 200 + ( 20 * eventScaling ) ) + (80 * raidGPScaling) ) * playerScaling
 														
 														if (i % 5) == 0 then
 															baseXP = baseXP * 1.5

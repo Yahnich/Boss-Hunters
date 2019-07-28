@@ -2,6 +2,7 @@ modifier_illusion_bonuses = class({})
 
 function modifier_illusion_bonuses:OnCreated()
 	self:GetParent().unitOwnerEntity = self:GetCaster()
+	if not self:GetCaster() then return end
 	local agility = self:GetCaster():GetAgility()
 	local strength = self:GetCaster():GetStrength()
 	local intellect = self:GetCaster():GetIntellect()
@@ -18,10 +19,6 @@ function modifier_illusion_bonuses:OnCreated()
 
 		self.ps = self:GetCaster():GetProjectileSpeed()
 	end
-end
-
-function modifier_illusion_bonuses:OnRefresh()
-	self:OnCreated()
 end
 
 function modifier_illusion_bonuses:OnDestroy()

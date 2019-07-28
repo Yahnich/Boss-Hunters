@@ -629,6 +629,7 @@ end
 
 function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, specIllusionModifier, ability, controllable, caster, callback )
 	local owner = caster or self
+	local original = self
 	local player = owner:GetPlayerID()
 	local respawnedIllusion
 	local unit_name = self:GetUnitName()
@@ -636,17 +637,19 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 	local outgoingDamage = outgoing or 0
 	local incomingDamage = incoming or 0
 	
-	self.illusionSpawnPool = self.illusionSpawnPool or {}
-	bControl = controllable
-	if bControl == nil then bControl = true end
-	-- handle_UnitOwner needs to be nil, else it will crash the game.
-	for i = #self.illusionSpawnPool, 1, -1 do
-		local illusion = self.illusionSpawnPool[i]
-		if illusion then
-			if illusion:IsNull() then
-				table.remove( self.illusionSpawnPool, i )
-			elseif not illusion:IsAlive() and not respawnedIllusion then
-				respawnedIllusion = illusion
+	if self:IsRealHero() then
+		self.illusionSpawnPool = self.illusionSpawnPool or {}
+		bControl = controllable
+		if bControl == nil then bControl = true end
+		-- handle_UnitOwner needs to be nil, else it will crash the game.
+		for i = #self.illusionSpawnPool, 1, -1 do
+			local illusion = self.illusionSpawnPool[i]
+			if illusion then
+				if illusion:IsNull() then
+					table.remove( self.illusionSpawnPool, i )
+				elseif not illusion:IsAlive() and not respawnedIllusion then
+					respawnedIllusion = illusion
+				end
 			end
 		end
 	end
@@ -725,6 +728,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			end
 			illusion:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
 			illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", {})
+			illusion:AddNewModifier( owner, nil, "modifier_illusion_bonuses", {})
 			if self:IsRealHero() then illusion:AddNewModifier( self, nil, "modifier_stats_system_handler", {}) end
 			illusion.wearableList = {}
 			local wearableWorker = {}
@@ -756,8 +760,13 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			if not self.wearableTable then
 				self.wearableTable = wearableWorker
 			end
-			illusion:SetUnitCanRespawn( true )
-			table.insert( self.illusionSpawnPool, illusion )
+			if self:IsRealHero() then
+				illusion:SetUnitCanRespawn( true )
+				table.insert( self.illusionSpawnPool, illusion )
+			else
+				illusion:SetCoreHealth( self:GetMaxHealth() )
+				illusion:SetHealth( math.max( 100, self:GetHealth() ) )
+			end
 			illusion:MakeIllusion()
 			ResolveNPCPositions( illusion:GetAbsOrigin(), 128 )
 			Timers:CreateTimer(function()
@@ -855,6 +864,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			
 			illusion:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
 			illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", {})
+			illusion:AddNewModifier( owner, nil, "modifier_illusion_bonuses", {})
 			if self:IsRealHero() then illusion:AddNewModifier( self, nil, "modifier_stats_system_handler", {}) end
 			
 			illusion:RemoveNoDraw( )

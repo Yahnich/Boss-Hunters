@@ -6611,7 +6611,7 @@
 			}
 		}
 	}
-	"npc_dota_boss5b"
+	"npc_dota_minion5"
 	{
 		// General
 		//
@@ -6737,10 +6737,10 @@
 		//----------------------------------------------------------------
 		
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_moment_of_courage"			// Ability 1.
-		"Ability2"					"boss_hail_of_arrows"
-		"Ability3"					"boss_press_the_attack"
-		"Ability4"					"boss_call_reinforcements"
+		"Ability1"					"boss_legion_commander_battlemaster"			// Ability 1.
+		"Ability2"					"boss_legion_commander_hail_of_arrows"
+		"Ability3"					"boss_legion_commander_bolster"
+		"Ability4"					"boss_legion_commander_infernal_rage"
 	
 	
 		//----------------------------------------------------------------

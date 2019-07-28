@@ -474,9 +474,15 @@ function RoundManager:EndEvent(bWonRound)
 		local clearPeriod = 3
 		Timers:CreateTimer(function()
 			for _, unit in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_ENEMY, flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_DEAD + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD}) ) do
-				if unit:IsCreature() and not unit:IsNull() then
-					if unit:IsAlive() then
-						unit:ForceKill(false)
+				if unit:GetTeam() == DOTA_TEAM_BADGUYS then
+					if unit:IsCreature() and not unit:IsNull() then
+						if unit:IsAlive() then
+							unit:ForceKill(false)
+						end
+					end
+				else
+					if not unit:IsHero() then
+						
 					end
 				end
 			end
@@ -821,4 +827,22 @@ function RoundManager:IsRoundGoing()
 	else
 		return false
 	end
+end
+
+function RoundManager:GetStandardGoldReward()
+	local EVENT_MAX = (EVENTS_PER_RAID + 1 * RAIDS_PER_ZONE * ZONE_COUNT)
+	local eventScaling = math.min( RoundManager:GetEventsFinished(), EVENT_MAX ) * 0.75
+	local raidScaling = 1 + math.min( RoundManager:GetRaidsFinished(), EVENT_MAX ) * 0.125
+	local playerScaling = 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) / 10
+	local baseGold = ( ( 200 + ( (25) * eventScaling ) ) + (80 * raidScaling) ) 
+	return baseGold * playerScaling
+end
+
+function RoundManager:GetStandardXPReward()
+	local EVENT_MAX = (EVENTS_PER_RAID + 1 * RAIDS_PER_ZONE * ZONE_COUNT)
+	local eventScaling = math.min( RoundManager:GetEventsFinished(), EVENT_MAX ) * 0.75
+	local raidScaling = 1 + math.min( RoundManager:GetRaidsFinished(), EVENT_MAX ) * 0.15
+	local playerScaling = 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) / 10
+	local baseXP = ( ( 300 + ( (35) * eventScaling ) ) + (275 * raidScaling) )
+	return baseXP * playerScaling
 end

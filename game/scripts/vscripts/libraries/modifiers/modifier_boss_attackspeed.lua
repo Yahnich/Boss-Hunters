@@ -97,3 +97,7 @@ end
 function modifier_boss_attackspeed:IsPurgable()
 	return false
 end
+
+function modifier_boss_attackspeed:AllowIllusionDuplicate()
+	return true
+end
