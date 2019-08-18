@@ -1,0 +1,1 @@
+boss_ifdat_magma_pool = class({})

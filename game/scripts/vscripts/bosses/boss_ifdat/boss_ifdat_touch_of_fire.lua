@@ -1,0 +1,1 @@
+boss_ifdat_touch_of_fire = class({})

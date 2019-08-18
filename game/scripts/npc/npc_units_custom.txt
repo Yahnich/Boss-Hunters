@@ -5967,6 +5967,114 @@
 			}
 		}
 	}
+	"npc_dota_boss_ifdat"
+	{
+		// General
+		//
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/heroes/lina/lina.vmdl"	// Model.
+		"SoundSet"					"Hero_Lina"					// Name of sound set.
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+		"ModelScale"				"2"
+		"Level"						"60"
+		"IsCelestial"				"1"
+		"MinimapIcon"				"minimap_roshancamp"
+		"MinimapIconSize"			"120"
+		"vscripts"					"ai/ai_ifdat"
+		
+		"precache"
+		{
+			"particle_folder"	"particles/units/heroes/hero_invoker/invoker_forge_spirit_ambient.vpcf"
+			"model"				"models/heroes/obsidian_destroyer/obsidian_destroyer.vmdl"
+		}
+	
+		// Abilities
+		//----------------------------------------------------------------
+		
+		"Ability1"					"boss_ifdat_touch_of_fire"
+		"Ability2"					"boss_ifdat_flashfire"
+		"Ability3"					"boss_ifdat_trailblazer"
+		
+		"Ability4"					"boss_ifdat_magma_pool"
+		"Ability5"					"boss_ifdat_flamethrower"
+		"Ability6"					"boss_ifdat_cinderheart"
+		"Ability6"					"boss_ifdat_meteor_swarm"
+		"Ability6"					"boss_ifdat_incinerate"
+	
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"12"		// Physical protection.
+		"MagicalResistance"			"40"		// Magical protection.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"200"		// Damage range min.
+		"AttackDamageMax"			"350"		// Damage range max.
+		"AttackRate"				"6"		// Speed of attack.
+		"AttackAnimationPoint"		"2.25"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"750"		// Range within a target can be attacked.
+		"ProjectileModel"			"particles/units/heroes/hero_lina/lina_base_attack.vpcf"			// Particle system model for projectile.
+		"ProjectileSpeed"			"900"			// Speed of projectile.
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"		// Experience earn.
+		"BountyGoldMin"				"11"		// Gold earned min.
+		"BountyGoldMax"				"13"		// Gold earned max.
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
+		"HealthBarOffset"			"600"
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+		"MovementSpeed"				"275"		// Speed
+		"MovementTurnRate"			"0.1"		// Turning rate.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"3000"		// Base health.
+		"StatusHealthRegen"			"1"		// Health regeneration rate.
+		"StatusMana"				"2000"			// Base mana.
+		"StatusManaRegen"			"10"			// Mana regeneration rate.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"			// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+	
+		//Precache
+		//------------------------------------------------------------------
+		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_viper.vsndevts"
+		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
+	
+		"ShouldDoFlyHeightVisual" "0"
+	
+		// Creature Data
+		//----------------------------------------------------------------------------------------------------------------------
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"Wearable1"{"ItemDef"			"8990"}
+				"Wearable2"{"ItemDef"			"9074"}
+				"Wearable3"{"ItemDef"			"7717"}
+				"Wearable4"{"ItemDef"			"8817"}
+			}
+		}
+	}
 	"npc_dota_boss_greymane"
 	{
 		// General

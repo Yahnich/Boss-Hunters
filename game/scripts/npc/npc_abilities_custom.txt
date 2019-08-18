@@ -44,6 +44,7 @@
 #base "bosses/boss_legion_commander.txt"
 #base "bosses/boss_centaurs.txt"
 #base "bosses/boss_hellbears.txt"
+#base "bosses/boss_ifdat.txt"
 
 #base "elites/elite_accurate.txt"
 #base "elites/elite_assassin.txt"

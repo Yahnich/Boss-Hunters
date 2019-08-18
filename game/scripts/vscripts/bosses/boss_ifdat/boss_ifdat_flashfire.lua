@@ -1,0 +1,1 @@
+boss_ifdat_flashfire = class({})
