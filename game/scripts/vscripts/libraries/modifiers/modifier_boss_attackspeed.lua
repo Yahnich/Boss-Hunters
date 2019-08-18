@@ -49,7 +49,8 @@ function modifier_boss_attackspeed:DeclareFunctions()
 		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_EVENT_ON_ABILITY_START,
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+		MODIFIER_EVENT_ON_ATTACK_START
 	}
 	return funcs
 end
@@ -91,6 +92,13 @@ end
 function modifier_boss_attackspeed:OnAbilityFullyCast( params )
 	if params.unit == self:GetParent() then
 		AddFOWViewer(DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), 516, 3, false)
+	end
+end
+
+function modifier_boss_attackspeed:OnAttackStart( params )
+	if params.attacker == self:GetParent() then
+		params.attacker:RemoveGesture( ACT_DOTA_ATTACK )
+		params.attacker:StartGestureWithPlaybackRate( ACT_DOTA_ATTACK, 1 + ( params.attacker:GetIncreasedAttackSpeed() - (1 + self:GetStackCount() * 0.25) ) )
 	end
 end
 

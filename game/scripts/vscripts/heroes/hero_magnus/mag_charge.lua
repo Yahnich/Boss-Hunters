@@ -118,7 +118,7 @@ function modifier_mag_charge_enemy:OnCreated(table)
 end
 
 function modifier_mag_charge_enemy:CheckState()
-	if unit:IsRoundNecessary() then
+	if self:GetParent():IsBoss	() then
 		local state = { [MODIFIER_STATE_ROOTED] = true}
 		return state
 	else

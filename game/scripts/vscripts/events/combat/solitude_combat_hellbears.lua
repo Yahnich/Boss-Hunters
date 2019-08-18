@@ -1,19 +1,30 @@
 local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
-	self.bigCentaur = 1
-	self.smallCentaur = RoundManager:GetCurrentRaidTier() + 1 
-	self.enemiesToSpawn = self.bigCentaur + self.smallCentaur
+	local roll = RandomInt( 1, 3 )
+	if roll == 1 then
+		self.direBear = 1 + RoundManager:GetCurrentRaidTier()
+		self.minorBear = 2 + RoundManager:GetCurrentRaidTier() * 2
+		self.enemiesToSpawn = self.direBear + self.minorBear
+	elseif roll == 2 then
+		self.direBear = 2 + RoundManager:GetCurrentRaidTier() * 2
+		self.minorBear = 0
+		self.enemiesToSpawn = self.direBear + self.minorBear
+	else
+		self.direBear = 0
+		self.minorBear = 2 + RoundManager:GetCurrentRaidTier() * 4
+		self.enemiesToSpawn = self.direBear + self.minorBear
+	end
 	self.eventHandler = Timers:CreateTimer(3, function()
-		if self.bigCentaur > 0 then
+		if self.direBear > 0 then
 			local spawn = CreateUnitByName("npc_dota_boss_greater_centaur", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundNecessary = true
-			self.bigCentaur = self.bigCentaur - 1
+			self.direBear = self.direBear - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 		end
-		if self.smallCentaur > 0 then
+		if self.minorBear > 0 then
 			local spawn = CreateUnitByName("npc_dota_boss_lesser_centaur", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundNecessary = true
-			self.smallCentaur = self.smallCentaur - 1
+			self.minorBear = self.minorBear - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 		end
 		if self.enemiesToSpawn > 0 then
@@ -34,8 +45,8 @@ local function EndEvent(self, bWon)
 end
 
 local function PrecacheUnits(self, context)
-	PrecacheUnitByNameSync("npc_dota_boss_greater_centaur", context)
-	PrecacheUnitByNameSync("npc_dota_boss_lesser_centaur", context)
+	PrecacheUnitByNameSync("npc_dota_dire_hellbear", context)
+	PrecacheUnitByNameSync("npc_dota_minor_hellbear", context)
 	return true
 end
 

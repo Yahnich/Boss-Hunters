@@ -33,8 +33,8 @@ function winterw_winters_kiss:OnSpellStart()
 
     local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {})
     for _,enemy in pairs(enemies) do
-        if enemy:HasModifier("modifier_winters_kiss") then
-            enemy:FindModifierByName("modifier_winters_kiss"):Destroy()
+        if enemy:HasModifier("modifier_winters_kiss_enemy") then
+            enemy:FindModifierByName("modifier_winters_kiss_enemy"):Destroy()
         end
     end
 	target:AddNewModifier(caster, self, "modifier_winters_kiss", {Duration = self:GetTalentSpecialValueFor("duration")})
