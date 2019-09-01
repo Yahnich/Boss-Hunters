@@ -28,6 +28,9 @@ function modifier_boss_attackspeed:OnIntervalThink()
 			AddFOWViewer(DOTA_TEAM_GOODGUYS, position, 516, 1, false)
 		end
 	end
+	if parent:IsStunned() then
+		parent:RemoveGesture(ACT_DOTA_ATTACK)
+	end
 	GridNav:DestroyTreesAroundPoint(position, self.radius, true)
 end
 
