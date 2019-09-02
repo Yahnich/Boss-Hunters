@@ -10,6 +10,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_ifdat/boss_ifdat_touch_of_fire"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"jakiro_liquid_fire"
 		"MaxLevel"						"2"
 	
@@ -42,7 +43,6 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_ifdat/boss_ifdat_flashfire"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"phoenix_fire_spirits"
 		"MaxLevel"						"2"
 		
@@ -76,6 +76,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_ifdat/boss_ifdat_trailblazer"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"phoenix_icarus_dive"
 		"MaxLevel"						"2"
 		
@@ -114,6 +115,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_ifdat/boss_ifdat_magma_pool"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"jakiro_macropyre"
 		"MaxLevel"						"2"
 		
@@ -232,6 +234,7 @@
 		"ScriptFile"					"bosses/boss_ifdat/boss_ifdat_meteor_storm"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName"			"invoker_chaos_meteor"
 		"MaxLevel"						"2"
 		
