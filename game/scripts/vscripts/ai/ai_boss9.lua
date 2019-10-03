@@ -57,7 +57,6 @@ function AIThink(thisEntity)
 			return AI_THINK_RATE
 		end
 		if thisEntity.submergeLoc then
-			print("seeking location")
 			if CalculateDistance( thisEntity, thisEntity.submergeLoc ) > (thisEntity:GetIdealSpeed() * 0.5) + thisEntity.crush:GetSpecialValueFor("pool_radius") and thisEntity.getBehaviorState ~= BEHAVIOR_RETURNING then
 				thisEntity.getBehaviorState = BEHAVIOR_RETURNING
 				ExecuteOrderFromTable({
@@ -65,20 +64,16 @@ function AIThink(thisEntity)
 					OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
 					Position = thisEntity.submergeLoc,
 				})
-				print("returning location")
 				return AI_THINK_RATE
 			elseif CalculateDistance( thisEntity, thisEntity.submergeLoc ) < 100 and thisEntity.getBehaviorState == BEHAVIOR_RETURNING then
 				thisEntity.getBehaviorState = BEHAVIOR_NORMAL
-				print( "reset behavior" )
 			end
-			print("prechecking")
 			if thisEntity.getBehaviorState == BEHAVIOR_NORMAL then
 				ExecuteOrderFromTable({
 					UnitIndex = thisEntity:entindex(),
 					OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE,
 					Position = thisEntity.submergeLoc,
 				})
-				print("move attacking")
 				return AI_THINK_RATE
 			end
 			return AI_THINK_RATE

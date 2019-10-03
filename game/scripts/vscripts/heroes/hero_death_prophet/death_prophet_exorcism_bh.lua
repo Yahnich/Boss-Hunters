@@ -48,7 +48,7 @@ function death_prophet_exorcism_bh:CreateGhost(position, duration)
 				self.state = stateList.SEEKING
 			end
 		elseif self.state == stateList.SEEKING then
-			if self.seekTarget and self.seekTarget:IsAlive() and not self.seekTarget:IsNull() then
+			if self.seekTarget and not self.seekTarget:IsNull() and self.seekTarget:IsAlive() then
 				local distance = CalculateDistance( position, self.seekTarget )
 				local targetPos = self.seekTarget:GetAbsOrigin()
 				local direction = CalculateDirection( self.seekTarget, position)
@@ -166,12 +166,12 @@ if IsServer() then
 			caster:SetHealth(1)
 			caster:SetAbsOrigin( respawnPosition )
 		end
+		local heal = 0
+		for _, ghost in ipairs( self:GetGhosts() ) do
+			heal = heal + ghost.damageDealt
+			ghost:Remove()
+		end
 		if caster:IsAlive() then
-			local heal = 0
-			for _, ghost in ipairs( self:GetGhosts() ) do
-				heal = heal + ghost.damageDealt
-				ghost:Remove()
-			end
 			caster:HealEvent( heal, ability, caster )
 		end
 	end

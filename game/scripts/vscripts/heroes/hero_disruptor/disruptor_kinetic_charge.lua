@@ -185,7 +185,7 @@ modifier_disruptor_kinetic_charge_pull_aura = class({})
 
 function modifier_disruptor_kinetic_charge_pull_aura:OnCreated()
 	if IsServer() then
-		self:StartIntervalThink(1)
+		self:StartIntervalThink(0.33)
 	end
 end
 
@@ -194,5 +194,5 @@ function modifier_disruptor_kinetic_charge_pull_aura:GetEffectName()
 end
 
 function modifier_disruptor_kinetic_charge_pull_aura:OnIntervalThink()
-	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent() )
+	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self:GetAbilityDamage() * 0.33 )
 end

@@ -42,13 +42,17 @@ AI_BEHAVIOR_SAFE = 3 -- Threat is weighted towards heals and debuffs, requires b
 AI_THINK_RATE = 1.5
 BASE_AGGRO_RADIUS = 600
 
-function AICore:RandomEnemyHeroInRange( entity, range , magic_immune)
+function AICore:RandomEnemyHeroInRange( entity, range , magic_immune, bHero)
 	local flags = DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS
+	local target = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+	if bHero then
+		target = DOTA_UNIT_TARGET_HERO
+	end
 	if magic_immune then
 		flags = flags + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	end
 	if entity:GetTauntTarget() then return entity:GetTauntTarget() end
-	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, flags, 0, false )
+	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, target, flags, 0, false )
 	
 	if #enemies > 0 then
 		local index = RandomInt( 1, #enemies )

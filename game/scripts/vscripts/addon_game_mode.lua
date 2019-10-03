@@ -324,7 +324,7 @@ function CHoldoutGameMode:InitGameMode()
 														local raidXPScaling = 1 + math.min( RoundManager:GetRaidsFinished(), EVENT_MAX ) * 0.15
 
 														
-														local baseXP = ( ( 300 + ( 35 * eventScaling ) ) + (275 * raidXPScaling) ) * playerScaling
+														local baseXP = ( ( 150 + ( 35 * eventScaling ) ) + (275 * raidXPScaling) ) * playerScaling
 														local baseGold = ( ( 200 + ( 20 * eventScaling ) ) + (80 * raidGPScaling) ) * playerScaling
 														
 														if (i % 5) == 0 then
@@ -855,10 +855,10 @@ function CHoldoutGameMode:OnHeroPick (event)
 				ParticleManager:FireParticle("particles/roles/dev/vip_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
 			end
 		end
-		local gold = 400 + 150 * ( GameRules.BasePlayers - PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS) )
+		local gold = 200 + 150 * ( GameRules.BasePlayers - PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS) )
 		hero:SetGold( 0, true )
 		if PlayerResource:HasRandomed( ID ) then
-			gold = gold + 350
+			gold = gold + 500
 		end
 		hero:SetGold( gold, true )
 		

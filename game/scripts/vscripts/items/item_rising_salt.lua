@@ -11,7 +11,7 @@ function item_rising_salt:OnProjectileHit(hTarget, vLocation)
 
 	if hTarget then
 		local damage = caster:GetAttackDamage() * self:GetSpecialValueFor("bonus_damage")/100
-		self:DealDamage(caster, hTarget, damage, {damage_type=DAMAGE_TYPE_PURE}, OVERHEAD_ALERT_DAMAGE)
+		self:DealDamage(caster, hTarget, damage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, OVERHEAD_ALERT_DAMAGE)
 	end	
 end
 

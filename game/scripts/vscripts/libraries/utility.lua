@@ -324,7 +324,10 @@ function CDOTABaseAbility:DealDamage(attacker, victim, damage, data, spellText)
 	local localdamage = damage or self:GetAbilityDamage() or 0
 	local spellText = spellText or 0
 	local ability = self or internalData.ability
-	local returnDamage = ApplyDamage({victim = victim, attacker = attacker, ability = ability, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
+	local oldHealth = victim:GetHealth()
+	ApplyDamage({victim = victim, attacker = attacker, ability = ability, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
+	local newHealth = victim:GetHealth()
+	local returnDamage = oldHealth - newHealth
 	if spellText > 0 then
 		SendOverheadEventMessage(attacker:GetPlayerOwner(),spellText,victim,returnDamage,attacker:GetPlayerOwner()) --Substract the starting health by the new health to get exact damage taken values.
 	end
@@ -1561,6 +1564,7 @@ function CDOTA_BaseNPC:FindFriendlyUnitsInRadius(position, radius, hData)
 end
 
 function CDOTA_BaseNPC:FindAllUnitsInRadius(position, radius, hData)
+	if self:IsNull() then return end
 	local team = self:GetTeamNumber()
 	local data = hData or {}
 	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_BOTH

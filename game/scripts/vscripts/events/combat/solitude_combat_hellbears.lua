@@ -16,13 +16,13 @@ local function StartEvent(self)
 	end
 	self.eventHandler = Timers:CreateTimer(3, function()
 		if self.direBear > 0 then
-			local spawn = CreateUnitByName("npc_dota_boss_greater_centaur", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+			local spawn = CreateUnitByName("npc_dota_boss_dire_hellbear", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundNecessary = true
 			self.direBear = self.direBear - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 		end
 		if self.minorBear > 0 then
-			local spawn = CreateUnitByName("npc_dota_boss_lesser_centaur", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+			local spawn = CreateUnitByName("npc_dota_boss_minor_hellbear", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundNecessary = true
 			self.minorBear = self.minorBear - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1

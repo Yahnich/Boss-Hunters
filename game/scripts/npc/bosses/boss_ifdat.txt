@@ -24,7 +24,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_per_sec"		"2 3"
+				"damage_per_sec"		"2"
 			}
 			"02"
 			{
@@ -127,7 +127,7 @@
 		"precache"
 		{
 			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
 		}
 		"AbilitySpecial"
 		{
@@ -152,7 +152,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_ifdat/boss_ifdat_flamethrower"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT |DOTA_ABILITY_BEHAVIOR_CHANNELED"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
@@ -163,8 +163,9 @@
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"				"1 0.75"
 		"AbilityChannelAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"				"900"
 		"AbilityChannelTime"			"5"
-		"AbilityCastRange"				"550"
+		"AbilityCooldown"				"38"
 	
 		"precache"
 		{
@@ -185,8 +186,13 @@
 			}
 			"03"
 			{
+				"var_type"					"FIELD_INTEGER"
+				"flames_per_sec"			"5 8"
+			}
+			"04"
+			{
 				"var_type"					"FIELD_FLOAT"
-				"flames_per_sec"			"5 10"
+				"duration"					"10"
 			}
 		}
 	}
@@ -204,8 +210,8 @@
 		"MaxLevel"						"2"
 		
 		"AbilityCastAnimation"			"ACT_DOTA_DIE"
-		"AbilityCastPoint"				"3"
-		"AbilityCooldown"				"45"
+		"AbilityCastPoint"				"2.5 1.75"
+		"AbilityCooldown"				"38"
 	
 		"precache"
 		{
@@ -218,7 +224,7 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"heal_per_stack"			"0.35 0.5"
 			}
 		}
@@ -240,13 +246,13 @@
 		
 		"AbilityCastRange"				"650"
 		"AbilityChannelAnimation"		"ACT_DOTA_GENERIC_CHANNEL_1"
-		"AbilityChannelTime"			"3"
+		"AbilityChannelTime"			"10"
 		"AbilityCooldown"				"35"
 	
 		"precache"
 		{
 			"particle"					"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
 		}
 		"AbilitySpecial"
 		{
@@ -257,8 +263,18 @@
 			}
 			"02"
 			{
+				"var_type"					"FIELD_FLOAT"
+				"impact_stun"				"1.5 2.5"
+			}
+			"03"
+			{
 				"var_type"					"FIELD_INTEGER"
 				"meteors_per_second"		"2 3"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"impact_radius"				"135"
 			}
 		}
 	}
@@ -292,7 +308,7 @@
 			"01"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "stacks_applied"     			"10 20"
+                "stacks_applied"     			"10 15"
             }
 		}
 	}

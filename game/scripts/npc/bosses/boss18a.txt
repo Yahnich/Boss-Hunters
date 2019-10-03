@@ -66,7 +66,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"stack_damage"			"8 12"
+				"stack_damage"			"5 8"
 			}
 			"02"
 			{
@@ -359,7 +359,7 @@
 		
 		"AbilityCooldown"				"55 45"
 		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
-		"AbilityCastPoint"				"1.5 1"
+		"AbilityCastPoint"				"2.5 1.75"
 		
 		"precache"
 		{
@@ -405,7 +405,7 @@
 		
 		"AbilityCooldown"				"45 35"
 		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
-		"AbilityCastPoint"				"1.5 1"
+		"AbilityCastPoint"				"2.5 1.75"
 		
 		"precache"
 		{

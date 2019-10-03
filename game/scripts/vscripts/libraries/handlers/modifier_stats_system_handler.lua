@@ -102,10 +102,9 @@ function modifier_stats_system_handler:GetModifierConstantManaRegen() return 1.5
 function modifier_stats_system_handler:GetModifierHealAmplify_Percentage() return self.ha or 0 end
 
 function modifier_stats_system_handler:GetModifierPreAttack_BonusDamage() return (self.ad or 0) end
-function modifier_stats_system_handler:GetModifierBaseAttack_BonusDamage() return 10 end
 	
 function modifier_stats_system_handler:GetModifierSpellAmplify_Percentage()
-	return self:GetParent():GetIntellect() * 0.33 + (self.sa or 0) 
+	return self:GetParent():GetIntellect() * 0.25 + (self.sa or 0) 
 end
 
 -- function modifier_stats_system_handler:GetCooldownReduction() return self.cdr or 0 end

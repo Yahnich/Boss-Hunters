@@ -648,19 +648,16 @@ function RoundManager:InitializeUnit(unit, bElite)
 	if bElite then RoundManager:GetCurrentEvent().eliteHasBeenInitialized = true end
 	local expectedHP = unit:GetBaseMaxHealth() * RandomFloat(0.95, 1.05)
 	local expectedDamage = ( unit:GetAverageBaseDamage() + (RoundManager:GetEventsFinished() * 1.5) ) * RandomFloat(0.90, 1.10)
-	local playerHPMultiplier = 0.33
-	local playerDMGMultiplier = 0.09
-	local playerArmorMultiplier = 0.03
+	local playerHPMultiplier = 0.375
+	local playerDMGMultiplier = 0.125
+	local playerArmorMultiplier = 0.075
 	if GameRules:GetGameDifficulty() == 4 then 
-		expectedHP = expectedHP * 1.5
-		expectedDamage = expectedDamage * 1.2
-		playerHPMultiplier = 0.5
-		playerDMGMultiplier = 0.1
-		playerArmorMultiplier = 0.075
+		expectedHP = expectedHP * 1.4
+		expectedDamage = expectedDamage * 1.35
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
 	
-	local HPMultiplierFunc = function( events, raids, zones ) return (0.25 + (events * 0.07)) * ( 1 + raids * 0.18 ) * ( 1 + zones * 0.1 ) end
+	local HPMultiplierFunc = function( events, raids, zones ) return (0.25 + (events * 0.065)) * ( 1 + raids * 0.14 ) * ( 1 + zones * 0.1 ) end
 	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.25 + (events * 0.05)) * ( 1 + raids * 0.06) * ( 1 + zones * 0.03 ) end
 	
 	local effPlayerHPMult =  HPMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
@@ -843,6 +840,6 @@ function RoundManager:GetStandardXPReward()
 	local eventScaling = math.min( RoundManager:GetEventsFinished(), EVENT_MAX ) * 0.75
 	local raidScaling = 1 + math.min( RoundManager:GetRaidsFinished(), EVENT_MAX ) * 0.15
 	local playerScaling = 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) / 10
-	local baseXP = ( ( 300 + ( (35) * eventScaling ) ) + (275 * raidScaling) )
+	local baseXP = ( ( 150 + ( (35) * eventScaling ) ) + (275 * raidScaling) )
 	return baseXP * playerScaling
 end

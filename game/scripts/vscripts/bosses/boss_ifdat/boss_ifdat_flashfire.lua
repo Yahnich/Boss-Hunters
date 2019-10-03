@@ -19,17 +19,20 @@ end
 function modifier_boss_ifdat_flashfire:OnRefresh()
 	self.ms = self:GetSpecialValueFor("ms_per_stack")
 	self.as = self:GetSpecialValueFor("as_per_stack")
-	self:GetCaster().touchOfFireTable = self:GetCaster().touchOfFireTable or {}
 end
 
 function modifier_boss_ifdat_flashfire:OnIntervalThink()
 	local caster = self:GetCaster()
+	local stacks = 0
 	for i = #caster.touchOfFireTable, 1, -1 do
-		if not caster.touchOfFireTable[i] or caster.touchOfFireTable[i]:IsNull() then
+		local modifier = caster.touchOfFireTable[i]
+		if not modifier or modifier:IsNull() then
 			table.remove( caster.touchOfFireTable, i )
+		else
+			stacks = stacks + modifier:GetStackCount()
 		end
 	end
-	self:SetStackCount( #caster.touchOfFireTable )
+	self:SetStackCount( stacks )
 end
 
 function modifier_boss_ifdat_flashfire:DeclareFunctions()

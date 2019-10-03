@@ -827,7 +827,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"3000"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"1200"		// Range of vision at night time.
 	
 		// Team
@@ -928,8 +928,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -1036,8 +1036,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -1152,8 +1152,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -1249,8 +1249,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -1903,8 +1903,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
 		"VoiceFile"					"soundevents/voscripts/game_sounds_vo_treant.vsndevts"
@@ -2022,8 +2022,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -3485,7 +3485,7 @@
 		//----------------------------------------------------------------
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
 		"RingRadius"				"80"
-		"HealthBarOffset"			"320"
+		"HealthBarOffset"			"250"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -3496,7 +3496,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"280"		// Speed.
+		"MovementSpeed"				"250"		// Speed.
 		"MovementTurnRate"			"0.1"		// Turning rate.
 	
 		// Status
@@ -4446,8 +4446,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+		"VisionDaytimeRange"		"3000"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"3000"		// Range of vision at night time.
 	
 		// Team
 		//----------------------------------------------------------------
@@ -6266,8 +6266,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"8000"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"8000"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 		
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -6381,8 +6381,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"8000"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"8000"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 		
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -6473,8 +6473,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"8000"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"8000"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -6583,8 +6583,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -6688,8 +6688,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -6793,8 +6793,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -6897,8 +6897,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -7000,8 +7000,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -7078,8 +7078,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -7144,7 +7144,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"3000"		// Base health.
+		"StatusHealth"				"2500"		// Base health.
 		"StatusHealthRegen"			"2"			// Health regeneration rate.
 		"StatusMana"				"500"		// Base mana.
 		"StatusManaRegen"			"5"			// Mana regeneration rate.
@@ -7158,8 +7158,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -7237,8 +7237,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -7575,8 +7575,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -7681,7 +7681,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -7787,7 +7787,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -7847,7 +7847,8 @@
 	
 		// Armor
 		//-------------------------------------------------------------------------------------------------------------
-		"ArmorPhysical"				"0"								// Physical protection.
+		"ArmorPhysical"				"16"								// Physical protection.
+		"MagicalResistance"			"40"								// Physical protection.
 	
 		"AbilityLayout"				"6"
 		"Ability1"					"boss_proximity"			// Ability 1.
@@ -7884,7 +7885,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -7984,7 +7985,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -8089,7 +8090,7 @@
 		
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"2750"		// Base health.
+		"StatusHealth"				"2250"		// Base health.
 		"StatusHealthRegen"			"1"		// Health regeneration rate.
 		"StatusMana"				"250"			// Base mana.
 		"StatusManaRegen"			"3"			// Mana regeneration rate.
@@ -8103,8 +8104,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -8227,7 +8228,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		//Precache
@@ -8381,7 +8382,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		//Precache
@@ -8753,8 +8754,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"100"		// Damage range min.
-		"AttackDamageMax"			"120"		// Damage range max.
+		"AttackDamageMin"			"55"		// Damage range min.
+		"AttackDamageMax"			"75"		// Damage range max.
 		"AttackRate"				"1.8"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
@@ -8782,7 +8783,7 @@
 		
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"1000"		// Base health.
+		"StatusHealth"				"500"		// Base health.
 		"StatusHealthRegen"			"1"		// Health regeneration rate.
 		"StatusMana"				"205"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -8796,8 +8797,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -8923,8 +8924,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
 		"VoiceFile"					"soundevents/voscripts/game_sounds_vo_treant.vsndevts"
@@ -9033,8 +9034,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
 		"VoiceFile"					"soundevents/voscripts/game_sounds_vo_treant.vsndevts"
@@ -9145,8 +9146,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
 		"VoiceFile"					"soundevents/voscripts/game_sounds_vo_treant.vsndevts"

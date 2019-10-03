@@ -1,6 +1,6 @@
 local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
-	self.enemiesToSpawn = RoundManager:GetCurrentRaidTier()
+	self.enemiesToSpawn = math.min( RoundManager:GetCurrentRaidTier(), HeroList:GetActiveHeroCount() )
 	self.eventHandler = Timers:CreateTimer(3, function()
 		local enemyName = "npc_dota_boss9"
 		local spawn = CreateUnitByName(enemyName, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
