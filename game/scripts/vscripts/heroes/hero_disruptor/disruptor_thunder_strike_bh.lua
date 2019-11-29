@@ -70,7 +70,7 @@ function modifier_disruptor_thunder_strike_bh:DeclareFunctions()
 end
 
 function modifier_disruptor_thunder_strike_bh:OnDeath(params)
-	if params.unit:HasModifier("modifier_disruptor_thunder_strike_bh_visual") then
+	if params.unit == self.attachedParent then
 		if self.talent1 then
 			for _, enemy in ipairs( self:GetCaster():FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), -1 ), {order = FIND_CLOSEST} ) do
 				self.attachedParent = enemy

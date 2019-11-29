@@ -46,6 +46,9 @@ function modifier_elite_plagued_debuff:OnRefresh()
 end
 
 function modifier_elite_plagued_debuff:OnIntervalThink()
+	if not self:GetCaster() or self:GetCaster():IsNull() then
+		self:Destroy()
+	end
 	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self.damage * self:GetStackCount(), {damage_type = DAMAGE_TYPE_MAGICAL} )
 end
 

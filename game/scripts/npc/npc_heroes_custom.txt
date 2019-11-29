@@ -605,7 +605,7 @@
 		"Ability1"						"dragon_knight_dragonbreath"
 		"Ability2"						"dragon_knight_intervene"
 		"Ability3"						"dragon_knight_dragons_blood_ebf"
-		"Ability6"						"dragon_knight_elder_dragon_berserker"					// Ability 4
+		"Ability6"						"dragon_knight_eldwyrm_form"					// Ability 4
 			
 		"Ability10"						"special_bonus_unique_dragon_knight_dragonbreath_1"
 	    "Ability11"						"special_bonus_unique_dragon_knight_dragonbreath_2"
@@ -613,8 +613,8 @@
 	    "Ability13"						"special_bonus_unique_dragon_knight_intervene_2"
 	    "Ability14"						"special_bonus_unique_dragon_knight_dragons_blood_ebf_1"
 	    "Ability15"						"special_bonus_unique_dragon_knight_dragons_blood_ebf_2"
-	    "Ability16"						"special_bonus_unique_dragon_knight_elder_dragon_berserker_1"
-	    "Ability17"						"special_bonus_unique_dragon_knight_elder_dragon_berserker_2"
+	    "Ability16"						"special_bonus_unique_dragon_knight_eldwyrm_form_1"
+	    "Ability17"						"special_bonus_unique_dragon_knight_eldwyrm_form_2"
 		
 	}
 	//=================================================================================================================

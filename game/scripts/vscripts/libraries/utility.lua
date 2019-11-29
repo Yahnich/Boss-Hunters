@@ -1342,8 +1342,10 @@ end
 
 function CDOTABaseAbility:ModifyCooldown(amt)
 	local currCD = self:GetCooldownTimeRemaining()
-	self:EndCooldown()
-	if currCD + amt > 0 then self:StartCooldown( math.max(0, currCD + amt) ) end
+	if currCD > 0 then
+		self:EndCooldown()
+		if currCD + amt > 0 then self:StartCooldown( math.max(0, currCD + amt) ) end
+	end
 end
 
 function CDOTA_BaseNPC_Hero:CreateTombstone()

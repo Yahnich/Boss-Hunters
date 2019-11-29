@@ -125,7 +125,6 @@
 		"AbilityTextureName"			"custom/disruptor_kinetic_charge"
 		"MaxLevel"						"7"
 		
-		"AbilityDamage"					"70"
 		"AbilityCastPoint"				"0.05 0.05 0.05 0.05"
 	
 		// Time		
@@ -178,6 +177,7 @@
 				"var_type"						"FIELD_FLOAT"
 				"damage"						"70"
 				"LinkedSpecialBonus"			"special_bonus_unique_disruptor_kinetic_charge_1"
+				"LinkedSpecialBonusField"		"damage"
 			}
 		}
 	}
@@ -199,7 +199,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"30"
+				"damage"					"30"
 			}
 			"02"
 			{
@@ -429,7 +429,7 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"value"						"1"
 			}
 		}
@@ -452,7 +452,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"25"
 			}
 		}
 	}

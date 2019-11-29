@@ -700,15 +700,10 @@
 				"var_type"				"FIELD_INTEGER"
 				"projectile_speed"		"900"
 			}			
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range_tooltip"		"625"
-			}	
 			"06"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"duration_tooltip"		"15"
+				"var_type"				"FIELD_FLOAT"
+				"damage_interval"		"3.0"
 			}			
 		}
 	}

@@ -110,12 +110,7 @@ function modifier_disruptor_kinetic_charge_pull:OnCreated()
 	self.pullRadius = self:GetAbility():GetSpecialValueFor("pull_radius")
 	if IsServer() then
 		self:StartIntervalThink(0.03)
-		if self:GetCaster():HasTalent("special_bonus_unique_disruptor_kinetic_charge_1") then self:GetAbility():StartDelayedCooldown( self:GetRemainingTime() + 7 ) end
 	end
-end
-
-function modifier_disruptor_kinetic_charge_pull:OnDestroy()
-	if IsServer and self:GetCaster():HasTalent("special_bonus_unique_disruptor_kinetic_charge_1") then self:GetAbility():EndDelayedCooldown() end
 end
 
 function modifier_disruptor_kinetic_charge_pull:OnIntervalThink()
@@ -185,7 +180,8 @@ modifier_disruptor_kinetic_charge_pull_aura = class({})
 
 function modifier_disruptor_kinetic_charge_pull_aura:OnCreated()
 	if IsServer() then
-		self:StartIntervalThink(0.33)
+		self.damage = self:GetAbility():GetTalentSpecialValueFor("damage")
+		self:StartIntervalThink(0.32)
 	end
 end
 
@@ -194,5 +190,5 @@ function modifier_disruptor_kinetic_charge_pull_aura:GetEffectName()
 end
 
 function modifier_disruptor_kinetic_charge_pull_aura:OnIntervalThink()
-	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self:GetAbilityDamage() * 0.33 )
+	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self.damage * 0.33 )
 end

@@ -13,6 +13,7 @@ function boss_leshrac_erupt:OnSpellStart()
 	local delay = self:GetCastPoint()
 	local stun = self:GetSpecialValueFor("duration_stun")
 	local radius = self:GetSpecialValueFor("impact_radius")
+	local radiusGrowth = self:GetSpecialValueFor("radius_growth")
 	local eruptions = self:GetSpecialValueFor("eruptions")
 	
 	Timers:CreateTimer( function()
@@ -23,6 +24,8 @@ function boss_leshrac_erupt:OnSpellStart()
 		ParticleManager:FireParticle("particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf", PATTACH_CUSTOMORIGIN, caster, {[0] = position, [1] = Vector( radius,1,1) } )
 		EmitSoundOnLocationWithCaster( position, "Hero_Leshrac.Split_Earth", caster )
 		eruptions = eruptions - 1
+		radius = radius + radiusGrowth
+		ParticleManager:FireWarningParticle( position, radius )
 		if eruptions > 0 then
 			return delay
 		end

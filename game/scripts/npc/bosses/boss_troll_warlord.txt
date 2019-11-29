@@ -284,7 +284,7 @@
 	        "01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_as"				"400 600"
+				"bonus_as"				"200 350"
 			}
 			"02"
 			{

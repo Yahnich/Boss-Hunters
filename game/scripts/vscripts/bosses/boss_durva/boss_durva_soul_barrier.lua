@@ -29,7 +29,7 @@ function modifier_boss_durva_soul_barrier:OnIntervalThink()
 		currHP = currHP + hero:GetHealth()
 	end
 	local hpPCT = ( currHP / maxHP ) * 100
-	local stacks = math.floor( self.reduction * math.min(1, 1 - (100 - hpPCT) / (100 - self.min) ) * 10 ) / 10
+	local stacks = math.floor( self.reduction * math.max(0, 1 - (100 - hpPCT) / (100 - self.min) ) * 10 ) / 10
 	stacks = math.min( stacks, self.reduction ) * 10
 	if self:GetStackCount() ~= stacks then self:SetStackCount( stacks ) end
 end
@@ -38,8 +38,11 @@ function modifier_boss_durva_soul_barrier:DeclareFunctions()
 	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
 end
 
-
 function modifier_boss_durva_soul_barrier:GetModifierIncomingDamage_Percentage()
+	return -( self:GetStackCount() / 10 )
+end
+
+function modifier_boss_durva_soul_barrier:GetModifierStatusResistance()
 	return -( self:GetStackCount() / 10 )
 end
 

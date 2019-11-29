@@ -39,7 +39,8 @@ if IsServer() then
 end
 
 function modifier_boss_valgraduth_bomb_spores:CheckState()
-	return {[MODIFIER_STATE_DISARMED] = true}
+	return {[MODIFIER_STATE_DISARMED] = true,
+			[MODIFIER_STATE_ROOTED] = true,}
 end
 
 modifier_boss_valgraduth_bomb_spores_bomb = class({})
@@ -62,6 +63,9 @@ if IsServer() then
 		if not caster or not ability or caster:IsNull() or ability:IsNull() then
 			self:Destroy()
 			return
+		end
+		if parent:HasModifier("modifier_knockback") then
+			return end
 		end
 		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( position, self.trigger_radius ) ) do
 			if CalculateDistance(parent, enemy, true) <= self.trigger_radius then

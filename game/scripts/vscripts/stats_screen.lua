@@ -144,7 +144,7 @@ function StatsScreen:RespecAll(userid, event)
 		end
 		Timers:CreateTimer(function()
 			for _, modifier in ipairs( modifiers ) do
-				if modifier:GetAbility() then
+				if modifier and not modifier:IsNull() and modifier:GetAbility() then
 					if not modifier:GetAbility():IsInnateAbility() and modifier:GetCaster() == hero and not modifier:GetAbility():IsItem() and modifier:GetAbility():GetName() ~= "item_relic_handler" then -- destroy passive modifiers and any buffs
 						modifier:Destroy()
 					end

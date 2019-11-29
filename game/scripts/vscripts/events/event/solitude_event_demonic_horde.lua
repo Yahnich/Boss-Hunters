@@ -87,10 +87,10 @@ local function StartEvent(self)
 	self._vEventHandles = {
 		ListenToGameEvent( "entity_killed", OnEntityKilled, self ),
 	}
-
 	self.timeRemaining = 10
 	self.eventEnded = false
 	self.combatStarted = false
+	self.combatEnded = false
 	self._playerChoices = {}
 	Timers:CreateTimer(1, function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})

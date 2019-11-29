@@ -2,6 +2,7 @@ relic_spirit_painting = class(relicBaseClass)
 
 function relic_spirit_painting:OnCreated()	
 	if IsServer() then
+		LinkLuaModifier( "modifier_relic_spirit_painting_debuff", "relics/relic_spirit_painting", LUA_MODIFIER_MOTION_NONE)
 		self:OnIntervalThink()
 		self:StartIntervalThink(12)
 	end

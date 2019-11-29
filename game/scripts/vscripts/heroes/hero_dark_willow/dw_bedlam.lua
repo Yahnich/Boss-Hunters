@@ -38,10 +38,9 @@ function dw_bedlam:OnToggle()
 	if caster:HasScepter() then
 		if caster:HasModifier("modifier_dw_bedlam") then
 			caster:RemoveModifierByName("modifier_dw_bedlam")
-			self:SetCooldown()
 		else
 			caster:AddNewModifier(caster, self, "modifier_dw_bedlam", {})
-			self:EndCooldown()
+			self:SetCooldown()
 		end
 	end
 end

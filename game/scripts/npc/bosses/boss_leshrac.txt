@@ -37,22 +37,27 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"impact_radius"			"175"
+				"impact_radius"			"125"
 			}
 			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius_growth"			"25"
+			}
+			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration_stun"			"0.5"
 			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"400 500"
-			}
 			"04"
 			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"350"
+			}
+			"05"
+			{
 				"var_type"				"FIELD_FLOAT"
-				"eruptions"				"2"
+				"eruptions"				"2 3"
 			}
 		}
 	}

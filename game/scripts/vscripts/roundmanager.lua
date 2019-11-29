@@ -489,6 +489,8 @@ function RoundManager:EndEvent(bWonRound)
 			clearPeriod = clearPeriod - 0.25
 			if clearPeriod > 0 then
 				return 0.25
+			else
+				collectgarbage()
 			end
 		end)
 		local fTime = (PREP_TIME or 30) / math.ceil( (GameRules:GetGameDifficulty() - 1) / 2 )
@@ -654,6 +656,8 @@ function RoundManager:InitializeUnit(unit, bElite)
 	if GameRules:GetGameDifficulty() == 4 then 
 		expectedHP = expectedHP * 1.4
 		expectedDamage = expectedDamage * 1.35
+	else
+		expectedDamage = expectedDamage * 0.9
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
 	

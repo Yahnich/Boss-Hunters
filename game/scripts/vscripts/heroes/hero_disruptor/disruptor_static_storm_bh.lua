@@ -22,29 +22,33 @@ function modifier_disruptor_static_storm_bh:OnCreated()
 	self.tick = self:GetRemainingTime( ) / self.pulses
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_disruptor_static_storm_1")
+	self.talent1Inc = self:GetCaster():FindTalentValue("special_bonus_unique_disruptor_static_storm_1")
+	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_disruptor_static_storm_2")
+	self.talent2Inc = self:GetCaster():FindTalentValue("special_bonus_unique_disruptor_static_storm_2")
 	if IsServer() then
 		local caster = self:GetCaster()
 		self:GetParent():EmitSound("Hero_Disruptor.StaticStorm")
-		local nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_disruptor/disruptor_static_storm.vpcf", PATTACH_ABSORIGIN, self:GetParent() )
-		ParticleManager:SetParticleControl( nFX, 1, Vector(self.radius, 0, 0) )
-		ParticleManager:SetParticleControl( nFX, 2, Vector( self:GetRemainingTime(), 0, 0 ) )
-		self:AddEffect(nFX)
+		self.nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_disruptor/disruptor_static_storm.vpcf", PATTACH_ABSORIGIN, self:GetParent() )
+		ParticleManager:SetParticleControl( self.nFX , 1, Vector(self.radius, 0, 0) )
+		ParticleManager:SetParticleControl( self.nFX , 2, Vector( self:GetRemainingTime(), 0, 0 ) )
+		self:AddEffect(self.nFX )
 		self:StartIntervalThink( self.tick )
-		if self.talent1 then
-			local thunderstruck = self:GetCaster():FindAbilityByName("disruptor_thunder_strike_bh")
-			if thunderstruck then
-				for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), self.radius ) ) do
-					if enemy:HasModifier("modifier_disruptor_thunder_strike_bh_visual") then
-						for _, newTarget in ipairs( caster:FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), self.radius ) ) do
-							if newTarget ~= enemy and not enemy:HasModifier("modifier_disruptor_thunder_strike_bh_visual") then
-								thunderstruck:OnSpellStart(newTarget)
-							end
-						end
-						return
-					end
-				end
-			end
-		end
+		-- spread thunderstrike talent
+		-- if self.talent1 then
+			-- local thunderstruck = self:GetCaster():FindAbilityByName("disruptor_thunder_strike_bh")
+			-- if thunderstruck then
+				-- for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), self.radius ) ) do
+					-- if enemy:HasModifier("modifier_disruptor_thunder_strike_bh_visual") then
+						-- for _, newTarget in ipairs( caster:FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), self.radius ) ) do
+							-- if newTarget ~= enemy and not enemy:HasModifier("modifier_disruptor_thunder_strike_bh_visual") then
+								-- thunderstruck:OnSpellStart(newTarget)
+							-- end
+						-- end
+						-- return
+					-- end
+				-- end
+			-- end
+		-- end
 		self:OnIntervalThink()
 	end
 end
@@ -59,12 +63,25 @@ end
 function modifier_disruptor_static_storm_bh:OnIntervalThink()
 	local caster = self:GetCaster()
 	local ability = self:GetAbility()
+	if self.talent2 then
+		self.radius = self.radius + self.talent2Inc
+		ParticleManager:SetParticleControl( self.nFX , 1, Vector(self.radius, 0, 0) )
+	end
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), self.radius ) ) do
 		ability:DealDamage( caster, enemy, self.damage * self.tick )
 		if self.talent1 and enemy:HasModifier("modifier_disruptor_kinetic_charge_pull") then
 			local charge = enemy:FindModifierByName("modifier_disruptor_kinetic_charge_pull")
 			if charge then
-				charge:SetDuration( charge:GetRemainingTime() + self.tick, true )
+				charge:SetDuration( charge:GetRemainingTime() + self.talent1Inc, true )
+			end
+		end
+	end
+	if self.talent1 then
+		for _, entity in ipairs( Entities:FindAllInSphere( self:GetParent():GetAbsOrigin(), self.radius ) ) do
+			if entity:GetName() == "npc_dota_thinker" and entity:HasModifier("modifier_disruptor_thunder_strike_bh") then
+				local thunder = entity:FindModifierByName("modifier_disruptor_thunder_strike_bh")
+				thunder.strikes = thunder.strikes + 1
+				print( thunder.strikes, "yikes" )
 			end
 		end
 	end

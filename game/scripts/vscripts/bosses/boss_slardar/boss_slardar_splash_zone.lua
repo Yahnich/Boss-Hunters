@@ -60,7 +60,9 @@ function boss_slardar_splash_zone:OnSpellStart(bForced)
 	Timers:CreateTimer(0.25, function()
 		poolDur = poolDur - 0.25
 		for _,ally in ipairs( caster:FindAllUnitsInRadius(position, poolRadius) ) do
-            local modifier = ally:AddNewModifier( caster, self, "modifier_in_water", {duration = 0.5} )
+			if caster and not caster:IsNull() and ally and not ally:IsNull() then
+				local modifier = ally:AddNewModifier( caster, self, "modifier_in_water", {duration = 0.5} )
+			end
         end
 		if poolDur > 0 then
 			return 0.25

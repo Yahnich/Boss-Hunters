@@ -16,7 +16,7 @@ function modifier_boss_arthromos_plague_aura:OnRefresh()
 end
 
 function modifier_boss_arthromos_plague_aura:IsAura()
-	return true
+	return not self:GetParent():PassivesDisabled()
 end
 
 function modifier_boss_arthromos_plague_aura:GetModifierAura()

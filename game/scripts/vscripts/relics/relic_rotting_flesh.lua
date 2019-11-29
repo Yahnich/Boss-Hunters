@@ -5,6 +5,7 @@ function relic_rotting_flesh:OnCreated()
 end
 
 function relic_rotting_flesh:OnIntervalThink()
+	local modifier = self
 	local parent = self:GetParent()
 	if not parent:IsAlive() then
 		local origin = parent:GetOrigin()
@@ -27,7 +28,6 @@ function relic_rotting_flesh:OnDeath(params)
 		modifier:SetDuration(30.1, true)
 		self:StartIntervalThink(30)
 		modifier:SetStackCount(0)
-		
 	end
 end
 
