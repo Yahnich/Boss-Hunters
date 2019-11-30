@@ -17,7 +17,13 @@ LinkLuaModifier("modifier_drow_ranger_marksmanship_bh_handler", "heroes/hero_dro
 if IsServer() then
 	function modifier_drow_ranger_marksmanship_bh_handler:OnCreated()
 		self.radius = self:GetTalentSpecialValueFor("radius")
+		self.bonusAgility = self:GetTalentSpecialValueFor("marksmanship_agility_bonus") / 100
 		self:StartIntervalThink(0)
+	end
+	
+	function modifier_drow_ranger_marksmanship_bh_handler:OnRefresh()
+		self.radius = self:GetTalentSpecialValueFor("radius")
+		self.bonusAgility = self:GetTalentSpecialValueFor("marksmanship_agility_bonus") / 100
 	end
 	
 	function modifier_drow_ranger_marksmanship_bh_handler:OnIntervalThink()
@@ -25,18 +31,38 @@ if IsServer() then
 		if caster:HasModifier("modifier_drow_ranger_marksmanship_bh_agility") and caster:HasTalent("special_bonus_unique_drow_ranger_marksmanship_2") then
 			AddFOWViewer(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_drow_ranger_marksmanship_2"), 0.05, false)
 		end
-		if not caster:HasTalent("special_bonus_unique_drow_ranger_marksmanship_1") then
-			local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self.radius )
-			if #enemies > 0 then
-				caster:RemoveModifierByName("modifier_drow_ranger_marksmanship_bh_agility")
-			else
-				caster:AddNewModifier(caster, self:GetAbility(), "modifier_drow_ranger_marksmanship_bh_agility", {})
-			end
-		else
-			caster:AddNewModifier(caster, self:GetAbility(), "modifier_drow_ranger_marksmanship_bh_agility", {})
+		local stacks = self:GetStackCount()
+		if stacks ~= math.floor(caster:GetAgility() - stacks) * self.bonusAgility then
+			self:SetStackCount( math.floor(caster:GetAgility() - stacks) * self.bonusAgility )
 		end
 	end
 end
+
+
+function modifier_drow_ranger_marksmanship_bh_handler:IsAura()
+	if IsServer() then
+		local caster = self:GetCaster()
+		local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self.radius )
+		return caster:HasTalent("special_bonus_unique_drow_ranger_marksmanship_1") or #enemies <= 0
+	end
+end
+
+function modifier_drow_ranger_marksmanship_bh_handler:GetModifierAura()
+	return "modifier_drow_ranger_marksmanship_bh_agility"
+end
+
+function modifier_drow_ranger_marksmanship_bh_handler:GetAuraRadius()
+	return self.radius
+end
+
+function modifier_drow_ranger_marksmanship_bh_handler:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+
+function modifier_drow_ranger_marksmanship_bh_handler:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+
 
 function modifier_drow_ranger_marksmanship_bh_handler:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
@@ -91,20 +117,12 @@ end
 modifier_drow_ranger_marksmanship_bh_agility = class({})
 LinkLuaModifier("modifier_drow_ranger_marksmanship_bh_agility", "heroes/hero_drow_ranger/drow_ranger_marksmanship_bh", LUA_MODIFIER_MOTION_NONE)
 
-function modifier_drow_ranger_marksmanship_bh_agility:OnCreated()
-	self.agility = self:GetTalentSpecialValueFor("marksmanship_agility_bonus")
-end
-
-function modifier_drow_ranger_marksmanship_bh_agility:OnRefresh()
-	self.agility = self:GetTalentSpecialValueFor("marksmanship_agility_bonus")
-end
-
 function modifier_drow_ranger_marksmanship_bh_agility:DeclareFunctions()
 	return {MODIFIER_PROPERTY_STATS_AGILITY_BONUS}
 end
 
 function modifier_drow_ranger_marksmanship_bh_agility:GetModifierBonusStats_Agility()
-	return self.agility
+	return self:GetCaster():GetModifierStackCount( "modifier_drow_ranger_marksmanship_bh_handler", self:GetCaster() )
 end
 
 function modifier_drow_ranger_marksmanship_bh_agility:GetEffectName()

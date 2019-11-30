@@ -17,7 +17,11 @@ function legion_commander_war_fury:GetIntrinsicModifierName()
 end
 
 function legion_commander_war_fury:OnTalentLearned()
-	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_legion_commander_war_fury_thinker", {})
+	if self:GetCaster():HasTalent("special_bonus_unique_legion_commander_war_fury_1") then
+		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_legion_commander_war_fury_thinker", {})
+	else
+		self:GetCaster():RemoveModifierByName("modifier_legion_commander_war_fury_thinker")
+	end
 end
 
 function legion_commander_war_fury:GetAOERadius()

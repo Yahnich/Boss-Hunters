@@ -5,8 +5,10 @@ function queenofpain_blink_bh:GetIntrinsicModifierName()
 end
 
 function queenofpain_blink_bh:OnTalentLearned(talentName)
-	if talentName == "special_bonus_unique_queenofpain_blink_2" then
+	if self:GetCaster():HasTalent("special_bonus_unique_queenofpain_blink_2") then
 		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_queenofpain_blink_bh_charges", {})
+	else
+		self:GetCaster():RemoveModifierByName("modifier_queenofpain_blink_bh_charges")
 	end
 end
 

@@ -18,8 +18,10 @@ function zeus_olympus_calls:GetIntrinsicModifierName()
 end
 
 function zeus_olympus_calls:OnTalentLearned(talent)
-	if talent == "special_bonus_unique_zeus_olympus_calls_1" then
+	if self:GetCaster():HasTalent("special_bonus_unique_zeus_olympus_calls_1") then
 		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_zeus_olympus_calls_talent", {})
+	else
+		self:GetCaster():RemoveModifierByName("modifier_zeus_olympus_calls_talent")
 	end
 end
 

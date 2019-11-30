@@ -188,6 +188,7 @@
 #base "heroes/hero_phantom_lancer.txt"
 #base "heroes/hero_invoker.txt"
 #base "heroes/hero_mars.txt"
+#base "heroes/hero_void_spirit.txt"
 
 "DOTAAbilities"
 {
@@ -1597,6 +1598,529 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"cooldown_scepter"			"30"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Snapfire Scatterblast
+	//=================================================================================================================
+	"snapfire_scatterblast"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"6480"	// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Snapfire.Shotgun.Fire"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.4"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate"			"1.2" // 1.0 corresponds to cast point of 0.45 or so
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"80 90 100 110 120 130 140"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"80 150 220 290 360 430 500"
+				"LinkedSpecialBonus"		"special_bonus_unique_snapfire_7"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"blast_speed"				"3000"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"blast_width_initial"		"225"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"blast_width_end"			"400"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"debuff_duration"			"1.0"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"movement_slow_pct"			"100"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"point_blank_range"			"450"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"point_blank_dmg_bonus_pct"	"50.0"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Snapfire Mortimer Kisses
+	//=================================================================================================================
+	"snapfire_mortimer_kisses"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"6482"	// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilitySound"					"Hero_Snapfire.MortimerBlob.Launch"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"3000"
+		"AbilityCastPoint"				"0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"90"
+		"AbilityDuration"				"6.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"125 150 175 200 225 250"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"projectile_count"		"4"
+				"LinkedSpecialBonus"	"special_bonus_unique_snapfire_1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"projectile_speed"		"1300"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"projectile_width"		"130"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"impact_radius"			"275"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_per_impact"		"200 300 400 500 600 700"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration_tooltip"		"6.0"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"projectile_vision"		"500"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"turn_rate"				"75"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"burn_interval"			"0.5"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"burn_damage"			"50 75 100 125 150 175"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"move_slow_pct"			"25"
+				"LinkedSpecialBonus"	"special_bonus_unique_snapfire_4"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"burn_ground_duration"	"3.0"
+			}
+			"13"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"dist_change_speed"		"75"
+			}
+			"14"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"min_range"				"600"
+			}
+			"15"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"min_lob_travel_time"	"0.8"
+			}
+			"16"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_lob_travel_time"	"2.0"
+			}
+			"17"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"delay_after_last_projectile"	"0.5"
+			}
+			"18"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"burn_linger_duration"	"1.0"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Snapfire Firesnap Cookie
+	//=================================================================================================================
+	"snapfire_firesnap_cookie"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"6483"	// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Snapfire.FeedCookie.Cast"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"24 22 20 18 16 14 12"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"projectile_speed"		"800"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pre_hop_duration"		"0.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"jump_duration"			"0.484" //"0.431 0.484 0.538 0.592" // proportional to horizontal distance
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"jump_height"			"257" //"228 257 285 314" // proportional to horizontal distance
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"jump_horizontal_distance"	"450" //"400 450 500 550"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pre_land_anim_time"	"0.14"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"landing_gesture_duration"	"0.6"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"impact_radius"			"300"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"impact_damage"			"90 160 230 300 370 440 510"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"impact_stun_duration"	"1.6 1.75 1.9 2.05 2.2 2.35 2.5"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"self_cast_delay"		"0.4"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Snapfire Lil Shredder
+	//=================================================================================================================
+	"snapfire_lil_shredder"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"6488"	// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Snapfire.ExplosiveShells.Cast"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+		"AbilityCastRange"				"800"
+		"AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_3"
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"24 22 20 18 16 14 12"
+		"AbilityDuration"				"8"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"75"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"40 60 80 100 120 140 160"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"buffed_attacks"				"6"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"attack_speed_bonus"			"300"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"attack_range_bonus"			"300"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"buff_duration_tooltip"			"8"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"base_attack_time"				"1.0"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"attack_speed_slow_per_stack"	"20 25 30 35 40 45 50"
+			}
+			"08"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"slow_duration"					"3.0"
+			}
+		}
+	}
+
+ 	//=================================================================================================================
+	// Ability: Snapfire Special Bonus (Bonus Mortimer Kisses Launched)
+	//=================================================================================================================
+  	"special_bonus_unique_snapfire_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"						"6485"	// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"				"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"value"				"4"
+			}
+		}
+	}
+
+ 	//=================================================================================================================
+	// Ability: Snapfire Special Bonus
+	//=================================================================================================================
+  	"special_bonus_unique_snapfire_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"						"6487"	// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"				"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"value"				"1.5" // bonus Armor Shredder armor reduction
+			}
+		}
+	}
+
+ 	//=================================================================================================================
+	// Ability: Snapfire Special Bonus
+	//=================================================================================================================
+  	"special_bonus_unique_snapfire_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"						"6489"	// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"				"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"value"				"3.0" // shotgun disarm
+			}
+		}
+	}
+
+ 	//=================================================================================================================
+	// Ability: Snapfire Special Bonus
+	//=================================================================================================================
+  	"special_bonus_unique_snapfire_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"						"6490"	// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"				"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"value"				"25" // Lizard Blobs Movement Slow
+			}
+		}
+	}
+
+ 	//=================================================================================================================
+	// Ability: Snapfire Special Bonus
+	//=================================================================================================================
+  	"special_bonus_unique_snapfire_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"						"6479"	// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"				"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"value"				"250" // Cookie Restores Health
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Snapfire Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_snapfire_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"						"382"	// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"				"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"value"				"1" // Mounted Turret Uses Your Attack
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Snapfire Special Bonus (Bonus Scatterblast Damage)
+	//=================================================================================================================
+	"special_bonus_unique_snapfire_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"						"384"	// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"				"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"value"				"60"
 			}
 		}
 	}

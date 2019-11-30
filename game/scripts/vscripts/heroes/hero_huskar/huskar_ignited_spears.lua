@@ -21,6 +21,7 @@ function huskar_ignited_spears:OnSpellStart()
 	self.forceCast = true
 	self:GetCaster():SetAttacking( target )
 	self:GetCaster():MoveToTargetToAttack( target )
+	self:RefundManaCost()
 end
 
 

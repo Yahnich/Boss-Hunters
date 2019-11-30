@@ -175,7 +175,6 @@ function kotl_illuminate:LaunchHorses(hCaster, vLocation, direction)
     local vel = direction * speed
 
 	self.count = math.max( 1, math.floor( self.count + 0.5 ) )
-	print( self.count, self.count % 2 == 1, self.count / 2 > 0, "?" )
 	if self.count % 2 == 1 then
 		self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, distance, radius, {origin=firstHorse, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
 	end

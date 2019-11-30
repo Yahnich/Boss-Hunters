@@ -7,7 +7,11 @@ function troll_warlord_axe_throw:GetIntrinsicModifierName()
 end
 
 function troll_warlord_axe_throw:OnTalentLearned(talent)
-	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_troll_warlord_whirling_axes_talent", {} )
+	if self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_whirling_axes_1") then 
+		self:GetCaster():AddNewModifier( self:GetCaster(), self, "modifier_troll_warlord_whirling_axes_talent", {} )
+	else
+		self:GetCaster():RemoveModifierByName("modifier_troll_warlord_whirling_axes_talent")
+	end
 end
 
 function troll_warlord_axe_throw:OnSpellStart()

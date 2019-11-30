@@ -41,8 +41,10 @@ function night_stalker_void_bh:Void(target)
 end
 
 function night_stalker_void_bh:OnTalentLearned(talent)
-	if talent == "special_bonus_unique_night_stalker_void_1" then
+	if self:GetCaster():HasTalent("special_bonus_unique_night_stalker_void_1") then
 		self:GetCaster():AddNewModifier( self:GetCaster(), self, "modifier_night_stalker_void_talent", {})
+	else
+		self:GetCaster():RemoveModifierByName("modifier_night_stalker_void_talent")
 	end
 end
 

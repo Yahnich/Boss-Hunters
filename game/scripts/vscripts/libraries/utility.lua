@@ -1094,7 +1094,7 @@ end
 
 function CDOTA_BaseNPC:GetPhysicalArmorReduction()
 	local armornpc = self:GetPhysicalArmorValue(false)
-	local armor_reduction = 1 - (0.05 * armornpc) / (1 + (0.05 * math.abs(armornpc)))
+	local armor_reduction = 1 - ((0.052 * armornpc) / (0.9 + 0.048 * math.abs(armornpc)))
 	armor_reduction = 100 - (armor_reduction * 100)
 	return armor_reduction
 end
@@ -2256,8 +2256,9 @@ function RollPRNGFormula( object, percentage )
 			object.weight = FindProbabilityWeight(percentage)
 			object.basePercentage = percentage
 		end
-		object.currentPercentage = (object.currentPercentage or 0) + object.weight
+		object.currentPercentage = (object.currentPercentage or 0)
 		local roll = RollPercentage( object.currentPercentage )
+		object.currentPercentage = (object.currentPercentage or 0) + object.weight
 		if roll then
 			object.currentPercentage = object.weight
 		end

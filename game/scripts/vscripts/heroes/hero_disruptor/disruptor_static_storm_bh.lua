@@ -81,7 +81,6 @@ function modifier_disruptor_static_storm_bh:OnIntervalThink()
 			if entity:GetName() == "npc_dota_thinker" and entity:HasModifier("modifier_disruptor_thunder_strike_bh") then
 				local thunder = entity:FindModifierByName("modifier_disruptor_thunder_strike_bh")
 				thunder.strikes = thunder.strikes + 1
-				print( thunder.strikes, "yikes" )
 			end
 		end
 	end

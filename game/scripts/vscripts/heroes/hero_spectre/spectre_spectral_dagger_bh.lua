@@ -7,8 +7,10 @@ function spectre_spectral_dagger_bh:GetIntrinsicModifierName()
 end
 
 function spectre_spectral_dagger_bh:OnTalentLearned(talent)
-	if talent == "special_bonus_unique_spectre_spectral_dagger_1" then
-		self:GetCaster():AddNewModifier( self:GetCaster(), self, "modifier_spectre_spectral_dagger_bh_path", {} )
+	if self:GetCaster():HasTalent("special_bonus_unique_spectre_spectral_dagger_1") then
+		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_spectre_spectral_dagger_bh_path", {})
+	else
+		self:GetCaster():RemoveModifierByName("modifier_spectre_spectral_dagger_bh_path")
 	end
 end
 

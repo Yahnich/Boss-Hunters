@@ -30,6 +30,7 @@ require( "libraries/notifications" )
 require( "statcollection/init" )
 require("libraries/utility")
 require( "libraries/clientserver" )
+require( "libraries/vector_targeting" )
 require("libraries/animations")
 require("stats_screen")
 require("relicmanager")
@@ -663,6 +664,52 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 		else
 			hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1
 		end
+	end
+	-- fix valve's bullshit auto-talent leveling
+	-- take snapshot at lv 29
+	if hero:GetLevel() == 29 then
+		hero.savedTalentData = CustomNetTables:GetTableValue("talents", tostring(hero:entindex())) or {}
+		hero.savedTalentsSkilled = hero.talentsSkilled
+	end
+	-- reset to snapshot at 30
+	if hero:GetLevel() == 30 then
+		Timers:CreateTimer(0.1, function()
+			local talentData = hero.savedTalentData
+			hero.talentsSkilled = hero.savedTalentsSkilled
+			for i = 0, 23 do
+				local ability = hero:GetAbilityByIndex(i)
+				if ability then
+					abilityname = ability:GetAbilityName()
+					if string.match(abilityname, "special_bonus" ) and not talentData[abilityname] then
+						ability:SetLevel(0)
+						if GameRules.AbilityKV[abilityname] then
+							if GameRules.AbilityKV[abilityname]["LinkedModifierName"] then
+								local modifierName = GameRules.AbilityKV[abilityname]["LinkedModifierName"] 
+								for _, unit in ipairs( FindAllUnits() ) do
+									if unit:HasModifier(modifierName) then
+										local mList = unit:FindAllModifiersByName(modifierName)
+										for _, modifier in ipairs( mList ) do
+											local remainingDur = modifier:GetRemainingTime()
+											modifier:ForceRefresh()
+											if remainingDur > 0 then modifier:SetDuration(remainingDur, true) end
+										end
+									end
+								end
+							end
+							if GameRules.AbilityKV[abilityname]["LinkedAbilityName"] then
+								local abilityName = GameRules.AbilityKV[abilityname]["LinkedAbilityName"] or ""
+								local ability = hero:FindAbilityByName(abilityName)
+								if ability and ability.OnTalentLearned then
+									ability:OnTalentLearned(abilityname)
+								end
+							end
+						end
+					end
+				end
+			end
+			CustomNetTables:SetTableValue( "talents", tostring(hero:entindex()), talentData )
+			CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
+		end)
 	end
 end
 

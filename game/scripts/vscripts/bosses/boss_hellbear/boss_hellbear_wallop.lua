@@ -28,7 +28,7 @@ function boss_hellbear_wallop:OnSpellStart()
 	ParticleManager:FireParticle("particles/units/heroes/hero_tusk/tusk_walruspunch_start.vpcf", PATTACH_POINT, target, {[0]=target:GetAbsOrigin()})
 	local airTime = self:GetSpecialValueFor("stun_duration")
 	local knockback = self:GetSpecialValueFor("knockback")
-	print( knockback )
+	
 	target:ApplyKnockBack(caster:GetAbsOrigin(), airTime, airTime/2, knockback, 500, caster, self, true)
-	self:DealDamage( caster, target, damage )
+	self:DealDamage( caster, target, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 end

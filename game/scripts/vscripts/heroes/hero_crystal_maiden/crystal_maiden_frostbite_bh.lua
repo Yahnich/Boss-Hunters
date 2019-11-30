@@ -7,8 +7,10 @@ function crystal_maiden_frostbite_bh:GetIntrinsicModifierName()
 end
 
 function crystal_maiden_frostbite_bh:OnTalentLearned(talent)
-	if talent == "special_bonus_unique_crystal_maiden_frostbite_1" then
+	if self:GetCaster():HasTalent("special_bonus_unique_crystal_maiden_frostbite_1") then
 		self:GetCaster():AddNewModifier( self:GetCaster(), self, "modifier_crystal_maiden_frostbite_bh_talent", {} )
+	elseif not self:GetCaster():HasTalent("special_bonus_unique_crystal_maiden_frostbite_1") then
+		self:GetCaster():RemoveModifierByName("modifier_crystal_maiden_frostbite_bh_talent")
 	end
 end
 

@@ -6,10 +6,10 @@ function modifier_cooldown_reduction_handler:OnStackCountChanged()
 end
 	
 function modifier_cooldown_reduction_handler:DeclareFunctions()
-	return {MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING}
+	return {MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE}
 end
 
-function modifier_cooldown_reduction_handler:GetModifierPercentageCooldownStacking()
+function modifier_cooldown_reduction_handler:GetModifierPercentageCooldown()
 	return self.cdr or 0
 end
 
