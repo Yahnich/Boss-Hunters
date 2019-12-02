@@ -101,7 +101,7 @@ function VectorTarget:OrderFilter(event)
 		local playerID = unit:GetPlayerID()
 		local player = PlayerResource:GetPlayer(playerID)
 		-- check if valid vector cast
-		if unit.inVectorCast == nil and ability:IsVectorTargeting() and event.order_type == DOTA_UNIT_ORDER_CAST_POSITION then
+		if ability and unit.inVectorCast == nil and ability:IsVectorTargeting() and event.order_type == DOTA_UNIT_ORDER_CAST_POSITION then
 			CustomGameEventManager:Send_ServerToPlayer(player, "vector_target_cast_start", {ability = event.entindex_ability, 
 																							startWidth = ability:GetVectorTargetStartRadius(), 
 																							endWidth = ability:GetVectorTargetEndRadius(), 
