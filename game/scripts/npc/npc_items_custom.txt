@@ -225,7 +225,7 @@
 		"ItemResult"					"item_force_boots"
 		"ItemRequirements"
 		{
-			"01"						"item_elven_boots;item_gauntlet_of_alacrity"
+			"01"						"item_elven_boots"
 		}
 	}
 	//=================================================================================================================
@@ -257,32 +257,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_movement_speed"  "18"
+				"bonus_movement_speed"	"30"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_str"				"10"
+				"push_length"			"800"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_agi"				"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_int"				"10"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"30"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"push_length"			"800"
+				"var_type"				"FIELD_FLOAT"
+				"push_duration"			"0.65"
 			}
 		}
 	}

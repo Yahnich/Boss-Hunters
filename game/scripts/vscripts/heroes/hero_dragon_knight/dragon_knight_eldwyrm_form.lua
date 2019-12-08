@@ -17,6 +17,19 @@ modifier_dragon_knight_eldwyrm_form = class({})
 LinkLuaModifier("modifier_dragon_knight_eldwyrm_form", "heroes/hero_dragon_knight/dragon_knight_eldwyrm_form", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_dragon_knight_eldwyrm_form:OnCreated()
+	self:OnRefresh()
+	if IsServer() then
+		local caster = self:GetCaster()
+		caster:SetModel("models/heroes/dragon_knight/dragon_knight_dragon.vmdl")
+		caster:SetOriginalModel("models/heroes/dragon_knight/dragon_knight_dragon.vmdl")
+		caster:NotifyWearablesOfModelChange( false )
+		self.oldScale = caster:GetModelScale()
+		-- caster:SetModelScale( self.oldScale * (1 + (self.scale/100) ) )
+		caster:SetMaterialGroup("3")
+	end
+end
+
+function modifier_dragon_knight_eldwyrm_form:OnRefresh()
 	self.poison_duration = self:GetTalentSpecialValueFor("dot_duration")
 	self.cleave = self:GetTalentSpecialValueFor("area_damage")
 	self.mr = self:GetTalentSpecialValueFor("magic_resist")
@@ -39,22 +52,11 @@ function modifier_dragon_knight_eldwyrm_form:OnCreated()
 	end
 	if IsServer() then
 		local caster = self:GetCaster()
-		caster:SetModel("models/heroes/dragon_knight/dragon_knight_dragon.vmdl")
-		caster:SetOriginalModel("models/heroes/dragon_knight/dragon_knight_dragon.vmdl")
-		caster:NotifyWearablesOfModelChange( false )
-		self.oldScale = caster:GetModelScale()
-		caster:SetModelScale( self.oldScale * (1 + (self.scale/100) ) )
-		caster:SetMaterialGroup("3")
-		
 		caster:StartGesture( ACT_DOTA_CAST_ABILITY_4 )
 		
 		EmitSoundOn("Hero_DragonKnight.ElderDragonForm", caster)
 		ParticleManager:FireParticle("particles/units/heroes/hero_dragon_knight/dragon_knight_transform_black.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster, {[1] = caster:GetAbsOrigin()})
 	end
-end
-
-function modifier_dragon_knight_eldwyrm_form:OnRefresh()
-	self:OnCreated()
 end
 
 function modifier_dragon_knight_eldwyrm_form:OnIntervalThink()
@@ -71,7 +73,7 @@ function modifier_dragon_knight_eldwyrm_form:OnDestroy()
 		caster:NotifyWearablesOfModelChange( true )
 		caster:SetMaterialGroup( "knight_color" )
 		
-		caster:SetModelScale( self.oldScale )
+		-- caster:SetModelScale( self.oldScale )
 		
 		caster:StartGesture( ACT_DOTA_SPAWN )
 		

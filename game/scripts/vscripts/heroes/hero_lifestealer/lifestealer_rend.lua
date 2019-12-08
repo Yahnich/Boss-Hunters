@@ -58,10 +58,13 @@ if IsServer() then
     end
     
     function modifier_lifestealer_rend_autocast:OnAttackLanded(params)
-        if params.attacker == self:GetParent() and params.target and ( self:GetAbility():GetAutoCastState() or self:GetAbility().forceCast ) then
+        if params.attacker == self:GetParent() and params.target and ( self:GetAbility():GetAutoCastState() or self:GetAbility().forceCast ) and self:GetAbility():IsOwnersManaEnough() then
             if not params.target:IsMagicImmune() then
 				params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_lifestealer_rend_debuff", {Duration = self.duration}):AddIndependentStack()
 				self:GetAbility():SpendMana()
+				if not self:GetAbility():IsOwnersManaEnough() and self:GetAbility():GetAutoCastState() then
+					self:GetAbility():ToggleAutoCast()
+				end
 				self:GetAbility().forceCast = false
             end
         end

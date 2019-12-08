@@ -4,7 +4,7 @@ function rattletrap_aegis_deflector:GetIntrinsicModifierName()
 	return "modifier_rattletrap_aegis_deflector_passive"
 end
 
-function rattletrap_aegis_deflector:AegisProc(target)
+function rattletrap_aegis_deflector:AegisProc(target, bKnockback)
 	local caster = self:GetCaster()
 	
 	local duration = self:GetTalentSpecialValueFor("buff_duration")
@@ -52,11 +52,11 @@ end
 
 
 function modifier_rattletrap_aegis_deflector_passive:OnAttackLanded( params )
-	if params.attacker and params.unit == self:GetParent() and params.attacker ~= params.unit and RollPercentage( self.chance ) then
+	if params.attacker and params.target == self:GetParent() and params.attacker ~= params.target and self:RollPRNG( self.chance ) then
 		self:GetAbility():AegisProc(params.attacker, true)
 	end
-	if not params.inflictor and self:GetParent():HasTalent("special_bonus_unique_rattletrap_aegis_deflector_1") and params.attacker == self:GetParent() and RollPercentage( self:GetParent():FindTalentValue("special_bonus_unique_rattletrap_aegis_deflector_1") ) then
-		self:GetAbility():AegisProc(params.unit, false)
+	if not params.inflictor and self:GetParent():HasTalent("special_bonus_unique_rattletrap_aegis_deflector_1") and params.attacker == self:GetParent() and self:RollPRNG( self:GetParent():FindTalentValue("special_bonus_unique_rattletrap_aegis_deflector_1") ) then
+		self:GetAbility():AegisProc(params.target, false)
 	end
 end
 
