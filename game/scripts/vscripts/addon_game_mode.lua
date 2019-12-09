@@ -1020,6 +1020,14 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 		end)
 	elseif nNewState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 		RoundManager:StartGame()
+		Timers:CreateTimer(1,function()
+			if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+				for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+					hero:AddGold(1)
+				end
+				return 1
+			end
+		end)
 	end
 end
 

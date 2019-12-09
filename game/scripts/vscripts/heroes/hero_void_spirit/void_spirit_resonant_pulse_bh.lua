@@ -89,7 +89,7 @@ function modifier_void_spirit_resonant_pulse_shield:OnDestroy()
 		local caster = self:GetCaster()
 		EmitSoundOn( "Hero_VoidSpirit.Pulse.Destroy", caster )
 		if caster:HasTalent("special_bonus_unique_void_spirit_resonant_pulse_2") then
-			caster:AddNewModifier( caster, self:GetAbility(), "modifier_void_spirit_resonant_pulse_talent", {duration = caster:HasTalent("special_bonus_unique_void_spirit_resonant_pulse_1")} )
+			caster:AddNewModifier( caster, self:GetAbility(), "modifier_void_spirit_resonant_pulse_talent", {duration = caster:FindTalentValue("special_bonus_unique_void_spirit_resonant_pulse_2")} )
 		end
 	end
 end

@@ -1942,7 +1942,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"40 60 80 100 120 140 160"
+				"damage"						"40 60 85 105 140 180 225"
 			}
 			"02"
 			{
@@ -1952,7 +1952,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"attack_speed_bonus"			"300"
+				"attack_speed_bonus"			"800"
 			}
 			"04"
 			{

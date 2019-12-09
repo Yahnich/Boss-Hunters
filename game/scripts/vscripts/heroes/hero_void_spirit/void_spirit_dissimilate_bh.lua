@@ -17,6 +17,8 @@ function void_spirit_dissimilate_bh:OnSpellStart()
 	caster:Stop()
 	caster:Interrupt()
 	caster:Hold()
+	self:SetActivated( false )
+	self:EndCooldown()
 	caster:AddNewModifier( caster, self, "modifier_void_spirit_dissimilate_oow", {duration = self:GetTalentSpecialValueFor("phase_duration")})
 	EmitSoundOn( "Hero_VoidSpirit.Dissimilate.Cast", caster )
 end
@@ -24,32 +26,10 @@ end
 function void_spirit_dissimilate_bh:CreatePortal( position, active )
 	local caster = self:GetCaster()
 	local radius = self:GetTalentSpecialValueFor("damage_radius")
-	local duration = self:GetTalentSpecialValueFor("phase_duration")
-	local damage = self:GetTalentSpecialValueFor("damage")
 	local fx = ParticleManager:CreateParticle( "particles/units/heroes/hero_void_spirit/dissimilate/void_spirit_dissimilate.vpcf", PATTACH_WORLDORIGIN, caster )
 	ParticleManager:SetParticleControl( fx, 0, position )
 	ParticleManager:SetParticleControl( fx, 1, Vector( radius, 0, 0 ) )
 	ParticleManager:SetParticleControl( fx, 2, Vector( (active and 1) or 0, 0, 0 ) )
-	Timers:CreateTimer( duration, function()
-		if self.portals[fx].active then
-			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-				damageDealt = damage
-				if caster:HasTalent("special_bonus_unique_void_spirit_dissimilate_2") and enemy:IsMinion() then
-					damageDealt = damageDealt * caster:FindTalentValue("special_bonus_unique_void_spirit_dissimilate_2")
-				end
-				if caster:HasTalent("special_bonus_unique_void_spirit_dissimilate_1") then
-					enemy:AddNewModifier( caster, self, "modifier_void_spirit_dissimilate_talent", {duration = caster:FindTalentValue("special_bonus_unique_void_spirit_dissimilate_1", "duration")} )
-				end
-				self:DealDamage( caster, enemy, damageDealt )
-			end
-			ParticleManager:FireParticle( "particles/units/heroes/hero_void_spirit/dissimilate/void_spirit_dissimilate_dmg.vpcf", PATTACH_CUSTOMORIGIN, caster, {[0] = position, [1] = Vector( radius, 1, 1 ) } )
-			ParticleManager:FireParticle( "particles/units/heroes/hero_void_spirit/dissimilate/void_spirit_dissimilate_exit.vpcf", PATTACH_POINT_FOLLOW, caster )
-			FindClearSpaceForUnit( caster, position, true)
-			EmitSoundOn( "Hero_VoidSpirit.Dissimilate.TeleportIn", caster )
-			
-		end
-		ParticleManager:ClearParticle( fx )
-	end)
 	self.portals[fx] = {position = position, active = active}
 end
 
@@ -89,7 +69,41 @@ if IsServer() then
 	end
 
 	function modifier_void_spirit_dissimilate_oow:OnDestroy()
-		self:GetCaster():RemoveNoDraw()
+		local caster = self:GetCaster()
+		local ability = self:GetAbility()
+		caster:RemoveNoDraw()
+		
+		local radius = self:GetTalentSpecialValueFor("damage_radius")
+		local damage = self:GetTalentSpecialValueFor("damage")
+		local damageDealt = damage
+		local talent1 = caster:HasTalent("special_bonus_unique_void_spirit_dissimilate_1")
+		local talent1Data = caster:FindTalentValue("special_bonus_unique_void_spirit_dissimilate_1", "duration")
+		local talent2 = caster:HasTalent("special_bonus_unique_void_spirit_dissimilate_2")
+		local talent2Data = caster:FindTalentValue("special_bonus_unique_void_spirit_dissimilate_2")
+		
+		for portalFx, portalData in pairs( ability.portals ) do
+			if portalData.active then
+				for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( portalData.position, radius ) ) do
+					damageDealt = damage
+					if talent2 and enemy:IsMinion() then
+						damageDealt = damageDealt * talent2Data
+					end
+					if talent1 then
+						enemy:AddNewModifier( caster, ability, "modifier_void_spirit_dissimilate_talent", {duration = talent1Data} )
+					end
+					ability:DealDamage( caster, enemy, damageDealt )
+				end
+				ParticleManager:FireParticle( "particles/units/heroes/hero_void_spirit/dissimilate/void_spirit_dissimilate_dmg.vpcf", PATTACH_CUSTOMORIGIN, caster, {[0] = portalData.position, [1] = Vector( radius/2, 1, 1 ) } )
+				ParticleManager:FireParticle( "particles/units/heroes/hero_void_spirit/dissimilate/void_spirit_dissimilate_exit.vpcf", PATTACH_POINT_FOLLOW, caster )
+				FindClearSpaceForUnit( caster, portalData.position, true)
+				EmitSoundOn( "Hero_VoidSpirit.Dissimilate.TeleportIn", caster )
+				
+			end
+			ParticleManager:ClearParticle( portalFx )
+		end
+		
+		ability:SetActivated( true )
+		ability:SetCooldown()
 	end
 end
 
@@ -99,7 +113,7 @@ end
 
 function modifier_void_spirit_dissimilate_oow:OnOrder( params )
 	if params.unit == self:GetParent() then
-		if params.order_type == 1 and params.new_pos ~= Vector(0, 0, 0) then
+		if params.new_pos ~= Vector(0, 0, 0) then
 			local ability = self:GetAbility()
 			local portals = ability.portals
 			local nearestPortal
@@ -114,6 +128,8 @@ function modifier_void_spirit_dissimilate_oow:OnOrder( params )
 			end
 			portals[nearestPortal].active = true
 			ParticleManager:SetParticleControl( nearestPortal, 2, Vector( 1, 0, 0 ) )
+		elseif params.order_type == DOTA_UNIT_ORDER_STOP or params.order_type == DOTA_UNIT_ORDER_HOLD_POSITION then
+			self:Destroy()
 		end
 	end
 end

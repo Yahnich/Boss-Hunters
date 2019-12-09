@@ -2204,7 +2204,7 @@ function CDOTA_BaseNPC:RemoveBlind()
 	end
 end
 
-function CDOTA_BaseNPC:AddGold(val)
+function CDOTA_BaseNPC:AddGold(val, bSound)
 	if self:GetPlayerID() >= 0 then
 		local hero = PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() )
 		if hero then
@@ -2219,7 +2219,9 @@ function CDOTA_BaseNPC:AddGold(val)
 			local gold = hero:GetGold() + gold
 			hero:SetGold(0, false)
 			hero:SetGold(gold, true)
-			SendOverheadEventMessage(self:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, self, val, self:GetPlayerOwner())
+			if bSound then
+				SendOverheadEventMessage(self:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, self, val, self:GetPlayerOwner())
+			end
 		end
 	end
 end

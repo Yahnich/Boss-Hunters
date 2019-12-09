@@ -20,12 +20,15 @@ function modifier_dragon_knight_eldwyrm_form:OnCreated()
 	self:OnRefresh()
 	if IsServer() then
 		local caster = self:GetCaster()
-		caster:SetModel("models/heroes/dragon_knight/dragon_knight_dragon.vmdl")
-		caster:SetOriginalModel("models/heroes/dragon_knight/dragon_knight_dragon.vmdl")
-		caster:NotifyWearablesOfModelChange( false )
+		-- caster:SetModel("models/heroes/dragon_knight/dragon_knight_dragon.vmdl")
+		-- caster:SetOriginalModel("models/heroes/dragon_knight/dragon_knight_dragon.vmdl")
+		caster:NotifyWearablesOfModelChange( true )
 		self.oldScale = caster:GetModelScale()
 		-- caster:SetModelScale( self.oldScale * (1 + (self.scale/100) ) )
-		caster:SetMaterialGroup("3")
+		Timers:CreateTimer(function()
+			caster:StartGesture( ACT_DOTA_CAST_ABILITY_4 )
+			caster:SetMaterialGroup("3") 
+		end)
 	end
 end
 
@@ -68,8 +71,8 @@ end
 function modifier_dragon_knight_eldwyrm_form:OnDestroy()
 	if IsServer() then
 		local caster = self:GetCaster()
-		caster:SetModel("models/heroes/dragon_knight/dragon_knight.vmdl")
-		caster:SetOriginalModel("models/heroes/dragon_knight/dragon_knight.vmdl")
+		-- caster:SetModel("models/heroes/dragon_knight/dragon_knight.vmdl")
+		-- caster:SetOriginalModel("models/heroes/dragon_knight/dragon_knight.vmdl")
 		caster:NotifyWearablesOfModelChange( true )
 		caster:SetMaterialGroup( "knight_color" )
 		
@@ -86,6 +89,7 @@ function modifier_dragon_knight_eldwyrm_form:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_TAKEDAMAGE,
 			MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 			MODIFIER_PROPERTY_MODEL_SCALE,
+			MODIFIER_PROPERTY_MODEL_CHANGE,
 			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 			MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE,
 			MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
@@ -116,10 +120,13 @@ function modifier_dragon_knight_eldwyrm_form:GetCooldownReduction()
 	return self.cdr
 end
 
-function modifier_dragon_knight_eldwyrm_form:GetModifierBaseDamageOutgoing_Percentage()
-	if self.percent then
-		return self.ogDmg * (self.percent / 100)
-	end
+function modifier_dragon_knight_eldwyrm_form:GetCooldownReduction()
+	return self.cdr
+end
+
+function modifier_dragon_knight_eldwyrm_form:GetModifierModelChange()
+	print("why no work")
+	return "models/heroes/dragon_knight/dragon_knight_dragon.vmdl"
 end
 
 function modifier_dragon_knight_eldwyrm_form:OnTakeDamage(params)
