@@ -317,7 +317,17 @@ function CHoldoutGameMode:InitGameMode()
 													RoundManager.raidsFinished = raidsBeaten
 													RoundManager.zonesFinished = zonesBeaten
 													RoundManager.ascensionLevel = ascensionsBeaten
-													
+													if RoundManager.zonesFinished % 4 == 0 then
+														RoundManager.currentZone = "Grove"
+													elseif RoundManager.zonesFinished % 4 == 1 then
+														RoundManager.currentZone = "Sepulcher"
+													elseif RoundManager.zonesFinished % 4 == 2 then
+														RoundManager.currentZone = "Solitude"
+													else
+														RoundManager.currentZone = "Elysium"
+													end
+													RoundManager.raidNumber = raidsBeaten % 2
+													RoundManager:LoadSpawns()
 													local playerScaling = 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) / 10
 													for i = currEvents, eventsBeaten - 1 do
 														local eventScaling = i * 0.75

@@ -150,7 +150,7 @@ function RoundManager:OnNPCSpawned(event)
 				-- spawnedUnit:AddAbilityPrecache("elite_tiny")
 			elseif spawnedUnit:IsRealHero() then
 				Timers:CreateTimer(0.1, function() 
-					if RoundManager:GetBoundingBox() and not RoundManager:GetBoundingBox():IsTouching(spawnedUnit) then
+					if RoundManager:IsTouchingBoundingBox(spawnedUnit) then
 						FindClearSpaceForUnit( spawnedUnit, RoundManager:GetHeroSpawnPosition(), true ) 
 					end
 					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_tombstone_respawn_immunity", {duration = 2.9}) 
@@ -515,7 +515,8 @@ function RoundManager:LoadSpawns()
 	
 	RoundManager.raidNumber = (RoundManager.raidNumber or 0) + 1
 	RoundManager.boundingBox = string.lower(zoneName).."_raid_"..RoundManager.raidNumber
-	RoundManager.boundingBoxEntity = Entities:FindByName(nil, RoundManager.boundingBox.."_edge_collider")
+	RoundManager.boundingBoxEntities = Entities:FindAllByName(RoundManager.boundingBox.."_edge_collider")
+	RoundManager.boundingBoxEdges = Entities:FindAllByName(RoundManager.boundingBox.."_edge_finder")
 	
 	print( RoundManager.boundingBox, zoneName, "loading spawns")
 	for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
@@ -814,8 +815,61 @@ function RoundManager:GetCurrentZone()
 	return self.currentZone
 end
 
-function RoundManager:GetBoundingBox()
-	return RoundManager.boundingBoxEntity
+function RoundManager:GetBoundingBoxes()
+	return RoundManager.boundingBoxEntities
+end
+
+function RoundManager:GetBoundingBoxEdges()
+	return RoundManager.boundingBoxEdges
+end
+
+function RoundManager:BoundingBoxPosition( )
+	local position
+	if RoundManager:GetBoundingBoxes() then
+		for _, boundingBox in ipairs( RoundManager:GetBoundingBoxes() ) do
+			position = position or boundingBox:GetAbsOrigin()
+			position = position + boundingBox:GetAbsOrigin() / 2
+		end
+	end
+	return position
+end
+
+function RoundManager:BoundingBoxPosition( )
+	local position
+	if RoundManager:GetBoundingBoxes() then
+		for _, boundingBox in ipairs( RoundManager:GetBoundingBoxes() ) do
+			position = position or boundingBox:GetAbsOrigin()
+			position = position + boundingBox:GetAbsOrigin() / 2
+		end
+	end
+	return position
+end
+
+function RoundManager:IsTouchingBoundingBox( unit )
+	if RoundManager:GetBoundingBoxes() then
+		for _, boundingBox in ipairs( RoundManager:GetBoundingBoxes() ) do
+			if boundingBox:IsTouching( unit ) then
+				return true
+			end
+		end
+	else
+		return true
+	end
+	return false
+end
+
+function RoundManager:FindNearestBoundingBoxEdge( unit )
+	local closest
+	local distance = 999999999
+	if RoundManager:GetBoundingBoxEdges() then
+		for _, boundingBox in ipairs( RoundManager:GetBoundingBoxEdges() ) do
+			if CalculateDistance( boundingBox, unit ) < distance then
+				distance = CalculateDistance( boundingBox, unit )
+				closest = boundingBox
+			end
+		end
+	end
+	return closest
 end
 
 function RoundManager:GetCurrentRaidTier()

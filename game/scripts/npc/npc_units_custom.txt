@@ -868,11 +868,11 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"creature_fire_breath"	// Ability 1.
-		"Ability2"					"roshan_spell_block"			// Ability 2.
-		"Ability3"					"creature_slithereen_crush"			// Ability 3.
-		"Ability4"					""			// Ability 4.
-		"Ability5"					""			// Ability 5.
+		"Ability1"					"boss_roshan_heros_bane"	// Ability 1.
+		"Ability2"					"boss_roshan_heavy_blows"			// Ability 2.
+		"Ability3"					"boss_roshan_flamethrower"			// Ability 3.
+		"Ability4"					"boss_roshan_crushing_clap"			// Ability 4.
+		"Ability5"					"boss_roshan_sonic_boom"			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.
 		"Ability7"					""			// Ability 7 - Extra.
 		"Ability8"					""			// Ability 8 - Extra.
@@ -978,8 +978,12 @@
 		//----------------------------------------------------------------
 		
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_leshrac_erupt"			// Ability 1.
-		"Ability2"					"creature_lightning_storm"
+		"Ability1"					"boss_leshrac_great_equaliar"			// Ability 1.
+		"Ability2"					"boss_leshrac_inevitable_end"
+		
+		"Ability3"					"boss_leshrac_lightning_storm"
+		"Ability4"					"boss_leshrac_earthshatter"
+		"Ability5"					"boss_leshrac_cataclysm"
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -1849,8 +1853,9 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_living_armor"	// Ability 1.
-		"Ability2"					"creature_summon_tree"			// Ability 3.
+		"Ability1"					"boss_treant_thornmaze"			// Ability 1.
+		"Ability2"					"boss_treant_overgrowth"		// Ability 3.
+		"Ability3"					"boss_treant_leech_seed"		// Ability 3.
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -1959,10 +1964,10 @@
 		//----------------------------------------------------------------
 		
 		"AbilityLayout"				"6"
-		"Ability1"					"creature_summon_tree"			// Ability 1.
-		"Ability2"					"creature_summon_tree2"		// Ability 2.
-		"Ability3"					"boss_living_armor"			// Ability 3.
-		"Ability4"					"furion_sprout"			// Ability 4.
+		"Ability1"					"boss_furion_summon_minor_treants"		// Ability 1.
+		"Ability2"					"boss_furion_summon_greater_treants"	// Ability 2.
+		"Ability3"					"boss_furion_sprout"					// Ability 3.
+		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.
 		"Ability7"					""			// Ability 7 - Extra.
@@ -7520,9 +7525,10 @@
 		//----------------------------------------------------------------
 		
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_lifesteal"			// Ability 2.
-		"Ability2"					"boss_ragebuff"			
-		"Ability3"					"boss_wounds"			
+		"Ability1"					"boss_lifestealer_feast"			// Ability 2.
+		"Ability2"					"boss_lifestealer_bloodfrenzy"			
+		"Ability3"					"boss_lifestealer_open_wounds"			
+		"Ability4"					"boss_lifestealer_consume"			
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -7618,6 +7624,88 @@
 				"Wearable3" { "ItemDef" "7393" }
 				"Wearable4" { "ItemDef" "6465" }
 			}
+		}
+	}
+	//=================================================================================
+	// Creature: LifeSteal Boss 7
+	//=================================================================================
+	"npc_dota_minion_carrion_worm"
+	{
+		// General
+		//
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/heroes/life_stealer/life_stealer.vmdl"	// Model.
+		"SoundSet"					"life_stealer"					// Name of sound set.
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+		"ModelScale"				"0.8"
+		"Level"						"7"
+		"IsDemon"					"1"
+		"IsUndead"					"1"
+		"vscripts"					"ai/ai_generic.lua"	
+	
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"			// Physical protection.
+		"MagicalResistance"			"0"		// Magical protection.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"50"		// Damage range min.
+		"AttackDamageMax"			"80"		// Damage range max.
+		"AttackRate"				"2.1"		// Speed of attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"175"		// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			""			// Speed of projectile.
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"		// Experience earn.
+		"BountyGoldMin"				"0"		// Gold earned min.
+		"BountyGoldMax"				"0"		// Gold earned max.
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"130"
+		"HealthBarOffset"			"450"
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+		"MovementSpeed"				"200"		// Speed
+		"MovementTurnRate"			"0.8"		// Turning rate.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"800"		// Base health.
+		"StatusHealthRegen"			"0.0"		// Health regeneration rate.
+		"StatusMana"				"0"			// Base mana.
+		"StatusManaRegen"			"0"			// Mana regeneration rate.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"			// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1200"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1200"		// Range of vision at night time.
+	
+		// Creature Data
+		//----------------------------------------------------------------------------------------------------------------------
+		"Creature"
+		{
+			"CanRespawn"				"0"
+	
+			//Ability Usage Parameters
+			//-----------------------------------------------------------------
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	//=================================================================================================================
