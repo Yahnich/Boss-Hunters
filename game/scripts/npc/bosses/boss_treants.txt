@@ -1,11 +1,11 @@
 "DOTAAbilities"
 {	
-	"boss_lifestealer_feast"
+	"boss_treant_thornmaze"
 	{
 	    // General
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             		"ability_lua"
-		"ScriptFile"					"bosses/boss_lifestealer/boss_lifestealer_feast"
+		"ScriptFile"					"bosses/boss_treants/boss_treant_thornmaze"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
@@ -41,12 +41,12 @@
 	        }
 	    }
 	}
-	"boss_lifestealer_bloodfrenzy"
+	"boss_treant_overgrowth"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_lifestealer/boss_lifestealer_bloodfrenzy"
+		"ScriptFile"					"bosses/boss_treants/boss_treant_overgrowth"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
@@ -114,12 +114,12 @@
 	        }
 		}
 	}
-	"boss_lifestealer_open_wounds"
+	"boss_treant_leech_seed"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_lifestealer/boss_lifestealer_open_wounds"
+		"ScriptFile"					"bosses/boss_treants/boss_treant_leech_seed"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -180,12 +180,132 @@
 			}
 		}
 	}
-	"boss_lifestealer_consume"
+	"boss_furion_summon_minor_treants"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_lifestealer/boss_lifestealer_consume"
+		"ScriptFile"					"bosses/boss_treants/boss_furion_summon_minor_treants"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName" 			"tiny_grow"
+		"MaxLevel"						"2"
+		
+		"precache"
+		{
+			"particle"						"particles/units/heroes/hero_tiny/tiny_toss_blur.vpcf"
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"350"
+		"AbilityCastPoint"				"2" 					// Time before spell goes off when cast
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"	// Activity
+		"AnimationIgnoresModelScale"	"1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_radius"			"475"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_damage"			"350 500"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow"					"-25 -33"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"5"
+			}
+		}
+	}
+	"boss_furion_summon_greater_treants"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_treants/boss_furion_summon_greater_treants"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName" 			"tiny_grow"
+		"MaxLevel"						"2"
+		
+		"precache"
+		{
+			"particle"						"particles/units/heroes/hero_tiny/tiny_toss_blur.vpcf"
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"350"
+		"AbilityCastPoint"				"2" 					// Time before spell goes off when cast
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"	// Activity
+		"AnimationIgnoresModelScale"	"1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_radius"			"475"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_damage"			"350 500"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow"					"-25 -33"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"5"
+			}
+		}
+	}
+	"boss_furion_sprout"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_treants/boss_furion_sprout"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"

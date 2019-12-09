@@ -978,12 +978,13 @@
 		//----------------------------------------------------------------
 		
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_leshrac_great_equaliar"			// Ability 1.
+		"Ability1"					"boss_leshrac_great_equalizer"			// Ability 1.
 		"Ability2"					"boss_leshrac_inevitable_end"
+		"Ability3"					"boss_leshrac_punishment"
 		
-		"Ability3"					"boss_leshrac_lightning_storm"
-		"Ability4"					"boss_leshrac_earthshatter"
-		"Ability5"					"boss_leshrac_cataclysm"
+		"Ability4"					"boss_leshrac_lightning_storm"
+		"Ability5"					"boss_leshrac_earthshatter"
+		"Ability6"					"boss_leshrac_cataclysm"
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -7634,12 +7635,12 @@
 		// General
 		//
 		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
-		"Model"						"models/heroes/life_stealer/life_stealer.vmdl"	// Model.
+		"Model"						"models/items/courier/kupu_courier/kupu_courier.vmdl"	// Model.
 		"SoundSet"					"life_stealer"					// Name of sound set.
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
-		"ModelScale"				"0.8"
+		"ModelScale"				"1.3"
 		"Level"						"7"
-		"IsDemon"					"1"
+		"IsWild"					"1"
 		"IsUndead"					"1"
 		"vscripts"					"ai/ai_generic.lua"	
 	

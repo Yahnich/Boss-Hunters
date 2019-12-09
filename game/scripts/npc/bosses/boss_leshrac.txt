@@ -1,11 +1,255 @@
 "DOTAAbilities"
 {	
-	"boss_leshrac_erupt"
+	"boss_leshrac_great_equaliar"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"							"ability_lua"
-		"ScriptFile"						"bosses/boss_leshrac/boss_leshrac_erupt"
+		"ScriptFile"						"bosses/boss_leshrac/boss_leshrac_great_equaliar"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"				"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName" 				"leshrac_split_earth"
+		
+		"precache"
+		{
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+			"particle"				"particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"1.5 1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"22.0 18.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"impact_radius"			"125"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius_growth"			"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration_stun"			"0.5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"350"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"eruptions"				"2 3"
+			}
+		}
+	}
+	"boss_leshrac_inevitable_end"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"							"ability_lua"
+		"ScriptFile"						"bosses/boss_leshrac/boss_leshrac_inevitable_end"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"				"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName" 				"leshrac_split_earth"
+		
+		"precache"
+		{
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+			"particle"				"particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"1.5 1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"22.0 18.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"impact_radius"			"125"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius_growth"			"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration_stun"			"0.5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"350"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"eruptions"				"2 3"
+			}
+		}
+	}
+	"boss_leshrac_lightning_storm"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"							"ability_lua"
+		"ScriptFile"						"bosses/boss_leshrac/boss_leshrac_lightning_storm"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"				"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName" 				"leshrac_split_earth"
+		
+		"precache"
+		{
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+			"particle"				"particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"1.5 1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"22.0 18.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"impact_radius"			"125"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius_growth"			"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration_stun"			"0.5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"350"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"eruptions"				"2 3"
+			}
+		}
+	}
+	"boss_leshrac_earthshatter"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"							"ability_lua"
+		"ScriptFile"						"bosses/boss_leshrac/boss_leshrac_earthshatter"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"				"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName" 				"leshrac_split_earth"
+		
+		"precache"
+		{
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+			"particle"				"particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"1.5 1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"22.0 18.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"impact_radius"			"125"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius_growth"			"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration_stun"			"0.5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"350"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"eruptions"				"2 3"
+			}
+		}
+	}
+	"boss_leshrac_cataclysm"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"							"ability_lua"
+		"ScriptFile"						"bosses/boss_leshrac/boss_leshrac_cataclysm"
 		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"				"DAMAGE_TYPE_MAGICAL"
