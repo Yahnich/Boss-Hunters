@@ -40,6 +40,9 @@ function pango_swashbuckler:OnChannelFinish(bInterrupted)
 
 	if bInterrupted then
 		caster:RemoveModifierByName("modifier_pango_swashbuckler")
+		caster:Interrupt()
+		caster:Stop()
+		caster:Hold()
 	end
 end
 
@@ -57,14 +60,14 @@ function pango_swashbuckler:OnProjectileHit(hTarget, vLocation)
 	end
 end
 
-function pango_swashbuckler:Strike()
+function pango_swashbuckler:Strike(vDir)
 	local caster = self:GetCaster()
 
 	--Ability specials
 	local range = self:GetTalentSpecialValueFor("range")
 	local width = self:GetTalentSpecialValueFor("width")
 
-	local direction = caster:GetForwardVector() ---CalculateDirection(self:GetCursorPosition(), startPos)
+	local direction = vDir or caster:GetForwardVector()
 	
 	local startPos = caster:GetAbsOrigin() + direction * 100
 
@@ -134,7 +137,7 @@ function modifier_pango_swashbuckler:OnIntervalThink()
 			return nil
 		end
 
-		self:GetAbility():Strike()
+		self:GetAbility():Strike(self.direction)
 
 		--increment the slash counter
 		self.executed_strikes = self.executed_strikes + 1
@@ -174,7 +177,7 @@ function modifier_pango_swashbuckler_passive:OnAttackLanded(params)
 
 			if attacker == caster and self:RollPRNG(chance) then
 				if not caster:IsInAbilityAttackMode() then
-					self:GetAbility():Strike()
+					Timers:CreateTimer( 0.1, function() self:GetAbility():Strike() end)
 				end
 			end
 		end

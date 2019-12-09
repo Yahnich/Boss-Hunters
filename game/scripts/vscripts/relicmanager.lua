@@ -233,7 +233,7 @@ function RelicManager:RollEliteRelicsForPlayer(pID)
 	hero.ownedRelics = hero.ownedRelics or {}
 	hero.relicsToSelect = hero.relicsToSelect or {}
 	local dropTable = {}
-	table.insert( dropTable, self:RollRandomRelicForPlayer(pID) )
+	table.insert( dropTable, self:RollRandomRelicForPlayer(pID, "RARITY_RARE") )
 	
 	RelicManager:PushCustomRelicDropsForPlayer(pID, dropTable)
 end

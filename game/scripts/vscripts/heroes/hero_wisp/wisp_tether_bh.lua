@@ -95,6 +95,7 @@ function modifier_wisp_tether_bh:OnIntervalThink()
 	local distance = CalculateDistance(self.target, self:GetCaster())
 	if not self.target or not self.target:HasModifier("modifier_wisp_tether_bh_target") or ( distance >= self.range and not caster:HasModifier("modifier_wisp_tether_bh_motion") ) then
 		self:Destroy()
+		return
 	end
 	if caster:HasScepter() then
 		if not self.target:HasScepter() and not self.target:HasModifier("modifier_wisp_tether_bh_aghs") then
@@ -201,6 +202,12 @@ end
 modifier_wisp_tether_bh_target = class({})
 function modifier_wisp_tether_bh_target:OnCreated(table)
 	self.bonus_ms = self:GetTalentSpecialValueFor("bonus_ms")
+end
+
+function modifier_wisp_tether_bh_target:OnRemoved()
+	if IsServer() and self:GetParent() ~= self:GetCaster() then
+		self:GetParent():RemoveModifierByNameAndCaster("modifier_wisp_overcharge_bh", self:GetCaster())
+	end
 end
 
 function modifier_wisp_tether_bh_target:DeclareFunctions()

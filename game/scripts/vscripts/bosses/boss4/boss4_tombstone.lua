@@ -67,7 +67,8 @@ end
 function modifier_boss4_tombstone_tomb:GetModifierIncomingDamage_Percentage(params)
 	local parent = self:GetParent()
 	if not params.attacker:IsSameTeam(parent) then params.attacker:ModifyThreat( 100 / parent:GetMaxHealth() ) end
-	if params.inflictor then
+	local countsAsAttack = ( params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK ) or HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE )
+	if not countsAsAttack then
 		return -999
 	else
 		local hp = parent:GetHealth()

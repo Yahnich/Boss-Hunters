@@ -30,7 +30,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"105 120 140 165 180 195 210"		
+		"AbilityManaCost"				"75 100 125 150 175 200 225"		
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -59,7 +59,7 @@
 			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"75 150 225 300 375 450 525"
+				"damage"						"100 175 250 325 400 475 550"
 				"LinkedSpecialBonus"			"special_bonus_unique_death_prophet_crypt_swarm_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
@@ -155,7 +155,7 @@
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"3.0 3.5 4.0 4.5 5.0 5.5 6.0"
 				"LinkedSpecialBonus"			"special_bonus_unique_death_prophet_ghastly_haunting_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"LinkedSpecialBonusField"		"duration"
 			}
 			"03"
 			{
@@ -213,6 +213,11 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"						"2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"6"
 			}
 		}
 	}

@@ -8,9 +8,8 @@ function drow_ranger_glacier_arrows:IsHiddenWhenStolen()
 	return false
 end
 
-function drow_ranger_glacier_arrows:OnAbilityPhaseStart()
-	self:SetOverrideCastPoint( self:GetCaster():GetSecondsPerAttack() )
-	return true
+function drow_ranger_glacier_arrows:GetCastPoint()
+	return 0
 end
 
 function drow_ranger_glacier_arrows:GetIntrinsicModifierName()
@@ -19,7 +18,10 @@ end
 
 function drow_ranger_glacier_arrows:OnSpellStart()
 	local target = self:GetCursorTarget()
-	self:LaunchFrostArrow(target, true)
+	self.forceCast = true
+	self:GetCaster():SetAttacking( target )
+	self:GetCaster():MoveToTargetToAttack( target )
+	self:RefundManaCost()
 end
 
 function drow_ranger_glacier_arrows:GetCastRange(location, target)
@@ -30,24 +32,11 @@ function drow_ranger_glacier_arrows:LaunchFrostArrow(target, bAttack, source)
 	local caster = self:GetCaster()
 	caster:SetProjectileModel("particles/empty_projectile.vcpf")
 	EmitSoundOn("Hero_DrowRanger.FrostArrows", caster)
-	caster:SpendMana(self:GetManaCost(-1), self)
 	if bAttack then self:GetCaster():PerformGenericAttack(target, false) end
 	local sourceT = source or caster
-	local projTable = {
-		EffectName = "particles/units/heroes/hero_drow/drow_frost_arrow.vpcf",
-		Ability = self,
-		Target = target,
-		Source = sourceT,
-		bDodgeable = true,
-		bProvidesVision = false,
-		vSpawnOrigin = sourceT:GetAbsOrigin(),
-		iMoveSpeed = caster:GetProjectileSpeed(),
-		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
-	}
-	ProjectileManager:CreateTrackingProjectile( projTable )
+	self:FireTrackingProjectile("particles/units/heroes/hero_drow/drow_frost_arrow.vpcf", target, caster:GetProjectileSpeed(), {source = sourceT}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1)
 	caster:RevertProjectile()
 end
-
 
 function drow_ranger_glacier_arrows:OnProjectileHit(target, position)
 	if target then
@@ -58,6 +47,7 @@ function drow_ranger_glacier_arrows:OnProjectileHit(target, position)
 		else
 			target:AddChill( self, caster, self:GetTalentSpecialValueFor("duration"), self:GetTalentSpecialValueFor("stack_chill") )
 		end
+		self:DealDamage( caster, target, caster:GetLevel(), {damage_type = DAMAGE_TYPE_MAGICAL} )
 	end
 end
 
@@ -75,10 +65,14 @@ if IsServer() then
 	
 	function modifier_drow_ranger_glacier_arrows_autocast:OnIntervalThink()
 		local caster = self:GetCaster()
-		if self:GetAbility():GetAutoCastState() then
+		local ability = self:GetAbility()
+		if ability:GetAutoCastState() or ability.forceCast then
 			caster:SetProjectileModel("particles/empty_projectile.vcpf")
 		else
 			caster:SetProjectileModel("particles/units/heroes/hero_drow/drow_base_attack.vpcf")
+		end
+		if ability:GetAutoCastState() and not ability:IsOwnersManaEnough() then
+			ability:ToggleAutoCast( )
 		end
 	end
 	
@@ -87,7 +81,11 @@ if IsServer() then
 	end
 	
 	function modifier_drow_ranger_glacier_arrows_autocast:OnAttack(params)
-		if params.attacker == self:GetParent() and params.target and self:GetAbility():GetAutoCastState() then
+		local ability = self:GetAbility()
+		local caster = self:GetCaster()
+		if params.attacker == self:GetParent() and params.target and (ability:GetAutoCastState() or ability.forceCast) and ability:IsOwnersManaEnough() and not params.target:IsMagicImmune() then
+			caster:SpendMana(ability:GetManaCost(-1), ability)
+			ability.forceCast = false
 			if self:GetParent().autoAttackFromAbilityState then
 				self:GetAbility():OnProjectileHit( params.target, params.target:GetAbsOrigin() )
 			else

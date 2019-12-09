@@ -125,12 +125,11 @@
 		"AbilityTextureName"			"custom/disruptor_kinetic_charge"
 		"MaxLevel"						"7"
 		
-		"AbilityDamage"					"10 20 30 40 50 60 70"
 		"AbilityCastPoint"				"0.05 0.05 0.05 0.05"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"32 31 30 29 28 27 26"
+		"AbilityCooldown"				"26"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -161,17 +160,24 @@
 				"var_type"						"FIELD_INTEGER"
 				"pull_speed"					"100 150 200 250 300 350 400"
 			}
-			"02"
+			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"pull_radius"					"1500"
 			}
-			"03"
+			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"pull_duration"					"3 3.5 4 4.5 5 5.5 6"
+				"pull_duration"					"2 2.66 3.33 4 4.66 5.33 6"
 				"LinkedSpecialBonus"			"special_bonus_unique_disruptor_kinetic_charge_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"LinkedSpecialBonusField"		"duration"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"damage"						"70"
+				"LinkedSpecialBonus"			"special_bonus_unique_disruptor_kinetic_charge_1"
+				"LinkedSpecialBonusField"		"damage"
 			}
 		}
 	}
@@ -193,7 +199,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"0.5"
+				"damage"					"30"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"3"
 			}
 		}
 	}
@@ -418,7 +429,7 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"value"						"1"
 			}
 		}
@@ -441,7 +452,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"25"
 			}
 		}
 	}

@@ -1,0 +1,315 @@
+"DOTAAbilities"
+{	
+	//=================================================================================================================
+	// ifdat: Phase Shift
+	//=================================================================================================================
+	"boss_ifdat_touch_of_fire"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_ifdat/boss_ifdat_touch_of_fire"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"jakiro_liquid_fire"
+		"MaxLevel"						"2"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_per_sec"		"2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"water_dmg_red"			"25 50"
+			}
+		}
+	}
+	//=================================================================================================================
+	// ifdat: Phase Shift
+	//=================================================================================================================
+	"boss_ifdat_flashfire"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_ifdat/boss_ifdat_flashfire"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"phoenix_fire_spirits"
+		"MaxLevel"						"2"
+		
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_dark_seer/dark_seer_vacuum.vpcf"
+			"particle"					"particles/units/heroes/hero_puck/puck_illusory_orb.vpcf"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"as_per_stack"			"2 3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ms_per_stack"			"2 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// ifdat: Phase Shift
+	//=================================================================================================================
+	"boss_ifdat_trailblazer"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_ifdat/boss_ifdat_trailblazer"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"phoenix_icarus_dive"
+		"MaxLevel"						"2"
+		
+		"AbilityCooldown"				"14 10"
+	
+		"precache"
+		{
+			"particle"					"particles/bosses/boss_ifdat/boss_ifdat_trailblazer.vpcf"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"135"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dmg_per_sec"			"50 75"
+			}
+		}
+	}
+	//=================================================================================================================
+	// ifdat: Phase Shift
+	//=================================================================================================================
+	"boss_ifdat_magma_pool"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_ifdat/boss_ifdat_magma_pool"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"jakiro_macropyre"
+		"MaxLevel"						"2"
+		
+		"AbilityCastRange"				"1800"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCooldown"				"18"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"250"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_per_sec"			"33 50"
+			}
+		}
+	}
+	//=================================================================================================================
+	// ifdat: Phase Shift
+	//=================================================================================================================
+	"boss_ifdat_flamethrower"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_ifdat/boss_ifdat_flamethrower"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT |DOTA_ABILITY_BEHAVIOR_CHANNELED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"lina_dragon_slave"
+		"MaxLevel"						"2"
+		
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"1 0.75"
+		"AbilityChannelAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"				"900"
+		"AbilityChannelTime"			"5"
+		"AbilityCooldown"				"38"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_firestorm_wave.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"dmg_red"					"-50 -75"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"25"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"flames_per_sec"			"5 8"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"10"
+			}
+		}
+	}
+	//=================================================================================================================
+	// ifdat: Phase Shift
+	//=================================================================================================================
+	"boss_ifdat_cinderheart"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_ifdat/boss_ifdat_cinderheart"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"lina_fiery_soul"
+		"MaxLevel"						"2"
+		
+		"AbilityCastAnimation"			"ACT_DOTA_DIE"
+		"AbilityCastPoint"				"2.5 1.75"
+		"AbilityCooldown"				"38"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abbysal_underlord_darkrift_ambient.vpcf"
+			"particle"					"particles/units/heroes/heroes_underlord/abbysal_underlord_darkrift_ambient_end.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"heal_per_stack"			"0.35 0.5"
+			}
+		}
+	}
+	//=================================================================================================================
+	// ifdat: Phase Shift
+	//=================================================================================================================
+	"boss_ifdat_meteor_storm"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_ifdat/boss_ifdat_meteor_storm"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"			"invoker_chaos_meteor"
+		"MaxLevel"						"2"
+		
+		"AbilityCastRange"				"650"
+		"AbilityChannelAnimation"		"ACT_DOTA_GENERIC_CHANNEL_1"
+		"AbilityChannelTime"			"10"
+		"AbilityCooldown"				"35"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"impact_damage"				"150 250"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"impact_stun"				"1.5 2.5"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"meteors_per_second"		"2 3"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"impact_radius"				"135"
+			}
+		}
+	}
+	//=================================================================================================================
+	// ifdat: Phase Shift
+	//=================================================================================================================
+	"boss_ifdat_incinerate"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_ifdat/boss_ifdat_incinerate"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityTextureName"			"lina_light_strike_array"
+		"MaxLevel"						"2"
+		
+		"AbilityCastRange"				"800"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastPoint"				"1 0.75"
+		"AbilityCooldown"				"15"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "stacks_applied"     			"10 15"
+            }
+		}
+	}
+}

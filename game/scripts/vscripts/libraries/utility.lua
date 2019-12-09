@@ -162,13 +162,17 @@ function toboolean(thing)
 	end
 end
 
-function CalculateDistance(ent1, ent2)
+function CalculateDistance(ent1, ent2, b3D)
 	local pos1 = ent1
 	local pos2 = ent2
 	if ent1.GetAbsOrigin then pos1 = ent1:GetAbsOrigin() end
 	if ent2.GetAbsOrigin then pos2 = ent2:GetAbsOrigin() end
-	local distance = (pos1 - pos2):Length2D()
-	return distance
+	local vector = (pos1 - pos2)
+	if b3D then
+		return vector:Length()
+	else
+		return vector:Length2D()
+	end
 end
 
 function CalculateDirection(ent1, ent2)
@@ -219,7 +223,8 @@ function CDOTA_BaseNPC_Hero:CreateSummon(unitName, position, duration, bControll
 	summon:SetOwner(self)
 	local summonMod = summon:AddNewModifier(self, nil, "modifier_summon_handler", {duration = duration})
 	if duration and duration > 0 then
-		summon:AddNewModifier(self, nil, "modifier_kill", {duration = duration})
+		local kill = summon:AddNewModifier(self, nil, "modifier_kill", {duration = duration})
+		print( duration, kill:GetDuration(), kill:GetRemainingTime(), "kill" )
 	end
 	StartAnimation(summon, {activity = ACT_DOTA_SPAWN, rate = 1.5, duration = 2})
 	local endDur = summonMod:GetRemainingTime()
@@ -319,7 +324,10 @@ function CDOTABaseAbility:DealDamage(attacker, victim, damage, data, spellText)
 	local localdamage = damage or self:GetAbilityDamage() or 0
 	local spellText = spellText or 0
 	local ability = self or internalData.ability
-	local returnDamage = ApplyDamage({victim = victim, attacker = attacker, ability = ability, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
+	local oldHealth = victim:GetHealth()
+	ApplyDamage({victim = victim, attacker = attacker, ability = ability, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
+	local newHealth = victim:GetHealth()
+	local returnDamage = oldHealth - newHealth
 	if spellText > 0 then
 		SendOverheadEventMessage(attacker:GetPlayerOwner(),spellText,victim,returnDamage,attacker:GetPlayerOwner()) --Substract the starting health by the new health to get exact damage taken values.
 	end
@@ -478,7 +486,7 @@ end
 
 function CDOTABaseAbility:GetTrueCastRange()
 	local caster = self:GetCaster()
-	local castrange = self:GetCastRange()
+	local castrange = self:GetCastRange(caster:GetAbsOrigin(), caster)
 	castrange = castrange + caster:GetBonusCastRange()
 	return castrange
 end
@@ -624,6 +632,7 @@ end
 
 function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, specIllusionModifier, ability, controllable, caster, callback )
 	local owner = caster or self
+	local original = self
 	local player = owner:GetPlayerID()
 	local respawnedIllusion
 	local unit_name = self:GetUnitName()
@@ -631,17 +640,19 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 	local outgoingDamage = outgoing or 0
 	local incomingDamage = incoming or 0
 	
-	self.illusionSpawnPool = self.illusionSpawnPool or {}
-	bControl = controllable
-	if bControl == nil then bControl = true end
-	-- handle_UnitOwner needs to be nil, else it will crash the game.
-	for i = #self.illusionSpawnPool, 1, -1 do
-		local illusion = self.illusionSpawnPool[i]
-		if illusion then
-			if illusion:IsNull() then
-				table.remove( self.illusionSpawnPool, i )
-			elseif not illusion:IsAlive() and not respawnedIllusion then
-				respawnedIllusion = illusion
+	if self:IsRealHero() then
+		self.illusionSpawnPool = self.illusionSpawnPool or {}
+		bControl = controllable
+		if bControl == nil then bControl = true end
+		-- handle_UnitOwner needs to be nil, else it will crash the game.
+		for i = #self.illusionSpawnPool, 1, -1 do
+			local illusion = self.illusionSpawnPool[i]
+			if illusion then
+				if illusion:IsNull() then
+					table.remove( self.illusionSpawnPool, i )
+				elseif not illusion:IsAlive() and not respawnedIllusion then
+					respawnedIllusion = illusion
+				end
 			end
 		end
 	end
@@ -662,6 +673,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 					end
 				end
 			end
+			illusion.hasBeenInitialized = true
 			
 			illusion:SetBaseDamageMax( self:GetBaseDamageMax() - 10 )
 			illusion:SetBaseDamageMin( self:GetBaseDamageMin() - 10 )
@@ -719,7 +731,8 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			end
 			illusion:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
 			illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", {})
-			illusion:AddNewModifier( self, nil, "modifier_stats_system_handler", {})
+			illusion:AddNewModifier( owner, nil, "modifier_illusion_bonuses", {})
+			if self:IsRealHero() then illusion:AddNewModifier( self, nil, "modifier_stats_system_handler", {}) end
 			illusion.wearableList = {}
 			local wearableWorker = {}
 			for _, wearable in ipairs( self.wearableTable or self:GetChildren() ) do
@@ -744,19 +757,28 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			end
 			
 			-- Make illusion look like owner
-			illusion:SetBaseMaxHealth( self:GetBaseMaxHealth() )
+			illusion:SetBaseMaxHealth( math.max( 100, self:GetBaseMaxHealth() ) )
 			illusion:SetThreat( self:GetThreat() )
 			
 			if not self.wearableTable then
 				self.wearableTable = wearableWorker
 			end
-			if callback then
-				callback( illusion, self, caster, ability )
+			if self:IsRealHero() then
+				illusion:SetUnitCanRespawn( true )
+				table.insert( self.illusionSpawnPool, illusion )
+			else
+				illusion:SetCoreHealth( self:GetMaxHealth() )
+				illusion:SetHealth( math.max( 100, self:GetHealth() ) )
 			end
-			illusion:SetUnitCanRespawn( true )
-			table.insert( self.illusionSpawnPool, illusion )
 			illusion:MakeIllusion()
 			ResolveNPCPositions( illusion:GetAbsOrigin(), 128 )
+			Timers:CreateTimer(function()
+				illusion:SetHealth( math.max( 100, self:GetHealth() ) )
+				illusion:SetMana( math.max( 100, self:GetMana() ) )
+				if callback then
+					callback( illusion, self, caster, ability )
+				end
+			end)
 		end )
 	else
 		local illusion = respawnedIllusion
@@ -783,6 +805,8 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 					end
 				end
 			end
+			
+			illusion.hasBeenInitialized = true
 			
 			illusion:SetBaseDamageMax( self:GetBaseDamageMax() - 10 )
 			illusion:SetBaseDamageMin( self:GetBaseDamageMin() - 10 )
@@ -843,7 +867,8 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			
 			illusion:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
 			illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", {})
-			illusion:AddNewModifier( self, nil, "modifier_stats_system_handler", {})
+			illusion:AddNewModifier( owner, nil, "modifier_illusion_bonuses", {})
+			if self:IsRealHero() then illusion:AddNewModifier( self, nil, "modifier_stats_system_handler", {}) end
 			
 			illusion:RemoveNoDraw( )
 			for _, wearable in ipairs( illusion.wearableList ) do
@@ -854,12 +879,15 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			end
 			
 			-- Make illusion look like owner
-			illusion:SetBaseMaxHealth( self:GetBaseMaxHealth() )
-			illusion:SetHealth( self:GetHealth() )
+			illusion:SetBaseMaxHealth( math.max( 100, self:GetBaseMaxHealth() ) )
 			illusion:SetThreat( self:GetThreat() )
-			if callback then
-				callback( illusion, self, caster, ability )
-			end
+			Timers:CreateTimer( function()
+				illusion:SetHealth( math.max( 100, self:GetHealth() ) )
+				illusion:SetMana( math.max( 100, self:GetMana() ) )
+				if callback then
+					callback( illusion, self, caster, ability )
+				end
+			end)
 			
 			ResolveNPCPositions( illusion:GetAbsOrigin(), 128 )
 		end)
@@ -1066,7 +1094,7 @@ end
 
 function CDOTA_BaseNPC:GetPhysicalArmorReduction()
 	local armornpc = self:GetPhysicalArmorValue(false)
-	local armor_reduction = 1 - (0.05 * armornpc) / (1 + (0.05 * math.abs(armornpc)))
+	local armor_reduction = 1 - ((0.052 * armornpc) / (0.9 + 0.048 * math.abs(armornpc)))
 	armor_reduction = 100 - (armor_reduction * 100)
 	return armor_reduction
 end
@@ -1314,8 +1342,10 @@ end
 
 function CDOTABaseAbility:ModifyCooldown(amt)
 	local currCD = self:GetCooldownTimeRemaining()
-	self:EndCooldown()
-	if currCD + amt > 0 then self:StartCooldown( math.max(0, currCD + amt) ) end
+	if currCD > 0 then
+		self:EndCooldown()
+		if currCD + amt > 0 then self:StartCooldown( math.max(0, currCD + amt) ) end
+	end
 end
 
 function CDOTA_BaseNPC_Hero:CreateTombstone()
@@ -1536,6 +1566,7 @@ function CDOTA_BaseNPC:FindFriendlyUnitsInRadius(position, radius, hData)
 end
 
 function CDOTA_BaseNPC:FindAllUnitsInRadius(position, radius, hData)
+	if self:IsNull() then return end
 	local team = self:GetTeamNumber()
 	local data = hData or {}
 	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_BOTH
@@ -1675,7 +1706,7 @@ function CDOTA_Modifier_Lua:StopMotionController(bForceDestroy)
 end
 
 function CDOTA_BaseNPC:StopMotionControllers(bForceDestroy)
-	self:InterruptMotionControllers(true)
+	if self.InterruptMotionControllers then self:InterruptMotionControllers(true) end
 	for _, modifier in ipairs( self:FindAllModifiers() ) do
 		if modifier.controlledMotionTimer then 
 			modifier:StopMotionController(bForceDestroy)
@@ -1879,6 +1910,17 @@ function CDOTA_BaseNPC:GetCooldownReduction(bReduced)
 		end
 		
 		return 1
+	end
+end
+
+function CDOTABaseAbility:GetChannelTimeRemaining()
+	if self:IsChanneling() then
+		local startTime = self:GetChannelStartTime()
+		local currTime = GameRules:GetGameTime()
+		local channelTime = self:GetChannelTime()
+		return channelTime - ( currTime - startTime )
+	else
+		return 0
 	end
 end
 
@@ -2162,7 +2204,7 @@ function CDOTA_BaseNPC:RemoveBlind()
 	end
 end
 
-function CDOTA_BaseNPC:AddGold(val)
+function CDOTA_BaseNPC:AddGold(val, bSound)
 	if self:GetPlayerID() >= 0 then
 		local hero = PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() )
 		if hero then
@@ -2177,7 +2219,9 @@ function CDOTA_BaseNPC:AddGold(val)
 			local gold = hero:GetGold() + gold
 			hero:SetGold(0, false)
 			hero:SetGold(gold, true)
-			SendOverheadEventMessage(self:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, self, val, self:GetPlayerOwner())
+			if bSound then
+				SendOverheadEventMessage(self:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, self, val, self:GetPlayerOwner())
+			end
 		end
 	end
 end
@@ -2214,8 +2258,9 @@ function RollPRNGFormula( object, percentage )
 			object.weight = FindProbabilityWeight(percentage)
 			object.basePercentage = percentage
 		end
-		object.currentPercentage = (object.currentPercentage or 0) + object.weight
+		object.currentPercentage = (object.currentPercentage or 0)
 		local roll = RollPercentage( object.currentPercentage )
+		object.currentPercentage = (object.currentPercentage or 0) + object.weight
 		if roll then
 			object.currentPercentage = object.weight
 		end
@@ -2246,6 +2291,7 @@ function FindProbabilityWeight(roll)
     local roll2 = 1.0;
 	
 	check = true
+	local maxDistr = 1000
     while check do
         Cmid = (Cupper + Clower) / 2
         roll1 = FindRelativeProbability(Cmid)
@@ -2259,6 +2305,11 @@ function FindProbabilityWeight(roll)
             Clower = Cmid
 		end
         roll2 = roll1
+		maxDistr = maxDistr - 1
+		if maxDistr < 0 then
+			check = false
+            break
+		end
 	end
     return Cmid * 100
 end

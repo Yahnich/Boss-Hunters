@@ -43,7 +43,7 @@
 		"AttackDamageMax"			"120"		// Damage range max.	
 		"AttackRate"				"6"		// Speed of attack.
 		"AttackAnimationPoint"		"0.38"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -148,7 +148,7 @@
 		"AttackDamageMax"			"120"		// Damage range max.	
 		"AttackRate"				"6"		// Speed of attack.
 		"AttackAnimationPoint"		"0.38"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -252,7 +252,7 @@
 		"AttackDamageMax"			"120"		// Damage range max.	
 		"AttackRate"				"6"		// Speed of attack.
 		"AttackAnimationPoint"		"0.38"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -354,7 +354,7 @@
 		"AttackDamageMax"			"120"		// Damage range max.	
 		"AttackRate"				"6"		// Speed of attack.
 		"AttackAnimationPoint"		"0.38"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -461,7 +461,7 @@
 		"AttackDamageMax"			"35"		// Damage range max.	
 		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"0.38"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"900"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_skywrath_mage/skywrath_mage_base_attack.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"900"			// Speed of projectile.		   
@@ -577,7 +577,7 @@
 		"AttackDamageMax"			"120"		// Damage range max.	
 		"AttackRate"				"6"		// Speed of attack.
 		"AttackAnimationPoint"		"0.38"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -689,7 +689,7 @@
 		"AttackDamageMax"			"80"		// Damage range max.	
 		"AttackRate"				"4.5"		// Speed of attack.
 		"AttackAnimationPoint"		"0.38"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -795,7 +795,7 @@
 		"AttackDamageMax"			"100"		// Damage range max.	
 		"AttackRate"				"4.5"		// Speed of attack.
 		"AttackAnimationPoint"		"0.38"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -827,7 +827,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"3000"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"1200"		// Range of vision at night time.
 	
 		// Team
@@ -868,11 +868,11 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"creature_fire_breath"	// Ability 1.
-		"Ability2"					"roshan_spell_block"			// Ability 2.
-		"Ability3"					"creature_slithereen_crush"			// Ability 3.
-		"Ability4"					""			// Ability 4.
-		"Ability5"					""			// Ability 5.
+		"Ability1"					"boss_roshan_heros_bane"	// Ability 1.
+		"Ability2"					"boss_roshan_heavy_blows"			// Ability 2.
+		"Ability3"					"boss_roshan_flamethrower"			// Ability 3.
+		"Ability4"					"boss_roshan_crushing_clap"			// Ability 4.
+		"Ability5"					"boss_roshan_sonic_boom"			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.
 		"Ability7"					""			// Ability 7 - Extra.
 		"Ability8"					""			// Ability 8 - Extra.
@@ -889,7 +889,7 @@
 		"AttackDamageMax"			"50"		// Damage range max.
 		"AttackRate"				"2.7"			// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"256"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_goodguy.vpcf" // Particle system model for projectile.
 		"ProjectileSpeed"			"1000"		// Speed of projectile.
@@ -928,8 +928,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -978,8 +978,13 @@
 		//----------------------------------------------------------------
 		
 		"AbilityLayout"				"6"
-		"Ability1"					"creature_aoe_spikes"			// Ability 1.
-		"Ability2"					"creature_lightning_storm"
+		"Ability1"					"boss_leshrac_great_equalizer"			// Ability 1.
+		"Ability2"					"boss_leshrac_inevitable_end"
+		"Ability3"					"boss_leshrac_punishment"
+		
+		"Ability4"					"boss_leshrac_lightning_storm"
+		"Ability5"					"boss_leshrac_earthshatter"
+		"Ability6"					"boss_leshrac_cataclysm"
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -993,7 +998,7 @@
 		"AttackDamageMax"			"60"		// Damage range max.
 		"AttackRate"				"2.7"			// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_leshrac/leshrac_base_attack.vpcf"						// Particle system model for projectile.
 		"ProjectileSpeed"			"800"			// Speed of projectile.
@@ -1036,8 +1041,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -1110,7 +1115,7 @@
 		"AttackDamageMax"			"120"		// Damage range max.
 		"AttackRate"				"3"	
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			""			// Speed of projectile.
@@ -1152,8 +1157,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -1207,7 +1212,7 @@
 		"AttackDamageMax"			"30"		// Damage range max.
 		"AttackRate"				"3"	
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			""			// Speed of projectile.
@@ -1249,8 +1254,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -1306,7 +1311,7 @@
 		"AttackDamageMax"			"80"		// Damage range max.
 		"AttackRate"				"2.7"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -1413,7 +1418,7 @@
 		"AttackDamageMax"			"60"		// Damage range max.	
 		"AttackRate"				"6"			// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"100"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -1525,7 +1530,7 @@
 		"AttackDamageMax"			"80"		// Damage range max.	
 		"AttackRate"				"4.5"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -1637,7 +1642,7 @@
 		"AttackDamageMax"			"80"		// Damage range max.	
 		"AttackRate"				"2.4"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -1749,7 +1754,7 @@
 		"AttackDamageMax"			"150"		// Damage range max.	
 		"AttackRate"				"6.0"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"250"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -1849,8 +1854,9 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_living_armor"	// Ability 1.
-		"Ability2"					"creature_summon_tree"			// Ability 3.
+		"Ability1"					"boss_treant_thornmaze"			// Ability 1.
+		"Ability2"					"boss_treant_overgrowth"		// Ability 3.
+		"Ability3"					"boss_treant_leech_seed"		// Ability 3.
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -1863,8 +1869,8 @@
 		"AttackDamageMin"			"160"		// Damage range min.1
 		"AttackDamageMax"			"240"		// Damage range max.	
 		"AttackRate"				"6.0"		// Speed of attack.
-		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAnimationPoint"		"1.9"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"300"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_goodguy.vpcf" // Particle system model for projectile.
 		"ProjectileSpeed"			"1000"		// Speed of projectile.
@@ -1903,8 +1909,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
 		"VoiceFile"					"soundevents/voscripts/game_sounds_vo_treant.vsndevts"
@@ -1959,10 +1965,10 @@
 		//----------------------------------------------------------------
 		
 		"AbilityLayout"				"6"
-		"Ability1"					"creature_summon_tree"			// Ability 1.
-		"Ability2"					"creature_summon_tree2"		// Ability 2.
-		"Ability3"					"boss_living_armor"			// Ability 3.
-		"Ability4"					"furion_sprout"			// Ability 4.
+		"Ability1"					"boss_furion_summon_minor_treants"		// Ability 1.
+		"Ability2"					"boss_furion_summon_greater_treants"	// Ability 2.
+		"Ability3"					"boss_furion_sprout"					// Ability 3.
+		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.
 		"Ability7"					""			// Ability 7 - Extra.
@@ -1980,7 +1986,7 @@
 		"AttackDamageMax"			"100"		// Damage range max.	
 		"AttackRate"				"6.0"		// Speed of attack.
 		"AttackAnimationPoint"		"1.2"									// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"16000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"1000"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_furion/furion_base_attack.vpcf"					// Particle system model for projectile.
 		"ProjectileSpeed"			"1125"									// Speed of projectile.
@@ -2022,8 +2028,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -2105,7 +2111,7 @@
 		"AttackDamageMax"			"120"		// Damage range max.
 		"AttackRate"				"5"		// Speed of attack.
 		"AttackAnimationPoint"		"3"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"800"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
 		"ProjectileSpeed"			"1200"		// Speed of projectile.		     
@@ -2199,7 +2205,7 @@
 		"AttackDamageMax"			"150"		// Damage range max.
 		"AttackRate"				"5"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"256"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -2295,7 +2301,7 @@
 		"AttackDamageMax"			"120"		// Damage range max.
 		"AttackRate"				"1.8"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"1000"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_leshrac/leshrac_base_attack.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"1600"			// Speed of projectile.		   
@@ -2413,7 +2419,7 @@
 		"AttackDamageMax"			"50"		// Damage range max.
 		"AttackRate"				"2.8"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"256"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"1600"			// Speed of projectile.		   
@@ -2523,7 +2529,7 @@
 		"AttackDamageMax"			"75"		// Damage range max.
 		"AttackRate"				"2.8"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"1600"			// Speed of projectile.		   
@@ -2633,7 +2639,7 @@
 		"AttackDamageMax"			"150"		// Damage range max.
 		"AttackRate"				"5"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"256"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"1600"			// Speed of projectile.		   
@@ -2748,7 +2754,7 @@
 		"AttackDamageMax"			"80"		// Damage range max.
 		"AttackRate"				"3.2"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_pugna/pugna_base_attack.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"900"			// Speed of projectile.		   
@@ -2842,7 +2848,7 @@
 		"AttackDamageMax"			"90"		// Damage range max.
 		"AttackRate"				"7.0"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/neutral_fx/black_dragon_attack.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"1400"			// Speed of projectile.		   
@@ -2949,7 +2955,7 @@
 		"AttackDamageMax"			"100"		// Damage range max.
 		"AttackRate"				"5"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/neutral_fx/black_dragon_attack.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"900"			// Speed of projectile.		   
@@ -3058,7 +3064,7 @@
 		"AttackDamageMax"			"90"		// Damage range max.
 		"AttackRate"				"2.1"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"750"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"1400"			// Speed of projectile.		   
@@ -3164,7 +3170,7 @@
 		"AttackDamageMax"			"75"		// Damage range max.
 		"AttackRate"				"6"			// Speed of attack.
 		"AttackAnimationPoint"		"1.5"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"256"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		  	   
@@ -3264,7 +3270,7 @@
 		"AttackDamageMax"			"125"		// Damage range max.
 		"AttackRate"				"3.6"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"256"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.			
@@ -3373,7 +3379,7 @@
 		"AttackDamageMax"			"120"		// Damage range max.
 		"AttackRate"				"4"		// Speed of attack.
 		"AttackAnimationPoint"		"1.6"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		
@@ -3477,7 +3483,7 @@
 		"AttackDamageMax"			"100"		// Damage range max.
 		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"1.6"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		
@@ -3485,7 +3491,7 @@
 		//----------------------------------------------------------------
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
 		"RingRadius"				"80"
-		"HealthBarOffset"			"320"
+		"HealthBarOffset"			"250"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -3496,7 +3502,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"280"		// Speed.
+		"MovementSpeed"				"250"		// Speed.
 		"MovementTurnRate"			"0.1"		// Turning rate.
 	
 		// Status
@@ -3582,7 +3588,7 @@
 		"AttackDamageMax"			"200"		// Damage range max.
 		"AttackRate"				"6"		// Speed of attack.
 		"AttackAnimationPoint"		"1.8"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		
@@ -3690,7 +3696,7 @@
 		"AttackDamageMax"			"133"		// Damage range max.
 		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"2"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"300"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		
@@ -3801,7 +3807,7 @@
 		"AttackDamageMax"			"120"		// Damage range max.
 		"AttackRate"				"1.8"		// Speed of attack.
 		"AttackAnimationPoint"		"3"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		
@@ -3878,8 +3884,7 @@
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
 		"Ability1"					"boss_warlock_demon_lust"				// Ability 1.
-		"Ability2"					"boss_fire_aura"						// Ability 1.
-		"Ability3"					"boss_splash"							// Ability 1.
+		"Ability2"					"boss18b_corrupted_huntress"						// Ability 1.
 		"Ability4"					"boss_warlock_inferno_spikes"			// Ability 1.
 	
 		// Armor
@@ -3894,7 +3899,7 @@
 		"AttackDamageMax"			"70"		// Damage range max.
 		"AttackRate"				"2.4"		// Speed of attack.
 		"AttackAnimationPoint"		"2.4"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"350"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		
@@ -3992,7 +3997,7 @@
 		"AttackDamageMax"			"75"		// Damage range max.
 		"AttackRate"				"1.5"		// Speed of attack.
 		"AttackAnimationPoint"		"2.4"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"300"		// Range within a target can be attacked.
 		"ProjectileModel"			""							// Particle system model for projectile.
 		"ProjectileSpeed"			"0"									// Speed of projectile.
@@ -4091,7 +4096,7 @@
 		"AttackDamageMax"			"250"		// Damage range max.
 		"AttackRate"				"12.0"		// Speed of attack.
 		"AttackAnimationPoint"		"2.4"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"warlock_base_attack"							// Particle system model for projectile.
 		"ProjectileSpeed"			"1200"									// Speed of projectile.
@@ -4190,7 +4195,7 @@
 		"AttackDamageMax"			"50"		// Damage range max.
 		"AttackRate"				"3.0"		// Speed of attack.
 		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_shadow_demon/shadow_demon_base_attack.vpcf"							// Particle system model for projectile.
 		"ProjectileSpeed"			"800"									// Speed of projectile.
@@ -4296,7 +4301,7 @@
 		"AttackDamageMax"			"165"		// Damage range max.
 		"AttackRate"				"2.4"		// Speed of attack.
 		"AttackAnimationPoint"		"0.8"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"400"		// Range within a target can be attacked.
 		"ProjectileModel"			""							// Particle system model for projectile.
 		"ProjectileSpeed"			"0"									// Speed of projectile.
@@ -4447,8 +4452,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+		"VisionDaytimeRange"		"3000"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"3000"		// Range of vision at night time.
 	
 		// Team
 		//----------------------------------------------------------------
@@ -5107,7 +5112,7 @@
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"0.1"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"8000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"256"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			""			// Speed of projectile.
@@ -5231,7 +5236,7 @@
 		"AttackDamageMax"			"50"		// Damage range max.
 		"AttackRate"				"6"		// Speed of attack.
 		"AttackAnimationPoint"		"0.1"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"8000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"3000"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/fountain_attack.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"2000"			// Speed of projectile.
@@ -5354,7 +5359,7 @@
 		"AttackDamageMax"			"120"		// Damage range max.
 		"AttackRate"				"9"		// Speed of attack.
 		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"8000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"300"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			""			// Speed of projectile.
@@ -5474,7 +5479,7 @@
 		"AttackDamageMax"			"150"		// Damage range max.
 		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"8000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_arcane_orb.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"900"			// Speed of projectile.
@@ -5570,18 +5575,18 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"5"		// Physical protection.
+		"ArmorPhysical"				"9"		// Physical protection.
 		"MagicalResistance"			"35"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"100"		// Damage range min.
-		"AttackDamageMax"			"150"		// Damage range max.
+		"AttackDamageMin"			"125"		// Damage range min.
+		"AttackDamageMax"			"175"		// Damage range max.
 		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
 		"AnimationPlaybackRate"		"0.33"
-		"AttackAcquisitionRange"	"8000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_furion/furion_base_attack.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"900"			// Speed of projectile.
@@ -5679,19 +5684,19 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"10"		// Physical protection.
+		"ArmorPhysical"				"12"		// Physical protection.
 		"MagicalResistance"			"40"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"100"		// Damage range min.
-		"AttackDamageMax"			"150"		// Damage range max.
+		"AttackDamageMin"			"150"		// Damage range min.
+		"AttackDamageMax"			"200"		// Damage range max.
 		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
 		"AnimationPlaybackRate"		"0.33"
-		"AttackAcquisitionRange"	"8000"		// Range within a target can be acquired.
-		"AttackRange"				"600"		// Range within a target can be attacked.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"750"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/econ/items/viper/viper_ti7_immortal/viper_poison_attack_ti7.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"900"			// Speed of projectile.
 	
@@ -5786,19 +5791,19 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"15"		// Physical protection.
+		"ArmorPhysical"				"18"		// Physical protection.
 		"MagicalResistance"			"45"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"100"		// Damage range min.
-		"AttackDamageMax"			"150"		// Damage range max.
-		"AttackRate"				"3"		// Speed of attack.
+		"AttackDamageMin"			"150"		// Damage range min.
+		"AttackDamageMax"			"200"		// Damage range max.
+		"AttackRate"				"2"		// Speed of attack.
 		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
 		"AnimationPlaybackRate"		"0.33"
-		"AttackAcquisitionRange"	"8000"		// Range within a target can be acquired.
-		"AttackRange"				"600"		// Range within a target can be attacked.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"450"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_bane/bane_projectile.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"900"			// Speed of projectile.
 	
@@ -5817,7 +5822,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
-		"MovementSpeed"				"350"		// Speed
+		"MovementSpeed"				"275"		// Speed
 		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
@@ -5896,18 +5901,18 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"35"		// Physical protection.
-		"MagicalResistance"			"50"		// Magical protection.
+		"ArmorPhysical"				"10"		// Physical protection.
+		"MagicalResistance"			"25"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"100"		// Damage range min.
-		"AttackDamageMax"			"150"		// Damage range max.
-		"AttackRate"				"3"		// Speed of attack.
+		"AttackDamageMin"			"1"		// Damage range min.
+		"AttackDamageMax"			"600"		// Damage range max.
+		"AttackRate"				"6"		// Speed of attack.
 		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
 		"AnimationPlaybackRate"		"0.33"
-		"AttackAcquisitionRange"	"8000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_visage/visage_base_attack.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"900"			// Speed of projectile.
@@ -5968,6 +5973,114 @@
 			}
 		}
 	}
+	"npc_dota_boss_ifdat"
+	{
+		// General
+		//
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/heroes/lina/lina.vmdl"	// Model.
+		"SoundSet"					"Hero_Lina"					// Name of sound set.
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+		"ModelScale"				"2"
+		"Level"						"60"
+		"IsCelestial"				"1"
+		"MinimapIcon"				"minimap_roshancamp"
+		"MinimapIconSize"			"120"
+		"vscripts"					"ai/ai_ifdat"
+		
+		"precache"
+		{
+			"particle_folder"	"particles/units/heroes/hero_invoker/invoker_forge_spirit_ambient.vpcf"
+			"model"				"models/heroes/obsidian_destroyer/obsidian_destroyer.vmdl"
+		}
+	
+		// Abilities
+		//----------------------------------------------------------------
+		
+		"Ability1"					"boss_ifdat_touch_of_fire"
+		"Ability2"					"boss_ifdat_flashfire"
+		"Ability3"					"boss_ifdat_trailblazer"
+		
+		"Ability4"					"boss_ifdat_magma_pool"
+		"Ability5"					"boss_ifdat_flamethrower"
+		"Ability6"					"boss_ifdat_cinderheart"
+		"Ability7"					"boss_ifdat_meteor_storm"
+		"Ability8"					"boss_ifdat_incinerate"
+	
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"12"		// Physical protection.
+		"MagicalResistance"			"40"		// Magical protection.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"200"		// Damage range min.
+		"AttackDamageMax"			"350"		// Damage range max.
+		"AttackRate"				"6"		// Speed of attack.
+		"AttackAnimationPoint"		"2.25"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"750"		// Range within a target can be attacked.
+		"ProjectileModel"			"particles/units/heroes/hero_lina/lina_base_attack.vpcf"			// Particle system model for projectile.
+		"ProjectileSpeed"			"900"			// Speed of projectile.
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"		// Experience earn.
+		"BountyGoldMin"				"11"		// Gold earned min.
+		"BountyGoldMax"				"13"		// Gold earned max.
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
+		"HealthBarOffset"			"600"
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+		"MovementSpeed"				"275"		// Speed
+		"MovementTurnRate"			"0.1"		// Turning rate.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"3000"		// Base health.
+		"StatusHealthRegen"			"1"		// Health regeneration rate.
+		"StatusMana"				"2000"			// Base mana.
+		"StatusManaRegen"			"10"			// Mana regeneration rate.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"			// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+	
+		//Precache
+		//------------------------------------------------------------------
+		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_viper.vsndevts"
+		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
+	
+		"ShouldDoFlyHeightVisual" "0"
+	
+		// Creature Data
+		//----------------------------------------------------------------------------------------------------------------------
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"Wearable1"{"ItemDef"			"8990"}
+				"Wearable2"{"ItemDef"			"9074"}
+				"Wearable3"{"ItemDef"			"7717"}
+				"Wearable4"{"ItemDef"			"8817"}
+			}
+		}
+	}
 	"npc_dota_boss_greymane"
 	{
 		// General
@@ -6011,7 +6124,7 @@
 		"AttackDamageMax"			"110"		// Damage range max.
 		"AttackRate"				"6"		// Speed of attack.
 		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"8000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"175"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			""			// Speed of projectile.
@@ -6120,8 +6233,8 @@
 		"AttackDamageMax"			"80"		// Damage range max.
 		"AttackRate"				"3.0"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"128"		// Range within a target can be attacked.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			""			// Speed of projectile.
 	
@@ -6159,8 +6272,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"8000"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"8000"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 		
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -6235,8 +6348,8 @@
 		"AttackDamageMax"			"80"		// Damage range max.
 		"AttackRate"				"1.5"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"128"		// Range within a target can be attacked.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			""			// Speed of projectile.
 	
@@ -6274,8 +6387,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"8000"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"8000"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 		
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -6327,7 +6440,7 @@
 		"AttackDamageMax"			"90"		// Damage range max.
 		"AttackRate"				"4.5"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"400"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_viper/viper_poison_attack.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"600"			// Speed of projectile.
@@ -6366,8 +6479,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"8000"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"8000"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -6440,8 +6553,8 @@
 		"AttackDamageMax"			"175"		// Damage range max.
 		"AttackRate"				"6"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"128"		// Range within a target can be attacked.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -6476,8 +6589,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -6546,8 +6659,8 @@
 		"AttackDamageMax"			"0"		// Damage range max.
 		"AttackRate"				"3.75"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"128"		// Range within a target can be attacked.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -6581,8 +6694,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -6612,7 +6725,7 @@
 			}
 		}
 	}
-	"npc_dota_boss5b"
+	"npc_dota_minion5"
 	{
 		// General
 		//
@@ -6649,7 +6762,7 @@
 		"AttackDamageMax"			"50"		// Damage range max.
 		"AttackRate"				"6"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_queenofpain/queen_base_attack.vpcf"
 		"ProjectileSpeed"			"1200"
@@ -6686,8 +6799,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -6738,10 +6851,10 @@
 		//----------------------------------------------------------------
 		
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_moment_of_courage"			// Ability 1.
-		"Ability2"					"boss_hail_of_arrows"
-		"Ability3"					"boss_press_the_attack"
-		"Ability4"					"boss_call_reinforcements"
+		"Ability1"					"boss_legion_commander_battlemaster"			// Ability 1.
+		"Ability2"					"boss_legion_commander_hail_of_arrows"
+		"Ability3"					"boss_legion_commander_bolster"
+		"Ability4"					"boss_legion_commander_infernal_rage"
 	
 	
 		//----------------------------------------------------------------
@@ -6751,12 +6864,12 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"80"		// Damage range min.
-		"AttackDamageMax"			"90"		// Damage range max.
-		"AttackRate"				"5"		// Speed of attack.
+		"AttackDamageMin"			"55"		// Damage range min.
+		"AttackDamageMax"			"70"		// Damage range max.
+		"AttackRate"				"6"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"128"		// Range within a target can be attacked.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -6790,8 +6903,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -6821,6 +6934,323 @@
 				"Wearable4" { "ItemDef"			"6240" }
 				"Wearable5" { "ItemDef"			"5885" }
 			}
+		}
+	}
+	
+	"npc_dota_boss_dire_hellbear"
+	{
+		// General
+		//
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/creeps/neutral_creeps/n_creep_furbolg/n_creep_furbolg_disrupter.vmdl"	// Model.
+		"SoundSet"					"Undying_Zombie"					// Name of sound set.
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+		"ModelScale"				"1.35"
+		"Level"						"5"
+		"IsWild"					"1"
+		"precache"
+		{
+			"particle_folder"		"particles/units/heroes/hero_legion_commander"
+		}
+		"vscripts"					"ai/ai_dire_hellbear.lua"
+		
+		//----------------------------------------------------------------
+		
+		"AbilityLayout"				"6"
+		"Ability1"					"boss_hellbear_clap"			// Ability 1.
+		"Ability2"					"boss_hellbear_wallop"
+		
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"9"			// Physical protection.
+		"MagicalResistance"			"10"		// Magical protection.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"140"		// Damage range min.
+		"AttackDamageMax"			"160"		// Damage range max.
+		"AttackRate"				"4"		// Speed of attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"		// Experience earn.
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"100"
+		"HealthBarOffset"			"320"
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+		"MovementSpeed"				"250"		// Speed
+		"MovementTurnRate"			"0.3"		// Turning rate.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"3000"		// Base health.
+		"StatusHealthRegen"			"2"			// Health regeneration rate.
+		"StatusMana"				"500"		// Base mana.
+		"StatusManaRegen"			"5"			// Mana regeneration rate.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"			// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
+	
+		// Creature Data
+		//----------------------------------------------------------------------------------------------------------------------
+		"Creature"
+		{
+			"CanRespawn"				"0"
+		}
+	}
+	"npc_dota_boss_minor_hellbear"
+	{
+		// General
+		//
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/creeps/neutral_creeps/n_creep_beast/n_creep_beast.vmdl"	// Model.
+		"SoundSet"					"Undying_Zombie"					// Name of sound set.
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+		"ModelScale"				"1.2"
+		"Level"						"5"
+		"IsWild"					"1"
+		"precache"
+		{
+			"particle_folder"		"particles/units/heroes/hero_legion_commander"
+		}
+		"vscripts"					"ai/ai_generic.lua"
+		
+		//----------------------------------------------------------------
+		
+		"AbilityLayout"				"6"
+		"Ability1"					"boss_hellbear_battle_hymn"		
+		
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"5"			// Physical protection.
+		"MagicalResistance"			"20"		// Magical protection.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"150"		// Damage range min.
+		"AttackDamageMax"			"100"		// Damage range max.
+		"AttackRate"				"3"		// Speed of attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"		// Experience earn.
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"100"
+		"HealthBarOffset"			"320"
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+		"MovementSpeed"				"250"		// Speed
+		"MovementTurnRate"			"0.3"		// Turning rate.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"2000"		// Base health.
+		"StatusHealthRegen"			"2"			// Health regeneration rate.
+		"StatusMana"				"500"		// Base mana.
+		"StatusManaRegen"			"5"			// Mana regeneration rate.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"			// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
+	
+		// Creature Data
+		//----------------------------------------------------------------------------------------------------------------------
+		"Creature"
+		{
+			"CanRespawn"				"0"
+		}
+	}
+	"npc_dota_boss_greater_centaur"
+	{
+		// General
+		//
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/creeps/neutral_creeps/n_creep_centaur_lrg/n_creep_centaur_lrg.vmdl"	// Model.
+		"SoundSet"					"Undying_Zombie"					// Name of sound set.
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+		"ModelScale"				"1.35"
+		"Level"						"5"
+		"IsWild"					"1"
+		"precache"
+		{
+			"particle_folder"		"particles/units/heroes/hero_legion_commander"
+		}
+		"vscripts"					"ai/ai_greater_centaur.lua"
+		
+		//----------------------------------------------------------------
+		
+		"AbilityLayout"				"6"
+		"Ability1"					"boss_centaur_stomp"			// Ability 1.
+		"Ability2"					"boss_centaur_charge"
+		"Ability3"					"boss_centaur_bash"
+		
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"9"			// Physical protection.
+		"MagicalResistance"			"10"		// Magical protection.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"140"		// Damage range min.
+		"AttackDamageMax"			"160"		// Damage range max.
+		"AttackRate"				"6"		// Speed of attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"		// Experience earn.
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"100"
+		"HealthBarOffset"			"320"
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+		"MovementSpeed"				"250"		// Speed
+		"MovementTurnRate"			"0.3"		// Turning rate.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"2500"		// Base health.
+		"StatusHealthRegen"			"2"			// Health regeneration rate.
+		"StatusMana"				"500"		// Base mana.
+		"StatusManaRegen"			"5"			// Mana regeneration rate.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"			// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
+	
+		// Creature Data
+		//----------------------------------------------------------------------------------------------------------------------
+		"Creature"
+		{
+			"CanRespawn"				"0"
+		}
+	}
+	"npc_dota_boss_lesser_centaur"
+	{
+		// General
+		//
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/creeps/neutral_creeps/n_creep_centaur_med/n_creep_centaur_med.vmdl"	// Model.
+		"SoundSet"					"Undying_Zombie"					// Name of sound set.
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+		"ModelScale"				"1.2"
+		"Level"						"5"
+		"IsWild"					"1"
+		"precache"
+		{
+			"particle_folder"		"particles/units/heroes/hero_legion_commander"
+		}
+		"vscripts"					"ai/ai_generic.lua"
+		
+		//----------------------------------------------------------------
+		
+		"AbilityLayout"				"6"
+		"Ability1"					"boss_centaur_protection_aura"	
+	
+	
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"9"			// Physical protection.
+		"MagicalResistance"			"15"		// Magical protection.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"80"		// Damage range min.
+		"AttackDamageMax"			"100"		// Damage range max.
+		"AttackRate"				"3"		// Speed of attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"		// Experience earn.
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"100"
+		"HealthBarOffset"			"320"
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+		"MovementSpeed"				"250"		// Speed
+		"MovementTurnRate"			"0.3"		// Turning rate.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"1800"		// Base health.
+		"StatusHealthRegen"			"2"			// Health regeneration rate.
+		"StatusMana"				"500"		// Base mana.
+		"StatusManaRegen"			"5"			// Mana regeneration rate.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"			// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
+	
+		// Creature Data
+		//----------------------------------------------------------------------------------------------------------------------
+		"Creature"
+		{
+			"CanRespawn"				"0"
 		}
 	}
 	//=================================================================================
@@ -6857,7 +7287,7 @@
 		"AttackDamageMax"			"80"		// Damage range max.
 		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"0.467"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			""			// Speed of projectile.
@@ -6989,7 +7419,7 @@
 		"AttackDamageMax"			"220"		// Damage range max.
 		"AttackRate"				"12.0"			// Speed of attack.
 		"AttackAnimationPoint"		"1.5"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"40"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			""			// Speed of projectile.
@@ -7096,9 +7526,10 @@
 		//----------------------------------------------------------------
 		
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_lifesteal"			// Ability 2.
-		"Ability2"					"boss_ragebuff"			
-		"Ability3"					"boss_wounds"			
+		"Ability1"					"boss_lifestealer_feast"			// Ability 2.
+		"Ability2"					"boss_lifestealer_bloodfrenzy"			
+		"Ability3"					"boss_lifestealer_open_wounds"			
+		"Ability4"					"boss_lifestealer_consume"			
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -7112,7 +7543,7 @@
 		"AttackDamageMax"			"120"		// Damage range max.
 		"AttackRate"				"2.1"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"175"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			""			// Speed of projectile.
@@ -7151,8 +7582,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -7196,6 +7627,88 @@
 			}
 		}
 	}
+	//=================================================================================
+	// Creature: LifeSteal Boss 7
+	//=================================================================================
+	"npc_dota_minion_carrion_worm"
+	{
+		// General
+		//
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/items/courier/kupu_courier/kupu_courier.vmdl"	// Model.
+		"SoundSet"					"life_stealer"					// Name of sound set.
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+		"ModelScale"				"1.3"
+		"Level"						"7"
+		"IsWild"					"1"
+		"IsUndead"					"1"
+		"vscripts"					"ai/ai_generic.lua"	
+	
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"			// Physical protection.
+		"MagicalResistance"			"0"		// Magical protection.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"50"		// Damage range min.
+		"AttackDamageMax"			"80"		// Damage range max.
+		"AttackRate"				"2.1"		// Speed of attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"175"		// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			""			// Speed of projectile.
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"		// Experience earn.
+		"BountyGoldMin"				"0"		// Gold earned min.
+		"BountyGoldMax"				"0"		// Gold earned max.
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"130"
+		"HealthBarOffset"			"450"
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+		"MovementSpeed"				"200"		// Speed
+		"MovementTurnRate"			"0.8"		// Turning rate.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"800"		// Base health.
+		"StatusHealthRegen"			"0.0"		// Health regeneration rate.
+		"StatusMana"				"0"			// Base mana.
+		"StatusManaRegen"			"0"			// Mana regeneration rate.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"			// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1200"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1200"		// Range of vision at night time.
+	
+		// Creature Data
+		//----------------------------------------------------------------------------------------------------------------------
+		"Creature"
+		{
+			"CanRespawn"				"0"
+	
+			//Ability Usage Parameters
+			//-----------------------------------------------------------------
+			"NOSTUNRESIST"			"80.0"
+		}
+	}
 	//=================================================================================================================
 	// Creature: BOSS 8
 	//=================================================================================================================
@@ -7217,17 +7730,18 @@
 		"ArmorPhysical"				"12"								// Physical protection.
 	
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_spear"			// Ability 1.
-	
+		"Ability1"					"boss_clockwerk_mark_for_destruction"   // Ability 1.
+		"Ability2"					"boss_clockwerk_meteor_hook"			// Ability 1.
+		
 		// Attack
 		//-------------------------------------------------------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"100"		// Damage range min.
+		"AttackDamageMin"			"150"		// Damage range min.
 		"AttackDamageMax"			"200"		// Damage range max.
 		"AttackRate"				"6"									// Speed of attack.
 		"AttackAnimationPoint"		"1.2"										// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"16000"									// Range within a target can be acquired.
-		"AttackRange"				"128"									// Range within a target can be attacked.
+		"AttackRange"				"150"									// Range within a target can be attacked.
 	
 		// Bounds
 		//----------------------------------------------------------------
@@ -7256,7 +7770,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -7362,7 +7876,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -7422,7 +7936,8 @@
 	
 		// Armor
 		//-------------------------------------------------------------------------------------------------------------
-		"ArmorPhysical"				"0"								// Physical protection.
+		"ArmorPhysical"				"16"								// Physical protection.
+		"MagicalResistance"			"40"								// Physical protection.
 	
 		"AbilityLayout"				"6"
 		"Ability1"					"boss_proximity"			// Ability 1.
@@ -7459,7 +7974,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -7559,7 +8074,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -7618,9 +8133,9 @@
 		//----------------------------------------------------------------
 		
 		"AbilityLayout"				"6"
-		"Ability1"					"creature_summon_slither"			// Ability 1.
-		"Ability2"					"creature_slithereen_crush"			// Ability 2.
-		"Ability3"					"slardar_bash"			// Ability 3.
+		"Ability1"					"boss_slardar_submerge"			// Ability 1.
+		"Ability2"					"boss_slardar_splash_zone"	    // Ability 2.
+		"Ability3"					"boss_slardar_blessing_of_the_tides"			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.
@@ -7639,8 +8154,8 @@
 		"AttackDamageMax"			"120"		// Damage range max.
 		"AttackRate"				"4"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
-		"AttackRange"				"128"		// Range within a target can be attacked.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			""			// Speed of projectile.
 	
@@ -7659,12 +8174,12 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
-		"MovementSpeed"				"315"		// Speed
+		"MovementSpeed"				"270"		// Speed
 		"MovementTurnRate"			"0.3"		// Turning rate.
 		
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"2750"		// Base health.
+		"StatusHealth"				"2250"		// Base health.
 		"StatusHealthRegen"			"1"		// Health regeneration rate.
 		"StatusMana"				"250"			// Base mana.
 		"StatusManaRegen"			"3"			// Mana regeneration rate.
@@ -7678,8 +8193,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -7754,7 +8269,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"3"			// Physical protection.
-		"MagicalResistance"			"75"		// Magical protection.
+		"MagicalResistance"			"40"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -7764,7 +8279,7 @@
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"2.7"		// Speed of attack.
 		"AttackAnimationPoint"		"1.5"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"1500"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
 		"AttackRange"				"100"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			""			// Speed of projectile.
@@ -7788,7 +8303,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"500"		// Base health.
+		"StatusHealth"				"650"		// Base health.
 		"StatusHealthRegen"			"1.0"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -7802,7 +8317,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		//Precache
@@ -7908,7 +8423,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"2"			// Physical protection.
-		"MagicalResistance"			"75"		// Magical protection.
+		"MagicalResistance"			"60"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -7918,7 +8433,7 @@
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"100"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			""			// Speed of projectile.
@@ -7956,7 +8471,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		//Precache
@@ -8003,7 +8518,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"1"			// Physical protection.
-		"MagicalResistance"			"75"		// Magical protection.
+		"MagicalResistance"			"40"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -8012,8 +8527,8 @@
 		"AttackDamageMax"			"85"		// Damage range max.
 		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"128"		// Range within a target can be attacked.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			""			// Speed of projectile.
 	
@@ -8113,7 +8628,7 @@
 		"AttackDamageMax"			"40"		// Damage range max.
 		"AttackRate"				"2.4"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"100"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -8221,7 +8736,7 @@
 		"AttackDamageMax"			"40"		// Damage range max.
 		"AttackRate"				"2.4"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"100"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -8311,8 +8826,8 @@
 		//----------------------------------------------------------------
 		
 		"AbilityLayout"				"6"
-		"Ability1"					""			// Ability 1.
-		"Ability2"					""			// Ability 2.
+		"Ability1"					"boss_slardar_blessing_of_the_tides"			// Ability 1.
+		"Ability2"					"boss_slardar_shin_shatter"			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
@@ -8323,17 +8838,17 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"0"			// Physical protection.
-		"MagicalResistance"			"75"		// Magical protection.
+		"MagicalResistance"			"25"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"60"		// Damage range min.
-		"AttackDamageMax"			"75"		// Damage range max.
+		"AttackDamageMin"			"35"		// Damage range min.
+		"AttackDamageMax"			"55"		// Damage range max.
 		"AttackRate"				"1.8"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
-		"AttackRange"				"128"		// Range within a target can be attacked.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			""			// Speed of projectile.
 	
@@ -8346,18 +8861,18 @@
 		// Bounds
 		//----------------------------------------------------------------
 		"RingRadius"				"200"
-		"HealthBarOffset"			"520"
+		"HealthBarOffset"			"250"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
 	
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
-		"MovementSpeed"				"340"		// Speed
+		"MovementSpeed"				"260"		// Speed
 		"MovementTurnRate"			"0.25"		// Turning rate.
 		
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"140"		// Base health.
+		"StatusHealth"				"500"		// Base health.
 		"StatusHealthRegen"			"1"		// Health regeneration rate.
 		"StatusMana"				"205"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -8371,8 +8886,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		// Creature Data
 		//----------------------------------------------------------------------------------------------------------------------
@@ -8459,8 +8974,8 @@
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"3.0"			// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"128"		// Range within a target can be attacked.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_goodguy.vpcf" // Particle system model for projectile.
 		"ProjectileSpeed"			"1000"		// Speed of projectile.
 	
@@ -8498,8 +9013,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
 		"VoiceFile"					"soundevents/voscripts/game_sounds_vo_treant.vsndevts"
@@ -8569,8 +9084,8 @@
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"1.2"			// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"128"		// Range within a target can be attacked.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_goodguy.vpcf" // Particle system model for projectile.
 		"ProjectileSpeed"			"1000"		// Speed of projectile.
 	
@@ -8608,8 +9123,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
 		"VoiceFile"					"soundevents/voscripts/game_sounds_vo_treant.vsndevts"
@@ -8681,8 +9196,8 @@
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"15"			// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"128"		// Range within a target can be attacked.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_goodguy.vpcf" // Particle system model for projectile.
 		"ProjectileSpeed"			"1000"		// Speed of projectile.
 	
@@ -8720,8 +9235,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 	
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
 		"VoiceFile"					"soundevents/voscripts/game_sounds_vo_treant.vsndevts"
@@ -8793,7 +9308,7 @@
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"0.467"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			""			// Speed of projectile.
@@ -8931,7 +9446,7 @@
 	{
 		// General
 		//
-		"BaseClass" "npc_dota_base_additive" // Class of entity of link to.
+		"BaseClass" "npc_dota_creature" // Class of entity of link to.
 		"Model" "models/development/invisiblebox.vmdl" // Model.
 		"SoundSet" "Creep_Good_Range" // Name of sound set.
 		"Level" "0"
@@ -9009,7 +9524,7 @@
 	{
 		// General
 		//
-		"BaseClass"         "npc_dota_base_additive"  // Class of entity of link to.
+		"BaseClass"         "npc_dota_creature"  // Class of entity of link to.
 		"Model"           "models/props_items/mesh/monkey_king_destructible_bar_hitboxes.vmdl"  // Model.
 		"SoundSet"          "Creep_Good_Range"          // Name of sound set.
 		"Level"           "0"
@@ -9099,7 +9614,7 @@
 	{
 		// General
 		//
-		"BaseClass" "npc_dota_base_additive" // Class of entity of link to.
+		"BaseClass" "npc_dota_creature" // Class of entity of link to.
 		"Model" "models/development/invisiblebox.vmdl" // Model.
 		"SoundSet" "Creep_Good_Range" // Name of sound set.
 		"Level" "0"
@@ -9281,7 +9796,7 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"BaseClass"             "npc_dota_base_additive"
+		"BaseClass"             "npc_dota_creature"
 		"Model"                 "models/heroes/witchdoctor/witchdoctor_ward.vmdl"
 		"ModelScale"            "1.0"
 		"Level"                 "1"
@@ -9417,7 +9932,7 @@
 	}
 	"wearable_dummy"
 	{
-		"BaseClass"     "npc_dota_base_additive"
+		"BaseClass"     "npc_dota_creature"
 	}
 	"npc_illusion_template"
 	{
@@ -9975,8 +10490,8 @@
 		"AttackDamageMax"			"0"		// Damage range max.
 		"AttackRate"				"3.75"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"128"		// Range within a target can be attacked.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -10070,7 +10585,7 @@
 		"AttackDamageMax"			"90"		// Damage range max.
 		"AttackRate"				"7.0"		// Speed of attack.
 		"AttackAnimationPoint"		"1"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"400"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_corrosive.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"1000"			// Speed of projectile.		   
@@ -10181,7 +10696,7 @@
 		"AttackDamageMax"			"0"		// Damage range max.
 		"AttackRate"				"0"		// Speed of attack.
 		"AttackAnimationPoint"		"0"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"0"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -10278,7 +10793,7 @@
 		"AttackDamageMax"			"100"		// Damage range max.
 		"AttackRate"				"1.25"
 		"AttackAnimationPoint"		"0.3"
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"15000"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_warlock/warlock_base_attack.vpcf"							// Particle system model for projectile.
 		"ProjectileSpeed"			"1200"									// Speed of projectile.
@@ -10377,7 +10892,7 @@
 		"AttackDamageMax"			"120"		// Damage range max.	
 		"AttackRate"				"3.0"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -10463,7 +10978,7 @@
 		"AttackDamageMax"			"1"		// Damage range max.	
 		"AttackRate"				"1"		// Speed of attack.
 		"AttackAnimationPoint"		"1"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"1"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -11048,5 +11563,73 @@
 			"BountyGain"				"3"
 			"XPGain"					"15"
 		}
+	}
+	"npc_dota_generic_land_mine"
+	{
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/heroes/techies/fx_techiesfx_mine.vmdl"	// Model.
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"0"			// Name of sound set.
+		"Level"						"1"
+		"ModelScale"				"1.0"
+		"SelectionGroup"			"Techies_LandMines"
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					""			// Ability 1
+		"Ability2"					""			// Ability 2
+		"Ability3"					""			// Ability 3
+		"Ability4"					""			// Ability 4
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"			// Physical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"0"			// Damage range min.
+		"AttackDamageMax"			"0"			// Damage range max.	
+		"AttackRate"				"1.0"		// Speed of attack.
+		"AttackAnimationPoint"		"0.0"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"0"			// Range within a target can be acquired.
+		"AttackRange"				"0"			// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+		// Bounds
+		//----------------------------------------------------------------
+		"HealthBarOffset"			"140"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"	// Experience earn.
+		"BountyGoldMin"				"25"		// Gold earned min.
+		"BountyGoldMax"				"25"		// Gold earned max.
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"  // has to be move ground because something about neutral camps
+		"MovementSpeed"				"0"		// Speed.
+		"MovementTurnRate"			"0.4"		// Turning rate.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"1"		// Base health.
+		"StatusHealthRegen"			"0.0"		// Health regeneration rate.
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"64"		// Range of vision during day light.
+		"VisionNighttimeRange"		"64"		// Range of vision at night time.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
 	}
 }

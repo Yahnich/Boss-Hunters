@@ -46,7 +46,6 @@ function pudge_dismember_lua:OnChannelThink(flInterval)
 	local caster = self:GetCaster()
 	local endPoint = caster:GetAbsOrigin() + caster:GetForwardVector() * self:GetTrueCastRange()
 	local speed = self:GetTalentSpecialValueFor("speed")*flInterval
-	print("?")
 	self.counter = self.counter + flInterval
 	local enemies = caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), endPoint, self:GetTalentSpecialValueFor("width"), {})
 	for _,enemy in pairs(enemies) do

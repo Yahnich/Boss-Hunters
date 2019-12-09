@@ -368,7 +368,7 @@
 		"BaseClass"					"ability_lua"
 		"ScriptFile"				"heroes/hero_mars/mars_innate"
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"		"mars_bulwark"
+		"AbilityTextureName"		"custom/mars_phalanx"
 		"MaxLevel"					"1"
 		"InnateAbility"				"1"
 
@@ -526,8 +526,8 @@
 		
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_mars/mars_pillar.vpcf"
-			"particle"					"particles/units/heroes/hero_undying/undying_fg_heal.vpcf"
+			"particle"					"particles/units/heroes/hero_mars/mars_arena_of_blood_colosseum_columns.vpcf"
+			"particle"					"particles/units/heroes/hero_mars/mars_arena_of_blood_spear.vpcf"
 			"particle"					"particles/units/heroes/hero_phoenix/phoenix_supernova_reborn_shockwave.vpcf"
 			"particle"  				"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf"
 			

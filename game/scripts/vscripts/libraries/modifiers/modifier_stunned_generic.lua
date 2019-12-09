@@ -2,9 +2,15 @@ modifier_stunned_generic = class({})
 
 if IsServer() then
 	function modifier_stunned_generic:OnCreated(kv)
-		self:GetParent():Interrupt()
-		self:GetParent():Stop()
-		self:GetParent():StopMotionControllers(true)
+		if self:GetParent():IsRoundNecessary() and not self:GetParent():IsBoss() or self:GetParent():IsChanneling() then
+			self:GetParent():Interrupt()
+			self:GetParent():Stop()
+			self:GetParent():StopMotionControllers(true)
+			self:GetParent():RemoveGesture(ACT_DOTA_DISABLED)
+		end
+		if self:GetParent():IsRoundNecessary() then
+			self:SetDuration( 0.5, true )
+		end
 		if kv.delay == nil or toboolean(kv.delay) == true and not self:GetParent():IsRoundNecessary() then
 			self.delay = true
 			if self:GetAbility() then self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false) end
@@ -17,7 +23,9 @@ if IsServer() then
 end
 
 function modifier_stunned_generic:CheckState()
-	return { [MODIFIER_STATE_STUNNED] = true }
+	if not self:GetParent():IsBoss() then
+		return { [MODIFIER_STATE_STUNNED] = true }
+	end
 end
 
 function modifier_stunned_generic:DeclareFunctions()
@@ -33,7 +41,9 @@ function modifier_stunned_generic:DeclareFunctions()
 end
 
 function modifier_stunned_generic:GetOverrideAnimation( params )
-	return ACT_DOTA_DISABLED
+	if not self:GetParent():IsBoss() then
+		return ACT_DOTA_DISABLED
+	end
 end
 
 function modifier_stunned_generic:GetModifierFixedAttackRate( params )
@@ -59,7 +69,7 @@ function modifier_stunned_generic:GetModifierPercentageCasttime()
 end
 
 function modifier_stunned_generic:GetModifierTurnRate_Percentage()
-	return 95
+	return -95
 end
 
 function modifier_stunned_generic:IsPurgable()

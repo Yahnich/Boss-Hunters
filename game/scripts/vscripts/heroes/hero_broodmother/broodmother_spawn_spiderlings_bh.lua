@@ -47,7 +47,6 @@ function modifier_broodmother_spawn_spiderlings_bh:OnRemoved()
 				local stealList = {}
 				for i = 0, 16 do
 					local stealAbility = parent:GetAbilityByIndex(i)
-					if stealAbility then print( stealAbility:GetName(), stealAbility:IsPassive() ) end
 					if stealAbility and stealAbility:IsPassive() then
 						table.insert( stealList, stealAbility:GetName() )
 					end

@@ -12,7 +12,7 @@ end
 function wisp_overcharge_bh:OnToggle()
 	local caster = self:GetCaster()
 	
-	if caster:HasModifier("modifier_wisp_overcharge_bh") then
+	if not self:GetToggleState() then
 		local units = caster:FindAllUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
 		for _,unit in pairs(units) do
 			unit:RemoveModifierByName("modifier_wisp_overcharge_bh")
@@ -113,10 +113,5 @@ end
 function modifier_wisp_overcharge_bh:OnRemoved()
 	if IsServer() then
 		StopSoundOn("Hero_Wisp.Overcharge", self:GetParent())
-		local caster = self:GetCaster()
-		local units = caster:FindAllUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
-		for _,unit in pairs(units) do
-			unit:RemoveModifierByName("modifier_wisp_overcharge_bh")
-		end
 	end
 end

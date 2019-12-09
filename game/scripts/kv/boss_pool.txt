@@ -28,6 +28,7 @@
 		"elysium_boss_aeon"					"1"
 		"elysium_boss_genesis"				"1"
 		"elysium_boss_broodmother"			"1"
+		"elysium_boss_ifdat"				"1"
 		"generic_boss_scarab"				"1"
 	}
 	// Demons, corrupted things

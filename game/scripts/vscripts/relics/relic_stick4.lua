@@ -14,7 +14,7 @@ function relic_stick4:OnEventFinished(args)
 		if self:GetStackCount() >= 600 then
 			local parent = self:GetParent()
 			local ability = self:GetAbility()
-			parent.ownedRelics[ability:entindex()] = "relic_stick5"
+			parent.ownedRelics[ability:entindex()].name = "relic_stick5"
 			LinkLuaModifier("relic_stick5", "relics/relic_stick5", LUA_MODIFIER_MOTION_NONE)
 			parent:AddNewModifier( parent, ability, "relic_stick5", {})
 			if parent:GetPlayerOwner() then

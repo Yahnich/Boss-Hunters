@@ -156,7 +156,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_hp_damage"			"2 3.75 5 6.75"
+				"max_hp_damage"			"1.5 3 4.5 6"
 			}
 		}
 	}

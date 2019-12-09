@@ -18,7 +18,7 @@ function chen_god_hand:OnSpellStart()
 		EmitSoundOn("Hero_Chen.HandOfGodHealHero", friend)
 
 		friend:RemoveModifierByName("modifier_chen_god_hand")
-		ParticleManager:FireParticle("particles/units/heroes/hero_chen/chen_loadout.vpcf", PATTACH_POINT, friend, {[0]=point,[1]=Vector(radius,radius,radius)})
+		ParticleManager:FireParticle("particles/units/heroes/hero_chen/chen_hand_of_god.vpcf", PATTACH_POINT, friend, {[0]=friend:GetAbsOrigin(),[1]=Vector(radius,radius,radius)})
 
 		friend:HealEvent(friend:GetMaxHealth(), self, caster)
 		friend:AddNewModifier(caster, self, "modifier_chen_god_hand", {Duration = self:GetSpecialValueFor("duration")})
@@ -44,10 +44,24 @@ function chen_god_hand:OnSpellStart()
 end
 
 modifier_chen_god_hand = class({})
-function modifier_chen_god_hand:DeclareFunctions()
-	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+function modifier_chen_god_hand:OnCreated()
+	self.cdr = self:GetTalentSpecialValueFor("cdr")
+	self.dmg = self:GetTalentSpecialValueFor("dmg")
 end
 
-function modifier_chen_god_hand:GetModifierIncomingDamage_Percentage()
-	return -100
+function modifier_chen_god_hand:OnRefresh()
+	self.cdr = self:GetTalentSpecialValueFor("cdr")
+	self.dmg = self:GetTalentSpecialValueFor("dmg")
+end
+
+function modifier_chen_god_hand:DeclareFunctions()
+	return {MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE}
+end
+
+function modifier_chen_god_hand:GetModifierBaseDamageOutgoing_Percentage()
+	return self.dmg
+end
+
+function modifier_chen_god_hand:GetCooldownReduction()
+	return self.cdr
 end

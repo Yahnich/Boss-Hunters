@@ -31,7 +31,7 @@ if IsServer() then
 			Ability = self,
 			EffectName = "particles/units/heroes/hero_rattletrap/rattletrap_rocket_flare.vpcf",
 			bDodgable = false,
-			bProvidesVision = false,
+			bProvidesVision = true,
 			iMoveSpeed = 1800,
 			iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
 		}
@@ -50,6 +50,7 @@ if IsServer() then
 			enemy:AddNewModifier(caster, self, "modifier_rattletrap_rocket_flare_blind", {duration = duration})
 			ApplyDamage({victim = enemy, attacker = caster, damage = self:GetTalentSpecialValueFor("damage"), damage_type = self:GetAbilityDamageType(), ability = self})
 		end
+		AddFOWViewer( caster:GetTeamNumber(), position, radius, 10, false ) 
 	end
 end
 

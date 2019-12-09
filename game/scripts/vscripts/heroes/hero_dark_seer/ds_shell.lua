@@ -72,7 +72,7 @@ function modifier_ds_shell:OnIntervalThink()
 
 	local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.radius)
 	for _,enemy in pairs(enemies) do
-		if enemy ~= parent then
+		if enemy ~= parent or caster:HasTalent("special_bonus_unique_ds_shell_2") then
 			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_dark_seer/dark_seer_ion_shell_damage.vpcf", PATTACH_POINT, caster)
 						ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
 						ParticleManager:SetParticleControlEnt(nfx, 1, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
@@ -84,33 +84,33 @@ function modifier_ds_shell:OnIntervalThink()
 	end
 end
 
-function modifier_ds_shell:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_DEATH}
-end
+-- function modifier_ds_shell:DeclareFunctions()
+	-- return {MODIFIER_EVENT_ON_DEATH}
+-- end
 
-function modifier_ds_shell:OnDeath(params)
-	if IsServer() then
-		local caster = self:GetCaster()
+-- function modifier_ds_shell:OnDeath(params)
+	-- if IsServer() then
+		-- local caster = self:GetCaster()
 
-		if caster:HasTalent("special_bonus_unique_ds_shell_2") then
-			local parent = self:GetParent()
-			local ability = self:GetAbility()
-			local unit = params.unit
+		-- if caster:HasTalent("special_bonus_unique_ds_shell_2") then
+			-- local parent = self:GetParent()
+			-- local ability = self:GetAbility()
+			-- local unit = params.unit
 
-			local duration = self:GetTalentSpecialValueFor("duration")
+			-- local duration = self:GetTalentSpecialValueFor("duration")
 
-			if unit == parent then
-				local units = caster:FindAllUnitsInRadius(caster:GetAbsOrigin(), 350, {order = FIND_CLOSEST})
-				for _,target in pairs(units) do
-					if not target:HasModifier("modifier_ds_shell") then
-						target:AddNewModifier(caster, ability, "modifier_ds_shell", {Duration = duration})
-						break
-					end
-				end
-			end
-		end
-	end
-end
+			-- if unit == parent then
+				-- local units = caster:FindAllUnitsInRadius(caster:GetAbsOrigin(), 350, {order = FIND_CLOSEST})
+				-- for _,target in pairs(units) do
+					-- if not target:HasModifier("modifier_ds_shell") then
+						-- target:AddNewModifier(caster, ability, "modifier_ds_shell", {Duration = duration})
+						-- break
+					-- end
+				-- end
+			-- end
+		-- end
+	-- end
+-- end
 
 function modifier_ds_shell:IsDebuff()
 	return false

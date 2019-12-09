@@ -95,7 +95,7 @@ function StatsScreen:ProcessStatsUpgrade(userid, event)
 	if entindex ~= PlayerResource:GetSelectedHeroEntity( pID ):entindex() then return end -- calling
 	local netTable = CustomNetTables:GetTableValue("stats_panel", tostring(entindex))
 	
-	if hero:GetAttributePoints() <= 0 or ( type(self[skill]) == "table" and not self[skill][ tonumber( netTable[skill] ) + 1 ] ) then return end
+	if not netTable or hero:GetAttributePoints() <= 0 or ( type(self[skill]) == "table" and not self[skill][ tonumber( netTable[skill] ) + 1 ] ) then return end
 	if type(self[skill]) == "table" then
 		print( math.min( #self[skill], tonumber(netTable[skill]) + 1 ) )
 		netTable[skill] = tostring( math.min( #self[skill], tonumber(netTable[skill]) + 1 ) )
@@ -144,7 +144,7 @@ function StatsScreen:RespecAll(userid, event)
 		end
 		Timers:CreateTimer(function()
 			for _, modifier in ipairs( modifiers ) do
-				if modifier:GetAbility() then
+				if modifier and not modifier:IsNull() and modifier:GetAbility() then
 					if not modifier:GetAbility():IsInnateAbility() and modifier:GetCaster() == hero and not modifier:GetAbility():IsItem() and modifier:GetAbility():GetName() ~= "item_relic_handler" then -- destroy passive modifiers and any buffs
 						modifier:Destroy()
 					end

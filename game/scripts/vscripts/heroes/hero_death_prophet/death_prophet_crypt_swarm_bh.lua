@@ -27,12 +27,18 @@ function death_prophet_crypt_swarm_bh:OnSpellStart()
 		end
 		ParticleManager:FireParticle( "particles/units/heroes/hero_death_prophet/death_prophet_carrion_nova.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster )
 	else
-		self:FireLinearProjectile("particles/units/heroes/hero_death_prophet/death_prophet_carrion_swarm.vpcf", direction * speed, distance, width, {width_end = endWidth})
+		self.projectiles = self.projectiles or {}
+		local id = self:FireLinearProjectile("", direction * speed, distance, width, {width_end = endWidth})
+		local fx = ParticleManager:CreateParticle( "particles/units/heroes/hero_death_prophet/death_prophet_carrion_swarm.vpcf", PATTACH_CUSTOMORIGIN, caster )
+		ParticleManager:SetParticleControl( fx, 0, caster:GetAbsOrigin() )
+		ParticleManager:SetParticleControl( fx, 1, direction * speed )
+		ParticleManager:SetParticleControl( fx, 2, Vector(endWidth, width, endWidth) )
+		self.projectiles[id] = fx
 	end
 	caster:EmitSound("Hero_DeathProphet.CarrionSwarm")
 end
 
-function death_prophet_crypt_swarm_bh:OnProjectileHit( target, position )
+function death_prophet_crypt_swarm_bh:OnProjectileHitHandle( target, position, id )
 	if target then
 		local caster = self:GetCaster()
 		if caster:HasTalent("special_bonus_unique_death_prophet_crypt_swarm_1") then
@@ -42,6 +48,9 @@ function death_prophet_crypt_swarm_bh:OnProjectileHit( target, position )
 			self:DealDamage( caster, target, damage )
 		end
 		target:EmitSound("Hero_DeathProphet.CarrionSwarm.Damage")
+	else
+		ParticleManager:ClearParticle( self.projectiles[id] )
+		self.projectiles[id] = nil
 	end
 end
 
@@ -51,7 +60,7 @@ LinkLuaModifier( "modifier_death_prophet_crypt_swarm_talent", "heroes/hero_death
 if IsServer() then
 	function modifier_death_prophet_crypt_swarm_talent:OnCreated()
 		self.tick = self:GetRemainingTime() / self:GetCaster():FindTalentValue("special_bonus_unique_death_prophet_crypt_swarm_1", "duration")
-		self.damage = self:GetTalentSpecialValueFor("damage")
+		self.damage = self:GetTalentSpecialValueFor("damage") / self:GetCaster():FindTalentValue("special_bonus_unique_death_prophet_crypt_swarm_1", "duration")
 		self.lifesteal = 1
 		if not self:GetParent():IsRoundNecessary() then
 			self.lifesteal = 0.25
@@ -64,7 +73,7 @@ if IsServer() then
 			self.tick = self:GetRemainingTime() / self:GetCaster():FindTalentValue("special_bonus_unique_death_prophet_crypt_swarm_1", "duration")
 			self:StartIntervalThink( self.tick )
 		end
-		self.damage = self:GetTalentSpecialValueFor("damage")
+		self.damage = self:GetTalentSpecialValueFor("damage") / self:GetCaster():FindTalentValue("special_bonus_unique_death_prophet_crypt_swarm_1", "duration")
 		self.lifesteal = 1
 		if not self:GetParent():IsRoundNecessary() then
 			self.lifesteal = 0.25
@@ -77,4 +86,8 @@ if IsServer() then
 		local damage = ability:DealDamage( caster, self:GetParent(), self.damage )
 		caster:HealEvent( damage * self.lifesteal, ability, caster )
 	end
+end
+
+function modifier_death_prophet_crypt_swarm_talent:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

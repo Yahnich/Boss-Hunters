@@ -1,0 +1,159 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf19:version{aafc65d8-7a5a-4e01-bd8d-3ac118422503} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 64
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_nOrientationType = 1
+			m_flDepthBias = 30.0
+			m_flAnimationRate = 0.35
+			m_bAdditive = true
+			m_nFeatheringMode = "PARTICLE_DEPTH_FEATHERING_ON_OPTIONAL"
+			m_flFeatheringMaxDist = 5.0
+			m_flOverbrightFactor = 10.0
+			m_hTexture = resource:"materials/particle/fire_particle_10/fire_particle_10_low.vtex"
+		},
+		{
+			_class = "C_OP_RenderSprites"
+			m_bAdditive = true
+			m_nOrientationType = 2
+			m_flOverbrightFactor = 5.0
+			m_hTexture = resource:"materials/particle/lava_blasts/lava_glow.vtex"
+			m_bFitCycleToLifetime = true
+			m_flAnimationRate = 0.25
+		},
+		{
+			_class = "C_OP_RenderDeferredLight"
+			m_ColorScale = [ 255, 60, 0 ]
+			m_flStartFalloff = 0.5
+			m_flAlphaScale = 10.0
+			m_flRadiusScale = 2.5
+			m_hTexture = resource:"materials/particle/lava_blasts/lava_glow.vtex"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, 25.0 ]
+		},
+		{
+			_class = "C_OP_RampScalarLinear"
+			m_RateMax = 0.1
+			m_RateMin = -0.1
+			m_nField = "4"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 0.5
+			m_flBias = 0.65
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 1.0
+		},
+		{
+			_class = "C_OP_LerpEndCapScalar"
+			m_flOutput = 0.0
+			m_nFieldOutput = "7"
+			m_flLerpTime = 2.0
+		},
+		{
+			_class = "C_OP_LerpEndCapScalar"
+			m_flOutput = 0.0
+			m_nFieldOutput = "16"
+			m_flLerpTime = 2.0
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMax = 1.25
+			m_fLifetimeMin = 0.75
+		},
+		{
+			_class = "C_INIT_CreateFromParentParticles"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ -24.0, -24.0, 0.0 ]
+			m_OffsetMax = [ 24.0, 24.0, 0.0 ]
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 3
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 168, 117, 94, 255 ]
+			m_ColorMax = [ 118, 67, 53, 255 ]
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 75.0
+			m_flRadiusMax = 90.0
+			m_flRadiusRandExponent = 0.75
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmissionDuration = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.0
+			}
+			m_flStartTime = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.0
+			}
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 64.0
+			}
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "absorigin"
+			m_drivers = 
+			[
+				{
+					m_entityName = "self"
+					m_iAttachType = "PATTACH_ABSORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ 0.0, 0.0, 0.0 ]
+				},
+			]
+			m_previewState = 
+			{
+				m_bAnimationNonLooping = true
+				m_materialGroupName = "0"
+			}
+		},
+	]
+	m_nBehaviorVersion = 9
+	m_nFirstMultipleOverride_BackwardCompat = 7
+	m_flConstantRadius = 75.0
+}

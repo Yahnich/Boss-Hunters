@@ -31,6 +31,8 @@ end
 function arc_warden_spark_wrath_bh:OnTalentLearned()
 	if self:GetCaster():HasTalent("special_bonus_unique_arc_warden_spark_wrath_bh_2") then 
 		self:GetCaster():AddNewModifier( self:GetCaster(), self, "modifier_arc_warden_spark_wrath_talent", {} )
+	else
+		self:GetCaster():RemoveModifierByName("modifier_arc_warden_spark_wrath_talent")
 	end
 end
 

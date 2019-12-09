@@ -36,7 +36,7 @@ end
 function doom_infernal_blade_ebf:InfernalBlade(target)
 	local caster = self:GetCaster()
 	if caster:HasTalent("special_bonus_unique_doom_infernal_blade_ebf_1") then
-		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_doom_infernal_blade_ebf_1") ) ) do
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_doom_infernal_blade_ebf_1", "radius") ) ) do
 			enemy:AddNewModifier(caster, self, "modifier_doom_infernal_blade_ebf_debuff", {duration = self:GetTalentSpecialValueFor("burn_duration")})
 			self:Stun(enemy, self:GetTalentSpecialValueFor("ministun_duration"), false)
 			ParticleManager:FireParticle("particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf", PATTACH_POINT_FOLLOW, enemy)
@@ -85,6 +85,7 @@ if IsServer() then
 	function modifier_doom_infernal_blade_ebf_debuff:OnCreated()
 		self.damage = self:GetParent():GetMaxHealth() * self:GetTalentSpecialValueFor("burn_damage_pct") / 100
 		self.baseDamage = self:GetTalentSpecialValueFor("burn_damage")
+		self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_doom_infernal_blade_ebf_2")
 		self:StartIntervalThink(1)
 	end
 	
@@ -92,6 +93,12 @@ if IsServer() then
 		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.baseDamage)
 		SendOverheadEventMessage(self:GetCaster():GetPlayerOwner(), OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, self:GetParent(), self.damage + self.baseDamage,self:GetParent():GetPlayerOwner())
+	end
+	
+	function modifier_doom_infernal_blade_ebf_debuff:OnDestroy()
+		if self:GetParent():IsMinion() and self.talent2 then
+			self:GetParent():AttemptKill( self:GetAbility(), self:GetCaster() )
+		end
 	end
 end
 

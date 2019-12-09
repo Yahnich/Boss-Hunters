@@ -25,11 +25,6 @@ LinkLuaModifier("modifier_dazzle_shallow_grave_bh", "heroes/hero_dazzle/dazzle_s
 
 function modifier_dazzle_shallow_grave_bh:OnCreated()
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_dazzle_shallow_grave_1")
-	if self.talent1 then
-		self.respawnTime = self:GetCaster():FindTalentValue("special_bonus_unique_dazzle_shallow_grave_1")
-		self.radius = self:GetCaster():FindTalentValue("special_bonus_unique_dazzle_shallow_grave_1", "radius") / 100
-		self.damagePct = self:GetCaster():FindTalentValue("special_bonus_unique_dazzle_shallow_grave_1", "dmg") / 100
-	end
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_dazzle_shallow_grave_2")
 	if self.talent2 then
 		self.red = self:GetCaster():FindTalentValue("special_bonus_unique_dazzle_shallow_grave_2", "red")
@@ -37,12 +32,56 @@ function modifier_dazzle_shallow_grave_bh:OnCreated()
 	end
 end
 
-function modifier_dazzle_shallow_grave_bh:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_DEATH, MODIFIER_PROPERTY_MIN_HEALTH, MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE }
+function modifier_dazzle_shallow_grave_bh:OnRefresh()
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_dazzle_shallow_grave_1")
+	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_dazzle_shallow_grave_2")
+	if self.talent2 then
+		self.red = self:GetCaster():FindTalentValue("special_bonus_unique_dazzle_shallow_grave_2", "red")
+		self.hAmp = self:GetCaster():FindTalentValue("special_bonus_unique_dazzle_shallow_grave_2", "amp")
+	end
 end
 
-function modifier_dazzle_shallow_grave_bh:OnDeath(params)
-	if self.talent1 and params.unit == self:GetParent() then
+function modifier_dazzle_shallow_grave_bh:OnDestroy()
+	if self.talent1 and IsServer() then
+		self:GetParent():AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_dazzle_shallow_grave_talent", {duration = 10} )
+	end
+end
+
+function modifier_dazzle_shallow_grave_bh:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MIN_HEALTH, MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE }
+end
+
+function modifier_dazzle_shallow_grave_bh:GetMinHealth()
+	return 1
+end
+
+function modifier_dazzle_shallow_grave_bh:GetModifierHealAmplify_Percentage()
+	return self.hAmp
+end
+
+function modifier_dazzle_shallow_grave_bh:GetModifierIncomingDamage_Percentage()
+	return self.red
+end
+
+function modifier_dazzle_shallow_grave_bh:GetEffectName()
+	return "particles/units/heroes/hero_dazzle/dazzle_shallow_grave.vpcf"
+end
+
+modifier_dazzle_shallow_grave_talent = class({})
+LinkLuaModifier("modifier_dazzle_shallow_grave_talent", "heroes/hero_dazzle/dazzle_shallow_grave_bh", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_dazzle_shallow_grave_talent:OnCreated()
+	self.respawnTime = self:GetCaster():FindTalentValue("special_bonus_unique_dazzle_shallow_grave_1")
+	self.radius = self:GetCaster():FindTalentValue("special_bonus_unique_dazzle_shallow_grave_1", "radius") / 100
+	self.damagePct = self:GetCaster():FindTalentValue("special_bonus_unique_dazzle_shallow_grave_1", "dmg") / 100
+end
+
+function modifier_dazzle_shallow_grave_talent:DeclareFunctions()
+	return {MODIFIER_EVENT_ON_DEATH }
+end
+
+function modifier_dazzle_shallow_grave_talent:OnDeath(params)
+	if params.unit == self:GetParent() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
 		local ability = self:GetAbility()
@@ -60,22 +99,4 @@ function modifier_dazzle_shallow_grave_bh:OnDeath(params)
 			end
 		end)
 	end
-end
-
-function modifier_dazzle_shallow_grave_bh:GetMinHealth()
-	if not self.talent1 and not self.talent2 then
-		return 1
-	end
-end
-
-function modifier_dazzle_shallow_grave_bh:GetModifierHealAmplify_Percentage()
-	return self.hAmp
-end
-
-function modifier_dazzle_shallow_grave_bh:GetModifierIncomingDamage_Percentage()
-	return self.red
-end
-
-function modifier_dazzle_shallow_grave_bh:GetEffectName()
-	return "particles/units/heroes/hero_dazzle/dazzle_shallow_grave.vpcf"
 end

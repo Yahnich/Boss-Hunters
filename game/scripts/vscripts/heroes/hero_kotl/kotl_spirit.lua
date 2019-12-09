@@ -45,9 +45,8 @@ end
 modifier_kotl_spirit = class({})
 function modifier_kotl_spirit:OnCreated(table)
     --if not self:GetCaster():HasModifier("modifier_kotl_spirit") then
-        self.bonus_int = self:GetCaster():GetIntellect() * self:GetSpecialValueFor("bonus_int")
+        self.bonus_int = self:GetSpecialValueFor("bonus_int")
     	self.mana_cost = self:GetSpecialValueFor("mana_cost")
-        print(self.bonus_int)
     --end
 
     self.radius = self:GetSpecialValueFor("radius")
@@ -75,7 +74,6 @@ end
 
 function modifier_kotl_spirit:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
         MODIFIER_PROPERTY_MANACOST_PERCENTAGE,
         MODIFIER_PROPERTY_INVISIBILITY_LEVEL
     }
@@ -86,7 +84,7 @@ function modifier_kotl_spirit:GetModifierPercentageManacost()
     return self.mana_cost
 end
 
-function modifier_kotl_spirit:GetModifierBonusStats_Intellect()
+function modifier_kotl_spirit:GetModifierIntellectBonusPercentage()
     return self.bonus_int
 end
 

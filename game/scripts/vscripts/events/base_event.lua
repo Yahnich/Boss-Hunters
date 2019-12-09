@@ -22,7 +22,7 @@ function BaseEvent:constructor(zoneName, eventType, eventName)
 	local eventFolder = "combat"
 	if self.eventType == EVENT_TYPE_EVENT then
 		eventFolder = "event"
-	elseif self.eventType == EVENT_TYPE_BOSS then
+	elseif self.eventType == EVENT_TYPE_BOSS or self.eventType == EVENT_TYPE_ELITE then
 		eventFolder = "boss"
 	end
 	
@@ -84,17 +84,24 @@ function BaseEvent:LoadSpawns()
 	end
 end
 
+EVENT_MAX = 5 * 2 * 4
+
 function BaseEvent:GetHeroSpawnPosition()
 	return RoundManager.heroSpawnPosition
 end
 
+function BaseEvent:GetStandardGoldReward()
+	return RoundManager:GetStandardGoldReward()
+end
+
+function BaseEvent:GetStandardXPReward()
+	return RoundManager:GetStandardXPReward()
+end
+
 function BaseEvent:HandoutRewards(bWon)
 	if not self:IsEvent() then
-		local eventScaling = RoundManager:GetEventsFinished() * 0.75
-		local raidScaling = 1 + RoundManager:GetRaidsFinished() * 0.125
-		local playerScaling = GameRules.BasePlayers - HeroList:GetActiveHeroCount()
-		local baseXP = ( 700 + ( (35 + 10 * playerScaling) * eventScaling ) ) + (250 * raidScaling)
-		local baseGold = ( 200 + ( (20 + 5 * playerScaling) * eventScaling ) ) + (80 * raidScaling)
+		local baseXP = self:GetStandardXPReward()
+		local baseGold = self:GetStandardGoldReward()
 		if not bWon then
 			baseXP = baseXP / 4
 			baseGold = baseGold / 4

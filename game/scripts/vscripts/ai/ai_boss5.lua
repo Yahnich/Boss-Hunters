@@ -9,36 +9,24 @@ function Spawn( entityKeyValues )
 			return AIThink(thisEntity)
 		end
 	end)
-	thisEntity.moment = thisEntity:FindAbilityByName("boss_moment_of_courage")
-	thisEntity.odds = thisEntity:FindAbilityByName("boss_overwhelming_odds")
-	thisEntity.press = thisEntity:FindAbilityByName("boss_press_the_attack")
-	thisEntity.call = thisEntity:FindAbilityByName("boss_call_reinforcements")
-	if  math.floor(GameRules.gameDifficulty + 0.5) > 3 then
-		thisEntity.moment:SetLevel(4)
-		thisEntity.press:SetLevel(4)
-		thisEntity.odds:SetLevel(4)
-	elseif  math.floor(GameRules.gameDifficulty + 0.5) == 3 then
-		thisEntity.moment:SetLevel(3)
-		thisEntity.press:SetLevel(3)
-		thisEntity.odds:SetLevel(3)
-	elseif  math.floor(GameRules.gameDifficulty + 0.5) == 2 then
-		thisEntity.moment:SetLevel(2)
-		thisEntity.press:SetLevel(2)
-		thisEntity.odds:SetLevel(2)
-	else
-		thisEntity.moment:SetLevel(1)
-		thisEntity.press:SetLevel(1)
-		thisEntity.odds:SetLevel(1)
-	end
+	thisEntity.battlemaster = thisEntity:FindAbilityByName("boss_legion_commander_battlemaster")
+	thisEntity.hail = thisEntity:FindAbilityByName("boss_legion_commander_hail_of_arrows")
+	thisEntity.bolster = thisEntity:FindAbilityByName("boss_legion_commander_bolster")
+	thisEntity.rage = thisEntity:FindAbilityByName("boss_legion_commander_infernal_rage")
+	level = math.floor(GameRules:GetGameDifficulty() / 2 + 0.5)
+	
+	thisEntity.battlemaster:SetLevel( level )
+	thisEntity.hail:SetLevel( level )
+	thisEntity.bolster:SetLevel( level )
+	thisEntity.rage:SetLevel( level )
 	thisEntity:SetHealth(thisEntity:GetMaxHealth())
 end
 
-
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
-		if thisEntity.odds:IsFullyCastable() then
-			local radius = thisEntity.odds:GetSpecialValueFor("radius")
-			local range = thisEntity.odds:GetCastRange() + radius
+		if thisEntity.hail:IsFullyCastable() then
+			local radius = thisEntity.hail:GetSpecialValueFor("radius")
+			local range = thisEntity.hail:GetTrueCastRange() + radius
 			if AICore:TotalEnemyHeroesInRange( thisEntity, radius ) ~= 0 then
 				local position = AICore:OptimalHitPosition(thisEntity, range, radius)
 				if position and RollPercentage(25) then
@@ -46,42 +34,42 @@ function AIThink(thisEntity)
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
 						Position = position,
-						AbilityIndex = thisEntity.odds:entindex()
+						AbilityIndex = thisEntity.hail:entindex()
 					})
-					return AI_THINK_RATE
+					return thisEntity.hail:GetCastPoint() + 0.1
 				end
 			end
 		end
-		if thisEntity.press:IsFullyCastable() then
-			local hpregen = thisEntity.press:GetSpecialValueFor("hp_regen") *  thisEntity.press:GetSpecialValueFor("duration")
-			if (thisEntity:IsAttacking() or thisEntity:GetHealthDeficit() > hpregen) and RollPercentage(8) then
+		if thisEntity.bolster:IsFullyCastable() then
+			local hpregen = thisEntity.bolster:GetSpecialValueFor("hp_regen") * (thisEntity.bolster:GetSpecialValueFor("duration") / 3)
+			if (thisEntity:IsAttacking() or thisEntity:GetHealthDeficit() > hpregen) and RollPercentage(15) then
 				ExecuteOrderFromTable({
 					UnitIndex = thisEntity:entindex(),
 					OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
 					TargetIndex = thisEntity:entindex(),
-					AbilityIndex = thisEntity.press:entindex()
+					AbilityIndex = thisEntity.bolster:entindex()
 				})
 				return AI_THINK_RATE
-			elseif AICore:TotalAlliedUnitsInRange( thisEntity, thisEntity.press:GetCastRange() ) then
-				local ally = AICore:WeakestAlliedUnitInRange( thisEntity, thisEntity.press:GetCastRange() , false)
+			elseif AICore:TotalAlliedUnitsInRange( thisEntity, thisEntity.bolster:GetTrueCastRange() ) > 0 then
+				local ally = AICore:WeakestAlliedUnitInRange( thisEntity, thisEntity.bolster:GetTrueCastRange() , false)
 				if ally and ally:GetHealthDeficit() > hpregen and RollPercentage(8) then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
 						TargetIndex = ally:entindex(),
-						AbilityIndex = thisEntity.press:entindex()
+						AbilityIndex = thisEntity.bolster:entindex()
 					})
 					return AI_THINK_RATE
 				end
 			end
 		end
-		if thisEntity.call:IsFullyCastable() and AICore:SpecificAlliedUnitsAlive( thisEntity, "npc_dota_boss5b" ) < 6 then
+		if thisEntity.rage:IsFullyCastable() and ( RollPercentage(25) or thisEntity:HasModifier("modifier_boss_legion_commander_bolster_buff") ) then
 			ExecuteOrderFromTable({
 				UnitIndex = thisEntity:entindex(),
 				OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-				AbilityIndex = thisEntity.call:entindex()
+				AbilityIndex = thisEntity.rage:entindex()
 			})
-			return thisEntity.call:GetChannelTime()
+			return thisEntity.rage:GetCastPoint() + 0.1
 		end
 		return AICore:AttackHighestPriority( thisEntity )
 	else return AI_THINK_RATE end

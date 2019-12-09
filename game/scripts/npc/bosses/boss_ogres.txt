@@ -65,7 +65,7 @@
 		"ScriptFile"					"bosses/boss_ogres/boss_ogre_smash"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName" 			"centaur_double_edge"
 		
 		"precache"
@@ -108,7 +108,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"325"
+				"damage"				"400"
 			}
 		}
 	}
@@ -121,7 +121,7 @@
 		"ScriptFile"					"bosses/boss_ogres/boss_ogre_smash_king"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName" 			"centaur_double_edge"
 		
 		"precache"
@@ -163,7 +163,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"500"
+				"damage"				"600"
 			}
 		}
 	}

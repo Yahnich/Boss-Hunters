@@ -19,9 +19,9 @@ function ds_replica:OnSpellStart()
 
 	EmitSoundOn("Hero_Dark_Seer.Wall_of_Replica_Start", caster)
 
-	local allies = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
+	local allies = caster:FindAllUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
 	for _,ally in pairs(allies) do
-		if ally:IsHero() and not ally:IsIllusion() then
+		if ( ally:IsHero() or ally:IsRoundNecessary() ) and not ally:IsIllusion() then
 			local callback = (function(image)
 				image:AddNewModifier(caster, self, "modifier_ds_replica", {})
 
@@ -33,7 +33,7 @@ function ds_replica:OnSpellStart()
 					FindClearSpaceForUnit(image, caster:GetAbsOrigin(), true)
 				end
 			end)
-			ally:ConjureImage( ally:GetAbsOrigin(), duration, outgoing, incoming, nil, self, true, caster, callback )
+			ally:ConjureImage( ally:GetAbsOrigin(), duration, outgoing - 100, incoming - 100, nil, self, true, caster, callback )
 		end
 	end
 end

@@ -79,7 +79,7 @@
 							"value0"		"sounds/weapons/hero/rattletrap/flare_fire.vsnd"
 						}
 					}
-					"volume"			{"value"		"0.350000"}
+					"volume"			{"value"		"0.20000"}
 					"pitch_rand_min" 	{"value"		"0.1"}
 					"pitch_rand_max" 	{"value"		"-0.1"}
 					"pitch" 			{"value"		"1.50000"}
@@ -109,7 +109,7 @@
 							"value0"		"sounds/weapons/hero/rattletrap/flare_explode.vsnd"
 						}
 					}
-					"volume"			{"value"		"0.200000"}
+					"volume"			{"value"		"0.100000"}
 					"pitch_rand_min" 	{"value"		"0.1"}
 					"pitch_rand_max" 	{"value"		"-0.1"}
 					"pitch" 			{"value"		"1.50000"}

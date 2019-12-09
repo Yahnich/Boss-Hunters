@@ -37,7 +37,6 @@ end
 function pugna_lifedrain_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local hTarget = self:GetCursorTarget()
-	print( caster:GetName(), self )
 	if self.drain and not self.drain:IsNull() then
 		self.drain:Destroy()
 	else

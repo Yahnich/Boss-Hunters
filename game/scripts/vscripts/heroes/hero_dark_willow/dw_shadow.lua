@@ -62,7 +62,7 @@ function modifier_dw_shadow:OnCreated(table)
     	ability.damage = 0
     	self.damage = self:GetTalentSpecialValueFor("damage") * FrameTime()
 
-    	self.manaDrain = parent:GetMaxMana() * self:GetTalentSpecialValueFor("mana_drain")/100 * FrameTime()
+    	-- self.manaDrain = parent:GetMaxMana() * self:GetTalentSpecialValueFor("mana_drain")/100 * FrameTime()
 
     	if caster:HasTalent("special_bonus_unique_dw_shadow_2") then
     		ability.bonus_as = 0
@@ -79,7 +79,7 @@ function modifier_dw_shadow:OnRefresh(table)
     	self:GetAbility().damage = 0
     	self.damage = self:GetTalentSpecialValueFor("damage") * FrameTime()
 
-    	self.manaDrain = self:GetParent():GetMaxMana() * self:GetTalentSpecialValueFor("mana_drain")/100 * FrameTime()
+    	-- self.manaDrain = self:GetParent():GetMaxMana() * self:GetTalentSpecialValueFor("mana_drain")/100 * FrameTime()
 		self.talent1 = caster:HasTalent("special_bonus_unique_dw_shadow_1")
     	if caster:HasTalent("special_bonus_unique_dw_shadow_2") then
     		self:GetAbility().bonus_as = 0
@@ -90,7 +90,7 @@ function modifier_dw_shadow:OnRefresh(table)
 end
 
 function modifier_dw_shadow:OnIntervalThink()
-	self:GetParent():ReduceMana(self.manaDrain)
+	-- self:GetParent():ReduceMana(self.manaDrain)
     self:GetAbility().damage = self:GetAbility().damage + self.damage
 
     if self.Talent then
@@ -100,11 +100,24 @@ end
 
 function modifier_dw_shadow:CheckState()
 	return {[MODIFIER_STATE_UNSLOWABLE] = true,
-			[MODIFIER_STATE_DISARMED] = true,
 			[MODIFIER_STATE_UNSELECTABLE] = true,
 			[MODIFIER_STATE_ALLOW_PATHING_TROUGH_TREES] = true,
 			[MODIFIER_STATE_ATTACK_IMMUNE] = true,
 			[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
+end
+
+
+function modifier_dw_shadow:DeclareFunctions()
+	return {MODIFIER_EVENT_ON_ATTACK_START}
+end
+
+function modifier_dw_shadow:OnAttackStart(params)
+	if IsServer() then
+		local caster = self:GetCaster()
+		if caster == params.attacker then
+			self:Destroy()
+		end
+	end
 end
 
 function modifier_dw_shadow:GetEffectName()
@@ -131,7 +144,7 @@ function modifier_dw_shadow:OnRemoved()
 
 		ability:SetCooldown()
 
-		parent:AddNewModifier(caster, ability, "modifier_dw_shadow_damage", {})
+		parent:AddNewModifier(caster, ability, "modifier_dw_shadow_damage", {duration = self:GetTalentSpecialValueFor("linger_duration")})
 
 		if caster:HasTalent("special_bonus_unique_dw_shadow_2") then
 			parent:AddNewModifier(caster, ability, "modifier_dw_shadow_bonus_as", {Duration = 4})
@@ -148,11 +161,11 @@ function modifier_dw_shadow:GetModifierAura()
 end
 
 function modifier_dw_shadow:GetAuraRadius()
-	return 900
+	return 400
 end
 
 function modifier_dw_shadow:GetAuraDuration()
-	return 0.5
+	return 0
 end
 
 function modifier_dw_shadow:GetAuraSearchTeam()

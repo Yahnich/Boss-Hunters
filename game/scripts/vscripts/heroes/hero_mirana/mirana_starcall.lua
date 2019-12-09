@@ -24,6 +24,8 @@ end
 function mirana_starcall:OnTalentLearned()
 	if self:GetCaster():HasTalent("special_bonus_unique_mirana_starcall_1") then
 		self:ToggleAutoCast()
+	elseif self:GetAutoCastState() then
+		self:ToggleAutoCast()
 	end
 end
 

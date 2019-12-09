@@ -98,8 +98,6 @@ function modifier_cotw_boar_spirit_boar:OnCreated()
 	
 	self.talent = self:GetCaster():HasTalent("special_bonus_unique_beast_cotw_boar_1")
 	self.radius = self:GetCaster():FindTalentValue("special_bonus_unique_beast_cotw_boar_1", "radius")
-	
-	print( self.talent, self.radius )
 end
 
 function modifier_cotw_boar_spirit_boar:OnRefresh()

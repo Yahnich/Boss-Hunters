@@ -95,6 +95,7 @@
   "npc_dota_hero_naga_siren" "1"
   "npc_dota_hero_nyx_assassin" "1"
   "npc_dota_hero_keeper_of_the_light" "1"
+  "npc_dota_hero_mars" "1"
   "npc_dota_hero_visage" "1"
   "npc_dota_hero_meepo" "1"
   "npc_dota_hero_magnataur" "1"
@@ -121,4 +122,6 @@
   "npc_dota_hero_dark_willow" "1"
   "npc_dota_hero_winter_wyvern" "1"
   "npc_dota_hero_grimstroke"	"1"
+  "npc_dota_hero_snapfire"	"1"
+  "npc_dota_hero_void_spirit"	"1"
 }

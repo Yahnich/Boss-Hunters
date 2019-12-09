@@ -134,8 +134,8 @@
 		},
 		{
 			_class = "C_INIT_RandomAlpha"
-			m_nAlphaMin = 24
-			m_nAlphaMax = 32
+			m_nAlphaMin = 3
+			m_nAlphaMax = 6
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"

@@ -52,7 +52,6 @@ function modifier_brewmaster_tipsy_sway:OnAttackFail(params)
 	if ( params.target == self:GetParent() or self.talent ) 
 	and not params.attacker:IsSameTeam( params.target ) 
 	and CalculateDistance( self:GetParent(), params.attacker ) <= ( self:GetParent():GetAttackRange() + params.attacker:GetHullRadius() + params.attacker:GetCollisionPadding() ) then
-		self:GetParent():FaceTowards( params.attacker:GetAbsOrigin() )
 		self:GetParent():PerformGenericAttack( params.attacker, true )
 		self:GetParent():StartGestureWithPlaybackRate( ACT_DOTA_ATTACK, 3 )
 	end

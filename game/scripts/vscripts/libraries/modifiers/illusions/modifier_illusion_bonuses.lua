@@ -2,6 +2,7 @@ modifier_illusion_bonuses = class({})
 
 function modifier_illusion_bonuses:OnCreated()
 	self:GetParent().unitOwnerEntity = self:GetCaster()
+	if not self:GetCaster() then return end
 	local agility = self:GetCaster():GetAgility()
 	local strength = self:GetCaster():GetStrength()
 	local intellect = self:GetCaster():GetIntellect()
@@ -12,24 +13,12 @@ function modifier_illusion_bonuses:OnCreated()
 	self.mp = intellect * 12
 	self.mpr = intellect * 0.05
 	self.amp = intellect * 0.07
-	print( self.hp, self.mp )
 	self.ar = self:GetCaster():GetAttackRange()
 	if IsServer() then
 		EmitSoundOn("General.Illusion.Create", self:GetParent())
 
 		self.ps = self:GetCaster():GetProjectileSpeed()
-		self:StartIntervalThink( FrameTime() )
 	end
-end
-
-function modifier_illusion_bonuses:OnRefresh()
-	self:OnCreated()
-end
-
-function modifier_illusion_bonuses:OnIntervalThink()
-	self:GetParent():SetHealth( self:GetCaster():GetHealth() )
-	self:GetParent():SetMana( self:GetCaster():GetMana() )
-	self:StartIntervalThink(-1)
 end
 
 function modifier_illusion_bonuses:OnDestroy()
@@ -55,7 +44,6 @@ function modifier_illusion_bonuses:DeclareFunctions()
 		MODIFIER_PROPERTY_MANA_BONUS,
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-		MODIFIER_PROPERTY_DISABLE_HEALING,
 		MODIFIER_EVENT_ON_DEATH
     }
 
@@ -96,10 +84,6 @@ end
 
 function modifier_illusion_bonuses:GetModifierMoveSpeedBonus_Percentage()
 	return self.ms
-end
-
-function modifier_illusion_bonuses:GetDisableHealing( params )
-	return 1
 end
 
 function modifier_illusion_bonuses:OnDeath(params)

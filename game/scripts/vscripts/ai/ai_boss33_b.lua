@@ -36,9 +36,9 @@ if IsServer() then
 				local raze3Pos = GetGroundPosition(thisEntity:GetAbsOrigin() + thisEntity:GetForwardVector() * thisEntity.raze3:GetSpecialValueFor("distance"), thisEntity)
 				local razeRadius = thisEntity.raze1:GetSpecialValueFor("radius") + 32
 				
-				local raze1Units = thisEntity:FindEnemyUnitsInRadius(raze1Pos, razeRadius)
-				local raze2Units = thisEntity:FindEnemyUnitsInRadius(raze2Pos, razeRadius)
-				local raze3Units = thisEntity:FindEnemyUnitsInRadius(raze3Pos, razeRadius)
+				local raze1Units = thisEntity:FindEnemyUnitsInRadius(raze1Pos, razeRadius + 25)
+				local raze2Units = thisEntity:FindEnemyUnitsInRadius(raze2Pos, razeRadius + 25)
+				local raze3Units = thisEntity:FindEnemyUnitsInRadius(raze3Pos, razeRadius + 25)
 				
 				local razesActive = 0
 				if thisEntity.raze1:IsFullyCastable() then razesActive = razesActive + 1 end
@@ -75,9 +75,9 @@ if IsServer() then
 				local raze3Pos = GetGroundPosition(thisEntity:GetAbsOrigin() + thisEntity:GetForwardVector() * thisEntity.raze3:GetSpecialValueFor("distance"), thisEntity)
 				local razeRadius = thisEntity.raze1:GetSpecialValueFor("radius")
 				
-				local raze1Units = thisEntity:FindEnemyUnitsInRadius(raze1Pos, razeRadius)
-				local raze2Units = thisEntity:FindEnemyUnitsInRing(thisEntity:GetAbsOrigin(), thisEntity.raze2:GetSpecialValueFor("distance") + razeRadius,  thisEntity.raze2:GetSpecialValueFor("distance") - razeRadius)
-				local raze3Units = thisEntity:FindEnemyUnitsInLine(thisEntity:GetAbsOrigin(), thisEntity:GetAbsOrigin() + thisEntity:GetForwardVector() * (thisEntity.raze3:GetSpecialValueFor("distance")/3) * thisEntity.raze3:GetSpecialValueFor("phase2_raze_count"), razeRadius)
+				local raze1Units = thisEntity:FindEnemyUnitsInRadius(raze1Pos, razeRadius + 25)
+				local raze2Units = thisEntity:FindEnemyUnitsInRing(thisEntity:GetAbsOrigin(), thisEntity.raze2:GetSpecialValueFor("distance") + (razeRadius + 12),  thisEntity.raze2:GetSpecialValueFor("distance") - (razeRadius + 12))
+				local raze3Units = thisEntity:FindEnemyUnitsInLine(thisEntity:GetAbsOrigin(), thisEntity:GetAbsOrigin() + thisEntity:GetForwardVector() * (thisEntity.raze3:GetSpecialValueFor("distance")/3) * thisEntity.raze3:GetSpecialValueFor("phase2_raze_count"), razeRadius + 25)
 				
 				local razesActive = 0
 				if thisEntity.raze1:IsFullyCastable() then razesActive = razesActive + 1 end

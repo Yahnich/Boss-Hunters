@@ -24,17 +24,16 @@ function ds_vacuum:OnSpellStart()
 	self.hitUnits = {}
 
 	if caster:HasTalent("special_bonus_unique_ds_vacuum_1") then
-		radius = 100
 		local distance = self:GetTrueCastRange()
 		local direction = caster:GetForwardVector()
-		point = caster:GetAbsOrigin() + direction * radius
+		point = caster:GetAbsOrigin() + direction * radius / 2
 
 		Timers:CreateTimer(0, function()
 			if distance > 0 then
 				EmitSoundOnLocationWithCaster(point, "Hero_Dark_Seer.Vacuum", caster)
 				self:Vacuum(point, radius)
-				point = point + direction * radius
-				distance = distance - radius
+				point = point + direction * radius / 2
+				distance = distance - radius / 2
 				return 0.1
 			else
 				return nil

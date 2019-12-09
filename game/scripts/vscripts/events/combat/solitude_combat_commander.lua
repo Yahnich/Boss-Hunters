@@ -25,7 +25,7 @@ end
 
 local function PrecacheUnits(self, context)
 	PrecacheUnitByNameSync("npc_dota_boss5", context)
-	PrecacheUnitByNameSync("npc_dota_boss5b", context)
+	PrecacheUnitByNameSync("npc_dota_minion5", context)
 	return true
 end
 

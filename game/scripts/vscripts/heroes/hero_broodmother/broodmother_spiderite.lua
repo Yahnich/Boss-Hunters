@@ -85,7 +85,6 @@ function modifier_broodmother_spiderite_evasion:OnCreated()
 	self.evasion = self:GetTalentSpecialValueFor("spider_evasion")
 	self.talent = self:GetCaster():HasTalent("special_bonus_unique_broodmother_spiderite_2")
 	self.prng = self:GetCaster():FindTalentValue("special_bonus_unique_broodmother_spiderite_2")
-	print(self.talent, self.prng)
 end
 
 function modifier_broodmother_spiderite_evasion:DeclareFunctions()

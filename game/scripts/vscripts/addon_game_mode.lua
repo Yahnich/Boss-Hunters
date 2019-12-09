@@ -8,7 +8,7 @@ DOTA_LIFESTEAL_SOURCE_ATTACK = 1
 DOTA_LIFESTEAL_SOURCE_ABILITY = 2
 
 MAP_CENTER = Vector(332, -1545)
-GAME_MAX_LEVEL = 400
+GAME_MAX_LEVEL = 200
 
 HERO_SELECTION_TIME = 80
 
@@ -30,6 +30,7 @@ require( "libraries/notifications" )
 require( "statcollection/init" )
 require("libraries/utility")
 require( "libraries/clientserver" )
+require( "libraries/vector_targeting" )
 require("libraries/animations")
 require("stats_screen")
 require("relicmanager")
@@ -294,6 +295,65 @@ function CHoldoutGameMode:InitGameMode()
 												end
 											end
 										end, "adding relics",0)
+	Convars:RegisterCommand( "simulate_round", function(command, cNewRound )
+											if Convars:GetDOTACommandClient() and IsInToolsMode() then
+												local player = Convars:GetDOTACommandClient()
+												local hero = player:GetAssignedHero()
+												
+												local eventsBeaten = tonumber( cNewRound )
+												local currEvents = RoundManager.eventsFinished
+												local currRaids = RoundManager.raidsFinished
+												local currZones = RoundManager.zonesFinished
+												local currAscensions = RoundManager.ascensionLevel
+												if eventsBeaten > currEvents then
+													local moneyGained = 0
+													local xpGained = 0
+													
+													local raidsBeaten = math.floor( eventsBeaten / 5 )
+													local zonesBeaten = math.floor(raidsBeaten / 2 )
+													local ascensionsBeaten = math.floor(zonesBeaten / 4 )
+													
+													RoundManager.eventsFinished = eventsBeaten
+													RoundManager.raidsFinished = raidsBeaten
+													RoundManager.zonesFinished = zonesBeaten
+													RoundManager.ascensionLevel = ascensionsBeaten
+													if RoundManager.zonesFinished % 4 == 0 then
+														RoundManager.currentZone = "Grove"
+													elseif RoundManager.zonesFinished % 4 == 1 then
+														RoundManager.currentZone = "Sepulcher"
+													elseif RoundManager.zonesFinished % 4 == 2 then
+														RoundManager.currentZone = "Solitude"
+													else
+														RoundManager.currentZone = "Elysium"
+													end
+													RoundManager.raidNumber = raidsBeaten % 2
+													RoundManager:LoadSpawns()
+													local playerScaling = 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) / 10
+													for i = currEvents, eventsBeaten - 1 do
+														local eventScaling = i * 0.75
+														local raidGPScaling = 1 + math.floor( i / 5 ) * 0.125
+														local raidXPScaling = 1 + math.min( RoundManager:GetRaidsFinished(), EVENT_MAX ) * 0.15
+
+														
+														local baseXP = ( ( 150 + ( 35 * eventScaling ) ) + (275 * raidXPScaling) ) * playerScaling
+														local baseGold = ( ( 200 + ( 20 * eventScaling ) ) + (80 * raidGPScaling) ) * playerScaling
+														
+														if (i % 5) == 0 then
+															baseXP = baseXP * 1.5
+															baseGold = baseGold * 1.5
+														else
+															baseXP = baseXP * 0.7 
+															baseGold = baseGold * 0.7
+														end
+														
+														moneyGained = moneyGained + baseGold
+														xpGained = xpGained + baseXP
+													end
+													hero:AddGold( moneyGained )
+													hero:AddXP( xpGained )
+												end
+											end
+										end, "simulating round",0)
 	Convars:RegisterCommand( "getdunked", function()
 											if Convars:GetDOTACommandClient() then
 												local player = Convars:GetDOTACommandClient()
@@ -332,8 +392,9 @@ function CHoldoutGameMode:InitGameMode()
 															local info = debug.getinfo(2)
 															local src = tostring(info.short_src)
 															local name = tostring(info.name)
+															local namewhat = tostring(info.namewhat)
 															if name ~= "__index" then
-																print("Call: ".. src .. " -- " .. name)
+																print("Call: ".. src .. " -- " .. name .. " -- " .. namewhat)
 															end
 														end, "c")
 													else
@@ -414,8 +475,9 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	end
 	
 	if duration == 0 then return false end
-	if caster:GetTeam() == DOTA_TEAM_GOODGUYS and duration > 0 and name ~= "modifier_illusion" then
+	if caster:GetTeam() == DOTA_TEAM_GOODGUYS and duration > 0 and name ~= "modifier_illusion" and (caster.lastDebuffTime or 0) + 0.25 < GameRules:GetGameTime() then
 		caster:ModifyThreat( math.log(1 + duration) + 0.2 )
+		caster.lastDebuffTime = GameRules:GetGameTime() 
 	end
 	filterTable["duration"] = duration
 	return true
@@ -477,8 +539,8 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 end
 
 function CHoldoutGameMode:FilterOrders( filterTable )
-	if #filterTable.units ~= 1 then return true end
-	local hero = units[1]
+	if not filterTable or not filterTable.units or not filterTable.units["0"] then return end
+	local hero = EntIndexToHScript( filterTable.units["0"] )
 	if not hero:IsRealHero() then return true end
 	if RoundManager:GetCurrentEvent() 
 	and RoundManager:GetCurrentEvent():IsEvent()
@@ -490,6 +552,16 @@ function CHoldoutGameMode:FilterOrders( filterTable )
 	or filterTable["order_type"] == DOTA_UNIT_ORDER_DISASSEMBLE_ITEM
 	or filterTable["order_type"] == DOTA_UNIT_ORDER_EJECT_ITEM_FROM_STASH ) then
 		EventManager:ShowErrorMessage(filterTable.issuer_player_id_const, "Cannot manipulate inventory during events.")
+		return false
+	end
+	if GameRules:State_Get() < DOTA_GAMERULES_STATE_GAME_IN_PROGRESS 
+	and ( filterTable["order_type"] == DOTA_UNIT_ORDER_CAST_POSITION
+	or filterTable["order_type"] == DOTA_UNIT_ORDER_CAST_TARGET 
+	or filterTable["order_type"] == DOTA_UNIT_ORDER_CAST_TARGET_TREE 
+	or filterTable["order_type"] == DOTA_UNIT_ORDER_CAST_NO_TARGET 
+	or filterTable["order_type"] == DOTA_UNIT_ORDER_CAST_TOGGLE ) 
+	and not IsInToolsMode() then
+		EventManager:ShowErrorMessage(filterTable.issuer_player_id_const, "Cannot cast abilities during pregame.")
 		return false
 	end
 	if filterTable["order_type"] == DOTA_UNIT_ORDER_TRAIN_ABILITY then
@@ -602,6 +674,52 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 		else
 			hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1
 		end
+	end
+	-- fix valve's bullshit auto-talent leveling
+	-- take snapshot at lv 29
+	if hero:GetLevel() == 29 then
+		hero.savedTalentData = CustomNetTables:GetTableValue("talents", tostring(hero:entindex())) or {}
+		hero.savedTalentsSkilled = hero.talentsSkilled
+	end
+	-- reset to snapshot at 30
+	if hero:GetLevel() == 30 then
+		Timers:CreateTimer(0.1, function()
+			local talentData = hero.savedTalentData
+			hero.talentsSkilled = hero.savedTalentsSkilled
+			for i = 0, 23 do
+				local ability = hero:GetAbilityByIndex(i)
+				if ability then
+					abilityname = ability:GetAbilityName()
+					if string.match(abilityname, "special_bonus" ) and not talentData[abilityname] then
+						ability:SetLevel(0)
+						if GameRules.AbilityKV[abilityname] then
+							if GameRules.AbilityKV[abilityname]["LinkedModifierName"] then
+								local modifierName = GameRules.AbilityKV[abilityname]["LinkedModifierName"] 
+								for _, unit in ipairs( FindAllUnits() ) do
+									if unit:HasModifier(modifierName) then
+										local mList = unit:FindAllModifiersByName(modifierName)
+										for _, modifier in ipairs( mList ) do
+											local remainingDur = modifier:GetRemainingTime()
+											modifier:ForceRefresh()
+											if remainingDur > 0 then modifier:SetDuration(remainingDur, true) end
+										end
+									end
+								end
+							end
+							if GameRules.AbilityKV[abilityname]["LinkedAbilityName"] then
+								local abilityName = GameRules.AbilityKV[abilityname]["LinkedAbilityName"] or ""
+								local ability = hero:FindAbilityByName(abilityName)
+								if ability and ability.OnTalentLearned then
+									ability:OnTalentLearned(abilityname)
+								end
+							end
+						end
+					end
+				end
+			end
+			CustomNetTables:SetTableValue( "talents", tostring(hero:entindex()), talentData )
+			CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
+		end)
 	end
 end
 
@@ -763,7 +881,11 @@ function CHoldoutGameMode:OnHeroPick (event)
 		hero:AddItemByName("item_potion_of_recovery")
 		hero:AddItemByName("item_potion_of_essence")
 		
-		hero:AddExperience(GameRules.XP_PER_LEVEL[7],false,false)
+		-- hero:AddExperience(GameRules.XP_PER_LEVEL[7],false,false)
+		if GameRules:GetGameDifficulty() > 2 then
+		else
+			 hero:AddExperience(GameRules.XP_PER_LEVEL[3],false,false)
+		end
 		hero:SetBaseMagicalResistanceValue(15)
 		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage
 		local ID = hero:GetPlayerID()
@@ -790,10 +912,10 @@ function CHoldoutGameMode:OnHeroPick (event)
 				ParticleManager:FireParticle("particles/roles/dev/vip_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
 			end
 		end
-		local gold = 400 + 150 * ( GameRules.BasePlayers - PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS) )
+		local gold = 200 + 150 * ( GameRules.BasePlayers - PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS) )
 		hero:SetGold( 0, true )
 		if PlayerResource:HasRandomed( ID ) then
-			gold = gold + 350
+			gold = gold + 500
 		end
 		hero:SetGold( gold, true )
 		
@@ -863,7 +985,7 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 				PlayerResource:SetCustomTeamAssignment(nPlayerID, DOTA_TEAM_GOODGUYS)
 			end
 		end
-	elseif nNewState == 3 then
+	elseif nNewState == DOTA_GAMERULES_STATE_HERO_SELECTION then
 		print("pregame")
 		
 		RoundManager.spawnPositions = {}
@@ -887,7 +1009,7 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 				end
 			end
 		end)
-	elseif nNewState == 7 then
+	elseif nNewState == DOTA_GAMERULES_STATE_PRE_GAME then
 		
 		-- Voting system handler
 		-- CHoldoutGameMode:InitializeRoundSystem()
@@ -906,8 +1028,16 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 				-- end
 			-- end
 		end)
-	elseif nNewState == 8 then
+	elseif nNewState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 		RoundManager:StartGame()
+		Timers:CreateTimer(1,function()
+			if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+				for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+					hero:AddGold(1)
+				end
+				return 1
+			end
+		end)
 	end
 end
 

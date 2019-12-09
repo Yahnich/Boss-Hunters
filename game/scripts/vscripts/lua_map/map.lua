@@ -41,9 +41,7 @@ end
 function OnWaterEnter(trigger)
     local ent = trigger.activator
 	if not ent then return end
-    if ent:IsHero() then
-    	ent:AddNewModifier(ent, nil, "modifier_in_water", {})
-    end
+    ent:AddNewModifier(ent, nil, "modifier_in_water", {})
 end
 
 function OnWaterExit(trigger)
@@ -84,8 +82,19 @@ function FindLength(unit)
 end
 
 function FindRadius(unit)
-	local circum = (CalculateDistance( unit:GetAbsOrigin(), unit:GetBoundingMaxs() ) + CalculateDistance( unit:GetAbsOrigin(), unit:GetBoundingMins() )) /2
-	local radius = (CalculateDistance( unit:GetAbsOrigin(), unit:GetBoundingMaxs() ) + CalculateDistance( unit:GetAbsOrigin(), unit:GetBoundingMins() )) / (math.pi * 2)
+	if not unit.GetBoundingMaxs then
+		local maximum = 0
+		local minimum = 99999
+		for _, hUnit in ipairs( unit ) do
+			print( hUnit:GetBoundingMaxs(), hUnit:GetBoundingMins() )
+			maximum = math.max( hUnit:GetBoundingMaxs(), maximum )
+			minimum = math.min( hUnit:GetBoundingMins(), minimum )
+		end
+	else
+		maximum = unit:GetBoundingMaxs()
+		minimum = unit:GetBoundingMins()
+	end
+	local radius = (CalculateDistance( unit:GetAbsOrigin(), maximum ) + CalculateDistance( unit:GetAbsOrigin(), minimum )) / (math.pi * 2)
 	return radius
 end
 
@@ -115,13 +124,8 @@ function LeftBoundingBox(trigger)
 	Timers:CreateTimer(function()
 		if not unit or unit:IsNull() then return end
 		if RoundManager.boundingBox and unit and edge then
-			if MapHandler:IsOutsideMapBounds(unit) then
-				local newPos = unit:GetAbsOrigin() + CalculateDirection( edge, unit:GetAbsOrigin() ) * math.max( 0, CalculateDistance( edge, unit ) - FindRadius( edge ) )
-				FindClearSpaceForUnit( unit, GetGroundPosition( newPos, unit ), true )
-				GridNav:DestroyTreesAroundPoint( newPos, 120, true )
-				unit:StopMotionControllers(true)
-			elseif edge:GetName() == RoundManager.boundingBox.."_edge_collider" and not edge:IsTouching(unit) then
-				local newPos = unit:GetAbsOrigin() + CalculateDirection( edge, unit:GetAbsOrigin() ) * math.max( 0, CalculateDistance( edge, unit ) - FindRadius( edge ) )
+			if MapHandler:IsOutsideMapBounds(unit) or ( edge:GetName()  == RoundManager.boundingBox.."_edge_collider" and not RoundManager:IsTouchingBoundingBox( unit ) ) then
+				local newPos = RoundManager:FindNearestBoundingBoxEdge( unit ):GetAbsOrigin()
 				FindClearSpaceForUnit( unit, GetGroundPosition( newPos, unit ), true )
 				GridNav:DestroyTreesAroundPoint( newPos, 120, true )
 				unit:StopMotionControllers(true)

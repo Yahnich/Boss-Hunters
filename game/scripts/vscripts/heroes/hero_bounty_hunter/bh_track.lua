@@ -47,6 +47,10 @@ function modifier_bh_track:OnCreated(table)
 	local caster = self:GetCaster()
    	local parent = self:GetParent()
 	self.crit = self:GetTalentSpecialValueFor("critical_strike")
+	self.gold = self:GetTalentSpecialValueFor("bonus_gold")
+	self.bhGold = self:GetTalentSpecialValueFor("self_gold")
+	self.trashGold = self:GetTalentSpecialValueFor("trash_gold_reduc")/100
+	self.bossGold = self:GetTalentSpecialValueFor("boss_gold_inc")/100
 	self.talent = caster:HasTalent("special_bonus_unique_bh_track_2")
     if IsServer() then
     	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_trail.vpcf", PATTACH_POINT_FOLLOW, caster)
@@ -96,14 +100,23 @@ function modifier_bh_track:OnDeath(params)
 	if IsServer() then
 		local caster = self:GetCaster()
 		if params.unit == self:GetParent() then
-			local gold = self:GetTalentSpecialValueFor("bonus_gold")
-			if not params.unit:IsRoundNecessary() then
-				gold = gold * self:GetSpecialValueFor("trash_gold_reduc")/100
+			local gold = self.gold
+			local bhGold = self.gold + self.bhGold
+			if params.unit:IsMinion() then
+				gold = gold * self.trashGold
+				bhGold = bhGold * self.trashGold
+			elseif params.unit:IsBoss() then
+				gold = gold * self.bossGold
+				bhGold = bhGold * self.bossGold
 			end
 			local allies = caster:FindFriendlyUnitsInRadius(self:GetParent():GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
 			for _,ally in pairs(allies) do
-				if ally:IsHero() then
-					ally:AddGold(gold)
+				if ally:IsRealHero() then
+					if ally == caster then
+						ally:AddGold( math.floor( bhGold ) )
+					else
+						ally:AddGold(gold)
+					end
 				end
 			end
 		end

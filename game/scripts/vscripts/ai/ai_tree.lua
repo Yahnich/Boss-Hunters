@@ -10,11 +10,12 @@ function Spawn( entityKeyValues )
 			return AIThink(thisEntity)
 		end
 	end)
+	
+	local level = RoundManager:GetCurrentRaidTier() + math.floor(GameRules:GetGameDifficulty()/2)
 	thisEntity.armor = thisEntity:FindAbilityByName("boss_living_armor")
-	thisEntity.summon = thisEntity:FindAbilityByName("creature_summon_tree")
 	
 	AITimers:CreateTimer(0.1, function() 
-		thisEntity.armor:SetLevel( math.min(thisEntity.armor:GetMaxLevel(), math.floor(GameRules:GetGameDifficulty()/4) + RoundManager:GetRaidsFinished() ) )
+		thisEntity.armor:SetLevel( level )
 	end)
 end
 

@@ -1,10 +1,15 @@
 crystal_maiden_arcane_blizzard = class({})
 
+function crystal_maiden_arcane_blizzard:GetAOERadius()
+	return self:GetTalentSpecialValueFor("radius")
+end
+
 if IsServer() then
 	function crystal_maiden_arcane_blizzard:OnSpellStart()
 		local caster = self:GetCaster()
 		self.channeldummy = CreateUnitByName("npc_dummy_unit", self:GetCursorPosition(), false, nil, nil, caster:GetTeam())
 		self.channeldummy:AddNewModifier(caster, self, "modifier_crystal_maiden_arcane_blizzard_dummy", {})
+		caster:AddNewModifier(caster, self, "modifier_crystal_maiden_arcane_blizzard_armor", {duration = self:GetChannelTime()})
 		EmitSoundOn("hero_Crystal.freezingField.wind", self.channeldummy)
 	end
 	
@@ -13,7 +18,27 @@ if IsServer() then
 		self.channeldummy:ForceKill(true)
 		UTIL_Remove(self.channeldummy)
 		self.channeldummy = nil
+		self:GetCaster():RemoveModifierByName("modifier_crystal_maiden_arcane_blizzard_armor")
 	end
+end
+
+LinkLuaModifier( "modifier_crystal_maiden_arcane_blizzard_armor", "heroes/hero_crystal_maiden/crystal_maiden_arcane_blizzard" ,LUA_MODIFIER_MOTION_NONE )
+modifier_crystal_maiden_arcane_blizzard_armor = class({})
+
+function modifier_crystal_maiden_arcane_blizzard_armor:OnCreated()
+	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
+end
+
+function modifier_crystal_maiden_arcane_blizzard_armor:OnRefresh()
+	self:OnCreated()
+end
+
+function modifier_crystal_maiden_arcane_blizzard_armor:DeclareFunctions()
+	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS }
+end
+
+function modifier_crystal_maiden_arcane_blizzard_armor:GetModifierPhysicalArmorBonus()
+	return self.armor
 end
 
 LinkLuaModifier( "modifier_crystal_maiden_arcane_blizzard_dummy", "heroes/hero_crystal_maiden/crystal_maiden_arcane_blizzard" ,LUA_MODIFIER_MOTION_NONE )
@@ -27,6 +52,13 @@ if IsServer() then
 		self.radius = self:GetAbility():GetTalentSpecialValueFor( "explosion_radius" )
 		self.damage = self:GetAbility():GetTalentSpecialValueFor( "damage" )
 		self.tick = self:GetTalentSpecialValueFor("explosion_interval")
+		
+		self.chillInit = self:GetTalentSpecialValueFor("chill_init")
+		self.chillHit = self:GetTalentSpecialValueFor("chill_hit")
+		if self:GetCaster():HasScepter() then
+			self.chillInit = self:GetTalentSpecialValueFor("scepter_chill_init")
+			self.chillHit = self:GetTalentSpecialValueFor("scepter_chill_hit")
+		end
 		if self:GetCaster():HasScepter() then self.damage = self:GetAbility():GetTalentSpecialValueFor( "damage_scepter" ) end
 		self.FXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_snow.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 		ParticleManager:SetParticleControl( self.FXIndex, 1, Vector( self.aura_radius, self.aura_radius, self.aura_radius) )
@@ -59,13 +91,19 @@ if IsServer() then
 		local targetFlag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 		
 		local attackPoint = casterLocation + ActualRandomVector( self.maxDistance, self.minDistance )
-		local units = caster:FindEnemyUnitsInRadius( attackPoint, self.radius, {flags = targetFlag} )
-		for _, unit in pairs(units) do
-			ability:DealDamage(caster, unit, self.damage)
-		end
 		local fxIndex = ParticleManager:FireParticle( "particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf", PATTACH_CUSTOMORIGIN, caster, {[0] = attackPoint} )
-		
-		EmitSoundOnLocationWithCaster( attackPoint, "hero_Crystal.freezingField.explosion", caster )
+		Timers:CreateTimer(0.25, function()
+			local units = caster:FindEnemyUnitsInRadius( attackPoint, self.radius, {flags = targetFlag} )
+			for _, unit in pairs(units) do
+				ability:DealDamage(caster, unit, self.damage)
+				if unit:IsChilled() then
+					unit:AddChill(ability, caster, ability:GetChannelTimeRemaining(), self.chillHit)
+				else
+					unit:AddChill(ability, caster, ability:GetChannelTimeRemaining(), self.chillInit)
+				end
+			end
+			EmitSoundOnLocationWithCaster( attackPoint, "hero_Crystal.freezingField.explosion", caster )
+		end)
 	end
 end
 
@@ -127,49 +165,15 @@ LinkLuaModifier( "modifier_crystal_maiden_arcane_blizzard_slow_aura", "heroes/he
 modifier_crystal_maiden_arcane_blizzard_slow_aura = class({})
 
 function modifier_crystal_maiden_arcane_blizzard_slow_aura:OnCreated()
-	self.movespeed = self:GetAbility():GetSpecialValueFor("movespeed_slow")
-	self.attackspeed = self:GetAbility():GetSpecialValueFor("attack_slow")
+	self.chill = self:GetTalentSpecialValueFor("chill_init")
 	if self:GetCaster():HasScepter() then
-		self.movespeed = self:GetAbility():GetSpecialValueFor("movespeed_slow_scepter")
-		self.attackspeed = self:GetAbility():GetSpecialValueFor("attack_slow_scepter")
-		if IsServer() then
-			self:StartIntervalThink(2.5)
-		end
+		self.chill = self:GetTalentSpecialValueFor("scepter_chill_init")
+	end
+	if IsServer() then
+		self:GetParent():AddChill(self:GetAbility(), self:GetCaster(), self:GetAbility():GetChannelTimeRemaining(), self.chill)
 	end
 end
 
-function modifier_crystal_maiden_arcane_blizzard_slow_aura:OnIntervalThink()
-	local frostbite = self:GetCaster():FindAbilityByName("crystal_maiden_frostbite_bh")
-	if frostbite then
-		self:GetParent():AddNewModifier(self:GetCaster(), frostbite, "modifier_crystal_maiden_frostbite_bh", {duration = self:GetAbility():GetSpecialValueFor("root_duration_scepter")})
-	end
-	self:StartIntervalThink(-1)
-end
-
-function modifier_crystal_maiden_arcane_blizzard_slow_aura:DeclareFunctions()
-	funcs = {
-				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-				
-			}
-	return funcs
-end
-
-function modifier_crystal_maiden_arcane_blizzard_slow_aura:GetModifierMoveSpeedBonus_Percentage()
-	return self.movespeed
-end
-
-function modifier_crystal_maiden_arcane_blizzard_slow_aura:GetModifierAttackSpeedBonus()
-	return self.attackspeed
-end
-
-function modifier_crystal_maiden_arcane_blizzard_slow_aura:GetEffectName()
-	return "particles/generic_gameplay/generic_slowed_cold.vpcf"
-end
-
-function modifier_crystal_maiden_arcane_blizzard_slow_aura:GetStatusEffectName()
-	return "particles/status_fx/status_effect_frost_lich.vpcf"
-end
-
-function modifier_crystal_maiden_arcane_blizzard_slow_aura:StatusEffectPriority()
-	return 10
+function modifier_crystal_maiden_arcane_blizzard_slow_aura:IsHidden()
+	return true
 end

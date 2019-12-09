@@ -52,8 +52,11 @@ function modifier_mars_ultimate:OnCreated(keys)
 		self.column_absorb_max = self:GetAbility():GetSpecialValueFor("column_absorb_max")
 		self.damage = self:GetAbility():GetSpecialValueFor("column_absorb_max")
 
-		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_mars/mars_pillar.vpcf", PATTACH_POINT, self:GetCaster())
+		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_mars/mars_arena_of_blood_colosseum_columns.vpcf", PATTACH_WORLDORIGIN, self:GetParent())
 					ParticleManager:SetParticleControl(nfx, 0, self:GetParent():GetAbsOrigin())
+					ParticleManager:SetParticleControl(nfx, 1, Vector(64, 0, 0))
+					ParticleManager:SetParticleControl(nfx, 2, self:GetParent():GetAbsOrigin())
+					ParticleManager:SetParticleControl(nfx, 3, self:GetParent():GetAbsOrigin())
 		self:AttachEffect(nfx)
 
 		self.PSO = SpawnEntityFromTableSynchronous('point_simple_obstruction', {origin = GetGroundPosition(self:GetParent():GetAbsOrigin(), self:GetCaster())}) 
@@ -103,7 +106,6 @@ function modifier_mars_ultimate:OnTakeDamage(params)
 		if caster ~= unit and unit:GetTeam() ~= caster:GetTeam() then
 			if CalculateDistance(unit, caster) <= self.radius then
 				self.column_absorb_max = self.column_absorb_max - damage * self.column_absorb
-				print("Absorb: " .. self.column_absorb_max)
 			end
 		end
 	end
@@ -194,10 +196,8 @@ function modifier_mars_ultimate_caster:OnDeath(params)
 
 				if unit:IsBoss() then
 					caster:HealEvent(self.heal_boss, self:GetAbility(), caster, false)
-					print("Heal: " .. self.heal_boss)
 				else
 					caster:HealEvent(self.heal, self:GetAbility(), caster, false)
-					print("Heal: " .. self.heal)
 				end
 			end
 		end

@@ -13,6 +13,12 @@ function modifier_spectre_desolate_bh:OnCreated()
 	self.radius = self:GetTalentSpecialValueFor("radius")
 end
 
+function modifier_spectre_desolate_bh:OnRefresh()
+	self.damage = self:GetTalentSpecialValueFor("bonus_damage")
+	self.solo_damage = self:GetTalentSpecialValueFor("bonus_damage_solo")
+	self.radius = self:GetTalentSpecialValueFor("radius")
+end
+
 function modifier_spectre_desolate_bh:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
 end

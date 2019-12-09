@@ -39,7 +39,7 @@ local function StartCombat(self)
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then
 				local roll = RandomInt(1, 13)
-				local demonType = "npc_dota_boss5b"
+				local demonType = "npc_dota_minion5"
 				if roll == 10 then
 					demonType = "npc_dota_boss33_a"
 				elseif roll == 11 then
@@ -47,10 +47,13 @@ local function StartCombat(self)
 				elseif roll == 12 then
 					demonType = "npc_dota_boss_sloth_demon"
 				end
+				for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
+					hero:MakeVisibleToTeam( DOTA_TEAM_BADGUYS, 2.5 )
+				end
 				local demon = CreateUnitByName(demonType, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 				if demon then
-					demon:SetAverageBaseDamage( math.min(7, roll) * 15, 35 )
-					if demonType ~= "npc_dota_boss5b" then
+					demon:SetAverageBaseDamage( math.min(7, roll) * 20, 35 )
+					if demonType ~= "npc_dota_minion5" then
 						demon:SetCoreHealth(250)
 					end
 					demon:SetModelScale(1)
@@ -84,10 +87,10 @@ local function StartEvent(self)
 	self._vEventHandles = {
 		ListenToGameEvent( "entity_killed", OnEntityKilled, self ),
 	}
-
 	self.timeRemaining = 10
 	self.eventEnded = false
 	self.combatStarted = false
+	self.combatEnded = false
 	self._playerChoices = {}
 	Timers:CreateTimer(1, function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
@@ -124,10 +127,10 @@ local function EndEvent(self, bWon)
 end
 
 local function PrecacheUnits(self, context)
-	PrecacheUnitByNameSync("npc_dota_mini_boss1", context)
-	PrecacheUnitByNameSync("npc_dota_boss3a_b", context)
-	PrecacheUnitByNameSync("npc_dota_boss3b", context)
-	PrecacheUnitByNameSync("npc_dota_boss3a", context)
+	PrecacheUnitByNameSync("npc_dota_boss_sloth_demon", context)
+	PrecacheUnitByNameSync("npc_dota_boss33_a", context)
+	PrecacheUnitByNameSync("npc_dota_boss33_b", context)
+	PrecacheUnitByNameSync("npc_dota_minion5", context)
 	return true
 end
 

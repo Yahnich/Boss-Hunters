@@ -106,6 +106,7 @@ function RoundManager:OnNPCSpawned(event)
 	or spawnedUnit:GetClassname() == "npc_dota_thinker" 
 	or spawnedUnit:GetUnitName() == "" 
 	or spawnedUnit:IsFakeHero() 
+	or ( spawnedUnit:IsOther() and not spawnedUnit:IsCreature() )
 	or spawnedUnit:GetUnitName() == "npc_dummy_unit" 
 	or spawnedUnit:GetUnitName() == "npc_dummy_blank" 
 	or spawnedUnit:GetUnitName() == "wearable_dummy" then
@@ -122,7 +123,7 @@ function RoundManager:OnNPCSpawned(event)
 					EmitSoundOn("DOTA_Item.BlinkDagger.NailedIt", spawnedUnit)
 				end
 				if not spawnedUnit.hasBeenInitialized then
-					RoundManager:InitializeUnit(spawnedUnit, spawnedUnit:IsRoundNecessary() and ( (RoundManager:GetCurrentEvent() and RoundManager:GetCurrentEvent():IsElite()) or RoundManager:GetAscensions() > 0) )
+					RoundManager:InitializeUnit(spawnedUnit, RoundManager:GetEventsFinished() >= 3 and spawnedUnit:IsRoundNecessary() and ( (RoundManager:GetCurrentEvent() and RoundManager:GetCurrentEvent():IsCombat() and not RoundManager:GetCurrentEvent().eliteHasBeenInitialized) or RoundManager:GetAscensions() > 0) )
 					GridNav:DestroyTreesAroundPoint(spawnedUnit:GetAbsOrigin(), spawnedUnit:GetHullRadius() + spawnedUnit:GetCollisionPadding() + 350, true)
 					FindClearSpaceForUnit(spawnedUnit, spawnedUnit:GetAbsOrigin(), true)
 				end
@@ -142,14 +143,14 @@ function RoundManager:OnNPCSpawned(event)
 				if spawnedUnit:IsMinion() then
 					typeModifier:SetStackCount( typeModifier:GetStackCount() + BH_MINION_TYPE_MINION )
 				end
-				if spawnedUnit:IsBoss() or spawnedUnit:IsElite() then
+				if spawnedUnit:IsBoss() then
 					typeModifier:SetStackCount( typeModifier:GetStackCount() + BH_MINION_TYPE_BOSS )
 				end
 				-- 1 april
 				-- spawnedUnit:AddAbilityPrecache("elite_tiny")
 			elseif spawnedUnit:IsRealHero() then
 				Timers:CreateTimer(0.1, function() 
-					if RoundManager:GetBoundingBox() and not RoundManager:GetBoundingBox():IsTouching(spawnedUnit) then
+					if RoundManager:IsTouchingBoundingBox(spawnedUnit) then
 						FindClearSpaceForUnit( spawnedUnit, RoundManager:GetHeroSpawnPosition(), true ) 
 					end
 					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_tombstone_respawn_immunity", {duration = 2.9}) 
@@ -205,40 +206,48 @@ function RoundManager:ConstructRaids(zoneName)
 	self.eventsCreated = self.eventsCreated or 0
 	
 	for j = 1, RAIDS_PER_ZONE do
-		
 		local raid = {}
-		local raidContent
-		
 		for i = 1, EVENTS_PER_RAID do
+			local raidContent
 			self.eventsCreated = self.eventsCreated + 1
-			if RollPercentage(COMBAT_CHANCE) or self.eventsCreated < 3 then -- Rolled Combat
-				local combatType = EVENT_TYPE_COMBAT
-				if (RollPercentage(ELITE_CHANCE) and self.eventsCreated > 3) or self:GetAscensions() > 0 then
-					combatType = EVENT_TYPE_ELITE
+			if self.eventsCreated % 10 == 8 then -- elite round
+				combatPick = "grove_elite_valgraduth"
+				if zoneName == "Sepulcher" then
+					combatPick = "sepulcher_elite_arthromos"
+				elseif zoneName == "Solitude" then
+					combatPick = "solitude_elite_durva"
+				elseif zoneName == "Elysium" then
+					combatPick = "elysium_elite_ammetot"
 				end
-				
-				if zoneCombatPool[1] == nil then
-					zoneCombatPool = TableToWeightedArray( self.combatPool[zoneName] )
-				end
-				
-				local combatPick = zoneCombatPool[RandomInt(1, #zoneCombatPool)]
-				raidContent = BaseEvent(zoneName, combatType, combatPick )
-				for id = #zoneCombatPool, 1, -1 do
-					local event = zoneCombatPool[id]
-					if event == combatPick then
-						table.remove( zoneCombatPool, id )
+				print("created elite", combatPick)
+				raidContent = BaseEvent(zoneName, EVENT_TYPE_ELITE, combatPick )
+			else -- non fixed round
+				if RollPercentage(COMBAT_CHANCE) or self.eventsCreated < 3 then -- Rolled Combat
+					local combatType = EVENT_TYPE_COMBAT
+
+					if zoneCombatPool[1] == nil then
+						zoneCombatPool = TableToWeightedArray( self.combatPool[zoneName] )
 					end
-				end
-			else -- Event
-				if zoneEventPool[1] == nil then
-					zoneEventPool = TableToWeightedArray( self.eventPool[zoneName] )
-				end
-				local pickedEvent = zoneEventPool[RandomInt(1, #zoneEventPool)]
-				raidContent = BaseEvent(zoneName, EVENT_TYPE_EVENT, pickedEvent)
-				for id = #zoneEventPool, 1, -1 do
-					local event = zoneEventPool[id]
-					if event == pickedEvent then
-						table.remove( zoneEventPool, id )
+					
+					local combatPick = zoneCombatPool[RandomInt(1, #zoneCombatPool)]
+					raidContent = BaseEvent(zoneName, combatType, combatPick )
+					for id = #zoneCombatPool, 1, -1 do
+						local event = zoneCombatPool[id]
+						if event == combatPick then
+							table.remove( zoneCombatPool, id )
+						end
+					end
+				else -- Event
+					if zoneEventPool[1] == nil then
+						zoneEventPool = TableToWeightedArray( self.eventPool[zoneName] )
+					end
+					local pickedEvent = zoneEventPool[RandomInt(1, #zoneEventPool)]
+					raidContent = BaseEvent(zoneName, EVENT_TYPE_EVENT, pickedEvent)
+					for id = #zoneEventPool, 1, -1 do
+						local event = zoneEventPool[id]
+						if event == pickedEvent then
+							table.remove( zoneEventPool, id )
+						end
 					end
 				end
 			end
@@ -296,7 +305,7 @@ function RoundManager:StartGame()
 		end
 	end
 	self.raidsFinished = (self.raidsFinished or 0) + 1
-		
+	
 	local lastSpawns = RoundManager.boundingBox
 	RoundManager:LoadSpawns()
 	for _, hero in ipairs(HeroList:GetRealHeroes() ) do
@@ -415,7 +424,7 @@ function RoundManager:StartEvent()
 			if event:GetEventType() == EVENT_TYPE_BOSS then
 				Notifications:BottomToAll({text="A great foe is nearby.", duration=3.5})
 			elseif event:GetEventType() == EVENT_TYPE_ELITE then
-				Notifications:BottomToAll({text="The horde seems stronger.", duration=3.5})
+				Notifications:BottomToAll({text="You feel uneasy...", duration=3.5})
 			end
 			return true
 		else
@@ -465,15 +474,23 @@ function RoundManager:EndEvent(bWonRound)
 		local clearPeriod = 3
 		Timers:CreateTimer(function()
 			for _, unit in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_ENEMY, flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_DEAD + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD}) ) do
-				if unit:IsCreature() and not unit:IsNull() then
-					if unit:IsAlive() then
-						unit:ForceKill(false)
+				if unit:GetTeam() == DOTA_TEAM_BADGUYS then
+					if unit:IsCreature() and not unit:IsNull() then
+						if unit:IsAlive() then
+							unit:ForceKill(false)
+						end
+					end
+				else
+					if not unit:IsHero() then
+						
 					end
 				end
 			end
 			clearPeriod = clearPeriod - 0.25
 			if clearPeriod > 0 then
 				return 0.25
+			else
+				collectgarbage()
 			end
 		end)
 		local fTime = (PREP_TIME or 30) / math.ceil( (GameRules:GetGameDifficulty() - 1) / 2 )
@@ -498,7 +515,8 @@ function RoundManager:LoadSpawns()
 	
 	RoundManager.raidNumber = (RoundManager.raidNumber or 0) + 1
 	RoundManager.boundingBox = string.lower(zoneName).."_raid_"..RoundManager.raidNumber
-	RoundManager.boundingBoxEntity = Entities:FindByName(nil, RoundManager.boundingBox.."_edge_collider")
+	RoundManager.boundingBoxEntities = Entities:FindAllByName(RoundManager.boundingBox.."_edge_collider")
+	RoundManager.boundingBoxEdges = Entities:FindAllByName(RoundManager.boundingBox.."_edge_finder")
 	
 	print( RoundManager.boundingBox, zoneName, "loading spawns")
 	for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
@@ -630,21 +648,21 @@ end
 function RoundManager:InitializeUnit(unit, bElite)
 	unit.hasBeenInitialized = true
 	unit.NPCIsElite = bElite
+	if bElite then RoundManager:GetCurrentEvent().eliteHasBeenInitialized = true end
 	local expectedHP = unit:GetBaseMaxHealth() * RandomFloat(0.95, 1.05)
 	local expectedDamage = ( unit:GetAverageBaseDamage() + (RoundManager:GetEventsFinished() * 1.5) ) * RandomFloat(0.90, 1.10)
-	local playerHPMultiplier = 0.33
-	local playerDMGMultiplier = 0.075
-	local playerArmorMultiplier = 0.03
+	local playerHPMultiplier = 0.375
+	local playerDMGMultiplier = 0.125
+	local playerArmorMultiplier = 0.075
 	if GameRules:GetGameDifficulty() == 4 then 
-		expectedHP = expectedHP * 1.5
-		expectedDamage = expectedDamage * 1.2
-		playerHPMultiplier = 0.5
-		playerDMGMultiplier = 0.1
-		playerArmorMultiplier = 0.075
+		expectedHP = expectedHP * 1.4
+		expectedDamage = expectedDamage * 1.35
+	else
+		expectedDamage = expectedDamage * 0.9
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
 	
-	local HPMultiplierFunc = function( events, raids, zones ) return (0.3 + (events * 0.07)) * ( 1 + raids * 0.18 ) * ( 1 + zones * 0.1 ) end
+	local HPMultiplierFunc = function( events, raids, zones ) return (0.25 + (events * 0.065)) * ( 1 + raids * 0.14 ) * ( 1 + zones * 0.1 ) end
 	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.25 + (events * 0.05)) * ( 1 + raids * 0.06) * ( 1 + zones * 0.03 ) end
 	
 	local effPlayerHPMult =  HPMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
@@ -654,7 +672,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	maxPlayerHPMult = HPMultiplierFunc( ( EVENTS_PER_RAID + 1 ) * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
 	
 	effPlayerHPMult = math.min( effPlayerHPMult, maxPlayerHPMult )
-	effPlayerHPMult = effPlayerHPMult * ( 1 + RoundManager:GetAscensions() * 0.25 )  * (1 + effective_multiplier * playerHPMultiplier )
+	effPlayerHPMult = effPlayerHPMult * ( 1 + RoundManager:GetAscensions() * 0.40 )  * (1 + effective_multiplier * playerHPMultiplier )
 
 	maxPlayerDMGMult = DMGMultiplierFunc( ( EVENTS_PER_RAID + 1 ) * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
 	effPlayerDMGMult = math.min( effPlayerDMGMult, maxPlayerDMGMult )
@@ -686,6 +704,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 		end
 		
 		for i = 1, ELITE_ABILITIES_TO_GIVE do
+			print( i, "giving elite abilities" )
 			local roll = RandomInt(1, #eliteTypes)
 			local eliteAbName = eliteTypes[roll]
 			table.remove(eliteTypes, roll)
@@ -711,7 +730,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 		bonusArmor = math.floor( bonusArmor * 0.75 )
 	end
 	
-	unit:SetPhysicalArmorBaseValue( (unit:GetPhysicalArmorBaseValue() + bonusArmor ) * effPlayerArmorMult )
+	unit:SetPhysicalArmorBaseValue( math.min( 175, (unit:GetPhysicalArmorBaseValue() + bonusArmor ) * effPlayerArmorMult ) )
 	
 	unit:AddNewModifier(unit, nil, "modifier_boss_attackspeed", {})
 	local powerScale = unit:AddNewModifier(unit, nil, "modifier_power_scaling", {})
@@ -796,8 +815,61 @@ function RoundManager:GetCurrentZone()
 	return self.currentZone
 end
 
-function RoundManager:GetBoundingBox()
-	return RoundManager.boundingBoxEntity
+function RoundManager:GetBoundingBoxes()
+	return RoundManager.boundingBoxEntities
+end
+
+function RoundManager:GetBoundingBoxEdges()
+	return RoundManager.boundingBoxEdges
+end
+
+function RoundManager:BoundingBoxPosition( )
+	local position
+	if RoundManager:GetBoundingBoxes() then
+		for _, boundingBox in ipairs( RoundManager:GetBoundingBoxes() ) do
+			position = position or boundingBox:GetAbsOrigin()
+			position = position + boundingBox:GetAbsOrigin() / 2
+		end
+	end
+	return position
+end
+
+function RoundManager:BoundingBoxPosition( )
+	local position
+	if RoundManager:GetBoundingBoxes() then
+		for _, boundingBox in ipairs( RoundManager:GetBoundingBoxes() ) do
+			position = position or boundingBox:GetAbsOrigin()
+			position = position + boundingBox:GetAbsOrigin() / 2
+		end
+	end
+	return position
+end
+
+function RoundManager:IsTouchingBoundingBox( unit )
+	if RoundManager:GetBoundingBoxes() then
+		for _, boundingBox in ipairs( RoundManager:GetBoundingBoxes() ) do
+			if boundingBox:IsTouching( unit ) then
+				return true
+			end
+		end
+	else
+		return true
+	end
+	return false
+end
+
+function RoundManager:FindNearestBoundingBoxEdge( unit )
+	local closest
+	local distance = 999999999
+	if RoundManager:GetBoundingBoxEdges() then
+		for _, boundingBox in ipairs( RoundManager:GetBoundingBoxEdges() ) do
+			if CalculateDistance( boundingBox, unit ) < distance then
+				distance = CalculateDistance( boundingBox, unit )
+				closest = boundingBox
+			end
+		end
+	end
+	return closest
 end
 
 function RoundManager:GetCurrentRaidTier()
@@ -810,4 +882,22 @@ function RoundManager:IsRoundGoing()
 	else
 		return false
 	end
+end
+
+function RoundManager:GetStandardGoldReward()
+	local EVENT_MAX = (EVENTS_PER_RAID + 1 * RAIDS_PER_ZONE * ZONE_COUNT)
+	local eventScaling = math.min( RoundManager:GetEventsFinished(), EVENT_MAX ) * 0.75
+	local raidScaling = 1 + math.min( RoundManager:GetRaidsFinished(), EVENT_MAX ) * 0.125
+	local playerScaling = 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) / 10
+	local baseGold = ( ( 200 + ( (25) * eventScaling ) ) + (80 * raidScaling) ) 
+	return baseGold * playerScaling
+end
+
+function RoundManager:GetStandardXPReward()
+	local EVENT_MAX = (EVENTS_PER_RAID + 1 * RAIDS_PER_ZONE * ZONE_COUNT)
+	local eventScaling = math.min( RoundManager:GetEventsFinished(), EVENT_MAX ) * 0.75
+	local raidScaling = 1 + math.min( RoundManager:GetRaidsFinished(), EVENT_MAX ) * 0.15
+	local playerScaling = 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) / 10
+	local baseXP = ( ( 150 + ( (35) * eventScaling ) ) + (275 * raidScaling) )
+	return baseXP * playerScaling
 end

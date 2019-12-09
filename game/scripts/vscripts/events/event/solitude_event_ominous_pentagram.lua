@@ -36,14 +36,9 @@ local function StartCombat(self, bFight, bHard)
 	if bFight then
 		self.foughtAsura = true
 		self.eventType = EVENT_TYPE_COMBAT
+		self.eliteHasBeenInitialized = true
 		if bHard then
-			self.eventType = EVENT_TYPE_ELITE
-			
-			for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-				hero:ModifyAgility( 15 )
-				hero:ModifyIntellect( 15 )
-				hero:ModifyStrength( 15 )
-			end
+			self.eliteHasBeenInitialized = false
 		end
 		self._vEventHandles = {
 			ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
@@ -146,10 +141,12 @@ function HandoutRewards(self, bWon)
 			baseXP = baseXP * 1.5
 			baseGold = baseGold * 1.5
 		end
-		
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			hero:AddGold( baseGold )
 			hero:AddXP( baseXP )
+			hero:ModifyAgility( 15 )
+			hero:ModifyIntellect( 15 )
+			hero:ModifyStrength( 15 )
 			local pID = hero:GetPlayerOwnerID()
 			if bWon then
 				if self.touchedPentagram then

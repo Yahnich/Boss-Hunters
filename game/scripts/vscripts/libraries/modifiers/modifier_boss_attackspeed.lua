@@ -6,11 +6,14 @@ end
 
 function modifier_boss_attackspeed:OnCreated()
 	if IsServer() then
-		self:SetStackCount(math.floor(GameRules.gameDifficulty + 0.5) + RoundManager:GetAscensions())
+		self:SetStackCount(math.floor(GameRules.gameDifficulty + 0.5) + RoundManager:GetAscensions() * 2)
 		self.thinkTime = 0
 		self:StartIntervalThink(0.33)
 		self.acc = math.min( 8 + self:GetStackCount() * 2 + RoundManager:GetZonesFinished() * 2.5, 65 )
 		self.thinkLimit = 2.5 * self:GetStackCount()
+		self.armor = self:GetParent():GetPhysicalArmorBaseValue() * 0.0625 * self:GetStackCount() + self:GetStackCount()
+		if self:GetParent():IsRangedAttacker() then self.armor = self.armor / 2 end
+	return 
 	end
 end
 
@@ -24,6 +27,9 @@ function modifier_boss_attackspeed:OnIntervalThink()
 			self.thinkTime = 0
 			AddFOWViewer(DOTA_TEAM_GOODGUYS, position, 516, 1, false)
 		end
+	end
+	if parent:IsStunned() then
+		parent:RemoveGesture(ACT_DOTA_ATTACK)
 	end
 	GridNav:DestroyTreesAroundPoint(position, self.radius, true)
 end
@@ -46,7 +52,8 @@ function modifier_boss_attackspeed:DeclareFunctions()
 		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_EVENT_ON_ABILITY_START,
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+		MODIFIER_EVENT_ON_ATTACK_START
 	}
 	return funcs
 end
@@ -68,13 +75,11 @@ function modifier_boss_attackspeed:GetModifierManaBonus( params )
 end]]
 
 function modifier_boss_attackspeed:GetModifierPhysicalArmorBonus( params )
-	local bonusarmor = self:GetStackCount()
-	if self:GetParent():IsRangedAttacker() then bonusarmor = bonusarmor / 2 end
-	return self:GetParent():GetPhysicalArmorBaseValue() * 0.08 * self:GetStackCount() + bonusarmor
+	return self.armor
 end
 
 function modifier_boss_attackspeed:GetModifierMagicalResistanceBonus( params )
-	return math.min( 3.5 * self:GetStackCount(), 60 )
+	return math.min( 2.75 * self:GetStackCount(), 60 )
 end
 
 function modifier_boss_attackspeed:GetModifierBaseDamageOutgoing_Percentage( params )
@@ -93,6 +98,17 @@ function modifier_boss_attackspeed:OnAbilityFullyCast( params )
 	end
 end
 
+function modifier_boss_attackspeed:OnAttackStart( params )
+	if params.attacker == self:GetParent() then
+		params.attacker:RemoveGesture( ACT_DOTA_ATTACK )
+		params.attacker:StartGestureWithPlaybackRate( ACT_DOTA_ATTACK, 1 + ( params.attacker:GetIncreasedAttackSpeed() - (1 + self:GetStackCount() * 0.25) ) )
+	end
+end
+
 function modifier_boss_attackspeed:IsPurgable()
 	return false
+end
+
+function modifier_boss_attackspeed:AllowIllusionDuplicate()
+	return true
 end

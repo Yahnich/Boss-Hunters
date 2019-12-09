@@ -28,7 +28,7 @@ function modifier_boss18b_corrupted_huntress_passive:GetModifierAura()
 end
 
 function modifier_boss18b_corrupted_huntress_passive:GetAuraRadius()
-	return self.radius
+	return 500
 end
 
 function modifier_boss18b_corrupted_huntress_passive:GetAuraDuration()
@@ -41,10 +41,6 @@ end
 
 function modifier_boss18b_corrupted_huntress_passive:GetAuraSearchType()    
 	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-
-function modifier_boss18b_corrupted_huntress_passive:GetAuraSearchFlags()    
-	return DOTA_UNIT_TARGET_FLAG_NONE
 end
 
 function modifier_boss18b_corrupted_huntress_passive:GetEffectName()

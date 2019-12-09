@@ -23,7 +23,6 @@ function doom_apocalypse:OnSpellStart()
 	self.doomDamage = self:GetTalentSpecialValueFor( "damage" )
 	self.doomDuration = self:GetTalentSpecialValueFor("duration")
 	local doomModifier = "modifier_doom_apocalypse"
-	if self:GetCaster():HasTalent("special_bonus_unique_doom_apocalypse_2") then doomModifier = "modifier_doom_apocalypse_talent" end
 	local hTarget = self:GetCursorTarget()
 	EmitSoundOn( "Hero_DoomBringer.LvlDeath", self:GetCaster())
 	if self:GetCaster():HasScepter() then
@@ -82,6 +81,8 @@ end
 function modifier_doom_apocalypse:OnCreated( kv )
 	self.duration = self:GetAbility():GetSpecialValueFor( "duration" )
 	EmitSoundOn( "Hero_DoomBringer.Doom", self:GetParent())
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_doom_apocalypse_1")
+	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_doom_apocalypse_2")
 	if IsServer() then
 		self.damage = self:GetAbility():GetTalentSpecialValueFor( "damage" )
 		self:OnIntervalThink()
@@ -106,6 +107,9 @@ end
 
 function modifier_doom_apocalypse:OnDestroy()
 	StopSoundOn("Hero_DoomBringer.Doom", self:GetParent())
+	if self.talent1 then
+		self:GetParent():AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_doom_apocalypse_talent", {} )
+	end
 end
 
 function modifier_doom_apocalypse:RemoveOnDeath()
@@ -133,14 +137,33 @@ function modifier_doom_apocalypse:CheckState()
 	return state
 end
 
+function modifier_doom_apocalypse:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+end
+
+function modifier_doom_apocalypse:GetModifierMoveSpeedBonus_Percentage()
+	if self.talent2 then return -100 end
+end
+
 modifier_doom_apocalypse_talent = class(modifier_doom_apocalypse)
 
+function modifier_doom_apocalypse_talent:OnRefresh( kv )
+	if IsServer() then
+		self.damage = self.damage + self:GetAbility():GetTalentSpecialValueFor( "damage" )
+		self:OnIntervalThink()
+	end
+end
+
+function modifier_doom_apocalypse_talent:OnDestroy()
+	StopSoundOn("Hero_DoomBringer.Doom", self:GetParent())
+end
+
 function modifier_doom_apocalypse_talent:CheckState()
-	local state = {
-		[MODIFIER_STATE_SILENCED] = true,
-		[MODIFIER_STATE_PASSIVES_DISABLED] = true,
-		[MODIFIER_STATE_DISARMED] = true,
-	}
+	local state = {}
 
 	return state
+end
+
+function modifier_doom_apocalypse_talent:DeclareFunctions()
+	return {}
 end

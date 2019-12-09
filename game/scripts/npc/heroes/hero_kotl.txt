@@ -351,6 +351,8 @@
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
 		
+		"AbilityCooldown"				"12"
+		
 		"precache"
 		{
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
@@ -374,7 +376,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_int"					"3"
+				"bonus_int"					"200"
 			}
 			"02"
 			{

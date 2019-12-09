@@ -50,20 +50,23 @@ function dw_bramble:GrowMaze(vLocation)
 
 	local spawn_point1 = point + direction * radius/2
 	local spawn_point2 = point + direction * radius
-
+	local cap = (limit-1)/2
+	local innerCap = math.floor( cap )
+	local outerCap = math.ceil( cap )
+	
 	self:PlantBush(point)
-	for i=1,(limit-1)/2 do
+	for i=1,innerCap do
 		-- Set QAngles
-	    local qAngle = QAngle(0, i * 90, 0)
+	    local qAngle = QAngle(0, i * 360/innerCap, 0)
 
 	    local newSpawn = RotatePosition(point, qAngle, spawn_point1)
 	    
 	    self:PlantBush(newSpawn)
 	end
 
-	for i=1,(limit-1)/2 do
+	for i=1,outerCap do
 		-- Set QAngles
-	    local qAngle = QAngle(0, 45 + i * 90, 0)
+	    local qAngle = QAngle(0, 45 + i * 360/outerCap, 0)
 
 	    local newSpawn = RotatePosition(point, qAngle, spawn_point2)
 	    
@@ -104,10 +107,16 @@ function modifier_dw_bramble:OnIntervalThink()
 
 	local enemies = caster:FindEnemyUnitsInRadius(point, self.radius)
 	for _,enemy in pairs(enemies) do
-		EmitSoundOn("Hero_DarkWillow.Bramble.Target.Layer", self:GetParent())
-		enemy:AddNewModifier(caster, ability, "modifier_dw_bramble_damage", {Duration = self.duration})
-		self:Destroy()
-		break
+		if not enemy:HasModifier("modifier_dw_bramble_damage") then
+			EmitSoundOn("Hero_DarkWillow.Bramble.Target.Layer", self:GetParent())
+			local duration =  self.duration
+			if enemy:IsMinion() then
+				duration = duration * 3
+			end
+			enemy:AddNewModifier(caster, ability, "modifier_dw_bramble_damage", {Duration = duration})
+			self:Destroy()
+			break
+		end
 	end
 
 	self:StartIntervalThink(0.1)
@@ -129,7 +138,8 @@ function modifier_dw_bramble_damage:OnCreated(table)
 		EmitSoundOn("Hero_DarkWillow.Bramble.Target", self:GetParent())
 
 		self.damage = self:GetTalentSpecialValueFor("damage") * 0.5
-
+		self.lifesteal = caster:FindTalentValue("special_bonus_unique_dw_bramble_1")
+		
 		local radius = self:GetTalentSpecialValueFor("latch_range")
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_dark_willow/dark_willow_bramble.vpcf", PATTACH_POINT, caster)
 					ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
@@ -143,6 +153,7 @@ end
 
 function modifier_dw_bramble_damage:OnRefresh(table)
 	if IsServer() then
+		self.lifesteal = caster:FindTalentValue("special_bonus_unique_dw_bramble_1")
 		self.damage = self:GetTalentSpecialValueFor("damage") * 0.5
 	end
 end
@@ -150,10 +161,9 @@ end
 function modifier_dw_bramble_damage:OnIntervalThink()
 	if IsServer() then
 		local caster = self:GetCaster()
-		self.damage = self:GetTalentSpecialValueFor("damage") * 0.5
 		
 		if caster:HasTalent("special_bonus_unique_dw_bramble_1") then
-			self:GetCaster():Lifesteal(self:GetAbility(), 30, self.damage, self:GetParent(), self:GetAbility():GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY, true)
+			self:GetCaster():Lifesteal(self:GetAbility(), self.lifesteal, self.damage, self:GetParent(), self:GetAbility():GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY, true)
 		else
 			self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
 		end

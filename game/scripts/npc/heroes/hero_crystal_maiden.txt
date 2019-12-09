@@ -282,12 +282,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"0.4"
+				"value"					"0.3"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"self"					"0.8"
+				"self"					"0.6"
 			}
 		}
 	}
@@ -315,6 +315,39 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// Ability: Crystal Maiden's Brilliance Aura
+	//=================================================================================================================
+	"crystal_maiden_icy_veins"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_crystal_maiden/crystal_maiden_icy_veins"
+		"AbilityTextureName"			"custom/crystal_maiden_icy_veins"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"cdr"				"1"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"mana_cost"			"1"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
 	"crystal_maiden_arcane_blizzard"
 	{
 		// General
@@ -323,7 +356,7 @@
 		"ScriptFile"					"heroes/hero_crystal_maiden/crystal_maiden_arcane_blizzard"
 		"AbilityTextureName"			"crystal_maiden_freezing_field"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"2"
@@ -333,7 +366,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1200"
-		"AbilityChannelTime"			"15"
+		"AbilityChannelTime"			"10"
 		"AbilityChannelAnimation"		"ACT_DOTA_CAST_ABILITY_4"
 		"AnimationPlaybackRate"			"0.66"
 		"AbilityCastPoint"				"0.3"
@@ -341,7 +374,7 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"90"
-		"AbilityDuration"				"15"
+		"AbilityDuration"				"10"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -357,46 +390,46 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"1000"
-				"LinkedSpecialBonus"	"special_bonus_unique_crystal_maiden_arcane_blizzard_2"
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"1000"
+				"LinkedSpecialBonus"		"special_bonus_unique_crystal_maiden_arcane_blizzard_2"
 			}		
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"explosion_radius"		"350"
+				"var_type"					"FIELD_INTEGER"
+				"explosion_radius"			"300"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"explosion_interval"	"0.1"
-				"LinkedSpecialBonus"	"special_bonus_unique_crystal_maiden_arcane_blizzard_2"
-				"LinkedSpecialBonusField" "value2"
+				"var_type"					"FIELD_FLOAT"
+				"explosion_interval"		"0.1"
+				"LinkedSpecialBonus"		"special_bonus_unique_crystal_maiden_arcane_blizzard_2"
+				"LinkedSpecialBonusField" 	"value2"
 			}
 			"05"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"movespeed_slow"	"-30"
+			{	
+				"var_type"					"FIELD_INTEGER"
+				"chill_init"				"30"
 			}
 			"06"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"attack_slow"		"-90"
+				"var_type"					"FIELD_INTEGER"
+				"chill_hit"					"5"
 			}
 			"07"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"slow_duration"		"1.0"
+				"var_type"					"FIELD_FLOAT"
+				"slow_duration"				"1.0"
 			}
 			"08"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"explosion_min_dist"	"195"
+				"var_type"					"FIELD_INTEGER"
+				"explosion_min_dist"		"265"
 			}
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"explosion_max_dist"	"785"
+				"explosion_max_dist"	"900"
 			}
 			"10"
 			{
@@ -410,28 +443,23 @@
 			}
 			"12"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"movespeed_slow_scepter" "-50"
+				"var_type"				"FIELD_INTEGER"
+				"scepter_chill_init"	"40"
 			}
 			"13"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"attack_slow_scepter"	"-150"
-			}
-			"14"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"root_delay_scepter"	"2.5"
-			}
-			"15"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"root_duration_scepter"	"4"
+				"var_type"				"FIELD_INTEGER"
+				"scepter_chill_hit"		"7"
 			}
 			"16"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"duration_tooltip"	"10"
+				"var_type"				"FIELD_INTEGER"
+				"duration_tooltip"		"10"
+			}
+			"16"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"20"
 			}
 		}
 		

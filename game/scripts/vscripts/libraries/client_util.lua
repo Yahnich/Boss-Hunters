@@ -13,6 +13,10 @@ function MergeTables( t1, t2 )
 	end
 end
 
+function HasBit(checker, value)
+	return bit.band(checker, value) == value
+end
+
 function AddTableToTable( t1, t2)
 	for k,v in pairs(t2) do
 		table.insert(t1, v)
@@ -285,3 +289,41 @@ function C_DOTA_BaseNPC:GetParentUnit()
 	return self.unitOwnerEntity
 end
 
+BH_MINION_TYPE_WILD = 1
+BH_MINION_TYPE_UNDEAD = bit.lshift(BH_MINION_TYPE_WILD, 1)
+BH_MINION_TYPE_DEMONIC = bit.lshift(BH_MINION_TYPE_UNDEAD, 1)
+BH_MINION_TYPE_CELESTIAL = bit.lshift(BH_MINION_TYPE_DEMONIC, 1)
+
+BH_MINION_TYPE_MINION = bit.lshift(BH_MINION_TYPE_CELESTIAL, 1)
+BH_MINION_TYPE_BOSS = bit.lshift(BH_MINION_TYPE_MINION, 1)
+
+function C_DOTA_BaseNPC:IsBoss()
+	local stacks = self:GetModifierStackCount( "modifier_typing_tag", self )
+	return HasBit(stacks, BH_MINION_TYPE_BOSS)
+end
+
+function C_DOTA_BaseNPC:IsMinion()
+	local stacks = self:GetModifierStackCount( "modifier_typing_tag", self )
+	return HasBit(stacks, BH_MINION_TYPE_MINION)
+end
+
+
+function C_DOTA_BaseNPC:IsUndead()
+	local stacks = self:GetModifierStackCount( "modifier_typing_tag", self )
+	return HasBit(stacks, BH_MINION_TYPE_UNDEAD)
+end
+
+function C_DOTA_BaseNPC:IsWild()
+	local stacks = self:GetModifierStackCount( "modifier_typing_tag", self )
+	return HasBit(stacks, BH_MINION_TYPE_WILD)
+end
+
+function C_DOTA_BaseNPC:IsDemon()
+	local stacks = self:GetModifierStackCount( "modifier_typing_tag", self )
+	return HasBit(stacks, BH_MINION_TYPE_DEMONIC)
+end
+
+function C_DOTA_BaseNPC:IsCelestial()
+	local stacks = self:GetModifierStackCount( "modifier_typing_tag", self )
+	return HasBit(stacks, BH_MINION_TYPE_CELESTIAL)
+end

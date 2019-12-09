@@ -16,6 +16,18 @@ function clinkz_burning_army_bh:GetCooldown(iLvl)
     return cooldown
 end
 
+function clinkz_burning_army_bh:IsVectorTargeting()
+	return true
+end
+
+function clinkz_burning_army_bh:GetVectorTargetRange()
+	return self:GetTalentSpecialValueFor("range")
+end 
+
+function clinkz_burning_army_bh:GetVectorTargetStartRadius()
+	return 32
+end 
+
 function clinkz_burning_army_bh:OnAbilityPhaseStart()
 	self:GetCaster():EmitSound("Hero_Clinkz.BurningArmy.Cast")
 	return true
@@ -25,9 +37,9 @@ function clinkz_burning_army_bh:OnAbilityPhaseInterrupted()
 	self:GetCaster():StopSound("Hero_Clinkz.BurningArmy.Cast")
 end
 
-function clinkz_burning_army_bh:OnSpellStart()
+function clinkz_burning_army_bh:OnVectorCastStart()
 	local caster = self:GetCaster()
-	local position = self:GetCursorPosition() 
+	local position = self:GetVectorPosition() 
 
 	caster:EmitSound("Hero_Clinkz.BurningArmy.SpellStart")
 	local ogSkeletons = self:GetTalentSpecialValueFor("count")
@@ -49,8 +61,8 @@ function clinkz_burning_army_bh:OnSpellStart()
 		end)
 	else
 		local spawnDistance = self:GetTalentSpecialValueFor("range") / skeletons
-		local spawnDirection = CalculateDirection( position, caster )
-		local spawnPosition = self:GetCaster():GetAbsOrigin() + spawnDirection * spawnDistance
+		local spawnDirection = self:GetVectorDirection()
+		local spawnPosition = self:GetVectorPosition()
 		Timers:CreateTimer(spawnRate, function()
 			self:CreateSkeletonArcher( spawnPosition, duration, attackRate )
 			skeletons = skeletons - 1

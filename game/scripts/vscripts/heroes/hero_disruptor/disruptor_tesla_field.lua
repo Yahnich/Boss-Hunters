@@ -49,7 +49,7 @@ end
 function modifier_disruptor_tesla_field:OnTakeDamage(params)
 	if params.attacker == self:GetParent() then
 		if params.damage <= 0 or params.unit:HasModifier("modifier_disruptor_tesla_field_debuff") then return end
-		local talentActivated = ( self:GetParent():HasTalent("special_bonus_unique_disruptor_kinetic_charge_1") and params.unit:HasModifier("modifier_disruptor_kinetic_charge_pull") )
+		local talentActivated = false --( self:GetParent():HasTalent("special_bonus_unique_disruptor_kinetic_charge_1") and params.unit:HasModifier("modifier_disruptor_kinetic_charge_pull") )
 		local roll = RollPercentage( self.chance )
 		local talent1 = self:GetCaster():HasTalent("special_bonus_unique_disruptor_tesla_field_1")
 		if ( ( CalculateDistance( params.attacker, params.unit ) < self.radius or talent1) and roll and modifier_disruptor_tesla_field_debuff) or talentActivated then

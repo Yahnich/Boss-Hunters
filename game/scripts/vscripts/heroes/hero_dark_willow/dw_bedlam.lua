@@ -38,10 +38,9 @@ function dw_bedlam:OnToggle()
 	if caster:HasScepter() then
 		if caster:HasModifier("modifier_dw_bedlam") then
 			caster:RemoveModifierByName("modifier_dw_bedlam")
-			self:SetCooldown()
 		else
 			caster:AddNewModifier(caster, self, "modifier_dw_bedlam", {})
-			self:EndCooldown()
+			self:SetCooldown()
 		end
 	end
 end
@@ -50,7 +49,7 @@ function dw_bedlam:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 
 	if hTarget then
-		self:DealDamage(caster, hTarget, caster:GetAttackDamage()/2, {}, OVERHEAD_ALERT_DAMAGE)
+		self:DealDamage(caster, hTarget, caster:GetAttackDamage()/2, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_DAMAGE)
 	end
 end
 
@@ -153,7 +152,8 @@ function modifier_dw_bedlam_bug:CheckState()
 			[MODIFIER_STATE_UNSELECTABLE] = true,
 			[MODIFIER_STATE_UNTARGETABLE] = true,
 			[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-			[MODIFIER_STATE_NOT_ON_MINIMAP] = true}
+			[MODIFIER_STATE_NOT_ON_MINIMAP] = true,
+			[MODIFIER_STATE_INVULNERABLE] = true,}
 end
 
 function modifier_dw_bedlam_bug:DeclareFunctions()

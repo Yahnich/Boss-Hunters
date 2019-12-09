@@ -7,8 +7,8 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_arthromos/boss_arthromos_touch_of_decay"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"faceless_void_time_walk"
-		"MaxLevel"						"3"
+		"AbilityTextureName"			"viper_nethertoxin"
+		"MaxLevel"						"2"
 	
 		"precache"
 		{
@@ -20,17 +20,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"growth_rate"			"1.0"
+				"hp_pct"				"-0.5 -0.6"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"0.75 1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"1 2"
+				"var_type"				"FIELD_FLOAT"
+				"debuff_duration"		"2"
 			}
 		}
 	}
@@ -41,8 +36,8 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_arthromos/boss_arthromos_hellraiser"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"faceless_void_time_walk"
-		"MaxLevel"						"3"
+		"AbilityTextureName"			"shadow_demon_disruption"
+		"MaxLevel"						"2"
 	
 		"precache"
 		{
@@ -54,17 +49,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"growth_rate"			"1.0"
+				"incoming"				"350 275"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"0.75 1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"1 2"
+				"var_type"				"FIELD_FLOAT"
+				"outgoing"				"50 60"
 			}
 		}
 	}
@@ -75,8 +65,8 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_arthromos/boss_arthromos_plague_aura"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"faceless_void_time_walk"
-		"MaxLevel"						"3"
+		"AbilityTextureName"			"viper_corrosive_skin"
+		"MaxLevel"						"2"
 	
 		"precache"
 		{
@@ -88,36 +78,27 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"growth_rate"			"1.0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"0.75 1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"1 2"
+				"radius"				"200 300"
 			}
 		}
 	}
 	
 	
-	"boss_arthromos_locust_swarm"
+	"boss_arthromos_virulent_swarm"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_arthromos/boss_arthromos_pestilence"
+		"ScriptFile"					"bosses/boss_arthromos/boss_arthromos_virulent_swarm"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"dazzle_weave"
-		"MaxLevel"						"3"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"venomancer_venomous_gale"
+		"MaxLevel"						"2"
 		
 		"AbilityCastRange"				"800"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"				"1.5 1"
-		"AbilityCooldown"				"160"
+		"AbilityCooldown"				"12"
 	
 		"precache"
 		{
@@ -129,17 +110,27 @@
 			"01"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "total_armor_reduction"     	"60 80"
+                "width"     					"150"
             }
     		"02"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "duration"     					"60 80"
+                "speed"     					"900"
             }
     		"03"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "radius"     					"350 500"
+                "duration"     					"18"
+            }
+			"04"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "damage"     					"140 180"
+            }
+			"05"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "spread_radius"     			"350"
             }
 		}
 	}
@@ -149,14 +140,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_arthromos/boss_arthromos_pestilence"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"dazzle_weave"
-		"MaxLevel"						"3"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"venomancer_poison_nova"
+		"MaxLevel"						"2"
 		
 		"AbilityCastRange"				"800"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"				"1.5 1"
-		"AbilityCooldown"				"160"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"				"1 0.75"
+		"AbilityCooldown"				"3"
 	
 		"precache"
 		{
@@ -168,17 +160,12 @@
 			"01"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "total_armor_reduction"     	"60 80"
+                "radius"  					   	"1200"
             }
     		"02"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "duration"     					"60 80"
-            }
-    		"03"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "radius"     					"350 500"
+                "damage"     					"18 22"
             }
 		}
 	}
@@ -188,14 +175,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_arthromos/boss_arthromos_dessicate"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"dazzle_weave"
-		"MaxLevel"						"3"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"venomancer_poison_sting"
+		"MaxLevel"						"2"
 		
 		"AbilityCastRange"				"800"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
 		"AbilityCastPoint"				"1.5 1"
-		"AbilityCooldown"				"160"
+		"AbilityCooldown"				"40"
 	
 		"precache"
 		{
@@ -207,17 +195,22 @@
 			"01"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "total_armor_reduction"     	"60 80"
+                "channel_time"     				"5.3"
             }
     		"02"
             {
-                "var_type"                      "FIELD_INTEGER"
-                "duration"     					"60 80"
+                "var_type"                      "FIELD_FLOAT"
+                "tick_time"     				"0.75"
             }
     		"03"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "radius"     					"350 500"
+                "end_damage"     				"200 250"
+            }
+			"04"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "channel_damage"     			"40 60"
             }
 		}
 	}

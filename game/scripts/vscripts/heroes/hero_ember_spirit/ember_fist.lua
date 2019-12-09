@@ -56,12 +56,10 @@ function ember_fist:OnSpellStart()
 					ParticleManager:ReleaseParticleIndex(castFx)
 
 	---Remnant Only lasts 10 seconds.-----
-	local duration = self:GetTalentSpecialValueFor("duration")
-	caster:FindAbilityByName("ember_remnant"):SpawnRemnant(startPos, duration)
-
 	local enemies = caster:FindEnemyUnitsInRadius(point, radius, {flag = self:GetAbilityTargetFlags()})
 	if #enemies > 0 then
-
+		local duration = self:GetTalentSpecialValueFor("duration")
+		caster:FindAbilityByName("ember_remnant"):SpawnRemnant(startPos, duration)
 		local remenantFx = 	ParticleManager:CreateParticle("particles/units/heroes/hero_ember_spirit/ember_spirit_sleight_of_fist_caster.vpcf", PATTACH_POINT, caster)
 				 			ParticleManager:SetParticleControl(remenantFx, 0, startPos)
 				 			ParticleManager:SetParticleControlForward(remenantFx, 1, caster:GetForwardVector())
@@ -109,10 +107,6 @@ function ember_fist:OnSpellStart()
 				return nil
 			end
 		end)
-	else
-		self:EndCooldown()
-		self:RefundManaCost()
-		caster:RemoveGesture(ACT_DOTA_CAST_ABILITY_2)
 	end
 	
 end

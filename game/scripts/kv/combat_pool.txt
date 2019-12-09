@@ -25,6 +25,7 @@
 		"grove_combat_wolves"					"1"
 		"generic_combat_ogres"					"1"
 		"generic_combat_slarks"					"1"
+		"grove_combat_centaurs"					"1"
 	}
 	// Gods, spirits, elementals
 	"Elysium"
@@ -51,5 +52,6 @@
 		"solitude_combat_angry_wraith"			"1"
 		"solitude_combat_green_dragon"			"1"
 		"solitude_combat_satyrs"				"1"
+		"solitude_combat_hellbears"				"1"
 	}
 }

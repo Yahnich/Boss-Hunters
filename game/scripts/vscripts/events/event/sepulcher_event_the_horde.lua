@@ -43,19 +43,28 @@ local function StartCombat(self)
 				end
 				local roll = RandomInt(1, 12)
 				local hp = 150
+				if GameRules:GetGameDifficulty() >= 4 then
+					hp = 200
+				end
 				local zombieType = "npc_dota_mini_boss1"
 				if roll <= 6 then
 					zombieType = "npc_dota_mini_boss1"
 				elseif roll <= 10 then
 					zombieType = "npc_dota_boss3a_b"
 					hp = 200
+					if GameRules:GetGameDifficulty() >= 4 then
+						hp = 300
+					end
 				elseif roll == 12 then
 					zombieType = "npc_dota_boss3b"
 					hp = 175
+					if GameRules:GetGameDifficulty() >= 4 then
+						hp = 250
+					end
 				end
 				local zombie = CreateUnitByName(zombieType, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 				zombie:SetCoreHealth(hp)
-				zombie:SetAverageBaseDamage( (roll + 8) * 10, 50 )
+				zombie:SetAverageBaseDamage( (roll + 20) * 10, 25 )
 				return math.max( 4, (self.timeRemaining or 60) / 15 ) / HeroList:GetActiveHeroCount()
 			end
 		end
@@ -89,6 +98,7 @@ local function StartEvent(self)
 	self.timeRemaining = 10
 	self.eventEnded = false
 	self.combatStarted = false
+	self.combatEnded = false
 	self._playerChoices = {}
 	Timers:CreateTimer(1, function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})

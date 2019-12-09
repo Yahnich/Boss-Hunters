@@ -1,7 +1,7 @@
 death_prophet_ghastly_haunting = class({})
 
 function death_prophet_ghastly_haunting:GetCooldown( iLvl )
-	return self.BaseClass.GetCooldown( self, iLvl ) * math.max( 1, self:GetCaster():FindTalentValue("special_bonus_unique_death_prophet_ghastly_haunting_2") )
+	return self.BaseClass.GetCooldown( self, iLvl ) * math.max( 1, self:GetCaster():FindTalentValue("special_bonus_unique_death_prophet_ghastly_haunting_2", "duration") )
 end
 
 function death_prophet_ghastly_haunting:GetAOERadius()

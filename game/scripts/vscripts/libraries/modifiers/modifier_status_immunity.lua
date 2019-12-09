@@ -27,3 +27,7 @@ end
 function modifier_status_immunity:GetAttributes()
 	return
 end
+
+function modifier_status_immunity:GetTexture()
+	return "custom/relic"
+end

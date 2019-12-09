@@ -41,11 +41,12 @@ function modifier_stats_system_handler:UpdateStatValues()
 		entindex = self:GetCaster():GetParentUnit():entindex()
 	end
 	local netTable = CustomNetTables:GetTableValue("stats_panel", tostring(entindex) ) or {}
+	print("calc other", self:GetCaster():GetUnitName() )
 	self.ms = MOVESPEED_TABLE * tonumber(netTable["ms"])
 	self.mp = MANA_TABLE * tonumber(netTable["mp"])
 	self.mpr = MANA_REGEN_TABLE * tonumber(netTable["mpr"])
 	self.ha = HEAL_AMP_TABLE[math.min(#HEAL_AMP_TABLE, tonumber(netTable["ha"]) + 1)]
-	
+	print("calc offense", self:GetCaster():GetUnitName() )
 	-- OFFENSE
 	self.ad = ATTACK_DAMAGE_TABLE * tonumber(netTable["ad"])
 	self.sa = SPELL_AMP_TABLE * tonumber(netTable["sa"])
@@ -54,6 +55,7 @@ function modifier_stats_system_handler:UpdateStatValues()
 	self.sta = STATUS_AMP_TABLE[math.min(#STATUS_AMP_TABLE, tonumber(netTable["sta"]) + 1)]
 	-- self.acc = ACCURACY_TABLE[math.min(#ACCURACY_TABLE, tonumber(netTable["acc"]) + 1)]
 	
+	print("calc defense", self:GetCaster():GetUnitName() )
 	-- DEFENSE
 	self.pr = ARMOR_TABLE * tonumber(netTable["pr"]) + 1
 	self.mr = MAGIC_RESIST_TABLE[math.min(#MAGIC_RESIST_TABLE, tonumber(netTable["mr"]) + 1)]
@@ -64,6 +66,7 @@ function modifier_stats_system_handler:UpdateStatValues()
 	self.hpr = HEALTH_REGEN_TABLE * tonumber(netTable["hpr"])
 	self.sr = STATUS_REDUCTION_TABLE[math.min(#STATUS_REDUCTION_TABLE, tonumber(netTable["sr"]) + 1)]
 	
+	print("calc stats", self:GetCaster():GetUnitName() )
 	self.allStats =  ALL_STATS * tonumber(netTable["all"])
 	
 	
@@ -99,10 +102,9 @@ function modifier_stats_system_handler:GetModifierConstantManaRegen() return 1.5
 function modifier_stats_system_handler:GetModifierHealAmplify_Percentage() return self.ha or 0 end
 
 function modifier_stats_system_handler:GetModifierPreAttack_BonusDamage() return (self.ad or 0) end
-function modifier_stats_system_handler:GetModifierBaseAttack_BonusDamage() return 10 end
 	
 function modifier_stats_system_handler:GetModifierSpellAmplify_Percentage()
-	return self:GetParent():GetIntellect() * 0.33 + (self.sa or 0) 
+	return self:GetParent():GetIntellect() * 0.25 + (self.sa or 0) 
 end
 
 -- function modifier_stats_system_handler:GetCooldownReduction() return self.cdr or 0 end
@@ -111,11 +113,9 @@ function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage() ret
 function modifier_stats_system_handler:GetModifierAreaDamage() return self.ard or 0 end
 
 function modifier_stats_system_handler:GetAccuracy(params)
-	local accuracy = self.acc or 0
 	if not self:GetParent():IsRangedAttacker() then
-		accuracy = accuracy + 25
+		return 25
 	end
-	return accuracy
 end
 
 function modifier_stats_system_handler:GetModifierPhysicalArmorBonus()
