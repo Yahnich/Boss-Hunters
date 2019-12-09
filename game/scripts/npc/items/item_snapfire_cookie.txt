@@ -1,0 +1,71 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Snapfire Cookie
+	//=================================================================================================================
+	"item_snapfire_cookie"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7110"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_snapfire_cookie"
+		"AbilityTextureName"			"item_tome_of_knowledge"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
+		"MaxUpgradeLevel"				"7"
+		"ItemBaseLevel"					"1"
+		"Model"							"models/props_gameplay/tango.vmdl"	
+
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_snapfire/hero_snapfire_cookie_buff.vpcf"
+			"particle"					"particles/units/heroes/hero_snapfire/hero_snapfire_cookie_landing.vpcf"
+			"particle"					"particles/units/heroes/hero_snapfire/hero_snapfire_cookie_projectile.vpcf"
+			"particle"					"particles/units/heroes/hero_snapfire/hero_snapfire_cookie_receive.vpcf"
+			"particle"					"particles/units/heroes/hero_snapfire/hero_snapfire_cookie_selfcast.vpcf"
+			"particle"					"particles/units/heroes/hero_snapfire/hero_snapfire_cookie_selfcast.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_snapfire.vsndevts"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"jump_duration"			"0.484" //"0.431 0.484 0.538 0.592" // proportional to horizontal distance
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"jump_height"			"257" //"228 257 285 314" // proportional to horizontal distance
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"jump_horizontal_distance"	"450" //"400 450 500 550"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"impact_radius"			"300"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"impact_damage"			"90 160 230 300 370 440 510"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"impact_stun_duration"	"1.4 1.6 1.8 2.0 2.2 2.4 2.6"
+			}
+		}
+	}
+}
