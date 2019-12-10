@@ -192,6 +192,7 @@
 #base "heroes/hero_invoker.txt"
 #base "heroes/hero_mars.txt"
 #base "heroes/hero_void_spirit.txt"
+#base "heroes/hero_snapfire.txt"
 
 "DOTAAbilities"
 {

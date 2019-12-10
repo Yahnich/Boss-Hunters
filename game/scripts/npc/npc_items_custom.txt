@@ -164,7 +164,10 @@
 
 #base "items/item_tempest_staff.txt"
 
-// Next ID is 7110
+//Snapfire
+#base "items/item_snapfire_cookie.txt"
+
+// Next ID is 7111
 
 "DOTAAbilities"
 {

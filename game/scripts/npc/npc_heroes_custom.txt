@@ -1941,6 +1941,28 @@
 		"Ability17"						"special_bonus_unique_slark_shadow_dance_2"
 	}
 	//=================================================================================================================
+	// HERO: Snapfire
+	//=================================================================================================================
+	"npc_dota_hero_snapfire_ebf"
+	{
+		"override_hero"			"npc_dota_hero_snapfire"
+		"Ability1"				"snapfire_scatterblast_lua"
+		"Ability2"				"snapfire_firesnap_cookie_lua"
+		"Ability3"				"snapfire_lil_shredder_lua"
+		//"Ability4"				""
+		"Ability6"				"snapfire_mortimer_kisses_lua"
+
+		"Ability10"		"special_bonus_unique_snapfire_scatterblast_lua_1"
+		"Ability11"		"special_bonus_unique_snapfire_scatterblast_lua_2"
+		"Ability12"		"special_bonus_unique_snapfire_firesnap_cookie_lua_1"
+		"Ability13"		"special_bonus_unique_snapfire_firesnap_cookie_lua_2"
+		"Ability14"		"special_bonus_unique_snapfire_lil_shredder_lua_1"
+		"Ability15"		"special_bonus_unique_snapfire_lil_shredder_lua_2"
+		"Ability16"		"special_bonus_unique_snapfire_mortimer_kisses_lua_1"
+		"Ability17"		"special_bonus_unique_snapfire_mortimer_kisses_lua_2"
+		
+	}
+	//=================================================================================================================
 	// HERO: sniper
 	//=================================================================================================================
 	"npc_dota_hero_sniper_ebf"
