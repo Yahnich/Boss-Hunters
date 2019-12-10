@@ -1,0 +1,1 @@
+boss_leshrac_great_equalizer = class({})

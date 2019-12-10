@@ -1,0 +1,1 @@
+boss_roshan_heavy_blows = class({})

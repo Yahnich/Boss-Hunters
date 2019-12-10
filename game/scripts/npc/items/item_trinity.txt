@@ -95,7 +95,7 @@
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_damage_taken"	"50"
+				"bonus_damage_taken"	"30"
 			}
 			"09"
 			{

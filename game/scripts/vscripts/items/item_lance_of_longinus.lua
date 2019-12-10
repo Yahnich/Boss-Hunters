@@ -9,12 +9,17 @@ modifier_item_lance_of_longinus = class(itemBaseClass)
 
 function modifier_item_lance_of_longinus:OnCreated()
 	self.range = self:GetSpecialValueFor("bonus_attack_range")
+	self.all = self:GetSpecialValueFor("all_stats")
 	self.chance = self:GetSpecialValueFor("pierce_chance")
 end
 
 function modifier_item_lance_of_longinus:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
-			MODIFIER_PROPERTY_ATTACK_RANGE_BONUS}
+			MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+			}
 end
 
 function modifier_item_lance_of_longinus:GetAccuracy(bInfo)
@@ -39,6 +44,18 @@ end
 
 function modifier_item_lance_of_longinus:GetModifierAttackRangeBonus()
 	return self.range
+end
+
+function modifier_item_lance_of_longinus:GetModifierBonusStats_Strength()
+	return self.all
+end
+
+function modifier_item_lance_of_longinus:GetModifierBonusStats_Agility()
+	return self.all
+end
+
+function modifier_item_lance_of_longinus:GetModifierBonusStats_Intellect()
+	return self.all
 end
 
 function modifier_item_lance_of_longinus:IsHidden()

@@ -1,0 +1,1 @@
+boss_leshrac_punishment = class({})

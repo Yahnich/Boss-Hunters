@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"3050"	
+		"ItemCost"						"350"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_lance_of_longinus"
 		"ItemRequirements"
 		{
-			"01"						"item_soldiers_pike;item_iron_rod"
+			"01"						"item_soldiers_pike;item_iron_rod;item_power_core"
 		}
 	}
 	"item_lance_of_longinus"
@@ -69,6 +69,11 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"bonus_attack_range"	"150"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"all_stats"				"10"
 			}
 		}
 	}

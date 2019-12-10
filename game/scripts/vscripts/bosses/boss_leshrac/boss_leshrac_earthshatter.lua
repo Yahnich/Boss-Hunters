@@ -1,11 +1,11 @@
-boss_leshrac_erupt = class({})
+boss_leshrac_earthshatter = class({})
 
-function boss_leshrac_erupt:OnAbilityPhaseStart()
+function boss_leshrac_earthshatter:OnAbilityPhaseStart()
 	ParticleManager:FireWarningParticle( self:GetCursorPosition(), self:GetSpecialValueFor("impact_radius") )
 	return true
 end
 
-function boss_leshrac_erupt:OnSpellStart()
+function boss_leshrac_earthshatter:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
 	

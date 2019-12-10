@@ -1,0 +1,1 @@
+boss_treant_leech_seed = class({})

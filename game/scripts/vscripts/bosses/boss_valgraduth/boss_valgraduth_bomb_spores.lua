@@ -65,7 +65,7 @@ if IsServer() then
 			return
 		end
 		if parent:HasModifier("modifier_knockback") then
-			return end
+			return
 		end
 		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( position, self.trigger_radius ) ) do
 			if CalculateDistance(parent, enemy, true) <= self.trigger_radius then

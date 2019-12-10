@@ -1,0 +1,1 @@
+boss_furion_summon_minor_treants = class({})

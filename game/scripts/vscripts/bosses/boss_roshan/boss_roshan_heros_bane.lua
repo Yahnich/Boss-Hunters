@@ -1,0 +1,1 @@
+boss_roshan_heros_bane = class({})
