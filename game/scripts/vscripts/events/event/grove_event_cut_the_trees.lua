@@ -17,12 +17,13 @@ local function CheckPlayerChoices(self)
 		end
 	end
 	local superMajority = math.ceil(players * 0.66)
-	if not self.eventEnded and not self.combatStarted then
+	if not self.eventEnded and not self.freezeVote and not self.combatStarted then
+		self.freezeVote = true
 		if votedYes >= superMajority then -- yes votes exceed non-votes and no votes
 			self:GivePlayerGold()
 			self.treesCut = (self.treesCut or 0) + 1
-			self.combatStarted = true
 			Timers:CreateTimer(3, function()
+				self.freezeVote = false
 				if RollPercentage(25) then
 					self:StartCombat(true)
 				else
@@ -32,6 +33,7 @@ local function CheckPlayerChoices(self)
 			CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 			return true
 		elseif votedNo >= votedYes + (players - voted) then -- no votes exceed yes and non-votes and every other situation
+			self.freezeVote = false
 			self:StartCombat(false)
 			return true
 		end
@@ -49,6 +51,7 @@ local function StartCombat(self, bFight)
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	if bFight then
 		self.timeRemaining = 0
+		self.combatStarted = true
 		self.eventType = EVENT_TYPE_COMBAT
 		self.drowsToSpawn = math.ceil( math.log( self.treesCut/2 + 1 ) )
 		self.treantsToSpawn = math.floor( (math.ceil( math.log(self.treesCut + 1) ) ) * HeroList:GetActiveHeroCount() / 2 )
