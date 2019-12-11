@@ -49,12 +49,15 @@ function snapfire_firesnap_cookie_lua:OnProjectileHit(hTarget, vLocation)
 
 		if hTarget:IsHero() then
 			if hTarget:HasAnyAvailableInventorySpace() then
-				hTarget:AddItemByName("item_snapfire_cookie"):SetLevel(self:GetLevel())
+				local item = hTarget:AddItemByName("item_snapfire_cookie")
+				item:SetLevel(self:GetLevel())
+				item.itemGranter = caster
 			else
 				local item = CreateItem("item_snapfire_cookie", hTarget, hTarget)
 				local randoPoint = GetGroundPosition(vLocation, hTarget) + ActualRandomVector(150, 50)
 				item:SetLevel(self:GetLevel())
 				CreateItemOnPositionSync(randoPoint, item)
+				item.itemGranter = caster
 			end
 		else
 			hTarget:AddNewModifier(caster, self, "modifier_snapfire_firesnap_cookie_lua_movement", {})

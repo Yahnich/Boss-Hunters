@@ -5,6 +5,8 @@ local function StartEvent(self)
 	self.enemiesToSpawn = self.lifestealersToSpawn + self.wormsToSpawn
 	self.lifestealerSpawnDelay = 12
 	self.wormSpawnDelay = 1
+	self.lifestealerSpawnTicker = 0
+	self.wormSpawnTicker = 0
 	self.eventHandler = Timers:CreateTimer(3, function()
 		if self.lifestealersToSpawn > 0 and self.lifestealerSpawnTicker >= self.lifestealerSpawnDelay then
 			local spawn = CreateUnitByName("npc_dota_boss7", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
@@ -19,6 +21,8 @@ local function StartEvent(self)
 			self.wormsToSpawn = self.wormsToSpawn - 1
 			self.wormSpawnTicker = 0
 		end
+		self.lifestealerSpawnTicker = self.lifestealerSpawnTicker + 1
+		self.wormSpawnTicker = self.wormSpawnTicker + 1
 		if self.enemiesToSpawn > 0 then
 			return 1
 		end

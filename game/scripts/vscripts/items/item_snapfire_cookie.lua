@@ -2,14 +2,15 @@ item_snapfire_cookie = class({})
 LinkLuaModifier( "modifier_item_snapfire_cookie_buff", "items/item_snapfire_cookie.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function item_snapfire_cookie:OnSpellStart()
-	local caster = self:GetCaster()
+	local parent = self:GetCaster()
+	local caster = self.itemGranter
 
-	if caster:IsAlive() then
-		EmitSoundOn("Rune.Arcane", caster)
+	if parent:IsAlive() then
+		EmitSoundOn("Rune.Arcane", parent)
 		
 		local duration = self:GetSpecialValueFor("jump_duration")
 
-		caster:AddNewModifier(caster, self, "modifier_item_snapfire_cookie_buff", {Duration = duration})
+		parent:AddNewModifier(caster, self, "modifier_item_snapfire_cookie_buff", {Duration = duration})
 		--self:Destroy()
 	end
 end
@@ -38,6 +39,7 @@ if IsServer() then
 	
 	function modifier_item_snapfire_cookie_buff:OnRemoved()
 		local parent = self:GetParent()
+		local caster = self:GetCaster()
 		local parentPos = parent:GetAbsOrigin()
 		
 		local ability = self:GetAbility()
@@ -58,7 +60,7 @@ if IsServer() then
 			--print("Damage: " .. self.impact_damage)
 			--print("Parent Name: " .. parent:GetName())
 			--print("Enemy Name: " .. enemy:GetName())
-			print(ability:DealDamage(parent, enemy, self.impact_damage, {damageType = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NONE}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE))
+			ability:DealDamage(caster, enemy, self.impact_damage, {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		end
 
 		FindClearSpaceForUnit(parent, parentPos, true)

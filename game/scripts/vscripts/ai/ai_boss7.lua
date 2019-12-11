@@ -41,8 +41,8 @@ function AIThink(thisEntity)
 			target = AICore:GetHighestPriorityTarget( thisEntity )
 		end
 		if thisEntity:IsDisabled() 
-		or ( CalculateDistance( target, thisEntity ) > thisEntity:GetAttackRange() and target:GetIdealSpeed() > thisEntity:GetIdealSpeed() ) 
-		or CalculateDistance( target, thisEntity ) > thisEntity:GetAttackRange() * 1.5 
+		or ( target and ( ( CalculateDistance( target, thisEntity ) > thisEntity:GetAttackRange() and target:GetIdealSpeed() > thisEntity:GetIdealSpeed() ) 
+		or CalculateDistance( target, thisEntity ) > thisEntity:GetAttackRange() * 1.5 ) )
 		and thisEntity.rage:IsFullyCastable() then
 			ExecuteOrderFromTable({
 				UnitIndex = thisEntity:entindex(),

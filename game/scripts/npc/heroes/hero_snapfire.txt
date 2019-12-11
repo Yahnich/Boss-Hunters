@@ -245,7 +245,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"12"
+				"value"						"24"
 			}
 		}
 	}
@@ -297,7 +297,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"24 20 16 12 8 4 0"
+		"AbilityCooldown"				"12"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -318,33 +318,33 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"40 60 85 105 140 180 225"
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"40 60 85 105 140 180 225"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"buffed_attacks"			"6"
+				"var_type"						"FIELD_INTEGER"
+				"buffed_attacks"				"6"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"attack_speed_bonus"		"300"
+				"var_type"						"FIELD_INTEGER"
+				"attack_speed_bonus"			"300"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"attack_range_bonus"		"75 150 225 300 375 450 525"
+				"var_type"						"FIELD_INTEGER"
+				"attack_range_bonus"			"75 150 225 300 375 450 525"
 			}
 			"05"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"buff_duration_tooltip"		"8"
+				"var_type"						"FIELD_INTEGER"
+				"buff_duration_tooltip"			"8"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"base_attack_time"			"1"
+				"var_type"						"FIELD_FLOAT"
+				"base_attack_time"				"-50"
 			}
 			"07"
 			{
@@ -353,13 +353,13 @@
 			}
 			"08"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"slow_duration"				"3"
+				"var_type"						"FIELD_FLOAT"
+				"slow_duration"					"3"
 			}
 			"09"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"mana_cost_scepter"			"30"
+				"var_type"						"FIELD_INTEGER"
+				"mana_cost_scepter"				"30"
 			}
 		}
 	}

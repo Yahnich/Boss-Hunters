@@ -108,15 +108,10 @@ function modifier_snapfire_mortimer_kisses_lua_buff:OnIntervalThink()
 	if IsServer() then
 		local parent = self:GetParent()
 		local ability = self:GetAbility()
-
-		local distance = CalculateDistance(parent:GetAbsOrigin(), self.mousePos)
-
-		if distance < self.min_range then
-			distance = self.min_range
-			--self.mousePos = parent:GetAbsOrigin() + parent:GetForwardVector() * distance
-			self.mousePos = parent:GetAbsOrigin() + CalculateDirection(self.mousePos, parent:GetAbsOrigin()) * distance
-		end
-
+		
+		local distance = math.min( self:GetAbility():GetTrueCastRange(), math.max( CalculateDistance( self.mousePos, parent ), self.min_range ) )
+		self.mousePos = parent:GetAbsOrigin() + CalculateDirection( self.mousePos, parent ) * distance
+		
 		local duration = distance/self.projectile_speed
 
 		local dummy = ability:CreateDummy(self.mousePos, duration)

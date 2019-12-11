@@ -104,17 +104,16 @@ end
 function modifier_snapfire_lil_shredder_lua_buff:DeclareFunctions()
     local funcs = { MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
                     MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-                    MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
                     MODIFIER_EVENT_ON_ATTACK_LANDED,
                     MODIFIER_PROPERTY_PROJECTILE_NAME,
                     MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
                     MODIFIER_EVENT_ON_ATTACK_START,
-                    MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE}
+                    MODIFIER_PROPERTY_OVERRIDE_ATTACK_DAMAGE}
     return funcs
 end
 
-function modifier_snapfire_lil_shredder_lua_buff:GetModifierDamageOutgoing_Percentage()
-    return self.attack_damage
+function modifier_snapfire_lil_shredder_lua_buff:GetModifierOverrideAttackDamage()
+    return self.damage
 end
 
 function modifier_snapfire_lil_shredder_lua_buff:GetModifierProjectileName()
@@ -133,7 +132,7 @@ function modifier_snapfire_lil_shredder_lua_buff:GetModifierAttackRangeBonus()
     return self.bonus_ar
 end
 
-function modifier_snapfire_lil_shredder_lua_buff:GetModifierBaseAttackTimeConstant()
+function modifier_snapfire_lil_shredder_lua_buff:GetBaseAttackTime_BonusPercentage()
     return self.bonus_bat
 end
 
@@ -165,8 +164,6 @@ function modifier_snapfire_lil_shredder_lua_buff:OnAttackLanded(params)
             end
 
             EmitSoundOn("Hero_Snapfire.ExplosiveShellsBuff.Target", target)
-            self:GetAbility():DealDamage(attacker, target, self.damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_DAMAGE)
-
         end
 
         if attacker:HasScepter() then
