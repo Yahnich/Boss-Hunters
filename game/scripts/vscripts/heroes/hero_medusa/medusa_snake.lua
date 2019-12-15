@@ -48,7 +48,7 @@ end
 function medusa_snake:OnProjectileHit( hTarget, vLocation )
 	if IsServer() then
 		local caster = self:GetCaster()
-
+		if hTarget ~= caster and hTarget:TriggerSpellAbsorb(self) then return true end
 		if hTarget ~= nil and not ( hTarget == caster ) then
 			EmitSoundOn("Hero_Medusa.MysticSnake.Target", hTarget)
 

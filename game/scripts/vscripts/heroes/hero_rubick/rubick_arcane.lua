@@ -27,7 +27,7 @@ function rubick_arcane:OnSpellStart()
 
 	ParticleManager:FireParticle("particles/units/heroes/hero_rubick/rubick_nullfield_defensive.vpcf", PATTACH_POINT, caster, {[0]=caster:GetAbsOrigin()})
 	ParticleManager:FireParticle("particles/units/heroes/hero_rubick/rubick_nullfield_offensive.vpcf", PATTACH_POINT, target, {[0]=target:GetAbsOrigin()})
-
+	if target:TriggerSpellAbsorb( self ) then return end
 	caster:AddNewModifier(caster, self, "modifier_rubick_arcane_buff", {Duration = duration})
 	target:AddNewModifier(caster, self, "modifier_rubick_arcane_debuff", {Duration = duration})
 

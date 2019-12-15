@@ -44,8 +44,10 @@ function naga_siren_tidal_waves:FireTidal( origin, fProcValue )
 	end
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( origin:GetAbsOrigin(), radius ) ) do
 		if not self.hitUnits[enemy] then
-			ability:DealDamage(caster, enemy, damage)
-			enemy:AddNewModifier(caster, ability, "modifier_naga_siren_tidal_waves_rip_tide_debuff", {duration = duration})
+			if not enemy:TriggerSpellAbsorb(self) then
+				ability:DealDamage(caster, enemy, damage)
+				enemy:AddNewModifier(caster, ability, "modifier_naga_siren_tidal_waves_rip_tide_debuff", {duration = duration})
+			end
 			self.hitUnits[enemy] = true
 		end
 	end

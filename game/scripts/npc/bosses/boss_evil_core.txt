@@ -14,7 +14,7 @@
 	    "MaxLevel"                      "1"
 		"PiercesDisableReduction"		"1"
 		
-		"AbilityCooldown"				"35"
+		"AbilityCooldown"				"35 25"
 	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -33,8 +33,8 @@
 	        }
 	        "02"
 	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "damage_per_hit"        "5"
+	            "var_type"              "FIELD_FLOAT"
+	            "damage_per_hit"        "-80"
 	        }
 	    }
 	}

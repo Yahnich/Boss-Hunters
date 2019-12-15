@@ -505,7 +505,7 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 			end
 		end
 		if RoundManager:GetAscensions() >= 3 then
-			healFactorSelf = healFactorSelf - 0.75
+			healFactorSelf = healFactorSelf * 0.25
 		end
 	end
 	if healer and healer ~= target then
@@ -515,7 +515,7 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 			end
 		end
 		if RoundManager:GetAscensions() >= 3 then
-			healFactorAllied = healFactorAllied - 0.75
+			healFactorAllied = healFactorAllied * 0.25
 		end
 	end
 	
@@ -650,76 +650,79 @@ end
 
 function CHoldoutGameMode:OnHeroLevelUp(event)
 	local playerID = EntIndexToHScript(event.player):GetPlayerID()
+	local unit = EntIndexToHScript(event.hero_entindex)
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-	if hero:GetLevel() <= 27 then
-		hero.bonusSkillPoints = ( hero.bonusSkillPoints or ( hero:GetAbilityPoints() - 1 ) ) + 1
-		if hero:GetLevel() == 17 or hero:GetLevel() == 19 or (hero:GetLevel() > 20 and hero:GetLevel() < 25) then 
-			hero:SetAbilityPoints( hero:GetAbilityPoints() + 1)
-			hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1
-		end
-		if hero:GetLevel() % GameRules.gameDifficulty == 0 then
-			hero:ModifyAttributePoints( 1 )
-		end
-	else
-		hero:ModifyAttributePoints( 1 )
-		if not ( hero:GetLevel() == 30
-		or hero:GetLevel() == 31
-		or hero:GetLevel() == 36
-		or hero:GetLevel() == 40
-		or hero:GetLevel() == 50
-		or hero:GetLevel() == 60
-		or hero:GetLevel() == 70
-		or hero:GetLevel() == 80) then
-			hero:SetAbilityPoints( hero:GetAbilityPoints() - 1)
+	if hero == unit then
+		if hero:GetLevel() <= 27 or hero:GetLevel() == 30 then
+			hero.bonusSkillPoints = ( hero.bonusSkillPoints or ( hero:GetAbilityPoints() - 1 ) ) + 1
+			if hero:GetLevel() == 17 or hero:GetLevel() == 19 or (hero:GetLevel() > 20 and hero:GetLevel() < 25) or hero:GetLevel() == 30 then
+				hero:SetAbilityPoints( hero:GetAbilityPoints() + 1)
+			end
+			if hero:GetLevel() % GameRules.gameDifficulty == 0 then
+				hero:ModifyAttributePoints( 1 )
+			end
 		else
-			hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1
+			hero:ModifyAttributePoints( 1 )
+			if not (  hero:GetLevel() == 30
+			or hero:GetLevel() == 31
+			or hero:GetLevel() == 36
+			or hero:GetLevel() == 40
+			or hero:GetLevel() == 50
+			or hero:GetLevel() == 60
+			or hero:GetLevel() == 70
+			or hero:GetLevel() == 80) then
+				hero:SetAbilityPoints( hero:GetAbilityPoints() - 1)
+			else
+				hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1
+			end
 		end
-	end
-	-- fix valve's bullshit auto-talent leveling
-	-- take snapshot at lv 29
-	if hero:GetLevel() == 29 then
-		hero.savedTalentData = CustomNetTables:GetTableValue("talents", tostring(hero:entindex())) or {}
-		hero.savedTalentsSkilled = hero.talentsSkilled
-	end
-	-- reset to snapshot at 30
-	if hero:GetLevel() == 30 then
-		Timers:CreateTimer(0.1, function()
-			local talentData = hero.savedTalentData
-			hero.talentsSkilled = hero.savedTalentsSkilled
-			for i = 0, 23 do
-				local ability = hero:GetAbilityByIndex(i)
-				if ability then
-					abilityname = ability:GetAbilityName()
-					if string.match(abilityname, "special_bonus" ) and not talentData[abilityname] then
-						ability:SetLevel(0)
-						if GameRules.AbilityKV[abilityname] then
-							if GameRules.AbilityKV[abilityname]["LinkedModifierName"] then
-								local modifierName = GameRules.AbilityKV[abilityname]["LinkedModifierName"] 
-								for _, unit in ipairs( FindAllUnits() ) do
-									if unit:HasModifier(modifierName) then
-										local mList = unit:FindAllModifiersByName(modifierName)
-										for _, modifier in ipairs( mList ) do
-											local remainingDur = modifier:GetRemainingTime()
-											modifier:ForceRefresh()
-											if remainingDur > 0 then modifier:SetDuration(remainingDur, true) end
+		-- fix valve's bullshit auto-talent leveling
+		-- take snapshot at lv 29
+		if hero:GetLevel() == 29 then
+			hero.savedTalentData = CustomNetTables:GetTableValue("talents", tostring(hero:entindex())) or {}
+			hero.savedTalentsSkilled = hero.talentsSkilled
+		end
+		-- reset to snapshot at 30
+		if hero:GetLevel() == 30 then
+			hero:SetAbilityPoints( hero:GetAbilityPoints() + 2) -- where are my two ability points going ????
+			Timers:CreateTimer(0.1, function()
+				local talentData = hero.savedTalentData
+				hero.talentsSkilled = hero.savedTalentsSkilled
+				for i = 0, 23 do
+					local ability = hero:GetAbilityByIndex(i)
+					if ability then
+						abilityname = ability:GetAbilityName()
+						if string.match(abilityname, "special_bonus" ) and not talentData[abilityname] then
+							ability:SetLevel(0)
+							if GameRules.AbilityKV[abilityname] then
+								if GameRules.AbilityKV[abilityname]["LinkedModifierName"] then
+									local modifierName = GameRules.AbilityKV[abilityname]["LinkedModifierName"] 
+									for _, unit in ipairs( FindAllUnits() ) do
+										if unit:HasModifier(modifierName) then
+											local mList = unit:FindAllModifiersByName(modifierName)
+											for _, modifier in ipairs( mList ) do
+												local remainingDur = modifier:GetRemainingTime()
+												modifier:ForceRefresh()
+												if remainingDur > 0 then modifier:SetDuration(remainingDur, true) end
+											end
 										end
 									end
 								end
-							end
-							if GameRules.AbilityKV[abilityname]["LinkedAbilityName"] then
-								local abilityName = GameRules.AbilityKV[abilityname]["LinkedAbilityName"] or ""
-								local ability = hero:FindAbilityByName(abilityName)
-								if ability and ability.OnTalentLearned then
-									ability:OnTalentLearned(abilityname)
+								if GameRules.AbilityKV[abilityname]["LinkedAbilityName"] then
+									local abilityName = GameRules.AbilityKV[abilityname]["LinkedAbilityName"] or ""
+									local ability = hero:FindAbilityByName(abilityName)
+									if ability and ability.OnTalentLearned then
+										ability:OnTalentLearned(abilityname)
+									end
 								end
 							end
 						end
 					end
 				end
-			end
-			CustomNetTables:SetTableValue( "talents", tostring(hero:entindex()), talentData )
-			CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
-		end)
+				CustomNetTables:SetTableValue( "talents", tostring(hero:entindex()), talentData )
+				CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
+			end)
+		end
 	end
 end
 

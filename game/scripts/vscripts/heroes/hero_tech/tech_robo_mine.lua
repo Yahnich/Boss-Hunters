@@ -37,14 +37,16 @@ function modifier_robo_mine:OnIntervalThink()
 	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), radius, {flag = self:GetAbility():GetAbilityTargetFlags()})
 	for _,enemy in pairs(enemies) do
 		StopSoundOn("Hero_Techies.RemoteMine.Plant", self:GetCaster())
-		EmitSoundOn("Hero_Techies.RemoteMine.Detonate", self:GetParent())
+		if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+			EmitSoundOn("Hero_Techies.RemoteMine.Detonate", self:GetParent())
+			self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+		end
 
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_techies/techies_remote_mines_detonate.vpcf", PATTACH_POINT, self:GetCaster())
 		ParticleManager:SetParticleControl(nfx, 0, self:GetParent():GetAbsOrigin())
 		ParticleManager:SetParticleControl(nfx, 1, Vector(radius, radius, radius))
 		ParticleManager:ReleaseParticleIndex(nfx)
 
-		self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
 		break
 	end
 	if enemies[1] then 

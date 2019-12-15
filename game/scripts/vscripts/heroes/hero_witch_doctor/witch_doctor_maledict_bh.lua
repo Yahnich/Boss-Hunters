@@ -10,7 +10,9 @@ function witch_doctor_maledict_bh:OnSpellStart()
 	EmitSoundOnLocationWithCaster(position, "Hero_WitchDoctor.Maledict_Cast", caster)
 	ParticleManager:FireParticle("particles/units/heroes/hero_witchdoctor/witchdoctor_maledict_aoe.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(radius,1,1)})
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-		enemy:AddNewModifier(caster, self, "modifier_witch_doctor_maledict_bh", {duration = duration})
+		if not enemy:TriggerSpellAbsorb( self ) then
+			enemy:AddNewModifier(caster, self, "modifier_witch_doctor_maledict_bh", {duration = duration})
+		end
 	end
 end
 

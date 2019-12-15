@@ -102,6 +102,10 @@ function modifier_pango_ball_movement:OnIntervalThink()
 	if IsServer() then
 		if self:GetParent():IsNull() then return end
 		local parent = self:GetParent()
+		if self.reset then
+			self:StartIntervalThink(FrameTime())
+			self.reset = false
+		end
 		if parent:IsAlive() then
 			if not parent:HasModifier("modifier_pango_shield_movement") then
 				local direction = parent:GetForwardVector()
@@ -112,6 +116,9 @@ function modifier_pango_ball_movement:OnIntervalThink()
 						EmitSoundOn("Hero_Pangolier.Gyroshell.Carom", parent)
 						EmitSoundOn("Hero_Pangolier.Carom.Layer", parent)
 						parent:SetForwardVector(-direction)
+						parent:SetAbsOrigin( parent:GetAbsOrigin() - direction * 64 )
+						self:StartIntervalThink(0.2)
+						self.reset = true
 					end
 				end
 
@@ -122,12 +129,16 @@ function modifier_pango_ball_movement:OnIntervalThink()
 				for _,enemy in pairs(enemies) do
 					if not enemy:IsKnockedBack() and not enemy:IsStunned() then
 						EmitSoundOn("Hero_Pangolier.Gyroshell.Stun", enemy)
-						enemy:ApplyKnockBack(newPos, self.knockbackDuration, self.knockbackDuration, self.radius, self.radius, parent, self:GetAbility(), true)
-						self:GetAbility():DealDamage(parent, enemy, self.damage)
-						if enemy:IsAlive() then
-							Timers:CreateTimer(self.knockbackDuration, function()
-								self:GetAbility():Stun(enemy, self.stunDuration, false)
-							end)
+						if enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+							enemy:ApplyKnockBack(newPos, 0.2, 0.2, self.radius, 0, parent, self:GetAbility(), false)
+						else
+							enemy:ApplyKnockBack(newPos, self.knockbackDuration, self.knockbackDuration, self.radius, self.radius, parent, self:GetAbility(), true)
+							self:GetAbility():DealDamage(parent, enemy, self.damage)
+							if enemy:IsAlive() then
+								Timers:CreateTimer(self.knockbackDuration, function()
+									self:GetAbility():Stun(enemy, self.stunDuration, false)
+								end)
+							end
 						end
 					end
 				end
@@ -140,12 +151,10 @@ end
 
 function modifier_pango_ball_movement:CheckState()
 	if self:GetCaster():HasTalent("special_bonus_unique_pango_ball_1") then
-		return {[MODIFIER_STATE_ROOTED] = true,
-				[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+		return {[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 				[MODIFIER_STATE_DISARMED] = true}
 	end
-	return {[MODIFIER_STATE_ROOTED] = true,
-			[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+	return {[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 			[MODIFIER_STATE_MAGIC_IMMUNE] = true,
 			[MODIFIER_STATE_DISARMED] = true}
 end
@@ -153,7 +162,12 @@ end
 function modifier_pango_ball_movement:DeclareFunctions()
 	return {MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
 			MODIFIER_PROPERTY_MODEL_CHANGE,
-			MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE}
+			MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE,
+			MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
+			MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
+			MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MAX,
+			MODIFIER_PROPERTY_MOVESPEED_LIMIT,
+			}
 end
 
 function modifier_pango_ball_movement:GetOverrideAnimation()
@@ -166,6 +180,22 @@ end
 
 function modifier_pango_ball_movement:GetModifierTurnRate_Percentage()
 	return self.turnRate
+end
+
+function modifier_pango_ball_movement:GetModifierMoveSpeed_Absolute()
+	return 100
+end
+
+function modifier_pango_ball_movement:GetModifierMoveSpeed_AbsoluteMin()
+	return 100
+end
+
+function modifier_pango_ball_movement:GetModifierMoveSpeed_AbsoluteMax()
+	return 100
+end
+
+function modifier_pango_ball_movement:GetModifierMoveSpeed_Limit()
+	return 100
 end
 
 function modifier_pango_ball_movement:GetEffectName()

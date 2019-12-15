@@ -36,28 +36,29 @@ function furion_natures_wrath:OnSpellStart()
 				--Spare ourselves sound complaints
 				--EmitSoundOn("Hero_Furion.WrathOfNature_Damage.Creep", enemy)
 				hitTable[enemy:entindex()] = true
+				if not enemy:TriggerSpellAbsorb(self) then
+					if caster:HasTalent("special_bonus_unique_furion_natures_wrath_2") and RollPercentage( talent2Chance ) then
+						enemy:AddNewModifier(caster, entangle, "modifier_entangle_enemy", {duration = talent2Duration})
+					end
+					
+					enemy:AddNewModifier(caster, self, "modifier_furion_natures_wrath_revive", {duration = reviveDuration})
 
-				if caster:HasTalent("special_bonus_unique_furion_natures_wrath_2") and RollPercentage( talent2Chance ) then
-					enemy:AddNewModifier(caster, entangle, "modifier_entangle_enemy", {duration = talent2Duration})
+					local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_furion/furion_wrath_of_nature.vpcf", PATTACH_POINT_FOLLOW, caster)
+					ParticleManager:SetParticleControlEnt(particle, 0, previousEnemy, PATTACH_POINT_FOLLOW, "attach_hitloc", previousEnemy:GetAbsOrigin(), true)
+					ParticleManager:SetParticleControlEnt(particle, 1, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
+					ParticleManager:SetParticleControlEnt(particle, 2, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
+					ParticleManager:SetParticleControlEnt(particle, 3, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
+					ParticleManager:SetParticleControlEnt(particle, 4, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
+					ParticleManager:ReleaseParticleIndex(particle)
+					
+					
+					self:DealDamage(caster, enemy, damage, {}, 0)
+					damage = damage + damage * self:GetTalentSpecialValueFor("damage_add") / 100
+
+					previousEnemy = enemy
+
+					return self:GetTalentSpecialValueFor("jump_delay")
 				end
-				
-				enemy:AddNewModifier(caster, self, "modifier_furion_natures_wrath_revive", {duration = reviveDuration})
-
-				local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_furion/furion_wrath_of_nature.vpcf", PATTACH_POINT_FOLLOW, caster)
-				ParticleManager:SetParticleControlEnt(particle, 0, previousEnemy, PATTACH_POINT_FOLLOW, "attach_hitloc", previousEnemy:GetAbsOrigin(), true)
-				ParticleManager:SetParticleControlEnt(particle, 1, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
-				ParticleManager:SetParticleControlEnt(particle, 2, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
-				ParticleManager:SetParticleControlEnt(particle, 3, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
-				ParticleManager:SetParticleControlEnt(particle, 4, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
-				ParticleManager:ReleaseParticleIndex(particle)
-				
-				
-				self:DealDamage(caster, enemy, damage, {}, 0)
-				damage = damage + damage * self:GetTalentSpecialValueFor("damage_add") / 100
-
-				previousEnemy = enemy
-
-				return self:GetTalentSpecialValueFor("jump_delay")
 			end -- no valid targets found
 		end
 		StopSoundOn("Hero_Furion.WrathOfNature_Cast.Self", caster)

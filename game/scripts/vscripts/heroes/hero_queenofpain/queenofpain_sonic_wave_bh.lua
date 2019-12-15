@@ -22,7 +22,7 @@ function queenofpain_sonic_wave_bh:OnSpellStart()
 end
 
 function queenofpain_sonic_wave_bh:OnProjectileHit( target, position )
-	if target then
+	if target and not target:TriggerSpellAbsorb( self ) then
 		local caster = self:GetCaster()
 		local damage = TernaryOperator( self:GetTalentSpecialValueFor("damage_scepter"), caster:HasScepter(), self:GetTalentSpecialValueFor("damage") )
 		local kbDistance = self:GetTalentSpecialValueFor("knockback_distance")

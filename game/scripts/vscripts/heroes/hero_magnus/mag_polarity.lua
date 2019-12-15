@@ -32,12 +32,14 @@ function mag_polarity:OnSpellStart()
 
     local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
     for _,enemy in pairs(enemies) do
-        ParticleManager:FireRopeParticle("particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_pull.vpcf", PATTACH_POINT, caster, enemy, {[0]=caster:GetAbsOrigin() + caster:GetForwardVector()*200, [1]=enemy:GetAbsOrigin()})
+		if not enemy:TriggerSpellAbsorb( self ) then
+			ParticleManager:FireRopeParticle("particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_pull.vpcf", PATTACH_POINT, caster, enemy, {[0]=caster:GetAbsOrigin() + caster:GetForwardVector()*200, [1]=enemy:GetAbsOrigin()})
 
-        EmitSoundOn("Hero_Magnataur.ReversePolarity.Cast", enemy)
-        FindClearSpaceForUnit(enemy, GetGroundPosition(caster:GetAbsOrigin(), caster) + caster:GetForwardVector()*200, true)
-        self:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
-        self:DealDamage(caster, enemy, damage, {}, 0)
+			EmitSoundOn("Hero_Magnataur.ReversePolarity.Cast", enemy)
+			FindClearSpaceForUnit(enemy, GetGroundPosition(caster:GetAbsOrigin(), caster) + caster:GetForwardVector()*200, true)
+			self:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
+			self:DealDamage(caster, enemy, damage, {}, 0)
+		end
     end
 end
 

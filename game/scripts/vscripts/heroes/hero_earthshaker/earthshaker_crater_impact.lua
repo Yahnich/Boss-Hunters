@@ -29,10 +29,12 @@ function earthshaker_crater_impact:CreateQuake(position, radius, damage)
 	local talent2 = caster:HasTalent("special_bonus_unique_earthshaker_crater_impact_2")
 	local stunDuration = self:GetTalentSpecialValueFor("duration")
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-		self:DealDamage(caster, enemy, damage)
-		self:Stun(enemy, stunDuration, false)
-		if talent2 then
-			enemy:Taunt(self, caster, caster:FindTalentValue("special_bonus_unique_earthshaker_crater_impact_2", "duration") )
+		if not enemy:TriggerSpellAbsorb(self) then
+			self:DealDamage(caster, enemy, damage)
+			self:Stun(enemy, stunDuration, false)
+			if talent2 then
+				enemy:Taunt(self, caster, caster:FindTalentValue("special_bonus_unique_earthshaker_crater_impact_2", "duration") )
+			end
 		end
 	end
 end

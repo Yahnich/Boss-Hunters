@@ -28,8 +28,10 @@ function sd_soul_catcher:OnSpellStart()
 
 	local enemies = caster:FindEnemyUnitsInRadius(point, self:GetSpecialValueFor("radius"))
 	for _,enemy in pairs(enemies) do
+		if enemy:TriggerSpellAbsorb( self ) then
+			enemy:AddNewModifier(caster, self, "modifier_sd_soul_catcher", {Duration = self:GetSpecialValueFor("duration")})
+		end
 		EmitSoundOn("Hero_ShadowDemon.Soul_Catcher", enemy)
-		enemy:AddNewModifier(caster, self, "modifier_sd_soul_catcher", {Duration = self:GetSpecialValueFor("duration")})
 		target = enemy:GetAbsOrigin()
 		break
 	end

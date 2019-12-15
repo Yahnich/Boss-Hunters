@@ -34,7 +34,7 @@ end
 
 function mag_shockwave:OnProjectileHitHandle(hTarget, vLocation, iProjectileHandle)
     local caster = self:GetCaster()
-    if hTarget ~= nil then
+    if hTarget ~= nil and not hTarget:TriggerSpellAbsorb( self ) then
     	if hTarget:GetTeam() ~= caster:GetTeam() then
     		EmitSoundOn("Hero_Magnataur.ShockWave.Target", hTarget)
         	ParticleManager:FireParticle("particles/units/heroes/hero_magnataur/magnataur_shockwave_hit.vpcf", PATTACH_POINT, hTarget, {})
@@ -59,8 +59,10 @@ function mag_shockwave:OnProjectileHitHandle(hTarget, vLocation, iProjectileHand
         		
         		local enemies = self:GetCaster():FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetSpecialValueFor("magnet_radius"))
         		for _,enemy in pairs(enemies) do
-        			enemy:ApplyKnockBack(hTarget:GetAbsOrigin(), 1.0, 1.0, self:GetSpecialValueFor("magnet_radius")/2, 200, self:GetCaster(), self)
-        			self:DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage_magnet"), {}, 0)
+					if not enemy:TriggerSpellAbsorb( self ) then
+						enemy:ApplyKnockBack(hTarget:GetAbsOrigin(), 1.0, 1.0, self:GetSpecialValueFor("magnet_radius")/2, 200, self:GetCaster(), self)
+						self:DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage_magnet"), {}, 0)
+					end
         		end
         		ProjectileManager:DestroyLinearProjectile(iProjectileHandle)
         	end

@@ -42,7 +42,7 @@ end
 function boss_ifdat_flamethrower:OnProjectileHit(hTarget, vLocation)
     local caster = self:GetCaster()
     
-    if hTarget ~= nil then
+    if hTarget ~= nil and not hTarget:TriggerSpellAbsorb( self ) then
         self:DealDamage(caster, hTarget, self.damage, {}, 0)
 		hTarget:AddNewModifier( caster, self, "modifier_boss_ifdat_flamethrower", {duration = self.duration})
     end

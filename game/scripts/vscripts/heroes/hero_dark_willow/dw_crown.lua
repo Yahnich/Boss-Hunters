@@ -16,7 +16,7 @@ function dw_crown:OnSpellStart()
 	
 	EmitSoundOn("Hero_DarkWillow.Ley.Cast", caster)
 	EmitSoundOn("Hero_DarkWillow.Ley.Target", caster)
-
+	if target:TriggerSpellAbsorb(self) then return end
 	local delay = self:GetTalentSpecialValueFor("delay")
 
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_dark_willow/dark_willow_ley_cast.vpcf", PATTACH_POINT, caster)
@@ -55,7 +55,7 @@ function modifier_dw_crown:OnIntervalThink()
 	if caster:HasTalent("special_bonus_unique_dw_crown_2") then
 		local enemies = caster:FindEnemyUnitsInRadius(point, self.radius*2)
 		for _,enemy in pairs(enemies) do
-			if enemy ~= self:GetParent() then
+			if enemy ~= self:GetParent() and not enemy:TriggerSpellAbsorb(self) then
 				enemy:Charm(self:GetAbility(), self:GetParent(), 1)
 			end
 		end
@@ -91,8 +91,10 @@ function modifier_dw_crown:OnRemoved()
 
 		local enemies = caster:FindEnemyUnitsInRadius(point, self.radius)
 		for _,enemy in pairs(enemies) do
-			self:GetAbility():Stun(enemy, self.duration, false)
-			self:GetAbility():DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
+			if not enemy:TriggerSpellAbsorb(self) then
+				self:GetAbility():Stun(enemy, self.duration, false)
+				self:GetAbility():DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
+			end
 		end
 	end
 end

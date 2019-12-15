@@ -19,8 +19,10 @@ function boss_arthromos_pestilence:OnSpellStart()
 	
 	local enemies = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, maxRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, 0, 0, false)
 	for _,enemy in pairs(enemies) do
-		enemy:AddNewModifier(caster, self, "modifier_boss_arthromos_pestilence", {})
-		EmitSoundOn( "Hero_Venomancer.PoisonNovaImpact", caster )
+		if not enemy:TriggerSpellAbsorb( self ) then
+			enemy:AddNewModifier(caster, self, "modifier_boss_arthromos_pestilence", {})
+			EmitSoundOn( "Hero_Venomancer.PoisonNovaImpact", caster )
+		end
 	end
 	EmitSoundOn( "Hero_Venomancer.PoisonNova", caster )
 	

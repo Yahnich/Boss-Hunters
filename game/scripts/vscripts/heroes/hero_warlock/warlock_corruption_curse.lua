@@ -15,6 +15,7 @@ function warlock_corruption_curse:OnSpellStart()
 
 	EmitSoundOn("Hero_Warlock.ShadowWordCastBad", target)
 	EmitSoundOn("Hero_Warlock.Incantations", target)
+	if target:TriggerSpellAbsorb( self ) then return end
 	target:AddNewModifier(caster, self, "modifier_warlock_corruption_curse", {Duration = self:GetTalentSpecialValueFor("duration")})
 end
 

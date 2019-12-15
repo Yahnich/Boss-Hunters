@@ -64,7 +64,11 @@ function abaddon_death_coil_ebf:OnProjectileHit(target, position)
 
 		-- If the target and caster are on a different team, do Damage. Heal otherwise
 		if target:GetTeamNumber() ~= caster:GetTeamNumber() then
-			ApplyDamage({ victim = target, attacker = caster, damage = damage,	damage_type = DAMAGE_TYPE_MAGICAL, ability = self})
+			if not target:TriggerSpellAbsorb(self) then
+				ApplyDamage({ victim = target, attacker = caster, damage = damage,	damage_type = DAMAGE_TYPE_MAGICAL, ability = self})
+			else
+				return
+			end
 		else
 			target:HealEvent(heal, self, caster)
 		end

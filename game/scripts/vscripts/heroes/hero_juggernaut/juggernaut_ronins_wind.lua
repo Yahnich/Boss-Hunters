@@ -57,7 +57,7 @@ if IsServer() then
 					if not self.targetsHit[enemy:entindex()] then
 						self.targetsHit[enemy:entindex()] = true
 						ParticleManager:FireParticle("particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf", PATTACH_ABSORIGIN , enemy)
-						parent:PerformGenericAttack(enemy, true)
+						if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then parent:PerformGenericAttack(enemy, true) then
 					end
 				end
 			end

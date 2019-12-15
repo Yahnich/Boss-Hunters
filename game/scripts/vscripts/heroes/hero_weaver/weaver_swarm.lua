@@ -44,8 +44,10 @@ function weaver_swarm:OnProjectileHit(hTarget, vLocation)
 
 	if hTarget then
 		if not hTarget:HasModifier("modifier_weaver_swarm_bh") then
-			EmitSoundOn("Hero_Weaver.SwarmAttach", hTarget)
-			hTarget:AddNewModifier(caster, self, "modifier_weaver_swarm_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
+			if not target:TriggerSpellAbsorb( self ) then
+				EmitSoundOn("Hero_Weaver.SwarmAttach", hTarget)
+				hTarget:AddNewModifier(caster, self, "modifier_weaver_swarm_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
+			end
 			return true
 		end
 	end

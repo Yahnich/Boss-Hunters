@@ -34,8 +34,10 @@ function lina_lsa:OnSpellStart()
 
 	local enemies = caster:FindEnemyUnitsInRadius(point, radius)
     for _,enemy in pairs(enemies) do
-    	self:DealDamage(caster, enemy, damage, {}, 0)
-    	self:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
+		if not enemy:TriggerSpellAbsorb( self ) then
+			self:DealDamage(caster, enemy, damage, {}, 0)
+			self:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
+		end
     end
 
     CreateModifierThinker(caster, self, "modifier_lina_lsa_fire", {Duration = self:GetTalentSpecialValueFor("duration")}, point, caster:GetTeam(), false)

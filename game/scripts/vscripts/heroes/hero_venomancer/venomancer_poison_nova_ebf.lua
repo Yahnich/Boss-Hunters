@@ -52,7 +52,9 @@ function venomancer_poison_nova_ebf:OnSpellStart()
 	if caster:HasScepter() then duration = self:GetTalentSpecialValueFor("duration_scepter") end
 	local enemies = FindUnitsInRadius(caster:GetTeam(), origin:GetAbsOrigin(), nil, maxRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, 0, 0, false)
 	for _,enemy in pairs(enemies) do
-		enemy:AddNewModifier(caster, self, "modifier_venomancer_poison_nova_cancer", {duration = duration})
+		if not enemy:TriggerSpellAbsorb( self ) then
+			enemy:AddNewModifier(caster, self, "modifier_venomancer_poison_nova_cancer", {duration = duration})
+		end
 		EmitSoundOn( "Hero_Venomancer.PoisonNovaImpact", self:GetCaster() )
 	end
 	EmitSoundOn( "Hero_Venomancer.PoisonNova", self:GetCaster() )

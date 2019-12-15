@@ -126,7 +126,9 @@ function phenx_spirits:OnProjectileHit(hTarget, vLocation)
         ParticleManager:FireParticle("particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf", PATTACH_POINT, caster, {[0]=vLocation, [1]=Vector(self:GetTalentSpecialValueFor("radius"), 1, 1)})
         local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"))
         for _,enemy in pairs(enemies) do
-            enemy:AddNewModifier(caster, self, "modifier_phenx_spirits_burn", {Duration = self:GetTalentSpecialValueFor("duration")})
+			if not enemy:TriggerSpellAbsorb( self ) then
+				enemy:AddNewModifier(caster, self, "modifier_phenx_spirits_burn", {Duration = self:GetTalentSpecialValueFor("duration")})
+			end
         end
     end
 end

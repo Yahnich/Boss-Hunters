@@ -20,7 +20,6 @@ function boss_hellbear_wallop:OnSpellStart()
 	local target = self:GetCursorTarget()
 	
     local damage = caster:GetAttackDamage() * self:GetSpecialValueFor("damage") / 100
-	SendOverheadEventMessage(caster, OVERHEAD_ALERT_CRITICAL, target, damage, caster)
 	StopSoundOn("Hero_Tusk.WalrusPunch.Cast", target)
 	EmitSoundOn("Hero_Tusk.WalrusPunch.Target", target)
 	
@@ -29,6 +28,9 @@ function boss_hellbear_wallop:OnSpellStart()
 	local airTime = self:GetSpecialValueFor("stun_duration")
 	local knockback = self:GetSpecialValueFor("knockback")
 	
+	if target:TriggerSpellAbsorb( self ) then return end
+	
+	SendOverheadEventMessage(caster, OVERHEAD_ALERT_CRITICAL, target, damage, caster)
 	target:ApplyKnockBack(caster:GetAbsOrigin(), airTime, airTime/2, knockback, 500, caster, self, true)
 	self:DealDamage( caster, target, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 end

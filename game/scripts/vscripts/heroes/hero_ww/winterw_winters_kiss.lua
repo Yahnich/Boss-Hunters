@@ -30,7 +30,7 @@ function winterw_winters_kiss:OnSpellStart()
     ParticleManager:SetParticleControl(nfx, 0, target:GetAbsOrigin())
     ParticleManager:SetParticleControl(nfx, 2, Vector(self:GetSpecialValueFor("radius"),self:GetSpecialValueFor("radius"),self:GetSpecialValueFor("radius")))
     ParticleManager:ReleaseParticleIndex(nfx)
-
+	if target:TriggerSpellAbsorb( self ) then return end
     local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {})
     for _,enemy in pairs(enemies) do
         if enemy:HasModifier("modifier_winters_kiss_enemy") then

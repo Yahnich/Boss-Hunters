@@ -53,7 +53,7 @@ function necrophos_death_pulse_bh:OnProjectileHit( target, position )
 					self:FireTrackingProjectile("particles/units/heroes/hero_necrolyte/necrolyte_pulse_enemy.vpcf", enemy, speed, {origin = target:GetAbsOrigin(), source = target})
 				end
 			end
-		else
+		elseif not target:TriggerSpellAbsorb(self) then
 			self:DealDamage( caster, target, self:GetTalentSpecialValueFor("damage") )
 		end
 		target:EmitSound("Hero_Necrolyte.ProjectileImpact")

@@ -24,7 +24,7 @@ function vengefulspirit_wave:OnSpellStart()
 end
 
 function vengefulspirit_wave:OnProjectileHit(hTarget, vLocation)
-	if hTarget ~= nil then
+	if hTarget ~= nil and not hTarget:TriggerSpellAbsorb( self ) then
 		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_vengefulspirit_wave", {Duration = self:GetTalentSpecialValueFor("duration")}):AddIndependentStack(self:GetTalentSpecialValueFor("duration"))
 		hTarget:Daze(self, self:GetCaster(), self:GetTalentSpecialValueFor("daze_duration"))
 		self:DealDamage(self:GetCaster(), hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)

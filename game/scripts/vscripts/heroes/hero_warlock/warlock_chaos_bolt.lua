@@ -22,7 +22,7 @@ end
 
 function warlock_chaos_bolt:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
-	if hTarget then
+	if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
 		local damage = self:GetTalentSpecialValueFor("damage")
 		EmitSoundOn("Hero_Batrider.Flamebreak.Impact", hTarget)
 		if self:RollPRNG( self:GetTalentSpecialValueFor("chance") ) then

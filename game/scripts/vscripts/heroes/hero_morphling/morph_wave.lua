@@ -55,7 +55,7 @@ end
 function morph_wave:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 
-	if hTarget then
+	if hTarget and not hTarget:TriggerSpellAbsorb(self) then
 		local damage = self:GetTalentSpecialValueFor("damage")
 
 		self:DealDamage(caster, hTarget, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)

@@ -31,6 +31,7 @@ function bs_rupture:OnSpellStart()
 
 	EmitSoundOn("hero_bloodseeker.rupture.cast", caster)
 	EmitSoundOn("hero_bloodseeker.rupture", caster)
+	if target:TriggerSpellAbsorb(self) then return end
 	target:AddNewModifier(caster, self, "modifier_bs_rupture", {Duration = self:GetTalentSpecialValueFor("duration")})
 end
 

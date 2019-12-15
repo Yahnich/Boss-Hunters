@@ -68,7 +68,7 @@ function bristleback_snot:FireSnot(target)
 end
 
 function bristleback_snot:OnProjectileHit(hTarget, vLocation)
-	if hTarget ~= nil and hTarget:IsAlive() then
+	if hTarget ~= nil and hTarget:IsAlive() and not hTarget:TriggerSpellAbsorb( self ) then
 		EmitSoundOn("Hero_Bristleback.ViscousGoo.Target", hTarget)
 		local snot = hTarget:AddNewModifier(self:GetCaster(), self, "modifier_snot", {Duration = self:GetTalentSpecialValueFor("goo_duration")})
 		if snot then

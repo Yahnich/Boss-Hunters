@@ -8,9 +8,11 @@ function boss_valgraduth_roots_grip:OnSpellStart()
 	
 	local duration = self:GetSpecialValueFor("root_duration")
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self:GetTrueCastRange() ) ) do
-		enemy:AddNewModifier(caster, self, "modifier_boss_valgraduth_roots_grip_root", {duration = duration})
-		ParticleManager:FireRopeParticle("particles/units/heroes/hero_treant/treant_overgrowth_trails.vpcf", PATTACH_POINT_FOLLOW, caster, enemy)
-		enemy:EmitSound("Hero_Treant.Overgrowth.Target")
+		if not enemy :TriggerSpellAbsorb( self ) then
+			enemy:AddNewModifier(caster, self, "modifier_boss_valgraduth_roots_grip_root", {duration = duration})
+			ParticleManager:FireRopeParticle("particles/units/heroes/hero_treant/treant_overgrowth_trails.vpcf", PATTACH_POINT_FOLLOW, caster, enemy)
+			enemy:EmitSound("Hero_Treant.Overgrowth.Target")
+		end
 	end
 end
 

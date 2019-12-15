@@ -1,0 +1,35 @@
+"DOTAAbilities"
+{
+	"elite_barrier"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"elites/elite_barrier"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"						"1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityTextureName"			"antimage_counterspell"
+		
+		"precache"
+		{
+			"particle"					"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
+			"particle"					"particles/status_fx/status_effect_repel.vpcf"
+			"particle"					"particles/units/heroes/hero_jakiro/jakiro_macropyre.vpcf"
+			"soundfile"					"sounds/weapons/creep/neutral/black_dragon_fire.vsnd"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown_effect"		"8"
+			}
+		}
+	}
+}

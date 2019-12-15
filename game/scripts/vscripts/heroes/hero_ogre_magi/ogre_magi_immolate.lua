@@ -38,7 +38,6 @@ function ogre_magi_immolate:Immolate()
 				ParticleManager:SetParticleControlEnt(nfx, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 				ParticleManager:SetParticleControl(nfx, 1, target:GetAbsOrigin())
 				ParticleManager:ReleaseParticleIndex(nfx)
-	
 	target:AddNewModifier(caster, self, "modifier_ogre_magi_immolate_buff", {Duration = self:GetTalentSpecialValueFor("duration")})
 end
 

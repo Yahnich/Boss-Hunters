@@ -82,8 +82,10 @@ function tide_tongue_whip:OnSpellStart()
 
         -- If a valid target was hit, start dragging them
         if target_hit then
-            self:DealDamage(caster, target, hook_damage, {}, 0)
-            caster:ModifyThreat(self:GetTalentSpecialValueFor("threat_gain"))
+			if not target:TriggerSpellAbsorb( self ) then
+				self:DealDamage(caster, target, hook_damage, {}, 0)
+				caster:ModifyThreat(self:GetTalentSpecialValueFor("threat_gain"))
+			end
 
             local hook_pfx2 = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_meathook_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
             ParticleManager:ReleaseParticleIndex(hook_pfx2)

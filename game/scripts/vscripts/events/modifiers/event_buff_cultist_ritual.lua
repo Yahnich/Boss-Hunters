@@ -4,16 +4,8 @@ function event_buff_cultist_ritual:OnCreated()
 	self:SetStackCount(1)
 end
 
-function event_buff_cultist_ritual:DeclareFunctions()
-    local funcs = {
-        MODIFIER_PROPERTY_DISABLE_HEALING
-    }
-
-    return funcs
-end
-
-function event_buff_cultist_ritual:GetDisableHealing()
-    return 1
+function event_buff_cultist_ritual:GetModifierHealAmplify_Percentage()
+    return -100
 end
 
 function event_buff_cultist_ritual:GetTexture()

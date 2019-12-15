@@ -39,19 +39,19 @@ function ember_chains:OnSpellStart()
 								ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT, "attach_hitloc", caster:GetAbsOrigin(), true)
 								ParticleManager:SetParticleControlEnt(nfx, 1, unit, PATTACH_POINT_FOLLOW, "attach_hitloc", unit:GetAbsOrigin(), true)
 								ParticleManager:ReleaseParticleIndex(nfx)
+					if not enemy:TriggerSpellAbsorb(self) then
+						---Talent 2------
+						if caster:HasTalent("special_bonus_unique_ember_chains_2") then
+							unit:AddNewModifier(caster, self, "modifier_ember_chains_slow", {Duration = duration})
+						else
+							unit:AddNewModifier(caster, self, "modifier_ember_chains", {Duration = duration})
+						end
 
-					---Talent 2------
-					if caster:HasTalent("special_bonus_unique_ember_chains_2") then
-						unit:AddNewModifier(caster, self, "modifier_ember_chains_slow", {Duration = duration})
-					else
-						unit:AddNewModifier(caster, self, "modifier_ember_chains", {Duration = duration})
+						---Talent 1------
+						if caster:HasTalent("special_bonus_unique_ember_chains_1") then
+							unit:AddNewModifier(caster, self, "modifier_ember_chains_amp", {Duration = duration})
+						end
 					end
-
-					---Talent 1------
-					if caster:HasTalent("special_bonus_unique_ember_chains_1") then
-						unit:AddNewModifier(caster, self, "modifier_ember_chains_amp", {Duration = duration})
-					end
-
 					self:StartDelayedCooldown(duration)
 					current = current + 1
 				elseif unit:HasModifier("modifier_ember_remnant") then

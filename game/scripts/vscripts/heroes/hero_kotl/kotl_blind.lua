@@ -42,9 +42,11 @@ function kotl_blind:OnSpellStart()
 
     local enemies = caster:FindEnemyUnitsInRadius(point, radius)
     for _,enemy in pairs(enemies) do
-        enemy:Blind(miss_rate, self, caster, duration)
-        enemy:ApplyKnockBack(point, knockback_duration, knockback_duration, knockback_distance, 50, caster, self)
-        self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+		if not enemy:TriggerSpellAbsorb( self ) then
+			enemy:Blind(miss_rate, self, caster, duration)
+			enemy:ApplyKnockBack(point, knockback_duration, knockback_duration, knockback_distance, 50, caster, self)
+			self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+		end
     end
 
     if caster:HasTalent("special_bonus_unique_kotl_blind_2") then

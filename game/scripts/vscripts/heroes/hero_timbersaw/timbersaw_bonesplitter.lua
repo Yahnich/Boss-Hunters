@@ -40,9 +40,11 @@ function timbersaw_bonesplitter:Spray()
 
 	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
 	for _,enemy in pairs(enemies) do
-		enemy:AddNewModifier(caster, self, "modifier_timbersaw_bonesplitter_enemy", {Duration = self:GetTalentSpecialValueFor("debuff_duration")})
-		local damage = self:GetTalentSpecialValueFor("damage")
-		self:DealDamage(caster, enemy, damage, {damage_type=damageType}, 0)
+		if not enemy:TriggerSpellAbsorb( self ) then
+			enemy:AddNewModifier(caster, self, "modifier_timbersaw_bonesplitter_enemy", {Duration = self:GetTalentSpecialValueFor("debuff_duration")})
+			local damage = self:GetTalentSpecialValueFor("damage")
+			self:DealDamage(caster, enemy, damage, {damage_type=damageType}, 0)
+		end
 	end
 
 	self:UseResources(true, false, true)

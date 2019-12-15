@@ -34,9 +34,11 @@ function bristleback_quills:Spray(bProc, buttonPress)
 	
 	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
 	for _,enemy in pairs(enemies) do
-		EmitSoundOn("Hero_Bristleback.QuillSpray.Target", enemy)
-		local damage = self:GetTalentSpecialValueFor("quill_base_damage")
-		self:DealDamage(caster, enemy, damage)
+		if not enemy:TriggerSpellAbsorb( self ) then
+			EmitSoundOn("Hero_Bristleback.QuillSpray.Target", enemy)
+			local damage = self:GetTalentSpecialValueFor("quill_base_damage")
+			self:DealDamage(caster, enemy, damage)
+		end
 	end
 	caster:AddNewModifier(caster, self, "modifier_quills_buff", {duration = self:GetTalentSpecialValueFor("quill_stack_duration")})
 end

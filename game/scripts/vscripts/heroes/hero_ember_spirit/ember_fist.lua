@@ -68,7 +68,7 @@ function ember_fist:OnSpellStart()
 		Timers:CreateTimer(jumpRate, function()
 			if current < #enemies then
 				for _,enemy in pairs(enemies) do
-					if not self.hitUnits[enemy:entindex()] then
+					if not self.hitUnits[enemy:entindex()] and enemy:TriggerSpellAbsorb(self) then
 						EmitSoundOn("Hero_EmberSpirit.SleightOfFist.Damage", enemy)
 
 						local firstPoint = caster:GetAbsOrigin()
@@ -98,7 +98,6 @@ function ember_fist:OnSpellStart()
 				ParticleManager:ClearParticle(remenantFx)
 
 				caster:RemoveModifierByName("modifier_ember_fist")
-
 				FindClearSpaceForUnit(caster, startPos, true)
 
 				local secondPoint = caster:GetAbsOrigin()
@@ -107,6 +106,8 @@ function ember_fist:OnSpellStart()
 				return nil
 			end
 		end)
+	else
+		self:GetCaster():RemoveGesture(ACT_DOTA_CAST_ABILITY_2)
 	end
 	
 end

@@ -79,19 +79,21 @@ function modifier_void_spirit_aether_remnant_watch:OnIntervalThink()
 	if not parent.currentPullTarget or parent.currentPullTarget:IsNull() then
 		for _, unit in ipairs( parent:FindEnemyUnitsInLine( startPos, startPos + self.direction * self.range, self.width ) ) do
 			if not self.affectedUnits[unit:entindex()] then
-				parent.currentPullTarget = unit
-				unit:Charm(self:GetAbility(), parent, self.duration)
-				self:GetAbility():Stun(unit, self.duration)
-				parent.timeToPull = self.duration + 0.1
-				parent.distanceToPull = CalculateDistance(parent, unit)
-				parent.pullSpeed = ( parent.distanceToPull / parent.timeToPull ) * 0.35
-				self.affectedUnits[unit:entindex()] = true
-				self:ClearPreviousState()
-				self:CreatePuller( startPos, unit )
-				EmitSoundOn( "Hero_VoidSpirit.AetherRemnant.Triggered", unit )
-				if self.talent2 then
-					self:GetCaster():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_void_spirit_aether_remnant_talent2", {duration = self.talent2Dur})
+				if not unit:TriggerSpellAbsorb( self:GetAbility() ) then
+					parent.currentPullTarget = unit
+					unit:Charm(self:GetAbility(), parent, self.duration)
+					self:GetAbility():Stun(unit, self.duration)
+					parent.timeToPull = self.duration + 0.1
+					parent.distanceToPull = CalculateDistance(parent, unit)
+					parent.pullSpeed = ( parent.distanceToPull / parent.timeToPull ) * 0.35
+					self:ClearPreviousState()
+					self:CreatePuller( startPos, unit )
+					EmitSoundOn( "Hero_VoidSpirit.AetherRemnant.Triggered", unit )
+					if self.talent2 then
+						self:GetCaster():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_void_spirit_aether_remnant_talent2", {duration = self.talent2Dur})
+					end
 				end
+				self.affectedUnits[unit:entindex()] = true
 				break
 			end
 		end

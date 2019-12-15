@@ -79,12 +79,14 @@ function espirit_rock_punch:OnProjectileHit(hTarget, vLocation)
 		local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"), {})
 		local damage = self:GetTalentSpecialValueFor("rock_damage")
 		for _,enemy in pairs(enemies) do
-			self:DealDamage(caster, enemy, damage, {}, 0)
-			if rocks then
-				enemy:ApplyKnockBack(enemy:GetAbsOrigin(), knockUp, knockUp, 0, 300, caster, self)
-			end
-			if talent2 and not enemy:IsMinion() and remnants then
-				remnants:CreateStoneRemnant( enemy:GetAbsOrigin() )
+			if not enemy:TriggerSpellAbsorb( self ) then
+				self:DealDamage(caster, enemy, damage, {}, 0)
+				if rocks then
+					enemy:ApplyKnockBack(enemy:GetAbsOrigin(), knockUp, knockUp, 0, 300, caster, self)
+				end
+				if talent2 and not enemy:IsMinion() and remnants then
+					remnants:CreateStoneRemnant( enemy:GetAbsOrigin() )
+				end
 			end
 		end
 			

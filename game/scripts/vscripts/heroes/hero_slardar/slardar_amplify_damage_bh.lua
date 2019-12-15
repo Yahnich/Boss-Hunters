@@ -11,9 +11,11 @@ function slardar_amplify_damage_bh:OnSpellStart()
 	local duration = self:GetTalentSpecialValueFor("duration")
 	if caster:HasTalent("special_bonus_unique_slardar_amplify_damage_1") then
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_slardar_amplify_damage_1") ) ) do
-			self:ApplyHaze( enemy, duration )
+			if not enemy:TriggerSpellAbsorb( self ) then
+				self:ApplyHaze( enemy, duration )
+			end
 		end
-	else
+	elseif not target:TriggerSpellAbsorb( self ) then
 		self:ApplyHaze( target, duration )
 	end
 	caster:EmitSound("Hero_Slardar.Amplify_Damage")

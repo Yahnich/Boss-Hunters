@@ -48,7 +48,7 @@ function wisp_transfer:OnSpellStart()
 		local target = self:GetCursorTarget()
 
 		EmitSoundOn("Hero_Wisp.Tether.Target", target)
-
+		if target:TriggerSpellAbsorb( self ) then return end
 		caster:AddNewModifier(caster, self, "modifier_wisp_transfer", {})
 		target:AddNewModifier(caster, self, "modifier_wisp_transfer_target", {})
 		local pullDistance = self:GetTalentSpecialValueFor("pull_distance")

@@ -72,7 +72,7 @@ function winterw_frozen_splinter:OnSpellStart()
 end
 
 function winterw_frozen_splinter:OnProjectileHit_ExtraData(hTarget, vLocation, table)
-	if hTarget and hTarget:IsAlive() then
+	if hTarget and hTarget:IsAlive() and not hTarget:TriggerSpellAbsorb( self ) then
 		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_frozen_splinter", {Duration = self:GetTalentSpecialValueFor("slow_duration")})
 		if self:GetCaster():HasTalent("special_bonus_unique_winterw_frozen_splinter_1") then
 			self:Stun(hTarget, self:GetCaster():FindTalentValue("special_bonus_unique_winterw_frozen_splinter_1"), false)

@@ -182,14 +182,14 @@
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"50"
+				"damage"						"100 150 200 250 300 350 400"
 				"LinkedSpecialBonus"			"special_bonus_unique_jakiro_ice_path_bh_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"1 1.5 2 2.5 3 3.5 4"
+				"duration"						"1 1.5 2 2.5"
 				"LinkedSpecialBonus"			"special_bonus_unique_jakiro_ice_path_bh_1"
 			}
 		}

@@ -26,6 +26,7 @@ end
 function antimage_magus_breaker:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
+	if target:TriggerSpellAbsorb(self) then return end
 	local debuff = target:AddNewModifier(caster, self, "modifier_antimage_magus_breaker_debuff", {duration = self:GetTalentSpecialValueFor("duration")})
 	if debuff then
 		debuff:SetStackCount( debuff:GetStackCount() + caster:FindTalentValue("special_bonus_unique_antimage_magus_breaker_1", "stacks") )

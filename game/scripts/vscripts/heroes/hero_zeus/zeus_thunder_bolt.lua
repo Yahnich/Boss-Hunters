@@ -22,11 +22,12 @@ function zeus_thunder_bolt:OnSpellStart()
 	if target then
 		point = target:GetAbsOrigin()
 	end
-
+	if target:TriggerSpellAbsorb( self ) then return end
 	EmitSoundOn("Hero_Zuus.LightningBolt.Cast", caster)
 	local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("search_radius"), {order=FIND_CLOSEST})
 	if enemies[1] then
 		local enemy = enemies[1]
+		if enemy:TriggerSpellAbsorb( self ) then return end
 		point = enemy:GetAbsOrigin()
 		self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
 		self:Stun(enemy, self:GetTalentSpecialValueFor("duration"), false)

@@ -35,7 +35,7 @@ function boss_durva_filled_to_burst:OnSpellStart()
 end
 
 function boss_durva_filled_to_burst:OnProjectileHit( target, position )
-	if target then
+	if target and not target:TriggerSpellAbsorb( self ) then
 		local caster = self:GetCaster()
 		
 		self:DealDamage( caster, target, self:GetSpecialValueFor("projectile_damage") )

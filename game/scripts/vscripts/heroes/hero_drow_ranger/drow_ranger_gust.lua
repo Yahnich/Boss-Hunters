@@ -18,7 +18,7 @@ function drow_ranger_gust:OnSpellStart()
 end
 
 function drow_ranger_gust:OnProjectileHit( target, position )
-	if target then
+	if target and not target:TriggerSpellAbsorb(self) then
 		local caster = self:GetCaster()
 		local knockBackDuration = self:GetTalentSpecialValueFor("knockback_duration")
 		local duration = knockBackDuration + self:GetTalentSpecialValueFor("silence_duration")

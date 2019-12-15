@@ -8,7 +8,7 @@ end
 function boss_durva_purgatory:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	
+	if target:TriggerSpellAbsorb( self ) then return end
 	target:AddNewModifier(caster, self, "modifier_boss_durva_purgatory", {duration = self:GetSpecialValueFor("duration")})
 	EmitSoundOn("Hero_Bane.Nightmare", target)
 end

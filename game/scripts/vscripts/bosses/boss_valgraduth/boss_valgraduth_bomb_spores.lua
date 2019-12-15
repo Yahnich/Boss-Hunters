@@ -29,6 +29,7 @@ if IsServer() then
 	
 	function modifier_boss_valgraduth_bomb_spores:OnIntervalThink()
 		local caster = self:GetCaster()
+		if caster:IsStunned() or caster:IsSilenced() then return end
 		caster:StartGestureWithPlaybackRate( ACT_DOTA_CAST_ABILITY_4, 2 )
 		local spawn = CreateUnitByName( "npc_dota_techies_land_mine", caster:GetAbsOrigin() + RandomVector( 15 ), true, nil, nil, DOTA_TEAM_BADGUYS)
 		local distance = RandomInt( self.spore_min_distance, self.spore_max_distance )
@@ -75,7 +76,9 @@ if IsServer() then
 		end
 		if foundInTriggerRange then
 			for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( position, self.explosion_radius ) ) do
-				ability:DealDamage( caster, enemy, self.damage )
+				if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+					ability:DealDamage( caster, enemy, self.damage )
+				end
 			end
 			EmitSoundOn( "Hero_Techies.LandMine.Detonate", parent )
 			ParticleManager:FireParticle( "particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf", PATTACH_ABSORIGIN, parent )

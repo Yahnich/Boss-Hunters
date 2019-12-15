@@ -19,7 +19,7 @@ function chen_holy_persuasion_bh:OnSpellStart()
 		if caster:HasTalent("special_bonus_unique_chen_holy_persuasion_2") then
 			target:AddNewModifier( caster, self, "modifier_chen_holy_persuasion_bh_tp", { duration = caster:FindTalentValue("special_bonus_unique_chen_holy_persuasion_2") } )
 		end
-	else
+	elseif not target:TriggerSpellAbsorb( self ) then
 		local duration = self:GetTalentSpecialValueFor("duration")
 		if target:IsMinion() then
 			duration = -1

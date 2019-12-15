@@ -30,7 +30,7 @@ function modifier_undying_summon_zombies:OnIntervalThink()
 	local caster = self:GetCaster()
 	local target = self:GetParent()
 	local ability = self:GetAbility()
-	
+	if target:TriggerSpellAbsorb( self ) then return end
 	caster:Lifesteal(ability, self.heal, self.damage, target, ability:GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY)
 	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	EmitSoundOn("Hero_Bane.Enfeeble.Cast", caster)

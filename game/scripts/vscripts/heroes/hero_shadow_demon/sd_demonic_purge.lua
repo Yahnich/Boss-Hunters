@@ -32,6 +32,7 @@ function sd_demonic_purge:OnSpellStart()
 
 	EmitSoundOn("Hero_ShadowDemon.DemonicPurge.Cast", caster)
 	EmitSoundOn("Hero_ShadowDemon.DemonicPurge.Impact", target)
+	if target:TriggerSpellAbsorb( self ) then return end
 	target:AddNewModifier(caster, self, "modifier_sd_demonic_purge", {Duration = self:GetSpecialValueFor("duration")})
 end
 

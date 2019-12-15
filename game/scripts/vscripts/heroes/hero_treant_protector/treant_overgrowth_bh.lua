@@ -27,10 +27,11 @@ end
 function treant_overgrowth_bh:ApplyOverGrowth(target, duration)
 	local caster = self:GetCaster()
 	
-	local flDur = duration or self:GetTalentSpecialValueFor("duration")
-	target:AddNewModifier(caster, self, "modifier_treant_overgrowth_bh_root", {duration = duration})
 	ParticleManager:FireRopeParticle("particles/units/heroes/hero_treant/treant_overgrowth_trails.vpcf", PATTACH_POINT_FOLLOW, caster, target)
 	target:EmitSound("Hero_Treant.Overgrowth.Target")
+	if target:TriggerSpellAbsorb( self ) then return end
+	local flDur = duration or self:GetTalentSpecialValueFor("duration")
+	target:AddNewModifier(caster, self, "modifier_treant_overgrowth_bh_root", {duration = duration})
 	
 	if caster:HasTalent("special_bonus_unique_treant_overgrowth_2") then
 		local seed = caster:FindAbilityByName("treant_leech_seed_bh")

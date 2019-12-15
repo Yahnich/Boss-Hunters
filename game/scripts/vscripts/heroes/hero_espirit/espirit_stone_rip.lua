@@ -35,7 +35,7 @@ end
 function espirit_stone_rip:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()
-
+	local spellblock = target:TriggerSpellAbsorb( self )
     local stones = caster:FindFriendlyUnitsInRadius(target:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {type = DOTA_UNIT_TARGET_ALL, flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE })
     for _,stone in pairs(stones) do
     	if stone:GetName() == "npc_dota_earth_spirit_stone" then
@@ -57,7 +57,7 @@ function espirit_stone_rip:OnSpellStart()
 				iVisionRadius = 400,                              -- Optional
 				iVisionTeamNumber = caster:GetTeamNumber()        -- Optional
 			}
-			ProjectileManager:CreateTrackingProjectile(info)
+			if not spellblock then ProjectileManager:CreateTrackingProjectile(info) end
 
 			stone:ForceKill(false)
 		end

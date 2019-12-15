@@ -36,7 +36,7 @@ modifier_valkyrie = class({})
 function modifier_valkyrie:OnCreated(table)
 	if IsServer() then
 		self:StartIntervalThink(0.25)
-		duartion = self:GetSpecialValueFor("duration")
+		self.duration = self:GetSpecialValueFor("duration")
 		local aoe = CreateModifierThinker(self:GetCaster(), self:GetAbility(), "modifier_valkyrie_aoe", {Duration = duartion}, self:GetCaster():GetAbsOrigin(), self:GetCaster():GetTeam(), false)	
 	end
 end
@@ -61,7 +61,7 @@ function modifier_valkyrie:GetModifierMoveSpeedBonus_Percentage()
 end
 
 function modifier_valkyrie:OnIntervalThink()
-	local aoe = CreateModifierThinker(self:GetCaster(), self:GetAbility(), "modifier_valkyrie_aoe", {Duration = duartion}, self:GetCaster():GetAbsOrigin(), self:GetCaster():GetTeam(), false)
+	local aoe = CreateModifierThinker(self:GetCaster(), self:GetAbility(), "modifier_valkyrie_aoe", {Duration = self.duration}, self:GetCaster():GetAbsOrigin(), self:GetCaster():GetTeam(), false)
 	
 	if IsServer() then
 		if self:GetCaster():HasTalent("special_bonus_unique_gyro_bombing_run_2") then

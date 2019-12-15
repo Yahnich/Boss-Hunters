@@ -36,7 +36,7 @@ end
 function morph_str_strike:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 
-	if hTarget then
+	if hTarget and not hTarget:TriggerSpellAbsorb(self) then
 		EmitSoundOn("Hero_Morphling.AdaptiveStrike", caster)
 		EmitSoundOn("Hero_Morphling.AdaptiveStrikeStr.Target", hTarget)
 

@@ -55,13 +55,15 @@ function modifier_sb_charge:DoControlledMotion()
 		local enemies = parent:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), radius)
 		for _,enemy in pairs(enemies) do
 			if not self.hitUnits[enemy:entindex()] then
-				if parent:HasTalent("special_bonus_unique_sb_charge_1") then
-					parent:PerformAttack(enemy, true, true, true, true, true, false, false)
-				end
+				if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+					if parent:HasTalent("special_bonus_unique_sb_charge_1") then
+						parent:PerformAttack(enemy, true, true, true, true, true, false, false)
+					end
 
-				local ability2 = parent:FindAbilityByName("sb_bash")
-				if ability2 and ability2:IsTrained() then
-					ability2:Bash(enemy, ability2:GetTalentSpecialValueFor("knockback_distance"), false)
+					local ability2 = parent:FindAbilityByName("sb_bash")
+					if ability2 and ability2:IsTrained() then
+						ability2:Bash(enemy, ability2:GetTalentSpecialValueFor("knockback_distance"), false)
+					end
 				end
 				self.hitUnits[enemy:entindex()] = true
 			end

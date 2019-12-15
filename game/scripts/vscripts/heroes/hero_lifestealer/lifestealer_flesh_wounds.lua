@@ -6,6 +6,7 @@ function lifestealer_flesh_wounds:OnSpellStart()
     local target = self:GetCursorTarget()
     
     EmitSoundOn("Hero_LifeStealer.OpenWounds.Cast", target)
+	if target:TriggerSpellAbsorb( self ) then return end
     target:AddNewModifier(caster, self, "modifier_lifestealer_flesh_wounds", {Duration = self:GetTalentSpecialValueFor("duration")})
 end
 

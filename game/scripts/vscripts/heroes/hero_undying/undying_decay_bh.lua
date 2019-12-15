@@ -17,12 +17,14 @@ function undying_decay_bh:OnSpellStart()
 	
 	local modifierName = TernaryOperator("modifier_undying_decay_bh_talent", caster:HasTalent("special_bonus_unique_undying_decay_2"), "modifier_undying_decay_bh")
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius) ) do
-		local str = TernaryOperator( bossStr, enemy:IsRoundNecessary(), mobStr )
-		for i = 1, str do
-			caster:AddNewModifier(caster, self, modifierName, {duration = duration})
+		if not enemy:TriggerSpellAbsorb( self ) then
+			local str = TernaryOperator( bossStr, enemy:IsRoundNecessary(), mobStr )
+			for i = 1, str do
+				caster:AddNewModifier(caster, self, modifierName, {duration = duration})
+			end
+			self:DealDamage( caster, enemy, damage )
+			ParticleManager:FireRopeParticle("particles/units/heroes/hero_undying/undying_decay_strength_xfer.vpcf", PATTACH_POINT_FOLLOW, enemy, caster)
 		end
-		self:DealDamage( caster, enemy, damage )
-		ParticleManager:FireRopeParticle("particles/units/heroes/hero_undying/undying_decay_strength_xfer.vpcf", PATTACH_POINT_FOLLOW, enemy, caster)
 	end
 	
 	ParticleManager:FireParticle("particles/units/heroes/hero_undying/undying_decay.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(radius,0,0)})

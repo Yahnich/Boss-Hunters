@@ -46,11 +46,13 @@ if IsServer() then
 
 		local enemies = parent:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), parent:GetAttackRange())
 		for _,enemy in pairs(enemies) do
-			if parent:HasTalent("special_bonus_unique_ursa_lunge_2") then
-				enemy:ApplyKnockBack(parent:GetAbsOrigin(), 0.25, 0.25, 150, 100, parent, self:GetAbility())
-			end
+			if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+				if parent:HasTalent("special_bonus_unique_ursa_lunge_2") then
+					enemy:ApplyKnockBack(parent:GetAbsOrigin(), 0.25, 0.25, 150, 100, parent, self:GetAbility())
+				end
 
-			parent:PerformAttack(enemy, true, true, true, true, false, false, false)
+				parent:PerformAttack(enemy, true, true, true, true, false, false, false)
+			end
 		end
 
 		self:StopMotionController()

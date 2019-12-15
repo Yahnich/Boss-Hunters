@@ -85,7 +85,7 @@ end
 function sand_claw_impact:OnProjectileHitHandle(hTarget, vLocation, projectileID)
     local caster = self:GetCaster()
 
-    if hTarget ~= nil then
+    if hTarget ~= nil and not hTarget:TriggerSpellAbsorb( self ) then
         if not hTarget:HasModifier("modifier_knockback")  then
             local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_lion/lion_spell_impale_hit_spikes.vpcf", PATTACH_POINT, caster)
             ParticleManager:SetParticleControl(nfx, 0, hTarget:GetAbsOrigin())

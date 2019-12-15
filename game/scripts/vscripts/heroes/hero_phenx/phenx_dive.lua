@@ -106,7 +106,7 @@ function modifier_phenx_dive_caster:OnIntervalThink()
     GridNav:DestroyTreesAroundPoint(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("dash_width"), false)
     local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("dash_width"), {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
     for _,enemy in pairs(enemies) do
-        self:GetParent():PerformAttack(enemy, true, true, true, true, true, false, false)
+		self:GetParent():PerformAttack(enemy, true, true, true, true, true, false, false)
         break
     end
     self:StartIntervalThink(self:GetCaster():GetSecondsPerAttack())

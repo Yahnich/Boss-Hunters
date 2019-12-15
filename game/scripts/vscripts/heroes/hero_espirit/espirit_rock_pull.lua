@@ -88,7 +88,7 @@ modifier_rock_pull_enemy = class({})
 function modifier_rock_pull_enemy:OnCreated(table)
 	if IsServer() then
 		EmitSoundOn("Hero_EarthSpirit.GeomagneticGrip.Damage", self:GetParent())
-		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetSpecialValueFor("damage"), {}, 0)
+		if not self:GetParent():TriggerSpellAbsorb( self:GetAbility() ) then self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetSpecialValueFor("damage"), {}, 0) end
 	end
 end
 

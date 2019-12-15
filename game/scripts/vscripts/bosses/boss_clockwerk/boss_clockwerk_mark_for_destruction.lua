@@ -47,8 +47,10 @@ if IsServer() then
 		EmitSoundOn("Hero_Rattletrap.Rocket_Flare.Explode", self:GetCaster())
 		UTIL_Remove(target)
 		for _, enemy in pairs(enemies) do
-			enemy:AddNewModifier(caster, self, "modifier_boss_clockwerk_mark_for_destruction_blind", {duration = duration})
-			ApplyDamage({victim = enemy, attacker = caster, damage = self:GetTalentSpecialValueFor("damage"), damage_type = self:GetAbilityDamageType(), ability = self})
+			if not enemy:TriggerSpellAbsorb( self ) then
+				enemy:AddNewModifier(caster, self, "modifier_boss_clockwerk_mark_for_destruction_blind", {duration = duration})
+				ApplyDamage({victim = enemy, attacker = caster, damage = self:GetTalentSpecialValueFor("damage"), damage_type = self:GetAbilityDamageType(), ability = self})
+			end
 		end
 		AddFOWViewer( caster:GetTeamNumber(), position, radius, 10, false ) 
 	end

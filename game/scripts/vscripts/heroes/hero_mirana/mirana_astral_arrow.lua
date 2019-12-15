@@ -52,7 +52,7 @@ function mirana_astral_arrow:OnProjectileHit(hTarget, vLocation)
     local agi_damage = self:GetTalentSpecialValueFor("agi_damage")/100
 
     damage = damage + caster:GetAgility() * agi_damage
-    if hTarget ~= nil then
+    if hTarget ~= nil and not hTarget:TriggerSpellAbsorb(self) then
         --EmitSoundOn("Hero_Mirana.ArrowImpact", hTarget)
 
         self:DealDamage(caster, hTarget, damage, {}, 0)

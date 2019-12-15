@@ -3,7 +3,7 @@ local function StartEvent(self)
 	self.lifestealersToSpawn = RoundManager:GetCurrentRaidTier()
 	self.wormsToSpawn = 2 + RoundManager:GetCurrentRaidTier() * 6
 	self.enemiesToSpawn = self.lifestealersToSpawn + self.wormsToSpawn
-	self.lifestealerSpawnDelay = 12
+	self.lifestealerSpawnDelay = 24 / GameRules:GetGameDifficulty()
 	self.wormSpawnDelay = 1
 	self.lifestealerSpawnTicker = 0
 	self.wormSpawnTicker = 0

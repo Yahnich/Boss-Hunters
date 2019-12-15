@@ -8,22 +8,22 @@ modifier_boss_evil_core_passive = class({})
 LinkLuaModifier("modifier_boss_evil_core_passive", "bosses/boss_evil_core/boss_evil_core_passive", LUA_MODIFIER_MOTION_NONE)
 
 if IsServer() then
-	POSSIBLE_BOSSES = {	["npc_dota_boss_warlock_demon"] = 175, 
+	POSSIBLE_BOSSES = { ["npc_dota_boss_satyr_champion"] = 225,	
+						["npc_dota_boss_warlock_demon"] = 175, 
+						["npc_dota_boss_vile_archmage"] = 140,
 						["npc_dota_boss_warlock_true_form"] = 120,
 						["npc_dota_boss33_a"] = 80, 
 						["npc_dota_boss33_b"] = 80, 
+						["npc_dota_boss_fallen_one"] = 80, 
+						["npc_dota_boss_sloth_demon"] = 80,
 						["npc_dota_boss34"] = 60, 
 						["npc_dota_boss35"] = 25,}
 
 	function modifier_boss_evil_core_passive:OnCreated()
 		self.manaCharge = self:GetParent():GetMaxMana()
 		self.manaChargeRegen = ( self.manaCharge / self:GetTalentSpecialValueFor("recharge_time") ) * 0.3
-		self.damageTaken = self:GetTalentSpecialValueFor("damage_per_hit")
+		self.resist = self:GetTalentSpecialValueFor("damage_resist")
 		self.limit = 6
-		
-		
-		self:GetParent().hasBeenInitialized = true
-		self:GetParent():SetCoreHealth( math.min( ( GameRules:GetGameDifficulty() * 125 + 25 * RoundManager:GetRaidsFinished() + 250 * RoundManager:GetZonesFinished() ) * HeroList:GetActiveHeroCount(), 15000 ) )
 		
 		self:StartIntervalThink(0.3)
 	end
@@ -101,22 +101,19 @@ if IsServer() then
 		end
 		
 		local spawnedUnit = CreateUnitByName( spawnName, position, true, nil, nil, self:GetCaster():GetTeam() )
-		spawnedUnit:SetCoreHealth(150*GameRules.gameDifficulty)
+		spawnedUnit:SetCoreHealth(250*GameRules.gameDifficulty)
 		spawnedUnit:SetAverageBaseDamage(spawnedUnit:GetAverageBaseDamage() / 1.5, 20)
 		
 		if spawnName == "npc_dota_boss_warlock_true_form" then
-			spawnedUnit:FindAbilityByName("boss_warlock_rain_of_fire"):SetActivated(false)
 		elseif spawnName == "npc_dota_boss35" then
 			spawnedUnit:FindAbilityByName("boss_doom_hell_tempest"):SetActivated(false)
 			spawnedUnit:FindAbilityByName("boss_doom_demonic_servants"):SetActivated(false)
-			spawnedUnit:FindAbilityByName("boss_doom_sacrificial_rite"):SetActivated(false)
 		elseif spawnName == "npc_dota_boss34" then
 			spawnedUnit:FindAbilityByName("boss_necro_swans_song"):SetActivated(false)
-			spawnedUnit:FindAbilityByName("boss_necro_weaken"):SetActivated(false)
 		end
 		
 		spawnedUnit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_spawn_immunity", {duration = 2})
-		spawnedUnit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_silence_generic", {duration = 2 + RandomInt(4,6)})
+		spawnedUnit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_silence_generic", {duration = 1 + RandomInt( 4/GameRules:GetGameDifficulty(), 12/GameRules:GetGameDifficulty() )})
 	end
 end
 
@@ -125,14 +122,7 @@ function modifier_boss_evil_core_passive:DeclareFunctions()
 end
 
 function modifier_boss_evil_core_passive:GetModifierIncomingDamage_Percentage( params )
-	local parent = self:GetParent()
-	if params.damage <= 0 then return end
-	local damage = self.damageTaken
-	if self.shield and not parent:PassivesDisabled() then damage = 1 end
-	if parent:GetHealth() > damage then
-		parent:SetHealth( math.max(1, parent:GetHealth() - damage) )
-	elseif not self.asuraSpawn then
-		self.asuraSpawn = self:SpawnAsura(self:GetParent():GetAbsOrigin())
+	if self.shield then 
+		return self.resist
 	end
-	return -999
 end

@@ -24,7 +24,7 @@ function modifier_boss_ammetot_fate_acceptance:OnDestroy()
 		EmitSoundOn( "Hero_Necrolyte.ReapersScythe.Target", caster )
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), -1 ) ) do
 			enemy:SetHealth( 1 )
-			enemy:AttemptKill( ability , caster )
+			if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then enemy:AttemptKill( ability , caster ) end
 		end
 	end
 end

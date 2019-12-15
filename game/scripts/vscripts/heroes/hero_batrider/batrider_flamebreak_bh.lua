@@ -50,11 +50,13 @@ function batrider_flamebreak_bh:TossCocktail(vLocation)
 
 		local enemies = caster:FindEnemyUnitsInRadius(point, radius)
 		for _,enemy in pairs(enemies) do
-			enemy:ApplyKnockBack(point, 0.25, 0.25, 50, 100, caster, self, true)
-			enemy:AddNewModifier(caster, self, "modifier_batrider_flamebreak_bh_debuff", {Duration = duration})
+			if not enemy:TriggerSpellAbsorb(self) then
+				enemy:ApplyKnockBack(point, 0.25, 0.25, 50, 100, caster, self, true)
+				enemy:AddNewModifier(caster, self, "modifier_batrider_flamebreak_bh_debuff", {Duration = duration})
 
-			if caster:HasTalent("special_bonus_unique_batrider_flamebreak_bh_2") then
-				enemy:AddNewModifier(caster, self, "modifier_batrider_flamebreak_bh_status_resist", {Duration = duration})
+				if caster:HasTalent("special_bonus_unique_batrider_flamebreak_bh_2") then
+					enemy:AddNewModifier(caster, self, "modifier_batrider_flamebreak_bh_status_resist", {Duration = duration})
+				end
 			end
 		end
 

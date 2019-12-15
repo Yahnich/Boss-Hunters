@@ -15,8 +15,10 @@ function abyssal_underlord_abyssal_expulsion:OnSpellStart()
 	local duration = self:GetTalentSpecialValueFor("duration")
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
-		enemy:AddNewModifier( caster, self, "modifier_abyssal_underlord_abyssal_expulsion", {duration = duration} )
-		enemy:EmitSound("Hero_AbyssalUnderlord.DarkRift.Aftershock")
+		if not enemy:TriggerSpellAbsorb(self) then
+			enemy:AddNewModifier( caster, self, "modifier_abyssal_underlord_abyssal_expulsion", {duration = duration} )
+			enemy:EmitSound("Hero_AbyssalUnderlord.DarkRift.Aftershock")
+		end
 	end
 	
 	if caster:HasTalent("special_bonus_unique_abyssal_underlord_abyssal_expulsion_2") then
@@ -82,9 +84,11 @@ function modifier_abyssal_underlord_abyssal_expulsion:OnDeath(params)
 		local ability = self:GetAbility()
 		
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), self.dRadius ) ) do
-			ability:DealDamage( caster, enemy, self.dDamage )
-			enemy:AddNewModifier( caster, ability, "modifier_abyssal_underlord_abyssal_expulsion", {duration = self.duration} )
-			enemy:EmitSound("Hero_AbyssalUnderlord.DarkRift.Aftershock")
+			if not enemy:TriggerSpellAbsorb(ability) then
+				ability:DealDamage( caster, enemy, self.dDamage )
+				enemy:AddNewModifier( caster, ability, "modifier_abyssal_underlord_abyssal_expulsion", {duration = self.duration} )
+				enemy:EmitSound("Hero_AbyssalUnderlord.DarkRift.Aftershock")
+			end
 		end
 		
 		if self.talent1 then

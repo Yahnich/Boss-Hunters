@@ -1,5 +1,9 @@
 boss19_cracked_ground = class({})
 
+function boss19_cracked_ground:GetAssociatedSecondaryAbilities()
+	return "boss19_chasm"
+end
+
 function boss19_cracked_ground:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:AddNewModifier(caster, self, "modifier_status_immunity", {duration = self:GetChannelTime() - 0.01})
@@ -11,6 +15,7 @@ end
 
 function boss19_cracked_ground:OnChannelFinish(bInterrupted)
 	if not bInterrupted then
+		self.useTable = self.useTable or {}
 		table.insert(self.useTable, true)
 		local caster = self:GetCaster()
 		caster:AddNewModifier(caster, self, "modifier_boss19_cracked_ground_thinker", {duration = self:GetSpecialValueFor("duration")})

@@ -22,22 +22,24 @@ function vengefulspirit_swap:OnSpellStart()
 	ParticleManager:FireRopeParticle("particles/units/heroes/hero_vengeful/vengeful_nether_swap_target.vpcf", PATTACH_POINT, target, caster, {})
 
 	if target:GetTeam() ~= caster:GetTeam() then
-		target:Daze(self, caster, self:GetTalentSpecialValueFor("daze_duration"))
-		self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {}, 0)
-		
-		if caster:HasTalent("special_bonus_unique_vengefulspirit_swap_1") then
-			local enemies = caster:FindEnemyUnitsInRadius(endPos, caster:FindTalentValue("special_bonus_unique_vengefulspirit_swap_1"))
-			for _,enemy in pairs(enemies) do
-				if enemy ~= target then
-					enemy:Daze(self, caster, self:GetTalentSpecialValueFor("daze_duration"))
-					self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
-					FindClearSpaceForUnit(enemy, startPos, true)
+		if not target:TriggerSpellAbsorb( self ) then
+			target:Daze(self, caster, self:GetTalentSpecialValueFor("daze_duration"))
+			self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {}, 0)
+			
+			if caster:HasTalent("special_bonus_unique_vengefulspirit_swap_1") then
+				local enemies = caster:FindEnemyUnitsInRadius(endPos, caster:FindTalentValue("special_bonus_unique_vengefulspirit_swap_1"))
+				for _,enemy in pairs(enemies) do
+					if enemy ~= target then
+						enemy:Daze(self, caster, self:GetTalentSpecialValueFor("daze_duration"))
+						self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+						FindClearSpaceForUnit(enemy, startPos, true)
+					end
 				end
 			end
-		end
 
-		FindClearSpaceForUnit(caster, endPos, true)
-		FindClearSpaceForUnit(target, startPos, true)
+			FindClearSpaceForUnit(caster, endPos, true)
+			FindClearSpaceForUnit(target, startPos, true)
+		end
 	else
 		caster:SetThreat(target:GetThreat())
 		target:SetThreat(0)

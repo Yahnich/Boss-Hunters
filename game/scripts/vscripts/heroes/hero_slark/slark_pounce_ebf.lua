@@ -82,6 +82,7 @@ if IsServer() then
 	function modifier_slark_pounce_movement:Pounce(target)
 		local caster = self:GetParent()
 		local ability = self:GetAbility()
+		if target:TriggerSpellAbsorb( ability ) then return end
 		ability:DealDamage(caster, target, self.damage)
 		target:Paralyze(ability, caster, self.duration)
 		EmitSoundOn("Hero_Slark.Pounce.Impact", target)

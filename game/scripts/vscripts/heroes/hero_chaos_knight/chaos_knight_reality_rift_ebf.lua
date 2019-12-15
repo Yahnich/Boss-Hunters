@@ -79,7 +79,7 @@ function chaos_knight_reality_rift_ebf:OnSpellStart()
 	end
 	
 	local duration = self:GetTalentSpecialValueFor("armor_duration") 
-	
+	if self.target:TriggerSpellAbsorb( self ) then return end
 	FindClearSpaceForUnit(self.caster, self.endPos, true)
 	FindClearSpaceForUnit(self.target, self.endPos, true)
 	

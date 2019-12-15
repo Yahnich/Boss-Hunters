@@ -9,7 +9,7 @@ LinkLuaModifier( "modifier_boss_valgraduth_breath_of_the_wild", "bosses/boss_val
 
 if IsServer() then
 	function modifier_boss_valgraduth_breath_of_the_wild:OnCreated()
-		self.possibleSpawns = {	"npc_dota_boss26_mini", "npc_dota_boss6", "npc_dota_creature_broodmother", "npc_dota_boss_wolf", "npc_dota_boss26", "npc_dota_boss18", "npc_dota_boss23_m", "npc_dota_boss10"}
+		self.possibleSpawns = {	"npc_dota_boss26_mini", "npc_dota_boss6", "npc_dota_creature_broodmother", "npc_dota_boss_wolf", "npc_dota_boss26", "npc_dota_boss18", "npc_dota_boss23_m", "npc_dota_boss_lesser_centaur", "npc_dota_boss_minor_hellbear"}
 		self.health = self:GetSpecialValueFor("base_health")
 		self.damage = self:GetSpecialValueFor("base_damage")
 		self:StartIntervalThink( 1 )

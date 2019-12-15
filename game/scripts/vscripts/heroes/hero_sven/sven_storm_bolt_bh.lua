@@ -14,7 +14,7 @@ function sven_storm_bolt_bh:OnSpellStart()
 	if caster:HasTalent("special_bonus_unique_sven_storm_bolt_1") then
 		local radius = self:GetTalentSpecialValueFor("bolt_aoe") * caster:FindTalentValue("special_bonus_unique_sven_storm_bolt_1")
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), radius ) ) do
-			if enemy ~= target then
+			if enemy ~= target and not enemy:TriggerSpellAbsorb( self ) then
 				enemy:ApplyKnockBack( target:GetAbsOrigin(), 0.25, 0.25, -math.abs(CalculateDistance( enemy, target ) - 150), height, caster, ability, bStun)
 			end
 		end
@@ -24,7 +24,7 @@ function sven_storm_bolt_bh:OnSpellStart()
 end
 
 function sven_storm_bolt_bh:OnProjectileHit( target, position )
-	if target then
+	if target and target:TriggerSpellAbsorb( self ) then
 		local caster = self:GetCaster()
 		local damage = self:GetAbilityDamage()
 		local stunDur = self:GetTalentSpecialValueFor("bolt_stun_duration")

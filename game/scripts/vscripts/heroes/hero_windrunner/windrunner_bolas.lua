@@ -24,7 +24,7 @@ function windrunner_bolas:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 	local maxTargets = self:GetTalentSpecialValueFor("max_targets")
 	local currentTargets = 0
-	if hTarget then
+	if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
 		hTarget:AddNewModifier(caster, self, "modifier_windrunner_bolas_primary", {Duration = self:GetTalentSpecialValueFor("duration")})
 		self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 	end
@@ -40,18 +40,20 @@ function modifier_windrunner_bolas_primary:OnCreated(table)
     	if #enemies > 1 then
     		for _,enemy in pairs(enemies) do
     			if enemy ~= parent then
-    				EmitSoundOn("Hero_Windrunner.ShackleshotBind", parent)
-					local stun = ability:Stun(parent, self:GetTalentSpecialValueFor("duration") )
-	    			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair.vpcf", PATTACH_POINT, caster)
-	    						ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_POINT, "attach_hitloc", parent:GetAbsOrigin(), true)
-	    						ParticleManager:SetParticleControlEnt(nfx, 1, enemy, PATTACH_POINT, "attach_hitloc", enemy:GetAbsOrigin(), true)
-	    						ParticleManager:SetParticleControl(nfx, 2, Vector(self:GetTalentSpecialValueFor("duration"), 0, 0))
-	    			stun:AttachEffect(nfx)
+					if not enemy:TriggerSpellAbsorb( ability ) then
+						EmitSoundOn("Hero_Windrunner.ShackleshotBind", parent)
+						local stun = ability:Stun(parent, self:GetTalentSpecialValueFor("duration") )
+						local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair.vpcf", PATTACH_POINT, caster)
+									ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_POINT, "attach_hitloc", parent:GetAbsOrigin(), true)
+									ParticleManager:SetParticleControlEnt(nfx, 1, enemy, PATTACH_POINT, "attach_hitloc", enemy:GetAbsOrigin(), true)
+									ParticleManager:SetParticleControl(nfx, 2, Vector(self:GetTalentSpecialValueFor("duration"), 0, 0))
+						stun:AttachEffect(nfx)
 
-					ability:Stun(enemy, self:GetTalentSpecialValueFor("duration") )
-	    			if caster:HasTalent("special_bonus_unique_windrunner_bolas_2") then
-	    				self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-	    			end
+						ability:Stun(enemy, self:GetTalentSpecialValueFor("duration") )
+						if caster:HasTalent("special_bonus_unique_windrunner_bolas_2") then
+							self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+						end
+					end
 	    			break
 	    		end
     		end

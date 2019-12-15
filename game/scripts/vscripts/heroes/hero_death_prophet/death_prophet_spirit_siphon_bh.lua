@@ -25,6 +25,7 @@ function death_prophet_spirit_siphon_bh:OnSpellStart()
 	local target = self:GetCursorTarget()
 	
 	caster:EmitSound("Hero_DeathProphet.SpiritSiphon.Cast")
+	if not enemy:TriggerSpellAbsorb(self) then return end
 	if self:GetCaster():HasTalent("special_bonus_unique_death_prophet_spirit_siphon_2") then
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self:GetTrueCastRange() ) ) do
 			enemy:AddNewModifier(caster, self, "modifier_death_prophet_spirit_siphon_bh_debuff", {duration = self:GetTalentSpecialValueFor("haunt_duration")})

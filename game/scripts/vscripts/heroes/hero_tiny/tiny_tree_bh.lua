@@ -91,15 +91,17 @@ function tiny_tree_bh:OnProjectileHitHandle(hTarget, vLocation, iProjectileHandl
 	local caster = self:GetCaster()
 
 	if hTarget then
-		EmitSoundOn("Hero_Tiny.Tree.Target", hTarget)
-		local bonusDamagePct = self:GetTalentSpecialValueFor("toss_splash_damage")
-		local bonus_damage = 0
-		if caster:HasTalent("special_bonus_unique_tiny_tree_bh_2") then
-			bonus_damage = bonus_damage + caster:GetPhysicalArmorValue(false) * caster:FindTalentValue("special_bonus_unique_tiny_tree_bh_2")/100
-		end
-		local enemies = caster:FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetTalentSpecialValueFor("splash_radius"))
-		for _,enemy in pairs(enemies) do
-			caster:PerformAbilityAttack(enemy, true, self, bonus_damage, bonusDamagePct, false)
+		if not hTarget:TriggerSpellAbsorb( self ) then
+			EmitSoundOn("Hero_Tiny.Tree.Target", hTarget)
+			local bonusDamagePct = self:GetTalentSpecialValueFor("toss_splash_damage")
+			local bonus_damage = 0
+			if caster:HasTalent("special_bonus_unique_tiny_tree_bh_2") then
+				bonus_damage = bonus_damage + caster:GetPhysicalArmorValue(false) * caster:FindTalentValue("special_bonus_unique_tiny_tree_bh_2")/100
+			end
+			local enemies = caster:FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetTalentSpecialValueFor("splash_radius"))
+			for _,enemy in pairs(enemies) do
+				caster:PerformAbilityAttack(enemy, true, self, bonus_damage, bonusDamagePct, false)
+			end
 		end
 		ProjectileManager:DestroyLinearProjectile(iProjectileHandle)
 	else

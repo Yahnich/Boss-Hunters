@@ -20,16 +20,17 @@ function earthshaker_echo_slam_ebf:OnSpellStart()
 	ParticleManager:FireParticle("particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start.vpcf", PATTACH_ABSORIGIN, caster, {[1] = Vector(5750,0,0)})
 	local baseDamage = self:GetTalentSpecialValueFor("main_damage")
 	local echoDamage = self:GetTalentSpecialValueFor("echo_damage")
-	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), -1)
+	local radius = self:GetTalentSpecialValueFor("search_radius")
+	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
 	for _, enemy in ipairs( enemies ) do
-		local sqRad = ( math.ceil(CalculateDistance(caster, enemy) / 675)^2 )
-		local radiusDamage = baseDamage / sqRad
-		self:DealDamage( caster, enemy, radiusDamage )
-		ParticleManager:FireParticle("particles/units/heroes/hero_earthshaker/earthshaker_echoslam_end.vpcf", PATTACH_POINT_FOLLOW, enemy)
-		EmitSoundOn("Hero_EarthShaker.EchoSlamEcho", origin)
-		for _, echoTarget in ipairs( enemies ) do
-			if enemy:entindex() ~= echoTarget:entindex() then
-				self:CreateEcho( enemy, echoTarget, echoDamage )
+		if not enemy:TriggerSpellAbsorb(self) then
+			self:DealDamage( caster, enemy, baseDamage )
+			ParticleManager:FireParticle("particles/units/heroes/hero_earthshaker/earthshaker_echoslam_end.vpcf", PATTACH_POINT_FOLLOW, enemy)
+			EmitSoundOn("Hero_EarthShaker.EchoSlamEcho", origin)
+			for _, echoTarget in ipairs( caster:FindEnemyUnitsInRadius( enemy:GetAbsOrigin(), radius) ) do
+				if enemy:entindex() ~= echoTarget:entindex() then
+					self:CreateEcho( enemy, echoTarget, echoDamage )
+				end
 			end
 		end
 	end

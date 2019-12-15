@@ -57,10 +57,12 @@ if IsServer() then
 			
 			if self:GetCaster():HasTalent("special_bonus_unique_rattletrap_battery_assault_1") then
 				for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( targetPos, self:GetCaster():FindTalentValue("special_bonus_unique_rattletrap_battery_assault_1") ) ) do
-					self:GetAbility():DealDamage(parent, enemy, self.damage)
-					self:GetAbility():Stun(enemy, 0.15, false)
+					if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+						self:GetAbility():DealDamage(parent, enemy, self.damage)
+						self:GetAbility():Stun(enemy, 0.15, false)
+					end
 				end
-			else
+			elseif not target:TriggerSpellAbsorb( self:GetAbility() )
 				self:GetAbility():DealDamage(parent, target, self.damage)
 				self:GetAbility():Stun(target, 0.15, false)
 			end

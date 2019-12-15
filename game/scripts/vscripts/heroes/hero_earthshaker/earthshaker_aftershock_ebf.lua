@@ -24,9 +24,11 @@ function earthshaker_aftershock_ebf:Aftershock(position, fRadius)
 	
 	local enemies = caster:FindEnemyUnitsInRadius(vPos, radius)
 	for _, enemy in ipairs( enemies ) do
-		self:DealDamage(caster, enemy, damage)
-		local sDur = duration * (CalculateDistance(enemy, caster) / radius)
-		self:Stun(enemy, sDur, false)
+		if not enemy:TriggerSpellAbsorb(self) then
+			self:DealDamage(caster, enemy, damage)
+			local sDur = duration * (CalculateDistance(enemy, caster) / radius)
+			self:Stun(enemy, sDur, false)
+		end
 		-- if caster:HasTalent("special_bonus_unique_earthshaker_aftershock_ebf_1") then
 			-- local echo = caster:FindAbilityByName("earthshaker_echo_slam_ebf")
 			-- if echo then 

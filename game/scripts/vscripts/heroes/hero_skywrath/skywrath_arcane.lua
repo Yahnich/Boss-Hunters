@@ -30,7 +30,7 @@ end
 function skywrath_arcane:OnProjectileHit(hTarget, vLocation)
     local caster = self:GetCaster()
 
-    if hTarget then
+    if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
         EmitSoundOn("Hero_SkywrathMage.ArcaneBolt.Impact", hTarget)
         local baseDamage = self:GetTalentSpecialValueFor("damage")
 		local scaleDmg =  caster:GetIntellect() * self:GetTalentSpecialValueFor("int_multiplier")/100

@@ -30,7 +30,7 @@ function vengefulspirit_haunt:OnSpellStart()
 end
 
 function vengefulspirit_haunt:OnProjectileHit(hTarget, vLocation)
-	if hTarget ~= nil then
+	if hTarget ~= nil and not hTarget:TriggerSpellAbsorb( self ) then
 		EmitSoundOn("Hero_Bane.Nightmare.End", hTarget)
 		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_vengefulspirit_haunt", {Duration = self:GetTalentSpecialValueFor("duration")})
 

@@ -10,10 +10,11 @@ function boss_ammetot_willing_prisoner:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	target:AddNewModifier( target, self, "modifier_boss_ammetot_willing_prisoner", {duration = self:GetSpecialValueFor("duration")} )
 	EmitSoundOn( "Hero_Winter_Wyvern.WintersCurse.Cast", target )
 	ParticleManager:FireParticle( "particles/units/heroes/hero_winter_wyvern/wyvern_winters_curse_ground.vpcf", PATTACH_POINT_FOLLOW, target )
 	ParticleManager:FireParticle( "particles/units/heroes/hero_winter_wyvern/wyvern_winters_curse_start.vpcf", PATTACH_POINT_FOLLOW, target )
+	if target:TriggerSpellAbsorb( self ) then return end
+	target:AddNewModifier( target, self, "modifier_boss_ammetot_willing_prisoner", {duration = self:GetSpecialValueFor("duration")} )
 end
 
 

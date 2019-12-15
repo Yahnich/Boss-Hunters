@@ -75,10 +75,12 @@ function modifier_faceless_time_walk:OnIntervalThink()
     local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:GetAttackRange())
     for _,enemy in pairs(enemies) do
 		if not self.hitUnits[enemy] then
-			if self.talent2 and self.lock and self.lock:IsTrained() then
-				self.lock:TimeLock(enemy)
+			if not enemy:TriggerSpellAbsorb(self:GetAbility()) then
+				if self.talent2 and self.lock and self.lock:IsTrained() then
+					self.lock:TimeLock(enemy)
+				end
+				ability:DealDamage( caster, enemy, self.damage )
 			end
-			ability:DealDamage( caster, enemy, self.damage )
 			self.hitUnits[enemy] = true
 		end
     end

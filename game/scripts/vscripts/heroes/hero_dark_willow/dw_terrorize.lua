@@ -113,18 +113,20 @@ function modifier_dw_terrorize:OnRemoved(bIgnore)
 
 			local enemies = caster:FindEnemyUnitsInRadius(point, radius)
 			for _,enemy in pairs(enemies) do
-				EmitSoundOn("Hero_DarkWillow.Fear.Target", enemy)
-				
-				enemy:Fear(self:GetAbility(), caster, duration)
+				if not enemy:TriggerSpellAbsorb(self:GetAbility() ) then
+					EmitSoundOn("Hero_DarkWillow.Fear.Target", enemy)
+					
+					enemy:Fear(self:GetAbility(), caster, duration)
 
-				if caster:HasTalent("special_bonus_unique_dw_terrorize_1") then
-					enemy:AddNewModifier(caster, self:GetAbility(), "modifier_dw_terrorize_damage", {Duration = duration})
-				end
+					if caster:HasTalent("special_bonus_unique_dw_terrorize_1") then
+						enemy:AddNewModifier(caster, self:GetAbility(), "modifier_dw_terrorize_damage", {Duration = duration})
+					end
 
-				if caster:HasTalent("special_bonus_unique_dw_terrorize_2") then
-					Timers:CreateTimer(duration, function()
-						enemy:Daze(self:GetAbility(), caster, 2)
-					end)
+					if caster:HasTalent("special_bonus_unique_dw_terrorize_2") then
+						Timers:CreateTimer(duration, function()
+							enemy:Daze(self:GetAbility(), caster, 2)
+						end)
+					end
 				end
 			end
 		end

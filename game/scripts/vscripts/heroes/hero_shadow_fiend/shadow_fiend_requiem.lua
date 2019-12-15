@@ -77,7 +77,7 @@ function shadow_fiend_requiem:OnProjectileHit_ExtraData(hTarget, vLocation, extr
 		secondProj = true
 	end
 
-	if hTarget then
+	if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
 		EmitSoundOn("Hero_Nevermore.RequiemOfSouls.Damage", hTarget)
 
 		hTarget:AddNewModifier(caster, self, "modifier_shadow_fiend_requiem", {Duration = self:GetTalentSpecialValueFor("reduction_duration")})

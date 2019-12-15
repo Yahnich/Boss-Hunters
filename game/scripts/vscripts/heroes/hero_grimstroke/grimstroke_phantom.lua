@@ -28,11 +28,6 @@ function grimstroke_phantom:OnProjectileHit_ExtraData(hTarget, vLocation, table)
 	if hTarget then
 		if hTarget:GetTeam() ~= caster:GetTeam() then
 			EmitSoundOn("Hero_Grimstroke.InkCreature.Attach", hTarget)
-			hTarget:Silence(self, caster, self:GetSpecialValueFor("duration"), false)
-
-			if caster:HasTalent("special_bonus_unique_grimstroke_phantom_2") then
-				hTarget:Fear(self, caster, self:GetSpecialValueFor("duration"))
-			end
 		else
 			if caster:HasTalent("special_bonus_unique_grimstroke_phantom_1") and table.damage_heal then
 				caster:HealEvent(table.damage_heal * 0.75, self, caster, false)
@@ -88,8 +83,16 @@ function modifier_grimstroke_phantom_one:OnIntervalThink()
 
 			if self.distance > 130 then
 				parent:SetAbsOrigin(GetGroundPosition(parent:GetAbsOrigin(), parent) + self.direction * self.speed)
-			else
+			elseif not self.target:TriggerSpellAbsorb( self:GetAbility() ) then return end
 				self.contact = true
+				self.target:Silence(self, caster, self:GetSpecialValueFor("duration"), false)
+
+				if caster:HasTalent("special_bonus_unique_grimstroke_phantom_2") then
+					self.target:Fear(self, caster, self:GetSpecialValueFor("duration"))
+				end
+			else
+				self.spellBlocked = true
+				self:Destroy()
 			end
 
 		else
@@ -140,6 +143,7 @@ end
 
 function modifier_grimstroke_phantom_one:OnRemoved()
 	if IsServer() then
+		if self.spellBlocked then return end
 		EmitSoundOn("Hero_Grimstroke.InkCreature.Damage", hTarget)
 		local damage = self:GetAbility():DealDamage(self:GetCaster(), self.target, self.burstDamage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		self.totalDamage = self.totalDamage + damage

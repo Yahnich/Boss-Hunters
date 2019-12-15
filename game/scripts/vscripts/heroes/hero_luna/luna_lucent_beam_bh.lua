@@ -59,16 +59,18 @@ function luna_lucent_beam_bh:OnSpellStart()
 	ParticleManager:FireParticle("particles/units/heroes/hero_luna/luna_lucent_beam_cast.vpcf", PATTACH_POINT_FOLLOW, caster)
 end
 
-function luna_lucent_beam_bh:LucentBeam(target, radius, stun)
+function luna_lucent_beam_bh:LucentBeam(target, radius, stun, talent)
 	local caster = self:GetCaster()
 	local position = target:GetAbsOrigin()
 	local sDur = stun or 0
 	local damage = TernaryOperator( self:GetTalentSpecialValueFor("night_beam_damage"), not GameRules:IsDaytime(), self:GetTalentSpecialValueFor("beam_damage") )
 	local enemies = caster:FindEnemyUnitsInRadius(position, radius)
 	for _, enemy in ipairs( enemies ) do
-		self:DealDamage( caster, enemy, damage )
-		if sDur > 0 then
-			self:Stun( enemy, sDur )
+		if not enemy:TriggerSpellAbsorb( self ) then
+			self:DealDamage( caster, enemy, damage )
+			if sDur > 0 then
+				self:Stun( enemy, sDur )
+			end
 		end
 	end
 	
@@ -87,9 +89,11 @@ function luna_lucent_beam_bh:LucentBeamPosition(position, radius, stun)
 	local damage = TernaryOperator( self:GetTalentSpecialValueFor("night_beam_damage"), not GameRules:IsDaytime(), self:GetTalentSpecialValueFor("beam_damage") )
 	local sDur = stun or 0
 	for _, enemy in ipairs( enemies ) do
-		self:DealDamage( caster, enemy, damage )
-		if sDur > 0 then
-			self:Stun( enemy, sDur )
+		if not enemy:TriggerSpellAbsorb( self ) then
+			self:DealDamage( caster, enemy, damage )
+			if sDur > 0 then
+				self:Stun( enemy, sDur )
+			end
 		end
 	end
 	

@@ -95,11 +95,13 @@ if IsServer() then
 		Timers:CreateTimer(0.25, function()
 			local units = caster:FindEnemyUnitsInRadius( attackPoint, self.radius, {flags = targetFlag} )
 			for _, unit in pairs(units) do
-				ability:DealDamage(caster, unit, self.damage)
-				if unit:IsChilled() then
-					unit:AddChill(ability, caster, ability:GetChannelTimeRemaining(), self.chillHit)
-				else
-					unit:AddChill(ability, caster, ability:GetChannelTimeRemaining(), self.chillInit)
+				if not unit:TriggerSpellAbsorb(self) then
+					ability:DealDamage(caster, unit, self.damage)
+					if unit:IsChilled() then
+						unit:AddChill(ability, caster, ability:GetChannelTimeRemaining(), self.chillHit)
+					else
+						unit:AddChill(ability, caster, ability:GetChannelTimeRemaining(), self.chillInit)
+					end
 				end
 			end
 			EmitSoundOnLocationWithCaster( attackPoint, "hero_Crystal.freezingField.explosion", caster )

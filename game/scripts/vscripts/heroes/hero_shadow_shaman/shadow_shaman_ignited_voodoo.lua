@@ -11,7 +11,7 @@ function shadow_shaman_ignited_voodoo:OnSpellStart()
 	
 	if hTarget:IsIllusion() then
 		hTarget:ForceKill(true)
-	else
+	elseif not hTarget:TriggerSpellAbsorb( self ) then
 		hTarget:AddNewModifier(hCaster, self, "modifier_shadow_shaman_ignited_voodoo", {duration = self:GetSpecialValueFor("duration")})
 	end
 end

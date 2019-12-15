@@ -53,7 +53,9 @@ function modifier_zeus_nimbus_storm:OnIntervalThink()
 					ParticleManager:SetParticleControl(nfx, 6, Vector(math.random(1,5),math.random(1,5),math.random(1,5)))
 					ParticleManager:ReleaseParticleIndex(nfx)
 
-		self:GetAbility():DealDamage(caster, enemy, self.damage, {}, 0)
+		if enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+			self:GetAbility():DealDamage(caster, enemy, self.damage, {}, 0)
+		end
 		break
 	end
 end

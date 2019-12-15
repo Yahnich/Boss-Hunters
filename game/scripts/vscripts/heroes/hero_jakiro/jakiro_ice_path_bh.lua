@@ -99,9 +99,13 @@ function modifier_jakiro_ice_path_bh:OnIntervalThink()
 	local enemies = caster:FindEnemyUnitsInLine(self.start_pos, self.end_pos, width, {})
 	for _,enemy in pairs(enemies) do
 		if not self.hitUnits[enemy] then
-			enemy:Freeze(self:GetAbility(), caster, self:GetRemainingTime())
+			if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+				enemy:Freeze(self:GetAbility(), caster, self:GetRemainingTime())
+				local damage = self:GetTalentSpecialValueFor("damage")
+				self:GetAbility():DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			end
+			self.hitUnits[enemy] = true
 		end
-		local damage = self:GetTalentSpecialValueFor("damage") * 0.5 
-		self:GetAbility():DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+		
 	end
 end

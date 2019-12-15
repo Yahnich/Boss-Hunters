@@ -19,7 +19,7 @@ function razor_static_link_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
-	
+	if target:TriggerSpellAbsorb( self ) then return end
 	if caster:HasTalent("special_bonus_unique_razor_static_link_bh_2") then
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_razor_static_link_bh_2") ) ) do
 			if enemy:IsRoundNecessary() then

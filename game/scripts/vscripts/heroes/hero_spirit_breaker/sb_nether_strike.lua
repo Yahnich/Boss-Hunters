@@ -47,7 +47,7 @@ function sb_nether_strike:OnSpellStart()
 				ParticleManager:SetParticleControlEnt(nfx, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
 				ParticleManager:SetParticleControl(nfx, 2, tpPoint)
 				ParticleManager:ReleaseParticleIndex(nfx)
-
+	if target:TriggerSpellAbsorb( self ) then return end
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_spirit_breaker/spirit_breaker_nether_strike_end.vpcf", PATTACH_POINT, caster)
 				ParticleManager:SetParticleControl(nfx, 0, tpPoint)
 				ParticleManager:ReleaseParticleIndex(nfx)

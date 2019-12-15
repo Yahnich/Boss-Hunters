@@ -49,13 +49,15 @@ function mk_boundless:OnSpellStart()
 	caster:AddNewModifier(caster, self, "modifier_mk_boundless_crit", {Duration = 0.25})
 	local enemies = caster:FindEnemyUnitsInLine(startPos, endPos, width, {})
 	for _,enemy in pairs(enemies) do
-		self:Stun(enemy, duration, false)
-		caster:PerformAbilityAttack(enemy, true, self, 0, false, true)
-		if caster:HasTalent("special_bonus_unique_mk_boundless_1") then
-			Timers:CreateTimer(duration, function()
-				enemy:Break(self, caster, caster:FindTalentValue("special_bonus_unique_mk_boundless_1", "duration"), false)
-				enemy:AddNewModifier(caster, self, "modifier_mk_boundless_slow", {Duration = caster:FindTalentValue("special_bonus_unique_mk_boundless_1", "duration")})
-			end)
+		if not enemy:TriggerSpellAbsorb(self) then
+			self:Stun(enemy, duration, false)
+			caster:PerformAbilityAttack(enemy, true, self, 0, false, true)
+			if caster:HasTalent("special_bonus_unique_mk_boundless_1") then
+				Timers:CreateTimer(duration, function()
+					enemy:Break(self, caster, caster:FindTalentValue("special_bonus_unique_mk_boundless_1", "duration"), false)
+					enemy:AddNewModifier(caster, self, "modifier_mk_boundless_slow", {Duration = caster:FindTalentValue("special_bonus_unique_mk_boundless_1", "duration")})
+				end)
+			end
 		end
 	end
 	caster:RemoveModifierByName("modifier_mk_boundless_crit")

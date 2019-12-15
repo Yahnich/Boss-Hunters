@@ -5,20 +5,22 @@ function silencer_last_word_bh:OnSpellStart()
 	local target = self:GetCursorTarget()
 	
 	local duration = self:GetTalentSpecialValueFor("debuff_duration")
-	target:RemoveModifierByName("modifier_silencer_last_word_bh")
-	target:AddNewModifier(caster, self, "modifier_silencer_last_word_bh", {duration = duration})
-	if caster:HasTalent("special_bonus_unique_silencer_last_word_2") then
-		target:AddNewModifier(caster, self, "modifier_silencer_last_word_bh_talent", {duration = duration + self:GetTalentSpecialValueFor("duration")})
+	if not target:TriggerSpellAbsorb( self ) then
+		target:RemoveModifierByName("modifier_silencer_last_word_bh")
+		target:AddNewModifier(caster, self, "modifier_silencer_last_word_bh", {duration = duration})
+		if caster:HasTalent("special_bonus_unique_silencer_last_word_2") then
+			target:AddNewModifier(caster, self, "modifier_silencer_last_word_bh_talent", {duration = duration + self:GetTalentSpecialValueFor("duration")})
+		end
+		local fx = ParticleManager:CreateParticle("particles/units/heroes/hero_silencer/silencer_last_word_status_cast.vpcf", PATTACH_POINT_FOLLOW, caster)
+		ParticleManager:SetParticleControlEnt(fx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlForward(fx, 0, caster:GetForwardVector() )
+		ParticleManager:SetParticleControlEnt(fx, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlForward(fx, 1, caster:GetForwardVector() )
+		ParticleManager:SetParticleControlEnt(fx, 2, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlForward(fx, 2, caster:GetForwardVector() )
+		target:EmitSound("Hero_Silencer.LastWord.Target")
 	end
-	local fx = ParticleManager:CreateParticle("particles/units/heroes/hero_silencer/silencer_last_word_status_cast.vpcf", PATTACH_POINT_FOLLOW, caster)
-	ParticleManager:SetParticleControlEnt(fx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
-	ParticleManager:SetParticleControlForward(fx, 0, caster:GetForwardVector() )
-	ParticleManager:SetParticleControlEnt(fx, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
-	ParticleManager:SetParticleControlForward(fx, 1, caster:GetForwardVector() )
-	ParticleManager:SetParticleControlEnt(fx, 2, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
-	ParticleManager:SetParticleControlForward(fx, 2, caster:GetForwardVector() )
 	caster:EmitSound("Hero_Silencer.LastWord.Cast")
-	target:EmitSound("Hero_Silencer.LastWord.Target")
 end
 
 modifier_silencer_last_word_bh = class({})

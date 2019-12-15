@@ -109,11 +109,13 @@ function modifier_dw_bramble:OnIntervalThink()
 	for _,enemy in pairs(enemies) do
 		if not enemy:HasModifier("modifier_dw_bramble_damage") then
 			EmitSoundOn("Hero_DarkWillow.Bramble.Target.Layer", self:GetParent())
-			local duration =  self.duration
-			if enemy:IsMinion() then
-				duration = duration * 3
+			if not enemy:TriggerSpellAbsorb(self:GetAbility()) then
+				local duration =  self.duration
+				if enemy:IsMinion() then
+					duration = duration * 3
+				end
+				enemy:AddNewModifier(caster, ability, "modifier_dw_bramble_damage", {Duration = duration})
 			end
-			enemy:AddNewModifier(caster, ability, "modifier_dw_bramble_damage", {Duration = duration})
 			self:Destroy()
 			break
 		end

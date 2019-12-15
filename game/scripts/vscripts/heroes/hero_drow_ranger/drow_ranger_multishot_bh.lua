@@ -95,7 +95,7 @@ function drow_ranger_multishot_bh:FireBurst( direction )
 end
 
 function drow_ranger_multishot_bh:OnProjectileHit( target, position )
-	if target then
+	if target and not target:TriggerSpellAbsorb(self) then
 		local caster = self:GetCaster()
 		caster:PerformAbilityAttack(target, true, self, -100, true, true)
 		self:DealDamage( caster, target, caster:GetAttackDamage() * self.damage, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )

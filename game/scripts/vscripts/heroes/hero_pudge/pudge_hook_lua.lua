@@ -96,9 +96,9 @@ function pudge_hook_lua:OnSpellStart()
 
 		-- If a valid target was hit, start dragging them
 		if target_hit then
-
+			local spellBlock = target:TriggerSpellAbsorb( self )
 			-- Apply stun/root modifier, and damage if the target is an enemy
-			if caster:GetTeam() ~= target:GetTeam() then
+			if caster:GetTeam() ~= target:GetTeam() and not spellBlock then
 				self:DealDamage(caster, target, TernaryOperator( minion_damage, target:IsMinion(), hook_damage ), {}, OVERHEAD_ALERT_DAMAGE)
 				target:AddNewModifier(caster, self, "modifier_meat_hook_lua", {})
 				caster:ModifyThreat(self:GetTalentSpecialValueFor("threat_gain"))

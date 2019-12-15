@@ -24,7 +24,7 @@ function queenofpain_shadow_strike_bh:OnSpellStart()
 end
 
 function queenofpain_shadow_strike_bh:OnProjectileHit( target, position )
-	if target then
+	if target and not target:TriggerSpellAbsorb( self ) then
 		local caster = self:GetCaster()
 		
 		local damage = self:GetTalentSpecialValueFor("strike_damage")

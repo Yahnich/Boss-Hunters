@@ -62,7 +62,7 @@ function visage_soul:OnProjectileHit(hTarget, vLocation)
 
 	local totalDamage = baseDamage + stackDamage
 
-	if hTarget then
+	if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
 
 		EmitSoundOn("Hero_Visage.SoulAssumption.Target", hTarget)
 

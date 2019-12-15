@@ -24,7 +24,7 @@ end
 function ogre_magi_ignite_bh:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 
-	if hTarget then
+	if hTarget and not hTarget:TriggerSpellAbsorb(self) then
 		EmitSoundOn("Hero_OgreMagi.Ignite.Target", hTarget)
 		hTarget:AddNewModifier(caster, self, "modifier_ogre_magi_ignite_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
 		if RollPercentage(self:GetTalentSpecialValueFor("chance")) then

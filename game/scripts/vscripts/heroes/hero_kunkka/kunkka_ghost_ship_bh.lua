@@ -120,9 +120,11 @@ function kunkka_ghost_ship_bh:SendShip(spawn_pos, totalDistance, radius, directi
             end
         end
 		inMotion = false
-        for _, enemy in pairs(enemies) do
-            self:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
-            self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+        for _, enemy in ipairs(enemies) do
+			if not enemy:TriggerSpellAbsorb( self ) then
+				self:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
+				self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+			end
         end
     end)
 end
@@ -131,7 +133,7 @@ function kunkka_ghost_ship_bh:OnProjectileThink(vLocation)
     local caster = self:GetCaster()
     if caster:HasTalent("special_bonus_unique_kunkka_ghost_ship_bh_2") then
         local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetSpecialValueFor("width"))
-        for _,enemy in pairs(enemies) do
+        for _,enemy in ipairs(enemies) do
             enemy:SetAbsOrigin(vLocation)
         end
     end

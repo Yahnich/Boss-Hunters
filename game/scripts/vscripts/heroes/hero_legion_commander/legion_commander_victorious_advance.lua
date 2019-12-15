@@ -51,7 +51,9 @@ function legion_commander_victorious_advance:OnSpellStart()
 		end
 		for _,unit in pairs(units) do -- deal damage
 			if unit:GetTeam() ~= caster:GetTeam() then
-				ApplyDamage({victim = unit, attacker = caster, damage = base_damage, damage_type = self:GetAbilityDamageType(), ability = self})
+				if not unit:TriggerSpellAbsorb( self ) then
+					ApplyDamage({victim = unit, attacker = caster, damage = base_damage, damage_type = self:GetAbilityDamageType(), ability = self})
+				end
 				EmitSoundOn("Hero_LegionCommander.Overwhelming.Creep",unit)
 			else
 				-- unit:AddNewModifier(caster, self, "modifier_legion_commander_victorious_advance_buff_visual", {duration = duration})

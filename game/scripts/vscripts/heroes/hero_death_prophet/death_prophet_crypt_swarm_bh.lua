@@ -39,7 +39,7 @@ function death_prophet_crypt_swarm_bh:OnSpellStart()
 end
 
 function death_prophet_crypt_swarm_bh:OnProjectileHitHandle( target, position, id )
-	if target then
+	if target and not target:TriggerSpellAbsorb(self) then
 		local caster = self:GetCaster()
 		if caster:HasTalent("special_bonus_unique_death_prophet_crypt_swarm_1") then
 			target:AddNewModifier( caster, self, "modifier_death_prophet_crypt_swarm_talent", {duration = caster:FindTalentValue("special_bonus_unique_death_prophet_crypt_swarm_1", "duration")})

@@ -36,13 +36,15 @@ function modifier_sven_valiant_charge:OnIntervalThink()
 	local parent = self:GetParent()
 	for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), parent:GetHullRadius() + parent:GetCollisionPadding() + 64 ) ) do
 		if not self.targets[enemy:entindex()] then
-			self.targets[enemy:entindex()] = true;
-			self:GetAbility():DealDamage( parent, enemy, self.damage * parent:GetPhysicalArmorValue(false) )
-			if self.talent then
-				self:GetAbility():Stun( enemy, self.stunDur )
-			else
-				enemy:ApplyKnockBack( parent:GetAbsOrigin(), 0.6, 0.6, self.knockback, 150, parent, self:GetAbility() )
-				enemy:Daze(self:GetAbility(), parent, self.daze_duration)
+			self.targets[enemy:entindex()] = true
+			if not enemy:TriggerSpellAbsorb( self ) then
+				self:GetAbility():DealDamage( parent, enemy, self.damage * parent:GetPhysicalArmorValue(false) )
+				if self.talent then
+					self:GetAbility():Stun( enemy, self.stunDur )
+				else
+					enemy:ApplyKnockBack( parent:GetAbsOrigin(), 0.6, 0.6, self.knockback, 150, parent, self:GetAbility() )
+					enemy:Daze(self:GetAbility(), parent, self.daze_duration)
+				end
 			end
 		end
 	end

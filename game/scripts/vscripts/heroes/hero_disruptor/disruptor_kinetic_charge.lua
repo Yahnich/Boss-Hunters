@@ -15,7 +15,7 @@ function disruptor_kinetic_charge:OnSpellStart()
 	caster:EmitSound("Hero_Disruptor.Glimpse.End")
 	if hTarget:IsSameTeam( caster ) then
 		hTarget:AddNewModifier(caster, self, "modifier_disruptor_kinetic_charge_push", {duration = self:GetTalentSpecialValueFor("pull_duration")})
-	else
+	elseif not hTarget:TriggerSpellAbsorb(self) then
 		hTarget:AddNewModifier(caster, self, "modifier_disruptor_kinetic_charge_pull", {duration = self:GetTalentSpecialValueFor("pull_duration")})
 		ApplyDamage({ victim = hTarget, attacker = caster, damage = self:GetAbilityDamage(), damage_type = self:GetAbilityDamageType(), ability = self })
 	end

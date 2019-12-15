@@ -14,7 +14,7 @@ function bs_bloodrage:OnSpellStart()
 	local target = self:GetCursorTarget()
 
 	EmitSoundOn("hero_bloodseeker.bloodRage", target)
-
+	if target:TriggerSpellAbsorb(self) and not target:IsSameTeam(caster) then return end
 	if caster:HasTalent("special_bonus_unique_bs_bloodrage_1") then
 		caster:AddNewModifier(caster, self, "modifier_bs_bloodrage", {Duration = self:GetTalentSpecialValueFor("duration")})
 	end

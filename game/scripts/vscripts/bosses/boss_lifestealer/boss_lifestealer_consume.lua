@@ -8,14 +8,15 @@ end
 function boss_lifestealer_consume:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	
 	caster:EmitSound( "Hero_LifeStealer.Assimilate.Target" )
 	if target:IsRealHero() then
-		target:SetAttacking( caster )
-		target:MoveToTargetToAttack( caster ) 
-		target:SetForceAttackTarget( caster )
-		target:SetAbsOrigin( caster:GetAbsOrigin() )
-		target:AddNewModifier( caster, self, "modifier_boss_lifestealer_consume_swallow", {duration = self:GetSpecialValueFor("hero_duration")})
+		if not target:TriggerSpellAbsorb(self) then
+			target:SetAttacking( caster )
+			target:MoveToTargetToAttack( caster ) 
+			target:SetForceAttackTarget( caster )
+			target:SetAbsOrigin( caster:GetAbsOrigin() )
+			target:AddNewModifier( caster, self, "modifier_boss_lifestealer_consume_swallow", {duration = self:GetSpecialValueFor("hero_duration")})
+		end
 	else
 		local health = target:GetHealth()
 		local damage = target:GetAttackDamage()

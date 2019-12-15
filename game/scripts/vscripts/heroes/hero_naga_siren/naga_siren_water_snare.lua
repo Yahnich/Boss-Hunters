@@ -13,7 +13,7 @@ function naga_siren_water_snare:OnSpellStart()
 end
 
 function naga_siren_water_snare:OnProjectileHit(target, position)
-	if target and not target:IsMagicImmune() then
+	if target and not target:IsMagicImmune() and not target:TriggerSpellAbsorb(self) then
 		local duration = self:GetTalentSpecialValueFor("duration")
 		local damage = self:GetTalentSpecialValueFor("base_damage")
 		local caster = self:GetCaster()

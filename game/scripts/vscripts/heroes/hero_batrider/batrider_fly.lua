@@ -29,8 +29,8 @@ end
 modifier_batrider_fly = class({})
 function modifier_batrider_fly:OnCreated(table)
 	if self:GetCaster():HasTalent("special_bonus_unique_batrider_fly_1") then
-		self.ms = 40
-		self.evasion = 25
+		self.ms = self:GetCaster():FindTalentValue("special_bonus_unique_batrider_fly_1")
+		self.evasion = self:GetCaster():FindTalentValue("special_bonus_unique_batrider_fly_1", "value2")
 	end
 
 	if IsServer() then

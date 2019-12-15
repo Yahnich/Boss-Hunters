@@ -25,10 +25,12 @@ function brewmaster_thunder_clap_bh:OnSpellStart()
 	local stunDur = caster:FindTalentValue("special_bonus_unique_brewmaster_thunder_clap_1")
 	local targets = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
 	for _, target in ipairs(targets) do
-		self:DealDamage(caster, target, damage)
-		target:AddNewModifier(caster, self, "modifier_brewmaster_thunder_clap_bh_debuff", {duration = duration})
-		if caster:HasTalent("special_bonus_unique_brewmaster_thunder_clap_1") then
-			self:Stun(target, stunDur)
+		if not target:TriggerSpellAbsorb( self ) then
+			self:DealDamage(caster, target, damage)
+			target:AddNewModifier(caster, self, "modifier_brewmaster_thunder_clap_bh_debuff", {duration = duration})
+			if caster:HasTalent("special_bonus_unique_brewmaster_thunder_clap_1") then
+				self:Stun(target, stunDur)
+			end
 		end
 		EmitSoundOn( "Hero_Brewmaster.ThunderClap.Target", target )
 	end

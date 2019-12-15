@@ -23,7 +23,7 @@ function modifier_boss_warlock_ultimate_form:OnDeath(params)
 			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_life_stealer/life_stealer_infest_emerge_bloody.vpcf", PATTACH_POINT, demon)
 					ParticleManager:SetParticleControl(nfx, 0, demon:GetAbsOrigin())
 					ParticleManager:ReleaseParticleIndex(nfx)
-			demon.unitIsRoundNecessary = true
+			demon.unitIsRoundNecessary = demon:GetTeam() == DOTA_TEAM_BADGUYS
 			if RoundManager:GetCurrentEvent():GetEventType() ~= 4 then
 				demon:SetCoreHealth(2500)
 			end

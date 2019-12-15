@@ -12,8 +12,8 @@ end
 function kunkka_xmarks_bh:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()
-
     EmitSoundOn("Ability.XMarksTheSpot.Target", target)
+	if target:TriggerSpellAbsorb( self ) then return end
     target:AddNewModifier(caster, self, "modifier_kunkka_xmarks_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
 end
 

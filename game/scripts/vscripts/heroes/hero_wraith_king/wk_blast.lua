@@ -73,9 +73,11 @@ function wk_blast:floatyOrb(pos)
         local dot_duration = ability:GetTalentSpecialValueFor("dot_duration")  
 
         if not self.hitUnits[target:entindex()] then
-            ability:DealDamage(caster, target, damage, {}, 0)
-            ability:Stun(target, stun_duration, true)
-            target:AddNewModifier(caster, ability, "modifier_wk_blast", {Duration = dot_duration})
+			if not target:TriggerSpellAbsorb( self ) then
+				ability:DealDamage(caster, target, damage, {}, 0)
+				ability:Stun(target, stun_duration, true)
+				target:AddNewModifier(caster, ability, "modifier_wk_blast", {Duration = dot_duration})
+			end
 			target:EmitSound("Hero_SkeletonKing.Hellfire_BlastImpact")
             self.hitUnits[target:entindex()] = true
         end
@@ -101,7 +103,7 @@ function wk_blast:OnProjectileHit(hTarget, vLocation)
     local stun_duration = self:GetTalentSpecialValueFor("stun_duration")
     local dot_duration = self:GetTalentSpecialValueFor("dot_duration")
 
-    if hTarget then
+    if hTarget and not target:TriggerSpellAbsorb( self ) then
         self:DealDamage(caster, hTarget, damage, {}, 0)
         self:Stun(hTarget, stun_duration, true)
         hTarget:AddNewModifier(caster, self, "modifier_wk_blast", {Duration = dot_duration})

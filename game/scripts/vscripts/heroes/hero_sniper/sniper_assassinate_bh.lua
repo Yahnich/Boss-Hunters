@@ -44,7 +44,7 @@ end
 function sniper_assassinate_bh:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 
-	if hTarget then
+	if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
 		EmitSoundOn("Hero_Sniper.AssassinateDamage", caster)
 		self:Stun(hTarget, self:GetTalentSpecialValueFor("ministun_duration"), false)
 		self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)

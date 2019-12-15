@@ -79,19 +79,21 @@ function et_echo_stomp:OnSpellStart()
 
 				local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius"), {})
 				for _,enemy in pairs(enemies) do
-					local sleep = self:Sleep(enemy, duration, min_duration)
-					if talent1 then
-						sleep.OnDestroy = function(sleep)
-							local damage = self:GetTalentSpecialValueFor("damage")
-							sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
-							sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+					if not enemy:TriggerSpellAbsorb(self) then
+						local sleep = self:Sleep(enemy, duration, min_duration)
+						if talent1 then
+							sleep.OnDestroy = function(sleep)
+								local damage = self:GetTalentSpecialValueFor("damage")
+								sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+								sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+							end
 						end
-					end
-					self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
-					self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+						self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+						self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
 
-					if caster:HasTalent("special_bonus_unique_et_echo_stomp_2") then
-						enemy:Taunt(self, caster, caster:FindTalentValue("special_bonus_unique_et_echo_stomp_2"))
+						if caster:HasTalent("special_bonus_unique_et_echo_stomp_2") then
+							enemy:Taunt(self, caster, caster:FindTalentValue("special_bonus_unique_et_echo_stomp_2"))
+						end
 					end
 				end
    			else
@@ -99,19 +101,21 @@ function et_echo_stomp:OnSpellStart()
    				ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_magical.vpcf", PATTACH_POINT, caster, {[0] = point})
 				local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius"), {})
 				for _,enemy in pairs(enemies) do
-					local sleep = self:Sleep(enemy, duration, min_duration)
-					if talent1 then
-						sleep.OnDestroy = function(sleep)
-							local damage = self:GetTalentSpecialValueFor("damage")
-							sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
-							sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+					if not enemy:TriggerSpellAbsorb(self) then
+						local sleep = self:Sleep(enemy, duration, min_duration)
+						if talent1 then
+							sleep.OnDestroy = function(sleep)
+								local damage = self:GetTalentSpecialValueFor("damage")
+								sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+								sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+							end
 						end
-					end
 
-					self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+						self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
 
-					if caster:HasTalent("special_bonus_unique_et_echo_stomp_2") then
-						enemy:Taunt(self, caster, caster:FindTalentValue("special_bonus_unique_et_echo_stomp_2"))
+						if caster:HasTalent("special_bonus_unique_et_echo_stomp_2") then
+							enemy:Taunt(self, caster, caster:FindTalentValue("special_bonus_unique_et_echo_stomp_2"))
+						end
 					end
 				end
    			end
@@ -121,20 +125,22 @@ function et_echo_stomp:OnSpellStart()
 			
 			local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius"), {})
 			for _,enemy in pairs(enemies) do
-				local sleep = self:Sleep(enemy, duration, min_duration)
-				if talent1 then
-					sleep.OnDestroy = function(sleep)
-						local damage = self:GetTalentSpecialValueFor("damage")
-						sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
-						sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+				if not enemy:TriggerSpellAbsorb(self) then
+					local sleep = self:Sleep(enemy, duration, min_duration)
+					if talent1 then
+						sleep.OnDestroy = function(sleep)
+							local damage = self:GetTalentSpecialValueFor("damage")
+							sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+							sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+						end
 					end
-				end
 
-				self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
-				self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+					self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+					self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
 
-				if caster:HasTalent("special_bonus_unique_et_echo_stomp_2") then
-					enemy:Taunt(self, caster, caster:FindTalentValue("special_bonus_unique_et_echo_stomp_2"))
+					if caster:HasTalent("special_bonus_unique_et_echo_stomp_2") then
+						enemy:Taunt(self, caster, caster:FindTalentValue("special_bonus_unique_et_echo_stomp_2"))
+					end
 				end
 			end
    		end
@@ -143,12 +149,14 @@ function et_echo_stomp:OnSpellStart()
 
 		local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius"), {})
 		for _,enemy in pairs(enemies) do
-			self:Stun(enemy, self:GetTalentSpecialValueFor("duration"), false)
+			if not enemy:TriggerSpellAbsorb(self) then
+				self:Stun(enemy, self:GetTalentSpecialValueFor("duration"), false)
 
-			self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+				self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
 
-			if caster:GetOwner():HasTalent("special_bonus_unique_et_echo_stomp_2") then
-				enemy:Taunt(self, caster:GetOwner(), caster:GetOwner():FindTalentValue("special_bonus_unique_et_echo_stomp_2"))
+				if caster:GetOwner():HasTalent("special_bonus_unique_et_echo_stomp_2") then
+					enemy:Taunt(self, caster:GetOwner(), caster:GetOwner():FindTalentValue("special_bonus_unique_et_echo_stomp_2"))
+				end
 			end
 		end
    end

@@ -47,7 +47,7 @@ function tech_drastic:OnChannelFinish(bInterrupted)
 			StopSoundOn("NukeBeep", caster)
 			EmitSoundOn("NukeExplosion", caster)
 
-			if enemy:IsAlive() then
+			if enemy:IsAlive() and not enemy:TriggerSpellAbsorb( self ) then
 				self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
 			end
 		end

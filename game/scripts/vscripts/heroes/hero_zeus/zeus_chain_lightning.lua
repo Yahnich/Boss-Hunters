@@ -91,7 +91,7 @@ end
 function zeus_chain_lightning:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 
-	if hTarget then
+	if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
 		EmitSoundOn("Hero_Zuus.ArcLightning.Target", hTarget)
 		self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
 	end
@@ -106,6 +106,7 @@ function modifier_zeus_chain_lightning:OnCreated()
 		local jump_delay = self:GetTalentSpecialValueFor("jump_delay")
 		local radius = self:GetTalentSpecialValueFor("radius")
 		local strike_damage = self:GetTalentSpecialValueFor("damage")
+		if target:TriggerSpellAbsorb( ability ) then return end
 		ability:DealDamage(caster, target, strike_damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)	
 		target:RemoveModifierByName("modifier_zeus_chain_lightning")
 

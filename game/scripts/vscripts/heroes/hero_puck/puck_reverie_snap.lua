@@ -115,9 +115,11 @@ if IsServer() then
 		end
 		
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.initRadius) ) do
-			ability:Stun(enemy, initStun)
-			ability:DealDamage(caster, enemy, initDamage)
-			enemy:AddNewModifier(caster, ability, "modifier_puck_reverie_snap_tether", {duration = self:GetTalentSpecialValueFor("coil_duration"), entindex = parent:entindex()})
+			if not enemy:TriggerSpellAbsorb( self ) then
+				ability:Stun(enemy, initStun)
+				ability:DealDamage(caster, enemy, initDamage)
+				enemy:AddNewModifier(caster, ability, "modifier_puck_reverie_snap_tether", {duration = self:GetTalentSpecialValueFor("coil_duration"), entindex = parent:entindex()})
+			end
 		end
 		self:StartIntervalThink(0.1)
 	end

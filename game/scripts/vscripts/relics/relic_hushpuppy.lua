@@ -10,9 +10,9 @@ function relic_hushpuppy:DeclareFunctions()
 end
 
 function relic_hushpuppy:OnAbilityStart(params)
-	if params.unit ~= self:GetParent() and self:GetDuration() == -1 and params.unit:GetTeam() ~= self:GetParent():GetTeam() then
+	if params.unit ~= self:GetParent() and self:GetDuration() == -1 and params.unit:GetTeam() ~= self:GetParent():GetTeam() and CalculateDistance( params.unit, self:GetParent() ) <= 450 then
 		params.unit:RemoveModifierByName("modifier_status_immunity")
-		params.unit:Silence(nil, self:GetParent(), 3)
+		params.unit:Silence(nil, params.unit, 6)
 		self:SetDuration(15.1, true)
 		self:StartIntervalThink(15)
 	end

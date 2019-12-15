@@ -37,11 +37,13 @@ function doom_infernal_blade_ebf:InfernalBlade(target)
 	local caster = self:GetCaster()
 	if caster:HasTalent("special_bonus_unique_doom_infernal_blade_ebf_1") then
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_doom_infernal_blade_ebf_1", "radius") ) ) do
-			enemy:AddNewModifier(caster, self, "modifier_doom_infernal_blade_ebf_debuff", {duration = self:GetTalentSpecialValueFor("burn_duration")})
-			self:Stun(enemy, self:GetTalentSpecialValueFor("ministun_duration"), false)
-			ParticleManager:FireParticle("particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf", PATTACH_POINT_FOLLOW, enemy)
+			if not enemy:TriggerSpellAbsorb(self) then
+				enemy:AddNewModifier(caster, self, "modifier_doom_infernal_blade_ebf_debuff", {duration = self:GetTalentSpecialValueFor("burn_duration")})
+				self:Stun(enemy, self:GetTalentSpecialValueFor("ministun_duration"), false)
+				ParticleManager:FireParticle("particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf", PATTACH_POINT_FOLLOW, enemy)
+			end
 		end
-	else
+	elseif not target:TriggerSpellAbsorb(self) then
 		target:AddNewModifier(caster, self, "modifier_doom_infernal_blade_ebf_debuff", {duration = self:GetTalentSpecialValueFor("burn_duration")})
 		self:Stun(target, self:GetTalentSpecialValueFor("ministun_duration"), false)
 		ParticleManager:FireParticle("particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf", PATTACH_POINT_FOLLOW, enemy)

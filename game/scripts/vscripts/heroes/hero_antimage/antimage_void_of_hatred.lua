@@ -20,7 +20,7 @@ end
 function antimage_void_of_hatred:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	
+	if target:TriggerSpellAbsorb(self) then return end
 	local baseDmg = self:GetTalentSpecialValueFor("base_damage")
 	local stackDmg = self:GetTalentSpecialValueFor("stack_damage")
 	local stunDur = self:GetTalentSpecialValueFor("ministun")
@@ -46,9 +46,11 @@ function antimage_void_of_hatred:OnSpellStart()
 	local talent = caster:HasTalent("special_bonus_unique_antimage_void_of_hatred_2")
 	local silenceDur = caster:FindTalentValue("special_bonus_unique_antimage_void_of_hatred_2")
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), radius ) ) do
-		self:DealDamage( caster, enemy, damage )
-		if talent then
-			enemy:Silence( self, caster, silenceDur )
+		if not enemy:TriggerSpellAbsorb(self) then
+			self:DealDamage( caster, enemy, damage )
+			if talent then
+				enemy:Silence( self, caster, silenceDur )
+			end
 		end
 	end
 end

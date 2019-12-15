@@ -31,8 +31,10 @@ function obsidian_destroyer_celestial_obliteration:OnSpellStart()
 	end
 	local intDamage = self:GetTalentSpecialValueFor("damage_multiplier") * caster:GetIntellect()
 	for _,enemy in pairs(enemies) do
-		self:DealDamage( caster, enemy, intDamage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
-		enemy:AddNewModifier(caster, self, "modifier_obsidian_destroyer_celestial_obliteration_mindbreak", {duration = self:GetTalentSpecialValueFor("debuff_duration")})
+		if not enemy:TriggerSpellAbsorb( self ) then
+			self:DealDamage( caster, enemy, intDamage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
+			enemy:AddNewModifier(caster, self, "modifier_obsidian_destroyer_celestial_obliteration_mindbreak", {duration = self:GetTalentSpecialValueFor("debuff_duration")})
+		end
 	end
 	local eclipse = ParticleManager:CreateParticle("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_area.vpcf", PATTACH_ABSORIGIN, caster)
 	ParticleManager:SetParticleControl(eclipse, 0, vTarget)

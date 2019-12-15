@@ -16,7 +16,7 @@ function lina_laguna:OnSpellStart()
     EmitSoundOn("Ability.LagunaBladeImpact", target)
 
     ParticleManager:FireRopeParticle("particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf", PATTACH_POINT_FOLLOW, caster, target, {})
-
+	if target:TriggerSpellAbsorb( self ) then return end
     if caster:HasTalent("special_bonus_unique_lina_laguna_2") then
         target:Daze(self, caster, caster:FindTalentValue("special_bonus_unique_lina_laguna_2"))
     end

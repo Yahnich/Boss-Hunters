@@ -77,11 +77,13 @@ function modifier_pango_shield_movement:OnDestroy()
 
 		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
 		for _,enemy in pairs(enemies) do
-			if caster:HasTalent("special_bonus_unique_pango_shield_2") then
-				enemy:ApplyKnockBack(enemy:GetAbsOrigin(), 1, 1, 0, 350, caster, self:GetAbility(), true)
-			end
+			if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+				if caster:HasTalent("special_bonus_unique_pango_shield_2") then
+					enemy:ApplyKnockBack(enemy:GetAbsOrigin(), 1, 1, 0, 350, caster, self:GetAbility(), true)
+				end
 
-			self:GetAbility():DealDamage(caster, enemy, damage)
+				self:GetAbility():DealDamage(caster, enemy, damage)
+			end
 		end
 		if caster:HasTalent("special_bonus_unique_pango_shield_1") then
 			if #enemies > 0 then

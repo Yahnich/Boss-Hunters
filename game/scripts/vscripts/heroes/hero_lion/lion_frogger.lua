@@ -40,13 +40,15 @@ function lion_frogger:OnSpellStart()
 	end
     
     for _,enemy in pairs(enemies) do
-        ParticleManager:FireParticle("particles/units/heroes/hero_lion/lion_spell_voodoo.vpcf", PATTACH_POINT, enemy, {})
-		if caster:HasScepter() and caster:HasModifier("modifier_lion_mana_aura_scepter") then
-			self:DealDamage( caster, enemy, manaDamage, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
-			ParticleManager:FireRopeParticle("particles/items2_fx/necronomicon_archer_manaburn.vpcf", PATTACH_POINT_FOLLOW, caster, enemy)
+		if not enemy:TriggerSpellAbsorb( self ) then
+			ParticleManager:FireParticle("particles/units/heroes/hero_lion/lion_spell_voodoo.vpcf", PATTACH_POINT, enemy, {})
+			if caster:HasScepter() and caster:HasModifier("modifier_lion_mana_aura_scepter") then
+				self:DealDamage( caster, enemy, manaDamage, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+				ParticleManager:FireRopeParticle("particles/items2_fx/necronomicon_archer_manaburn.vpcf", PATTACH_POINT_FOLLOW, caster, enemy)
+			end
+			enemy:AddNewModifier(caster, self, "modifier_lion_frogger", {Duration = self:GetTalentSpecialValueFor("duration")})
+			enemy:DisableHealing(self:GetTalentSpecialValueFor("duration"))
 		end
-        enemy:AddNewModifier(caster, self, "modifier_lion_frogger", {Duration = self:GetTalentSpecialValueFor("duration")})
-        enemy:DisableHealing(self:GetTalentSpecialValueFor("duration"))
     end
 end
 

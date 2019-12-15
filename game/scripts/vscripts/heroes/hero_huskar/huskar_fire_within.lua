@@ -24,19 +24,21 @@ function huskar_fire_within:OnSpellStart()
 	local stacks = 0
 	local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius )
 	for _, enemy in ipairs( enemies ) do
-		self:DealDamage( caster, enemy, damage )
-		enemy:ApplyKnockBack(caster:GetAbsOrigin(), kbDuration, kbDuration, math.max(50, kbDistance - CalculateDistance(enemy, caster)), 0, caster, self, false)
-		local modifier = enemy:Disarm(self, caster, duration)
-		if delay then
-			delay = ( delay + modifier:GetRemainingTime() ) / 2
-		else
-			delay = modifier:GetRemainingTime()
-		end
-		if talent1 then
-			enemy:AddNewModifier( caster, self, "modifier_huskar_fire_within_talent", {duration = duration + tDuration})
-		end
-		if not enemy:IsMinion() then
-			stacks = stacks + 1
+		if not enemy:TriggerSpellAbsorb(self) then
+			self:DealDamage( caster, enemy, damage )
+			enemy:ApplyKnockBack(caster:GetAbsOrigin(), kbDuration, kbDuration, math.max(50, kbDistance - CalculateDistance(enemy, caster)), 0, caster, self, false)
+			local modifier = enemy:Disarm(self, caster, duration)
+			if delay then
+				delay = ( delay + modifier:GetRemainingTime() ) / 2
+			else
+				delay = modifier:GetRemainingTime()
+			end
+			if talent1 then
+				enemy:AddNewModifier( caster, self, "modifier_huskar_fire_within_talent", {duration = duration + tDuration})
+			end
+			if not enemy:IsMinion() then
+				stacks = stacks + 1
+			end
 		end
 	end
 	if stacks > 0 then

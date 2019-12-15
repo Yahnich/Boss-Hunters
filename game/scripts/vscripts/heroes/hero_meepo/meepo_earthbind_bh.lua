@@ -53,7 +53,9 @@ function meepo_earthbind_bh:OnProjectileHit(hTarget, vLocation)
 		local enemies = caster:FindEnemyUnitsInRadius(vLocation, radius)
 		if #enemies > 0 then
 			for _,enemy in pairs(enemies) do
-				enemy:AddNewModifier(caster, self, "modifier_meepo_earthbind_bh", {Duration = duration})
+				if not enemy:TriggerSpellAbsorb(self) then
+					enemy:AddNewModifier(caster, self, "modifier_meepo_earthbind_bh", {Duration = duration})
+				end
 			end
 		else
 			CreateModifierThinker(caster, self, "modifier_meepo_earthbind_bh_net", {Duration = netDuration}, vLocation, caster:GetTeam(), false)
@@ -152,7 +154,9 @@ function modifier_meepo_earthbind_bh_net:OnRemoved()
 
 		local enemies = caster:FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self.radius)
 		for _,enemy in pairs(enemies) do
-			enemy:AddNewModifier(caster, self:GetAbility(), "modifier_meepo_earthbind_bh", {Duration = self.duration})
+			if not enemy:TriggerSpellAbsorb(self) then
+				enemy:AddNewModifier(caster, self:GetAbility(), "modifier_meepo_earthbind_bh", {Duration = self.duration})
+			end
 		end
 	end
 end

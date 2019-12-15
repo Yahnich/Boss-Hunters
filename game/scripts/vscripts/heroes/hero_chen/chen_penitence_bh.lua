@@ -24,7 +24,7 @@ end
 function chen_penitence_bh:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 
-	if hTarget ~= nil then
+	if hTarget ~= nil and not hTarget:TriggerSpellAbsorb( self ) then
 		EmitSoundOn("Hero_Chen.PenitenceImpact", self:GetCaster())
 		
 		ParticleManager:FireParticle("particles/units/heroes/hero_chen/chen_penitence.vpcf", PATTACH_POINT, hTarget, {})

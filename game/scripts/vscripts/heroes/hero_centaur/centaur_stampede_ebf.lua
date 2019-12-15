@@ -70,6 +70,7 @@ if IsServer() then
 	
 	function modifier_centaur_stampede_ebf:Trample(target)
 		local caster = self:GetCaster()
+		if target:TriggerSpellAbsorb( self:GetAbility() ) then return end
 		ParticleManager:FireParticle("particles/units/heroes/hero_life_stealer/life_stealer_open_wounds_impact_slash_splatter.vpcf", PATTACH_POINT_FOLLOW, target)
 		EmitSoundOn("Hero_Centaur.Stampede.Stun", target)
 		self:GetAbility():DealDamage( caster, target, self.damage )

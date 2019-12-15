@@ -57,7 +57,7 @@ function oracle_fortunes:OnProjectileHit_ExtraData(hTarget, vLocation, table)
     			if caster:HasTalent("special_bonus_unique_oracle_fortunes_1") then
     				unit:HealEvent(damage, self, caster, false)
     			end
-    		else
+    		elseif not unit:TriggerSpellAbsorb( self ) then
     			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_oracle/oracle_fortune_dmg.vpcf", PATTACH_POINT, caster)
 							ParticleManager:SetParticleControlEnt(nfx, 0, unit, PATTACH_POINT_FOLLOW, "attach_hitloc", unit:GetAbsOrigin(), true)
 							ParticleManager:SetParticleControlEnt(nfx, 1, unit, PATTACH_POINT_FOLLOW, "attach_hitloc", unit:GetAbsOrigin(), true)

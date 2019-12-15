@@ -50,13 +50,17 @@ function gyro_calldown:OnSpellStart()
 				ParticleManager:SetParticleControl(nfx, 3, point)
 				ParticleManager:SetParticleControl(nfx, 5, Vector(radius, 0, 0))
 				ParticleManager:ReleaseParticleIndex(nfx)
-
+	local spellBlockEnemy = {}
 	Timers:CreateTimer(2, function()
 		EmitSoundOnLocationWithCaster(point, "Hero_Gyrocopter.CallDown.Damage", caster)
 		local enemies = caster:FindEnemyUnitsInRadius(point, radius)
 		for _,enemy in pairs(enemies) do
-			enemy:AddNewModifier(caster, self, "modifier_gyro_calldown_slow", {Duration = self:GetTalentSpecialValueFor("duration_first")})
-			self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage_first"), {}, 0)
+			if not enemy:TriggerSpellAbsorb(self) then
+				enemy:AddNewModifier(caster, self, "modifier_gyro_calldown_slow", {Duration = self:GetTalentSpecialValueFor("duration_first")})
+				self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage_first"), {}, 0)
+			else
+				table.insert( spellBlockEnemy, enemy )
+			end
 		end
 	end)
 
@@ -71,8 +75,10 @@ function gyro_calldown:OnSpellStart()
 		EmitSoundOnLocationWithCaster(point, "Hero_Gyrocopter.CallDown.Damage", caster)
 		local enemies = caster:FindEnemyUnitsInRadius(point, radius)
 		for _,enemy in pairs(enemies) do
-			enemy:AddNewModifier(caster, self, "modifier_gyro_calldown_slow2", {Duration = self:GetTalentSpecialValueFor("duration_second")})
-			self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage_second"), {}, 0)
+			if not spellBlockEnemy[enemy] then
+				enemy:AddNewModifier(caster, self, "modifier_gyro_calldown_slow2", {Duration = self:GetTalentSpecialValueFor("duration_second")})
+				self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage_second"), {}, 0)
+			end
 		end
 	end)
 end

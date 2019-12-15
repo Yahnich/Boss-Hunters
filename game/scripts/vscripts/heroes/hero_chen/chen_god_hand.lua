@@ -36,8 +36,10 @@ function chen_god_hand:OnSpellStart()
 
 			local enemies = caster:FindEnemyUnitsInRadius(friend:GetAbsOrigin(), radius, {})
 			for _,enemy in pairs(enemies) do
-				local damage = caster:GetIntellect()*caster:FindTalentValue("special_bonus_unique_chen_god_hand_2")/100
-				self:DealDamage(caster, enemy, damage, {damage_type=DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_DAMAGE)
+				if not enemy:TriggerSpellAbsorb( self ) then
+					local damage = caster:GetIntellect()*caster:FindTalentValue("special_bonus_unique_chen_god_hand_2")/100
+					self:DealDamage(caster, enemy, damage, {damage_type=DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_DAMAGE)
+				end
 			end
 		end
 	end

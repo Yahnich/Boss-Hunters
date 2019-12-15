@@ -55,7 +55,7 @@ function mirana_starcall:StarFall( radius, damage, delay)
             ParticleManager:FireParticle("particles/units/heroes/hero_mirana/mirana_loadout.vpcf", PATTACH_POINT_FOLLOW, enemy, {[0]=enemy:GetAbsOrigin()})
             Timers:CreateTimer(0.57, function() --particle delay
                 EmitSoundOn("Ability.StarfallImpact", enemy)
-                self:DealDamage(caster, enemy, damage, {}, 0)
+                if not enemy:TriggerSpellAbsorb(self) then self:DealDamage(caster, enemy, damage, {}, 0) end
             end)
         end
     end)

@@ -55,9 +55,11 @@ function mag_polarity_2:OnSpellStart()
 	
 	local enemies = caster:FindEnemyUnitsInRadius(point, radius, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
     for _,enemy in pairs(enemies) do
-        ParticleManager:FireRopeParticle("particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_pull.vpcf", PATTACH_POINT, caster, enemy, {[0]=point, [1]=enemy:GetAbsOrigin()})
-        EmitSoundOn("Hero_Magnataur.ReversePolarity.Cast", enemy)
-        enemy:ApplyKnockBack(point, 0.1, 0.1, radius, 0, caster, self)
-        self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+		if not enemy:TriggerSpellAbsorb( self ) then
+			ParticleManager:FireRopeParticle("particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_pull.vpcf", PATTACH_POINT, caster, enemy, {[0]=point, [1]=enemy:GetAbsOrigin()})
+			EmitSoundOn("Hero_Magnataur.ReversePolarity.Cast", enemy)
+			enemy:ApplyKnockBack(point, 0.1, 0.1, radius, 0, caster, self)
+			self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+		end
     end
 end

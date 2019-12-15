@@ -17,7 +17,7 @@ function tusk_snow:OnSpellStart()
     local target = self:GetCursorTarget()
 
     EmitSoundOn("Hero_Tusk.Snowball.Cast", caster)
-
+	if target:TriggerSpellAbsorb( self ) then return end
     self:FireTrackingProjectile("particles/units/heroes/hero_tusk/tusk_snow_copy.vpcf", target, 1000, {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_2, false, true, 100)
     if caster:HasTalent("special_bonus_unique_tusk_snow_2") then
         self:Stun(target, caster:FindTalentValue("special_bonus_unique_tusk_snow_2"), false)

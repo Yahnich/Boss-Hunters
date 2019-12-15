@@ -35,10 +35,12 @@ function nyx_harden_carapace:OnSpellStart()
 		ParticleManager:FireParticle("particles/units/heroes/hero_nyx/nyx_harden_carapace_burrow/nyx_harden_carapace_burrow.vpcf", PATTACH_POINT, caster, {[0]=caster:GetAbsOrigin(), [1]=Vector(self:GetSpecialValueFor("carapace_radius"), 0, 0)})
 		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("carapace_radius"))
 		for _,enemy in pairs(enemies) do
-			ParticleManager:FireParticle("particles/units/heroes/hero_nyx/nyx_harden_carapace_hit/nyx_harden_carapace_hit.vpcf", PATTACH_POINT, caster, {[0]=enemy:GetAbsOrigin()})
-			self:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
-			local damage = caster:GetMaxHealth() * self:GetTalentSpecialValueFor("carapace_health")/100
-			self:DealDamage(caster, enemy, damage, {damage_type=DAMAGE_TYPE_PURE, damage_flags=DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, 0)
+			if not target:TriggerSpellAbsorb(self) then
+				ParticleManager:FireParticle("particles/units/heroes/hero_nyx/nyx_harden_carapace_hit/nyx_harden_carapace_hit.vpcf", PATTACH_POINT, caster, {[0]=enemy:GetAbsOrigin()})
+				self:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
+				local damage = caster:GetMaxHealth() * self:GetTalentSpecialValueFor("carapace_health")/100
+				self:DealDamage(caster, enemy, damage, {damage_type=DAMAGE_TYPE_PURE, damage_flags=DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, 0)
+			end
 		end
 	end
 end

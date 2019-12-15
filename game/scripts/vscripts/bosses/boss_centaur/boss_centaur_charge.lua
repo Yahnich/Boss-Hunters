@@ -54,9 +54,11 @@ if IsServer() then
 		local ability = self:GetAbility()
 		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), self.radius ) ) do
 			if not self.hitUnits[enemy] then
-				ability:Stun( enemy, self.duration )
-				ability:DealDamage( parent, enemy, self.damage )
-				enemy:EmitSound( "Hero_Centaur.Stampede.Stun" )
+				if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+					ability:Stun( enemy, self.duration )
+					ability:DealDamage( parent, enemy, self.damage )
+					enemy:EmitSound( "Hero_Centaur.Stampede.Stun" )
+				end
 				self.hitUnits[enemy] = true
 			end
 		end

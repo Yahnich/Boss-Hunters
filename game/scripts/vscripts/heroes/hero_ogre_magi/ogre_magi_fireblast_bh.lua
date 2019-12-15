@@ -28,19 +28,19 @@ end
 function ogre_magi_fireblast_bh:OnSpellStart()
 	EmitSoundOn("Hero_OgreMagi.Fireblast.Cast", self:GetCaster())
 
-	self:Fireblast()
+	self:Fireblast(self:GetCursorTarget())
 end
 
-function ogre_magi_fireblast_bh:Fireblast()
+function ogre_magi_fireblast_bh:Fireblast(target)
 	local caster = self:GetCaster()
-	local target = self:GetCursorTarget()
+	local target = target or self:GetCursorTarget()
 
 	EmitSoundOn("Hero_OgreMagi.Fireblast.Target", target)
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_ogre_magi/ogre_magi_fireblast.vpcf", PATTACH_POINT_FOLLOW, caster)
 				ParticleManager:SetParticleControlEnt(nfx, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 				ParticleManager:SetParticleControl(nfx, 1, target:GetAbsOrigin())
 				ParticleManager:ReleaseParticleIndex(nfx)
-
+	if target:TriggerSpellAbsorb(self) then return end
 	self:Stun(target, self:GetTalentSpecialValueFor("duration"), false)
 	self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {}, 0)
 end

@@ -13,7 +13,7 @@ function dazzle_shadow_wave_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	local prevTarget = caster
-	
+	if not target:TriggerSpellAbsorb(self) and not target:IsSameTeam( caster ) then
 	local delay = caster:FindTalentValue("special_bonus_unique_dazzle_shadow_wave_2", "delay")
 	local bounces = self:GetTalentSpecialValueFor("max_targets") - 1
 	local bounceRadius = self:GetTalentSpecialValueFor("bounce_radius")
@@ -54,7 +54,7 @@ function dazzle_shadow_wave_bh:ApplyEffects( target, fHealDamage, fRadius )
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), radius ) ) do
 			self:DealDamage( caster, enemy, healdamage )
 		end
-	else
+	elseif not enemy:TriggerSpellAbsorb(self) then
 		self:DealDamage( caster, target, healdamage )
 		for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( target:GetAbsOrigin(), radius ) ) do
 			ally:HealEvent( healdamage, self, caster )

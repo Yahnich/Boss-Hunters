@@ -49,7 +49,7 @@ local function SecondChoice(self, userid, event)
 	end
 	if relicList[1] then
 		local relic = relicList[RandomInt(1, #relicList)]
-		RelicManager:RemoveRelicOnPlayer(relic, event.pID)
+		RelicManager:RemoveRelicOnPlayer(relic.name, event.pID)
 		RelicManager:PushCustomRelicDropsForPlayer(event.pID, {RelicManager:RollRandomRelicForPlayer(event.pID)})
 	end
 	self._playerChoices[event.pID] = true

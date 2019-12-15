@@ -28,13 +28,13 @@ function tide_anchor:OnSpellStart()
     
     local enemies = caster:FindEnemyUnitsInRadius(point, radius, {})
     for _,enemy in pairs(enemies) do
-		caster:PerformAbilityAttack(enemy, true, ability, damage, false, false)
-        enemy:AddNewModifier(caster, self, "modifier_anchor", {Duration = self:GetTalentSpecialValueFor("duration")})
-    end
-
-    local enemies = caster:FindEnemyUnitsInRadius(point, radius/2, {})
-    for _,enemy in pairs(enemies) do
-        enemy:ApplyKnockBack(point, 200 / 600, 200 / 600, 200, 0, caster, self)
+		if not enemy:TriggerSpellAbsorb( self ) then
+			caster:PerformAbilityAttack(enemy, true, ability, damage, false, false)
+			enemy:AddNewModifier(caster, self, "modifier_anchor", {Duration = self:GetTalentSpecialValueFor("duration")})
+			if CalculateDistance( enemy, caster ) <= radius/2 then
+				 enemy:ApplyKnockBack(point, 200 / 600, 200 / 600, 200, 0, caster, self)
+			end
+		end
     end
 end
 

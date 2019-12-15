@@ -56,28 +56,33 @@ end
 
 function modifier_stasis_mine:OnIntervalThink()
 	local radius = self:GetTalentSpecialValueFor("stun_radius")
-
 	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), radius, {flag = self:GetAbility():GetAbilityTargetFlags()})
-	for _,enemy in pairs(enemies) do
-		StopSoundOn("Hero_Techies.StasisTrap.Plant", self:GetCaster())
-		EmitSoundOn("Hero_Techies.StasisTrap.Stun", self:GetParent())
+	if #enemies > 0 then
+		Timers:CreateTimer( 0.3, function()
+			for _,enemy in pairs(self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), radius, {flag = self:GetAbility():GetAbilityTargetFlags()})) do
+				if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+					StopSoundOn("Hero_Techies.StasisTrap.Plant", self:GetCaster())
+					EmitSoundOn("Hero_Techies.StasisTrap.Stun", self:GetParent())
 
-		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_techies/techies_stasis_trap_explode.vpcf", PATTACH_POINT, self:GetCaster())
-		ParticleManager:SetParticleControl(nfx, 0, self:GetParent():GetAbsOrigin())
-		ParticleManager:SetParticleControl(nfx, 1, Vector(radius, radius, radius))
-		ParticleManager:SetParticleControl(nfx, 3, self:GetParent():GetAbsOrigin())
-		Timers:CreateTimer(1, function()
-			ParticleManager:DestroyParticle(nfx, false)
+					enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_stasis_mine_root", {Duration = self:GetTalentSpecialValueFor("stun_duration")})
+
+					if self:GetCaster():HasTalent("special_bonus_unique_tech_stasis_mine_1") then
+						enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_stasis_mine_mr", {Duration = self:GetTalentSpecialValueFor("stun_duration")})
+					end
+				end
+				triggered = true
+			end
+			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_techies/techies_stasis_trap_explode.vpcf", PATTACH_POINT, self:GetCaster())
+				ParticleManager:SetParticleControl(nfx, 0, self:GetParent():GetAbsOrigin())
+				ParticleManager:SetParticleControl(nfx, 1, Vector(radius, radius, radius))
+				ParticleManager:SetParticleControl(nfx, 3, self:GetParent():GetAbsOrigin())
+				Timers:CreateTimer(1, function()
+					ParticleManager:DestroyParticle(nfx, false)
+				end)
+			self:GetParent():ForceKill(false)
+			self:Destroy()
 		end)
-
-		enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_stasis_mine_root", {Duration = self:GetTalentSpecialValueFor("stun_duration")})
-
-		if self:GetCaster():HasTalent("special_bonus_unique_tech_stasis_mine_1") then
-			enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_stasis_mine_mr", {Duration = self:GetTalentSpecialValueFor("stun_duration")})
-		end
-
-		self:GetParent():ForceKill(false)
-		self:Destroy()
+		self:StartIntervalThink(-1)
 	end
 end
 

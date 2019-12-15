@@ -187,7 +187,9 @@ function modifier_phenx_egg_form:OnRemoved()
 
             local enemies = caster:FindEnemyUnitsInRadius(egg:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
             for _,enemy in pairs(enemies) do
-                ability:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
+				if not enemy:TriggerSpellAbsorb( self ) then
+					ability:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
+				end
             end
         end
 

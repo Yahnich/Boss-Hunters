@@ -19,9 +19,9 @@ end
 
 function alchemist_midas_knuckle:OnSpellStart()
 	local target = self:GetCursorTarget()
-	
-	self:MidasKnuckle(target)
-	
+	if not target:TriggerSpellAbsorb(self) then
+		self:MidasKnuckle(target)
+	end
 	ParticleManager:ClearParticle(self.warmupFX)
 end
 

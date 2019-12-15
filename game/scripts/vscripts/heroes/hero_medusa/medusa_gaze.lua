@@ -86,7 +86,9 @@ function modifier_medusa_gaze_slow:OnCreated(table)
 		self:AttachEffect(nfx2)
 
 		if self:GetStackCount() > 99 then
-			self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_medusa_gaze_stun", {Duration = self:GetTalentSpecialValueFor("stone_duration")})
+			if not self:GetParent():TriggerSpellAbsorb(self:GetAbility()) then
+				self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_medusa_gaze_stun", {Duration = self:GetTalentSpecialValueFor("stone_duration")})
+			end
 			self:Destroy()
 		end
 		self:StartIntervalThink(0.33)
@@ -96,7 +98,9 @@ end
 function modifier_medusa_gaze_slow:OnRefresh(table)
 	if IsServer() then
 		if self:GetStackCount() > 99 then
-			self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_medusa_gaze_stun", {Duration = self:GetTalentSpecialValueFor("stone_duration")})
+			if not self:GetParent():TriggerSpellAbsorb(self:GetAbility()) then
+				self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_medusa_gaze_stun", {Duration = self:GetTalentSpecialValueFor("stone_duration")})
+			end
 			self:Destroy()
 		end
 	end
@@ -105,7 +109,9 @@ end
 function modifier_medusa_gaze_slow:OnIntervalThink()
 	if IsServer() then
 		if self:GetStackCount() > 99 then
-			self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_medusa_gaze_stun", {Duration = self:GetTalentSpecialValueFor("stone_duration")})
+			if not self:GetParent():TriggerSpellAbsorb(self:GetAbility()) then
+				self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_medusa_gaze_stun", {Duration = self:GetTalentSpecialValueFor("stone_duration")})
+			end
 			self:Destroy()
 		end
 	end

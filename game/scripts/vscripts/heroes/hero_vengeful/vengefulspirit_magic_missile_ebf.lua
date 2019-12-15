@@ -46,7 +46,7 @@ function vengefulspirit_magic_missile_ebf:OnSpellStart()
 end
 
 function vengefulspirit_magic_missile_ebf:OnProjectileHit(hTarget, vLocation)
-	if hTarget ~= nil then
+	if hTarget ~= nil and not hTarget:TriggerSpellAbsorb( self ) then
 		EmitSoundOn("Hero_VengefulSpirit.MagicMissile", hTarget)
 		self:Stun(hTarget, self:GetTalentSpecialValueFor("stun_duration"), false)
 		self:DealDamage(self:GetCaster(), hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)

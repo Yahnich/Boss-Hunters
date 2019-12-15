@@ -29,29 +29,31 @@ function axe_ground_pound:OnSpellStart()
 	local dunkSuccess = false
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
-			if not enemy:IsTaunted() then
-				enemy:ApplyKnockBack(caster:GetAbsOrigin(), 0.75, 0.5, 0, 100, caster, self)
-			else
-				enemy:Daze(self, caster, self:GetTalentSpecialValueFor("daze_duration"))
-			end
-			if enemy:GetHealth() <= kill_threshold then
-				local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf", PATTACH_POINT, caster)
-				ParticleManager:SetParticleControl(nfx,4, enemy:GetAbsOrigin())
-				ParticleManager:ReleaseParticleIndex(nfx)
+			if not enemy:TriggerSpellAbsorb(self) then
+				if not enemy:IsTaunted() then
+					enemy:ApplyKnockBack(caster:GetAbsOrigin(), 0.75, 0.5, 0, 100, caster, self)
+				else
+					enemy:Daze(self, caster, self:GetTalentSpecialValueFor("daze_duration"))
+				end
+				if enemy:GetHealth() <= kill_threshold then
+					local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf", PATTACH_POINT, caster)
+					ParticleManager:SetParticleControl(nfx,4, enemy:GetAbsOrigin())
+					ParticleManager:ReleaseParticleIndex(nfx)
 
-				enemy:AttemptKill(self, caster)
-				dunkSuccess = true
-				
-				local nfx2 = ParticleManager:CreateParticle("particles/units/heroes/hero_axe/axe_culling_blade_boost.vpcf", PATTACH_POINT_FOLLOW, caster)
-				ParticleManager:SetParticleControlEnt(nfx2, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
-				ParticleManager:SetParticleControl(nfx2, 1, caster:GetAbsOrigin())
-				ParticleManager:ReleaseParticleIndex(nfx2)
+					enemy:AttemptKill(self, caster)
+					dunkSuccess = true
+					
+					local nfx2 = ParticleManager:CreateParticle("particles/units/heroes/hero_axe/axe_culling_blade_boost.vpcf", PATTACH_POINT_FOLLOW, caster)
+					ParticleManager:SetParticleControlEnt(nfx2, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
+					ParticleManager:SetParticleControl(nfx2, 1, caster:GetAbsOrigin())
+					ParticleManager:ReleaseParticleIndex(nfx2)
 
-				self:EndCooldown()
-			else
-				ParticleManager:FireParticle("particles/units/heroes/hero_axe/axe_culling_blade.vpcf", PATTACH_POINT_FOLLOW, enemy)
-				EmitSoundOn("Hero_Axe.Culling_Blade_Fail", enemy)
-				self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+					self:EndCooldown()
+				else
+					ParticleManager:FireParticle("particles/units/heroes/hero_axe/axe_culling_blade.vpcf", PATTACH_POINT_FOLLOW, enemy)
+					EmitSoundOn("Hero_Axe.Culling_Blade_Fail", enemy)
+					self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+				end
 			end
 		end
 	else

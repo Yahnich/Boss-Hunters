@@ -8,7 +8,7 @@ end
 function bane_fiends_grip_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	
+	if target:TriggerSpellAbsorb(self) then return end
 	target:AddNewModifier(caster, self, "modifier_bane_fiends_grip_ebf", {duration = self:GetTalentSpecialValueFor("fiend_grip_duration")})
 	caster:AddNewModifier(caster, self, "modifier_bane_fiends_grip_ebf_channel", {duration = self:GetTalentSpecialValueFor("fiend_grip_duration")})
 end
@@ -26,15 +26,15 @@ function modifier_bane_fiends_grip_ebf_channel:DeclareFunctions()
 			}
 end
 
-function modifier_bane_fiends_grip_ebf_channel:OnAttackStart(params)
-	if params.target == self:GetParent() and params.target:HasScepter() then
-		local nightmare = params.target:FindAbilityByName("bane_nightmare_prison")
-		if nightmare:GetLevel() > 0 then
-			params.target:SetCursorCastTarget( params.attacker )
-			nightmare:OnSpellStart()
-		end
-	end
-end
+-- function modifier_bane_fiends_grip_ebf_channel:OnAttackStart(params)
+	-- if params.target == self:GetParent() and params.target:HasScepter() then
+		-- local nightmare = params.target:FindAbilityByName("bane_nightmare_prison")
+		-- if nightmare:GetLevel() > 0 then
+			-- params.target:SetCursorCastTarget( params.attacker )
+			-- nightmare:OnSpellStart()
+		-- end
+	-- end
+-- end
 
 function modifier_bane_fiends_grip_ebf_channel:GetOverrideAnimation()
 	return ACT_DOTA_CHANNEL_ABILITY_4
@@ -98,7 +98,7 @@ function modifier_bane_fiends_grip_ebf:DeclareFunctions()
 end
 
 function modifier_bane_fiends_grip_ebf:GetModifierIncomingDamage_Percentage()
-	return 5
+	return 8
 end
 
 function modifier_bane_fiends_grip_ebf:GetOverrideAnimation()

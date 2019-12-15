@@ -8,20 +8,27 @@ function earthshaker_fissure_ebf:IsHiddenWhenStolen()
 	return false
 end
 
-function earthshaker_fissure_ebf:GetCastRange( target, position)
+function earthshaker_fissure_ebf:IsVectorTargeting()
+	return true
+end
+
+function earthshaker_fissure_ebf:GetVectorTargetRange()
 	return self:GetTalentSpecialValueFor("fissure_range")
 end
-	
-function earthshaker_fissure_ebf:OnSpellStart()
+
+function earthshaker_fissure_ebf:GetVectorTargetStartRadius()
+	return self:GetTalentSpecialValueFor("fissure_radius")
+end
+
+function earthshaker_fissure_ebf:OnVectorCastStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorPosition()
 	
 	local fissureDuration = self:GetTalentSpecialValueFor("fissure_duration")
 	local damage = self:GetTalentSpecialValueFor("damage")
 	local stunDuration = self:GetTalentSpecialValueFor("stun_duration")
-	local direction = CalculateDirection( target, caster )
 	
-	local psoList = self:LaunchFissure(caster:GetAbsOrigin(), direction, fissureDuration, damage, stunDuration)
+	local psoList = self:LaunchFissure(self:GetVectorPosition(), self:GetVectorDirection(), fissureDuration, damage, stunDuration)
 	Timers:CreateTimer(fissureDuration, function()
 		for _, entity in pairs(psoList) do
 			if not entity:IsNull() then	UTIL_Remove(entity) end
@@ -43,7 +50,7 @@ PSO_RADIUS = 128
 function earthshaker_fissure_ebf:LaunchFissure(position, direction, fissureDuration, damage, stunDuration)
 	local deleteTable = {}
 	local caster = self:GetCaster()
-	local count = math.ceil( self:GetTrueCastRange() / PSO_RADIUS )
+	local count = math.ceil( self:GetVectorTargetRange() / PSO_RADIUS )
 	local psoPos = position
 	
 	local posTable = {}
@@ -57,15 +64,17 @@ function earthshaker_fissure_ebf:LaunchFissure(position, direction, fissureDurat
 	local echo = caster:FindAbilityByName("earthshaker_echo_slam_ebf")
 	local radius = self:GetTalentSpecialValueFor("fissure_radius")
 	for _, enemy in ipairs( caster:FindEnemyUnitsInLine(position, psoPos, radius ) ) do
-		FindClearSpaceForUnit(caster, caster:GetAbsOrigin(), true)
-		self:DealDamage(caster, enemy, damage)
-		self:Stun(enemy, stunDuration, false)
-		if caster:HasTalent("special_bonus_unique_earthshaker_fissure_ebf_1") then
-			aftershock:Aftershock( enemy:GetAbsOrigin(),  radius)
+		if not enemy:TriggerSpellAbsorb(self) then
+			FindClearSpaceForUnit(caster, caster:GetAbsOrigin(), true)
+			self:DealDamage(caster, enemy, damage)
+			self:Stun(enemy, stunDuration, false)
+			if caster:HasTalent("special_bonus_unique_earthshaker_fissure_ebf_1") then
+				aftershock:Aftershock( enemy:GetAbsOrigin(),  radius)
+			end
 		end
 	end
 	if caster:HasTalent("special_bonus_unique_earthshaker_fissure_ebf_2") then	
-		for _, enemy in ipairs( caster:FindEnemyUnitsInLine(position, psoPos, 500 or caster:FindTalentValue("special_bonus_unique_earthshaker_fissure_ebf_2", "radius") ) ) do
+		for _, enemy in ipairs( caster:FindEnemyUnitsInLine(position, psoPos, caster:FindTalentValue("special_bonus_unique_earthshaker_fissure_ebf_2", "radius") ) ) do
 			local enemyVector = CalculateDirection( enemy, position )
 			local angle = math.acos( enemyVector:Dot(direction) )
 			local fissureDirection = (GetPerpendicularVector( direction ) * -enemyVector:Cross(direction).z):Normalized()

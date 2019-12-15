@@ -38,7 +38,7 @@ function rubick_lift:OnSpellStart()
 	
 	EmitSoundOn("Hero_Rubick.Telekinesis.Cast", caster)
 	EmitSoundOn("Hero_Rubick.Telekinesis.Target", target)
-
+	if target:TriggerSpellAbsorb( self ) then return end
 	target:AddNewModifier(caster, self, "modifier_rubick_lift", {Duration = lift_duration})
 
 	if target:GetTeam() == caster:GetTeam() then

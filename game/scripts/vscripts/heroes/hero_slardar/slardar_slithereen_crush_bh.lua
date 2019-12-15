@@ -31,11 +31,13 @@ function slardar_slithereen_crush_bh:OnSpellStart(bForced)
 		
 		local haze = caster:FindAbilityByName("slardar_amplify_damage_bh")
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
-			self:DealDamage( caster, enemy, damage )
-			self:Stun(enemy, stunDur)
-			enemy:AddNewModifier( caster, self, "modifier_slardar_slithereen_crush_bh", {duration = stunDur + slowDur} )
-			if caster:HasScepter() and haze then
-				haze:ApplyHaze( enemy )
+			if enemy:TriggerSpellAbsorb( self ) then
+				self:DealDamage( caster, enemy, damage )
+				self:Stun(enemy, stunDur)
+				enemy:AddNewModifier( caster, self, "modifier_slardar_slithereen_crush_bh", {duration = stunDur + slowDur} )
+				if caster:HasScepter() and haze then
+					haze:ApplyHaze( enemy )
+				end
 			end
 		end
 		

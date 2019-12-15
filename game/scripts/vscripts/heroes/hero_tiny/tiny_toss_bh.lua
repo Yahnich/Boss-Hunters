@@ -33,9 +33,11 @@ function tiny_toss_bh:OnSpellStart()
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:GetAttackRange())
 	for _,enemy in pairs(enemies) do
 		if not enemy:HasModifier("modifier_tiny_toss_bh") then
-			target = enemy
-			EmitSoundOn("Hero_Tiny.Toss.Target", enemy)
-	  		enemy:AddNewModifier(caster, self, "modifier_tiny_toss_bh", {Duration = duration})
+			if not enemy:TriggerSpellAbsorb( self ) then
+				target = enemy
+				EmitSoundOn("Hero_Tiny.Toss.Target", enemy)
+				enemy:AddNewModifier(caster, self, "modifier_tiny_toss_bh", {Duration = duration})
+			end
 	  		break
 	  	end
 	end 
@@ -83,10 +85,12 @@ function modifier_tiny_toss_bh:OnRemoved()
 		local radius = self:GetTalentSpecialValueFor("radius")
 		local enemies = self:GetCaster():FindEnemyUnitsInRadius(parentPos, radius)
 		for _,enemy in pairs(enemies) do
-			if self:GetCaster():HasScepter() then
-				self:GetAbility():Stun(enemy, 1, false)
+			if not enemy:TriggerSpellAbsorb( self ) then
+				if self:GetCaster():HasScepter() then
+					self:GetAbility():Stun(enemy, 1, false)
+				end
+				ability:DealDamage(self:GetCaster(), enemy, damage, {}, 0)
 			end
-			ability:DealDamage(self:GetCaster(), enemy, damage, {}, 0)
 		end
 		self:StopMotionController()
 	end
@@ -174,10 +178,12 @@ function modifier_tiny_toss_bh_rock:OnRemoved()
 		local radius = self:GetTalentSpecialValueFor("radius")
 		local enemies = self:GetCaster():FindEnemyUnitsInRadius(parentPos, radius)
 		for _,enemy in pairs(enemies) do
-			if self:GetCaster():HasScepter() then
-				enemy:ApplyKnockBack(parentPos, 0.25, 0.25, radius, 350, self:GetCaster(), self:GetAbility())
+			if not enemy:TriggerSpellAbsorb( self ) then
+				if self:GetCaster():HasScepter() then
+					enemy:ApplyKnockBack(parentPos, 0.25, 0.25, radius, 350, self:GetCaster(), self:GetAbility())
+				end
+				ability:DealDamage(self:GetCaster(), enemy, damage, {}, 0)
 			end
-			ability:DealDamage(self:GetCaster(), enemy, damage, {}, 0)
 		end
 		
 		self:StopMotionController()

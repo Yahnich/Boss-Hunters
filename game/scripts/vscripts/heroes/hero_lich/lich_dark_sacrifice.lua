@@ -19,7 +19,7 @@ end
 function lich_dark_sacrifice:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	
+	if target:TriggerSpellAbsorb( self ) then return end
 	local hpPct = self:GetTalentSpecialValueFor("curr_health_dmg") / 100
 	local convHp = self:GetTalentSpecialValueFor("health_conversion") / 100
 	local duration = self:GetTalentSpecialValueFor("duration")

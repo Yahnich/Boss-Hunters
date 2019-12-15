@@ -1,5 +1,9 @@
 queenofpain_scream_of_pain_bh = class({})
 
+function queenofpain_scream_of_pain_bh:GetCastRange( target, position )
+	return self:GetTalentSpecialValueFor("area_of_effect")
+end
+
 function queenofpain_scream_of_pain_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
@@ -13,15 +17,13 @@ function queenofpain_scream_of_pain_bh:OnSpellStart()
 end
 
 function queenofpain_scream_of_pain_bh:OnProjectileHit( target, position )
-	if target then
+	if target and not target:TriggerSpellAbsorb( self ) then
 		local caster = self:GetCaster()
 		local damage = self:DealDamage( caster, target )
-		if caster:HasTalent("special_bonus_unique_queenofpain_scream_of_pain_1") then
-			local heal = caster:FindTalentValue("special_bonus_unique_queenofpain_scream_of_pain_1")
-			if not target:IsRoundNecessary() then
-				heal = caster:FindTalentValue("special_bonus_unique_queenofpain_scream_of_pain_1", "value2" )
+		if caster:HasTalent("special_bonus_unique_queenofpain_scream_of_pain_1") and not self:IsCooldownReady() then
+			if not target:IsAlive() then
+				self:Refresh()
 			end
-			caster:HealEvent( damage * heal / 100, self, caster )
 		end
 		if caster:HasTalent("special_bonus_unique_queenofpain_scream_of_pain_2") then
 			target:AddNewModifier( caster, self, "modifier_queenofpain_scream_of_pain_bh_talent", {duration = caster:FindTalentValue("special_bonus_unique_queenofpain_scream_of_pain_2", "duration" )})

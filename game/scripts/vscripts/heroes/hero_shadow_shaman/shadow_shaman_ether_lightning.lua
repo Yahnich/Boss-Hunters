@@ -19,15 +19,16 @@ function shadow_shaman_ether_lightning:OnSpellStart()
 	ParticleManager:SetParticleControl(lightningBolt,0,Vector(hCaster:GetAbsOrigin().x,hCaster:GetAbsOrigin().y,hCaster:GetAbsOrigin().z + hCaster:GetBoundingMaxs().z ))	
 	ParticleManager:SetParticleControl(lightningBolt,1,Vector(hTarget:GetAbsOrigin().x,hTarget:GetAbsOrigin().y,hTarget:GetAbsOrigin().z + hTarget:GetBoundingMaxs().z ))
 	ParticleManager:ReleaseParticleIndex(lightningBolt)
-	
-	local mainDmg = ApplyDamage({ victim = hTarget, attacker = hCaster, damage = damage, damage_type = damage_type, ability = self})
-	if hCaster:HasTalent("special_bonus_unique_shadow_shaman_ether_lightning_1") then -- stun
-		self:Stun(hTarget, hCaster:FindTalentValue("special_bonus_unique_shadow_shaman_ether_lightning_1"), false)
+	if not target:TriggerSpellAbsorb( self ) then
+		local mainDmg = ApplyDamage({ victim = hTarget, attacker = hCaster, damage = damage, damage_type = damage_type, ability = self})
+		if hCaster:HasTalent("special_bonus_unique_shadow_shaman_ether_lightning_1") then -- stun
+			self:Stun(hTarget, hCaster:FindTalentValue("special_bonus_unique_shadow_shaman_ether_lightning_1"), false)
+		end
+		if hCaster:HasTalent("special_bonus_unique_shadow_shaman_ether_lightning_2") then -- spellvamp
+			hCaster:HealEvent(mainDmg * hCaster:FindTalentValue("special_bonus_unique_shadow_shaman_ether_lightning_2") / 100, self, hCaster)
+		end
+		hTarget:EmitSound("Hero_ShadowShaman.EtherShock.Target")
 	end
-	if hCaster:HasTalent("special_bonus_unique_shadow_shaman_ether_lightning_2") then -- spellvamp
-		hCaster:HealEvent(mainDmg * hCaster:FindTalentValue("special_bonus_unique_shadow_shaman_ether_lightning_2") / 100, self, hCaster)
-	end
-	hTarget:EmitSound("Hero_ShadowShaman.EtherShock.Target")
 	table.insert(zappedTargets, hTarget)
 	
 	local cone_units = FindUnitsInCone(hCaster:GetTeamNumber(), CalculateDirection(hTarget, hCaster), hCaster:GetAbsOrigin(), end_radius, start_radius + end_distance + end_radius, nil, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, FIND_CLOSEST, 0, false)
@@ -42,13 +43,15 @@ function shadow_shaman_ether_lightning:OnSpellStart()
 				ParticleManager:SetParticleControl(lightningBolt,1,Vector(origin.x,origin.y,origin.z + unit:GetBoundingMaxs().z ))
 				ParticleManager:ReleaseParticleIndex(lightningBolt)
 				-- Damage
-				local damage = ApplyDamage({ victim = unit, attacker = hCaster, damage = damage, damage_type = damage_type, ability = self})
-				hTarget:EmitSound("Hero_ShadowShaman.EtherShock.Target")
-				if hCaster:HasTalent("special_bonus_unique_shadow_shaman_ether_lightning_1") then -- stun
-					self:Stun(unit, hCaster:FindTalentValue("special_bonus_unique_shadow_shaman_ether_lightning_1"), false)
-				end
-				if hCaster:HasTalent("special_bonus_unique_shadow_shaman_ether_lightning_2") then -- spellvamp
-					hCaster:HealEvent(damage * hCaster:FindTalentValue("special_bonus_unique_shadow_shaman_ether_lightning_2") / 100, self, hCaster)
+				if not unit:TriggerSpellAbsorb( self ) then
+					local damage = ApplyDamage({ victim = unit, attacker = hCaster, damage = damage, damage_type = damage_type, ability = self})
+					hTarget:EmitSound("Hero_ShadowShaman.EtherShock.Target")
+					if hCaster:HasTalent("special_bonus_unique_shadow_shaman_ether_lightning_1") then -- stun
+						self:Stun(unit, hCaster:FindTalentValue("special_bonus_unique_shadow_shaman_ether_lightning_1"), false)
+					end
+					if hCaster:HasTalent("special_bonus_unique_shadow_shaman_ether_lightning_2") then -- spellvamp
+						hCaster:HealEvent(damage * hCaster:FindTalentValue("special_bonus_unique_shadow_shaman_ether_lightning_2") / 100, self, hCaster)
+					end
 				end
 				-- Increment counter
 				
@@ -85,7 +88,9 @@ function shadow_shaman_ether_lightning:OnSpellStart()
 						ParticleManager:SetParticleControl(lightningBolt,1,Vector(origin.x,origin.y,origin.z + zapTarget:GetBoundingMaxs().z ))
 						ParticleManager:ReleaseParticleIndex(lightningBolt)
 						-- Damage
-						ApplyDamage({ victim = zapTarget, attacker = hCaster, damage = damage, damage_type = damage_type, ability = self})
+						if not unit:TriggerSpellAbsorb( self ) then
+							ApplyDamage({ victim = zapTarget, attacker = hCaster, damage = damage, damage_type = damage_type, ability = self})
+						end
 						hTarget:EmitSound("Hero_ShadowShaman.EtherShock.Target")
 
 						-- Increment counter

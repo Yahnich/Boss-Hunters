@@ -25,7 +25,7 @@ function shadow_shaman_binding_shackle:OnSpellStart()
 	
 	if hTarget:IsIllusion() then
 		hTarget:ForceKill(true)
-	else
+	elseif not hTarget:TriggerSpellAbsorb( self ) then
 		hTarget:AddNewModifier(hCaster, self, "modifier_shadow_shaman_bound_shackles", {duration = self:GetTalentSpecialValueFor("channel_time")})
 	end
 	
@@ -34,7 +34,7 @@ function shadow_shaman_binding_shackle:OnSpellStart()
 			if enemy ~= hTarget then
 				if enemy:IsIllusion() then
 					enemy:ForceKill(true)
-				else
+				elseif not hTarget:TriggerSpellAbsorb( self ) then
 					enemy:AddNewModifier(hCaster, self, "modifier_shadow_shaman_bound_shackles", {duration = self:GetTalentSpecialValueFor("channel_time"), origin = hTarget:entindex() })
 				end
 				break

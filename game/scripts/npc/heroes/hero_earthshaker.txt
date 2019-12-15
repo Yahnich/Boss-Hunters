@@ -20,7 +20,7 @@
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1400"
+		"AbilityCastRange"				"400"
 		"AbilityCastPoint"				"0.69 0.69 0.69 0.69"
 
 		// Time		
@@ -435,6 +435,12 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"scepter_cd_reduction"		"-1"
+			}
+			
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"search_radius"				"600"
 			}
 		}
 	}

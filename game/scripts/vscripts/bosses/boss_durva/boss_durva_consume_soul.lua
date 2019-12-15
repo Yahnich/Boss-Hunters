@@ -15,7 +15,7 @@ function boss_durva_consume_soul:OnSpellStart()
 end
 
 function boss_durva_consume_soul:OnProjectileHit( target, position )
-	if target then
+	if target and not target:TriggerSpellAbsorb( self ) then
 		local caster = self:GetCaster()
 		
 		EmitSoundOn( "Hero_Bane.BrainSap.Target", target )

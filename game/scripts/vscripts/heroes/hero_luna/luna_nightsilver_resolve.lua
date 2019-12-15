@@ -47,7 +47,7 @@ if IsServer() then
 			if hTarget:IsSameTeam( caster ) then
 				hTarget:HealEvent( self.spear_damage, self, caster )
 				hTarget:AddNewModifier(caster, self, "modifier_luna_nightsilver_resolve_strengthen", {duration = self:GetSpecialValueFor("weaken_duration")})
-			else
+			elseif not hTarget:TriggerSpellAbsorb( self ) then
 				local damage = {
 					victim = hTarget,
 					attacker = self:GetCaster(),

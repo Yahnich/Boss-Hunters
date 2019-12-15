@@ -20,8 +20,10 @@ function crystal_maiden_crystal_nova_bh:OnSpellStart()
 	local radius = self:GetTalentSpecialValueFor("radius")
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-		self:DealDamage( caster, enemy, damage )
-		enemy:AddChill(self, caster, cDur, chill)
+		if not enemy:TriggerSpellAbsorb(self) then
+			self:DealDamage( caster, enemy, damage )
+			enemy:AddChill(self, caster, cDur, chill)
+		end
 	end
 	
 	ParticleManager:FireParticle("particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf", PATTACH_WORLDORIGIN, nil, { [0] = position, [1] = Vector(radius,1,1) })

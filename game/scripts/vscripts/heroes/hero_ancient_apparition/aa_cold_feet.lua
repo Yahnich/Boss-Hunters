@@ -12,7 +12,9 @@ function aa_cold_feet:OnSpellStart()
 	if caster:HasTalent("special_bonus_unique_aa_cold_feet_1") then
 		local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_aa_cold_feet_1"))
 		for _,enemy in pairs(enemies) do
-			enemy:AddNewModifier(caster, self, "modifier_aa_cold_feet", {Duration = self:GetTalentSpecialValueFor("duration")})
+			if not enemy:TriggerSpellAbsorb(self) then
+				enemy:AddNewModifier(caster, self, "modifier_aa_cold_feet", {Duration = self:GetTalentSpecialValueFor("duration")})
+			end
 		end
 	end
 end

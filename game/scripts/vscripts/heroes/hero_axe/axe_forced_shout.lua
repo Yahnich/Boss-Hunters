@@ -25,11 +25,13 @@ function axe_forced_shout:OnSpellStart()
 	
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
 	for _,enemy in pairs(enemies) do
-		if caster:IsAlive() and enemy then
-        	enemy:Taunt(self,caster,self:GetTalentSpecialValueFor("duration"))
-        else
-            enemy:Stop()
-        end
+		if not enemy:TriggerSpellAbsorb(self) then
+			if caster:IsAlive() and enemy then
+				enemy:Taunt(self,caster,self:GetTalentSpecialValueFor("duration"))
+			else
+				enemy:Stop()
+			end
+		end
 	end
 	caster:AddNewModifier(caster,self,"modifier_forced_shout",{Duration = self:GetTalentSpecialValueFor("duration")})
 

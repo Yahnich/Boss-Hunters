@@ -52,6 +52,7 @@ function arc_warden_spark_wrath_bh:OnProjectileHit( target, location )
 	local caster = self:GetCaster()
 
 	if target then
+		if target:TriggerSpellAbsorb(self) then return end
 		EmitSoundOn("Hero_ArcWarden.SparkWraith.Damage", target)
 		--self:Stun(target, self:GetTalentSpecialValueFor("ministun_duration"))
 		target:Paralyze(self, caster, self:GetTalentSpecialValueFor("ministun_duration"))

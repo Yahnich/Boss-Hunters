@@ -21,6 +21,7 @@ function tusk_kick:OnSpellStart()
 	local distance = TernaryOperator( 0, caster:HasScepter(), self:GetTalentSpecialValueFor("push_length") )
 	local height = TernaryOperator( 600, caster:HasScepter(), 100 )
     ParticleManager:FireParticle("particles/units/heroes/hero_tusk/tusk_walruskick_txt_ult.vpcf", PATTACH_POINT, target, {[2]=target:GetAbsOrigin()})
+	if target:TriggerSpellAbsorb( self ) then return end
     target:ApplyKnockBack(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("air_time"), self:GetTalentSpecialValueFor("air_time"), distance, height, caster, self)
     target:AddNewModifier(caster, self, "modifier_tusk_kick", {Duration = self:GetTalentSpecialValueFor("air_time")})
     local damage = caster:GetAttackDamage() * self:GetTalentSpecialValueFor("damage")/100

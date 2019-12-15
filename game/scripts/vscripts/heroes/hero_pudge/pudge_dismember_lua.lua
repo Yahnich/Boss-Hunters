@@ -66,13 +66,15 @@ function pudge_dismember_lua:OnChannelThink(flInterval)
 			caster:AddNewModifier(caster, fleshheap, "modifier_pudge_flesh_heap_lua_effect", {Duration = fleshheap:GetTalentSpecialValueFor("duration")}):AddIndependentStack(fleshheap:GetTalentSpecialValueFor("duration"))
 		end
 		for _,enemy in pairs(enemies) do
-			if not enemy:HasModifier("modifier_pudge_dismember_lua") then
-				enemy:AddNewModifier(caster, self, "modifier_pudge_dismember_lua", {duration = self:GetTalentSpecialValueFor("duration")})
+			if not enemy:TriggerSpellAbsorb( self ) then
+				if not enemy:HasModifier("modifier_pudge_dismember_lua") then
+					enemy:AddNewModifier(caster, self, "modifier_pudge_dismember_lua", {duration = self:GetTalentSpecialValueFor("duration")})
+				end
+				local damage = self:GetTalentSpecialValueFor("damage") + self:GetTalentSpecialValueFor("str_damage")/100 * caster:GetStrength()
+				damage = damage * 0.25
+				caster:Lifesteal(self, self:GetTalentSpecialValueFor("heal_pct"), damage, enemy, self:GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY, false)
+				self.enemyCheck = true
 			end
-			local damage = self:GetTalentSpecialValueFor("damage") + self:GetTalentSpecialValueFor("str_damage")/100 * caster:GetStrength()
-			damage = damage * 0.25
-			caster:Lifesteal(self, self:GetTalentSpecialValueFor("heal_pct"), damage, enemy, self:GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY, false)
-			self.enemyCheck = true
 		end
 
 		self.counter = 0

@@ -45,16 +45,18 @@ function beast_roar:OnSpellStart()
 	local units = caster:FindAllUnitsInLine(caster:GetAbsOrigin(), point, self:GetTalentSpecialValueFor("width"), {})
 	for _, unit in pairs(units) do
 		if not unit:IsSameTeam( caster ) then
-			self:DealDamage(caster, unit, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-			unit:ApplyKnockBack(caster:GetAbsOrigin(), pushDur, pushDur, pushDist, 0, caster, self)
-			Timers:CreateTimer( pushDur, function()
-				self:Stun(unit, stunDur, 0)
-			end)
-			unit:AddNewModifier(caster, self, "modifier_roar_slow", {Duration = totDur})
-			if caster:HasTalent("special_bonus_unique_beast_roar_2") then
-				unit:Daze(self, caster, totDur )
+			if unit:TriggerSpellAbsorb(self) then
+				self:DealDamage(caster, unit, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+				unit:ApplyKnockBack(caster:GetAbsOrigin(), pushDur, pushDur, pushDist, 0, caster, self)
+				Timers:CreateTimer( pushDur, function()
+					self:Stun(unit, stunDur, 0)
+				end)
+				unit:AddNewModifier(caster, self, "modifier_roar_slow", {Duration = totDur})
+				if caster:HasTalent("special_bonus_unique_beast_roar_2") then
+					unit:Daze(self, caster, totDur )
+				end
 			end
-		else
+		elseif self:GetCaster():HasModifier("modifier_cotw_hawk_spirit") then
 			unit:HealEvent( damage, nil, caster )
 		end
 	end

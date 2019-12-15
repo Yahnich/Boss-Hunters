@@ -242,18 +242,19 @@ function modifier_wisp_spirits_bh_wisp:OnIntervalThink()
 		if not self.hitUnits[enemy:entindex()] and enemy:IsMinion() then
 
 			EmitSoundOn("Hero_Wisp.Spirits.TargetCreep", parent)
+			if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+				if RollPercentage(50) then
+					local nfx2 = ParticleManager:CreateParticle("particles/units/heroes/hero_wisp/wisp_guardian_explosion_small.vpcf", PATTACH_POINT_FOLLOW, parent)
+								 ParticleManager:SetParticleControlEnt(nfx2, 0, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
+								 ParticleManager:ReleaseParticleIndex(nfx2)
+				else
+					local nfx2 = ParticleManager:CreateParticle("particles/units/heroes/hero_wisp/wisp_guardian_explosion_small.vpcf", PATTACH_POINT, caster)
+								 ParticleManager:SetParticleControlEnt(nfx2, 0, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
+								 ParticleManager:ReleaseParticleIndex(nfx2)
+				end
 
-			if RollPercentage(50) then
-				local nfx2 = ParticleManager:CreateParticle("particles/units/heroes/hero_wisp/wisp_guardian_explosion_small.vpcf", PATTACH_POINT_FOLLOW, parent)
-						 	 ParticleManager:SetParticleControlEnt(nfx2, 0, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
-						 	 ParticleManager:ReleaseParticleIndex(nfx2)
-			else
-				local nfx2 = ParticleManager:CreateParticle("particles/units/heroes/hero_wisp/wisp_guardian_explosion_small.vpcf", PATTACH_POINT, caster)
-						 	 ParticleManager:SetParticleControlEnt(nfx2, 0, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
-						 	 ParticleManager:ReleaseParticleIndex(nfx2)
+				self:GetAbility():DealDamage(caster, enemy, self.collisionDamage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
 			end
-
-			self:GetAbility():DealDamage(caster, enemy, self.collisionDamage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
 			self.hitUnits[enemy:entindex()] = true
 		else
 			parent:ForceKill(false)
@@ -307,9 +308,10 @@ function modifier_wisp_spirits_bh_wisp:OnRemoved()
 		local slow = self:GetTalentSpecialValueFor("slow_duration")
 		local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.endRadius)
 		for _,enemy in pairs(enemies) do
-			
-			enemy:Paralyze(self:GetAbility(), caster, slow)
-			self:GetAbility():DealDamage(caster, enemy, self.endDamage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+				enemy:Paralyze(self:GetAbility(), caster, slow)
+				self:GetAbility():DealDamage(caster, enemy, self.endDamage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			end
 		end
 		if caster:HasModifier("modifier_wisp_spirits_bh") then
 			local modifier = caster:FindModifierByName("modifier_wisp_spirits_bh")

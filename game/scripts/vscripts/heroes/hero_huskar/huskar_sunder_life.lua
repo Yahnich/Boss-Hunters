@@ -32,9 +32,11 @@ function huskar_sunder_life:SunderLife(position)
 	end
 	local enemies = caster:FindEnemyUnitsInRadius(position, self:GetTalentSpecialValueFor("damage_radius"))
 	for _, enemy in ipairs( enemies ) do
-		local eDamage = enemy:GetHealth() * damagePct
-		self:DealDamage( caster, enemy, eDamage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
-		enemy:AddNewModifier(caster, self, "modifier_huskar_sunder_life_debuff", {duration = self:GetTalentSpecialValueFor("slow_duration")})
+		if not enemy:TriggerSpellAbsorb(self) then
+			local eDamage = enemy:GetHealth() * damagePct
+			self:DealDamage( caster, enemy, eDamage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+			enemy:AddNewModifier(caster, self, "modifier_huskar_sunder_life_debuff", {duration = self:GetTalentSpecialValueFor("slow_duration")})
+		end
 	end
 end
 

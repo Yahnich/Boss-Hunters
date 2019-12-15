@@ -90,9 +90,11 @@ function mk_spring:DoSpring(vLocation)
 
 	local enemies = caster:FindEnemyUnitsInRadius(point, radius)
 	for _,enemy in pairs(enemies) do
-		EmitSoundOn("Hero_MonkeyKing.Spring.Target", enemy)
-		enemy:AddNewModifier(caster, self, "modifier_mk_spring_slow", {Duration = duration})
-		self:DealDamage(caster, enemy, damage, {}, 0)
+		if not enemy:TriggerSpellAbsorb(self) then
+			EmitSoundOn("Hero_MonkeyKing.Spring.Target", enemy)
+			enemy:AddNewModifier(caster, self, "modifier_mk_spring_slow", {Duration = duration})
+			self:DealDamage(caster, enemy, damage, {}, 0)
+		end
 	end
 end
 

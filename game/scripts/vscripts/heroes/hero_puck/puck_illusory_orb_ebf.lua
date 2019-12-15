@@ -40,7 +40,7 @@ end
 function puck_illusory_orb_ebf:OnProjectileHitHandle( target, position, projID )	
 	local caster = self:GetCaster()
 	local orbDamage = self:GetTalentSpecialValueFor("damage")
-	if target then
+	if target and not target:TriggerSpellAbsorb( self ) then
 		self:DealDamage( caster, target, orbDamage )
 		EmitSoundOn("Hero_Puck.IIllusory_Orb_Damage", target)
 	else

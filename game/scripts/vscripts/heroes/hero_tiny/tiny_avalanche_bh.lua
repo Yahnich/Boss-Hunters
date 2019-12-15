@@ -59,7 +59,7 @@ end
 
 function tiny_avalanche_bh:OnProjectileHit_ExtraData(hTarget, vLocation, extradata)
     local caster = self:GetCaster()
-
+	
     local duration = self:GetSpecialValueFor("stun_duration")
     local radius = self:GetSpecialValueFor("radius")
 
@@ -69,25 +69,30 @@ function tiny_avalanche_bh:OnProjectileHit_ExtraData(hTarget, vLocation, extrada
     local avalanche = ParticleManager:CreateParticle("particles/units/heroes/hero_tiny/tiny_avalanche.vpcf", PATTACH_CUSTOMORIGIN, nil)
     ParticleManager:SetParticleControl(avalanche, 0, vLocation + self.direction)
     ParticleManager:SetParticleControlOrientation(avalanche, 0, self.direction, self.direction, caster:GetUpVector())
-    ParticleManager:SetParticleControl(avalanche, 1, Vector(radius, 1, radius))
+    ParticleManager:SetParticleControl(avalanche, 1, Vector(radius, 1, radius/2))
     local offset = 0
     local ticks = extradata.ticks
     local hitLoc = vLocation
+	local spellBlocked = {}
     Timers:CreateTimer(function()
         GridNav:DestroyTreesAroundPoint(hitLoc, radius, false)
         local enemies_tick = caster:FindEnemyUnitsInRadius(hitLoc, radius)
         for _,enemy in pairs(enemies_tick) do
-            if enemy:HasModifier("modifier_tiny_toss_bh") and not self.repeat_increase then
-                damage = damage * 2
-                self.repeat_increase = true
-            end
-            self:DealDamage(caster, enemy, damage, {}, 0)
+			if not spellBlocked[enemy] and not enemy:TriggerSpellAbsorb( self ) then
+				if enemy:HasModifier("modifier_tiny_toss_bh") and not self.repeat_increase then
+					damage = damage * 2
+					self.repeat_increase = true
+				end
+				self:DealDamage(caster, enemy, damage, {}, 0)
 
-            if caster:HasScepter() then
-                enemy:ApplyKnockBack(self.casterPos, duration, duration, radius, 0, caster, self)
-            else
-                self:Stun(enemy, duration, false)
-            end
+				if caster:HasScepter() then
+					enemy:ApplyKnockBack(self.casterPos, duration, duration, radius, 0, caster, self)
+				else
+					self:Stun(enemy, duration, false)
+				end
+			else
+				spellBlocked[enemy] = true
+			end
         end
         hitLoc = hitLoc + offset / ticks
         extradata.ticks = extradata.ticks - 1

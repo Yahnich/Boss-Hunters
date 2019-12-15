@@ -154,7 +154,7 @@
 		"AbilityCastRange"				"1200"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"				"1.5 1"
-		"AbilityCooldown"				"35"
+		"AbilityCooldown"				"50 40"
 	
 		"precache"
 		{
@@ -166,7 +166,7 @@
 			"01"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "damage"     					"250 350"
+                "damage"     					"200 300"
             }
     		"02"
             {

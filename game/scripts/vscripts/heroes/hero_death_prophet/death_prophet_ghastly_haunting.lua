@@ -15,18 +15,15 @@ function death_prophet_ghastly_haunting:OnSpellStart()
 	local radius = self:GetTalentSpecialValueFor("radius")
 	local duration = self:GetTalentSpecialValueFor("duration")
 	
-	local realDur
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-		local modifier = enemy:AddNewModifier( caster, self, "modifier_death_prophet_ghastly_haunting", {duration = duration} )
-		if not realDur and modifier then
-			realDur = modifier:GetRemainingTime()
+		if not enemy:TriggerSpellAbsorb(self) then
+			local modifier = enemy:AddNewModifier( caster, self, "modifier_death_prophet_ghastly_haunting", {duration = duration} )
 		end
 	end
 	
 	EmitSoundOnLocationWithCaster( position, "Hero_DeathProphet.Silence", caster )
 	ParticleManager:FireParticle("particles/units/heroes/hero_death_prophet/death_prophet_silence.vpcf", PATTACH_WORLDORIGIN, caster, {	[0] = position,
 																																		[1] = Vector(radius,0,0)})
-	self:StartDelayedCooldown( realDur or 0 )																																	
 end
 
 modifier_death_prophet_ghastly_haunting = class({})

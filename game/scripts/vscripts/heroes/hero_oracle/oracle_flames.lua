@@ -42,7 +42,7 @@ function oracle_flames:OnSpellStart()
 				ParticleManager:SetParticleControlEnt(nfx, 2, target, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 				ParticleManager:SetParticleControlEnt(nfx, 4, target, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 				ParticleManager:ReleaseParticleIndex(nfx)
-
+	if target:TriggerSpellAbsorb( self ) then return end
 	target:AddNewModifier(caster, self, "modifier_oracle_flames", {Duration = self:GetTalentSpecialValueFor("duration")})
 
 	if target:GetTeam() == caster:GetTeam() then

@@ -80,28 +80,30 @@ function et_earth_splitter:OnSpellStart()
 
 		local enemies = caster:FindEnemyUnitsInLine(startPos, endPos, self:GetTalentSpecialValueFor("width"), {})
 		for _,enemy in pairs(enemies) do
-			damage = enemy:GetMaxHealth() * self:GetTalentSpecialValueFor("damage")/100
-			if not caster:HasModifier("modifier_elder_spirit") then
-				if caster:FindAbilityByName("et_elder_spirit") and caster:FindAbilityByName("et_elder_spirit"):IsTrained() then
-					if caster:HasModifier("modifier_elder_spirit_check") then
+			if enemy:TriggerSpellAbsorb(self) then
+				damage = enemy:GetMaxHealth() * self:GetTalentSpecialValueFor("damage")/100
+				if not caster:HasModifier("modifier_elder_spirit") then
+					if caster:FindAbilityByName("et_elder_spirit") and caster:FindAbilityByName("et_elder_spirit"):IsTrained() then
+						if caster:HasModifier("modifier_elder_spirit_check") then
+							self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
+							self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
+						else
+							self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
+						end
+					else
 						self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
 						self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
-					else
-						self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
+					end
+
+					if caster:HasTalent("special_bonus_unique_et_earth_splitter_1") then
+						enemy:AddNewModifier(caster, self, "modifier_disarmed", {Duration = caster:FindTalentValue("special_bonus_unique_et_earth_splitter_1")})
 					end
 				else
 					self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
-					self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
-				end
 
-				if caster:HasTalent("special_bonus_unique_et_earth_splitter_1") then
-					enemy:AddNewModifier(caster, self, "modifier_disarmed", {Duration = caster:FindTalentValue("special_bonus_unique_et_earth_splitter_1")})
-				end
-			else
-				self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
-
-				if caster:GetOwner():HasTalent("special_bonus_unique_et_earth_splitter_1") then
-					enemy:AddNewModifier(caster, self, "modifier_disarmed", {Duration = caster:GetOwner():FindTalentValue("special_bonus_unique_et_earth_splitter_1")})
+					if caster:GetOwner():HasTalent("special_bonus_unique_et_earth_splitter_1") then
+						enemy:AddNewModifier(caster, self, "modifier_disarmed", {Duration = caster:GetOwner():FindTalentValue("special_bonus_unique_et_earth_splitter_1")})
+					end
 				end
 			end
 		end

@@ -54,7 +54,7 @@ end
 function espirit_boulder:OnProjectileHitHandle(hTarget, vLocation, projID)
 	local caster = self:GetCaster()
 
-	if hTarget ~= nil then
+	if hTarget ~= nil and not hTarget:TriggerSpellAbsorb( self ) then
 		local damage = self:GetTalentSpecialValueFor("damage")
 		local slow = false
 		local duration = self:GetTalentSpecialValueFor("duration")

@@ -31,6 +31,7 @@ function bane_enfeeble_ebf:OnProjectileHit(target, position)
 end
 
 function bane_enfeeble_ebf:ApplyEnfeeble(target)
+	if target:TriggerSpellAbsorb(self) then return end
 	local caster = self:GetCaster()
 	target:AddNewModifier(caster, self, "modifier_bane_enfeeble_debuff", {duration = self:GetTalentSpecialValueFor("debuff_duration")})
 	if caster:HasTalent("special_bonus_unique_bane_enfeeble_ebf_1") then
@@ -58,7 +59,7 @@ function modifier_bane_enfeeble_debuff:DeclareFunctions()
 end
 
 function modifier_bane_enfeeble_debuff:GetModifierIncomingDamage_Percentage()
-	return 5
+	return 8
 end
 
 function modifier_bane_enfeeble_debuff:GetModifierTotalDamageOutgoing_Percentage()

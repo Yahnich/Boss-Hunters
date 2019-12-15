@@ -23,9 +23,11 @@ function aa_ice_blast:OnProjectileHit_ExtraData(target, position, extraData)
 	local duration = self:GetTalentSpecialValueFor("duration")
 	local coldFeet = caster:FindAbilityByName("aa_cold_feet")
 	if target then
-		target:AddNewModifier(caster, self, "modifier_aa_ice_blast", {duration = duration})
-		if caster:HasScepter() and coldFeet then
-			target:AddNewModifier(caster, coldFeet, "modifier_aa_cold_feet", {Duration = coldFeet:GetSpecialValueFor("duration")})
+		if not target:TriggerSpellAbsorb(self) then
+			target:AddNewModifier(caster, self, "modifier_aa_ice_blast", {duration = duration})
+			if caster:HasScepter() and coldFeet then
+				target:AddNewModifier(caster, coldFeet, "modifier_aa_cold_feet", {Duration = coldFeet:GetSpecialValueFor("duration")})
+			end
 		end
 	else
 		if caster:HasScepter() then
@@ -39,14 +41,14 @@ function aa_ice_blast:OnProjectileHit_ExtraData(target, position, extraData)
 		ParticleManager:FireParticle("particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_explode.vpcf", PATTACH_POINT, caster, {[0]=groundPos,[3]=groundPos})
 		local targets = caster:FindEnemyUnitsInRadius(position, tonumber(extraData["endWidth"]))
 		for _, enemy in ipairs(targets) do
-			enemy:AddNewModifier(caster, self, "modifier_aa_ice_blast", {duration = duration})
-			self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"))
-			if caster:HasScepter() and coldFeet then
-				enemy:AddNewModifier(caster, coldFeet, "modifier_aa_cold_feet", {Duration = coldFeet:GetSpecialValueFor("duration")})
+			if not enemy:TriggerSpellAbsorb(self) then
+				enemy:AddNewModifier(caster, self, "modifier_aa_ice_blast", {duration = duration})
+				self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"))
+				if caster:HasScepter() and coldFeet then
+					enemy:AddNewModifier(caster, coldFeet, "modifier_aa_cold_feet", {Duration = coldFeet:GetSpecialValueFor("duration")})
+				end
 			end
 		end
-		
-		
 	end
 end
 

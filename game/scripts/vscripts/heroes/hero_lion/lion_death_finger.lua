@@ -54,29 +54,28 @@ function lion_death_finger:OnSpellStart()
         ParticleManager:SetParticleControl(nfx, 2, enemy:GetAbsOrigin())
         local position = caster:GetAbsOrigin() + ActualRandomVector(CalculateDistance(enemy, caster), caster:GetAttackRange())
         ParticleManager:SetParticleControl(nfx, 6, position)
-        local position = caster:GetAbsOrigin() + ActualRandomVector(CalculateDistance(enemy, caster), caster:GetAttackRange())
         ParticleManager:SetParticleControl(nfx, 10, position)
         ParticleManager:ReleaseParticleIndex(nfx)
+		if not enemy:TriggerSpellAbsorb( self ) then
+			self:DealDamage(caster, enemy, damage, {}, 0)
+			if enemy:IsAlive() then
+				if caster:HasScepter() and caster:HasModifier("modifier_lion_mana_aura_scepter") then
+					self:DealDamage( caster, enemy, manaDamage, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+					ParticleManager:FireRopeParticle("particles/items2_fx/necronomicon_archer_manaburn.vpcf", PATTACH_POINT_FOLLOW, caster, enemy)
+				end
 
-        self:DealDamage(caster, enemy, damage, {}, 0)
-		
-		if enemy:IsAlive() then
-			if caster:HasScepter() and caster:HasModifier("modifier_lion_mana_aura_scepter") then
-				self:DealDamage( caster, enemy, manaDamage, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
-				ParticleManager:FireRopeParticle("particles/items2_fx/necronomicon_archer_manaburn.vpcf", PATTACH_POINT_FOLLOW, caster, enemy)
+				if caster:HasTalent("special_bonus_unique_lion_death_finger_2") then
+					enemy:AddNewModifier(caster, self, "modifier_lion_death_finger_root", {Duration = caster:FindTalentValue("special_bonus_unique_lion_death_finger_2")})
+				end
+			elseif growth then
+				local numbers = bonus
+				if enemy:IsMinion() then
+					numbers = minion_bonus
+				elseif enemy:IsBoss() then
+					numbers = boss_bonus
+				end
+				growth:SetStackCount( growth:GetStackCount() + numbers / 5 )
 			end
-
-			if caster:HasTalent("special_bonus_unique_lion_death_finger_2") then
-				enemy:AddNewModifier(caster, self, "modifier_lion_death_finger_root", {Duration = caster:FindTalentValue("special_bonus_unique_lion_death_finger_2")})
-			end
-		elseif growth then
-			local numbers = bonus
-			if enemy:IsMinion() then
-				numbers = minion_bonus
-			elseif enemy:IsBoss() then
-				numbers = boss_bonus
-			end
-			growth:SetStackCount( growth:GetStackCount() + numbers / 5 )
 		end
     end
 

@@ -32,7 +32,7 @@ function sand_burrow:OnSpellStart()
 
     local enemies = caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), point, self:GetTalentSpecialValueFor("width"), {})
     for _,enemy in pairs(enemies) do
-        if enemy and enemy:IsAlive() and not enemy:IsKnockedBack() then
+        if enemy and enemy:IsAlive() and not enemy:IsKnockedBack() and not enemy:TriggerSpellAbsorb( self ) then
             enemy:ApplyKnockBack(enemy:GetAbsOrigin(), 0.5, 0.5, 0, 350, caster, self)
 
             Timers:CreateTimer(0.5,function()

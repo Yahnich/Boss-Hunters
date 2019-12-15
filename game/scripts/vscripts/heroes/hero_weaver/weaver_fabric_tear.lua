@@ -57,7 +57,9 @@ function modifier_weaver_fabric_tear:OnIntervalThink()
 		local enemies = caster:FindEnemyUnitsInRadius(point, radius)
 		for _,enemy in pairs(enemies) do
 			if not enemy:HasModifier("modifier_weaver_fabric_tear_debuff") then
-				enemy:AddNewModifier(caster, self:GetAbility(), "modifier_weaver_fabric_tear_debuff", {Duration = 1.1})
+				if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+					enemy:AddNewModifier(caster, self:GetAbility(), "modifier_weaver_fabric_tear_debuff", {Duration = 1.1})
+				end
 				break
 			end
 		end

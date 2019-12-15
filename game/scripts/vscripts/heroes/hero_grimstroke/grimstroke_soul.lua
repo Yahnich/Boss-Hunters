@@ -19,13 +19,12 @@ function grimstroke_soul:OnSpellStart()
 
 	EmitSoundOn("Hero_Grimstroke.SoulChain.Cast", caster)
 	EmitSoundOn("Hero_Grimstroke.SoulChain.Target", target)
-
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
 	for _,enemy in pairs(enemies) do
 		enemy:RemoveModifierByName("modifier_grimstroke_soul_one")
 		enemy:RemoveModifierByName("modifier_grimstroke_soul_debuff")
 	end
-
+	if target:TriggerSpellAbsorb(self) then return end
 	target:AddNewModifier(caster, self, "modifier_grimstroke_soul_one", {Duration = duration})
 end
 

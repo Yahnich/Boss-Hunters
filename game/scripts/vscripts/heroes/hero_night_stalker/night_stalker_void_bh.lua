@@ -19,20 +19,24 @@ function night_stalker_void_bh:Void(target)
 	local damage = self:GetAbilityDamage()
 	local radius = self:GetTalentSpecialValueFor("aoe")
 	local duration = self:GetTalentSpecialValueFor("duration_day")
+	
+	ParticleManager:FireParticle("particles/units/heroes/hero_night_stalker/nightstalker_loadout.vpcf", PATTACH_POINT_FOLLOW, target)
+	EmitSoundOn( "Hero_Nightstalker.Void", target )
+	
+	if target:TriggerSpellAbsorb(self) then return end
 	if not GameRules:IsDaytime() then
 		duration = self:GetTalentSpecialValueFor("duration_night")
 	end
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), radius ) ) do
-		self:DealDamage( caster, enemy, damage )
-		ParticleManager:FireParticle("particles/units/heroes/hero_night_stalker/nightstalker_void_hit.vpcf", PATTACH_POINT_FOLLOW, enemy)
+		if not enemy:TriggerSpellAbsorb(self) then
+			self:DealDamage( caster, enemy, damage )
+			ParticleManager:FireParticle("particles/units/heroes/hero_night_stalker/nightstalker_void_hit.vpcf", PATTACH_POINT_FOLLOW, enemy)
+		end
 	end
 	
 	self:Stun( target, self:GetTalentSpecialValueFor("mini_stun"), false )
 	target:AddNewModifier(caster, self, "modifier_night_stalker_void_bh", {duration = duration})
-	
-	ParticleManager:FireParticle("particles/units/heroes/hero_night_stalker/nightstalker_loadout.vpcf", PATTACH_POINT_FOLLOW, target)
-	EmitSoundOn( "Hero_Nightstalker.Void", target )
 	
 	if caster:HasTalent("special_bonus_unique_night_stalker_void_2") then
 		local nDur = caster:FindTalentValue("special_bonus_unique_night_stalker_void_2")

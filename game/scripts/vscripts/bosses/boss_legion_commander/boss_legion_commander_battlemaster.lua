@@ -40,11 +40,12 @@ end
 
 function modifier_boss_legion_commander_battlemaster_passive:OnAttackLanded(params)
 	if IsServer() then
-		if params.target == self:GetParent() then
+		if params.target == self:GetParent()then
 			local parent = self:GetParent()
 			local ability = self:GetAbility()
-			if not ability.counterAttack then
+			if not ability.counterAttack and ability:IsCooldownReady() then
 				if self:RollPRNG(self.procChance) then
+					ability:StartCooldown( ability:GetEffectiveCooldown( -1 ) )
 					local attackTarget = self:GetParent():GetAttackTarget()
 					if not attackTarget or not self:GetParent():IsAttacking() then
 						attackTarget = parent:FindRandomEnemyInRadius( parent:GetAbsOrigin(), parent:GetAttackRange() )

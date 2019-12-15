@@ -57,7 +57,7 @@ end
 
 function boss_clockwerk_meteor_hook:OnProjectileHit( target, position )
 	local caster = self:GetCaster()
-	if target then
+	if target and not target:TriggerSpellAbsorb( self ) then
 		local distance = CalculateDistance( caster, target )
 		local speed = self:GetTalentSpecialValueFor("speed")
 		ParticleManager:SetParticleControlEnt( self.hookFX, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)

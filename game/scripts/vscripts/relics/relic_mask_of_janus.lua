@@ -7,19 +7,22 @@ if IsServer() then
 		if self:GetParent():HasModifier("relic_ritual_candle") then return end
 		local relicList = {}
 		for item, relic in pairs( hero.ownedRelics ) do
-			if relic.name and relic.name ~= "relic_mask_of_janus" then
-				table.insert(relicList, relic)
+			if relic.name and relic.name ~= "relic_mask_of_janus" then	
+				print("added")
+				table.insert(relicList, relic.name)
 			end
 		end
-		local relic = relicList[RandomInt(1, #relicList)]
-		RelicManager:RemoveRelicOnPlayer(relic, pID)
-		hero:AddRelic( RelicManager:RollRandomRelicForPlayer(pID) )
+		local relicName = relicList[RandomInt(1, #relicList)]
+		print(relicName, "got selected" )
+		RelicManager:RemoveRelicOnPlayer(relicName, pID)
+		hero:AddRelic( RelicManager:RollRandomRelicForPlayer(pID).name )
 	end
 end
 
 
 function relic_mask_of_janus:OnCreated()
 	if IsServer() then
+		print("?")
 		self.funcID = EventManager:SubscribeListener("boss_hunters_event_finished", function(args) self:OnEventFinished(args) end)
 	end
 end

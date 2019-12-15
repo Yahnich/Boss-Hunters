@@ -34,7 +34,7 @@ end
 
 function pa_kunai_toss:OnProjectileHit(hTarget, vLocation)
     local caster = self:GetCaster()
-    if hTarget ~= nil and hTarget:IsAlive() then
+    if hTarget ~= nil and hTarget:IsAlive() and not hTarget:TriggerSpellAbsorb( self ) then
         EmitSoundOn("Hero_PhantomAssassin.Dagger.Target", caster)
 
         caster:PerformAbilityAttack( hTarget, true, self )

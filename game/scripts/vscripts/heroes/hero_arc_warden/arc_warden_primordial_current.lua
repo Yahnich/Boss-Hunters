@@ -23,7 +23,7 @@ function arc_warden_primordial_current:OnSpellStart()
 	
 	-- cosmetic
 	EmitSoundOn("Hero_ShadowShaman.EtherShock", hCaster)
-
+	if hTarget:TriggerSpellAbsorb(self) then return end
 	if hTarget:IsIllusion() then
 		hTarget:ForceKill(true)
 		self:RefundManaCost()

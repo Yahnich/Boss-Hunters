@@ -135,8 +135,6 @@ function mars_spear_lua:LaunchSpear()
 					end)
 				end
 			end
-
-			self.hitUnits[target:entindex()] = true
 		end
 
 		return true

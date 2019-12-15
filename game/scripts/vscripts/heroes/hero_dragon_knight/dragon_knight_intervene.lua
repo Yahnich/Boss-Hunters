@@ -58,6 +58,7 @@ function modifier_dragon_knight_intervene_movement:OnIntervalThink()
 	-- Check if the caster is in range of the target
 	if distance <= min_distance then
 		self:Destroy()
+		if not target:IsSameTeam( caster ) and target:TriggerSpellAbsorb(ability) then return end
 		caster:AddNewModifier(caster, ability, "modifier_dragon_knight_intervene_buff", {duration = self.healDuration})
 		if caster:GetTeam() ~= target:GetTeam() then
 			if caster:HasTalent("special_bonus_unique_dragon_knight_intervene_2") then

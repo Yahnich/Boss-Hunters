@@ -224,7 +224,6 @@ function CDOTA_BaseNPC_Hero:CreateSummon(unitName, position, duration, bControll
 	local summonMod = summon:AddNewModifier(self, nil, "modifier_summon_handler", {duration = duration})
 	if duration and duration > 0 then
 		local kill = summon:AddNewModifier(self, nil, "modifier_kill", {duration = duration})
-		print( duration, kill:GetDuration(), kill:GetRemainingTime(), "kill" )
 	end
 	StartAnimation(summon, {activity = ACT_DOTA_SPAWN, rate = 1.5, duration = 2})
 	local endDur = summonMod:GetRemainingTime()
@@ -1878,7 +1877,7 @@ function CDOTABaseAbility:ApplyAOE(eventTable)
 					if eventTable.damage and eventTable.damage_type then
 						ApplyDamage({victim = unit, attacker = self:GetCaster(), damage = eventTable.damage, damage_type = eventTable.damage_type, ability = self})
 					end
-					if not unit:IsMagicImmune() or (unit:IsMagicImmune() and eventTable.magic_immune) then
+					if not unit:IsMagicImmune() or (unit:IsMagicImmune() and eventTable.magic_immune) and not unit:TriggerSpellAbsorb(self) then
 						if eventTable.modifier and unit:IsAlive() and not unit:HasModifier(eventTable.modifier) then
 							if self:GetClassname() == "ability_lua" then
 								local modifier = unit:AddNewModifier( self:GetCaster(), self, eventTable.modifier, { duration = eventTable.duration } )

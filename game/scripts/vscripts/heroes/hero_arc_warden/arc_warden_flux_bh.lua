@@ -16,6 +16,7 @@ end
 function arc_warden_flux_bh:OnSpellStart()
 	local target = self:GetCursorTarget()
 	EmitSoundOn("Hero_ArcWarden.Flux.Cast", self:GetCaster())
+	if target:TriggerSpellAbsorb(self) then return end
 	self:Flux(target)
 end
 

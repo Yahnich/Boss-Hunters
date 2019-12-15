@@ -12,7 +12,7 @@ end
 function broodmother_spawn_spiderlings_bh:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 
-	if hTarget then
+	if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
 		EmitSoundOn("Hero_Broodmother.SpawnSpiderlingsCast", hTarget)
 		hTarget:AddNewModifier(caster, self, "modifier_broodmother_spawn_spiderlings_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
 		self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)

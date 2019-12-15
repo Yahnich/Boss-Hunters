@@ -55,7 +55,9 @@ function ss_thunder_punch:OnProjectileHit_ExtraData(hTarget, vLocation, table)
 	end
 
 	if hTarget then
-		caster:PerformAbilityAttack(hTarget, true, self, bonusAttack, true, true)
+		if not hTarget:TriggerSpellAbsorb( self ) then
+			caster:PerformAbilityAttack(hTarget, true, self, bonusAttack, true, true)
+		end
 
 		if not caster:HasTalent("special_bonus_unique_ss_thunder_punch_2") then
 			return true

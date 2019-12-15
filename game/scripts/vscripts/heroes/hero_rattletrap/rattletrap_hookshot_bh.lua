@@ -50,14 +50,13 @@ end
 
 function rattletrap_hookshot_bh:OnProjectileHit( target, position )
 	local caster = self:GetCaster()
-	if target then
+	if target and not target:TriggerSpellAbsorb( self ) then
 		local distance = CalculateDistance( caster, target )
 		local speed = self:GetTalentSpecialValueFor("speed")
 		ParticleManager:SetParticleControlEnt( self.hookFX, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 		target:AddNewModifier( caster, self, "modifier_rattletrap_hookshot_bh_hook", { duration = distance / speed } )
 		self:Stun( target, distance / speed )
 	else
-		
 		ParticleManager:SetParticleControl( self.hookFX, 1, caster:GetAbsOrigin() )
 	end
 	StopSoundOn( "Hero_Rattletrap.Hookshot.Fire", caster )

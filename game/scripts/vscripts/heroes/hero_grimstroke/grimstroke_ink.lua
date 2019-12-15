@@ -133,9 +133,11 @@ function modifier_grimstroke_ink_one:OnRemoved()
 
 		local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.radius)
 		for _,enemy in pairs(enemies) do
-			EmitSoundOn("Hero_Grimstroke.InkSwell.Target", enemy)
-			ability:Stun(enemy, self.stun_duration, false)					
-			ability:DealDamage(caster, enemy, self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			if not enemy:TriggerSpellAbsorb(self) then return end
+				EmitSoundOn("Hero_Grimstroke.InkSwell.Target", enemy)
+				ability:Stun(enemy, self.stun_duration, false)					
+				ability:DealDamage(caster, enemy, self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			end
 		end
 	end
 end

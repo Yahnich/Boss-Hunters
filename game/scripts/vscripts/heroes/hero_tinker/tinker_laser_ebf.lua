@@ -36,14 +36,6 @@ end
 function tinker_laser_ebf:FireLaser(target, oldTarget)
 	local caster = self:GetCaster()
 	
-	local laserDamage = self:GetTalentSpecialValueFor("laser_damage")
-
-	if caster:HasTalent("special_bonus_unique_tinker_laser_ebf_2") then
-		local blindDuration = caster:FindTalentValue("special_bonus_unique_tinker_laser_ebf_2")
-		target:AddNewModifier(caster, self, "modifier_tinker_laser_ebf_blind", {duration = blindDuration})
-	end
-
-	self:DealDamage(caster, target, laserDamage)
 	EmitSoundOn("Hero_Tinker.LaserImpact", target)
 	
 	local owner = oldTarget or caster
@@ -53,6 +45,17 @@ function tinker_laser_ebf:FireLaser(target, oldTarget)
 	ParticleManager:SetParticleControlEnt(FX, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 	
 	ParticleManager:ReleaseParticleIndex(FX)
+	
+	if target:TriggerSpellAbsorb( self ) then return end
+	
+	local laserDamage = self:GetTalentSpecialValueFor("laser_damage")
+
+	if caster:HasTalent("special_bonus_unique_tinker_laser_ebf_2") then
+		local blindDuration = caster:FindTalentValue("special_bonus_unique_tinker_laser_ebf_2")
+		target:AddNewModifier(caster, self, "modifier_tinker_laser_ebf_blind", {duration = blindDuration})
+	end
+
+	self:DealDamage(caster, target, laserDamage)
 end
 
 modifier_tinker_laser_ebf_blind = class({})

@@ -61,15 +61,16 @@ function mars_gods_rebuke_lua:Rebuke(vLocation)
 					ParticleManager:SetParticleControlEnt(nfx2, 1, enemy, PATTACH_POINT, "attach_hitloc", enemy:GetAbsOrigin(), true)
 					ParticleManager:SetParticleControlForward(nfx2, 1, CalculateDirection(enemy, caster))
 					ParticleManager:ReleaseParticleIndex(nfx2)
+		if not enemy:TriggerSpellAbsorb( self ) then
+			if not enemy:IsKnockedBack() then
+				enemy:ApplyKnockBack(caster:GetAbsOrigin(), knockback_duration, knockback_duration, knockback_distance, 0, caster, self, true)
+			end
+			
+			caster:PerformAbilityAttack(enemy, true, self, 0, false, true)
 
-		if not enemy:IsKnockedBack() then
-			enemy:ApplyKnockBack(caster:GetAbsOrigin(), knockback_duration, knockback_duration, knockback_distance, 0, caster, self, true)
-		end
-		
-		caster:PerformAbilityAttack(enemy, true, self, 0, false, true)
-
-		if enemy:IsAlive() and ( enemy:IsBoss() or enemy:IsHero() or enemy:IsAncient() ) then
-			self:DealDamage(caster, enemy, bonus_damage, {}, OVERHEAD_ALERT_DAMAGE)
+			if enemy:IsAlive() and ( enemy:IsBoss() or enemy:IsHero() or enemy:IsAncient() ) then
+				self:DealDamage(caster, enemy, bonus_damage, {}, OVERHEAD_ALERT_DAMAGE)
+			end
 		end
 	end
 

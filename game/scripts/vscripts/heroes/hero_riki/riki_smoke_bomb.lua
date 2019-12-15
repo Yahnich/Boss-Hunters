@@ -19,7 +19,9 @@ function riki_smoke_bomb:OnSpellStart()
 		local dmgMultiplier = caster:FindTalentValue("special_bonus_unique_riki_smoke_bomb_2")
         local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius"), {})
         for _,enemy in pairs(enemies) do
-            self:DealDamage(caster, enemy, damage * dmgMultiplier, {}, 0)
+			if not enemy:TriggerSpellAbsorb( self ) then
+				self:DealDamage(caster, enemy, damage * dmgMultiplier, {}, 0)
+			end
         end
     end
 

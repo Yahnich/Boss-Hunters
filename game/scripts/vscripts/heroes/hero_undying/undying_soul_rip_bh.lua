@@ -50,14 +50,16 @@ function undying_soul_rip_bh:OnSpellStart()
 	if target:IsSameTeam(caster) then
 		EmitSoundOn("Hero_Undying.SoulRip.Ally", target)
 		target:HealEvent( unitCount * healPUnit, self, caster )
-	else
+		if caster:HasTalent("special_bonus_unique_undying_soul_rip_2") then
+			target:AddNewModifier(caster, self, "modifier_undying_soul_rip_bh_talent", {duration = caster:FindTalentValue("special_bonus_unique_undying_soul_rip_2", "duration")})
+		end
+	elseif not enemy:TriggerSpellAbsorb( self ) then
 		EmitSoundOn("Hero_Undying.SoulRip.Enemy", target)
 		self:DealDamage( caster, target, unitCount * healPUnit )
 		ripFX = "particles/units/heroes/hero_undying/undying_soul_rip_damage.vpcf"
-	end
-	
-	if caster:HasTalent("special_bonus_unique_undying_soul_rip_2") then
-		target:AddNewModifier(caster, self, "modifier_undying_soul_rip_bh_talent", {duration = caster:FindTalentValue("special_bonus_unique_undying_soul_rip_2", "duration")})
+		if caster:HasTalent("special_bonus_unique_undying_soul_rip_2") then
+			target:AddNewModifier(caster, self, "modifier_undying_soul_rip_bh_talent", {duration = caster:FindTalentValue("special_bonus_unique_undying_soul_rip_2", "duration")})
+		end
 	end
 end
 

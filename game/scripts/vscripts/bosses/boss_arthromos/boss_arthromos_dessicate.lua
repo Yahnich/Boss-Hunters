@@ -36,7 +36,7 @@ function boss_arthromos_dessicate:OnProjectileHit_ExtraData( target, location, e
 	if not self or not self:GetCaster() or self:IsNull() or self:GetCaster():IsNull() then 
 		return
 	end
-	if target then
+	if target and not target:TriggerSpellAbsorb( self ) then
 		local damage = self:GetSpecialValueFor("channel_damage")
 		if extraData["end"] then
 			damage = self:GetSpecialValueFor("end_damage")

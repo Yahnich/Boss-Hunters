@@ -36,20 +36,10 @@ function nyx_int_burn:OnSpellStart()
 
 	ParticleManager:FireParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn_start.vpcf", PATTACH_POINT_FOLLOW, caster, {[0]="attach_mouth"})
 
-	target:Purge(true, false, false, false, true)
-	--target:ReduceMana(damage)
-	self:DealDamage(caster, target, damage, {}, OVERHEAD_ALERT_MANA_LOSS)
-	if caster:HasTalent("special_bonus_unique_nyx_int_burn_1") then
-		target:Silence(self, caster, caster:FindTalentValue("special_bonus_unique_nyx_int_burn_1"), false)
-	end
-	if caster:HasTalent("special_bonus_unique_nyx_int_burn_2") then
-		target:AddNewModifier(caster, self, "modifier_nyx_int_burn", {Duration = caster:FindTalentValue("special_bonus_unique_nyx_int_burn_2","duration")})
-	end
-
 	if caster:HasModifier("modifier_nyx_burrow") then
 		local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), self:GetSpecialValueFor("burn_radius"))
 		for _,enemy in pairs(enemies) do
-			if enemy ~= target then
+			if not enemy:TriggerSpellAbsorb(self) then
 				enemy:Purge(true, false, false, false, true)
 				--enemy:ReduceMana(damage)
 				self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_MANA_LOSS)
@@ -60,6 +50,17 @@ function nyx_int_burn:OnSpellStart()
 					enemy:AddNewModifier(caster, self, "modifier_nyx_int_burn", {Duration = caster:FindTalentValue("special_bonus_unique_nyx_int_burn_2","duration")})
 				end
 			end
+		end
+	else
+		if target:TriggerSpellAbsorb(self) then return end
+		target:Purge(true, false, false, false, true)
+		--target:ReduceMana(damage)
+		self:DealDamage(caster, target, damage, {}, OVERHEAD_ALERT_MANA_LOSS)
+		if caster:HasTalent("special_bonus_unique_nyx_int_burn_1") then
+			target:Silence(self, caster, caster:FindTalentValue("special_bonus_unique_nyx_int_burn_1"), false)
+		end
+		if caster:HasTalent("special_bonus_unique_nyx_int_burn_2") then
+			target:AddNewModifier(caster, self, "modifier_nyx_int_burn", {Duration = caster:FindTalentValue("special_bonus_unique_nyx_int_burn_2","duration")})
 		end
 	end
 end

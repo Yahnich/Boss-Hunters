@@ -6,6 +6,7 @@ function pudge_chain_storm:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	EmitSoundOn("Hero_Pudge.Dismember.Cast.Arcana", caster)
+	if target:TriggerSpellAbsorb( self ) then return end
 	target:AddNewModifier(caster, self, "modifier_pudge_chain_storm", {Duration = self:GetTalentSpecialValueFor("duration")})
 	if self:GetCaster():HasTalent("special_bonus_unique_pudge_chain_storm_1") then
 		target:AddNewModifier(caster, self, "modifier_pudge_chain_storm_talent", {Duration = caster:FindTalentValue("special_bonus_unique_pudge_chain_storm_1", "duration")})

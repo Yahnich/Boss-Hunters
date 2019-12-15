@@ -53,12 +53,12 @@ function AIThink(thisEntity)
 		end
 		if thisEntity.consume:IsFullyCastable() then
 			local heroes = {}
-			
 			local consumeTarget
 			for _, unit in ipairs( thisEntity:FindAllUnitsInRadius( thisEntity:GetAbsOrigin(), thisEntity.consume:GetTrueCastRange() ) ) do
 				if unit:IsRealHero() then
 					table.insert( heroes, unit )
-				elseif unit:GetHealth() <= thisEntity:GetHealthDeficit() * 1.5 and ( consumeTarget and unit:GetHealth() > consumeTarget:GetHealth() ) then
+				elseif unit:GetHealth() <= thisEntity:GetHealthDeficit() * 1.5 or 
+				( consumeTarget and unit:GetHealth() > consumeTarget:GetHealth() ) then
 					consumeTarget = unit
 				end
 			end

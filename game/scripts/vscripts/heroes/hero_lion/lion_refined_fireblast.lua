@@ -42,7 +42,7 @@ function lion_refined_fireblast:OnSpellStart()
     ParticleManager:SetParticleControlEnt(nfx, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
     ParticleManager:SetParticleControl(nfx, 1, target:GetAbsOrigin())
     ParticleManager:ReleaseParticleIndex(nfx)
-
+	if target:TriggerSpellAbsorb( self ) then return end
     local damage = caster:GetMana()*self:GetTalentSpecialValueFor("manabonus")/100
     damage = damage + self:GetTalentSpecialValueFor("damage")
     self:DealDamage(caster, target, damage, {}, 0)

@@ -17,10 +17,10 @@ function enchantress_enchant_bh:OnSpellStart()
 
 	EmitSoundOn("Hero_Enchantress.EnchantCast", caster)
 	EmitSoundOn("Hero_Enchantress.EnchantHero", target)
-
-	target:Charm(self, caster, duration)
-	target:AddNewModifier(caster, self, "modifier_enchantress_enchant_bh_slow", {Duration = duration})
-
+	if not target:TriggerSpellAbsorb(self) then
+		target:Charm(self, caster, duration)
+		target:AddNewModifier(caster, self, "modifier_enchantress_enchant_bh_slow", {Duration = duration})
+	end
 	self:StartDelayedCooldown()
 end
 

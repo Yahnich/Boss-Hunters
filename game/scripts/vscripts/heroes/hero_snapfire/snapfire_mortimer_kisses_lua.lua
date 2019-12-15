@@ -48,7 +48,9 @@ function snapfire_mortimer_kisses_lua:CreateFirePit(vLocation)
 
 	local enemies = caster:FindEnemyUnitsInRadius(vLocation, radius, {})
 	for _,enemy in pairs(enemies) do
-		self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+		if not enemy:TriggerSpellAbsorb( self ) then
+			self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+		end
 	end
 
 	CutTreesInRadius(vLocation, radius)

@@ -29,6 +29,7 @@ function lina_dragon:OnProjectileHit(hTarget, vLocation)
     local caster = self:GetCaster()
     
     if hTarget ~= nil then
+		if hTarget:TriggerSpellAbsorb( self ) then return end
         self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
     else
         local fireFX = ParticleManager:CreateParticle("particles/units/heroes/hero_lina/lina_dragons_breath.vpcf", PATTACH_CUSTOMORIGIN, caster)
@@ -57,10 +58,6 @@ function lina_dragon:OnProjectileHit(hTarget, vLocation)
 end
 
 modifier_lina_dragon = class({})
-function modifier_lina_dragon:DeclareFunctions()
-    local funcs = {}
-    return funcs
-end
 
 function modifier_lina_dragon:GetModifierAttackSpeedBonus()
     return self:GetCaster():FindTalentValue("special_bonus_unique_lina_dragon_2")

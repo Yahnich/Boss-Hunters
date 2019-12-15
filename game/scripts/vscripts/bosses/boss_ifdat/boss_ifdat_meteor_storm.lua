@@ -33,9 +33,11 @@ function boss_ifdat_meteor_storm:FireMeteor(point, radius)
         ParticleManager:FireParticle("particles/units/heroes/hero_invoker/invoker_sun_strike.vpcf", PATTACH_POINT, caster, {[0]=point, [1]=Vector(radius,radius,radius)}) --1.3 is the particle land time
         local enemies = caster:FindEnemyUnitsInRadius(point, radius, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
         for _,enemy in pairs(enemies) do
-            self:DealDamage(caster, enemy, self.damage)
-			if not enemy:IsStunned() then
-				self:Stun(enemy, self.stun, false)
+			if not enemy:TriggerSpellAbsorb( self ) then
+				self:DealDamage(caster, enemy, self.damage)
+				if not enemy:IsStunned() then
+					self:Stun(enemy, self.stun, false)
+				end
 			end
         end
 	end)

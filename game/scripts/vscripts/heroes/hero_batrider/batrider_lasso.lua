@@ -25,14 +25,17 @@ function batrider_lasso:OnSpellStart()
 	local maxTargets = self:GetTalentSpecialValueFor("max_targets") - 1 --because the selected target counts too
 
 	EmitSoundOn("Hero_Batrider.FlamingLasso.Cast", caster)
-
-	caster:AddNewModifier(caster, self, "modifier_batrider_lasso", {Duration = duration})
-	target:AddNewModifier(caster, self, "modifier_batrider_lasso_debuff", {Duration = duration})
+	if not target:TriggerSpellAbsorb(self) then
+		caster:AddNewModifier(caster, self, "modifier_batrider_lasso", {Duration = duration})
+		target:AddNewModifier(caster, self, "modifier_batrider_lasso_debuff", {Duration = duration})
+	end
 
 	local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), radius)
 	for _,enemy in pairs(enemies) do
 		if enemy ~= target and maxTargets > 0 then
-			enemy:AddNewModifier(caster, self, "modifier_batrider_lasso_debuff", {Duration = duration})
+			if not enemy:TriggerSpellAbsorb(self) then
+				enemy:AddNewModifier(caster, self, "modifier_batrider_lasso_debuff", {Duration = duration})
+			end
 			maxTargets = maxTargets - 1
 		end
 	end

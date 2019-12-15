@@ -37,10 +37,10 @@ function brewmaster_drunken_haze_bh:OnProjectileHit(target, position)
 	EmitSoundOn("Hero_Brewmaster.CinderBrew.Target", target)
 	if target:GetTeam() == caster:GetTeam() then
 		target:AddNewModifier(caster, self, "modifier_brewmaster_drunken_haze_buff", {duration = duration})
-	else
+	elseif not target:TriggerSpellAbsorb( self ) then
 		target:AddNewModifier(caster, self, "modifier_brewmaster_drunken_haze_debuff", {duration = duration})
 	end
-	if not target:IsMagicImmune() then
+	if not target:IsMagicImmune() and not target:TriggerSpellAbsorb( self ) then
 		target:Daze(self, caster, duration)
 	end
 end

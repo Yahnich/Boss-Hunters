@@ -39,7 +39,7 @@ function pugna_lifedrain_bh:OnSpellStart()
 	local hTarget = self:GetCursorTarget()
 	if self.drain and not self.drain:IsNull() then
 		self.drain:Destroy()
-	else
+	elseif not hTarget:TriggerSpellAbsorb( self ) then
 		hTarget:AddNewModifier(caster, self, "modifier_pugna_life_drain_bh", {duration = self:GetSpecialValueFor("duration_tooltip")})
 	end
 end

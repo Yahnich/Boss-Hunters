@@ -84,14 +84,16 @@ if IsServer() then
 		for portalFx, portalData in pairs( ability.portals ) do
 			if portalData.active then
 				for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( portalData.position, radius ) ) do
-					damageDealt = damage
-					if talent2 and enemy:IsMinion() then
-						damageDealt = damageDealt * talent2Data
+					if not enemy:TriggerSpellAbsorb( self ) then
+						damageDealt = damage
+						if talent2 and enemy:IsMinion() then
+							damageDealt = damageDealt * talent2Data
+						end
+						if talent1 then
+							enemy:AddNewModifier( caster, ability, "modifier_void_spirit_dissimilate_talent", {duration = talent1Data} )
+						end
+						ability:DealDamage( caster, enemy, damageDealt )
 					end
-					if talent1 then
-						enemy:AddNewModifier( caster, ability, "modifier_void_spirit_dissimilate_talent", {duration = talent1Data} )
-					end
-					ability:DealDamage( caster, enemy, damageDealt )
 				end
 				ParticleManager:FireParticle( "particles/units/heroes/hero_void_spirit/dissimilate/void_spirit_dissimilate_dmg.vpcf", PATTACH_CUSTOMORIGIN, caster, {[0] = portalData.position, [1] = Vector( radius/2, 1, 1 ) } )
 				ParticleManager:FireParticle( "particles/units/heroes/hero_void_spirit/dissimilate/void_spirit_dissimilate_exit.vpcf", PATTACH_POINT_FOLLOW, caster )

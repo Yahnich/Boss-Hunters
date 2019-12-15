@@ -9,9 +9,10 @@ function boss_ammetot_illusion_of_inevitability:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	target:AddNewModifier( caster, self, "modifier_boss_ammetot_illusion_of_inevitability", {duration = self:GetSpecialValueFor("duration")} )
 	EmitSoundOn( "Hero_DoomBringer.InfernalBlade.Target", target )
 	ParticleManager:FireParticle( "particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf", PATTACH_POINT_FOLLOW, target )
+	if target:TriggerSpellAbsorb( self ) then return end
+	target:AddNewModifier( caster, self, "modifier_boss_ammetot_illusion_of_inevitability", {duration = self:GetSpecialValueFor("duration")} )
 end
 
 modifier_boss_ammetot_illusion_of_inevitability = class({})

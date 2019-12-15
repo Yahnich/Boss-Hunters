@@ -19,9 +19,9 @@ function oracle_fates:OnSpellStart()
 	EmitSoundOn("Hero_Oracle.FatesEdict", target)
 
 	ParticleManager:FireParticle("particles/units/heroes/hero_oracle/oracle_fatesedict_hit.vpcf", PATTACH_POINT_FOLLOW, caster, {[0]="attach_attack1"})
-
-	target:AddNewModifier(caster, self, "modifier_oracle_fates", {Duration = duration})
-
+	if not target:TriggerSpellAbsorb( self ) then
+		target:AddNewModifier(caster, self, "modifier_oracle_fates", {Duration = duration})
+	end
 	if caster:HasTalent("special_bonus_unique_oracle_fates_2") and target:GetTeam() ~= caster:GetTeam() then
 		target:Daze(self, caster, duration)
 	end

@@ -68,7 +68,7 @@ function viper_viper_strike_bh:OnSpellStart()
 end
 
 function viper_viper_strike_bh:OnProjectileHit_ExtraData( target, position, extraData )
-	if target then
+	if target and not target:TriggerSpellAbsorb( self ) then
 		local caster = self:GetCaster()
 		
 		local damage = self:GetTalentSpecialValueFor("damage")

@@ -51,7 +51,7 @@ function tide_hydro_cannon:OnProjectileHit(hTarget, vLocation)
 
     StopSoundOn("Ability.GushCast", caster)
 
-    if hTarget ~= nil then
+    if hTarget ~= nil and not hTarget:TriggerSpellAbsorb( self ) then
         EmitSoundOn("Ability.GushImpact", hTarget)
 
         local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_tidehunter/tidehunter_gush_splash.vpcf", PATTACH_POINT, caster)

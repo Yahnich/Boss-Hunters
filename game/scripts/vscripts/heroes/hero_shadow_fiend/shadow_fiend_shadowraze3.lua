@@ -63,13 +63,15 @@ function shadow_fiend_shadowraze3:singleRaze()
 
 	local enemies = caster:FindEnemyUnitsInRadius(position, radius, {})
 	for _,enemy in pairs(enemies) do
-		local enemyDamage = 0
-		if enemy:HasModifier("modifier_shadow_fiend_shadowraze") then
-			enemyDamage = self:GetTalentSpecialValueFor("combo_amp") * enemy:FindModifierByName("modifier_shadow_fiend_shadowraze"):GetStackCount()
-		end
+		if not enemy:TriggerSpellAbsorb( self ) then
+			local enemyDamage = 0
+			if enemy:HasModifier("modifier_shadow_fiend_shadowraze") then
+				enemyDamage = self:GetTalentSpecialValueFor("combo_amp") * enemy:FindModifierByName("modifier_shadow_fiend_shadowraze"):GetStackCount()
+			end
 
-		enemy:AddNewModifier(caster, self, "modifier_shadow_fiend_shadowraze", {Duration = self:GetTalentSpecialValueFor("combo_time")}):AddIndependentStack(self:GetTalentSpecialValueFor("combo_time"))
-		self:DealDamage(caster, enemy, damage/#enemies + enemyDamage, {}, 0)
+			enemy:AddNewModifier(caster, self, "modifier_shadow_fiend_shadowraze", {Duration = self:GetTalentSpecialValueFor("combo_time")}):AddIndependentStack(self:GetTalentSpecialValueFor("combo_time"))
+			self:DealDamage(caster, enemy, damage/#enemies + enemyDamage, {}, 0)
+		end
 	end
 end
 
@@ -105,12 +107,14 @@ function shadow_fiend_shadowraze3:LineRaze()
 
 	local enemies = caster:FindEnemyUnitsInLine(startPos, startPos + direction * distance, radius, {})
 	for _,enemy in pairs(enemies) do
-		local enemyDamage = 0
-		if enemy:HasModifier("modifier_shadow_fiend_shadowraze") then
-			enemyDamage = self:GetTalentSpecialValueFor("combo_amp") * enemy:FindModifierByName("modifier_shadow_fiend_shadowraze"):GetStackCount()
-		end
+		if not enemy:TriggerSpellAbsorb( self ) then
+			local enemyDamage = 0
+			if enemy:HasModifier("modifier_shadow_fiend_shadowraze") then
+				enemyDamage = self:GetTalentSpecialValueFor("combo_amp") * enemy:FindModifierByName("modifier_shadow_fiend_shadowraze"):GetStackCount()
+			end
 
-		enemy:AddNewModifier(caster, self, "modifier_shadow_fiend_shadowraze", {Duration = self:GetTalentSpecialValueFor("combo_time")}):AddIndependentStack(self:GetTalentSpecialValueFor("combo_time"))
-		self:DealDamage(caster, enemy, damage/#enemies + enemyDamage, {}, 0)
+			enemy:AddNewModifier(caster, self, "modifier_shadow_fiend_shadowraze", {Duration = self:GetTalentSpecialValueFor("combo_time")}):AddIndependentStack(self:GetTalentSpecialValueFor("combo_time"))
+			self:DealDamage(caster, enemy, damage/#enemies + enemyDamage, {}, 0)
+		end
 	end
 end

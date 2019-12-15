@@ -42,7 +42,7 @@ function morph_agi_strike:OnProjectileHit_ExtraData(hTarget, vLocation, table)
 	local caster = self:GetCaster()
 
 	if table.name == "proj" then
-		if hTarget then
+		if hTarget and not hTarget:TriggerSpellAbsorb(self) then
 			EmitSoundOn("Hero_Morphling.AdaptiveStrike", caster)
 			EmitSoundOn("Hero_Morphling.AdaptiveStrikeAgi.Target", hTarget)
 

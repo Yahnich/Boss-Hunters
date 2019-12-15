@@ -1,6 +1,6 @@
 pango_swashbuckler = class({})
 LinkLuaModifier("modifier_pango_swashbuckler", "heroes/hero_pango/pango_swashbuckler", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_pango_swashbuckler_passive", "heroes/hero_pango/pango_swashbuckler", LUA_MODIFIER_MOTION_NONE)
+-- LinkLuaModifier("modifier_pango_swashbuckler_passive", "heroes/hero_pango/pango_swashbuckler", LUA_MODIFIER_MOTION_NONE)
 
 function pango_swashbuckler:IsStealable()
     return true
@@ -12,37 +12,41 @@ end
 
 function pango_swashbuckler:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
-    if self:GetCaster():HasTalent("special_bonus_unique_pango_swashbuckler_1") then cooldown = cooldown - 3 end
     return cooldown
 end
 
-function pango_swashbuckler:GetIntrinsicModifierName()
-    return "modifier_pango_swashbuckler_passive"
+function pango_swashbuckler:GetCastRange(target, position)
+	return self:GetTalentSpecialValueFor("dash_range")
 end
 
-function pango_swashbuckler:GetChannelTime()
-	return self:GetTalentSpecialValueFor("strikes") * self:GetTalentSpecialValueFor("attack_interval")
+-- function pango_swashbuckler:GetIntrinsicModifierName()
+    -- return "modifier_pango_swashbuckler_passive"
+-- end
+
+function pango_swashbuckler:IsVectorTargeting()
+	return true
 end
 
-function pango_swashbuckler:OnSpellStart()
+function pango_swashbuckler:GetVectorTargetRange()
+	return self:GetTalentSpecialValueFor("range")
+end
+
+function pango_swashbuckler:GetVectorTargetStartRadius()
+	return self:GetTalentSpecialValueFor("width")
+end
+
+function pango_swashbuckler:OnVectorCastStart()
 	local caster = self:GetCaster()
-
-	--EmitSoundOn("Hero_Pangolier.Swashbuckle.Cast", caster)
-	--EmitSoundOn("Hero_Pangolier.Swashbuckle.Layer", caster)
-
-	caster:RemoveModifierByName("modifier_pango_ball_movement")
-
-	caster:AddNewModifier(caster, self, "modifier_pango_swashbuckler", {})
-end
-
-function pango_swashbuckler:OnChannelFinish(bInterrupted)
-	local caster = self:GetCaster()
-
-	if bInterrupted then
-		caster:RemoveModifierByName("modifier_pango_swashbuckler")
-		caster:Interrupt()
-		caster:Stop()
-		caster:Hold()
+	
+	EmitSoundOn("Hero_Pangolier.Swashbuckle.Cast", self:GetCaster())
+	EmitSoundOn("Hero_Pangolier.Swashbuckle.Layer", self:GetCaster())
+	
+	local distance = CalculateDistance(self:GetVectorPosition(), caster)
+	local speed = self:GetTalentSpecialValueFor("speed")
+	local duration = distance / speed
+    self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_pango_swift_dash", {duration = duration})
+	if caster:HasTalent("special_bonus_unique_pango_swashbuckler_2") then
+		ProjectileManager:ProjectileDodge(self:GetCaster())
 	end
 end
 
@@ -104,7 +108,7 @@ function modifier_pango_swashbuckler:OnCreated()
 		self.width = self:GetTalentSpecialValueFor("width")
 		self.strikes = self:GetTalentSpecialValueFor("strikes")
 
-		self.direction = CalculateDirection(ability:GetCursorPosition(), self.startPos)
+		self.direction = ability:GetVectorDirection()
 
 		self.endPos = self.startPos + self.direction * self.range
 
@@ -114,6 +118,7 @@ function modifier_pango_swashbuckler:OnCreated()
 		self.particles = {}
 
 		self:StartIntervalThink(self.attack_interval)
+		caster:RemoveModifierByName("modifier_pango_ball_movement")
 	end
 end
 
@@ -136,7 +141,7 @@ function modifier_pango_swashbuckler:OnIntervalThink()
 			self:Destroy()
 			return nil
 		end
-
+		caster:SetForwardVector( self.direction )
 		self:GetAbility():Strike(self.direction)
 
 		--increment the slash counter
@@ -153,37 +158,150 @@ function modifier_pango_swashbuckler:OnRemoved()
 end
 
 function modifier_pango_swashbuckler:CheckState()
-	local state = { [MODIFIER_STATE_COMMAND_RESTRICTED] = true,
+	local state = { [MODIFIER_STATE_ROOTED] = true,
+					[MODIFIER_STATE_SILENCED] = true,
 			 		[MODIFIER_STATE_CANNOT_MISS] = true}
+	if self:GetCaster():HasTalent("special_bonus_unique_pango_swashbuckler_2") then
+		state[MODIFIER_STATE_INVULNERABLE] = true
+	end
 	return state
+end
+
+function modifier_pango_swashbuckler:GetStatusEffectName()
+	if self:GetCaster():HasTalent("special_bonus_unique_pango_swashbuckler_2") then
+		return "particles/status_fx/status_effect_avatar.vpcf"
+	end
+end
+
+function modifier_pango_swashbuckler:StatusEffectPriority()
+	if self:GetCaster():HasTalent("special_bonus_unique_pango_swashbuckler_2") then
+		return 20
+	end
 end
 
 function modifier_pango_swashbuckler:IsHidden()
 	return true
 end
 
-modifier_pango_swashbuckler_passive = class({})
-function modifier_pango_swashbuckler_passive:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
-end
+-- modifier_pango_swashbuckler_passive = class({})
+-- function modifier_pango_swashbuckler_passive:DeclareFunctions()
+	-- return {MODIFIER_EVENT_ON_ATTACK_LANDED}
+-- end
 
-function modifier_pango_swashbuckler_passive:OnAttackLanded(params)
+-- function modifier_pango_swashbuckler_passive:OnAttackLanded(params)
+	-- if IsServer() then
+		-- local caster = self:GetCaster()
+
+		-- if caster:HasTalent("special_bonus_unique_pango_swashbuckler_2") then
+			-- local attacker = params.attacker
+			-- local chance = caster:FindTalentValue("special_bonus_unique_pango_swashbuckler_2")
+
+			-- if attacker == caster and self:RollPRNG(chance) then
+				-- if not caster:IsInAbilityAttackMode() then
+					-- Timers:CreateTimer( 0.1, function() self:GetAbility():Strike() end)
+				-- end
+			-- end
+		-- end
+	-- end
+-- end
+
+-- function modifier_pango_swashbuckler_passive:IsHidden()
+	-- return true
+-- end
+
+
+modifier_pango_swift_dash = class({})
+LinkLuaModifier( "modifier_pango_swift_dash", "heroes/hero_pango/pango_swashbuckler" ,LUA_MODIFIER_MOTION_NONE )
+
+function modifier_pango_swift_dash:OnCreated(table)
 	if IsServer() then
 		local caster = self:GetCaster()
+		local parent = self:GetParent()
+		self.endPos = self:GetAbility():GetCursorPosition()
+		self.dir = CalculateDirection(self:GetAbility():GetCursorPosition(), self:GetParent():GetAbsOrigin())
+		self.distance = CalculateDistance(self:GetAbility():GetCursorPosition(), parent:GetAbsOrigin())
+		self.speed = self:GetTalentSpecialValueFor("speed")
+		self.hitUnits = {}
 
-		if caster:HasTalent("special_bonus_unique_pango_swashbuckler_2") then
-			local attacker = params.attacker
-			local chance = caster:FindTalentValue("special_bonus_unique_pango_swashbuckler_2")
+		if caster:HasTalent("special_bonus_unique_pango_swift_dash_1") then
+			self:StartIntervalThink(0.06)
+		end
+		
+		self:StartMotionController()
+	end
+end
 
-			if attacker == caster and self:RollPRNG(chance) then
-				if not caster:IsInAbilityAttackMode() then
-					Timers:CreateTimer( 0.1, function() self:GetAbility():Strike() end)
-				end
-			end
+function modifier_pango_swift_dash:OnIntervalThink()
+	local enemies = self:GetParent():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetParent():GetAttackRange())
+	for _,enemy in pairs(enemies) do
+		if not self.hitUnits[ enemy:entindex() ] and not enemy:IsAttackImmune() then
+			self:GetParent():PerformGenericAttack(enemy, true, 0, false, false)
+			self.hitUnits[ enemy:entindex() ] = true
+			break
 		end
 	end
 end
 
-function modifier_pango_swashbuckler_passive:IsHidden()
+function modifier_pango_swift_dash:DoControlledMotion()
+	local parent = self:GetParent()
+	if self.distance > 0 then
+		local speed = self.speed * 0.03
+		self.distance = self.distance - speed
+		parent:SetAbsOrigin(GetGroundPosition(parent:GetAbsOrigin(), parent) + self.dir*speed)
+	else
+		parent:SetAbsOrigin( self.endPos )
+		self:Destroy()
+		return nil
+	end
+end
+
+function modifier_pango_swift_dash:CheckState()
+	local state = { [MODIFIER_STATE_ROOTED] = true,
+					[MODIFIER_STATE_SILENCED] = true,
+					[MODIFIER_STATE_DISARMED] = true,
+			 		[MODIFIER_STATE_CANNOT_MISS] = true}
+	if self:GetCaster():HasTalent("special_bonus_unique_pango_swashbuckler_2") then
+		state[MODIFIER_STATE_INVULNERABLE] = true
+	end
+	return state
+end
+
+function modifier_pango_swift_dash:DeclareFunctions()
+    local funcs = {
+        MODIFIER_PROPERTY_OVERRIDE_ANIMATION
+    }
+    return funcs
+end
+
+function modifier_pango_swift_dash:GetOverrideAnimation()
+	return ACT_DOTA_CAST_ABILITY_1
+end
+
+function modifier_pango_swift_dash:GetStatusEffectName()
+	if self:GetCaster():HasTalent("special_bonus_unique_pango_swashbuckler_2") then
+		return "particles/status_fx/status_effect_avatar.vpcf"
+	end
+end
+
+function modifier_pango_swift_dash:StatusEffectPriority()
+	if self:GetCaster():HasTalent("special_bonus_unique_pango_swashbuckler_2") then
+		return 20
+	end
+end
+
+function modifier_pango_swift_dash:OnRemoved()
+	if IsServer() then
+		self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_pango_swashbuckler", {})
+
+		self:GetParent():RemoveGesture(ACT_DOTA_CAST_ABILITY_1)
+		self:StopMotionController(false)
+	end
+end
+
+function modifier_pango_swift_dash:GetEffectName()
+	return "particles/units/heroes/hero_pangolier/pangolier_swashbuckler_dash.vpcf"
+end
+
+function modifier_pango_swift_dash:IsHidden()
 	return true
 end

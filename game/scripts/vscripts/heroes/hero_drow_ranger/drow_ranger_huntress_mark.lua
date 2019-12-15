@@ -11,6 +11,7 @@ function drow_ranger_huntress_mark:OnSpellStart()
 	if self.lastTargetModifier and not self.lastTargetModifier:IsNull() then
 		self.lastTargetModifier:Destroy()
 	end
+	if target:TriggerSpellAbsorb(self) then return end
 	if caster:HasTalent("special_bonus_unique_drow_ranger_huntress_mark_1") then
 		duration = caster:FindTalentValue("special_bonus_unique_drow_ranger_huntress_mark_1", "duration")
 	end

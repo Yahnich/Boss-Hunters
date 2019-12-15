@@ -9,6 +9,7 @@ function enigma_malefice_bh:OnSpellStart()
 	local target = self:GetCursorTarget()
 	
 	caster:EmitSound( "Hero_Enigma.Malefice" )
+	if target:TriggerSpellAbsorb(self) then return end
 	target:AddNewModifier(caster, self, "modifier_enigma_malefice_bh", {duration = self:GetTalentSpecialValueFor("duration")})
 end
 

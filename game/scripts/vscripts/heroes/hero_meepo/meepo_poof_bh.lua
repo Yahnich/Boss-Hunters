@@ -52,7 +52,14 @@ function meepo_poof_bh:OnSpellStart()
 
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
 	for _,enemy in pairs(enemies) do
-		self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+		if not enemy:TriggerSpellAbsorb(self) then
+			if caster:HasTalent("special_bonus_unique_meepo_poof_bh_1") then
+				caster:FindAbilityByName("meepo_earthbind_bh"):ThrowNet(enemy:GetAbsOrigin())
+			end
+
+			EmitSoundOn("Hero_Meepo.Poof.Damage", enemy)
+			self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+		end
 	end
 
 	if target and target:IsAlive() and target:GetUnitName() == caster:GetUnitName() then
@@ -62,29 +69,18 @@ function meepo_poof_bh:OnSpellStart()
 					 ParticleManager:SetParticleControl(nfx2, 1, caster:GetAbsOrigin())
 					 ParticleManager:SetParticleControl(nfx2, 2, Vector(radius, radius, radius))
 					 ParticleManager:ReleaseParticleIndex(nfx2)
-
-		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
-		for _,enemy in pairs(enemies) do
-
-			if caster:HasTalent("special_bonus_unique_meepo_poof_bh_1") then
-				caster:FindAbilityByName("meepo_earthbind_bh"):ThrowNet(enemy:GetAbsOrigin())
-			end
-
-			EmitSoundOn("Hero_Meepo.Poof.Damage", enemy)
-
-			self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-		end
 		FindClearSpaceForUnit(caster, target:GetAbsOrigin(), true)
 		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
 		for _,enemy in pairs(enemies) do
+			if not enemy:TriggerSpellAbsorb(self) then
+				if caster:HasTalent("special_bonus_unique_meepo_poof_bh_1") then
+					caster:FindAbilityByName("meepo_earthbind_bh"):ThrowNet(enemy:GetAbsOrigin())
+				end
 
-			if caster:HasTalent("special_bonus_unique_meepo_poof_bh_1") then
-				caster:FindAbilityByName("meepo_earthbind_bh"):ThrowNet(enemy:GetAbsOrigin())
+				EmitSoundOn("Hero_Meepo.Poof.Damage", enemy)
+
+				self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 			end
-
-			EmitSoundOn("Hero_Meepo.Poof.Damage", enemy)
-
-			self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		end
 	else
 		local allies = caster:FindFriendlyUnitsInRadius(point, FIND_UNITS_EVERYWHERE, {order = FIND_CLOSEST})
@@ -96,29 +92,18 @@ function meepo_poof_bh:OnSpellStart()
 							 ParticleManager:SetParticleControl(nfx2, 1, caster:GetAbsOrigin())
 							 ParticleManager:SetParticleControl(nfx2, 2, Vector(radius, radius, radius))
 							 ParticleManager:ReleaseParticleIndex(nfx2)
-
-				local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
-				for _,enemy in pairs(enemies) do
-
-					if caster:HasTalent("special_bonus_unique_meepo_poof_bh_1") then
-						caster:FindAbilityByName("meepo_earthbind_bh"):ThrowNet(enemy:GetAbsOrigin())
-					end
-
-					EmitSoundOn("Hero_Meepo.Poof.Damage", enemy)
-
-					self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-				end
 				FindClearSpaceForUnit(caster, ally:GetAbsOrigin(), true)
 				local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
 				for _,enemy in pairs(enemies) do
+					if not enemy:TriggerSpellAbsorb(self) then
+						if caster:HasTalent("special_bonus_unique_meepo_poof_bh_1") then
+							caster:FindAbilityByName("meepo_earthbind_bh"):ThrowNet(enemy:GetAbsOrigin())
+						end
 
-					if caster:HasTalent("special_bonus_unique_meepo_poof_bh_1") then
-						caster:FindAbilityByName("meepo_earthbind_bh"):ThrowNet(enemy:GetAbsOrigin())
+						EmitSoundOn("Hero_Meepo.Poof.Damage", enemy)
+
+						self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 					end
-
-					EmitSoundOn("Hero_Meepo.Poof.Damage", enemy)
-
-					self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 				end
 				break
 			end

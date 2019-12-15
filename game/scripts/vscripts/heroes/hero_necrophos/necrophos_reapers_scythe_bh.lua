@@ -18,23 +18,30 @@ function necrophos_reapers_scythe_bh:OnSpellStart()
 	
 	local talent1 = caster:HasTalent("special_bonus_unique_necrophos_reapers_scythe_1")
 	local maxHPDamage = caster:FindTalentValue("special_bonus_unique_necrophos_reapers_scythe_1") / 100
-	
-	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-		local modifier = self:Stun(enemy, duration)
-		if modifier then
-			local nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_necrolyte/necrolyte_scythe.vpcf", PATTACH_POINT_FOLLOW, enemy)
-			modifier:AddEffect(nFX)
+	local enemies = caster:FindEnemyUnitsInRadius( position, radius )
+	local spellBlockEnemies = {}
+	for _, enemy in ipairs( enemies ) do
+		if not enemy:TriggerSpellAbsorb(self) then
+			local modifier = self:Stun(enemy, duration)
+			if modifier then
+				local nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_necrolyte/necrolyte_scythe.vpcf", PATTACH_POINT_FOLLOW, enemy)
+				modifier:AddEffect(nFX)
+			end
+		else
+			spellBlockEnemies[enemy] = true
 		end
 	end
 	
 	Timers:CreateTimer(duration, function()
 		local damageDealt = 0
-		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-			local appliedDamage = damage
-			if talent1 then
-				appliedDamage = appliedDamage + enemy:GetMaxHealth() * maxHPDamage
+		for _, enemy in ipairs( enemies ) do
+			if not spellBlockEnemies[enemy] do
+				local appliedDamage = damage
+				if talent1 then
+					appliedDamage = appliedDamage + enemy:GetMaxHealth() * maxHPDamage
+				end
+				damageDealt = self:DealDamage( caster, enemy, appliedDamage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 			end
-			damageDealt = self:DealDamage( caster, enemy, appliedDamage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 		end
 		if caster:HasTalent("special_bonus_unique_necrophos_reapers_scythe_2") then
 			local heal = damageDealt * caster:FindTalentValue("special_bonus_unique_necrophos_reapers_scythe_2") / 100

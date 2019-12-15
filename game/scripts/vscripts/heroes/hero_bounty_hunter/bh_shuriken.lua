@@ -59,7 +59,7 @@ end
 function bh_shuriken:OnProjectileHit_ExtraData( target, position, extraData )
 	if target then
 		local caster = self:GetCaster()
-		
+		if target:TriggerSpellAbsorb( self ) then return end
 		local damage = tonumber(extraData.damage)
 		local maxBounces = self:GetTalentSpecialValueFor("max_bounces")
 		local shadow_walk = toboolean( extraData.shadow_walk )

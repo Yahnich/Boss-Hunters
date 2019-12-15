@@ -52,7 +52,7 @@ end
 function lion_earth_spike:OnProjectileHit_ExtraData(hTarget, vLocation, extraData)
     local caster = self:GetCaster()
 	
-    if hTarget ~= nil then
+    if hTarget ~= nil and not hTarget:TriggerSpellAbsorb( self ) then
         EmitSoundOn("Hero_Lion.ImpaleHitTarget", hTarget)
 
         ParticleManager:FireParticle("particles/units/heroes/hero_lion/lion_spell_impale_hit_spikes.vpcf", PATTACH_POINT, hTarget, {[0]=hTarget:GetAbsOrigin(),[1]=hTarget:GetAbsOrigin(),[2]=hTarget:GetAbsOrigin()})
@@ -68,9 +68,11 @@ function lion_earth_spike:OnProjectileHit_ExtraData(hTarget, vLocation, extraDat
         
         local enemies = caster:FindEnemyUnitsInRadius(vLocation, radius, {})
         for _,enemy in pairs(enemies) do
-            enemy:ApplyKnockBack(vLocation, 0.5, 0.5, 0, 350, caster, self)
-            self:Stun(enemy, self:GetTalentSpecialValueFor("duration"), false)
-            self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+			if not enemy:TriggerSpellAbsorb( self ) then
+				enemy:ApplyKnockBack(vLocation, 0.5, 0.5, 0, 350, caster, self)
+				self:Stun(enemy, self:GetTalentSpecialValueFor("duration"), false)
+				self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+			end
         end
 		if caster:HasTalent("special_bonus_unique_lion_earth_spike_1") then
 			local spikes = caster:FindTalentValue("special_bonus_unique_lion_earth_spike_1")

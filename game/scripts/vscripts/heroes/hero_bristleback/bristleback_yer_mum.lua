@@ -3,6 +3,7 @@ bristleback_yer_mum = class({})
 function bristleback_yer_mum:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
+	if target:TriggerSpellAbsorb( self ) then return end
 	target:AddNewModifier(caster, self, "modifier_bristleback_yer_mum", {duration = self:GetTalentSpecialValueFor("duration")})
 end
 

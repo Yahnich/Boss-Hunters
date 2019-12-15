@@ -10,7 +10,7 @@
 		"sepulcher_combat_lifestealer"			"1"
 		"sepulcher_combat_phantoms"				"1"
 		"sepulcher_combat_flesh_behemoths"		"1"
-		"grove_combat_roshan"					"1"
+		"generic_combat_slarks"					"1"
 	}
 	// Regular ass monsters
 	"Grove"
@@ -24,7 +24,6 @@
 		"grove_combat_slardar"					"1"
 		"grove_combat_wolves"					"1"
 		"generic_combat_ogres"					"1"
-		"generic_combat_slarks"					"1"
 		"grove_combat_centaurs"					"1"
 	}
 	// Gods, spirits, elementals
@@ -45,13 +44,12 @@
 	{
 		"solitude_combat_golem"					"1"
 		"solitude_combat_commander"				"1"
-		"solitude_combat_madness_demon"			"1"
-		"solitude_combat_wrath_demon"			"1"
 		"solitude_combat_sloth_demon"			"1"
 		"solitude_combat_corrupt_drow"			"1"
 		"solitude_combat_angry_wraith"			"1"
 		"solitude_combat_green_dragon"			"1"
 		"solitude_combat_satyrs"				"1"
 		"solitude_combat_hellbears"				"1"
+		"grove_combat_roshan"					"1"
 	}
 }

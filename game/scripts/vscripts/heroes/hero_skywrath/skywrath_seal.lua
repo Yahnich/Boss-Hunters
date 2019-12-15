@@ -11,9 +11,9 @@ function skywrath_seal:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	EmitSoundOn("Hero_SkywrathMage.AncientSeal.Target", target)
-
-	target:AddNewModifier(caster, self, "modifier_skywrath_seal", {Duration = self:GetTalentSpecialValueFor("duration")})
-
+	if not	target:TriggerSpellAbsorb( self ) then
+		target:AddNewModifier(caster, self, "modifier_skywrath_seal", {Duration = self:GetTalentSpecialValueFor("duration")})
+	end
 	if caster:HasScepter() then
         local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), self:GetTrueCastRange())
         for _,enemy in pairs(enemies) do

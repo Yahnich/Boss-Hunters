@@ -57,7 +57,7 @@ function mk_command:OnProjectileHit(hTarget, vLocation)
 
 	EmitSoundOnLocationWithCaster(vLocation, "Hero_MonkeyKing.FurArmy.End", caster)
 
-	if hTarget then
+	if hTarget and not hTarget:TriggerSpellAbsorb(self) then
 		if caster:HasModifier("modifier_mk_mastery_hits") then
 			local mod = caster:FindModifierByName("modifier_mk_mastery_hits")
 			if mod:GetStackCount() > 1 then

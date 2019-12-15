@@ -35,10 +35,22 @@ local function StartCombat(self, bFight)
 		self.combatStarted = true
 		self.eventType = EVENT_TYPE_ELITE
 		
-		self.undying = RoundManager:GetCurrentRaidTier()
-		self.zombos = math.floor( (2 + RoundManager:GetRaidsFinished() ) * HeroList:GetActiveHeroCount() / 1.5 )
-		self.enemiesToSpawn = self.undying + self.zombos
-		Timers:CreateTimer(3, function()
+		self.undying = 1
+		self.behemoth = RoundManager:GetCurrentRaidTier()
+		self.zombos = math.floor( (2 + RoundManager:GetCurrentRaidTier() ) * HeroList:GetActiveHeroCount() / 1.5 )
+		self.enemiesToSpawn = self.undying + self.zombos + self.behemoth
+		Timers:CreateTimer(15, function()
+			local boss = "npc_dota_boss_flesh_behemoth"
+			local spawn = CreateUnitByName(boss, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+			spawn.unitIsRoundNecessary = true
+			spawn:SetCoreHealth(1800)
+			self.behemoth = self.behemoth - 1
+			self.enemiesToSpawn = self.enemiesToSpawn - 1
+			if self.behemoth > 0 then
+				return 12
+			end
+		end)
+		Timers:CreateTimer(8, function()
 			local boss = "npc_dota_boss4"
 			local spawn = CreateUnitByName(boss, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundNecessary = true
@@ -47,12 +59,12 @@ local function StartCombat(self, bFight)
 			self.undying = self.undying - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if self.undying > 0 then
-				return 15
+				return 12
 			end
 		end)
-		Timers:CreateTimer(5, function()
+		Timers:CreateTimer(2, function()
 			local zombie = "npc_dota_boss3a"
-			if RollPercentage(33) then
+			if RollPercentage(25) then
 				zombie = "npc_dota_boss3b"
 			end
 			local spawn = CreateUnitByName(zombie, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
@@ -62,7 +74,7 @@ local function StartCombat(self, bFight)
 			self.zombos = self.zombos - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if self.zombos > 0 then
-				return 3
+				return 2
 			end
 		end)
 	else
@@ -142,8 +154,7 @@ local function PrecacheUnits(self, context)
 	PrecacheUnitByNameSync("npc_dota_boss3a_b", context)
 	PrecacheUnitByNameSync("npc_dota_boss3b", context)
 	PrecacheUnitByNameSync("npc_dota_mini_boss1", context)
-	PrecacheUnitByNameSync("npc_dota_boss7", context)
-	PrecacheUnitByNameSync("npc_dota_boss22", context)
+	PrecacheUnitByNameSync("npc_dota_boss_flesh_behemoth", context)
 	return true
 end
 

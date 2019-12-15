@@ -28,7 +28,7 @@ end
 function sd_shadow_poison:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 
-	if hTarget then
+	if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
 		EmitSoundOn("Hero_ShadowDemon.ShadowPoison.Impact", hTarget)
 
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_shadow_demon/shadow_demon_loadout.vpcf", PATTACH_POINT, caster)

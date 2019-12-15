@@ -46,8 +46,10 @@ function warlock_demonic_summons:OnSpellStart()
 
 		local enemies = caster:FindEnemyUnitsInRadius(point, radius)
 		for _,enemy in pairs(enemies) do
-			self:Stun(enemy, duration, false)
-			self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			if not enemy:TriggerSpellAbsorb( self ) then
+				self:Stun(enemy, duration, false)
+				self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			end
 		end
 
 		self:CreateGolem(point)

@@ -31,14 +31,15 @@ function ss_electric_vortex:OnSpellStart()
 		EmitSoundOn("Hero_StormSpirit.ElectricVortex", caster)
 		
 		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTrueCastRange())
-		for _,enemy in pairs(enemies) do
-			enemy:AddNewModifier(caster, self, "modifier_ss_electric_vortex", {Duration = duration})
+		for _,enemy in pairs(enemies) do	
+			if not enemy:TriggerSpellAbsorb( self ) then
+				enemy:AddNewModifier(caster, self, "modifier_ss_electric_vortex", {Duration = duration})
+			end
 		end
 	else
 		local target = self:GetCursorTarget()
-
 		EmitSoundOn("Hero_StormSpirit.ElectricVortex", target)
-
+		if target:TriggerSpellAbsorb( self ) then return end
 		target:AddNewModifier(caster, self, "modifier_ss_electric_vortex", {Duration = duration})
 	end
 

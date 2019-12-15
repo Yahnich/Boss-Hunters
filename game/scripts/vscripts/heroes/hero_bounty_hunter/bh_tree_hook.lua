@@ -159,9 +159,11 @@ function modifier_bh_tree_hook_pull:OnIntervalThink()
     local enemies = caster:FindEnemyUnitsInLine(self.tree, caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("width")/2, {})
     for _,enemy in pairs(enemies) do
 		if not self.hitUnits[enemy] then
-			EmitSoundOn("Hero_Meepo.Earthbind.Target", enemy)
-            enemy:AddNewModifier(caster, self:GetAbility(), "modifier_bh_tree_root", {Duration = self:GetTalentSpecialValueFor("root_duration")})
-			caster:AddNewModifier(caster, self:GetAbility(), "modifier_bh_tree_ms", {Duration = self:GetTalentSpecialValueFor("root_duration")})
+			if enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+				EmitSoundOn("Hero_Meepo.Earthbind.Target", enemy)
+				enemy:AddNewModifier(caster, self:GetAbility(), "modifier_bh_tree_root", {Duration = self:GetTalentSpecialValueFor("root_duration")})
+				caster:AddNewModifier(caster, self:GetAbility(), "modifier_bh_tree_ms", {Duration = self:GetTalentSpecialValueFor("root_duration")})
+			end
 			self.hitUnits[enemy] = true
         end
     end

@@ -67,8 +67,10 @@ function modifier_visage_stone:OnCreated(table)
 			local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), radius)
 			for _,enemy in pairs(enemies) do
 				EmitSoundOn("Visage_Familar.StoneForm.Stun", enemy)
-				self:GetAbility():Stun(enemy, duration)
-				self:GetAbility():DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+				if enemy:TriggerSpellAbsorb( self:GetAbility() ) then 
+					self:GetAbility():Stun(enemy, duration)
+					self:GetAbility():DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+				end
 			end
 		end)
 	end

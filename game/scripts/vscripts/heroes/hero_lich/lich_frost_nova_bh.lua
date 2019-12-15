@@ -14,10 +14,11 @@ function lich_frost_nova_bh:OnSpellStart()
 	
 	local hitTable = {}
 	Timers:CreateTimer(function()
-		self:DealDamage( caster, target )
 		hitTable[target] = true
-		ParticleManager:FireParticle("particles/units/heroes/hero_lich/lich_frost_nova.vpcf", PATTACH_POINT_FOLLOW, target)
 		target:EmitSound("Ability.FrostNova")
+		if target:TriggerSpellAbsorb( self ) then return end
+		ParticleManager:FireParticle("particles/units/heroes/hero_lich/lich_frost_nova.vpcf", PATTACH_POINT_FOLLOW, target)
+		self:DealDamage( caster, target )
 		position = target:GetAbsOrigin()
 		target = nil
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do

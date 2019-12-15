@@ -9,6 +9,7 @@ function boss_ifdat_incinerate:OnSpellStart()
 	local overTime = 0.3
 	local tick = overTime / stacks
 	caster:EmitSound( "Ability.LagunaBlade" )
+	if target:TriggerSpellAbsorb( self ) then return end
 	Timers:CreateTimer( tick, function()
 		self:DealDamage( caster, target, 1, {damage_type = DAMAGE_TYPE_PURE})
 		stacks = stacks - 1

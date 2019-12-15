@@ -63,15 +63,16 @@ function modifier_mag_charge:DoControlledMotion()
 		local enemies = parent:FindEnemyUnitsInRadius(parent:GetAbsOrigin(),self:GetTalentSpecialValueFor("radius")+200)
 		for _,enemy in pairs(enemies) do
 			FindClearSpaceForUnit(enemy, enemy:GetAbsOrigin(), true)
-			
-			if parent:HasTalent("special_bonus_unique_mag_charge_1") then
-				local duration = parent:FindTalentValue("special_bonus_unique_mag_charge_1")
-				ability:Stun(enemy, duration)
-				ability:StartDelayedCooldown(duration)
-			end
-			if parent:HasTalent("special_bonus_unique_mag_charge_2") then
-				local damage = parent:GetStrength() * parent:FindTalentValue("special_bonus_unique_mag_charge_2") / 100
-				ability:DealDamage( parent, enemy, damage )
+			if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+				if parent:HasTalent("special_bonus_unique_mag_charge_1") then
+					local duration = parent:FindTalentValue("special_bonus_unique_mag_charge_1")
+					ability:Stun(enemy, duration)
+					ability:StartDelayedCooldown(duration)
+				end
+				if parent:HasTalent("special_bonus_unique_mag_charge_2") then
+					local damage = parent:GetStrength() * parent:FindTalentValue("special_bonus_unique_mag_charge_2") / 100
+					ability:DealDamage( parent, enemy, damage )
+				end
 			end
 		end
 

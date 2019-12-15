@@ -22,15 +22,19 @@ function modifier_razor_plasma_field_bh:OnCreated(table)
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_razor/razor_plasmafield.vpcf", PATTACH_POINT_FOLLOW, caster)
 					ParticleManager:SetParticleControl(nfx, 0, caster:GetAbsOrigin())
 					ParticleManager:SetParticleControl(nfx, 1, Vector(maxRadius, self:GetTalentSpecialValueFor("speed"), 1))
-
+		local spellBlockEnemies = {}
 		Timers:CreateTimer(0,function()
 			if currentRadius < maxRadius and not self:IsNull() then
 				local enemies = caster:FindEnemyUnitsInRing(caster:GetAbsOrigin(), currentRadius, math.max(0, currentRadius-200), {})
 				for _, enemy in pairs(enemies) do
-					if caster:HasTalent("special_bonus_unique_razor_plasma_field_bh_2") then
-						enemy:Paralyze( self:GetAbility(), caster, 1)
+					if not enemy:TriggerSpellAbsorb( self ) then
+						if caster:HasTalent("special_bonus_unique_razor_plasma_field_bh_2") then
+							enemy:Paralyze( self:GetAbility(), caster, 1)
+						end
+						self:GetAbility():DealDamage( caster, enemy, self:GetTalentSpecialValueFor("damage_max")*FrameTime(), {}, 0 )
+					else
+						spellBlockEnemies[enemy] = true
 					end
-					self:GetAbility():DealDamage( caster, enemy, self:GetTalentSpecialValueFor("damage_max")*FrameTime(), {}, 0 )
 				end
 				currentRadius = currentRadius + maxRadius*FrameTime()
 				return 0.03
@@ -51,7 +55,9 @@ function modifier_razor_plasma_field_bh:OnCreated(table)
 						enemies = caster:FindEnemyUnitsInRing(caster:GetAbsOrigin(), currentRadius, currentRadius-200, {})
 					end
 					for _,enemy in pairs(enemies) do
-						self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage_max")*FrameTime(), {}, 0)
+						if not spellBlockEnemies[enemy] and not enemy:TriggerSpellAbsorb( self ) then
+							self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage_max")*FrameTime(), {}, 0)
+						end
 					end
 					currentRadius = currentRadius - maxRadius*FrameTime()
 					return 0.03

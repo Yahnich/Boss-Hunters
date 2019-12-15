@@ -9,15 +9,17 @@ function silencer_global_silence_bh:OnSpellStart()
 	
 	self:StartDelayedCooldown(duration)
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), -1 ) ) do
-		enemy:Silence(self, caster, duration, false)
-		if talent2 then
-			enemy:Disarm(self, caster, duration, false)
-			enemy:Break(self, caster, duration, false)
+		if not enemy:TriggerSpellAbsorb( self ) then
+			enemy:Silence(self, caster, duration, false)
+			if talent2 then
+				enemy:Disarm(self, caster, duration, false)
+				enemy:Break(self, caster, duration, false)
+			end
+			if talent1 and curse then
+				curse:ApplyArcaneCurse( enemy, duration )
+			end
+			ParticleManager:FireParticle("particles/units/heroes/hero_silencer/silencer_global_silence_hero.vpcf", PATTACH_POINT_FOLLOW, enemy)
 		end
-		if talent1 and curse then
-			curse:ApplyArcaneCurse( enemy, duration )
-		end
-		ParticleManager:FireParticle("particles/units/heroes/hero_silencer/silencer_global_silence_hero.vpcf", PATTACH_POINT_FOLLOW, enemy)
 	end
 	
 	caster:EmitSound("Hero_Silencer.GlobalSilence.Cast")

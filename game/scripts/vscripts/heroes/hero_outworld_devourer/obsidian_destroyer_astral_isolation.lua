@@ -15,7 +15,7 @@ function obsidian_destroyer_astral_isolation:OnSpellStart()
 	ParticleManager:ReleaseParticleIndex(flash)
 	if hTarget:GetTeam() == caster:GetTeam() then
 		hTarget:AddNewModifier(caster, self, "modifier_obsidian_destroyer_astral_isolation_prison", {duration = self:GetTalentSpecialValueFor("prison_duration")})
-	else
+	elseif not target:TriggerSpellAbsorb( self ) then
 		local modifier = caster:AddNewModifier(caster, self,"modifier_obsidian_destroyer_astral_isolation_int_gain", {duration = self:GetTalentSpecialValueFor("steal_duration")})
 		modifier:IncrementStackCount()
 		local endFlash = ParticleManager:CreateParticle("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_prison_end.vpcf", PATTACH_ABSORIGIN , hTarget)
@@ -25,7 +25,9 @@ function obsidian_destroyer_astral_isolation:OnSpellStart()
 		self:Stun(hTarget, self:GetTalentSpecialValueFor("prison_duration") / 2, true)
 		local enemies = FindUnitsInRadius(caster:GetTeamNumber(), hTarget:GetAbsOrigin(), nil, self:GetTalentSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 		for _,enemy in pairs(enemies) do
-			ApplyDamage({victim = enemy, attacker = caster, damage = self:GetTalentSpecialValueFor("damage"), damage_type = self:GetAbilityDamageType(), ability = self})
+			if not enemy:TriggerSpellAbsorb( self ) then
+				ApplyDamage({victim = enemy, attacker = caster, damage = self:GetTalentSpecialValueFor("damage"), damage_type = self:GetAbilityDamageType(), ability = self})
+			end
 		end
 	end
 end

@@ -82,8 +82,10 @@ function modifier_the_kraken:OnCreated()
 end
 
 function modifier_the_kraken:OnIntervalThink()
-    self:GetAbility():Stun(self:GetParent(), self:GetTalentSpecialValueFor("duration"), false)
-    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("damage"), {}, 0)
+	if not self:GetParent():TriggerSpellAbsorb( self:GetAbility() ) then
+		self:GetAbility():Stun(self:GetParent(), self:GetTalentSpecialValueFor("duration"), false)
+		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("damage"), {}, 0)
+	end
     self:Destroy()
 end
 

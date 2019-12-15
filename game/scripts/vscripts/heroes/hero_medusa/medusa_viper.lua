@@ -39,7 +39,7 @@ function medusa_viper:OnProjectileHit(hTarget, vLocation)
 
 	EmitSoundOnLocationWithCaster(vLocation, "Hero_Medusa.MysticSnake.Target", caster)
 
-	if hTarget then
+	if hTarget and not hTarget:TriggerSpellAbsorb(self) then
 		if caster:HasTalent("special_bonus_unique_medusa_viper_1") then
 			local duration = caster:FindTalentValue("special_bonus_unique_medusa_viper_1")
 			hTarget:Break(self, caster, duration, false)

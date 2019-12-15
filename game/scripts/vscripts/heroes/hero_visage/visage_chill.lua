@@ -23,7 +23,7 @@ function visage_chill:OnSpellStart()
 				ParticleManager:SetParticleControlEnt(nfx, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 				ParticleManager:SetParticleControlEnt(nfx, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
 				ParticleManager:ReleaseParticleIndex(nfx)
-
+	if target:TriggerSpellAbsorb( self ) then return end
 	caster:AddNewModifier(caster, self, "modifier_visage_chill_buff", {Duration = duration})
 	target:AddNewModifier(caster, self, "modifier_visage_chill_debuff", {Duration = duration})
 end

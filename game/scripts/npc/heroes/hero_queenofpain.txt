@@ -42,14 +42,14 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"strike_damage"					"100 125 150 175 200 225 250"
+				"strike_damage"					"105 135 160 185 215 240 265"
 				"LinkedSpecialBonus"			"special_bonus_unique_queenofpain_shadow_strike_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"duration_damage"				"30 45 60 75 90 105 120"
+				"duration_damage"				"32 48 64 80 96 112 128"
 			}
 			"03"
 			{
@@ -250,7 +250,7 @@
 
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"75 150 225 300 375 450 525"
+		"AbilityDamage"					"80 160 240 320 400 480 560"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -263,7 +263,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"area_of_effect"		"475"
+				"area_of_effect"		"550 575 600 625 650 675 700"
 			}
 			"02"
 			{
@@ -291,12 +291,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"50"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value2"					"12.5"
+				"value"						"1"
 			}
 		}
 	}
@@ -347,7 +342,22 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"damage_amp"				"25"
+				"damage_amp"				"15"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"area_dmg"					"15"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"lifesteal"					"15"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"minion_lifesteal"			"3.75"
 			}
 		}
 	}
@@ -378,7 +388,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"					"120"
+		"AbilityCooldown"					"60"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -411,7 +421,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"300 425 550 675 800 925"
+				"damage"				"320 450 585 715 850 985"
 			}
 			"06"
 			{
@@ -426,7 +436,7 @@
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_scepter"		"325 475 625 775 925 1075"
+				"damage_scepter"		"345 505 665 825 985 1145"
 			}
 			"09"
 			{
@@ -480,7 +490,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"-60"
+				"value"						"-25"
 			}
 		}
 	}

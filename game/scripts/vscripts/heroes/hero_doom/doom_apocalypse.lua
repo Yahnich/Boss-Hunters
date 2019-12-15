@@ -49,7 +49,7 @@ function doom_apocalypse:OnSpellStart()
                 location = location + direction * 150
             end
 		end
-	else
+	elseif not hTarget:TriggerSpellAbsorb(self) then
 		hTarget:AddNewModifier( self:GetCaster(), self, doomModifier, { duration = self.doomDuration } )
 	end
 end

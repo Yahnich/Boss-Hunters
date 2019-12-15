@@ -27,10 +27,12 @@ function centaur_hoof_stomp_ebf:OnSpellStart()
 	
 	local targets = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
 	for _, target in ipairs( targets ) do
-		self:DealDamage( caster, target, damage )
-		self:Stun( target, duration, false )
-		if caster:HasTalent("special_bonus_unique_centaur_hoof_stomp_2") then 
-			target:AddNewModifier(caster, self, "modifier_centaur_hoof_stomp_slow", {duration = duration + caster:FindTalentValue("special_bonus_unique_centaur_hoof_stomp_2")})
+		if not target:TriggerSpellAbsorb( self ) then
+			self:DealDamage( caster, target, damage )
+			self:Stun( target, duration, false )
+			if caster:HasTalent("special_bonus_unique_centaur_hoof_stomp_2") then 
+				target:AddNewModifier(caster, self, "modifier_centaur_hoof_stomp_slow", {duration = duration + caster:FindTalentValue("special_bonus_unique_centaur_hoof_stomp_2")})
+			end
 		end
 	end
 	ParticleManager:FireParticle("particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", PATTACH_ABSORIGIN, caster, {[1] = Vector(radius, 0, 0)})

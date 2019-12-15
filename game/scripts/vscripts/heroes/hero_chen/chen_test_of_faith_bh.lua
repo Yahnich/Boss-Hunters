@@ -29,7 +29,7 @@ function chen_test_of_faith_bh:OnSpellStart()
 			if unit:IsSameTeam( caster ) then
 				ParticleManager:FireParticle("particles/units/heroes/hero_chen/chen_test_of_faith.vpcf", PATTACH_POINT, unit, {})
 				unit:HealEvent( value, self, caster )
-			else
+			elseif not unit:TriggerSpellAbsorb( self ) then
 				ParticleManager:FireParticle("particles/chen_corrupted_test.vpcf", PATTACH_POINT, unit, {})
 				self:DealDamage(caster, unit, value, {}, OVERHEAD_ALERT_DAMAGE)
 			end
@@ -39,7 +39,7 @@ function chen_test_of_faith_bh:OnSpellStart()
 		if target:IsSameTeam( caster ) then
 			ParticleManager:FireParticle("particles/units/heroes/hero_chen/chen_test_of_faith.vpcf", PATTACH_POINT, target, {})
 			target:HealEvent( value, self, caster )
-		else
+		elseif not target:TriggerSpellAbsorb( self ) then
 			ParticleManager:FireParticle("particles/chen_corrupted_test.vpcf", PATTACH_POINT, target, {})
 			self:DealDamage(caster, target, value, {}, OVERHEAD_ALERT_DAMAGE)
 		end

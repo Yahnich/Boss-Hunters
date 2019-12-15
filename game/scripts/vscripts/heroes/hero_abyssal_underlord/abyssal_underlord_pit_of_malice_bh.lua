@@ -110,8 +110,9 @@ function modifier_abyssal_underlord_pit_of_malice_bh_root_handle:OnCreated(table
 			end
 		else
 			local duration = self:GetSpecialValueFor("ensnare_duration")
-
-			parent:AddNewModifier(caster, ability, "modifier_abyssal_underlord_pit_of_malice_bh_root", {Duration = duration})
+			if not parent:TriggerSpellAbsorb(ability) then
+				parent:AddNewModifier(caster, ability, "modifier_abyssal_underlord_pit_of_malice_bh_root", {Duration = duration})
+			end
 			self:StartIntervalThink( self:GetTalentSpecialValueFor("interval") )
 		end
     end

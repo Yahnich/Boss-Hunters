@@ -13,11 +13,17 @@ function omniknight_purification_bh:OnSpellStart()
 	local search = self:GetTalentSpecialValueFor("search_radius")
 	local radius = self:GetTalentSpecialValueFor("area_of_effect")
 	
+	local spellBlockEnemies = {}
 	for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( target, search) ) do
 		ally:HealEvent(heal, self, caster )
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( ally:GetAbsOrigin(), radius) ) do
-			self:DealDamage(caster, enemy, damage)
-			ParticleManager:FireRopeParticle("particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf", PATTACH_POINT_FOLLOW, ally, enemy)
+			if not spellBlockEnemies[enemy] and enemy:TriggerSpellAbsorb(self) then
+				spellBlockEnemies[enemy] = true
+			end
+			if not spellBlockEnemies[enemy] then
+				self:DealDamage(caster, enemy, damage)
+				ParticleManager:FireRopeParticle("particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf", PATTACH_POINT_FOLLOW, ally, enemy)
+			end
 		end
 		ParticleManager:FireParticle("particles/units/heroes/hero_omniknight/omniknight_purification.vpcf", PATTACH_POINT_FOLLOW, ally, {[1] = Vector(radius, 0, 0), [2] = caster:GetAbsOrigin()})
 	end

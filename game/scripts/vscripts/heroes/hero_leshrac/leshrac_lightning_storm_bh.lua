@@ -34,6 +34,7 @@ function leshrac_lightning_storm_bh:Zap( target )
 	local slowDur = self:GetTalentSpecialValueFor("slow_duration")
 	local hitUnits = {}
 	Timers:CreateTimer( function()
+		if currTarget:TriggerSpellAbsorb( self ) then return end
 		ability:DealDamage( caster, currTarget, damage )
 		currTarget:AddNewModifier( caster, ability, "modifier_leshrac_lightning_storm_bh", {duration = slowDur} )
 		

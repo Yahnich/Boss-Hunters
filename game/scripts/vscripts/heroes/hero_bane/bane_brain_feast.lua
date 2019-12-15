@@ -1,5 +1,9 @@
 bane_brain_feast = class({})
 
+function bane_brain_feast:GetIntrinsicModifierName()
+	return "modifier_bane_brain_feast_autocast"
+end
+
 function bane_brain_feast:GetCooldown(iLvl)
 	local cd = self.BaseClass.GetCooldown(self, iLvl)
 	if self:GetCaster():HasScepter() then cd = self:GetTalentSpecialValueFor("scepter_cooldown") end
@@ -24,6 +28,12 @@ function bane_brain_feast:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
+	EmitSoundOn("Hero_Bane.BrainSap.Target", target)
+	EmitSoundOn("Hero_Bane.BrainSap", caster)
+	
+	ParticleManager:FireRopeParticle("particles/units/heroes/hero_bane/bane_sap.vpcf", PATTACH_POINT_FOLLOW, caster, target)
+	if target:TriggerSpellAbsorb(self) then return end
+	
 	local damage = self:GetTalentSpecialValueFor("heal_damage")
 	if not target.IsNightmared then 
 		target.IsNightmared = function() return ( target:HasModifier("modifier_bane_nightmare_prison_sleep") or target:HasModifier("modifier_bane_nightmare_prison_fear") ) end
@@ -34,11 +44,7 @@ function bane_brain_feast:OnSpellStart()
 	local heal = self:DealDamage(caster, target, damage)
 	caster:HealEvent(heal, self, caster)
 	target:AddNewModifier(caster, self, "modifier_bane_brain_feast_debuff", {duration = self:GetTalentSpecialValueFor("debuff_duration")})
-	
-	EmitSoundOn("Hero_Bane.BrainSap.Target", target)
-	EmitSoundOn("Hero_Bane.BrainSap", caster)
-	
-	ParticleManager:FireRopeParticle("particles/units/heroes/hero_bane/bane_sap.vpcf", PATTACH_POINT_FOLLOW, caster, target)
+
 	if caster:HasTalent("special_bonus_unique_bane_brain_feast_2") then
 		for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_bane_brain_feast_2") ) ) do
 			if ally ~= caster then
@@ -47,6 +53,23 @@ function bane_brain_feast:OnSpellStart()
 			end
 		end
 	end
+end
+
+modifier_bane_brain_feast_autocast = class({})
+LinkLuaModifier("modifier_bane_brain_feast_autocast", "heroes/hero_bane/bane_brain_feast", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_bane_brain_feast_autocast:DeclareFunctions()
+	return {MODIFIER_EVENT_ON_ATTACK}
+end
+
+function modifier_bane_brain_feast_autocast:OnAttack(params)
+	if params.attacker == self:GetParent() and self:GetAbility():GetAutoCastState() and self:GetAbility():IsFullyCastable() then
+		params.attacker:CastAbilityOnTarget( params.target, self:GetAbility(), params.attacker:GetPlayerID() )
+	end
+end
+
+function modifier_bane_brain_feast_autocast:IsHidden()
+	return true
 end
 
 modifier_bane_brain_feast_debuff = class({})
@@ -66,7 +89,7 @@ function modifier_bane_brain_feast_debuff:DeclareFunctions()
 end
 
 function modifier_bane_brain_feast_debuff:GetModifierIncomingDamage_Percentage()
-	return 5
+	return 8
 end
 
 function modifier_bane_brain_feast_debuff:OnAbilityFullyCast(params)

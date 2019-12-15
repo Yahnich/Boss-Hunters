@@ -17,6 +17,8 @@
 			"particle" "particles/units/bosses/boss_legion_commander/legion_commander_courage_tgt.vpcf"
 		}
 		
+		"AbilityCooldown"					"0.3 0.25"
+		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -76,12 +78,12 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"radius"						"550"
+				"radius"						"525"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"400 450"
+				"damage"						"300"
 			}
 			"03"
 			{

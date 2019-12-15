@@ -36,6 +36,7 @@ if IsServer() then
 	
 	function chaos_knight_chaos_bolt_ebf:OnProjectileHit(target, position)
 		local caster = self:GetCaster()
+		if target:TriggerSpellAbsorb( self ) then return end
 		local target_location = target:GetAbsOrigin()
 		EmitSoundOn("Hero_ChaosKnight.ChaosBolt.Impact", target)
 		-- Ability variables

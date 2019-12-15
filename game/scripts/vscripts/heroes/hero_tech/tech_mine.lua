@@ -39,15 +39,17 @@ function modifier_mine:OnIntervalThink()
 	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), radius, {flag = self:GetAbility():GetAbilityTargetFlags()})
 	for _,enemy in pairs(enemies) do
 		StopSoundOn("Hero_Techies.LandMine.Plant", self:GetCaster())
-		EmitSoundOn("Hero_Techies.LandMine.Detonate", self:GetParent())
-
+		
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf", PATTACH_POINT, self:GetCaster())
 		ParticleManager:SetParticleControl(nfx, 0, self:GetParent():GetAbsOrigin())
 		ParticleManager:SetParticleControl(nfx, 1, self:GetParent():GetAbsOrigin())
 		ParticleManager:SetParticleControl(nfx, 2, Vector(radius, radius, radius))
 		ParticleManager:ReleaseParticleIndex(nfx)
+		if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+			self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+			EmitSoundOn("Hero_Techies.LandMine.Detonate", self:GetParent())
+		end
 
-		self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
 		self:GetParent():ForceKill(false)
 		self:Destroy()
 	end

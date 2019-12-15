@@ -47,7 +47,7 @@ function troll_warlord_axe_throw:AxeThrow(direction, fSpeed, fDistance, fWidth)
 end
 
 function troll_warlord_axe_throw:OnProjectileHit( target, position )
-	if target then
+	if target and not target:TriggerSpellAbsorb( self ) then
 		local caster = self:GetCaster()
 		
 		local damage = self:GetTalentSpecialValueFor("axe_damage")

@@ -25,7 +25,7 @@ function doom_demons_bargain:OnSpellStart()
     local duration = self:GetTalentSpecialValueFor("duration")
 	ParticleManager:FireParticle("particles/units/heroes/hero_doom_bringer/doom_bringer_devour.vpcf", PATTACH_POINT_FOLLOW, self.target)
 	EmitSoundOn("Hero_DoomBringer.Devour", self.target)
-	
+	if self:GetCursorTarget():TriggerSpellAbsorb(self) then return end
     local heroes = HeroList:GetActiveHeroes()
     local gold_per_player = gold / #heroes
     for _,unit in ipairs ( heroes ) do

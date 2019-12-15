@@ -28,7 +28,7 @@ function witch_doctor_paralyzing_cask_bh:OnProjectileHit_ExtraData(target, vLoca
 		if extraData.bounces then extraData.bounces = extraData.bounces - 1 end
 		stunDuration = self:GetSpecialValueFor("hero_duration")
 	end
-	if target:GetTeamNumber() ~= caster:GetTeamNumber() then
+	if target:GetTeamNumber() ~= caster:GetTeamNumber() and not target:TriggerSpellAbsorb( self ) then
 		self:Stun(target, stunDuration)
 		self:DealDamage( caster, target, self:GetSpecialValueFor("damage") )
 	else

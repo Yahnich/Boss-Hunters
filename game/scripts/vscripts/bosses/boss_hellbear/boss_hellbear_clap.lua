@@ -18,8 +18,10 @@ function boss_hellbear_clap:OnSpellStart()
 	local damage = self:GetSpecialValueFor("damage")
 	local radius = self:GetSpecialValueFor("radius") 
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius) ) do
-		enemy:AddNewModifier( caster, self, "modifier_boss_hellbear_clap", {duration = duration} )
-		self:DealDamage( caster, enemy, damage )
+		if not enemy:TriggerSpellAbsorb( self ) then
+			enemy:AddNewModifier( caster, self, "modifier_boss_hellbear_clap", {duration = duration} )
+			self:DealDamage( caster, enemy, damage )
+		end
 	end
 	ParticleManager:FireParticle("particles/neutral_fx/ursa_thunderclap.vpcf", PATTACH_ABSORIGIN, caster, {[0] = position, [1] = Vector(radius,1,1)})
 end

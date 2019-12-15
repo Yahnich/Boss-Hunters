@@ -9,7 +9,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_pango/pango_swashbuckler"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
@@ -21,7 +21,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0"
-		"AbilityCastRange"				"900"
+		"AbilityCastRange"				"400 500 600 700 800 900 1000"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -66,8 +66,21 @@
 			}
 			"05"
 			{
+				"var_type"					"FIELD_INTEGER"
+				"strikes"					"4"
+				"LinkedSpecialBonus"		"special_bonus_unique_pango_swashbuckler_1"
+				"LinkedSpecialBonusField"	"strikes"
+			}
+			"06"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"strikes"				"4"
+				"dash_range"			"400 500 600 700 800 900 1000"
+				"LinkedSpecialBonus"	"special_bonus_unique_pango_swashbuckler_2"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"2000"
 			}
 		}
 	}
@@ -90,7 +103,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
+				"value"						"40"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"strikes"					"2"
 			}
 		}
 	}
@@ -112,7 +130,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"15"
+				"value"						"400"
 			}
 		}
 	}
@@ -358,9 +376,8 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_pango/pango_heart"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"pangolier_heartpiercer"
-		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"AbilityTextureName"			"pangolier_lucky_shot"
+		"MaxLevel"						"7"
 		
 		"precache"
 		{
@@ -376,34 +393,79 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
+			
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"armor_reduc"			"-25"
+				"var_type"				"FIELD_INTEGER"
+				"chance"				"25"
+				"LinkedSpecialBonus"	"special_bonus_unique_pango_heart_2"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"chance"				"15"
+				"var_type"				"FIELD_FLOAT"
+				"armor_reduc"			"-2 -3 -4 -5 -6 -7 -8"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
+				"slow_pct"				"-15 -20 -25 -30 -35 -40 -45"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"slow_pct"				"-40"
+				"attack_slow"			"-40 -60 -80 -100 -120 -140 -160"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"debuff_delay"			"2"
+				"duration"				"5"
 			}
 		}
 	}
-
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_pango_heart_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_pango_heart_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"-8"
+			}
+		}
+	}
 	//=================================================================================================================
 	// Rolling Thunder
 	//=================================================================================================================

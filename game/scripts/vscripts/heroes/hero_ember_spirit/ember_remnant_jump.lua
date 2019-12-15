@@ -105,7 +105,9 @@ function modifier_ember_remnant_jump:DoControlledMotion()
 
 		local enemies = parent:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.radius)
 		for _,enemy in pairs(enemies) do
-			ability:DealDamage(parent, enemy, self.damage, {}, 0)
+			if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+				ability:DealDamage(parent, enemy, self.damage, {}, 0)
+			end
 		end
 
 		self:Destroy()

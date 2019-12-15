@@ -45,14 +45,14 @@ function riki_dance:OnSpellStart()
             ParticleManager:ReleaseParticleIndex(blinkIn)
 
             FindClearSpaceForUnit( caster, target:GetAbsOrigin() - target:GetForwardVector() * 50, false )
+			if not target:TriggerSpellAbsorb( self ) then
+				caster:PerformAttack(target, true, true, true, true, false, false, true)
+				self:DealDamage(caster, target, caster:GetAttackDamage()*(self:GetTalentSpecialValueFor("damage")-100)/100, {}, 0)
 
-            caster:PerformAttack(target, true, true, true, true, false, false, true)
-            self:DealDamage(caster, target, caster:GetAttackDamage()*(self:GetTalentSpecialValueFor("damage")-100)/100, {}, 0)
-
-            if caster:HasTalent("special_bonus_unique_riki_dance_2") then
-                self:Stun(target, 0.35, false)
+				if caster:HasTalent("special_bonus_unique_riki_dance_2") then
+					self:Stun(target, 0.35, false)
+				end
             end
-            
             Timers:CreateTimer(0.3, function()  
                 EmitSoundOn("Hero_Riki.Blink_Strike", target)
             end)

@@ -8,8 +8,9 @@ function bane_nightmare_prison:OnSpellStart()
 	if caster:HasTalent("special_bonus_unique_bane_nightmare_prison_2") then
 		modifierName = "modifier_bane_nightmare_prison_fear"
 	end
-	target:AddNewModifier(caster, self, modifierName, {duration = duration})
 	EmitSoundOn("Hero_Bane.Nightmare", target)
+	if target:TriggerSpellAbsorb(self) then return end
+	target:AddNewModifier(caster, self, modifierName, {duration = duration})
 end
 
 
@@ -50,7 +51,7 @@ function bane_nightmare_prison_sleep:DeclareFunctions()
 end
 
 function bane_nightmare_prison_sleep:GetModifierIncomingDamage_Percentage()
-	return 5
+	return 8
 end
 
 function bane_nightmare_prison_sleep:OnTakeDamage(params)
@@ -146,7 +147,7 @@ function modifier_bane_nightmare_prison_fear:DeclareFunctions()
 end
 
 function modifier_bane_nightmare_prison_fear:GetModifierIncomingDamage_Percentage()
-	return -5
+	return 8
 end
 
 function modifier_bane_nightmare_prison_fear:CheckState()

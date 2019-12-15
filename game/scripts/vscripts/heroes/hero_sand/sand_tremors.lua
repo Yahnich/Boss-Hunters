@@ -44,12 +44,14 @@ if IsServer() then
 		EmitSoundOn("Ability.SandKing_Epicenter", self:GetParent())
 		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius, {})
 		for _,enemy in pairs(enemies) do
-			self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"))
-			enemy:AddNewModifier(caster, self:GetAbility(), "modifier_tremors_enemy", {Duration = self:GetSpecialValueFor("duration")})
+			if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+				self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"))
+				enemy:AddNewModifier(caster, self:GetAbility(), "modifier_tremors_enemy", {Duration = self:GetSpecialValueFor("duration")})
 
-			if caster:HasTalent("special_bonus_unique_sand_tremors_2") then
-				if not enemy:HasModifier("modifier_knockback") then
-					enemy:ApplyKnockBack(caster:GetAbsOrigin(), 0.5, 0.5, -250, 250, caster, self:GetAbility())
+				if caster:HasTalent("special_bonus_unique_sand_tremors_2") then
+					if not enemy:HasModifier("modifier_knockback") then
+						enemy:ApplyKnockBack(caster:GetAbsOrigin(), 0.5, 0.5, -250, 250, caster, self:GetAbility())
+					end
 				end
 			end
 		end

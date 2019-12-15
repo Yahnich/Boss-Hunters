@@ -14,7 +14,7 @@ function boss_arthromos_virulent_swarm:OnSpellStart()
 end
 
 function boss_arthromos_virulent_swarm:OnProjectileHit( hTarget, vLocation )
-	if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
+	if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) and not hTarget:TriggerSpellAbsorb( self ) then
 		local caster = self:GetCaster()
 		hTarget:AddNewModifier(caster, self, "modifier_boss_arthromos_virulent_swarm", {duration = self:GetSpecialValueFor("duration") + 0.1})
 		EmitSoundOn( "Hero_Venomancer.VenomousGaleImpact", hTarget )

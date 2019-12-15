@@ -53,6 +53,7 @@ function snapfire_scatterblast_lua:OnProjectileHit_ExtraData(hTarget, vLocation,
     local talentDamage = caster:FindTalentValue("special_bonus_unique_snapfire_scatterblast_lua_2", "damage")/100
 
     if hTarget ~= nil then
+		if table.name == "majorblast" and hTarget:TriggerSpellAbsorb( self ) then return end
         EmitSoundOn("Hero_Snapfire.Shotgun.Target ", hTarget)
 
         hTarget:AddNewModifier(caster, self, "modifier_snapfire_scatterblast_lua_slow", {Duration = debuff_duration})

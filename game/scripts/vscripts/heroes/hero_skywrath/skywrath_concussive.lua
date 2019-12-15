@@ -32,7 +32,7 @@ end
 function skywrath_concussive:OnProjectileHit(hTarget, vLocation)
     local caster = self:GetCaster()
 
-    if hTarget then
+    if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
     	EmitSoundOn("Hero_SkywrathMage.ConcussiveShot.Target", hTarget)
         local enemies = caster:FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
         for _,enemy in pairs(enemies) do

@@ -33,7 +33,7 @@ function modifier_flash_step:OnCreated(table)
             caster:FindAbilityByName("pa_kunai_toss").TotesBounces = caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("bounces")*caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("max_targets")
             caster:FindAbilityByName("pa_kunai_toss").CurrentBounces = 0
         end
-
+		self.hitUnits = {}
         self:StartIntervalThink(FrameTime())
 
         self:StartMotionController()
@@ -81,11 +81,14 @@ function modifier_flash_step:OnIntervalThink()
 
     local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:GetAttackRange(), {})
     for _,enemy in pairs(enemies) do
-        if not enemy:HasModifier("modifier_flash_step_enemy") then
-            caster:PerformAbilityAttack( enemy, true, self:GetAbility() )
-            self:GetAbility():DealDamage(caster, enemy, caster:GetAttackDamage()*(self:GetTalentSpecialValueFor("damage")-100)/100, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
-            enemy:AddNewModifier(caster, self:GetAbility(), "modifier_flash_step_enemy", {Duration = self:GetTalentSpecialValueFor("duration")})
-            caster:AddNewModifier(caster, self:GetAbility(), "modifier_flash_step_as", {Duration = self:GetTalentSpecialValueFor("duration")}):IncrementStackCount()
+        if not self.hitUnits[enemy] then
+			if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+				caster:PerformAbilityAttack( enemy, true, self:GetAbility() )
+				self:GetAbility():DealDamage(caster, enemy, caster:GetAttackDamage()*(self:GetTalentSpecialValueFor("damage")-100)/100, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+				caster:AddNewModifier(caster, self:GetAbility(), "modifier_flash_step_as", {Duration = self:GetTalentSpecialValueFor("duration")}):IncrementStackCount()
+				enemy:AddNewModifier(caster, self:GetAbility(), "modifier_flash_step_enemy", {Duration = self:GetTalentSpecialValueFor("duration")})
+			end
+			self.hitUnits[enemy] = true
             break
         end
     end

@@ -25,14 +25,16 @@ function druid_savage_roar:OnSpellStart()
 
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
 	for _,enemy in pairs(enemies) do
-		enemy:Fear(self, caster, duration)
+		if not enemy:TriggerSpellAbsorb( self ) then
+			enemy:Fear(self, caster, duration)
 
-		if caster:HasTalent("special_bonus_unique_druid_savage_roar_1") then
-			enemy:Paralyze(self, caster, duration)
-		end
+			if caster:HasTalent("special_bonus_unique_druid_savage_roar_1") then
+				enemy:Paralyze(self, caster, duration)
+			end
 
-		if caster:HasTalent("special_bonus_unique_druid_savage_roar_2") then
-			self:DealDamage(caster, enemy, caster:GetStrength(), {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			if caster:HasTalent("special_bonus_unique_druid_savage_roar_2") then
+				self:DealDamage(caster, enemy, caster:GetStrength(), {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			end
 		end
 	end
 end

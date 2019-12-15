@@ -45,7 +45,7 @@ function windrunner_powershot_bh:OnSpellStart()
 end
 
 function windrunner_powershot_bh:OnProjectileHit(hTarget, vLocation)
-	if hTarget then
+	if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
 		EmitSoundOn("Ability.PowershotDamage", hTarget)
 		self:DealDamage(self:GetCaster(), hTarget, self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		if not self:GetCaster():HasTalent("special_bonus_unique_windrunner_powershot_bh_2") then

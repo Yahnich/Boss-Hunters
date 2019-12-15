@@ -58,12 +58,14 @@ function lion_meteor:FireMeteor(point, radius)
         ParticleManager:FireParticle("particles/units/heroes/hero_invoker/invoker_sun_strike.vpcf", PATTACH_POINT, caster, {[0]=point, [1]=Vector(radius,radius,radius)}) --1.3 is the particle land time
         local enemies = caster:FindEnemyUnitsInRadius(point, radius, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
         for _,enemy in pairs(enemies) do
-            enemy:AddNewModifier(caster, self, "modifier_lion_meteor", {Duration = self:GetSpecialValueFor("burn_duration")})
-            self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+			if not enemy:TriggerSpellAbsorb( self ) then
+				enemy:AddNewModifier(caster, self, "modifier_lion_meteor", {Duration = self:GetSpecialValueFor("burn_duration")})
+				self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
 
-            if caster:HasTalent("special_bonus_unique_lion_meteor_1") then
-                self:Stun(enemy, caster:FindTalentValue("special_bonus_unique_lion_meteor_1"), false)
-            end
+				if caster:HasTalent("special_bonus_unique_lion_meteor_1") then
+					self:Stun(enemy, caster:FindTalentValue("special_bonus_unique_lion_meteor_1"), false)
+				end
+			end
         end
 
         local distance = self:GetTalentSpecialValueFor("distance")

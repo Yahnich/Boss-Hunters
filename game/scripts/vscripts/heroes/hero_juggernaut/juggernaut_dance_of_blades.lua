@@ -31,8 +31,9 @@ end
 function juggernaut_dance_of_blades:Bounce(target)
 	local caster = self:GetCaster()
 	
-	caster:PerformGenericAttack(target, true)
-	
+	if not target:TriggerSpellAbsorb( self ) then
+		caster:PerformGenericAttack(target, true)
+	end
 	ParticleManager:FireParticle("particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf", PATTACH_POINT_FOLLOW, caster, {[0]=caster:GetAbsOrigin(), [1]=target:GetAbsOrigin()})
 	ParticleManager:FireParticle("particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_trail.vpcf", PATTACH_POINT, caster, {[0]="attach_hitloc", [1]=target:GetAbsOrigin()})
 	ParticleManager:FireParticle("particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_jugg.vpcf", PATTACH_POINT, caster, {[0]=target:GetAbsOrigin(), [1]=target:GetAbsOrigin()})

@@ -104,8 +104,10 @@ if IsServer() then
 
 		local enemies = parent:FindEnemyUnitsInRadius(parentPos, radius)
 		for _,enemy in pairs(enemies) do
-			ability:Stun(enemy, self.impact_stun_duration, false)
-			ability:DealDamage(parent, enemy, self.impact_damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			if not enemy:TriggerSpellAbsorb( ability ) then
+				ability:Stun(enemy, self.impact_stun_duration, false)
+				ability:DealDamage(parent, enemy, self.impact_damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			end
 		end
 
 		parent:StartGesture(ACT_DOTA_CAST_ABILITY_2_END)

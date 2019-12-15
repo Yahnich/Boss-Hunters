@@ -65,7 +65,7 @@ function pl_spirit_lance:OnProjectileHit(hTarget, vLocation)
 	local radius = caster:FindTalentValue("special_bonus_unique_pl_spirit_lance_1", "radius")
 	local speed = 1000
 
-	if hTarget then
+	if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
 		if caster:HasTalent("special_bonus_unique_pl_spirit_lance_1") then
 
 			if not self.hitUnits[hTarget:entindex()] then

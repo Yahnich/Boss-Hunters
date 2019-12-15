@@ -46,10 +46,6 @@ function rubick_bolt:OnSpellStart()
 			damage = self:GetTalentSpecialValueFor("damage")/10
 		end
 
-		current_target:AddNewModifier(caster, self, "modifier_rubick_bolt", {Duration = duration})
-
-		self:DealDamage(caster, current_target, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-
 		-- play Fade Bolt particle
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_rubick/rubick_fade_bolt.vpcf", PATTACH_POINT, caster)
 					ParticleManager:SetParticleControlEnt(nfx, 0, current_target, PATTACH_POINT_FOLLOW, "attach_hitloc", current_target:GetAbsOrigin(), true)
@@ -68,7 +64,11 @@ function rubick_bolt:OnSpellStart()
 
 		-- keep the last hero hit to play the particle for the next bounce
 		previous_unit = current_target
-
+		if current_target:TriggerSpellAbsorb( self ) then
+			current_target:AddNewModifier(caster, self, "modifier_rubick_bolt", {Duration = duration})
+			self:DealDamage(caster, current_target, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			return
+		end
 		-- Search for a unit
 		for _, enemy in pairs(enemies) do
 			if enemy ~= previous_unit and enemy.damaged_by_fade_bolt ~= true then

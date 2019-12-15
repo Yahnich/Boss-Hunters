@@ -44,8 +44,8 @@ function rubick_steal:CastFilterResultTarget( hTarget )
 
 	local nResult = UnitFilter(
 		hTarget,
-		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-		DOTA_UNIT_TARGET_HERO,
+		TernaryOperator(DOTA_UNIT_TARGET_TEAM_BOTH, self:GetCaster():HasScepter(), DOTA_UNIT_TARGET_TEAM_FRIENDLY),
+		TernaryOperator(DOTA_UNIT_TARGET_BASIC, self:GetCaster():HasScepter() and not hTarget:IsSameTeam( self:GetCaster() ), DOTA_UNIT_TARGET_HERO),
 		DOTA_UNIT_TARGET_FLAG_NONE,
 		self:GetCaster():GetTeamNumber()
 	)
@@ -173,6 +173,9 @@ function rubick_steal:SetLastSpell( hHero, hSpell )
 	-- find hero in list
 	local heroData = nil
 	for _,data in pairs(rubick_steal.heroesData) do
+		if data.handle:IsNull() then
+			rubick_steal.heroesData[data] = nil
+		end
 		if data.handle == hHero then
 			heroData = data
 			break
@@ -244,17 +247,26 @@ function rubick_steal:SetStolenSpell( spellData )
 
 	-- Add new spell
 	if not primarySpell:IsNull() then
-		self.CurrentPrimarySpell = self:GetCaster():AddAbility( primarySpell:GetAbilityName() )
+		if not self:GetCaster():FindAbilityByName( primarySpell:GetAbilityName() ) then
+			self.CurrentPrimarySpell = self:GetCaster():AddAbility( primarySpell:GetAbilityName() )
+		else
+			self.CurrentPrimarySpell = self:GetCaster():FindAbilityByName( primarySpell:GetAbilityName() )
+		end
 		self.CurrentPrimarySpell:SetLevel( primarySpell:GetLevel() )
 		self.CurrentPrimarySpell:SetStolen( true )
 		self:GetCaster():SwapAbilities( self.slot1, self.CurrentPrimarySpell:GetAbilityName(), false, true )
 	end
 
 	if secondarySpell~=nil and not secondarySpell:IsNull() then
-		self.CurrentSecondarySpell = self:GetCaster():AddAbility( secondarySpell:GetAbilityName() )
+		if not self:GetCaster():FindAbilityByName( secondarySpell:GetAbilityName() ) then
+			self.CurrentSecondarySpell = self:GetCaster():AddAbility( secondarySpell:GetAbilityName() )
+		else
+			self.CurrentSecondarySpell = self:GetCaster():FindAbilityByName( secondarySpell:GetAbilityName() )
+		end
 		self.CurrentSecondarySpell:SetLevel( secondarySpell:GetLevel() )
 		self.CurrentSecondarySpell:SetStolen( true )
-		self:GetCaster():SwapAbilities( self.slot2, self.CurrentSecondarySpell:GetAbilityName(), false, true )
+		self.CurrentSecondarySpell:SetHidden( true )
+		-- self:GetCaster():SwapAbilities( self.slot2, self.CurrentSecondarySpell:GetAbilityName(), false, true )
 	end
 
 	self.CurrentSpellOwner = spellData.stolenFrom
@@ -268,14 +280,35 @@ function rubick_steal:ForgetSpell()
 			end	
 		end
 	end
+	local noFreeSlots = true
+	for i = 7, 30 do
+		local stolenAbility = self:GetCaster():GetAbilityByIndex(i)
+		if stolenAbility and stolenAbility:IsStolen() then
+			if stolenAbility:IsCooldownReady() and stolenAbility:NumModifiersUsingAbility( ) == 0 then
+				self:GetCaster():RemoveAbility( self.CurrentPrimarySpell:GetAbilityName() )
+				noFreeSlots = false
+			end
+		else
+			noFreeSlots = false
+		end
+	end
+	if noFreeSlots then -- force delete the oldest ability
+		for i = 7, 30 do
+			local stolenAbility = self:GetCaster():GetAbilityByIndex(i)
+			if stolenAbility and stolenAbility:IsStolen() then
+				self:GetCaster():RemoveAbility( self.CurrentPrimarySpell:GetAbilityName() )
+				break
+			end
+		end
+	end
 	if self.CurrentPrimarySpell~=nil and not self.CurrentPrimarySpell:IsNull() then
 		--print("forgetting primary")
 		self:GetCaster():SwapAbilities( self.slot1, self.CurrentPrimarySpell:GetAbilityName(), true, false )
-		self:GetCaster():RemoveAbility( self.CurrentPrimarySpell:GetAbilityName() )
+		-- self:GetCaster():RemoveAbility( self.CurrentPrimarySpell:GetAbilityName() )
 		if self.CurrentSecondarySpell~=nil and not self.CurrentSecondarySpell:IsNull() then
 			--print("forgetting secondary")
-			self:GetCaster():SwapAbilities( self.slot2, self.CurrentSecondarySpell:GetAbilityName(), true, false )
-			self:GetCaster():RemoveAbility( self.CurrentSecondarySpell:GetAbilityName() )
+			-- self:GetCaster():SwapAbilities( self.slot2, self.CurrentSecondarySpell:GetAbilityName(), true, false )
+			-- self:GetCaster():RemoveAbility( self.CurrentSecondarySpell:GetAbilityName() )
 		end
 
 		--GetAbility	

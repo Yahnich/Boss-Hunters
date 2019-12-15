@@ -45,13 +45,15 @@ function modifier_bs_blood_rite:OnRemoved()
 			ParticleManager:FireParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster(), {})
 		end
 		for _,enemy in pairs(enemies) do
-			EmitSoundOn("hero_bloodseeker.bloodRite.silence", enemy)
-			enemy:Silence(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("duration"), false)
-			if self:GetCaster():HasTalent("special_bonus_unique_bs_blood_rite_1") then
-				local ability = self:GetCaster():FindAbilityByName("bs_bloodrage")
-				enemy:AddNewModifier(self:GetCaster(), ability, "modifier_bs_bloodrage", {Duration = ability:GetTalentSpecialValueFor("duration")})
+			if enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+				EmitSoundOn("hero_bloodseeker.bloodRite.silence", enemy)
+				enemy:Silence(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("duration"), false)
+				if self:GetCaster():HasTalent("special_bonus_unique_bs_blood_rite_1") then
+					local ability = self:GetCaster():FindAbilityByName("bs_bloodrage")
+					enemy:AddNewModifier(self:GetCaster(), ability, "modifier_bs_bloodrage", {Duration = ability:GetTalentSpecialValueFor("duration")})
+				end
+				self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
 			end
-			self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
 		end
 	end
 end

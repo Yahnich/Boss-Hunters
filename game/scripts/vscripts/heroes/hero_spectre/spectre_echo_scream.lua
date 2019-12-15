@@ -12,16 +12,18 @@ function spectre_echo_scream:OnSpellStart()
 	local damage = self:GetTalentSpecialValueFor("scream_damage")
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
-		enemy:AddNewModifier( caster, self, "modifier_spectre_echo_scream", {duration = duration})
-		self:DealDamage( caster, enemy, damage )
-		if caster:HasScepter() then
-			local attacks = self:GetTalentSpecialValueFor("scepter_scream_attacks")
-			for i = 1, attacks do
-				caster:PerformAttack(enemy, true, true, true, false, true, false, false)
+		if not enemy:TriggerSpellAbsorb( self ) then
+			enemy:AddNewModifier( caster, self, "modifier_spectre_echo_scream", {duration = duration})
+			self:DealDamage( caster, enemy, damage )
+			if caster:HasScepter() then
+				local attacks = self:GetTalentSpecialValueFor("scepter_scream_attacks")
+				for i = 1, attacks do
+					caster:PerformAttack(enemy, true, true, true, false, true, false, false)
+				end
 			end
-		end
-		if caster:HasTalent("special_bonus_unique_spectre_echo_scream_1") then
-			enemy:Daze(self, caster, duration)
+			if caster:HasTalent("special_bonus_unique_spectre_echo_scream_1") then
+				enemy:Daze(self, caster, duration)
+			end
 		end
 	end
 	

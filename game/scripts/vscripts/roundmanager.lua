@@ -150,7 +150,7 @@ function RoundManager:OnNPCSpawned(event)
 				-- spawnedUnit:AddAbilityPrecache("elite_tiny")
 			elseif spawnedUnit:IsRealHero() then
 				Timers:CreateTimer(0.1, function() 
-					if RoundManager:IsTouchingBoundingBox(spawnedUnit) then
+					if not RoundManager:IsTouchingBoundingBox(spawnedUnit) then
 						FindClearSpaceForUnit( spawnedUnit, RoundManager:GetHeroSpawnPosition(), true ) 
 					end
 					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_tombstone_respawn_immunity", {duration = 2.9}) 

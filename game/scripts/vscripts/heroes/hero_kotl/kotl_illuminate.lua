@@ -141,7 +141,7 @@ function kotl_illuminate:OnProjectileHit(hTarget, vLocation)
     if hTarget then
         local damage = self:GetTalentSpecialValueFor("damage_per_horse")
 
-        if hTarget:GetTeam() ~= caster:GetTeam() then
+        if hTarget:GetTeam() ~= caster:GetTeam() and hTarget:TriggerSpellAbsorb( self ) then
             EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Target", hTarget)
             ParticleManager:FireParticle("particles/units/heroes/hero_keeper_of_the_light/kotl_illuminate_impact_hero.vpcf", PATTACH_POINT, hTarget, {})
             
@@ -152,12 +152,9 @@ function kotl_illuminate:OnProjectileHit(hTarget, vLocation)
 
             self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage_per_horse"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 
-        else
-            if caster:HasTalent("special_bonus_unique_kotl_illuminate_1") then
-
-                EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Target.Secondary", hTarget)
-                hTarget:HealEvent(damage, self, caster)
-            end
+        elseif caster:HasTalent("special_bonus_unique_kotl_illuminate_1") then
+			EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Target.Secondary", hTarget)
+			hTarget:HealEvent(damage, self, caster)
         end
     end
 end

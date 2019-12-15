@@ -105,7 +105,9 @@ function modifier_ss_static_remnant:OnRemoved()
 	if IsServer() then
 		local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self.damage_radius)
 		for _,enemy in pairs(enemies) do
-			self:GetAbility():DealDamage(self:GetCaster(), enemy, self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+				self:GetAbility():DealDamage(self:GetCaster(), enemy, self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			end
 		end
 	end
 end

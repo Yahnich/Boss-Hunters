@@ -33,7 +33,7 @@ end
 
 function bh_track:Track(target)
 	local caster = self:GetCaster()
-
+	if target:TriggerSpellAbsorb( self ) then return end
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_cast.vpcf", PATTACH_POINT, caster)
 				ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT, "attach_attack2", caster:GetAbsOrigin(), true)
 				ParticleManager:SetParticleControlEnt(nfx, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)

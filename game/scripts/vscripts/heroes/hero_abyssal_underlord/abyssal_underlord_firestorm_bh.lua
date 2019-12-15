@@ -67,9 +67,11 @@ function modifier_abyssal_underlord_firestorm_bh:OnIntervalThink()
 	parent:EmitSound("Hero_AbyssalUnderlord.Firestorm")
     local enemies = caster:FindEnemyUnitsInRadius(point, radius)
     for _,enemy in pairs(enemies) do
-        enemy:AddNewModifier(caster, ability, "modifier_abyssal_underlord_firestorm_bh_burn", {Duration = self:GetTalentSpecialValueFor("burn_damage")})
-        ability:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-		enemy:EmitSound("Hero_AbyssalUnderlord.Firestorm.Target")
+		if not enemy:TriggerSpellAbsorb(self:GetAbility() ) then
+			enemy:AddNewModifier(caster, ability, "modifier_abyssal_underlord_firestorm_bh_burn", {Duration = self:GetTalentSpecialValueFor("burn_damage")})
+			ability:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			enemy:EmitSound("Hero_AbyssalUnderlord.Firestorm.Target")
+		end
     end
 	AddFOWViewer( DOTA_TEAM_GOODGUYS, parent:GetAbsOrigin(), radius, 1, false )
 end

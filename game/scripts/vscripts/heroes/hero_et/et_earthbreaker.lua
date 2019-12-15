@@ -109,7 +109,7 @@ function et_earthbreaker:OnProjectileHit_ExtraData(hTarget, vLocation, table)
 		end
 	end
 
-	if hTarget ~= nil then
+	if hTarget ~= nil and not hTarget:TriggerSpellAbsorb(self) then
 		if not caster:HasModifier("modifier_elder_spirit") then
 			if caster:HasTalent("special_bonus_unique_et_earthbreaker_2") then
 				hTarget:Daze(self, caster, caster:FindTalentValue("special_bonus_unique_et_earthbreaker_2"))

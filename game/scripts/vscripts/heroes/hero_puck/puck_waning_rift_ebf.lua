@@ -28,13 +28,15 @@ function puck_waning_rift_ebf:WaningRift(position)
 	ParticleManager:FireParticle("particles/units/heroes/hero_puck/puck_waning_rift.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = vPos + Vector(0,0,64), [1] = Vector(radius, 0, 0)})
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( vPos, radius ) ) do
-		self:DealDamage(caster, enemy, damage)
-		enemy:Silence(self, caster, duration, true)
-		if caster:HasTalent("special_bonus_unique_puck_waning_rift_1") then
-			enemy:Disarm(self, caster, duration, false)
-		end
-		if caster:HasTalent("special_bonus_unique_puck_waning_rift_2") then
-			enemy:AddNewModifier( caster, self, "modifier_puck_waning_rift_talent", {duration = caster:FindTalentValue("special_bonus_unique_puck_waning_rift_2", "duration")})
+		if not enemy:TriggerSpellAbsorb( self ) then
+			self:DealDamage(caster, enemy, damage)
+			enemy:Silence(self, caster, duration, true)
+			if caster:HasTalent("special_bonus_unique_puck_waning_rift_1") then
+				enemy:Disarm(self, caster, duration, false)
+			end
+			if caster:HasTalent("special_bonus_unique_puck_waning_rift_2") then
+				enemy:AddNewModifier( caster, self, "modifier_puck_waning_rift_talent", {duration = caster:FindTalentValue("special_bonus_unique_puck_waning_rift_2", "duration")})
+			end
 		end
 	end
 end

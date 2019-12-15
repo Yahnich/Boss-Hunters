@@ -56,7 +56,7 @@ end
 function ogre_magi_unrefined_fireblast_bh:Fireblast()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-
+	if target:TriggerSpellAbsorb(self) then return end
 	EmitSoundOn("Hero_OgreMagi.Fireblast.Target", target)
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_ogre_magi/ogre_magi_fireblast.vpcf", PATTACH_POINT_FOLLOW, caster)
 				ParticleManager:SetParticleControlEnt(nfx, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)

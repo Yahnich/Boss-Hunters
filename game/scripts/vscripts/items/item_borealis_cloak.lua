@@ -36,9 +36,9 @@ modifier_item_borealis_cloak = class(itemBaseClass)
 LinkLuaModifier("modifier_item_borealis_cloak", "items/item_borealis_cloak", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_item_borealis_cloak:OnCreated()
-	self.int = self:GetSpecialValueFor("bonus_agility")
-	self.armor = self:GetSpecialValueFor("bonus_attackspeed")
-	self.regen = self:GetSpecialValueFor("bonus_attackspeed")
+	self.int = self:GetSpecialValueFor("bonus_intellect")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
+	self.regen = self:GetSpecialValueFor("bonus_mana_regen")
 	
 	self.duration = self:GetSpecialValueFor("debuff_duration")
 end

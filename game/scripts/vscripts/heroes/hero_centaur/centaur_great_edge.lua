@@ -33,7 +33,9 @@ function centaur_great_edge:OnSpellStart()
 	self:DealDamage( caster, caster, edgeDamage + bonusDamage * selfDamage, {damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL})
 	local units = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), radius)
 	for _, enemy in ipairs(units) do
-		self:DealDamage( caster, enemy, edgeDamage + bonusDamage )
-		if caster:HasTalent("special_bonus_unique_centaur_great_edge_2") then self:Stun(enemy, caster:FindTalentValue("special_bonus_unique_centaur_great_edge_2"), false) end
+		if not enemy:TriggerSpellAbsorb( self ) then
+			self:DealDamage( caster, enemy, edgeDamage + bonusDamage )
+			if caster:HasTalent("special_bonus_unique_centaur_great_edge_2") then self:Stun(enemy, caster:FindTalentValue("special_bonus_unique_centaur_great_edge_2"), false) end
+		end
 	end
 end

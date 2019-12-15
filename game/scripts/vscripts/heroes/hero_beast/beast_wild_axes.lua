@@ -16,13 +16,15 @@ function beast_wild_axes:OnSpellStart()
 								if not target then return end
 								if target ~= nil and ( not target:IsMagicImmune() ) and ( not target:IsInvulnerable() ) and target:GetTeam() ~= self:GetCaster():GetTeam() then
 									if not self.hitUnits[target:entindex()] then
-										if self:GetCaster():HasScepter() then
-											self:GetCaster():PerformAbilityAttack(target, true, self:GetAbility(), self.damage, nil, true)
-										else
-											self:GetAbility():DealDamage( self:GetCaster(), target, self.damage )
+										if not target:TriggerSpellAbsorb(self:GetAbility()) then
+											if self:GetCaster():HasScepter() then
+												self:GetCaster():PerformAbilityAttack(target, true, self:GetAbility(), self.damage, nil, true)
+											else
+												self:GetAbility():DealDamage( self:GetCaster(), target, self.damage )
+											end
+											target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_beast_wild_axes", {duration = self.amp})
+											EmitSoundOn("Hero_Beastmaster.Wild_Axes_Damage", target)
 										end
-										target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_beast_wild_axes", {duration = self.amp})
-										EmitSoundOn("Hero_Beastmaster.Wild_Axes_Damage", target)
 										self.hitUnits[target:entindex()] = true
 									end
 								end

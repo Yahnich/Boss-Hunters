@@ -29,7 +29,7 @@ end
 function tinker_missile_ebf:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 
-	if hTarget ~= nil then
+	if hTarget ~= nil and not hTarget:TriggerSpellAbsorb( self ) then
 		EmitSoundOn("Hero_Tinker.Heat-Seeking_Missile.Impact", hTarget)
 		ParticleManager:FireParticle("particles/units/heroes/hero_tinker/tinker_missle_explosion.vpcf", PATTACH_POINT, hTarget, {})
 

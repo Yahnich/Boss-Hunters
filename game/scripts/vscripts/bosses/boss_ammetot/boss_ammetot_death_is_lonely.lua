@@ -9,8 +9,9 @@ function boss_ammetot_death_is_lonely:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	target:AddNewModifier( caster, self, "modifier_boss_ammetot_death_is_lonely", {duration = self:GetSpecialValueFor("duration") + 0.1} )
 	EmitSoundOn( "Hero_Necrolyte.ReapersScythe.Cast", target )
+	if target:TriggerSpellAbsorb( self ) then return end
+	target:AddNewModifier( caster, self, "modifier_boss_ammetot_death_is_lonely", {duration = self:GetSpecialValueFor("duration") + 0.1} )
 end
 
 modifier_boss_ammetot_death_is_lonely = class({})

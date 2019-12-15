@@ -36,9 +36,11 @@ function ta_trap_spring:OnSpellStart()
 		local trap_duration = self:GetTalentSpecialValueFor("trap_duration")
 		local enemies = caster:FindEnemyUnitsInRadius(trap:GetAbsOrigin(), trap_radius, {})
 		for _, enemy in pairs(enemies) do
-			local slow = enemy:AddNewModifier(caster, trapAbility, "modifier_ta_trap_spring", {duration = trap_duration})
-			slow:SetStackCount(trap.currSlow)
-			trapAbility:DealDamage(caster, enemy, trap.currDamage, {}, 0)
+			if not enemy:TriggerSpellAbsorb( self ) then
+				local slow = enemy:AddNewModifier(caster, trapAbility, "modifier_ta_trap_spring", {duration = trap_duration})
+				slow:SetStackCount(trap.currSlow)
+				trapAbility:DealDamage(caster, enemy, trap.currDamage, {}, 0)
+			end
 		end
 		trap:ForceKill(false)
 		for index,tableTrap in pairs(trapAbility.traps) do

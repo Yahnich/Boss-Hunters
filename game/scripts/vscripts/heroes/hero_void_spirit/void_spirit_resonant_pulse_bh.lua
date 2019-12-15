@@ -24,13 +24,15 @@ function void_spirit_resonant_pulse_bh:OnSpellStart()
 	local talent = caster:HasTalent("special_bonus_unique_void_spirit_resonant_pulse_1")
 	local talentDuration = caster:FindTalentValue("special_bonus_unique_void_spirit_resonant_pulse_1")
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
-		self:DealDamage( caster, enemy, damage )
-		enemies = enemies + 1
-		EmitSoundOn( "Hero_VoidSpirit.Pulse.Target", caster )
-		if talent then
-			enemy:Disarm(self, caster, talentDuration)
-			enemy:Break(self, caster, talentDuration)
-			enemy:Silence(self, caster, talentDuration)
+		if not enemy:TriggerSpellAbsorb( self ) then
+			self:DealDamage( caster, enemy, damage )
+			enemies = enemies + 1
+			EmitSoundOn( "Hero_VoidSpirit.Pulse.Target", caster )
+			if talent then
+				enemy:Disarm(self, caster, talentDuration)
+				enemy:Break(self, caster, talentDuration)
+				enemy:Silence(self, caster, talentDuration)
+			end
 		end
 	end
 	ParticleManager:FireParticle( "particles/units/heroes/hero_void_spirit/pulse/void_spirit_pulse.vpcf", PATTACH_POINT_FOLLOW, caster, {[1] = Vector( radius * 2, speed, speed )} )

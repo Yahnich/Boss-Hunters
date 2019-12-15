@@ -58,7 +58,7 @@ function nyx_impale:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 	local duration = self:GetTalentSpecialValueFor("duration")
 
-	if hTarget then
+	if hTarget and not hTarget:TriggerSpellAbsorb(self) then
 		EmitSoundOn("Hero_NyxAssassin.Impale.Target", hTarget)
 		ParticleManager:FireParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_impale_hit.vpcf", PATTACH_POINT, caster, {[0]=hTarget:GetAbsOrigin()})
 

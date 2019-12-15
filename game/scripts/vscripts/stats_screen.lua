@@ -145,7 +145,7 @@ function StatsScreen:RespecAll(userid, event)
 		Timers:CreateTimer(function()
 			for _, modifier in ipairs( modifiers ) do
 				if modifier and not modifier:IsNull() and modifier:GetAbility() then
-					if not modifier:GetAbility():IsInnateAbility() and modifier:GetCaster() == hero and not modifier:GetAbility():IsItem() and modifier:GetAbility():GetName() ~= "item_relic_handler" then -- destroy passive modifiers and any buffs
+					if not modifier:GetAbility():IsInnateAbility() and hero:FindAbilityByName( modifier:GetAbility():GetAbilityName() ) then -- destroy passive modifiers and any buffs
 						modifier:Destroy()
 					end
 				end
@@ -154,7 +154,7 @@ function StatsScreen:RespecAll(userid, event)
 		hero:CalculateStatBonus()
 		hero.totalGainedTalentPoints = hero.totalGainedTalentPoints or 0
 		hero.bonusSkillPoints = hero.bonusSkillPoints or hero:GetLevel()
-		hero:SetAbilityPoints( hero.bonusSkillPoints + 1 )
+		hero:SetAbilityPoints( hero.bonusSkillPoints )
 		hero:SetAttributePoints( hero.totalGainedTalentPoints)
 		CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
 	end

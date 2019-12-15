@@ -57,7 +57,7 @@ end
 
 function jakiro_dual_breath_bh:OnProjectileHitHandle(hTarget, vLocation, iProjectileHandle)
 	local caster = self:GetCaster()
-	if hTarget then
+	if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
 		if iProjectileHandle == self.frost then
 			hTarget:AddChill(self, caster, self:GetTalentSpecialValueFor("duration"), self:GetTalentSpecialValueFor("chill_amount"))
 		elseif iProjectileHandle == self.fire then

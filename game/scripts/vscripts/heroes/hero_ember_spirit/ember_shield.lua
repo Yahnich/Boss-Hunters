@@ -83,7 +83,7 @@ function modifier_ember_shield:OnRefresh(table)
 		local tick_rate = self:GetTalentSpecialValueFor("tick_rate")
 		self.remaining_health = self:GetTalentSpecialValueFor("absorb_amount")
 		self.damage = self:GetTalentSpecialValueFor("damage") * tick_rate
-
+		local caster = self:GetCaster()
 		if caster:HasTalent("special_bonus_unique_ember_shield_1") then
 			local casterHealth = caster:GetMaxHealth() * caster:FindTalentValue("special_bonus_unique_ember_shield_1", "health")/100
 			self.remaining_health = self.remaining_health + casterHealth

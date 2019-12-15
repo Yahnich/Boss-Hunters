@@ -6,6 +6,7 @@ function boss_lifestealer_open_wounds:OnSpellStart()
     
 	local duration = self:GetTalentSpecialValueFor("duration")
     EmitSoundOn("Hero_LifeStealer.OpenWounds.Cast", target)
+	if target:TriggerSpellAbsorb(self) then return end
     target:AddNewModifier(caster, self, "modifier_boss_lifestealer_open_wounds", {Duration = duration})
 	target:ModifyThreat( 50 )
 	caster:Taunt(self, target, duration / 2)

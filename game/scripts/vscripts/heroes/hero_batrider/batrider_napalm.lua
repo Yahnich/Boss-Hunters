@@ -33,18 +33,20 @@ function batrider_napalm:OnSpellStart()
 
 	local enemies = caster:FindEnemyUnitsInRadius(point, radius)
 	for _,enemy in pairs(enemies) do
-		if not enemy:HasModifier("modifier_batrider_napalm_fire") then
-			if enemy:HasModifier("modifier_batrider_napalm_debuff") then
-				if enemy:FindModifierByName("modifier_batrider_napalm_debuff"):GetStackCount() < limit then
-					enemy:AddNewModifier(caster, self, "modifier_batrider_napalm_debuff", {Duration = duration}):IncrementStackCount()
+		if not enemy:TriggerSpellAbsorb(self) then
+			if not enemy:HasModifier("modifier_batrider_napalm_fire") then
+				if enemy:HasModifier("modifier_batrider_napalm_debuff") then
+					if enemy:FindModifierByName("modifier_batrider_napalm_debuff"):GetStackCount() < limit then
+						enemy:AddNewModifier(caster, self, "modifier_batrider_napalm_debuff", {Duration = duration}):IncrementStackCount()
+					else
+						enemy:AddNewModifier(caster, self, "modifier_batrider_napalm_debuff", {Duration = duration})
+					end
 				else
-					enemy:AddNewModifier(caster, self, "modifier_batrider_napalm_debuff", {Duration = duration})
+					enemy:AddNewModifier(caster, self, "modifier_batrider_napalm_debuff", {Duration = duration}):IncrementStackCount()
 				end
 			else
-				enemy:AddNewModifier(caster, self, "modifier_batrider_napalm_debuff", {Duration = duration}):IncrementStackCount()
+				enemy:AddNewModifier(caster, self, "modifier_batrider_napalm_fire", {Duration = duration})
 			end
-		else
-			enemy:AddNewModifier(caster, self, "modifier_batrider_napalm_fire", {Duration = duration})
 		end
 	end
 end

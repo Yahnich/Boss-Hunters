@@ -52,7 +52,7 @@ if IsServer() then
 	--------------------------------------------------------------------------------
 
 	function venomancer_venomous_gale_ebf:OnProjectileHit( hTarget, vLocation )
-		if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
+		if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) and not hTarget:TriggerSpellAbsorb( self ) then
 			local caster = self:GetCaster()
 			hTarget:AddNewModifier(self:GetCaster(), self, "modifier_venomancer_venomous_gale_cancer", {duration = self:GetSpecialValueFor("duration")})
 			EmitSoundOn( "Hero_Venomancer.VenomousGaleImpact", hTarget )

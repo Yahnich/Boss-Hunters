@@ -22,6 +22,7 @@ end
 
 function silencer_arcane_curse_bh:ApplyArcaneCurse( target, duration )
 	local caster = self:GetCaster()
+	if target:TriggerSpellAbsorb( self ) then return end
 	target:AddNewModifier( caster, self, "modifier_silencer_arcane_curse_bh", {duration = duration or self:GetTalentSpecialValueFor("duration")})
 	target:EmitSound("Hero_Silencer.Curse.Impact")
 	if caster:HasTalent("special_bonus_unique_silencer_arcane_curse_2") then

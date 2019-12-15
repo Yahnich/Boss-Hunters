@@ -30,16 +30,18 @@ function ursa_earthshock_bh:OnSpellStart()
 
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
 	for _,enemy in pairs(enemies) do
-		enemy:AddNewModifier(caster, self, "modifier_ursa_earthshock_bh_slow", {Duration = self:GetTalentSpecialValueFor("duration")})
+		if not enemy:TriggerSpellAbsorb( self ) then
+			enemy:AddNewModifier(caster, self, "modifier_ursa_earthshock_bh_slow", {Duration = self:GetTalentSpecialValueFor("duration")})
 
-		if caster:HasTalent("special_bonus_unique_ursa_earthshock_bh_2") then
-			for i=1,3 do
-				local ability = caster:FindAbilityByName("ursa_fury_swipes_bh")
-				enemy:AddNewModifier(caster, ability, "modifier_ursa_fury_swipes_bh", {duration = ability:GetTalentSpecialValueFor("duration")}):IncrementStackCount()
+			if caster:HasTalent("special_bonus_unique_ursa_earthshock_bh_2") then
+				for i=1,3 do
+					local ability = caster:FindAbilityByName("ursa_fury_swipes_bh")
+					enemy:AddNewModifier(caster, ability, "modifier_ursa_fury_swipes_bh", {duration = ability:GetTalentSpecialValueFor("duration")}):IncrementStackCount()
+				end
 			end
-		end
 
-		self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+			self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+		end
 	end
 end
 

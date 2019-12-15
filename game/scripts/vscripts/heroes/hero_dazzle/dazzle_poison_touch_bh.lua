@@ -22,7 +22,7 @@ function dazzle_poison_touch_bh:OnSpellStart()
 end
 
 function dazzle_poison_touch_bh:OnProjectileHit( target, position )
-	if target then
+	if target and not target:TriggerSpellAbsorb(self) then
 		local caster = self:GetCaster()
 		target:AddNewModifier( caster, self, "modifier_dazzle_poison_touch_bh", {duration = self:GetTalentSpecialValueFor("duration")} )
 	end
