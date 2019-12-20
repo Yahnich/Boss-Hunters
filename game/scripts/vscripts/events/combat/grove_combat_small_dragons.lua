@@ -40,8 +40,8 @@ end
 local function PrecacheUnits(self, context)
 	PrecacheUnitByNameSync("npc_dota_boss23_m", context)
 	PrecacheUnitByNameSync("npc_dota_boss18", context)
-	PrecacheUnitByNameSync("npc_dota_mini_tree", context)
-	PrecacheUnitByNameSync("npc_dota_mini_tree2", context)
+	PrecacheUnitByNameSync("npc_dota_minion_greater_treant", context)
+	PrecacheUnitByNameSync("npc_dota_minion_minor_treant", context)
 	return true
 end
 

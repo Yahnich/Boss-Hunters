@@ -20,7 +20,7 @@ function modifier_boss_roshan_heavy_blows:OnRefresh()
 end
 
 function modifier_boss_roshan_heavy_blows:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ATTACK, MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_EVENT_ON_ABILITY_FULLY_CAST}
+	return {MODIFIER_EVENT_ON_ATTACK, MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_PROPERTY_ABSORB_SPELL, }
 end
 
 function modifier_boss_roshan_heavy_blows:OnAttackLanded(params)
@@ -28,6 +28,7 @@ function modifier_boss_roshan_heavy_blows:OnAttackLanded(params)
 		local ability = self:GetAbility()
 		ability:DealDamage( params.attacker, params.target, params.target:GetMaxHealth() * self.bash_dmg, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 		ability:Stun(params.target, self.duration)
+		params.target:EmitSound( "Roshan.Bash" )
 		self.bash = self:GetSpecialValueFor("bash_chance")
 	end
 end
@@ -36,4 +37,16 @@ function modifier_boss_roshan_heavy_blows:OnAttack(params)
 	if params.target == self:GetParent() then
 		self.bash = self.bash + self.atk_bash
 	end
+end
+
+
+function modifier_boss_roshan_heavy_blows:GetAbsorbSpell(params)
+	if params.ability:GetCaster():GetTeam() ~= self:GetParent():GetTeam() then
+		self.bash = self.bash + self.spell_bash
+		ParticleManager:FireParticle( "particles/neutral_fx/roshan_spawn.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
+	end
+end
+
+function modifier_boss_roshan_heavy_blows:IsHidden()
+	return true
 end

@@ -10,16 +10,19 @@ function Spawn( entityKeyValues )
 			return AIThink(thisEntity)
 		end
 	end)
-	thisEntity.fire = thisEntity:FindAbilityByName("creature_fire_breath")
-	thisEntity.crush = thisEntity:FindAbilityByName("creature_slithereen_crush")
+	thisEntity.fire = thisEntity:FindAbilityByName("boss_roshan_flamethrower")
+	thisEntity.crush = thisEntity:FindAbilityByName("boss_roshan_crushing_clap")
+	thisEntity.boom = thisEntity:FindAbilityByName("boss_roshan_sonic_boom")
+	
+	thisEntity.blows = thisEntity:FindAbilityByName("boss_roshan_heavy_blows")
+	thisEntity.bane = thisEntity:FindAbilityByName("boss_roshan_heros_bane")
 	AITimers:CreateTimer(0.1, function()
-		if  math.floor(GameRules.gameDifficulty + 0.5) <= 2 then
-			thisEntity.fire:SetLevel(1)
-			thisEntity.crush:SetLevel(1)
-		else
-			thisEntity.fire:SetLevel(2)
-			thisEntity.crush:SetLevel(2)
-		end
+		thisEntity.fire:SetLevel(GameRules:GetGameDifficulty() / 2)
+		thisEntity.crush:SetLevel(GameRules:GetGameDifficulty() / 2)
+		thisEntity.boom:SetLevel(GameRules:GetGameDifficulty() / 2)
+		
+		thisEntity.blows:SetLevel(GameRules:GetGameDifficulty() / 2)
+		thisEntity.bane:SetLevel(GameRules:GetGameDifficulty() / 2)
 	end)
 	thisEntity.idle = GameRules:GetGameTime()
 end
@@ -28,21 +31,18 @@ end
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 		if not thisEntity:IsChanneling() then
-			local radius = thisEntity.crush:GetSpecialValueFor("crush_radius")
-			if thisEntity.crush then
-				if AICore:TotalNotDisabledEnemyHeroesInRange( thisEntity, radius, false ) >= math.floor(AICore:TotalEnemyHeroesInRange( thisEntity, radius )/2) 
-				and AICore:TotalEnemyHeroesInRange( thisEntity, radius ) ~= 0
-				and thisEntity.crush:IsFullyCastable() then
+			if thisEntity.crush and thisEntity.crush:IsFullyCastable() and RollPercentage( 50 ) then
+				if AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity.crush:GetTrueCastRange() ) > 0 then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 						AbilityIndex = thisEntity.crush:entindex()
 					})
-					return AI_THINK_RATE
+					return thisEntity.crush:GetCastPoint()
 				end
 			end
 			if thisEntity.fire:IsFullyCastable() then
-				target = AICore:NearestDisabledEnemyHeroInRange( thisEntity, thisEntity.fire:GetCastRange(), false )
+				target = AICore:NearestDisabledEnemyHeroInRange( thisEntity, thisEntity.fire:GetTrueCastRange(), false )
 				if target then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
@@ -51,12 +51,25 @@ function AIThink(thisEntity)
 						AbilityIndex = thisEntity.fire:entindex()
 					})
 					thisEntity.idle = GameRules:GetGameTime()
-					return thisEntity.fire:GetChannelTime()
+					return thisEntity.fire:GetCastPoint() + thisEntity.fire:GetChannelTime()
+				end
+			end
+			if thisEntity.boom and thisEntity.boom:IsFullyCastable() and AICore:BeingAttacked( thisEntity ) >= 1 and RollPercentage( 35 ) then
+				local enemies = AICore:BeingAttackedBy( thisEntity )
+				local enemy = GetRandomInTable( enemies )
+				if enemy then
+					ExecuteOrderFromTable({
+						UnitIndex = thisEntity:entindex(),
+						OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+						Position = enemy:GetOrigin(),
+						AbilityIndex = thisEntity.boom:entindex()
+					})
+					return thisEntity.boom:GetCastPoint() + thisEntity.boom:GetChannelTime()
 				end
 			end
 			-- FORCE CAST AFTER SET DURATION --
-			if thisEntity.idle + 10 < GameRules:GetGameTime() and thisEntity.fire:IsFullyCastable() then
-				target = AICore:HighestThreatHeroInRange(thisEntity, 99999, 0, true)
+			if thisEntity.idle + thisEntity.fire:GetEffectiveCooldown(-1) + 5 < GameRules:GetGameTime() and thisEntity.fire:IsFullyCastable() then
+				target = AICore:HighestThreatHeroInRange(thisEntity, 1050, 0, true)
 				if target then
 					ExecuteOrderFromTable({
 							UnitIndex = thisEntity:entindex(),
@@ -65,7 +78,7 @@ function AIThink(thisEntity)
 							AbilityIndex = thisEntity.fire:entindex()
 					})
 					thisEntity.idle = GameRules:GetGameTime()
-					return thisEntity.fire:GetChannelTime()
+					return thisEntity.fire:GetCastPoint() + thisEntity.fire:GetChannelTime()
 				end
 			end
 			return AICore:AttackHighestPriority( thisEntity )

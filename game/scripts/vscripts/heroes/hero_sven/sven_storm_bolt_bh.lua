@@ -24,7 +24,7 @@ function sven_storm_bolt_bh:OnSpellStart()
 end
 
 function sven_storm_bolt_bh:OnProjectileHit( target, position )
-	if target and target:TriggerSpellAbsorb( self ) then
+	if target and not target:TriggerSpellAbsorb( self ) then
 		local caster = self:GetCaster()
 		local damage = self:GetAbilityDamage()
 		local stunDur = self:GetTalentSpecialValueFor("bolt_stun_duration")

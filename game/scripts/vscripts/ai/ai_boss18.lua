@@ -10,12 +10,14 @@ function Spawn( entityKeyValues )
 			return AIThink(thisEntity)
 		end
 	end)
-	thisEntity.armor = thisEntity:FindAbilityByName("boss_living_armor")
-	thisEntity.summon = thisEntity:FindAbilityByName("creature_summon_tree")
-	local level = RoundManager:GetCurrentRaidTier() + math.floor(GameRules:GetGameDifficulty()/2)
+	thisEntity.thorn = thisEntity:FindAbilityByName("boss_treant_thornmaze")
+	thisEntity.root = thisEntity:FindAbilityByName("boss_treant_overgrowth")
+	thisEntity.leech = thisEntity:FindAbilityByName("boss_treant_leech_seed")
+	local level = math.floor(GameRules:GetGameDifficulty()/2)
 	AITimers:CreateTimer(0.1, function() 
-		thisEntity.armor:SetLevel( level )
-		thisEntity.summon:SetLevel( level )
+		thisEntity.thorn:SetLevel( level )
+		thisEntity.root:SetLevel( level )
+		thisEntity.leech:SetLevel( level )
 	end)
 end
 
@@ -23,24 +25,54 @@ end
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		if not thisEntity:IsChanneling() then
-			if thisEntity.armor:IsFullyCastable() and not thisEntity:HasModifier("modifier_treant_living_armor") then
-				ExecuteOrderFromTable({
-					UnitIndex = thisEntity:entindex(),
-					OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-					TargetIndex = thisEntity:entindex(),
-					AbilityIndex = thisEntity.armor:entindex()
-				})
-				return AI_THINK_RATE
+			if thisEntity.thorn:IsFullyCastable() then
+				local position = AICore:OptimalHitPosition( thisEntity, thisEntity.thorn:GetTrueCastRange(), thisEntity.thorn:GetSpecialValueFor("spread_radius") )
+				return CastThornMaze( position )
 			end
-			if thisEntity.summon:IsFullyCastable() then
-				ExecuteOrderFromTable({
-					UnitIndex = thisEntity:entindex(),
-					OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-					AbilityIndex = thisEntity.summon:entindex()
-				})
-				return AI_THINK_RATE
+			local target = AICore:GetHighestPriorityTarget(thisEntity)
+			if target and thisEntity.leech:IsFullyCastable() and CalculateDistance( target, thisEntity ) <= thisEntity.leech:GetSpecialValueFor("radius") then
+				return CastLeechSeed( target )
+			end
+			if thisEntity.root:IsFullyCastable() then
+				for _, enemy in ipairs( thisEntity:FindEnemyUnitsInRadius( thisEntity:GetAbsOrigin(), thisEntity.root:GetTrueCastRange() + thisEntity:GetIdealSpeed() ) ) do
+					if enemy:HasModifier("modifier_boss_treant_thornmaze_debuff") then
+						return CastOvergrowth( enemy )
+					end
+				end
+				local rootTarget = AICore:MostDamageEnemyHeroInRange( thisEntity, thisEntity.root:GetTrueCastRange() + thisEntity:GetIdealSpeed() ) or target
+				if rootTarget then return CastOvergrowth( rootTarget ) end
 			end
 			return AICore:AttackHighestPriority( thisEntity )
 		else return 0.5 end
 	else return AI_THINK_RATE end
+end
+
+function CastThornMaze( position )
+	ExecuteOrderFromTable({
+		UnitIndex = thisEntity:entindex(),
+		OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+		Position = position,
+		AbilityIndex = thisEntity.thorn:entindex()
+	})
+	return thisEntity.thorn:GetCastPoint() + 0.1
+end
+
+function CastOvergrowth(target)
+	ExecuteOrderFromTable({
+		UnitIndex = thisEntity:entindex(),
+		OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+		TargetIndex = target:entindex(),
+		AbilityIndex = thisEntity.root:entindex()
+	})
+	return thisEntity.root:GetCastPoint() + 0.1
+end
+
+function CastLeechSeed(target)
+	ExecuteOrderFromTable({
+		UnitIndex = thisEntity:entindex(),
+		OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+		TargetIndex = target:entindex(),
+		AbilityIndex = thisEntity.leech:entindex()
+	})
+	return thisEntity.leech:GetCastPoint() + 0.1
 end

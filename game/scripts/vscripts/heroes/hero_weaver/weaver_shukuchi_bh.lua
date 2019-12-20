@@ -82,7 +82,7 @@ function modifier_weaver_shukuchi_bh:OnIntervalThink()
                         ParticleManager:SetParticleControlEnt(nfx, 0, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
                         ParticleManager:SetParticleControlEnt(nfx, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
                         ParticleManager:ReleaseParticleIndex(nfx)
-			if enemy:TriggerSpellAbsorb( self;GetAbility() ) then
+			if enemy:TriggerSpellAbsorb( self:GetAbility() ) then
 				enemy:Paralyze(self:GetAbility(), caster, self:GetTalentSpecialValueFor("duration"))
 
 				self:GetAbility():DealDamage(caster, enemy, self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)

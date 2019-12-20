@@ -1,4 +1,4 @@
-disruptor_thunder_strike_bh = class({})
+	disruptor_thunder_strike_bh = class({})
 
 function disruptor_thunder_strike_bh:OnSpellStart(forceTarget)
 	local caster = self:GetCaster()
@@ -6,7 +6,7 @@ function disruptor_thunder_strike_bh:OnSpellStart(forceTarget)
 	
 	target:EmitSound("Hero_Disruptor.ThunderStrike.Cast")
 	
-	if not enemy:TriggerSpellAbsorb(self) then return end
+	if target:TriggerSpellAbsorb(self) then return end
 	CreateModifierThinker(caster, self, "modifier_disruptor_thunder_strike_bh", {}, target:GetAbsOrigin(), caster:GetTeam(), false)
 end
 

@@ -31,7 +31,7 @@ function modifier_boss_roshan_heros_bane:OnIntervalThink()
 		end
 	end
 	self.heroes = heroes
-	self.units = units
+	self.units = #units
 end
 
 function modifier_boss_roshan_heros_bane:DeclareFunctions()
@@ -40,11 +40,11 @@ function modifier_boss_roshan_heros_bane:DeclareFunctions()
 end
 
 function modifier_boss_roshan_heros_bane:GetModifierTotalDamageOutgoing_Percentage()
-	return self.amp * self.units
+	return self.amp * (self.units or 0)
 end
 
 function modifier_boss_roshan_heros_bane:GetModifierIncomingDamage_Percentage()
-	return self.red * self.heroes
+	return self.red * (self.heroes or 0)
 end
 
 function modifier_boss_roshan_heros_bane:IsHidden()

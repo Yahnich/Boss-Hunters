@@ -41,7 +41,7 @@ function tusk_ice:OnProjectileHit(hTarget, vLocation)
     local caster = self:GetCaster()
     local hitEnemy = {}
 
-    if hTarget ~= nil then
+    if hTarget ~= nil and not hTarget:TriggerSpellAbsorb( self ) then
         self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
         table.insert(hitEnemy, hTarget)
     else
@@ -98,7 +98,7 @@ function tusk_ice:OnProjectileHit(hTarget, vLocation)
         local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"))
         for _,enemy in pairs(enemies) do
             for _,hTarget in pairs(hitEnemy) do
-                if enemy ~= hTarget then
+                if enemy ~= hTarget and not enemy:TriggerSpellAbsorb( self ) then
                     self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
                 end
             end

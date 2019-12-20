@@ -30,7 +30,7 @@
 	        "02"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "dmg_red"       		"10"
+	            "dmg_red"       		"-10"
 	        }
 			"02"
 	        {
@@ -107,26 +107,26 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_roshan/boss_roshan_flamethrower"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET |C DOTA_ABILITY_BEHAVIOR_CHANNELING"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELING"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName" 			"dragon_knight_breathe_fire"
 		"MaxLevel"						"2"
 		
 		"precache"
 		{
-			"particle"						"particles/units/heroes/hero_tiny/tiny_toss_blur.vpcf"
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_heroes_tiny.vsndevts"
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
 		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"650 800"
-		"AbilityCastPoint"				"0.5 0.3" 						// Time before spell goes off when cast
-		"AbilityChannelTime"			"3.5"
+		"AbilityCastPoint"				"1.5" 						// Time before spell goes off when cast
+		"AnimationPlaybackRate"			"1"
+		"AbilityChannelTime"			"2.5"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityChannelAnimation"		"ACT_DOTA_CAST_ABILITY_1"
-		"AnimationPlaybackRate"			"0.5"						// Animation speed multiplier
 		"AnimationIgnoresModelScale"	"1"
 	
 		// Time		
@@ -154,14 +154,19 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"speed"					"350"
+				"angle"					"90"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"width"					"200"
+				"speed"					"400"
 			}
 			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"width"					"100"
+			}
+			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"distance"				"700 1050"
@@ -174,7 +179,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_roshan/boss_roshan_crushing_clap"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
@@ -183,14 +188,14 @@
 		
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_tiny/tiny_toss_blur.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts"
+			"soundfile"					"soundevents/game_sounds_creeps.vsndevts"
 		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"325 350"
 		"AbilityCastPoint"				"1.5 1" 					// Time before spell goes off when cast
+		"AnimationPlaybackRate"			"0.5 0.75"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"	// Activity
 		"AnimationIgnoresModelScale"	"1"
 	
@@ -234,7 +239,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_roshan/boss_roshan_sonic_boom"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
@@ -243,16 +248,15 @@
 		
 		"precache"
 		{
-			"particle"						"particles/units/heroes/hero_tiny/tiny_toss_blur.vpcf"
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
 		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1000 2000"
-		"AbilityCastPoint"				"1.5 1" 					// Time before spell goes off when cast
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"	// Activity
-		"AnimationIgnoresModelScale"	"1"
+		"AbilityCastPoint"				"1.5"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AnimationPlaybackRate"			"0.5"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------

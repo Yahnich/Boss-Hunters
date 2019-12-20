@@ -102,10 +102,14 @@ function TableToWeightedArray(t1)
 	return copy
 end
 
-function TableToArray(t1)
+function TableToArray(t1, bValue)
 	local copy = {}
 	for key, value in pairs( t1 ) do
-		table.insert(copy, value)
+		if bValue then
+			table.insert(copy, value)
+		else
+			table.insert(copy, key)
+		end
 	end
 	return copy
 end
@@ -144,6 +148,15 @@ end
 function ActualRandomVector(maxLength, flMinLength)
 	local minLength = flMinLength or 0
 	return RandomVector(RandomInt(minLength, maxLength))
+end
+
+function GetRandomInTable( hArray )
+	if hArray[1] then
+		return hArray[RandomInt( 1, #hArray )]
+	else
+		local array = TableToArray( hArray )
+		return array[RandomInt( 1, #array )]
+	end
 end
 
 function HasBit(checker, value)
@@ -1582,12 +1595,14 @@ function ParticleManager:FireWarningParticle(position, radius)
 	ParticleManager:ReleaseParticleIndex(thinker)
 end
 
-function ParticleManager:FireLinearWarningParticle(vStartPos, vEndPos, vWidth)
+function ParticleManager:FireLinearWarningParticle(vStartPos, vEndPos, vWidth, vStartWidth)
 	local fWidth = vWidth or 50
-	local width = Vector(fWidth, fWidth, fWidth)
-	local fx = ParticleManager:FireParticle("particles/range_ability_line.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = GetGroundPosition(vStartPos, nil),
-																											[1] = GetGroundPosition(vEndPos, nil),
-																											[2] = width} )
+	local width = Vector(fWidth, vStartWidth or fWidth, fWidth)
+	local fx = ParticleManager:FireParticle("particles/ui_mouseactions/warning_particle_cone.vpcf", PATTACH_WORLDORIGIN, nil, { [1] = GetGroundPosition(vStartPos, nil),
+																																[2] = GetGroundPosition(vEndPos, nil),
+																															[3] = width,
+																															[4] = Vector(255,0,0)} )
+																															
 end
 
 function ParticleManager:FireTargetWarningParticle(target)
@@ -1780,6 +1795,7 @@ function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, da
 		iUnitTargetTeam = internalData.team or DOTA_UNIT_TARGET_TEAM_ENEMY,
 		iUnitTargetType = internalData.type or DOTA_UNIT_TARGET_ALL,
 		iUnitTargetFlags = internalData.type or DOTA_UNIT_TARGET_FLAG_NONE,
+		iSourceAttachment = internalData.attach or DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
 		bDeleteOnHit = delete,
 		fExpireTime = GameRules:GetGameTime() + 10.0,
 		bProvidesVision = provideVision,

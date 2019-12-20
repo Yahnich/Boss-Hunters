@@ -6,12 +6,17 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             		"ability_lua"
 		"ScriptFile"					"bosses/boss_treants/boss_treant_thornmaze"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"			"mud_golem_rock_destroy"
+	    "AbilityTextureName"			"treant_natures_grasp"
 	    "MaxLevel"                      "2"
+		
+		"AbilityCooldown"				"14"
+		"AbilityCastRange"				"800 1200"
+		"AbilityCastPoint"				"0.5 0.3" 					// Time before spell goes off when cast
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"	// Activity
 	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -27,17 +32,27 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "split_count"         	"2"
+	            "thorn_count"         	"4 6"
 	        }
 	        "02"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "golem_hp"       		"50"
+	            "slow"       			"-50 -75"
 	        }
-			"02"
+			"03"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "minimum_scale"       	"0.8 0.6"
+	            "damage_per_second"		"50"
+	        }
+			"04"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "grab_radius"      		"175"
+	        }
+			"05"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "spread_radius"      	"800"
 	        }
 	    }
 	}
@@ -47,10 +62,10 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_treants/boss_treant_overgrowth"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"AbilityTextureName" 			"mud_golem_hurl_boulder"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" 			"treant_overgrowth"
 		
 		"precache"
 		{
@@ -60,14 +75,14 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"800 1200"
+		"AbilityCastRange"				"350"
 		"AbilityCastPoint"				"0.5 0.3" 					// Time before spell goes off when cast
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"	// Activity
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"	// Activity
 		"MaxLevel"						"2"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"25"
+		"AbilityCooldown"				"20"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -80,38 +95,8 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"toss_duration"			"1.5"
+				"duration"				"3.5 5"
 			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_health_cost"		"20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_radius"			"475"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"200 300"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow"					"-25 -33"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"5"
-			}
-			"02"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "minimum_scale"       	"0.8 0.6"
-	        }
 		}
 	}
 	"boss_treant_leech_seed"
@@ -123,8 +108,8 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"AbilityTextureName" 			"tiny_toss"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName" 			"treant_leech_seed"
 		"MaxLevel"						"2"
 		
 		"precache"
@@ -136,9 +121,9 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"650 800"
-		"AbilityCastPoint"				"0.5 0.3" 						// Time before spell goes off when cast
-		"AbilityCastAnimation"			"ACT_DOTA_FLAIL"			// Activity
-		"AnimationPlaybackRate"			"0.5"						// Animation speed multiplier
+		"AbilityCastPoint"				"1 0.75" 						// Time before spell goes off when cast
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"			// Activity
+		"AnimationPlaybackRate"			"0.75"						// Animation speed multiplier
 		"AnimationIgnoresModelScale"	"1"
 	
 		// Time		
@@ -156,27 +141,27 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"leap_duration"			"1.5"
+				"damage"				"50 75"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_radius"			"475"
+				"heal"					"50 75"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"350 500"
+				"duration"				"5"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"-25 -33"
+				"radius"				"400"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"5"
+				"projectile_speed"		"400"
 			}
 		}
 	}
@@ -184,59 +169,41 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"BaseClass" 					"ability_lua"
 		"ScriptFile"					"bosses/boss_treants/boss_furion_summon_minor_treants"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"AbilityTextureName" 			"tiny_grow"
-		"MaxLevel"						"2"
+		"AbilityTextureName"			"furion_force_of_nature"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"15"
+		"AbilityCastAnimation"			"ACT_DOTA_TELEPORT"
+		"AbilityChannelTime"			"2"
 		
 		"precache"
 		{
-			"particle"						"particles/units/heroes/hero_tiny/tiny_toss_blur.vpcf"
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts"
+			"particle"					"particles/bosses/boss4/boss4_summon_zombies_spawn.vpcf"
+			"particle"					"particles/bosses/boss4/boss4_summon_zombies_summon.vpcf"
+			"soundfile"					"soundevents/game_sounds_custom.vsndevts"
 		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"350"
-		"AbilityCastPoint"				"2" 					// Time before spell goes off when cast
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"	// Activity
-		"AnimationIgnoresModelScale"	"1"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"treant_count"			"2 3"
+			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_radius"			"475"
+				"spawn_radius"			"350 500"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"350 500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow"					"-25 -33"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"5"
+				"max_treants"			"8 12"
 			}
 		}
 	}
@@ -244,59 +211,41 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"BaseClass" 					"ability_lua"
 		"ScriptFile"					"bosses/boss_treants/boss_furion_summon_greater_treants"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"AbilityTextureName" 			"tiny_grow"
-		"MaxLevel"						"2"
+		"AbilityTextureName"			"custom/boss_furion_summon_greater_treants"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"15"
+		"AbilityCastAnimation"			"ACT_DOTA_TELEPORT"
+		"AbilityChannelTime"			"2"
 		
 		"precache"
 		{
-			"particle"						"particles/units/heroes/hero_tiny/tiny_toss_blur.vpcf"
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts"
+			"particle"					"particles/bosses/boss4/boss4_summon_zombies_spawn.vpcf"
+			"particle"					"particles/bosses/boss4/boss4_summon_zombies_summon.vpcf"
+			"soundfile"					"soundevents/game_sounds_custom.vsndevts"
 		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"350"
-		"AbilityCastPoint"				"2" 					// Time before spell goes off when cast
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"	// Activity
-		"AnimationIgnoresModelScale"	"1"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"treant_count"			"1 2"
+			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_radius"			"475"
+				"spawn_radius"			"350 500"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"350 500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow"					"-25 -33"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"5"
+				"max_treants"			"6 8"
 			}
 		}
 	}
@@ -306,11 +255,11 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_treants/boss_furion_sprout"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"AbilityTextureName" 			"tiny_grow"
+		"AbilityTextureName" 			"furion_sprout"
 		"MaxLevel"						"2"
 		
 		"precache"
@@ -321,8 +270,8 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"350"
-		"AbilityCastPoint"				"2" 					// Time before spell goes off when cast
+		"AbilityCastRange"				"900"
+		"AbilityCastPoint"				"1 0.75" 					// Time before spell goes off when cast
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"	// Activity
 		"AnimationIgnoresModelScale"	"1"
 	
@@ -340,23 +289,23 @@
 		{
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"base_radius"			"475"
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3.0 5.0"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"350 500"
+				"tree_count"			"8"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"-25 -33"
+				"tree_radius"			"150"
 			}
-			"05"
+			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"5"
+				"vision_range"			"1000"
 			}
 		}
 	}

@@ -885,12 +885,12 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"50"		// Damage range min.
-		"AttackDamageMax"			"80"		// Damage range max.
-		"AttackRate"				"2.7"			// Speed of attack.
-		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
+		"AttackDamageMin"			"100"		// Damage range min.
+		"AttackDamageMax"			"125"		// Damage range max.
+		"AttackRate"				"6"			// Speed of attack.
+		"AttackAnimationPoint"		"1.8"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
-		"AttackRange"				"256"		// Range within a target can be attacked.
+		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_goodguy.vpcf" // Particle system model for projectile.
 		"ProjectileSpeed"			"1000"		// Speed of projectile.
 	
@@ -1920,19 +1920,6 @@
 		"Creature"
 		{
 			"CanRespawn"				"0"
-			"States"
-			{
-				"Invade"
-				{
-					"Name"				"Invade"
-					"Aggression"		"100.0"
-					"Avoidance"			"0.0"
-					"Support"			"75.0"
-				}
-			}
-	
-			"DefaultState"				"Invade"
-	
 			"AttachWearables"
 			{
 				"1" { "ItemDef" "7060" } 
@@ -1954,7 +1941,7 @@
 		"Model"						"models/heroes/furion/furion.vmdl"	// Model.
 		"Level"						"1"
 		"ModelScale" 				"0.5"
-		"IsAncient"			"0"
+		"IsAncient"					"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsWild"					"1"
@@ -2044,21 +2031,7 @@
 		{
 			"CanRespawn"				"0"
 			"DisableClumpingBehavior"	"1"
-			
-			"States"
-			{
-				"Invade"
-				{
-					"Name"				"Invade"
-					"Aggression"		"100.0"
-					"Avoidance"			"100.0"
-					"Support"			"50.0"
-					"RoamDistance" 		"1500.0"
-				}
-			}
-	
-			"DefaultState"				"Invade"
-	
+
 			"AttachWearables"
 			{
 				"Wearable1" { "ItemDef" "29" }
@@ -8930,12 +8903,12 @@
 	//=================================================================================
 	// Creature: Treant
 	//=================================================================================
-	"npc_dota_mini_tree"
+	"npc_dota_minion_minor_treant"
 	{
 		// General
 		//
 		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
-		"Model"						"models/heroes/furion/treant.vmdl"	// Model.
+		"Model"						"models/items/furion/treant/father_treant/father_treant.vmdl"	// Model.
 		"SoundSet"					""					// Name of sound set.
 		"ModelScale"				"1"
 		"Level"						"4"
@@ -8947,12 +8920,12 @@
 			"particle_folder"	"particles/units/heroes/hero_treant"
 		}
 		
-		"vscripts"					"ai/ai_tree"
+		"vscripts"					"ai/ai_generic"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_living_armor"	// Ability 1.
+		"Ability1"					""	// Ability 1.
 		"Ability2"					""			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
@@ -8963,8 +8936,8 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"3"			// Physical protection.
-		"MagicalResistance"			"15"		// Magical protection (percentage).
+		"ArmorPhysical"				"0"			// Physical protection.
+		"MagicalResistance"			"0"		// Magical protection (percentage).
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -9041,12 +9014,12 @@
 	//=================================================================================
 	// Creature: Treant
 	//=================================================================================
-	"npc_dota_mini_tree2"
+	"npc_dota_minion_greater_treant"
 	{
 		// General
 		//
 		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
-		"Model"						"models/items/furion/treant_flower_1.vmdl"	// Model.
+		"Model"						"models/items/furion/treant/the_ancient_guardian_the_ancient_treants/the_ancient_guardian_the_ancient_treants.vmdl"	// Model.
 		"SoundSet"					""					// Name of sound set.
 		"ModelScale"				"1.5"
 		"Level"						"4"
@@ -9058,11 +9031,11 @@
 			"particle_folder"	"particles/units/heroes/hero_treant"
 		}
 		
-		"vscripts"					"ai/ai_tree"
+		"vscripts"					"ai/ai_generic"
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_living_armor"	// Ability 1.
+		"Ability1"					""	// Ability 1.
 		"Ability2"					""			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
@@ -9073,8 +9046,8 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"2"			// Physical protection.
-		"MagicalResistance"			"0"		// Magical protection (percentage).
+		"ArmorPhysical"				"5"			// Physical protection.
+		"MagicalResistance"			"15"		// Magical protection (percentage).
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -9082,7 +9055,7 @@
 		"AttackDamageMin"			"60"		// Damage range min.
 		"AttackDamageMax"			"70"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"1.2"			// Speed of attack.
+		"AttackRate"				"3"			// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"150"		// Range within a target can be attacked.
@@ -9109,7 +9082,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"350"		// Base health.
+		"StatusHealth"				"500"		// Base health.
 		"StatusHealthRegen"			"1"		// Health regeneration rate.
 		"StatusMana"				"500"		// Base mana.
 		"StatusManaRegen"			"20"			// Mana regeneration rate.

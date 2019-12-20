@@ -5,7 +5,7 @@ function pugna_decrepify_bh:OnSpellStart()
 	local hTarget = self:GetCursorTarget()
 	if caster:GetTeam() == hTarget:GetTeam() then
 		hTarget:AddNewModifier(caster, self, "modifier_pugna_decrepify_ally", {duration = self:GetTalentSpecialValueFor("tooltip_duration")})
-	elseif not target:TriggerSpellAbsorb( self )
+	elseif not hTarget:TriggerSpellAbsorb( self ) then
 		hTarget:AddNewModifier(caster, self, "modifier_pugna_decrepify_enemy", {duration = self:GetTalentSpecialValueFor("tooltip_duration")})
 	end
 	EmitSoundOn("Hero_Pugna.Decrepify", hTarget)
