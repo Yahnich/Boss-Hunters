@@ -31,7 +31,7 @@ if IsServer() then
 		local caster = self:GetCaster()
 		if caster:IsStunned() or caster:IsSilenced() then return end
 		caster:StartGestureWithPlaybackRate( ACT_DOTA_CAST_ABILITY_4, 2 )
-		local spawn = CreateUnitByName( "npc_dota_techies_land_mine", caster:GetAbsOrigin() + RandomVector( 15 ), true, nil, nil, DOTA_TEAM_BADGUYS)
+		local spawn = CreateUnitByName( "npc_dota_techies_land_mine", caster:GetAbsOrigin() + RandomVector( 15 ), true, nil, nil, caster:GetTeamNumber() )
 		local distance = RandomInt( self.spore_min_distance, self.spore_max_distance )
 		local duration = distance / self.spore_speed
 		spawn:ApplyKnockBack(caster:GetAbsOrigin(), duration, duration, distance, 600, caster, self, false)

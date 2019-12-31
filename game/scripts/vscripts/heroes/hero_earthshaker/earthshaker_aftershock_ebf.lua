@@ -25,7 +25,7 @@ function earthshaker_aftershock_ebf:Aftershock(position, fRadius)
 	local enemies = caster:FindEnemyUnitsInRadius(vPos, radius)
 	for _, enemy in ipairs( enemies ) do
 		if not enemy:TriggerSpellAbsorb(self) then
-			self:DealDamage(caster, enemy, damage)
+			self:DealDamage(caster, enemy, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 			local sDur = duration * (CalculateDistance(enemy, caster) / radius)
 			self:Stun(enemy, sDur, false)
 		end
@@ -44,15 +44,22 @@ end
 modifier_earthshaker_aftershock_ebf_passive = class({})
 LinkLuaModifier("modifier_earthshaker_aftershock_ebf_passive", "heroes/hero_earthshaker/earthshaker_aftershock_ebf", LUA_MODIFIER_MOTION_NONE)
 
+function modifier_earthshaker_aftershock_ebf_passive:OnCreated()
+	self.scepter_radius = self:GetTalentSpecialValueFor("scepter_radius")
+end
+
+function modifier_earthshaker_aftershock_ebf_passive:OnRefresh()
+	self.scepter_radius = self:GetTalentSpecialValueFor("scepter_radius")
+end
+
 function modifier_earthshaker_aftershock_ebf_passive:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ABILITY_FULLY_CAST}
 end
 
 function modifier_earthshaker_aftershock_ebf_passive:OnAbilityFullyCast( params )
 	if ( params.unit == self:GetParent() 
-	or params.unit:IsSameTeam( self:GetParent() )
-	and self:GetParent():HasTalent("special_bonus_unique_earthshaker_enchant_totem_ebf_2") 
-	and self:GetParent():HasModifier("modifier_earthshaker_enchant_totem_ebf") )
+	or ( params.unit:IsSameTeam( self:GetParent() )
+	and self:GetParent():HasScepter() and CalculateDistance( params.unit, self:GetParent() ) <= self.scepter_radius ) )
 	and params.unit:HasAbility( params.ability:GetName() )
 	and params.ability:GetCooldownTimeRemaining() > 0 then
 		self:GetAbility():Aftershock( params.unit:GetAbsOrigin() )

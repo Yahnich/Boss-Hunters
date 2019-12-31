@@ -147,7 +147,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_valgraduth/boss_valgraduth_bomb_spores"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName"			"techies_land_mines"
 		"MaxLevel"						"2"
 		
@@ -166,7 +166,7 @@
 			"01"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "damage"     					"200 300"
+                "damage"     					"250 350"
             }
     		"02"
             {

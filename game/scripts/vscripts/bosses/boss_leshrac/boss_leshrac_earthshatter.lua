@@ -18,15 +18,23 @@ function boss_leshrac_earthshatter:OnSpellStart()
 	
 	Timers:CreateTimer( function()
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-			self:DealDamage( caster, enemy, damage )
-			self:Stun(enemy, stun)
+			if not enemy:TriggerSpellAbsorb( self ) then
+				damageType = DAMAGE_TYPE_MAGICAL
+				if enemy:GetMagicalArmorValue( ) > enemy:GetPhysicalArmorReduction()/100 then
+					damageType = DAMAGE_TYPE_PHYSICAL
+				end
+				self:DealDamage( caster, enemy, damage, {damage_type = damageType} )
+				self:Stun(enemy, stun)
+			end
 		end
+		damage = damage * 0.75
+		stun = stun * 0.75
 		ParticleManager:FireParticle("particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf", PATTACH_CUSTOMORIGIN, caster, {[0] = position, [1] = Vector( radius,1,1) } )
 		EmitSoundOnLocationWithCaster( position, "Hero_Leshrac.Split_Earth", caster )
 		eruptions = eruptions - 1
 		radius = radius + radiusGrowth
-		ParticleManager:FireWarningParticle( position, radius )
 		if eruptions > 0 then
+			ParticleManager:FireWarningParticle( position, radius )
 			return delay
 		end
 	end)

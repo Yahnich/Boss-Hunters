@@ -92,16 +92,10 @@ end
 function modifier_lycan_apex_predator_aura:OnIntervalThink()
 	self.chance = self:GetTalentSpecialValueFor("day_critical_chance")
 	self.damage = self:GetTalentSpecialValueFor("critical_damage")
-	if self:GetCaster():HasScepter() then
-		self.armor = self:GetTalentSpecialValueFor("scepter_armor")
-	end
 	if (not GameRules:IsDaytime()) or self:GetCaster():HasModifier("modifier_lycan_shapeshift_bh") then
 		self.chance = self:GetTalentSpecialValueFor("night_critical_chance")
 		if self:GetCaster():HasTalent("special_bonus_unique_lycan_shapeshift_2") and self:GetCaster():HasModifier("modifier_lycan_shapeshift_bh") then
 			self.chance = self:GetCaster():FindTalentValue("special_bonus_unique_lycan_shapeshift_2")
-		end
-		if self:GetCaster():HasScepter() then
-			self.armor = self:GetTalentSpecialValueFor("scepter_armor_night")
 		end
 	end
 end
@@ -109,7 +103,6 @@ end
 function modifier_lycan_apex_predator_aura:DeclareFunctions()
 	return {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
 			MODIFIER_PROPERTY_TOOLTIP,
-			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS
 			}
 end
 
@@ -124,8 +117,4 @@ end
 
 function modifier_lycan_apex_predator_aura:OnTooltip()
 	return self.chance
-end
-
-function modifier_lycan_apex_predator_aura:GetModifierPhysicalArmorBonus()
-	return self.armor or 0
 end

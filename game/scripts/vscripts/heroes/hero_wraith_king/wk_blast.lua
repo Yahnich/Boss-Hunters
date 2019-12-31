@@ -103,7 +103,7 @@ function wk_blast:OnProjectileHit(hTarget, vLocation)
     local stun_duration = self:GetTalentSpecialValueFor("stun_duration")
     local dot_duration = self:GetTalentSpecialValueFor("dot_duration")
 
-    if hTarget and not target:TriggerSpellAbsorb( self ) then
+    if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
         self:DealDamage(caster, hTarget, damage, {}, 0)
         self:Stun(hTarget, stun_duration, true)
         hTarget:AddNewModifier(caster, self, "modifier_wk_blast", {Duration = dot_duration})

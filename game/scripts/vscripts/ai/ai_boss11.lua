@@ -9,16 +9,21 @@ function Spawn( entityKeyValues )
 			return AIThink(thisEntity)
 		end
 	end)
-	thisEntity.spike = thisEntity:FindAbilityByName("boss_leshrac_erupt")
-	thisEntity.lightning = thisEntity:FindAbilityByName("creature_lightning_storm")
+	thisEntity.equal = thisEntity:FindAbilityByName("boss_leshrac_great_equalizer")
+	thisEntity.inevitable = thisEntity:FindAbilityByName("boss_leshrac_inevitable_end")
+	thisEntity.punish = thisEntity:FindAbilityByName("boss_leshrac_punishment")
+	
+	thisEntity.spike = thisEntity:FindAbilityByName("boss_leshrac_earthshatter")
+	thisEntity.lightning = thisEntity:FindAbilityByName("boss_leshrac_lightning_storm")
+	thisEntity.pulse = thisEntity:FindAbilityByName("boss_leshrac_cataclysm")
+	local level = math.floor( GameRules:GetGameDifficulty() / 2 )
 	AITimers:CreateTimer(0.1, function()
-		if  math.floor(GameRules.gameDifficulty + 0.5) <= 2 then
-			thisEntity.lightning:SetLevel(1)
-			thisEntity.spike:SetLevel(1)
-		else
-			thisEntity.lightning:SetLevel(2)
-			thisEntity.spike:SetLevel(2)
-		end
+		thisEntity.equal:SetLevel(level)
+		thisEntity.inevitable:SetLevel(level)
+		thisEntity.punish:SetLevel(level)
+		thisEntity.spike:SetLevel(level)
+		thisEntity.spike:SetLevel(level)
+		thisEntity.pulse:SetLevel(level)
 	end)
 end
 
@@ -34,18 +39,20 @@ function AIThink(thisEntity)
 				ExecuteOrderFromTable({
 					UnitIndex = thisEntity:entindex(),
 					OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
-					AbilityIndex = thisEntity.spike:entindex(),
-					Position = target:GetOrigin()
+					Position = target:GetOrigin(),
+					AbilityIndex = thisEntity.lightning:entindex()
 				})
 				ExecuteOrderFromTable({
 					UnitIndex = thisEntity:entindex(),
-					OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-					TargetIndex = target:entindex(),
-					AbilityIndex = thisEntity.lightning:entindex()
+					OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+					AbilityIndex = thisEntity.spike:entindex(),
+					Position = target:GetOrigin(),
+					Queue = true
 				})
-				return AI_THINK_RATE
+				return thisEntity.spike:GetCastPoint() + thisEntity.lightning:GetCastPoint() + 0.1
 			end
-		elseif thisEntity.spike:IsFullyCastable() then
+		end
+		if thisEntity.spike:IsFullyCastable() and RollPercentage(35) then
 			local target = AICore:HighestThreatHeroInRange( thisEntity, thisEntity.spike:GetTrueCastRange(), 15, false )
 			if not target then target = AICore:WeakestEnemyHeroInRange( thisEntity, thisEntity.spike:GetTrueCastRange(), false ) end
 			if target then
@@ -55,20 +62,31 @@ function AIThink(thisEntity)
 					AbilityIndex = thisEntity.spike:entindex(),
 					Position = target:GetOrigin()
 				})
-				return AI_THINK_RATE
+				return thisEntity.spike:GetCastPoint() + 0.1
 			end
-		elseif thisEntity.lightning:IsFullyCastable() then
+		end
+		if thisEntity.lightning:IsFullyCastable() and RollPercentage(35) then
 			local target = AICore:HighestThreatHeroInRange( thisEntity, thisEntity.lightning:GetTrueCastRange(), 0, false )
 			if not target then target = AICore:WeakestEnemyHeroInRange( thisEntity, thisEntity.lightning:GetTrueCastRange(), false ) end
 			if target then
 				ExecuteOrderFromTable({
 					UnitIndex = thisEntity:entindex(),
-					OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-					TargetIndex = target:entindex(),
+					OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+					Position = target:GetOrigin(),
 					AbilityIndex = thisEntity.lightning:entindex()
 				})
 			end
-			return AI_THINK_RATE
+			return thisEntity.lightning:GetCastPoint() + 0.1
+		end
+		if thisEntity.pulse:IsFullyCastable() and RollPercentage(35) then
+			if target then
+				ExecuteOrderFromTable({
+					UnitIndex = thisEntity:entindex(),
+					OrderType = DOTA_UNIT_ORDER_NO_TARGET,
+					AbilityIndex = thisEntity.pulse:entindex()
+				})
+			end
+			return thisEntity.pulse:GetCastPoint() + 0.1
 		end
 		return AICore:AttackHighestPriority( thisEntity )
 	else return AI_THINK_RATE end

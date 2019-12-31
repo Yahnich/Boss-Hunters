@@ -222,12 +222,11 @@ function modifier_pango_swift_dash:OnCreated(table)
 		self.distance = CalculateDistance(self:GetAbility():GetCursorPosition(), parent:GetAbsOrigin())
 		self.speed = self:GetTalentSpecialValueFor("speed")
 		self.hitUnits = {}
-
-		if caster:HasTalent("special_bonus_unique_pango_swift_dash_1") then
-			self:StartIntervalThink(0.06)
+		if self.distance <= self.speed * 0.04 then
+			self:Destroy()
+		else
+			self:StartMotionController()
 		end
-		
-		self:StartMotionController()
 	end
 end
 
@@ -249,7 +248,6 @@ function modifier_pango_swift_dash:DoControlledMotion()
 		self.distance = self.distance - speed
 		parent:SetAbsOrigin(GetGroundPosition(parent:GetAbsOrigin(), parent) + self.dir*speed)
 	else
-		parent:SetAbsOrigin( self.endPos )
 		self:Destroy()
 		return nil
 	end

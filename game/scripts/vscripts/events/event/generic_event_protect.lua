@@ -33,6 +33,7 @@ local function StartCombat(self)
 	
 	local activeHeroes = HeroList:GetActiveHeroCount()
 	Timers:CreateTimer(1, function()
+		if self.totemUnit:IsAlive() then self.totemUnit:SetThreat(5000) end
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then
@@ -46,7 +47,6 @@ local function StartCombat(self)
 	
 	Timers:CreateTimer(1, function()
 		if not self.totemUnit or self.totemUnit:IsNull() then return end
-		if self.totemUnit:IsAlive() then self.totemUnit:SetThreat(5000) end
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then

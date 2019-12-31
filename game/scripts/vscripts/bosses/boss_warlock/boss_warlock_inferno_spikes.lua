@@ -21,6 +21,9 @@ function boss_warlock_inferno_spikes:OnSpellStart()
 			self:FireLinearProjectile("particles/bosses/boss_warlockgolems/boss_ember_spike.vpcf", direction*speed, range, width, {}, false, false, 0)
 		end
 	end
+	for i = 1, 4 do
+		self:FireLinearProjectile("particles/bosses/boss_warlockgolems/boss_ember_spike.vpcf", RandomVector(speed), range, width, {}, false, false, 0)
+	end
 end
 
 function boss_warlock_inferno_spikes:OnProjectileHit(hTarget, vLocation)

@@ -122,7 +122,7 @@ function LeftBoundingBox(trigger)
 	local unit = trigger.activator
 	local edge = trigger.caller
 	Timers:CreateTimer(function()
-		if not unit or unit:IsNull() then return end
+		if not unit or unit:IsNull() or not unit:IsAlive() then return end
 		if RoundManager.boundingBox and unit and edge then
 			if MapHandler:IsOutsideMapBounds(unit) or ( edge:GetName()  == RoundManager.boundingBox.."_edge_collider" and not RoundManager:IsTouchingBoundingBox( unit ) ) then
 				local newPos = RoundManager:FindNearestBoundingBoxEdge( unit ):GetAbsOrigin()

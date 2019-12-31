@@ -111,7 +111,10 @@ function modifier_snapfire_mortimer_kisses_lua_buff:OnIntervalThink()
 		local parent = self:GetParent()
 		local ability = self:GetAbility()
 		
-		local distance = math.min( self:GetAbility():GetTrueCastRange(), math.max( CalculateDistance( self.mousePos, parent ), self.min_range ) )
+		local minimumDistance = self.min_range
+		if not parent:IsRooted() then minimumDistance = self.impact_radius end
+		local distance = math.min( self:GetAbility():GetTrueCastRange(), math.max( CalculateDistance( self.mousePos, parent ), minimumDistance ) )
+		print( distance )
 		self.mousePos = parent:GetAbsOrigin() + CalculateDirection( self.mousePos, parent ) * distance
 		
 		local duration = distance/self.projectile_speed
@@ -119,8 +122,6 @@ function modifier_snapfire_mortimer_kisses_lua_buff:OnIntervalThink()
 		local dummy = ability:CreateDummy(self.mousePos, duration)
 
 		parent:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_4)
-
-		parent:MoveToPosition(self.mousePos)
 
 		CreateModifierThinker(parent, ability, "modifier_snapfire_mortimer_kisses_lua_targeting", {Duration = duration}, self.mousePos, parent:GetTeam(), false)
 
@@ -180,7 +181,8 @@ function modifier_snapfire_mortimer_kisses_lua_buff:OnOrder(params)
         local order = params.order_type
 
         if parent == unit then
-        	if order == DOTA_UNIT_ORDER_HOLD_POSITION or order == DOTA_UNIT_ORDER_STOP then
+			print( unit:IsRooted() )
+        	if ( order == DOTA_UNIT_ORDER_HOLD_POSITION or order == DOTA_UNIT_ORDER_STOP ) and unit:IsRooted() then
         		self:Destroy()
         	elseif order == DOTA_UNIT_ORDER_MOVE_TO_POSITION or order == DOTA_UNIT_ORDER_MOVE_TO_TARGET
         		 or order == DOTA_UNIT_ORDER_ATTACK_MOVE or order == DOTA_UNIT_ORDER_ATTACK_TARGET

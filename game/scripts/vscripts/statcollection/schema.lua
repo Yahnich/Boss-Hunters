@@ -66,6 +66,7 @@ function BuildPlayersArray()
 				local mapName = string.gsub(GetMapName(), "bh_", "")
 				
 				local talents = FindChosenTalentRow(hero)
+				print( hero:GetDeaths() ) 
                 table.insert(players, {
                     -- steamID32 required in here
                     steamID32 = PlayerResource:GetSteamAccountID(playerID),
@@ -79,7 +80,6 @@ function BuildPlayersArray()
                     pd = hero:GetDeaths(), -- Deaths
                     hp = FindHPS(hero), -- Healing
                     pr = hero.Resurrections or 0, -- Revived Teammates
-
                     --inventory :
                     i1 = GetItemSlot(hero, 1),
                     i2 = GetItemSlot(hero, 2),

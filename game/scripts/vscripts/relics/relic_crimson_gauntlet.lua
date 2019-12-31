@@ -17,9 +17,9 @@ function relic_crimson_gauntlet:OnIntervalThink()
 	end
 end
 
-function relic_crimson_gauntlet:DeclareFunctions()
-	return {MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE}
-end
+-- function relic_crimson_gauntlet:DeclareFunctions()
+	-- return {MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE}
+-- end
 
 function relic_crimson_gauntlet:GetModifierExtraHealthBonusPercentage()
 	return 60

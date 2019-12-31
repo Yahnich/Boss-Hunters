@@ -18,10 +18,10 @@ local function CheckPlayerChoices(self)
 	end
 	local superMajority = math.ceil(players * 0.66)
 	if not self.eventEnded and not self.freezeVote and not self.combatStarted then
-		self.freezeVote = true
 		if votedYes >= superMajority then -- yes votes exceed non-votes and no votes
 			self:GivePlayerGold()
 			self.treesCut = (self.treesCut or 0) + 1
+			self.freezeVote = true
 			Timers:CreateTimer(3, function()
 				self.freezeVote = false
 				if RollPercentage(25) then
@@ -33,7 +33,7 @@ local function CheckPlayerChoices(self)
 			CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 			return true
 		elseif votedNo >= votedYes + (players - voted) then -- no votes exceed yes and non-votes and every other situation
-			self.freezeVote = false
+			self.freezeVote = true
 			self:StartCombat(false)
 			return true
 		end

@@ -620,8 +620,14 @@ function RoundManager:GameIsFinished(bWon)
 				if self.prepTimer <= 0 then
 					if not self.ng then
 						GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
+						GameRules._finish = true
+						GameRules.EndTime = GameRules:GetGameTime()
+						statCollection:submitRound(true)
 					else
 						RoundManager:StartGame()
+						GameRules._finish = true
+						GameRules.EndTime = GameRules:GetGameTime()
+						statCollection:submitRound(false)
 					end
 					CustomGameEventManager:Send_ServerToAllClients("bh_end_prep_time", {})
 					CustomGameEventManager:Send_ServerToAllClients("bh_end_ng_vote", {})
@@ -634,10 +640,10 @@ function RoundManager:GameIsFinished(bWon)
 		else
 			GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
 			GameRules.Winner = DOTA_TEAM_BADGUYS
+			GameRules._finish = true
+			GameRules.EndTime = GameRules:GetGameTime()
+			statCollection:submitRound(true)
 		end
-		GameRules._finish = true
-		GameRules.EndTime = GameRules:GetGameTime()
-		statCollection:submitRound(true)
 	end
 	status, err, ret = xpcall(GameFinishCatch, debug.traceback, self)
 	if not status  and not self.gameHasBeenBroken then

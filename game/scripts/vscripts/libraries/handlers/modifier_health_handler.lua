@@ -1,15 +1,12 @@
 modifier_health_handler = class({})
 	
-function modifier_health_handler:OnStackCountChanged()
+function modifier_health_handler:OnStackCountChanged(oldStacks)
 	local health = self:GetStackCount()
 	local parent = self:GetParent()
-	if health ~= 0 then
-		-- check sign
-		if health % 10 == 0 then
-			self.health = math.floor( health / 10 )
-		else
-			self.health = math.floor( health / 10 ) * (-1)
-		end
+	if health % 10 == 0 then
+		self.health = math.floor( health / 10 )
+	else
+		self.health = math.floor( health / 10 ) * (-1)
 	end
 end
 

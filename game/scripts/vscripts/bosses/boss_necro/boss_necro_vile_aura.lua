@@ -32,6 +32,9 @@ function modifier_boss_necro_vile_aura:OnIntervalThink()
 	if parent:GetTauntTarget() then
 		position = parent:GetTauntTarget():GetAbsOrigin() + ActualRandomVector(600, 250)
 	end
+	if not position then
+		position = parent:GetAbsOrigin() + ActualRandomVector(600, 250)
+	end
 	self:StartIntervalThink( -1 )
 	ParticleManager:FireWarningParticle( position, self:GetParent():GetHullRadius() * 2.5 )
 	local modifier = self

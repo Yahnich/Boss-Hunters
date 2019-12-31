@@ -17,6 +17,14 @@ function snapfire_lil_shredder_lua:GetBehavior()
     return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
 end
 
+function snapfire_lil_shredder_lua:GetManaCost( iLvl )
+	if self:GetCaster():HasScepter() then
+		return nil
+	else
+		return self.BaseClass.GetManaCost( self, iLvl )
+	end
+end
+
 function snapfire_lil_shredder_lua:OnSpellStart()
     local caster = self:GetCaster()
 
@@ -31,7 +39,7 @@ end
 function snapfire_lil_shredder_lua:OnToggle()
     local caster = self:GetCaster()
 
-    if caster:HasModifier("modifier_snapfire_lil_shredder_lua_buff") then
+    if not self:GetToggleState() then
         caster:RemoveModifierByName("modifier_snapfire_lil_shredder_lua_buff")
     else
         caster:AddNewModifier(caster, self, "modifier_snapfire_lil_shredder_lua_buff", {})
@@ -151,30 +159,33 @@ function modifier_snapfire_lil_shredder_lua_buff:OnAttackLanded(params)
     if IsServer() then
         local attacker = params.attacker
         local target = params.target
+		if attacker == self:GetParent() then
+			if target and target ~= attacker and target:GetTeam() ~= attacker:GetTeam() then
+				if target:HasModifier("modifier_snapfire_lil_shredder_lua_debuff") then
+					if target:FindModifierByName("modifier_snapfire_lil_shredder_lua_debuff"):GetStackCount() < self.debuffStackCount then
+						target:AddNewModifier(attacker, self:GetAbility(), "modifier_snapfire_lil_shredder_lua_debuff", {Duration = self.debuffDuration}):IncrementStackCount()
+					else
+						target:AddNewModifier(attacker, self:GetAbility(), "modifier_snapfire_lil_shredder_lua_debuff", {Duration = self.debuffDuration})
+					end
+				else
+					target:AddNewModifier(attacker, self:GetAbility(), "modifier_snapfire_lil_shredder_lua_debuff", {Duration = self.debuffDuration}):IncrementStackCount()
+				end
 
-        if target and target ~= attacker and target:GetTeam() ~= attacker:GetTeam() and attacker == self:GetParent() then
-            if target:HasModifier("modifier_snapfire_lil_shredder_lua_debuff") then
-                if target:FindModifierByName("modifier_snapfire_lil_shredder_lua_debuff"):GetStackCount() < self.debuffStackCount then
-                    target:AddNewModifier(attacker, self:GetAbility(), "modifier_snapfire_lil_shredder_lua_debuff", {Duration = self.debuffDuration}):IncrementStackCount()
-                else
-                    target:AddNewModifier(attacker, self:GetAbility(), "modifier_snapfire_lil_shredder_lua_debuff", {Duration = self.debuffDuration})
-                end
-            else
-                target:AddNewModifier(attacker, self:GetAbility(), "modifier_snapfire_lil_shredder_lua_debuff", {Duration = self.debuffDuration}):IncrementStackCount()
-            end
+				EmitSoundOn("Hero_Snapfire.ExplosiveShellsBuff.Target", target)
+			end
 
-            EmitSoundOn("Hero_Snapfire.ExplosiveShellsBuff.Target", target)
-        end
-
-        if attacker:HasScepter() then
-            attacker:ReduceMana(self.mana_cost_scepter)
-        else
-            if self:GetStackCount() <= 1 then
-                self:Destroy()
-            else
-                self:DecrementStackCount()
-            end
-        end
+			if attacker:HasScepter() then
+				if not attacker:SpendMana(self.mana_cost_scepter) then
+					self:GetAbility():ToggleAbility()
+				end
+			else
+				if self:GetStackCount() <= 1 then
+					self:Destroy()
+				else
+					self:DecrementStackCount()
+				end
+			end
+		end
     end
 end
 

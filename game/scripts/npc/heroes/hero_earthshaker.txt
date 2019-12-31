@@ -163,7 +163,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"2.5"
+				"duration"					"15"
 			}
 		}
 	}
@@ -183,7 +183,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"33"
+				"value"					"40"
 			}
 		}
 	}
@@ -202,7 +202,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
+				"value"					"100"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8"
 			}
 		}
 	}
@@ -367,6 +372,11 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"stat_damage"				"100"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"scepter_radius"			"450"
 			}
 		}
 	}

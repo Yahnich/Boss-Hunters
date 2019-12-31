@@ -12,7 +12,7 @@ function boss_durva_feast_on_their_eyes:OnSpellStart()
 	local duration = self:GetSpecialValueFor("duration")
 	EmitSoundOn( "Hero_Nightstalker.Void", caster )
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self:GetSpecialValueFor("radius") ) ) do
-		if not target:TriggerSpellAbsorb( self ) then
+		if not enemy:TriggerSpellAbsorb( self ) then
 			ParticleManager:FireParticle( "particles/units/heroes/hero_night_stalker/nightstalker_void_hit.vpcf", PATTACH_POINT_FOLLOW, enemy )
 			enemy:AddNewModifier( caster, self, "modifier_boss_durva_feast_on_their_eyes", {duration = duration})
 		end

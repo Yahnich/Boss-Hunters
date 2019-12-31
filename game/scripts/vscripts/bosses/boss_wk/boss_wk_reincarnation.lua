@@ -138,7 +138,9 @@ function modifier_boss_wk_reincarnation_aura:OnCreated()
 end
 
 function modifier_boss_wk_reincarnation_aura:OnIntervalThink()
-	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self.dmg, {damage_type = DAMAGE_TYPE_MAGICAL} )
+	if not self:GetAbility():IsNull() then
+		self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self.dmg, {damage_type = DAMAGE_TYPE_MAGICAL} )
+	end
 end
 
 function modifier_boss_wk_reincarnation_aura:GetEffectName()

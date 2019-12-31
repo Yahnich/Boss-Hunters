@@ -22,7 +22,7 @@
 			"01"
 			{
 				"var_type"              "FIELD_FLOAT"
-				"duration"              "3"
+				"reflect"				"20"
 			}
 		}
 	}

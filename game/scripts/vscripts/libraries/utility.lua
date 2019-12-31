@@ -423,6 +423,14 @@ function CDOTA_PlayerResource:IsVIP(id)
 	return (tag and tag == "vip") or false
 end
 
+function CDOTA_PlayerResource:IsKarien(id)
+	self.VIP = self.VIP or LoadKeyValues( "scripts/kv/vip.kv" )
+	local steamID = self:GetSteamID(id)
+	local tag = self.VIP[tostring(steamID)]
+
+	return (tag and tag == "karien") or false
+end
+
 function CDOTA_BaseNPC:HasTalent(talentName)
 	local unit = self
 	if self:GetParentUnit() then
@@ -1025,7 +1033,7 @@ function CDOTA_BaseNPC:ModifyThreat(val)
 	self.threat = math.min( math.max(0, (self.threat or 0) + math.min(newVal * reduction, threatgainCap ) ), 999 )
 	if self:IsRealHero() then
 		local player = PlayerResource:GetPlayer( self:GetOwner():GetPlayerID() )
-		if player and GameRules:GetGameTime() > (player.getLastHitTime or 0) + 0.2 then
+		if player and GameRules:GetGameTime() > (player.getLastHitTime or 0) + 0.5 then
 			PlayerResource:SortThreat()
 			local event_data =
 			{
@@ -1266,17 +1274,9 @@ function CDOTABaseAbility:SetCooldown(fCD)
 	end
 end
 
-function CDOTABaseAbility:SpendMana()
-	if self.ShouldUseResources then
-		self:UseResources(true, false, false)
-	else
-		self:PayManaCost( )
-	end
-end
-
-function CDOTA_BaseNPC:SpendMana( flMana, bForced )
-	local cost = flMana * self:GetManaCostReduction()
-	self:ReduceMana( cost ) 
+function CDOTABaseAbility:SpendMana( flValue )
+	local value = flValue or self:GetManaCost( -1 )
+	self:GetCaster():SpendMana( value, self )
 end
 
 function CDOTA_BaseNPC:GetManaCostReduction( )

@@ -128,13 +128,6 @@ function modifier_handler_handler:OnIntervalThink()
 				return
 			end
 		end
-		if self.state == 5 then
-			self.state = 6
-			if #self.hpModifiers > 0 then
-				self:UpdateHealth()
-				return
-			end
-		end
 		if self.state == 6 then
 			self.state = 7
 			if self:GetParent():IsRealHero() and #self.strModifiers + #self.agiModifiers + #self.intModifiers > 0 then
@@ -320,7 +313,8 @@ function modifier_handler_handler:UpdateHealth()
 		if parent:IsAlive() and parent:GetHealth() ~= parent:GetMaxHealth() * (hpPct or 100) then
 			parent:SetHealth( parent:GetMaxHealth() * (hpPct or 100) )
 		end
-		self.hp:SetStackCount( hpStacks ) 
+		self.hp:SetStackCount( hpStacks )
+		self.hp = parent:AddNewModifier(parent, nil, "modifier_health_handler", {})
 	end
 	parent:CalculateStatBonus()
 end

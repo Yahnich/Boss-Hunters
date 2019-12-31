@@ -584,25 +584,20 @@ function ShowVectorTargetingParticle()
 	}
 }
 
+var clickBehavior = 0;
 //Mouse Callback to check whever this ability was quick casted or not
-GameUI.SetMouseCallback(function(eventName, arg)
+GameUI.SetMouseCallback(function(eventName, arg, arg2, arg3)
 {
 	click_start = true;
-	if (resetSchedule) {
-		$.CancelScheduled(resetSchedule, {});
-	}
-	resetSchedule = $.Schedule(1 / 6, function() {
-		resetSchedule = undefined;
-		click_start = false;
-	});
-
+	clickBehavior = GameUI.GetClickBehaviors();
 	return CONTINUE_PROCESSING_EVENT;
 });
 
 //Start to cast the vector ability
 function CastStart(table) {
 	active_ability = table.ability
-	is_quick = !click_start
+	is_quick = (clickBehavior == 0)	
+	clickBehavior = 0
 	if (GameUI.IsMouseDown(0) || is_quick) {
 		OnVectorTargetingStart(table.startWidth, table.endWidth, table.castLength);
 	}

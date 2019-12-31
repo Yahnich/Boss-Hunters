@@ -21,7 +21,7 @@ if COLLECT_STATS or TESTING then
 
             if PlayerResource:GetPlayerCount() >= MIN_PLAYERS or TESTING then
                 -- Init stat collection
-				print("triggered")
+				print("triggered stat collection")
                 statCollection:init()
                 customSchema:init()
             end

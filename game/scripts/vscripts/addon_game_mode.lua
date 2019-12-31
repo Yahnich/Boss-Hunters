@@ -591,7 +591,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	if damage <= 0 then return true end
 	
 	-- VVVVVVVVVVVVVV REMOVE THIS SHIT IN THE FUTURE VVVVVVVVVVV --
-	if attacker:GetTeam() == DOTA_TEAM_GOODGUYS and not (attacker:IsFakeHero() or attacker:IsCreature() or attacker:IsCreep() or attacker:IsHero()) then 
+	if attacker:GetTeam() == DOTA_TEAM_GOODGUYS and ( not attacker:IsRealHero() or attacker:IsFakeHero() ) then 
 		if attacker:GetOwner():GetClassname() == player then
 			attacker = attacker:GetOwner():GetAssignedHero()
 		else
@@ -608,7 +608,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	--- THREAT AND UI NO MORE DAMAGE MANIPULATION ---
 	local damage = filterTable["damage"]
 	local attacker = original_attacker
-	if attacker:IsCreature() then
+	if attacker:GetTeam() == DOTA_TEAM_BADGUYS then
 		if victim:IsRealHero() then
 			victim.statsDamageTaken = (victim.statsDamageTaken or 0) + math.min(victim:GetHealth(), damage)
 		end
@@ -653,28 +653,25 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 	local unit = EntIndexToHScript(event.hero_entindex)
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 	if hero == unit then
-		if hero:GetLevel() <= 27 or hero:GetLevel() == 30 then
+		if hero:GetLevel() < 27 or hero:GetLevel() == 30 then
 			hero.bonusSkillPoints = ( hero.bonusSkillPoints or ( hero:GetAbilityPoints() - 1 ) ) + 1
-			if hero:GetLevel() == 17 or hero:GetLevel() == 19 or (hero:GetLevel() > 20 and hero:GetLevel() < 25) or hero:GetLevel() == 30 then
+			if hero:GetLevel() == 17 or hero:GetLevel() == 19 or (hero:GetLevel() > 20 and hero:GetLevel() < 27) or hero:GetLevel() == 30 then
 				hero:SetAbilityPoints( hero:GetAbilityPoints() + 1)
 			end
 			if hero:GetLevel() % GameRules.gameDifficulty == 0 then
 				hero:ModifyAttributePoints( 1 )
 			end
-		else
-			hero:ModifyAttributePoints( 1 )
-			if not (  hero:GetLevel() == 30
-			or hero:GetLevel() == 31
+		elseif (hero:GetLevel() == 31
 			or hero:GetLevel() == 36
 			or hero:GetLevel() == 40
 			or hero:GetLevel() == 50
 			or hero:GetLevel() == 60
 			or hero:GetLevel() == 70
 			or hero:GetLevel() == 80) then
-				hero:SetAbilityPoints( hero:GetAbilityPoints() - 1)
-			else
+				hero:SetAbilityPoints( hero:GetAbilityPoints() + 1)
 				hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1
-			end
+		else
+			hero:ModifyAttributePoints( 1 )
 		end
 		-- fix valve's bullshit auto-talent leveling
 		-- take snapshot at lv 29
@@ -684,7 +681,6 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 		end
 		-- reset to snapshot at 30
 		if hero:GetLevel() == 30 then
-			hero:SetAbilityPoints( hero:GetAbilityPoints() + 2) -- where are my two ability points going ????
 			Timers:CreateTimer(0.1, function()
 				local talentData = hero.savedTalentData
 				hero.talentsSkilled = hero.savedTalentsSkilled
@@ -914,6 +910,9 @@ function CHoldoutGameMode:OnHeroPick (event)
 				Notifications:TopToAll(messageinfo)
 				ParticleManager:FireParticle("particles/roles/dev/vip_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
 			end
+			if PlayerResource:IsKarien(ID) then
+				ParticleManager:FireParticle("particles/roles/karien_trail_spirit.vpcf", PATTACH_POINT_FOLLOW, hero)
+			end
 		end
 		local gold = 200 + 150 * ( GameRules.BasePlayers - PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS) )
 		hero:SetGold( 0, true )
@@ -1075,14 +1074,25 @@ function CHoldoutGameMode:OnThink()
 			for _,unit in ipairs ( HeroList:GetActiveHeroes() ) do
 				if unit:IsRealHero() and not unit:IsFakeHero() then
 					local data = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex() ) or {}
-					
-					data.strength = unit:GetStrength()
-					data.intellect = unit:GetIntellect()
-					data.agility = unit:GetAgility()
+					local updated = false
+					if data.strength ~=	unit:GetStrength() then
+						data.strength = unit:GetStrength()
+						updated = true
+					end
+					if data.agility ~=	unit:GetAgility() then
+						data.agility = unit:GetAgility()
+						updated = true
+					end
+					if data.intellect ~=	unit:GetIntellect() then
+						data.intellect = unit:GetIntellect()
+						updated = true
+					end
 					if unit:GetPlayerOwner() and unit:GetAttackTarget() then
 						CustomGameEventManager:Send_ServerToPlayer( unit:GetPlayerOwner(), "bh_update_attack_target", {entindex = unit:GetAttackTarget():entindex()} )
 					end
-					CustomNetTables:SetTableValue("hero_properties", unit:GetUnitName()..unit:entindex(), data )
+					if updated then
+						CustomNetTables:SetTableValue("hero_properties", unit:GetUnitName()..unit:entindex(), data )
+					end
 					playerData[unit:GetPlayerID()] = {DT = unit.statsDamageTaken or 0, DD = unit.statsDamageDealt or 0, DH = unit.statsDamageHealed or 0}
 					-- Threat
 					if unit.threat then
@@ -1094,18 +1104,9 @@ function CHoldoutGameMode:OnThink()
 					if unit.lastHit then
 						if unit.lastHit + 2 <= currTime and unit.threat > 0 then
 							unit.threat = unit.threat - (unit.threat/10)
+							unit:ModifyThreat( -(unit.threat/10) )
 						end
 					else unit.lastHit = currTime end
-					local event_data =
-					{
-						threat = unit.threat,
-						lastHit = unit.lastHit,
-						aggro = unit.aggro or 0
-					}
-					local player = unit:GetPlayerOwner()
-					if player then
-						CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
-					end
 				end	
 			end
 			CustomGameEventManager:Send_ServerToAllClients( "player_update_stats", playerData )
@@ -1118,7 +1119,7 @@ function CHoldoutGameMode:OnThink()
 	elseif GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then		-- Safe guard catching any state that may exist beyond DOTA_GAMERULES_STATE_POST_GAME
 		return nil
 	end
-	return 0.25
+	return 0.5
 end
 
 function CDOTA_PlayerResource:SortThreat()

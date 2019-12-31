@@ -63,6 +63,11 @@ function modifier_lycan_feral_impulse_bh_aura:OnCreated()
 			self.damage = self.damage + self:GetCaster():FindTalentValue("special_bonus_unique_lycan_feral_impulse_2")
 		end
 	end
+	if self:GetCaster():HasScepter() then
+		self.health = self:GetTalentSpecialValueFor("scepter_bonus_health")
+	else
+		self.health = 0
+	end
 end
 
 function modifier_lycan_feral_impulse_bh_aura:OnIntervalThink()
@@ -72,6 +77,11 @@ function modifier_lycan_feral_impulse_bh_aura:OnIntervalThink()
 		if not GameRules:IsDaytime() then
 			self.damage = self.damage + self:GetCaster():FindTalentValue("special_bonus_unique_lycan_feral_impulse_2")
 		end
+	end
+	if self:GetCaster():HasScepter() then
+		self.health = self:GetTalentSpecialValueFor("scepter_bonus_health")
+	else
+		self.health = 0
 	end
 end
 
@@ -86,4 +96,8 @@ end
 
 function modifier_lycan_feral_impulse_bh_aura:GetModifierConstantHealthRegen()    
 	return self.regen
+end
+
+function modifier_lycan_feral_impulse_bh_aura:GetModifierExtraHealthBonusPercentage()
+	return self.health
 end

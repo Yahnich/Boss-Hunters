@@ -16,7 +16,6 @@ function Spawn( entityKeyValues )
 	local level = RoundManager:GetCurrentRaidTier() + math.floor(GameRules:GetGameDifficulty()/2)
 	
 	AITimers:CreateTimer(0.1, function() 
-		thisEntity.armor:SetLevel( level )
 		thisEntity.summon:SetLevel( level )
 		thisEntity.summon2:SetLevel( level )
 		thisEntity.sprout:SetLevel( level )

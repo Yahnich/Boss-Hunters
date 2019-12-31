@@ -41,7 +41,6 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"fire_rate"				"0.1"
-				"LinkedSpecialBonus"	"special_bonus_unique_gyro_rocket_salvo_2"
 			}
 			"03"
 			{
@@ -52,7 +51,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"250"
+				"radius"				"400"
 			}
 			
 		}
@@ -155,7 +154,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_gyro/gyrocopter_flak_cannon_ebf.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"1"
@@ -167,10 +166,6 @@
 			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf"
 			"soundfile"		"sounds/weapons/hero/gyrocopter/flack_cannon.vsnd"
 		}
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"5 10 15 20 25 30 35 40"
 						
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -179,18 +174,18 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"radius"						"1000"
+				"radius"						"650"
 			}
 			"02"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"armor_shred"					"0.8 1 1.2 1.4 1.6 1.8 2"
+				"var_type"						"FIELD_INTEGER"
+				"armor_shred"					"4 5 6 7 8 9 10"
 				"LinkedSpecialBonus"			"special_bonus_unique_gyrocopter_flak_cannon_ebf_1"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"armor_shred_duration"			"1.5"
+				"armor_shred_duration"			"3"
 			}
 			"04"
 			{
@@ -199,13 +194,8 @@
 			}
 			"05"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"fire_rate"						"0.9"
-			}
-			"06"
-			{
 				"var_type"						"FIELD_INTEGER"
-				"scepter_radius"				"1000"
+				"attacks_to_proc"				"6"
 			}
 		}
 	}
@@ -460,7 +450,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-0.05"
+				"value"					"0.25"
 			}
 		}
 	}
@@ -479,7 +469,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
+				"value"					"4"
 			}
 		}
 	}

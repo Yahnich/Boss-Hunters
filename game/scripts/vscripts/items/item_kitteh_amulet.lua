@@ -20,7 +20,6 @@ function item_kitteh_amulet:OnSpellStart()
 	EmitSoundOn("DOTA_Item.BlinkDagger.NailedIt", caster)
 	
 	local illusion = caster:ConjureImage( ogPos, 30, 0, 0 )
-	illusion:SetThreat( caster:GetThreat() )
 	caster:SetThreat( 0 )
 	caster:RefreshAllCooldowns(true)
 end
@@ -107,7 +106,7 @@ function modifier_item_kitteh_amulet_passive:GetModifierMoveSpeedBonus_Constant(
 end
 
 function modifier_item_kitteh_amulet_passive:GetModifierMoveSpeed_Limit()
-	return 5000
+	return 1000
 end
 
 function modifier_item_kitteh_amulet_passive:GetModifierMoveSpeedBonus_Special_Boots()
@@ -115,7 +114,7 @@ function modifier_item_kitteh_amulet_passive:GetModifierMoveSpeedBonus_Special_B
 end
 
 function modifier_item_kitteh_amulet_passive:GetModifierMoveSpeed_Max()
-	return 5000
+	return 1000
 end
 
 
@@ -191,4 +190,8 @@ end
 
 function modifier_item_kitteh_amulet_passive:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
+function modifier_item_kitteh_amulet_passive:GetEffectName()
+	return "particles/roles/karien_trail_spirit.vpcf"
 end

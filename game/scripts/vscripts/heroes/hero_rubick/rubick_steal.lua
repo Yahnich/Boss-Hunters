@@ -131,11 +131,12 @@ function rubick_steal:OnProjectileHit( target, location )
 	self.stolenSpell = nil
 
 	-- Add modifier
+	local duration = self:GetTalentSpecialValueFor("duration")
 	target:AddNewModifier(
 		caster, -- player source
 		self, -- ability source
 		"modifier_rubick_steal", -- modifier name
-		{} -- kv
+		{duration = duration} -- kv
 	)
 
 	if caster:HasTalent("special_bonus_unique_rubick_steal_1") then
@@ -285,7 +286,7 @@ function rubick_steal:ForgetSpell()
 		local stolenAbility = self:GetCaster():GetAbilityByIndex(i)
 		if stolenAbility and stolenAbility:IsStolen() then
 			if stolenAbility:IsCooldownReady() and stolenAbility:NumModifiersUsingAbility( ) == 0 then
-				self:GetCaster():RemoveAbility( self.CurrentPrimarySpell:GetAbilityName() )
+				self:GetCaster():RemoveAbility( stolenAbility:GetAbilityName() )
 				noFreeSlots = false
 			end
 		else
@@ -296,7 +297,7 @@ function rubick_steal:ForgetSpell()
 		for i = 7, 30 do
 			local stolenAbility = self:GetCaster():GetAbilityByIndex(i)
 			if stolenAbility and stolenAbility:IsStolen() then
-				self:GetCaster():RemoveAbility( self.CurrentPrimarySpell:GetAbilityName() )
+				self:GetCaster():RemoveAbility( stolenAbility:GetAbilityName() )
 				break
 			end
 		end
@@ -383,12 +384,12 @@ end
 -------------------------------------------
 modifier_rubick_steal = class({})
 
-function modifier_rubick_steal:IsHidden() return true end
+function modifier_rubick_steal:IsHidden() return false end
 function modifier_rubick_steal:IsDebuff()	return false end
 function modifier_rubick_steal:IsPurgable() return false end
 
-function modifier_rubick_steal:OnDestroy( kv ) 
-	self:GetAbility():ForgetSpell() 
+function modifier_rubick_steal:OnDestroy( kv )
+	if IsServer() then self:GetAbility():ForgetSpell() end
 end
 
 -------------------------------------------
@@ -398,6 +399,7 @@ modifier_rubick_spellsteal_spell_amp = class({})
 
 function modifier_rubick_spellsteal_spell_amp:IsDebuff()   return false end
 function modifier_rubick_spellsteal_spell_amp:IsPurgable() return true end
+function modifier_rubick_spellsteal_spell_amp:IsHidden() return true end
 
 function modifier_rubick_spellsteal_spell_amp:OnCreated(table)
 	self.stolen_spell_amp = self:GetStackCount()

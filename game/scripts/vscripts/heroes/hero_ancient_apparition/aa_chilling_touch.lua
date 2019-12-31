@@ -56,7 +56,7 @@ function modifier_aa_chilling_touch:OnAttackLanded(params)
 		if params.target:IsFrozenGeneric() then
 			damage = damage * params.attacker:FindTalentValue("special_bonus_unique_aa_chilling_touch_1")
 		end
-		self:GetAbility():DealDamage(params.attacker, params.target, damage, {damage_type=DAMAGE_TYPE_MAGICAL, damage_flags=DOTA_DAMAGE_FLAG_PROPERTY_FIRE}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+		self:GetAbility():DealDamage(self:GetCaster(), params.target, damage, {damage_type=DAMAGE_TYPE_MAGICAL, damage_flags=DOTA_DAMAGE_FLAG_PROPERTY_FIRE}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		local chill = math.max( self.chill - self:GetChillAmount(), 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) )
     	params.target:AddChill(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("move_speed_duration"), chill )
     end

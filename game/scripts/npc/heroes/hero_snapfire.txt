@@ -359,7 +359,7 @@
 			"09"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"mana_cost_scepter"				"30"
+				"mana_cost_scepter"				"20"
 			}
 		}
 	}

@@ -22,7 +22,7 @@ end
 function modifier_boss_broodmother_strength_of_the_brood_passive:OnIntervalThink()
 	local parent = self:GetParent()
 	local allies = parent:FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), self.radius )
-	self:SetStackCount( #allies )
+	self:SetStackCount( #allies - 1 )
 end
 
 function modifier_boss_broodmother_strength_of_the_brood_passive:DeclareFunctions()

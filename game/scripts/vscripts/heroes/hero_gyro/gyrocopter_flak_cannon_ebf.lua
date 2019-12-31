@@ -12,23 +12,30 @@ function gyrocopter_flak_cannon_ebf:OnProjectileHit(target, position)
 	local caster = self:GetCaster()
 	self.disableLoop = false
 	if target then
-		self:DealDamage(caster, target, caster:GetAttackDamage(), {}, 0)
+		self:DealDamage(caster, target, caster:GetAverageTrueAttackDamage(target), {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
 		target:AddNewModifier(caster, self, "modifier_gyrocopter_flak_cannon_shred", {duration = self:GetTalentSpecialValueFor("armor_shred_duration")})
 	end
 end
 
-function gyrocopter_flak_cannon_ebf:OnToggle()
-	local caster = self:GetCaster()
-	if self:GetToggleState() then
-		caster:AddNewModifier(caster, self, "modifier_gyrocopter_flak_cannon_active", {})
-	else
-		caster:RemoveModifierByName("modifier_gyrocopter_flak_cannon_active")
-	end
+function gyrocopter_flak_cannon_ebf:GetIntrinsicModifierName()
+	return "modifier_gyrocopter_flak_cannon_active"
 end
 
-modifier_gyrocopter_flak_cannon_active = class(toggleModifierBaseClass)
+modifier_gyrocopter_flak_cannon_active = class({})
 LinkLuaModifier( "modifier_gyrocopter_flak_cannon_active", "heroes/hero_gyro/gyrocopter_flak_cannon_ebf.lua", LUA_MODIFIER_MOTION_NONE )
 
+function modifier_gyrocopter_flak_cannon_active:OnCreated()
+	self.attacksToProc = self:GetTalentSpecialValueFor("attacks_to_proc")
+	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.duration = self:GetTalentSpecialValueFor("armor_shred_duration")
+	self:SetStackCount( self.attacksToProc )
+end
+
+function modifier_gyrocopter_flak_cannon_active:OnRefresh()
+	self.attacksToProc = self:GetTalentSpecialValueFor("attacks_to_proc")
+	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.duration = self:GetTalentSpecialValueFor("armor_shred_duration")
+end
 function modifier_gyrocopter_flak_cannon_active:DeclareFunctions()
 	funcs = {
 				MODIFIER_EVENT_ON_ATTACK,
@@ -41,24 +48,21 @@ function modifier_gyrocopter_flak_cannon_active:OnAttack(params)
 		if params.attacker == self:GetParent() then
 			if self:GetAbility().disableLoop then
 				self:GetAbility().disableLoop = false
-			elseif self:GetAbility():GetToggleState() then
-				if self:GetAbility():IsOwnersManaEnough( ) then
-					local previousMana = self:GetParent():GetMana()
-					self:GetParent():SpendMana( self:GetAbility():GetManaCost(-1) )
-					params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_gyrocopter_flak_cannon_shred", {duration = self:GetTalentSpecialValueFor("armor_shred_duration")})
-					local units = self:GetCaster():FindEnemyUnitsInRadius(params.target:GetAbsOrigin(), self:GetAbility():GetTalentSpecialValueFor("radius"), {})
-					for _,unit in pairs(units) do
-						if unit ~= params.target then
-							if RollPercentage(50) then
-								self:GetAbility():FireTrackingProjectile(self:GetParent():GetProjectileModel(), unit, self:GetParent():GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, false, 0)
-							else
-								self:GetAbility():FireTrackingProjectile(self:GetParent():GetProjectileModel(), unit, self:GetParent():GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_2, true, false, 0)
-							end
+			elseif self:GetStackCount() <= 1 then
+				params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_gyrocopter_flak_cannon_shred", {duration = self.duration})
+				local units = self:GetCaster():FindEnemyUnitsInRadius(params.target:GetAbsOrigin(), self.radius, {})
+				for _,unit in pairs(units) do
+					if unit ~= params.target then
+						if RollPercentage(50) then
+							self:GetAbility():FireTrackingProjectile(self:GetParent():GetProjectileModel(), unit, self:GetParent():GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, false, 0)
+						else
+							self:GetAbility():FireTrackingProjectile(self:GetParent():GetProjectileModel(), unit, self:GetParent():GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_2, true, false, 0)
 						end
 					end
-				else
-					self:GetAbility():ToggleAbility()
 				end
+				self:SetStackCount( self.attacksToProc )
+			else
+				self:DecrementStackCount()
 			end
 		end
 	end
@@ -70,12 +74,10 @@ LinkLuaModifier("modifier_gyrocopter_flak_cannon_shred", "heroes/hero_gyro/gyroc
 
 function modifier_gyrocopter_flak_cannon_shred:OnCreated(kv)
 	self.armor_shred = self:GetTalentSpecialValueFor("armor_shred")
-	self:SetStackCount(1)
 end
 
 function modifier_gyrocopter_flak_cannon_shred:OnRefresh(kv)
 	self.armor_shred = self:GetTalentSpecialValueFor("armor_shred")
-	self:AddIndependentStack()
 end
 
 function modifier_gyrocopter_flak_cannon_shred:DeclareFunctions()	
@@ -83,5 +85,5 @@ function modifier_gyrocopter_flak_cannon_shred:DeclareFunctions()
 end
 
 function modifier_gyrocopter_flak_cannon_shred:GetModifierPhysicalArmorBonus()
-	return self.armor_shred * self:GetStackCount() * -1
+	return self.armor_shred
 end

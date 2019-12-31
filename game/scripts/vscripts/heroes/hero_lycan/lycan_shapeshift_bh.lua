@@ -28,6 +28,19 @@ function modifier_lycan_shapeshift_bh:OnCreated()
 		ParticleManager:SetParticleControlEnt( nFXIndex, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetOrigin(), true )
 		ParticleManager:SetParticleControlEnt( nFXIndex, 2, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetOrigin(), true )
 		self:AddEffect(nFXIndex)
+		
+		self:StartIntervalThink(0.5)
+	end
+end
+
+function modifier_lycan_shapeshift_bh:OnIntervalThink()
+	local caster = self:GetCaster()
+	local ability = self:GetAbility()
+	for _, summon in ipairs( caster:GetSummons() ) do
+		if not summon:HasModifier("modifier_lycan_shapeshift_bh") then
+			summon:AddNewModifier(caster, ability, "modifier_lycan_shapeshift_bh", {duration = self:GetRemainingTime() })
+			ParticleManager:FireParticle("particles/units/heroes/hero_lycan/lycan_shapeshift_cast.vpcf", PATTACH_POINT_FOLLOW, summon)
+		end
 	end
 end
 

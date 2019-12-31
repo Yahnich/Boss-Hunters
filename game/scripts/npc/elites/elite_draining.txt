@@ -1,0 +1,37 @@
+"DOTAAbilities"
+{
+	"elite_draining"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"elites/elite_draining"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"						"1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityTextureName"			"antimage_mana_break"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_burn"				"50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"passive_mana_burn"		"15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spell_mana_burn"		"100"
+			}
+		}
+	}
+}

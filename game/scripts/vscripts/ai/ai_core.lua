@@ -204,11 +204,19 @@ function AICore:AttackHighestPriority( entity )
 			entity.AIprevioustargetPosition = target:GetAbsOrigin() + CalculateDirection( target, entity ) * 150
 		end
 		if not target and entity.AIprevioustargetPosition and CalculateDistance(entity.AIprevioustargetPosition, entity) > 20 then
-			ExecuteOrderFromTable({
-				UnitIndex = entity:entindex(),
-				OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE,
-				Position = entity.AIprevioustargetPosition,
-			})
+			if entity:GetAttackCapability() == DOTA_UNIT_CAP_NO_ATTACK then
+				ExecuteOrderFromTable({
+					UnitIndex = entity:entindex(),
+					OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+					Position = entity.AIprevioustargetPosition,
+				})
+			else
+				ExecuteOrderFromTable({
+					UnitIndex = entity:entindex(),
+					OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE,
+					Position = entity.AIprevioustargetPosition,
+				})
+			end
 			return AI_THINK_RATE
 		elseif not target and entity.AIprevioustargetPosition and CalculateDistance(entity.AIprevioustargetPosition, entity) <= 20 then
 			entity.AIprevioustargetPosition = nil
@@ -290,7 +298,7 @@ end
 function AICore:RunToRandomPosition( entity, spasticness, bAggro )
 	local position = entity:GetAbsOrigin() + RandomVector( entity:GetIdealSpeed() * 1.5 )
 	local order = DOTA_UNIT_ORDER_MOVE_TO_POSITION
-	if bAggro then order = DOTA_UNIT_ORDER_ATTACK_MOVE end
+	if bAggro and entity:GetAttackCapability() ~= DOTA_UNIT_CAP_NO_ATTACK then order = DOTA_UNIT_ORDER_ATTACK_MOVE end
 	if RollPercentage(spasticness) and not entity:GetTauntTarget() then
 		ExecuteOrderFromTable({
 			UnitIndex = entity:entindex(),
@@ -298,11 +306,19 @@ function AICore:RunToRandomPosition( entity, spasticness, bAggro )
 			Position = position
 		})
 	elseif entity:GetTauntTarget() then
-		ExecuteOrderFromTable({
-			UnitIndex = entity:entindex(),
-			OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-			TargetIndex = entity:GetTauntTarget():entindex()
-		})
+		if entity:GetAttackCapability() == DOTA_UNIT_CAP_NO_ATTACK then
+			ExecuteOrderFromTable({
+				UnitIndex = entity:entindex(),
+				OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+				TargetIndex = entity:GetTauntTarget():entindex()
+			})
+		else
+			ExecuteOrderFromTable({
+				UnitIndex = entity:entindex(),
+				OrderType = order,
+				Position = position
+			})
+		end
 	end
 end
 

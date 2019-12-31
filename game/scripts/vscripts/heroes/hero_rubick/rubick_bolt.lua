@@ -64,10 +64,9 @@ function rubick_bolt:OnSpellStart()
 
 		-- keep the last hero hit to play the particle for the next bounce
 		previous_unit = current_target
-		if current_target:TriggerSpellAbsorb( self ) then
+		if not current_target:TriggerSpellAbsorb( self ) then
 			current_target:AddNewModifier(caster, self, "modifier_rubick_bolt", {Duration = duration})
 			self:DealDamage(caster, current_target, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-			return
 		end
 		-- Search for a unit
 		for _, enemy in pairs(enemies) do

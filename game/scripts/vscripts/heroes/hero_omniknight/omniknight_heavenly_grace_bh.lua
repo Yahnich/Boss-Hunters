@@ -19,8 +19,8 @@ function modifier_omniknight_heavenly_grace_bh:OnCreated()
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_omniknight_heavenly_grace_1")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_omniknight_heavenly_grace_2")
 	if self.talent1 then
-		self.damage_resist_growth = ( 100 - self.damage_resist / self:GetRemainingTime() ) * 0.25
-		self.damage_resist = 100
+		self.damage_resist_growth = ( (-100 - self.damage_resist/2) / self:GetRemainingTime() ) * 0.25
+		self.damage_resist = -100
 		self:StartIntervalThink(0.25)
 	end
 end
@@ -31,8 +31,8 @@ function modifier_omniknight_heavenly_grace_bh:OnRefresh()
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_omniknight_heavenly_grace_1")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_omniknight_heavenly_grace_2")
 	if self.talent1 then
-		self.damage_resist_growth = ( 100 - self.damage_resist / self:GetRemainingTime() ) * 0.25
-		self.damage_resist = 100
+		self.damage_resist_growth = ( (-100 - self.damage_resist/2) / self:GetRemainingTime() ) * 0.25
+		self.damage_resist = -100
 	end
 end
 
@@ -46,7 +46,7 @@ end
 
 function modifier_omniknight_heavenly_grace_bh:DeclareFunctions()
 	return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-			MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE}
+			MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
 			
 end
 
@@ -54,7 +54,7 @@ function modifier_omniknight_heavenly_grace_bh:GetModifierConstantHealthRegen()
 	return self.regen
 end
 
-function modifier_omniknight_heavenly_grace_bh:GetModifierTotalDamageOutgoing_Percentage()
+function modifier_omniknight_heavenly_grace_bh:GetModifierIncomingDamage_Percentage()
 	return self.damage_resist
 end
 

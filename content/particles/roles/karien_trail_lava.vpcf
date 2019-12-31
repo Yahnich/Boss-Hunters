@@ -1,0 +1,179 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf25:version{7bca2d8d-3a14-4a76-bd41-f483fdf78d50} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 12
+	m_flConstantRadius = 200.0
+	m_flConstantLifespan = 0.5
+	m_ConstantColor = [ 119, 1, 2, 155 ]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
+			m_bMod2X = true
+			m_nOrientationType = 3
+			m_flStartFadeSize = 0.125
+			m_flEndFadeSize = 0.75
+			m_hTexture = resource:"materials/particle/particle_modulate_01.vtex"
+		},
+		{
+			_class = "C_OP_RenderDeferredLight"
+			m_flStartFalloff = 0.1
+			m_flAlphaScale = 16.0
+			m_hTexture = resource:"materials/particle/particle_modulate_01.vtex"
+			m_vecColorScale = 
+			{
+				m_nType = "PVEC_TYPE_LITERAL_COLOR"
+				m_LiteralColor = [ 229, 54, 0 ]
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_EndCapTimedDecay"
+			m_flDecayTime = 1.0
+		},
+		{
+			_class = "C_OP_LerpEndCapScalar"
+			m_flOutput = 0.0
+			m_nFieldOutput = "7"
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.5
+			m_nOpEndCapState = 0
+		},
+		{
+			_class = "C_OP_LerpEndCapScalar"
+			m_flLerpTime = 2.0
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.5
+		},
+		{
+			_class = "C_OP_BasicMovement"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphere"
+			m_fRadiusMax = 60.0
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = [ 0.0, 0.0, 512.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 512.0 ]
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_CollisionGroupName = "DEBRIS"
+			m_flMaxTraceLength = 2048.0
+			m_bSetNormal = true
+			m_bIncludeWater = true
+			m_bKill = true
+			m_flOffset = 24.0
+		},
+		{
+			_class = "C_INIT_RemapCPtoVector"
+			m_nCPInput = 15
+			m_vInputMax = [ 255.0, 255.0, 255.0 ]
+			m_nFieldOutput = "6"
+			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
+			m_flOpStrength = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 16
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+			}
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 8
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 5.0
+			}
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_vecComponentScale = [ 1.0, 1.0, 0.0 ]
+			m_fFalloffPower = 0.0
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 800.0
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/roles/karien_lava_cracks.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/roles/karien_trail_lava_embers.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/roles/karien_lava_a.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/roles/karien_lava_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/roles/karien_lava_d.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/roles/karien_lava_c.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/roles/karien_trail_lava_model.vpcf"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_ABSORIGIN_FOLLOW"
+					m_entityName = "parent"
+					m_vecOffset = [ null, null, null ]
+					m_angOffset = [ null, null, null ]
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_RemapSpeedtoCP"
+			m_flInputMin = 150.0
+			m_flInputMax = 200.0
+			m_nOutControlPointNumber = 8
+		},
+	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 1
+}

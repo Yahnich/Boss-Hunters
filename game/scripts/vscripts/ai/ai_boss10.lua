@@ -54,7 +54,8 @@ function AIThink(thisEntity)
 					return thisEntity.fire:GetCastPoint() + thisEntity.fire:GetChannelTime()
 				end
 			end
-			if thisEntity.boom and thisEntity.boom:IsFullyCastable() and AICore:BeingAttacked( thisEntity ) >= 1 and RollPercentage( 35 ) then
+			print( AICore:BeingAttacked( thisEntity ) )
+			if thisEntity.boom and thisEntity.boom:IsFullyCastable() and AICore:BeingAttacked( thisEntity ) >= 1 and RollPercentage( math.min( 100, 10 + 15 * AICore:BeingAttacked( thisEntity ) ) ) then
 				local enemies = AICore:BeingAttackedBy( thisEntity )
 				local enemy = GetRandomInTable( enemies )
 				if enemy then

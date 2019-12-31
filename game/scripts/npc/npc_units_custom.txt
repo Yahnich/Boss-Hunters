@@ -993,7 +993,7 @@
 	
 		// Attack
 		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageMin"			"50"		// Damage range min.
 		"AttackDamageMax"			"60"		// Damage range max.
 		"AttackRate"				"2.7"			// Speed of attack.
@@ -1012,7 +1012,7 @@
 		// Bounds
 		//----------------------------------------------------------------
 		"RingRadius"				"60"
-		"HealthBarOffset"			"570"
+		"HealthBarOffset"			"375"
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"	
 	
 		// Movement
@@ -1049,34 +1049,13 @@
 		"Creature"
 		{
 			"CanRespawn"				"0"
-			"States"
-			{
-				"Invade"
-				{
-					"Name"				"Invade"
-					"Aggression"		"100.0"
-					"Avoidance"			"0.0"
-					"Support"			"0.0"
-				}
-			}
-	
-			"DefaultState"				"Invade"
 			
-			"HPGain"					"15000"
-			"DamageGain"				"250"
-			"ArmorGain"					"5"
-			"MagicResistGain"			"1"
-			"MoveSpeedGain"				"10"
-			"BountyGain"				"6000"
-			"XPGain"					"6000"
-	
-			"NOSTUNRESIST"			"60.0"
 			"AttachWearables"
 			{
-				"Wearable1" { "ItemDef" "8111" }
-				"Wearable2" { "ItemDef" "8110" }
-				"Wearable3" { "ItemDef" "7448" }
-				"Wearable4" { "ItemDef" "4992" }
+				"Wearable1" { "ItemDef" "12874" }
+				"Wearable2" { "ItemDef" "12875" }
+				"Wearable3" { "ItemDef" "12876" }
+				"Wearable4" { "ItemDef" "12877" }
 			}
 		}
 	}
@@ -4662,7 +4641,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"100"		// Base health.
+		"StatusHealth"				"300"		// Base health.
 		"StatusHealthRegen"			"0"			// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 

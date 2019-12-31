@@ -4,20 +4,15 @@ function lycan_howl_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	local duration = self:GetTalentSpecialValueFor("howl_duration")
+	local radius = self:GetTalentSpecialValueFor("radius")
+	local talent2 = caster:HasTalent("special_bonus_unique_lycan_howl_2")
 	if not GameRules:IsDaytime() then
 		duration = duration * 2
 	end
-	for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), -1 ) ) do
-		ally:AddNewModifier(caster, self, "modifier_lycan_howl_bh_buff", {duration = duration})
-	end
-	
-	if caster:HasTalent("special_bonus_unique_lycan_howl_2") then
-		local fearDur = caster:FindTalentValue("special_bonus_unique_lycan_howl_2", "duration")
-		if not GameRules:IsDaytime() then
-			fearDur = fearDur * 2
-		end
-		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_lycan_howl_2") ) ) do
-			enemy:AddNewModifier(caster, self, "modifier_lycan_howl_bh_fear", {duration = fearDur})
+	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
+		enemy:AddNewModifier(caster, self, "modifier_lycan_howl_bh_buff", {duration = duration})
+		if talent1 then
+			enemy:AddNewModifier(caster, self, "modifier_lycan_howl_bh_fear", {duration = duration})
 		end
 	end
 	
@@ -29,43 +24,47 @@ modifier_lycan_howl_bh_buff = class({})
 LinkLuaModifier("modifier_lycan_howl_bh_buff", "heroes/hero_lycan/lycan_howl_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_lycan_howl_bh_buff:OnCreated()
-	self.hp = self:GetTalentSpecialValueFor("hero_bonus_hp")
-	self.damage = self:GetTalentSpecialValueFor("hero_bonus_damage")
-	if not self:GetParent():IsHero() then
-		self.hp = self:GetTalentSpecialValueFor("unit_bonus_hp")
-		self.damage = self:GetTalentSpecialValueFor("unit_bonus_damage")
-	end
-	if not GameRules:IsDaytime() then
-		self.hp = self.hp * 2
-		self.damage = self.damage * 2
-	end
-	if IsServer() then
-		self:StartIntervalThink(0.1)
-	end
+	self.dmg = self:GetTalentSpecialValueFor("dmg_reduction")
+	self.armor = self:GetTalentSpecialValueFor("armor_reduction")
+	self.lifesteal = self:GetCaster():FindTalentValue("special_bonus_unique_lycan_howl_1") / 100
+	self.minionLS = self:GetCaster():FindTalentValue("special_bonus_unique_lycan_howl_1", "value2") / 100
 end
 
-function modifier_lycan_howl_bh_buff:OnIntervalThink()
-	self:GetParent():HealEvent( self.hp, self:GetAbility(), self:GetCaster() )
-	self:StartIntervalThink(-1)
+function modifier_lycan_howl_bh_buff:OnRefresh()
+	self:OnCreated()
 end
 
 function modifier_lycan_howl_bh_buff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
-			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
+	return {MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
+			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+			MODIFIER_EVENT_ON_TAKEDAMAGE }
 end
 
-function modifier_lycan_howl_bh_buff:GetModifierExtraHealthBonus()
-	return self.hp
+function modifier_lycan_howl_bh_buff:OnTakeDamage(params)
+	if params.unit == self:GetParent() and self.lifesteal > 0 and self:GetParent():GetHealth() > 0 and not self:GetParent():IsIllusion() then
+		local lifesteal = self.lifesteal
+		if self:GetParent():IsMinion() and not ( ( params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK and not params.inflictor) or HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE) ) then
+			lifesteal = self.minionLS
+		end
+		local lifesteal = ParticleManager:CreateParticle("particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.attacker)
+				ParticleManager:SetParticleControlEnt(lifesteal, 0, params.attacker, PATTACH_POINT_FOLLOW, "attach_hitloc", params.attacker:GetAbsOrigin(), true)
+				ParticleManager:SetParticleControlEnt(lifesteal, 1, params.attacker, PATTACH_POINT_FOLLOW, "attach_hitloc", params.attacker:GetAbsOrigin(), true)
+				ParticleManager:ReleaseParticleIndex(lifesteal)
+		params.attacker:HealEvent( params.damage * self.lifesteal, self:GetAbility(), self:GetCaster() )
+	end
 end
 
-function modifier_lycan_howl_bh_buff:GetModifierPreAttack_BonusDamage()
-	return self.damage
+function modifier_lycan_howl_bh_buff:GetModifierBaseDamageOutgoing_Percentage()
+	return self.dmg
+end
+
+function modifier_lycan_howl_bh_buff:GetModifierPhysicalArmorBonus()
+	return self.armor
 end
 
 function modifier_lycan_howl_bh_buff:GetEffectName()
 	return "particles/units/heroes/hero_lycan/lycan_howl_buff.vpcf"
 end
-
 
 modifier_lycan_howl_bh_fear = class({})
 LinkLuaModifier("modifier_lycan_howl_bh_fear", "heroes/hero_lycan/lycan_howl_bh", LUA_MODIFIER_MOTION_NONE)

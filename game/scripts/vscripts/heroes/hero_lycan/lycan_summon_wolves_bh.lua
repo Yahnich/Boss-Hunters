@@ -37,7 +37,6 @@ function lycan_summon_wolves_bh:OnSpellStart()
 			FindClearSpaceForUnit( wolf, position, true )
 			wolf:SetForwardVector(caster:GetForwardVector())
 			wolf:AddNewModifier(caster, self, "modifier_kill", {duration = self:GetTalentSpecialValueFor("wolf_duration")})
-			
 		end
 	end
 end
@@ -69,6 +68,7 @@ function lycan_summon_wolves_bh:ScaleWolf( wolf )
 	wolf:SetCoreHealth(wolfHP)
 	wolf:SetAverageBaseDamage(wolfDamage, 15)
 	wolf:SetModelScale(0.8 + (self:GetLevel()/2)/10)
+	wolf:SetPhysicalArmorBaseValue( self:GetCaster():GetPhysicalArmorBaseValue() + 3 )
 	if self:GetLevel() > 1 then
 		wolf:FindAbilityByName("lycan_summon_wolves_critical_strike"):SetLevel( self:GetLevel() - 1 )
 	end

@@ -1,19 +1,14 @@
 --[[
 Integrating the library into your scripts
-
 1. Download the statcollection from github and merge the scripts folder into your game/YOUR_ADDON/ folder.
 2. In your addon_game_mode.lua file, copy this line at the top: require('statcollection/init')
 3. Go into the scripts/vscripts/statcollection folder and inside the `settings.kv` file, change the modID XXXXX value with the modID key that was handed to you by an admin.
 4. After this, you will be sending the default basic stats when a lobby is succesfully created, and after the match ends.
    You are encouraged to add your own gamemode-specific stats (such as a particular game setting or items being purchased). More about this on the next section.
-
 If you'd like to store flags, for example, the amount of kills to win, it can be done like so:
-
 statCollection:setFlags({FlagName = 'FlagValue'})
-
 Customising the stats beyond this will require talking to the GetDotaStats staff so a custom schema can be built for you.
 Extended functionality will be added as it is needed.
-
 Come bug us in our IRC channel #getdotastats at GameSurge.net
 ]]
 
@@ -33,7 +28,8 @@ local schemaVersion = 5
 -- Constants used for pretty formatting, as well as strings
 local printPrefix = 'Stat Collection: '
 
-local errorFailedToContactServer = 'Failed to contact the master server! Bad status code, or no body!'
+local errorFailedToContactServer = 'Failed to contact the master server! Bad status code!'
+local errorEmptyServerResponse = 'Master server returned empty response!'
 local errorMissingModIdentifier = 'Please ensure you have a settings.kv in your statcollection folder! Missing modID!'
 local errorDefaultModIdentifier = 'Please change your settings.kv with a valid modID, acquired after registration of your mod on the site!'
 local errorMissingSchemaIdentifier = 'Please ensure you have a settings.kv in your statcollection folder! Missing schemaID!'
@@ -545,10 +541,16 @@ function statCollection:sendStage(stageName, payload, callback, override_host)
 
     -- Send the request
     req:Send(function(res)
-        if res.StatusCode ~= 200 or not res.Body then
+        if res.StatusCode ~= 200 then
             statCollection:print(errorFailedToContactServer)
             statCollection:print("Status Code", res.StatusCode or "nil")
-            statCollection:print("Body", res.StatusCode or "nil")
+            statCollection:print("Body", res.Body or "nil")
+            return
+        end
+         
+        if not res.Body then
+            statCollection:print(errorEmptyServerResponse)
+            statCollection:print("Status Code", res.StatusCode or "nil")
             return
         end
 

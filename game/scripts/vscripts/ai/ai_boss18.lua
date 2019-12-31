@@ -34,13 +34,13 @@ function AIThink(thisEntity)
 				return CastLeechSeed( target )
 			end
 			if thisEntity.root:IsFullyCastable() then
-				for _, enemy in ipairs( thisEntity:FindEnemyUnitsInRadius( thisEntity:GetAbsOrigin(), thisEntity.root:GetTrueCastRange() + thisEntity:GetIdealSpeed() ) ) do
+				for _, enemy in ipairs( thisEntity:FindEnemyUnitsInRadius( thisEntity:GetAbsOrigin(), thisEntity.root:GetTrueCastRange() + thisEntity:GetIdealSpeed() * 0.5 ) ) do
 					if enemy:HasModifier("modifier_boss_treant_thornmaze_debuff") then
 						return CastOvergrowth( enemy )
 					end
 				end
 				local rootTarget = AICore:MostDamageEnemyHeroInRange( thisEntity, thisEntity.root:GetTrueCastRange() + thisEntity:GetIdealSpeed() ) or target
-				if rootTarget then return CastOvergrowth( rootTarget ) end
+				if rootTarget and RollPercentage( 15 ) then return CastOvergrowth( rootTarget ) end
 			end
 			return AICore:AttackHighestPriority( thisEntity )
 		else return 0.5 end
