@@ -2124,7 +2124,7 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/heroes/axe/axe.vmdl"
+		"Model"						"models/items/axe/ti9_jungle_axe/axe_bare.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
@@ -2135,15 +2135,16 @@
 		"IsCelestial"				"1"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
-		"vscripts"				"ai/ai_boss21"
+		"vscripts"					"ai/ai_boss21"
 	
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
 		"Ability1"					"boss14_bloodlust"			// Ability 1
-		"Ability2"					"boss14_execute"			// Ability 2
-		"Ability3"					"boss14_quake"			// Ability 3
-		"Ability4"					"boss14_whirlwind"			// Ability 4
+		"Ability2"					"boss_axe_big_impact"			// Ability 2
+		"Ability3"					"boss_axe_slam_dunk"			// Ability 3
+		"Ability4"					"boss_axe_sucker_punch"			// Ability 4
+		"Ability5"					"boss_axe_feral_leap"			// Ability 4
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -2153,9 +2154,9 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"125"	// Damage range min.
-		"AttackDamageMax"			"150"		// Damage range max.
-		"AttackRate"				"5"		// Speed of attack.
+		"AttackDamageMin"			"100"	// Damage range min.
+		"AttackDamageMax"			"125"		// Damage range max.
+		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"256"		// Range within a target can be attacked.
@@ -2207,11 +2208,10 @@
 	
 			"AttachWearables"
 			{
-				"Wearable1" { "ItemDef" "4432" }
-				"Wearable2" { "ItemDef" "4526" }
-				"Wearable3" { "ItemDef" "4162" }
-				"Wearable4" { "ItemDef" "4494" }
-				"Wearable5" { "ItemDef" "6395" }
+				"Wearable1" { "ItemDef" "12964" }
+				"Wearable2" { "ItemDef" "12965" }
+				"Wearable3" { "ItemDef" "12966" }
+				"Wearable4" { "ItemDef" "12968" }
 			}
 			
 			"NOSTUNRESIST"			"60.0"
@@ -4483,14 +4483,14 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"15"			// Physical protection.
-		"MagicalResistance"			"30"		// Magical protection.
+		"ArmorPhysical"				"20"			// Physical protection.
+		"MagicalResistance"			"50"		// Magical protection.
 		
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"125"		// Damage range min.
-		"AttackDamageMax"			"160"		// Damage range max.
+		"AttackDamageMin"			"150"		// Damage range min.
+		"AttackDamageMax"			"175"		// Damage range max.
 		"AttackRate"				"3.0"		// Speed of attack.
 		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"3500"		// Range within a target can be acquired.
@@ -4641,7 +4641,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"300"		// Base health.
+		"StatusHealth"				"500"		// Base health.
 		"StatusHealthRegen"			"0"			// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
@@ -4720,7 +4720,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"60"		// Base health.
+		"StatusHealth"				"3000"		// Base health.
 		"StatusHealthRegen"			"0"			// Health regeneration rate.
 		"StatusMana"				"1000"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 

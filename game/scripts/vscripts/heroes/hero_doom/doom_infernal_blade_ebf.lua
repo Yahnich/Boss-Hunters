@@ -4,6 +4,10 @@ function doom_infernal_blade_ebf:GetIntrinsicModifierName()
 	return "modifier_doom_infernal_blade_ebf_autocast"
 end
 
+function doom_infernal_blade_ebf:IsStealable()
+	return false
+end
+
 function doom_infernal_blade_ebf:OnAbilityPhasteStart()
 	self.autocast = true
 	self:StartInfernalBlade()

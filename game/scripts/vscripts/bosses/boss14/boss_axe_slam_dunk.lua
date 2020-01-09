@@ -1,0 +1,1 @@
+boss_axe_slam_dunk = class({})

@@ -58,6 +58,7 @@ function mk_spring:OnSpellStart()
 		end)
 	else
 		if caster:HasModifier("modifier_mk_tree_perch") then
+			caster:RemoveModifierByName("modifier_mk_tree_perch")
 			caster:AddNewModifier(caster, self, "modifier_mk_spring", {Duration = 2})
 		else
 			local point = caster:GetAbsOrigin()
@@ -178,7 +179,7 @@ function modifier_mk_spring:DoControlledMotion()
 			
 			self.distanceTraveled = self.distanceTraveled + self.speed
 		else
-			self:GetAbility():DoSpring()
+			self:GetAbility():DoSpring( self:GetParent():GetAbsOrigin() )
 
 			self:Destroy()
 			self:StopMotionController()

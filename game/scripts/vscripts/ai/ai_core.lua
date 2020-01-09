@@ -143,6 +143,7 @@ function AICore:GetHighestPriorityTarget(entity)
 		target = entity.AIprevioustarget
 	else
 		target = AICore:NearestEnemyHeroInRange( entity, 15000 , true )
+		entity.AIprevioustarget = target
 	end
 	if entity:GetTauntTarget() then 
 		target = entity:GetTauntTarget()

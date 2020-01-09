@@ -1087,7 +1087,8 @@ function CHoldoutGameMode:OnThink()
 						data.intellect = unit:GetIntellect()
 						updated = true
 					end
-					if unit:GetPlayerOwner() and unit:GetAttackTarget() then
+					if unit:GetPlayerOwner() and unit:GetAttackTarget() and unit.lastAttackTargetUI ~= unit:GetAttackTarget() then
+						unit.lastAttackTargetUI = unit:GetAttackTarget()
 						CustomGameEventManager:Send_ServerToPlayer( unit:GetPlayerOwner(), "bh_update_attack_target", {entindex = unit:GetAttackTarget():entindex()} )
 					end
 					if updated then

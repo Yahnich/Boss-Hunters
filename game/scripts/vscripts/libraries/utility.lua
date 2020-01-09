@@ -453,8 +453,9 @@ function FindAllEntitiesByClassname(name)
 	return entList
 end
 
-function CDOTA_BaseNPC:FindTalentValue(talentName, value)	
+function CDOTA_BaseNPC:FindTalentValue(talentName, value)
 	local unit = self
+	if unit:IsNull() then return end
 	if self:GetParentUnit() then
 		unit = self:GetParentUnit()
 	end
@@ -643,7 +644,7 @@ function CDOTA_BaseNPC:GetPrimaryAttribute()
 end
 
 function CDOTA_BaseNPC:IsIllusion()
-	local isIllusion = false
+	local isIllusion = self:HasModifier("modifier_illusion")
 	if self:GetPlayerOwnerID() ~= -1 then
 		isIllusion = PlayerResource:GetSelectedHeroName( self:GetPlayerOwnerID() ) == self:GetUnitName() and PlayerResource:GetSelectedHeroEntity( self:GetPlayerOwnerID() ) ~= self and PlayerResource:GetSelectedHeroEntity( self:GetPlayerOwnerID() ) ~= nil
 	end
@@ -1276,7 +1277,11 @@ end
 
 function CDOTABaseAbility:SpendMana( flValue )
 	local value = flValue or self:GetManaCost( -1 )
-	self:GetCaster():SpendMana( value, self )
+	local spentMana = self:GetCaster():GetMana() >= value
+	if spentMana then
+		self:GetCaster():SpendMana( value, self )
+	end
+	return spentMana
 end
 
 function CDOTA_BaseNPC:GetManaCostReduction( )

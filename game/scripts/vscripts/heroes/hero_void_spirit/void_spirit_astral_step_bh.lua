@@ -38,7 +38,7 @@ function void_spirit_astral_step_bh:OnSpellStart()
 	local talent1 = caster:HasTalent("special_bonus_unique_void_spirit_astral_step_2")
 	local talent1Value = caster:FindTalentValue("special_bonus_unique_void_spirit_astral_step_2") / 100
 	for _, enemy in ipairs( caster:FindEnemyUnitsInLine( origin, position, self:GetTalentSpecialValueFor("radius") * 2 ) ) do
-		if enemy:TriggerSpellAbsorb( self ) then
+		if not enemy:TriggerSpellAbsorb( self ) then
 			enemy:AddNewModifier( caster, self, "modifier_void_spirit_astral_step_debuff", {duration = delay} )
 			local hp = enemy:GetHealth()
 			caster:PerformAbilityAttack(enemy, true, self)

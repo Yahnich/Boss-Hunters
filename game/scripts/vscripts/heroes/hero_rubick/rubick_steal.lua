@@ -255,6 +255,7 @@ function rubick_steal:SetStolenSpell( spellData )
 		end
 		self.CurrentPrimarySpell:SetLevel( primarySpell:GetLevel() )
 		self.CurrentPrimarySpell:SetStolen( true )
+		self.CurrentPrimarySpell:SetOverrideCastPoint( 0 )
 		self:GetCaster():SwapAbilities( self.slot1, self.CurrentPrimarySpell:GetAbilityName(), false, true )
 	end
 
@@ -267,6 +268,7 @@ function rubick_steal:SetStolenSpell( spellData )
 		self.CurrentSecondarySpell:SetLevel( secondarySpell:GetLevel() )
 		self.CurrentSecondarySpell:SetStolen( true )
 		self.CurrentSecondarySpell:SetHidden( true )
+		self.CurrentSecondarySpell:SetOverrideCastPoint( 0 )
 		-- self:GetCaster():SwapAbilities( self.slot2, self.CurrentSecondarySpell:GetAbilityName(), false, true )
 	end
 

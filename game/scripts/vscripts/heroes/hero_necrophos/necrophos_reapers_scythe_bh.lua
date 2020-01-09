@@ -35,7 +35,7 @@ function necrophos_reapers_scythe_bh:OnSpellStart()
 	Timers:CreateTimer(duration, function()
 		local damageDealt = 0
 		for _, enemy in ipairs( enemies ) do
-			if not spellBlockEnemies[enemy] do
+			if not spellBlockEnemies[enemy] then
 				local appliedDamage = damage
 				if talent1 then
 					appliedDamage = appliedDamage + enemy:GetMaxHealth() * maxHPDamage

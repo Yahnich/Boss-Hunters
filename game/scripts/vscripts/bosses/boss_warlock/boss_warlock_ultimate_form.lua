@@ -16,7 +16,7 @@ end
 
 function modifier_boss_warlock_ultimate_form:OnDeath(params)
 	if IsServer() then
-		if params.unit == self:GetCaster() and self:GetAbility():IsActivated() then
+		if params.unit == self:GetCaster() and self:GetAbility():IsActivated() and not params.unit:IsIllusion() then
 			local caster = self:GetCaster()
 
 			local demon = CreateUnitByName("npc_dota_boss_warlock_true_form", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeam())

@@ -22,10 +22,18 @@ if IsServer() then
 	function modifier_boss_evil_core_passive:OnCreated()
 		self.manaCharge = self:GetParent():GetMaxMana()
 		self.manaChargeRegen = ( self.manaCharge / self:GetTalentSpecialValueFor("recharge_time") ) * 0.3
-		self.resist = self:GetTalentSpecialValueFor("damage_resist")
+		self.resist = self:GetTalentSpecialValueFor("damage_per_hit")
 		self.limit = 6
 		
 		self:StartIntervalThink(0.3)
+	end
+	
+	function modifier_boss_evil_core_passive:OnRefresh()
+		self.manaCharge = self:GetParent():GetMaxMana()
+		self.manaChargeRegen = ( self.manaCharge / self:GetTalentSpecialValueFor("recharge_time") ) * 0.3
+		self.resist = self:GetTalentSpecialValueFor("damage_per_hit")
+		
+		self.limit = 8
 	end
 	
 	function modifier_boss_evil_core_passive:OnRemoved()

@@ -4,9 +4,15 @@ function juggernaut_dance_of_blades:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	local duration = self:GetTalentSpecialValueFor("duration") + caster:GetMomentum() * self:GetTalentSpecialValueFor("bonus_duration")
+	local momentum = 0
+	if caster.GetMomentum then
+		momentum = caster:GetMomentum()
+	end
+	local duration = self:GetTalentSpecialValueFor("duration") + momentum * self:GetTalentSpecialValueFor("bonus_duration")
 	local ogBounces = bounces
-	caster:SetMomentum(0)
+	if caster.SetMomentum then
+		caster:SetMomentum(0)
+	end
 	
 	
 	local radius = self:GetTalentSpecialValueFor("radius")

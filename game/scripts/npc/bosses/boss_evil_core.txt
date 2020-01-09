@@ -34,7 +34,7 @@
 	        "02"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "damage_per_hit"        "-80"
+	            "damage_per_hit"        "-90 -95"
 	        }
 	    }
 	}

@@ -83,7 +83,7 @@ function modifier_grimstroke_phantom_one:OnIntervalThink()
 
 			if self.distance > 130 then
 				parent:SetAbsOrigin(GetGroundPosition(parent:GetAbsOrigin(), parent) + self.direction * self.speed)
-			elseif not self.target:TriggerSpellAbsorb( self:GetAbility() ) then return end
+			elseif not self.target:TriggerSpellAbsorb( self:GetAbility() ) then
 				self.contact = true
 				self.target:Silence(self, caster, self:GetSpecialValueFor("duration"), false)
 
@@ -94,7 +94,6 @@ function modifier_grimstroke_phantom_one:OnIntervalThink()
 				self.spellBlocked = true
 				self:Destroy()
 			end
-
 		else
 			if self:GetDuration() < 1 then
 				self:SetDuration(self.duration, true)

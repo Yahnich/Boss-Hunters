@@ -9,14 +9,15 @@ LinkLuaModifier( "modifier_boss_ammetot_fate_acceptance", "bosses/boss_ammetot/b
 
 function modifier_boss_ammetot_fate_acceptance:OnCreated()
 	self.timer = self:GetSpecialValueFor("death_timer")
-	self:SetDuration( self.timer, true )
+	self:SetDuration( self.timer+0.1, true )
+	self:StartIntervalThink( self.timer )
 end
 
 function modifier_boss_ammetot_fate_acceptance:OnRefresh()
 	self:OnCreated()
 end
 
-function modifier_boss_ammetot_fate_acceptance:OnDestroy()
+function modifier_boss_ammetot_fate_acceptance:OnIntervalThink()
 	if IsServer() then
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()

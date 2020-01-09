@@ -15,7 +15,7 @@ function obsidian_destroyer_astral_isolation:OnSpellStart()
 	ParticleManager:ReleaseParticleIndex(flash)
 	if hTarget:GetTeam() == caster:GetTeam() then
 		hTarget:AddNewModifier(caster, self, "modifier_obsidian_destroyer_astral_isolation_prison", {duration = self:GetTalentSpecialValueFor("prison_duration")})
-	elseif not target:TriggerSpellAbsorb( self ) then
+	elseif not hTarget:TriggerSpellAbsorb( self ) then
 		local modifier = caster:AddNewModifier(caster, self,"modifier_obsidian_destroyer_astral_isolation_int_gain", {duration = self:GetTalentSpecialValueFor("steal_duration")})
 		modifier:IncrementStackCount()
 		local endFlash = ParticleManager:CreateParticle("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_prison_end.vpcf", PATTACH_ABSORIGIN , hTarget)

@@ -15,7 +15,7 @@ function item_borealis_cloak:OnSpellStart()
 	Timers:CreateTimer(function()
 		for _, unit in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
 			if not hitUnits[unit] then
-				self:DealDamage( caster, unit, damage )
+				print( self:DealDamage( caster, unit, damage ), "damage" )
 				unit:AddNewModifier( caster, self, "modifier_item_borealis_cloak_debuff", {duration = duration})
 				ParticleManager:FireParticle("particles/items2_fx/shivas_guard_impact.vpcf", PATTACH_POINT_FOLLOW, unit )
 				hitUnits[unit] = true

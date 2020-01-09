@@ -4,6 +4,17 @@ function huskar_raging_berserker:IsStealable()
 	return true
 end
 
+function huskar_raging_berserker:OnUpgrade()
+	local caster = self:GetCaster()
+	
+	caster:RemoveModifierByName("modifier_huskar_raging_berserker_passive")
+	caster:AddNewModifier( caster, self, "modifier_huskar_raging_berserker_passive", {} )
+	
+	for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), self:GetCaster():FindTalentValue("special_bonus_unique_huskar_raging_berserker_2") + 25 ) ) do
+		ally:RemoveModifierByName("modifier_huskar_raging_berserker_effect")
+	end
+end
+
 function huskar_raging_berserker:IsHiddenWhenStolen()
 	return false
 end
@@ -47,6 +58,14 @@ end
 modifier_huskar_raging_berserker_passive = class({})
 LinkLuaModifier("modifier_huskar_raging_berserker_passive", "heroes/hero_huskar/huskar_raging_berserker", LUA_MODIFIER_MOTION_NONE)
 
+function modifier_huskar_raging_berserker_passive:OnCreated()
+	self.radius = self:GetCaster():FindTalentValue("special_bonus_unique_huskar_raging_berserker_2")
+end
+
+function modifier_huskar_raging_berserker_passive:OnRefresh()
+	self.radius = self:GetCaster():FindTalentValue("special_bonus_unique_huskar_raging_berserker_2")
+end
+
 function modifier_huskar_raging_berserker_passive:IsAura()
 	return true
 end
@@ -56,7 +75,7 @@ function modifier_huskar_raging_berserker_passive:GetModifierAura()
 end
 
 function modifier_huskar_raging_berserker_passive:GetAuraRadius()
-	return self:GetCaster():FindTalentValue("special_bonus_unique_huskar_raging_berserker_2")
+	return self.radius
 end
 
 function modifier_huskar_raging_berserker_passive:GetAuraDuration()
@@ -77,6 +96,10 @@ end
 
 function modifier_huskar_raging_berserker_passive:IsHidden()
 	return true
+end
+
+function modifier_huskar_raging_berserker_passive:IsPurgable()
+	return false
 end
 
 modifier_huskar_raging_berserker_effect = class({})

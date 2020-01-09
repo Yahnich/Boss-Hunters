@@ -1,0 +1,1 @@
+boss_axe_sucker_punch = class({})

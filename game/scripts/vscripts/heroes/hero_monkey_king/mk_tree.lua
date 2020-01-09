@@ -23,6 +23,7 @@ function mk_tree:OnSpellStart()
 
 	EmitSoundOn("Hero_MonkeyKing.TreeJump.Cast", caster)
 	caster:AddNewModifier(caster, self, "modifier_mk_tree_jump", {Duration = 1})
+	caster:RemoveModifierByName("modifier_mk_tree_perch")
 end
 
 modifier_mk_tree_jump = class({})
@@ -104,7 +105,8 @@ modifier_mk_tree_perch = class({})
 
 function modifier_mk_tree_perch:OnCreated(table)
 	if IsServer() then
-		self:StartIntervalThink(0.1)
+		self.treePosition = self:GetCaster():GetAbsOrigin()
+		self:StartIntervalThink(0)
 	end
 end
 
@@ -112,7 +114,9 @@ function modifier_mk_tree_perch:OnIntervalThink()
 	local caster = self:GetParent()
 	if not GridNav:IsNearbyTree(caster:GetAbsOrigin(), caster:BoundingRadius2D(), true) then
 		self:Destroy()
+		return
 	end
+	caster:SetAbsOrigin( self.treePosition )
 end
 
 function modifier_mk_tree_perch:DeclareFunctions()
@@ -120,7 +124,9 @@ function modifier_mk_tree_perch:DeclareFunctions()
         MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
         MODIFIER_EVENT_ON_ORDER,
         MODIFIER_EVENT_ON_ATTACK,
-        MODIFIER_EVENT_ON_TAKEDAMAGE
+        MODIFIER_EVENT_ON_TAKEDAMAGE,
+		MODIFIER_PROPERTY_BONUS_DAY_VISION,
+		MODIFIER_PROPERTY_BONUS_NIGHT_VISION
     }
 
     return funcs
@@ -139,9 +145,9 @@ function modifier_mk_tree_perch:OnOrder(params)
 		local unit = params.unit
 		local parent = self:GetParent()
 		local orderType = params.order_type
-
 		if unit == parent then
-			if (orderType == DOTA_UNIT_ORDER_MOVE_TO_TARGET) or (orderType == DOTA_UNIT_ORDER_ATTACK_MOVE) or (orderType == DOTA_UNIT_ORDER_ATTACK_TARGET) then
+			
+			if (orderType == DOTA_UNIT_ORDER_MOVE_TO_TARGET) or (orderType == DOTA_UNIT_ORDER_ATTACK_MOVE) or (orderType == DOTA_UNIT_ORDER_ATTACK_TARGET) or ( params.ability and params.ability == self:GetAbility() ) then
 				
 				FindClearSpaceForUnit(parent, parent:GetAbsOrigin(), true)
 				self:Destroy()
@@ -163,13 +169,7 @@ function modifier_mk_tree_perch:GetActivityTranslationModifiers()
 end
 
 function modifier_mk_tree_perch:CheckState()
-	return {[MODIFIER_STATE_ROOTED] = true,
-			[MODIFIER_STATE_FLYING] = true}
-end
-
-function modifier_mk_tree_perch:DeclareFunctions()
-	return {MODIFIER_PROPERTY_BONUS_DAY_VISION,
-			MODIFIER_PROPERTY_BONUS_NIGHT_VISION}
+	return {[MODIFIER_STATE_FLYING] = true}
 end
 
 function modifier_mk_tree_perch:GetBonusDayVision()

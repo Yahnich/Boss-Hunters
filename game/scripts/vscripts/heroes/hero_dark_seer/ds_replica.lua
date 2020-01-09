@@ -21,7 +21,7 @@ function ds_replica:OnSpellStart()
 
 	local allies = caster:FindAllUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
 	for _,ally in pairs(allies) do
-		if ( ally:IsHero() or ally:IsRoundNecessary() ) and not ally:IsIllusion() then
+		if ( ally:IsHero() or not ally:IsRoundNecessary() ) and not ally:IsIllusion() then
 			local callback = (function(image)
 				image:AddNewModifier(caster, self, "modifier_ds_replica", {})
 

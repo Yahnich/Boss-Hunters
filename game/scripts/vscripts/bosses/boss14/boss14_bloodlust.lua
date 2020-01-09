@@ -10,7 +10,7 @@ LinkLuaModifier("modifier_boss14_bloodlust_passive", "bosses/boss14/boss14_blood
 function modifier_boss14_bloodlust_passive:OnCreated()
 	self.ms = self:GetSpecialValueFor("movespeed")
 	self.amp = self:GetSpecialValueFor("damage_amp")
-	if IsServer() then self:StartIntervalThink(0.1) end
+	if IsServer() then self:StartIntervalThink(0.2) end
 end
 
 function modifier_boss14_bloodlust_passive:OnIntervalThink()
@@ -38,5 +38,5 @@ function modifier_boss14_bloodlust_passive:GetModifierMoveSpeedBonus_Percentage(
 end
 
 function modifier_boss14_bloodlust_passive:GetModifierModelScale()
-	return math.min(50, self:GetStackCount() / 2)
+	return math.min( 100, self:GetStackCount() )
 end

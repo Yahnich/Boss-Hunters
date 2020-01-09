@@ -175,7 +175,7 @@ function modifier_snapfire_lil_shredder_lua_buff:OnAttackLanded(params)
 			end
 
 			if attacker:HasScepter() then
-				if not attacker:SpendMana(self.mana_cost_scepter) then
+				if not self:GetAbility():SpendMana(self.mana_cost_scepter) then
 					self:GetAbility():ToggleAbility()
 				end
 			else

@@ -1,0 +1,1 @@
+boss_axe_feral_leap = class({})

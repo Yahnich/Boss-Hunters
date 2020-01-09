@@ -236,7 +236,6 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"LinkedModifierName"			"modifier_huskar_unleash_vitality_talent"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -334,6 +333,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_huskar_raging_berserker_effect"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -426,6 +426,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_huskar_raging_berserker_passive"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

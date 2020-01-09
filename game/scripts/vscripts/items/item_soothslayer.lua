@@ -25,7 +25,7 @@ function modifier_item_soothslayer:DeclareFunctions()
 			MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
 			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE ,}
+			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
 end
 
 function modifier_item_soothslayer:GetModifierConstantHealthRegen()
@@ -42,7 +42,7 @@ end
 
 function modifier_item_soothslayer:OnAttackLanded(params)
 	if IsServer() then
-		if not self:GetParent():IsRangedAttacker() and params.attacker == self:GetParent() and self:GetAbility():IsCooldownReady() and params.attacker:IsRealHero() then
+		if params.attacker == self:GetParent() and not self:GetParent():IsRangedAttacker() and self:GetAbility():IsCooldownReady() and params.attacker:IsRealHero() then
 			local parent = self:GetParent()
 			parent:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 6)
 			self:GetAbility():SetCooldown()
@@ -58,7 +58,7 @@ function modifier_item_soothslayer:OnAttackLanded(params)
 end
 
 function modifier_item_soothslayer:GetModifierTotal_ConstantBlock(params)
-	if RollPercentage(self.chance) and params.attacker ~= self:GetParent() then
+	if self:RollPRNG(self.chance) and params.attacker ~= self:GetParent() then
 		ParticleManager:FireParticle("particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		return params.damage
 	end

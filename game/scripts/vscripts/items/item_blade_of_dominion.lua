@@ -193,22 +193,31 @@ modifier_blade_of_dominion_buff = class({})
 
 function modifier_blade_of_dominion_buff:OnCreated()
 	if IsServer() then
-		self.heal = self:GetAbility():GetSpecialValueFor("heal_per_second")
-		self.cost = self:GetAbility():GetSpecialValueFor("heal_mana_cost")
+		self:OnRefresh()
 		self:StartIntervalThink(1)
 	end
 end
 
 function modifier_blade_of_dominion_buff:OnRefresh()
-	if IsServer() then
-		self.heal = self:GetAbility():GetSpecialValueFor("heal_per_second")
-		self.cost = self:GetAbility():GetSpecialValueFor("heal_mana_cost")
-	end
+	self.heal = self:GetAbility():GetSpecialValueFor("heal_per_second")
+	self.pct_heal = self:GetAbility():GetSpecialValueFor("pct_heal_per_second") / 100
+	self.toDispel = self:GetAbility():GetSpecialValueFor("ticks_to_dispel")
+	self.ticks = self.toDispel
+	self.cost = self:GetAbility():GetSpecialValueFor("heal_mana_cost")
 end
 
 function modifier_blade_of_dominion_buff:OnIntervalThink()
-	local heal = self:GetParent():HealEvent( self.heal, self:GetAbility(), self:GetCaster() )
-	if heal > 0 then self:GetCaster():SpendMana( self.cost, self:GetAbility()) end
+	local parent = self:GetParent()
+	local caster = self:GetCaster()
+	local ability = self:GetAbility()
+	local toHeal = self.heal + self.pct_heal * parent:GetMaxHealth()
+	local heal = parent:HealEvent( toHeal, ability, caster )
+	self.ticks = self.ticks - 1
+	if self.ticks <= 0 then
+		self.ticks = self.toDispel
+		parent:Dispel(caster)
+	end
+	if heal > 0 then caster:SpendMana( self.cost, ability) end
 end
 
 function modifier_blade_of_dominion_buff:GetEffectName()
