@@ -147,7 +147,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"hp_regen"				"200 300"
+				"hp_regen"				"1 2"
 			}
 		}
 	}

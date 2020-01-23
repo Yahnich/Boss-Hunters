@@ -1,0 +1,52 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf25:version{7bca2d8d-3a14-4a76-bd41-f483fdf78d50} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nBehaviorVersion = 10
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_juggernaut/juggernaut_patient_defense_ground.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_juggernaut/juggernaut_patient_defense_start.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_juggernaut/juggernaut_patient_defense_smoke_body.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_juggernaut/juggernaut_patient_defense_flek_start.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_juggernaut/juggernaut_patient_defense_embers.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_juggernaut/juggernaut_patient_defense_blur.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_juggernaut/juggernaut_patient_defense_smoke_body_outline.vpcf"
+		},
+	]
+	m_nMaxParticles = 0
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ 0.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/phantom_assassin/phantom_assassin.vmdl"
+				m_nModSpecificData = 137
+				m_sequenceName = "phantom_assassin_idle_alt1_anim"
+				m_hitboxSetName = "default"
+			}
+		},
+	]
+}

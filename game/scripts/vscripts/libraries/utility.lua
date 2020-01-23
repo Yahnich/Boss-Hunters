@@ -1019,7 +1019,7 @@ function CDOTA_BaseNPC:SetThreat(val)
 	end
 end
 
-function CDOTA_BaseNPC:ModifyThreat(val)
+function CDOTA_BaseNPC:ModifyThreat(val, bIgnoreCap)
 	self.lastHit = GameRules:GetGameTime()
 	local newVal = val
 	for _, modifier in ipairs( self:FindAllModifiers() ) do
@@ -1031,6 +1031,9 @@ function CDOTA_BaseNPC:ModifyThreat(val)
 	local reduction = 0.35 ^ math.floor( self.threat / 100 )
 	-- Every 100 threat, threat gain effectiveness is reduced
 	local threatgainCap = math.min( 10, (self.threat + 1) * 4 )
+	if bIgnoreCap then
+		threatgainCap = 999
+	end
 	self.threat = math.min( math.max(0, (self.threat or 0) + math.min(newVal * reduction, threatgainCap ) ), 999 )
 	if self:IsRealHero() then
 		local player = PlayerResource:GetPlayer( self:GetOwner():GetPlayerID() )
@@ -1737,8 +1740,12 @@ function CDOTA_BaseNPC:GetAbsOriginCenter()
 	return GetGroundPosition( self:GetAbsOrigin(), self ) + Vector(0,0,self:GetBoundingMaxs( ).z/2)
 end
 
-function CDOTA_Modifier_Lua:AddEffect(id)
+function CDOTA_Modifier_Lua:AddEffect(id, bRelease)
 	self:AddParticle(id, false, false, 0, false, false)
+	release = bRelease or false
+	if release then
+		ParticleManager:ReleaseParticleIndex( id )
+	end
 end
 
 function CDOTA_Modifier_Lua:AddStatusEffect(id, priority)

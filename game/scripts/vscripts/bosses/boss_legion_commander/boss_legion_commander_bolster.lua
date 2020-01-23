@@ -48,7 +48,7 @@ end
 
 function modifier_boss_legion_commander_bolster_buff:DeclareFunctions()
 	funcs = {
-				MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+				MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
 			}
 	return funcs
 end
@@ -57,6 +57,6 @@ function modifier_boss_legion_commander_bolster_buff:GetModifierAttackSpeedBonus
 	return self.attackSpeed
 end
 
-function modifier_boss_legion_commander_bolster_buff:GetModifierConstantHealthRegen()
+function modifier_boss_legion_commander_bolster_buff:GetModifierHealthRegenPercentage()
 	return self.hpRegen
 end

@@ -38,7 +38,7 @@ function kotl_illuminate:GetChannelTime()
     if self:GetCaster():HasScepter() or self:GetCaster():HasModifier("modifier_kotl_illuminate") then
         return 0
     end
-    return self:GetTalentSpecialValueFor("max_channel") * self:GetCaster():GetStatusAmplification()
+    return self:GetTalentSpecialValueFor("max_channel")
 end
 
 function kotl_illuminate:GetChannelAnimation()
@@ -141,7 +141,7 @@ function kotl_illuminate:OnProjectileHit(hTarget, vLocation)
     if hTarget then
         local damage = self:GetTalentSpecialValueFor("damage_per_horse")
 
-        if hTarget:GetTeam() ~= caster:GetTeam() and hTarget:TriggerSpellAbsorb( self ) then
+        if hTarget:GetTeam() ~= caster:GetTeam() and not hTarget:TriggerSpellAbsorb( self ) then
             EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Target", hTarget)
             ParticleManager:FireParticle("particles/units/heroes/hero_keeper_of_the_light/kotl_illuminate_impact_hero.vpcf", PATTACH_POINT, hTarget, {})
             

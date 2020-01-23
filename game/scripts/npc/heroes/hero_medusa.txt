@@ -272,7 +272,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"25"
+		"AbilityCooldown"				"25 25 25 25 25 20 15"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -299,8 +299,7 @@
 			"02"
 			{	
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"10 40 70 100 130 160 190"
-				"LinkedSpecialBonus"		"special_bonus_unique_medusa_split_2"
+				"damage"					"30 60 90 120 150 150 150"
 			}
 			"03"
 			{
@@ -469,8 +468,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"5 6 7 8 9 10"
-				"LinkedSpecialBonus"		"special_bonus_unique_medusa"
+				"duration"					"4 4 6 6 8 8"
 			}
 			"02"
 			{
@@ -485,7 +483,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_physical"			"50"
+				"bonus_physical"			"50 55 55 60 60 65"
 			}
 			"05"
 			{

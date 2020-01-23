@@ -1,12 +1,8 @@
 	juggernaut_mirror_blades = class({})
 
-function juggernaut_mirror_blades:OnToggle()
+function juggernaut_mirror_blades:OnSpellStart()
 	local caster = self:GetCaster()
-	if self:GetToggleState() then
-		caster:AddNewModifier(caster, self, "modifier_juggernaut_mirror_blades", {})
-	else
-		caster:RemoveModifierByName("modifier_juggernaut_mirror_blades")
-	end
+	caster:AddNewModifier(caster, self, "modifier_juggernaut_mirror_blades", {duration = self:GetTalentSpecialValueFor("duration")})
 end
 
 function juggernaut_mirror_blades:ShouldUseResources()
@@ -21,12 +17,30 @@ function modifier_juggernaut_mirror_blades:OnCreated()
 	self.damage = self:GetTalentSpecialValueFor("damage")
 	self.radius = self:GetTalentSpecialValueFor("radius")
 	self.tick = self:GetTalentSpecialValueFor("damage_tick")
-	self.cycleDur = self:GetTalentSpecialValueFor("cycle_duration")
-	self.cost = self:GetTalentSpecialValueFor("active_momentum_cost")
+	self.bat = self:GetTalentSpecialValueFor("base_attack_time")
 	
-	self.disarmed = not caster:HasTalent("special_bonus_unique_juggernaut_mirror_blades_2")
-	self.bat = self:GetParent():GetBaseAttackTime()
-	self:MirrorBladeCycle()
+	self.ms = caster:FindTalentValue("special_bonus_unique_juggernaut_mirror_blades_2")
+	self.talent2 = caster:HasTalent("special_bonus_unique_juggernaut_mirror_blades_2")
+	self:StartIntervalThink(0)
+	if IsServer() then
+		caster:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
+		self:MirrorBladeDamage(self.radius, self.damage)
+		EmitSoundOn("Hero_Juggernaut.BladeFuryStart" , self:GetParent() )
+		local spinFX = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf", PATTACH_POINT_FOLLOW, caster)
+		ParticleManager:SetParticleControl(spinFX, 5, Vector(self.radius, 1, 1))
+		self:AddEffect(spinFX)
+	end
+end
+
+function modifier_juggernaut_mirror_blades:OnRefresh()
+	local caster = self:GetCaster()
+	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.tick = self:GetTalentSpecialValueFor("damage_tick")
+	self.bat = self:GetTalentSpecialValueFor("base_attack_time")
+	
+	self.ms = caster:FindTalentValue("special_bonus_unique_juggernaut_mirror_blades_2")
+	self.talent2 = caster:HasTalent("special_bonus_unique_juggernaut_mirror_blades_2")
 	self:StartIntervalThink(self.tick)
 	if IsServer() then
 		caster:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
@@ -43,52 +57,57 @@ function modifier_juggernaut_mirror_blades:OnDestroy()
 		self:GetParent():RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
 		StopSoundOn("Hero_Juggernaut.BladeFuryStart" , self:GetParent() )
 		EmitSoundOn("Hero_Juggernaut.BladeFuryStop" , self:GetParent() )
+		
+		local caster = self:GetCaster()
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self.radius * 2 ) ) do
+			enemy:SmoothFindClearSpace( enemy:GetAbsOrigin() )
+		end
 	end
 end
 
 function modifier_juggernaut_mirror_blades:OnIntervalThink()
-	self.cycleDur = self.cycleDur - self.tick
-	if self.cycleDur <= 0 then
-		self.cycleDur = self:GetTalentSpecialValueFor("cycle_duration")
-		self:MirrorBladeCycle()
-	end
-	self.bat = self:GetParent():GetBaseAttackTime()
 	if IsServer() then
-		self:MirrorBladeDamage(self.radius, self.damage)
+		if self.tick <= 0 then
+			self.tick = self:GetTalentSpecialValueFor("damage_tick")
+			self:MirrorBladeDamage(self.radius, self.damage)
+		else
+			self.tick = self.tick - FrameTime()
+		end
+		if self.talent2 then
+			local caster = self:GetCaster()
+			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self.radius * 2 ) ) do
+				if CalculateDistance( enemy, caster ) > 150 then
+					enemy:SetAbsOrigin( enemy:GetAbsOrigin() + CalculateDirection( caster, enemy ) * 250 * FrameTime() )
+				end
+			end
+		end
 	end
 end
 
-function modifier_juggernaut_mirror_blades:MirrorBladeCycle()
-	local caster = self:GetCaster()
-	self:SetDuration( self.cycleDur + 0.1, true )
-	if IsServer() then
-		self.momentumUsed = caster:AttemptDecrementMomentum( self.cost )
-		if self.momentumUsed then caster:Dispel(caster, false) end
-	end
-end
 
 function modifier_juggernaut_mirror_blades:MirrorBladeDamage(radius, damage)
 	local caster = self:GetCaster()
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self.radius ) ) do
 		self:GetAbility():DealDamage( caster, enemy, self.damage * self.tick )
+		enemy:SmoothFindClearSpace( enemy:GetAbsOrigin() )
 		ParticleManager:FireParticle("particles/units/heroes/hero_juggernaut/juggernaut_blade_fury_tgt.vpcf", PATTACH_POINT_FOLLOW, enemy)
 		EmitSoundOn("Hero_Juggernaut.BladeFury.Impact", enemy )
 	end
-	caster:SpendMana( self:GetAbility():GetManaCost(-1) * self.tick, self:GetAbility() )
 end
 
 function modifier_juggernaut_mirror_blades:DeclareFunctions()
-	return {MODIFIER_PROPERTY_FIXED_ATTACK_RATE}
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT}
 end
 
-function modifier_juggernaut_mirror_blades:GetModifierFixedAttackRate()
-	if not self.disarmed then
-		return self.bat
-	end
+function modifier_juggernaut_mirror_blades:GetModifierMoveSpeedBonus_Constant()
+	return self.ms
+end
+
+function modifier_juggernaut_mirror_blades:GetBaseAttackTime_BonusPercentage()
+	return (self.bat - 1) * 100
 end
 
 function modifier_juggernaut_mirror_blades:CheckState()
-	local state = {	[MODIFIER_STATE_DISARMED] = self.disarmed,
-					[MODIFIER_STATE_MAGIC_IMMUNE] = self.momentumUsed}
+	local state = {	[MODIFIER_STATE_MAGIC_IMMUNE] = true}
 	return state
 end

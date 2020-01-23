@@ -39,7 +39,6 @@ function modifier_boss_roshan_heavy_blows:OnAttack(params)
 	end
 end
 
-
 function modifier_boss_roshan_heavy_blows:GetAbsorbSpell(params)
 	if params.ability:GetCaster():GetTeam() ~= self:GetParent():GetTeam() then
 		self.bash = self.bash + self.spell_bash

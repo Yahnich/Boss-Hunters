@@ -1,0 +1,1 @@
+boss_slark_deep_ones_gift = class({})

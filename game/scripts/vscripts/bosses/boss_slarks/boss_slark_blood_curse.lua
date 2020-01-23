@@ -1,0 +1,1 @@
+boss_slark_blood_curse	 = class({})

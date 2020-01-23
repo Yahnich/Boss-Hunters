@@ -1,0 +1,1 @@
+boss_slark_shroud_of_foam = class({})

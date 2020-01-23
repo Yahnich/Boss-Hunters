@@ -1,15 +1,31 @@
 local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
-	self.enemiesToSpawn = 2 + math.floor( math.log( RoundManager:GetEventsFinished() + 1 ) )
+	self.waveType = self.waveType or RandomInt(3)
+	if self.waveType == 1 then
+		self.slarks = 1 + RoundManager:GetCurrentRaidTier()
+		self.bloodseekers = 0
+	elseif self.waveType == 2 then
+		self.bloodseekers = 1 + RoundManager:GetCurrentRaidTier()
+		self.slarks = 0
+	else
+		self.bloodseekers = RoundManager:GetCurrentRaidTier()
+		self.slarks = 1
+	end
+	self.enemiesToSpawn = self.slarks + self.bloodseekers
 	self.eventHandler = Timers:CreateTimer(3, function()
-		local enemyName = "npc_dota_boss6"
-		if RollPercentage(30) then
-			enemyName = "npc_dota_boss6_b"
+		if self.slarks >= 0 then
+			local spawn = CreateUnitByName("npc_dota_boss6", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+			spawn.unitIsRoundNecessary = true
+			self.slarks = self.slarks - 1
+			self.enemiesToSpawn = self.enemiesToSpawn - 1
 		end
-		local spawn = CreateUnitByName(enemyName, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-		spawn.unitIsRoundNecessary = true
+		if self.bloodseekers >= 0 then
+			local spawn = CreateUnitByName("npc_dota_boss6_b", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+			spawn.unitIsRoundNecessary = true
+			self.bloodseekers = self.bloodseekers - 1
+			self.enemiesToSpawn = self.enemiesToSpawn - 1
+		end
 		
-		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then
 			return 4
 		end

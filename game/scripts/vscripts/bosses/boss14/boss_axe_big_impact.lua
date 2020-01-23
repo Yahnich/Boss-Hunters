@@ -26,3 +26,7 @@ function modifier_boss_axe_big_impact:OnAttackLanded( params )
 		params.target:ApplyKnockBack(params.attacker:GetAbsOrigin(), 0.2, 0.2, self.knockback, 0, params.attacker, self:GetAbility(), false)
 	end
 end
+
+function modifier_boss_axe_big_impact:IsHidden()
+	return true
+end

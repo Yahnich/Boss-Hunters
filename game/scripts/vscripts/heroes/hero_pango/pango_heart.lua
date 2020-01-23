@@ -18,6 +18,11 @@ modifier_pango_heart_handle = class({})
 function modifier_pango_heart_handle:OnCreated()
 	self.duration = self:GetTalentSpecialValueFor("duration")
 end
+
+function modifier_pango_heart_handle:OnRefresh()
+	self.duration = self:GetTalentSpecialValueFor("duration")
+end
+
 function modifier_pango_heart_handle:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
@@ -70,15 +75,19 @@ function modifier_pango_heart_handle:IsHidden()
 	return true
 end
 
+function modifier_pango_heart_handle:IsPurgable()
+	return false
+end
+
 modifier_pango_lucky_shot_armor = class({})
 LinkLuaModifier("modifier_pango_lucky_shot_armor", "heroes/hero_pango/pango_heart", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_pango_lucky_shot_armor:OnCreated()
-	self.reduction = self:GetParent():GetPhysicalArmorValue(false) * self:GetTalentSpecialValueFor("armor_reduc")
+	self.reduction = self:GetTalentSpecialValueFor("armor_reduc")
 end
 
 function modifier_pango_lucky_shot_armor:OnRefresh(table)
-	self.reduction = self:GetParent():GetPhysicalArmorValue(false) * self:GetTalentSpecialValueFor("armor_reduc")
+	self.reduction = self:GetTalentSpecialValueFor("armor_reduc")
 end
 
 function modifier_pango_lucky_shot_armor:DeclareFunctions()

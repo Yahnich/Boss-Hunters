@@ -7224,8 +7224,9 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"lesser_nightcrawler_pounce"			// Ability 1.
-		"Ability2"					"nightcrawler_shadowdance"
+		"Ability1"					"boss_slark_leap"			// Ability 1.
+		"Ability2"					"boss_slark_deep_ones_gift"
+		"Ability3"					"boss_slark_shroud_of_foam"
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -7355,8 +7356,8 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"lesser_nightcrawler_pounce"			// Ability 1.
-		"Ability2"					"creature_rupture"
+		"Ability1"					"boss_slark_blood_curse"			// Ability 1.
+		"Ability2"					"boss_slark_gift_of_the_flayed"
 		"Ability3"					""
 	
 		// Armor

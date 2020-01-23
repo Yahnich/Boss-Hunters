@@ -1,0 +1,1 @@
+boss_slark_gift_of_the_flayed = class({})

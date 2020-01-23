@@ -26,7 +26,7 @@ function modifier_boss14_bloodlust_passive:OnIntervalThink()
 end
 
 function modifier_boss14_bloodlust_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_MODEL_SCALE}
+	return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_MODEL_SCALE, MODIFIER_PROPERTY_ATTACK_RANGE_BONUS, MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS  }
 end
 
 function modifier_boss14_bloodlust_passive:GetModifierTotalDamageOutgoing_Percentage()
@@ -39,4 +39,16 @@ end
 
 function modifier_boss14_bloodlust_passive:GetModifierModelScale()
 	return math.min( 100, self:GetStackCount() )
+end
+
+function modifier_boss14_bloodlust_passive:GetModifierAttackRangeBonus()
+	return 2.56 * math.min( 100, self:GetStackCount() )
+end
+
+function modifier_boss14_bloodlust_passive:GetActivityTranslationModifiers()
+	if self:GetStackCount() > 50 then
+		return "chase"
+	else	
+		return "run"
+	end
 end
