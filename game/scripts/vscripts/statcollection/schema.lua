@@ -63,10 +63,9 @@ function BuildPlayersArray()
                 local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 				if not hero then return end
 				local heroName = string.gsub(hero:GetUnitName(), "npc_dota_hero_", "")
-				local mapName = string.gsub(GetMapName(), "bh_", "")
+				-- local mapName = string.gsub(GetMapName(), "bh_", "")
 				
 				local talents = FindChosenTalentRow(hero)
-				print( hero:GetDeaths() ) 
                 table.insert(players, {
                     -- steamID32 required in here
                     steamID32 = PlayerResource:GetSteamAccountID(playerID),
@@ -164,7 +163,6 @@ function customSchema:submitRound(isLastRound)
     local game = BuildGameArray()
     local players = BuildPlayersArray()
     statCollection:sendCustom({ game = game, players = players })
-
     isLastRound = isLastRound or false --If the function is passed with no parameter, default to false.
     return { winners = winners, lastRound = isLastRound }
 end

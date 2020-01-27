@@ -976,8 +976,6 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 	local nNewState = GameRules:State_Get()
 	if nNewState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
 		statCollection:init()
-		customSchema:init()
-		statCollection.doneInit = true
 		print("start")
     end
 	if nNewState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then

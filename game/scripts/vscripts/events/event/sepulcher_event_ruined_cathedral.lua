@@ -45,6 +45,7 @@ local function StartCombat(self, bFight)
 			spawn:FindAbilityByName("boss15_peel_the_veil"):SetActivated(false)
 			self.prophets = self.prophets - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
+			spawn:SetCoreHealth(1750)
 			if self.prophets > 0 then
 				return 15
 			end

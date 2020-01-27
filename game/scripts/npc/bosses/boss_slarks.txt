@@ -129,7 +129,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"leash_duration"		"3"
+				"leash_duration"		"4 6"
 			}
 			"07"
 			{

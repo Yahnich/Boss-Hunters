@@ -42,6 +42,10 @@ function boss_slardar_splash_zone:OnSpellStart(bForced)
     Timers:CreateTimer(self:GetTalentSpecialValueFor("delay"), function()
 		ParticleManager:ClearParticle(pFX)
         StopSoundOn("Ability.pre.Torrent", caster)
+		if caster:IsNull() or not caster:IsAlive() then 
+			ParticleManager:ClearParticle(pool)
+			return
+		end
         EmitSoundOnLocationWithCaster(position, "Ability.Torrent", caster)
         ParticleManager:FireParticle("particles/units/heroes/hero_kunkka/kunkka_spell_torrent_splash.vpcf", PATTACH_WORLDORIGIN, nil, {[0]=position})
 		for i = 0, 4 do
@@ -59,6 +63,10 @@ function boss_slardar_splash_zone:OnSpellStart(bForced)
                     ParticleManager:SetParticleControl(pool, 1, Vector(poolRadius,1,1) )
 	Timers:CreateTimer(0.25, function()
 		poolDur = poolDur - 0.25
+		if caster:IsNull() or not caster:IsAlive() then 
+			ParticleManager:ClearParticle(pool)
+			return
+		end
 		for _,ally in ipairs( caster:FindAllUnitsInRadius(position, poolRadius) ) do
 			if caster and not caster:IsNull() and ally and not ally:IsNull() then
 				local modifier = ally:AddNewModifier( caster, self, "modifier_in_water", {duration = 0.5} )

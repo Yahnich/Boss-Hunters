@@ -397,7 +397,7 @@ function RoundManager:EndPrepTime(bReset)
 		end
 	end
 	status, err, ret = xpcall(EndPrepCatch, debug.traceback, self, bReset )
-	if not status  and not self.gameHasBeenBroken then
+	if not status and not self.gameHasBeenBroken then
 		SendErrorReport(err, self)
 	end
 end
@@ -435,6 +435,9 @@ function RoundManager:StartEvent()
 	status, err, ret = xpcall(StartEventCatch, debug.traceback, self )
 	if not status  and not self.gameHasBeenBroken then
 		SendErrorReport(err, self)
+	end
+	if not status then -- skip and go next
+		RoundManager:EndEvent(true)
 	end
 end
 
@@ -506,6 +509,17 @@ function RoundManager:EndEvent(bWonRound)
 	status, err, ret = xpcall(EndEventCatch, debug.traceback, self, bWonRound )
 	if not status  and not self.gameHasBeenBroken then
 		SendErrorReport(err, self)
+	end
+	if not status then -- go next phase
+		local fTime = (PREP_TIME or 30) / math.ceil( (GameRules:GetGameDifficulty() - 1) / 2 )
+		if RoundManager:GetCurrentEvent() and RoundManager:GetCurrentEvent():IsEvent() then
+			fTime = 5
+		end
+		CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
+		if GameRules._lives == 0 then
+			return RoundManager:GameIsFinished(false)
+		end
+		self:StartPrepTime(fTime)
 	end
 end
 
@@ -622,9 +636,11 @@ function RoundManager:GameIsFinished(bWon)
 						GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
 						GameRules._finish = true
 						GameRules.EndTime = GameRules:GetGameTime()
-						statCollection:submitRound(true)
+						-- statCollection:submitRound(true)
 					else
-						RoundManager:StartGame()
+						Timers(3, function()
+							RoundManager:StartGame()
+						end)
 						GameRules._finish = true
 						GameRules.EndTime = GameRules:GetGameTime()
 						statCollection:submitRound(false)
@@ -642,7 +658,7 @@ function RoundManager:GameIsFinished(bWon)
 			GameRules.Winner = DOTA_TEAM_BADGUYS
 			GameRules._finish = true
 			GameRules.EndTime = GameRules:GetGameTime()
-			statCollection:submitRound(true)
+			-- statCollection:submitRound(true)
 		end
 	end
 	status, err, ret = xpcall(GameFinishCatch, debug.traceback, self)

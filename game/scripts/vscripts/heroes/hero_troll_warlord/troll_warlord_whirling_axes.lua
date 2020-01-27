@@ -24,7 +24,7 @@ function troll_warlord_whirling_axes:SummonWhirlingAxe( duration, direction )
 								if not target then return end
 								if target ~= nil and ( not target:IsMagicImmune() ) and ( not target:IsInvulnerable() ) and target:GetTeam() ~= self:GetCaster():GetTeam() then
 									if not self.hitUnits[target:entindex()] then
-										if not target:TriggerSpellAbsorb( self ) then
+										if not target:TriggerSpellAbsorb( self:GetAbility() ) then
 											self:GetAbility():DealDamage( self:GetCaster(), target, self.damage )
 											target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_troll_warlord_whirling_axes", {duration = self.blind})
 											EmitSoundOn("Hero_TrollWarlord.WhirlingAxes.Target", target)

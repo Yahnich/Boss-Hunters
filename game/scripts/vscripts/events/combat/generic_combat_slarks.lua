@@ -1,6 +1,6 @@
 local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
-	self.waveType = self.waveType or RandomInt(3)
+	self.waveType = self.waveType or RandomInt(1, 3)
 	if self.waveType == 1 then
 		self.slarks = 1 + RoundManager:GetCurrentRaidTier()
 		self.bloodseekers = 0

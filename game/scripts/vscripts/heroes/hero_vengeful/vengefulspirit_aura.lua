@@ -92,7 +92,7 @@ function modifier_vengefulspirit_aura_buff:OnDeath(params)
 			local callback = (function( illusion, self, caster, ability )
 				illusion:AddNewModifier(caster, ability, "modifier_vengefulspirit_aura_illusion", {})
 			end)
-    		self:GetParent():ConjureImage( self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("image_duration"), damage, self:GetTalentSpecialValueFor("image_damage_in"), self, true, self:GetCaster(), callback)
+    		self:GetParent():ConjureImage( self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("image_duration"), damage, self:GetTalentSpecialValueFor("image_damage_in"), nil, self, true, self:GetCaster(), callback )
     		
     	end
     end

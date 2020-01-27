@@ -24,7 +24,11 @@ end
 
 function modifier_stunned_generic:CheckState()
 	if not self:GetParent():IsBoss() then
-		return { [MODIFIER_STATE_STUNNED] = true }
+		return {[MODIFIER_STATE_STUNNED] = true,
+				[MODIFIER_STATE_PASSIVES_DISABLED] = true,
+		}
+	else
+		return { [MODIFIER_STATE_PASSIVES_DISABLED] = true}
 	end
 end
 

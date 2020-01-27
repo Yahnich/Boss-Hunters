@@ -91,3 +91,48 @@ end
 function modifier_boss_slark_leap_movement:IsHidden()
 	return true
 end
+
+
+modifier_boss_slark_leap_tether = class({})
+LinkLuaModifier( "modifier_boss_slark_leap_tether", "bosses/boss_slarks/boss_slark_leap", LUA_MODIFIER_MOTION_NONE )
+
+function modifier_boss_slark_leap_tether:OnCreated()
+	local caster = self:GetCaster()
+	local parent = self:GetParent()
+	local parentOrigin = parent:GetAbsOrigin()
+	local casterOrigin = caster:GetAbsOrigin()
+	self.position = casterOrigin
+	local radius = self:GetSpecialValueFor("leash_radius")
+	self.radius = radius
+	if IsServer() then
+		local weapon = ParticleManager:CreateParticle("particles/units/heroes/hero_slark/slark_pounce_weapon.vpcf", PATTACH_WORLDORIGIN, nil )
+		ParticleManager:SetParticleControl( weapon, 0, casterOrigin )
+		self:AddEffect( weapon )
+		local ring = ParticleManager:CreateParticle("particles/units/heroes/hero_slark/slark_pounce_edge.vpcf", PATTACH_WORLDORIGIN, nil )
+		ParticleManager:SetParticleControl( weapon, 0, casterOrigin )
+		ParticleManager:SetParticleControl( weapon, 4, Vector( radius, radius, radius ) )
+		self:AddEffect( ring )
+		local leash = ParticleManager:CreateParticle("particles/units/heroes/hero_slark/slark_pounce_leash_body.vpcf", PATTACH_ABSORIGIN, parent )
+		ParticleManager:SetParticleControlEnt(leash, 1, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parentOrigin, true)
+		ParticleManager:SetParticleControl(leash, 3, casterOrigin)
+		self:AddEffect( leash )
+		local source = ParticleManager:CreateParticle("particles/units/heroes/hero_slark/slark_pounce_leash_source.vpcf", PATTACH_WORLDORIGIN, nil )
+		ParticleManager:SetParticleControl( source, 3, casterOrigin )
+		self:AddEffect( source )
+		self:StartIntervalThink(0)
+	end
+end
+
+function modifier_boss_slark_leap_tether:OnIntervalThink()
+	local parent = self:GetParent()
+	local distance = CalculateDistance( self.position, parent )
+	local direction = CalculateDirection( self.position, parent )
+	if distance > self.radius then
+		if distance > self.radius + 8 + math.max( 900, parent:GetIdealSpeed() ) * FrameTime() then
+			self:Destroy()
+			return
+		else
+			parent:SmoothFindClearSpace( self.position - direction * self.radius )
+		end
+	end
+end

@@ -19,7 +19,7 @@ function modifier_boss_golem_split:OnIntervalThink()
 	if self.modelScale ~= self:GetParent():GetModelScale() then
 		self.modelScale = self:GetParent():GetModelScale()
 		self:SetStackCount( self:GetParent():GetModelScale() * 100 )
-		self:SetHullRadius( 32 * self:GetParent():GetModelScale() )
+		self:GetParent():SetHullRadius( 32 * self:GetParent():GetModelScale() )
 	end
 end
 

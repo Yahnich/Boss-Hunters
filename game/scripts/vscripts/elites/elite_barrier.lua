@@ -20,6 +20,7 @@ function modifier_elite_barrier:DeclareFunctions()
 end
 
 function modifier_elite_barrier:GetAbsorbSpell(params)
+	if not params.ability then return end
 	if self:GetAbility():IsCooldownReady() and params.ability:GetCaster():GetTeam() ~= self:GetParent():GetTeam() then
 		ParticleManager:FireParticle( "particles/items_fx/immunity_sphere.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
 		self:GetAbility():StartCooldown( self.cd )

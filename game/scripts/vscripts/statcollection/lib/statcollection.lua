@@ -71,6 +71,7 @@ function statCollection:init()
     end
     self.doneInit = true
 
+	-- customSchema:init()
     -- Print the intro message
     statCollection:print(messageStarting)
 
@@ -440,8 +441,8 @@ end
 
 function statCollection:submitRound(lastRound)
     --We receive the winners from the custom schema, lets tell phase 3 about it!
+    customSchema:submitRound(lastRound)
     self:sendStage3(BuildRoundWinnerArray(), lastRound)
-    customSchema:submitRound()
 end
 
 -- Sends custom
@@ -575,7 +576,7 @@ function statCollection:ReturnedErrors(err, res)
         statCollection:print(res.error)
         return true
     end
-
+	
     -- no errors
     return false
 end

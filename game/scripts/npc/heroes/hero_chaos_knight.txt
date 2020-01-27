@@ -361,22 +361,22 @@
 			"04"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"outgoing_damage"						"0"
+				"outgoing_damage"						"-50 -50 - 25 -25 -25 -0"
 			}
 			"05"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"outgoing_damage_tooltip"				"100"
+				"outgoing_damage_tooltip"				"50  50  75  75 75 100"
 			}	
 			"06"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"incoming_damage"						"-50 -40 -30 -20 -10 0"
+				"incoming_damage"						"200 100 100 50 0 0"
 			}
 			"07"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"incoming_damage_tooltip"				"50 60 70 80 90 100"
+				"incoming_damage_tooltip"				"300 200 200 150 100 100"
 			}			
 			"08"
 			{

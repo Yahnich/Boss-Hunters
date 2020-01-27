@@ -7351,14 +7351,14 @@
 		"Level"						"10"
 		"IsDemon"					"1"
 		"IsWild"					"1"
-		"vscripts"					"ai/ai_boss6_b.lua"
+		"vscripts"					"ai/ai_boss6.lua"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
 		"Ability1"					"boss_slark_blood_curse"			// Ability 1.
 		"Ability2"					"boss_slark_gift_of_the_flayed"
-		"Ability3"					""
+		"Ability3"					"boss_slark_leap"
 	
 		// Armor
 		//----------------------------------------------------------------
