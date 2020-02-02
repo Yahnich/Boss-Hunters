@@ -61,12 +61,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"movement_slow_pct"			"-30 -40 -50 -60 -70 -80 -90"
+				"movement_slow_pct"			"-45"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"slow_duration"				"1.5"
+				"slow_duration"				"1.5 1.6 1.7 1.8 1.9 2.0 2.1"
 			}			
 		}
 	}
@@ -144,7 +144,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"40 36 32 28 24 20 16"
+		"AbilityCooldown"				"32 28 24 20 20 20"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -171,7 +171,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_per_second"			"6 14 22 30 38 46 54"
+				"damage_per_second"			"14 22 30 38 46 54 62"
 			}
 			"03"
 			{
@@ -180,8 +180,38 @@
 			}
 			"04"
 			{
+				"var_type"					"FIELD_INTEGER"
+				"hits_to_kill"				"12 12 12 12 16 20 24"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"boss_damage"				"4"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_damage"				"2"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"minion_damage"				"1"
+			}
+			"08"
+			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"2.5"
+				"threat_start"				"50"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"threat_atk"				"15"
+			}
+			"10"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"5"
 			}
 		}
 	}
@@ -309,7 +339,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"400"
-				"LinkedSpecialBonus"	"special_bonus_unique_grimstroke_1"
 			}
 			"07"
 			{
@@ -390,13 +419,6 @@
 		"InnateAbility"					"1"
 		"HasScepterUpgrade"				"1"
 
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"0"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
 
 		"precache"
 		{	
@@ -411,6 +433,11 @@
 		"AbilitySpecial"
 		{
 			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"5"
+			}
+			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"heal_creep"			"2"
@@ -461,7 +488,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"150 125 100 75 50 25"
+		"AbilityCooldown"				"100 75 50 50 50 50"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -499,7 +526,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow_ms"				"15 30 45"
+				"slow_ms"				"45 45 45 60 75 90"
 			}
 			"05"
 			{

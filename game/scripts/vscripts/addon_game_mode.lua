@@ -725,22 +725,23 @@ end
 function CHoldoutGameMode:OnAbilityLearned(event)
 	local abilityname = event.abilityname
 	local pID = event.PlayerID
-	if pID and string.match(abilityname, "special_bonus" ) then
+	if abilityname and pID and string.match(abilityname, "special_bonus" ) then
 		local hero = PlayerResource:GetSelectedHeroEntity( pID )
-		
-		if hero:GetLevel() < (hero.talentsSkilled + 1) * 10 then
-			local talent = hero:FindAbilityByName(abilityname)
-			talent:SetLevel(0)
-			for _, modifier in ipairs( hero:FindAllModifiers() ) do
-				if modifier:GetAbility() then
-					if not modifier:GetAbility():IsInnateAbility() and modifier:GetCaster() == hero and not modifier:GetAbility():IsItem() and modifier:GetAbility():GetName() ~= "item_relic_handler" then -- destroy passive modifiers and any buffs
-						modifier:Destroy()
-					end
-				end
-			end
-			hero:SetAbilityPoints( hero:GetAbilityPoints() + 1 )
-			return false
-		end
+		local leveledAbility = hero:FindAbilityByName(abilityname)
+		if leveledAbility and leveledAbility == 0 then return end
+		-- if hero:GetLevel() < (hero.talentsSkilled + 1) * 10 then
+			-- local talent = hero:FindAbilityByName(abilityname)
+			-- talent:SetLevel(0)
+			-- for _, modifier in ipairs( hero:FindAllModifiers() ) do
+				-- if modifier:GetAbility() then
+					-- if not modifier:GetAbility():IsInnateAbility() and modifier:GetCaster() == hero and not modifier:GetAbility():IsItem() and modifier:GetAbility():GetName() ~= "item_relic_handler" then -- destroy passive modifiers and any buffs
+						-- modifier:Destroy()
+					-- end
+				-- end
+			-- end
+			-- hero:SetAbilityPoints( hero:GetAbilityPoints() + 1 )
+			-- return false
+		-- end
 		
 		local talentData = CustomNetTables:GetTableValue("talents", tostring(hero:entindex())) or {}
 		if GameRules.AbilityKV[abilityname] then

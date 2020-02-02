@@ -3,7 +3,7 @@ relic_crimson_gauntlet = class(relicBaseClass)
 function relic_crimson_gauntlet:OnCreated()
 	if IsServer() then
 		self:StartIntervalThink(0.33)
-		LinkLuaModifier( "modifier_relic_crimson_gauntlet", "relics/cursed/relic_crimson_gauntlet", LUA_MODIFIER_MOTION_NONE)
+		LinkLuaModifier( "modifier_relic_crimson_gauntlet", "relics/relic_crimson_gauntlet", LUA_MODIFIER_MOTION_NONE)
 	end
 end
 
@@ -31,7 +31,7 @@ function modifier_relic_crimson_gauntlet:DeclareFunctions()
 end
 
 function modifier_relic_crimson_gauntlet:GetModifierPreAttack_CriticalStrike(params)
-	if params.target == self:GetCaster() and RollPercentage(25) then
+	if params.target == self:GetCaster() and self:RollPRNG(25) then
 		return 300
 	end
 end

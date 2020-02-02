@@ -8,7 +8,7 @@ function relic_hungry_blade:OnCreated()
 end
 
 function relic_hungry_blade:OnIntervalThink()
-	if RoundManager:IsRoundGoing() and RoundManager:GetCurrentEvent() and not RoundManager:GetCurrentEvent():IsEvent() and not self:GetParent():HasModifier("relic_ritual_candle") then
+	if self.firstAttack and RoundManager:IsRoundGoing() and RoundManager:GetCurrentEvent() and not RoundManager:GetCurrentEvent():IsEvent() and not self:GetParent():HasModifier("relic_ritual_candle") then
 		self:SetDuration(-1, true)
 		self:StartIntervalThink(0.33)
 		local damage = self:GetParent():GetMaxHealth() * (5 * 0.33) / 100
@@ -16,6 +16,7 @@ function relic_hungry_blade:OnIntervalThink()
 	else
 		self:SetDuration(6, true)
 		self:StartIntervalThink(0.33)
+		self.firstAttack = false
 	end
 end
 
@@ -46,6 +47,7 @@ end
 
 function relic_hungry_blade:OnAttackLanded(params)
 	if params.attacker == self:GetParent() then
+		self.firstAttack = true
 		self:SetDuration(6, true)
 		self:StartIntervalThink(6)
 	end

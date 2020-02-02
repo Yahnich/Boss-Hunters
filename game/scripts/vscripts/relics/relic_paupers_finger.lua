@@ -10,5 +10,5 @@ end
 
 function relic_paupers_finger:GetBonusGold()
 	if not self then return end
-	if not self:GetParent():HasModifier("relic_ritual_candle") then return -50 end
+	if not self:GetParent():HasModifier("relic_ritual_candle") then return -35 end
 end

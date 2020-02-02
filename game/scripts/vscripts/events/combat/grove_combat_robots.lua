@@ -1,6 +1,16 @@
 local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
-	self.enemiesToSpawn = RoundManager:GetCurrentRaidTier() + math.floor( math.sqrt( math.min( RoundManager:GetEventsFinished(), 5 ) ) )
+	self.eventType = RandomInt( 1, 3 )
+	if self.eventType == 1 then
+		self.rattleTraps = 1 + RoundManager:GetCurrentRaidTier()
+	elseif self.eventType == 2 then
+		self.tinkerers = RoundManager:GetCurrentRaidTier() * 2
+	else
+		self.rattleTraps = RoundManager:GetCurrentRaidTier()
+		self.tinkerers = RoundManager:GetCurrentRaidTier()
+	end
+	self.tinkerers = self.tinkerers + math.floor( math.min( math.sqrt( RoundManager:GetEventsFinished()), 5  ) + 0.5 )
+	self.enemiesToSpawn = self.rattleTraps + self.tinkerers
 	self.eventHandler = Timers:CreateTimer(3, function()
 		local enemyName = "npc_dota_boss8a"
 		if RollPercentage(50) then

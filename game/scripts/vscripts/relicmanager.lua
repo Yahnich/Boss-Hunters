@@ -259,6 +259,7 @@ function RelicManager:PushCustomRelicDropsForPlayer(pID, relicTable)
 end
 
 function RelicManager:RollRandomRelicForPlayer(pID, cMinRarity, bFixedRarity, bCursed, notThisRelic)
+	print( pID,  "relic" )
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	hero.ownedRelics = hero.ownedRelics or {}
 	

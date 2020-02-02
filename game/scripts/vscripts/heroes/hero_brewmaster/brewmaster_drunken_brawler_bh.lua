@@ -85,7 +85,7 @@ function modifier_brewmaster_drunken_brawler_bh_handler:GetModifierPreAttack_Cri
 end
 
 function modifier_brewmaster_drunken_brawler_bh_handler:OnAttackLanded(params)
-	if params.target == self:GetParent() and self.crit then
+	if params.attacker == self:GetParent() and self.crit then
 		self.lastCrit = self.delay
 		self:GetParent():RemoveModifierByName("modifier_brewmaster_drunken_brawler_bh_crit")
 		self:GetParent():EmitSound("Hero_Brewmaster.Brawler.Crit")

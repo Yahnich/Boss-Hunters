@@ -40,7 +40,7 @@ function lion_death_finger:OnSpellStart()
 		local innate = caster:FindAbilityByName("lion_mana_aura")
 		if innate then
 			local manaDamage = caster:GetMana() * innate:GetTalentSpecialValueFor("scepter_curr_mana_dmg") / 100
-			caster:SpendMana(manaDamage)
+			self:SpendMana(manaDamage)
 		end
 	end
 	local minion_bonus = self:GetTalentSpecialValueFor("minion_bonus")
@@ -135,6 +135,10 @@ end
 
 function modifier_lion_death_finger_grow:RemoveOnDeath()
 	return false
+end
+
+function modifier_lion_death_finger_grow:GetAttributes()
+	return MODIFIER_ATTRIBUTE_PERMANENT
 end
 
 modifier_lion_death_finger_root = class({})

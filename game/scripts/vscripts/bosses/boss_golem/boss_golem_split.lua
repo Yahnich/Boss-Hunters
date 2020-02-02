@@ -8,9 +8,9 @@ modifier_boss_golem_split = class({})
 LinkLuaModifier( "modifier_boss_golem_split", "bosses/boss_golem/boss_golem_split", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_boss_golem_split:OnCreated()
-	self.modelScale = self:GetParent():GetModelScale()
 	self.originalTeam = self:GetParent():GetTeamNumber()
 	if IsServer() then
+		self.modelScale = self:GetParent():GetModelScale()
 		self:StartIntervalThink(0.25)
 	end
 end

@@ -39,7 +39,7 @@ function ember_chains:OnSpellStart()
 								ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT, "attach_hitloc", caster:GetAbsOrigin(), true)
 								ParticleManager:SetParticleControlEnt(nfx, 1, unit, PATTACH_POINT_FOLLOW, "attach_hitloc", unit:GetAbsOrigin(), true)
 								ParticleManager:ReleaseParticleIndex(nfx)
-					if not enemy:TriggerSpellAbsorb(self) then
+					if not unit:TriggerSpellAbsorb(self) then
 						---Talent 2------
 						if caster:HasTalent("special_bonus_unique_ember_chains_2") then
 							unit:AddNewModifier(caster, self, "modifier_ember_chains_slow", {Duration = duration})
@@ -64,7 +64,9 @@ function ember_chains:OnSpellStart()
 
 					local enemies = caster:FindEnemyUnitsInRadius(unit:GetAbsOrigin(), 400)
 					for _,enemy in pairs(enemies) do
-						self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage")*duration)
+						if not enemy:TriggerSpellAbsorb(self) then
+							self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage")*duration)
+						end
 					end
 					unit:ForceKill(false)
 					current = current + 1

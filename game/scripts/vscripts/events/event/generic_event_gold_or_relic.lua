@@ -24,10 +24,11 @@ end
 
 local function ThirdChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	if RollPercentage(20) then
-		RelicManager:PushCustomRelicDropsForPlayer(event.pID, {RelicManager:RollRandomRelicForPlayer(event.pID)})
-		hero:AddGold(1500)
-	end
+	
+	RelicManager:PushCustomRelicDropsForPlayer(event.pID, {RelicManager:RollRandomRelicForPlayer(event.pID)})
+	hero:AddGold(1500)
+	hero:AddCurse("event_buff_offering_curse")
+	
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
@@ -52,10 +53,7 @@ local function StartEvent(self)
 	end)
 	
 	self._playerChoices = {}
-
-	LinkLuaModifier("event_buff_divine_knowledge_1", "events/modifiers/event_buff_divine_knowledge", LUA_MODIFIER_MOTION_NONE)
-	LinkLuaModifier("event_buff_divine_knowledge_2", "events/modifiers/event_buff_divine_knowledge", LUA_MODIFIER_MOTION_NONE)
-	LinkLuaModifier("event_buff_divine_knowledge_3", "events/modifiers/event_buff_divine_knowledge", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("event_buff_offering_curse", "events/modifiers/event_buff_offering_curse", LUA_MODIFIER_MOTION_NONE)
 end
 
 local function EndEvent(self, bWon)

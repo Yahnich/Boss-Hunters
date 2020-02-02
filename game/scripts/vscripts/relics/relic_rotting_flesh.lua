@@ -1,33 +1,38 @@
 relic_rotting_flesh = class(relicBaseClass)
 
-function relic_rotting_flesh:OnCreated()
-	self:SetStackCount(1)
+function relic_rotting_flesh:OnCreated(kv)
+	self:SetStackCount(0)
+	if IsServer() then
+		self.funcID = EventManager:SubscribeListener("boss_hunters_event_finished", function(args) self:OnEventFinished(args) end)
+	end
 end
 
-function relic_rotting_flesh:OnIntervalThink()
-	local modifier = self
-	local parent = self:GetParent()
-	if not parent:IsAlive() then
-		local origin = parent:GetOrigin()
-		parent:RespawnHero(false, false)
-		parent:SetOrigin(origin)
+function relic_rotting_flesh:OnEventFinished(args)
+	self:SetStackCount(0)
+end
+
+function relic_rotting_flesh:OnDestroy()
+	if IsServer() then
+		EventManager:UnsubscribeListener("boss_hunters_event_finished", self.funcID)
 	end
-	modifier:SetDuration(-1, true)
-	modifier:SetIntervalThink(-1)
-	modifier:SetStackCount(1)
 end
 
 function relic_rotting_flesh:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_DEATH}
+	local decFuncs = {MODIFIER_PROPERTY_REINCARNATION}
+
+	return decFuncs
 end
 
-function relic_rotting_flesh:OnDeath(params)
-	if params.unit == self:GetParent() then
-		local modifier = self
-		local parent = self:GetParent()
-		modifier:SetDuration(30.1, true)
-		self:StartIntervalThink(30)
-		modifier:SetStackCount(0)
+function relic_rotting_flesh:ReincarnateTime()
+	if IsServer() then  
+		if self:GetStackCount() == 0 and self:GetCaster():IsRealHero() then
+			self:SetStackCount(1)
+			self:GetCaster():EmitSound("Hero_SkeletonKing.Reincarnate")
+			self:GetCaster():RefreshAllCooldowns(true)
+			return 7
+		end
+
+		return nil
 	end
 end
 

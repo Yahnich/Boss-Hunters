@@ -34,17 +34,17 @@
 			"01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "spawns_sec"            "1 2"  //The meteor lands on the ground this many seconds after it was cast.
+	            "spawns_sec"            "1 2"
 	        }
 			"02"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "max_slithereen"        "10"  //The meteor lands on the ground this many seconds after it was cast.
+	            "max_slithereen"        "4" 
 	        }
 			"02"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "duration"       		"10"  //The meteor lands on the ground this many seconds after it was cast.
+	            "duration"       		"10"
 	        }
 		}
 	}
@@ -93,12 +93,12 @@
 			"03"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "delay"       			"2.1 1.8"
+	            "delay"       			"2.1"
 	        }
 			"04"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "second_damage"         "200 250"
+	            "second_damage"         "200 300"
 	        }
 			"05"
 	        {

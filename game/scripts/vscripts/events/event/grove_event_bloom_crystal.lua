@@ -25,9 +25,7 @@ end
 
 local function ThirdChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	if RollPercentage( 50 ) then
-		RelicManager:PushCustomRelicDropsForPlayer(event.pID, {RelicManager:RollRandomRelicForPlayer(event.pID)})
-	end
+	RelicManager:PushCustomRelicDropsForPlayer(event.pID, {RelicManager:RollRandomRelicForPlayer(event.pID, "RARITY_COMMON", true, false)})
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end

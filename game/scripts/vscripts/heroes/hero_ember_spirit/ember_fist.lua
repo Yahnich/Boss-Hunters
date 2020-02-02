@@ -68,7 +68,7 @@ function ember_fist:OnSpellStart()
 		Timers:CreateTimer(jumpRate, function()
 			if current < #enemies then
 				for _,enemy in pairs(enemies) do
-					if not self.hitUnits[enemy:entindex()] and enemy:TriggerSpellAbsorb(self) then
+					if not self.hitUnits[enemy:entindex()] and not enemy:TriggerSpellAbsorb(self) then
 						EmitSoundOn("Hero_EmberSpirit.SleightOfFist.Damage", enemy)
 
 						local firstPoint = caster:GetAbsOrigin()

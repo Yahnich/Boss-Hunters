@@ -1978,7 +1978,7 @@
 		"Ability12"						"special_bonus_unique_sniper_headshot_bh_1"
 		"Ability13"						"special_bonus_unique_sniper_headshot_bh_2"
 		"Ability14"						"special_bonus_unique_sniper_rapid_fire_1"
-		"Ability15"						"special_bonus_unique_sniper_take_aim_bh_1"
+		"Ability15"						"special_bonus_unique_sniper_rapid_fire_2"
 		"Ability16"						"special_bonus_unique_sniper_assassinate_bh_1"
 		"Ability17"						"special_bonus_unique_sniper_assassinate_bh_2"
 		

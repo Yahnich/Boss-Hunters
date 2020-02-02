@@ -382,7 +382,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"400"
+				"radius"				"350 375"
 			}
 		}
 	}
@@ -434,7 +434,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 350"
+				"damage"				"100 150"
 			}
 			"02"
 			{

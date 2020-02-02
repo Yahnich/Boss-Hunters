@@ -172,6 +172,8 @@ function toboolean(thing)
 		if thing == "true" or thing == "1" then return true
 		elseif thing == "false" or thing == "0" then return false
 		else error("string type not true or false") end
+	else -- tables and bools
+		return thing
 	end
 end
 
@@ -1370,7 +1372,7 @@ end
 
 function CDOTA_BaseNPC_Hero:CreateTombstone()
 	self.tombstoneEntity = nil
-	if not self.tombstoneDisabled then
+	if not self:IsTombstoneDisabled() then
 		local newItem = CreateItem( "item_tombstone", self, self )
 		newItem:SetPurchaseTime( 0 )
 		newItem:SetPurchaser( self )
@@ -1381,6 +1383,14 @@ function CDOTA_BaseNPC_Hero:CreateTombstone()
 		self.tombstoneEntity = newItem
 	end
 	self.tombstoneDisabled = false
+end
+
+function CDOTA_BaseNPC_Hero:IsTombstoneDisabled()
+	return self.tombstoneDisabled
+end
+
+function CDOTA_BaseNPC_Hero:SetTombstoneDisabled(bool)
+	self.tombstoneDisabled = toboolean(bool)
 end
 
 function CScriptHeroList:GetRealHeroes()

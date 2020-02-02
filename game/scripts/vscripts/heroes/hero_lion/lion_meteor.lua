@@ -32,7 +32,7 @@ function lion_meteor:OnSpellStart()
 		local innate = caster:FindAbilityByName("lion_mana_aura")
 		if innate then
 			local manaDamage = caster:GetMana() * innate:GetTalentSpecialValueFor("scepter_curr_mana_dmg") / 100
-			caster:SpendMana(manaDamage)
+			self:SpendMana(manaDamage)
 			for _,enemy in pairs( caster:FindEnemyUnitsInRadius( point, self:GetTalentSpecialValueFor("radius") ) ) do
 				self:DealDamage( caster, enemy, manaDamage, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 				ParticleManager:FireRopeParticle("particles/items2_fx/necronomicon_archer_manaburn.vpcf", PATTACH_POINT_FOLLOW, caster, enemy)

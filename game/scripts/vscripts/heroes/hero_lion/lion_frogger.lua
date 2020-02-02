@@ -35,7 +35,7 @@ function lion_frogger:OnSpellStart()
 		local innate = caster:FindAbilityByName("lion_mana_aura")
 		if innate then
 			manaDamage = caster:GetMana() * innate:GetTalentSpecialValueFor("scepter_curr_mana_dmg") / 100
-			caster:SpendMana(manaDamage)
+			self:SpendMana(manaDamage)
 		end
 	end
     

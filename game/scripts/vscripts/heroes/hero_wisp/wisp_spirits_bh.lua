@@ -46,7 +46,7 @@ function wisp_spirits_bh:CreateSpiritWisp()
 	local wisp = caster:CreateSummon("npc_dota_wisp_spirit", point)
  	wisp:SetAbsOrigin(point)
 	wisp:AddNewModifier(caster, self, "modifier_wisp_spirits_bh_wisp", {})
-	caster:SpendMana( self:GetTalentSpecialValueFor("wisp_regen_cost") )
+	caster:SpendMana( self:GetTalentSpecialValueFor("wisp_regen_cost"), self )
 	table.insert(self.spirits, wisp)
 end
 

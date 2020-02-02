@@ -13,7 +13,7 @@
 	    "AbilityTextureName"			"treant_natures_grasp"
 	    "MaxLevel"                      "2"
 		
-		"AbilityCooldown"				"14"
+		"AbilityCooldown"				"10"
 		"AbilityCastRange"				"800 1200"
 		"AbilityCastPoint"				"0.5 0.3" 					// Time before spell goes off when cast
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"	// Activity
@@ -32,7 +32,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "thorn_count"         	"4 6"
+	            "thorn_count"         	"2 3"
 	        }
 	        "02"
 	        {
@@ -47,7 +47,7 @@
 			"04"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "grab_radius"      		"175"
+	            "grab_radius"      		"150"
 	        }
 			"05"
 	        {
