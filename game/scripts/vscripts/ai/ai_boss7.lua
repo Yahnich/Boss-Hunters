@@ -55,11 +55,14 @@ function AIThink(thisEntity)
 			local heroes = {}
 			local consumeTarget
 			for _, unit in ipairs( thisEntity:FindAllUnitsInRadius( thisEntity:GetAbsOrigin(), thisEntity.consume:GetTrueCastRange() ) ) do
-				if unit:IsRealHero() then
-					table.insert( heroes, unit )
-				elseif unit:GetHealth() <= thisEntity:GetHealthDeficit() * 1.5 or 
-				( consumeTarget and unit:GetHealth() > consumeTarget:GetHealth() ) then
-					consumeTarget = unit
+				if unit ~= thisEntity then
+					if unit:IsRealHero() then
+						table.insert( heroes, unit )
+					elseif unit:GetHealth() <= thisEntity:GetHealthDeficit() * 1.5 or 
+					( consumeTarget and unit:GetHealth() > consumeTarget:GetHealth() 
+					and unit:GetHealth() < consumeTarget:GetHealthDeficit() ) then
+						consumeTarget = unit
+					end
 				end
 			end
 			if consumeTarget then
@@ -70,7 +73,7 @@ function AIThink(thisEntity)
 					AbilityIndex = thisEntity.consume:entindex()
 				})
 				return thisEntity.consume:GetCastPoint()
-			elseif #heroes > 0 then
+			elseif #heroes > 0 and RollPercentage( 35 ) then
 				consumeTarget = heroes[RandomInt(1, #heroes)]
 				ExecuteOrderFromTable({
 					UnitIndex = thisEntity:entindex(),

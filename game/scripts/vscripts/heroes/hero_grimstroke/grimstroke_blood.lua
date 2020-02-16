@@ -12,7 +12,7 @@ function grimstroke_blood:IsHiddenWhenStolen()
 end
 
 function grimstroke_blood:GetCastRange(vLocation, hTarget)
-    return self:GetSpecialValueFor("radius")
+    return self:GetTalentSpecialValueFor("radius")
 end
 
 function grimstroke_blood:GetIntrinsicModifierName()
@@ -39,12 +39,14 @@ function grimstroke_blood:OnToggle()
 
 end
 
-function grimstroke_blood:CreateInkSpot(vLocation, healAmount)
+function grimstroke_blood:CreateInkSpot(vLocation, bMinion)
 	local caster = self:GetCaster()
 
-	local duration = self:GetSpecialValueFor("duration")
-	local heal = healAmount
-
+	local duration = self:GetTalentSpecialValueFor("duration")
+	local heal = caster:GetIntellect() * self:GetTalentSpecialValueFor("heal_creep")
+	if not bMinion then
+		heal = caster:GetIntellect() * self:GetTalentSpecialValueFor("heal")
+	end
 	CreateModifierThinker(caster, self, "modifier_grimstroke_blood_thing", {Duration = duration, Heal = heal}, vLocation, caster:GetTeam(), false)
 end
 
@@ -52,7 +54,7 @@ modifier_grimstroke_blood = class({})
 
 function modifier_grimstroke_blood:OnCreated(table)
 	if IsServer() then
-		self.heal = self:GetSpecialValueFor("heal_creep")
+		self.heal = self:GetTalentSpecialValueFor("heal_creep")
 	end
 end
 
@@ -64,7 +66,7 @@ function modifier_grimstroke_blood:OnDeath(params)
 	if IsServer() then
 		local parent = self:GetParent()
 		local unit = params.unit
-		if CalculateDistance(unit, parent) <= self:GetSpecialValueFor("radius") then
+		if CalculateDistance(unit, parent) <= self:GetTalentSpecialValueFor("radius") then
 			if unit:GetTeam() ~= parent:GetTeam() then
 				self:GetAbility():CreateInkSpot(unit:GetAbsOrigin(), self.heal)
 			end
@@ -91,7 +93,7 @@ function modifier_grimstroke_blood_thing:OnCreated(table)
 		local caster = self:GetCaster()
 		local point = self:GetParent():GetAbsOrigin()
 
-		self.radius = self:GetSpecialValueFor("search_radius")
+		self.radius = self:GetTalentSpecialValueFor("search_radius")
 		self.speed = caster:GetProjectileSpeed()
 
 		self.heal = table.Heal
@@ -115,10 +117,7 @@ function modifier_grimstroke_blood_thing:OnIntervalThink()
 
 	local allies = caster:FindFriendlyUnitsInRadius(point, self.radius, {order = FIND_CLOSEST})
 	for _,ally in pairs(allies) do
-		local healMax = ally:GetMaxHealth() * self.heal/100
-
-		ally:HealEvent(healMax, self, caster, false)
-
+		ally:HealEvent(self.heal, self, caster, false)
 		self:Destroy()
 		break
 	end

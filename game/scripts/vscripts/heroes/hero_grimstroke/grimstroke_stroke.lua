@@ -93,14 +93,12 @@ function grimstroke_stroke:LaunchBlood()
 			--Talent 2
 			if caster:HasTalent("special_bonus_unique_grimstroke_stroke_2") then
 				local abilityBlood = caster:FindAbilityByName("grimstroke_blood")
-				local healAmount = self.talent_heal
-				abilityBlood:CreateInkSpot(target:GetAbsOrigin(), healAmount)
+				abilityBlood:CreateInkSpot( target:GetAbsOrigin(), target:IsMinion() )
 			end
 
 			ability:DealDamage(caster, target, self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 
 			self.damage = self.damage + self.damage_gain
-
 			self.hitUnits[target:entindex()] = true
 		end
 
@@ -121,12 +119,13 @@ function grimstroke_stroke:LaunchBlood()
 
 		self:SetPosition( position + (velocity*FrameTime()) )
 
-		if CalculateDistance(self.previousPoint, position) >= self.tempRadius then
+		if CalculateDistance(self.previousPoint, position) >= self.tempRadius * 2 then
 			AddFOWViewer(caster:GetTeam(), position, self.tempRadius, self.vision_duration, true)
 
 			--Talent 1-----
 			if self.talent then
-				CreateModifierThinker(caster, self:GetAbility(), "modifier_grimstroke_stroke_spot", {Duration = self.talent_duration, Radius = self.tempRadius}, position, caster:GetTeamNumber(), false)
+				self:GetAbility().lastDamageDealt = self.damage
+				CreateModifierThinker(caster, self:GetAbility(), "modifier_grimstroke_stroke_spot", {Duration = self.talent_duration, Radius = self.tempRadius, damage = self.damage}, position, caster:GetTeamNumber(), false)
 			end
 
 			self.previousPoint = position
@@ -190,7 +189,9 @@ modifier_grimstroke_stroke_spot = class({})
 function modifier_grimstroke_stroke_spot:OnCreated(table)
     if IsServer() then
     	local parent = self:GetParent()
+    	local caster = self:GetCaster()
     	local point = parent:GetAbsOrigin()
+    	self.point = parent:GetAbsOrigin()
     	self.radius = table.Radius
     	
     	--Debug stuff--
@@ -203,54 +204,19 @@ function modifier_grimstroke_stroke_spot:OnCreated(table)
     				ParticleManager:SetParticleControl(nfx, 1, Vector(self.radius, 0, 0))
 
     	self:AttachEffect(nfx)
+		self.damage = self:GetAbility().lastDamageDealt * caster:FindTalentValue("special_bonus_unique_grimstroke_stroke_1") / 100
+
+		self:StartIntervalThink(1)
     end
 end
 
-function modifier_grimstroke_stroke_spot:IsAura()
-    return true
-end
-
-function modifier_grimstroke_stroke_spot:GetAuraDuration()
-    return 0.1
-end
-
-function modifier_grimstroke_stroke_spot:GetAuraRadius()
-    return self.radius
-end
-
-function modifier_grimstroke_stroke_spot:GetAuraSearchFlags()
-    return DOTA_UNIT_TARGET_FLAG_NONE
-end
-
-function modifier_grimstroke_stroke_spot:GetAuraSearchTeam()
-    return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-
-function modifier_grimstroke_stroke_spot:GetAuraSearchType()
-    return DOTA_UNIT_TARGET_ALL
-end
-
-function modifier_grimstroke_stroke_spot:GetModifierAura()
-    return "modifier_grimstroke_stroke_spot_damage"
-end
-
-function modifier_grimstroke_stroke_spot:IsHidden()
-    return true
-end
-
-modifier_grimstroke_stroke_spot_damage = class({})
-function modifier_grimstroke_stroke_spot_damage:OnCreated(table)
-	if IsServer() then
-		self.damage = self:GetSpecialValueFor("damage") / 2 * 0.5
-
-		self:StartIntervalThink(0.5)
+function modifier_grimstroke_stroke_spot:OnIntervalThink()
+	local caster = self:GetCaster()
+	for _, unit in ipairs( caster:FindEnemyUnitsInRadius( self.point, self.radius ) ) do
+		self:GetAbility():DealDamage(caster, unit, self.damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
 	end
 end
 
-function modifier_grimstroke_stroke_spot_damage:OnIntervalThink()
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
-end
-
-function modifier_grimstroke_stroke_spot_damage:IsDebuff()
+function modifier_grimstroke_stroke_spot:IsHidden()
 	return true
 end

@@ -23,7 +23,8 @@ function boss_lifestealer_consume:OnSpellStart()
 		caster:SetMaxHealth( caster:GetMaxHealth() + health )
 		caster:SetBaseMaxHealth( caster:GetBaseMaxHealth() + health )
 		caster:HealEvent( health, self, caster )
-		caster:SetAverageBaseDamage( caster:GetAttackDamage() + damage, 25)
+		self:SetBaseDamageMax( caster:GetBaseDamageMax() + damage )
+		self:SetBaseDamageMin( caster:GetBaseDamageMin() + damage )
 		target:AttemptKill(self, caster)
 	end
 end

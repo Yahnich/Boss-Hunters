@@ -26,7 +26,7 @@ function pl_doppelganger:OnSpellStart()
     local delay = self:GetTalentSpecialValueFor("delay")
 
     local radius = self:GetTalentSpecialValueFor("target_aoe")
-
+	caster:Dispel()
     EmitSoundOn("Hero_PhantomLancer.Doppelganger.Cast", caster)
 
     local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_phantom_lancer/phantom_lancer_doppleganger_aoe.vpcf", PATTACH_POINT, caster)

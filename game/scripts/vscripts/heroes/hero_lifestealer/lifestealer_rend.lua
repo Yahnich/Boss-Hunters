@@ -58,9 +58,9 @@ if IsServer() then
     end
     
     function modifier_lifestealer_rend_autocast:OnAttackLanded(params)
-        if params.attacker == self:GetParent() and params.target and ( self:GetAbility():GetAutoCastState() or self:GetAbility().forceCast ) and self:GetAbility():IsOwnersManaEnough() then
+        if params.attacker == self:GetParent() and params.target and ( self:GetAbility():GetAutoCastState() or self:GetAbility().forceCast ) and self:GetAbility():IsOwnersManaEnough() or params.attacker:HasModifier("modifier_lifestealer_infest_bh_ally") then
             if not params.target:IsMagicImmune() then
-				params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_lifestealer_rend_debuff", {Duration = self.duration}):AddIndependentStack()
+				params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_lifestealer_rend_debuff", {Duration = self.duration}):AddIndependentStack()
 				self:GetAbility():SpendMana()
 				if not self:GetAbility():IsOwnersManaEnough() and self:GetAbility():GetAutoCastState() then
 					self:GetAbility():ToggleAutoCast()
@@ -79,7 +79,21 @@ if IsServer() then
     end
     
     function modifier_lifestealer_rend_debuff:OnIntervalThink()
-        self:GetCaster():Lifesteal(self:GetAbility(), self:GetTalentSpecialValueFor("heal"), self:GetTalentSpecialValueFor("damage") * self:GetStackCount(), self:GetParent(), self:GetAbility():GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY, true)
+		local caster = self:GetCaster()
+		local parent = self:GetParent()
+		local ability = self:GetAbility()
+		local heal = caster:Lifesteal(ability, self:GetTalentSpecialValueFor("heal"), self:GetTalentSpecialValueFor("damage") * self:GetStackCount(), parent, ability:GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY, true)
+		if caster:HasModifier("modifier_lifestealer_infest_bh") then
+			local modifier = caster:FindModifierByName("modifier_lifestealer_infest_bh")
+			print(modifier, "?")
+			if modifier then
+				local target = modifier.target
+				if target then
+					print("target")
+					target:HealEvent( heal, ability, caster )
+				end
+			end
+		end
     end
 end
 

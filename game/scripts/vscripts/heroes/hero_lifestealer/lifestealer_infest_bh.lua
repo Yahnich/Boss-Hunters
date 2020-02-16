@@ -67,6 +67,7 @@ modifier_lifestealer_infest_bh = class({})
 
 function modifier_lifestealer_infest_bh:OnCreated()
     if IsServer() then
+		self.target = self:GetAbility():GetCursorTarget()
         self:GetParent():AddNoDraw()
         self:StartIntervalThink(FrameTime())
     end
@@ -98,6 +99,7 @@ end
 function modifier_lifestealer_infest_bh:CheckState()
     local state = { [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
                     [MODIFIER_STATE_ROOTED] = true,
+                    [MODIFIER_STATE_DISARMED] = true,
                     [MODIFIER_STATE_INVULNERABLE] = true}
     return state
 end

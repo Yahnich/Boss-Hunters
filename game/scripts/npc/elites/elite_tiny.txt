@@ -28,6 +28,21 @@
 				"var_type"				"FIELD_INTEGER"
 				"size"					"-65"
 			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"100"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown_reduction"	"25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"-20"
+			}
 		}
 	}
 }

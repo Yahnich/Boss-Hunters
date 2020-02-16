@@ -1430,12 +1430,16 @@ end
 function CDOTA_BaseNPC:Lifesteal(source, lifestealPct, damage, target, damage_type, iSource, bParticles)
 	local damageDealt = damage or 0
 	local sourceType = iSource or DOTA_LIFESTEAL_SOURCE_NONE
+	local sourceCaster = self
+	if source then
+		sourceCaster = source:GetCaster()
+	end
 	local particles = true
 	if bParticles == false then
 		particles = false
 	end
 	if sourceType == DOTA_LIFESTEAL_SOURCE_ABILITY and source then
-		damageDealt = source:DealDamage( self, target, damage, {damage_type = damage_type} )
+		damageDealt = source:DealDamage( sourceCaster, target, damage, {damage_type = damage_type} )
 	elseif sourceType == DOTA_LIFESTEAL_SOURCE_ATTACK then
 		local oldHP = target:GetHealth()
 		self:PerformAttack(target, true, true, true, true, false, false, false)
@@ -1454,7 +1458,8 @@ function CDOTA_BaseNPC:Lifesteal(source, lifestealPct, damage, target, damage_ty
 	end
 
 	local flHeal = damageDealt * lifestealPct / 100
-	self:HealEvent(flHeal, source, self)
+	self:HealEvent( flHeal, source, sourceCaster )
+	return flHeal
 end
 
 function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer, bRegen) -- for future shit
@@ -1776,7 +1781,10 @@ function CDOTA_BaseNPC:FindRandomEnemyInRadius(position, radius, data)
 end
 
 function CDOTA_BaseNPC:Dispel(hCaster, bHard)
-	local sameTeam = (hCaster:GetTeam() == self:GetTeam())
+	local sameTeam = true
+	if hCaster ~= nil then
+		sameTeam = (hCaster:GetTeam() == self:GetTeam())
+	end
 	local hardDispel = bHard or false
 	self:Purge(not sameTeam, sameTeam, false, hardDispel, hardDispel)
 end
@@ -2193,12 +2201,12 @@ function CDOTA_BaseNPC:Disarm(hAbility, hCaster, duration, bDelay)
 end
 
 function CDOTA_BaseNPC:Break(hAbility, hCaster, duration, bDelay)
-	self:AddNewModifier(hCaster, hAbility, "modifier_break_generic", {Duration = duration, delay = bDelay})
+	return self:AddNewModifier(hCaster, hAbility, "modifier_break_generic", {Duration = duration, delay = bDelay})
 end
 
 
 function CDOTA_BaseNPC:Silence(hAbility, hCaster, duration, bDelay)
-	self:AddNewModifier(hCaster, hAbility, "modifier_silence_generic", {Duration = duration, delay = bDelay})
+	return self:AddNewModifier(hCaster, hAbility, "modifier_silence_generic", {Duration = duration, delay = bDelay})
 end
 
 function CDOTA_BaseNPC:IsSilenced()
@@ -2216,15 +2224,15 @@ function CDOTA_BaseNPC:RemoveSilence()
 end
 
 function CDOTA_BaseNPC:Fear(hAbility, hCaster, duration)
-	self:AddNewModifier(hCaster, hAbility, "modifier_fear_generic", {Duration = duration})
+	return self:AddNewModifier(hCaster, hAbility, "modifier_fear_generic", {Duration = duration})
 end
 
 function CDOTA_BaseNPC:Root(hAbility, hCaster, duration)
-	self:AddNewModifier(hCaster, hAbility, "modifier_root_generic", {Duration = duration})
+	return self:AddNewModifier(hCaster, hAbility, "modifier_root_generic", {Duration = duration})
 end
 
 function CDOTA_BaseNPC:Blind(missChance, hAbility, hCaster, duration)
-	self:AddNewModifier(hCaster, hAbility, "modifier_blind_generic", {Duration = duration, miss = missChance})
+	return self:AddNewModifier(hCaster, hAbility, "modifier_blind_generic", {Duration = duration, miss = missChance})
 end
 
 function CDOTA_BaseNPC:IsBlinded()
@@ -2255,7 +2263,9 @@ function CDOTA_BaseNPC:AddGold(val, bSound)
 			end
 			local gold = hero:GetGold() + gold
 			hero:SetGold(0, false)
-			hero:SetGold(gold, true)
+			gold = gold + (hero.bonusGoldExcessValue or 0)
+			hero.bonusGoldExcessValue = gold % 1;
+			hero:SetGold(math.ceil(gold), true)
 			if bSound then
 				SendOverheadEventMessage(self:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, self, val, self:GetPlayerOwner())
 			end

@@ -89,7 +89,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"50"
 			}
 		}
 	}
@@ -176,12 +176,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_burst"				"120 200 280 360 440 520 600"
+				"damage_burst"				"80 170 260 350 440 530 620"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"hits_to_kill"				"12 12 12 12 16 20 24"
+				"hits_to_kill"				"15 15 15 15 18 21 24"
 			}
 			"05"
 			{
@@ -191,7 +191,7 @@
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"base_damage"				"2"
+				"base_damage"				"3"
 			}
 			"07"
 			{
@@ -212,6 +212,11 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"5"
+			}
+			"11"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"radius"					"350"
 			}
 		}
 	}
@@ -234,7 +239,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"100"
 			}
 		}
 	}
@@ -440,7 +445,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal_creep"			"2"
+				"heal_creep"			"1"
 			}
 			"02"
 			{

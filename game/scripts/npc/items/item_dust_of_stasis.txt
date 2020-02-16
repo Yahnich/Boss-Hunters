@@ -45,7 +45,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"stasis_duration"		"20"
+				"stasis_duration"		"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"hp_pct_break"			"20"
 			}
 		}
 	}

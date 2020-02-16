@@ -28,7 +28,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10"
+		"AbilityCooldown"				"27 24 21 18 18 18 18"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -60,14 +60,14 @@
 			"04"
 			{	
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"55 60 65 70 75 80 85"
+				"damage"						"16 28 40 52 76 100 124"
 				"LinkedSpecialBonus"			"special_bonus_unique_dazzle_poison_touch_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"05"
 			{	
 				"var_type"						"FIELD_INTEGER"
-				"slow"							"-14 -16 -18 -20 -22 -24 -26"
+				"slow"							"-20"
 				"LinkedSpecialBonus"			"special_bonus_unique_dazzle_poison_touch_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
@@ -79,7 +79,12 @@
 			"07"
 			{	
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"5"
+				"duration"						"3 4 5 6 6 6 6"
+			}
+			"07"
+			{	
+				"var_type"						"FIELD_FLOAT"
+				"max_targets"					"2 2 2 2 4 6 8"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
@@ -125,6 +130,11 @@
 				"var_type"				"FIELD_INTEGER"
 				"value"					"2"
 			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"6"
+			}
 		}
 	}
 	//=================================================================================================================
@@ -163,7 +173,8 @@
 			"01"
 			{	
 				"var_type"					"FIELD_FLOAT"
-				"armor_per_second"			"1 1.25 1.5 1.75 2 2.25 2.5"
+				"armor_per_second"			"0.5 1 1.5 2 3 4 5"
+				"LinkedSpecialBonus"		"special_bonus_unique_dazzle_weave_2"
 			}
 			"02"
 			{	
@@ -178,12 +189,12 @@
 			"04"
 			{	
 				"var_type"					"FIELD_FLOAT"
-				"cdr"						"10 15 20 25 30 35 40"
+				"cdr"						"10 20 30 40 40 40 40"
 			}
 			"05"
 			{	
 				"var_type"					"FIELD_FLOAT"
-				"mana_cost"					"10 30 50 70 90 110 130"
+				"mana_cost"					"15 30 45 60 60 60 60"
 			}
 		}
 	}
@@ -221,7 +232,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"25"
+				"value"					"2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value2"				"50"
 			}
 		}
 	}
@@ -274,18 +290,18 @@
 			"03"
 			{	
 				"var_type"				"FIELD_INTEGER"
-				"max_targets"			"3 4 5 6 7 8 9"
+				"max_targets"			"3 4 5 6 6 6 6"
 				"LinkedSpecialBonus"	"special_bonus_unique_dazzle_shadow_wave_2"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"80 100 120 140 160 180 200"
+				"heal"					"80 100 120 140 170 200 230"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"80 100 120 140 160 180 200"
+				"damage"				"80 100 120 140 170 200 230"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
@@ -305,7 +321,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
+				"value"					"50"
 			}
 		}
 	}
@@ -324,12 +340,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"6"
+				"value"					"3"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"delay"					"0.6"
+				"delay"					"0.75"
 			}
 		}
 	}
@@ -361,11 +377,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60"
+		"AbilityCooldown"				"100 80 80 60 60 40"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"150 300 450 600 750 900"
+		"AbilityManaCost"				"200 200 400 400 600 600"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -374,7 +390,7 @@
 			"01"
 			{	
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"4 5 6 7 8 9"
+				"duration"				"7 7 8 8 9 9"
 			}
 			"02"
 			{	

@@ -8,6 +8,7 @@ function troll_warlord_battle_trance_bh:OnSpellStart()
 	caster:StartGesture(ACT_DOTA_CAST_ABILITY_4)
 	caster:EmitSound("Hero_TrollWarlord.BattleTrance.Cast")
 	caster:EmitSound("Hero_TrollWarlord.BattleTrance.Cast.Team")
+	caster:Dispel()
 	ParticleManager:FireParticle("particles/units/heroes/hero_troll_warlord/troll_warlord_battletrance_cast.vpcf", PATTACH_POINT_FOLLOW, caster)
 end
 
@@ -22,9 +23,6 @@ function modifier_troll_warlord_battle_trance_bh:OnCreated()
 	self.cleave = self:GetTalentSpecialValueFor("scepter_cleave") / 100
 	self.range = self:GetTalentSpecialValueFor("scepter_attack_range")
 	self.sr = self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_battle_trance_1")
-	if IsServer() then
-		self:StartIntervalThink(0.33)
-	end
 end
 
 function modifier_troll_warlord_battle_trance_bh:OnRefresh()
@@ -37,15 +35,7 @@ function modifier_troll_warlord_battle_trance_bh:OnRefresh()
 	self.sr = self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_battle_trance_1")
 end
 
-function modifier_troll_warlord_battle_trance_bh:OnIntervalThink()
-	local caster = self:GetCaster()
-	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), -1, {order = FIND_CLOSEST , flags = DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE} ) ) do
-		return caster:MoveToTargetToAttack( enemy )
-	end
-end
-
 function modifier_troll_warlord_battle_trance_bh:CheckState()
-	local state = {[MODIFIER_STATE_COMMAND_RESTRICTED] = true}
 	if self:GetParent():HasScepter() then
 		state[MODIFIER_STATE_INVULNERABLE] = true
 	end

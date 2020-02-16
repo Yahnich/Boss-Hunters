@@ -20,6 +20,16 @@ end
 modifier_item_dust_of_stasis_stasis = class({})
 if IsServer() then
 	function modifier_item_dust_of_stasis_stasis:OnCreated()
+		self.hp_pct = self:GetSpecialValueFor("hp_pct_break") / 100
+		self:OnIntervalThink()
+		self.damageTaken = 0
+		self:StartIntervalThink(0.1)
+	end
+	
+	function modifier_item_dust_of_stasis_stasis:OnRefresh()
+		self.hp_pct = self:GetSpecialValueFor("hp_pct_break") / 100
+		self:OnIntervalThink()
+		self.damageTaken = 0
 		self:StartIntervalThink(0.1)
 	end
 	
@@ -51,8 +61,10 @@ end
 
 function modifier_item_dust_of_stasis_stasis:OnTakeDamage(params)
 	if params.unit == self:GetParent() and not HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) then
-		local hpPct = params.damage / params.unit:GetMaxHealth()
-		self:SetDuration(self:GetRemainingTime() - self:GetDuration() * hpPct, true)
+		self.damageTaken = (self.damageTaken or 0) + params.damage
+		if self.damageTaken >= self:GetParent():GetMaxHealth() * self.hp_pct then
+			self:Destroy()
+		end
 	end
 end
 

@@ -13,7 +13,7 @@ LinkLuaModifier( "modifier_boss_slardar_submerge", "bosses/boss_slardar/boss_sla
 if IsServer() then
 	function modifier_boss_slardar_submerge:OnCreated()
 		self.spawns = self:GetSpecialValueFor("spawns_sec")
-		self.max = math.min(15, self:GetSpecialValueFor("max_slithereen") + RoundManager:GetEventsFinished )
+		self.max = math.min(15, self:GetSpecialValueFor("max_slithereen") + RoundManager:GetEventsFinished() )
 		self:StartIntervalThink( 1 / self.spawns )
 	end
 	

@@ -81,7 +81,7 @@ function modifier_grimstroke_soul_one:OnIntervalThink()
 	local parent = self:GetParent()
 	local caster = self:GetCaster()
 
-	if not self.target then
+	if not self.target or self.target:IsNull() or not self.target:IsAlive() then
 		local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.radius, {order = FIND_CLOSEST})
 		for _,enemy in pairs(enemies) do
 			if enemy ~= parent then
@@ -149,14 +149,20 @@ end
 
 function modifier_grimstroke_soul_one:OnRemoved()
 	if IsServer() then
-		local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self.radius, {order = FIND_UNITS_EVERYWHERE})
+		local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self.radius)
 		for _,enemy in pairs(enemies) do
 			enemy:RemoveModifierByName("modifier_grimstroke_soul_slow")
-			enemy:RemoveModifierByName("modifier_grimstroke_soul_slow")
-			enemy:RemoveModifierByName("modifier_grimstroke_soul_one")
 			enemy:RemoveModifierByName("modifier_grimstroke_soul_debuff")
 		end
-
+		if self:GetRemainingTime() > 0 then
+			for _,enemy in pairs(enemies) do
+				if self:GetRemainingTime() > 0 then
+					EmitSoundOn("Hero_Grimstroke.SoulChain.Partner", enemy)
+					enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_grimstroke_soul_one", {Duration = self:GetRemainingTime()})
+					break
+				end
+			end
+		end
 		if self:GetCaster():HasTalent("special_bonus_unique_grimstroke_soul_2") then
 			local percent = 5
 			local damage = self:GetParent():GetMaxHealth() * percent/100

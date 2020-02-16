@@ -200,7 +200,8 @@ function modifier_ogreseal_flop:OnCreated( kv )
 
 		self.vHorizontalVelocity = ( self.vLastKnownTargetPos - self.vStartPosition ) / self.flPredictedTotalTime
 		self.vHorizontalVelocity.z = 0.0
-
+		
+		self.dir = self.vHorizontalVelocity:Normalized()
 		
 	end
 end
@@ -291,7 +292,7 @@ function modifier_ogreseal_flop:UpdateVerticalMotion( me, dt )
 				
 			else
 				self.nHopCount = self.nHopCount + 1
-				self.vLoc = self.vLoc + self:GetCaster():GetForwardVector() * self.flop_distances[ self.nHopCount ]
+				self.vLoc = self.vLoc + self.dir * self.flop_distances[ self.nHopCount ]
 				local kv =
 				{
 					vLocX = self.vLoc.x,

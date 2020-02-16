@@ -9,7 +9,19 @@ function lifestealer_rage_bh:OnSpellStart()
     local caster = self:GetCaster()
     caster:StartGesture(ACT_DOTA_LIFESTEALER_RAGE)
 	caster:EmitSound("Hero_LifeStealer.Rage")
-    caster:AddNewModifier(caster, self, "modifier_lifestealer_rage_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
+	local duration = self:GetTalentSpecialValueFor("duration")
+	if caster:HasModifier("modifier_lifestealer_infest_bh") then
+		local modifier = caster:FindModifierByName("modifier_lifestealer_infest_bh")
+		if modifier then
+			local target = modifier.target
+			print( target )
+			if target then
+				print("?")
+				target:AddNewModifier(caster, self, "modifier_lifestealer_rage_bh", {Duration = duration})
+			end
+		end
+	end
+    caster:AddNewModifier(caster, self, "modifier_lifestealer_rage_bh", {Duration = duration})
 end
 
 modifier_lifestealer_rage_bh = class({})
@@ -21,17 +33,17 @@ function modifier_lifestealer_rage_bh:OnCreated(table)
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_life_stealer/life_stealer_rage.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 					ParticleManager:SetParticleControlEnt(nfx, 2, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloch", self:GetParent():GetAbsOrigin(), true)
 		self:AttachEffect(nfx)
-		self:GetAbility():StartDelayedCooldown()
+		-- self:GetAbility():StartDelayedCooldown()
 	end
 end
 
 if IsServer() then
 	function modifier_lifestealer_rage_bh:OnRefresh()
-		self:GetAbility():StartDelayedCooldown()
+		-- self:GetAbility():StartDelayedCooldown()
 	end
 	
 	function modifier_lifestealer_rage_bh:OnDestroy()
-		self:GetAbility():EndDelayedCooldown()
+		-- self:GetAbility():EndDelayedCooldown()
 	end
 end
 

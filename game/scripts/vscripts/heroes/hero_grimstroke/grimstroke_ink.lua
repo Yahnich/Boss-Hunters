@@ -83,6 +83,7 @@ function modifier_grimstroke_ink_one:OnIntervalThink()
 
 	local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.radius)
 	if #enemies > 0 then EmitSoundOn("Hero_Grimstroke.InkSwell.Damage", parent) end
+	local endDamage = 0
 	for _,enemy in pairs(enemies) do
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_tick_damage.vpcf", PATTACH_POINT, caster)
 					ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
@@ -93,21 +94,12 @@ function modifier_grimstroke_ink_one:OnIntervalThink()
 			enemy:Paralyze(ability, caster, self:GetDuration())
 		end
 
-		ability:DealDamage(caster, enemy, self.dps, {}, 0)
+		local damage = ability:DealDamage(caster, enemy, self.dps, {}, 0)
+		endDamage = endDamage + damage
 	end
-end
-
-function modifier_grimstroke_ink_one:CheckState()
-	local state = { [MODIFIER_STATE_INVULNERABLE] = true,
-					[MODIFIER_STATE_DISARMED] = true,
-					[MODIFIER_STATE_SILENCED] = true}
-
-	if self.talent then
-		state = { 	[MODIFIER_STATE_INVULNERABLE] = true,
-					[MODIFIER_STATE_DISARMED] = true}
+	if self.talent and endDamage > 0 then
+		parent:HealEvent( endDamage, ability, caster )
 	end
-
-	return state
 end
 
 function modifier_grimstroke_ink_one:DeclareFunctions()
