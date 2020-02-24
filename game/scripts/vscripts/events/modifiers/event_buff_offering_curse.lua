@@ -10,6 +10,7 @@ end
 
 function event_buff_offering_curse:OnIntervalThink()
 	self:GetParent():SetTombstoneDisabled(true)
+	self:GetParent():SetBuyBackDisabledByReapersScythe( true )
 end
 
 function event_buff_offering_curse:OnRaidFinished(args)

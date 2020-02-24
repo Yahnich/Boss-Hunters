@@ -10,60 +10,61 @@ function tech_robo_mine:IsHiddenWhenStolen()
 	return false
 end
 
+function tech_robo_mine:GetAOERadius()
+	return TernaryOperator( self:GetTalentSpecialValueFor("scepter_radius"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("radius") )
+end
+
 function tech_robo_mine:OnSpellStart()
 	local caster = self:GetCaster()
-
-	EmitSoundOn("Hero_Techies.RemoteMine.Plant", caster)
-	local mine = CreateUnitByName("npc_dota_techies_remote_mine", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeam())
-	mine:SetControllableByPlayer(caster:GetPlayerID(), true)
-	mine:SetOwner(caster)
-	mine:AddNewModifier(caster, self, "modifier_robo_mine", {})
-	mine:AddNewModifier(caster, self, "modifier_kill", {duration = 120})
-	mine:SetMoveCapability(DOTA_UNIT_CAP_MOVE_GROUND)
+	local position = self:GetCursorPosition()
+	local radius = TernaryOperator( self:GetTalentSpecialValueFor("scepter_radius"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("radius") )
+	local duration = self:GetTalentSpecialValueFor("duration")
+	local scepter = caster:HasScepter()
+	for _, mine in ipairs( caster:FindFriendlyUnitsInRadius( position, radius, {flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE} ) ) do
+		if mine:GetUnitName() == "npc_dota_techies_stasis_trap"
+		or mine:GetUnitName() == "npc_dota_techies_land_mine" then
+			EmitSoundOn("Hero_Techies.RemoteMine.Plant", mine)
+			mine:AddNewModifier( caster, self, "modifier_robo_mine", {duration = duration} )
+			if not scepter then
+				break
+			end
+		end
+	end
+	
 end
 
 modifier_robo_mine = ({})
 function modifier_robo_mine:OnCreated(table)
 	if IsServer() then
-		Timers:CreateTimer(self:GetTalentSpecialValueFor("active_delay"), function()
-			self:StartIntervalThink(FrameTime())
-		end)
+		self:GetParent():SetMoveCapability( DOTA_UNIT_CAP_MOVE_GROUND )
+		self:GetParent():SetControllableByPlayer( self:GetCaster():GetPlayerID(),  true )
 	end
 end
 
-function modifier_robo_mine:OnIntervalThink()
-	local radius = self:GetTalentSpecialValueFor("radius")
-
-	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), radius, {flag = self:GetAbility():GetAbilityTargetFlags()})
-	for _,enemy in pairs(enemies) do
-		StopSoundOn("Hero_Techies.RemoteMine.Plant", self:GetCaster())
-		if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
-			EmitSoundOn("Hero_Techies.RemoteMine.Detonate", self:GetParent())
-			self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
-		end
-
-		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_techies/techies_remote_mines_detonate.vpcf", PATTACH_POINT, self:GetCaster())
-		ParticleManager:SetParticleControl(nfx, 0, self:GetParent():GetAbsOrigin())
-		ParticleManager:SetParticleControl(nfx, 1, Vector(radius, radius, radius))
-		ParticleManager:ReleaseParticleIndex(nfx)
-
-		break
-	end
-	if enemies[1] then 
-		self:Destroy()
-		self:GetParent():ForceKill(false) 
+function modifier_robo_mine:OnDestroy()
+	if IsServer() then
+		self:GetParent():SetMoveCapability( DOTA_UNIT_CAP_MOVE_NONE )
+		self:GetParent():SetControllableByPlayer( self:GetCaster():GetPlayerID(),  false )
 	end
 end
 
 function modifier_robo_mine:CheckState()
-	local state = {	[MODIFIER_STATE_INVULNERABLE] = true,
-					[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-					[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
+	local state = {[MODIFIER_STATE_UNSLOWABLE] = true,
+				   [MODIFIER_STATE_UNSELECTABLE] = false,
+				   [MODIFIER_STATE_UNTARGETABLE] = false,
+				   [MODIFIER_STATE_ROOTED] = false}
+	if self:GetCaster():HasScepter() then
+		state[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true
+	end
 	return state
 end
 
+function modifier_robo_mine:GetPriority()
+	return MODIFIER_PRIORITY_HIGH 
+end
+
 function modifier_robo_mine:IsHidden()
-	return true
+	return false
 end
 
 function modifier_robo_mine:DeclareFunctions()
@@ -74,5 +75,5 @@ function modifier_robo_mine:DeclareFunctions()
 end
 
 function modifier_robo_mine:GetModifierMoveSpeedBonus_Constant()
-	return self:GetTalentSpecialValueFor("move_speed")	
+	return self:GetTalentSpecialValueFor("movespeed")	
 end

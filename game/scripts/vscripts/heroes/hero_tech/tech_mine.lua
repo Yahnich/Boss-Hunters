@@ -24,8 +24,9 @@ function tech_mine:OnSpellStart()
 end
 
 function tech_mine:PlantLandMine( position, duration )
+	local caster = self:GetCaster()
 	local lifetime = duration or self:GetTalentSpecialValueFor("lifetime")
-	local mine = CreateUnitByName("npc_dota_techies_land_mine", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeam())
+	local mine = CreateUnitByName("npc_dota_techies_land_mine", position, true, caster, caster, caster:GetTeam())
 	mine:AddNewModifier(caster, self, "modifier_mine", {})
 	mine:AddNewModifier(caster, self, "modifier_kill", {duration = lifetime})
 	return mine
@@ -42,24 +43,34 @@ end
 
 function modifier_mine:OnIntervalThink()
 	local radius = self:GetTalentSpecialValueFor("radius")
-
 	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), radius, {flag = self:GetAbility():GetAbilityTargetFlags()})
-	for _,enemy in pairs(enemies) do
-		StopSoundOn("Hero_Techies.LandMine.Plant", self:GetCaster())
-		
-		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf", PATTACH_POINT, self:GetCaster())
-		ParticleManager:SetParticleControl(nfx, 0, self:GetParent():GetAbsOrigin())
-		ParticleManager:SetParticleControl(nfx, 1, self:GetParent():GetAbsOrigin())
-		ParticleManager:SetParticleControl(nfx, 2, Vector(radius, radius, radius))
-		ParticleManager:ReleaseParticleIndex(nfx)
-		if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
-			self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
-			EmitSoundOn("Hero_Techies.LandMine.Detonate", self:GetParent())
-		end
-
-		self:GetParent():ForceKill(false)
-		self:Destroy()
+	if enemies[1] then
+		self:StartIntervalThink(-1)
+		Timers:CreateTimer( 0.25, function()
+			self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), radius, {flag = self:GetAbility():GetAbilityTargetFlags()})
+			enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), radius, {flag = self:GetAbility():GetAbilityTargetFlags()})
+			if enemies[1] then
+				for _,enemy in pairs(enemies) do
+					StopSoundOn("Hero_Techies.LandMine.Plant", self:GetCaster())
+					
+					local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf", PATTACH_POINT, self:GetCaster())
+					ParticleManager:SetParticleControl(nfx, 0, self:GetParent():GetAbsOrigin())
+					ParticleManager:SetParticleControl(nfx, 1, self:GetParent():GetAbsOrigin())
+					ParticleManager:SetParticleControl(nfx, 2, Vector(radius, radius, radius))
+					ParticleManager:ReleaseParticleIndex(nfx)
+					if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+						self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+						EmitSoundOn("Hero_Techies.LandMine.Detonate", self:GetParent())
+					end
+				end
+				self:GetParent():ForceKill(false)
+				self:Destroy()
+			else
+				self:StartIntervalThink(FrameTime())
+			end
+		end)
 	end
+	
 end
 
 
@@ -68,8 +79,12 @@ function modifier_mine:CheckState()
 					[MODIFIER_STATE_INVISIBLE] = true,
 					[MODIFIER_STATE_INVULNERABLE] = true,
 					[MODIFIER_STATE_UNTARGETABLE] = true,
-					[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
+					-- [MODIFIER_STATE_ROOTED] = true,
 					[MODIFIER_STATE_NO_HEALTH_BAR] = true,
 					[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
 	return state
+end
+
+function modifier_mine:IsHidden()
+	return true
 end

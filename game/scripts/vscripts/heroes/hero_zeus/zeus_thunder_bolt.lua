@@ -19,21 +19,25 @@ function zeus_thunder_bolt:OnSpellStart()
 	local target = self:GetCursorTarget()
 	local point = self:GetCursorPosition()
 
+	if not target then
+		local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("search_radius"), {order=FIND_CLOSEST})
+		if enemies[1] then
+			target = enemies[1]
+			point = target:GetAbsOrigin()
+		end
+	end
+	EmitSoundOn("Hero_Zuus.LightningBolt.Cast", caster)
+	
 	if target then
 		point = target:GetAbsOrigin()
 	end
-	if target:TriggerSpellAbsorb( self ) then return end
-	EmitSoundOn("Hero_Zuus.LightningBolt.Cast", caster)
-	local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("search_radius"), {order=FIND_CLOSEST})
-	if enemies[1] then
-		local enemy = enemies[1]
-		if enemy:TriggerSpellAbsorb( self ) then return end
-		point = enemy:GetAbsOrigin()
-		self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
-		self:Stun(enemy, self:GetTalentSpecialValueFor("duration"), false)
-	end
-	EmitSoundOnLocationWithCaster(point, "Hero_Zuus.LightningBolt", caster)
 	ParticleManager:FireRopeParticle("particles/units/heroes/hero_zeus/zeus_thunder_bolt.vpcf", PATTACH_POINT, caster, point, {[0]=point+Vector(0,0,1000)})
+	EmitSoundOnLocationWithCaster(point, "Hero_Zuus.LightningBolt", caster)	
+	if not target or  target:TriggerSpellAbsorb( self ) then return end
+	
+	self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {}, 0)
+	self:Stun(target, self:GetTalentSpecialValueFor("duration"), false)
+	
 	if caster:HasTalent("special_bonus_unique_zeus_thunder_bolt_2") then
 		caster:AddNewModifier( caster, self, "modifier_zeus_thunder_bolt_talent", {duration = caster:FindTalentValue("special_bonus_unique_zeus_thunder_bolt_2", "duration")})
 	end

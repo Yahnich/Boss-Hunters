@@ -185,7 +185,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-25.0"
+				"value"					"100"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"tick"					"0.5"
 			}
 		}
 	}
@@ -214,10 +219,12 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_tech/tech_blasting_off.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"   
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"techies_suicide"
 		"MaxLevel"						"7"
 		
 		// Casting
@@ -232,7 +239,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
+		"AbilityManaCost"				"100 125 150 175 200 225 250"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -304,7 +311,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
+				"value"					"35"
 			}
 		}
 	}
@@ -314,7 +321,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_tech/tech_robo_mine.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
@@ -330,7 +337,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"6"
+		"AbilityCooldown"				"7"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -343,14 +350,19 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"2"
+				"duration"					"3"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"movespeed"					"500"
 			}
 			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"radius"					"150"
+			}
+			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"scepter_radius"			"350"
@@ -448,9 +460,9 @@
 			{
 				"var_type"						"FIELD_FLOAT"
 				"max_health_damage"				"1"
-				"CalculateSpellDamageTooltip"  	"0"
 				"LinkedSpecialBonus"			"special_bonus_unique_tech_drastic_1"
 				"LinkedSpecialBonusField"		"value2"
+				"CalculateSpellDamageTooltip"  	"0"
 			}	
 		}
 		

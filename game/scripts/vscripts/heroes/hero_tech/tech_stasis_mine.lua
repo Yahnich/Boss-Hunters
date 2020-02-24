@@ -64,7 +64,7 @@ function modifier_stasis_mine:OnIntervalThink()
 					StopSoundOn("Hero_Techies.StasisTrap.Plant", self:GetCaster())
 					EmitSoundOn("Hero_Techies.StasisTrap.Stun", self:GetParent())
 
-					enemy:Paralyze(self:GetAbility(),self:GetCaster(), self:GetTalentSpecialValueFor("stun_duration"°) )
+					enemy:Paralyze(self:GetAbility(),self:GetCaster(), self:GetTalentSpecialValueFor("stun_duration") )
 					
 					-- if self:GetCaster():HasTalent("special_bonus_unique_tech_stasis_mine_1") then
 						-- enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_stasis_mine_mr", {Duration = self:GetTalentSpecialValueFor("stun_duration")})
@@ -92,7 +92,7 @@ function modifier_stasis_mine:CheckState()
 					[MODIFIER_STATE_INVISIBLE] = true,
 					[MODIFIER_STATE_INVULNERABLE] = true,
 					[MODIFIER_STATE_UNTARGETABLE] = true,
-					[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
+					[MODIFIER_STATE_ROOTED] = true,
 					[MODIFIER_STATE_NO_HEALTH_BAR] = true,
 					[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
 	return state

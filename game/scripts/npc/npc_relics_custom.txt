@@ -669,11 +669,11 @@
 		"Rarity"			"RARITY_RARE"
 		"Cursed"			"1"
 	}
-	"relic_phoenix_down"
-	{
-		"Rarity"			"RARITY_RARE"
-		"Cursed"			"1"
-	}
+	// "relic_phoenix_down"
+	// {
+		// "Rarity"			"RARITY_RARE"
+		// "Cursed"			"1"
+	// }
 	"relic_symbiote"
 	{
 		"Rarity"			"RARITY_RARE"

@@ -70,7 +70,7 @@ function modifier_ss_ball_lightning:OnIntervalThink()
 			parent:SetAbsOrigin(GetGroundPosition(parent:GetAbsOrigin(), parent) + self.dir*self.speed)
 
 			if self.manaDistance >= 100 then
-				parent:SpendMana(self.manaCost)
+				self:GetAbility():SpendMana(self.manaCost)
 				self.damage = self.damage + self.damageGain
 				self.manaDistance = 0
 				self.previousPoint = parent:GetAbsOrigin()

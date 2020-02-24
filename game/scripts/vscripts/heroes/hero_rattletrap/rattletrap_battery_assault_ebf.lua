@@ -62,11 +62,12 @@ if IsServer() then
 						self:GetAbility():Stun(enemy, 0.15, false)
 					end
 				end
-			elseif not target:TriggerSpellAbsorb( self:GetAbility() )
+			elseif not target:TriggerSpellAbsorb( self:GetAbility() ) then
 				self:GetAbility():DealDamage(parent, target, self.damage)
 				self:GetAbility():Stun(target, 0.15, false)
 			end
 			EmitSoundOn( "Hero_Rattletrap.Battery_Assault_Impact", target )
+			ParticleManager:FireRopeParticle("particles/units/heroes/hero_rattletrap/rattletrap_battery_shrapnel.vpcf", PATTACH_POINT_FOLLOW, parent, target)
 		else
 			if self:GetCaster():HasTalent("special_bonus_unique_rattletrap_battery_assault_1") then
 				for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( targetPos, self:GetCaster():FindTalentValue("special_bonus_unique_rattletrap_battery_assault_1") ) ) do
@@ -74,7 +75,7 @@ if IsServer() then
 					self:GetAbility():Stun(enemy, 0.15, false)
 				end
 			end
+			ParticleManager:FireParticle( "particles/units/heroes/hero_rattletrap/rattletrap_battery_shrapnel.vpcf", PATTACH_POINT_FOLLOW, parent, {[1] = targetPos})
 		end
-		ParticleManager:FireParticle( "particles/units/heroes/hero_rattletrap/rattletrap_battery_shrapnel.vpcf", PATTACH_POINT_FOLLOW, parent, {[1] = targetPos})
 	end
 end
