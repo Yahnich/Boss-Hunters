@@ -46,13 +46,7 @@ end
 modifier_druid_battle_cry = class({})
 
 function modifier_druid_battle_cry:OnCreated(table)
-	self.bonus_ad = self:GetTalentSpecialValueFor("bonus_ad")
-	self.bonus_armor = self:GetTalentSpecialValueFor("bonus_armor")
-
-	if self:GetCaster():HasTalent("special_bonus_unique_druid_battle_cry_2") then
-		self.bonus_int = self:GetParent():GetIntellect()
-	end
-
+	self:OnRefresh()
 	if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
@@ -75,6 +69,7 @@ end
 function modifier_druid_battle_cry:OnRefresh(table)
 	self.bonus_ad = self:GetTalentSpecialValueFor("bonus_ad")
 	self.bonus_armor = self:GetTalentSpecialValueFor("bonus_armor")
+	self.damage_reduction = self:GetCaster():FindTalentValue("special_bonus_unique_druid_battle_cry_1", "reduction")
 
 	if self:GetCaster():HasTalent("special_bonus_unique_druid_battle_cry_2") then
 		self.bonus_int = self:GetParent():GetIntellect()
@@ -88,7 +83,8 @@ end
 function modifier_druid_battle_cry:DeclareFunctions()
 	local funcs = {	MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 					MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-					MODIFIER_PROPERTY_STATS_INTELLECT_BONUS}
+					MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+					MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE }
 	return funcs
 end
 
@@ -104,12 +100,8 @@ function modifier_druid_battle_cry:GetModifierBonusStats_Intellect()
 	return self.bonus_int
 end
 
-function modifier_druid_battle_cry:CheckState()
-    local state = {}
-    if self:GetCaster():HasTalent("special_bonus_unique_druid_battle_cry_1") then
-    	state = { [MODIFIER_STATE_MAGIC_IMMUNE] = true}
-    end
-    return state
+function modifier_druid_battle_cry:GetModifierIncomingDamage_Percentage()
+	return self.damage_reduction
 end
 
 function modifier_druid_battle_cry:IsDebuff()

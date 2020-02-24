@@ -28,3 +28,11 @@ function modifier_elite_sweeping:OnAttackLanded(params)
 		end
 	end
 end
+
+function modifier_elite_sweeping:GetEffectName()
+	return "particles/units/elite_warning_offense_overhead.vpcf"
+end
+
+function modifier_elite_sweeping:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end

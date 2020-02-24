@@ -96,7 +96,12 @@ function modifier_stats_system_handler:DeclareFunctions()
 	return funcs
 end
 
-function modifier_stats_system_handler:GetModifierMoveSpeedBonus_Constant() return (self.ms or 0) end
+function modifier_stats_system_handler:GetModifierMoveSpeedBonus_Constant() 
+	local movespeed = (self.ms or 0) 
+	if not self:GetParent():IsRangedAttacker() then movespeed = movespeed + 10 end
+	return movespeed
+end
+
 function modifier_stats_system_handler:GetModifierManaBonus() return 500 + (self.mp or 0) end
 function modifier_stats_system_handler:GetModifierConstantManaRegen() return 1.5 + (self.mpr or 0) end
 function modifier_stats_system_handler:GetModifierHealAmplify_Percentage() return self.ha or 0 end

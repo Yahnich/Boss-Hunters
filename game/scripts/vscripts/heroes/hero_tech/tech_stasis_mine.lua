@@ -64,11 +64,11 @@ function modifier_stasis_mine:OnIntervalThink()
 					StopSoundOn("Hero_Techies.StasisTrap.Plant", self:GetCaster())
 					EmitSoundOn("Hero_Techies.StasisTrap.Stun", self:GetParent())
 
-					enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_stasis_mine_root", {Duration = self:GetTalentSpecialValueFor("stun_duration")})
-
-					if self:GetCaster():HasTalent("special_bonus_unique_tech_stasis_mine_1") then
-						enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_stasis_mine_mr", {Duration = self:GetTalentSpecialValueFor("stun_duration")})
-					end
+					enemy:Paralyze(self:GetAbility(),self:GetCaster(), self:GetTalentSpecialValueFor("stun_duration"°) )
+					
+					-- if self:GetCaster():HasTalent("special_bonus_unique_tech_stasis_mine_1") then
+						-- enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_stasis_mine_mr", {Duration = self:GetTalentSpecialValueFor("stun_duration")})
+					-- end
 				end
 				triggered = true
 			end

@@ -9,6 +9,9 @@ LinkLuaModifier("modifier_elite_heavy", "elites/elite_heavy", LUA_MODIFIER_MOTIO
 
 function modifier_elite_heavy:OnCreated()
 	self:OnRefresh()
+	if IsServer() then
+		self:AddEffect( ParticleManager:CreateParticle( "particles/units/elite_warning_offense_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() ) )
+	end
 end
 
 function modifier_elite_heavy:OnRefresh()
@@ -38,10 +41,10 @@ function modifier_elite_heavy:OnAttackLanded(params)
 	end
 end
 
-function relicBaseClass:GetAttributes()
+function modifier_elite_heavy:GetAttributes()
 	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end
 
-function relicBaseClass:IsHidden()
+function modifier_elite_heavy:IsHidden()
 	return true
 end

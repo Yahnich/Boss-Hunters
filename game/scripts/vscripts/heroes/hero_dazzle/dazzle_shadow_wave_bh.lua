@@ -15,7 +15,7 @@ function dazzle_shadow_wave_bh:OnSpellStart()
 	local prevTarget = caster
 	
 	local delay = caster:FindTalentValue("special_bonus_unique_dazzle_shadow_wave_2", "delay")
-	local bounces = self:GetTalentSpecialValueFor("max_targets") - 1
+	local bounces = self:GetTalentSpecialValueFor("max_targets")
 	local bounceRadius = self:GetTalentSpecialValueFor("bounce_radius")
 	local radius = self:GetTalentSpecialValueFor("damage_radius")
 	local healdamage = self:GetTalentSpecialValueFor("damage")
@@ -23,15 +23,26 @@ function dazzle_shadow_wave_bh:OnSpellStart()
 	local hitUnits = {}
 	local talent1 = caster:HasTalent("special_bonus_unique_dazzle_shadow_wave_1")
 	local talent2 = caster:HasTalent("special_bonus_unique_dazzle_shadow_wave_2")
+	local talentDmg = caster:FindTalentValue("special_bonus_unique_dazzle_shadow_wave_1")
 	
-	self:ApplyEffects( caster, healdamage, radius )
+	self:ApplyEffects( caster, healdamage + talentDmg, radius )
 	
 	hitUnits[caster:entindex()] = true
+	if caster:HasScepter() then
+		for _, unit in ipairs( caster:FindAllUnitsInRadius(caster:GetAbsOrigin(), -1 ) ) do
+			if unit:HasModifier("modifier_dazzle_weave_bh") then
+				self:ApplyEffects( unit )
+				ParticleManager:FireRopeParticle("particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf", PATTACH_POINT_FOLLOW, caster, unit)
+			end
+		end
+	end
+	local firstTarget = true
 	Timers:CreateTimer(function()
 		target:EmitSound("Hero_Dazzle.Shadow_Wave")
 		hitUnits[target:entindex()] = true
 		if target:IsSameTeam( caster ) or not target:TriggerSpellAbsorb(self) then
-			self:ApplyEffects( target, healdamage, radius )
+			self:ApplyEffects( target, TernaryOperator(healdamage + talentDmg, firstTarget, healdamage), radius )
+			firstTarget = false
 		end
 		ParticleManager:FireRopeParticle("particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf", PATTACH_POINT_FOLLOW, prevTarget, target)
 		prevTarget = target
@@ -57,7 +68,7 @@ function dazzle_shadow_wave_bh:ApplyEffects( target, fHealDamage, fRadius )
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), radius ) ) do
 			self:DealDamage( caster, enemy, healdamage )
 		end
-	elseif not enemy:TriggerSpellAbsorb(self) then
+	elseif not target:TriggerSpellAbsorb(self) then
 		self:DealDamage( caster, target, healdamage )
 		for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( target:GetAbsOrigin(), radius ) ) do
 			ally:HealEvent( healdamage, self, caster )

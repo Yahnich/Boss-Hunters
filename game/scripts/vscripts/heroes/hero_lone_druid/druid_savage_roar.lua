@@ -17,23 +17,32 @@ function druid_savage_roar:OnSpellStart()
 
 	local duration = self:GetTalentSpecialValueFor("duration")
 	local radius = self:GetTalentSpecialValueFor("radius")
+	local minionMultiplier = caster:FindTalentValue("special_bonus_unique_druid_savage_roar_2")
 
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_lone_druid/lone_druid_savage_roar.vpcf", PATTACH_POINT, caster)
 				ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_ABSORIGIN, "attach_hitloc", caster:GetAbsOrigin(), true)
 				ParticleManager:SetParticleControlEnt(nfx, 1, caster, PATTACH_POINT, "attach_mouth", caster:GetAbsOrigin(), true)
 				ParticleManager:ReleaseParticleIndex(nfx)
-
+	caster:EmitSound("Hero_LoneDruid.SavageRoar.Cast")
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
 	for _,enemy in pairs(enemies) do
 		if not enemy:TriggerSpellAbsorb( self ) then
-			enemy:Fear(self, caster, duration)
+			local dur = duration
+			if enemy:IsMinion() then
+				dur = duration * minionMultiplier
+			end
+			enemy:Fear(self, caster, dur)
 
 			if caster:HasTalent("special_bonus_unique_druid_savage_roar_1") then
-				enemy:Paralyze(self, caster, duration)
-			end
-
-			if caster:HasTalent("special_bonus_unique_druid_savage_roar_2") then
-				self:DealDamage(caster, enemy, caster:GetStrength(), {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+				if caster:HasAbility("druid_bear_entangle") then
+					local entangle = caster:FindAbilityByName("druid_bear_entangle")
+					enemy:AddNewModifier(caster, entangle, "modifier_druid_bear_entangle_enemy", {Duration = entangle:GetTalentSpecialValueFor("duration")})
+				else
+					local entangle = caster:AddAbility("druid_bear_entangle")
+					entangle:SetLevel(1)
+					entangle:SetHidden(true)
+					enemy:AddNewModifier(caster, entangle, "modifier_druid_bear_entangle_enemy", {Duration = entangle:GetTalentSpecialValueFor("duration")})
+				end
 			end
 		end
 	end

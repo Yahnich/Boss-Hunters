@@ -9,6 +9,9 @@ LinkLuaModifier("modifier_elite_mageslayer", "elites/elite_mageslayer", LUA_MODI
 
 function modifier_elite_mageslayer:OnCreated()
 	self:OnRefresh()
+	if IsServer() then
+		self:AddEffect( ParticleManager:CreateParticle( "particles/units/elite_warning_defense_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() ) )
+	end
 end
 
 function modifier_elite_mageslayer:OnRefresh()

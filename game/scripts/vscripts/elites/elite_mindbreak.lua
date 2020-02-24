@@ -17,6 +17,7 @@ if IsServer() then
 	function modifier_elite_mindbreak:OnCreated()
 		self.duration = self:GetSpecialValueFor("duration")
 		self:StartIntervalThink(0.2)
+		self:AddEffect( ParticleManager:CreateParticle( "particles/units/elite_warning_defense_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() ) )
 	end
 	
 	function modifier_elite_mindbreak:OnIntervalThink()
@@ -39,29 +40,23 @@ LinkLuaModifier("modifier_elite_mindbreak_buff", "elites/elite_mindbreak", LUA_M
 
 if IsServer() then
 	function modifier_elite_mindbreak_buff:OnCreated()
-		self.duration = self:GetSpecialValueFor("silence_duration")
+		self:OnRefresh()
 	end
 	
-	function modifier_elite_mindbreak_buff:OnDestroy()
+	function modifier_elite_mindbreak_buff:OnRefresh()
 		self.duration = self:GetSpecialValueFor("silence_duration")
 	end
 end
 
-function modifier_elite_barrier:DeclareFunctions()
+function modifier_elite_mindbreak_buff:DeclareFunctions()
 	return { MODIFIER_PROPERTY_ABSORB_SPELL }
 end
 
-function modifier_elite_barrier:GetAbsorbSpell(params)
+function modifier_elite_mindbreak_buff:GetAbsorbSpell(params)
 	if not params.ability then return end
 	if params.ability:GetCaster():GetTeam() ~= self:GetParent():GetTeam() then
 		ParticleManager:FireParticle( "particles/items3_fx/lotus_orb_reflect.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
 		params.ability:GetCaster():Silence(self:GetAbility(), self:GetParent(), self.duration)
-	end
-end
-
-function modifier_item_protection_sphere_block:OnAttackLanded(params)
-	if params.target == self:GetParent() then
-		params.ability:GetCaster():Silence(self:GetAbility(), params.target, self.duration)
 	end
 end
 

@@ -1,5 +1,4 @@
 sniper_rapid_fire = sniper_rapid_fire or class({})
-LinkLuaModifier( "modifier_sniper_rapid_fire", "heroes/hero_sniper/sniper_rapid_fire.lua", LUA_MODIFIER_MOTION_NONE )
 
 function sniper_rapid_fire:GetChannelTime()
 	return self:GetTalentSpecialValueFor("channel")
@@ -18,7 +17,7 @@ end
 function sniper_rapid_fire:OnSpellStart()
 	local caster = self:GetCaster()
 
-	caster:AddNewModifier(caster, self, "modifier_sniper_rapid_fire", {Duration = self:GetTalentSpecialValueFor("channel")})
+	caster:AddNewModifier(caster, self, "modifier_sniper_rapid_fire", {Duration = self:GetTalentSpecialValueFor("channel") + 0.4})
 end
 
 function sniper_rapid_fire:OnProjectileThink(vLocation)
@@ -29,16 +28,25 @@ function sniper_rapid_fire:OnProjectileHitHandle(hTarget, vLocation, iProjectile
 	local caster = self:GetCaster()
 
 	if hTarget then
+		local modifier = caster:AddNewModifier( caster, self, "modifier_sniper_rapid_fire_dmg", {} )
 		caster:PerformAttack(hTarget, true, true, true, false, false, false, false)
 		ProjectileManager:DestroyLinearProjectile(iProjectileHandle)
+		modifier:Destroy()
 	end
 end
 
 modifier_sniper_rapid_fire = class({})
+LinkLuaModifier( "modifier_sniper_rapid_fire", "heroes/hero_sniper/sniper_rapid_fire.lua", LUA_MODIFIER_MOTION_NONE )
+
 function modifier_sniper_rapid_fire:OnCreated(table)
+	self:OnRefresh()
 	if IsServer() then
 		self:StartIntervalThink(FrameTime())
 	end
+end
+
+function modifier_sniper_rapid_fire:OnRefresh()
+	--
 end
 
 function modifier_sniper_rapid_fire:OnIntervalThink()
@@ -61,5 +69,20 @@ function modifier_sniper_rapid_fire:OnIntervalThink()
 end
 
 function modifier_sniper_rapid_fire:IsHidden()
+	return true
+end
+
+modifier_sniper_rapid_fire_dmg = class({})
+LinkLuaModifier( "modifier_sniper_rapid_fire_dmg", "heroes/hero_sniper/sniper_rapid_fire.lua", LUA_MODIFIER_MOTION_NONE )
+
+function modifier_sniper_rapid_fire_dmg:DeclareFunctions()
+	return {MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE}
+end
+
+function modifier_sniper_rapid_fire_dmg:GetModifierDamageOutgoing_Percentage()
+	if IsServer() then return self:GetTalentSpecialValueFor("damage_reduction") end
+end
+
+function modifier_sniper_rapid_fire_dmg:IsHidden()
 	return true
 end

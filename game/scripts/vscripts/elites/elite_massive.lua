@@ -15,6 +15,7 @@ LinkLuaModifier("modifier_elite_massive", "elites/elite_massive", LUA_MODIFIER_M
 if IsServer() then
 	function modifier_elite_massive:OnCreated()
 		self:StartIntervalThink(1)
+		self:AddEffect( ParticleManager:CreateParticle( "particles/units/elite_warning_special_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() ) )
 	end
 	
 	function modifier_elite_massive:OnIntervalThink()

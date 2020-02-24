@@ -76,6 +76,12 @@
 #base "elites/elite_tiny.txt"
 #base "elites/elite_barrier.txt"
 #base "elites/elite_draining.txt"
+#base "elites/elite_mindbreak.txt"
+#base "elites/elite_disarming.txt"
+#base "elites/elite_heavy.txt"
+#base "elites/elite_armoured.txt"
+#base "elites/elite_mageslayer.txt"
+#base "elites/elite_immortal.txt"
 
 #base "heroes/hero_chen.txt"
 #base "heroes/hero_shadow_shaman.txt"

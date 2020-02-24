@@ -33,3 +33,11 @@ function modifier_elite_pulsar:OnDeath(params)
 		end)
 	end
 end
+
+function modifier_elite_pulsar:GetEffectName()
+	return "particles/units/elite_warning_special_overhead.vpcf"
+end
+
+function modifier_elite_pulsar:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end

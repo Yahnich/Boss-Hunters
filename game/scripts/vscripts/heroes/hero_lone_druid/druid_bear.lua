@@ -29,6 +29,7 @@ function druid_bear:OnSpellStart()
 		if self.bear:IsAlive() then
 			EmitSoundOn("LoneDruid_SpiritBear.Return", self.bear)
 			
+			self.bear:RemoveModifierByName("modifier_druid_bear_stats")
 			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_lone_druid/lone_druid_bear_blink_end.vpcf", PATTACH_POINT, owner)
 						ParticleManager:SetParticleControlEnt(nfx, 0, self.bear, PATTACH_POINT_FOLLOW, "attach_hitloc", self.bear:GetAbsOrigin(), true)
 						ParticleManager:ReleaseParticleIndex(nfx)
@@ -65,9 +66,28 @@ function druid_bear:BearStats(unit)
 			unit:RemoveAbility(ability:GetAbilityName())
 		end
 	end
-
+	local baseDamage = self:GetTalentSpecialValueFor("base_damage")
+	local baseHealth = self:GetTalentSpecialValueFor("base_health") 
+	local percent = self:GetTalentSpecialValueFor("percent")
 	unit:SetThreat(0)
-
+	
+	local bat = caster:GetBaseAttackTime()
+	local ms = caster:GetBaseMoveSpeed()
+	--unit:SetForwardVector(caster:GetForwardVector())
+	unit:SetCoreHealth( baseHealth * caster:GetLevel() )
+	unit:SetBaseHealthRegen( caster:GetLevel() )
+	unit:SetMana(300)
+	unit:SetBaseManaRegen(0.5)
+	unit:SetBaseDamageMax( baseDamage * caster:GetLevel() - 5 )
+	unit:SetBaseDamageMin( baseDamage * caster:GetLevel() + 5 )
+	unit:SetBaseMagicalResistanceValue( caster:GetBaseMagicalResistanceValue() )
+	unit:SetBaseAttackTime(bat)
+	unit:SetBaseMoveSpeed(ms)
+	unit:AddNewModifier(caster, self, "modifier_druid_bear_stats", {})
+	
+	local scale = 1 * caster:GetLevel()/400
+	unit:SetModelScale(1 - 0.3 + scale)
+	
 	if not unit:HasAbility("druid_bear_defender") then
 		local bear_defender = unit:AddAbility("druid_bear_defender")
 		bear_defender:SetLevel(1)
@@ -93,28 +113,18 @@ function druid_bear:BearStats(unit)
 		bear_demo:SetLevel(1)
 	end
 
-	if caster:HasScepter() then
-		unit:AddNewModifier(caster, self, "modifier_druid_bear_odor", {})
+	if not unit:HasAbility("druid_sunmoon_strike") and caster:HasScepter() then
+		print("?")
+		local sun = unit:AddAbility("druid_sunmoon_strike")
+		sun:SetLevel(1)
+		sun:SetHidden(false)
+	elseif unit:HasAbility("druid_sunmoon_strike") and not caster:HasScepter() then
+		print("!")
+		local sun = unit:RemoveAbility("druid_sunmoon_strike")
 	end
-
-	local bat = caster:GetBaseAttackTime()
-	local ms = caster:GetBaseMoveSpeed()
-	--unit:SetForwardVector(caster:GetForwardVector())
-
-	unit:SetBaseMaxHealth(1500)
-	unit:SetBaseHealthRegen(5)
-	unit:SetMana(300)
-	unit:SetBaseManaRegen(0.5)
-	unit:SetBaseDamageMax(30)
-	unit:SetBaseDamageMin(40)
-	unit:SetBaseMagicalResistanceValue(0)
-	unit:SetPhysicalArmorBaseValue(3)
-	unit:SetBaseAttackTime(bat)
-	unit:SetBaseMoveSpeed(ms)
-	unit:AddNewModifier(caster, self, "modifier_druid_bear_stats", {})
-	unit:SetHealth( unit:GetMaxHealth() )
-	local scale = 1 * caster:GetLevel()/400
-	unit:SetModelScale(1 - 0.3 + scale)
+	-- if caster:HasScepter() then
+		-- unit:AddNewModifier(caster, self, "modifier_druid_bear_odor", {})
+	-- end
 end
 
 modifier_druid_bear_stats = ({})
@@ -255,52 +265,52 @@ function modifier_druid_bear_stats:IsPurgeException()
     return false
 end
 
-modifier_druid_bear_odor = ({})
-LinkLuaModifier("modifier_druid_bear_odor", "heroes/hero_lone_druid/druid_bear", LUA_MODIFIER_MOTION_NONE)
-function modifier_druid_bear_odor:OnCreated(table)
-	if IsServer() then
-		local caster = self:GetCaster()
-		local parent = self:GetParent()
+-- modifier_druid_bear_odor = ({})
+-- LinkLuaModifier("modifier_druid_bear_odor", "heroes/hero_lone_druid/druid_bear", LUA_MODIFIER_MOTION_NONE)
+-- function modifier_druid_bear_odor:OnCreated(table)
+	-- if IsServer() then
+		-- local caster = self:GetCaster()
+		-- local parent = self:GetParent()
 		
-		self.tick_rate = 0.5
+		-- self.tick_rate = 0.5
 
-		self.radius = 350
+		-- self.radius = 350
 
-		self.damage = caster:GetStrength() * self.tick_rate
+		-- self.damage = caster:GetStrength() * self.tick_rate
 
-		self.blindness = 25
+		-- self.blindness = 25
 
-		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_rot.vpcf", PATTACH_POINT, caster)
-					ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
-					ParticleManager:SetParticleControl(nfx, 1, Vector(self.radius, self.radius, self.radius))
-		self:AttachEffect(nfx)
+		-- local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_rot.vpcf", PATTACH_POINT, caster)
+					-- ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
+					-- ParticleManager:SetParticleControl(nfx, 1, Vector(self.radius, self.radius, self.radius))
+		-- self:AttachEffect(nfx)
 
-		self:StartIntervalThink(self.tick_rate)
-	end
-end
+		-- self:StartIntervalThink(self.tick_rate)
+	-- end
+-- end
 
-function modifier_druid_bear_odor:OnIntervalThink()
-    local caster = self:GetCaster()
-    local parent = self:GetParent()
-    local ability = self:GetAbility()
+-- function modifier_druid_bear_odor:OnIntervalThink()
+    -- local caster = self:GetCaster()
+    -- local parent = self:GetParent()
+    -- local ability = self:GetAbility()
 
-    local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.radius)
-    for _,enemy in pairs(enemies) do
-    	enemy:Blind(self.blindness, self:GetAbility(), caster, self.tick_rate)
-    	ability:DealDamage(caster, enemy, self.damage, {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
-    end
+    -- local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.radius)
+    -- for _,enemy in pairs(enemies) do
+    	-- enemy:Blind(self.blindness, self:GetAbility(), caster, self.tick_rate)
+    	-- ability:DealDamage(caster, enemy, self.damage, {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
+    -- end
     
-    self.damage = caster:GetStrength() * self.tick_rate
-end
+    -- self.damage = caster:GetStrength() * self.tick_rate
+-- end
 
-function modifier_druid_bear_odor:IsHidden()
-    return true
-end
+-- function modifier_druid_bear_odor:IsHidden()
+    -- return true
+-- end
 
-function modifier_druid_bear_odor:IsPurgable()
-    return false
-end
+-- function modifier_druid_bear_odor:IsPurgable()
+    -- return false
+-- end
 
-function modifier_druid_bear_odor:IsPurgeException()
-    return false
-end
+-- function modifier_druid_bear_odor:IsPurgeException()
+    -- return false
+-- end

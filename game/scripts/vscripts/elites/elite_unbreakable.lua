@@ -22,3 +22,11 @@ end
 function modifier_elite_unbreakable:GetPriority()
 	return MODIFIER_PRIORITY_HIGH
 end
+
+function modifier_elite_unbreakable:GetEffectName()
+	return "particles/units/elite_warning_defense_overhead.vpcf"
+end
+
+function modifier_elite_unbreakable:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end

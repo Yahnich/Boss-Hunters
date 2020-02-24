@@ -7,8 +7,11 @@ end
 modifier_elite_parrying_buff = class({})
 LinkLuaModifier("modifier_elite_parrying_buff", "elites/elite_parrying", LUA_MODIFIER_MOTION_NONE)
 
-function modifier_elite_parrying:OnCreated() 
+function modifier_elite_parrying_buff:OnCreated() 
 	self.reflect = self:GetSpecialValueFor("reflect")
+	if IsServer() then
+		self:AddEffect( ParticleManager:CreateParticle( "particles/units/elite_warning_defense_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() ) )
+	end
 end
 
 function modifier_elite_parrying_buff:DeclareFunctions()

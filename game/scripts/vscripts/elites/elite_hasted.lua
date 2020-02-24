@@ -9,6 +9,9 @@ LinkLuaModifier("modifier_elite_hasted", "elites/elite_hasted", LUA_MODIFIER_MOT
 
 function modifier_elite_hasted:OnCreated()
 	self.ms = self:GetSpecialValueFor("movespeed")
+	if IsServer() then
+		self:AddEffect( ParticleManager:CreateParticle( "particles/units/elite_warning_special_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() ) )
+	end
 end
 
 function modifier_elite_hasted:OnRefresh()

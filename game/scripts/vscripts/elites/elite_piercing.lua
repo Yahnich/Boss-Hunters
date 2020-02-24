@@ -28,6 +28,13 @@ if IsServer() then
 	end
 end
 
+function modifier_elite_piercing:GetEffectName()
+	return "particles/units/elite_warning_offense_overhead.vpcf"
+end
+
+function modifier_elite_piercing:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
 
 modifier_elite_piercing_buff = class({})
 LinkLuaModifier("modifier_elite_piercing_buff", "elites/elite_piercing", LUA_MODIFIER_MOTION_NONE)

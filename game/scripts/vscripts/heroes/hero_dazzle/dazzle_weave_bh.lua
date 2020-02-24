@@ -12,6 +12,7 @@ function modifier_dazzle_weave_bh_handler:OnCreated()
 	self.mana_cost = self:GetTalentSpecialValueFor("mana_cost")
 	self.radius = self:GetTalentSpecialValueFor("radius")
 	self.duration = self:GetTalentSpecialValueFor("duration")
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_dazzle_weave_1")
 	if IsServer() then
 		self:SetStackCount( self.mana_cost )
 	end
@@ -34,13 +35,13 @@ function modifier_dazzle_weave_bh_handler:OnAbilityFullyCast(params)
 		caster:EmitSound("Hero_Dazzle.Weave")
 		for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( casterPos, self.radius ) ) do
 			ally:AddNewModifier( caster, ability, "modifier_dazzle_weave_bh", {duration = self.duration} )
-			if not caster:HasScepter() then
+			if not self.talent1 then
 				break
 			end
 		end
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( casterPos, self.radius ) ) do
 			enemy:AddNewModifier( caster, ability, "modifier_dazzle_weave_bh", {duration = self.duration} )
-			if not caster:HasScepter() then
+			if not self.talent1 then
 				break
 			end
 		end
@@ -60,7 +61,6 @@ LinkLuaModifier("modifier_dazzle_weave_bh", "heroes/hero_dazzle/dazzle_weave_bh"
 
 function modifier_dazzle_weave_bh:OnCreated()
 	self.armor = self:GetTalentSpecialValueFor("armor_per_second")
-	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_dazzle_weave_1")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_dazzle_weave_2")
 	self.hAmp = self:GetCaster():FindTalentValue("special_bonus_unique_dazzle_weave_2")
 	if IsServer() then
@@ -77,7 +77,7 @@ function modifier_dazzle_weave_bh:IsDebuff()
 end
 
 function modifier_dazzle_weave_bh:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_EVENT_ON_ABILITY_EXECUTED}
+	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
 end
 
 function modifier_dazzle_weave_bh:GetModifierPhysicalArmorBonus()
@@ -85,12 +85,6 @@ function modifier_dazzle_weave_bh:GetModifierPhysicalArmorBonus()
 		return self.armor * self:GetStackCount()
 	else
 		return self.armor * self:GetStackCount() * -1
-	end
-end
-
-function modifier_dazzle_weave_bh:OnAbilityExecuted(params)
-	if self.talent1 and params.unit == self:GetCaster() and params.ability == "dazzle_shadow_wave_bh" then
-		params.ability:ApplyEffects( self:GetParent() )
 	end
 end
 
@@ -113,6 +107,10 @@ function modifier_dazzle_weave_bh:GetEffectName()
 	else
 		return "particles/units/heroes/hero_dazzle/dazzle_armor_enemy.vpcf"
 	end
+end
+
+function modifier_dazzle_weave_bh:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
 end
 
 function modifier_dazzle_weave_bh:StatusEffectPriority()

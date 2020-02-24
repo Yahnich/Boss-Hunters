@@ -20,3 +20,11 @@ end
 function modifier_elite_accurate:GetPriority()
 	return MODIFIER_PRIORITY_LOW
 end
+
+function modifier_elite_accurate:GetEffectName()
+	return "particles/units/elite_warning_offense_overhead.vpcf"
+end
+
+function modifier_elite_accurate:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end

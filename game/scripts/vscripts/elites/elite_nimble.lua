@@ -17,6 +17,7 @@ if IsServer() then
 	function modifier_elite_nimble:OnCreated()
 		self.duration = self:GetSpecialValueFor("duration")
 		self:StartIntervalThink(0.2)
+		self:AddEffect( ParticleManager:CreateParticle( "particles/units/elite_warning_defense_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() ) )
 	end
 	
 	function modifier_elite_nimble:OnIntervalThink()
@@ -47,7 +48,7 @@ if IsServer() then
 	end
 end
 
-function modifier_item_protection_sphere_block:DeclareFunctions()
+function modifier_elite_nimble_buff:DeclareFunctions()
 	return {MODIFIER_PROPERTY_ABSORB_SPELL, MODIFIER_PROPERTY_EVASION_CONSTANT }
 end
 
@@ -55,7 +56,7 @@ function modifier_elite_nimble_buff:GetModifierEvasion_Constant()
 	return 100
 end
 
-function modifier_item_protection_sphere_block:GetAbsorbSpell(params)
+function modifier_elite_nimble_buff:GetAbsorbSpell(params)
 	if self:GetDuration() == -1 and params.ability:GetCaster():GetTeam() ~= self:GetParent():GetTeam() then
 		ParticleManager:FireParticle("particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		return 1

@@ -95,8 +95,9 @@ function Precache( context )
 	
 	PrecacheResource("particle", "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
-	PrecacheResource("particle", "particles/elite_warning.vpcf", context)
-	PrecacheResource("particle", "particles/elite_overhead.vpcf", context)
+	PrecacheResource("particle", "particles/units/elite_warning_defense_overhead.vpcf", context)
+	PrecacheResource("particle", "particles/units/elite_warning_special_overhead.vpcf", context)
+	PrecacheResource("particle", "particles/units/elite_warning_offense_overhead.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_frost.vpcf", context)
 	
 	PrecacheResource("particle", "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf", context)
@@ -924,7 +925,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 		
 		hero:SetDayTimeVisionRange(hero:GetDayTimeVisionRange())
 		hero:SetNightTimeVisionRange(hero:GetNightTimeVisionRange())
-		hero:SetBaseMoveSpeed( hero:GetBaseMoveSpeed() - 35 )
+		hero:SetBaseMoveSpeed( hero:GetBaseMoveSpeed() - 25 )
 	end)
 end
 

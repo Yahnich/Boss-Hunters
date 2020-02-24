@@ -17,6 +17,7 @@ if IsServer() then
 	function modifier_elite_disarming:OnCreated()
 		self.duration = self:GetSpecialValueFor("duration")
 		self:StartIntervalThink(0.2)
+		self:AddEffect( ParticleManager:CreateParticle( "particles/units/elite_warning_defense_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() ) )
 	end
 	
 	function modifier_elite_disarming:OnIntervalThink()
@@ -47,11 +48,11 @@ if IsServer() then
 	end
 end
 
-function modifier_item_protection_sphere_block:DeclareFunctions()
+function modifier_elite_disarming_buff:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
 
-function modifier_item_protection_sphere_block:OnAttackLanded(params)
+function modifier_elite_disarming_buff:OnAttackLanded(params)
 	if params.target == self:GetParent() then
 		params.attacker:Disarm(self:GetAbility(), params.target, self.duration)
 	end

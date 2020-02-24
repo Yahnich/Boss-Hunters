@@ -12,6 +12,7 @@ if IsServer() then
 		self.lifetime = self:GetSpecialValueFor("bramble_lifetime")
 		self.delay = self:GetSpecialValueFor("bramble_rate")
 		self:StartIntervalThink( 1 )
+		self:AddEffect( ParticleManager:CreateParticle( "particles/units/elite_warning_special_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() ) )
 	end
 	
 	function modifier_elite_overgrown:OnRefresh()

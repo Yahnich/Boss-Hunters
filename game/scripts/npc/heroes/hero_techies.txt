@@ -1,17 +1,224 @@
 "DOTAAbilities"
 {
+	"tech_mine"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tech/tech_mine.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"techies_land_mines"
+		"MaxLevel"						"7"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"				"150"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"14 14 14 14 12 10 8"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"75 125 175 225 225 225"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"active_delay"					"1.75"
+				"LinkedSpecialBonus"			"special_bonus_unique_tech_mine_1"
+				"LinkedSpecialBonusField"		"value2"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"100 200 300 400 400 400"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"400"
+				"LinkedSpecialBonus"			"special_bonus_unique_tech_mine_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"lifetime"						"120"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+		}
+	}
+	"special_bonus_unique_tech_mine_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value2"				"-1"
+			}
+		}
+	}
+	"special_bonus_unique_tech_mine_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
+	"tech_stasis_mine"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tech/tech_stasis_mine.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"  
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"techies_stasis_trap"
+		"MaxLevel"						"7"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastRange"				"150"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"75 125 175 225 225 225 225"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"active_delay"				"1.75"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stun_duration"				"2 3 4 5 5 5 5"
+				"LinkedSpecialBonus"		"special_bonus_unique_tech_stasis_mine_2"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"stun_radius"				"400 400 400 400 500 600 700"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"magic_resist"				"0"
+				"LinkedSpecialBonus"		"special_bonus_unique_tech_stasis_mine_1"
+			}
+		}
+		
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_techies/techies_stasis_trap_explode.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+		}
+	}
+	"special_bonus_unique_tech_stasis_mine_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-25.0"
+			}
+		}
+	}
+	"special_bonus_unique_tech_stasis_mine_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"5.0"
+			}
+		}
+	}
 	"tech_blasting_off"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"techies_suicide"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tech/tech_blasting_off.lua"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"MaxLevel"						"7"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -34,8 +241,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"700"
-				"LinkedSpecialBonus"		"special_bonus_unique_tech_blasting_off_1"
+				"damage"					"300 400 500 600 700 800 900"
 			}
 			"02"
 			{
@@ -45,322 +251,26 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"hp_cost"					"100"
+				"hp_cost"					"50 50 50 50 40 30 20"
 			} 
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"600"
+				"radius"					"400"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"silence_duration"			"10"
-			} 		
-		}
-	}
-	"tech_drastic"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_tech/tech_drastic.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
-	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"   
-		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityTextureName"			"techies_focused_detonate"
-		"MaxLevel"						"6"
-
-		
-		// Time     
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"               "160"
-	
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"                  	"FIELD_INTEGER"
-				"damage"            			"350 575 800 1025 1250 1375"
+				"silence_duration"			"2 3 4 5 5.5 6 6.5"
 			}
-			"02"
-			{
-				"var_type"                  	"FIELD_FLOAT"
-				"delay_time" 					"2.5"
-			}		
-			"03"
-			{
-				"var_type"                  	"FIELD_FLOAT"
-				"fallout_duration"  			"20"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"max_health_damage"				"1"
-				"CalculateSpellDamageTooltip"  	"0"
-			}	
-		}
-	
-		"precache"
-		{
-			"particle"  "particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf"
-			"particle"  "particles/units/heroes/hero_pudge/pudge_rot.vpcf"
-			"particle"  "particles/units/heroes/hero_techies/techies_suicide.vpcf"
-			"particle"  "particles/units/heroes/hero_techies/techies_remote_mines_detonate.vpcf"
-			
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
-			"soundfile"	"soundevents/game_sounds_custom.vsndevts"
-		}
-	}
-	"tech_mine"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_tech/tech_mine.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
-	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
-		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityTextureName"			"techies_land_mines"
-		"MaxLevel"						"7"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"110 130 150 170 190 210 230"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
+			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"active_delay"				"1.75"
-				"LinkedSpecialBonus"		"special_bonus_unique_tech_mine_2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"100 150 200 250 300 350 400"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"400"
-			}	
-		}
-	
-		"precache"
-		{
-			"particle"  "particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf"
-			
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
-		}
-	}
-	"tech_robo_mine"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_tech/tech_robo_mine.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
-	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
-		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityTextureName"			"techies_remote_mines"
-		"MaxLevel"						"7"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30 28 26 24 22 20 18"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"active_delay"				"1.75"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"150 225 300 375 450 525 600"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"400"
-				"LinkedSpecialBonus"		"special_bonus_unique_tech_robo_mine_2"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"move_speed"				"150"
-				"LinkedSpecialBonus"		"special_bonus_unique_tech_robo_mine_1"
-			}
-		}
-	
-		"precache"
-		{
-			"particle"  "particles/units/heroes/hero_techies/techies_remote_mines_detonate.vpcf"
-			
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
-		}
-	}
-	"tech_stasis_mine"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_tech/tech_stasis_mine.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
-	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"  
-		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"techies_stasis_trap"
-		"MaxLevel"						"7"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"80 110 140 170 200 230 260"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"active_delay"				"1.75"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"2 2.5 3 3.5 4 4.5 5"
-				"LinkedSpecialBonus"		"special_bonus_unique_tech_stasis_mine_2"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"stun_radius"				"400"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"magic_resist"				"0"
-				"LinkedSpecialBonus"		"special_bonus_unique_tech_stasis_mine_1"
-			}
-		}
-	
-		"precache"
-		{
-			"particle"  "particles/units/heroes/hero_techies/techies_stasis_trap_explode.vpcf"
-			
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
-		}
-	}
-	"tech_suicide"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_tech/tech_suicide.lua"
-		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
-	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"   
-		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityTextureName"			"custom/techies_suicide_old"
-		"InnateAbility" 				"1"
-		"MaxLevel"						"1"
-		"HasScepterUpgrade"				"1"
-		"PiercesDisableReduction"		"1"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"                  	"FIELD_INTEGER"
-				"damage"            			"17"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"02"
-			{
-				"var_type"                  "FIELD_INTEGER"
-				"radius"           			"1000"
-			}
-		}
-	
-		"precache"
-		{
-			"particle"  "particles/units/heroes/hero_techies/techies_suicide.vpcf"
-			
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+				"jump_duration"				"0.75"
+			} 			
 		}
 	}
 	"special_bonus_unique_tech_blasting_off_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"5000"
-			}
-		}
-	}
-	"special_bonus_unique_tech_mine_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -379,7 +289,7 @@
 			}
 		}
 	}
-	"special_bonus_unique_tech_mine_2" 
+	"special_bonus_unique_tech_blasting_off_2" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -393,9 +303,65 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-1.75"
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
 			}
+		}
+	}
+	"tech_robo_mine"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tech/tech_robo_mine.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"techies_remote_mines"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+		"HasScepterUpgrade"				"1"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"40"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"movespeed"					"500"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"scepter_radius"			"350"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_techies/techies_remote_mines_detonate.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
 		}
 	}
 	"special_bonus_unique_tech_robo_mine_1" 
@@ -436,7 +402,70 @@
 			}
 		}
 	}
-	"special_bonus_unique_tech_stasis_mine_1" 
+	"tech_drastic"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tech/tech_drastic.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"   
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"techies_focused_detonate"
+		"MaxLevel"						"6"
+
+		
+		// Time     
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"               "160 160 160 140 120 100"
+	
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                  	"FIELD_INTEGER"
+				"damage"            			"350 575 800 900 1000 1100"
+				"LinkedSpecialBonus"			"special_bonus_unique_tech_drastic_1"
+			}
+			"02"
+			{
+				"var_type"                  	"FIELD_FLOAT"
+				"delay_time" 					"2.5"
+			}		
+			"03"
+			{
+				"var_type"                  	"FIELD_FLOAT"
+				"fallout_duration"  			"20"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"max_health_damage"				"1"
+				"CalculateSpellDamageTooltip"  	"0"
+				"LinkedSpecialBonus"			"special_bonus_unique_tech_drastic_1"
+				"LinkedSpecialBonusField"		"value2"
+			}	
+		}
+		
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf"
+			"particle"  "particles/units/heroes/hero_pudge/pudge_rot.vpcf"
+			"particle"  "particles/units/heroes/hero_techies/techies_suicide.vpcf"
+			"particle"  "particles/units/heroes/hero_techies/techies_remote_mines_detonate.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+			"soundfile"	"soundevents/game_sounds_custom.vsndevts"
+		}
+	}
+	"special_bonus_unique_tech_drastic_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -450,12 +479,17 @@
 		{
 			"01"
 			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"300"
+			}
+			"02"
+			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-25.0"
+				"value2"				"0.5"
 			}
 		}
 	}
-	"special_bonus_unique_tech_stasis_mine_2" 
+	"special_bonus_unique_tech_drastic_2" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -469,9 +503,60 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"3.0"
+				"var_type"				"FIELD_INTEGER"
+				"value"					"-40"
 			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"as"					"-80"
+			}
+		}
+	}
+	
+	//////////////////////////////////////////////////////////
+	// DEPRECATED
+	///////////////////////////////////////////////////////////
+	"tech_suicide"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tech/tech_suicide.lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"   
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"custom/techies_suicide_old"
+		"InnateAbility" 				"1"
+		"MaxLevel"						"1"
+		"HasScepterUpgrade"				"1"
+		"PiercesDisableReduction"		"1"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                  	"FIELD_INTEGER"
+				"damage"            			"17"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"02"
+			{
+				"var_type"                  "FIELD_INTEGER"
+				"radius"           			"1000"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_techies/techies_suicide.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
 		}
 	}
 }

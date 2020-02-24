@@ -27,6 +27,14 @@ function modifier_elite_plagued:OnAttackLanded(params)
 	end
 end
 
+function modifier_elite_plagued:GetEffectName()
+	return "particles/units/elite_warning_offense_overhead.vpcf"
+end
+
+function modifier_elite_plagued:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
+
 modifier_elite_plagued_debuff = class({})
 LinkLuaModifier("modifier_elite_plagued_debuff", "elites/elite_plagued", LUA_MODIFIER_MOTION_NONE)
 
@@ -46,7 +54,7 @@ function modifier_elite_plagued_debuff:OnRefresh()
 end
 
 function modifier_elite_plagued_debuff:OnIntervalThink()
-	if not self:GetCaster() or self:GetCaster():IsNull() then
+	if self or not self:GetCaster() or self:GetCaster():IsNull() then
 		self:Destroy()
 	end
 	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self.damage * self:GetStackCount(), {damage_type = DAMAGE_TYPE_MAGICAL} )

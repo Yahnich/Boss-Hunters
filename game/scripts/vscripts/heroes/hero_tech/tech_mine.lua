@@ -11,17 +11,24 @@ end
 
 function tech_mine:OnSpellStart()
 	local caster = self:GetCaster()
-
+	local position = self:GetCursorPosition()
+	
+	local duration = self:GetTalentSpecialValueFor("lifetime")
+	
 	EmitSoundOn("Hero_Techies.LandMine.Plant", caster)
+	self:PlantLandMine( position, duration )
+
+	if caster:HasTalent("special_bonus_unique_tech_mine_2") then
+		self:PlantLandMine( caster:GetAbsOrigin() + ActualRandomVector( self:GetTrueCastRange(), 25 ), duration )
+	end
+end
+
+function tech_mine:PlantLandMine( position, duration )
+	local lifetime = duration or self:GetTalentSpecialValueFor("lifetime")
 	local mine = CreateUnitByName("npc_dota_techies_land_mine", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeam())
 	mine:AddNewModifier(caster, self, "modifier_mine", {})
-	mine:AddNewModifier(caster, self, "modifier_kill", {duration = 120})
-
-	if caster:HasTalent("special_bonus_unique_tech_mine_1") then
-		local mine2 = CreateUnitByName("npc_dota_techies_land_mine", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeam())
-		mine2:AddNewModifier(caster, self, "modifier_mine", {})
-	mine:AddNewModifier(caster, self, "modifier_kill", {duration = 120})
-	end
+	mine:AddNewModifier(caster, self, "modifier_kill", {duration = lifetime})
+	return mine
 end
 
 modifier_mine = ({})

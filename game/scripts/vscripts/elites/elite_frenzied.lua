@@ -25,6 +25,13 @@ if IsServer() then
 	end
 end
 
+function modifier_elite_frenzied:GetEffectName()
+	return "particles/units/elite_warning_offense_overhead.vpcf"
+end
+
+function modifier_elite_frenzied:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
 
 modifier_elite_frenzied_buff = class({})
 LinkLuaModifier("modifier_elite_frenzied_buff", "elites/elite_frenzied", LUA_MODIFIER_MOTION_NONE)

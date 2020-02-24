@@ -18,9 +18,9 @@ function tinker_laser_ebf:OnSpellStart()
 	self:FireLaser(target)
 	
 	local hitTargets = {}
-	local FindNextUnit = function(lastTarget, targetList)
+	local FindNextUnit = function(lastTarget, hitTargets)
 		for _, unit in ipairs( self:GetCaster():FindEnemyUnitsInRadius(lastTarget:GetAbsOrigin(), self:GetTrueCastRange(), {order = FIND_CLOSEST}) ) do
-			if not targetList[unit:entindex()] then
+			if not hitTargets[unit:entindex()] then
 				return unit
 			end
 		end

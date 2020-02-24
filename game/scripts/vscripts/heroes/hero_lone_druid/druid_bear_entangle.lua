@@ -40,6 +40,7 @@ end
 modifier_druid_bear_entangle_enemy = class({})
 function modifier_druid_bear_entangle_enemy:OnCreated(table)
     if IsServer() then
+		self.damage = self:GetTalentSpecialValueFor("int_damage")/100
         EmitSoundOn("LoneDruid_SpiritBear.Entangle", self:GetParent())
 
         local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle.vpcf", PATTACH_POINT, self:GetCaster()) 
@@ -68,9 +69,9 @@ function modifier_druid_bear_entangle_enemy:OnIntervalThink()
     local damage = 0
 
     if caster:IsHero() then
-        damage = caster:GetIntellect() * (self:GetTalentSpecialValueFor("int_damage")/100)
+        damage = caster:GetIntellect() * self.damage
     elseif caster:GetOwnerEntity() then
-        damage = caster:GetOwnerEntity():GetIntellect() * (self:GetTalentSpecialValueFor("int_damage")/100)
+        damage = caster:GetOwnerEntity():GetIntellect() * self.damage
     end
 
     self:GetAbility():DealDamage(caster, parent, damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)

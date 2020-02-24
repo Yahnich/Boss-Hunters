@@ -29,6 +29,14 @@ if IsServer() then
 	end
 end
 
+function modifier_elite_breaking:GetEffectName()
+	return "particles/units/elite_warning_offense_overhead.vpcf"
+end
+
+function modifier_elite_breaking:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
+
 modifier_elite_breaking_debuff = class({})
 LinkLuaModifier("modifier_elite_breaking_debuff", "elites/elite_breaking", LUA_MODIFIER_MOTION_NONE)
 

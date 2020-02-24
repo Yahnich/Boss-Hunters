@@ -28,3 +28,10 @@ function modifier_elite_barrier:GetAbsorbSpell(params)
 	end
 end
 
+function modifier_elite_barrier:GetEffectName()
+	return "particles/units/elite_warning_defense_overhead.vpcf"
+end
+
+function modifier_elite_barrier:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end

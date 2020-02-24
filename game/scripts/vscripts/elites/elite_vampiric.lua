@@ -18,3 +18,11 @@ function modifier_elite_vampiric:OnTakeDamage(params)
 		params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
 	end
 end
+
+function modifier_elite_vampiric:GetEffectName()
+	return "particles/units/elite_warning_special_overhead.vpcf"
+end
+
+function modifier_elite_vampiric:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end

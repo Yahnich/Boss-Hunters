@@ -81,7 +81,7 @@
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"3 4 5 6 6 6 6"
 			}
-			"07"
+			"08"
 			{	
 				"var_type"						"FIELD_FLOAT"
 				"max_targets"					"2 2 2 2 4 6 8"
@@ -172,29 +172,34 @@
 		{
 			"01"
 			{	
-				"var_type"					"FIELD_FLOAT"
-				"armor_per_second"			"0.5 1 1.5 2 3 4 5"
-				"LinkedSpecialBonus"		"special_bonus_unique_dazzle_weave_2"
+				"var_type"						"FIELD_FLOAT"
+				"armor_per_second"				"0.5 1 1.5 2 3 4 5"
+				"LinkedSpecialBonus"			"special_bonus_unique_dazzle_weave_2"
 			}
 			"02"
 			{	
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"8"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"8"
 			}
 			"03"
 			{	
-				"var_type"					"FIELD_FLOAT"
-				"radius"					"1200"
+				"var_type"						"FIELD_FLOAT"
+				"radius"						"1200"
 			}
 			"04"
 			{	
-				"var_type"					"FIELD_FLOAT"
-				"cdr"						"10 20 30 40 40 40 40"
+				"var_type"						"FIELD_FLOAT"
+				"cdr"							"10 20 30 40 40 40 40"
 			}
 			"05"
 			{	
-				"var_type"					"FIELD_FLOAT"
-				"mana_cost"					"15 30 45 60 60 60 60"
+				"var_type"						"FIELD_FLOAT"
+				"mana_cost"						"15 30 45 60 60 60 60"
+			}
+			"06"
+			{	
+				"var_type"						"FIELD_FLOAT"
+				"scepter_duration_extension"	"3"
 			}
 		}
 	}
@@ -397,6 +402,11 @@
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"1000"
 			}
+			"03"
+			{	
+				"var_type"						"FIELD_FLOAT"
+				"scepter_duration_extension"	"3"
+			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -422,10 +432,15 @@
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"350"
 			}
-			"02"
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"dmg"					"100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"10"
 			}
 		}
 	}
@@ -444,12 +459,27 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"red"					"-50"
+				"value"					"-80"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"amp"					"50"
+				"regen"					"7"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"threshold_hp"			"40"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dispel_hp"				"65"
 			}
 		}
 	}

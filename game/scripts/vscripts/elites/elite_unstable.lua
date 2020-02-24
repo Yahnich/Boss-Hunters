@@ -58,3 +58,11 @@ if IsServer() then
 		end
 	end
 end
+
+function modifier_elite_unstable:GetEffectName()
+	return "particles/units/elite_warning_special_overhead.vpcf"
+end
+
+function modifier_elite_unstable:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end

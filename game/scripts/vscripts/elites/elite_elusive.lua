@@ -37,6 +37,14 @@ if IsServer() then
 	end
 end
 
+function modifier_elite_elusive:GetEffectName()
+	return "particles/units/elite_warning_special_overhead.vpcf"
+end
+
+function modifier_elite_elusive:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
+
 modifier_elite_elusive_fade = class({})
 LinkLuaModifier("modifier_elite_elusive_fade", "elites/elite_elusive", LUA_MODIFIER_MOTION_NONE)
 

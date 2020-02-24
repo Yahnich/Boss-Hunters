@@ -16,3 +16,11 @@ function modifier_elite_graverobber:OnDeath(params)
 		params.unit.tombstoneDisabled = true
 	end
 end
+
+function modifier_elite_graverobber:GetEffectName()
+	return "particles/units/elite_warning_special_overhead.vpcf"
+end
+
+function modifier_elite_graverobber:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end

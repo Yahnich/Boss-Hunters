@@ -1669,9 +1669,9 @@ function ParticleManager:FireRopeParticle(effect, attach, owner, target, tCP, sA
 	ParticleManager:ReleaseParticleIndex(FX)
 end
 
-function ParticleManager:ClearParticle(cFX)
+function ParticleManager:ClearParticle(cFX, bImmediate)
 	if cFX then
-		self:DestroyParticle(cFX, false)
+		self:DestroyParticle(cFX, bImmediate or false)
 		self:ReleaseParticleIndex(cFX)
 	end
 end

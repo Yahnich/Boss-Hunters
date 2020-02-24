@@ -9,6 +9,9 @@ LinkLuaModifier("modifier_elite_immortal", "elites/elite_immortal", LUA_MODIFIER
 
 function modifier_elite_immortal:OnCreated()
 	self:OnRefresh()
+	if IsServer() then
+		self:AddEffect( ParticleManager:CreateParticle( "particles/units/elite_warning_defense_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() ) )
+	end
 end
 
 function modifier_elite_immortal:OnRefresh()
@@ -29,10 +32,10 @@ function modifier_elite_immortal:GetModifierExtraHealthBonusPercentage()
 	return self.hp
 end
 
-function relicBaseClass:GetAttributes()
+function modifier_elite_immortal:GetAttributes()
 	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end
 
-function relicBaseClass:IsHidden()
+function modifier_elite_immortal:IsHidden()
 	return true
 end

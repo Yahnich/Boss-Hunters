@@ -1,6 +1,7 @@
 druid_transform = class({})
 LinkLuaModifier("modifier_druid_transform", "heroes/hero_lone_druid/druid_transform", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_druid_transform_ms", "heroes/hero_lone_druid/druid_transform", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_druid_transform_talent", "heroes/hero_lone_druid/druid_transform", LUA_MODIFIER_MOTION_NONE)
 
 function druid_transform:IsStealable()
     return false
@@ -8,6 +9,25 @@ end
 
 function druid_transform:IsHiddenWhenStolen()
     return false
+end
+
+function druid_transform:GetIntrinsicModifierName()
+	if not self:GetCaster():HasModifier("modifier_druid_transform") and self:GetCaster():HasTalent("special_bonus_unique_druid_transform_2") then
+		return "modifier_druid_transform_talent"
+	end
+end
+
+function druid_transform:OnUpgrade()
+	if not self:GetCaster():HasModifier("modifier_druid_transform") and self:GetCaster():HasTalent("special_bonus_unique_druid_transform_2") then
+		caster:AddNewModifier( caster, self, "modifier_druid_transform_talent", {} )
+	end
+end
+
+function druid_transform:OnTalentLearned(talent)
+	local caster = self:GetCaster()
+	if talent == "special_bonus_unique_druid_transform_2" and not caster:HasModifier("modifier_druid_transform") then
+		caster:AddNewModifier( caster, self, "modifier_druid_transform_talent", {} )
+	end
 end
 
 function druid_transform:GetAbilityTextureName()
@@ -45,35 +65,57 @@ function druid_transform:OnAbilityPhaseStart()
 	if caster:HasModifier("modifier_druid_transform") then
 		EmitSoundOn("Hero_LoneDruid.TrueForm.Recast", caster)
 
-    	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_lone_druid/true_form_lone_druid.vpcf", PATTACH_POINT_FOLLOW, caster)
-    				ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
-    				ParticleManager:SetParticleControlEnt(nfx, 3, caster, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
-    				ParticleManager:ReleaseParticleIndex(nfx)
+    	self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_lone_druid/true_form_lone_druid.vpcf", PATTACH_POINT_FOLLOW, caster)
+    				ParticleManager:SetParticleControlEnt(self.nfx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
+    				ParticleManager:SetParticleControlEnt(self.nfx, 3, caster, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
+    				ParticleManager:ReleaseParticleIndex(self.nfx)
     else
     	EmitSoundOn("Hero_LoneDruid.TrueForm.Cast", caster)
 
-    	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_lone_druid/lone_druid_true_form.vpcf", PATTACH_POINT_FOLLOW, caster)
-    				ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
-    				ParticleManager:SetParticleControlEnt(nfx, 3, caster, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
-    				ParticleManager:ReleaseParticleIndex(nfx)
+    	self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_lone_druid/lone_druid_true_form.vpcf", PATTACH_POINT_FOLLOW, caster)
+    				ParticleManager:SetParticleControlEnt(self.nfx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
+    				ParticleManager:SetParticleControlEnt(self.nfx, 3, caster, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
+    				ParticleManager:ReleaseParticleIndex(self.nfx)
     end
 
     return true
 end
 
+function druid_transform:OnAbilityPhaseInterrupted()
+	local caster = self:GetCaster()
+	ParticleManager:ClearParticle( self.nfx, true )
+	if caster:HasModifier("modifier_druid_transform") then
+		StopSoundOn("Hero_LoneDruid.TrueForm.Recast", caster)
+    else
+    	StopSoundOn("Hero_LoneDruid.TrueForm.Cast", caster)
+    end
+end
+
 function druid_transform:OnSpellStart()
 	local caster = self:GetCaster()
 
-	if caster:HasTalent("special_bonus_unique_druid_transform_1") then
-		caster:AddNewModifier(caster, self, "modifier_druid_transform_ms", {Duration = 2})
-	end
+	-- if caster:HasTalent("special_bonus_unique_druid_transform_1") then
+		-- caster:AddNewModifier(caster, self, "modifier_druid_transform_ms", {Duration = 2})
+	-- end
 
 	if caster:HasModifier("modifier_druid_transform") then
 		caster:StartGesture(ACT_DOTA_TELEPORT_END)
 		caster:RemoveModifierByName("modifier_druid_transform")
+		StopSoundOn("Hero_LoneDruid.TrueForm.Recast", caster)
+		if caster:HasTalent("special_bonus_unique_druid_transform_2") then
+			caster:AddNewModifier( self:GetCaster(), self, "modifier_druid_transform_talent", {} )
+		end
 	else
 		caster:AddNewModifier(caster, self, "modifier_druid_transform", {})
+		StopSoundOn("Hero_LoneDruid.TrueForm.Cast", caster)
+		if caster:HasTalent("special_bonus_unique_druid_transform_2") then
+			caster:RemoveModifierByName( "modifier_druid_transform_talent" )
+		end
 	end
+	for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), -1 ) ) do
+		ally:RemoveModifierByName("modifier_druid_spirit_link_buff")
+	end
+	ParticleManager:ClearParticle( self.nfx, true )
 end
 
 modifier_druid_transform = class({})
@@ -91,14 +133,12 @@ function modifier_druid_transform:OnCreated(table)
 		--So we can revert back correctly
 		self.attackCapability = DOTA_UNIT_CAP_RANGED_ATTACK
 		self.primaryAttribute = DOTA_ATTRIBUTE_AGILITY
-		self.bat = 1.7 --Default Lone Druid base attack time
 
-		local BAT = self:GetTalentSpecialValueFor("bat")
-		parent:SetBaseAttackTime(BAT)
+		self.bat = self:GetTalentSpecialValueFor("bat")
 
-		if not self:GetCaster():HasTalent("special_bonus_unique_druid_transform_2") then
-			parent:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
-		end
+		-- if not self:GetCaster():HasTalent("special_bonus_unique_druid_transform_2") then
+			-- parent:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
+		-- end
 
 		parent:SetPrimaryAttribute(DOTA_ATTRIBUTE_STRENGTH)
 	end
@@ -107,9 +147,7 @@ end
 function modifier_druid_transform:OnRemoved()
 	if IsServer() then
 		local parent = self:GetParent()
-
-		parent:SetBaseAttackTime(self.bat)
-
+		
 		parent:SetAttackCapability(self.attackCapability)
 		parent:SetPrimaryAttribute(self.primaryAttribute)
 	end
@@ -142,6 +180,10 @@ end
 
 function modifier_druid_transform:GetModifierAttackRangeOverride()
 	return self.attackRange
+end
+
+function modifier_druid_transform:GetBaseAttackTime_BonusPercentage()
+	return self.bat
 end
 
 function modifier_druid_transform:IsDebuff()
@@ -183,5 +225,53 @@ function modifier_druid_transform_ms:IsDebuff()
 end
 
 function modifier_druid_transform_ms:IsPurgable()
+	return true
+end
+
+modifier_druid_transform_talent = class({})
+function modifier_druid_transform_talent:OnCreated(table)
+	self.bonus_hp = self:GetTalentSpecialValueFor("bonus_hp")
+	self.bat = self:GetTalentSpecialValueFor("bat")
+end
+
+function modifier_druid_transform_talent:OnRefresh(table)
+	self.bonus_hp = self:GetTalentSpecialValueFor("bonus_hp")
+	self.bat = self:GetTalentSpecialValueFor("bat")
+end
+
+function modifier_druid_transform_talent:DeclareFunctions()
+	local funcs = {	MODIFIER_PROPERTY_HEALTH_BONUS}
+	return funcs
+end
+
+function modifier_druid_transform_talent:GetModifierHealthBonus()
+	return self.bonus_hp
+end
+
+function modifier_druid_transform_talent:GetBaseAttackTime_BonusPercentage()
+	return self.bat
+end
+
+function modifier_druid_transform_talent:IsDebuff()
+	return false
+end
+
+function modifier_druid_transform_talent:IsHidden()
+	return true
+end
+
+function modifier_druid_transform_talent:RemoveOnDeath()
+	return false
+end
+
+function modifier_druid_transform_talent:IsPurgable()
+	return false
+end
+
+function modifier_druid_transform_talent:IsPurgeException()
+	return false
+end
+
+function modifier_druid_transform_talent:IsHidden()
 	return true
 end
