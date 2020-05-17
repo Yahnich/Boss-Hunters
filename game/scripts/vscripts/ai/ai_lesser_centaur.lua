@@ -26,7 +26,7 @@ function AIThink(thisEntity)
 					break
 				end
 			end
-			if target and CalculateDistance( target, thisEntity ) < CalculateDistance( greater, thisEntity ) * 3 then
+			if (target and not greater) or (target and greater and CalculateDistance( target, thisEntity ) < CalculateDistance( greater, thisEntity ) * 3) then
 				if AICore:BeingAttacked( thisEntity ) >= RandomInt(1, 3) then
 					AICore:BeAHugeCoward( thisEntity, 600 )
 					return 600 / thisEntity:GetIdealSpeed()

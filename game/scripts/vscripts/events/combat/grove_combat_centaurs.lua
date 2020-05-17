@@ -2,7 +2,7 @@ local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
 	self.bigCentaur = 1
 	self.smallCentaur = RoundManager:GetCurrentRaidTier() + 1 
-	self.enemiesToSpawn = self.bigCentaur + self.smallCentaur
+	self.enemiesToSpawn = self.bigCentaur
 	self.eventHandler = Timers:CreateTimer(3, function()
 		if self.bigCentaur > 0 then
 			local spawn = CreateUnitByName("npc_dota_boss_greater_centaur", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)

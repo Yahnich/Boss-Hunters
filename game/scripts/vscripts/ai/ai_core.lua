@@ -298,8 +298,10 @@ end
 
 function AICore:RunToRandomPosition( entity, spasticness, bAggro )
 	local position = entity:GetAbsOrigin() + RandomVector( entity:GetIdealSpeed() * 10 )
-	while not GridNav:CanFindPath( entity:GetAbsOrigin(), position ) do
+	local maxPasses = 20
+	while not GridNav:CanFindPath( entity:GetAbsOrigin(), position ) and maxPasses > 0 do
 		position = entity:GetAbsOrigin() + RandomVector( entity:GetIdealSpeed() * 10 )
+		maxPasses = maxPasses - 1
 	end
 	local order = DOTA_UNIT_ORDER_MOVE_TO_POSITION
 	if bAggro and entity:GetAttackCapability() ~= DOTA_UNIT_CAP_NO_ATTACK then order = DOTA_UNIT_ORDER_ATTACK_MOVE end
