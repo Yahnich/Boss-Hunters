@@ -6,7 +6,7 @@ end
 
 function sniper_shrapnel_bh:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
-    if self:GetCaster():HasTalent("special_bonus_unique_sniper_shrapnel_bh_2") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_sniper_shrapnel_bh_2") end
+    -- if self:GetCaster():HasTalent("special_bonus_unique_sniper_shrapnel_bh_2") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_sniper_shrapnel_bh_2") end
     return cooldown
 end
 

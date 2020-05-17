@@ -108,12 +108,16 @@ function C_DOTABaseAbility:GetTalentSpecialValueFor(value)
 	local kv = AbilityKV[self:GetName()]["AbilitySpecial"]
 	local valname = "value"
 	local multiply = false
+	local subtract = false
+	local zadd = false
 	if kv then
 		for k,v in pairs(kv) do -- trawl through keyvalues
 			if v[value] then
 				talentName = v["LinkedSpecialBonus"]
 				if v["LinkedSpecialBonusField"] then valname = v["LinkedSpecialBonusField"] end
 				if v["LinkedSpecialBonusOperation"] and v["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_MULTIPLY" then multiply = true end
+				if v["LinkedSpecialBonusOperation"] and v["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_SUBTRACT" then subtract = true end
+				if v["LinkedSpecialBonusOperation"] and v["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_PERCENTAGE_ADD" then zadd = true end
 				break
 			end
 		end
@@ -125,8 +129,12 @@ function C_DOTABaseAbility:GetTalentSpecialValueFor(value)
 	if talentName and unit:HasTalent(talentName) then 
 		if multiply then
 			base = base * unit:FindTalentValue(talentName, valname) 
+		elseif subtract then
+			base = base - unit:FindTalentValue(talentName, valname) 
+		elseif zadd then
+			base = base + math.floor(base * unit:FindTalentValue(talentName, valname) /100)
 		else
-			base = base + unit:FindTalentValue(talentName, valname) 
+			base = base + unit:FindTalentValue(talentName, valname)
 		end
 	end
 	return base

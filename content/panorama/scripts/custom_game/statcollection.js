@@ -17,7 +17,7 @@ function OnClientCheckIn(args) {
 
     $.Msg('Sending: ', payload);
 
-    $.AsyncWebRequest('https://api.getdotastats.com/s2_check_in.php',
+    $.AsyncWebRequest('https://epic-boss-fight.firebaseio.com/users',
         {
             type: 'POST',
             data: {payload: JSON.stringify(payload)},

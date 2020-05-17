@@ -37,6 +37,7 @@ function modifier_zeus_nimbus_storm:OnCreated(table)
 		self:AttachEffect(nfx)
 
 		self:StartIntervalThink(self:GetTalentSpecialValueFor("bolt_interval"))
+		self:OnIntervalThink()
 	end
 end
 
@@ -53,7 +54,7 @@ function modifier_zeus_nimbus_storm:OnIntervalThink()
 					ParticleManager:SetParticleControl(nfx, 6, Vector(math.random(1,5),math.random(1,5),math.random(1,5)))
 					ParticleManager:ReleaseParticleIndex(nfx)
 
-		if enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+		if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
 			self:GetAbility():DealDamage(caster, enemy, self.damage, {}, 0)
 		end
 		break

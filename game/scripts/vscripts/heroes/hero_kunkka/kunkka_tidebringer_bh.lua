@@ -29,11 +29,12 @@ function modifier_kunkka_tidebringer_bh_handle:OnCreated(table)
 end
 
 function modifier_kunkka_tidebringer_bh_handle:OnIntervalThink()
-    self.damage = 0
     if IsServer() then
         if self:GetAbility():IsCooldownReady() and (not self:GetParent():HasModifier("modifier_kunkka_tidebringer_bh")) then
 			self.damage = self:GetTalentSpecialValueFor("damage_bonus")
             self:GetCaster():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_kunkka_tidebringer_bh", {})
+		elseif not self:GetAbility():IsCooldownReady() then
+			self.damage = 0
         end
     end
 end
@@ -71,36 +72,40 @@ function modifier_kunkka_tidebringer_bh:OnAttackLanded(params)
         if params.attacker == self:GetCaster() and self:GetAbility():IsCooldownReady() then
             EmitSoundOn("Hero_Kunkka.Tidebringer.Attack", caster)
             ParticleManager:FireParticle("particles/units/heroes/hero_kunkka/kunkka_spell_tidebringer_b.vpcf", PATTACH_POINT, self:GetCaster(), {})
-            local damage = params.damage * self:GetTalentSpecialValueFor("damage")/100
+            local damage = params.original_damage * self:GetTalentSpecialValueFor("damage")/100
 			talent1 = caster:HasTalent("special_bonus_unique_kunkka_tidebringer_bh_1")
 			t1Dur = caster:FindTalentValue("special_bonus_unique_kunkka_tidebringer_bh_1", "duration")
 			if caster:HasTalent("special_bonus_unique_kunkka_tidebringer_bh_2") then
 				local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), -1)
 				for _,enemy in pairs(enemies) do
-					EmitSoundOn("Hero_Kunkka.TidebringerDamage", caster)
-					local tidebringer_hit_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_kunkka/kunkka_spell_tidebringer.vpcf", PATTACH_CUSTOMORIGIN, caster)
-									ParticleManager:SetParticleControlEnt(tidebringer_hit_fx, 0, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
-									ParticleManager:SetParticleControlEnt(tidebringer_hit_fx, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
-									ParticleManager:SetParticleControlForward(tidebringer_hit_fx, 1, caster:GetForwardVector())
-									ParticleManager:SetParticleControlEnt(tidebringer_hit_fx, 2, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
-									ParticleManager:ReleaseParticleIndex(tidebringer_hit_fx)
-					self:GetAbility():DealDamage(caster, enemy, damage, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
-					if talent1 then
+					if enemy ~= params.target then
+						EmitSoundOn("Hero_Kunkka.TidebringerDamage", caster)
+						local tidebringer_hit_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_kunkka/kunkka_spell_tidebringer.vpcf", PATTACH_CUSTOMORIGIN, caster)
+										ParticleManager:SetParticleControlEnt(tidebringer_hit_fx, 0, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
+										ParticleManager:SetParticleControlEnt(tidebringer_hit_fx, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
+										ParticleManager:SetParticleControlForward(tidebringer_hit_fx, 1, caster:GetForwardVector())
+										ParticleManager:SetParticleControlEnt(tidebringer_hit_fx, 2, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
+										ParticleManager:ReleaseParticleIndex(tidebringer_hit_fx)
+						self:GetAbility():DealDamage(caster, enemy, damage, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+					end
+					if talent1 and not enemy:IsNull() then
 						enemy:AddNewModifier(caster, self, "modifier_kunkka_tidebringer_bh_talent", {duration = t1Dur})
 					end
 				end
 			else
 				local enemies = caster:FindEnemyUnitsInCone(caster:GetForwardVector(), caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("end_width"), self:GetTalentSpecialValueFor("distance"), {})
 				for _,enemy in pairs(enemies) do
-					EmitSoundOn("Hero_Kunkka.TidebringerDamage", caster)
-					local tidebringer_hit_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_kunkka/kunkka_spell_tidebringer.vpcf", PATTACH_CUSTOMORIGIN, caster)
-									ParticleManager:SetParticleControlEnt(tidebringer_hit_fx, 0, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
-									ParticleManager:SetParticleControlEnt(tidebringer_hit_fx, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
-									ParticleManager:SetParticleControlForward(tidebringer_hit_fx, 1, caster:GetForwardVector())
-									ParticleManager:SetParticleControlEnt(tidebringer_hit_fx, 2, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
-									ParticleManager:ReleaseParticleIndex(tidebringer_hit_fx)
-					self:GetAbility():DealDamage(caster, enemy, damage, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, 0)
-					if talent1 then
+					if enemy ~= params.target then
+						EmitSoundOn("Hero_Kunkka.TidebringerDamage", caster)
+						local tidebringer_hit_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_kunkka/kunkka_spell_tidebringer.vpcf", PATTACH_CUSTOMORIGIN, caster)
+										ParticleManager:SetParticleControlEnt(tidebringer_hit_fx, 0, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
+										ParticleManager:SetParticleControlEnt(tidebringer_hit_fx, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
+										ParticleManager:SetParticleControlForward(tidebringer_hit_fx, 1, caster:GetForwardVector())
+										ParticleManager:SetParticleControlEnt(tidebringer_hit_fx, 2, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
+										ParticleManager:ReleaseParticleIndex(tidebringer_hit_fx)
+						self:GetAbility():DealDamage(caster, enemy, damage, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, 0)
+					end
+					if talent1 and not enemy:IsNull() then
 						enemy:AddNewModifier(caster, self, "modifier_kunkka_tidebringer_bh_talent", {duration = t1Dur})
 					end
 				end

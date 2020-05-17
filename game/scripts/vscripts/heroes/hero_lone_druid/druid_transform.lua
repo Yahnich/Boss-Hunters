@@ -19,7 +19,7 @@ end
 
 function druid_transform:OnUpgrade()
 	if not self:GetCaster():HasModifier("modifier_druid_transform") and self:GetCaster():HasTalent("special_bonus_unique_druid_transform_2") then
-		caster:AddNewModifier( caster, self, "modifier_druid_transform_talent", {} )
+		self:GetCaster():AddNewModifier( self:GetCaster(), self, "modifier_druid_transform_talent", {} )
 	end
 end
 
@@ -131,13 +131,13 @@ function modifier_druid_transform:OnCreated(table)
 		local parent = self:GetParent()
 
 		--So we can revert back correctly
-		self.attackCapability = DOTA_UNIT_CAP_RANGED_ATTACK
+		self.attackCapability = parent:GetAttackCapability()
 		self.primaryAttribute = DOTA_ATTRIBUTE_AGILITY
 
 		self.bat = self:GetTalentSpecialValueFor("bat")
 
 		-- if not self:GetCaster():HasTalent("special_bonus_unique_druid_transform_2") then
-			-- parent:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
+		parent:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
 		-- end
 
 		parent:SetPrimaryAttribute(DOTA_ATTRIBUTE_STRENGTH)

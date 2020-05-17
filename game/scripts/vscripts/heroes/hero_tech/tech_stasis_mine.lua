@@ -1,7 +1,6 @@
 tech_stasis_mine = class({})
 LinkLuaModifier( "modifier_stasis_mine", "heroes/hero_tech/tech_stasis_mine.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_stasis_mine_mr", "heroes/hero_tech/tech_stasis_mine.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_stasis_mine_root", "heroes/hero_tech/tech_stasis_mine.lua", LUA_MODIFIER_MOTION_NONE )
+
 
 function tech_stasis_mine:IsStealable()
 	return true
@@ -19,33 +18,69 @@ function tech_stasis_mine:OnSpellStart()
 	local caster = self:GetCaster()
 
 	EmitSoundOn("Hero_Techies.StasisTrap.Plant", caster)
-	local mine = CreateUnitByName("npc_dota_techies_stasis_trap", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeam())
-	mine:AddNewModifier(caster, self, "modifier_stasis_mine", {})
-	mine:AddNewModifier(caster, self, "modifier_kill", {duration = 120})
+	local mine = CreateUnitByName("npc_dota_techies_stasis_trap", self:GetCursorPosition(), true, caster, caster, caster:GetTeam())
+	if caster:HasTalent("special_bonus_unique_tech_stasis_mine_1") then
+		mine:AddNewModifier(caster, self, "modifier_stasis_emp", {})
+		mine:AddNewModifier(caster, self, "modifier_kill", {duration = self:GetTalentSpecialValueFor("active_delay") + self:GetTalentSpecialValueFor("stun_duration")+0.2})
+	else
+		mine:AddNewModifier(caster, self, "modifier_stasis_mine", {})
+		mine:AddNewModifier(caster, self, "modifier_kill", {duration = 120})
+	end
 end
 
-modifier_stasis_mine_root = class({})
+modifier_stasis_emp = ({})
+LinkLuaModifier( "modifier_stasis_emp", "heroes/hero_tech/tech_stasis_mine.lua", LUA_MODIFIER_MOTION_NONE )
 
-function modifier_stasis_mine_root:GetStatusEffectName()
-	return "particles/status_fx/status_effect_techies_stasis.vpcf"
+function modifier_stasis_emp:OnCreated(table)
+	if IsServer() then
+		local caster = self:GetCaster()
+		self.damage = caster:FindTalentValue("special_bonus_unique_tech_stasis_mine_1")
+		self.duration = caster:FindTalentValue("special_bonus_unique_tech_stasis_mine_1", "duration")
+		self.tick = caster:FindTalentValue("special_bonus_unique_tech_stasis_mine_1", "tick")
+		self.radius = self:GetTalentSpecialValueFor("stun_radius")
+		self.delay = self:GetTalentSpecialValueFor("active_delay")
+		Timers:CreateTimer(self.delay, function()
+			self:StartIntervalThink(self.tick)
+		end)
+	end	
 end
 
-function modifier_stasis_mine_root:StatusEffectPriority()
-	return 5
+function modifier_stasis_emp:OnIntervalThink()
+	local caster = self:GetCaster()
+	local parent = self:GetParent()
+	local ability = self:GetAbility()
+	local enemies = self:GetCaster():FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.radius)
+	for _,enemy in ipairs(enemies) do
+		if not enemy:TriggerSpellAbsorb( ability ) then
+			enemy:Paralyze(ability, caster, self.duration )
+			ability:DealDamage( caster, enemy, self.damage, {damage_type = DAMAGE_TYPE_MAGICAL} )
+		end
+	end
+	StopSoundOn("Hero_Techies.StasisTrap.Plant", self:GetCaster())
+	EmitSoundOn("Hero_Techies.StasisTrap.Stun", parent)
+	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_techies/techies_stasis_trap_explode.vpcf", PATTACH_POINT, self:GetCaster())
+	ParticleManager:SetParticleControl(nfx, 0, parent:GetAbsOrigin())
+	ParticleManager:SetParticleControl(nfx, 1, Vector(self.radius, self.radius, self.radius))
+	ParticleManager:SetParticleControl(nfx, 3, parent:GetAbsOrigin())
+	Timers:CreateTimer(0.5, function()
+		ParticleManager:ClearParticle(nfx, false)
+	end)
 end
 
 
-function modifier_stasis_mine_root:CheckState()
-	local state = { [MODIFIER_STATE_ROOTED] = true,
-					[MODIFIER_STATE_INVISIBLE] = false}
+function modifier_stasis_emp:CheckState()
+	local state = { [MODIFIER_STATE_UNSELECTABLE] = true,
+					[MODIFIER_STATE_INVISIBLE] = true,
+					[MODIFIER_STATE_INVULNERABLE] = true,
+					[MODIFIER_STATE_UNTARGETABLE] = true,
+					[MODIFIER_STATE_ROOTED] = true,
+					[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+					[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
 	return state
 end
 
-function modifier_stasis_mine_root:IsPurgable()
-	return true
-end
-
 modifier_stasis_mine = ({})
+LinkLuaModifier( "modifier_stasis_mine", "heroes/hero_tech/tech_stasis_mine.lua", LUA_MODIFIER_MOTION_NONE )
 function modifier_stasis_mine:OnCreated(table)
 	if IsServer() then
 		Timers:CreateTimer(self:GetTalentSpecialValueFor("active_delay"), function()
@@ -96,20 +131,4 @@ function modifier_stasis_mine:CheckState()
 					[MODIFIER_STATE_NO_HEALTH_BAR] = true,
 					[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
 	return state
-end
-
-modifier_stasis_mine_mr = ({})
-function modifier_stasis_mine_mr:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS
-	}
-	return funcs
-end
-
-function modifier_stasis_mine_mr:GetModifierMagicalResistanceBonus()
-	return self:GetTalentSpecialValueFor("magic_resist")	
-end
-
-function modifier_stasis_mine_mr:IsDebuff()
-	return true	
 end

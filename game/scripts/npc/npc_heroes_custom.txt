@@ -130,7 +130,7 @@
 	    "Ability1"        "axe_forced_shout"
 	    "Ability2"        "axe_blood_hunger" 
 	    "Ability3"        "axe_cleave_strike"
-	    "Ability4"        "axe_steeled_temper"
+	    "Ability4"        "axe_force_of_will"
 	    "Ability5"        "generic_hidden" 
 	    "Ability6"        "axe_ground_pound"
 	
@@ -577,24 +577,24 @@
 	//=================================================================================================================
 	// HERO: es
 	//==t===============================================================================================================
-	"npc_dota_hero_earth_spirit_ebf"
+	"npc_dota_hero_earth_spirit_bh"
 	{
 		"override_hero"					"npc_dota_hero_earth_spirit"
-		"Ability1"						"espirit_rock_punch"
-		"Ability2"						"espirit_boulder"
-		"Ability3"						"espirit_rock_pull"
-		"Ability4"						"espirit_rock"
-		"Ability5"						"espirit_stone_rip"
-		"Ability6"						"espirit_magnetize"
+		"Ability1"						"earth_spirit_rock_punch_bh"
+		"Ability2"						"earth_spirit_boulder_bh"
+		"Ability3"						"earth_spirit_rock_pull_bh"
+		"Ability4"						"earth_spirit_rock_bh"
+		"Ability5"						"earth_spirit_stone_rip_bh"
+		"Ability6"						"earth_spirit_magnetize_bh"
 
-		"Ability10"						"special_bonus_unique_espirit_rock_punch_2"
-		"Ability11"  				    "special_bonus_unique_espirit_rock_3"
-		"Ability12"   					"special_bonus_unique_espirit_boulder_1"
-		"Ability13"						"special_bonus_unique_espirit_boulder_2"
-		"Ability14"						"special_bonus_unique_espirit_rock_pull_1"
-		"Ability15"						"special_bonus_unique_espirit_rock_punch_1"
-		"Ability16"						"special_bonus_unique_espirit_rock_1"
-		"Ability17"						"special_bonus_unique_espirit_magnetize_1"
+		"Ability10"						"special_bonus_unique_earth_spirit_rock_punch_1"
+		"Ability11"  				    "special_bonus_unique_earth_spirit_rock_punch_2"
+		"Ability12"   					"special_bonus_unique_earth_spirit_boulder_1"
+		"Ability13"						"special_bonus_unique_earth_spirit_boulder_2"
+		"Ability14"						"special_bonus_unique_earth_spirit_rock_pull_1"
+		"Ability15"						"special_bonus_unique_earth_spirit_rock_1"
+		"Ability16"						"special_bonus_unique_earth_spirit_magnetize_1"
+		"Ability17"						"special_bonus_unique_earth_spirit_rock_2"
 	}
 	//=================================================================================================================
 	// HERO: DK
@@ -1948,7 +1948,8 @@
 		"Ability1"				"snapfire_scatterblast_lua"
 		"Ability2"				"snapfire_firesnap_cookie_lua"
 		"Ability3"				"snapfire_lil_shredder_lua"
-		//"Ability4"				""
+		"Ability4"				"generic_hidden"
+		"Ability5"				"generic_hidden"
 		"Ability6"				"snapfire_mortimer_kisses_lua"
 
 		"Ability10"		"special_bonus_unique_snapfire_scatterblast_lua_1"
@@ -2472,6 +2473,7 @@
 		"Ability1"						"witch_doctor_paralyzing_cask_bh"
 		"Ability2"						"witch_doctor_voodoo_restoration_bh"
 		"Ability3"						"witch_doctor_maledict_bh"
+		"Ability4"						"witch_doctor_marasa_mirror"
 		"Ability6"						"witch_doctor_death_ward_bh"
 		
 		"Ability10"						"special_bonus_unique_witch_doctor_paralyzing_cask_1"

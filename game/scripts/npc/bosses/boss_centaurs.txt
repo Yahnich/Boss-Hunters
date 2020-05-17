@@ -49,7 +49,22 @@
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"speed"							"550"
+				"speed"							"800"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"ms_boost"						"100"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"buff_duration"					"10"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun_duration"					"5 3"
 			}
 		}
 	}
@@ -163,7 +178,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"dmg_red"					"15 25"
+				"dmg_red"					"20 30"
 			}
 			"02"
 			{

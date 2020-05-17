@@ -470,8 +470,9 @@ function RoundManager:EndEvent(bWonRound)
 			end
 		end
 		
-		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-			hero:Dispel(hero, true)
+		for _, unit in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_FRIENDLY, flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_DEAD + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD}) ) do
+			unit:Dispel(unit, true)
+			unit:SetThreat( 0 )
 		end
 		
 		local clearPeriod = 3
@@ -622,6 +623,11 @@ end
 function RoundManager:GameIsFinished(bWon)
 	local GameFinishCatch = function()
 		EventManager:FireEvent("boss_hunters_game_finished")
+		-- Register Statistics for all heroes
+		for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
+			RoundManager:RegisterStatsForHero( hero, bWon )
+		end
+		-- end registering
 		if bWon then
 			self.prepTimer = 30
 			self.ng = false
@@ -665,6 +671,77 @@ function RoundManager:GameIsFinished(bWon)
 	if not status  and not self.gameHasBeenBroken then
 		SendErrorReport(err, self)
 	end
+end
+
+function RoundManager:RegisterStatsForHero( hero, bWon )
+	-----------------------------------------------------------------------
+	-----------------------------------------------------------------------
+	-- REGISTER NAIVE ASS STATISTICS
+	-----------------------------------------------------------------------
+	-----------------------------------------------------------------------
+	local statSettings = LoadKeyValues("scripts/vscripts/statcollection/settings.kv")
+	local AUTH_KEY = statSettings.modID
+	local SERVER_LOCATION = statSettings.serverLocation
+	local heroName = hero:GetUnitName()
+	local matchId = GameRules:GetMatchID()
+	if tostring(matchId) == '0' then
+		matchId = RandomInt(1, 99999999)
+	end
+	
+
+	local packageLocation = SERVER_LOCATION..AUTH_KEY.."/"..heroName..'.json'
+	local getRequest = CreateHTTPRequestScriptVM( "GET", packageLocation)
+
+	getRequest:Send( function( result )
+		local putData = {}
+		local wins = 0
+		local HCwins = 0
+		local Cwins = 0
+		if tostring(result.Body) ~= 'null' then
+			local decoded = json.decode(result.Body)
+			wins = (decoded.wins or 0)
+			HCwins = (decoded.HCwins or 0)
+			Cwins = (decoded.Cwins or 0)
+			putData.plays = (decoded.plays or 0) + 1
+			if GameRules:GetGameDifficulty() == 4 then
+				putData.HCplays = (decoded.HCplays or 0) + 1
+			else
+				putData.Cplays = (decoded.Cplays or 0) + 1
+			end
+		else
+			putData.plays = 1
+			if GameRules:GetGameDifficulty() == 4 then
+				putData.HCplays = 1
+			else
+				putData.Cplays = 1
+			end
+		end
+		
+		if bWon then
+			wins = wins + 1
+			putData.wins = wins
+			if GameRules:GetGameDifficulty() == 4 then
+				HCwins = HCwins + 1
+				putData.HCwins = HCwins
+			else
+				HCwins = Cwins + 1
+				putData.Cwins = Cwins
+			end 
+		end
+		putData.WR = tostring( math.floor((wins / putData.plays) * 10000) / 100 )..'%'
+		if GameRules:GetGameDifficulty() == 4 then
+			putData.HCWR = tostring( math.floor((HCwins / putData.HCplays) * 10000) / 100 )..'%'
+		else
+			putData.CWR = tostring( math.floor((Cwins / putData.Cplays) * 10000) / 100 )..'%'
+		end
+		local encoded = json.encode(putData)
+		PrintAll( putData )
+		local putRequest = CreateHTTPRequestScriptVM( "PUT", packageLocation)
+		putRequest:SetHTTPRequestRawPostBody("application/json", encoded)
+		putRequest:Send( function( result )
+			-- Don't do anything with the result (it c
+		end )
+	end )
 end
 
 function RoundManager:InitializeUnit(unit, bElite)

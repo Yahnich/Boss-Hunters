@@ -186,6 +186,8 @@ function RelicManager:SkipRelicSelection(userid, event)
 		end
 		RelicManager:PushCustomRelicDropsForPlayer(pID, dropTable)
 		return
+	else
+		hero:AddGold(500, true)
 	end
 	if hero:HasRelic("relic_icon_of_envy") then
 		hero:FindModifierByName("relic_icon_of_envy"):IncrementStackCount()

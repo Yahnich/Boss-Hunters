@@ -1,0 +1,239 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf26:version{26288658-411e-4f14-b698-2e1e5d00dec6} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_hLowViolenceDef = resource:"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_heal_skull_lv.vpcf"
+	m_flConstantRadius = 0.75
+	m_ConstantColor = [ 108, 254, 100, 255 ]
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_bOrientZ = true
+			m_bSuppressTint = true
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/particle/skull.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_bForceDrawInterlevedWithSiblings = true
+			m_nLOD = 1
+			m_bForceLoopingAnimation = true
+		},
+		{
+			_class = "C_OP_RenderDeferredLight"
+			m_flStartFalloff = 0.1
+			m_flAlphaScale = 30.0
+			m_flRadiusScale = 360.0
+			m_hTexture = resource:"materials/models/particle/skull.vtex"
+			m_vecColorScale = 
+			{
+				m_nType = "PVEC_TYPE_LITERAL_COLOR"
+				m_LiteralColor = [ 122, 0, 179 ]
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 0.2
+			m_flEndTime = 2.0
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_nOpEndCapState = 1
+			m_Rate = -4.0
+			m_flEndTime = 999999.0
+		},
+		{
+			_class = "C_OP_RadiusDecay"
+			m_nOpEndCapState = 1
+			m_flMinRadius = 0.1
+		},
+		{
+			_class = "C_OP_PositionLock"
+		},
+		{
+			_class = "C_OP_RemapCPOrientationToYaw"
+			m_flRotOffset = 90.0
+		},
+		{
+			_class = "C_OP_OscillateVector"
+			m_FrequencyMax = [ 0.5, 0.5, 0.5 ]
+			m_RateMin = [ -1.0, -1.0, -1.0 ]
+			m_RateMax = [ 1.0, 1.0, 1.0 ]
+			m_FrequencyMin = [ 0.125, 0.125, 0.125 ]
+			m_bProportional = false
+			m_flEndTime_min = 9999999827968.0
+			m_flEndTime_max = 9999999827968.0
+		},
+		{
+			_class = "C_OP_OscillateVector"
+			m_RateMin = [ -0.5, -0.5, -0.5 ]
+			m_RateMax = [ 0.5, 0.5, 0.5 ]
+			m_FrequencyMin = [ 0.1, 0.1, 0.1 ]
+			m_FrequencyMax = [ 0.3, 0.3, 0.3 ]
+		},
+		{
+			_class = "C_OP_SetChildControlPoints"
+		},
+		{
+			_class = "C_OP_MaxVelocity"
+			m_flMaxVelocity = 12.0
+		},
+		{
+			_class = "C_OP_RemapCPtoVector"
+			m_nCPInput = 60
+			m_nFieldOutput = "6"
+			m_vInputMax = [ 255.0, 255.0, 255.0 ]
+			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
+			m_flOpStrength = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 61
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMax = 0.1
+			m_fLifetimeMin = 0.1
+		},
+		{
+			_class = "C_INIT_RandomScalar"
+			m_nFieldOutput = "20"
+			m_flMax = -0.5
+			m_flMin = -0.5
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 2.0
+			}
+			m_fFalloffPower = -1.0
+		},
+	]
+	m_Constraints = 
+	[
+		{
+			_class = "C_OP_ConstrainDistance"
+			m_fMinDistance = 0.5
+			m_fMaxDistance = 16.0
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_witchdoctor/witchdoctor_deathward_heal_glow_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_witchdoctor/witchdoctor_deathward_heal_glow.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_heal_satellites.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_heal_skull_flame.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_heal_summon.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_heal_glyphs.vpcf"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_entityName = "parent"
+					m_attachmentName = "attach_attack1"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ 0.0, 0.0, 0.0 ]
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_ABSORIGIN_FOLLOW"
+					m_entityName = "parent"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ 0.0, 0.0, 0.0 ]
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ 0.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 60
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 143.0, 247.0, 229.0 ]
+					m_angOffset = [ 0.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 61
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ 0.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 62
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ 0.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_HSVShiftToCP"
+			m_DefaultHSVColor = [ 255, 83, 255, 255 ]
+		},
+	]
+	m_nBehaviorVersion = 5
+}

@@ -118,7 +118,10 @@ function modifier_pango_swashbuckler:OnCreated()
 		self.particles = {}
 
 		self:StartIntervalThink(self.attack_interval)
-		caster:RemoveModifierByName("modifier_pango_ball_movement")
+		
+		if not self:GetCaster():HasTalent("special_bonus_unique_pango_ball_2") then
+			caster:RemoveModifierByName("modifier_pango_ball_movement")
+		end
 	end
 end
 
@@ -290,7 +293,6 @@ end
 function modifier_pango_swift_dash:OnRemoved()
 	if IsServer() then
 		self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_pango_swashbuckler", {})
-
 		self:GetParent():RemoveGesture(ACT_DOTA_CAST_ABILITY_1)
 		self:StopMotionController(false)
 	end

@@ -9,20 +9,22 @@ function brewmaster_drunken_haze_bh:IsHiddenWhenStolen()
 end
 
 function brewmaster_drunken_haze_bh:GetAOERadius()
-	if self:GetCaster():HasScepter() then 
-		return self:GetTalentSpecialValueFor("scepter_radius")
-	end
+	return self:GetTalentSpecialValueFor("radius")
 end
 
 function brewmaster_drunken_haze_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
+	
+	local radius = self:GetTalentSpecialValueFor("radius")
 	if caster:HasScepter() then
-		for _, unit in ipairs( caster:FindAllUnitsInRadius( target:GetAbsOrigin(), self:GetTalentSpecialValueFor("scepter_radius") ) ) do
+		for _, unit in ipairs( caster:FindAllUnitsInRadius( target:GetAbsOrigin(), radius ) ) do
 			self:FireTrackingProjectile("particles/units/heroes/hero_brewmaster/brewmaster_cinder_brew_cast.vpcf", unit, 1300, nil, DOTA_PROJECTILE_ATTACHMENT_ATTACK_2)
 		end
 	else
-		self:FireTrackingProjectile("particles/units/heroes/hero_brewmaster/brewmaster_cinder_brew_cast_projectile.vpcf", target, 1300, nil, DOTA_PROJECTILE_ATTACHMENT_ATTACK_2)
+		for _, unit in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), radius ) ) do
+			self:FireTrackingProjectile("particles/units/heroes/hero_brewmaster/brewmaster_cinder_brew_cast.vpcf", unit, 1300, nil, DOTA_PROJECTILE_ATTACHMENT_ATTACK_2)
+		end
 	end
 	EmitSoundOn("Hero_Brewmaster.CinderBrew.Cast", caster)
 	if caster:HasTalent("special_bonus_unique_brewmaster_drunken_haze_1") then
@@ -40,29 +42,20 @@ function brewmaster_drunken_haze_bh:OnProjectileHit(target, position)
 	elseif not target:TriggerSpellAbsorb( self ) then
 		target:AddNewModifier(caster, self, "modifier_brewmaster_drunken_haze_debuff", {duration = duration})
 	end
-	if not target:IsMagicImmune() and not target:TriggerSpellAbsorb( self ) then
-		target:Daze(self, caster, duration)
-	end
 end
 
 LinkLuaModifier( "modifier_brewmaster_drunken_haze_buff", "heroes/hero_brewmaster/brewmaster_drunken_haze_bh.lua", LUA_MODIFIER_MOTION_NONE )
 modifier_brewmaster_drunken_haze_buff = class({})
 
 function modifier_brewmaster_drunken_haze_buff:OnCreated()
-	self.miss = self:GetAbility():GetSpecialValueFor("evasion")
-	self.speed = self:GetAbility():GetSpecialValueFor("movement_bonus")
+	self.miss = self:GetAbility():GetSpecialValueFor("scepter_evasion")
 end
 
 function modifier_brewmaster_drunken_haze_buff:DeclareFunctions()
 	funcs = {
-				MODIFIER_PROPERTY_EVASION_CONSTANT,
-				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
+				MODIFIER_PROPERTY_EVASION_CONSTANT
 			}
 	return funcs
-end
-
-function modifier_brewmaster_drunken_haze_buff:GetModifierMoveSpeedBonus_Percentage()
-	return self.speed
 end
 
 function modifier_brewmaster_drunken_haze_buff:GetModifierEvasion_Constant()
@@ -82,23 +75,17 @@ modifier_brewmaster_drunken_haze_debuff = class({})
 
 function modifier_brewmaster_drunken_haze_debuff:OnCreated()
 	self.miss = self:GetAbility():GetSpecialValueFor("miss_chance")
-	self.speed = self:GetAbility():GetSpecialValueFor("movement_slow")
 end
 
 function modifier_brewmaster_drunken_haze_debuff:DeclareFunctions()
 	funcs = {
-				MODIFIER_PROPERTY_MISS_PERCENTAGE,
-				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
+				MODIFIER_PROPERTY_MISS_PERCENTAGE
 			}
 	return funcs
 end
 
 function modifier_brewmaster_drunken_haze_debuff:GetModifierMoveSpeedBonus_Percentage()
 	return self.speed
-end
-
-function modifier_brewmaster_drunken_haze_debuff:GetModifierMiss_Percentage()
-	return self.miss
 end
 
 function modifier_brewmaster_drunken_haze_debuff:GetEffectName()

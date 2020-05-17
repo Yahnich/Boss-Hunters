@@ -60,13 +60,10 @@ function modifier_snapfire_lil_shredder_lua_buff:OnCreated(table)
         self.debuffDuration = self:GetTalentSpecialValueFor("slow_duration")
 
         self.damage = self:GetTalentSpecialValueFor("damage")
-
+		if parent:HasTalent("special_bonus_unique_snapfire_lil_shredder_lua_2") then
+			self.damage = self.damage + parent:GetAverageTrueAttackDamage( parent ) * parent:FindTalentValue("special_bonus_unique_snapfire_lil_shredder_lua_2") / 100
+		end
         self.mana_cost_scepter = self:GetTalentSpecialValueFor("mana_cost_scepter")
-
-        self.attack_damage = -100
-        if parent:HasTalent("special_bonus_unique_snapfire_lil_shredder_lua_2") then
-            self.attack_damage = -(100 - parent:FindTalentValue("special_bonus_unique_snapfire_lil_shredder_lua_2"))
-        end
 
         self:StartIntervalThink(0.25)
     end
@@ -83,13 +80,11 @@ function modifier_snapfire_lil_shredder_lua_buff:OnRefresh(table)
         self.debuffStackCount = self:GetTalentSpecialValueFor("buffed_attacks")
         self.debuffDuration = self:GetTalentSpecialValueFor("slow_duration")
 
-        self.attack_damage = -100
-        if parent:HasTalent("special_bonus_unique_snapfire_lil_shredder_lua_2") then
-            self.attack_damage = -(100 - parent:FindTalentValue("special_bonus_unique_snapfire_lil_shredder_lua_2")) 
-        end
-
         self.damage = self:GetTalentSpecialValueFor("damage")
-
+		if parent:HasTalent("special_bonus_unique_snapfire_lil_shredder_lua_2") then
+			self.damage = self.damage + parent:GetAverageTrueAttackDamage( parent ) * parent:FindTalentValue("special_bonus_unique_snapfire_lil_shredder_lua_2") / 100
+		end
+		
         self.mana_cost_scepter = self:GetTalentSpecialValueFor("mana_cost_scepter")
     end
 end

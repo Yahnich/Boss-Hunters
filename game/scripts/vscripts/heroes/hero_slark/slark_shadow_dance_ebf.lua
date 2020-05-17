@@ -119,5 +119,8 @@ function modifier_slark_shadow_dance_effect:StatusEffectPriority()
 end
 
 function modifier_slark_shadow_dance_effect:CheckState()
-	return {[MODIFIER_STATE_INVISIBLE] = true}
+	return {[MODIFIER_STATE_INVISIBLE] = true,
+			[MODIFIER_STATE_UNTARGETABLE] = true,
+			[MODIFIER_STATE_ATTACK_IMMUNE] = true,
+			}
 end

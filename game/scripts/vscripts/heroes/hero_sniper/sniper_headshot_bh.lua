@@ -7,6 +7,21 @@ function sniper_headshot_bh:GetIntrinsicModifierName()
 end
 
 modifier_sniper_headshot_bh = class({})
+function modifier_sniper_headshot_bh:OnCreated()
+	self:OnRefresh()
+end
+
+function modifier_sniper_headshot_bh:OnRefresh()
+	self.duration = self:GetTalentSpecialValueFor("duration")
+	self.chance = self:GetTalentSpecialValueFor("chance")
+	self.damage = self:GetTalentSpecialValueFor("damage")
+	
+	local caster = self:GetCaster()
+	self.talent1 = caster:HasTalent("special_bonus_unique_sniper_headshot_bh_1")
+	self.talent1Dmg = self.damage * caster:FindTalentValue("special_bonus_unique_sniper_headshot_bh_1", "damage") / 100
+	self.talent1Radius = caster:FindTalentValue("special_bonus_unique_sniper_headshot_bh_1", "radius")
+end
+
 function modifier_sniper_headshot_bh:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_ATTACK_LANDED
@@ -18,38 +33,29 @@ function modifier_sniper_headshot_bh:OnAttackLanded(params)
 	if IsServer() then
 		local caster = params.attacker
 		local target = params.target
-		if caster == self:GetCaster() and caster:RollPRNG(self:GetTalentSpecialValueFor("chance")) then
-			local nfx1 = ParticleManager:CreateParticle("particles/econ/items/sniper/sniper_immortal_cape/sniper_immortal_cape_headshot_slow_caster.vpcf", PATTACH_POINT, caster)
-						ParticleManager:SetParticleControlEnt(nfx1, 0, caster, PATTACH_POINT, "attach_hitloc", caster:GetAbsOrigin(), true)
-						ParticleManager:SetParticleControlEnt(nfx1, 1, caster, PATTACH_POINT, "attach_hitloc", caster:GetAbsOrigin(), true)
-						ParticleManager:ReleaseParticleIndex(nfx1)
-
-			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", PATTACH_POINT_FOLLOW, caster)
-						ParticleManager:SetParticleControlEnt(nfx, 0, target, PATTACH_OVERHEAD_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
-
-			Timers:CreateTimer(self:GetTalentSpecialValueFor("duration"), function()
-				ParticleManager:ClearParticle(nfx)
-			end)
-
-			if caster:HasTalent("special_bonus_unique_sniper_headshot_bh_1") then
-				target:ApplyKnockBack(caster:GetAbsOrigin(), 0.1, 0.1, caster:FindTalentValue("special_bonus_unique_sniper_headshot_bh_1"), 0, caster, self:GetAbility())
-			end
-
-			target:AddNewModifier(caster, self:GetAbility(), "modifier_sniper_headshot_bh_slow", {Duration = self:GetTalentSpecialValueFor("duration")})
-			self:GetAbility():DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-
-			if caster:RollPRNG( self:GetTalentSpecialValueFor("assassinate_chance")) and not caster:HasModifier("modifier_sniper_rapid_fire") then
-				local assassinate = caster:FindAbilityByName("sniper_assassinate_bh")
-				if assassinate and assassinate:IsTrained() and assassinate:IsCooldownReady() then
-					caster:SetCursorCastTarget(target)
-
-					caster:CastAbilityImmediately( assassinate, caster:GetPlayerOwnerID() )
-					local cooldown = assassinate:GetCooldownTimeRemaining() * self:GetTalentSpecialValueFor("assassinate_cooldown")/100
-					assassinate:EndCooldown()
-					assassinate:StartCooldown(cooldown)
-					assassinate:RefundManaCost()
+		if caster == self:GetCaster() and caster:RollPRNG(self.chance ) then
+			local ability = self:GetAbility()
+			if self.talent1 then
+				for _, enemy in ipairs( caster:FindEnemyUnitsInCone(CalculateDirection(target, caster), target:GetAbsOrigin(), self.talent1Radius/2, self.talent1Radius ) ) do
+					ability:DealDamage( caster, enemy, self.talent1Dmg )
 				end
 			end
+
+			target:AddNewModifier(caster, self:GetAbility(), "modifier_sniper_headshot_bh_slow", {Duration = self.duration})
+			ability:DealDamage(caster, target, self.damage)
+
+			-- if caster:RollPRNG( self:GetTalentSpecialValueFor("assassinate_chance")) and not caster:HasModifier("modifier_sniper_rapid_fire") then
+				-- local assassinate = caster:FindAbilityByName("sniper_assassinate_bh")
+				-- if assassinate and assassinate:IsTrained() and assassinate:IsCooldownReady() then
+					-- caster:SetCursorCastTarget(target)
+
+					-- caster:CastAbilityImmediately( assassinate, caster:GetPlayerOwnerID() )
+					-- local cooldown = assassinate:GetCooldownTimeRemaining() * self:GetTalentSpecialValueFor("assassinate_cooldown")/100
+					-- assassinate:EndCooldown()
+					-- assassinate:StartCooldown(cooldown)
+					-- assassinate:RefundManaCost()
+				-- end
+			-- end
 		end
 	end
 end
@@ -89,7 +95,7 @@ function modifier_sniper_headshot_bh_slow:GetModifierMiss_Percentage()
 end
 
 function modifier_sniper_headshot_bh_slow:GetEffectName()
-	return "particles/econ/items/sniper/sniper_immortal_cape/sniper_immortal_cape_headshot_slow_ring.vpcf"
+	return "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf"
 end
 
 function modifier_sniper_headshot_bh_slow:GetEffectAttachType()

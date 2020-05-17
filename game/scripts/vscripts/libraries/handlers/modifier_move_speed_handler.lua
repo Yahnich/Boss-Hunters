@@ -33,7 +33,7 @@ if IsServer() then
 		end
 		local newLimit = INTERNAL_MOVESPEED_CAP + msLimitMod
 		local msStacks = math.min( parent:GetIdealSpeed(), newLimit )
-		local evasionStacks = math.max( 0, math.floor( ( 1 - msStacks / math.min( newLimit, parent:GetIdealSpeedNoSlows() ) ) * 1000 ) )
+		local evasionStacks = 0
 		if parent:IsStunned() or parent:IsRooted() then evasionStacks = 999 end
 		if self.evasion:GetStackCount() ~= evasionStacks then 
 			self.evasion:SetStackCount( evasionStacks )

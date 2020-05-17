@@ -8,9 +8,6 @@ if IsServer() then
 			self:GetParent():StopMotionControllers(true)
 			self:GetParent():RemoveGesture(ACT_DOTA_DISABLED)
 		end
-		if self:GetParent():IsRoundNecessary() then
-			self:SetDuration( 0.5, true )
-		end
 		if kv.delay == nil or toboolean(kv.delay) == true and not self:GetParent():IsRoundNecessary() then
 			self.delay = true
 			if self:GetAbility() then self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false) end

@@ -27,11 +27,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20 17.5 15 12.5 10 7.5 5"
+		"AbilityCooldown"				"20 15 10 5 5 5 5"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75"
+		"AbilityManaCost"				"60 60 60 60 50 40 30"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -55,7 +55,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"35 45 55 65 75 85 95"
+				"damage"				"20 40 60 80 90 100 110"
 			}
 			"05"
 			{
@@ -80,7 +80,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"strength_bonus"		"6"
+				"strength_bonus"		"3 3 3 3 4 5 6"
 			}
 		}
 	
@@ -348,7 +348,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.3"
-		"AbilityCastRange"				"350"
+		"AbilityCastRange"				"350 350 350 400 450 500"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 	
 		// Time		
@@ -366,34 +366,39 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"damage"						"4 4.5 5 5.5 6 6.5"
+				"critical_damage"				"200 250 300 300 300 300"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"kill_threshold"				"7 8 9 10 11 12"
+				"armor_damage"					"5 5 5 6 7 8"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"daze_duration"					"3.0"
+				"taunt_duration"				"5.0"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"6.0"
+				"buff_duration"					"10 15 20 20 20 20"
 			}
 			"05"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"move_slow"						"-25"
+				"var_type"						"FIELD_FLOAT"
+				"buff_duration"					"10"
 			}
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"radius"						"350"
+				"move_slow"						"-25 -35 -45 -45 -45 -45"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"350 350 350 400 450 500"
 			}
 		}
 	
@@ -476,6 +481,44 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"scepter_str_to_as"		"1"
+			}
+		}
+	}
+	"axe_force_of_will"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_axe/axe_force_of_will"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/axe_steeled_temper"
+		"HasScepterUpgrade"				"1"
+		"InnateAbility"					"1"
+		"MaxLevel"						"1"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"lifesteal"				"15"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"minion_lifesteal"		"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_bash_chance"	"15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_bash_duration"	"2"
 			}
 		}
 	}

@@ -35,53 +35,101 @@ end
 
 function witch_doctor_death_ward_bh:OnProjectileHit_ExtraData(target, vLocation, extraData)
 	if not self.death_ward:IsNull() then
-		local fixedDamage = self.wardDamage - self:GetCaster():GetAttackDamage()
-		local procs = self:GetCaster():HasTalent("special_bonus_unique_witch_doctor_death_ward_1") and self:GetTalentSpecialValueFor("bounces_scepter") == tonumber( extraData.bounces_left )
-		self:GetCaster():PerformAbilityAttack(target, procs, self, fixedDamage, false, false)
-		if extraData.bounces_left > 0 and self:GetCaster():HasScepter() then
-			extraData.bounces_left = extraData.bounces_left - 1
+		local caster = self:GetCaster()
+		local damage = self:GetTalentSpecialValueFor("damage")
+		if target:IsSameTeam( caster ) then
+			target:HealEvent( damage, self, caster )
+		else
+			self:DealDamage( caster, target, damage )
+		end
+		if extraData.bounces_left > 0 then
 			extraData[tostring(target:GetEntityIndex())] = 1
 			self:CreateBounceAttack(target, extraData)
 		end
+		EmitSoundOn("Hero_WitchDoctor_Ward.Attack", target)
 	end
 end
 
 function witch_doctor_death_ward_bh:CreateBounceAttack(originalTarget, extraData)
     local caster = self:GetCaster()
-    local enemies = FindUnitsInRadius(caster:GetTeamNumber(), originalTarget:GetAbsOrigin(), nil, 900,
-                    self:GetAbilityTargetTeam(), self:GetAbilityTargetType(),
-                    0, FIND_CLOSEST, false)
-    local target = originalTarget
-    for _,enemy in pairs(enemies) do
-        if extraData[tostring(enemy:GetEntityIndex())] ~= 1 and not enemy:IsAttackImmune() and extraData.bounces_left > 0 then
-			extraData[tostring(enemy:GetEntityIndex())] = 1
-		    local projectile = {
-				Target = enemy,
-				Source = originalTarget,
-				Ability = self,
-				EffectName = "particles/units/heroes/hero_witchdoctor/witchdoctor_ward_attack.vpcf",
-				bDodgable = true,
-				bProvidesVision = false,
-				iMoveSpeed = 1500,
-				iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
-				ExtraData = extraData
-			}
-			ProjectileManager:CreateTrackingProjectile(projectile)
-            extraData.bounces_left = extraData.bounces_left - 1
-			break
-        end
-    end
-	EmitSoundOn("Hero_Jakiro.Attack" ,originalTarget)
+	if originalTarget:IsSameTeam( caster ) then
+		local units = caster:FindFriendlyUnitsInRadius( originalTarget:GetAbsOrigin(), 700, {order = FIND_CLOSEST} )
+		for _, ally in pairs(units) do
+			print( ally:GetName(), extraData[tostring(ally:GetEntityIndex())], ally:IsAttackImmune(), ally:HasModifier("modifier_death_ward_handling") )
+			if not ally:HasModifier("modifier_death_ward_handling") and extraData[tostring(ally:GetEntityIndex())] ~= 1 and not ally:IsAttackImmune() and extraData.bounces_left > 0 then
+				local projectile = {
+					Target = ally,
+					Source = originalTarget,
+					Ability = self,
+					EffectName = "particles/units/heroes/hero_witchdoctor/witchdoctor_ward_heal.vpcf",
+					bDodgable = true,
+					bProvidesVision = false,
+					iMoveSpeed = 1500,
+					iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
+					ExtraData = extraData
+				}
+				extraData.bounces_left = extraData.bounces_left - 1
+				ProjectileManager:CreateTrackingProjectile(projectile)
+				break
+			end
+		end
+	else
+		local enemies = FindUnitsInRadius(caster:GetTeamNumber(), originalTarget:GetAbsOrigin(), nil, 700,
+						self:GetAbilityTargetTeam(), self:GetAbilityTargetType(),
+						0, FIND_CLOSEST, false)
+		local target = originalTarget
+		for _,enemy in pairs(enemies) do
+			if extraData[tostring(enemy:GetEntityIndex())] ~= 1 and not enemy:IsAttackImmune() and extraData.bounces_left > 0 then
+				extraData[tostring(enemy:GetEntityIndex())] = 1
+				local projectile = {
+					Target = enemy,
+					Source = originalTarget,
+					Ability = self,
+					EffectName = "particles/units/heroes/hero_witchdoctor/witchdoctor_ward_attack.vpcf",
+					bDodgable = true,
+					bProvidesVision = false,
+					iMoveSpeed = 1500,
+					iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
+					ExtraData = extraData
+				}
+				extraData.bounces_left = extraData.bounces_left - 1
+				ProjectileManager:CreateTrackingProjectile(projectile)
+				break
+			end
+		end
+	end
 end
 
 LinkLuaModifier("modifier_death_ward_handling", "heroes/hero_witch_doctor/witch_doctor_death_ward_bh", LUA_MODIFIER_MOTION_NONE)
 modifier_death_ward_handling = class({})
 
 function modifier_death_ward_handling:OnCreated()
-	self.wardParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_witchdoctor/witchdoctor_ward_skull.vpcf", PATTACH_POINT_FOLLOW, self:GetParent()) 
-		ParticleManager:SetParticleControlEnt(self.wardParticle, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetParent():GetAbsOrigin(), true)
-		ParticleManager:SetParticleControl(self.wardParticle, 2, self:GetParent():GetAbsOrigin())
-	ParticleManager:ReleaseParticleIndex(self.wardParticle)
+	self.lastState = self:GetCaster():HasModifier("modifier_witch_doctor_marasa_mirror")
+	if self:GetCaster():HasScepter() then
+		nFX1 = ParticleManager:CreateParticle("particles/units/heroes/hero_witchdoctor/witchdoctor_ward_heal_skull.vpcf", PATTACH_POINT_FOLLOW, self:GetParent()) 
+		ParticleManager:SetParticleControlEnt(nFX1, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetParent():GetAbsOrigin(), true)
+		ParticleManager:SetParticleControl(nFX1, 2, self:GetParent():GetAbsOrigin())
+		self:AddEffect( nFX1 )
+		ParticleManager:ReleaseParticleIndex( nFX1 )
+		nFX2 = ParticleManager:CreateParticle("particles/units/heroes/hero_witchdoctor/witchdoctor_ward_skull.vpcf", PATTACH_POINT_FOLLOW, self:GetParent()) 
+		ParticleManager:SetParticleControlEnt(nFX2, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetParent():GetAbsOrigin(), true)
+		ParticleManager:SetParticleControl(nFX2, 2, self:GetParent():GetAbsOrigin())
+		self:AddEffect( nFX2 )
+		ParticleManager:ReleaseParticleIndex( nFX2 )
+	else
+		if self.lastState then
+			self.wardParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_witchdoctor/witchdoctor_ward_heal_skull.vpcf", PATTACH_POINT_FOLLOW, self:GetParent()) 
+			ParticleManager:SetParticleControlEnt(self.wardParticle, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetParent():GetAbsOrigin(), true)
+			ParticleManager:SetParticleControl(self.wardParticle, 2, self:GetParent():GetAbsOrigin())
+		else
+			self.wardParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_witchdoctor/witchdoctor_ward_skull.vpcf", PATTACH_POINT_FOLLOW, self:GetParent()) 
+			ParticleManager:SetParticleControlEnt(self.wardParticle, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetParent():GetAbsOrigin(), true)
+			ParticleManager:SetParticleControl(self.wardParticle, 2, self:GetParent():GetAbsOrigin())
+		end
+	end
+	
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_witch_doctor_death_ward_1")
+	self.talent1Bounces = self:GetCaster():FindTalentValue("special_bonus_unique_witch_doctor_death_ward_1")
 	if IsServer() then
 		self:StartIntervalThink( self:GetParent():GetBaseAttackTime() )
 	end
@@ -89,25 +137,56 @@ end
 
 function modifier_death_ward_handling:OnIntervalThink()
 	if IsServer() then
+		local caster = self:GetCaster()
+		local ward = self:GetParent()
+		local ability = self:GetAbility()
 		local attack_range = 700
-		local units = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, attack_range, self:GetAbility():GetAbilityTargetTeam(), DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES+DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE, 1, false)
 		local bounces = 0
-		if self:GetCaster():HasScepter() then bounces = self:GetAbility():GetTalentSpecialValueFor("bounces_scepter") end
-		for _, unit in pairs(units) do
-			local projectile = {
-				Target = unit,
-				Source = self:GetParent(),
-				Ability = self:GetAbility(),
-				EffectName = "particles/units/heroes/hero_witchdoctor/witchdoctor_ward_attack.vpcf",
-				bDodgable = true,
-				bProvidesVision = false,
-				iMoveSpeed = self:GetParent():GetProjectileSpeed(),
-				iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
-				ExtraData = {bounces_left = bounces, [tostring(unit:GetEntityIndex())] = 1}
-			}
-			EmitSoundOn("Hero_WitchDoctor_Ward.Attack", self:GetParent())
-			ProjectileManager:CreateTrackingProjectile(projectile)
-			break
+		if self.talent1 then bounces = self.talent1Bounces end
+		if caster:HasScepter() then -- shoot both
+			enemies = caster:FindEnemyUnitsInRadius( ward:GetAbsOrigin(), attack_range, {order = FIND_CLOSEST} )
+			allies = caster:FindFriendlyUnitsInRadius( ward:GetAbsOrigin(), attack_range, {order = FIND_CLOSEST} )
+			for _, enemy in pairs(enemies) do
+				ability:FireTrackingProjectile("particles/units/heroes/hero_witchdoctor/witchdoctor_ward_attack.vpcf", enemy, 1500, {source = ward, extraData = {bounces_left = bounces, [tostring(enemy:GetEntityIndex())] = 1}}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1)
+				EmitSoundOn("Hero_WitchDoctor_Ward.Attack", ward)
+				break
+			end
+			for _, ally in pairs(allies) do
+				if ally ~= ward then
+					ability:FireTrackingProjectile("particles/units/heroes/hero_witchdoctor/witchdoctor_ward_heal.vpcf", ally, 1500, {source = ward, extraData = {bounces_left = bounces, [tostring(ally:GetEntityIndex())] = 1}}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1)
+					EmitSoundOn("Hero_WitchDoctor_Ward.Attack", ward)
+					break
+				end
+			end
+		else
+			if self.lastState ~= self:GetCaster():HasModifier("modifier_witch_doctor_marasa_mirror") then
+				self.lastState = self:GetCaster():HasModifier("modifier_witch_doctor_marasa_mirror")
+				ParticleManager:ClearParticle( self.wardParticle, true )
+				if self.lastState then
+					self.wardParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_witchdoctor/witchdoctor_ward_heal_skull.vpcf", PATTACH_POINT_FOLLOW, self:GetParent()) 
+					ParticleManager:SetParticleControlEnt(self.wardParticle, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetParent():GetAbsOrigin(), true)
+					ParticleManager:SetParticleControl(self.wardParticle, 2, self:GetParent():GetAbsOrigin())
+				else
+					self.wardParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_witchdoctor/witchdoctor_ward_skull.vpcf", PATTACH_POINT_FOLLOW, self:GetParent()) 
+					ParticleManager:SetParticleControlEnt(self.wardParticle, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetParent():GetAbsOrigin(), true)
+					ParticleManager:SetParticleControl(self.wardParticle, 2, self:GetParent():GetAbsOrigin())
+				end
+			end
+			local units
+			local nFX = "particles/units/heroes/hero_witchdoctor/witchdoctor_ward_heal.vpcf"
+			if not self.lastState then
+				units = caster:FindEnemyUnitsInRadius( ward:GetAbsOrigin(), attack_range, {order = FIND_CLOSEST} )
+				nFX = "particles/units/heroes/hero_witchdoctor/witchdoctor_ward_attack.vpcf"
+			else
+				units = caster:FindFriendlyUnitsInRadius( ward:GetAbsOrigin(), attack_range, {order = FIND_CLOSEST} )
+			end
+			for _, unit in pairs(units) do
+				if unit ~= ward then
+					ability:FireTrackingProjectile(nFX, unit, 900, {source = ward, extraData = {bounces_left = bounces, [tostring(unit:GetEntityIndex())] = 1}}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1)
+					EmitSoundOn("Hero_WitchDoctor_Ward.Attack", ward)
+					break
+				end
+			end
 		end
 	end
 end
@@ -115,7 +194,10 @@ end
 function modifier_death_ward_handling:OnDestroy()
 	if IsServer() then
 		StopSoundEvent("Hero_WitchDoctor.Death_WardBuild", self:GetParent() )
-		UTIL_Remove( self:GetParent() )	
+		UTIL_Remove( self:GetParent() )
+		if self.wardParticle then
+			ParticleManager:ReleaseParticleIndex(self.wardParticle)
+		end
 	end
 end
 

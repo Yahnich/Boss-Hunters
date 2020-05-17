@@ -64,8 +64,8 @@ function ember_fist:OnSpellStart()
 				 			ParticleManager:SetParticleControl(remenantFx, 0, startPos)
 				 			ParticleManager:SetParticleControlForward(remenantFx, 1, caster:GetForwardVector())
 
-		caster:AddNewModifier(caster, self, "modifier_ember_fist", {Duration = #enemies})
-		Timers:CreateTimer(jumpRate, function()
+		caster:AddNewModifier(caster, self, "modifier_ember_fist", {Duration = math.max(#enemies,0.1)})
+		Timers:CreateTimer(function()
 			if current < #enemies then
 				for _,enemy in pairs(enemies) do
 					if not self.hitUnits[enemy:entindex()] and not enemy:TriggerSpellAbsorb(self) then
@@ -121,8 +121,7 @@ function modifier_ember_fist:OnRemoved()
 end
 
 function modifier_ember_fist:CheckState()
-	local state = { [MODIFIER_STATE_COMMAND_RESTRICTED] = true,
-					[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+	local state = { [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 					[MODIFIER_STATE_INVULNERABLE] = true}
 	return state
 end

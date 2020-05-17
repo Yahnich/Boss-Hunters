@@ -9,8 +9,8 @@ function Spawn( entityKeyValues )
 			return AIThink(thisEntity)
 		end
 	end)
-	-- thisEntity.rupture = thisEntity:FindAbilityByName("creature_rupture")
-	-- thisEntity.pounce = thisEntity:FindAbilityByName("lesser_nightcrawler_pounce")
+	thisEntity.curse = thisEntity:FindAbilityByName("boss_slark_blood_curse")
+	thisEntity.gift = thisEntity:FindAbilityByName("boss_slark_gift_of_the_flayed")
 	-- local target = AICore:WeakestEnemyHeroInRange( thisEntity, 9000, true )
 	-- if target then
 		-- ExecuteOrderFromTable({

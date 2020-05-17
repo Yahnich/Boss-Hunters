@@ -40,12 +40,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"xp_gain"				"1000"
+				"xp_gain"				"100"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_xp"				"45000"
+				"max_xp"				"4500"
 			}
 		}
 	}

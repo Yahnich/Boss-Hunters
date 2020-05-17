@@ -10,32 +10,35 @@
 		{
 			"item"	"item_pages_buckler"
 			"item"	"item_crystal_of_life"
-			"item"	"item_ruby_ring"
 		}
 		"#DOTA_Item_Build_Early_Game"
 		{	
 			"item"	"item_orb_of_vitality"
-			"item"	"item_glacier_boots"
-			"item"	"item_plate_of_the_unbreakable"
-			"item"	"item_gem_of_inner_power"
-			"item"	"item_frostbite"
+			"item"	"item_war_drum"
+			"item"	"item_orb_of_haste"
+			"item"	"item_warm_fire"
 		}
 		"#DOTA_Item_Build_Core_Items"
 		{
-			"item"	"item_gauntlet_of_might"
+			"item"	"item_inspiring_bongos"
 			"item"	"item_behemoths_heart"
-			"item"	"item_emission"
+			"item"	"item_incandescance"
+			"item"	"item_focused_lens"
 		}
 		"#DOTA_Item_Build_Luxury"
 		{
 			
 			"item"	"item_ultimate_scepter"
 			"item"	"item_soothslayer"
-			"item"	"item_legionnaires_dualswords"
-			"item"	"item_hurricane_blade"
+			"item"	"item_borealis_cloak"
+			"item"	"item_rapture"
 			"item"	"item_headchopper"
-			"item"	"item_ogre_seal_club"
+			"item"	"item_ogre_seal_totem"
 			"item"	"item_lucifers_cage"
+			"item"	"item_ferrum_ascensus"
+			"item"	"item_wrathbearers_robes"
+			"item"	"item_blade_of_dominion"
+			"item"	"item_death_sentence"
 		}
 	}
 }

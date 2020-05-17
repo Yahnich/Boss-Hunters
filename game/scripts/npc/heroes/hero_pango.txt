@@ -219,6 +219,16 @@
 				"distance"				"225"
 				"LinkedSpecialBonus"	"special_bonus_unique_pango_shield_2"
 			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_strikes"		"2"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_count"			"4"
+			}
 		}
 	}
 

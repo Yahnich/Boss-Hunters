@@ -120,6 +120,7 @@ function modifier_boss_slark_leap_tether:OnCreated()
 		ParticleManager:SetParticleControl( source, 3, casterOrigin )
 		self:AddEffect( source )
 		self:StartIntervalThink(0)
+		parent:ModifyThreat(50, true)
 	end
 end
 
@@ -135,4 +136,8 @@ function modifier_boss_slark_leap_tether:OnIntervalThink()
 			parent:SmoothFindClearSpace( self.position - direction * self.radius )
 		end
 	end
+end
+
+function modifier_boss_slark_leap_tether:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

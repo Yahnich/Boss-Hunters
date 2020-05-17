@@ -41,11 +41,12 @@ LinkLuaModifier("modifier_brewmaster_thunder_clap_bh_debuff", "heroes/hero_brewm
 
 function modifier_brewmaster_thunder_clap_bh_debuff:OnCreated()
 	self.ms = self:GetTalentSpecialValueFor("movement_slow") * (-1)
-	self.as = self:GetTalentSpecialValueFor("attack_speed_slow") * (-1)
+	self.dr = self:GetTalentSpecialValueFor("damage_reduction") * (-1)
 end
 
 function modifier_brewmaster_thunder_clap_bh_debuff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	return {MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
+			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE 
 			}
 end
 
@@ -53,8 +54,8 @@ function modifier_brewmaster_thunder_clap_bh_debuff:GetModifierMoveSpeedBonus_Pe
 	return self.ms
 end
 
-function modifier_brewmaster_thunder_clap_bh_debuff:GetModifierAttackSpeedBonus()
-	return self.as
+function modifier_brewmaster_thunder_clap_bh_debuff:GetModifierBaseDamageOutgoing_Percentage()
+	return self.dr
 end
 
 function modifier_brewmaster_thunder_clap_bh_debuff:GetEffectName()

@@ -8,7 +8,7 @@ DOTA_LIFESTEAL_SOURCE_ATTACK = 1
 DOTA_LIFESTEAL_SOURCE_ABILITY = 2
 
 MAP_CENTER = Vector(332, -1545)
-GAME_MAX_LEVEL = 200
+GAME_MAX_LEVEL = 80
 
 HERO_SELECTION_TIME = 80
 
@@ -24,10 +24,11 @@ function SendErrorReport(err, context)
 	if context then context.gameHasBeenBroken = true end
 end
 
+require("eventmanager")
 require("lua_map/map")
 require( "libraries/Timers" )
 require( "libraries/notifications" )
-require( "statcollection/init" )
+-- require( "statcollection/init" )
 require("libraries/utility")
 require( "libraries/clientserver" )
 require( "libraries/vector_targeting" )
@@ -35,7 +36,6 @@ require("libraries/animations")
 require("stats_screen")
 require("relicmanager")
 require("roundmanager")
-require("eventmanager")
 require( "ai/ai_core" )
 require( "ai/ai_timers")
 
@@ -428,6 +428,13 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetHealingFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterHeal" ), self )
 	GameRules:GetGameModeEntity():SetModifierGainedFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterModifiers" ), self )
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, 1 )
+	
+	-- Custom stats
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP, 40) 
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP_REGEN, 0) 
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_ARMOR, 0) 
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA, 20)
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN, 0)
 	
 	StatsScreen:StartStatsScreen()
 	RelicManager:Initialize()
@@ -887,7 +894,11 @@ function CHoldoutGameMode:OnHeroPick (event)
 		else
 			 hero:AddExperience(GameRules.XP_PER_LEVEL[3],false,false)
 		end
-		hero:SetBaseMagicalResistanceValue(15)
+		if hero:IsRangedAttacker() then
+			hero:SetBaseMagicalResistanceValue(15.1)
+		else
+			hero:SetBaseMagicalResistanceValue(25.1)
+		end
 		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage
 		local ID = hero:GetPlayerID()
 		if not ID then return end
@@ -925,7 +936,6 @@ function CHoldoutGameMode:OnHeroPick (event)
 		
 		hero:SetDayTimeVisionRange(hero:GetDayTimeVisionRange())
 		hero:SetNightTimeVisionRange(hero:GetNightTimeVisionRange())
-		hero:SetBaseMoveSpeed( hero:GetBaseMoveSpeed() - 25 )
 	end)
 end
 
@@ -976,10 +986,10 @@ end
 -- When game state changes set state in script
 function CHoldoutGameMode:OnGameRulesStateChange()
 	local nNewState = GameRules:State_Get()
-	if nNewState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
-		statCollection:init()
-		print("start")
-    end
+	-- if nNewState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
+		-- statCollection:init()
+		-- print("start")
+    -- end
 	if nNewState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
 		print("setup")
 		for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do

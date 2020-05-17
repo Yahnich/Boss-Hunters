@@ -71,17 +71,24 @@ modifier_chen_holy_persuasion_bh = class({})
 LinkLuaModifier( "modifier_chen_holy_persuasion_bh", "heroes/hero_chen/chen_holy_persuasion_bh.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_chen_holy_persuasion_bh:OnCreated()
-	if self:GetParent():IsMinion() or self:GetParent():IsRealHero() and self:GetCaster():HasTalent("special_bonus_unique_chen_holy_persuasion_2") then	
+	if self:GetParent():IsMinion() or ( self:GetParent():IsRealHero() and self:GetCaster():HasTalent("special_bonus_unique_chen_holy_persuasion_2") ) then	
 		self.hp = self:GetTalentSpecialValueFor("bonus_health")
 		if IsServer() then
 			local currHPPCT = self:GetParent():GetHealth() / self:GetParent():GetMaxHealth()
-			Timers:CreateTimer(function() self:GetParent():SetHealth( currHPPCT * self:GetParent():GetMaxHealth() ) end )
+			Timers:CreateTimer(function() self:GetParent():SetHealth( currHPPCT * self:GetParent():GetMaxHealth() + self.hp ) end )
 		end
 	end
 	if IsServer() then
 		self.originalTeam = self:GetParent():GetTeam()
 		if not self:GetParent():IsSameTeam( self:GetCaster() ) then
 			self:GetParent():SetTeam( self:GetCaster():GetTeam() )
+			if not self:IsMinion() then
+				for _, ally in ipairs( self:GetCaster():FindFriendlyUnitsInRadius( self:GetCaster():GetAbsOrigin(), -1 ) ) do
+					if ally:IsAttackingEntity( self:GetParent() ) then
+						ally:MoveToTargetToAttack( self:GetParent() )
+					end
+				end
+			end
 		end
 	end
 end
@@ -98,9 +105,7 @@ function modifier_chen_holy_persuasion_bh:OnDestroy()
 end
 
 function modifier_chen_holy_persuasion_bh:CheckState()
-	if not self:GetParent():IsMinion() then
-		return {[MODIFIER_STATE_SPECIALLY_DENIABLE] = true}
-	end
+	return {[MODIFIER_STATE_SPECIALLY_DENIABLE] = not self:GetParent():IsMinion()}
 end
 
 function modifier_chen_holy_persuasion_bh:DeclareFunctions()

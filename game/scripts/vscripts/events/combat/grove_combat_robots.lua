@@ -1,6 +1,8 @@
 local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
 	self.eventType = RandomInt( 1, 3 )
+	self.tinkerers = 0
+	self.rattleTraps = 0
 	if self.eventType == 1 then
 		self.rattleTraps = 1 + RoundManager:GetCurrentRaidTier()
 	elseif self.eventType == 2 then
@@ -9,17 +11,22 @@ local function StartEvent(self)
 		self.rattleTraps = RoundManager:GetCurrentRaidTier()
 		self.tinkerers = RoundManager:GetCurrentRaidTier()
 	end
-	self.tinkerers = self.tinkerers + math.floor( math.min( math.sqrt( RoundManager:GetEventsFinished()), 5  ) + 0.5 )
+	self.tinkerers = self.tinkerers + math.floor( math.min( math.sqrt( RoundManager:GetEventsFinished() ), 5  ) + 0.5 )
 	self.enemiesToSpawn = self.rattleTraps + self.tinkerers
 	self.eventHandler = Timers:CreateTimer(3, function()
-		local enemyName = "npc_dota_boss8a"
-		if RollPercentage(50) then
-			enemyName = "npc_dota_boss8b"
+		if self.tinkerers > 0 then
+			local spawn = CreateUnitByName("npc_dota_boss8b", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+			spawn.unitIsRoundNecessary = true
+			self.enemiesToSpawn = self.enemiesToSpawn - 1
+			self.tinkerers = self.tinkerers - 1
 		end
-		local spawn = CreateUnitByName(enemyName, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-		spawn.unitIsRoundNecessary = true
+		if self.rattleTraps > 0 then
+			local spawn = CreateUnitByName("npc_dota_boss8a", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+			spawn.unitIsRoundNecessary = true
+			self.enemiesToSpawn = self.enemiesToSpawn - 1
+			self.rattleTraps = self.rattleTraps - 1
+		end
 		
-		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then
 			return 15 / (GameRules:GetGameDifficulty() + 1)
 		end

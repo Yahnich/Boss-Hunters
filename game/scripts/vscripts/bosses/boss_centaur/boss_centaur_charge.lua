@@ -13,7 +13,7 @@ function boss_centaur_charge:OnAbilityPhaseStart()
 end
 
 function boss_centaur_charge:OnAbilityPhaseInterrupted()
-	self:GetCaster():StopSound( "n_creep_Centaur.Stomp" )
+	self:GetCaster():StopSound( "Hero_Centaur.Stampede.Cast" )
 end
 
 function boss_centaur_charge:OnSpellStart()
@@ -42,6 +42,8 @@ if IsServer() then
 		self.radius = self:GetSpecialValueFor("radius") + parent:GetHullRadius() + parent:GetCollisionPadding()
 		self.damage = self:GetSpecialValueFor("damage")
 		self.duration = self:GetSpecialValueFor("duration")
+		self.buffDur = self:GetSpecialValueFor("buff_duration")
+		self.selfStun = self:GetSpecialValueFor("stun_duration")
 		local startPos = parent:GetAbsOrigin()
 		self.lastPos = startPos + self.direction * parent:GetIdealSpeed() * 0.1
 		self.prevAngle = parent:GetAnglesAsVector().y
@@ -60,12 +62,17 @@ if IsServer() then
 					enemy:EmitSound( "Hero_Centaur.Stampede.Stun" )
 				end
 				self.hitUnits[enemy] = true
+				self.hasHitEnemy = true
 			end
 		end
 		local startPos = parent:GetAbsOrigin()
 		if parent:IsRooted() or parent:IsStunned() or ( math.abs( CalculateDistance( self.lastPos, parent ) - parent:GetIdealSpeed() * 0.1 ) < 15 and parent:GetAnglesAsVector().y - self.prevAngle < 1 ) then
 			self:Destroy()
-			ability:Stun( parent, 2 )
+			if not self.hasHitEnemy then
+				ability:Stun( parent, self.selfStun )
+			else
+				parent:AddNewModifier(self.caster, ability, "modifier_boss_centaur_charge_ms", {duration = self.buffDur})
+			end
 		else
 			self.lastPos = startPos + self.direction * parent:GetIdealSpeed() * 0.1
 			parent:MoveToPosition( self.lastPos )
@@ -92,4 +99,15 @@ end
 
 function modifier_boss_centaur_charge:GetEffectName()
 	return "particles/units/heroes/hero_centaur/centaur_stampede.vpcf"
+end
+
+modifier_boss_centaur_charge_ms = class({})
+LinkLuaModifier( "modifier_boss_centaur_charge_ms", "bosses/boss_centaur/boss_centaur_charge", LUA_MODIFIER_MOTION_NONE )
+
+function modifier_boss_centaur_charge_ms:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+end
+
+function modifier_boss_centaur_charge_ms:GetModifierMoveSpeedBonus_Percentage()
+	return self:GetSpecialValueFor("ms_boost")
 end

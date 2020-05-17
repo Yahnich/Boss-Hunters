@@ -1,0 +1,158 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf26:version{26288658-411e-4f14-b698-2e1e5d00dec6} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 16
+	m_flConstantRadius = 0.5
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderDeferredLight"
+			m_flAlphaScale = 2.0
+			m_flRadiusScale = 200.0
+			m_hTexture = resource:""
+			m_vecColorScale = 
+			{
+				m_nType = "PVEC_TYPE_LITERAL_COLOR"
+				m_LiteralColor = [ 201, 85, 234 ]
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_MaxVelocity"
+			m_nOverrideCP = 2
+			m_flMaxVelocity = 600.0
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 0.2
+			m_flEndTime = 2.0
+		},
+		{
+			_class = "C_OP_Orient2DRelToCP"
+			m_nCP = 1
+			m_flRotOffset = 180.0
+		},
+		{
+			_class = "C_OP_SetControlPointsToParticle"
+			m_nFirstControlPoint = 3
+			m_bSetOrientation = true
+		},
+		{
+			_class = "C_OP_CPOffsetToPercentageBetweenCPs"
+			m_flInputMin = 1.0
+			m_flInputMax = 0.0
+			m_nOffsetCP = 1
+			m_vecOffset = [ 0.0, 0.0, 0.25 ]
+			m_flInputBias = 0.25
+			m_bScaleOffset = true
+		},
+		{
+			_class = "C_OP_RemapVelocityToVector"
+			m_nFieldOutput = 21
+			m_bNormalize = true
+			m_nOpEndCapState = 0
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_nOpEndCapState = 1
+			m_Rate = -4.0
+			m_flEndTime = 999999.0
+		},
+		{
+			_class = "C_OP_RadiusDecay"
+			m_nOpEndCapState = 1
+			m_flMinRadius = 0.1
+		},
+		{
+			_class = "C_OP_RampScalarLinear"
+			m_nField = 20
+			m_RateMin = -4.0
+			m_RateMax = 4.0
+		},
+		{
+			_class = "C_OP_RampScalarLinear"
+			m_nField = 12
+			m_RateMin = -4.0
+			m_RateMax = 4.0
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMax = 0.1
+			m_fLifetimeMin = 0.1
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_RandomYaw"
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_flStartTime = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.0
+			}
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1000000.0
+			}
+			m_fFalloffPower = 0.0
+			m_nControlPointNumber = 4
+			m_fForceAmountMin = null
+			m_bApplyMinForce = false
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"particles/units/heroes/hero_witchdoctor/witchdoctor_cask_heal_explosion_flash.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_witchdoctor/witchdoctor_cask_heal_launch.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_witchdoctor/witchdoctor_cask_heal_glow.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_witchdoctor/witchdoctor_cask_heal_model.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_witchdoctor/witchdoctor_cask_heal_trail_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_witchdoctor/witchdoctor_cask_heal_trail_c.vpcf"
+		},
+	]
+	m_PreEmissionOperators = [  ]
+	m_nBehaviorVersion = 5
+}

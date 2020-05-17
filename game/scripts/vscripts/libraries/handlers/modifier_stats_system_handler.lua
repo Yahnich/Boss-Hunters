@@ -92,18 +92,20 @@ function modifier_stats_system_handler:DeclareFunctions()
 		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 		MODIFIER_PROPERTY_STATUS_RESISTANCE,
+		MODIFIER_PROPERTY_EVASION_CONSTANT,
+		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
+		MODIFIER_EVENT_ON_TAKEDAMAGE 
 	}
 	return funcs
 end
 
 function modifier_stats_system_handler:GetModifierMoveSpeedBonus_Constant() 
 	local movespeed = (self.ms or 0) 
-	if not self:GetParent():IsRangedAttacker() then movespeed = movespeed + 10 end
 	return movespeed
 end
 
 function modifier_stats_system_handler:GetModifierManaBonus() return 500 + (self.mp or 0) end
-function modifier_stats_system_handler:GetModifierConstantManaRegen() return 1.5 + (self.mpr or 0) end
+function modifier_stats_system_handler:GetModifierConstantManaRegen() return 1.5 + (self.mpr or 0) - self:GetParent():GetIntellect() * 0.05 end
 function modifier_stats_system_handler:GetModifierHealAmplify_Percentage() return self.ha or 0 end
 
 function modifier_stats_system_handler:GetModifierPreAttack_BonusDamage() return (self.ad or 0) end
@@ -116,12 +118,6 @@ end
 function modifier_stats_system_handler:GetModifierAttackSpeedBonus() return 50 + (self.as or 0) end
 function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage() return self.sta or 0 end
 function modifier_stats_system_handler:GetModifierAreaDamage() return self.ard or 0 end
-
-function modifier_stats_system_handler:GetAccuracy(params)
-	if not self:GetParent():IsRangedAttacker() then
-		return 25
-	end
-end
 
 function modifier_stats_system_handler:GetModifierPhysicalArmorBonus()
 	local bonusarmor = 0
@@ -141,12 +137,30 @@ function modifier_stats_system_handler:GetModifierMagicalResistanceBonus() retur
 -- end
 
 function modifier_stats_system_handler:GetModifierExtraHealthBonus() return 400 + (self.hp or 0) end
-function modifier_stats_system_handler:GetModifierConstantHealthRegen() return (self.hpr or 0) end
-function modifier_stats_system_handler:GetModifierStatusResistance() return self.sr or 0 end
+function modifier_stats_system_handler:GetModifierConstantHealthRegen() return 1 + (self.hpr or 0) - self:GetParent():GetStrength() * 0.1 end
+function modifier_stats_system_handler:GetModifierStatusResistance() return ( 1 - ( (1-0.002)^self:GetParent():GetStrength() * (1-self.sr/100) ) ) * 100  end
 
-function modifier_stats_system_handler:GetModifierBonusStats_Strength() return self.allStats or 0 end
-function modifier_stats_system_handler:GetModifierBonusStats_Agility() return self.allStats or 0 end
-function modifier_stats_system_handler:GetModifierBonusStats_Intellect() return self.allStats or 0 end
+function modifier_stats_system_handler:GetModifierBonusStats_Strength() return (self.allStats or 0) + (self.str or 0) end
+function modifier_stats_system_handler:GetModifierBonusStats_Agility() return (self.allStats or 0) + (self.agi or 0) end
+function modifier_stats_system_handler:GetModifierBonusStats_Intellect() return (self.allStats or 0) + (self.int or 0) end
+
+function modifier_stats_system_handler:GetModifierEvasion_Constant() return 5 + (self.evasion or 0) + (1-(1-0.0035)^self:GetParent():GetAgility())*100 end
+function modifier_stats_system_handler:GetModifierPreAttack_CriticalStrike()
+	if self:RollPRNG( 5 + (self.critChance or 0) ) then
+		return 200 + (self.critDamage or 0)
+	end
+end
+
+function modifier_stats_system_handler:OnTakeDamage( params )
+	if params.attacker == self:GetParent() and params.unit ~= self:GetParent() and self:GetParent():GetHealth() > 0 and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL) ) then
+		local lifesteal = (1-(1-0.00125)^self:GetParent():GetIntellect())
+		if params.inflictor and params.unit:IsMinion() then
+				lifesteal = lifesteal / 4
+		end
+		local flHeal = math.ceil(params.damage * lifesteal)
+		params.attacker:HealEvent(flHeal, params.inflictor, params.attacker)
+	end
+end
 
 function modifier_stats_system_handler:IsHidden()
 	return true

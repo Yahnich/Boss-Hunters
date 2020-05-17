@@ -41,7 +41,7 @@ end
 
 function modifier_archangel_smite_the_earth:OnIntervalThink()
 	if not self:GetCaster() or self:GetCaster():IsNull() then self:GetParent():Destroy() end
-    local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self.radius)
+    local enemies = self:GetParent():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self.radius)
     for _,enemy in pairs(enemies) do
 		if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
 			EmitSoundOn("Hero_SkywrathMage.MysticFlare.Target", enemy)

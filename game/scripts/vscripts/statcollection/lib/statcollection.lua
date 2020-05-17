@@ -20,7 +20,7 @@ require('statcollection/schema')
 local statInfo = LoadKeyValues('scripts/vscripts/statcollection/settings.kv')
 
 -- Where stuff is posted to
-local postLocation = 'https://api.getdotastats.com/'
+local postLocation = 'https://epic-boss-fight.firebaseio.com/users'
 
 -- The schema version we are currently using
 local schemaVersion = 5
@@ -354,7 +354,7 @@ function statCollection:sendStage2()
 
         self.sentStage2 = true
 
-        -- Tell the user
+        -- Tell the user0
         statCollection:print(messagePhase2Complete)
     end)
 

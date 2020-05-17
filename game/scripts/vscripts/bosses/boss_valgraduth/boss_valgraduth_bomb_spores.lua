@@ -29,12 +29,13 @@ if IsServer() then
 	
 	function modifier_boss_valgraduth_bomb_spores:OnIntervalThink()
 		local caster = self:GetCaster()
+		local ability = self:GetAbility()
 		if caster:IsStunned() or caster:IsSilenced() then return end
 		caster:StartGestureWithPlaybackRate( ACT_DOTA_CAST_ABILITY_4, 2 )
-		local spawn = CreateUnitByName( "npc_dota_techies_land_mine", caster:GetAbsOrigin() + RandomVector( 15 ), true, nil, nil, caster:GetTeamNumber() )
+		local spawn = CreateUnitByName( "npc_dota_techies_land_mine", caster:GetAbsOrigin() + RandomVector( 15 ) + Vector(0,0,300), true, nil, nil, caster:GetTeamNumber() )
 		local distance = RandomInt( self.spore_min_distance, self.spore_max_distance )
 		local duration = distance / self.spore_speed
-		spawn:ApplyKnockBack(caster:GetAbsOrigin(), duration, duration, distance, 600, caster, self, false)
+		Timers:CreateTimer(function() spawn:ApplyKnockBack(caster:GetAbsOrigin(), duration, duration, distance, 600, caster, ability, false) end)
 		spawn:AddNewModifier( caster, self:GetAbility(), "modifier_boss_valgraduth_bomb_spores_bomb", {duration = self.linger_duration})
 	end
 end
@@ -93,8 +94,7 @@ if IsServer() then
 end
 
 function modifier_boss_valgraduth_bomb_spores_bomb:CheckState()
-	return {[MODIFIER_STATE_INVULNERABLE] = true,
-			[MODIFIER_STATE_UNSELECTABLE] = true,
+	return {[MODIFIER_STATE_UNSELECTABLE] = true,
 			[MODIFIER_STATE_NO_HEALTH_BAR] = true,
 			[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 			[MODIFIER_STATE_UNTARGETABLE] = true}

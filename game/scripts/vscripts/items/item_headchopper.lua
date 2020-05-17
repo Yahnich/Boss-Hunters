@@ -48,7 +48,6 @@ function modifier_item_headchopper_handle:OnAttackLanded(params)
 end
 
 function modifier_item_headchopper_handle:GetModifierTotalDamageOutgoing_Percentage(params)
-	PrintAll(params)
 	if params.target:IsHealingDisabled() then
 		return self.effect_damage
 	end

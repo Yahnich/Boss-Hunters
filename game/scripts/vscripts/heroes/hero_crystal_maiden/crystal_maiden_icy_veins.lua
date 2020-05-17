@@ -36,7 +36,7 @@ function modifier_crystal_maiden_icy_veins:OnIntervalThink()
 			current_item:ModifyCooldown(-self.cdr)
 		end
 	end
-	caster:SpendMana( self.cost * caster:GetMaxMana(), false )
+	caster:SpendMana( self.cost * caster:GetMaxMana(), self:GetAbility() )
 end
 
 function modifier_crystal_maiden_icy_veins:CheckState()

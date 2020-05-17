@@ -12,7 +12,7 @@ end
 
 function pango_shield:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
-    if self:GetCaster():HasScepter() and self:GetCaster():HasModifier("modifier_pango_ball_movement") then
+    if self:GetCaster():HasTalent("special_bonus_unique_pango_ball_2") and self:GetCaster():HasModifier("modifier_pango_ball_movement") then
     	cooldown = 2
     end
     return cooldown
@@ -41,7 +41,9 @@ function modifier_pango_shield_movement:OnCreated()
 		self.startPos = caster:GetAbsOrigin()
 		
 		self.distance = self:GetTalentSpecialValueFor("distance")
-		
+		if caster:HasScepter() then
+			self.swashbuckler = caster:FindAbilityByName("pango_swashbuckler")
+		end
 		self.direction = caster:GetForwardVector()
 
 		self.height = GetGroundHeight(self.startPos, caster)
@@ -83,6 +85,19 @@ function modifier_pango_shield_movement:OnDestroy()
 				end
 
 				self:GetAbility():DealDamage(caster, enemy, damage)
+			end
+		end
+		if self.swashbuckler then
+			local angle = 0
+			local attacks = self:GetTalentSpecialValueFor("scepter_count")
+			local strikes = self:GetTalentSpecialValueFor("scepter_strikes")
+			local direction = caster:GetForwardVector()
+			for i = 1, attacks do
+				local vDir =  RotateVector2D( direction, ToRadians(angle) )
+				for i = 1, strikes do
+					self.swashbuckler:Strike(vDir)
+				end
+				angle = angle + 360/attacks
 			end
 		end
 		if caster:HasTalent("special_bonus_unique_pango_shield_1") then

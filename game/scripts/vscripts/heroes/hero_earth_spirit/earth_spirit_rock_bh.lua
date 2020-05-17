@@ -1,26 +1,26 @@
-espirit_rock = class({})
+earth_spirit_rock_bh = class({})
 
-function espirit_rock:IsStealable()
+function earth_spirit_rock_bh:IsStealable()
 	return false
 end
 
-function espirit_rock:IsHiddenWhenStolen()
+function earth_spirit_rock_bh:IsHiddenWhenStolen()
 	return false
 end
 
-function espirit_rock:GetIntrinsicModifierName()
-	return "modifier_espirit_rock_charges"
+function earth_spirit_rock_bh:GetIntrinsicModifierName()
+	return "modifier_earth_spirit_rock_charges"
 end
 
-function espirit_rock:HasCharges()
+function earth_spirit_rock_bh:HasCharges()
 	return true
 end
 
-function espirit_rock:GetAOERadius(target, position)
-	return self:GetCaster():FindTalentValue("special_bonus_unique_espirit_rock_2", "radius")
+function earth_spirit_rock_bh:GetAOERadius(target, position)
+	return self:GetCaster():FindTalentValue("special_bonus_unique_earth_spirit_rock_2", "radius")
 end
 
-function espirit_rock:OnSpellStart()
+function earth_spirit_rock_bh:OnSpellStart()
     local caster = self:GetCaster()
     local point = self:GetCursorPosition()
 
@@ -32,16 +32,16 @@ function espirit_rock:OnSpellStart()
 	self:CreateStoneRemnant(point)
 end
 
-function espirit_rock:CreateStoneRemnant(position)
+function earth_spirit_rock_bh:CreateStoneRemnant(position)
 	local caster = self:GetCaster()	
 	local rock = caster:CreateSummon("npc_dota_earth_spirit_stone", position, self:GetTalentSpecialValueFor("rock_duration"))
 	rock:SetForwardVector(caster:GetForwardVector())
 
-	rock:AddNewModifier(caster, self, "modifier_espirit_rock_remnant", {})   
+	rock:AddNewModifier(caster, self, "modifier_earth_spirit_rock_remnant", {})   
 
-	if caster:HasTalent("special_bonus_unique_espirit_rock_2") then
-		local enemies = caster:FindEnemyUnitsInRadius(position, caster:FindTalentValue("special_bonus_unique_espirit_rock_2", "radius"))
-		local tDur = caster:FindTalentValue("special_bonus_unique_espirit_rock_2")
+	if caster:HasTalent("special_bonus_unique_earth_spirit_rock_2") then
+		local enemies = caster:FindEnemyUnitsInRadius(position, caster:FindTalentValue("special_bonus_unique_earth_spirit_rock_2", "radius"))
+		local tDur = caster:FindTalentValue("special_bonus_unique_earth_spirit_rock_2")
 		for _,enemy in pairs(enemies) do
 			if not enemy:HasModifier("modifier_knockback") then
 				enemy:ApplyKnockBack(enemy, tDur, tDur, 0, 300, caster, self)
@@ -51,10 +51,10 @@ function espirit_rock:CreateStoneRemnant(position)
 end
 
 
-modifier_espirit_rock_remnant = class({})
-LinkLuaModifier( "modifier_espirit_rock_remnant", "heroes/hero_espirit/espirit_rock.lua", LUA_MODIFIER_MOTION_NONE )
+modifier_earth_spirit_rock_remnant = class({})
+LinkLuaModifier( "modifier_earth_spirit_rock_remnant", "heroes/hero_earth_spirit/earth_spirit_rock_bh.lua", LUA_MODIFIER_MOTION_NONE )
 
-function modifier_espirit_rock_remnant:OnCreated(table)
+function modifier_earth_spirit_rock_remnant:OnCreated(table)
 	if IsServer() then
 		self.damage = self:GetTalentSpecialValueFor("remnant_damage")
 		self.radius = self:GetTalentSpecialValueFor("radius")
@@ -66,12 +66,12 @@ function modifier_espirit_rock_remnant:OnCreated(table)
 	end
 end
 
-function modifier_espirit_rock_remnant:OnIntervalThink()
+function modifier_earth_spirit_rock_remnant:OnIntervalThink()
 	local parent = self:GetParent()
 	local caster = self:GetCaster()
-	if caster:HasTalent("special_bonus_unique_espirit_rock_1") then
-		local heal = caster:FindTalentValue("special_bonus_unique_espirit_rock_1")
-		local allies = caster:FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_espirit_rock_1", "radius"), {type = DOTA_UNIT_TARGET_ALL})
+	if caster:HasTalent("special_bonus_unique_earth_spirit_rock_1") then
+		local heal = caster:FindTalentValue("special_bonus_unique_earth_spirit_rock_1")
+		local allies = caster:FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_earth_spirit_rock_1", "radius"), {type = DOTA_UNIT_TARGET_ALL})
 		for _,ally in pairs(allies) do
 			if ally:GetUnitName() ~= "npc_dota_earth_spirit_stone" then
 				ally:HealEvent( heal, self:GetAbility(), caster)
@@ -80,7 +80,7 @@ function modifier_espirit_rock_remnant:OnIntervalThink()
 	end
 end
 
-function modifier_espirit_rock_remnant:CheckState()
+function modifier_earth_spirit_rock_remnant:CheckState()
 	local state = { [MODIFIER_STATE_ATTACK_IMMUNE] = true,
 					[MODIFIER_STATE_MAGIC_IMMUNE] = true,
 					[MODIFIER_STATE_INVULNERABLE] = true,
@@ -92,30 +92,30 @@ function modifier_espirit_rock_remnant:CheckState()
 	return state
 end
 
-function modifier_espirit_rock_remnant:OnRemoved()
+function modifier_earth_spirit_rock_remnant:OnRemoved()
 	if IsServer() then
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
 		
-		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), self.radius ) ) do
-			ability:DealDamage( caster, enemy, self.damage, {damage_type = DAMAGE_TYPE_MAGICAL} )
-		end
-		ParticleManager:FireParticle("particles/units/heroes/hero_earth_spirit/earth_spirit_remnant_shatter.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+		-- for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), self.radius ) ) do
+			-- ability:DealDamage( caster, enemy, self.damage, {damage_type = DAMAGE_TYPE_MAGICAL} )
+		-- end
+		-- ParticleManager:FireParticle("particles/units/heroes/hero_espirit/espirit_remnant_shatter.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		ParticleManager:DestroyParticle(self.nfx, false)
 		StopSoundOn("Hero_EarthSpirit.StoneRemnant.Impact", self:GetParent())
 		EmitSoundOn("Hero_EarthSpirit.StoneRemnant.Destroy", self:GetParent())
 	end
 end
 
-function modifier_espirit_rock_remnant:IsHidden()
+function modifier_earth_spirit_rock_remnant:IsHidden()
 	return true
 end
 
-modifier_espirit_rock_charges = class({})
-LinkLuaModifier( "modifier_espirit_rock_charges", "heroes/hero_espirit/espirit_rock.lua", LUA_MODIFIER_MOTION_NONE )
+modifier_earth_spirit_rock_charges = class({})
+LinkLuaModifier( "modifier_earth_spirit_rock_charges", "heroes/hero_earth_spirit/earth_spirit_rock_bh.lua", LUA_MODIFIER_MOTION_NONE )
 
 if IsServer() then
-    function modifier_espirit_rock_charges:Update()
+    function modifier_earth_spirit_rock_charges:Update()
 		self.kv.replenish_time = self:GetTalentSpecialValueFor("charge_time")
 		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
 
@@ -135,7 +135,7 @@ if IsServer() then
         end
     end
 
-    function modifier_espirit_rock_charges:OnCreated()
+    function modifier_earth_spirit_rock_charges:OnCreated()
 		kv = {
 			max_count = self:GetTalentSpecialValueFor("charges"),
 			replenish_time = self:GetTalentSpecialValueFor("charge_time")
@@ -148,7 +148,7 @@ if IsServer() then
         end
     end
 	
-	function modifier_espirit_rock_charges:OnRefresh()
+	function modifier_earth_spirit_rock_charges:OnRefresh()
 		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
 		self.kv.replenish_time = self:GetTalentSpecialValueFor("charge_time")
         if self:GetStackCount() ~= kv.max_count then
@@ -156,7 +156,7 @@ if IsServer() then
         end
     end
 	
-    function modifier_espirit_rock_charges:DeclareFunctions()
+    function modifier_earth_spirit_rock_charges:DeclareFunctions()
         local funcs = {
             MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
         }
@@ -164,7 +164,7 @@ if IsServer() then
         return funcs
     end
 
-    function modifier_espirit_rock_charges:OnAbilityFullyCast(params)
+    function modifier_earth_spirit_rock_charges:OnAbilityFullyCast(params)
         if params.unit == self:GetParent() then
 			self.kv.replenish_time = self:GetTalentSpecialValueFor("charge_time")
 			self.kv.max_count = self:GetTalentSpecialValueFor("charges")
@@ -183,7 +183,7 @@ if IsServer() then
         return 0
     end
 
-    function modifier_espirit_rock_charges:OnIntervalThink()
+    function modifier_earth_spirit_rock_charges:OnIntervalThink()
         local stacks = self:GetStackCount()
 		local caster = self:GetCaster()
 		
@@ -197,14 +197,14 @@ if IsServer() then
     end
 end
 
-function modifier_espirit_rock_charges:DestroyOnExpire()
+function modifier_earth_spirit_rock_charges:DestroyOnExpire()
     return false
 end
 
-function modifier_espirit_rock_charges:IsPurgable()
+function modifier_earth_spirit_rock_charges:IsPurgable()
     return false
 end
 
-function modifier_espirit_rock_charges:RemoveOnDeath()
+function modifier_earth_spirit_rock_charges:RemoveOnDeath()
     return false
 end

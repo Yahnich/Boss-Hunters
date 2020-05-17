@@ -171,7 +171,6 @@ function UpdateAccuracyTooltip()
 				valueLabel.text = Buffs.GetStackCount( currUnit, buffID ) + "%";
 			}
 		}
-		
 	}
 	var mPos = GameUI.GetCursorPosition()
     var gamePos = Game.ScreenXYToWorld(mPos[0], mPos[1])

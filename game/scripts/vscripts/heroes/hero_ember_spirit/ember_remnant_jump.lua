@@ -51,17 +51,21 @@ function modifier_ember_remnant_jump:OnCreated(table)
 					ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
 					ParticleManager:SetParticleControlEnt(nfx, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
 		self:AttachEffect(nfx)
-
+		foundRemnant = false
 		for _,remnant in ipairs(ability.totesRems) do
-			if remnant and remnant:HasModifier("modifier_ember_remnant") then
+			if remnant and not remnant:IsNull() and remnant:HasModifier("modifier_ember_remnant") then
+				foundRemnant = true
 				caster:FaceTowards(remnant:GetAbsOrigin())
 				self.distance = CalculateDistance(remnant, caster)
 				self.direction = CalculateDirection(remnant, caster)
 				break
 			end
 		end
-
-		self:StartMotionController()
+		if foundRemnant then
+			self:StartMotionController()
+		else
+			self:Destroy()
+		end
 	end
 end
 
@@ -72,7 +76,12 @@ function modifier_ember_remnant_jump:OnRemoved()
 
 		StopSoundOn("Hero_EmberSpirit.FireRemnant.Activate", caster)
 		EmitSoundOn("Hero_EmberSpirit.FireRemnant.Stop", caster)
-
+		
+		for i = #ability.totesRems, 1, -1 do
+			if ability.totesRems[i]:IsNull() then
+				table.remove( ability.totesRems, i )
+			end
+		end
 		if #ability.totesRems > 0 then
 			caster:AddNewModifier(caster, ability, "modifier_ember_remnant_jump", {Duration = 10})
 		end
@@ -115,8 +124,7 @@ function modifier_ember_remnant_jump:DoControlledMotion()
 end
 
 function modifier_ember_remnant_jump:CheckState()
-	local state = { [MODIFIER_STATE_COMMAND_RESTRICTED] = true,
-					[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+	local state = { [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 					[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
 					[MODIFIER_STATE_UNSELECTABLE] = true,
 					[MODIFIER_STATE_UNTARGETABLE] = true,

@@ -1,7 +1,8 @@
-	juggernaut_mirror_blades = class({})
+juggernaut_mirror_blades = class({})
 
 function juggernaut_mirror_blades:OnSpellStart()
 	local caster = self:GetCaster()
+	caster:Dispel( caster, true )
 	caster:AddNewModifier(caster, self, "modifier_juggernaut_mirror_blades", {duration = self:GetTalentSpecialValueFor("duration")})
 end
 

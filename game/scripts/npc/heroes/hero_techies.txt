@@ -156,12 +156,6 @@
 				"var_type"					"FIELD_INTEGER"
 				"stun_radius"				"400 400 400 400 500 600 700"
 			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"magic_resist"				"0"
-				"LinkedSpecialBonus"		"special_bonus_unique_tech_stasis_mine_1"
-			}
 		}
 		
 		"precache"
@@ -185,12 +179,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"100"
+				"value"					"150"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"tick"					"0.5"
+				"tick"					"1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"0.5"
 			}
 		}
 	}

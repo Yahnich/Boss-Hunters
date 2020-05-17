@@ -142,7 +142,7 @@ function modifier_furion_sprout_sleep_aura:OnRefresh()
 end
 
 function modifier_furion_sprout_sleep_aura:OnIntervalThink()
-	if not self:GetParent():TriggerSpellAbsorb(self:GetAbility()) then then
+	if not self:GetParent():TriggerSpellAbsorb(self:GetAbility()) then
 		ApplyDamage({victim = self:GetParent(), attacker = self:GetCaster(), damage = self.chokeDamage, damage_type = DAMAGE_TYPE_MAGICAL, ability = self:GetAbility()})
 		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_furion_sprout_sleep", {duration = self.sleepDuration})
 	end

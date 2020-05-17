@@ -329,21 +329,22 @@ function CDOTA_Modifier_Lua:GetSpecialValueFor(specVal)
 	end
 end
 
-function CDOTABaseAbility:DealDamage(attacker, victim, damage, data, spellText)
+function CDOTABaseAbility:DealDamage(attacker, target, damage, data, spellText)
 	--OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, OVERHEAD_ALERT_DAMAGE, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, OVERHEAD_ALERT_MANA_LOSS
-	if self:IsNull() or victim:IsNull() or attacker:IsNull() then return end
+	if self:IsNull() or target:IsNull() or attacker:IsNull() then return end
 	local internalData = data or {}
 	local damageType =  internalData.damage_type or self:GetAbilityDamageType() or DAMAGE_TYPE_MAGICAL
 	local damageFlags = internalData.damage_flags or DOTA_DAMAGE_FLAG_NONE
 	local localdamage = damage or self:GetAbilityDamage() or 0
 	local spellText = spellText or 0
 	local ability = self or internalData.ability
-	local oldHealth = victim:GetHealth()
-	ApplyDamage({victim = victim, attacker = attacker, ability = ability, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
-	local newHealth = victim:GetHealth()
+	local oldHealth = target:GetHealth()
+	ApplyDamage({victim = target, attacker = attacker, ability = ability, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
+	if target:IsNull() then return oldHealth end
+	local newHealth = target:GetHealth()
 	local returnDamage = oldHealth - newHealth
 	if spellText > 0 then
-		SendOverheadEventMessage(attacker:GetPlayerOwner(),spellText,victim,returnDamage,attacker:GetPlayerOwner()) --Substract the starting health by the new health to get exact damage taken values.
+		SendOverheadEventMessage(attacker:GetPlayerOwner(),spellText,target,returnDamage,attacker:GetPlayerOwner()) --Substract the starting health by the new health to get exact damage taken values.
 	end
 	return returnDamage
 end
@@ -1212,6 +1213,7 @@ function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 	local valname = "value"
 	local multiply = false
 	local subtract = false
+	local zadd = false
 	local kv = self:GetAbilityKeyValues()
 	if kv["AbilitySpecial"] then
 		for k,v in pairs( kv["AbilitySpecial"] ) do -- trawl through keyvalues
@@ -1220,6 +1222,7 @@ function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 				if v["LinkedSpecialBonusField"] then valname = v["LinkedSpecialBonusField"] end
 				if v["LinkedSpecialBonusOperation"] and v["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_MULTIPLY" then multiply = true end
 				if v["LinkedSpecialBonusOperation"] and v["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_SUBTRACT" then subtract = true end
+				if v["LinkedSpecialBonusOperation"] and v["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_PERCENTAGE_ADD" then zadd = true end
 				break
 			end
 		end
@@ -1235,6 +1238,8 @@ function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 				base = base * talent:GetSpecialValueFor(valname) 
 			elseif subtract then
 				base = base - talent:GetSpecialValueFor(valname) 
+			elseif zadd then
+				base = base + math.floor(base * talent:GetSpecialValueFor(valname)/100)
 			else
 				base = base + talent:GetSpecialValueFor(valname) 
 			end
@@ -1691,6 +1696,16 @@ function CDOTA_Modifier_Lua:StartMotionController()
 	end
 end
 
+function CDOTA_BaseNPC:HasDebuffs()
+	for _, modifier in ipairs( self:FindAllModifiers() ) do
+		local caster = modifier:GetCaster()
+		if modifier:IsDebuff() or (caster and not caster:IsSameTeam( self ) ) then
+			return true
+		end
+	end
+	return false
+end
+
 function CDOTA_Modifier_Lua:AddIndependentStack(duration, limit, bDontDestroy, tTimerTable)
 	local timerTable = tTimerTable or {}
 	self.stackTimers = self.stackTimers or {}
@@ -1843,13 +1858,19 @@ function CDOTABaseAbility:FireTrackingProjectile(FX, target, speed, data, iAttac
 	if bVision ~= nil then dodgable = bDodge end
 	local provideVision = false
 	if bVision ~= nil then provideVision = bVision end
+	origin = self:GetCaster():GetAbsOrigin()
+	if internalData.origin then
+		origin = internalData.origin
+	elseif internalData.source then
+		origin = internalData.source:GetAbsOrigin()
+	end
 	local projectile = {
 		Target = target,
 		Source = internalData.source or self:GetCaster(),
 		Ability = self,	
 		EffectName = FX,
 	    iMoveSpeed = speed,
-		vSourceLoc= internalData.origin or self:GetCaster():GetAbsOrigin(),
+		vSourceLoc= origin or self:GetCaster():GetAbsOrigin(),
 		bDrawsOnMinimap = false,
         bDodgeable = dodgable,
         bIsAttack = false,
@@ -1859,7 +1880,7 @@ function CDOTABaseAbility:FireTrackingProjectile(FX, target, speed, data, iAttac
 		bProvidesVision = provideVision,
 		iVisionRadius = vision or 100,
 		iVisionTeamNumber = self:GetCaster():GetTeamNumber(),
-		iSourceAttachment = iAttach or 0,
+		iSourceAttachment = iAttach or 3,
 		ExtraData = internalData.extraData
 	}
 	return ProjectileManager:CreateTrackingProjectile(projectile)
@@ -1970,6 +1991,7 @@ function CDOTABaseAbility:GetChannelTimeRemaining()
 end
 
 function CDOTA_BaseNPC:AddChill(hAbility, hCaster, chillDuration, chillAmount)
+	if not self or self:IsNull() then return end
 	local chillBonus = chillAmount or 1
 	local bonusDur = chillBonus * 0.1
 	local currentChillDuration = 0
@@ -2071,6 +2093,14 @@ function CDOTA_BaseNPC:IsTaunted()
 	end
 end
 
+function CDOTA_BaseNPC:IsTauntedBy(entity)
+	local taunt = self:FindModifierByNameAndCaster( "modifier_taunt_generic", entity )
+	if taunt then
+		return true
+	end
+	return false
+end
+
 function CDOTA_BaseNPC:RemoveTaunt()
 	if self:HasModifier("modifier_taunt_generic") then
 		self:RemoveModifierByName("modifier_taunt_generic")
@@ -2118,9 +2148,9 @@ function CDOTA_BaseNPC:ApplyKnockBack(position, stunDuration, knockbackDuration,
 		knockback_height = height or 0,
 	}
 	if bStun == nil or bStun == true then
-		self:AddNewModifier(caster, ability, "modifier_stunned_generic", {duration = stunDuration})
+		local stun = self:AddNewModifier(caster, ability, "modifier_stunned_generic", {duration = stunDuration})
 	end
-	self:AddNewModifier(caster, ability, "modifier_knockback", modifierKnockback )
+	local knockback = self:AddNewModifier(caster, ability, "modifier_knockback", modifierKnockback )
 end
 
 function CDOTA_BaseNPC:IsKnockedBack()
@@ -2264,8 +2294,8 @@ function CDOTA_BaseNPC:AddGold(val, bSound)
 			local gold = hero:GetGold() + gold
 			hero:SetGold(0, false)
 			gold = gold + (hero.bonusGoldExcessValue or 0)
-			hero.bonusGoldExcessValue = gold % 1;
-			hero:SetGold(math.ceil(gold), true)
+			hero.bonusGoldExcessValue = gold % 1
+			hero:SetGold(math.floor(gold), true)
 			if bSound then
 				SendOverheadEventMessage(self:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, self, val, self:GetPlayerOwner())
 			end

@@ -1,14 +1,14 @@
-espirit_stone_rip = class({})
+earth_spirit_stone_rip_bh = class({})
 
-function espirit_stone_rip:IsStealable()
+function earth_spirit_stone_rip_bh:IsStealable()
 	return true
 end
 
-function espirit_stone_rip:IsHiddenWhenStolen()
+function earth_spirit_stone_rip_bh:IsHiddenWhenStolen()
 	return false
 end
 
-function espirit_stone_rip:OnInventoryContentsChanged()
+function earth_spirit_stone_rip_bh:OnInventoryContentsChanged()
 	if self:GetCaster():HasScepter() then
 		self:SetLevel(1)
 		self:SetHidden(false)
@@ -20,7 +20,7 @@ function espirit_stone_rip:OnInventoryContentsChanged()
 	end
 end
 
-function espirit_stone_rip:GetBehavior()
+function earth_spirit_stone_rip_bh:GetBehavior()
 	if self:GetCaster():HasScepter() then
 		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AOE + DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE
 	end
@@ -28,11 +28,11 @@ function espirit_stone_rip:GetBehavior()
 	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AOE + DOTA_ABILITY_BEHAVIOR_HIDDEN + DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE
 end
 
-function espirit_stone_rip:GetAOERadius()
+function earth_spirit_stone_rip_bh:GetAOERadius()
 	return self:GetTalentSpecialValueFor("radius")
 end
 
-function espirit_stone_rip:OnSpellStart()
+function earth_spirit_stone_rip_bh:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()
 	local spellblock = target:TriggerSpellAbsorb( self )
@@ -64,7 +64,7 @@ function espirit_stone_rip:OnSpellStart()
     end
 end
 
-function espirit_stone_rip:OnProjectileHit(hTarget, vLocation)
+function earth_spirit_stone_rip_bh:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 
 	if hTarget ~= nil then

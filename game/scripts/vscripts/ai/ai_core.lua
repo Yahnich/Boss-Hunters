@@ -245,8 +245,8 @@ function AICore:AttackHighestPriority( entity )
 			end
 			return ( ( entity:GetAttackAnimationPoint() / entity:GetAttackSpeed( ) ) + 0.1 ) + AI_THINK_RATE
 		else
-			AICore:RunToRandomPosition( entity, 100, true )
-			return AI_THINK_RATE
+			AICore:RunToRandomPosition( entity, 20, true )
+			return 1
 		end
 	end
 end
@@ -297,7 +297,10 @@ function AICore:BeAHugeCoward( entity, runbuffer )
 end
 
 function AICore:RunToRandomPosition( entity, spasticness, bAggro )
-	local position = entity:GetAbsOrigin() + RandomVector( entity:GetIdealSpeed() * 1.5 )
+	local position = entity:GetAbsOrigin() + RandomVector( entity:GetIdealSpeed() * 10 )
+	while not GridNav:CanFindPath( entity:GetAbsOrigin(), position ) do
+		position = entity:GetAbsOrigin() + RandomVector( entity:GetIdealSpeed() * 10 )
+	end
 	local order = DOTA_UNIT_ORDER_MOVE_TO_POSITION
 	if bAggro and entity:GetAttackCapability() ~= DOTA_UNIT_CAP_NO_ATTACK then order = DOTA_UNIT_ORDER_ATTACK_MOVE end
 	if RollPercentage(spasticness) and not entity:GetTauntTarget() then

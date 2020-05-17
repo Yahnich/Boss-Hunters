@@ -10,13 +10,11 @@ local function StartEvent(self)
 			self.bigCentaur = self.bigCentaur - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 		end
-		if self.smallCentaur > 0 then
+		for i = 1, self.smallCentaur do
 			local spawn = CreateUnitByName("npc_dota_boss_lesser_centaur", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundNecessary = true
-			self.smallCentaur = self.smallCentaur - 1
-			self.enemiesToSpawn = self.enemiesToSpawn - 1
 		end
-		if self.enemiesToSpawn > 0 then
+		if self.bigCentaur > 0 then
 			return 20 / GameRules:GetGameDifficulty()
 		end
 	end)

@@ -20,9 +20,9 @@ end
 function modifier_boss_attackspeed:OnIntervalThink()
 	local parent = self:GetParent()
 	local position = self:GetParent():GetAbsOrigin()
+	self.radius = self.radius or parent:GetHullRadius() + parent:GetCollisionPadding()
 	if not parent:IsInvisible() then
 		self.thinkTime = self.thinkTime + 0.33
-		self.radius = self.radius or parent:GetHullRadius() + parent:GetCollisionPadding()
 		if self.thinkTime >= self.thinkLimit then
 			self.thinkTime = 0
 			AddFOWViewer(DOTA_TEAM_GOODGUYS, position, 516, 1, false)

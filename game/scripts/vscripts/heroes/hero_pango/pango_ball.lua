@@ -53,7 +53,7 @@ function pango_ball:OnSpellStart()
 		ParticleManager:ClearParticle(self.nfx)
 	end
 
-	if caster:HasModifier("modifier_pango_ball_movement") and not caster:HasTalent("special_bonus_unique_pango_ball_2") then
+	if caster:HasModifier("modifier_pango_ball_movement") then
 		caster:RemoveModifierByName("modifier_pango_ball_movement")
 		self:RefundManaCost()
 	else

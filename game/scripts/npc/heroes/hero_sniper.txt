@@ -167,6 +167,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"damage"					"30 60 90 120 120 120 120"
+				"LinkedSpecialBonus"		"special_bonus_unique_sniper_headshot_bh_1"
 			}
 			"03"
 			{
@@ -202,6 +203,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_sniper_headshot_bh"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -210,7 +212,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"35"
+				"value"						"45"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"50"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"						"250"
 			}
 		}
 	}
@@ -302,6 +314,7 @@
 	            "var_type"                      "FIELD_FLOAT"
 	            "damage_reduction"     			"-80 -75 -70 -65 -65 -65 -65"
 	            "LinkedSpecialBonus"			"special_bonus_unique_sniper_rapid_fire_1"
+				"CalculateSpellDamageTooltip"	"0"
 	        }
 	    }
 	}

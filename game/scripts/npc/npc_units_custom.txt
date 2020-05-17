@@ -7141,7 +7141,7 @@
 		{
 			"particle_folder"		"particles/units/heroes/hero_legion_commander"
 		}
-		"vscripts"					"ai/ai_generic.lua"
+		"vscripts"					"ai/ai_lesser_centaur.lua"
 		
 		//----------------------------------------------------------------
 		
@@ -7236,9 +7236,9 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"70"		// Damage range min.
-		"AttackDamageMax"			"80"		// Damage range max.
-		"AttackRate"				"3"		// Speed of attack.
+		"AttackDamageMin"			"140"		// Damage range min.
+		"AttackDamageMax"			"160"		// Damage range max.
+		"AttackRate"				"6"		// Speed of attack.
 		"AttackAnimationPoint"		"0.467"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.
@@ -7358,7 +7358,6 @@
 		"AbilityLayout"				"6"
 		"Ability1"					"boss_slark_blood_curse"			// Ability 1.
 		"Ability2"					"boss_slark_gift_of_the_flayed"
-		"Ability3"					"boss_slark_leap"
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -7435,26 +7434,12 @@
 	
 			"AttachWearables"
 			{
-				"Wearable1"
-				{
-					"ItemDef"			"336"		
-				}
-				"Wearable2"
-				{
-					"ItemDef"			"353"		
-				}
-				"Wearable3"
-				{
-					"ItemDef"			"354"		
-				}
-				"Wearable4"
-				{
-					"ItemDef"			"355"		
-				}
-				"Wearable5"
-				{
-					"ItemDef"			"356"		
-				}
+				"Wearable1"{"ItemDef"			"5309"}
+				"Wearable2"{"ItemDef"			"5310"}
+				"Wearable3"{"ItemDef"			"353"}
+				"Wearable4"{"ItemDef"			"354"}
+				"Wearable5"{"ItemDef"			"355"}
+				"Wearable6"{"ItemDef"			"356"}
 			}
 		}
 	}

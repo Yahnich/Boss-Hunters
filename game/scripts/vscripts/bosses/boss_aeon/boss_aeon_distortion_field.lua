@@ -53,6 +53,9 @@ LinkLuaModifier("modifier_boss_aeon_distortion_field_aura", "bosses/boss_aeon/bo
 function modifier_boss_aeon_distortion_field_aura:OnCreated()
 	self.as = self:GetSpecialValueFor("as_slow")
 	self.cdr = self:GetSpecialValueFor("cdr_slow")
+	if IsServer() then
+		self:StartIntervalThink(0.1)
+	end
 end
 
 function modifier_boss_aeon_distortion_field_aura:OnRefresh()
@@ -60,12 +63,37 @@ function modifier_boss_aeon_distortion_field_aura:OnRefresh()
 	self.cdr = self:GetSpecialValueFor("cdr_slow")
 end
 
+function modifier_boss_aeon_distortion_field_aura:OnIntervalThink()
+	local parent = self:GetParent()
+	for i = 0, parent:GetAbilityCount() - 1 do
+        local ability = parent:GetAbilityByIndex( i )
+        if ability then
+			local cd = ability:GetCooldownTimeRemaining()
+			if cd > 0 then
+				ability:EndCooldown()
+				ability:StartCooldown(cd - (0.1 * (self.cdr/100)))
+				print( cd, ability:GetCooldownTimeRemaining() )
+			end
+        end
+    end
+	for i=0, 5, 1 do
+		local item = parent:GetItemInSlot(i)
+		if item then
+			local cd = item:GetCooldownTimeRemaining()
+			if cd > 0 then
+				item:EndCooldown()
+				item:StartCooldown(cd - (0.1 * (self.cdr/100)))
+			end
+		end
+	end
+end
+
 function modifier_boss_aeon_distortion_field_aura:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TOOLTIP, }
+	return {MODIFIER_PROPERTY_TOOLTIP, MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_ONGOING}
 end
 
 function modifier_boss_aeon_distortion_field_aura:OnTooltip()
-	return self.cdr
+	return self.as
 end
 
 function modifier_boss_aeon_distortion_field_aura:GetModifierAttackSpeedBonus()

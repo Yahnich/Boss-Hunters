@@ -1,0 +1,193 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf26:version{26288658-411e-4f14-b698-2e1e5d00dec6} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 50
+	m_hFallback = resource:"particles/units/heroes/hero_dark_seer/dark_seer_ion_shell_fallback_mid.vpcf"
+	m_nFallbackMaxCount = 2
+	m_ConstantColor = [ 0, 100, 0, 255 ]
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_nSkin = 3
+			m_bIgnoreNormal = true
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/props_rock/riveredge_rocks_small007.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_bForceDrawInterlevedWithSiblings = true
+			m_nLOD = 1
+			m_bForceLoopingAnimation = true
+			m_bIgnoreRadius = true
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.85
+			m_flStartScale = 0.0
+			m_flEndScale = 0.2
+		},
+		{
+			_class = "C_OP_Noise"
+			m_bAdditive = true
+			m_flOutputMin = -1.0
+			m_nFieldOutput = "12"
+		},
+		{
+			_class = "C_OP_RampScalarLinear"
+			m_flEndTime_max = 10000000000.0
+			m_flEndTime_min = 10000000000.0
+			m_RateMax = 2.0
+			m_RateMin = -2.0
+			m_nField = "12"
+		},
+		{
+			_class = "C_OP_PositionLock"
+		},
+		{
+			_class = "C_OP_SetChildControlPoints"
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_nOpEndCapState = 1
+			m_Rate = -40.0
+			m_flEndTime = 999999986991104.0
+		},
+		{
+			_class = "C_OP_RadiusDecay"
+			m_nOpEndCapState = 1
+			m_flMinRadius = 0.1
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMax = 0.5
+			m_fLifetimeMin = 0.5
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMax = 0.01
+			m_flRadiusMin = 0.01
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+			m_fRadiusMin = 150.0
+			m_fRadiusMax = 150.0
+		},
+		{
+			_class = "C_INIT_RandomYaw"
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 0, 100, 0, 255 ]
+			m_ColorMax = [ 255, 140, 0, 255 ]
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_flDegreesMin = 179.0
+			m_flDegreesMax = 181.0
+			m_nFieldOutput = "20"
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_flDegreesMin = 179.0
+			m_flDegreesMax = 181.0
+		},
+		{
+			_class = "C_INIT_RemapCPtoScalar"
+			m_flOutputMax = 800.0
+			m_flInputMax = 6400.0
+			m_nCPInput = 1
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_nMapType = "PF_MAP_TYPE_DIRECT"
+				m_flLiteralValue = 25.0
+				m_nControlPoint = 0
+				m_nScalarAttribute = 3
+				m_nVectorAttribute = 6
+				m_nVectorComponent = 0
+				m_flRandomMin = 0.0
+				m_flRandomMax = 1.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_flLOD0 = 0.0
+				m_flLOD1 = 0.0
+				m_flLOD2 = 0.0
+				m_flLOD3 = 0.0
+				m_nInputMode = "PF_INPUT_MODE_CLAMPED"
+				m_flMultFactor = 1.0
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+				m_nBiasType = "PF_BIAS_TYPE_STANDARD"
+				m_flBiasParameter = 0.0
+				m_Curve = 
+				{
+					m_spline = [  ]
+					m_tangents = [  ]
+					m_vDomainMins = [ 0.0, 0.0 ]
+					m_vDomainMaxs = [ 0.0, 0.0 ]
+				}
+			}
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 1.0, 1.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_nBehaviorVersion = 10
+	m_nFirstMultipleOverride_BackwardCompat = 7
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_TwistAroundAxis"
+			m_fForceAmount = -150.0
+			m_bLocalSpace = true
+		},
+	]
+	m_Constraints = 
+	[
+		{
+			_class = "C_OP_ConstrainDistance"
+			m_fMaxDistance = 150.0
+		},
+	]
+	m_flConstantRadius = 1.0
+}

@@ -17,7 +17,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12"
+		"AbilityCooldown"				"11 11 11 11 10 9 8"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -55,23 +55,17 @@
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"movement_slow"					"30 35 40 45 50 55 60"
-				"LinkedSpecialBonus"			"special_bonus_unique_brewmaster_thunder_clap_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"movement_slow"					"30 40 50 60 60 60 60"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"attack_speed_slow"				"30 35 40 45 50 55 60"
-				"LinkedSpecialBonus"			"special_bonus_unique_brewmaster_thunder_clap_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"damage_reduction"				"10 15 20 25 25 25 25"
 			}			
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"4.0"
-				"LinkedSpecialBonus"			"special_bonus_unique_brewmaster_thunder_clap_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"duration"						"3 3 3 3 4 5 6"
 			}			
 		}
 	}
@@ -93,7 +87,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"1.5"
+				"value"						"2"
 			}
 		}
 	}
@@ -151,7 +145,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"11 10 9 8 7 6 5"
+		"AbilityCooldown"				"12"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -164,33 +158,23 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"6"
+				"duration"					"7 7 7 7 8 9 10"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"miss_chance"				"20 22.5 25 27.5 30 32.5 35"
+				"miss_chance"				"20 30 40 50 50 50 50"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"movement_slow"				"-30 -35 -40 -45 -50 -55 -60"
+				"radius"					"200 200 200 200 300 350 400"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"evasion"					"35"
-			}
-			// "05"
-			// {
-				// "var_type"					"FIELD_INTEGER"
-				// "movement_bonus"			"0"
-			// }
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_radius"			"325"
-			}			
+				"scepter_evasion"			"20 25 30 35 40 45 50"
+			}		
 		}
 	}
 	//=================================================================================================================
@@ -251,7 +235,7 @@
 		"MaxLevel"						"7"
 		
 		"AbilityCastPoint"				"0.4 0.4 0.4"
-		"AbilityCooldown"				"40 35 30 25 20 15 10"
+		"AbilityCooldown"				"20 20 20 20 18 16 14"
 		"AbilityManaCost"				"50"
 	
 		// Special
@@ -261,7 +245,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"5"
+				"duration"					"5 6 7 8 8 8 8"
 			}
 			"02"
 			{
@@ -317,7 +301,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"20"
+				"value"						"40"
 			}
 		}
 	}
