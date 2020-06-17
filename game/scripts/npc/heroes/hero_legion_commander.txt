@@ -1,109 +1,5 @@
 "DOTAAbilities"
 {	
-	"legion_commander_war_fury"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_legion_commander/legion_commander_war_fury"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"MaxLevel"						"6"
-		
-		"AbilityCastRange"				"450"
-		"AbilityCooldown"				"60"
-		"AbilityManaCost"				"200"
-		"AbilityCastPoint"				"0.3"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		"HasScepterUpgrade"				"1"
-	
-		"AbilityTextureName"			"legion_commander_duel"
-		
-		"precache"
-		{
-			"soundfile"	"game_sounds_heroes/game_sounds_legion_commander.vsndevts"
-			"soundfile"	"soundevents/game_sounds_custom.vsndevts"
-			"particle" "particles/status_fx/status_effect_legion_commander_duel.vpcf"
-			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_duel_buff.vpcf"
-			"particle" "particles/legion_war_fury_ring.vpcf"
-		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage_aura"		"25 50 75 100 125 150"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"50"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"armor"							"5 8 11 14 17 20"
-				"LinkedSpecialBonus"			"special_bonus_unique_legion_commander_war_fury_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"15"
-			}
-		}
-	}
-	"legion_commander_fearless_assault"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_legion_commander/legion_commander_fearless_assault"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"legion_commander_moment_of_courage"
-		"MaxLevel"						"7"
-		
-		"precache"
-		{
-			"soundfile"	"game_sounds_heroes/game_sounds_legion_commander.vsndevts"
-			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_courage_hit.vpcf"
-			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_courage_tgt.vpcf"
-		}
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"0.8"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"trigger_chance"			"20 22.5 25 27.5 30 32.5 35"
-				"LinkedSpecialBonus"		"special_bonus_unique_legion_commander_fearless_assault_1"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"buff_duration"				"1.0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"hp_leech_percent"			"55 60 65 70 75 80 85"
-			}
-		}
-	}
 	"legion_commander_victorious_advance"
 	{
 		// General
@@ -116,6 +12,14 @@
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"legion_commander_overwhelming_odds"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_legion_commander_victorious_advance_1"	"1"
+			"special_bonus_unique_legion_commander_victorious_advance_2"	"1"
+		}
 		
 		"precache"
 		{
@@ -152,7 +56,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"100 140 180 220 260 300 340"
+				"damage"						"100 180 260 340 360 380 400"
 			}
 			"03"
 			{
@@ -178,6 +82,44 @@
 			}
 		}
 	}
+	"special_bonus_unique_legion_commander_victorious_advance_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"2"
+			}
+		}
+	}
+	"special_bonus_unique_legion_commander_victorious_advance_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1200"
+			}
+		}
+	}
 	//=================================================================================================================
 	// Legion Commander: Press the Attack
 	//=================================================================================================================
@@ -193,6 +135,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityTextureName"			"legion_commander_press_the_attack"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_legion_commander_unbreakable_morale_1"	"1"
+			"special_bonus_unique_legion_commander_unbreakable_morale_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -246,44 +196,6 @@
 			}
 		}
 	}
-	"special_bonus_unique_legion_commander_victorious_advance_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
-			}
-		}
-	}
-	"special_bonus_unique_legion_commander_victorious_advance_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1200"
-			}
-		}
-	}
 	"special_bonus_unique_legion_commander_unbreakable_morale_1" 
 	{
 		// General
@@ -319,6 +231,57 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value"					"1"
+			}
+		}
+	}
+	"legion_commander_fearless_assault"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_legion_commander/legion_commander_fearless_assault"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"legion_commander_moment_of_courage"
+		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_legion_commander_fearless_assault_1"	"1"
+			"special_bonus_unique_legion_commander_fearless_assault_2"	"1"
+		}
+		
+		"precache"
+		{
+			"soundfile"	"game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_courage_hit.vpcf"
+			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_courage_tgt.vpcf"
+		}
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.8"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"trigger_chance"			"20 22.5 25 27.5 30 32.5 35"
+				"LinkedSpecialBonus"		"special_bonus_unique_legion_commander_fearless_assault_1"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"buff_duration"				"1.0"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"hp_leech_percent"			"55 60 65 70 75 80 85"
 			}
 		}
 	}
@@ -358,6 +321,75 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value"					"-2"
+			}
+		}
+	}
+	"legion_commander_war_fury"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_legion_commander/legion_commander_war_fury"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_legion_commander_war_fury_1"	"1"
+			"special_bonus_unique_legion_commander_war_fury_2"	"1"
+		}
+		
+		"AbilityCastRange"				"450"
+		"AbilityCooldown"				"60"
+		"AbilityManaCost"				"200"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"HasScepterUpgrade"				"1"
+	
+		"AbilityTextureName"			"legion_commander_duel"
+		
+		"precache"
+		{
+			"soundfile"	"game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+			"soundfile"	"soundevents/game_sounds_custom.vsndevts"
+			"particle" "particles/status_fx/status_effect_legion_commander_duel.vpcf"
+			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_duel_buff.vpcf"
+			"particle" "particles/legion_war_fury_ring.vpcf"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage_aura"		"25 50 75 100 125 150"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal"				"50"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"armor"							"5 8 11 14 17 20"
+				"LinkedSpecialBonus"			"special_bonus_unique_legion_commander_war_fury_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"15"
 			}
 		}
 	}

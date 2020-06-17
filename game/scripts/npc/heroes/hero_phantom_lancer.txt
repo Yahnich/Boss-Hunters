@@ -18,6 +18,14 @@
 		"AbilityTextureName"			"phantom_lancer_spirit_lance"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_pl_spirit_lance_1"	"1"
+			"special_bonus_unique_pl_spirit_lance_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -146,6 +154,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName"			"phantom_lancer_doppelwalk"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_pl_doppelganger_1"	"1"
+			"special_bonus_unique_pl_doppelganger_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -285,6 +301,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"custom/phantom_lancer_false_edge"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_pl_false_edge_1"	"1"
+			"special_bonus_unique_pl_false_edge_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -462,6 +486,14 @@
 		"AbilityTextureName"			"phantom_lancer_juxtapose"
 		"MaxLevel"						"6"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_pl_juxtapose_1"	"1"
+			"special_bonus_unique_pl_juxtapose_2"	"1"
+		}
 
 		"precache"
 		{	

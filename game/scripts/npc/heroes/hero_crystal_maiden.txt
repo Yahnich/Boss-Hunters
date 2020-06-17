@@ -18,6 +18,14 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Crystal.CrystalNova"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_crystal_maiden_crystal_nova_1"	"1"
+			"special_bonus_unique_crystal_maiden_crystal_nova_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -125,6 +133,14 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"hero_Crystal.frostbite"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_crystal_maiden_frostbite_1"	"1"
+			"special_bonus_unique_crystal_maiden_frostbite_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -237,6 +253,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_crystal_maiden_crystalline_aura_1"	"1"
+			"special_bonus_unique_crystal_maiden_crystalline_aura_2"	"1"
+		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -362,6 +386,14 @@
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_crystal_maiden_arcane_blizzard_1"	"1"
+			"special_bonus_unique_crystal_maiden_arcane_blizzard_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

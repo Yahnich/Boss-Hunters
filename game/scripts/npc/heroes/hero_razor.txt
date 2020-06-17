@@ -14,6 +14,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"razor_plasma_field"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_razor_plasma_field_bh_1"	"1"
+			"special_bonus_unique_razor_plasma_field_bh_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -114,6 +122,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"razor_static_link"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_razor_static_link_bh_1"	"1"
+			"special_bonus_unique_razor_static_link_bh_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -218,6 +234,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"razor_unstable_current"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_razor_unstable_current_bh_1"	"1"
+			"special_bonus_unique_razor_unstable_current_bh_2"	"1"
+		}
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -357,6 +381,14 @@
 		"MaxLevel"						"6"
 		"AbilityTextureName"			"razor_eye_of_the_storm"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_razor_eye_of_the_storm_bh_1"	"1"
+			"special_bonus_unique_razor_eye_of_the_storm_bh_2"	"1"
+		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

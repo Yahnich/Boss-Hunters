@@ -18,6 +18,14 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilitySound"					"hero_viper.poisonAttack.Cast"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_viper_poison_attack_1"	"1"
+			"special_bonus_unique_viper_poison_attack_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -121,6 +129,14 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_viper_nethertoxin_1"	"1"
+			"special_bonus_unique_viper_nethertoxin_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -232,6 +248,14 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilitySound"					"hero_viper.CorrosiveSkin"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_viper_corrosive_skin_1"	"1"
+			"special_bonus_unique_viper_corrosive_skin_2"	"1"
+		}
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -365,6 +389,14 @@
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_viper_viper_strike_1"	"1"
+			"special_bonus_unique_viper_viper_strike_2"	"1"
+		}
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------

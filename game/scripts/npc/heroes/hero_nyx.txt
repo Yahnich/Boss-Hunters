@@ -17,6 +17,14 @@
 	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"nyx_assassin_impale"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_nyx_impale_1"	"1"
+			"special_bonus_unique_nyx_impale_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -143,6 +151,14 @@
 	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"nyx_assassin_mana_burn"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_nyx_int_burn_1"	"1"
+			"special_bonus_unique_nyx_int_burn_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -258,6 +274,14 @@
 	    "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"nyx_assassin_spiked_carapace"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_nyx_harden_carapace_1"	"1"
+			"special_bonus_unique_nyx_harden_carapace_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -437,6 +461,14 @@
 		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
 		"AbilityTextureName"			"nyx_assassin_vendetta"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_nyx_vendetta_1"	"1"
+			"special_bonus_unique_nyx_vendetta_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

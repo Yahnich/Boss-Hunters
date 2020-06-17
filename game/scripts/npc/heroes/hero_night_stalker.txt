@@ -19,6 +19,15 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"night_stalker_void"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_night_stalker_void_1"	"1"
+			"special_bonus_unique_night_stalker_void_2"	"1"
+		}
+		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"525"
@@ -133,6 +142,14 @@
 		"AbilityTextureName"			"night_stalker_crippling_fear"
 		"AbilitySound"					"Hero_Nightstalker.Trickling_Fear"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_night_stalker_crippling_fear_1"	"1"
+			"special_bonus_unique_night_stalker_crippling_fear_2"	"1"
+		}
 
 		// Unit Targeting
 		//-------------------------------------------------------------------------------------------------------------
@@ -233,6 +250,14 @@
 		"AbilityTextureName"			"night_stalker_hunter_in_the_night"
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_night_stalker_hunter_in_the_night_1"	"1"
+			"special_bonus_unique_night_stalker_hunter_in_the_night_2"	"1"
+		}
 			
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -325,6 +350,14 @@
 		"AbilitySound"					"Hero_Nightstalker.Darkness"
 		"AbilityTextureName"			"night_stalker_darkness"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_night_stalker_dark_ascension_1"	"1"
+			"special_bonus_unique_night_stalker_dark_ascension_2"	"1"
+		}
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------

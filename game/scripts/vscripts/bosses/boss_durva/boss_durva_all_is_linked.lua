@@ -22,7 +22,7 @@ end
 
 function modifier_boss_durva_all_is_linked:OnTakeDamage(params)
 	local ability = self:GetAbility()
-	if params.attacker == self:GetParent() and not params.inflictor == ability then
+	if params.attacker == self:GetParent() and params.inflictor ~= ability then
 		local damage = params.original_damage * self.dmg_spread
 		for _, enemy in ipairs( params.attacker:FindEnemyUnitsInRadius( params.unit:GetAbsOrigin(), self.radius ) ) do
 			if enemy ~= params.unit then

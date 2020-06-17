@@ -1,0 +1,22 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/shop.css" /> 
+	</styles> 
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/shop.js" />
+	</scripts>
+	 <snippets>
+		<snippet name="AttributePurchaseButton">
+			<Panel class="StatUpgradeContainer">
+				<Label text="Health (+150)" id="StatUpgradeLabel" class="StatUpgradeLabel"/>
+				<Panel id="GoldValueContainer" class="GoldValueContainer">
+					<Panel id="GoldIconSnippet" class="GoldIcon"/>
+					<Label text="300" id="ValueLabelSnipper" class="ValueLabel"/>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="talentRoot" hittest="false">
+	</Panel>
+</root>

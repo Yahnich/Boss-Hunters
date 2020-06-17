@@ -19,6 +19,14 @@
 		"MaxLevel"						"7"
 		"AbilitySound"					"Hero_Beastmaster.Wild_Axes"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_beast_wild_axes_1"	"1"
+			"special_bonus_unique_beast_wild_axes_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -133,6 +141,14 @@
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"beastmaster_call_of_the_wild"
 		"LinkedAbility"					"beast_cotw_hawk"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_beast_cotw_boar_1"	"1"
+			"special_bonus_unique_beast_cotw_hawk_1"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -262,6 +278,14 @@
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"beastmaster_call_of_the_wild_hawk"
 		"LinkedAbility"					"beast_cotw_boar"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_beast_cotw_hawk_1"	"1"
+			"special_bonus_unique_beast_cotw_boar_1"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -373,6 +397,14 @@
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"beastmaster_inner_beast"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_beast_beast_mode_1"	"1"
+			"special_bonus_unique_beast_beast_mode_2"	"1"
+		}
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -474,6 +506,14 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"						"6"
 		"AbilityTextureName"			"beastmaster_primal_roar"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_beast_roar_1"	"1"
+			"special_bonus_unique_beast_roar_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

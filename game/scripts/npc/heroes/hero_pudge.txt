@@ -15,8 +15,15 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"HasScepterUpgrade"				"1"
 		"AbilityTextureName"			"pudge_meat_hook"
-		
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_pudge_hook_lua_1"	"1"
+			"special_bonus_unique_pudge_hook_lua_2"	"1"
+		}
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -53,7 +60,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"90 180 270 360 450 540 630"
+				"damage"				"150 220 290 360 430 500 570"
 			}
 			"02"
 			{
@@ -164,6 +171,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/pudge_rot_arcana"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_pudge_rot_lua_1"	"1"
+			"special_bonus_unique_pudge_rot_lua_2"	"1"
+		}
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -196,8 +211,9 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"30 60 90 120 150 180 210"
-				"LinkedSpecialBonus"	"special_bonus_unique_pudge_rot_lua_1"
+				"damage"				"30 60 90 120 120 120 120"
+				"LinkedSpecialBonus"	"special_bonus_unique_pudge_rot_lua_2"
+				"LinkedSpecialBonusField"	"value2"
 			}
 			"02"
 			{
@@ -282,10 +298,16 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-
 		"AbilityTextureName"			"custom/pudge_dismember_arcana"
-		
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_pudge_chain_storm_1"	"1"
+			"special_bonus_unique_pudge_chain_storm_2"	"1"
+		}
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -402,7 +424,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"health_regen"			"0.7"
+				"health_regen"			"1.5"
 			}
 			"03"
 			{
@@ -427,6 +449,14 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"MaxLevel"						"6"
 		"AbilityTextureName"			"pudge_dismember"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_pudge_dismember_lua_1"	"1"
+			"special_bonus_unique_pudge_dismember_lua_2"	"1"
+		}
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -445,7 +475,7 @@
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"				"0.3"
 	
-		"AbilityCooldown"				"45 40 35 30 25 20"
+		"AbilityCooldown"				"45 35 25 25 25 25"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -461,7 +491,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"str_damage"			"75 80 85 90 95 100"
+				"str_damage"			"30 30 30 60 90 120"
 			}
 			"04"
 			{
@@ -472,7 +502,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"heal_pct"				"25"
+				"heal_pct"				"100"
 			}
 			"06"
 			{

@@ -14,6 +14,14 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"snapfire_scatterblast"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_snapfire_scatterblast_lua_1"	"1"
+			"special_bonus_unique_snapfire_scatterblast_lua_2"	"1"
+		}
 
 		"AbilityCastRange"				"800"
 		"AbilityCastPoint"				"0.4"
@@ -159,6 +167,14 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"snapfire_firesnap_cookie"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_snapfire_firesnap_cookie_lua_1"	"1"
+			"special_bonus_unique_snapfire_firesnap_cookie_lua_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -287,6 +303,14 @@
 		"AbilityTextureName"			"snapfire_lil_shredder"
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_snapfire_lil_shredder_lua_1"	"1"
+			"special_bonus_unique_snapfire_lil_shredder_lua_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -424,6 +448,14 @@
 		"MaxLevel"						"6"
 		"AbilitySound"					"Hero_Snapfire.MortimerBlob.Launch"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_snapfire_mortimer_kisses_lua_1"	"1"
+			"special_bonus_unique_snapfire_mortimer_kisses_lua_2"	"1"
+		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

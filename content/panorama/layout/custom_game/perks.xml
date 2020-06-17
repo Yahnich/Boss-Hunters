@@ -1,0 +1,76 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/talents.css" />
+	</styles> 
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/perks.js" />
+	</scripts>
+	 <snippets> 
+        <snippet name="TalentContainer">
+			<Panel class="GenericTalentContainer">
+				<Button class="GenericTalentsSelector">
+					<Image id="GenericTalentImage" src="file://{images}/custom_game/icons/talentMSIcon.png"/>
+				</Button>
+				<Panel class="GenericTalentStarContainer">
+					<Image id="LevelStar1" src="file://{images}/custom_game/icons/unleveledTalentTierIcon.png" class="LevelStar"/>
+					<Image id="LevelStar2" src="file://{images}/custom_game/icons/unleveledTalentTierIcon.png" class="LevelStar"/>
+					<Image id="LevelStar3" src="file://{images}/custom_game/icons/unleveledTalentTierIcon.png" class="LevelStar"/>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="root" hittest="false">
+		<Panel id="RootContainer" hittest="false" oncancel="RemovePanel('MainStatsPanel')" >
+			<Panel id="MainStatsPanel" class="GenericStatsContainer" onmouseout="BlurPanel('MainStatsPanel')" onactivate="FocusPanel('MainStatsPanel')">
+				<Panel class="TalentHeader">
+					<Label id="TalentHeaderLabel" text="HERO MASTERIES"/>
+				</Panel>
+				<Panel id="TalentRowContainer" class="GenericTalentsRowContainer">
+					<!-- <Panel class="GenericTalentsRow"> -->
+						<!-- <Panel class="GenericTalentContainer"> -->
+							<!-- <Button class="GenericTalentsSelector">  -->
+								<!-- <Image src="file://{images}/custom_game/icons/crownsymbolunactive.png"/> -->
+							<!-- </Button> -->
+							<!-- <Panel class="GenericTalentStarContainer"> -->
+								<!-- <Image src="file://{images}/custom_game/icons/leveledTalentTierIcon.png" class="LevelStar"/> -->
+								<!-- <Image src="file://{images}/custom_game/icons/unleveledTalentTierIcon.png" class="LevelStar"/> -->
+								<!-- <Image src="file://{images}/custom_game/icons/unleveledTalentTierIcon.png" class="LevelStar"/> -->
+							<!-- </Panel> -->
+						<!-- </Panel> -->
+						<!-- <Panel class="GenericTalentContainer"> -->
+							<!-- <Button class="GenericTalentsSelector"> -->
+								<!-- <Image src="file://{images}/custom_game/icons/talentMPRIcon.png"/> -->
+							<!-- </Button> -->
+							<!-- <Panel class="GenericTalentStarContainer"> -->
+								<!-- <Image src="file://{images}/custom_game/icons/leveledTalentTierIcon.png" class="LevelStar"/> -->
+								<!-- <Image src="file://{images}/custom_game/icons/leveledTalentTierIcon.png" class="LevelStar"/> -->
+								<!-- <Image src="file://{images}/custom_game/icons/unleveledTalentTierIcon.png" class="LevelStar"/> -->
+							<!-- </Panel> -->
+						<!-- </Panel> -->
+						<!-- <Panel class="GenericTalentContainer"> -->
+							<!-- <Button class="GenericTalentsSelector"> -->
+								<!-- <Image src="file://{images}/custom_game/icons/talentSpAIcon.png"/> -->
+							<!-- </Button> -->
+							<!-- <Panel class="GenericTalentStarContainer"> -->
+								<!-- <Image src="file://{images}/custom_game/icons/leveledTalentTierIcon.png" class="LevelStar"/> -->
+								<!-- <Image src="file://{images}/custom_game/icons/leveledTalentTierIcon.png" class="LevelStar"/> -->
+								<!-- <Image src="file://{images}/custom_game/icons/leveledTalentTierIcon.png" class="LevelStar"/> -->
+							<!-- </Panel> -->
+						<!-- </Panel> -->
+						<!-- <Panel class="GenericTalentContainer"> -->
+							<!-- <Button class="GenericTalentsSelector"> -->
+								<!-- <Image src="file://{images}/custom_game/icons/talentArDIcon.png"/> -->
+							<!-- </Button> -->
+							<!-- <Panel class="GenericTalentStarContainer"> -->
+								<!-- <Image src="file://{images}/custom_game/icons/unleveledTalentTierIcon.png" class="LevelStar"/> -->
+								<!-- <Image src="file://{images}/custom_game/icons/unleveledTalentTierIcon.png" class="LevelStar"/> -->
+								<!-- <Image src="file://{images}/custom_game/icons/unleveledTalentTierIcon.png" class="LevelStar"/> -->
+							<!-- </Panel> -->
+						<!-- </Panel> -->
+					<!-- </Panel> -->
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

@@ -19,6 +19,14 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Dazzle.Poison_Touch"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_dazzle_poison_touch_1"	"1"
+			"special_bonus_unique_dazzle_poison_touch_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -155,6 +163,14 @@
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_dazzle_weave_1"	"1"
+			"special_bonus_unique_dazzle_weave_2"	"1"
+		}
+		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1200"
@@ -263,6 +279,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilitySound"					"Hero_Dazzle.Shadow_Wave"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_dazzle_shadow_wave_1"	"1"
+			"special_bonus_unique_dazzle_shadow_wave_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -373,6 +397,14 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Dazzle.Shallow_Grave"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_dazzle_shallow_grave_1"	"1"
+			"special_bonus_unique_dazzle_shallow_grave_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

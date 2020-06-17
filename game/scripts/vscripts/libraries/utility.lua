@@ -36,6 +36,27 @@ end
 function PrintAll(t)
 	for k,v in pairs(t) do
 		print(k,v)
+		if type(v) == "table" then
+			for m,n in pairs(v) do
+				print('--', m,n)
+				if type(n) == "table" then
+					for h,j in pairs(n) do
+						print('----', h,j)
+					end
+				end
+			end
+		end
+	end
+end
+
+function string.split( inputStr, delimiter )
+	local d = delimiter or '%s' 
+	local t={} 
+	for field,s in string.gmatch(inputStr, "([^"..delimiter.."]*)("..delimiter.."?)") do 
+		table.insert(t,field) 
+		if s=="" then 
+			return t 
+		end 
 	end
 end
 
@@ -1005,7 +1026,7 @@ function CDOTA_BaseNPC:SetThreat(val)
 	end
 	self.threat = math.min(math.max(0, (self.threat or 0) + newVal ), 10000)
 	if self:IsHero() and not self:IsFakeHero() then 
-		local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
+		local player = self:GetPlayerOwner()
 		local data = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex() ) or {}
 		data.threat = self.threat
 		CustomNetTables:SetTableValue("hero_properties", self:GetUnitName()..self:entindex(), data )
@@ -1016,7 +1037,7 @@ function CDOTA_BaseNPC:SetThreat(val)
 			lastHit = self.lastHit,
 			aggro = self.aggro
 		}
-		if player then
+		if player and event_data then
 			CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
 		end
 	end
@@ -1025,21 +1046,26 @@ end
 function CDOTA_BaseNPC:ModifyThreat(val, bIgnoreCap)
 	self.lastHit = GameRules:GetGameTime()
 	local newVal = val
-	for _, modifier in ipairs( self:FindAllModifiers() ) do
-		if modifier.Bonus_ThreatGain and modifier:Bonus_ThreatGain() then
-			newVal = newVal + ( math.abs(val) * ( modifier:Bonus_ThreatGain()/100 ) )
-		end
-	end
+	
 	self.threat = self.threat or 0
 	local reduction = 0.35 ^ math.floor( self.threat / 100 )
 	-- Every 100 threat, threat gain effectiveness is reduced
 	local threatgainCap = math.min( 10, (self.threat + 1) * 4 )
+	local newCap = threatgainCap
+	for _, modifier in ipairs( self:FindAllModifiers() ) do
+		if modifier.Bonus_ThreatGain and modifier:Bonus_ThreatGain() then
+			newVal = newVal + ( math.abs(val) * ( modifier:Bonus_ThreatGain()/100 ) )
+			newCap = newCap + ( math.abs(threatgainCap) * ( modifier:Bonus_ThreatGain()/100 ) )
+		end
+	end
+	threatgainCap = newCap
 	if bIgnoreCap then
 		threatgainCap = 999
 	end
+	
 	self.threat = math.min( math.max(0, (self.threat or 0) + math.min(newVal * reduction, threatgainCap ) ), 999 )
 	if self:IsRealHero() then
-		local player = PlayerResource:GetPlayer( self:GetOwner():GetPlayerID() )
+		local player = self:GetPlayerOwner()
 		if player and GameRules:GetGameTime() > (player.getLastHitTime or 0) + 0.5 then
 			PlayerResource:SortThreat()
 			local event_data =
@@ -2543,6 +2569,14 @@ end
 
 function CDOTA_BaseNPC_Hero:GetAttributePoints()
 	return self.bonusTalentPoints or 0
+end
+
+function CDOTA_BaseNPC_Hero:GetTalentPoints()
+	return self.uniqueTalentPoints or 0
+end
+
+function CDOTA_BaseNPC_Hero:ModifyTalentPoints(value)
+	self.uniqueTalentPoints = self:GetTalentPoints() + value
 end
 
 function CDOTA_BaseNPC_Hero:ModifyAttributePoints(value)

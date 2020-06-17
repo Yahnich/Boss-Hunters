@@ -33,7 +33,7 @@ require("libraries/utility")
 require( "libraries/clientserver" )
 require( "libraries/vector_targeting" )
 require("libraries/animations")
-require("stats_screen")
+require("talentmanager")
 require("relicmanager")
 require("roundmanager")
 require( "ai/ai_core" )
@@ -430,13 +430,13 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, 1 )
 	
 	-- Custom stats
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP, 40) 
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP, 30) 
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP_REGEN, 0) 
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_ARMOR, 0) 
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA, 20)
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN, 0)
 	
-	StatsScreen:StartStatsScreen()
+	TalentManager:StartTalentManager()
 	RelicManager:Initialize()
 	
 	SendToConsole("rate 200000")
@@ -457,37 +457,43 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 		ability = EntIndexToHScript( ability_index )
 	end
 	local name = filterTable["name_const"]
-	
-	if name == "modifier_item_ultimate_scepter" then
-		for i = 0, parent:GetAbilityCount() - 1 do
-			local ability = parent:GetAbilityByIndex( i )
-			if ability and ability.OnInventoryContentsChanged then
-				ability:OnInventoryContentsChanged()
+	local FilterModifiers = function( ... )
+		if name == "modifier_item_ultimate_scepter" then
+			for i = 0, parent:GetAbilityCount() - 1 do
+				local scepterAbility = parent:GetAbilityByIndex( i )
+				if scepterAbility and scepterAbility.OnInventoryContentsChanged then
+					scepterAbility:OnInventoryContentsChanged()
+				end
 			end
 		end
-	end
-	
-	if duration ~= -1 and parent and caster then
-		local params = {caster = caster, target = parent, duration = duration, ability = ability, modifier_name = name}
-		duration = duration * caster:GetStatusAmplification( params )
-		if parent:GetTeam() ~= caster:GetTeam() then
-			duration = duration * parent:GetStatusResistance( params )
+		
+		if duration ~= -1 and parent and caster then
+			local params = {caster = caster, target = parent, duration = duration, ability = ability, modifier_name = name}
+			duration = duration * caster:GetStatusAmplification( params )
+			if parent:GetTeam() ~= caster:GetTeam() then
+				duration = duration * parent:GetStatusResistance( params )
+			end
 		end
+		
+		if parent then
+			local handler = parent:FindModifierByName("modifier_handler_handler")
+			Timers:CreateTimer(function()
+				if handler then handler:CheckIfUpdateNeeded( name, ability, duration ) end
+			end)
+		end
+		
+		if duration == 0 then return false end
+		if caster and duration and caster:GetTeam() == DOTA_TEAM_GOODGUYS and duration > 0 and name ~= "modifier_illusion" and (caster.lastDebuffTime or 0) + 0.25 < GameRules:GetGameTime() then
+			caster:ModifyThreat( math.log(1 + duration) + 0.2 )
+			caster.lastDebuffTime = GameRules:GetGameTime() 
+		end
+		filterTable["duration"] = duration
+		return true
 	end
-	
-	if parent then
-		local handler = parent:FindModifierByName("modifier_handler_handler")
-		Timers:CreateTimer(function()
-			if handler then handler:CheckIfUpdateNeeded( name, ability, duration ) end
-		end)
+	status, err, ret = xpcall(FilterModifiers, debug.traceback, self, fPrep )
+	if not status  and not self.gameHasBeenBroken then
+		SendErrorReport(err, self)
 	end
-	
-	if duration == 0 then return false end
-	if caster:GetTeam() == DOTA_TEAM_GOODGUYS and duration > 0 and name ~= "modifier_illusion" and (caster.lastDebuffTime or 0) + 0.25 < GameRules:GetGameTime() then
-		caster:ModifyThreat( math.log(1 + duration) + 0.2 )
-		caster.lastDebuffTime = GameRules:GetGameTime() 
-	end
-	filterTable["duration"] = duration
 	return true
 end
 
@@ -639,8 +645,10 @@ function CHoldoutGameMode:FilterDamage( filterTable )
     if attackerID and PlayerResource:HasSelectedHero( attackerID ) then
 	    local hero = PlayerResource:GetSelectedHeroEntity(attackerID)
 	    local player = PlayerResource:GetPlayer(attackerID)
-		if hero then 
-			hero.statsDamageDealt = (hero.statsDamageDealt or 0) + math.min(victim:GetHealth(), damage)
+		if hero then
+			if victim:GetTeam() == DOTA_TEAM_BADGUYS then
+				hero.statsDamageDealt = (hero.statsDamageDealt or 0) + math.min(victim:GetHealth(), damage)
+			end
 			if hero.damageDone == 0 and damage > 0 then 
 				hero.first_damage_time = GameRules:GetGameTime()
 			end
@@ -661,13 +669,13 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 	local unit = EntIndexToHScript(event.hero_entindex)
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 	if hero == unit then
+		if hero:GetLevel() % 10 == 0 then
+			hero:ModifyTalentPoints(1)
+		end
 		if hero:GetLevel() < 27 or hero:GetLevel() == 30 then
 			hero.bonusSkillPoints = ( hero.bonusSkillPoints or ( hero:GetAbilityPoints() - 1 ) ) + 1
 			if hero:GetLevel() == 17 or hero:GetLevel() == 19 or (hero:GetLevel() > 20 and hero:GetLevel() < 27) or hero:GetLevel() == 30 then
 				hero:SetAbilityPoints( hero:GetAbilityPoints() + 1)
-			end
-			if hero:GetLevel() % GameRules.gameDifficulty == 0 then
-				hero:ModifyAttributePoints( 1 )
 			end
 		elseif (hero:GetLevel() == 31
 			or hero:GetLevel() == 36
@@ -679,7 +687,7 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 				hero:SetAbilityPoints( hero:GetAbilityPoints() + 1)
 				hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1
 		else
-			hero:ModifyAttributePoints( 1 )
+			hero:SetAbilityPoints( hero:GetAbilityPoints() + 1)
 		end
 		-- fix valve's bullshit auto-talent leveling
 		-- take snapshot at lv 29
@@ -884,7 +892,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 		hero.damageDone = 0
 		hero.hasBeenInitialized = true
 		
-		StatsScreen:RegisterPlayer(hero)
+		TalentManager:RegisterPlayer(hero)
 		RelicManager:RegisterPlayer( hero:GetPlayerID() )
 		hero:AddItemByName("item_potion_of_recovery")
 		hero:AddItemByName("item_potion_of_essence")
@@ -899,6 +907,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 		else
 			hero:SetBaseMagicalResistanceValue(25.1)
 		end
+		hero:SetPhysicalArmorBaseValue( hero:GetPhysicalArmorBaseValue() + hero:GetAgility() * 0.16 )
 		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage
 		local ID = hero:GetPlayerID()
 		if not ID then return end
@@ -933,9 +942,6 @@ function CHoldoutGameMode:OnHeroPick (event)
 			gold = gold + 500
 		end
 		hero:SetGold( gold, true )
-		
-		hero:SetDayTimeVisionRange(hero:GetDayTimeVisionRange())
-		hero:SetNightTimeVisionRange(hero:GetNightTimeVisionRange())
 	end)
 end
 
@@ -946,7 +952,7 @@ function CHoldoutGameMode:OnPlayerUIInitialized(keys)
 		if PlayerResource:GetSelectedHeroEntity(playerID) then
 			local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 			CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {playerID = pID, drops = hero.relicsToSelect})
-			if StatsScreen:IsPlayerRegistered(hero) and not hero:HasModifier("modifier_stats_system_handler") then hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {}) end
+			if TalentManager:IsPlayerRegistered(hero) and not hero:HasModifier("modifier_stats_system_handler") then hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {}) end
 			CustomGameEventManager:Send_ServerToPlayer(player, "heroLoadIn", {})
 			if GameRules.holdOut._flPrepTimeEnd then
 				local timeLeft = GameRules.holdOut._flPrepTimeEnd - GameRules:GetGameTime()

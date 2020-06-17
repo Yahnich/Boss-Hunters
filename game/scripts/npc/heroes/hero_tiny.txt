@@ -18,7 +18,15 @@
 		"AbilityTextureName"			"tiny_avalanche"
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
-	
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_tiny_avalanche_bh_1"	"1"
+			"special_bonus_unique_tiny_avalanche_bh_2"	"1"
+		}
+		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"600"
@@ -144,7 +152,15 @@
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
 		"PiercesDisableReduction"		"1"
-	
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_tiny_toss_bh_1"	"1"
+			"special_bonus_unique_tiny_toss_bh_2"	"1"
+		}
+		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1300"
@@ -262,6 +278,14 @@
 		"AbilityTextureName"			"tiny_craggy_exterior"
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"	
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_tiny_tree_bh_1"	"1"
+			"special_bonus_unique_tiny_tree_bh_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -456,6 +480,14 @@
 		"AbilityTextureName"			"tiny_grow"
 		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"	
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_tiny_grow_bh_1"	"1"
+			"special_bonus_unique_tiny_grow_bh_2"	"1"
+		}
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

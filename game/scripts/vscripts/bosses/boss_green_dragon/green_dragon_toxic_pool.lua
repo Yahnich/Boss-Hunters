@@ -134,6 +134,7 @@ function modifier_green_dragon_toxic_pool_debuff:OnCreated()
 end
 
 function modifier_green_dragon_toxic_pool_debuff:OnIntervalThink()
+	if self:GetAbility():IsNull() then return end
 	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetSpecialValueFor("damage")*self:GetSpecialValueFor("tick_rate"), {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
 end
 

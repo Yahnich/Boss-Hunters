@@ -20,6 +20,14 @@
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_witch_doctor_paralyzing_cask_1"	"1"
+			"special_bonus_unique_witch_doctor_paralyzing_cask_2"	"1"
+		}
+		
 		"precache"
 		{
 			"particle"		"particles/units/heroes/hero_witchdoctor/witchdoctor_cask.vpcf"
@@ -68,13 +76,13 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"25 45 65 85 90 95 100"
-				"LinkedSpecialBonus"	"special_bonus_unique_witch_doctor_paralyzing_cask_1"
+				"heal"					"50 90 130 170 180 190 200"
+				"LinkedSpecialBonus"	"special_bonus_unique_witch_doctor_paralyzing_cask_2"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bounce_range"			"750"
+				"bounce_range"			"575"
 			}
 			"06"
 			{
@@ -151,6 +159,14 @@
 		"ScriptFile"						"heroes/hero_witch_doctor/witch_doctor_voodoo_restoration_bh"
 		"MaxLevel"							"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_witch_doctor_voodoo_restoration_1"	"1"
+			"special_bonus_unique_witch_doctor_voodoo_restoration_2"	"1"
+		}
+		
 		"precache"
 		{
 			"particle"		"particles/units/heroes/hero_witchdoctor/witchdoctor_voodoo_restoration.vpcf"
@@ -175,7 +191,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"mana_per_second"				"10 15 20 25 30 35 40"
+				"mana_per_second"				"5 10 15 20 25 30 35"
 				"LinkedSpecialBonus"			"special_bonus_unique_witch_doctor_voodoo_restoration_1"
 				"LinkedSpecialBonusField"		"cost"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
@@ -190,12 +206,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"heal"						"16 24 32 40 48 56 64"
+				"heal"						"8 16 24 32 40 48 56"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"32 48 64 80 96 112 128"
+				"damage"					"16 32 48 64 80 96 112"
 			}
 			"05"
 			{
@@ -281,6 +297,14 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_WitchDoctor.Maledict_Cast"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_witch_doctor_maledict_1"	"1"
+			"special_bonus_unique_witch_doctor_maledict_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -325,6 +349,13 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"base_damage"					"10 20 30 40 50 60 70"
+				"LinkedSpecialBonus"			"special_bonus_unique_witch_doctor_maledict_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"base_damage"					"5 10 15 20 25 30 35"
 				"LinkedSpecialBonus"			"special_bonus_unique_witch_doctor_maledict_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
@@ -439,6 +470,14 @@
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"6"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_witch_doctor_death_ward_1"	"1"
+			"special_bonus_unique_witch_doctor_death_ward_2"	"1"
+		}
+		
 		"precache"
 		{
 			"particle" 		"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_attack.vpcf"
@@ -470,6 +509,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"60 105 150 195 240 285"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"healing"				"30 52 75 97 120 142"
 			}
 			"02"
 			{

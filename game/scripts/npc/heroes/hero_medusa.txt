@@ -14,6 +14,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"medusa_split_shot"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_medusa_split_1"	"1"
+			"special_bonus_unique_medusa_split_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -130,6 +138,14 @@
 		"AbilityTextureName"			"medusa_mystic_snake"
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_medusa_snake_1"	"1"
+			"special_bonus_unique_medusa_snake_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -263,6 +279,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/medusa_mana_shield_daughters"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_medusa_viper_1"	"1"
+			"special_bonus_unique_medusa_viper_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -435,6 +459,14 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"medusa_stone_gaze"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_medusa_gaze_1"	"1"
+			"special_bonus_unique_medusa_gaze_2"	"1"
+		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

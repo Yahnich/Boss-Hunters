@@ -14,6 +14,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/shredder_bonesplitter"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_timbersaw_bonesplitter_1"	"1"
+			"special_bonus_unique_timbersaw_bonesplitter_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -114,7 +122,15 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"   
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"shredder_timber_chain"
-		"MaxLevel"						"7"					
+		"MaxLevel"						"7"				
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_timbersaw_claw_1"	"1"
+			"special_bonus_unique_timbersaw_claw_2"	"1"
+		}	
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -216,7 +232,15 @@
 		"ScriptFile"					"heroes/hero_timbersaw/timbersaw_reactive.lua"	
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"			"shredder_reactive_armor"
-		"MaxLevel"						"7"							
+		"MaxLevel"						"7"					
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_timbersaw_reactive_1"	"1"
+			"special_bonus_unique_timbersaw_reactive_2"	"1"
+		}					
 		
 		"AbilityCooldown"				"60"
 		"AbilityManaCost"				"200"
@@ -331,7 +355,7 @@
 		"AbilityTextureName"			"shredder_chakram_2"
 		"MaxLevel"						"6"	
 		"IsGrantedByScepter"			"1"
-		"HasScepterUpgrade"				"1"							
+		"HasScepterUpgrade"				"1"		
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -398,7 +422,15 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"  
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"shredder_chakram"
-		"MaxLevel"						"6"								
+		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_timbersaw_chak_1"	"1"
+			"special_bonus_unique_timbersaw_chak_2"	"1"
+		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

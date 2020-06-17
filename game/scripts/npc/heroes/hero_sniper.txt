@@ -14,6 +14,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"sniper_shrapnel"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sniper_shrapnel_bh_1"	"1"
+			"special_bonus_unique_sniper_shrapnel_bh_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -23,7 +31,9 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"23"
+		"AbilityCooldown"				"2"
+		"AbilityCharges"				"3"
+		"AbilityChargeRestoreTime"		"40"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -146,6 +156,14 @@
 		"AbilityTextureName"			"sniper_headshot"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sniper_headshot_bh_1"	"1"
+			"special_bonus_unique_sniper_headshot_bh_2"	"1"
+		}
+		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -257,6 +275,14 @@
 		"AbilityTextureName"			"custom/armadillo_swashbuckle"
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sniper_rapid_fire_1"	"1"
+			"special_bonus_unique_sniper_rapid_fire_2"	"1"
+		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -437,6 +463,14 @@
 		"AbilityTextureName"			"sniper_assassinate"
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sniper_assassinate_bh_1"	"1"
+			"special_bonus_unique_sniper_assassinate_bh_2"	"1"
+		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

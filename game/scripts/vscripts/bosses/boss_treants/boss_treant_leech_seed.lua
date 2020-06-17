@@ -26,8 +26,9 @@ end
 function boss_treant_leech_seed:OnProjectileHit(target, position)
 	local caster = self:GetCaster()
 	local heal = self:GetSpecialValueFor("heal")
-	
-	target:HealEvent( heal, self, caster )
+	if target then
+		target:HealEvent( heal, self, caster )
+	end
 end
 
 modifier_boss_treant_leech_seed_debuff = class({})

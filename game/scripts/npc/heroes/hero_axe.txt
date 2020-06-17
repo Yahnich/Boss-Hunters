@@ -18,6 +18,14 @@
 	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"axe_battle_hunger"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_axe_blood_hunger_1"	"1"
+			"special_bonus_unique_axe_blood_hunger_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -145,6 +153,14 @@
 		"FightRecapLevel"						"1"
 		"AbilityTextureName"					"axe_counter_helix"
 		"MaxLevel"								"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_axe_cleave_strike_1"	"1"
+			"special_bonus_unique_axe_cleave_strike_2"	"1"
+		}
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -238,6 +254,14 @@
 	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"axe_berserkers_call"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_axe_forced_shout_1"	"1"
+			"special_bonus_unique_axe_forced_shout_2"	"1"
+		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -345,6 +369,14 @@
 		"AbilityTextureName"			"axe_culling_blade"
 		"MaxLevel"						"6"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_axe_ground_pound_1"	"1"
+			"special_bonus_unique_axe_ground_pound_2"	"1"
+		}
+		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.3"
@@ -388,7 +420,7 @@
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"buff_duration"					"10"
+				"duration"						"10"
 			}
 			"06"
 			{

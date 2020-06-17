@@ -337,11 +337,11 @@ function modifier_wisp_spirits_bh_talent:OnCreated(table)
 end
 
 function modifier_wisp_spirits_bh_talent:DeclareFunctions()
-	local funcs = {MODIFIER_PROPERTY_STATUS_RESISTANCE}
+	local funcs = {MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING}
 	return funcs
 end
 
-function modifier_wisp_spirits_bh_talent:GetModifierStatusResistance()
+function modifier_wisp_spirits_bh_talent:GetModifierStatusResistanceStacking()
 	return self.bonus_sr
 end
 

@@ -20,6 +20,14 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Spectre.DaggerCast"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_spectre_spectral_dagger_1"	"1"
+			"special_bonus_unique_spectre_spectral_dagger_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -162,6 +170,14 @@
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_spectre_echo_scream_1"	"1"
+			"special_bonus_unique_spectre_echo_scream_2"	"1"
+		}
+		
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_spectre.vsndevts"		
@@ -269,6 +285,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilitySound"					"Hero_Spectre.Desolate"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_spectre_desolate_1"	"1"
+			"special_bonus_unique_spectre_desolate_2"	"1"
+		}
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -383,6 +407,14 @@
 		"AbilityTextureName"			"spectre_dispersion"
 		"AbilityCastRange"				"1000"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_spectre_dispersion_1"	"1"
+			"special_bonus_unique_spectre_dispersion_2"	"1"
+		}
 		
 		"NoThreatFlag"					"1"
 		

@@ -17,6 +17,14 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"meepo_earthbind"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_meepo_earthbind_bh_1"	"1"
+			"special_bonus_unique_meepo_earthbind_bh_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -129,6 +137,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"meepo_poof"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_meepo_poof_bh_1"	"1"
+			"special_bonus_unique_meepo_poof_bh_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -232,6 +248,14 @@
 		//"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilityTextureName"			"meepo_ransack"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_meepo_ransack_bh_1"	"1"
+			"special_bonus_unique_meepo_ransack_bh_2"	"1"
+		}
 		
 		"precache"
 		{
@@ -361,6 +385,14 @@
 		"AbilityTextureName"			"custom/meepo_geostrike_scavenger"
 		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_meepo_dig_1"	"1"
+			"special_bonus_unique_meepo_dig_2"	"1"
+		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

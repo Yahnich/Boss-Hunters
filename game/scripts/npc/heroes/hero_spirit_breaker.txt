@@ -13,6 +13,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"spirit_breaker_charge_of_darkness"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sb_charge_1"	"1"
+			"special_bonus_unique_sb_charge_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -125,6 +133,14 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 		"AbilityTextureName"			"spirit_breaker_empowering_haste"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sb_haste_1"	"1"
+			"special_bonus_unique_sb_haste_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -242,6 +258,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"spirit_breaker_greater_bash"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sb_bash_1"	"1"
+			"special_bonus_unique_sb_bash_2"	"1"
+		}
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -398,6 +422,14 @@
 		"AbilityTextureName"			"spirit_breaker_nether_strike"
 		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sb_nether_strike_1"	"1"
+			"special_bonus_unique_sb_nether_strike_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

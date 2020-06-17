@@ -16,6 +16,14 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Necrolyte.DeathPulse"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_necrophos_death_pulse_1"	"1"
+			"special_bonus_unique_necrophos_death_pulse_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -119,6 +127,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilitySound"					"Hero_Necrolyte.SpiritForm.Cast"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_necrophos_ghost_shroud_1"	"1"
+			"special_bonus_unique_necrophos_ghost_shroud_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -223,6 +239,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_necrophos_heartstopper_aura_1"	"1"
+			"special_bonus_unique_necrophos_heartstopper_aura_2"	"1"
+		}
+		
 				
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -303,7 +327,6 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
-		
 				
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -364,8 +387,15 @@
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"6"
 		"AbilitySound"					"Hero_Necrolyte.ReapersScythe.Target"
-
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_necrophos_reapers_scythe_1"	"1"
+			"special_bonus_unique_necrophos_reapers_scythe_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

@@ -15,6 +15,22 @@
 		"AbilityTextureName"			"jakiro_dual_breath"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ember_chains_1"	"1"
+			"special_bonus_unique_ember_chains_2"	"1"
+		}
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_jakiro_dual_breath_bh_1"	"1"
+			"special_bonus_unique_jakiro_dual_breath_bh_2"	"1"
+		}
+		
 		"precache"
 		{
 			"particle"					"particles/units/heroes/hero_jakiro/jakiro_dual_breath_ice.vpcf"
@@ -137,6 +153,14 @@
 		"AbilityTextureName"			"jakiro_ice_path"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_jakiro_ice_path_bh_1"	"1"
+			"special_bonus_unique_jakiro_ice_path_bh_2"	"1"
+		}
+		
 		"precache"
 		{
 			"particle"					"particles/units/heroes/hero_jakiro/jakiro_ice_path.vpcf"
@@ -254,6 +278,14 @@
 		"AbilityTextureName"			"jakiro_liquid_fire"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_jakiro_liquid_fire_bh_1"	"1"
+			"special_bonus_unique_jakiro_liquid_fire_bh_2"	"1"
+		}
+		
 		"precache"
 		{
 			"particle"					"particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf"
@@ -369,6 +401,14 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_jakiro_macropyre_bh_1"	"1"
+			"special_bonus_unique_jakiro_macropyre_bh_2"	"1"
+		}
 		
 		"precache"
 		{

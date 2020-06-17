@@ -18,6 +18,14 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_DeathProphet.CarrionSwarm"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_death_prophet_crypt_swarm_1"	"1"
+			"special_bonus_unique_death_prophet_crypt_swarm_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -125,6 +133,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"MaxLevel"                      "7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_death_prophet_ghastly_haunting_1"	"1"
+			"special_bonus_unique_death_prophet_ghastly_haunting_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -240,6 +256,14 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_DeathProphet.SpiritSiphon.Cast"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_death_prophet_spirit_siphon_1"	"1"
+			"special_bonus_unique_death_prophet_spirit_siphon_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -249,6 +273,8 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"0"
+		// "AbilityCharges"				"2 3 4 5 6 7 8"
+		// "AbilityChargeRestoreTime"		"45"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -395,6 +421,14 @@
 		"AbilitySound"					"Hero_DeathProphet.Exorcism.Cast"
 		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_death_prophet_exorcism_1"	"1"
+			"special_bonus_unique_death_prophet_exorcism_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

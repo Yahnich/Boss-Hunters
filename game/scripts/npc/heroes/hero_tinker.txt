@@ -18,6 +18,14 @@
 		"AbilitySound"					"Hero_Tinker.Laser"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_tinker_laser_ebf_1"	"1"
+			"special_bonus_unique_tinker_laser_ebf_2"	"1"
+		}
+		
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
@@ -112,7 +120,15 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 	    "AbilityTextureName"			"tinker_heat_seeking_missile"
 	    "MaxLevel"						"7"
-	
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_tinker_missile_ebf_1"	"1"
+			"special_bonus_unique_tinker_missile_ebf_2"	"1"
+		}
+		
 	    // Casting
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityCastRange"				"4000"
@@ -225,6 +241,14 @@
 		"AbilityCastPoint"				"0.53"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 	    
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_tinker_march_1"	"1"
+			"special_bonus_unique_tinker_march_2"	"1"
+		}
+		
 	    // Time     
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityCooldown"               "35"
@@ -393,6 +417,14 @@
 	    "AbilityTextureName"			"tinker_rearm"
 	    "AbilityCastAnimation"          "ACT_DOTA_CHANNEL_ABILITY_4"
 	    "MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_tinker_rearm_ebf_1"	"1"
+			"special_bonus_unique_tinker_rearm_ebf_2"	"1"
+		}
 	
 	    // Casting
 	    //-------------------------------------------------------------------------------------------------------------

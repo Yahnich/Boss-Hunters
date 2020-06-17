@@ -19,6 +19,14 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Disruptor.ThunderStrike.Target"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_disruptor_thunder_strike_1"	"1"
+			"special_bonus_unique_disruptor_thunder_strike_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -124,6 +132,14 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityTextureName"			"custom/disruptor_kinetic_charge"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_disruptor_kinetic_charge_1"	"1"
+			"special_bonus_unique_disruptor_kinetic_charge_2"	"1"
+		}
 		
 		"AbilityCastPoint"				"0.05 0.05 0.05 0.05"
 	
@@ -246,6 +262,14 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_disruptor_tesla_field_1"	"1"
+			"special_bonus_unique_disruptor_tesla_field_2"	"1"
+		}
+		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityTextureName"			"custom/disruptor_tesla_field"
@@ -356,6 +380,14 @@
 		"FightRecapLevel"				"2"
 		"AbilitySound"					"Hero_Disruptor.StaticStorm.Cast"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_disruptor_static_storm_1"	"1"
+			"special_bonus_unique_disruptor_static_storm_2"	"1"
+		}
 
 		"HasScepterUpgrade"			"1"
 

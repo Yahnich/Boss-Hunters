@@ -28,7 +28,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aoe_damage"			"60"
+				"aoe_damage"			"100"
 			}
 			"02"
 			{

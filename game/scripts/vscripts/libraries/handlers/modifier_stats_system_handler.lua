@@ -136,7 +136,7 @@ function modifier_stats_system_handler:GetModifierMagicalResistanceBonus() retur
 	-- return self.ar or 0
 -- end
 
-function modifier_stats_system_handler:GetModifierExtraHealthBonus() return 400 + (self.hp or 0) end
+function modifier_stats_system_handler:GetModifierExtraHealthBonus() return 300 + (self.hp or 0) end
 function modifier_stats_system_handler:GetModifierConstantHealthRegen() return 1 + (self.hpr or 0) - self:GetParent():GetStrength() * 0.1 end
 function modifier_stats_system_handler:GetModifierStatusResistance() return ( 1 - ( (1-0.002)^self:GetParent():GetStrength() * (1-self.sr/100) ) ) * 100  end
 

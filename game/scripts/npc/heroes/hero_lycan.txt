@@ -9,6 +9,14 @@
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 	    "AbilityTextureName"			"lycan_summon_wolves"
 	    "MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_lycan_summon_wolves_1"	"1"
+			"special_bonus_unique_lycan_summon_wolves_2"	"1"
+		}
 	
 	    // Precache
 	    //-------------------------------------------------------------------------------------------------------------
@@ -124,6 +132,14 @@
 		"AbilitySound"					"Hero_Lycan.Howl"
 		"AbilityTextureName"			"lycan_howl"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_lycan_howl_1"	"1"
+			"special_bonus_unique_lycan_howl_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -232,6 +248,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"lycan_feral_impulse"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_lycan_feral_impulse_1"	"1"
+			"special_bonus_unique_lycan_feral_impulse_2"	"1"
+		}
 		
 		// Casting
 		"AbilitySpecial"
@@ -363,6 +387,14 @@
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityTextureName"			"lycan_shapeshift"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_lycan_shapeshift_1"	"1"
+			"special_bonus_unique_lycan_shapeshift_2"	"1"
+		}
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------

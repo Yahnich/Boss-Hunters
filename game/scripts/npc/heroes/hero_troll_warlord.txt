@@ -13,7 +13,15 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"MaxLevel"						"7"
 		"LinkedAbility"					"troll_warlord_focus"
-
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_troll_warlord_inflame_1"	"1"
+			"special_bonus_unique_troll_warlord_focus_1"	"1"
+		}
+		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -45,7 +53,15 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"MaxLevel"						"7"
 		"LinkedAbility"					"troll_warlord_inflame"
-
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_troll_warlord_inflame_1"	"1"
+			"special_bonus_unique_troll_warlord_focus_1"	"1"
+		}
+		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -123,7 +139,15 @@
 		"AbilitySound"					"Hero_TrollWarlord.WhirlingAxes.Ranged"
 		"MaxLevel"						"7"
 		"LinkedAbility"					"troll_warlord_whirling_axes"
-
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_troll_warlord_whirling_axes_1"	"1"
+			"special_bonus_unique_troll_warlord_whirling_axes_2"	"1"
+		}
+		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1000"
@@ -211,7 +235,15 @@
 		"AbilitySound"					"Hero_TrollWarlord.WhirlingAxes.Melee"
 		"MaxLevel"						"7"
 		"LinkedAbility"					"troll_warlord_axe_throw"
-
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_troll_warlord_whirling_axes_1"	"1"
+			"special_bonus_unique_troll_warlord_whirling_axes_2"	"1"
+		}
+		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0"
@@ -322,6 +354,14 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
  		"AbilityCastAnimation"			"ACT_INVALID"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_troll_warlord_fervor_1"	"1"
+			"special_bonus_unique_troll_warlord_fervor_2"	"1"
+		}
 		
 		// Casting
 		"AbilitySpecial"
@@ -443,6 +483,14 @@
 		"AbilitySound"					"Hero_TrollWarlord.BattleTrance.Cast"
 		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_troll_warlord_battle_trance_1"	"1"
+			"special_bonus_unique_troll_warlord_battle_trance_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

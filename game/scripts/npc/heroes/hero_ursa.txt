@@ -14,6 +14,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"ursa_earthshock"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ursa_earthshock_bh_1"	"1"
+			"special_bonus_unique_ursa_earthshock_bh_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -54,7 +62,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow_ms"				"-25 -35 -45 -55 -65 -75 -85"
+				"slow_ms"				"-45 -55 -65 -75 -75 -75 -75"
 			}
 			"04"
 			{
@@ -120,6 +128,14 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"ursa_overpower"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ursa_overpower_bh_1"	"1"
+			"special_bonus_unique_ursa_overpower_bh_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -226,6 +242,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/ursa_claw"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ursa_lunge_1"	"1"
+			"special_bonus_unique_ursa_lunge_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -235,7 +259,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12 11 10 9 8 7 6"
+		"AbilityCooldown"				"12"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -371,6 +395,14 @@
 		"AbilityTextureName"			"ursa_enrage"
 		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ursa_enrage_bh_1"	"1"
+			"special_bonus_unique_ursa_enrage_bh_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -380,7 +412,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"50 45 40 35 30 25"
+		"AbilityCooldown"				"50 40 30 30 30 30"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -402,12 +434,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"fury_multiplier"		"1.4 1.7 2 2.3 2.6 2.9"
+				"fury_multiplier"		"1.4 1.7 2 2 2"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"4"
+				"duration"				"4 4 4 4.5 5 5.5"
 				"LinkedSpecialBonus"	"special_bonus_unique_ursa_enrage_bh_1"
 			}
 			"03"

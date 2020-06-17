@@ -649,7 +649,7 @@ function RoundManager:GameIsFinished(bWon)
 						end)
 						GameRules._finish = true
 						GameRules.EndTime = GameRules:GetGameTime()
-						statCollection:submitRound(false)
+						-- statCollection:submitRound(false)
 					end
 					CustomGameEventManager:Send_ServerToAllClients("bh_end_prep_time", {})
 					CustomGameEventManager:Send_ServerToAllClients("bh_end_ng_vote", {})
@@ -695,52 +695,27 @@ function RoundManager:RegisterStatsForHero( hero, bWon )
 	getRequest:Send( function( result )
 		local putData = {}
 		local wins = 0
-		local HCwins = 0
-		local Cwins = 0
+		putData.wins = wins
+		putData.plays = 1
+		
 		if tostring(result.Body) ~= 'null' then
 			local decoded = json.decode(result.Body)
 			wins = (decoded.wins or 0)
-			HCwins = (decoded.HCwins or 0)
-			Cwins = (decoded.Cwins or 0)
 			putData.plays = (decoded.plays or 0) + 1
-			if GameRules:GetGameDifficulty() == 4 then
-				putData.HCplays = (decoded.HCplays or 0) + 1
-			else
-				putData.Cplays = (decoded.Cplays or 0) + 1
-			end
-		else
-			putData.plays = 1
-			if GameRules:GetGameDifficulty() == 4 then
-				putData.HCplays = 1
-			else
-				putData.Cplays = 1
-			end
+			
+			putData.wins = wins
 		end
 		
 		if bWon then
 			wins = wins + 1
 			putData.wins = wins
-			if GameRules:GetGameDifficulty() == 4 then
-				HCwins = HCwins + 1
-				putData.HCwins = HCwins
-			else
-				HCwins = Cwins + 1
-				putData.Cwins = Cwins
-			end 
 		end
 		putData.WR = tostring( math.floor((wins / putData.plays) * 10000) / 100 )..'%'
-		if GameRules:GetGameDifficulty() == 4 then
-			putData.HCWR = tostring( math.floor((HCwins / putData.HCplays) * 10000) / 100 )..'%'
-		else
-			putData.CWR = tostring( math.floor((Cwins / putData.Cplays) * 10000) / 100 )..'%'
-		end
+		
 		local encoded = json.encode(putData)
-		PrintAll( putData )
 		local putRequest = CreateHTTPRequestScriptVM( "PUT", packageLocation)
 		putRequest:SetHTTPRequestRawPostBody("application/json", encoded)
-		putRequest:Send( function( result )
-			-- Don't do anything with the result (it c
-		end )
+		putRequest:Send( function( result ) end )
 	end )
 end
 

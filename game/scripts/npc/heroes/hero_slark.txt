@@ -16,6 +16,14 @@
 		"AbilitySound"					"Hero_Slark.DarkPact.Cast"
 		"AbilityTextureName"			"slark_dark_pact"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_slark_dark_pact_1"	"1"
+			"special_bonus_unique_slark_dark_pact_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -136,6 +144,14 @@
 		"AbilitySound"					"Hero_Slark.Pounce.Cast"
 		"AbilityTextureName"			"slark_pounce"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_slark_pounce_1"	"1"
+			"special_bonus_unique_slark_pounce_2"	"1"
+		}
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -244,6 +260,14 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilityTextureName"			"slark_essence_shift"
 		"MaxLevel"						"7"	
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_slark_essence_shift_1"	"1"
+			"special_bonus_unique_slark_essence_shift_2"	"1"
+		}
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -368,6 +392,14 @@
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityTextureName"			"slark_shadow_dance"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_slark_shadow_dance_1"	"1"
+			"special_bonus_unique_slark_shadow_dance_2"	"1"
+		}
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------

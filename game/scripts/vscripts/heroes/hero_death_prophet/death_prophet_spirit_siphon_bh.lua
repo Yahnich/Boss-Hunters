@@ -16,6 +16,10 @@ function death_prophet_spirit_siphon_bh:GetBehavior()
 	end
 end
 
+function death_prophet_spirit_siphon_bh:AbilityCharges()
+	return self:GetTalentSpecialValueFor("max_charges")
+end
+
 function death_prophet_spirit_siphon_bh:GetIntrinsicModifierName()
 	return "modifier_death_prophet_spirit_siphon_bh_charges"
 end

@@ -10,6 +10,14 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"faceless_void_time_walk"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_faceless_time_walk_1"	"1"
+			"special_bonus_unique_faceless_time_walk_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -121,6 +129,14 @@
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_faceless_clock_stopper_1"	"1"
+			"special_bonus_unique_faceless_clock_stopper_2"	"1"
+		}
+		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"30 28 26 24 22 20 18"
@@ -218,6 +234,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"custom/faceless_time_lord"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_faceless_chrono_trigger_1"	"1"
+			"special_bonus_unique_faceless_chrono_trigger_2"	"1"
+		}
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -328,6 +352,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"faceless_void_chronosphere"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_faceless_chrono_1"	"1"
+			"special_bonus_unique_faceless_chrono_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

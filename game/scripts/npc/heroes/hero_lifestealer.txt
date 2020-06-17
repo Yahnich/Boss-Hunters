@@ -10,6 +10,14 @@
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"life_stealer_rage"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_lifestealer_rage_bh_1"	"1"
+			"special_bonus_unique_lifestealer_rage_bh_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -104,6 +112,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"life_stealer_feast"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_lifestealer_hunger_1"	"1"
+			"special_bonus_unique_lifestealer_hunger_2"	"1"
+		}
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -209,6 +225,14 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"life_stealer_open_wounds"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_lifestealer_flesh_wounds_1"	"1"
+			"special_bonus_unique_lifestealer_flesh_wounds_2"	"1"
+		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -450,6 +474,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"custom/life_stealer_devour"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_lifestealer_rend_1"	"1"
+			"special_bonus_unique_lifestealer_rend_2"	"1"
+		}
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------

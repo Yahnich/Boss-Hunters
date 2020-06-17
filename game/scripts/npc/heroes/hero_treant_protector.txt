@@ -10,8 +10,15 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"FightRecapLevel"				"1"
-		
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_treant_little_tree_1"	"1"
+			"special_bonus_unique_treant_little_tree_2"	"1"
+		}
 	
 		"precache"
 		{
@@ -123,6 +130,14 @@
 		"AbilitySound"					"Hero_Treant.Overgrowth.Cast"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_treant_overgrowth_1"	"1"
+			"special_bonus_unique_treant_overgrowth_2"	"1"
+		}
+		
 		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
 		"AbilityCastRange"				"750"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
@@ -208,7 +223,15 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilitySound"					"Hero_Treant.LivingArmor.Cast"
-
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_treant_living_armor_1"	"1"
+			"special_bonus_unique_treant_living_armor_2"	"1"
+		}
+		
 		"AbilityCastRange"				"0"
 		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
 		"FightRecapLevel"				"1"
@@ -376,9 +399,16 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"		
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_treant_great_protector_1"	"1"
+			"special_bonus_unique_treant_great_protector_2"	"1"
+		}
 		
 		"AbilityCastPoint"				"0.0"
 		

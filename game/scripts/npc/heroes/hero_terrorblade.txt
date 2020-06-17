@@ -13,6 +13,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilitySound"					"Hero_Terrorblade.ConjureImage"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_terrorblade_reflection_1"	"1"
+			"special_bonus_unique_terrorblade_reflection_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -117,6 +125,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilitySound"					"Hero_Terrorblade.ConjureImage"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_terrorblade_conjure_image_1"	"1"
+			"special_bonus_unique_terrorblade_conjure_image_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -209,6 +225,14 @@
 		"AbilityTextureName"			"custom/terrorblade_zeal"
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_terrorblade_zeal_1"	"1"
+			"special_bonus_unique_terrorblade_zeal_2"	"1"
+		}
 		
 		"precache"
 		{
@@ -328,6 +352,14 @@
 		"AbilitySound"					"Hero_Terrorblade.Metamorphosis"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_terrorblade_metamorphosis_1"	"1"
+			"special_bonus_unique_terrorblade_metamorphosis_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

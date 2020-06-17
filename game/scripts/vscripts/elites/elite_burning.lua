@@ -100,5 +100,5 @@ function modifier_elite_burning_aura:OnCreated()
 end
 
 function modifier_elite_burning_aura:OnIntervalThink()
-	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self.damage )
+	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self.damage, {damage_type = DAMAGE_TYPE_MAGICAL} )
 end

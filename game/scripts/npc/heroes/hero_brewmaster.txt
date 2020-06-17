@@ -14,6 +14,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"brewmaster_thunder_clap"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_brewmaster_thunder_clap_1"	"1"
+			"special_bonus_unique_brewmaster_thunder_clap_2"	"1"
+		}
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -129,6 +137,14 @@
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_brewmaster_drunken_haze_1"	"1"
+			"special_bonus_unique_brewmaster_drunken_haze_2"	"1"
+		}
+		
 		"AoERadius"						"500"
 		
 		"precache"
@@ -233,6 +249,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"custom/brewmaster_tipsy_sway"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_brewmaster_tipsy_sway_1"	"1"
+			"special_bonus_unique_brewmaster_tipsy_sway_2"	"1"
+		}
 		
 		"AbilityCastPoint"				"0.4 0.4 0.4"
 		"AbilityCooldown"				"20 20 20 20 18 16 14"
@@ -405,6 +429,14 @@
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"MaxLevel"						"6"
 		"FightRecapLevel"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_brewmaster_primal_avatar_1"	"1"
+			"special_bonus_unique_brewmaster_primal_avatar_2"	"1"
+		}
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------

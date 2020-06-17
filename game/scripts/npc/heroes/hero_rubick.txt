@@ -17,6 +17,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"rubick_telekinesis"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_rubick_lift_1"	"1"
+			"special_bonus_unique_rubick_lift_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -128,6 +136,14 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"rubick_fade_bolt"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_rubick_bolt_1"	"1"
+			"special_bonus_unique_rubick_bolt_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -255,6 +271,14 @@
 		//"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"rubick_null_field"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_rubick_arcane_1"	"1"
+			"special_bonus_unique_rubick_arcane_2"	"1"
+		}
 		
 	
 		// Casting
@@ -415,6 +439,14 @@
 		"AbilityTextureName"			"rubick_spell_steal"
 		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_rubick_steal_1"	"1"
+			"special_bonus_unique_rubick_steal_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

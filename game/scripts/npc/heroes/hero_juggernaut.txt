@@ -16,6 +16,14 @@
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"juggernaut_blade_fury"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_juggernaut_mirror_blades_1"	"1"
+			"special_bonus_unique_juggernaut_mirror_blades_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -113,6 +121,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"juggernaut_healing_ward"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_juggernaut_meditative_state_1"	"1"
+			"special_bonus_unique_juggernaut_meditative_state_2"	"1"
+		}
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -218,6 +234,14 @@
 		"AbilityTextureName"			"custom/juggernaut_quickparry"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_juggernaut_quickparry_1"	"1"
+			"special_bonus_unique_juggernaut_quickparry_2"	"1"
+		}
+		
 		"precache"
 		{
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
@@ -300,6 +324,12 @@
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_juggernaut_momentum_strike_1"	"1"
+		}
 		
 		"precache"
 		{
@@ -386,6 +416,13 @@
 		"AbilityTextureName"			"juggernaut_omni_slash"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_juggernaut_dance_of_blades_1"	"1"
+		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

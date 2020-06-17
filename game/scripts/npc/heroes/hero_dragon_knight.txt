@@ -18,6 +18,14 @@
 		"AbilityTextureName"			"dragon_knight_breathe_fire"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_dragon_knight_dragonbreath_1"	"1"
+			"special_bonus_unique_dragon_knight_dragonbreath_2"	"1"
+		}
 
 
 		// Casting
@@ -146,6 +154,14 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/dragon_knight_intervene"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_dragon_knight_intervene_1"	"1"
+			"special_bonus_unique_dragon_knight_intervene_2"	"1"
+		}
 	
 	
 		// Precache
@@ -252,6 +268,15 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"dragon_knight_dragon_blood"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_dragon_knight_dragons_blood_ebf_1"	"1"
+			"special_bonus_unique_dragon_knight_dragons_blood_ebf_2"	"1"
+		}
+		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -276,44 +301,6 @@
 				"bonus_movespeed"				"12 24 36 48 60 72 84"
 				"LinkedSpecialBonus"			"special_bonus_unique_dragon_knight_dragons_blood_ebf_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-		}
-	}
-	"special_bonus_unique_dragon_knight_intervene_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1.0"
-			}
-		}
-	}
-	"special_bonus_unique_dragon_knight_intervene_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"5"
 			}
 		}
 	}
@@ -368,6 +355,14 @@
 		"AbilityTextureName"			"dragon_knight_elder_dragon_form"
 		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_dragon_knight_eldwyrm_form_1"	"1"
+			"special_bonus_unique_dragon_knight_eldwyrm_form_2"	"1"
+		}
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------

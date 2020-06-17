@@ -17,6 +17,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"storm_spirit_static_remnant"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ss_static_remnant_1"	"1"
+			"special_bonus_unique_ss_static_remnant_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -134,6 +142,14 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"storm_spirit_electric_vortex"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ss_electric_vortex_1"	"1"
+			"special_bonus_unique_ss_electric_vortex_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -236,6 +252,14 @@
 		//"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"custom/Mandate_of_the_Stormborn_Overload_icon"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ss_thunder_punch_1"	"1"
+			"special_bonus_unique_ss_thunder_punch_2"	"1"
+		}
 		
 	
 		// Casting
@@ -399,6 +423,14 @@
 		"AbilityTextureName"			"storm_spirit_ball_lightning"
 		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ss_ball_lightning_1"	"1"
+			"special_bonus_unique_ss_ball_lightning_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

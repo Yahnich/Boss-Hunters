@@ -14,6 +14,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"ancient_apparition_cold_feet"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_aa_cold_feet_1"	"1"
+			"special_bonus_unique_aa_cold_feet_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -117,6 +125,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"ancient_apparition_ice_vortex"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_aa_ice_vortex_1"	"1"
+			"special_bonus_unique_aa_ice_vortex_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -245,6 +261,14 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"ancient_apparition_chilling_touch"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_aa_chilling_touch_1"	"1"
+			"special_bonus_unique_aa_chilling_touch_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -360,6 +384,14 @@
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"6"
 		"AbilityTextureName"			"ancient_apparition_ice_blast"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_aa_ice_blast_1"	"1"
+			"special_bonus_unique_aa_ice_blast_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

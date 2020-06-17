@@ -33,7 +33,7 @@ function modifier_green_dragon_rot_handle:OnAttackLanded(params)
 		if not enemy:TriggerSpellAbsorb(self) then
 			enemy:AddNewModifier(caster, self:GetAbility(), "modifier_green_dragon_rot", {Duration = self.duration})
 		end
-		caster:SpendMana(33)
+		caster:ReduceMana(33)
 		self:GetAbility():StartCooldown(self.duration+math.random(1,3))
 	end
 end

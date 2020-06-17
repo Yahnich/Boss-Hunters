@@ -13,6 +13,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"bane_enfeeble"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_bane_enfeeble_ebf_1"	"1"
+			"special_bonus_unique_bane_enfeeble_ebf_2"	"1"
+		}
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -121,6 +129,14 @@
 		"AbilityTextureName"			"bane_brain_sap"
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_bane_brain_feast_1"	"1"
+			"special_bonus_unique_bane_brain_feast_2"	"1"
+		}
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -227,6 +243,14 @@
 		"AbilityTextureName"			"bane_nightmare"
 		"PiercesDisableReduction"		"1"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_bane_nightmare_prison_1"	"1"
+			"special_bonus_unique_bane_nightmare_prison_2"	"1"
+		}
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -336,7 +360,7 @@
 		"AbilityTextureName"			"custom/bane_terrorize"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
-
+		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -364,6 +388,14 @@
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"bane_fiends_grip"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_bane_fiends_grip_ebf_1"	"1"
+			"special_bonus_unique_bane_fiends_grip_ebf_2"	"1"
+		}
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------

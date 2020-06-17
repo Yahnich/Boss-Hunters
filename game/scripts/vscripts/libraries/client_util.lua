@@ -23,6 +23,17 @@ function AddTableToTable( t1, t2)
 	end
 end
 
+function string.split( inputStr, delimiter )
+	local d = delimiter or '%s' 
+	local t={} 
+	for field,s in string.gmatch(inputStr, "([^"..delimiter.."]*)("..delimiter.."?)") do 
+		table.insert(t,field) 
+		if s=="" then 
+			return t 
+		end 
+	end
+end
+
 function C_DOTA_BaseNPC:GetAttackRange()
 	return self:Script_GetAttackRange()
 end
@@ -43,9 +54,20 @@ function GetTableLength(rndTable)
 	return counter
 end
 
+
 function PrintAll(t)
 	for k,v in pairs(t) do
 		print(k,v)
+		if type(v) == "table" then
+			for m,n in pairs(v) do
+				print('--', m,n)
+				if type(n) == "table" then
+					for h,j in pairs(n) do
+						print('----', h,j)
+					end
+				end
+			end
+		end
 	end
 end
 

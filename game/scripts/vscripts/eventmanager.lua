@@ -51,9 +51,9 @@ function EventManager:RemoveEvent(name)
 	PUBLIC_EVENTS[name] = nil
 end
 
-function EventManager:ShowErrorMessage(pID, sError)
+function EventManager:ShowErrorMessage(pID, sError, sToken)
 	local player = PlayerResource:GetPlayer(pID)
 	if player then
-		CustomGameEventManager:Send_ServerToPlayer(player, "bh_show_error_message", {_error = sError or ""} )
+		CustomGameEventManager:Send_ServerToPlayer(player, "bh_show_error_message", {_error = sError or "", _token = sToken} )
 	end
 end

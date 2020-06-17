@@ -225,6 +225,15 @@
 		"AbilityTextureName"	"modifier_magicimmune"
 		"MaxLevel"				"1"
 	}
+	"generic_talent"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"generic_hidden"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"	"modifier_magicimmune"
+		"MaxLevel"				"1"
+	}
 	//=================================================================================================================
 	// Queen of Pain: Blink
 	//=================================================================================================================

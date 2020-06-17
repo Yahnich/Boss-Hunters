@@ -17,6 +17,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"broodmother_spawn_spiderlings"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_broodmother_spawn_spiderlings_bh_1"	"1"
+			"special_bonus_unique_broodmother_spawn_spiderlings_bh_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -152,6 +160,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityTextureName"			"broodmother_spin_web"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_broodmother_web_1"	"1"
+			"special_bonus_unique_broodmother_web_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -253,6 +269,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"broodmother_spawn_spiderite"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_broodmother_spiderite_1"	"1"
+			"special_bonus_unique_broodmother_spiderite_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -434,6 +458,14 @@
 		"AbilityTextureName"			"broodmother_insatiable_hunger"
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_broodmother_hunger_1"	"1"
+			"special_bonus_unique_broodmother_hunger_2"	"1"
+		}
 	
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------

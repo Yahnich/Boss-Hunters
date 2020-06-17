@@ -15,6 +15,14 @@
 		"AbilityTextureName"			"windrunner_shackleshot"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_windrunner_bolas_1"	"1"
+			"special_bonus_unique_windrunner_bolas_2"	"1"
+		}
+		
 		"precache"
 		{
 			"particle"		"particles/units/heroes/hero_windrunner/windrunner_shackleshot.vpcf"
@@ -119,6 +127,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"windrunner_powershot"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_windrunner_powershot_bh_1"	"1"
+			"special_bonus_unique_windrunner_powershot_bh_2"	"1"
+		}
 		
 		"precache"
 		{
@@ -251,6 +267,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"windrunner_windrun"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_windrunner_windrun_bh_1"	"1"
+			"special_bonus_unique_windrunner_windrun_bh_2"	"1"
+		}
 		
 		"precache"
 		{
@@ -438,6 +462,14 @@
 		"AbilityTextureName"			"windrunner_focusfire"
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_windrunner_focusfire_bh_1"	"1"
+			"special_bonus_unique_windrunner_focusfire_bh_2"	"1"
+		}
 		
 		"precache"
 		{

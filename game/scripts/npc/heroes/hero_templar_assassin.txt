@@ -9,6 +9,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET |DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"			"templar_assassin_refraction"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ta_refract_1"	"1"
+			"special_bonus_unique_ta_refract_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -111,6 +119,14 @@
 		"AbilityTextureName"			"templar_assassin_meld"
 		"MaxLevel"						"7"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ta_meld_1"	"1"
+			"special_bonus_unique_ta_meld_2"	"1"
+		}
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -221,6 +237,14 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL" 
 		"MaxLevel"						"7"
 		//"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ta_psi_blades_1"	"1"
+			"special_bonus_unique_ta_psi_blades_2"	"1"
+		}
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -317,6 +341,14 @@
 		"AbilityTextureName"			"templar_assassin_psionic_trap"
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ta_trap_1"	"1"
+			"special_bonus_unique_ta_trap_2"	"1"
+		}
 	
 		"precache"
 		{

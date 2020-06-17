@@ -122,7 +122,7 @@ function mars_spear_lua:LaunchSpear()
 			EmitSoundOn("Hero_Mars.Spear.Target", target)
 
 			ability:DealDamage(caster, target, self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-			if self.target == nil and target:IsBoss() or target:IsAncient() then
+			if self.target == nil and not target:IsMinion() then
 				self.target = target
 				target:AddNewModifier(caster, self, "modifier_mars_spear_lua_spear", {Duration = self.duration})
 			else
@@ -135,6 +135,7 @@ function mars_spear_lua:LaunchSpear()
 					end)
 				end
 			end
+			self.hitUnits[target:entindex()] = target
 		end
 
 		return true

@@ -17,6 +17,14 @@
 		"AbilityTextureName"			"wisp_tether"
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_wisp_tether_bh_1"	"1"
+			"special_bonus_unique_wisp_tether_bh_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -129,6 +137,14 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilityTextureName"			"wisp_spirits"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_wisp_spirits_bh_1"	"1"
+			"special_bonus_unique_wisp_spirits_bh_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -284,6 +300,14 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilityTextureName"			"wisp_overcharge"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_wisp_overcharge_bh_1"	"1"
+			"special_bonus_unique_wisp_overcharge_bh_2"	"1"
+		}
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -483,7 +507,15 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"wisp_relocate"
 		"MaxLevel"						"6"
-	
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_wisp_worm_hole_1"	"1"
+			"special_bonus_unique_wisp_worm_hole_2"	"1"
+		}
+		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0"

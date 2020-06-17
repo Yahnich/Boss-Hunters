@@ -12,7 +12,7 @@ function modifier_elite_draining_buff:OnCreated()
 	self.hitBurn = 15
 	self.spellBurn = 100 / 100
 	if IsServer() then
-		self:AddEffect( ParticleManager:CreateParticle( "particles/units/elite_warning_offense_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() )
+		self:AddEffect( ParticleManager:CreateParticle( "particles/units/elite_warning_offense_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() ) )
 	end
 end
 

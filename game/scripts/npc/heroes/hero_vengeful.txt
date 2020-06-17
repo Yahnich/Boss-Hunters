@@ -14,6 +14,14 @@
 		"AbilityTextureName"			"custom/vengefulspirit_magic_barrage"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_vengefulspirit_magic_missile_ebf_1"	"1"
+			"special_bonus_unique_vengefulspirit_magic_missile_ebf_2"	"1"
+		}
+		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -123,6 +131,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"vengefulspirit_wave_of_terror"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_vengefulspirit_wave_1"	"1"
+			"special_bonus_unique_vengefulspirit_wave_2"	"1"
+		}
 		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -242,6 +258,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/vengefulspirit_command_aura_huangs"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_vengefulspirit_haunt_1"	"1"
+			"special_bonus_unique_vengefulspirit_haunt_2"	"1"
+		}
 		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -417,6 +441,14 @@
 		"AbilityTextureName"			"vengefulspirit_nether_swap"
 		"MaxLevel"						"6"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_vengefulspirit_swap_1"	"1"
+			"special_bonus_unique_vengefulspirit_swap_2"	"1"
+		}
+		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -587,5 +619,5 @@
 				"scepter_cooldown"		"15"
 			}
 		}
-}
+	}
 }

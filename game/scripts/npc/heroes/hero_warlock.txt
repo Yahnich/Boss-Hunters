@@ -15,6 +15,14 @@
 		"AbilityTextureName"			"custom/warlock_deepfire_ember"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_warlock_chaos_bolt_1"	"1"
+			"special_bonus_unique_warlock_chaos_bolt_2"	"1"
+		}
+		
 		"precache"
 		{
 			"particle"					"particles/units/heroes/hero_warlock/warlock_chaos_bolt.vpcf"
@@ -141,6 +149,14 @@
 		"AbilityTextureName"			"warlock_shadow_word"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_warlock_corruption_curse_1"	"1"
+			"special_bonus_unique_warlock_corruption_curse_2"	"1"
+		}
+		
 		"precache"
 		{
 			"particle"					"particles/units/heroes/hero_warlock/warlock_shadow_word_debuff.vpcf"
@@ -239,6 +255,14 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED"
 		"AbilityTextureName"			"warlock_fatal_bonds"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_warlock_sacrifice_1"	"1"
+			"special_bonus_unique_warlock_sacrifice_2"	"1"
+		}
 		
 		"precache"
 		{
@@ -450,6 +474,14 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"warlock_rain_of_chaos"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_warlock_demonic_summons_1"	"1"
+			"special_bonus_unique_warlock_demonic_summons_2"	"1"
+		}
 		
 		"precache"
 		{

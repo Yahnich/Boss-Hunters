@@ -17,6 +17,14 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"kunkka_torrent"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_kunkka_torrent_bh_1"	"1"
+			"special_bonus_unique_kunkka_torrent_bh_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -142,6 +150,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"kunkka_tidebringer"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_kunkka_tidebringer_bh_1"	"1"
+			"special_bonus_unique_kunkka_tidebringer_bh_2"	"1"
+		}
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -254,6 +270,14 @@
 		"AbilityTextureName"	"custom/kunkka_captains_rum"
 		"MaxLevel"				"7"
 		"ScriptFile"			"heroes/hero_kunkka/kunkka_captains_rum"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_kunkka_captains_rum_1"	"1"
+			"special_bonus_unique_kunkka_captains_rum_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -439,6 +463,14 @@
 		"AbilityTextureName"			"kunkka_ghostship"
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_kunkka_ghost_ship_bh_1"	"1"
+			"special_bonus_unique_kunkka_ghost_ship_bh_2"	"1"
+		}
 		
 
 		// Casting

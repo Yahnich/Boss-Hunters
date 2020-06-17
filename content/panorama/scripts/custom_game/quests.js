@@ -454,7 +454,10 @@ function DisplayErrorMessage(event)
 	errorLabel.style.horizontalAlign = "middle";
 	errorLabel.style.color = "white";
 	errorLabel.style.fontSize = "28px";
-	errorLabel.text = event._error
+	if(event._token != null){
+		errorLabel.SetDialogVariableInt( "number", event._token ); 
+	}
+	errorLabel.text = $.Localize(event._error, errorLabel)
 	$.Schedule(1.5, HideError)
 }
 

@@ -14,6 +14,14 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"centaur_double_edge"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_centaur_great_edge_1"	"1"
+			"special_bonus_unique_centaur_great_edge_2"	"1"
+		}
 	
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
@@ -111,6 +119,14 @@
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_centaur_hoof_stomp_1"	"1"
+			"special_bonus_unique_centaur_hoof_stomp_2"	"1"
+		}
+		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.3"
@@ -201,6 +217,13 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/centaur_champions_presence"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_centaur_champions_presence_1"	"1"
+		}
 		
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
@@ -295,6 +318,14 @@
 		"RequiredLevel"					"1"
 		"InnateAbility"					"1"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_centaur_warchiefs_aegis_1"	"1"
+			"special_bonus_unique_centaur_warchiefs_aegis_2"	"1"
+		}
+		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -382,7 +413,13 @@
 		"HasScepterUpgrade"				"1"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"6"
-	
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_centaur_stampede_1"	"1"
+		}
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------

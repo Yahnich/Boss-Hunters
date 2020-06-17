@@ -20,6 +20,14 @@
 		"AbilitySound"							"Ability.FrostNova"
 		"MaxLevel"								"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_lich_frost_nova_1"	"1"
+			"special_bonus_unique_lich_frost_nova_2"	"1"
+		}
+		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"						"600"
@@ -147,6 +155,14 @@
 		"AbilitySound"							"Hero_Lich.FrostArmor"
 		"AbilityCastAnimation"					"ACT_DOTA_CAST2_STATUE"
 		"MaxLevel"								"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_lich_frost_armor_1"	"1"
+			"special_bonus_unique_lich_frost_armor_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -277,6 +293,14 @@
 		"FightRecapLevel"						"2"
 		"AbilitySound"							"Hero_Lich.ChainFrost"
 		"MaxLevel"								"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_lich_chain_frost_2"	"1"
+			"special_bonus_unique_lich_chain_frost_3"	"1"
+		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -480,6 +504,15 @@
 		"AbilitySound"							"Ability.DarkRitual"
 		"MaxLevel"								"6"
 		"HasScepterUpgrade"						"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_lich_dark_sacrifice_1"	"1"
+			"special_bonus_unique_lich_dark_sacrifice_2"	"1"
+		}
+		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"						"400"

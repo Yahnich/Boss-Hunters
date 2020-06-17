@@ -18,6 +18,14 @@
 		"AbilitySound"					"Hero_VoidSpirit.AetherRemnant.Cast"
 		"AbilityTextureName"			"void_spirit_aether_remnant"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_void_spirit_aether_remnant_1"	"1"
+			"special_bonus_unique_void_spirit_aether_remnant_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -188,6 +196,14 @@
 		"AbilitySound"					"Hero_VoidSpirit.Dissimilate.Cast"
 		"AbilityTextureName"			"void_spirit_dissimilate"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_void_spirit_dissimilate_1"	"1"
+			"special_bonus_unique_void_spirit_dissimilate_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -314,6 +330,14 @@
 		"AbilitySound"					"Hero_VoidSpirit.Pulse.Cast"
 		"AbilityTextureName"			"void_spirit_resonant_pulse"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_void_spirit_resonant_pulse_1"	"1"
+			"special_bonus_unique_void_spirit_resonant_pulse_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -443,6 +467,14 @@
 		//"AnimationPlaybackRate"			"1.0" // 1.0 corresponds to cast point of 0.4
 		"AbilityTextureName"			"void_spirit_astral_step"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_void_spirit_astral_step_1"	"1"
+			"special_bonus_unique_void_spirit_astral_step_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

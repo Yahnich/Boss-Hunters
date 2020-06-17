@@ -19,6 +19,14 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Luna.LucentBeam.Target"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_luna_lucent_beam_1"	"1"
+			"special_bonus_unique_luna_lucent_beam_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -149,6 +157,14 @@
 		"AbilityTextureName"			"custom/luna_nightsilver_resolve"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_luna_nightsilver_resolve_1"	"1"
+			"special_bonus_unique_luna_nightsilver_resolve_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -261,6 +277,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"luna_lunar_blessing"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_luna_lunar_blessing_1"	"1"
+			"special_bonus_unique_luna_lunar_blessing_2"	"1"
+		}
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -416,8 +440,15 @@
 		"FightRecapLevel"				"2"
 		"AbilitySound"					"Hero_Luna.Eclipse.Cast"
 		"MaxLevel"						"6"
-
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_luna_eclipse_1"	"1"
+			"special_bonus_unique_luna_eclipse_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

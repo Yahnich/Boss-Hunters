@@ -32,33 +32,39 @@ modifier_green_dragon_volatile_rot = class({})
 
 function modifier_green_dragon_volatile_rot:OnCreated()
 	if IsServer() then
-		self:StartIntervalThink( self:GetRemainingTime() - 0.05 )
+		self.init = false
+		self:StartIntervalThink( 0 )
 	end
 end
 
 function modifier_green_dragon_volatile_rot:OnIntervalThink()
     if IsServer() then
-    	local caster = self:GetCaster()
-    	local parent = self:GetParent()
-    	local ability = caster:FindAbilityByName("green_dragon_toxic_pool")
+		if self.init then
+			local caster = self:GetCaster()
+			local parent = self:GetParent()
+			local ability = caster:FindAbilityByName("green_dragon_toxic_pool")
 
-    	EmitSoundOn("Hero_Venomancer.PoisonNova", parent)
-		for i=1,2 do
-			local pos = parent:GetAbsOrigin() + ActualRandomVector(500, 250)
-			ability:CreateToxicPool(pos)
+			EmitSoundOn("Hero_Venomancer.PoisonNova", parent)
+			for i=1,2 do
+				local pos = parent:GetAbsOrigin() + ActualRandomVector(500, 250)
+				ability:CreateToxicPool(pos)
+			end
+			
+			local radius = self:GetSpecialValueFor("radius")
+			local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), radius)
+			for _,enemy in pairs(enemies) do
+				local nfx = ParticleManager:CreateParticle("particles/bosses/boss_green_dragon/boss_green_dragon_volatile_rot.vpcf", PATTACH_POINT_FOLLOW, enemy)
+							ParticleManager:SetParticleControlEnt(nfx, 0, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
+							ParticleManager:SetParticleControl(nfx, 1, enemy:GetAbsOrigin())
+							ParticleManager:ReleaseParticleIndex(nfx)
+
+				local distance = CalculateDistance(enemy, parent)
+				self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("damage") * ( (500 - distance)/500 ), {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
+			end
+		else
+			self.init = true
+			self:StartIntervalThink( self:GetRemainingTime() - 0.1 )
 		end
-    	
-    	local radius = self:GetSpecialValueFor("radius")
-    	local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), radius)
-    	for _,enemy in pairs(enemies) do
-			local nfx = ParticleManager:CreateParticle("particles/bosses/boss_green_dragon/boss_green_dragon_volatile_rot.vpcf", PATTACH_POINT_FOLLOW, enemy)
-						ParticleManager:SetParticleControlEnt(nfx, 0, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
-						ParticleManager:SetParticleControl(nfx, 1, enemy:GetAbsOrigin())
-						ParticleManager:ReleaseParticleIndex(nfx)
-
-			local distance = CalculateDistance(enemy, parent)
-    		self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("damage") * ( (500 - distance)/500 ), {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
-    	end
     end
 end
 

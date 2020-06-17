@@ -1,0 +1,87 @@
+.root
+{
+	padding-top: 3px;
+	padding-bottom: 50px;
+	z-index: -500;
+	z-index: -500;
+	margin-bottom: 15%;
+	margin-left: 30%;
+	vertical-align: bottom;
+}
+
+.ShopItemsTab
+{
+	opacity: 0.5;
+	width: 100px;
+	height: 100%;
+	margin-left: 6px;
+	background-color: #1a1a1a;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.GridTabsLabel
+{
+	margin-left: 2px;
+	color: white;
+	horizontal-align: center;
+	font-size: 13px;
+	letter-spacing: 1px;
+	font-weight: bold;
+	vertical-align: center;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.StatUpgradeContainer
+{
+	height: 36px;
+	width: 100%;
+	margin: 2px;
+	horizontal-align: center;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1c2027 ), to( #010101 ) );
+}
+
+.StatUpgradeLabel
+{
+	margin-left: 20px;
+	color: white;
+	horizontal-align: left;
+	font-size: 14px;
+	letter-spacing: 1px;
+	font-weight: bold;
+	vertical-align: center;
+	text-transform: uppercase;
+	text-align: left;
+}
+
+.GoldValueContainer
+{
+	flow-children: left;
+	horizontal-align: right;
+	vertical-align: center;
+	margin-right: 5px;
+}
+
+.GoldIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/gold_small_psd.vtex");
+	background-size: 100% 100%;
+	width: 20px;
+	height: 20px;
+	horizontal-align: right;
+	vertical-align: center;
+}
+
+.ValueLabel
+{
+	margin-left: 5px;
+	color: white;
+	horizontal-align: left;
+	font-size: 15px;
+	letter-spacing: 1px;
+	font-weight: bold;
+	vertical-align: center;
+	text-transform: uppercase;
+	text-align: left;
+}

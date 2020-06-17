@@ -15,6 +15,14 @@
 		"AbilityTextureName"			"rattletrap_battery_assault"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_rattletrap_battery_assault_1"	"1"
+			"special_bonus_unique_rattletrap_battery_assault_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -115,6 +123,14 @@
 		"AbilityTextureName"			"custom/rattletrap_aegis_deflector"
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_rattletrap_aegis_deflector_1"	"1"
+			"special_bonus_unique_rattletrap_aegis_deflector_2"	"1"
+		}
 		
 		"precache"
 		{
@@ -225,6 +241,14 @@
 		"AbilityTextureName"			"rattletrap_rocket_flare"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_rattletrap_rocket_flare_ebf_1"	"1"
+			"special_bonus_unique_rattletrap_rocket_flare_ebf_2"	"1"
+		}
 		
 		"precache"
 		{
@@ -369,6 +393,14 @@
 		"AbilityTextureName"			"custom/rattletrap_reactive_shielding"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_rattletrap_reactive_shielding_1"	"1"
+			"special_bonus_unique_rattletrap_automated_artillery_1"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -428,6 +460,14 @@
 		"AbilityTextureName"			"custom/rattletrap_automated_artillery"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_rattletrap_reactive_shielding_1"	"1"
+			"special_bonus_unique_rattletrap_automated_artillery_1"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

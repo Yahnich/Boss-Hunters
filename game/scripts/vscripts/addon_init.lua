@@ -9,6 +9,12 @@ DMG_PER_AGI = 0.5
 CDR_PER_INT = 0.385
 SPELL_AMP_PER_INT = 0.0075
 
+require("templates/relic_base_class")
+require("templates/item_base_class")
+require("templates/item_basic_base_class")
+require("templates/toggle_modifier_base_class")
+require("templates/talent_base_class")
+
 LinkLuaModifier( "modifier_sleep_generic", "libraries/modifiers/modifier_sleep_generic.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_charm_generic", "libraries/modifiers/modifier_charm_generic.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_stun_immunity", "libraries/modifiers/modifier_stun_immunity.lua", LUA_MODIFIER_MOTION_NONE )
@@ -57,7 +63,38 @@ LinkLuaModifier( "modifier_intellect_handler", "libraries/handlers/modifier_inte
 LinkLuaModifier( "modifier_area_dmg_handler", "libraries/handlers/modifier_area_dmg_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_handler_handler", "libraries/handlers/modifier_handler_handler.lua", LUA_MODIFIER_MOTION_NONE)
 
+-- PERKS 
+LinkLuaModifier( "modifier_attacker_evasion", "libraries/modifiers/talents/modifier_attacker_evasion.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_attacker_attack_speed", "libraries/modifiers/talents/modifier_attacker_attack_speed.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_attacker_health", "libraries/modifiers/talents/modifier_attacker_health.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_attacker_movespeed", "libraries/modifiers/talents/modifier_attacker_movespeed.lua", LUA_MODIFIER_MOTION_NONE )
 
+LinkLuaModifier( "modifier_nuker_area_damage", "libraries/modifiers/talents/modifier_nuker_area_damage.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_nuker_mana", "libraries/modifiers/talents/modifier_nuker_mana.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_nuker_mana_regen", "libraries/modifiers/talents/modifier_nuker_mana_regen.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_nuker_spell_amp", "libraries/modifiers/talents/modifier_nuker_spell_amp.lua", LUA_MODIFIER_MOTION_NONE )
+
+LinkLuaModifier( "modifier_defender_magic_resist", "libraries/modifiers/talents/modifier_defender_magic_resist.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_defender_armor", "libraries/modifiers/talents/modifier_defender_armor.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_defender_health", "libraries/modifiers/talents/modifier_defender_health.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_defender_threat_amp", "libraries/modifiers/talents/modifier_defender_threat_amp.lua", LUA_MODIFIER_MOTION_NONE )
+
+LinkLuaModifier( "modifier_support_heal_amp", "libraries/modifiers/talents/modifier_support_heal_amp.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_support_mana", "libraries/modifiers/talents/modifier_support_mana.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_support_status_amp", "libraries/modifiers/talents/modifier_support_status_amp.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_support_threat_down", "libraries/modifiers/talents/modifier_support_threat_down.lua", LUA_MODIFIER_MOTION_NONE )
+
+LinkLuaModifier( "modifier_healer_health", "libraries/modifiers/talents/modifier_healer_health.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_healer_mana", "libraries/modifiers/talents/modifier_healer_mana.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_healer_mana_regen", "libraries/modifiers/talents/modifier_healer_mana_regen.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_healer_heal_amp", "libraries/modifiers/talents/modifier_healer_heal_amp.lua", LUA_MODIFIER_MOTION_NONE )
+
+LinkLuaModifier( "modifier_generic_health", "libraries/modifiers/talents/modifier_generic_health.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_generic_attack_damage", "libraries/modifiers/talents/modifier_generic_attack_damage.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_generic_movespeed", "libraries/modifiers/talents/modifier_generic_movespeed.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_generic_spell_amp", "libraries/modifiers/talents/modifier_generic_spell_amp.lua", LUA_MODIFIER_MOTION_NONE )
+----------------------------------------
+----------------------------------------
 
 LinkLuaModifier( "modifier_typing_tag", "libraries/modifiers/tags/modifier_typing_tag.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_illusion_tag", "libraries/modifiers/illusions/modifier_illusion_tag.lua", LUA_MODIFIER_MOTION_NONE)
@@ -65,7 +102,8 @@ LinkLuaModifier( "modifier_illusion_tag", "libraries/modifiers/illusions/modifie
 if IsClient() then -- Load clientside utility lib
 	print("client-side has been initialized")
 	require("libraries/client_util")
-	
+	require("talentmanager")
+	TalentManager:StartTalentManager()
 	
 	if GameRules == nil then
 		GameRules = class({})
@@ -105,8 +143,3 @@ if IsClient() then -- Load clientside utility lib
 													end
 												end, "fixing bug",0)
 end
-
-require("templates/relic_base_class")
-require("templates/item_base_class")
-require("templates/item_basic_base_class")
-require("templates/toggle_modifier_base_class")

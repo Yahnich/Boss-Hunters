@@ -14,6 +14,14 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"omniknight_purification"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_omniknight_purification_1"	"1"
+			"special_bonus_unique_omniknight_purification_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -131,6 +139,14 @@
 		"AbilitySound"					"Hero_Omniknight.Repel"
 		"AbilityTextureName"			"omniknight_repel"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_omniknight_repel_1"	"1"
+			"special_bonus_unique_omniknight_repel_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -224,6 +240,14 @@
 		"AbilitySound"					"Hero_Omniknight.Repel"
 		"AbilityTextureName"			"omniknight_repel"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_omniknight_heavenly_grace_1"	"1"
+			"special_bonus_unique_omniknight_heavenly_grace_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -318,6 +342,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/omniknight_seven_blessings"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_omniknight_seven_blessings_1"	"1"
+			"special_bonus_unique_omniknight_seven_blessings_2"	"1"
+		}
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -499,6 +531,14 @@
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"omniknight_guardian_angel"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_omniknight_guardian_angel_1"	"1"
+			"special_bonus_unique_omniknight_guardian_angel_2"	"1"
+		}
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------

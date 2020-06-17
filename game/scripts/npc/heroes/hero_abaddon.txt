@@ -20,6 +20,14 @@
 		"AbilityCastPoint"				"0.452 0.452 0.452 0.452"
 		"AbilityThreat"					"10"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_abaddon_death_coil_1" "1"
+			"special_bonus_unique_abaddon_death_coil_2"	"1"
+		}
+		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"4.5"
@@ -123,7 +131,15 @@
 		"AbilityTextureName"			"abaddon_aphotic_shield"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"7"
-	
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_abaddon_aphotic_barrier_1" "1"
+			"special_bonus_unique_abaddon_aphotic_barrier_2"	"1"
+		}
+		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"500"
@@ -224,6 +240,14 @@
 		
 		"AbilityCooldown"			"20"
 		"AbilityManaCost"			"50"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_abaddon_brume_weaver_1"	"1"
+			"special_bonus_unique_abaddon_brume_weaver_2"	"1"
+		}
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -383,6 +407,14 @@
 		"HasScepterUpgrade"				"1"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_abaddon_borrowed_time_1"	"1"
+			"special_bonus_unique_abaddon_borrowed_time_2"	"1"
+		}
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------

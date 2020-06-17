@@ -17,6 +17,14 @@
 		"AbilityTextureName"			"earthshaker_fissure"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_earthshaker_fissure_ebf_1"	"1"
+			"special_bonus_unique_earthshaker_fissure_ebf_2"	"1"
+		}	
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -124,6 +132,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"earthshaker_enchant_totem"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_earthshaker_enchant_totem_ebf_1"	"1"
+			"special_bonus_unique_earthshaker_enchant_totem_ebf_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -225,6 +241,14 @@
 		"AbilityTextureName"			"custom/earthshaker_crater_impact"
 		"AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_2"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_earthshaker_crater_impact_1"	"1"
+			"special_bonus_unique_earthshaker_crater_impact_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -398,6 +422,14 @@
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_earthshaker_echo_slam_ebf_1"	"1"
+			"special_bonus_unique_earthshaker_echo_slam_ebf_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

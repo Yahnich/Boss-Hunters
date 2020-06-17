@@ -17,6 +17,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"weaver_the_swarm"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_weaver_swarm_1"	"1"
+			"special_bonus_unique_weaver_swarm_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -154,7 +162,15 @@
 		"AbilityTextureName"			"weaver_shukuchi"
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
-	
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_weaver_shukuchi_bh_1"	"1"
+			"special_bonus_unique_weaver_shukuchi_bh_2"	"1"
+		}
+
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"18 16 14 12 10 8 6"
@@ -266,6 +282,13 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"greevil_time_lock"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_weaver_fabric_tear_1"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -348,6 +371,13 @@
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_weaver_geminate_1"	"1"
+		}
+		
 		"AbilityCooldown"				"3"
 
 		"precache"
@@ -412,6 +442,14 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"weaver_time_lapse"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_weaver_time_1"	"1"
+			"special_bonus_unique_weaver_time_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

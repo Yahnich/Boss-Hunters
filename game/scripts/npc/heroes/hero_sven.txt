@@ -19,6 +19,14 @@
 		"AbilitySound"					"Hero_Sven.StormBoltImpact"
 		"AbilityTextureName"			"sven_storm_bolt"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sven_storm_bolt_1"	"1"
+			"special_bonus_unique_sven_storm_bolt_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -123,6 +131,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName"			"custom/sven_valiant_charge"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sven_valiant_charge_1"	"1"
+			"special_bonus_unique_sven_valiant_charge_2"	"1"
+		}
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -228,6 +244,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"			"sven_warcry"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sven_warcry_1"	"1"
+			"special_bonus_unique_sven_warcry_2"	"1"
+		}
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -379,8 +403,15 @@
 		"AbilitySound"					"Hero_Sven.GodsStrength"
 		"AbilityTextureName"			"sven_gods_strength"
 		"MaxLevel"						"6"
-
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sven_gods_strength_1"	"1"
+			"special_bonus_unique_sven_gods_strength_2"	"1"
+		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

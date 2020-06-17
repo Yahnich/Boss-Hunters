@@ -84,7 +84,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"min_reduction"			"30 20"
+				"min_reduction"			"15 1"
 			}
 		}
 	}

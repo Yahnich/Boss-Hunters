@@ -12,6 +12,14 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"naga_siren_mirror_image"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_naga_siren_liquid_form_1"	"1"
+			"special_bonus_unique_naga_siren_liquid_form_2"	"1"
+		}
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -146,6 +154,14 @@
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_naga_siren_water_snare_1"	"1"
+			"special_bonus_unique_naga_siren_water_snare_2"	"1"
+		}
+		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.6"
@@ -255,6 +271,14 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"naga_siren_rip_tide"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_naga_siren_tidal_waves_1"	"1"
+			"special_bonus_unique_naga_siren_tidal_waves_2"	"1"
+		}
 		
 		"precache"
 		{
@@ -404,6 +428,14 @@
 		"AbilityTextureName"			"naga_siren_song_of_the_siren"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_naga_siren_song_of_the_siren_1"	"1"
+			"special_bonus_unique_naga_siren_song_of_the_siren_2"	"1"
+		}
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"1.0"

@@ -16,6 +16,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"alchemist_acid_spray"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_alchemist_acid_spray_1"	"1"
+			"special_bonus_unique_alchemist_acid_spray_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -124,6 +132,14 @@
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK_STATUE"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_alchemist_midas_knuckle_1"	"1"
+			"special_bonus_unique_alchemist_midas_knuckle_2"	"1"
+		}
+		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.3"
@@ -215,6 +231,14 @@
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_alchemist_alchemists_greed_1"	"1"
+			"special_bonus_unique_alchemist_alchemists_greed_2"	"1"
+		}
+		
 		"AbilityCooldown"				"0.5"
 	
 		"AbilitySpecial"
@@ -253,6 +277,14 @@
 		"AbilityTextureName"			"alchemist_chemical_rage"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_alchemist_chemical_rage_1"	"1"
+			"special_bonus_unique_alchemist_chemical_rage_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

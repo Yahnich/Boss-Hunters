@@ -14,6 +14,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"ogre_magi_fireblast"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ogre_magi_fireblast_bh_1"	"1"
+			"special_bonus_unique_ogre_magi_fireblast_bh_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -113,6 +121,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"ogre_magi_ignite"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ogre_magi_ignite_bh_1"	"1"
+			"special_bonus_unique_ogre_magi_ignite_bh_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -226,6 +242,14 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"ogre_magi_bloodlust"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ogre_magi_bloodlust_bh_1"	"1"
+			"special_bonus_unique_ogre_magi_bloodlust_bh_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -476,6 +500,14 @@
 		"MaxLevel"						"6"
 		"AbilityTextureName"			"custom/ogre_magi_ignite_antipodean"
 		"LinkedAbility"					"ogre_magi_unrefined_fireblast_bh"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ogre_magi_immolate_1"	"1"
+			"special_bonus_unique_ogre_magi_immolate_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

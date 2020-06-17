@@ -89,6 +89,14 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"lone_druid_true_form_battle_cry"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_druid_battle_cry_1"	"1"
+			"special_bonus_unique_druid_battle_cry_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -204,6 +212,14 @@
 		"AbilityTextureName"			"lone_druid_spirit_link"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_druid_spirit_link_1"	"1"
+			"special_bonus_unique_druid_spirit_link_2"	"1"
+		}
+		
 		"precache"
 		{
 			"particle"					"particles/units/heroes/hero_lone_druid/lone_druid_spiritlink_cast.vpcf"
@@ -299,6 +315,14 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"lone_druid_savage_roar"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_druid_savage_roar_1"	"1"
+			"special_bonus_unique_druid_savage_roar_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -483,6 +507,14 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"lone_druid_true_form"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_druid_transform_1"	"1"
+			"special_bonus_unique_druid_transform_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

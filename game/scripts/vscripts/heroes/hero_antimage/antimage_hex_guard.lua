@@ -53,7 +53,7 @@ function modifier_antimage_hex_guard:OnRefresh()
 end
 
 function modifier_antimage_hex_guard:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, MODIFIER_PROPERTY_STATUS_RESISTANCE, MODIFIER_EVENT_ON_TAKEDAMAGE}
+	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING, MODIFIER_EVENT_ON_TAKEDAMAGE}
 end
 
 function modifier_antimage_hex_guard:GetModifierMagicalResistanceBonus()
@@ -64,7 +64,7 @@ function modifier_antimage_hex_guard:GetModifierMagicalResistanceBonus()
 	end
 end
 
-function modifier_antimage_hex_guard:GetModifierStatusResistance()
+function modifier_antimage_hex_guard:GetModifierStatusResistanceStacking()
 	if self:GetParent():HasModifier("modifier_antimage_hex_guard_talent") then
 		return self:GetCaster():FindTalentValue("special_bonus_unique_antimage_hex_guard_2")
 	else

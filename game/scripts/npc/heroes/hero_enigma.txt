@@ -19,6 +19,14 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Enigma.Malefice"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_enigma_malefice_1"	"1"
+			"special_bonus_unique_enigma_malefice_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -143,6 +151,14 @@
 		"AbilityTextureName"			"custom/enigma_whitehole"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_enigma_white_hole_1"	"1"
+			"special_bonus_unique_enigma_white_hole_2"	"1"
+		}
+		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -264,6 +280,14 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Enigma.Midnight_Pulse"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_enigma_midnight_pulse_1"	"1"
+			"special_bonus_unique_enigma_midnight_pulse_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -467,6 +491,14 @@
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_enigma_black_hole_1"	"1"
+			"special_bonus_unique_enigma_black_hole_2"	"1"
+		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

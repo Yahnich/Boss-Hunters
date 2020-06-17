@@ -9,7 +9,6 @@ function Spawn( entityKeyValues )
 			return AIThink(thisEntity)
 		end
 	end)
-	thisEntity.dance = thisEntity:FindAbilityByName("nightcrawler_shadowdance")
 	thisEntity.pounce = thisEntity:FindAbilityByName("boss_slark_leap")
 	thisEntity.gift = thisEntity:FindAbilityByName("boss_slark_deep_ones_gift")
 	thisEntity.shroud = thisEntity:FindAbilityByName("boss_slark_shroud_of_foam")

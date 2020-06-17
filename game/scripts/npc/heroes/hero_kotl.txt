@@ -16,6 +16,14 @@
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_kotl_illuminate_1"	"1"
+			"special_bonus_unique_kotl_illuminate_2"	"1"
+		}
+		
 		"precache"
 		{
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
@@ -133,6 +141,14 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"keeper_of_the_light_blinding_light"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_kotl_blind_1"	"1"
+			"special_bonus_unique_kotl_blind_2"	"1"
+		}
 		
 		"precache"
 		{
@@ -256,6 +272,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityTextureName"			"keeper_of_the_light_chakra_magic"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_kotl_chakra_magic_1"	"1"
+			"special_bonus_unique_kotl_chakra_magic_2"	"1"
+		}
 		
 		"precache"
 		{
@@ -411,6 +435,14 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"keeper_of_the_light_will_o_wisp"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_kotl_wisp_1"	"1"
+			"special_bonus_unique_kotl_wisp_2"	"1"
+		}
 		
 		"precache"
 		{

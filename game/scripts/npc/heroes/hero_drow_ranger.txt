@@ -12,6 +12,14 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/drow_ranger_bullseye"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_centaur_great_edge_1"	"1"
+			"special_bonus_unique_centaur_great_edge_2"	"1"
+		}
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -129,6 +137,14 @@
 		"AbilityTextureName"			"drow_ranger_multishot"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_drow_ranger_multishot_1"	"1"
+			"special_bonus_unique_drow_ranger_multishot_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -260,6 +276,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/drow_ranger_leapshot"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_centaur_great_edge_1"	"1"
+			"special_bonus_unique_centaur_great_edge_2"	"1"
+		}
 	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
@@ -361,6 +385,14 @@
 		"AbilityTextureName"			"drow_ranger_wave_of_silence"
 		"AbilitySound"					"Hero_DrowRanger.Silence"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_drow_ranger_gust_1"	"1"
+			"special_bonus_unique_drow_ranger_gust_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -568,6 +600,14 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityTextureName"			"drow_ranger_trueshot"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_drow_ranger_huntress_mark_1"	"1"
+			"special_bonus_unique_drow_ranger_huntress_mark_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -744,6 +784,14 @@
 		"MaxLevel"						"6"
 		"AbilityTextureName"			"drow_ranger_marksmanship"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_drow_ranger_marksmanship_1"	"1"
+			"special_bonus_unique_drow_ranger_marksmanship_2"	"1"
+		}
 		
 		"precache"
 		{

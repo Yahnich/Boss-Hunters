@@ -13,7 +13,7 @@ LinkLuaModifier("modifier_crystal_maiden_icy_veins", "heroes/hero_crystal_maiden
 
 function modifier_crystal_maiden_icy_veins:OnCreated()
 	self.cdr = self:GetTalentSpecialValueFor("cdr") * 0.1
-	self.cost = self:GetTalentSpecialValueFor("mana_cost") / 100
+	self.cost = (self:GetTalentSpecialValueFor("mana_cost") * 0.1) / 100
 	if IsServer() then
 		self:StartIntervalThink( 0.1 )
 		local fx = ParticleManager:CreateParticle( "particles/alacrity_ice.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster() )

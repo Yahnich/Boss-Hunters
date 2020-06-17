@@ -19,6 +19,14 @@
 		"FightRecapLevel"					"1"
 		"AbilitySound"						"Hero_QueenOfPain.ShadowStrike"
 		"MaxLevel"							"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_queenofpain_shadow_strike_1"	"1"
+			"special_bonus_unique_queenofpain_shadow_strike_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -131,6 +139,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilitySound"					"Hero_QueenOfPain.Blink_in"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_queenofpain_blink_1"	"1"
+			"special_bonus_unique_queenofpain_blink_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -238,6 +254,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilitySound"					"Hero_QueenOfPain.ScreamOfPain"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_queenofpain_scream_of_pain_1"	"1"
+			"special_bonus_unique_queenofpain_scream_of_pain_2"	"1"
+		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -379,6 +403,14 @@
 		"HasScepterUpgrade"					"1"
 		"AbilitySound"						"Hero_QueenOfPain.SonicWave"
 		"MaxLevel"							"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_queenofpain_sonic_wave_1"	"1"
+			"special_bonus_unique_queenofpain_sonic_wave_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

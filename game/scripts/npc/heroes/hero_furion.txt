@@ -9,6 +9,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityTextureName"			"custom/furion_sprout_ebf"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_furion_tree_jail_1"	"1"
+			"special_bonus_unique_furion_tree_jail_2"	"1"
+		}
 
 		// Unit Targeting
 		//-------------------------------------------------------------------------------------------------------------
@@ -127,6 +135,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName"			"furion_teleportation"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_furion_sprout_tp_1"	"1"
+			"special_bonus_unique_furion_sprout_tp_2"	"1"
+		}
 	
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -201,6 +217,14 @@
 		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityTextureName"			"furion_force_of_nature"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_furion_tree_ant_1"	"1"
+			"special_bonus_unique_furion_tree_ant_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -318,6 +342,13 @@
 		"HasScepterUpgrade"				"1"
 		"PiercesDisableReduction"		"1"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_furion_entangle_1"	"1"
+		}
+		
 		"AbilityCooldown"				"3"
 	
 		// Special
@@ -394,6 +425,13 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"furion_wrath_of_nature"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_furion_natures_wrath_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

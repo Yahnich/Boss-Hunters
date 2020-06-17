@@ -12,7 +12,15 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"  
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"tusk_ice_shards"
-		"MaxLevel"						"7"								
+		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_tusk_ice_1"	"1"
+			"special_bonus_unique_tusk_ice_2"	"1"
+		}		
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -126,7 +134,15 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"  
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"tusk_snowball"
-		"MaxLevel"						"7"							
+		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_tusk_snow_1"	"1"
+			"special_bonus_unique_tusk_snow_2"	"1"
+		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -229,8 +245,16 @@
 		"AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityTextureName"			"tusk_frozen_sigil"
-		"MaxLevel"						"7"							
+		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_tusk_frozen_wasteland_1"	"1"
+			"special_bonus_unique_tusk_frozen_wasteland_2"	"1"
+		}
+
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.1"
@@ -419,6 +443,14 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE" 
 		"MaxLevel"						"6"
 		"IsOrb"							"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_tusk_punch_1"	"1"
+			"special_bonus_unique_tusk_punch_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

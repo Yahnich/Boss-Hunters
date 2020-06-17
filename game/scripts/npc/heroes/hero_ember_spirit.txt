@@ -14,6 +14,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"ember_spirit_searing_chains"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ember_chains_1"	"1"
+			"special_bonus_unique_ember_chains_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -136,6 +144,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"ember_spirit_sleight_of_fist"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ember_fist_1"	"1"
+			"special_bonus_unique_ember_fist_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -256,6 +272,14 @@
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ember_shield_1"	"1"
+			"special_bonus_unique_ember_shield_2"	"1"
+		}
+		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"400"
@@ -375,6 +399,14 @@
 		"AbilityTextureName"			"ember_spirit_fire_remnant"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ember_remnant_1"	"1"
+			"special_bonus_unique_ember_remnant_jump_1"	"1"
+		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

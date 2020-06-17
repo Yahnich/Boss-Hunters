@@ -20,6 +20,14 @@
 		"AbilitySound"					"Hero_Silencer.Curse.Cast"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_silencer_arcane_curse_1"	"1"
+			"special_bonus_unique_silencer_arcane_curse_2"	"1"
+		}
+		
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"
@@ -137,6 +145,14 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilitySound"					"Hero_Silencer.GlaivesOfWisdom"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_silencer_glaives_of_wisdom_1"	"1"
+			"special_bonus_unique_silencer_glaives_of_wisdom_2"	"1"
+		}
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -222,6 +238,14 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Silencer.LastWord.Target"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_silencer_last_word_1"	"1"
+			"special_bonus_unique_silencer_last_word_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -366,6 +390,14 @@
 		"AbilitySound"					"Hero_Silencer.GlobalSilence.Cast"
 		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_silencer_global_silence_1"	"1"
+			"special_bonus_unique_silencer_global_silence_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

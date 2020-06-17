@@ -1,0 +1,260 @@
+.root
+{
+	padding-top: 3px;
+	padding-bottom: 50px;
+	z-index: -500;
+	z-index: -500;
+	margin-bottom: 15%;
+	margin-left: 30%;
+	vertical-align: bottom;
+}
+
+.talentRoot
+{
+}
+
+#TalentRootContainer
+{
+	
+	flow-children: down;
+	background-image: url("s2r://panorama/images/hud/reborn/ability_bg_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	padding: 5px;
+}
+
+.UniqueTalentsRowContainer
+{
+	flow-children: right;
+	margin-top: 3px;
+	margin-right: 3px;
+	vertical-align: top;
+	horizontal-align: right;
+}
+
+.UniqueTalentsSelector
+{
+	width: 8px;
+	height: 12px;
+	margin-left: 1px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111ff ), to( #000000ff ) );
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	border: 1px solid #343434FF;
+}
+
+.Learned
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #E7D291 ), to( #887845 ) );
+}
+
+.LevelReady
+{
+	border: 1px solid #dbb43466;
+	border-radius: 0px;
+	box-shadow: fill #E0C24E44 -1px -1px 2px 2px;
+}
+
+.IsHidden
+{
+	visibility: collapse;
+}
+
+.IsBlurred
+{
+	opacity: 0.3;
+}
+
+.GenericStatsContainer
+{
+	width: 400px;
+	height: fit-children;
+	background-image: url("s2r://panorama/images/hud/reborn/ability_bg_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: bottom;
+	
+	transition-property: background-color, transform;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.GenericTalentsRowContainer
+{
+	flow-children: down;
+	vertical-align: bottom;
+	horizontal-align: center;
+	margin-bottom: 30px;
+}
+
+.GenericTalentContainer
+{
+	flow-children: down;
+	vertical-align: bottom;
+}
+
+.GenericTalentStarContainer
+{
+	flow-children: right;
+	vertical-align: center;
+	horizontal-align: center;	
+}
+
+.LevelStar
+{
+	width: 12px;
+	height: 12px;
+}
+
+#MainStatsPanelCloseButton
+{
+	width: 36px;
+	height: 36px;
+	horizontal-align: right;
+	vertical-align: top;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	z-index: 5;
+}
+
+.GenericTalentsRow
+{
+	flow-children: right;
+	vertical-align: top;
+	horizontal-align: center;
+	z-index: 5;
+}
+
+.TalentHeader
+{
+	vertical-align: center;
+	horizontal-align: center;
+	margin-top: 10px;
+	padding: 10px;
+}
+
+#TalentHeaderLabel
+{
+	color: #FFFFFF;
+	font-size: 36px;
+	font-weight: bold;
+	line-height: 15px;
+	text-shadow: 2px 2px 2px 3.0 #00000077;
+	text-align: center;
+	vertical-align: center;
+	horizontal-align: center;
+	z-index: 5;
+}
+
+.TalentNameLabel
+{
+	color: #FFFFFF;
+	text-shadow: 1px 1px 0 #000,
+				-1px 1px 0 #000,
+				1px -1px 0 #000,
+				-1px -1px 0 #000,
+				0px 1px 0 #000,
+				0px -1px 0 #000,
+				-1px 0px 0 #000,
+				1px 0px 0 #000,
+				2px 2px 0 #000,
+				-2px 2px 0 #000,
+				2px -2px 0 #000,
+				-2px -2px 0 #000,
+				0px 2px 0 #000,
+				0px -2px 0 #000,
+				-2px 0px 0 #000,
+				2px 0px 0 #000,
+				1px 2px 0 #000,
+				-1px 2px 0 #000,
+				1px -2px 0 #000,
+				-1px -2px 0 #000,
+				2px 1px 0 #000,
+				-2px 1px 0 #000,
+				2px -1px 0 #000,
+				-2px -1px 0 #000;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: left;
+	vertical-align: center;
+	horizontal-align: left;
+	padding: 5px;
+	z-index: 5;
+}
+
+.SkillPointCostLabel
+{
+	color: #FFFFFF;
+	text-shadow: 1px 1px 0 #000,
+				-1px 1px 0 #000,
+				1px -1px 0 #000,
+				-1px -1px 0 #000,
+				0px 1px 0 #000,
+				0px -1px 0 #000,
+				-1px 0px 0 #000,
+				1px 0px 0 #000,
+				2px 2px 0 #000,
+				-2px 2px 0 #000,
+				2px -2px 0 #000,
+				-2px -2px 0 #000,
+				0px 2px 0 #000,
+				0px -2px 0 #000,
+				-2px 0px 0 #000,
+				2px 0px 0 #000,
+				1px 2px 0 #000,
+				-1px 2px 0 #000,
+				1px -2px 0 #000,
+				-1px -2px 0 #000,
+				2px 1px 0 #000,
+				-2px 1px 0 #000,
+				2px -1px 0 #000,
+				-2px -1px 0 #000;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: center;
+	horizontal-align: center;
+	margin-top: 15px;
+	z-index: 5;
+}
+
+.LevelUpLabel
+{
+	margin-right: 5px;
+	color: #664505;
+	text-shadow: 1px 1px 0 #000,
+				-1px 1px 0 #000,
+				1px -1px 0 #000,
+				-1px -1px 0 #000,
+				0px 1px 0 #000,
+				0px -1px 0 #000,
+				-1px 0px 0 #000,
+				1px 0px 0 #000,
+				2px 2px 0 #000,
+				-2px 2px 0 #000,
+				2px -2px 0 #000,
+				-2px -2px 0 #000,
+				0px 2px 0 #000,
+				0px -2px 0 #000,
+				-2px 0px 0 #000,
+				2px 0px 0 #000,
+				1px 2px 0 #000,
+				-1px 2px 0 #000,
+				1px -2px 0 #000,
+				-1px -2px 0 #000,
+				2px 1px 0 #000,
+				-2px 1px 0 #000,
+				2px -1px 0 #000,
+				-2px -1px 0 #000;
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: center;
+	horizontal-align: center;
+	margin-right: -3px;
+	margin-top: 0px;
+	z-index: 5;
+}

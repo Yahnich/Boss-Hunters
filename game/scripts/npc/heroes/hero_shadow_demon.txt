@@ -15,6 +15,14 @@
 		"AbilityTextureName"			"shadow_demon_disruption"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sd_disruption_1"	"1"
+			"special_bonus_unique_sd_disruption_2"	"1"
+		}
+		
 		"precache"
 		{
 			"particle"					"particles/units/heroes/hero_shadow_demon/shadow_demon_disruption.vpcf"
@@ -129,6 +137,14 @@
 		"AbilityTextureName"			"shadow_demon_soul_catcher"
 		"MaxLevel"						"7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sd_soul_catcher_1"	"1"
+			"special_bonus_unique_sd_soul_catcher_2"	"1"
+		}
+		
 		"precache"
 		{
 			"particle"					"particles/units/heroes/hero_shadow_demon/shadow_demon_soul_catcher.vpcf"
@@ -231,6 +247,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"shadow_demon_shadow_poison"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sd_shadow_poison_1"	"1"
+			"special_bonus_unique_sd_shadow_poison_2"	"1"
+		}
 		
 		"precache"
 		{
@@ -399,6 +423,14 @@
 		"AbilityTextureName"			"shadow_demon_demonic_purge"
 		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sd_demonic_purge_1"	"1"
+			"special_bonus_unique_sd_demonic_purge_2"	"1"
+		}
 		
 		"precache"
 		{

@@ -1,0 +1,57 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/skillhud.css" />
+	</styles> 
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/skillhud.js" />
+	</scripts>
+	 <snippets>
+        <snippet name="StatsContainer">
+			<Panel class="StatsTypeSubContainer">
+				<Label id="StatsTypeLabel" class="StatsTypeLabel" text="STATS_TYPE_ATTACK_DAMAGE"/>
+				<Panel class="StatsTypeLevelContainer">
+					<Label id="StatsTypeLevel" class="StatsTypeLevel" text="0/10"/>
+					<Button id="StatsTypeButton" class="StatsTypeButton"/>
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="TalentContainer">
+			<Panel class="TalentContainer">
+				<Panel id="TalentSubLeft" class="TalentSubContainer">
+					<Label id="TalentLeftLabel" class="TalentLabel" text="Axe Fucks"/>
+				</Panel>
+				<Panel id="TalentSubRight" class="TalentSubContainer">
+					<Label id="TalentRightLabel" class="TalentLabel" text="Axe Fucks 2"/>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="root" hittest="false">
+		<Panel id="RootContainer" hittest="false">
+			<Button id="MainStatsPanelCloseButton" onactivate="ToggleStatsPanel()"/>
+			<Panel id="MainStatsPanel" class="GenericStatsContainer">
+				<Panel id="StatsSelectorContainer">
+					<Button id="StatsOffenseSelector" class="StatsSelector" hittest="true" onactivate="LoadOffenseLayout()">
+						<Label class="StatsSelectorLabel" text="SKILL_TREE_OFFENSE"/>
+					</Button>
+					<Button id="StatsDefenseSelector" class="StatsSelector" hittest="true" onactivate="LoadDefenseLayout()">
+						<Label class="StatsSelectorLabel" text="SKILL_TREE_DEFENSE"/>
+					</Button>
+					<Button id="StatsOtherSelector" class="StatsSelector" hittest="true" onactivate="LoadOtherLayout()">
+						<Label class="StatsSelectorLabel" text="SKILL_TREE_OTHER"/>
+					</Button>
+					<Button id="StatsUniqueSelector" class="StatsSelector" hittest="true" onactivate="LoadUniqueLayout()">
+						<Label class="StatsSelectorLabel" text="SKILL_TREE_UNIQUE"/>
+					</Button>
+				</Panel>
+				<Panel class="HorizontalSeperator"/>
+				<Panel id="StatsTypeContainer">
+				</Panel>
+			</Panel>
+			<Button id="RespecButton">
+				<Label id="RespecButtonLabel" text="#RespecText"/>
+			</Button>
+		</Panel>
+	</Panel>
+</root>

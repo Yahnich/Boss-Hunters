@@ -9,6 +9,14 @@
 	    "AbilityTextureName"			"custom/antimage_mage_rage"
 	    "MaxLevel"                      "7"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_antimage_magus_breaker_1"	"1"
+			"special_bonus_unique_antimage_magus_breaker_2"	"1"
+		}
+		
 		// Precache	
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -100,6 +108,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName"			"antimage_blink"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_antimage_blink_1"	"1"
+			"special_bonus_unique_antimage_blink_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -195,6 +211,14 @@
 		"AbilityTextureName"			"custom/antimage_hex_shield"
 		"MaxLevel"                      "7"
 		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_antimage_hex_guard_1"	"1"
+			"special_bonus_unique_antimage_hex_guard_2"	"1"
+		}
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -315,6 +339,14 @@
 		"AbilityTextureName"			"custom/antimage_ragevoid"
 		"AOERadius"						"%mana_void_aoe_radius"
 		"MaxLevel"                      "6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_antimage_void_of_hatred_1"	"1"
+			"special_bonus_unique_antimage_void_of_hatred_2"	"1"
+		}
 		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------

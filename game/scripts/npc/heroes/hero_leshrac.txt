@@ -19,6 +19,14 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Leshrac.Split_Earth"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_leshrac_split_earth_1"	"1"
+			"special_bonus_unique_leshrac_split_earth_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -124,6 +132,14 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Leshrac.Diabolic_Edict"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_leshrac_diabolic_edict_1"	"1"
+			"special_bonus_unique_leshrac_diabolic_edict_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -228,8 +244,15 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Leshrac.Lightning_Storm"
 		"MaxLevel"						"7"
-
-		"HasScepterUpgrade"			"1"
+		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_leshrac_lightning_storm_1"	"1"
+			"special_bonus_unique_leshrac_lightning_storm_2"	"1"
+		}
 
 
 		// Casting
@@ -355,6 +378,14 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"MaxLevel"						"6"
 		"FightRecapLevel"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_leshrac_pulse_nova_1"	"1"
+			"special_bonus_unique_leshrac_pulse_nova_2"	"1"
+		}
 
 
 		// Casting

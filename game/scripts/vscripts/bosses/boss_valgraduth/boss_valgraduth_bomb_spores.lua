@@ -35,7 +35,13 @@ if IsServer() then
 		local spawn = CreateUnitByName( "npc_dota_techies_land_mine", caster:GetAbsOrigin() + RandomVector( 15 ) + Vector(0,0,300), true, nil, nil, caster:GetTeamNumber() )
 		local distance = RandomInt( self.spore_min_distance, self.spore_max_distance )
 		local duration = distance / self.spore_speed
-		Timers:CreateTimer(function() spawn:ApplyKnockBack(caster:GetAbsOrigin(), duration, duration, distance, 600, caster, ability, false) end)
+		local reAppliedKnockback = false
+		Timers:CreateTimer(function()
+			if not spawn:HasModifier("modifier_knockback") then
+				spawn:ApplyKnockBack(caster:GetAbsOrigin(), duration, duration, distance, 600, caster, ability, false)
+				return 0.1
+			end
+		end)
 		spawn:AddNewModifier( caster, self:GetAbility(), "modifier_boss_valgraduth_bomb_spores_bomb", {duration = self.linger_duration})
 	end
 end
@@ -97,6 +103,7 @@ function modifier_boss_valgraduth_bomb_spores_bomb:CheckState()
 	return {[MODIFIER_STATE_UNSELECTABLE] = true,
 			[MODIFIER_STATE_NO_HEALTH_BAR] = true,
 			[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+			[MODIFIER_STATE_INVULNERABLE] = true,
 			[MODIFIER_STATE_UNTARGETABLE] = true}
 end
 

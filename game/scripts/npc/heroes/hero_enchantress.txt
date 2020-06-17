@@ -17,6 +17,14 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"enchantress_untouchable"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_enchantress_untouchable_bh_1"	"1"
+			"special_bonus_unique_enchantress_untouchable_bh_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -147,6 +155,14 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"enchantress_enchant"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_enchantress_enchant_bh_1"	"1"
+			"special_bonus_unique_enchantress_enchant_bh_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -250,6 +266,14 @@
 		"AbilityTextureName"			"enchantress_natures_attendants"
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_enchantress_attendants_1"	"1"
+			"special_bonus_unique_enchantress_attendants_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -368,6 +392,7 @@
 		"AbilityTextureName"			"custom/enchantress_siegebreaker"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
+		
 
 		"precache"
 		{	
@@ -426,6 +451,14 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"enchantress_impetus"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_enchantress_impetus_bh_1"	"1"
+			"special_bonus_unique_enchantress_impetus_bh_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

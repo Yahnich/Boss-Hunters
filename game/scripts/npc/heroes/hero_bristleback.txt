@@ -19,6 +19,14 @@
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"bristleback_viscous_nasal_goo"
 		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_bristleback_snot_1"	"1"
+			"special_bonus_unique_bristleback_snot_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -141,6 +149,14 @@
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"bristleback_quill_spray"
 		"AbilityPierces"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_bristleback_quills_1"	"1"
+			"special_bonus_unique_bristleback_quills_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -250,6 +266,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"custom/bristleback_yer_mum"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_bristleback_yer_mum_1"	"1"
+			"special_bonus_unique_bristleback_yer_mum_2"	"1"
+		}
 		
 		"AbilityCooldown"				"16 14 12 10 8 6 4"
 		"AbilityManaCost"				"75"
@@ -388,6 +412,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"MaxLevel"						"6"
 		"AbilityTextureName"			"bristleback_warpath"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_bristleback_work_up_1"	"1"
+			"special_bonus_unique_bristleback_work_up_2"	"1"
+		}
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

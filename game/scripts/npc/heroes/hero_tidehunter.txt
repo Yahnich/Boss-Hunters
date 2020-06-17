@@ -14,6 +14,14 @@
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"tidehunter_gush"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_tide_hydro_cannon_1"	"1"
+			"special_bonus_unique_tide_hydro_cannon_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -117,7 +125,15 @@
 		"AbilityTextureName"			"custom/tide_tongue_whip"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"								
+		"RequiredLevel"					"6"		
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_tide_tongue_whip_1"	"1"
+			"special_bonus_unique_tide_tongue_whip_2"	"1"
+		}						
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -236,6 +252,14 @@
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"tidehunter_anchor_smash"
 		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_tide_anchor_1"	"1"
+			"special_bonus_unique_tide_anchor_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -379,6 +403,14 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"tidehunter_ravage"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_tide_the_kraken_1"	"1"
+			"special_bonus_unique_tide_the_kraken_2"	"1"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
