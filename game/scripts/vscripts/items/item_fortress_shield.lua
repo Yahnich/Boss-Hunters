@@ -1,36 +1,60 @@
 item_fortress_shield = class({})
 
-LinkLuaModifier( "modifier_item_fortress_shield", "items/item_fortress_shield.lua" ,LUA_MODIFIER_MOTION_NONE )
+function item_fortress_shield:OnSpellStart()
+	local caster = self:GetCaster()
+	caster:AddNewModifier(caster, self, "modifier_item_fortress_shield_block", {})
+end
+
 function item_fortress_shield:GetIntrinsicModifierName()
-	return "modifier_item_fortress_shield"
+	return "modifier_item_fortress_shield_passive"
 end
 
-modifier_item_fortress_shield = class(itemBaseClass)
-function modifier_item_fortress_shield:OnCreated()
-	self.block = self:GetAbility():GetSpecialValueFor("damage_block")
-	self.chance = self:GetAbility():GetSpecialValueFor("block_chance")
-	self.hp_regen = self:GetAbility():GetSpecialValueFor("bonus_health_regen")
+function item_fortress_shield:GetRuneSlots()
+	return self:GetSpecialValueFor("rune_slots")
 end
 
-function modifier_item_fortress_shield:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
-			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT}
+item_fortress_shield_2 = class(item_fortress_shield)
+item_fortress_shield_3 = class(item_fortress_shield)
+item_fortress_shield_4 = class(item_fortress_shield)
+item_fortress_shield_5 = class(item_fortress_shield)
+item_fortress_shield_6 = class(item_fortress_shield)
+item_fortress_shield_7 = class(item_fortress_shield)
+item_fortress_shield_8 = class(item_fortress_shield)
+item_fortress_shield_9 = class(item_fortress_shield)
+
+modifier_item_fortress_shield_passive = class(itemBasicBaseClass)
+LinkLuaModifier( "modifier_item_fortress_shield_passive", "items/item_fortress_shield.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+function modifier_item_fortress_shield_passive:OnCreatedSpecific()
+	self.armor = self:GetAbility():GetSpecialValueFor("bonus_armor")
 end
 
-function modifier_item_fortress_shield:GetModifierConstantHealthRegen()
-	return self.hp_regen
+function modifier_item_fortress_shield_passive:DeclareFunctions()
+	local funcs = self:GetDefaultFunctions()
+	table.insert( funcs, MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS )
+	return funcs
 end
 
-function modifier_item_fortress_shield:GetModifierTotal_ConstantBlock(params)
-	if RollPercentage(self.chance) and params.attacker ~= self:GetParent() then
-		return self.block
-	end
+function modifier_item_fortress_shield_passive:GetModifierPhysicalArmorBonus(params)
+	return self.armor
 end
 
-function modifier_item_fortress_shield:IsHidden()
-	return true
+modifier_item_fortress_shield_block = class({})
+LinkLuaModifier( "modifier_item_fortress_shield_block", "items/item_fortress_shield.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+function modifier_item_fortress_shield_block:OnCreated()
+	self:OnRefresh()
 end
 
-function modifier_item_fortress_shield:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
+function modifier_item_fortress_shield_block:OnRefresh()
+	self.block = self:GetSpecialValueFor("damage_reduction") * (-1)
+end
+
+function modifier_item_fortress_shield_block:DeclareFunctions()
+	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+end
+
+function modifier_item_fortress_shield_block:GetModifierIncomingDamage_Percentage()
+	self:Destroy()
+	return self.block
 end

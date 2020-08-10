@@ -23,17 +23,32 @@ function modifier_boss_genesis_pacifism:OnIntervalThink()
 end
 
 function modifier_boss_genesis_pacifism:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_TAKEDAMAGE}
+	return {MODIFIER_PROPERTY_ABSORB_SPELL,
+			MODIFIER_EVENT_ON_ATTACK,
+			}
 end
 
-function modifier_boss_genesis_pacifism:OnTakeDamage(params)
+function modifier_boss_genesis_pacifism:OnAttack(params)
 	local ability = self:GetAbility()
-	if params.unit == self:GetParent() and ability:IsCooldownReady() and not self:GetParent():PassivesDisabled() then
+	if params.target == self:GetParent() and ability:IsCooldownReady() and not self:GetParent():PassivesDisabled() then
 		local duration = self:GetSpecialValueFor("duration")
-		params.attacker:Disarm( params.unit, ability, duration)
-		params.attacker:Silence( params.unit, ability, duration)
+		params.attacker:Disarm( params.target, ability, duration)
+		params.attacker:Silence( params.target, ability, duration)
 		ability:SetCooldown( self:GetAbility():GetCooldown(-1) )
-		params.unit:Dispel( params.unit, true )
+		params.target:Dispel( params.target, true )
+		ParticleManager:FireParticle( "particles/fire_ball_explosion.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
+	end
+end
+
+function modifier_boss_genesis_pacifism:GetAbsorbSpell(params)
+	if params.ability:GetCaster():GetTeam() ~= self:GetParent():GetTeam() and ability:IsCooldownReady() and not self:GetParent():PassivesDisabled() then
+		local duration = self:GetSpecialValueFor("duration")
+		params.ability:GetCaster():Disarm( self:GetParent(), ability, duration)
+		params.ability:GetCaster():Silence( self:GetParent(), ability, duration)
+		ability:SetCooldown( self:GetAbility():GetCooldown(-1) )
+		self:GetParent():Dispel( self:GetParent(), true )
+		ParticleManager:FireParticle( "particles/fire_ball_explosion.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
+		return 1
 	end
 end
 

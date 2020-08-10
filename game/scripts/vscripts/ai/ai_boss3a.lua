@@ -55,9 +55,17 @@ if IsServer() then
 					AbilityIndex = thisEntity.tombstone:entindex()
 				})
 				return AI_THINK_RATE
-			elseif thisEntity.tombstone:IsFullyCastable() and thisEntity:GetHealthPercent() < 10 then
-				if AICore:IsNearEnemyUnit(thisEntity, 600) then
-					AICore:BeAHugeCoward( thisEntity, 600 )
+			elseif thisEntity.tombstone:IsFullyCastable() and thisEntity:GetHealthPercent() < 20 then
+				if AICore:IsNearEnemyUnit(thisEntity, 850) then
+					if thisEntity.berserk:IsFullyCastable() then
+						ExecuteOrderFromTable({
+							UnitIndex = thisEntity:entindex(),
+							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+							AbilityIndex = thisEntity.berserk:entindex()
+						})
+						return thisEntity.berserk:GetCastPoint() + 0.1
+					end
+					AICore:BeAHugeCoward( thisEntity, 850 )
 					return AI_THINK_RATE
 				else
 					ExecuteOrderFromTable({

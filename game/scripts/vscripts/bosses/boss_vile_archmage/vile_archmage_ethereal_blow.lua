@@ -5,6 +5,7 @@ function vile_archmage_ethereal_blow:OnSpellStart()
 	local hTarget = self:GetCursorTarget()
 	if hTarget:TriggerSpellAbsorb(self) then return end
 	hTarget:AddNewModifier(caster, self, "modifier_vile_archmage_ethereal_blow", {duration = self:GetTalentSpecialValueFor("duration")})
+	hTarget:ModifyThreat( 50, true )
 	EmitSoundOn("Hero_Pugna.Decrepify", hTarget)
 end
 

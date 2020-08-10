@@ -1,8 +1,8 @@
 legion_commander_unbreakable_morale = class({})
 
-function legion_commander_unbreakable_morale:GetIntrinsicModifierName()
-	return "modifier_legion_commander_unbreakable_morale_passive"
-end
+-- function legion_commander_unbreakable_morale:GetIntrinsicModifierName()
+	-- return "modifier_legion_commander_unbreakable_morale_passive"
+-- end
 
 function legion_commander_unbreakable_morale:OnSpellStart()
 	if IsServer() then
@@ -21,7 +21,7 @@ function legion_commander_unbreakable_morale:OnSpellStart()
 end
 
 function legion_commander_unbreakable_morale:UnbreakableMorale(target)
-	target:Purge(false, true, false, true, true)
+	target:Dispel( self:GetCaster(), true )
 	target:AddNewModifier(self:GetCaster(), self, "modifier_legion_commander_unbreakable_morale_buff", {duration = self:GetTalentSpecialValueFor("duration")})
 	if target.press then
 		ParticleManager:ClearParticle(target.press)
@@ -75,8 +75,18 @@ LinkLuaModifier( "modifier_legion_commander_unbreakable_morale_buff", "heroes/he
 modifier_legion_commander_unbreakable_morale_buff = class({})
 
 function modifier_legion_commander_unbreakable_morale_buff:OnCreated()
+	self:OnRefresh()
+	if IsServer() then self.deltaTime = GameRules:GetGameTime() end
+end
+
+function modifier_legion_commander_unbreakable_morale_buff:OnRefresh()
 	self.hpRegen = self:GetAbility():GetTalentSpecialValueFor("hp_regen")
 	self.attackSpeed = self:GetAbility():GetTalentSpecialValueFor("attack_speed")
+	if self:GetCaster():HasTalent("special_bonus_unique_legion_commander_unbreakable_morale_1") then
+		self.status_resist = self:GetCaster():FindTalentValue("special_bonus_unique_legion_commander_unbreakable_morale_1", "value")
+		self.bonus_strength = self:GetCaster():FindTalentValue("special_bonus_unique_legion_commander_unbreakable_morale_1", "value2")
+	end
+	if IsServer() then self.deltaTime = GameRules:GetGameTime() end
 end
 
 function modifier_legion_commander_unbreakable_morale_buff:OnDestroy()
@@ -89,8 +99,9 @@ end
 
 function modifier_legion_commander_unbreakable_morale_buff:DeclareFunctions()
 	funcs = {
-				
 				MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+				MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+				MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
 			}
 	return funcs
 end
@@ -116,6 +127,19 @@ function modifier_legion_commander_unbreakable_morale_buff:GetModifierAttackSpee
 	return self.attackSpeed
 end
 
+function modifier_legion_commander_unbreakable_morale_buff:GetModifierStatusResistanceStacking()
+	return self.status_resist
+end
+
+function modifier_legion_commander_unbreakable_morale_buff:GetModifierBonusStats_Strength()
+	return self.bonus_strength
+end
+
 function modifier_legion_commander_unbreakable_morale_buff:GetModifierConstantHealthRegen()
+	if IsServer() then
+		local delta = GameRules:GetGameTime() - (self.deltaTime or GameRules:GetGameTime())
+		self:GetCaster().statsDamageHealed = (self:GetCaster().statsDamageHealed or 0) + math.min(  self.hpRegen * delta, self:GetParent():GetHealthDeficit() )
+		self.deltaTime = GameRules:GetGameTime()
+	end
 	return self.hpRegen
 end

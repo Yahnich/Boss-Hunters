@@ -63,6 +63,7 @@ local function StartCombat(self, bFight)
 		Timers:CreateTimer(12, function()
 			local spawn = CreateUnitByName("npc_dota_boss22", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn:SetCoreHealth( spawn:GetBaseMaxHealth() / 2 )
+			spawn:FindAbilityByName("boss15_peel_the_veil"):SetActivated(false)
 			spawn.unitIsRoundNecessary = true
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			self.mobsToSpawn = self.mobsToSpawn - 1

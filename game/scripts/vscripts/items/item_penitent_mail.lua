@@ -15,22 +15,35 @@ function item_penitent_mail:OnSpellStart()
 	EmitSoundOn("DOTA_Item.BladeMail.Activate", caster)
 end
 
-modifier_item_penitent_mail_passive = class(itemBaseClass)
+function item_penitent_mail:GetRuneSlots()
+	return self:GetSpecialValueFor("rune_slots")
+end
+
+item_penitent_mail_2 = class(item_penitent_mail)
+item_penitent_mail_3 = class(item_penitent_mail)
+item_penitent_mail_4 = class(item_penitent_mail)
+item_penitent_mail_5 = class(item_penitent_mail)
+item_penitent_mail_6 = class(item_penitent_mail)
+item_penitent_mail_7 = class(item_penitent_mail)
+item_penitent_mail_8 = class(item_penitent_mail)
+item_penitent_mail_9 = class(item_penitent_mail)
+
+modifier_item_penitent_mail_passive = class(itemBasicBaseClass)
 LinkLuaModifier( "modifier_item_penitent_mail_passive", "items/item_penitent_mail.lua" ,LUA_MODIFIER_MOTION_NONE )
-function modifier_item_penitent_mail_passive:OnCreated()
+
+function modifier_item_penitent_mail_passive:OnCreatedSpecific()
 	self.reflect = self:GetSpecialValueFor("reflect")
 	self.activereflect = self:GetSpecialValueFor("active_reflect")
 	self.bonusThreat = self:GetSpecialValueFor("bonus_threat")
 	self.threatGain = self:GetSpecialValueFor("threat_gain")
 	self.threatGainUlt = self:GetSpecialValueFor("threat_gain_ult")
-	self.armor = self:GetSpecialValueFor("bonus_armor")
-	self.magicResist = self:GetSpecialValueFor("bonus_magic_resist")
 end
 
 function modifier_item_penitent_mail_passive:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_TAKEDAMAGE,
-			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-			MODIFIER_EVENT_ON_ABILITY_FULLY_CAST }
+	local funcs = self:GetDefaultFunctions()
+	table.insert( funcs, MODIFIER_EVENT_ON_TAKEDAMAGE )
+	table.insert( funcs, MODIFIER_EVENT_ON_ABILITY_FULLY_CAST )
+	return funcs
 end
 
 function modifier_item_penitent_mail_passive:OnAbilityFullyCast(params)
@@ -42,10 +55,6 @@ end
 
 function modifier_item_penitent_mail_passive:Bonus_ThreatGain()
 	return self.bonusThreat
-end
-
-function modifier_item_penitent_mail_passive:GetModifierPhysicalArmorBonus()
-	return self.armor
 end
 
 function modifier_item_penitent_mail_passive:OnTakeDamage(params)
@@ -66,30 +75,8 @@ function modifier_item_penitent_mail_passive:OnTakeDamage(params)
 	end
 end
 
-function modifier_item_penitent_mail_passive:IsHidden()
-	return true
-end
-
-function modifier_item_penitent_mail_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
 modifier_item_penitent_mail_active = class({})
 LinkLuaModifier( "modifier_item_penitent_mail_active", "items/item_penitent_mail.lua" ,LUA_MODIFIER_MOTION_NONE )
-
-if IsServer() then
-	function modifier_item_penitent_mail_active:OnCreated()
-		self:GetAbility():StartDelayedCooldown()
-	end
-	
-	function modifier_item_penitent_mail_active:OnRefresh()
-		self:GetAbility():StartDelayedCooldown()
-	end
-	
-	function modifier_item_penitent_mail_active:OnDestroy()
-		self:GetAbility():EndDelayedCooldown()
-	end
-end
 
 function modifier_item_penitent_mail_active:GetEffectName()
 	return "particles/items_fx/blademail.vpcf"

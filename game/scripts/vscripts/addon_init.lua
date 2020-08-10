@@ -10,9 +10,11 @@ CDR_PER_INT = 0.385
 SPELL_AMP_PER_INT = 0.0075
 
 require("templates/relic_base_class")
-require("templates/item_base_class")
+require("templates/persistent_modifier")
 require("templates/item_basic_base_class")
 require("templates/toggle_modifier_base_class")
+require("templates/talent_base_class")
+require("templates/rune_base_class")
 require("templates/talent_base_class")
 
 LinkLuaModifier( "modifier_sleep_generic", "libraries/modifiers/modifier_sleep_generic.lua", LUA_MODIFIER_MOTION_NONE )

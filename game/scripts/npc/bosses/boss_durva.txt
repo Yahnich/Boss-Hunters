@@ -74,7 +74,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"dmg_reduction"			"60 80"
+				"dmg_reduction"			"60"
 			}
 			"02"
 			{

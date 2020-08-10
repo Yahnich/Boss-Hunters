@@ -14,9 +14,14 @@ function zeus_static_field:ApplyStaticShock(target)
 	-- Plays the sound on the target
 	EmitSoundOn("Hero_Zuus.StaticField", target)
 	-- local stacks = target:AddNewModifier(self:GetCaster(), self, "modifier_zeus_static_field_static_charge", {duration = self.stack_duration}):GetStackCount()
-	local damage_health_pct = TernaryOperator(self:GetTalentSpecialValueFor("minion_damage_pct"), target:IsMinion(), self:GetTalentSpecialValueFor("damage_health_pct"))
+	local damage = 0
+	if target:IsMinion() then
+		damage = math.ceil( target:GetMaxHealth() * self:GetTalentSpecialValueFor("minion_damage_pct")/100 )
+	else
+		damage = math.ceil( target:GetHealth() * self:GetTalentSpecialValueFor("damage_health_pct")/100 )
+	end
 	-- Deals the damage based on the target's current health
-	self:DealDamage(self:GetCaster(), target, math.ceil( target:GetHealth() * damage_health_pct/100 ), {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_HPLOSS})
+	self:DealDamage(self:GetCaster(), target, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_HPLOSS})
 end
 
 modifier_zeus_static_field = class({})

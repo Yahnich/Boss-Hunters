@@ -13,6 +13,21 @@ function MergeTables( t1, t2 )
 	end
 end
 
+function table.copy(t1)
+	if type(t1) == 'table' then
+		local copy = {}
+		for k,v in pairs(t1) do
+			local kCopy = table.copy(k)
+			local vCopy = table.copy(v)
+			copy[kCopy] = vCopy
+		end
+		return copy
+	else
+		local copy = t1
+		return copy
+	end
+end
+
 function HasBit(checker, value)
 	return bit.band(checker, value) == value
 end
@@ -54,20 +69,23 @@ function GetTableLength(rndTable)
 	return counter
 end
 
-
 function PrintAll(t)
-	for k,v in pairs(t) do
-		print(k,v)
-		if type(v) == "table" then
-			for m,n in pairs(v) do
-				print('--', m,n)
-				if type(n) == "table" then
-					for h,j in pairs(n) do
-						print('----', h,j)
+	if type(t) == "table" then
+		for k,v in pairs(t) do
+			print(k,v)
+			if type(v) == "table" then
+				for m,n in pairs(v) do
+					print('--', m,n)
+					if type(n) == "table" then
+						for h,j in pairs(n) do
+							print('----', h,j)
+						end
 					end
 				end
 			end
 		end
+	else
+		print( t )
 	end
 end
 
@@ -193,15 +211,28 @@ function C_DOTA_Modifier_Lua:AddIndependentStack()
 	else self:IncrementStackCount() end
 end
 
+function C_DOTA_BaseNPC:GetAgility()
+	local unit = self
+	if self:GetParentUnit() then
+		unit = self:GetParentUnit()
+	end
+	if unit:IsRealHero() then
+		return unit:GetAgility()
+	else
+		return 0
+	end
+end
 
 function C_DOTA_BaseNPC:GetStrength()
 	local unit = self
 	if self:GetParentUnit() then
 		unit = self:GetParentUnit()
 	end
-	local netTable = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex())
-	if netTable and netTable.strength then return  math.floor(tonumber(netTable.strength)) end
-	return 0
+	if unit:IsRealHero() then
+		return unit:GetStrength()
+	else
+		return 0
+	end
 end
 
 function C_DOTA_BaseNPC:GetIntellect()
@@ -209,19 +240,11 @@ function C_DOTA_BaseNPC:GetIntellect()
 	if self:GetParentUnit() then
 		unit = self:GetParentUnit()
 	end
-	local netTable = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex())
-	if netTable and netTable.intellect then return  math.floor(tonumber(netTable.intellect)) end
-	return 0
-end
-
-function C_DOTA_BaseNPC:GetAgility()
-	local unit = self
-	if self:GetParentUnit() then
-		unit = self:GetParentUnit()
+	if unit:IsRealHero() then
+		return unit:GetIntellect()
+	else
+		return 0
 	end
-	local netTable = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex())
-	if netTable and netTable.agility then return math.floor(tonumber(netTable.agility)) end
-	return 0
 end
 
 function C_DOTA_BaseNPC:GetPrimaryAttribute()

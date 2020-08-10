@@ -59,45 +59,48 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"hero_duration"			"1.0"
+				"var_type"					"FIELD_FLOAT"
+				"hero_duration"				"1.0"
+				"LinkedSpecialBonus"		"special_bonus_unique_witch_doctor_paralyzing_cask_1"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"creep_duration"		"3.0"
+				"var_type"					"FIELD_FLOAT"
+				"creep_duration"			"3.0"
+				"LinkedSpecialBonus"		"special_bonus_unique_witch_doctor_paralyzing_cask_1"
+				"LinkedSpecialBonusField"	"value2"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"50 90 130 170 180 190 200"
-				"LinkedSpecialBonus"	"special_bonus_unique_witch_doctor_paralyzing_cask_2"
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"50 90 130 170 180 190 200"
+				"LinkedSpecialBonus"		"special_bonus_unique_witch_doctor_paralyzing_cask_1"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"heal"					"50 90 130 170 180 190 200"
-				"LinkedSpecialBonus"	"special_bonus_unique_witch_doctor_paralyzing_cask_2"
+				"var_type"					"FIELD_INTEGER"
+				"heal"						"50 90 130 170 180 190 200"
+				"LinkedSpecialBonus"		"special_bonus_unique_witch_doctor_paralyzing_cask_1"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bounce_range"			"575"
+				"var_type"					"FIELD_INTEGER"
+				"bounce_range"				"575"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bounces"				"6 6 6 6 8 10 12"
+				"var_type"					"FIELD_INTEGER"
+				"bounces"					"6 6 6 6 8 10 12"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"1200"
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"1200"
 			}
 			"08"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bounce_delay"			"0.3"
+				"var_type"					"FIELD_FLOAT"
+				"bounce_delay"				"0.3"
 			}
 		}
 	}
@@ -119,7 +122,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"35"
+				"value"						"50"
 			}
 		}
 	}
@@ -140,8 +143,13 @@
 		{
 			"01"
 			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"0.3"
+			}
+			"02"
+			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"120"
+				"value2"					"1"
 			}
 		}
 	}
@@ -355,7 +363,7 @@
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"base_damage"					"5 10 15 20 25 30 35"
+				"base_heal"						"5 10 15 20 25 30 35"
 				"LinkedSpecialBonus"			"special_bonus_unique_witch_doctor_maledict_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}

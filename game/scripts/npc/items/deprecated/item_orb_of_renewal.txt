@@ -1,0 +1,44 @@
+"DOTAAbilities"
+{
+	"item_orb_of_renewal"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"946"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_orb_of_renewal"
+		"AbilityTextureName"			"item_soul_booster"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemShopTags"					"cooldown;reduction"
+		"ItemCost"						"1200"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"octarine core;orb of renewal"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"precache"					"soundevents/game_sounds_items.vsndevts"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"heal_restore"			"30" //percent
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_restore"			"10" //percent
+			}
+		}
+	}
+}

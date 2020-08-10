@@ -1,0 +1,39 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_fruit_of_knowledge"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2244"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_fruit_of_knowledge"
+		"AbilityTextureName"			"item_pupils_gift"
+		"ItemKillable"					"1"
+		"ItemSellable"					"0"
+		"ItemDroppable"					"1"
+		"Model"							"models/props_gameplay/clarity.vmdl"	
+		
+		"ItemCost"						"4000"
+		"ItemShopTags"					"xp;experience"
+		"ItemQuality"					"consumable"
+		"ItemAliases"					"tome of knowledge;creed of knowledge"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"					"0"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"skill_points"			"1"
+			}
+		}
+	}
+}

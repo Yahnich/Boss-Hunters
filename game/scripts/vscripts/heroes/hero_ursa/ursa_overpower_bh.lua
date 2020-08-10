@@ -1,5 +1,4 @@
 ursa_overpower_bh = class({})
-LinkLuaModifier("modifier_ursa_overpower_bh", "heroes/hero_ursa/ursa_overpower_bh", LUA_MODIFIER_MOTION_NONE)
 
 function ursa_overpower_bh:IsStealable()
 	return true
@@ -7,6 +6,10 @@ end
 
 function ursa_overpower_bh:IsHiddenWhenStolen()
 	return false
+end
+
+function ursa_overpower_bh:GetIntrinsicModifierName()
+	return "modifier_ursa_overpower_autocast"
 end
 
 function ursa_overpower_bh:OnAbilityPhaseStart()
@@ -18,13 +21,33 @@ function ursa_overpower_bh:OnSpellStart()
 	local caster = self:GetCaster()
 
 	EmitSoundOn("Hero_Ursa.Overpower", caster)
-
 	caster:AddNewModifier(caster, self, "modifier_ursa_overpower_bh", {Duration = self:GetTalentSpecialValueFor("duration")}):SetStackCount(self:GetTalentSpecialValueFor("max_attacks"))
 end
 
+modifier_ursa_overpower_autocast = class({})
+LinkLuaModifier("modifier_ursa_overpower_autocast", "heroes/hero_ursa/ursa_overpower_bh", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_ursa_overpower_autocast:OnCreated()
+	if IsServer() then self:StartIntervalThink( 0.25 ) end
+end
+
+function modifier_ursa_overpower_autocast:OnIntervalThink()
+	local ability = self:GetAbility()
+	local caster = self:GetCaster()
+	if ability:GetAutoCastState() and ability:IsFullyCastable() and caster:IsAttacking() then
+		caster:CastAbilityNoTarget( ability, caster:GetPlayerID() )
+	end
+end
+
+function modifier_ursa_overpower_autocast:IsHidden()
+	return true
+end
+
 modifier_ursa_overpower_bh = class({})
+LinkLuaModifier("modifier_ursa_overpower_bh", "heroes/hero_ursa/ursa_overpower_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_ursa_overpower_bh:OnCreated(table)
+	self.attack_speed = self:GetTalentSpecialValueFor("attack_speed_bonus_pct")
 	if IsServer() then
 		local caster = self:GetCaster()
 
@@ -47,7 +70,7 @@ function modifier_ursa_overpower_bh:GetActivityTranslationModifiers()
 end
 
 function modifier_ursa_overpower_bh:GetModifierAttackSpeedBonus()
-	return self:GetTalentSpecialValueFor("attack_speed_bonus_pct")
+	return self.attack_speed
 end
 
 function modifier_ursa_overpower_bh:OnAttack(params)

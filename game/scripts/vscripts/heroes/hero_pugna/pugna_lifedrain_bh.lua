@@ -105,7 +105,7 @@ function modifier_pugna_life_drain_bh:OnIntervalThink()
 	local parent = self:GetParent()
 	local ability = self:GetAbility()
 	
-	if CalculateDistance( caster, parent ) >= self.breakBuffer + ability:GetTrueCastRange() then
+	if CalculateDistance( caster, parent ) >= self.breakBuffer + ability:GetTrueCastRange() or caster:IsStunned() or caster:IsSilenced() or not caster:IsAlive() then
 		self:Destroy()
 		caster:RemoveModifierByName("modifier_pugna_life_drain_bh_channel")
 		return

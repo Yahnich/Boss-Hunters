@@ -4,14 +4,14 @@ local function StartEvent(self)
 	self.tinkerers = 0
 	self.rattleTraps = 0
 	if self.eventType == 1 then
-		self.rattleTraps = 1 + RoundManager:GetCurrentRaidTier()
+		self.rattleTraps = 2 + RoundManager:GetCurrentRaidTier()
 	elseif self.eventType == 2 then
-		self.tinkerers = RoundManager:GetCurrentRaidTier() * 2
+		self.tinkerers = 1 + RoundManager:GetCurrentRaidTier() * 2
 	else
 		self.rattleTraps = RoundManager:GetCurrentRaidTier()
 		self.tinkerers = RoundManager:GetCurrentRaidTier()
 	end
-	self.tinkerers = self.tinkerers + math.floor( math.min( math.sqrt( RoundManager:GetEventsFinished() ), 5  ) + 0.5 )
+	self.tinkerers = self.tinkerers + math.floor( math.min( math.sqrt( math.max(RoundManager:GetEventsFinished() - 2, 0) ), 5  ) + 0.5 )
 	self.enemiesToSpawn = self.rattleTraps + self.tinkerers
 	self.eventHandler = Timers:CreateTimer(3, function()
 		if self.tinkerers > 0 then

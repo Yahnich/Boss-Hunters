@@ -1,23 +1,56 @@
 item_incandescance = class({})
 
+function item_incandescance:GetIntrinsicModifierName()
+	return "modifier_item_incandescance_passive"
+end
+
 function item_incandescance:GetAbilityTextureName()
 	if self:GetCaster():HasModifier("modifier_item_incandescance") then
-		return "item_radiance"
+		return "radiance/incandescance_"..self:GetLevel()
 	else
 		return "item_radiance_inactive"
 	end
 end
 
 function item_incandescance:OnToggle()
-	if not self:GetToggleState() then
+	print( self:GetToggleState(), self:GetName() )
+	if self:GetToggleState() then
 		self:GetCaster():RemoveModifierByName("modifier_item_incandescance")
 	else
 		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_incandescance", {})
+		print( "got got")
 	end
 end
 
-function item_incandescance:GetIntrinsicModifierName()
-	return "modifier_item_incandescance"
+item_incandescance_2 = class(item_incandescance)
+item_incandescance_3 = class(item_incandescance)
+item_incandescance_4 = class(item_incandescance)
+item_incandescance_5 = class(item_incandescance)
+item_incandescance_6 = class(item_incandescance)
+item_incandescance_7 = class(item_incandescance)
+item_incandescance_8 = class(item_incandescance)
+item_incandescance_9 = class(item_incandescance)
+
+
+LinkLuaModifier( "modifier_item_incandescance_passive", "items/item_incandescance.lua" ,LUA_MODIFIER_MOTION_NONE )
+modifier_item_incandescance_passive = class(itemBasicBaseClass)
+
+function modifier_item_incandescance_passive:OnCreatedSpecific()
+	if IsServer() then
+		self:GetAbility():OnToggle()
+	end
+end
+
+function modifier_item_incandescance_passive:OnRefreshSpecific()
+	if IsServer() then
+		self:GetAbility():OnToggle()
+	end
+end
+
+function modifier_item_incandescance_passive:OnDestroySpecific()
+	if IsServer() and not self:GetCaster():HasModifier("modifier_item_incandescance_passive") then
+		self:GetCaster():RemoveModifierByName("modifier_item_incandescance")
+	end
 end
 
 LinkLuaModifier( "modifier_item_incandescance", "items/item_incandescance.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -25,47 +58,10 @@ modifier_item_incandescance = class(toggleModifierBaseClass)
 
 function modifier_item_incandescance:OnCreated()
 	self.radius = self:GetSpecialValueFor("radius")
-	self.maxRadius = self:GetSpecialValueFor("radius")
-	self.minRadius = self:GetSpecialValueFor("min_radius")
-	self.radiusDelta = self:GetSpecialValueFor("radius_change")
-	if IsServer() then
-		self.cumulativeDist = {}
-		self.lastPos = self:GetCaster():GetAbsOrigin()
-		self:StartIntervalThink(0.1)
-		self.pFX = ParticleManager:CreateParticle("particles/items/item_warm_fire_radius.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
-		ParticleManager:SetParticleControl( self.pFX, 1, Vector(self.radius,0,0) )
-		self:AddEffect( self.pFX )
-	end
 end
 
-function modifier_item_incandescance:OnIntervalThink()
-	table.insert(self.cumulativeDist, CalculateDistance( self.lastPos, self:GetCaster():GetAbsOrigin() ) )
-	self.lastPos = self:GetCaster():GetAbsOrigin()
-	if #self.cumulativeDist > 9 then
-		table.remove(self.cumulativeDist, 1)
-	end
-	local distance = 0
-	for id, amount in ipairs(self.cumulativeDist) do
-		distance = distance + amount
-	end
-	if distance > 150 and self.minRadius < self.radius then
-		self.radius = math.max( self.radius - self.radiusDelta * 0.1, self.minRadius )
-		ParticleManager:SetParticleControl( self.pFX, 1, Vector(self.radius,0,0) )
-	elseif distance < 150 and self.maxRadius > self.radius then
-		self.radius = math.min( self.radius + self.radiusDelta * 0.1, self.maxRadius )
-		ParticleManager:SetParticleControl( self.pFX, 1, Vector(self.radius,0,0) )
-	end
-end
-
-function modifier_item_incandescance:OnDestroy()
-	if IsServer() and self:GetAbility() then
-		for _, ally in ipairs( self:GetParent():FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), -1 ) ) do
-			ally:RemoveModifierByName("modifier_incandescance_debuff")
-		end
-		if self:GetAbility():GetToggleState() then
-			self:GetAbility():OnToggle()
-		end
-	end
+function modifier_item_incandescance:OnRefresh()
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_item_incandescance:IsAura()
@@ -94,6 +90,10 @@ end
 
 function modifier_item_incandescance:GetAuraSearchFlags()    
 	return DOTA_UNIT_TARGET_FLAG_NONE
+end
+
+function modifier_item_incandescance:GetEffectName()
+	return "particles/items2_fx/radiance_owner.vpcf"
 end
 
 function modifier_item_incandescance:IsHidden()    
@@ -132,4 +132,8 @@ end
 
 function modifier_incandescance_debuff:GetEffectName()
 	return "particles/units/heroes/hero_invoker/invoker_chaos_meteor_burn_debuff.vpcf"
+end
+
+function modifier_incandescance_debuff:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE 
 end

@@ -82,14 +82,14 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1500"	
+		"ItemCost"						"1560"	
 		"ItemShopTags"					""
 		"ItemRecipe"					"1"
 		
 		"ItemResult"					"item_ultimate_scepter"
 		"ItemRequirements"
 		{
-			"01"						"item_power_core"
+			"01"						"item_strength_stone;item_intellect_stone;item_agility_stone;item_all_stone"
 		}
 	}
 	//=================================================================================================================

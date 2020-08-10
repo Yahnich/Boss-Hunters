@@ -21,29 +21,33 @@ function item_lucifers_cage:OnSpellStart()
 	end
 end
 
+item_lucifers_cage_2 = class(item_lucifers_cage)
+item_lucifers_cage_3 = class(item_lucifers_cage)
+item_lucifers_cage_4 = class(item_lucifers_cage)
+item_lucifers_cage_5 = class(item_lucifers_cage)
+item_lucifers_cage_6 = class(item_lucifers_cage)
+item_lucifers_cage_7 = class(item_lucifers_cage)
+item_lucifers_cage_8 = class(item_lucifers_cage)
+item_lucifers_cage_9 = class(item_lucifers_cage)
 
 modifier_item_lucifers_cage_handle_heal = class({})
 function modifier_item_lucifers_cage_handle_heal:OnCreated()
-	self.regen = self:GetAbility():GetSpecialValueFor("damage_heal")
-	self.healAmp = self:GetAbility():GetSpecialValueFor("heal_amp")
-	self:GetAbility().casted = true
+	self.heal = self:GetAbility():GetSpecialValueFor("healdamage")
+	if IsServer() then
+		self:GetParent():HealEvent(self.heal, self:GetAbility(), self:GetParent()) 
+		self:StartIntervalThink(1.0)
+	end
 end
 
-function modifier_item_lucifers_cage_handle_heal:OnDestroy()
-	self:GetAbility().casted = false
+function modifier_item_lucifers_cage_handle_heal:OnRefresh()	
+	self.heal = math.max( self:GetAbility():GetSpecialValueFor("healdamage"), self.heal )
+	if IsServer() then
+		self:GetParent():HealEvent(self.heal, self:GetAbility(), self:GetParent()) 
+	end
 end
 
-function modifier_item_lucifers_cage_handle_heal:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-			}
-end
-
-function modifier_item_lucifers_cage_handle_heal:GetModifierConstantHealthRegen()
-	return self.regen
-end
-
-function modifier_item_lucifers_cage_handle_heal:GetModifierHealAmplify_Percentage(params)
-	return self.healAmp
+function modifier_item_lucifers_cage_handle_heal:OnIntervalThink()
+	self:GetParent():HealEvent(self.heal, self:GetAbility(), self:GetParent()) 
 end
 
 function modifier_item_lucifers_cage_handle_heal:GetEffectName()
@@ -56,28 +60,22 @@ end
 
 modifier_item_lucifers_cage_handle_damage = class({})
 function modifier_item_lucifers_cage_handle_damage:OnCreated()
+	self.damage = self:GetAbility():GetSpecialValueFor("healdamage")
 	if IsServer() then
-		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetAbility():GetSpecialValueFor("damage_heal"), {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
 		self:StartIntervalThink(1.0)
 	end
-	self.disable = self:GetSpecialValueFor("disables_healing")
-	self:GetAbility().casted = true
 end
 
-function modifier_item_lucifers_cage_handle_damage:OnRefresh()
+function modifier_item_lucifers_cage_handle_damage:OnRefresh()	
+	self.damage = math.max( self:GetAbility():GetSpecialValueFor("healdamage"), self.damage )
 	if IsServer() then
-		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetAbility():GetSpecialValueFor("damage_heal"), {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
 	end
-	self.disable = self:GetSpecialValueFor("disables_healing")
-	self:GetAbility().casted = true
-end
-
-function modifier_item_lucifers_cage_handle_damage:OnDestroy()
-	self:GetAbility().casted = false
 end
 
 function modifier_item_lucifers_cage_handle_damage:OnIntervalThink()
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetAbility():GetSpecialValueFor("damage_heal"), {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
 end
 
 function modifier_item_lucifers_cage_handle_damage:GetEffectName()
@@ -88,60 +86,13 @@ function modifier_item_lucifers_cage_handle_damage:IsDebuff()
 	return true
 end
 
-function modifier_item_lucifers_cage_handle_damage:DeclareFunctions()
-	return {MODIFIER_PROPERTY_DISABLE_HEALING}
-end
 
-function modifier_item_lucifers_cage_handle_damage:GetDisableHealing()
-	return tonumber(self.disable)
-end
-
-
-modifier_item_lucifers_cage_passive = class(itemBaseClass)
+modifier_item_lucifers_cage_passive = class(itemBasicBaseClass)
 LinkLuaModifier( "modifier_item_lucifers_cage_passive", "items/item_lucifers_cage.lua" ,LUA_MODIFIER_MOTION_NONE )
-function modifier_item_lucifers_cage_passive:OnCreated()
-	self.manaregen = self:GetSpecialValueFor("bonus_mana_regen")
-	self.stat = self:GetSpecialValueFor("bonus_all")
-	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
+function modifier_item_lucifers_cage_passive:OnCreatedSpecific()
+	self.healAmp = self:GetSpecialValueFor("heal_amp")
 end
 
-function modifier_item_lucifers_cage_passive:OnRefresh()
-end
-
-function modifier_item_lucifers_cage_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-			MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-			MODIFIER_PROPERTY_MANA_BONUS
-			}
-end
-
-function modifier_item_lucifers_cage_passive:GetModifierConstantManaRegen()
-	return self.manaregen
-end
-
-
-function modifier_item_lucifers_cage_passive:GetModifierBonusStats_Strength()
-	return self.stat
-end
-
-function modifier_item_lucifers_cage_passive:GetModifierBonusStats_Agility()
-	return self.stat
-end
-
-function modifier_item_lucifers_cage_passive:GetModifierBonusStats_Intellect()
-	return self.stat
-end
-
-function modifier_item_lucifers_cage_passive:GetModifierManaBonus()
-	return self.bonus_mana
-end
-
-function modifier_item_lucifers_cage_passive:IsHidden()
-	return true
-end
-
-function modifier_item_lucifers_cage_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
+function modifier_item_lucifers_cage_passive:GetModifierHealAmplify_Percentage(params)
+	return self.healAmp
 end

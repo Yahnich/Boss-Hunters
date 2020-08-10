@@ -1,4 +1,4 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf27:version{36c3961f-02a4-4c52-bf8f-6e3147d7d142} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -14,15 +14,18 @@
 			m_flStartFalloff = 0.1
 			m_flAlphaScale = 30.0
 			m_hTexture = resource:"materials/particle/legion/legion_banner.vtex"
-			m_ColorScale = [ 255, 255, 255 ]
+			m_vecColorScale = 
+			{
+				m_nType = "PVEC_TYPE_LITERAL_COLOR"
+				m_LiteralColor = [ 255, 255, 255 ]
+			}
 		},
 	]
 	m_Operators = 
 	[
 		{
 			_class = "C_OP_Orient2DRelToCP"
-			m_nCP = 7
-			m_nFieldOutput = 12
+			m_nFieldOutput = "12"
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
@@ -50,10 +53,13 @@
 	[
 		{
 			_class = "C_INIT_RingWave"
-			m_nControlPointNumber = 7
 			m_flParticlesPerOrbit = 6.0
 			m_bEvenDistribution = true
-			m_flInitialRadius = 1200.0
+			m_flInitialRadius = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1200.0
+			}
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
@@ -61,14 +67,9 @@
 			m_fLifetimeMin = 0.5
 		},
 		{
-			_class = "C_INIT_PositionPlaceOnGround"
-			m_flOffset = 200.0
-			m_bIncludeWater = true
-		},
-		{
 			_class = "C_INIT_RandomScalar"
 			m_flMax = 20.0
-			m_nFieldOutput = 18
+			m_nFieldOutput = "18"
 		},
 		{
 			_class = "C_INIT_RandomColor"
@@ -79,14 +80,32 @@
 			_class = "C_INIT_RandomRotation"
 			m_flDegrees = 90.0
 			m_flDegreesMax = 0.0
-			m_nFieldOutput = 12
+			m_nFieldOutput = "12"
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_flOffset = 200.0
+			m_bIncludeWater = true
 		},
 	]
 	m_Emitters = 
 	[
 		{
 			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 6
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 6.0
+			}
+		},
+	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 5
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = [  ]
 		},
 	]
 }

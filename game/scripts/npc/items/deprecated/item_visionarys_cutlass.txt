@@ -1,0 +1,84 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_visionarys_cutlass"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7036"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1400"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_visionarys_cutlass"
+		"ItemRequirements"
+		{
+			"01"						"item_broadsword;item_iron_rod;item_gauntlet_of_alacrity"
+		}
+	}
+	//=================================================================================================================
+	// Barrier Leaves
+	//=================================================================================================================
+	"item_visionarys_cutlass"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7037"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_visionarys_cutlass"
+		"AbilityTextureName"			"custom/visionarys_cutlass"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"525"
+		"ItemShopTags"					"damage;mkb"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"visionarys cutlass"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"55"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pierce_chance"			"65"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pierce_damage"			"80"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/items2_fx/pipe_of_insight.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_HERO.vsndevts"
+		}
+	}
+}

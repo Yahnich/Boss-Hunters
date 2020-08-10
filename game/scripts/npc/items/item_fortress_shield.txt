@@ -1,55 +1,30 @@
 "DOTAAbilities"
 {
-	//=================================================================================================================
-	// Recipe: TITAN Armor
-	//=================================================================================================================
-	"item_recipe_fortress_shield"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"4601"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"425"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_fortress_shield"
-		"ItemRequirements"
-		{
-			"01"						"item_pages_buckler;item_pages_buckler;item_pages_buckler"
-		}
-	}
 	"item_fortress_shield"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"4602"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ID"							"2115"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_fortress_shield"
-		"AbilityTextureName"			"custom/fortress_shield"
+		"AbilityTextureName"			"shield/fortress_shield_1"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
+		"ItemCost"						"350"
 		"ItemShopTags"					"damage;slow"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"radiance;fortress_shield"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
+		"AbilityCooldown"				"16 16 16 16 16 16 14 12 10"
+		"AbilitySharedCooldown"			"shield"
+		"AbilityManaCost"				"50"
 		
-		"precache"
-		{
-			"precache"					"soundevents/game_sounds_items.vsndevts"
-		}
-
+		"AvailableRuneSlots"			"0"
+		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -57,17 +32,670 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_block"			"80"
+				"damage_reduction"		"80"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"block_chance"			"50"
+				"bonus_armor"			"4 6 8 10 12 13 14 15 16"
 			}
 			"03"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"16 16 16 16 16 16 14 12 10"
+			}
+			"04"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"5"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 2
+	//=================================================================================================================
+	"item_recipe_fortress_shield_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2116"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"850"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_fortress_shield_2"
+		"ItemRequirements"
+		{
+			"01"						"item_fortress_shield"
+		}
+	}
+	"item_fortress_shield_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2117"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_fortress_shield"
+		"AbilityTextureName"			"shield/fortress_shield_2"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"blade mail;penitent mail"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"2"
+		
+		"AbilityCooldown"				"16 16 16 16 16 16 14 12 10"
+		"AbilitySharedCooldown"			"shield"
+		"AbilityManaCost"				"50"
+		
+		"AvailableRuneSlots"			"1"
+	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"80"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_armor"			"4 6 8 10 12 13 14 15 16"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"16 16 16 16 16 16 14 12 10"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_fortress_shield_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2118"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_fortress_shield_3"
+		"ItemRequirements"
+		{
+			"01"						"item_fortress_shield_2;item_recipe_fortress_shield_2"
+		}
+	}
+	
+	"item_fortress_shield_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2119"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_fortress_shield"
+		"AbilityTextureName"			"shield/fortress_shield_3"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"blade mail;penitent mail"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"3"
+		
+		"UpgradesItems"					"item_fortress_shield;item_fortress_shield_2;item_fortress_shield_3;item_fortress_shield_4;item_fortress_shield_5;item_fortress_shield_6;item_fortress_shield_7;item_fortress_shield_8;item_fortress_shield_9"
+		"UpgradeRecipe"					"item_recipe_fortress_shield_2"
+		
+		"AbilityCooldown"				"16 16 16 16 16 16 14 12 10"
+		"AbilitySharedCooldown"			"shield"
+		"AbilityManaCost"				"50"
+		
+		"AvailableRuneSlots"			"1"
+	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"80"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_armor"			"4 6 8 10 12 13 14 15 16"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"16 16 16 16 16 16 14 12 10"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_fortress_shield_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2120"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_fortress_shield_4"
+		"ItemRequirements"
+		{
+			"01"						"item_fortress_shield_3;item_recipe_fortress_shield_2"
+		}
+	}
+	
+	"item_fortress_shield_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2121"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_fortress_shield"
+		"AbilityTextureName"			"shield/fortress_shield_4"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"blade mail;penitent mail"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"4"
+		
+		"AbilityCooldown"				"16 16 16 16 16 16 14 12 10"
+		"AbilitySharedCooldown"			"shield"
+		"AbilityManaCost"				"50"
+		
+		"AvailableRuneSlots"			"2"
+	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"80"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_armor"			"4 6 8 10 12 13 14 15 16"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"16 16 16 16 16 16 14 12 10"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_fortress_shield_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2122"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_fortress_shield_5"
+		"ItemRequirements"
+		{
+			"01"						"item_fortress_shield_4;item_recipe_fortress_shield_2"
+		}
+	}
+	
+	"item_fortress_shield_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2123"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_fortress_shield"
+		"AbilityTextureName"			"shield/fortress_shield_5"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"blade mail;penitent mail"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"5"
+		
+		"AbilityCooldown"				"16 16 16 16 16 16 14 12 10"
+		"AbilitySharedCooldown"			"shield"
+		"AbilityManaCost"				"50"
+		
+		"AvailableRuneSlots"			"2"
+	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"80"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_armor"			"4 6 8 10 12 13 14 15 16"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"16 16 16 16 16 16 14 12 10"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_fortress_shield_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2124"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_fortress_shield_6"
+		"ItemRequirements"
+		{
+			"01"						"item_fortress_shield_5;item_recipe_fortress_shield_2"
+		}
+	}
+	
+	"item_fortress_shield_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2125"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_fortress_shield"
+		"AbilityTextureName"			"shield/fortress_shield_6"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"blade mail;penitent mail"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"6"
+		
+		"AbilityCooldown"				"16 16 16 16 16 16 14 12 10"
+		"AbilitySharedCooldown"			"shield"
+		"AbilityManaCost"				"50"
+		
+		"AvailableRuneSlots"			"2"
+	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"80"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_armor"			"4 6 8 10 12 13 14 15 16"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"16 16 16 16 16 16 14 12 10"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_fortress_shield_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2126"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_fortress_shield_7"
+		"ItemRequirements"
+		{
+			"01"						"item_fortress_shield_6;item_recipe_fortress_shield_2"
+		}
+	}
+	
+	"item_fortress_shield_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2127"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_fortress_shield"
+		"AbilityTextureName"			"shield/fortress_shield_7"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"blade mail;penitent mail"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"7"
+		
+		"AbilityCooldown"				"16 16 16 16 16 16 14 12 10"
+		"AbilitySharedCooldown"			"shield"
+		"AbilityManaCost"				"50"
+		
+		"AvailableRuneSlots"			"3"
+	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"80"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_armor"			"4 6 8 10 12 13 14 15 16"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"16 16 16 16 16 16 14 12 10"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_fortress_shield_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2128"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_fortress_shield_8"
+		"ItemRequirements"
+		{
+			"01"						"item_fortress_shield_7;item_recipe_fortress_shield_2"
+		}
+	}
+	"item_fortress_shield_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2129"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_fortress_shield"
+		"AbilityTextureName"			"shield/fortress_shield_8"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"blade mail;penitent mail"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"8"
+		
+		"AbilityCooldown"				"16 16 16 16 16 16 14 12 10"
+		"AbilitySharedCooldown"			"shield"
+		"AbilityManaCost"				"50"
+		
+		"AvailableRuneSlots"			"3"
+	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"80"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_armor"			"4 6 8 10 12 13 14 15 16"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"16 16 16 16 16 16 14 12 10"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_fortress_shield_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2130"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_fortress_shield_9"
+		"ItemRequirements"
+		{
+			"01"						"item_fortress_shield_8;item_recipe_fortress_shield_2"
+		}
+	}
+	
+	"item_fortress_shield_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2131"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_fortress_shield"
+		"AbilityTextureName"			"shield/fortress_shield_9"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"blade mail;penitent mail"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"9"
+		
+		"AbilityCooldown"				"16 16 16 16 16 16 14 12 10"
+		"AbilitySharedCooldown"			"shield"
+		"AbilityManaCost"				"50"
+		
+		"AvailableRuneSlots"			"3"
+	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"80"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_armor"			"4 6 8 10 12 13 14 15 16"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"16 16 16 16 16 16 14 12 10"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
 			}
 		}
 	}

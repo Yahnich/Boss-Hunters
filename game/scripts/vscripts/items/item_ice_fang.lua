@@ -1,48 +1,76 @@
 item_ice_fang = class({})
 
-LinkLuaModifier( "modifier_item_ice_fang", "items/item_ice_fang.lua" ,LUA_MODIFIER_MOTION_NONE )
 function item_ice_fang:GetIntrinsicModifierName()
-	return "modifier_item_ice_fang"
+	return "modifier_ice_fang"
 end
 
-modifier_item_ice_fang = class(itemBaseClass)
-function modifier_item_ice_fang:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
+function item_ice_fang:GetAppliedModifierName()
+	return "modifier_ice_fang_debuff"
 end
 
-function modifier_item_ice_fang:OnAttackLanded(params)
+item_ice_fang_2 = class(item_ice_fang)
+item_ice_fang_3 = class(item_ice_fang)
+item_ice_fang_4 = class(item_ice_fang)
+item_ice_fang_5 = class(item_ice_fang)
+item_ice_fang_6 = class(item_ice_fang)
+item_ice_fang_7 = class(item_ice_fang)
+item_ice_fang_8 = class(item_ice_fang)
+item_ice_fang_9 = class(item_ice_fang)
+
+item_winters_breath_5 = class(item_ice_fang)
+
+function item_winters_breath_5:GetAppliedModifierName()
+	return "modifier_winters_breath_debuff"
+end
+item_winters_breath_6 = class(item_winters_breath_5)
+item_winters_breath_7 = class(item_winters_breath_5)
+item_winters_breath_8 = class(item_winters_breath_5)
+item_winters_breath_9 = class(item_winters_breath_5)
+
+-------------------
+-------------------
+LinkLuaModifier( "modifier_ice_fang", "items/item_ice_fang.lua" ,LUA_MODIFIER_MOTION_NONE )
+modifier_ice_fang = class(itemBasicBaseClass)
+
+function modifier_ice_fang:OnCreatedSpecific()
+	self.duration = self:GetSpecialValueFor("duration")
+end
+
+function modifier_ice_fang:OnRefreshSpecific()
+	self.duration = self:GetSpecialValueFor("duration")
+end
+
+function modifier_ice_fang:DeclareFunctions()
+	local funcs = self:GetDefaultFunctions()
+	table.insert( funcs, MODIFIER_EVENT_ON_ATTACK_LANDED )
+	return funcs
+end
+
+function modifier_ice_fang:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() then
-			params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_ice_fang_debuff", {Duration = self:GetAbility():GetSpecialValueFor("duration")})
+			print( self:GetAbility():GetAppliedModifierName() )
+			params.target:AddNewModifier(params.attacker, self:GetAbility(), self:GetAbility():GetAppliedModifierName(), {Duration = self.duration})
 		end
 	end
 end
 
-function modifier_item_ice_fang:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
-function modifier_item_ice_fang:IsHidden()
-	return true
-end
-
-LinkLuaModifier( "modifier_ice_fang_debuff", "items/item_ice_fang.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_ice_fang_debuff = class({})
+LinkLuaModifier( "modifier_ice_fang_debuff", "items/item_ice_fang.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_ice_fang_debuff:OnCreated()
 	self.slow = self:GetAbility():GetSpecialValueFor("slow")
 	if IsServer() then
-		if self:GetCaster():IsRealHero() then
-			self.damage = self:GetAbility():GetSpecialValueFor("base_damage") + self:GetCaster():GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage_over_time") / 100
-		else
-			self.damage = self:GetAbility():GetSpecialValueFor("base_damage") + self:GetCaster():GetPlayerOwner():GetAssignedHero():GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage_over_time") / 100
-		end
+		self.damage = self:GetAbility():GetSpecialValueFor("base_damage")
 		self:StartIntervalThink(1)
 	end
 end
 
 function modifier_ice_fang_debuff:OnRefresh()
-	self:OnCreated()
+	self.slow = math.min( self.slow, self:GetAbility():GetSpecialValueFor("slow") )
+	if IsServer() then
+		self.damage = math.max( self.damage, self:GetAbility():GetSpecialValueFor("base_damage") )
+	end
 end
 
 function modifier_ice_fang_debuff:OnIntervalThink()
@@ -60,3 +88,8 @@ end
 function modifier_ice_fang_debuff:GetEffectName()
 	return "particles/generic_gameplay/generic_slowed_cold.vpcf"
 end
+
+modifier_winters_breath_debuff = class(modifier_ice_fang_debuff)
+LinkLuaModifier( "modifier_winters_breath_debuff", "items/item_ice_fang.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+function modifier_winters_breath_debuff:GetModifierAttackSpeedBonus() return self.slow end

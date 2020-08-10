@@ -8,71 +8,112 @@ function pudge_chain_storm:OnSpellStart()
 	EmitSoundOn("Hero_Pudge.Dismember.Cast.Arcana", caster)
 	if target:TriggerSpellAbsorb( self ) then return end
 	target:AddNewModifier(caster, self, "modifier_pudge_chain_storm", {Duration = self:GetTalentSpecialValueFor("duration")})
-	if self:GetCaster():HasTalent("special_bonus_unique_pudge_chain_storm_1") then
-		target:AddNewModifier(caster, self, "modifier_pudge_chain_storm_talent", {Duration = caster:FindTalentValue("special_bonus_unique_pudge_chain_storm_1", "duration")})
-	end
 end
 
 modifier_pudge_chain_storm = class({})
 
 function modifier_pudge_chain_storm:OnCreated(table)
+	self:OnRefresh()
 	if IsServer() then
-		self.nfx = ParticleManager:CreateParticle("particles/econ/items/pudge/pudge_arcana/pudge_arcana_dismember_default.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
-		ParticleManager:SetParticleControl(self.nfx, 0, self:GetParent():GetAbsOrigin())
-		ParticleManager:SetParticleControl(self.nfx, 1, self:GetParent():GetAbsOrigin())
-		ParticleManager:SetParticleControl(self.nfx, 2, self:GetParent():GetAbsOrigin())
-		ParticleManager:SetParticleControl(self.nfx, 3, self:GetParent():GetAbsOrigin())
-		ParticleManager:SetParticleControl(self.nfx, 4, self:GetParent():GetAbsOrigin())
-		ParticleManager:SetParticleControl(self.nfx, 8, Vector(2,2,2))
-		ParticleManager:SetParticleControl(self.nfx, 15, Vector(142, 2, 2))
-		self:StartIntervalThink( 0.5 )
+		local nfx1 = ParticleManager:CreateParticle("particles/econ/items/pudge/pudge_arcana/default/pudge_arcana_dismember_ground_default.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+		local nfx2 = ParticleManager:CreateParticle("particles/econ/items/pudge/pudge_arcana/default/pudge_arcana_dismember_bloom_default.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+		self:AddEffect( nfx1 )
+		self:AddEffect( nfx2 )
+		self:StartIntervalThink( 1 )
+	end
+end
+
+function modifier_pudge_chain_storm:OnRefresh()
+	self.mr = self:GetTalentSpecialValueFor("magic_resist")
+	if IsServer() then
+		self.damage = self:GetTalentSpecialValueFor("damage")
+		self.stacks = self:GetTalentSpecialValueFor("heap_stacks")
+		self.heap_chance = self:GetTalentSpecialValueFor("heap_chance")
+		self.minion_chance = self:GetTalentSpecialValueFor("minion_chance")
+		self.max = self:GetTalentSpecialValueFor("max_resist") / self.mr
+		self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_pudge_chain_storm_1")
+		self.talent1Timer = self:GetCaster():FindTalentValue("special_bonus_unique_pudge_chain_storm_1")
+		self.talent1Radius = self:GetCaster():FindTalentValue("special_bonus_unique_pudge_chain_storm_1", "radius")
+		self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_pudge_chain_storm_2")
+		self.talent2Heal = self:GetCaster():FindTalentValue("special_bonus_unique_pudge_chain_storm_2") / 100
 	end
 end
 
 function modifier_pudge_chain_storm:OnIntervalThink()
 	if IsServer() then
-		EmitSoundOn("Hero_Pudge.Dismember.Damage.Arcana", self:GetParent())
-		EmitSoundOn("Hero_Pudge.Dismember.Gore.Arcana", self:GetParent())
-		EmitSoundOn("Hero_Pudge.Dismember.Arcana", self:GetParent())
+		local parent = self:GetParent()
 		local caster = self:GetCaster()
-		if caster:HasTalent("special_bonus_unique_pudge_chain_storm_2") then
-			local fleshheap = caster:FindAbilityByName("pudge_flesh_heap_lua")
-			caster:AddNewModifier(caster, fleshheap, "modifier_pudge_flesh_heap_lua_effect", {Duration = fleshheap:GetTalentSpecialValueFor("duration")}):AddIndependentStack(fleshheap:GetTalentSpecialValueFor("duration"))
+		EmitSoundOn("Hero_Pudge.Dismember.Damage.Arcana", parent)
+		EmitSoundOn("Hero_Pudge.Dismember.Gore.Arcana", parent)
+		local fleshheap = caster:FindAbilityByName("pudge_flesh_heap_lua")
+		local chance = TernaryOperator( self.minion_chance, parent:IsMinion(), self.heap_chance )
+		if self:RollPRNG( chance ) and fleshheap then
+			fleshheap:AddSkinHeap(self.stacks)
 		end
-
-		self:GetAbility():DealDamage(caster, self:GetParent(), caster:GetAttackDamage() * self:GetTalentSpecialValueFor("damage") / 100, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+		if self:GetStackCount() < self.max then
+			self:IncrementStackCount()
+		end
+		
+		ParticleManager:FireParticle("particles/econ/items/pudge/pudge_arcana/default/pudge_arcana_dismember_soil_a_default.vpcf", PATTACH_WORLDORIGIN, parent, {[0] = parent:GetAbsOrigin() + RandomVector(128),
+																																								 [1] = parent:GetAbsOrigin()})
+		ParticleManager:FireParticle("particles/econ/items/pudge/pudge_arcana/default/pudge_arcana_dismember_soil_b_default.vpcf", PATTACH_WORLDORIGIN, parent, {[0] = parent:GetAbsOrigin() + RandomVector(128),
+																																								 [1] = parent:GetAbsOrigin()})
+		
+		local damage = self:GetAbility():DealDamage(caster, parent, self.damage)
+		if self.talent2 then
+			caster:HealEvent( damage * self.talent2Heal, self:GetAbility(), caster )
+		end
+		if self.talent1 and not self.talent1Triggered then
+			if self.talent1Timer <= 0 then
+				self.talent1Timer = caster:FindTalentValue("special_bonus_unique_pudge_chain_storm_1")
+				for _, target in ipairs( caster:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), 600 or self.talent1Radius ) ) do
+					if not target:HasModifier("modifier_pudge_chain_storm") then
+						if target:TriggerSpellAbsorb( self ) then return end
+						local modifier = target:AddNewModifier(caster, self:GetAbility(), "modifier_pudge_chain_storm", {Duration = self:GetRemainingTime()-0.01})
+						modifier:SetDuration(self:GetRemainingTime()-0.01,true)
+						self.talent1Triggered = true
+						break
+					end
+				end
+			end
+			self.talent1Timer = self.talent1Timer - 1
+		end
 	end
-end
-
-function modifier_pudge_chain_storm:CheckState()
-	return {[MODIFIER_STATE_ROOTED] = true,
-			[MODIFIER_STATE_INVISIBLE] = false}
 end
 
 function modifier_pudge_chain_storm:OnRemoved()
 	if IsServer() then
-		StopSoundOn("Hero_Pudge.Dismember.Damage.Arcana", self:GetParent())
-		StopSoundOn("Hero_Pudge.Dismember.Gore.Arcana", self:GetParent())
-		StopSoundOn("Hero_Pudge.Dismember.Arcana", self:GetParent())
+		local caster = self:GetCaster()
+		local parent = self:GetParent()
+		StopSoundOn("Hero_Pudge.Dismember.Damage.Arcana", parent)
+		StopSoundOn("Hero_Pudge.Dismember.Gore.Arcana", parent)
+		StopSoundOn("Hero_Pudge.Dismember.Arcana", parent)
 		ParticleManager:ClearParticle(self.nfx)
+		if self:GetRemainingTime() > 0 then
+			for _, target in ipairs( caster:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), self:GetAbility():GetTrueCastRange() ) ) do
+				if not target:HasModifier("modifier_pudge_chain_storm") then
+					if target:TriggerSpellAbsorb( self ) then return end
+					local modifier = target:AddNewModifier(caster, self:GetAbility(), "modifier_pudge_chain_storm", {Duration = self:GetRemainingTime()-0.01})
+					modifier:SetDuration(self:GetRemainingTime()-0.01,true)
+					break
+				end
+			end
+		end
 	end
+end
+
+function modifier_pudge_chain_storm:CheckState()
+	return {[MODIFIER_STATE_INVISIBLE] = false}
+end
+
+function modifier_pudge_chain_storm:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
+end
+
+function modifier_pudge_chain_storm:GetModifierMagicalResistanceBonus()
+	return self.mr * self:GetStackCount() * (-1)
 end
 
 function modifier_pudge_chain_storm:IsDebuff()
 	return true
-end
-
-modifier_pudge_chain_storm_talent = class({})
-LinkLuaModifier("modifier_pudge_chain_storm_talent", "heroes/hero_pudge/pudge_chain_storm", LUA_MODIFIER_MOTION_NONE)
-
-function modifier_pudge_chain_storm_talent:OnCreated()
-	self.mr = self:GetCaster():FindTalentValue("special_bonus_unique_pudge_chain_storm_1")
-end
-
-function modifier_pudge_chain_storm_talent:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
-end
-
-function modifier_pudge_chain_storm_talent:GetModifierMagicalResistanceBonus()
-	return self.mr
 end

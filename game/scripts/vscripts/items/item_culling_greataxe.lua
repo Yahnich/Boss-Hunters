@@ -11,31 +11,26 @@ function item_culling_greataxe:OnSpellStart()
 	GridNav:DestroyTreesAroundPoint(tree, 20, true)
 end
 
-modifier_item_culling_greataxe_passive = class(itemBaseClass)
-
-function modifier_item_culling_greataxe_passive:OnCreated()
-	self.bonusDamage = self:GetSpecialValueFor("bonus_damage")
-	self.agi = self:GetSpecialValueFor("bonus_agi")
-	self.str = self:GetSpecialValueFor("bonus_str")
-	self.splash = self:GetSpecialValueFor("splash_damage")
+function item_culling_greataxe:GetRuneSlots()
+	return self:GetSpecialValueFor("rune_slots")
 end
 
-function modifier_item_culling_greataxe_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE, MODIFIER_PROPERTY_STATS_AGILITY_BONUS, MODIFIER_PROPERTY_STATS_STRENGTH_BONUS}
+
+item_culling_greataxe_2 = class(item_culling_greataxe)
+item_culling_greataxe_3 = class(item_culling_greataxe)
+item_culling_greataxe_4 = class(item_culling_greataxe)
+item_culling_greataxe_5 = class(item_culling_greataxe)
+item_culling_greataxe_6 = class(item_culling_greataxe)
+item_culling_greataxe_7 = class(item_culling_greataxe)
+item_culling_greataxe_8 = class(item_culling_greataxe)
+item_culling_greataxe_9 = class(item_culling_greataxe)
+
+modifier_item_culling_greataxe_passive = class(itemBasicBaseClass)
+
+function modifier_item_culling_greataxe_passive:OnCreatedSpecific()
+	self.splash = self:GetSpecialValueFor("splash_damage")
 end
 
 function modifier_item_culling_greataxe_passive:GetModifierAreaDamage()
 	return self.splash
-end
-
-function modifier_item_culling_greataxe_passive:GetModifierPreAttack_BonusDamage()
-	return self.bonusDamage
-end
-
-function modifier_item_culling_greataxe_passive:GetModifierBonusStats_Agility()
-	return self.agi
-end
-
-function modifier_item_culling_greataxe_passive:GetModifierBonusStats_Strength()
-	return self.str
 end

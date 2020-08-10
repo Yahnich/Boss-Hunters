@@ -405,7 +405,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"90"
+		"AbilityManaCost"				"90 90 90 90 80 70 60"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -434,7 +434,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"knockback_duration"		"0.6 0.7 0.8 0.9 1.0 1.1 1.2"
+				"knockback_duration"		"0.6 0.7 0.8 0.9 0.9 0.9 0.9"
 			}
 			"06"
 			{
@@ -631,13 +631,13 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"proc_chance"					"15 20 25 30 35 40 45"
+				"proc_chance"					"25 30 35 35 35 35"
 				"LinkedSpecialBonus"			"special_bonus_unique_drow_ranger_huntress_mark_1"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bonus_damage"					"60"
+				"bonus_damage"					"60 70 80 120 160 200"
 			}
 			"03"
 			{
@@ -805,27 +805,41 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"marksmanship_agility_bonus"	"35 40 45 50 55 60"
+				"marksmanship_agility_bonus"	"28 36 44 46 48 50"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"radius"						"400"
+				"glacier_arrows_mana_cost"		"-2 -2 -2 -4 -6 -8"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"split_count_scepter"			"2"
+				"huntress_mark_cd"				"-5 -5 -5 -10 -15 -20"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"scepter_range"					"375"
+				"radius"						"400"
 			}
 			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
+				"split_count_scepter"			"2"
+				"RequiresScepter"				"1"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"scepter_range"					"375"
+				"RequiresScepter"				"1"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
 				"damage_reduction_scepter"		"50"
+				"RequiresScepter"		"1"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 		}
 	}

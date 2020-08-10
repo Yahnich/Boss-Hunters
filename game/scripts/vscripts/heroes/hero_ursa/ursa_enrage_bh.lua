@@ -19,7 +19,7 @@ end
 
 function ursa_enrage_bh:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
-    if self:GetCaster():HasScepter() then cooldown = cooldown + self:GetTalentSpecialValueFor("cooldown_scepter") end
+    if self:GetCaster():HasScepter() then cooldown = self:GetLevelSpecialValueFor("cooldown_scepter", iLvl) end
     return cooldown
 end
 
@@ -70,6 +70,8 @@ end
 
 function modifier_ursa_enrage_bh:OnCreated()
 	local caster = self:GetCaster()
+	self.damage_resist = self:GetTalentSpecialValueFor("reduction")
+	self.status_resist = self:GetTalentSpecialValueFor("status_resist")
 	if IsServer() then
 		caster:SetRenderColor(255,0,0)
 	end
@@ -96,9 +98,9 @@ function modifier_ursa_enrage_bh:GetModifierModelScale()
 end
 
 function modifier_ursa_enrage_bh:GetModifierIncomingDamage_Percentage()
-	return self:GetTalentSpecialValueFor("reduction")
+	return self.damage_resist
 end
 
 function modifier_ursa_enrage_bh:GetModifierStatusResistanceStacking()
-	return self:GetTalentSpecialValueFor("status_resist")
+	return self.status_resist
 end

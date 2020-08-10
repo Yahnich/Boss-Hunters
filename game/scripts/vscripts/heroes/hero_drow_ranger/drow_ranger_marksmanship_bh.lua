@@ -14,27 +14,28 @@ end
 modifier_drow_ranger_marksmanship_bh_handler = class({})
 LinkLuaModifier("modifier_drow_ranger_marksmanship_bh_handler", "heroes/hero_drow_ranger/drow_ranger_marksmanship_bh", LUA_MODIFIER_MOTION_NONE)
 
-if IsServer() then
-	function modifier_drow_ranger_marksmanship_bh_handler:OnCreated()
-		self.radius = self:GetTalentSpecialValueFor("radius")
-		self.bonusAgility = self:GetTalentSpecialValueFor("marksmanship_agility_bonus") / 100
+function modifier_drow_ranger_marksmanship_bh_handler:OnCreated()
+	self:OnRefresh()
+	if IsServer() then
 		self:StartIntervalThink(0)
 	end
-	
-	function modifier_drow_ranger_marksmanship_bh_handler:OnRefresh()
-		self.radius = self:GetTalentSpecialValueFor("radius")
-		self.bonusAgility = self:GetTalentSpecialValueFor("marksmanship_agility_bonus") / 100
+end
+
+function modifier_drow_ranger_marksmanship_bh_handler:OnRefresh()
+	self:GetCaster().huntressMarkCooldown = self:GetTalentSpecialValueFor("huntress_mark_cd")
+	self:GetCaster().glacierArrowsManaCost = self:GetTalentSpecialValueFor("glacier_arrows_mana_cost")
+	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.bonusAgility = self:GetTalentSpecialValueFor("marksmanship_agility_bonus") / 100
+end
+
+function modifier_drow_ranger_marksmanship_bh_handler:OnIntervalThink()
+	local caster = self:GetCaster()
+	if caster:HasModifier("modifier_drow_ranger_marksmanship_bh_agility") and caster:HasTalent("special_bonus_unique_drow_ranger_marksmanship_2") then
+		AddFOWViewer(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_drow_ranger_marksmanship_2"), 0.05, false)
 	end
-	
-	function modifier_drow_ranger_marksmanship_bh_handler:OnIntervalThink()
-		local caster = self:GetCaster()
-		if caster:HasModifier("modifier_drow_ranger_marksmanship_bh_agility") and caster:HasTalent("special_bonus_unique_drow_ranger_marksmanship_2") then
-			AddFOWViewer(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_drow_ranger_marksmanship_2"), 0.05, false)
-		end
-		local stacks = self:GetStackCount()
-		if stacks ~= math.floor(caster:GetAgility() - stacks) * self.bonusAgility then
-			self:SetStackCount( math.floor(caster:GetAgility() - stacks) * self.bonusAgility )
-		end
+	local stacks = self:GetStackCount()
+	if stacks ~= math.floor(caster:GetAgility() - stacks) * self.bonusAgility then
+		self:SetStackCount( math.floor(caster:GetAgility() - stacks) * self.bonusAgility )
 	end
 end
 

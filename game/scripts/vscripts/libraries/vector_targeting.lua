@@ -7,7 +7,6 @@ ListenToGameEvent("game_rules_state_change", function()
 		print("[VT] Initializing VectorTarget...")
 		CustomGameEventManager:RegisterListener("send_vector_position", Dynamic_Wrap(VectorTarget, "StartVectorCast"))
 		local mode = GameRules:GetGameModeEntity()
-		mode:SetExecuteOrderFilter(Dynamic_Wrap(VectorTarget, 'OrderFilter'), VectorTarget)
 	end
 end, nil)
 

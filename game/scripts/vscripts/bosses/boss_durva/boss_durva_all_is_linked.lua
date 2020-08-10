@@ -26,6 +26,9 @@ function modifier_boss_durva_all_is_linked:OnTakeDamage(params)
 		local damage = params.original_damage * self.dmg_spread
 		for _, enemy in ipairs( params.attacker:FindEnemyUnitsInRadius( params.unit:GetAbsOrigin(), self.radius ) ) do
 			if enemy ~= params.unit then
+				if not HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION ) then
+					params.damage_flags = params.damage_flags + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION
+				end
 				ability:DealDamage( params.attacker, enemy, damage, { damage_type = params.damage_type, damage_flags = params.damage_flags } )
 				ParticleManager:FireRopeParticle( "particles/units/heroes/hero_warlock/warlock_fatal_bonds_pulse.vpcf", PATTACH_POINT_FOLLOW, params.unit, enemy )
 			end

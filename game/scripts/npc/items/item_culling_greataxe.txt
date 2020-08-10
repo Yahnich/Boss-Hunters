@@ -1,49 +1,23 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Recipe: TITAN Armor
-	//=================================================================================================================
-	"item_recipe_culling_greataxe"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3241"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe_assault"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1600"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_culling_greataxe"
-		"ItemRequirements"
-		{
-			"01"						"item_hunters_hatchet;item_blade_of_agility;item_titan_blade"
-		}
-	}
-	//=================================================================================================================
 	// TITAN Armor
 	//=================================================================================================================
 	"item_culling_greataxe"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3242"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2045"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_culling_greataxe"
-		"AbilityTextureName"			"item_bfury"
+		"AbilityTextureName"			"battlefury/culling_greataxe_1"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"1800"
+		"ItemCost"						"425"
 		"ItemShopTags"					"damage"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"battle fury;culling greataxe"
@@ -55,8 +29,16 @@
 			"particle"					"particles/generic_gameplay/generic_purge.vpcf"
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"1"
+		
+		"UpgradesItems"					"item_culling_greataxe;item_culling_greataxe_2;item_culling_greataxe_3;item_culling_greataxe_4;item_culling_greataxe_5;item_culling_greataxe_6;item_culling_greataxe_7;item_culling_greataxe_8;item_culling_greataxe_9"
+		"UpgradeRecipe"					"item_recipe_culling_greataxe_2"
+		
+		"AvailableRuneSlots"			"0"
 	
-		"AbilityCooldown"				"0.1"
+		"AbilityCooldown"				"1"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -65,27 +47,713 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"55"
+				"splash_damage"			"15 20 25 35 40 45 50 55 60"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"35"
+				"radius"				"350"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_culling_greataxe_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2046"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_assault"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1075"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_culling_greataxe_2"
+		"ItemRequirements"
+		{
+			"01"						"item_culling_greataxe"
+		}
+	}
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_culling_greataxe_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2047"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_culling_greataxe"
+		"AbilityTextureName"			"battlefury/culling_greataxe_2"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"425"
+		"ItemShopTags"					"damage"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"battle fury;culling greataxe"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"particle"
+		{
+			"particle"					"particles/generic_gameplay/generic_purge.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"2"
+		
+		"UpgradesItems"					"item_culling_greataxe;item_culling_greataxe_2;item_culling_greataxe_3;item_culling_greataxe_4;item_culling_greataxe_5;item_culling_greataxe_6;item_culling_greataxe_7;item_culling_greataxe_8;item_culling_greataxe_9"
+		"UpgradeRecipe"					"item_recipe_culling_greataxe_2"
+		
+		"AvailableRuneSlots"			"1"
+	
+		"AbilityCooldown"				"1"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"splash_damage"			"15 20 25 35 40 45 50 55 60"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
 				"radius"				"350"
 			}
-			"04"
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_agi"				"15"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
 			}
-			"05"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_culling_greataxe_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2048"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_culling_greataxe_3"
+		"ItemRequirements"
+		{
+			"01"						"item_culling_greataxe_2;item_recipe_culling_greataxe_2"
+		}
+	}
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_culling_greataxe_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2049"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_culling_greataxe"
+		"AbilityTextureName"			"battlefury/culling_greataxe_3"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"425"
+		"ItemShopTags"					"damage"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"battle fury;culling greataxe"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"particle"
+		{
+			"particle"					"particles/generic_gameplay/generic_purge.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"3"
+		
+		"UpgradesItems"					"item_culling_greataxe;item_culling_greataxe_2;item_culling_greataxe_3;item_culling_greataxe_4;item_culling_greataxe_5;item_culling_greataxe_6;item_culling_greataxe_7;item_culling_greataxe_8;item_culling_greataxe_9"
+		"UpgradeRecipe"					"item_recipe_culling_greataxe_2"
+		
+		"AvailableRuneSlots"			"1"
+	
+		"AbilityCooldown"				"1"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_str"				"10"
+				"splash_damage"			"15 20 25 35 40 45 50 55 60"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"350"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_culling_greataxe_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2050"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_culling_greataxe_4"
+		"ItemRequirements"
+		{
+			"01"						"item_culling_greataxe_3;item_recipe_culling_greataxe_2"
+		}
+	}
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_culling_greataxe_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2051"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_culling_greataxe"
+		"AbilityTextureName"			"battlefury/culling_greataxe_4"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"425"
+		"ItemShopTags"					"damage"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"battle fury;culling greataxe"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"particle"
+		{
+			"particle"					"particles/generic_gameplay/generic_purge.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"4"
+		
+		"UpgradesItems"					"item_culling_greataxe;item_culling_greataxe_2;item_culling_greataxe_3;item_culling_greataxe_4;item_culling_greataxe_5;item_culling_greataxe_6;item_culling_greataxe_7;item_culling_greataxe_8;item_culling_greataxe_9"
+		"UpgradeRecipe"					"item_recipe_culling_greataxe_2"
+		
+		"AvailableRuneSlots"			"2"
+	
+		"AbilityCooldown"				"1"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"splash_damage"			"15 20 25 35 40 45 50 55 60"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"350"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_culling_greataxe_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2052"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_culling_greataxe_5"
+		"ItemRequirements"
+		{
+			"01"						"item_culling_greataxe_4;item_recipe_culling_greataxe_2"
+		}
+	}
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_culling_greataxe_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2053"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_culling_greataxe"
+		"AbilityTextureName"			"battlefury/culling_greataxe_5"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"425"
+		"ItemShopTags"					"damage"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"battle fury;culling greataxe"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"particle"
+		{
+			"particle"					"particles/generic_gameplay/generic_purge.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"5"
+		
+		"UpgradesItems"					"item_culling_greataxe;item_culling_greataxe_2;item_culling_greataxe_3;item_culling_greataxe_4;item_culling_greataxe_5;item_culling_greataxe_6;item_culling_greataxe_7;item_culling_greataxe_8;item_culling_greataxe_9"
+		"UpgradeRecipe"					"item_recipe_culling_greataxe_2"
+		
+		"AvailableRuneSlots"			"2"
+	
+		"AbilityCooldown"				"1"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"splash_damage"			"15 20 25 35 40 45 50 55 60"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"350"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_culling_greataxe_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2054"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_culling_greataxe_6"
+		"ItemRequirements"
+		{
+			"01"						"item_culling_greataxe_5;item_recipe_culling_greataxe_2"
+		}
+	}
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_culling_greataxe_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2055"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_culling_greataxe"
+		"AbilityTextureName"			"battlefury/culling_greataxe_6"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"425"
+		"ItemShopTags"					"damage"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"battle fury;culling greataxe"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"particle"
+		{
+			"particle"					"particles/generic_gameplay/generic_purge.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"6"
+		
+		"UpgradesItems"					"item_culling_greataxe;item_culling_greataxe_2;item_culling_greataxe_3;item_culling_greataxe_4;item_culling_greataxe_5;item_culling_greataxe_6;item_culling_greataxe_7;item_culling_greataxe_8;item_culling_greataxe_9"
+		"UpgradeRecipe"					"item_recipe_culling_greataxe_2"
+		
+		"AvailableRuneSlots"			"2"
+	
+		"AbilityCooldown"				"1"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"splash_damage"			"15 20 25 35 40 45 50 55 60"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"350"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_culling_greataxe_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2056"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_culling_greataxe_7"
+		"ItemRequirements"
+		{
+			"01"						"item_culling_greataxe_6;item_recipe_culling_greataxe_2"
+		}
+	}
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_culling_greataxe_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2057"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_culling_greataxe"
+		"AbilityTextureName"			"battlefury/culling_greataxe_7"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"425"
+		"ItemShopTags"					"damage"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"battle fury;culling greataxe"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"particle"
+		{
+			"particle"					"particles/generic_gameplay/generic_purge.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"7"
+		
+		"UpgradesItems"					"item_culling_greataxe;item_culling_greataxe_2;item_culling_greataxe_3;item_culling_greataxe_4;item_culling_greataxe_5;item_culling_greataxe_6;item_culling_greataxe_7;item_culling_greataxe_8;item_culling_greataxe_9"
+		"UpgradeRecipe"					"item_recipe_culling_greataxe_2"
+		
+		"AvailableRuneSlots"			"3"
+	
+		"AbilityCooldown"				"1"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"splash_damage"			"15 20 25 35 40 45 50 55 60"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"350"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_culling_greataxe_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2058"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_culling_greataxe_8"
+		"ItemRequirements"
+		{
+			"01"						"item_culling_greataxe_7;item_recipe_culling_greataxe_2"
+		}
+	}
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_culling_greataxe_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2059"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_culling_greataxe"
+		"AbilityTextureName"			"battlefury/culling_greataxe_8"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"425"
+		"ItemShopTags"					"damage"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"battle fury;culling greataxe"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"particle"
+		{
+			"particle"					"particles/generic_gameplay/generic_purge.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"8"
+		
+		"UpgradesItems"					"item_culling_greataxe;item_culling_greataxe_2;item_culling_greataxe_3;item_culling_greataxe_4;item_culling_greataxe_5;item_culling_greataxe_6;item_culling_greataxe_7;item_culling_greataxe_8;item_culling_greataxe_9"
+		"UpgradeRecipe"					"item_recipe_culling_greataxe_2"
+		
+		"AvailableRuneSlots"			"3"
+	
+		"AbilityCooldown"				"1"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"splash_damage"			"15 20 25 35 40 45 50 55 60"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"350"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_culling_greataxe_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2060"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_culling_greataxe_9"
+		"ItemRequirements"
+		{
+			"01"						"item_culling_greataxe_8;item_recipe_culling_greataxe_2"
+		}
+	}
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_culling_greataxe_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2061"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_culling_greataxe"
+		"AbilityTextureName"			"battlefury/culling_greataxe_9"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"425"
+		"ItemShopTags"					"damage"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"battle fury;culling greataxe"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"particle"
+		{
+			"particle"					"particles/generic_gameplay/generic_purge.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"9"
+		
+		"UpgradesItems"					"item_culling_greataxe;item_culling_greataxe_2;item_culling_greataxe_3;item_culling_greataxe_4;item_culling_greataxe_5;item_culling_greataxe_6;item_culling_greataxe_7;item_culling_greataxe_8;item_culling_greataxe_9"
+		"UpgradeRecipe"					"item_recipe_culling_greataxe_2"
+		
+		"AvailableRuneSlots"			"3"
+	
+		"AbilityCooldown"				"1"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"splash_damage"			"15 20 25 35 40 45 50 55 60"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"350"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
 			}
 		}
 	}

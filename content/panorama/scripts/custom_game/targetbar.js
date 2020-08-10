@@ -93,11 +93,7 @@ var currBossAbility = "generic_hidden"
 function UpdateHealthBar()
 {
 	var sUnit = newestBoss
-	if(GameUI.IsAltDown()){
-		$.GetContextPanel().style.marginTop = "9%";
-	} else {
-		$.GetContextPanel().style.marginTop = "3.5%";
-	}
+	$.GetContextPanel().style.marginTop = "1.5%";
 	if(sUnit == null || !Entities.IsAlive( sUnit ) && $("#targetPanelMain").visible){
 		$("#targetPanelMain").visible = false;
 		var localAbility = $("#currentlyCastAbility")

@@ -1,67 +1,39 @@
 item_blade_of_storm = class({})
+LinkLuaModifier( "modifier_item_blade_of_storm_passive", "items/item_blade_of_storm.lua" ,LUA_MODIFIER_MOTION_NONE )
 
-LinkLuaModifier( "modifier_item_blade_of_storm", "items/item_blade_of_storm.lua" ,LUA_MODIFIER_MOTION_NONE )
 function item_blade_of_storm:GetIntrinsicModifierName()
-	return "modifier_item_blade_of_storm"
+	return "modifier_item_blade_of_storm_passive"
 end
 
-modifier_item_blade_of_storm = class({})
+function item_blade_of_storm:GetRuneSlots()
+	return self:GetSpecialValueFor("rune_slots")
+end
 
-function modifier_item_blade_of_storm:OnCreated()
-	self.attackSpeed = self:GetSpecialValueFor("bonus_attackspeed")
+item_blade_of_storm_2 = class(item_blade_of_storm)
+item_blade_of_storm_3 = class(item_blade_of_storm)
+item_blade_of_storm_4 = class(item_blade_of_storm)
+item_blade_of_storm_5 = class(item_blade_of_storm)
+item_blade_of_storm_6 = class(item_blade_of_storm)
+item_blade_of_storm_7 = class(item_blade_of_storm)
+item_blade_of_storm_8 = class(item_blade_of_storm)
+item_blade_of_storm_9 = class(item_blade_of_storm)
+
+modifier_item_blade_of_storm_passive = class(itemBasicBaseClass)
+
+function modifier_item_blade_of_storm_passive:OnCreatedSpecific()
 	self.evasion = self:GetSpecialValueFor("bonus_evasion")
-	self.agility = self:GetSpecialValueFor("bonus_agility")
-	self.bonusDamage = self:GetSpecialValueFor("bonus_damage")
-	self.movespeed = self:GetSpecialValueFor("bonus_movespeed")
-	
-	self.shockDamage = self:GetSpecialValueFor("shock_damage")
-	self.shockChance = self:GetSpecialValueFor("shock_chance")
-	self.shockDuration = self:GetSpecialValueFor("shock_duration")
 end
 
-function modifier_item_blade_of_storm:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
-			
-			MODIFIER_PROPERTY_EVASION_CONSTANT,
-			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
-			}
+function modifier_item_blade_of_storm_passive:DeclareFunctions()
+	local funcs = self:GetDefaultFunctions()
+	table.insert( funcs, MODIFIER_PROPERTY_EVASION_CONSTANT )
+	return funcs
 end
 
-function modifier_item_blade_of_storm:GetModifierMoveSpeedBonus_Percentage()
-	return self.movespeed
-end
-
-function modifier_item_blade_of_storm:OnAttackLanded(params)
-	if IsServer() then
-		if params.attacker == self:GetParent() and RollPercentage(self.shockChance) then
-			self:GetAbility():DealDamage(self:GetParent(), params.target, self.shockDamage, {damage_type = DAMAGE_TYPE_PURE})
-			params.target:Paralyze(self:GetAbility(), self:GetCaster(), self.shockDuration)
-		end
-	end
-end
-
-function modifier_item_blade_of_storm:GetModifierAttackSpeedBonus()
-	return self.attackSpeed
-end
-
-function modifier_item_blade_of_storm:GetModifierEvasion_Constant()
+function modifier_item_blade_of_storm_passive:GetModifierEvasion_Constant()
 	return self.evasion
 end
 
-function modifier_item_blade_of_storm:GetModifierPreAttack_BonusDamage()
-	return self.bonusDamage
-end
-
-function modifier_item_blade_of_storm:GetModifierBonusStats_Agility()
-	return self.agility
-end
-
-function modifier_item_blade_of_storm:IsHidden()
+function modifier_item_blade_of_storm_passive:IsHidden()
 	return true
-end
-
-function modifier_item_blade_of_storm:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

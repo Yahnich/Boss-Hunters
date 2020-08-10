@@ -5,7 +5,6 @@ function boss1b_spear_pierce:GetCooldown(nLevel)
 end
 
 function boss1b_spear_pierce:OnAbilityPhaseStart()
-	ParticleManager:FireLinearWarningParticle(self:GetCaster():GetAbsOrigin(), self:GetCaster():GetAbsOrigin() + CalculateDirection(self:GetCursorPosition(), self:GetCaster()) * self:GetSpecialValueFor("spear_distance"), self:GetSpecialValueFor("spear_width"))
 	self:SetOverrideCastPoint( self:GetCaster():GetCastPoint( true ) )
 	return true
 end

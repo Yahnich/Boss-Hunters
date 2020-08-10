@@ -1,5 +1,13 @@
 witch_doctor_maledict_bh = class({})
 
+function witch_doctor_maledict_bh:GetAbilityTextureName()
+	if self:GetCaster():HasModifier("modifier_witch_doctor_marasa_mirror") then
+		return "custom/witch_doctor_maledict_heal"
+	else
+		return "witch_doctor_maledict"
+	end
+end
+
 function witch_doctor_maledict_bh:GetAOERadius()
 	return self:GetTalentSpecialValueFor("radius")
 end
@@ -126,7 +134,7 @@ function modifier_witch_doctor_maledict_bh_heal:OnCreated()
 end
 
 function modifier_witch_doctor_maledict_bh_heal:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("base_damage")
+	self.damage = self:GetTalentSpecialValueFor("base_heal")
 	self.burst = self:GetTalentSpecialValueFor("bonus_damage") / 100
 	self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_witch_doctor_maledict_1")
 	self.magic_resistance = self:GetCaster():FindTalentValue("special_bonus_unique_witch_doctor_maledict_1", "mr")

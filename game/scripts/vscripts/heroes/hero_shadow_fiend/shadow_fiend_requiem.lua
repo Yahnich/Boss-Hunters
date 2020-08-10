@@ -1,5 +1,4 @@
 shadow_fiend_requiem = class({})
-LinkLuaModifier( "modifier_shadow_fiend_requiem","heroes/hero_shadow_fiend/shadow_fiend_requiem.lua",LUA_MODIFIER_MOTION_NONE )
 
 function shadow_fiend_requiem:OnAbilityPhaseStart()
 	EmitSoundOn("Hero_Nevermore.RequiemOfSoulsCast", self:GetCaster())
@@ -14,7 +13,9 @@ function shadow_fiend_requiem:OnSpellStart()
 	StopSoundOn("Hero_Nevermore.RequiemOfSoulsCast", caster)
 
 	caster:RemoveModifierByName("modifier_phased")
-
+	if caster:HasTalent("special_bonus_unique_shadow_fiend_requiem_2") then
+		caster:AddNewModifier( caster, self, "modifier_shadow_fiend_requiem_talent", {duration = caster:FindTalentValue("special_bonus_unique_shadow_fiend_requiem_2")} )
+	end
 	self:ReleaseSouls()
 end
 
@@ -27,7 +28,7 @@ function shadow_fiend_requiem:ReleaseSouls(bDeath)
 	local distance = self:GetTalentSpecialValueFor("radius")
 	local speed = self:GetTalentSpecialValueFor("speed")
 
-	local modifier = caster:FindModifierByName("modifier_shadow_fiend_necro")
+	local modifier = caster:FindModifierByName("modifier_shadow_fiend_necro_handle")
 	local necromastery = caster:FindAbilityByName("shadow_fiend_necro")
 	
 	local souls = 0
@@ -49,7 +50,7 @@ function shadow_fiend_requiem:ReleaseSouls(bDeath)
 		local cost = TernaryOperator( 0, caster:HasScepter(), self:GetTalentSpecialValueFor("soul_cost") )
 		local newStackCount = modifier:GetStackCount() - cost
 		modifier:SetStackCount(newStackCount)
-		if modifier:GetStackCount() < 1 then caster:RemoveModifierByName("modifier_shadow_fiend_necro") end
+		if modifier:GetStackCount() < 1 then caster:RemoveModifierByName("modifier_shadow_fiend_necro_handle") end
 
 		self.damage = self.damage + self:GetTalentSpecialValueFor("soul_cost") * caster:FindAbilityByName("shadow_fiend_necro"):GetTalentSpecialValueFor("damage") * 2
 	end
@@ -82,33 +83,41 @@ function shadow_fiend_requiem:OnProjectileHit_ExtraData(hTarget, vLocation, extr
 
 		hTarget:AddNewModifier(caster, self, "modifier_shadow_fiend_requiem", {Duration = self:GetTalentSpecialValueFor("reduction_duration")})
 		
-		if secondProj and caster:HasTalent("special_bonus_unique_shadow_fiend_requiem_1") then
-			self:DealDamage(caster, hTarget, self.damage/2, {}, 0)
-		elseif caster:HasTalent("special_bonus_unique_shadow_fiend_requiem_2") then
-			caster:Lifesteal(self, caster:FindTalentValue("special_bonus_unique_shadow_fiend_requiem_2"), self.damage, hTarget, self:GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY)
-		else
+		-- if secondProj and caster:HasTalent("special_bonus_unique_shadow_fiend_requiem_1") then
+			-- self:DealDamage(caster, hTarget, self.damage/2, {}, 0)
+		-- elseif caster:HasTalent("special_bonus_unique_shadow_fiend_requiem_2") then
+			-- caster:Lifesteal(self, caster:FindTalentValue("special_bonus_unique_shadow_fiend_requiem_2"), self.damage, hTarget, self:GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY)
+		-- else
 			self:DealDamage(caster, hTarget, self.damage, {}, 0)
-		end
+		-- end
 
 	else
-		if not secondProj and caster:HasTalent("special_bonus_unique_shadow_fiend_requiem_1") then
-			local direction = -CalculateDirection(vLocation, caster:GetAbsOrigin())
-			local speed = self:GetTalentSpecialValueFor("speed")
-			local distance = self:GetTalentSpecialValueFor("radius")
+		-- if not secondProj and caster:HasTalent("special_bonus_unique_shadow_fiend_requiem_1") then
+			-- local direction = -CalculateDirection(vLocation, caster:GetAbsOrigin())
+			-- local speed = self:GetTalentSpecialValueFor("speed")
+			-- local distance = self:GetTalentSpecialValueFor("radius")
 
-			local dummy = caster:CreateDummy(vLocation, 0.5)
-			local particle_lines_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_line.vpcf", PATTACH_ABSORIGIN, caster)
-		    ParticleManager:SetParticleControl(particle_lines_fx, 0, vLocation)
-		    ParticleManager:SetParticleControl(particle_lines_fx, 1, direction*speed)
-		    ParticleManager:SetParticleControl(particle_lines_fx, 2, Vector(0, distance/speed, 0))
-			ParticleManager:ReleaseParticleIndex(particle_lines_fx)
+			-- local dummy = caster:CreateDummy(vLocation, 0.5)
+			-- local particle_lines_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_line.vpcf", PATTACH_ABSORIGIN, caster)
+		    -- ParticleManager:SetParticleControl(particle_lines_fx, 0, vLocation)
+		    -- ParticleManager:SetParticleControl(particle_lines_fx, 1, direction*speed)
+		    -- ParticleManager:SetParticleControl(particle_lines_fx, 2, Vector(0, distance/speed, 0))
+			-- ParticleManager:ReleaseParticleIndex(particle_lines_fx)
 
-			self:FireLinearProjectile("particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_line.vpcf", direction*speed, distance, self:GetTalentSpecialValueFor("width_start"), {orign=vlocation,source=dummy,width_end=self:GetTalentSpecialValueFor("width_end"),extraData={secondProj=true}}, false, true, self:GetTalentSpecialValueFor("width_end"))
-		end
+			-- self:FireLinearProjectile("particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_line.vpcf", direction*speed, distance, self:GetTalentSpecialValueFor("width_start"), {orign=vlocation,source=dummy,width_end=self:GetTalentSpecialValueFor("width_end"),extraData={secondProj=true}}, false, true, self:GetTalentSpecialValueFor("width_end"))
+		-- end
 	end
 end
 
+modifier_shadow_fiend_requiem_talent = class({})
+LinkLuaModifier( "modifier_shadow_fiend_requiem_talent","heroes/hero_shadow_fiend/shadow_fiend_requiem.lua",LUA_MODIFIER_MOTION_NONE )
+
+function modifier_shadow_fiend_requiem_talent:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE 
+end
+
 modifier_shadow_fiend_requiem = class({})
+LinkLuaModifier( "modifier_shadow_fiend_requiem","heroes/hero_shadow_fiend/shadow_fiend_requiem.lua",LUA_MODIFIER_MOTION_NONE )
 function modifier_shadow_fiend_requiem:DeclareFunctions()
     funcs = {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 			 MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE}

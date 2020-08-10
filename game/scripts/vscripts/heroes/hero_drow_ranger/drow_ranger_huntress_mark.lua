@@ -1,5 +1,13 @@
 drow_ranger_huntress_mark = class({})
 
+function drow_ranger_huntress_mark:GetCooldown( iLvl )
+	local cd = self.BaseClass.GetCooldown( self, iLvl )
+	if self:GetCaster():HasModifier("modifier_drow_ranger_marksmanship_bh_agility") then
+		cd = cd + (self:GetCaster().huntressMarkCooldown or 0)
+	end
+	return cd
+end
+
 function drow_ranger_huntress_mark:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
@@ -46,6 +54,10 @@ end
 
 function modifier_drow_ranger_huntress_mark:OnRefresh()
 	self:OnCreated()
+end
+
+function modifier_drow_ranger_huntress_mark:CheckState()
+	return {[MODIFIER_STATE_PROVIDES_VISION] = true}
 end
 
 function modifier_drow_ranger_huntress_mark:DeclareFunctions()

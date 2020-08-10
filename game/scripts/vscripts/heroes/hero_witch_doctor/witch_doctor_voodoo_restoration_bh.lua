@@ -1,5 +1,13 @@
 witch_doctor_voodoo_restoration_bh = class({})
 
+function witch_doctor_voodoo_restoration_bh:GetAbilityTextureName()
+	if self:GetCaster():HasModifier("modifier_witch_doctor_marasa_mirror") then
+		return "custom/witch_doctor_voodoo_restoration_heal"
+	else
+		return "witch_doctor_voodoo_restoration"
+	end
+end
+
 function witch_doctor_voodoo_restoration_bh:GetCastRange()
 	return self:GetTalentSpecialValueFor("radius")
 end

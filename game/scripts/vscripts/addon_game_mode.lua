@@ -9,6 +9,7 @@ DOTA_LIFESTEAL_SOURCE_ABILITY = 2
 
 MAP_CENTER = Vector(332, -1545)
 GAME_MAX_LEVEL = 80
+EVENT_MAX = 40
 
 HERO_SELECTION_TIME = 80
 
@@ -34,6 +35,7 @@ require( "libraries/clientserver" )
 require( "libraries/vector_targeting" )
 require("libraries/animations")
 require("talentmanager")
+require("itemmanager")
 require("relicmanager")
 require("roundmanager")
 require( "ai/ai_core" )
@@ -221,6 +223,10 @@ function CHoldoutGameMode:InitGameMode()
 	
 	GameRules:GetGameModeEntity():SetMaximumAttackSpeed(MAXIMUM_ATTACK_SPEED)
 	GameRules:GetGameModeEntity():SetMinimumAttackSpeed(MINIMUM_ATTACK_SPEED)
+	GameRules:GetGameModeEntity():SetTPScrollSlotItemOverride("item_dust_of_stasis")
+	GameRules:GetGameModeEntity():SetDefaultStickyItem("item_potion_of_recovery")
+	GameRules:GetGameModeEntity():SetNeutralStashEnabled(false)
+	GameRules:GetGameModeEntity():SetNeutralStashTeamViewOnlyEnabled(true)
 	
 	-- Custom console commands
 	Convars:RegisterCommand( "bh_test_round", function( command, zone, roundName, roundType )
@@ -423,20 +429,21 @@ function CHoldoutGameMode:InitGameMode()
 	CustomGameEventManager:RegisterListener('playerUILoaded', Dynamic_Wrap( CHoldoutGameMode, 'OnPlayerUIInitialized'))
 
 	-- Register OnThink with the game engine so it is called every 0.25 seconds
-	GameRules:GetGameModeEntity():SetDamageFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterDamage" ), self )
 	GameRules:GetGameModeEntity():SetExecuteOrderFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterOrders" ), self )
+	GameRules:GetGameModeEntity():SetDamageFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterDamage" ), self )
 	GameRules:GetGameModeEntity():SetHealingFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterHeal" ), self )
 	GameRules:GetGameModeEntity():SetModifierGainedFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterModifiers" ), self )
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, 1 )
 	
 	-- Custom stats
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP, 30) 
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP, 25) 
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP_REGEN, 0) 
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_ARMOR, 0) 
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA, 20)
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN, 0)
 	
 	TalentManager:StartTalentManager()
+	ItemManager:StartItemManager()
 	RelicManager:Initialize()
 	
 	SendToConsole("rate 200000")
@@ -503,7 +510,6 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 	local source_index = filterTable["entindex_inflictor_const"]
 	local heal = filterTable["heal"]
 	local healer, target, source
-	
 	if healer_index then healer = EntIndexToHScript( healer_index ) end
 	if target_index then target = EntIndexToHScript( target_index ) end
 	if source_index then source = EntIndexToHScript( source_index ) end
@@ -532,7 +538,6 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 			healFactorAllied = healFactorAllied * 0.25
 		end
 	end
-	
 	filterTable["heal"] = math.max(0, heal * healFactorSelf * healFactorAllied)
 	if healer then healer.statsDamageHealed = (healer.statsDamageHealed or 0) + filterTable["heal"] end
 	
@@ -553,9 +558,21 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 end
 
 function CHoldoutGameMode:FilterOrders( filterTable )
+	-- if filterTable["order_type"] == DOTA_UNIT_ORDER_PURCHASE_ITEM 
+	-- or filterTable["order_type"] == DOTA_UNIT_ORDER_DROP_ITEM  
+	-- or filterTable["order_type"] == DOTA_UNIT_ORDER_PICKUP_ITEM then 
+		-- PrintAll( filterTable )
+	-- end
 	if not filterTable or not filterTable.units or not filterTable.units["0"] then return end
 	local hero = EntIndexToHScript( filterTable.units["0"] )
 	if not hero:IsRealHero() then return true end
+	if filterTable["order_type"] == DOTA_UNIT_ORDER_MOVE_ITEM then
+		local item = EntIndexToHScript( filterTable.entindex_ability )
+		local targetItem = hero:GetItemInSlot( filterTable["entindex_target"] )
+		if not item or (item.IsRuneStone and item:IsRuneStone() and targetItem and targetItem:GetRuneSlots() > 0) then
+			return false
+		end
+	end
 	if RoundManager:GetCurrentEvent() 
 	and RoundManager:GetCurrentEvent():IsEvent()
 	and RoundManager:GetCurrentEvent()._playerChoices
@@ -584,7 +601,7 @@ function CHoldoutGameMode:FilterOrders( filterTable )
 			return false
 		end
 	end
-	return true
+	return VectorTarget:OrderFilter(filterTable)
 end
 
 function CHoldoutGameMode:FilterDamage( filterTable )
@@ -605,7 +622,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	if damage <= 0 then return true end
 	
 	-- VVVVVVVVVVVVVV REMOVE THIS SHIT IN THE FUTURE VVVVVVVVVVV --
-	if attacker:GetTeam() == DOTA_TEAM_GOODGUYS and ( not attacker:IsRealHero() or attacker:IsFakeHero() ) then 
+	if attacker:GetTeam() == DOTA_TEAM_GOODGUYS and ( not attacker:IsRealHero() or attacker:IsFakeHero() ) and attacker:GetOwner() then 
 		if attacker:GetOwner():GetClassname() == player then
 			attacker = attacker:GetOwner():GetAssignedHero()
 		else
@@ -878,7 +895,6 @@ end
 function CHoldoutGameMode:OnHeroPick (event)
  	local hero = EntIndexToHScript(event.heroindex)
 	if not hero then return end
-	
 	if hero.hasBeenInitialized then return end
 	if hero:IsFakeHero() then return end
 	Timers:CreateTimer(0.03, function()
@@ -934,6 +950,9 @@ function CHoldoutGameMode:OnHeroPick (event)
 			end
 			if PlayerResource:IsKarien(ID) then
 				ParticleManager:FireParticle("particles/roles/karien_trail_spirit.vpcf", PATTACH_POINT_FOLLOW, hero)
+			end
+			if PlayerResource:IsSunrise(ID) then
+				ParticleManager:FireParticle("particles/roles/sunrise/sunrise_trail_water.vpcf", PATTACH_POINT_FOLLOW, hero)
 			end
 		end
 		local gold = 200 + 150 * ( GameRules.BasePlayers - PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS) )
@@ -1089,26 +1108,9 @@ function CHoldoutGameMode:OnThink()
 			-- end
 			for _,unit in ipairs ( HeroList:GetActiveHeroes() ) do
 				if unit:IsRealHero() and not unit:IsFakeHero() then
-					local data = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex() ) or {}
-					local updated = false
-					if data.strength ~=	unit:GetStrength() then
-						data.strength = unit:GetStrength()
-						updated = true
-					end
-					if data.agility ~=	unit:GetAgility() then
-						data.agility = unit:GetAgility()
-						updated = true
-					end
-					if data.intellect ~=	unit:GetIntellect() then
-						data.intellect = unit:GetIntellect()
-						updated = true
-					end
 					if unit:GetPlayerOwner() and unit:GetAttackTarget() and unit.lastAttackTargetUI ~= unit:GetAttackTarget() then
 						unit.lastAttackTargetUI = unit:GetAttackTarget()
 						CustomGameEventManager:Send_ServerToPlayer( unit:GetPlayerOwner(), "bh_update_attack_target", {entindex = unit:GetAttackTarget():entindex()} )
-					end
-					if updated then
-						CustomNetTables:SetTableValue("hero_properties", unit:GetUnitName()..unit:entindex(), data )
 					end
 					playerData[unit:GetPlayerID()] = {DT = unit.statsDamageTaken or 0, DD = unit.statsDamageDealt or 0, DH = unit.statsDamageHealed or 0}
 					-- Threat

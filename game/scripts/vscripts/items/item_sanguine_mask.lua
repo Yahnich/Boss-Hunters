@@ -5,25 +5,45 @@ function item_sanguine_mask:GetIntrinsicModifierName()
 	return "modifier_item_sanguine_mask_passive"
 end
 
-modifier_item_sanguine_mask_passive = class(itemBaseClass)
+item_sanguine_mask_2 = class(item_sanguine_mask)
+item_sanguine_mask_3 = class(item_sanguine_mask)
+item_sanguine_mask_4 = class(item_sanguine_mask)
+item_sanguine_mask_5 = class(item_sanguine_mask)
+item_sanguine_mask_6 = class(item_sanguine_mask)
+item_sanguine_mask_7 = class(item_sanguine_mask)
+item_sanguine_mask_8 = class(item_sanguine_mask)
+item_sanguine_mask_9 = class(item_sanguine_mask)
 
-function modifier_item_sanguine_mask_passive:OnCreated()
-	self.lifesteal = self:GetSpecialValueFor("melee_lifesteal") / 100
-	if self:GetParent():IsRangedAttacker() then
-		self.lifesteal = self:GetSpecialValueFor("ranged_lifesteal") / 100
+modifier_item_sanguine_mask_passive = class(itemBasicBaseClass)
+
+function modifier_item_sanguine_mask_passive:OnCreatedSpecific()
+	self.lifesteal = self:GetSpecialValueFor("lifesteal")
+	self.mLifesteal = self:GetSpecialValueFor("mob_divider") / 100
+	if IsServer() then
+		self:GetCaster():HookInModifier( "GetModifierLifestealBonus", self )
 	end
 end
 
-function modifier_item_sanguine_mask_passive:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_TAKEDAMAGE}
+function modifier_item_sanguine_mask_passive:OnRefreshSpecific()
+	self.lifesteal = self:GetSpecialValueFor("lifesteal")
+	self.mLifesteal = self:GetSpecialValueFor("mob_divider") / 100
+	if IsServer() then
+		self:GetCaster():HookInModifier( "GetModifierLifestealBonus", self )
+	end
 end
 
-function modifier_item_sanguine_mask_passive:OnTakeDamage(params)
-	if params.attacker == self:GetParent() 
-	and ( ( params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK and not params.inflictor) or HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE) )
-	and self:GetParent():GetHealth() > 0 
-	and self:GetParent():IsRealHero()  then
-		local flHeal = params.damage * self.lifesteal
-		params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
+function modifier_item_sanguine_mask_passive:OnDestroySpecific()
+	if IsServer() then
+		self:GetCaster():HookOutModifier( "GetModifierLifestealBonus", self )
 	end
+end
+
+function modifier_item_sanguine_mask_passive:GetModifierLifestealBonus(params)
+	local lifesteal = self.lifesteal
+	if params.inflictor then
+		if params.unit:IsMinion() then
+			lifesteal = lifesteal * self.mLifesteal
+		end
+	end
+	return lifesteal
 end

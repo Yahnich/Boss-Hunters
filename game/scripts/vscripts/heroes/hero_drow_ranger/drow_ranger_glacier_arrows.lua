@@ -16,6 +16,15 @@ function drow_ranger_glacier_arrows:GetIntrinsicModifierName()
 	return "modifier_drow_ranger_glacier_arrows_autocast"
 end
 
+
+function drow_ranger_glacier_arrows:GetManaCost( iLvl )
+	local mana = self.BaseClass.GetManaCost( self, iLvl )
+	if self:GetCaster():HasModifier("modifier_drow_ranger_marksmanship_bh_agility") then
+		mana = mana + (self:GetCaster().glacierArrowsManaCost or 0)
+	end
+	return mana
+end
+
 function drow_ranger_glacier_arrows:OnSpellStart()
 	local target = self:GetCursorTarget()
 	self.forceCast = true

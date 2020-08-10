@@ -84,8 +84,6 @@ function BaseEvent:LoadSpawns()
 	end
 end
 
-EVENT_MAX = 5 * 2 * 4
-
 function BaseEvent:GetHeroSpawnPosition()
 	return RoundManager.heroSpawnPosition
 end

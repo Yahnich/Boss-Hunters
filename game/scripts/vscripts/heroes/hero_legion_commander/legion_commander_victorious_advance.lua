@@ -30,6 +30,10 @@ function legion_commander_victorious_advance:OnSpellStart()
 		local radius = self:GetTalentSpecialValueFor("radius")
 		local base_damage = self:GetTalentSpecialValueFor("damage")
 		local bonus_damage = self:GetTalentSpecialValueFor("damage_per_unit")
+		local bonus_damage_minion = self:GetTalentSpecialValueFor("damage_per_minion")
+		local base_movespeed = 0
+		local movespeed = self:GetTalentSpecialValueFor("bonus_speed")
+		local movespeed_minion = self:GetTalentSpecialValueFor("bonus_speed_minion")
 		local duration = self:GetTalentSpecialValueFor("duration")
 		local arrows = ParticleManager:CreateParticle("particles/units/heroes/hero_legion_commander/legion_commander_odds.vpcf", PATTACH_ABSORIGIN , caster)
 				ParticleManager:SetParticleControl(arrows, 0, target)
@@ -41,43 +45,80 @@ function legion_commander_victorious_advance:OnSpellStart()
 				ParticleManager:SetParticleControl(arrows, 7, target)
 				ParticleManager:SetParticleControl(arrows, 8, target)
 		ParticleManager:ReleaseParticleIndex(arrows)
-		local units = FindUnitsInRadius(caster:GetTeam(), target, nil, radius, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, 0, false)
+		local talent2 = caster:HasTalent("special_bonus_unique_legion_commander_victorious_advance_2")
+		local units = FindUnitsInRadius(caster:GetTeam(), target, nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, 0, false)
 		local stacks = 1
 		for _,unit in pairs(units) do -- check units
-			if ((unit:IsHero() and unit:GetTeam() == caster:GetTeam()) or unit:GetTeam() ~= caster:GetTeam()) and unit ~= self:GetCaster() then
+			if unit:IsMinion() then
+				base_damage = base_damage + bonus_damage_minion
+				base_movespeed = base_movespeed + movespeed_minion
+			else
 				base_damage = base_damage + bonus_damage
-				stacks = stacks + 1
+				base_movespeed = base_movespeed + movespeed
 			end
 		end
 		for _,unit in pairs(units) do -- deal damage
 			if unit:GetTeam() ~= caster:GetTeam() then
 				if not unit:TriggerSpellAbsorb( self ) then
 					ApplyDamage({victim = unit, attacker = caster, damage = base_damage, damage_type = self:GetAbilityDamageType(), ability = self})
+					if talent2 then
+						unit:AddNewModifier(caster, self, "modifier_legion_commander_victorious_advance_debuff", {duration = duration})
+					end
 				end
 				EmitSoundOn("Hero_LegionCommander.Overwhelming.Creep",unit)
-			else
-				-- unit:AddNewModifier(caster, self, "modifier_legion_commander_victorious_advance_buff_visual", {duration = duration})
-				unit:AddNewModifier(caster, self, "modifier_legion_commander_victorious_advance_buff_stacks", {duration = duration})
-				unit:SetModifierStackCount("modifier_legion_commander_victorious_advance_buff_stacks", caster, stacks)
-				EmitSoundOn("Hero_LegionCommander.Overwhelming.Hero",unit)
 			end
 		end
-		caster:AddNewModifier(caster, self, "modifier_legion_commander_victorious_advance_buff_stacks", {duration = duration})
-		caster:SetModifierStackCount("modifier_legion_commander_victorious_advance_buff_stacks", caster, stacks)
+		caster:AddNewModifier(caster, self, "modifier_legion_commander_victorious_advance_buff_stacks", {duration = duration, movespeed = base_movespeed})
+		EmitSoundOn("Hero_LegionCommander.Overwhelming.Hero",caster)
 		
 		ParticleManager:ClearParticle(self.cast)
 		ParticleManager:ClearParticle(self.cast2)
 	end
 end
 
+LinkLuaModifier( "modifier_legion_commander_victorious_advance_debuff", "heroes/hero_legion_commander/legion_commander_victorious_advance" ,LUA_MODIFIER_MOTION_NONE )
+modifier_legion_commander_victorious_advance_debuff = class({})
+
+function modifier_legion_commander_victorious_advance_debuff:OnCreated()
+	self:OnRefresh()
+end
+
+function modifier_legion_commander_victorious_advance_debuff:OnRefresh()
+	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_legion_commander_victorious_advance_2", "value")
+	self.ms = self:GetCaster():FindTalentValue("special_bonus_unique_legion_commander_victorious_advance_2", "value2")
+end
+
+function modifier_legion_commander_victorious_advance_debuff:DeclareFunctions()
+	funcs = {
+				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+			}
+	return funcs
+end
+
+function modifier_legion_commander_victorious_advance_debuff:GetModifierMoveSpeedBonus_Percentage()
+	return self.ms
+end
+
+function modifier_legion_commander_victorious_advance_debuff:GetModifierAttackSpeedBonus()
+	return self.as
+end
+
 LinkLuaModifier( "modifier_legion_commander_victorious_advance_buff_stacks", "heroes/hero_legion_commander/legion_commander_victorious_advance" ,LUA_MODIFIER_MOTION_NONE )
 modifier_legion_commander_victorious_advance_buff_stacks = class({})
 
-function modifier_legion_commander_victorious_advance_buff_stacks:OnCreated()
-	self.armor_bonus = self:GetAbility():GetTalentSpecialValueFor("bonus_armor")
-	self.speed_bonus = self:GetAbility():GetTalentSpecialValueFor("bonus_speed")
+function modifier_legion_commander_victorious_advance_buff_stacks:OnCreated(kv)
+	self.movespeed = kv.movespeed
 	if IsServer() then
 		EmitSoundOn("Hero_LegionCommander.Overwhelming.Buff",self:GetParent())
+		self:SetHasCustomTransmitterData( true )
+	end
+end
+
+function modifier_legion_commander_victorious_advance_buff_stacks:OnRefresh(kv)
+	self.movespeed = kv.movespeed
+	if IsServer() then
+		EmitSoundOn("Hero_LegionCommander.Overwhelming.Buff",self:GetParent())
+		self:SetHasCustomTransmitterData( true )
 	end
 end
 
@@ -87,16 +128,25 @@ end
 
 function modifier_legion_commander_victorious_advance_buff_stacks:DeclareFunctions()
 	funcs = {
-				MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 			}
 	return funcs
 end
 
 function modifier_legion_commander_victorious_advance_buff_stacks:GetModifierMoveSpeedBonus_Percentage()
-	return self.speed_bonus * self:GetStackCount()
+	return self.movespeed
 end
 
-function modifier_legion_commander_victorious_advance_buff_stacks:GetModifierPhysicalArmorBonus()
-	return self.armor_bonus * self:GetStackCount()
+
+function modifier_legion_commander_victorious_advance_buff_stacks:AddCustomTransmitterData( )
+	return
+	{
+		movespeed = self.movespeed
+	}
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_legion_commander_victorious_advance_buff_stacks:HandleCustomTransmitterData( data )
+	self.movespeed = data.movespeed
 end

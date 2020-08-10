@@ -1,81 +1,81 @@
 modifier_stats_system_handler = class({})
 
-
--- OTHER
-MOVESPEED_TABLE = 15
-MANA_TABLE = 300
-MANA_REGEN_TABLE = 3
-HEAL_AMP_TABLE = {0,15,30,45,60,75}
--- OFFENSE
-ATTACK_DAMAGE_TABLE = 20
-SPELL_AMP_TABLE = 10
-COOLDOWN_REDUCTION_TABLE = {0,10,15,20,25,30}
-ATTACK_SPEED_TABLE = 10
-STATUS_AMP_TABLE = {0,10,15,20,25,30}
--- ACCURACY_TABLE = {0,15,30,45,60,75}
-AREA_DAMAGE_TABLE = {0,10,20,30,40,50}
-
--- DEFENSE
-ARMOR_TABLE = 1
-MAGIC_RESIST_TABLE = {0,10,15,20,25,30}
-ATTACK_RANGEM_TABLE = 25
-ATTACK_RANGE_TABLE = 50
-HEALTH_TABLE = 200
-HEALTH_REGEN_TABLE = 3
-STATUS_REDUCTION_TABLE = {0,10,20,30,40,50}
-
-ALL_STATS = 2
-
 function modifier_stats_system_handler:OnCreated()
-	self:UpdateStatValues()
+	self.statsInfo = {}
+	if IsServer() then
+		self.modifierFunctions = {}
+		self:SetHasCustomTransmitterData( true )
+		self:GetParent():CalculateStatBonus()
+		self:UpdateStatValues()
+	end
 end
 
-function modifier_stats_system_handler:OnStackCountChanged(iStacks)
-	self:UpdateStatValues()
+function modifier_stats_system_handler:OnRefresh(iStacks)
+	if IsServer() then
+		self:SetHasCustomTransmitterData( true )
+		self:GetParent():CalculateStatBonus()
+		self:UpdateStatValues()
+	end
 end
 
 function modifier_stats_system_handler:UpdateStatValues()
-	-- OTHER
 	local entindex = self:GetCaster():entindex()
 	if self:GetCaster():GetParentUnit() then
 		entindex = self:GetCaster():GetParentUnit():entindex()
 	end
 	local netTable = CustomNetTables:GetTableValue("stats_panel", tostring(entindex) ) or {}
-	print("calc other", self:GetCaster():GetUnitName() )
-	self.ms = MOVESPEED_TABLE * tonumber(netTable["ms"])
-	self.mp = MANA_TABLE * tonumber(netTable["mp"])
-	self.mpr = MANA_REGEN_TABLE * tonumber(netTable["mpr"])
-	self.ha = HEAL_AMP_TABLE[math.min(#HEAL_AMP_TABLE, tonumber(netTable["ha"]) + 1)]
-	print("calc offense", self:GetCaster():GetUnitName() )
-	-- OFFENSE
-	self.ad = ATTACK_DAMAGE_TABLE * tonumber(netTable["ad"])
-	self.sa = SPELL_AMP_TABLE * tonumber(netTable["sa"])
-	-- self.cdr = COOLDOWN_REDUCTION_TABLE[tonumber(netTable["cdr"]) + 1]
-	self.as = ATTACK_SPEED_TABLE * tonumber(netTable["as"])
-	self.sta = STATUS_AMP_TABLE[math.min(#STATUS_AMP_TABLE, tonumber(netTable["sta"]) + 1)]
-	-- self.acc = ACCURACY_TABLE[math.min(#ACCURACY_TABLE, tonumber(netTable["acc"]) + 1)]
-	
-	print("calc defense", self:GetCaster():GetUnitName() )
+	self.statsInfo.ms = 0
+	self.statsInfo.mp = 0
+	self.statsInfo.mpr = 0
+	self.statsInfo.ha = 0
+	self.statsInfo.ad = 0
+	self.statsInfo.sa = 0
+	self.statsInfo.sta = 0
 	-- DEFENSE
-	self.pr = ARMOR_TABLE * tonumber(netTable["pr"]) + 1
-	self.mr = MAGIC_RESIST_TABLE[math.min(#MAGIC_RESIST_TABLE, tonumber(netTable["mr"]) + 1)]
+	self.statsInfo.pr = 0
+	self.statsInfo.mr = 0
 	
-	self.ard = AREA_DAMAGE_TABLE[math.min(#MAGIC_RESIST_TABLE, tonumber(netTable["ard"]) + 1)]
+	self.statsInfo.ard = 0
 	
-	self.hp = HEALTH_TABLE * tonumber(netTable["hp"])
-	self.hpr = HEALTH_REGEN_TABLE * tonumber(netTable["hpr"])
-	self.sr = STATUS_REDUCTION_TABLE[math.min(#STATUS_REDUCTION_TABLE, tonumber(netTable["sr"]) + 1)]
+	self.statsInfo.hp = 0
+	self.statsInfo.hpr = 0
+	self.statsInfo.sr = 0
 	
-	print("calc stats", self:GetCaster():GetUnitName() )
-	self.allStats =  ALL_STATS * tonumber(netTable["all"])
-	
-	
-	if IsServer() then self:GetParent():CalculateStatBonus() end
+	self.statsInfo.as = 0
+	-- if self.modifierFunctions["GetModifierAttackSpeedBonus"] then
+		-- for modifier, active in pairs( self.modifierFunctions["GetModifierAttackSpeedBonus"] ) do
+			-- if modifier:IsNull() then
+				-- self.modifierFunctions["GetModifierAttackSpeedBonus"][modifier] = nil
+			-- elseif active and modifier.GetModifierAttackSpeedBonus then
+				-- self.statsInfo.critChance = self.statsInfo.critChance + (modifier:GetModifierAttackSpeedBonus() or 0)
+			-- end
+		-- end
+	-- end
+	self.statsInfo.critChance = 0
+	if self.modifierFunctions["GetModifierBaseCriticalChanceBonus"] then
+		for modifier, active in pairs( self.modifierFunctions["GetModifierBaseCriticalChanceBonus"] ) do
+			if modifier:IsNull() then
+				self.modifierFunctions["GetModifierBaseCriticalChanceBonus"][modifier] = nil
+			elseif active and modifier.GetModifierBaseCriticalChanceBonus then
+				self.statsInfo.critChance = self.statsInfo.critChance + (modifier:GetModifierBaseCriticalChanceBonus() or 0)
+			end
+		end
+	end
+	self.statsInfo.critDamage = 0
+	if self.modifierFunctions["GetModifierBaseCriticalDamageBonus"] then
+		for modifier, active in pairs( self.modifierFunctions["GetModifierBaseCriticalDamageBonus"] ) do
+			if modifier:IsNull() then
+				self.modifierFunctions["GetModifierBaseCriticalDamageBonus"][modifier] = nil
+			elseif active and modifier.GetModifierBaseCriticalDamageBonus then
+				self.statsInfo.critDamage = self.statsInfo.critDamage + (modifier:GetModifierBaseCriticalDamageBonus() or 0)
+			end
+		end
+	end
 end
 
 function modifier_stats_system_handler:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_MANA_BONUS,
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
@@ -99,55 +99,48 @@ function modifier_stats_system_handler:DeclareFunctions()
 	return funcs
 end
 
-function modifier_stats_system_handler:GetModifierMoveSpeedBonus_Constant() 
-	local movespeed = (self.ms or 0) 
-	return movespeed
-end
-
-function modifier_stats_system_handler:GetModifierManaBonus() return 500 + (self.mp or 0) end
-function modifier_stats_system_handler:GetModifierConstantManaRegen() return 1.5 + (self.mpr or 0) - self:GetParent():GetIntellect() * 0.05 end
-function modifier_stats_system_handler:GetModifierHealAmplify_Percentage() return self.ha or 0 end
-
-function modifier_stats_system_handler:GetModifierPreAttack_BonusDamage() return (self.ad or 0) end
+function modifier_stats_system_handler:GetModifierMoveSpeedBonus_Percentage() return self:GetParent():GetAgility() * 0.075 end
+function modifier_stats_system_handler:GetModifierManaBonus() return 500 + (self.statsInfo.mp or 0) end
+function modifier_stats_system_handler:GetModifierConstantManaRegen() return 1.5 + (self.statsInfo.mpr or 0) - self:GetParent():GetIntellect() * 0.05 end
 	
 function modifier_stats_system_handler:GetModifierSpellAmplify_Percentage()
-	return self:GetParent():GetIntellect() * 0.25 + (self.sa or 0) 
+	return self:GetParent():GetIntellect() * 0.25 + (self.statsInfo.sa or 0) 
 end
 
 -- function modifier_stats_system_handler:GetCooldownReduction() return self.cdr or 0 end
-function modifier_stats_system_handler:GetModifierAttackSpeedBonus() return 50 + (self.as or 0) end
-function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage() return self.sta or 0 end
-function modifier_stats_system_handler:GetModifierAreaDamage() return self.ard or 0 end
+function modifier_stats_system_handler:GetModifierAttackSpeedBonus() return 50 end
+
+function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage()
+	return 0.15 * self:GetParent():GetStrength()
+end
 
 function modifier_stats_system_handler:GetModifierPhysicalArmorBonus()
 	local bonusarmor = 0
 	if not self:GetParent():IsRangedAttacker() then bonusarmor = 3 end
-	return ( self.pr or 0 ) + bonusarmor
+	return ( self.statsInfo.pr or 0 ) + bonusarmor
 end
-function modifier_stats_system_handler:GetModifierMagicalResistanceBonus() return self.mr end
 
--- function modifier_stats_system_handler:GetModifierTotal_ConstantBlock(params) 
-	-- if RollPercentage( 50 ) and not self:GetParent():IsRangedAttacker() and params.attacker ~= self:GetParent() then 
-		-- return self.db or 0
-	-- end
--- end
+function modifier_stats_system_handler:GetModifierExtraHealthBonus() return 300 + (self.statsInfo.hp or 0) end
+function modifier_stats_system_handler:GetModifierConstantHealthRegen() return 1 + (self.statsInfo.hpr or 0) - self:GetParent():GetStrength() * 0.1 end
+function modifier_stats_system_handler:GetModifierStatusResistance() return ( 1 - ( (1-(self.statsInfo.sr or 0)/100) ) ) * 100  end
 
--- function modifier_stats_system_handler:GetModifierAttackRangeBonus() 
-	-- return self.ar or 0
--- end
-
-function modifier_stats_system_handler:GetModifierExtraHealthBonus() return 300 + (self.hp or 0) end
-function modifier_stats_system_handler:GetModifierConstantHealthRegen() return 1 + (self.hpr or 0) - self:GetParent():GetStrength() * 0.1 end
-function modifier_stats_system_handler:GetModifierStatusResistance() return ( 1 - ( (1-0.002)^self:GetParent():GetStrength() * (1-self.sr/100) ) ) * 100  end
-
-function modifier_stats_system_handler:GetModifierBonusStats_Strength() return (self.allStats or 0) + (self.str or 0) end
-function modifier_stats_system_handler:GetModifierBonusStats_Agility() return (self.allStats or 0) + (self.agi or 0) end
-function modifier_stats_system_handler:GetModifierBonusStats_Intellect() return (self.allStats or 0) + (self.int or 0) end
-
-function modifier_stats_system_handler:GetModifierEvasion_Constant() return 5 + (self.evasion or 0) + (1-(1-0.0035)^self:GetParent():GetAgility())*100 end
+function modifier_stats_system_handler:GetModifierEvasion_Constant() return 5 + (self.statsInfo.evasion or 0) + (1-(1-0.0035)^self:GetParent():GetAgility())*100 end
 function modifier_stats_system_handler:GetModifierPreAttack_CriticalStrike()
-	if self:RollPRNG( 5 + (self.critChance or 0) ) then
-		return 200 + (self.critDamage or 0)
+	local critChance =  5 + (self.statsInfo.critChance or 0)
+	local critAdded = 75 + (self.statsInfo.critDamage or 0) + self:GetParent():GetStrength()
+	local critDamage = 100 + critAdded
+	local crit = false
+	while critChance > 100 do
+		critDamage = critDamage + critAdded
+		critChance = critChance - 100
+		crit = true
+	end
+	if self:RollPRNG( critChance ) then
+		crit = true
+		critDamage = critDamage + critAdded
+	end
+	if crit then
+		return critDamage
 	end
 end
 
@@ -157,9 +150,31 @@ function modifier_stats_system_handler:OnTakeDamage( params )
 		if params.inflictor and params.unit:IsMinion() then
 				lifesteal = lifesteal / 4
 		end
+		if self.modifierFunctions["GetModifierLifestealBonus"] then
+			for modifier, active in pairs( self.modifierFunctions["GetModifierLifestealBonus"] ) do
+				if modifier:IsNull() then
+					self.modifierFunctions["GetModifierLifestealBonus"][modifier] = nil
+				elseif active and modifier.GetModifierLifestealBonus then
+					lifesteal = lifesteal + (modifier:GetModifierLifestealBonus( params ) or 0) / 100
+				end
+			end
+		end
 		local flHeal = math.ceil(params.damage * lifesteal)
 		params.attacker:HealEvent(flHeal, params.inflictor, params.attacker)
 	end
+end
+
+function modifier_stats_system_handler:AddCustomTransmitterData( )
+	return
+	{
+		statsInfo = self.statsInfo
+	}
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_stats_system_handler:HandleCustomTransmitterData( data )
+	self.statsInfo = table.copy( data.statsInfo )
 end
 
 function modifier_stats_system_handler:IsHidden()

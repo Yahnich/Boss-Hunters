@@ -1,156 +1,47 @@
+// upgrade stones
+#base "items/item_health_stone.txt"
+#base "items/item_mana_stone.txt"
+#base "items/item_attack_stone.txt"
+#base "items/item_quick_stone.txt"
+#base "items/item_brutality_stone.txt"
+#base "items/item_precision_stone.txt"
+#base "items/item_power_stone.txt"
+#base "items/item_strength_stone.txt"
+#base "items/item_agility_stone.txt"
+#base "items/item_intellect_stone.txt"
+#base "items/item_all_stone.txt"
+#base "items/item_range_stone.txt"
+#base "items/item_focus_stone.txt"
 
-#base "items/item_crystal_of_life.txt"
-#base "items/item_crown_of_thorns.txt"
-#base "items/item_sorcerers_staff.txt"
-#base "items/item_dagger_of_escape.txt"
-#base "items/item_ring_of_mana.txt"
-#base "items/item_sanguine_mask.txt"
-#base "items/item_amulet_of_aggression.txt"
-#base "items/item_hunters_hatchet.txt"
-#base "items/item_elven_boots.txt"
-#base "items/item_purging_stone.txt"
-#base "items/item_gem_of_corruption.txt"
-#base "items/item_pages_buckler.txt"
-#base "items/item_cursed_amulet.txt"
-#base "items/item_soldiers_pike.txt"
-#base "items/item_spell_refinery.txt"
-#base "items/item_calming_skull.txt"
-#base "items/item_breeze_amulet.txt"
-#base "items/item_mithril_armor.txt"
-#base "items/item_orb_of_shadows.txt"
-#base "items/item_gauntlet_of_alacrity.txt"
-#base "items/item_warm_fire.txt"
-#base "items/item_ice_fang.txt"
-#base "items/item_worn_cloak.txt"
-#base "items/item_broadsword.txt"
-// #base "items/item_aeon_shard.txt"
-#base "items/item_power_core.txt"
-#base "items/item_strange_trinket.txt"
-
-#base "items/item_plate_of_the_unbreakable.txt"
-#base "items/item_penitent_mail.txt"
-#base "items/item_archmages_orb.txt"
-#base "items/item_culling_greataxe.txt"
-#base "items/item_angelic_guard.txt"
-#base "items/item_wings_of_icarus.txt"
-#base "items/item_siegebreaker.txt"
-#base "items/item_ringing_rapier.txt"
-#base "items/item_reaping_scythe.txt"
-#base "items/item_cultists_veil.txt"
-#base "items/item_lightningrod.txt"
-#base "items/item_jar_of_souls.txt"
-#base "items/item_soul_vessel.txt"
-#base "items/item_runed_artifact.txt"
-#base "items/item_crystalline_staff.txt"
-#base "items/item_everbright_shield.txt"
-#base "items/item_warlocks_reliquary.txt"
-#base "items/item_dark_ones_blessing.txt"
-#base "items/item_gem_of_inner_power.txt"
-#base "items/item_incandescance.txt"
-// #base "items/item_frostbite.txt"
-#base "items/item_glacier_boots.txt"
-#base "items/item_blade_of_agility.txt"
-#base "items/item_ogre_club.txt"
-#base "items/item_staff_of_magi.txt"
-#base "items/item_legionnaires_dualswords.txt"
-#base "items/item_hurricane_blade.txt"
-#base "items/item_orb_of_essence.txt"
-#base "items/item_orb_of_vitality.txt"
-#base "items/item_orb_of_haste.txt"
-#base "items/item_orb_of_renewal.txt"
-#base "items/item_titan_blade.txt"
-#base "items/item_anvil.txt"
-#base "items/item_headchopper.txt"
-#base "items/item_conquerors_helm.txt"
-#base "items/item_soothslayer.txt"
-#base "items/item_gauntlet_of_might.txt"
-#base "items/item_wrathbearers_robes.txt"
-
-#base "items/item_arcane_accelerator.txt"
-#base "items/item_leechblade.txt"
-#base "items/item_lazarus_rags.txt"
-#base "items/item_memento.txt"
-#base "items/item_mantle_of_the_fallen.txt"
-#base "items/item_behemoths_heart.txt"
-#base "items/item_voltas_greathammer.txt"
-#base "items/item_lucifers_cage.txt"
-#base "items/item_executioners_blade.txt"
-#base "items/item_lance_of_longinus.txt"
-#base "items/item_focused_lens.txt"
-#base "items/item_fortress_shield.txt"
-#base "items/item_blood_gods_mask.txt"
-#base "items/item_berserkers_cape.txt"
-#base "items/item_blade_of_storm.txt"
-#base "items/item_guillotine.txt"
-#base "items/item_arcane_reaver.txt"
-#base "items/item_flashback.txt"
-#base "items/item_gauntlet_of_the_void.txt"
-#base "items/item_warp_staff.txt"
-// #base "items/item_emission.txt"
-#base "items/item_thanatos.txt"
-#base "items/item_trebuchet.txt"
-
+// consumables
 #base "items/item_potion_of_recovery.txt"
 #base "items/item_potion_of_essence.txt"
 #base "items/item_dust_of_stasis.txt"
 #base "items/item_creed_of_knowledge.txt"
 #base "items/item_tome_of_immense_knowledge.txt"
 #base "items/item_vaudevilles_mystery_box.txt"
+#base "items/item_fruit_of_knowledge.txt"
 
-#base "items/item_shadow_blade.txt"
+// equipment
+#base "items/item_dagger_of_escape.txt"
+#base "items/item_penitent_mail.txt"
+#base "items/item_culling_greataxe.txt"
+#base "items/item_blade_of_storm.txt"
 #base "items/item_dark_wand.txt"
-#base "items/item_war_drum.txt"
-#base "items/item_phantom_staff.txt"
-#base "items/item_ghost_saber.txt"
-//#base "items/item_wabbajack.txt"
-#base "items/item_ruby_ring.txt"
-#base "items/item_barrier_leaves.txt"
-#base "items/item_father_pipe.txt"
-#base "items/item_galactic_hammer.txt"
-#base "items/item_rising_salt.txt"
-#base "items/item_ogre_seal_totem.txt"
-#base "items/item_iron_rose.txt"
-#base "items/item_kitteh_amulet.txt"
-#base "items/item_lightningbottle.txt"
-// #base "items/item_hawks_feather.txt"
-#base "items/item_iron_rod.txt"
-#base "items/item_visionarys_cutlass.txt"
-
-#base "items/item_echoing_tambourine.txt"
-#base "items/item_mighty_timpani.txt"
-#base "items/item_inspiring_bongos.txt"
-
-#base "items/item_frostfire_brand.txt"
-#base "items/item_cloak_of_the_hunter.txt"
+#base "items/item_robes_of_revival.txt"
+#base "items/item_fortress_shield.txt"
+#base "items/item_sanguine_mask.txt"
+#base "items/item_boots_of_speed.txt"
+#base "items/item_reaping_scythe.txt"
+#base "items/item_ice_fang.txt"
 #base "items/item_winters_breath.txt"
-#base "items/item_blade_of_dominion.txt"
-
-#base "items/item_essence_piercer.txt"
-#base "items/item_penumbra.txt"
-#base "items/item_royal_guardian.txt"
-#base "items/item_valiant_locket.txt"
-#base "items/item_rapture.txt"
-#base "items/item_antique_battlestaff.txt"
-
-#base "items/item_keshas_booze_barrel.txt"
-#base "items/item_presence_booster.txt"
-#base "items/item_lifeweavers_clockwork.txt"
-#base "items/item_lucys_ring.txt"
-#base "items/item_boomstick.txt"
-#base "items/item_ferrum_ascensus.txt"
-
-#base "items/item_illusionists_charm.txt"
-#base "items/item_tricksters_blade.txt"
-#base "items/item_mirrors_edge.txt"
-
-#base "items/item_protection_sphere.txt"
-#base "items/item_ward_of_life.txt"
-
-#base "items/item_spellslayers_dirk.txt"
-#base "items/item_borealis_cloak.txt"
-#base "items/item_armor_of_invasion.txt"
-#base "items/item_trinity.txt"
-#base "items/item_death_sentence.txt"
+#base "items/item_incandescance.txt"
+#base "items/item_dusk_blade.txt"
+#base "items/item_twilight_theft.txt"
+#base "items/item_gloaming_glaive.txt"
+#base "items/item_shadow_whisper.txt"
+#base "items/item_arcane_absorber.txt"
+#base "items/item_lucifers_cage.txt"
 
 //Meepo Runes for ult
 #base "items/item_meepo_rune_dd.txt"
@@ -162,12 +53,11 @@
 #base "items/item_meepo_rune_haste.txt"
 #base "items/item_meepo_rune_reduc.txt"
 
-#base "items/item_tempest_staff.txt"
 
 //Snapfire
 #base "items/item_snapfire_cookie.txt"
 
-// Next ID is 7111
+// Next ID is 2296
 
 "DOTAAbilities"
 {
@@ -208,72 +98,6 @@
 		"ItemKillable"					"0"
 
 	}
-	"item_recipe_force_boots"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3012"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1200"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_force_boots"
-		"ItemRequirements"
-		{
-			"01"						"item_elven_boots"
-		}
-	}
-	//=================================================================================================================
-	// Force Boots
-	//=================================================================================================================
-	"item_force_boots"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3013"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"730"
-		"ItemShopTags"					"attack_speed;move_speed;int;agi;str;hard_to_tag"
-		"ItemQuality"					"common"
-		
-		"ItemAliases"					"force boots"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemPurchasable"				"1"
-		"AbilityCooldown"				"7.0"
-		"AbilityTextureName"			"item_phase_boots"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_movement_speed"	"30"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"push_length"			"800"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"push_duration"			"0.65"
-			}
-		}
-	}
 	//=================================================================================================================
 	// Force Boots
 	//=================================================================================================================
@@ -287,75 +111,5 @@
 		"ItemPurchasable"				"0"
 		"AbilityCooldown"				"7.0"
 		"AbilityTextureName"			"custom/relic"
-	}
-	//=================================================================================================================
-	// Observer Wards
-	//=================================================================================================================
-	"item_ward_observer"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"42"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
-		"Model"							"models/props_gameplay/observer_ward_bundle.vmdl"
-		
-		
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500"
-		"AbilityCastPoint"				"0.0"
-		"AbilityCooldown"				"1.0"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"80"
-		"ItemShopTags"					"consumable"
-		"ItemQuality"					"consumable"
-		"ItemAliases"					"observer ward"
-		"ItemStackable"					"1"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
-		"ItemPermanent"					"0"
-		"ItemInitialCharges"			"1"
-		"ItemStockMax"					"4"
-		"ItemStockInitial"				"2"
-		"ItemStockTime"					"150.0"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES"
-		"ItemSupport"					"1"
-		"IsTempestDoubleClonable"		"0"
-		"ShouldBeInitiallySuggested"	"1"
-
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifetime"				"360"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"vision_range"			"1600"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"health"				"200"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration_minutes_tooltip"				"6"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"tooltip_range"			"500"
-			}
-		}
 	}
 }

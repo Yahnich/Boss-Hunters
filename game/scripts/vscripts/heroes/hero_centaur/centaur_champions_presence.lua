@@ -20,35 +20,15 @@ modifier_centaur_champions_presence_buff = class({})
 LinkLuaModifier("modifier_centaur_champions_presence_buff", "heroes/hero_centaur/centaur_champions_presence", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_centaur_champions_presence_buff:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.dmg = self:GetTalentSpecialValueFor("dmg_per_unit")
-	self.amp = self:GetTalentSpecialValueFor("amp_per_unit")	
-	self.max_amp = self:GetTalentSpecialValueFor("max_amp")
-	
-	self:SetStackCount(0)
-	
-	if IsServer() then
-		self:GetAbility():StartDelayedCooldown()
-		self:StartIntervalThink(0.5) 
-	end
+	self:OnRefresh()
 end
 
 function modifier_centaur_champions_presence_buff:OnRefresh()
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.dmg = self:GetTalentSpecialValueFor("dmg_per_unit")
-	self.amp = self:GetTalentSpecialValueFor("amp_per_unit")
-	self.max_amp = self:GetTalentSpecialValueFor("max_amp")
-end
-
-function modifier_centaur_champions_presence_buff:OnIntervalThink()
-	local caster = self:GetCaster()
-	local targets = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self.radius)
-	
-	local count = 0
-	for _, target in ipairs( targets ) do
-		if target:HasModifier("modifier_centaur_champions_presence_taunt") then count = count + 1 end
-	end
-	self:SetStackCount(count)
+	self.bonus_dmg = self:GetTalentSpecialValueFor("bonus_damage")
+	self.spell_amp = self:GetTalentSpecialValueFor("bonus_spell_amp")
+	self.heal_amp = self:GetTalentSpecialValueFor("bonus_heal_amp")
+	self.threat_amp = self:GetTalentSpecialValueFor("bonus_threat_amp")
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_centaur_champions_presence_1")
 end
 
 function modifier_centaur_champions_presence_buff:OnDestroy()
@@ -57,72 +37,35 @@ end
 
 function modifier_centaur_champions_presence_buff:DeclareFunctions()
 	return {MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-			MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE}
+			MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
+			MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE }
 end
 
 function modifier_centaur_champions_presence_buff:GetModifierBaseDamageOutgoing_Percentage()
-	return math.min(self.dmg * self:GetStackCount(), self.max_amp)
+	return self.bonus_dmg
 end
 
 function modifier_centaur_champions_presence_buff:GetModifierSpellAmplify_Percentage()
-	return math.min(self.amp * self:GetStackCount(), self.max_amp)
+	return self.spell_amp
 end
+
+function modifier_centaur_champions_presence_buff:GetModifierHealAmplify_Percentage()
+	return self.heal_amp
+end
+
+function modifier_centaur_champions_presence_buff:Bonus_ThreatGain()
+	return self.threat_amp
+end
+
+function modifier_centaur_champions_presence_buff:GetModifierIncomingDamage_Percentage(params)
+	if self.talent1 and params.damage > 0 then
+		if params.attacker == params.target then
+			return -999
+		end
+	end
+end
+
 
 function modifier_centaur_champions_presence_buff:GetEffectName()
 	return "particles/econ/events/ti6/radiance_owner_ti6.vpcf"
-end
-
-function modifier_centaur_champions_presence_buff:IsAura()
-	return true
-end
-
-function modifier_centaur_champions_presence_buff:GetModifierAura()
-	return "modifier_centaur_champions_presence_taunt"
-end
-
-function modifier_centaur_champions_presence_buff:GetAuraRadius()
-	return self.radius
-end
-
-function modifier_centaur_champions_presence_buff:GetAuraDuration()
-	return 0.5
-end
-
-function modifier_centaur_champions_presence_buff:GetAuraSearchTeam()    
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-
-function modifier_centaur_champions_presence_buff:GetAuraSearchType()    
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-
-modifier_centaur_champions_presence_taunt = class({})
-LinkLuaModifier("modifier_centaur_champions_presence_taunt", "heroes/hero_centaur/centaur_champions_presence", LUA_MODIFIER_MOTION_NONE	)
-
-function modifier_centaur_champions_presence_taunt:GetTauntTarget()
-	if not self:GetCaster():HasTalent("special_bonus_unique_champions_presence_1") then return self:GetCaster() end
-end
-
-function modifier_centaur_champions_presence_taunt:GetEffectName()
-	if not self:GetCaster():HasTalent("special_bonus_unique_champions_presence_1") then  return "particles/brd_taunt/brd_taunt_mark_base.vpcf" end
-end
-
-function modifier_centaur_champions_presence_taunt:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
-end
-
-function modifier_centaur_champions_presence_taunt:GetStatusEffectName()
-	return "particles/status_fx/status_effect_beserkers_call.vpcf"
-end
-
-function modifier_centaur_champions_presence_taunt:StatusEffectPriority()
-	return 10
-end
-
-function modifier_centaur_champions_presence_taunt:IsPurgable()
-	return false
-end
-
-function modifier_centaur_champions_presence_taunt:IsDebuff()
-	return true
 end

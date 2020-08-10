@@ -21,28 +21,9 @@ item_dark_wand_2 = class(item_dark_wand)
 item_dark_wand_3 = class(item_dark_wand)
 item_dark_wand_4 = class(item_dark_wand)
 item_dark_wand_5 = class(item_dark_wand)
+item_dark_wand_6 = class(item_dark_wand)
+item_dark_wand_7 = class(item_dark_wand)
+item_dark_wand_8 = class(item_dark_wand)
+item_dark_wand_9 = class(item_dark_wand)
 
-modifier_item_dark_wand_passive = class(itemBaseClass)
-function modifier_item_dark_wand_passive:OnCreated()
-	self.agi = self:GetSpecialValueFor("bonus_agi")
-	self.int = self:GetSpecialValueFor("bonus_int")
-	self.str = self:GetSpecialValueFor("bonus_str")
-end
-
-function modifier_item_dark_wand_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS}
-end
-
-function modifier_item_dark_wand_passive:GetModifierBonusStats_Agility()
-	return self.agi
-end
-
-function modifier_item_dark_wand_passive:GetModifierBonusStats_Strength()
-	return self.str
-end
-
-function modifier_item_dark_wand_passive:GetModifierBonusStats_Intellect()
-	return self.int
-end
+modifier_item_dark_wand_passive = class(itemBasicBaseClass)

@@ -1,6 +1,4 @@
 pudge_hook_lua = class({})
-LinkLuaModifier( "modifier_meat_hook_lua", "heroes/hero_pudge/pudge_hook_lua.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_meat_hook_followthrough_lua", "heroes/hero_pudge/pudge_hook_lua.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function pudge_hook_lua:OnAbilityPhaseStart()
 	self:GetCaster():StartGesture( ACT_DOTA_OVERRIDE_ABILITY_1 )
@@ -21,44 +19,14 @@ end
 function pudge_hook_lua:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	-- Parameters
-	local hook_speed = self:GetTalentSpecialValueFor("speed")
-	local hook_width = self:GetTalentSpecialValueFor("width")
-	local hook_range = self:GetTrueCastRange()
-	local hook_damage = self:GetTalentSpecialValueFor("damage")
-	local minion_damage = self:GetTalentSpecialValueFor("minion_damage")
-	if caster:HasScepter() then 
-		hook_damage = self:GetTalentSpecialValueFor("scepter_damage") 
-		minion_damage = self:GetTalentSpecialValueFor("scepter_minion_damage")
-	end
-	local caster_loc = caster:GetAbsOrigin()
-	local direction = CalculateDirection(self:GetCursorPosition(), caster_loc)
-	local start_loc = GetGroundPosition(caster_loc + direction * hook_width, caster) + Vector(0,0,100)
-
-	-- Prevent Pudge from using tps while the hook is out
-	local flFollowthroughDuration = ( hook_range / hook_speed * 0.75 )
-	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_meat_hook_followthrough_lua", {duration = flFollowthroughDuration})
-
+	local direction = CalculateDirection(self:GetCursorPosition(), caster)
+	
 	-- Play Hook launch sound
 	EmitSoundOn("Hero_Pudge.AttackHookExtend", caster)
-
-	-- Create and set up the Hook dummy unit
-	local hook_dummy = caster:CreateDummy( start_loc + Vector(0, 0, 100) )
-	hook_dummy:SetForwardVector(caster:GetForwardVector())
-	hook_dummy:SetDayTimeVisionRange(hook_width*4)
-	hook_dummy:SetNightTimeVisionRange(hook_width*4)
 	
-	-- Attach the Hook particle
-	local hook_pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_meathook.vpcf", PATTACH_CUSTOMORIGIN, caster)
-	ParticleManager:SetParticleAlwaysSimulate(hook_pfx)
-	ParticleManager:SetParticleControlEnt(hook_pfx, 0, caster, PATTACH_POINT_FOLLOW, "attach_weapon_chain_rt", caster_loc, true)
-	ParticleManager:SetParticleControl(hook_pfx, 1, start_loc)
-	ParticleManager:SetParticleControl(hook_pfx, 2, Vector(hook_speed, hook_range, hook_width))
-	ParticleManager:SetParticleControl(hook_pfx, 3, Vector(hook_range/hook_speed*5, 0, 0))
-	ParticleManager:SetParticleControl(hook_pfx, 6, start_loc)
-	--why the fuck does this cp work, is not even on the the particle
-	ParticleManager:SetParticleControlEnt(hook_pfx, 7, caster, PATTACH_CUSTOMORIGIN, nil, caster_loc, true)
-
+	self.hooks = self.hooks or {}
+	self:FireMeatHook(direction)
+	
 	-- Remove the caster's hook
 	local weapon_hook
 	if caster:IsHero() then
@@ -67,163 +35,145 @@ function pudge_hook_lua:OnSpellStart()
 			weapon_hook:AddEffects( EF_NODRAW )
 		end
 	end
+	
+	if caster:HasTalent("special_bonus_unique_pudge_hook_lua_2") then
+		local bonusHooks = caster:FindTalentValue("special_bonus_unique_pudge_hook_lua_2")
+		local angle = caster:FindTalentValue("special_bonus_unique_pudge_hook_lua_2", "angle")
+		for i = 1, bonusHooks do
+			local newAngle = angle * math.ceil(i / 2) * (-1)^i
+			local newDir = RotateVector2D( direction, ToRadians( newAngle ) )
+			self:FireMeatHook( newDir )
+		end
+	end
+	if caster:HasTalent("special_bonus_unique_pudge_hook_lua_1") and not caster:HasModifier("modifier_meat_hook_talent") then
+		local duration = ( self:GetTrueCastRange() / self:GetTalentSpecialValueFor("speed") ) * 2 + caster:FindTalentValue("special_bonus_unique_pudge_hook_lua_1", "duration")
+		caster:AddNewModifier( caster, self, "modifier_meat_hook_talent", {duration = duration}) 
+	end
+end
 
-	-- Initialize Hook variables
-	local hook_loc = start_loc
-	local tick_rate = 0.03
-	hook_speed = hook_speed * tick_rate
+function pudge_hook_lua:FireMeatHook( direction )
+	local caster = self:GetCaster()
+	-- Parameters
+	local hook_speed = self:GetTalentSpecialValueFor("speed")
+	local hook_width = self:GetTalentSpecialValueFor("width")
+	local hook_range = self:GetTrueCastRange()
+	local hook_damage = self:GetTalentSpecialValueFor("damage")
+	if caster:HasScepter() then 
+		hook_damage = self:GetTalentSpecialValueFor("scepter_damage") 
+	end
+	local caster_loc = caster:GetAbsOrigin()
+	local start_loc = GetGroundPosition(caster_loc + direction * hook_width, caster) + Vector(0,0,100)
+	local projectileIndex = self:FireLinearProjectile("", direction * hook_speed, hook_range, hook_width)
+	self.hooks[projectileIndex] = {}
+	-- Attach the Hook particle
+	local hook_pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_meathook.vpcf", PATTACH_CUSTOMORIGIN, caster)
+	ParticleManager:SetParticleAlwaysSimulate(hook_pfx)
+	ParticleManager:SetParticleControlEnt(hook_pfx, 0, caster, PATTACH_POINT_FOLLOW, "attach_weapon_chain_rt", caster_loc, true)
+	ParticleManager:SetParticleControl(hook_pfx, 1, start_loc + direction * hook_range)
+	ParticleManager:SetParticleControl(hook_pfx, 2, Vector(hook_speed, hook_range, hook_width))
+	ParticleManager:SetParticleControl(hook_pfx, 3, Vector(60, 0, 0))
+	ParticleManager:SetParticleControl(hook_pfx, 6, start_loc)
+	--why the fuck does this cp work, is not even on the the particle
+	ParticleManager:SetParticleControlEnt(hook_pfx, 7, caster, PATTACH_CUSTOMORIGIN, nil, caster_loc, true)
+	self.hooks[projectileIndex].particleIndex = hook_pfx
+	self.hooks[projectileIndex].hook_speed = hook_speed
+	self.hooks[projectileIndex].hook_width = hook_width
+end
 
-	local travel_distance = CalculateDistance(hook_loc, caster_loc)
-	local hook_step = direction * hook_speed
-
-	local target_hit = false
-	local target
-
-	-- Main Hook loop
-	Timers:CreateTimer(0, function()
-		-- Check for valid units in the area
-		local units = caster:FindAllUnitsInRadius(hook_loc,hook_width, {flag=DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES+DOTA_UNIT_TARGET_FLAG_INVULNERABLE, order=FIND_CLOSEST})
-		for _,unit in pairs(units) do
-			if unit ~= caster and unit ~= hook_dummy then
-				if unit:GetTeam() ~= caster:GetTeam() or caster:HasTalent("special_bonus_unique_pudge_hook_lua_1") then
-					EmitSoundOn("Hero_Pudge.AttackHookImpact", unit)
-					target_hit = true
-					target = unit
-					break
-				end
+function pudge_hook_lua:OnProjectileHitHandle( target, position, projectileIndex )
+	local caster = self:GetCaster()
+	if target and target ~= caster then
+		local damage = TernaryOperator( self:GetTalentSpecialValueFor("scepter_damage"), caster:HasScepter(), self:GetTalentSpecialValueFor("damage") )
+		self.hooks[projectileIndex].targets = self.hooks[projectileIndex].targets or {}
+		table.insert( self.hooks[projectileIndex].targets, target )
+		self:DealDamage( caster, target, damage )
+		target:AddNewModifier( caster, self, "modifier_meat_hook_root", {})
+		local skinHeap = caster:FindAbilityByName("pudge_flesh_heap_lua")
+		if skinHeap and not target:IsMinion() then
+			skinHeap:AddSkinHeap()
+		end
+	elseif target == caster then
+		ParticleManager:ClearParticle(self.hooks[projectileIndex].particleIndex)
+		if caster:IsHero() then
+			weapon_hook = caster:GetTogglableWearable( DOTA_LOADOUT_TYPE_WEAPON )
+			if weapon_hook ~= nil then
+				weapon_hook:RemoveEffects( EF_NODRAW )
 			end
 		end
-
-		-- If a valid target was hit, start dragging them
-		if target_hit then
-			local spellBlock = target:TriggerSpellAbsorb( self )
-			-- Apply stun/root modifier, and damage if the target is an enemy
-			if caster:GetTeam() ~= target:GetTeam() and not spellBlock then
-				self:DealDamage(caster, target, TernaryOperator( minion_damage, target:IsMinion(), hook_damage ), {}, OVERHEAD_ALERT_DAMAGE)
-				target:AddNewModifier(caster, self, "modifier_meat_hook_lua", {})
-				caster:ModifyThreat(self:GetTalentSpecialValueFor("threat_gain"))
-			else
-				caster:ModifyThreat(target:GetThreat())
-				target:SetThreat(0)
+		for i = #self.hooks[projectileIndex].targets, 1, -1 do -- clear modifiers
+			local target = self.hooks[projectileIndex].targets[i]
+			if target:HasModifier("modifier_meat_hook_root") then target:RemoveModifierByName("modifier_meat_hook_root") end
+			if target:HasModifier("modifier_meat_hook_lua") then target:RemoveModifierByName("modifier_meat_hook_lua") end
+		end
+		ResolveNPCPositions(position, 900)
+	elseif target == nil then
+		local dummy = caster:CreateDummy(position, 0.1)
+		local newProjectile = self:FireTrackingProjectile("", caster, self.hooks[projectileIndex].hook_speed, {origin = position, source = dummy}, nil, false )
+		UTIL_Remove( dummy )
+		self.hooks[newProjectile] = {}
+		self.hooks[newProjectile].targets = {}
+		if self.hooks[projectileIndex].targets then
+			for _, tTarg in ipairs( self.hooks[projectileIndex].targets ) do
+				table.insert( self.hooks[newProjectile].targets, tTarg )
 			end
-
-			-- Play the hit sound and particle
-			target:EmitSound("Hero_Pudge.AttackHookImpact")
-			ParticleManager:FireParticle("particles/units/heroes/hero_pudge/pudge_meathook_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster, {[0]=target:GetAbsOrigin()})
-
-		elseif travel_distance < hook_range then
-			ParticleManager:SetParticleControl(hook_pfx, 1, hook_loc + hook_step)
-			ParticleManager:SetParticleControl(hook_pfx, 6, hook_loc + hook_step)
-
-			-- Move the hook
-			hook_dummy:SetAbsOrigin(hook_loc + hook_step)
-
-			-- Recalculate position and distance
-			hook_loc = GetGroundPosition(hook_dummy:GetAbsOrigin(), hook_dummy)  + Vector(0,0,100)
-			travel_distance = (hook_loc - caster_loc):Length2D()
-			return tick_rate
 		end
+		caster:RemoveGesture( ACT_DOTA_OVERRIDE_ABILITY_1 )
+		caster:StartGesture(ACT_DOTA_CHANNEL_ABILITY_1)
+		self.hooks[newProjectile].hook_speed = self.hooks[projectileIndex].hook_speed
+		self.hooks[newProjectile].hook_width = self.hooks[projectileIndex].hook_width
+		self.hooks[newProjectile].particleIndex = self.hooks[projectileIndex].particleIndex
+		ParticleManager:SetParticleControl(self.hooks[newProjectile].particleIndex, 1, caster:GetAbsOrigin())
+		self.hooks[newProjectile].reelBack = true
+		self.hooks[projectileIndex] = nil
+	end
+end
 
-		-- If we are here, this means the hook has to start reeling back; prepare return variables
-		local direction = ( caster_loc - hook_loc )
-		local current_tick = 0
-
-		-- Stop the extending sound and start playing the return sound
-		StopSoundOn("Hero_Pudge.AttackHookExtend", caster)
-		EmitSoundOn("Hero_Pudge.AttackHookRetract", caster)
-		
-
-		-- Remove the caster's self-stun if it hasn't run out yet
-		caster:RemoveModifierByName("modifier_meat_hook_followthrough_lua")
-
-		-- Play sound reaction according to which target was hit
-		if target_hit and target:IsRealHero() and target:GetTeam() ~= caster:GetTeam() then
-			caster:EmitSound("pudge_pud_ability_hook_0"..RandomInt(1,9))
-		elseif target_hit and target:IsRealHero() and target:GetTeam() == caster:GetTeam() then
-			caster:EmitSound("pudge_pud_ability_hook_miss_01")
-		elseif target_hit then
-			caster:EmitSound("pudge_pud_ability_hook_miss_0"..RandomInt(2,6))
-		else
-			caster:EmitSound("pudge_pud_ability_hook_miss_0"..RandomInt(8,9))
-		end
-
-		-- Hook reeling loop
-		Timers:CreateTimer(0, function()
-
-			-- Recalculate position variables
-			caster_loc = caster:GetAbsOrigin()
-			hook_loc = GetGroundPosition(hook_dummy:GetAbsOrigin(), hook_dummy) + Vector(0,0,100)
-			direction = ( caster_loc - hook_loc )
-			hook_step = direction:Normalized() * hook_speed
-			current_tick = current_tick + 1
-			
-			-- If the target is close enough, or the hook has been out too long, finalize the hook return
-			if direction:Length2D() < hook_speed or current_tick > 300 then
-
-				-- Stop moving the target
-				if target_hit and not target:IsNull() then
-					if not target:IsAlive() then
-						self:EndCooldown()
+function pudge_hook_lua:OnProjectileThinkHandle( projectileIndex )
+	if self.hooks[projectileIndex].reelBack then
+		local caster = self:GetCaster()
+		local speed = self.hooks[projectileIndex].hook_speed or 0
+		local width = self.hooks[projectileIndex].hook_width or 0
+		local position = ProjectileManager:GetTrackingProjectileLocation( projectileIndex )
+		local projDistance = CalculateDistance( caster, position )
+		local projDirection = CalculateDirection( position, caster )
+		local perpendicularVect = -GetPerpendicularVector( projDirection )
+		for i = #self.hooks[projectileIndex].targets, 1, -1 do -- if enemy is farther away than the hook, try to move them closer, otherwise break the chain if the distance is too far.
+			local target = self.hooks[projectileIndex].targets[i]
+			local lineSegment = {target:GetAbsOrigin(), target:GetAbsOrigin() - target:GetAbsOrigin() * perpendicularVect * 2000}
+			local intersection = FindLineIntersection(lineSegment , {caster:GetAbsOrigin(), position} )
+			local distanceToPoint = CalcDistanceToLineSegment2D( target:GetAbsOrigin(), position, caster:GetAbsOrigin() )
+			local removed = false
+			if distanceToPoint > ( width + target:GetHullRadius() * 2 + target:GetCollisionPadding() * 2 ) then
+				if target:HasModifier("modifier_meat_hook_root") then target:RemoveModifierByName("modifier_meat_hook_root") end
+				if target:HasModifier("modifier_meat_hook_lua") then target:RemoveModifierByName("modifier_meat_hook_lua") end
+				table.remove( self.hooks[projectileIndex].targets, i )
+				removed = true
+			elseif distanceToPoint > ( target:GetHullRadius() * 2 + target:GetCollisionPadding() * 2 ) then
+				local projPoint = FindProjectedPointOnLine( target:GetAbsOrigin(), {caster:GetAbsOrigin(), position} )
+				local pushDir = CalculateDirection( projPoint, target:GetAbsOrigin() )
+				target:SetAbsOrigin(target:GetAbsOrigin() + pushDir * 550 * FrameTime() )
+			end
+			if not removed then
+				local distance = CalculateDistance( caster, target )
+				if projDistance < distance then
+					if target:HasModifier("modifier_meat_hook_root") then target:RemoveModifierByName("modifier_meat_hook_root") end
+					if not target:HasModifier("modifier_meat_hook_lua") then target:AddNewModifier( caster, self, "modifier_meat_hook_lua", {}) end
+					if distance < (caster:GetAttackRange() - 50) then -- break
+						if target:HasModifier("modifier_meat_hook_lua") then target:RemoveModifierByName("modifier_meat_hook_lua") end
+						table.remove( self.hooks[projectileIndex].targets, i )
+					else
+						target:SetAbsOrigin(position)
 					end
-					local final_loc = caster_loc + caster:GetForwardVector() * 100
-					FindClearSpaceForUnit(target, target:GetAbsOrigin(), false)
-
-					local angles = target:GetAnglesAsVector()
-					target:SetAngles(0, angles.y, 0)
-					-- Remove the target's modifiers
-					target:RemoveModifierByName("modifier_meat_hook_lua")
 				end
-
-				-- Destroy the hook dummy and particles
-				hook_dummy:Destroy()
-				ParticleManager:DestroyParticle(hook_pfx, false)
-				ParticleManager:ReleaseParticleIndex(hook_pfx)
-
-				-- Stop playing the reeling sound
-				StopSoundOn("Hero_Pudge.AttackHookRetract", caster)
-				EmitSoundOn("Hero_Pudge.AttackHookRetractStop", caster)
-
-				-- Give back the caster's hook
-				if weapon_hook ~= nil then
-					weapon_hook:RemoveEffects( EF_NODRAW )
-				end
-
-
-			-- If this is not the final step, keep reeling the hook in
-			else
-				-- Move the hook and an eventual target
-				hook_dummy:SetAbsOrigin(hook_loc + hook_step)
-				ParticleManager:SetParticleControl(hook_pfx, 1, hook_loc + hook_step)
-				ParticleManager:SetParticleControl(hook_pfx, 6, hook_loc + hook_step)
-
-				if target_hit and not target:IsNull() then
-					target:SetAbsOrigin(hook_dummy:GetAbsOrigin()-Vector(0,0,100))
-					target:SetForwardVector(direction:Normalized())
-				end
-				
-				return tick_rate
 			end
-		end)
-	end)
+		end
+		ParticleManager:SetParticleControl(self.hooks[projectileIndex].particleIndex, 1, caster:GetAbsOrigin())
+	end
+	
 end
 
 modifier_meat_hook_lua = class({})
-
-function modifier_meat_hook_lua:OnCreated(table)
-	self.damage = TernaryOperator( self:GetTalentSpecialValueFor("minion_damage"), self:GetParent():IsMinion(), self:GetTalentSpecialValueFor("damage") )
-	if self:GetCaster():HasScepter() then 
-		self.damage = TernaryOperator( self:GetTalentSpecialValueFor("scepter_minion_damage"), self:GetParent():IsMinion(), self:GetTalentSpecialValueFor("scepter_damage") )
-	end
-	self.max_damage = 0
-	if IsServer() then self:StartIntervalThink(FrameTime()) end
-end
-
-function modifier_meat_hook_lua:OnIntervalThink()
-	if IsServer() then
-		self.max_damage = self.max_damage + self.damage*FrameTime()
-		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage*FrameTime(), {}, 0)
-	end
-end
+LinkLuaModifier( "modifier_meat_hook_lua", "heroes/hero_pudge/pudge_hook_lua.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_meat_hook_lua:IsDebuff()
 	return true
@@ -262,34 +212,49 @@ function modifier_meat_hook_lua:CheckState()
 				local state = {
 				[MODIFIER_STATE_ROOTED] = true,
 				}
-
 				return state
 			end
 		end
 	end
 end
 
---function modifier_meat_hook_lua:IsHidden()
-	--return true
---end
-
-modifier_meat_hook_followthrough_lua = class({})
-
-function modifier_meat_hook_followthrough_lua:IsHidden()
+function modifier_meat_hook_lua:IsHidden()
 	return true
 end
 
-function modifier_meat_hook_followthrough_lua:OnDestroy()
-	if IsServer() then
-		self:GetCaster():RemoveGesture( ACT_DOTA_OVERRIDE_ABILITY_1 )
-		self:GetCaster():StartGesture(ACT_DOTA_CHANNEL_ABILITY_1)
-	end
+modifier_meat_hook_talent = class({})
+LinkLuaModifier( "modifier_meat_hook_talent", "heroes/hero_pudge/pudge_hook_lua.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+function modifier_meat_hook_talent:OnCreated()
+	self:OnRefresh()
 end
 
-function modifier_meat_hook_followthrough_lua:CheckState()
-	local state = {
-	[MODIFIER_STATE_STUNNED] = true,
-	}
-
-	return state
+function modifier_meat_hook_talent:OnRefresh()
+	self.evasion = self:GetCaster():FindTalentValue("special_bonus_unique_pudge_hook_lua_1", "value2")
+	self.ms = self:GetCaster():FindTalentValue("special_bonus_unique_pudge_hook_lua_1", "value")
 end
+
+function modifier_meat_hook_talent:DeclareFunctions()
+	return {MODIFIER_PROPERTY_EVASION_CONSTANT, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+end
+
+function modifier_meat_hook_talent:GetModifierEvasion_Constant()
+	return self.evasion
+end
+
+function modifier_meat_hook_talent:GetModifierMoveSpeedBonus_Percentage()
+	return self.ms
+end
+
+modifier_meat_hook_root = class({})
+LinkLuaModifier( "modifier_meat_hook_root", "heroes/hero_pudge/pudge_hook_lua.lua" ,LUA_MODIFIER_MOTION_NONE )
+function modifier_meat_hook_root:CheckState()
+	return {[MODIFIER_STATE_ROOTED] = true}
+end
+
+function modifier_meat_hook_root:GetEffectName()
+	return "particles/units/heroes/hero_pudge/pudge_hook_chained.vpcf"
+end
+
+modifier_meat_hook_followthrough_lua = class({})
+LinkLuaModifier( "modifier_meat_hook_followthrough_lua", "heroes/hero_pudge/pudge_hook_lua.lua" ,LUA_MODIFIER_MOTION_NONE )

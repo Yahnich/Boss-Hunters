@@ -5,13 +5,14 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_shadow_fiend/shadow_fiend_shadowraze1.lua"
+		"ScriptFile"					"heroes/hero_shadow_fiend/shadow_fiend_shadowraze.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"nevermore_shadowraze1"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
 		
 		// Talents		
@@ -24,7 +25,7 @@
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.4"
+		"AbilityCastPoint"				"0.55"
 		"AbilityCastAnimation"			"ACT_DOTA_RAZE_1"
 
 		// Time		
@@ -41,37 +42,34 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"90 160 230 300 330 360 430"
-				"LinkedSpecialBonus"	"special_bonus_unique_shadow_fiend_shadowraze_2"		
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"150 240 330 420 510 600 690"
+				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_shadowraze_2"		
 			}
-			"01"
+			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"350"
-				"LinkedSpecialBonus"	"special_bonus_unique_shadow_fiend_shadowraze_1"
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"250"
 			}
-			"01"
+			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"range"							"200"
-				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_shadowraze_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_SUBTRACT"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"combo_amp"				"50 60 70 80 90 100 110"
+				"var_type"						"FIELD_INTEGER"
+				"armor_debuff"					"-2 -2 -2 -2 -3 -4 -5"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"combo_time"			"8"
+				"var_type"						"FIELD_INTEGER"
+				"stack_max"						"3"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"soul_cost"				"6"
+				"var_type"						"FIELD_INTEGER"
+				"duration"						"8"
 			}
 		}
 	
@@ -101,7 +99,16 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"200"
+				"value"						"100"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"25"
+			}"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cost"						"0"
 			}
 		}
 	}
@@ -138,26 +145,19 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_shadow_fiend/shadow_fiend_shadowraze2.lua"
+		"ScriptFile"					"heroes/hero_shadow_fiend/shadow_fiend_shadowraze.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"nevermore_shadowraze2"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
 		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_shadow_fiend_shadowraze_1"	"1"
-			"special_bonus_unique_shadow_fiend_shadowraze_2"	"1"
-		}
-	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.4"
+		"AbilityCastPoint"				"0.55"
 		"AbilityCastAnimation"			"ACT_DOTA_RAZE_2"
 
 		// Time		
@@ -174,34 +174,34 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"90 160 230 300 330 360 430"
-				"LinkedSpecialBonus"	"special_bonus_unique_shadow_fiend_shadowraze_2"		
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"150 240 330 420 510 600 690"
+				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_shadowraze_2"		
 			}
-			"01"
+			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"350"		
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"250"
 			}
-			"01"
+			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"450"		
+				"var_type"						"FIELD_INTEGER"
+				"range"							"450"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"combo_amp"				"50 60 70 80 90 100 110"
+				"var_type"						"FIELD_INTEGER"
+				"armor_debuff"					"-2 -2 -2 -2 -3 -4 -5"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"combo_time"			"8"
+				"var_type"						"FIELD_INTEGER"
+				"stack_max"						"3"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"soul_cost"				"6"
+				"var_type"						"FIELD_INTEGER"
+				"duration"						"8"
 			}
 		}
 	
@@ -218,26 +218,19 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_shadow_fiend/shadow_fiend_shadowraze3.lua"
+		"ScriptFile"					"heroes/hero_shadow_fiend/shadow_fiend_shadowraze.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"nevermore_shadowraze3"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_shadow_fiend_shadowraze_1"	"1"
-			"special_bonus_unique_shadow_fiend_shadowraze_2"	"1"
-		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.4"
+		"AbilityCastPoint"				"0.55"
 		"AbilityCastAnimation"			"ACT_DOTA_RAZE_3"
 
 		// Time		
@@ -254,34 +247,34 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"90 160 230 300 330 360 430"
-				"LinkedSpecialBonus"	"special_bonus_unique_shadow_fiend_shadowraze_2"		
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"150 240 330 420 510 600 690"
+				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_shadowraze_2"		
 			}
-			"01"
+			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"350"		
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"250"
 			}
-			"01"
+			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"700"		
+				"var_type"						"FIELD_INTEGER"
+				"range"							"700"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"combo_amp"				"50 60 70 80 90 100 110"
+				"var_type"						"FIELD_INTEGER"
+				"armor_debuff"					"-2 -2 -2 -2 -3 -4 -5"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"combo_time"			"8"
+				"var_type"						"FIELD_INTEGER"
+				"stack_max"						"3"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"soul_cost"				"6"
+				"var_type"						"FIELD_INTEGER"
+				"duration"						"8"
 			}
 		}
 	
@@ -292,17 +285,242 @@
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
 		}
 	}
+	"shadow_fiend_sunder_soul"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_shadow_fiend/shadow_fiend_sunder_soul.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/nevermore_sunder_soul"
+		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_shadow_fiend_sunder_soul_1"	"1"
+			"special_bonus_unique_shadow_fiend_sunder_soul_2"	"1"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"						"0.55"
+		"AbilityCastRange"						"600"
+		//"AbilityCastAnimation"				"ACT_DOTA_GENERIC_CHANNEL_1"
 
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"						"35 30 25 20 20 20 20"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"						"75 100 125 150 175 200"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"damage"						"100 150 200 250 300 350 400"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"damage_amp"					"10 10 10 10 15 20 25"
+				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_sunder_soul_2"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"900"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"10"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_nevermore/nevermore_necro_souls.vpcf"
+			"particle"  "particles/units/heroes/hero_nevermore/nevermore_souls.vpcf"
+			"particle"  "particles/nevermore_shadowraze_lower_effect.vpcf"
+
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_shadow_fiend_sunder_soul_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"100"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_shadow_fiend_sunder_soul_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"50"
+			}
+		}
+	}
+	"shadow_fiend_dark_lord"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_shadow_fiend/shadow_fiend_dark_lord.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"nevermore_dark_lord"
+		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_shadow_fiend_dark_lord_1"	"1"
+			"special_bonus_unique_shadow_fiend_dark_lord_2"	"1"
+		}
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"evasion"						"15 17.5 17.5 20 20 25 25 "
+				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_dark_lord_1"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"mr_reduction"					"-2 -2 -3 -3 -4 -4 -5"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"duration"						"6"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_nevermore/nevermore_necro_souls.vpcf"
+			"particle"  "particles/units/heroes/hero_nevermore/nevermore_souls.vpcf"
+			"particle"  "particles/nevermore_shadowraze_lower_effect.vpcf"
+
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_shadow_fiend_dark_lord_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_shadow_fiend_dark_lord"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"900"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_shadow_fiend_dark_lord_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_shadow_fiend_dark_lord_aura"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"15"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"2"
+			}
+		}
+	}
 	"shadow_fiend_necro"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_shadow_fiend/shadow_fiend_necro.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"nevermore_necromastery"
-		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -319,31 +537,37 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"armor_debuff"					"2 3 4 5 6 7 8"
-				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_necro_2"
-				"LinkedSpecialBonusField"		"value2"
+				"bonus_damage"					"1"
 			}	
 			"02"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"2"
-				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_necro_1"
+				"var_type"						"FIELD_FLOAT"
+				"spell_amp"						"0.25"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"max_souls"						"12 20 28 36 42 50 58"
-				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_necro_2"
+				"max_souls"						"6"
 			}
 			"04"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"death_soul_loss"				"60"
+				"var_type"						"FIELD_FLOAT"
+				"death_soul_loss"				"50"
 			}
 			"05"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"excess_loss_rate"				"40"
+				"var_type"						"FIELD_INTEGER"
+				"debuff_soul"					"1"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"minion_souls"					"1"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"death_souls"					"5"
 			}
 		}
 	
@@ -355,7 +579,6 @@
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
 		}
 	}
-
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -405,128 +628,6 @@
 			}
 		}
 	}
-
-	"shadow_fiend_dark_lord"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_shadow_fiend/shadow_fiend_dark_lord.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-		"AbilityTextureName"			"nevermore_dark_lord"
-		"MaxLevel"						"7"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_shadow_fiend_dark_lord_1"	"1"
-			"special_bonus_unique_shadow_fiend_dark_lord_2"	"1"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.2"
-		//"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"40 38 36 34 32 30 28"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"160 180 200 240 280 320 400"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"damage_weak"					"100"
-				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_dark_lord_1"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"9"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"souls_per_second"				"1 1 1 2 2 2 3"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"soul_rate"						"1"
-				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_dark_lord_1"
-				"LinkedSpecialBonusField"		"soul_rate"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_SUBTRACT"
-			}
-		}
-	
-		"precache"
-		{
-			"particle"  "particles/units/heroes/hero_nevermore/nevermore_necro_souls.vpcf"
-			"particle"  "particles/units/heroes/hero_nevermore/nevermore_souls.vpcf"
-			"particle"  "particles/nevermore_shadowraze_lower_effect.vpcf"
-
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_shadow_fiend_dark_lord_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"soul_rate"					"0.5"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_shadow_fiend_dark_lord_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
-		}
-	}
-
 	"shadow_fiend_requiem"
 	{
 		// General
@@ -648,7 +749,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
+				"value"						"1"
 			}
 		}
 	}
@@ -669,8 +770,8 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"40"
+				"var_type"					"FIELD_FLOAT"
+				"value"						"10"
 			}
 		}
 	}

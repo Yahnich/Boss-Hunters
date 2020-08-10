@@ -127,6 +127,10 @@ function AddTalentToAbilityButton( talentContainer, talentName, talentIndex, tal
 			talent.SetPanelEvent("onactivate", function(){})
 			AttemptPurchaseTalent(talentName, abilityName)} );
 	}
-	talent.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowAbilityTooltip", talent, talentName)});
-	talent.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideAbilityTooltip", talent);});
+	talent.SetPanelEvent("onmouseover", function(){
+			talent.AddClass("Highlighted")
+			$.DispatchEvent("DOTAShowAbilityTooltip", talent, talentName)});
+	talent.SetPanelEvent("onmouseout", function(){
+			talent.RemoveClass("Highlighted")
+			$.DispatchEvent("DOTAHideAbilityTooltip", talent);});
 }

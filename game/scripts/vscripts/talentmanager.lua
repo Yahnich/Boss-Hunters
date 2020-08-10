@@ -196,7 +196,7 @@ function TalentManager:RegisterPlayer(hero, bRespec)
 	
 	hero:SetAttributePoints( 0 )
 	print(hero:GetName(), "registered for stats")
-	-- hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
+	hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
 end
 
 function TalentManager:GetAbilityLinkedTalents( abilityName, hero )

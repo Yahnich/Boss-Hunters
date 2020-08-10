@@ -48,12 +48,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"regen"					"-0.33 -0.5"
+				"regen"					"-0.5 -0.75"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"regen_buff"			"-1.5 -2"
+				"regen_buff"			"-2 -2.5"
 			}
 		}
 	}
@@ -99,12 +99,12 @@
 		"AbilityTextureName"			"leshrac_split_earth"
 		"MaxLevel"						"2"
 	
-		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastPoint"				"0.75 0.6"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_6"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"3"
+		"AbilityCooldown"				"1.5"
 		"AbilityCastRange"				"350"
 	
 		"precache"
@@ -120,7 +120,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"radius"				"175 200"
+				"radius"				"175"
 			}
 			"02"
 			{

@@ -1,0 +1,69 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_siegebreaker"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3251"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_assault"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"975"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_siegebreaker"
+		"ItemRequirements"
+		{
+			"01"						"item_soldiers_pike;item_soldiers_pike"
+		}
+	}
+	"item_siegebreaker"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3252"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_siegebreaker"
+		"AbilityTextureName"			"item_hurricane_pike"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"325"
+		"ItemShopTags"					"range"
+		"ItemQuality"					"component"
+		"ItemAliases"					"javelin;soldiers pike"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"precache"
+		{
+			"precache"					"soundevents/game_sounds_items.vsndevts"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"pierce_chance"			"50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_range"			"350"
+			}
+		}
+	}
+}

@@ -1,0 +1,759 @@
+"DOTAAbilities"
+{
+	"item_robes_of_revival"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2132"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_robes_of_revival"
+		"AbilityTextureName"			"robes/robes_of_revival_1"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"850"
+		"ItemShopTags"					"damage;slow"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"mekansm;arcane boots;robes_of_revival"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"AvailableRuneSlots"			"0"
+		"AbilityCooldown"				"28 27 26 25 24 23 22 21 20"
+		"AbilityManaCost"				"60"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_restore"			"150 200 250 300 350 400 450 500 550"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"300 375 450 525 600 675 750 825 900"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown"				"28 27 26 25 24 23 22 21 20"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 2
+	//=================================================================================================================
+	"item_recipe_robes_of_revival_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2133"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1050"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_robes_of_revival_2"
+		"ItemRequirements"
+		{
+			"01"						"item_robes_of_revival"
+		}
+	}
+	"item_robes_of_revival_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2134"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_robes_of_revival"
+		"AbilityTextureName"			"robes/robes_of_revival_2"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"blade mail;penitent mail"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"2"
+		
+		"UpgradesItems"					"item_robes_of_revival;item_robes_of_revival_2;item_robes_of_revival_3;item_robes_of_revival_4;item_robes_of_revival_5;item_robes_of_revival_6;item_robes_of_revival_7;item_robes_of_revival_8;item_robes_of_revival_9"
+		"UpgradeRecipe"					"item_recipe_robes_of_revival_2"
+		
+		"AvailableRuneSlots"			"1"
+		"AbilityCooldown"				"28 27 26 25 24 23 22 21 20"
+		"AbilityManaCost"				"60"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_restore"			"150 200 250 300 350 400 450 500 550"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"300 375 450 525 600 675 750 825 900"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown"				"28 27 26 25 24 23 22 21 20"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_robes_of_revival_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2135"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_robes_of_revival_3"
+		"ItemRequirements"
+		{
+			"01"						"item_robes_of_revival_2;item_recipe_robes_of_revival_2"
+		}
+	}
+	
+	"item_robes_of_revival_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2136"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_robes_of_revival"
+		"AbilityTextureName"			"robes/robes_of_revival_3"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"blade mail;penitent mail"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"3"
+		
+		"UpgradesItems"					"item_robes_of_revival;item_robes_of_revival_2;item_robes_of_revival_3;item_robes_of_revival_4;item_robes_of_revival_5;item_robes_of_revival_6;item_robes_of_revival_7;item_robes_of_revival_8;item_robes_of_revival_9"
+		"UpgradeRecipe"					"item_recipe_robes_of_revival_2"
+		
+		"AvailableRuneSlots"			"1"
+		"AbilityCooldown"				"28 27 26 25 24 23 22 21 20"
+		"AbilityManaCost"				"60"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_restore"			"150 200 250 300 350 400 450 500 550"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"300 375 450 525 600 675 750 825 900"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown"				"28 27 26 25 24 23 22 21 20"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_robes_of_revival_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2137"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_robes_of_revival_4"
+		"ItemRequirements"
+		{
+			"01"						"item_robes_of_revival_3;item_recipe_robes_of_revival_2"
+		}
+	}
+	
+	"item_robes_of_revival_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2138"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_robes_of_revival"
+		"AbilityTextureName"			"robes/robes_of_revival_4"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"blade mail;penitent mail"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"4"
+		
+		"UpgradesItems"					"item_robes_of_revival;item_robes_of_revival_2;item_robes_of_revival_3;item_robes_of_revival_4;item_robes_of_revival_5;item_robes_of_revival_6;item_robes_of_revival_7;item_robes_of_revival_8;item_robes_of_revival_9"
+		"UpgradeRecipe"					"item_recipe_robes_of_revival_2"
+		
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"28 27 26 25 24 23 22 21 20"
+		"AbilityManaCost"				"60"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_restore"			"150 200 250 300 350 400 450 500 550"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"300 375 450 525 600 675 750 825 900"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown"				"28 27 26 25 24 23 22 21 20"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_robes_of_revival_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2139"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_robes_of_revival_5"
+		"ItemRequirements"
+		{
+			"01"						"item_robes_of_revival_4;item_recipe_robes_of_revival_2"
+		}
+	}
+	
+	"item_robes_of_revival_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2140"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_robes_of_revival"
+		"AbilityTextureName"			"robes/robes_of_revival_5"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"blade mail;penitent mail"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"5"
+		
+		"UpgradesItems"					"item_robes_of_revival;item_robes_of_revival_2;item_robes_of_revival_3;item_robes_of_revival_4;item_robes_of_revival_5;item_robes_of_revival_6;item_robes_of_revival_7;item_robes_of_revival_8;item_robes_of_revival_9"
+		"UpgradeRecipe"					"item_recipe_robes_of_revival_2"
+		
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"28 27 26 25 24 23 22 21 20"
+		"AbilityManaCost"				"60"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_restore"			"150 200 250 300 350 400 450 500 550"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"300 375 450 525 600 675 750 825 900"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown"				"28 27 26 25 24 23 22 21 20"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_robes_of_revival_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2141"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_robes_of_revival_6"
+		"ItemRequirements"
+		{
+			"01"						"item_robes_of_revival_5;item_recipe_robes_of_revival_2"
+		}
+	}
+	
+	"item_robes_of_revival_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2142"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_robes_of_revival"
+		"AbilityTextureName"			"robes/robes_of_revival_6"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"blade mail;penitent mail"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"6"
+		
+		"UpgradesItems"					"item_robes_of_revival;item_robes_of_revival_2;item_robes_of_revival_3;item_robes_of_revival_4;item_robes_of_revival_5;item_robes_of_revival_6;item_robes_of_revival_7;item_robes_of_revival_8;item_robes_of_revival_9"
+		"UpgradeRecipe"					"item_recipe_robes_of_revival_2"
+		
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"28 27 26 25 24 23 22 21 20"
+		"AbilityManaCost"				"60"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_restore"			"150 200 250 300 350 400 450 500 550"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"300 375 450 525 600 675 750 825 900"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown"				"28 27 26 25 24 23 22 21 20"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_robes_of_revival_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2143"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_robes_of_revival_7"
+		"ItemRequirements"
+		{
+			"01"						"item_robes_of_revival_6;item_recipe_robes_of_revival_2"
+		}
+	}
+	
+	"item_robes_of_revival_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2144"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_robes_of_revival"
+		"AbilityTextureName"			"robes/robes_of_revival_7"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"blade mail;penitent mail"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"7"
+		
+		"UpgradesItems"					"item_robes_of_revival;item_robes_of_revival_2;item_robes_of_revival_3;item_robes_of_revival_4;item_robes_of_revival_5;item_robes_of_revival_6;item_robes_of_revival_7;item_robes_of_revival_8;item_robes_of_revival_9"
+		"UpgradeRecipe"					"item_recipe_robes_of_revival_2"
+		
+		"AvailableRuneSlots"			"3"
+		"AbilityCooldown"				"28 27 26 25 24 23 22 21 20"
+		"AbilityManaCost"				"60"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_restore"			"150 200 250 300 350 400 450 500 550"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"300 375 450 525 600 675 750 825 900"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown"				"28 27 26 25 24 23 22 21 20"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_robes_of_revival_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2145"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_robes_of_revival_8"
+		"ItemRequirements"
+		{
+			"01"						"item_robes_of_revival_7;item_recipe_robes_of_revival_2"
+		}
+	}
+	"item_robes_of_revival_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2146"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_robes_of_revival"
+		"AbilityTextureName"			"robes/robes_of_revival_8"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"blade mail;penitent mail"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"8"
+		
+		"UpgradesItems"					"item_robes_of_revival;item_robes_of_revival_2;item_robes_of_revival_3;item_robes_of_revival_4;item_robes_of_revival_5;item_robes_of_revival_6;item_robes_of_revival_7;item_robes_of_revival_8;item_robes_of_revival_9"
+		"UpgradeRecipe"					"item_recipe_robes_of_revival_2"
+		
+		"AvailableRuneSlots"			"3"
+		"AbilityCooldown"				"28 27 26 25 24 23 22 21 20"
+		"AbilityManaCost"				"60"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_restore"			"150 200 250 300 350 400 450 500 550"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"300 375 450 525 600 675 750 825 900"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown"				"28 27 26 25 24 23 22 21 20"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_robes_of_revival_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2147"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_robes_of_revival_9"
+		"ItemRequirements"
+		{
+			"01"						"item_robes_of_revival_8;item_recipe_robes_of_revival_2"
+		}
+	}
+	
+	"item_robes_of_revival_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2148"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_robes_of_revival"
+		"AbilityTextureName"			"robes/robes_of_revival_9"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"blade mail;penitent mail"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"9"
+		
+		"UpgradesItems"					"item_robes_of_revival;item_robes_of_revival_2;item_robes_of_revival_3;item_robes_of_revival_4;item_robes_of_revival_5;item_robes_of_revival_6;item_robes_of_revival_7;item_robes_of_revival_8;item_robes_of_revival_9"
+		"UpgradeRecipe"					"item_recipe_robes_of_revival_2"
+		
+		"AvailableRuneSlots"			"3"
+		"AbilityCooldown"				"28 27 26 25 24 23 22 21 20"
+		"AbilityManaCost"				"60"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_restore"			"150 200 250 300 350 400 450 500 550"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"300 375 450 525 600 675 750 825 900"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown"				"28 27 26 25 24 23 22 21 20"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+}

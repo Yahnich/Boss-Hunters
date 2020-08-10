@@ -34,18 +34,22 @@ function MergeTables( t1, t2 )
 end
 
 function PrintAll(t)
-	for k,v in pairs(t) do
-		print(k,v)
-		if type(v) == "table" then
-			for m,n in pairs(v) do
-				print('--', m,n)
-				if type(n) == "table" then
-					for h,j in pairs(n) do
-						print('----', h,j)
+	if type(t) == "table" then
+		for k,v in pairs(t) do
+			print(k,v)
+			if type(v) == "table" then
+				for m,n in pairs(v) do
+					print('--', m,n)
+					if type(n) == "table" then
+						for h,j in pairs(n) do
+							print('----', h,j)
+						end
 					end
 				end
 			end
 		end
+	else
+		print( t )
 	end
 end
 
@@ -77,11 +81,18 @@ function table.removeval(t1, val)
 end
 
 function table.copy(t1)
-	copy = {}
-	for k,v in pairs(t1) do
-		copy[k] = v
+	if type(t1) == 'table' then
+		local copy = {}
+		for k,v in pairs(t1) do
+			local kCopy = table.copy(k)
+			local vCopy = table.copy(v)
+			copy[kCopy] = vCopy
+		end
+		return copy
+	else
+		local copy = t1
+		return copy
 	end
-	return copy
 end
 
 function RotateVector2D(vector, theta)
@@ -159,11 +170,20 @@ function FindLineIntersection( tLinePoints1, tLinePoints2 )
 	
 	local determinant = a1 * b2 - a2 * b1
 	if determinant == 0 then
-		return error("lines are parallel")
+		return nil
 	end
 	local intersectX = ( b2 * c1 - b1 * c2 ) / determinant
 	local intersectY = ( a1 * c2 - a2 * c1 ) / determinant
 	return Vector( intersectX, intersectY )
+end
+
+function FindProjectedPointOnLine( position, lineSegment)
+	local lineVector = Vector( lineSegment[2].x - lineSegment[1].x, lineSegment[2].y - lineSegment[1].y )
+	local positionVector = Vector( position.x - lineSegment[1].x, position.y - lineSegment[1].y )
+	local dotProduct = lineVector:Dot(positionVector)
+	local sqrLen = (lineVector.x * lineVector.x) + (lineVector.y * lineVector.y)
+	local projPoint = Vector( lineSegment[1].x + (dotProduct * lineVector.x) / sqrLen, lineSegment[1].y + (dotProduct * lineVector.y) / sqrLen )
+	return projPoint
 end
 
 function ActualRandomVector(maxLength, flMinLength)
@@ -453,6 +473,14 @@ function CDOTA_PlayerResource:IsKarien(id)
 	local tag = self.VIP[tostring(steamID)]
 
 	return (tag and tag == "karien") or false
+end
+
+function CDOTA_PlayerResource:IsSunrise(id)
+	self.VIP = self.VIP or LoadKeyValues( "scripts/kv/vip.kv" )
+	local steamID = self:GetSteamID(id)
+	local tag = self.VIP[tostring(steamID)]
+
+	return (tag and tag == "sunrise") or false
 end
 
 function CDOTA_BaseNPC:HasTalent(talentName)
@@ -1494,20 +1522,17 @@ function CDOTA_BaseNPC:Lifesteal(source, lifestealPct, damage, target, damage_ty
 end
 
 function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer, bRegen) -- for future shit
-	local healBonus = 1
 	local flAmount = amount
 	if healer and not healer:IsNull() then
 		for _,modifier in ipairs( healer:FindAllModifiers() ) do
-			if modifier.GetOnHealBonus then
-				healBonus = healBonus + ((modifier:GetOnHealBonus() or 0)/100)
+			if modifier.GetModifierHeal_Const then
+				flAmount = flAmount + ((modifier:GetModifierHeal_Const() or 0)/100)
 			end
 		end
 	end
 	
-	flAmount = flAmount * healBonus
 	local params = {amount = flAmount, source = sourceAb, unit = healer, target = self}
 	local units = self:FindAllUnitsInRadius(self:GetAbsOrigin(), -1)
-	
 	for _, unit in ipairs(units) do
 		if unit.FindAllModifiers then
 			for _, modifier in ipairs( unit:FindAllModifiers() ) do
@@ -1518,18 +1543,26 @@ function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer, bRegen) -- for future
 					modifier:OnHeal(params)
 				end
 				if modifier.OnHealRedirect then
-					local reduction = modifier:OnHealRedirect(params) or 0
-					flAmount = flAmount + reduction
+					modifier:OnHealRedirect(params)
 				end
 			end
 		end
 	end
-	flAmount = math.min( flAmount, self:GetHealthDeficit() )
+	flAmount = math.min( params.amount, self:GetHealthDeficit() )
 	if flAmount > 0 then
-		if not bRegen then
-			SendOverheadEventMessage(self, OVERHEAD_ALERT_HEAL, self, flAmount, healer)
-		end
+		local hp = self:GetHealth()
 		self:Heal(flAmount, sourceAb)
+		local totalHeal = self:GetHealth() - hp
+		if not bRegen then
+			self.healingToTransfer = (self.healingToTransfer or 0)
+			if self.healingToTransfer == 0 then
+				Timers:CreateTimer(function()
+					SendOverheadEventMessage(self, OVERHEAD_ALERT_HEAL, self, self.healingToTransfer, healer)
+					self.healingToTransfer = 0
+				end)
+			end
+			self.healingToTransfer = (self.healingToTransfer or 0) + totalHeal
+		end
 	end
 	return flAmount
 end
@@ -1881,7 +1914,7 @@ end
 function CDOTABaseAbility:FireTrackingProjectile(FX, target, speed, data, iAttach, bDodge, bVision, vision)
 	local internalData = data or {}
 	local dodgable = true
-	if bVision ~= nil then dodgable = bDodge end
+	if bDodge ~= nil then dodgable = bDodge end
 	local provideVision = false
 	if bVision ~= nil then provideVision = bVision end
 	origin = self:GetCaster():GetAbsOrigin()
@@ -2591,6 +2624,10 @@ function CDOTA_BaseNPC_Hero:ModifyAttributePoints(value)
 	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", { playerID = self:GetPlayerID() } )
 end
 
+function CDOTA_BaseNPC_Hero:ModifyAbilityPoints( value )
+	self:SetAbilityPoints( self:GetAbilityPoints() + (value or 0) )
+end
+
 function CDOTA_BaseNPC_Hero:SetAttributePoints(value)
 	self.bonusTalentPoints = value or 0
 	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex()) or {}
@@ -2622,5 +2659,51 @@ end
 function CDOTA_BaseNPC:RemoveCharm()
 	if self:HasModifier("modifier_charm_generic") then
 		self:RemoveModifierByName("modifier_charm_generic")
+	end
+end
+
+function CDOTA_Item:GetRuneSlots()
+	if GameRules.AbilityKV[self:GetName()] then
+		local slotCount = GameRules.AbilityKV[self:GetName()]["AvailableRuneSlots"] or 0
+		return slotCount
+	else
+		return 0
+	end
+end
+
+function CDOTA_Item:GetAvailableRuneSlots()
+	local count = self:GetRuneSlots()
+	for i = 1, self:GetRuneSlots() do
+		if self:GetRuneSlot(i).rune_type then
+			count = count - 1
+		end
+	end
+	return count
+end
+
+function CDOTA_Item:GetRuneSlot(index)
+	self.itemData = self.itemData or {}
+	return self.itemData[index]
+end
+
+function CDOTA_BaseNPC:HookInModifier( modifierType, modifier )
+	local statsHandler = self:FindModifierByName("modifier_stats_system_handler")
+	if statsHandler then
+		statsHandler.modifierFunctions[modifierType] = statsHandler.modifierFunctions[modifierType] or {}
+		statsHandler.modifierFunctions[modifierType][modifier] = true
+		statsHandler:ForceRefresh()
+	end
+	local handler = self:FindModifierByName("modifier_handler_handler")
+	Timers:CreateTimer(function()
+		if handler then handler:CheckIfUpdateNeeded( name, ability, duration ) end
+	end)
+end
+
+function CDOTA_BaseNPC:HookOutModifier( modifierType, modifier )
+	local statsHandler = self:FindModifierByName("modifier_stats_system_handler")
+	if statsHandler then
+		statsHandler.modifierFunctions[modifierType] = statsHandler.modifierFunctions[modifierType] or {}
+		statsHandler.modifierFunctions[modifierType][modifier] = nil
+		statsHandler:ForceRefresh()
 	end
 end

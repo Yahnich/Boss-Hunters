@@ -34,27 +34,13 @@ function modifier_legion_commander_fearless_assault_passive:DeclareFunctions()
 end
 
 function modifier_legion_commander_fearless_assault_passive:OnAttackLanded(params)
-	if IsServer() then
-		if params.attacker == self:GetParent() or params.target == self:GetParent() then
-			local parent = self:GetParent()
-			if not self:GetAbility().counterAttack then
-				if RollPercentage(self.procChance) and self:GetAbility():IsCooldownReady() and not parent:HasModifier("modifier_legion_commander_fearless_assault_buff") then
-					if not parent:HasTalent("special_bonus_unique_legion_commander_fearless_assault_1") then 
-						self:GetAbility():SetCooldown() 
-					end
-					parent:AddNewModifier(parent, self:GetAbility(), "modifier_legion_commander_fearless_assault_buff", {duration = self.duration})
-					if parent:HasTalent("special_bonus_unique_legion_commander_fearless_assault_2") then
-						local cooldownReduction = parent:FindTalentValue("special_bonus_unique_legion_commander_fearless_assault_2")
-						for i = 0, 18 do
-							local ability = parent:GetAbilityByIndex(i)
-							if ability and ability ~= self:GetAbility() then
-								ability:ModifyCooldown(cooldownReduction)
-							end
-						end
-					end
-				end
-			else
-				self:GetAbility().counterAttack = false
+	if params.attacker == self:GetParent() or params.target == self:GetParent() then
+		local parent = self:GetParent()
+		if RollPercentage(self.procChance) and self:GetAbility():IsCooldownReady() and not parent:HasModifier("modifier_legion_commander_fearless_assault_buff") then
+			self:GetAbility():SetCooldown()
+			parent:AddNewModifier(parent, self:GetAbility(), "modifier_legion_commander_fearless_assault_buff", {duration = self.duration})
+			if parent:IsAttacking() then
+				parent:PerformGenericAttack(parent:GetAttackTarget(), true)
 			end
 		end
 	end
@@ -64,40 +50,73 @@ LinkLuaModifier( "modifier_legion_commander_fearless_assault_buff", "heroes/hero
 modifier_legion_commander_fearless_assault_buff = class({})
 
 function modifier_legion_commander_fearless_assault_buff:OnCreated()
-	self.lifesteal = self:GetTalentSpecialValueFor("hp_leech_percent") / 100
-		if IsServer() then
-		self:OnIntervalThink()
-		self:StartIntervalThink(0.1)
+	self:OnRefresh()
+end
+
+function modifier_legion_commander_fearless_assault_buff:OnRefresh()
+	self.lifesteal = self:GetTalentSpecialValueFor("hp_leech_percent")
+	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_legion_commander_fearless_assault_2")
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_legion_commander_fearless_assault_1")
+	self.radius = self:GetCaster():FindTalentValue("special_bonus_unique_legion_commander_fearless_assault_2", "radius")
+	if IsServer() then
+		self:GetParent():HookInModifier( "GetModifierLifestealBonus", self )
 	end
 end
 
-function modifier_legion_commander_fearless_assault_buff:OnIntervalThink()
-	if self:GetParent():IsAttacking() and self:GetParent():GetAttackTarget() then
-		local attackTarget = self:GetParent():GetAttackTarget()
-		local parent = self:GetParent()
-		Timers:CreateTimer(0.1,function()
-			if self:IsNull() or parent:IsNull() or attackTarget:IsNull() then return end
-			self:GetAbility().counterAttack = true
-			parent:PerformAttack(attackTarget, false, true, true, false, false, false, true)
-			self:GetAbility().counterAttack = false
-			EmitSoundOn("Hero_LegionCommander.Courage", parent)
-			ParticleManager:FireParticle("particles/units/heroes/hero_legion_commander/legion_commander_courage_tgt.vpcf", PATTACH_POINT_FOLLOW, parent, {[0] = "attach_attack1"})
-			ParticleManager:FireParticle("particles/units/heroes/hero_legion_commander/legion_commander_courage_hit.vpcf", PATTACH_POINT_FOLLOW, attackTarget, {[0] = "attach_hitloc"})
-			self:Destroy()
-		end)
+function modifier_legion_commander_fearless_assault_buff:OnDestroy()
+	if IsServer() then
+		self:GetParent():HookOutModifier( "GetModifierLifestealBonus", self )
 	end
 end
 
 function modifier_legion_commander_fearless_assault_buff:DeclareFunctions()
 	funcs = {
 				MODIFIER_EVENT_ON_TAKEDAMAGE,
+				MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT_ADJUST, 
+				MODIFIER_EVENT_ON_ATTACK,
 			}
 	return funcs
 end
 
-function modifier_legion_commander_fearless_assault_buff:OnTakeDamage(params)
-	if params.attacker == self:GetParent() and not params.inflictor then
-		local flHeal = params.damage * self.lifesteal
-		params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
+function modifier_legion_commander_fearless_assault_buff:OnAttack(params)
+	if params.attacker == self:GetParent() and not self.triggerOnce then
+		self.triggerOnce = true
+		local parent = self:GetParent()
+		EmitSoundOn("Hero_LegionCommander.Courage", parent)
+		ParticleManager:FireParticle("particles/units/heroes/hero_legion_commander/legion_commander_courage_tgt.vpcf", PATTACH_POINT_FOLLOW, parent, {[0] = "attach_attack1"})
+		ParticleManager:FireParticle("particles/units/heroes/hero_legion_commander/legion_commander_courage_hit.vpcf", PATTACH_ABSORIGIN, params.target, {[0] = "attach_hitloc"})
+		if self.talent1 then
+			for _, unit in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), parent:GetAttackRange() ) ) do
+				if unit ~= params.target then
+					parent:PerformGenericAttack(unit, true)
+					ParticleManager:FireParticle("particles/units/heroes/hero_legion_commander/legion_commander_courage_tgt.vpcf", PATTACH_ABSORIGIN, unit, {[0] = "attach_hitloc"})
+				end
+			end
+		end
 	end
+end
+
+function modifier_legion_commander_fearless_assault_buff:GetModifierLifestealBonus(params)
+	if params.attacker == self:GetParent() and ( params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE) ) then
+		local parent = self:GetParent()
+		local ability = self:GetAbility()
+		if self.talent2 then
+			local heal = params.damage * self.lifesteal / 100
+			for _, unit in ipairs( parent:FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), self.radius ) ) do
+				if unit ~= parent then
+					unit:HealEvent( heal, ability, parent )
+				end
+			end
+		end
+		self:Destroy()
+		return self.lifesteal
+	end
+end
+
+function modifier_legion_commander_fearless_assault_buff:GetModifierAttackSpeedBonus(params)
+	return 1000
+end
+
+function modifier_legion_commander_fearless_assault_buff:GetModifierBaseAttackTimeConstant_Adjust(params)
+	return -1.2
 end

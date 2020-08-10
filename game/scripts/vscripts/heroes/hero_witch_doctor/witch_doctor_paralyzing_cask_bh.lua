@@ -1,5 +1,13 @@
 witch_doctor_paralyzing_cask_bh = class({})
 
+function witch_doctor_paralyzing_cask_bh:GetAbilityTextureName()
+	if self:GetCaster():HasModifier("modifier_witch_doctor_marasa_mirror") then
+		return "custom/witch_doctor_paralyzing_cask_heal"
+	else
+		return "witch_doctor_paralyzing_cask"
+	end
+end
+
 function witch_doctor_paralyzing_cask_bh:CastFilterResultTarget( target )
 	local caster = self:GetCaster()
 	local teamTarget = DOTA_UNIT_TARGET_TEAM_ENEMY
@@ -69,7 +77,7 @@ function witch_doctor_paralyzing_cask_bh:OnProjectileHit_ExtraData(target, vLoca
 		self:DealDamage( caster, target, self:GetTalentSpecialValueFor("damage") )
 	elseif target:IsSameTeam(caster) and extraData.mirror == "1" then
 		target:HealEvent(self:GetTalentSpecialValueFor("heal"), self, caster)
-		target:Dispel( caster )
+		target:Dispel( caster, caster:HasTalent("special_bonus_unique_witch_doctor_paralyzing_cask_2") )
 	end
 	local effectFX = "particles/units/heroes/hero_witchdoctor/witchdoctor_cask.vpcf"
 	if extraData.mirror == "1" then

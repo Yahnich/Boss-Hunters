@@ -263,7 +263,7 @@
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
 		}
 		
-		"AbilityCastPoint"				"1.5 1.0"
+		"AbilityCastPoint"				"1.5"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -277,7 +277,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"500"
+				"radius"				"425"
 			}
 		}
 	}

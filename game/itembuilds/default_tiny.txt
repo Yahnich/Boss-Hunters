@@ -13,7 +13,7 @@
 		}
 		"#DOTA_Item_Build_Early_Game"
 		{	
-			"item"	"item_ringing_rapier
+			"item"	"item_ringing_rapier"
 			"item"	"item_aeon_shard"
 			"item"	"item_orb_of_vitality"
 		}

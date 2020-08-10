@@ -6,7 +6,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_ursa/ursa_earthshock_bh"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
@@ -26,12 +26,12 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"385"
-		"AbilityCastPoint"				"0.3"
+		"AbilityCastPoint"				"0"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"5"
+		"AbilityCooldown"				"11 11 11 11 9 7 5"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -51,24 +51,36 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"50 100 150 200 250 300 350"
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"75 125 175 225 300 375 450"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"4"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"slow_ms"				"-45 -55 -65 -75 -75 -75 -75"
+				"var_type"					"FIELD_INTEGER"
+				"slow_ms"					"-10 -20 -30 -40 -40 -40 -40"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"385"
-				"LinkedSpecialBonus"	"special_bonus_unique_ursa_earthshock_bh_1"
+				"var_type"					"FIELD_INTEGER"
+				"range"						"250"
+				"LinkedSpecialBonus"		"special_bonus_unique_ursa_earthshock_bh_1"
+				"LinkedSpecialBonusField"	"value2"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"385"
+				"LinkedSpecialBonus"		"special_bonus_unique_ursa_earthshock_bh_1"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"1000"
 			}
 		}
 	}
@@ -92,6 +104,11 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"						"600"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"250"
 			}
 		}
 	}
@@ -124,7 +141,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_ursa/ursa_overpower_bh"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"ursa_overpower"
 		"MaxLevel"						"7"
@@ -141,16 +158,16 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"0"
 		"AbilityCastPoint"				"0.3"
-		//"AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_3"
+		//"AbilityCastAnimation"		"ACT_DOTA_OVERRIDE_ABILITY_3"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10"
+		"AbilityCooldown"				"11 11 11 11 9 7 5"
 		"AbilityDuration"				"20"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75"
+		"AbilityManaCost"				"55"
 		
 		"precache"
 		{
@@ -168,7 +185,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"max_attacks"				"4 5 6 7 8 9 10"
+				"max_attacks"				"3 4 5 6 6 6 6"
 			}
 			"02"
 			{
@@ -354,8 +371,14 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"ursa_fury_swipes"
-		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"MaxLevel"						"7"
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ursa_fury_swipes_bh_1"	"1"
+			"special_bonus_unique_ursa_fury_swipes_bh_2"	"1"
+		}
 	
 		"precache"
 		{
@@ -372,12 +395,58 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_ad"				"1.5"
+				"bonus_ad"				"9 18 27 36 50 64 78"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
+				"duration"				"8 12 16 20 20 20 20"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_ursa_fury_swipes_bh_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_ursa_fury_swipes_bh_handle"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"20"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_ursa_fury_swipes_bh_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_ursa_fury_swipes_bh"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"50"
 			}
 		}
 	}
@@ -446,17 +515,19 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"reduction"				"-80"
+				"LinkedSpecialBonus"	"special_bonus_unique_ursa_enrage_bh_2"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"status_resist"			"0"
+				"status_resist"			"-50 -50 -50 -60 -70 -80"
 				"LinkedSpecialBonus"	"special_bonus_unique_ursa_enrage_bh_2"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown_scepter"		"-5"
+				"cooldown_scepter"		"30 24 18 18 18 18"
+				"RequiresScepter"		"1"
 			}
 		}
 	}
@@ -501,7 +572,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"80"
+				"value"						"-10"
 			}
 		}
 	}

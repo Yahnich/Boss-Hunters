@@ -569,6 +569,7 @@ function ShowVectorTargetingParticle()
 		var mouseHold = GameUI.IsMouseDown(0);
 		if (is_quick) 
 		{
+			
 			if (mouseHold) 
 			{
 				CastStop( {cast:1} );

@@ -1,6 +1,4 @@
 ursa_fury_swipes_bh = class({})
-LinkLuaModifier("modifier_ursa_fury_swipes_bh_handle", "heroes/hero_ursa/ursa_fury_swipes_bh", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_ursa_fury_swipes_bh", "heroes/hero_ursa/ursa_fury_swipes_bh", LUA_MODIFIER_MOTION_NONE)
 
 function ursa_fury_swipes_bh:IsStealable()
 	return false
@@ -15,64 +13,43 @@ function ursa_fury_swipes_bh:GetIntrinsicModifierName()
 end
 
 modifier_ursa_fury_swipes_bh_handle = class({})
-function modifier_ursa_fury_swipes_bh_handle:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
+LinkLuaModifier("modifier_ursa_fury_swipes_bh_handle", "heroes/hero_ursa/ursa_fury_swipes_bh", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_ursa_fury_swipes_bh_handle:OnCreated()
+	self:OnRefresh()
 end
 
-function modifier_ursa_fury_swipes_bh_handle:OnAttackLanded(params)
-	if IsServer() then
-		local caster = self:GetCaster()
-		local target = params.target
-		local ability = self:GetAbility()
-		local swipes_particle = "particles/units/heroes/hero_ursa/ursa_fury_swipes.vpcf"
-		local fury_swipes_debuff = "modifier_ursa_fury_swipes_bh"
-		local enrageAbility = caster:FindAbilityByName("ursa_enrage_bh")
-		local enrageMultiplier = enrageAbility:GetTalentSpecialValueFor("fury_multiplier")
+function modifier_ursa_fury_swipes_bh_handle:OnRefresh()
+	self.damage = self:GetTalentSpecialValueFor("bonus_ad")
+	self.duration = self:GetTalentSpecialValueFor("duration")
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_ursa_fury_swipes_bh_1")
+	self.talent1Heal = self:GetCaster():FindTalentValue("special_bonus_unique_ursa_fury_swipes_bh_1") / 100
+end
 
-		-- Ability specials
-		local damage_per_stack = self:GetTalentSpecialValueFor("bonus_ad") * caster:GetLevel()
-		local stack_duration = self:GetTalentSpecialValueFor("duration")
+function modifier_ursa_fury_swipes_bh_handle:DeclareFunctions()
+	return {MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL }
+end
 
-		-- If the caster is broken, do nothing
-		if caster:PassivesDisabled() then
-			return nil
-		end
-
-		if params.attacker == caster then
-			-- Initialize variables
-			local fury_swipes_debuff_handler
-			local damage
-			-- Add debuff/increment stacks if already exists
-			if target:HasModifier(fury_swipes_debuff) then
-				fury_swipes_debuff_handler = target:FindModifierByName(fury_swipes_debuff)
-				fury_swipes_debuff_handler:IncrementStackCount()
-			else
-				target:AddNewModifier(caster, ability, fury_swipes_debuff, {duration = stack_duration})
-				fury_swipes_debuff_handler = target:FindModifierByName(fury_swipes_debuff)
-				fury_swipes_debuff_handler:IncrementStackCount()
-			end
-
-			-- Refresh stack duration
-			fury_swipes_debuff_handler:ForceRefresh()
-
-			-- Add fury swipe impact particle
-			local swipes_particle_fx = ParticleManager:CreateParticle(swipes_particle, PATTACH_ABSORIGIN, target)
-			ParticleManager:SetParticleControl(swipes_particle_fx, 0, target:GetAbsOrigin())
-			ParticleManager:ReleaseParticleIndex(swipes_particle_fx)
-
-			-- Get stack count
-			local fury_swipes_stacks = fury_swipes_debuff_handler:GetStackCount()
-
-			-- Calculate damage
-			damage = damage_per_stack * fury_swipes_stacks
-
-			-- Check for Enrage's multiplier
-			if caster:HasModifier("modifier_ursa_enrage_bh") then
-				damage = damage * enrageMultiplier
-			end
-			ability:DealDamage( caster, target, damage, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_PROPERTY_FIRE } )
+function modifier_ursa_fury_swipes_bh_handle:GetModifierProcAttack_BonusDamage_Physical(params)
+	local caster = self:GetCaster()
+	if caster:PassivesDisabled() then return nil end
+	local damage = self.damage * params.target:GetModifierStackCount( "modifier_ursa_fury_swipes_bh", params.attacker )
+	if caster:HasModifier("modifier_ursa_enrage_bh") then
+		local enrage = caster:FindAbilityByName("ursa_enrage_bh")
+		if enrage then
+			damage = damage * enrage:GetTalentSpecialValueFor("fury_multiplier")
 		end
 	end
+	local modifier = params.target:AddNewModifier( params.attacker, self:GetAbility(), "modifier_ursa_fury_swipes_bh", {duration = self.duration} )
+	if caster:HasModifier("modifier_ursa_fury_swipes_bh_talent") then
+		local stacks = caster:FindModifierByName("modifier_ursa_fury_swipes_bh_talent"):GetStackCount()
+		caster:RemoveModifierByName("modifier_ursa_fury_swipes_bh_talent")
+		modifier:SetStackCount( modifier:GetStackCount() + stacks )
+	end
+	if self.talent1 then
+		caster:HealEvent( damage * self.talent1Heal, self:GetAbility(), caster )
+	end
+	return damage
 end
 
 function modifier_ursa_fury_swipes_bh_handle:IsHidden()
@@ -80,23 +57,34 @@ function modifier_ursa_fury_swipes_bh_handle:IsHidden()
 end
 
 modifier_ursa_fury_swipes_bh = class({})
-
+LinkLuaModifier("modifier_ursa_fury_swipes_bh", "heroes/hero_ursa/ursa_fury_swipes_bh", LUA_MODIFIER_MOTION_NONE)
 function modifier_ursa_fury_swipes_bh:OnCreated(table)
-	local caster = self:GetCaster()
-	self.damage = self:GetTalentSpecialValueFor("bonus_ad") * caster:GetLevel() * self:GetStackCount()
+	self:OnRefresh()
 end
 
 function modifier_ursa_fury_swipes_bh:OnRefresh(table)
 	local caster = self:GetCaster()
-	self.damage = self:GetTalentSpecialValueFor("bonus_ad") * caster:GetLevel() * self:GetStackCount()
+	self.damage = self:GetTalentSpecialValueFor("bonus_ad") * self:GetStackCount()
+	self.talent2 = caster:HasTalent("special_bonus_unique_ursa_fury_swipes_bh_2")
+	self.talent2Percent = caster:FindTalentValue("special_bonus_unique_ursa_fury_swipes_bh_2") / 100
+	if IsServer() then
+		self:IncrementStackCount()
+	end
 end
 
 function modifier_ursa_fury_swipes_bh:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TOOLTIP }
+	return {MODIFIER_PROPERTY_TOOLTIP, MODIFIER_EVENT_ON_DEATH }
 end
 
 function modifier_ursa_fury_swipes_bh:OnTooltip()
 	return self.damage
+end
+
+function modifier_ursa_fury_swipes_bh:OnDeath(params)
+	if self.talent2 and params.unit == self:GetParent() then
+		local talentBuff = self:GetCaster():AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_ursa_fury_swipes_bh_talent", {duration = self:GetRemainingTime()} )
+		talentBuff:SetStackCount( math.max( talentBuff:GetStackCount(), math.ceil( self:GetStackCount() * self.talent2Percent ) ) )
+	end
 end
 
 function modifier_ursa_fury_swipes_bh:GetEffectName()
@@ -118,3 +106,6 @@ end
 function modifier_ursa_fury_swipes_bh:IsPurgable()
 	return false
 end
+
+modifier_ursa_fury_swipes_bh_talent = class({})
+LinkLuaModifier("modifier_ursa_fury_swipes_bh_talent", "heroes/hero_ursa/ursa_fury_swipes_bh", LUA_MODIFIER_MOTION_NONE)

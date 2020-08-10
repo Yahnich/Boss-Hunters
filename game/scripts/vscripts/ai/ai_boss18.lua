@@ -27,7 +27,9 @@ function AIThink(thisEntity)
 		if not thisEntity:IsChanneling() then
 			if thisEntity.thorn:IsFullyCastable() then
 				local position = AICore:OptimalHitPosition( thisEntity, thisEntity.thorn:GetTrueCastRange(), thisEntity.thorn:GetSpecialValueFor("spread_radius") )
-				return CastThornMaze( position )
+				if position then
+					return CastThornMaze( position )
+				end
 			end
 			local target = AICore:GetHighestPriorityTarget(thisEntity)
 			if target and thisEntity.leech:IsFullyCastable() and CalculateDistance( target, thisEntity ) <= thisEntity.leech:GetSpecialValueFor("radius") then

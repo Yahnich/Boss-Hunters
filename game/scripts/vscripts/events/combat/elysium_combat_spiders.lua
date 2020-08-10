@@ -1,11 +1,11 @@
 local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
-	self.enemiesToSpawn = math.min(10, math.max( 2, math.ceil( math.log( 1 + RoundManager:GetRaidsFinished() * 15 ) * 1.5) ) )
+	self.enemiesToSpawn = RoundManager:GetRaidsFinished() * 2 + 2
 	self.eventHandler = Timers:CreateTimer(3, function()
 		local position = RoundManager:PickRandomSpawn()
 		local bigSpider = CreateUnitByName("npc_dota_creature_broodmother", position, true, nil, nil, DOTA_TEAM_BADGUYS)
 		bigSpider.unitIsRoundNecessary = true
-		bigSpider:SetCoreHealth( 2250 )
+		bigSpider:SetCoreHealth( 1750 )
 		bigSpider:SetBaseMagicalResistanceValue( 30 )
 		bigSpider:SetPhysicalArmorBaseValue( -3 )
 		bigSpider:SetAverageBaseDamage(100, 30)

@@ -1,0 +1,46 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Mana Stone
+	//=================================================================================================================
+	"item_range_stone"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2276"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_range_stone"
+		"AbilityTextureName"			"item_ex_machina"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		"ItemPurchasable"				"1"
+		"ItemStackable"					"1"
+		"ItemInitialCharges"			"1"
+		"ItemDisplayCharges"			"1"
+		"ItemCost"						"680"
+		
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"1"
+
+		"precache"
+		{
+			"particle"					"particles/generic_gameplay/rune_arcane.vpcf"
+			"particle"					"particles/generic_gameplay/rune_arcane_owner.vpcf"
+			
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_range"			"150 125 100 75"
+			}
+		}
+	}
+}

@@ -1310,16 +1310,17 @@
 		"Ability1"						"shadow_fiend_shadowraze1"
 		"Ability2"						"shadow_fiend_shadowraze2"
 		"Ability3"						"shadow_fiend_shadowraze3"
-		"Ability4"						"shadow_fiend_dark_lord"
-		"Ability5"						"shadow_fiend_necro"
+		"Ability4"						"shadow_fiend_sunder_soul"
+		"Ability5"						"shadow_fiend_dark_lord"
 		"Ability6"						"shadow_fiend_requiem"
+		"Ability7"						"shadow_fiend_necro"
 		
 		"Ability10"						"special_bonus_unique_shadow_fiend_shadowraze_1"
 		"Ability11"						"special_bonus_unique_shadow_fiend_shadowraze_2"
 		"Ability12"						"special_bonus_unique_shadow_fiend_dark_lord_1"
 		"Ability13"						"special_bonus_unique_shadow_fiend_dark_lord_2"
-		"Ability14"						"special_bonus_unique_shadow_fiend_necro_1"
-		"Ability15"						"special_bonus_unique_shadow_fiend_necro_2"
+		"Ability14"						"special_bonus_unique_shadow_fiend_sunder_soul_1"
+		"Ability15"						"special_bonus_unique_shadow_fiend_sunder_soul_2"
 		"Ability16"						"special_bonus_unique_shadow_fiend_requiem_1"
 		"Ability17"						"special_bonus_unique_shadow_fiend_requiem_2"
 		
@@ -1618,6 +1619,8 @@
 		"Ability15"						"special_bonus_unique_pugna_nether_turret_2"
 		"Ability16"						"special_bonus_unique_pugna_lifedrain_1"
 		"Ability17"						"special_bonus_unique_pugna_lifedrain_2"
+		
+		"AttributeIntelligenceGain"		"4.00000"
 	}
 	//=================================================================================================================
 	// HERO: Storm
@@ -2279,16 +2282,15 @@
 		"override_hero"					"npc_dota_hero_ursa"
 		"Ability1"						"ursa_earthshock_bh"
 		"Ability2"						"ursa_overpower_bh"
-		"Ability3"						"ursa_lunge"
-		"Ability4"						"ursa_fury_swipes_bh"
+		"Ability3"						"ursa_fury_swipes_bh"
 		"Ability6"						"ursa_enrage_bh"
 		
 		"Ability10"						"special_bonus_unique_ursa_earthshock_bh_1"
 		"Ability11"						"special_bonus_unique_ursa_earthshock_bh_2"  
 		"Ability12"						"special_bonus_unique_ursa_overpower_bh_1"
 		"Ability13"						"special_bonus_unique_ursa_overpower_bh_2"
-		"Ability14"						"special_bonus_unique_ursa_lunge_1"
-		"Ability15"						"special_bonus_unique_ursa_lunge_2"
+		"Ability14"						"special_bonus_unique_ursa_fury_swipes_bh_1"
+		"Ability15"						"special_bonus_unique_ursa_fury_swipes_bh_2"
 		"Ability16"						"special_bonus_unique_ursa_enrage_bh_1"
 		"Ability17"						"special_bonus_unique_ursa_enrage_bh_2"
 	}

@@ -1,5 +1,13 @@
 witch_doctor_death_ward_bh = class({})
 
+function witch_doctor_death_ward_bh:GetAbilityTextureName()
+	if self:GetCaster():HasModifier("modifier_witch_doctor_marasa_mirror") then
+		return "custom/witch_doctor_death_ward_heal"
+	else
+		return "witch_doctor_death_ward"
+	end
+end
+
 function witch_doctor_death_ward_bh:GetChannelTime()
 	if self:GetCaster():HasTalent("special_bonus_unique_witch_doctor_death_ward_2") then
 		return 0
@@ -36,10 +44,11 @@ end
 function witch_doctor_death_ward_bh:OnProjectileHit_ExtraData(target, vLocation, extraData)
 	if not self.death_ward:IsNull() then
 		local caster = self:GetCaster()
-		local damage = self:GetTalentSpecialValueFor("damage")
 		if target:IsSameTeam( caster ) then
-			target:HealEvent( damage, self, caster )
+			local healing = self:GetTalentSpecialValueFor("healing")
+			target:HealEvent( healing, self, caster )
 		else
+			local damage = self:GetTalentSpecialValueFor("damage")
 			self:DealDamage( caster, target, damage )
 		end
 		if extraData.bounces_left > 0 then

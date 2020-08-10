@@ -1,4 +1,4 @@
-.root
+.talentRoot
 {
 	padding-top: 3px;
 	padding-bottom: 50px;
@@ -33,6 +33,19 @@
 	text-align: center;
 }
 
+.Highlighted
+{
+	brightness: 2.0;
+}
+
+.ShopWrapper
+{
+	flow-children: down;
+	height: 100%;
+	width: 100%;
+	background-color: #FF0000;
+}
+
 .StatUpgradeContainer
 {
 	height: 36px;
@@ -63,14 +76,56 @@
 	margin-right: 5px;
 }
 
-.GoldIcon
+.RuneSlotImage
 {
-	background-image: url("s2r://panorama/images/hud/reborn/gold_small_psd.vtex");
-	background-size: 100% 100%;
-	width: 20px;
-	height: 20px;
-	horizontal-align: right;
+	background-size: 137.5% 100%;
+	background-position: center;
+	background-repeat: no-repeat no-repeat;
+	border-radius: 50% / 50%;
+	border: 2px solid #111111FF;
+	width: 32px;
+	height: 32px;
+}
+
+.RuneSlotImageIcon
+{
+	background-size: 137.5% 100%;
+	background-position: center;
+	background-repeat: no-repeat no-repeat;
+	background-image: url("s2r://panorama/images/items/emptyitembg_png.vtex");
+	border-radius: 50% / 50%;
+	border: 2px solid #111111FF;
+	width: fill-parent-flow(1);
+	max-width: 40px;
+	height: width-percentage(100%);
 	vertical-align: center;
+	horizontal-align: center;
+}
+
+.RuneSlotBlack{
+	background-image: url("s2r://panorama/images/items/emptyitembg_png.vtex");
+	height: 100%;
+	width: 100%;
+	z-index: -999;
+}
+.RuneSlotsContainer
+{
+	flow-children: down;
+	margin-left: 2px;
+	margin-top: -10px;
+}
+
+.RuneSlotContainer
+{
+	flow-children: right;
+}
+
+.RuneSlotContainerIcon
+{
+	flow-children: right;
+	height: fill-parent-flow(1);
+	width: 100%;
+	z-index: 9999;
 }
 
 .ValueLabel
@@ -78,7 +133,7 @@
 	margin-left: 5px;
 	color: white;
 	horizontal-align: left;
-	font-size: 15px;
+	font-size: 12px;
 	letter-spacing: 1px;
 	font-weight: bold;
 	vertical-align: center;

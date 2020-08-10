@@ -1,0 +1,48 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_amulet_of_aggression"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3226"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_amulet_of_aggression"
+		"AbilityTextureName"			"custom/amulet_of_aggression"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"220"
+		"ItemShopTags"					"aggro;threat"
+		"ItemQuality"					"component"
+		"ItemAliases"					"amulet of aggression"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"AbilityCooldown"				"15"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_threat"			"30"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"threat_gain"			"5"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"threat_gain_ult"		"20"
+			}
+		}
+	}
+}

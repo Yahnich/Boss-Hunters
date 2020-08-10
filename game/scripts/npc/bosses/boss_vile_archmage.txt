@@ -60,7 +60,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_pct"				"25"
+				"damage_pct"				"35 50"
 			}
 		}
 	}
@@ -148,7 +148,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"4 5"
+				"duration"					"5"
 			}
 		}
 	}

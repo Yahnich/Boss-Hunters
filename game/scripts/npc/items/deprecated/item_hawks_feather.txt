@@ -1,0 +1,37 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Barrier Leaves
+	//=================================================================================================================
+	"item_hawks_feather"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7034"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_hawks_feather"
+		"AbilityTextureName"			"custom/hawks_feather"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"325"
+		"ItemShopTags"					"barrier"
+		"ItemQuality"					"component"
+		"ItemAliases"					"faerie fire"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"pierce_chance"			"35"
+			}
+		}
+	}
+}

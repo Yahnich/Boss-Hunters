@@ -6,18 +6,20 @@ function pudge_flesh_heap_lua:GetIntrinsicModifierName()
 	return "modifier_pudge_flesh_heap_lua"
 end
 
-modifier_pudge_flesh_heap_lua = class({})
-function modifier_pudge_flesh_heap_lua:OnCreated(table)
-    self:StartIntervalThink(FrameTime())
+function pudge_flesh_heap_lua:AddSkinHeap( amount )
+	local caster = self:GetCaster()
+	local stacks = amount or 1
+	local duration = self:GetTalentSpecialValueFor("duration")
+	caster:AddNewModifier(caster, self, "modifier_pudge_flesh_heap_lua_effect", {Duration = duration}):AddIndependentStack(duration, nil, false, {stacks = stacks})
 end
 
-function modifier_pudge_flesh_heap_lua:OnIntervalThink()
-    self.mr = self:GetSpecialValueFor("magic_resist") * self:GetCaster():GetLevel()
+modifier_pudge_flesh_heap_lua = class({})
+function modifier_pudge_flesh_heap_lua:OnCreated(table)
+	 self.mr = self:GetSpecialValueFor("magic_resist")
 end
 
 function modifier_pudge_flesh_heap_lua:DeclareFunctions()
     local funcs = {
-        MODIFIER_EVENT_ON_ATTACK_LANDED,
         MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS
     }
     return funcs
@@ -25,14 +27,6 @@ end
 
 function modifier_pudge_flesh_heap_lua:GetModifierMagicalResistanceBonus()
     return self.mr
-end
-
-function modifier_pudge_flesh_heap_lua:OnAttackLanded(params)
-    if IsServer() then
-        if params.attacker == self:GetParent() then
-            params.attacker:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_pudge_flesh_heap_lua_effect", {Duration = self:GetTalentSpecialValueFor("duration")}):AddIndependentStack(self:GetTalentSpecialValueFor("duration"))
-        end
-    end
 end
 
 function modifier_pudge_flesh_heap_lua:IsHidden()
@@ -69,7 +63,7 @@ function modifier_pudge_flesh_heap_lua_effect:GetModifierBonusStats_Strength()
 end
 
 function modifier_pudge_flesh_heap_lua_effect:GetModifierModelScale()
-    return self:GetStackCount()
+    return math.min( self:GetStackCount(), 50 )
 end
 
 function modifier_pudge_flesh_heap_lua_effect:IsDebuff()

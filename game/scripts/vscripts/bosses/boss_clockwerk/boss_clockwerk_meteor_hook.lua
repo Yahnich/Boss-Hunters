@@ -51,7 +51,7 @@ function boss_clockwerk_meteor_hook:OnSpellStart()
 	if caster:GetName() == "npc_dota_hero_rattletrap" and caster:GetTogglableWearable( DOTA_LOADOUT_TYPE_WEAPON ) then
 		caster:GetTogglableWearable( DOTA_LOADOUT_TYPE_WEAPON ):AddEffects(EF_NODRAW)
 	end
-	self:Stun( caster, distance / speed * 2 )
+	self:Stun( caster, (distance / speed) * 2 )
 	self:FireLinearProjectile("", direction * speed, distance, width, {team = DOTA_UNIT_TARGET_TEAM_ENEMY, origin = caster:GetAbsOrigin() + direction * 32}, true, true, width * 2)
 end
 

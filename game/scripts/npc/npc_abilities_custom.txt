@@ -404,12 +404,7 @@
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"activation_delay"			"1 0.5"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"activation_delay"			"1.75"
+				"activation_delay"			"1.5 1"
 			}
 			"07"
 			{
