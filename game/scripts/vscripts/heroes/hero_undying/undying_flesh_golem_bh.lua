@@ -14,15 +14,34 @@ modifier_undying_flesh_golem_bh = class({})
 LinkLuaModifier("modifier_undying_flesh_golem_bh", "heroes/hero_undying/undying_flesh_golem_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_undying_flesh_golem_bh:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.bHeal = self:GetTalentSpecialValueFor("death_heal") / 100
-	self.mHeal = self:GetTalentSpecialValueFor("death_heal_creep") / 100
+	self:OnRefresh()
+end
+
+function modifier_undying_flesh_golem_bh:OnCreated()
+	self.bonus_strength = self:GetTalentSpecialValueFor("bonus_strength")
+	self.bonus_ms = self:GetTalentSpecialValueFor("bonus_ms")
+	self.lifesteal = self:GetTalentSpecialValueFor("lifesteal")
+	self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_undying_flesh_golem_1")
+	self.mr = self:GetCaster():FindTalentValue("special_bonus_unique_undying_flesh_golem_1", "value2")
+	self.threat = self:GetCaster():FindTalentValue("special_bonus_unique_undying_flesh_golem_1", "value3")
+	if IsServer() then
+		self:GetCaster():HookInModifier("GetModifierLifestealBonus", self)
+	end
+end
+
+function modifier_undying_flesh_golem_bh:OnDestroy()
+	if IsServer() then
+		self:GetCaster():HookOutModifier("GetModifierLifestealBonus", self)
+	end
 end
 
 function modifier_undying_flesh_golem_bh:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
+			MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+			MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 			MODIFIER_PROPERTY_MODEL_CHANGE,
-			MODIFIER_EVENT_ON_DEATH}
+			}
 end
 
 function modifier_undying_flesh_golem_bh:OnAttackLanded(params)
@@ -33,14 +52,28 @@ function modifier_undying_flesh_golem_bh:OnAttackLanded(params)
 	end
 end
 
-function modifier_undying_flesh_golem_bh:OnDeath(params)
-	if not params.unit:IsSameTeam( self:GetParent() )
-	and CalculateDistance( params.unit, self:GetParent() ) <= self.radius then
-		local caster = self:GetParent()
-		local heal = TernaryOperator(self.bHeal, params.unit:IsRoundNecessary(), self.mHeal)
-		caster:HealEvent( caster:GetMaxHealth() * heal, self:GetAbility(), caster )
-		ParticleManager:FireRopeParticle("particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster, params.unit)
-	end
+function modifier_undying_flesh_golem_bh:GetModifierStrengthBonusPercentage()
+	return self.bonus_strength
+end
+
+function modifier_undying_flesh_golem_bh:GetModifierMoveSpeedBonus_Constant()
+	return self.bonus_ms
+end
+
+function modifier_undying_flesh_golem_bh:GetModifierLifestealBonus()
+	return self.lifesteal
+end
+
+function modifier_undying_flesh_golem_bh:GetModifierPhysicalArmorBonus()
+	return self.armor
+end
+
+function modifier_undying_flesh_golem_bh:GetModifierMagicalResistanceBonus()
+	return self.mr
+end
+
+function modifier_undying_flesh_golem_bh:Bonus_ThreatGain()
+	return self.threat
 end
 
 function modifier_undying_flesh_golem_bh:GetModifierModelChange()
@@ -49,77 +82,4 @@ end
 
 function modifier_undying_flesh_golem_bh:GetEffectName()
 	return "particles/units/heroes/hero_undying/undying_fg_aura.vpcf"
-end
-
-function modifier_undying_flesh_golem_bh:IsAura()
-	return true
-end
-
-function modifier_undying_flesh_golem_bh:GetModifierAura()
-	return "modifier_undying_flesh_golem_bh_aura"
-end
-
-function modifier_undying_flesh_golem_bh:GetAuraRadius()
-	return self.radius
-end
-
-function modifier_undying_flesh_golem_bh:GetAuraDuration()
-	return 0.5
-end
-
-function modifier_undying_flesh_golem_bh:GetAuraSearchTeam()    
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-
-function modifier_undying_flesh_golem_bh:GetAuraSearchType()    
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-
-function modifier_undying_flesh_golem_bh:GetAuraSearchFlags()    
-	return DOTA_UNIT_TARGET_FLAG_NONE
-end
-
-modifier_undying_flesh_golem_bh_aura = class({})
-LinkLuaModifier("modifier_undying_flesh_golem_bh_aura", "heroes/hero_undying/undying_flesh_golem_bh", LUA_MODIFIER_MOTION_NONE)
-
-function modifier_undying_flesh_golem_bh_aura:OnCreated()
-	self.min_dmg = self:GetTalentSpecialValueFor("min_damage_amp") 
-	self.max_dmg = self:GetTalentSpecialValueFor("max_damage_amp")
-	self.min_slow = self:GetTalentSpecialValueFor("min_speed_slow")
-	self.max_slow = self:GetTalentSpecialValueFor("max_speed_slow")
-	self.min_radius = self:GetTalentSpecialValueFor("radius")
-	self.max_radius = self:GetTalentSpecialValueFor("full_power_radius")
-	if IsServer() then
-		self:StartIntervalThink(0.1)
-	end
-end
-
-function modifier_undying_flesh_golem_bh_aura:OnRefresh()
-	self.min_dmg = self:GetTalentSpecialValueFor("min_damage_amp") 
-	self.max_dmg = self:GetTalentSpecialValueFor("max_damage_amp")
-	self.min_slow = self:GetTalentSpecialValueFor("min_speed_slow")
-	self.max_slow = self:GetTalentSpecialValueFor("max_speed_slow")
-	self.min_radius = self:GetTalentSpecialValueFor("radius")
-	self.max_radius = self:GetTalentSpecialValueFor("full_power_radius")
-end
-
-function modifier_undying_flesh_golem_bh_aura:OnIntervalThink()
-	local distance = CalculateDistance( self:GetParent(), self:GetCaster() )
-	
-	local boundRange = self.min_radius - self.max_radius
-	local distPct = math.ceil( ( (self.min_radius - distance) / boundRange ) * 100 )
-	self:SetStackCount(distPct)
-end
-
-function modifier_undying_flesh_golem_bh_aura:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-			MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
-end
-
-function modifier_undying_flesh_golem_bh_aura:GetModifierMoveSpeedBonus_Percentage()
-	return math.max( self.min_slow, math.min( self.max_slow, self:GetStackCount()/100 * self.max_slow ) ) * -1
-end
-
-function modifier_undying_flesh_golem_bh_aura:GetModifierIncomingDamage_Percentage()
-	return math.max( self.min_dmg, math.min( self.max_dmg, self:GetStackCount()/100 * self.max_dmg ) ) * -1
 end

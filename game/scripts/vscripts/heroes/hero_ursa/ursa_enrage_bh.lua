@@ -70,7 +70,7 @@ end
 
 function modifier_ursa_enrage_bh:OnCreated()
 	local caster = self:GetCaster()
-	self.damage_resist = self:GetTalentSpecialValueFor("reduction")
+	self.damage_resist = self:GetTalentSpecialValueFor("reduction") * (-1)
 	self.status_resist = self:GetTalentSpecialValueFor("status_resist")
 	if IsServer() then
 		caster:SetRenderColor(255,0,0)

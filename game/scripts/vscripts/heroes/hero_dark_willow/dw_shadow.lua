@@ -13,32 +13,18 @@ function dw_shadow:IsHiddenWhenStolen()
 end
 
 function dw_shadow:GetManaCost( iLvl )
-	if self:GetCaster():HasModifier("modifier_dw_shadow") then
-		return 0
-	else
-		return self.BaseClass.GetManaCost( self, iLvl )
-	end
+	return self.BaseClass.GetManaCost( self, iLvl )
 end
 
 function dw_shadow:OnSpellStart()
 	local caster = self:GetCaster()
-
-	caster:RemoveModifierByName("modifier_dw_shadow_damage")
-
-	if caster:HasModifier("modifier_dw_shadow") then
-		caster:RemoveModifierByName("modifier_dw_shadow")
-	else
-		EmitSoundOn("Hero_DarkWillow.Shadow_Realm", caster)
-
-		caster:AddNewModifier(caster, self, "modifier_dw_shadow", {Duration = self:GetTalentSpecialValueFor("duration")})
-		self:EndCooldown()
-	end
+	caster:AddNewModifier(caster, self, "modifier_dw_shadow", {Duration = self:GetTalentSpecialValueFor("duration")})
 end
 
-function dw_shadow:OnProjectileHit(hTarget, vLocation)
+function dw_shadow:OnProjectileHitHandle(hTarget, vLocation, iProjectile)
 	local caster = self:GetCaster()
 
-	local damage = self.damage
+	local damage = self.projectiles[iProjectile].damage
 
 	if hTarget then
 		EmitSoundOn("Hero_DarkWillow.Shadow_Realm.Damage", attacker)
@@ -59,42 +45,44 @@ function modifier_dw_shadow:OnCreated(table)
 		local parent = self:GetParent()
 		local ability = self:GetAbility()
 
-    	ability.damage = 0
-    	self.damage = self:GetTalentSpecialValueFor("damage") * FrameTime()
+		self.max_damage = self:GetTalentSpecialValueFor("max_damage")
+    	self.damage = 0
+    	self.damageGrowth = self:GetTalentSpecialValueFor("max_damage") * 0.1 / self:GetTalentSpecialValueFor("max_delay")
+
 
     	-- self.manaDrain = parent:GetMaxMana() * self:GetTalentSpecialValueFor("mana_drain")/100 * FrameTime()
 
     	if caster:HasTalent("special_bonus_unique_dw_shadow_2") then
-    		ability.bonus_as = 0
-    		self.bonus_as = caster:FindTalentValue("special_bonus_unique_dw_shadow_2") * FrameTime() / self:GetDuration()
-    		self.Talent = true
+    		self.bonus_as = 0
+    		self.bonus_asGrowth = caster:FindTalentValue("special_bonus_unique_dw_shadow_2") * 0.1 / self:GetDuration()
+    		self.talent2 = true
     	end
 		self.talent1 = caster:HasTalent("special_bonus_unique_dw_shadow_1")
-    	self:StartIntervalThink(FrameTime())
+    	self:StartIntervalThink(0.1)
     end
 end
 
 function modifier_dw_shadow:OnRefresh(table)
     if IsServer() then
     	self:GetAbility().damage = 0
-    	self.damage = self:GetTalentSpecialValueFor("damage") * FrameTime()
+    	self.damage = self:GetTalentSpecialValueFor("damage") * 0.1
 
     	-- self.manaDrain = self:GetParent():GetMaxMana() * self:GetTalentSpecialValueFor("mana_drain")/100 * FrameTime()
 		self.talent1 = caster:HasTalent("special_bonus_unique_dw_shadow_1")
     	if caster:HasTalent("special_bonus_unique_dw_shadow_2") then
-    		self:GetAbility().bonus_as = 0
-    		self.bonus_as = caster:FindTalentValue("special_bonus_unique_dw_shadow_2") * FrameTime() / self:GetDuration()
-    		self.Talent = true
+    		self.bonus_as = 0
+    		self.bonus_asGrowth = caster:FindTalentValue("special_bonus_unique_dw_shadow_2") * 0.1 / self:GetDuration()
+			self.talent2 = true
     	end
     end
 end
 
 function modifier_dw_shadow:OnIntervalThink()
 	-- self:GetParent():ReduceMana(self.manaDrain)
-    self:GetAbility().damage = self:GetAbility().damage + self.damage
-
-    if self.Talent then
-    	self:GetAbility().bonus_as = self:GetAbility().bonus_as + self.bonus_as
+    self.damage = math.min( self.max_damage, self.damage + self.damageGrowth )
+	self:SetStackCount( math.floor(self.damage / self.max_damage * 100 + 0.5) )
+    if self.talent2 then
+    	self.bonus_as = self.bonus_as + self.bonus_asGrowth
     end
 end
 
@@ -144,10 +132,10 @@ function modifier_dw_shadow:OnRemoved()
 
 		ability:SetCooldown()
 
-		parent:AddNewModifier(caster, ability, "modifier_dw_shadow_damage", {duration = self:GetTalentSpecialValueFor("linger_duration")})
+		parent:AddNewModifier(caster, ability, "modifier_dw_shadow_damage", {duration = self:GetTalentSpecialValueFor("linger_duration"), damage = self.damage})
 
 		if caster:HasTalent("special_bonus_unique_dw_shadow_2") then
-			parent:AddNewModifier(caster, ability, "modifier_dw_shadow_bonus_as", {Duration = 4})
+			parent:AddNewModifier(caster, ability, "modifier_dw_shadow_bonus_as", {Duration = caster:FindTalentValue("special_bonus_unique_dw_shadow_2", "duration"), attackspeed = self.bonus_as})
 		end
 	end
 end
@@ -165,7 +153,7 @@ function modifier_dw_shadow:GetAuraRadius()
 end
 
 function modifier_dw_shadow:GetAuraDuration()
-	return 0
+	return 0.5
 end
 
 function modifier_dw_shadow:GetAuraSearchTeam()
@@ -184,12 +172,8 @@ modifier_dw_shadow_talent = class({})
 function modifier_dw_shadow_talent:OnCreated(kv)
 	local caster = self:GetCaster()
 	self.tick = caster:FindTalentValue("special_bonus_unique_dw_shadow_1", "tick")
-    self.max_damage = self:GetTalentSpecialValueFor("duration") * self:GetTalentSpecialValueFor("damage") * caster:FindTalentValue("special_bonus_unique_dw_shadow_1", "damage") / 100
+    self.max_damage = self:GetTalentSpecialValueFor("max_damage") * caster:FindTalentValue("special_bonus_unique_dw_shadow_1", "damage") / 100
 	self.max_slow = caster:FindTalentValue("special_bonus_unique_dw_shadow_1") * (-1)
-	self.damage_growth = self.max_damage * self.tick / self:GetTalentSpecialValueFor("duration")
-	self.slow_growth = self.max_slow * self.tick / self:GetTalentSpecialValueFor("duration")
-	self.damage = self.damage_growth
-	self.slow = self.slow_growth
 	self:StartIntervalThink( self.tick )
 end
 
@@ -202,13 +186,7 @@ function modifier_dw_shadow_talent:OnIntervalThink()
 	local parent = self:GetParent()
 	local ability = self:GetAbility()
 	if IsServer() then
-		ability:DealDamage( caster, parent, self.damage )
-		if self.damage < self.max_damage then
-			self.damage = math.min( self.max_damage, self.damage + self.damage_growth )
-		end
-	end
-	if self.slow > self.max_slow then
-		self.slow = math.max( self.max_slow, self.slow + self.slow_growth )
+		ability:DealDamage( caster, parent, self.tick * self.max_damage * caster:GetModifierStackCount( "modifier_dw_shadow", caster ) / 100 )
 	end
 end
 
@@ -217,7 +195,7 @@ function modifier_dw_shadow_talent:DeclareFunctions()
 end
 
 function modifier_dw_shadow_talent:GetModifierMoveSpeedBonus_Percentage()
-	return self.slow
+	return self.max_slow * self:GetCaster():GetModifierStackCount( "modifier_dw_shadow", self:GetCaster() ) / 100
 end
 
 function modifier_dw_shadow_talent:GetEffectName()
@@ -229,12 +207,14 @@ function modifier_dw_shadow_talent:IsDebuff()
 end
 
 modifier_dw_shadow_damage = class({})
-function modifier_dw_shadow_damage:OnCreated(table)
+function modifier_dw_shadow_damage:OnCreated(kv)
     self.bonus_ar = self:GetTalentSpecialValueFor("attack_range_bonus")
+	self.damage = kv.damage
 end
 
-function modifier_dw_shadow_damage:OnRefresh(table)
+function modifier_dw_shadow_damage:OnRefresh(kv)
     self.bonus_ar = self:GetTalentSpecialValueFor("attack_range_bonus")
+	self.damage = kv.damage
 end
 
 function modifier_dw_shadow_damage:DeclareFunctions()
@@ -249,6 +229,7 @@ end
 function modifier_dw_shadow_damage:OnAttack(params)
 	if IsServer() then
 		local caster = self:GetCaster()
+		local ability = self:GetAbility()
 		local attacker = params.attacker
 		local target = params.target
 
@@ -258,8 +239,11 @@ function modifier_dw_shadow_damage:OnAttack(params)
 			local time = distance/speed
 
 			EmitSoundOn("Hero_DarkWillow.Shadow_Realm.Attack", attacker)
-
-			self:GetAbility():FireTrackingProjectile("", target, caster:GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 250)
+			
+			local projectile = ability:FireTrackingProjectile("", target, caster:GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 250)
+			ability.projectiles = ability.projectiles or {}
+			ability.projectiles[projectile] = {}
+			ability.projectiles[projectile].damage = self.damage
 
 			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_dark_willow/dark_willow_shadow_attack.vpcf", PATTACH_POINT, caster)
 						ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT, "attach_attack1", caster:GetAbsOrigin(), true)
@@ -282,12 +266,12 @@ function modifier_dw_shadow_damage:IsDebuff()
 end
 
 modifier_dw_shadow_bonus_as = class({})
-function modifier_dw_shadow_bonus_as:OnCreated(table)
-    self.bonus_as = self:GetAbility().bonus_as
+function modifier_dw_shadow_bonus_as:OnCreated(kv)
+    self.bonus_as = kv.attackspeed
 end
 
-function modifier_dw_shadow_bonus_as:OnRefresh(table)
-    self.bonus_as = self:GetAbility().bonus_as
+function modifier_dw_shadow_bonus_as:OnRefresh(kv)
+    self.bonus_as = kv.attackspeed
 end
 
 function modifier_dw_shadow_bonus_as:DeclareFunctions()

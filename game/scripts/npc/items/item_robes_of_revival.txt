@@ -21,6 +21,7 @@
 		
 		"AvailableRuneSlots"			"0"
 		"AbilityCooldown"				"28 27 26 25 24 23 22 21 20"
+		"AbilitySharedCooldown"			"robesofrevival"
 		"AbilityManaCost"				"60"
 		
 		// Special	
@@ -108,6 +109,7 @@
 		
 		"AvailableRuneSlots"			"1"
 		"AbilityCooldown"				"28 27 26 25 24 23 22 21 20"
+		"AbilitySharedCooldown"			"robesofrevival"
 		"AbilityManaCost"				"60"
 		
 		// Special	
@@ -196,6 +198,7 @@
 		
 		"AvailableRuneSlots"			"1"
 		"AbilityCooldown"				"28 27 26 25 24 23 22 21 20"
+		"AbilitySharedCooldown"			"robesofrevival"
 		"AbilityManaCost"				"60"
 		
 		// Special	
@@ -284,6 +287,7 @@
 		
 		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"28 27 26 25 24 23 22 21 20"
+		"AbilitySharedCooldown"			"robesofrevival"
 		"AbilityManaCost"				"60"
 		
 		// Special	
@@ -372,6 +376,7 @@
 		
 		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"28 27 26 25 24 23 22 21 20"
+		"AbilitySharedCooldown"			"robesofrevival"
 		"AbilityManaCost"				"60"
 		
 		// Special	
@@ -460,6 +465,7 @@
 		
 		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"28 27 26 25 24 23 22 21 20"
+		"AbilitySharedCooldown"			"robesofrevival"
 		"AbilityManaCost"				"60"
 		
 		// Special	
@@ -548,6 +554,7 @@
 		
 		"AvailableRuneSlots"			"3"
 		"AbilityCooldown"				"28 27 26 25 24 23 22 21 20"
+		"AbilitySharedCooldown"			"robesofrevival"
 		"AbilityManaCost"				"60"
 		
 		// Special	
@@ -635,6 +642,7 @@
 		
 		"AvailableRuneSlots"			"3"
 		"AbilityCooldown"				"28 27 26 25 24 23 22 21 20"
+		"AbilitySharedCooldown"			"robesofrevival"
 		"AbilityManaCost"				"60"
 		
 		// Special	
@@ -723,6 +731,7 @@
 		
 		"AvailableRuneSlots"			"3"
 		"AbilityCooldown"				"28 27 26 25 24 23 22 21 20"
+		"AbilitySharedCooldown"			"robesofrevival"
 		"AbilityManaCost"				"60"
 		
 		// Special	

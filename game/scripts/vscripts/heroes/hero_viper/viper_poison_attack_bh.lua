@@ -8,24 +8,6 @@ function viper_poison_attack_bh:GetIntrinsicModifierName()
 	return "modifier_viper_poison_attack_bh_autocast"
 end
 
-function viper_poison_attack_bh:GetCooldown( iLvl )
-	if self:GetCaster():HasTalent("special_bonus_unique_viper_poison_attack_2") then
-		return 0
-	else
-		return self.BaseClass.GetCooldown( self, iLvl )
-	end
-end
-
-
-function viper_poison_attack_bh:GetManaCost( iLvl )
-	if self:GetCaster():HasTalent("special_bonus_unique_viper_poison_attack_2") then
-		return 0
-	else
-		return self.BaseClass.GetManaCost( self, iLvl )
-	end
-end
-
-
 function viper_poison_attack_bh:OnSpellStart()
 	local target = self:GetCursorTarget()
 	self.forceCast = true
@@ -66,9 +48,6 @@ function viper_poison_attack_bh:OnProjectileHit(target, position)
 	if target then
 		local caster = self:GetCaster()
 		local duration = self:GetTalentSpecialValueFor("duration") + 0.1
-		if caster:HasTalent("special_bonus_unique_viper_poison_attack_1") then
-			target:Paralyze(self, caster, caster:FindTalentValue("special_bonus_unique_viper_poison_attack_1"))
-		end
 		target:AddNewModifier( caster, self, "modifier_viper_poison_attack_bh", {duration = duration})
 		target:EmitSound("hero_viper.PoisonAttack.Target")
 	end
@@ -78,22 +57,22 @@ modifier_viper_poison_attack_bh = class({})
 LinkLuaModifier("modifier_viper_poison_attack_bh", "heroes/hero_viper/viper_poison_attack_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_viper_poison_attack_bh:OnCreated()
-	self.as = self:GetTalentSpecialValueFor("bonus_attack_speed")
-	self.ms = self:GetTalentSpecialValueFor("bonus_movement_speed")
-	self.dmg = self:GetTalentSpecialValueFor("damage")
-	if IsServer() then
-		self.tick = ( self:GetRemainingTime() / self:GetTalentSpecialValueFor("duration") + 0.1 ) * 1
-		self:StartIntervalThink( self.tick )
-	end
+	self:OnRefresh()
 end
 
 function modifier_viper_poison_attack_bh:OnRefresh()
-	self.as = self:GetTalentSpecialValueFor("bonus_attack_speed")
+	self.mr = self:GetTalentSpecialValueFor("mr_reduction")
 	self.ms = self:GetTalentSpecialValueFor("bonus_movement_speed")
 	self.dmg = self:GetTalentSpecialValueFor("damage")
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_viper_poison_attack_1")
+	self.talent1Threshold = self:GetCaster():FindTalentValue("special_bonus_unique_viper_poison_attack_1")
+	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_viper_poison_attack_2")
 	if IsServer() then
+		if self:GetStackCount() < self:GetTalentSpecialValueFor("max_stacks") then
+			self:IncrementStackCount()
+		end
 		local tick = ( self:GetRemainingTime() / self:GetTalentSpecialValueFor("duration") + 0.1 ) * 1
-		if tick - self.tick > 0.03 then
+		if tick - (self.tick or 0) > 0.03 then
 			self.tick = tick
 			self:StartIntervalThink( self.tick )
 		end
@@ -102,19 +81,44 @@ end
 
 function modifier_viper_poison_attack_bh:OnIntervalThink()
 	local parent = self:GetParent()
-	self:GetAbility():DealDamage( self:GetCaster(), parent, math.max( 1, ( 100 - parent:GetHealth()/parent:GetMaxHealth() * 100 ) * self.dmg ), {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE )
+	local ability = self:GetAbility()
+	local damage = ability:DealDamage( self:GetCaster(), parent, self.dmg * self:GetStackCount(), {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE )
+	if self.talent2 then
+		self.talent2Bomb = (self.talent2Bomb or 0) + damage
+	end
+	if self.talent1 and self:GetStackCount() > self.talent1Threshold then
+		ability:Stun(parent, 0.1)
+	end
+end
+
+function modifier_viper_poison_attack_bh:OnDestroy()
+	if self.talent2Bomb then
+		local caster = self:GetCaster()
+		local ability = self:GetAbility()
+		local parent = self:GetParent()
+		local radius = caster:FindTalentValue("special_bonus_unique_viper_poison_attack_2")
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), radius ) ) do
+			if enemy ~= parent then
+				ability:DealDamage( caster, enemy, self.talent2Bomb, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION } )
+				if self.talent1 and self:GetStackCount() > self.talent1Threshold then
+					ability:Stun(enemy, 0.1)
+				end
+			end
+		end
+		ParticleManager:FireParticle("particles/units/heroes/hero_viper/viper_nethertoxin_impact_vibe.vpcf", PATTACH_POINT_FOLLOW, parent )
+	end
 end
 
 function modifier_viper_poison_attack_bh:DeclareFunctions()
-	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
 end
 
-function modifier_viper_poison_attack_bh:GetModifierAttackSpeedBonus()
-	return self.as
+function modifier_viper_poison_attack_bh:GetModifierMagicalResistanceBonus()
+	return self.mr * self:GetStackCount()
 end
 
 function modifier_viper_poison_attack_bh:GetModifierMoveSpeedBonus_Percentage()
-	return self.ms
+	return self.ms * self:GetStackCount()
 end
 
 function modifier_viper_poison_attack_bh:GetEffectName()

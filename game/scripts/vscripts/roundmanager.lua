@@ -115,7 +115,7 @@ function RoundManager:OnNPCSpawned(event)
 	Timers:CreateTimer(function()
 		if spawnedUnit and not spawnedUnit:IsNull() then
 			-- set up handlers
-			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_handler_handler", {})
+			local handler = spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_handler_handler", {})
 			if spawnedUnit:IsAlive() and spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS then
 				AddFOWViewer(DOTA_TEAM_GOODGUYS, spawnedUnit:GetAbsOrigin(), 516, 3, false) -- show spawns
 				if spawnedUnit:IsRoundNecessary() then
@@ -778,7 +778,6 @@ function RoundManager:InitializeUnit(unit, bElite)
 		end
 		
 		for i = 1, ELITE_ABILITIES_TO_GIVE do
-			print( i, "giving elite abilities" )
 			local roll = RandomInt(1, #eliteTypes)
 			local eliteAbName = eliteTypes[roll]
 			table.remove(eliteTypes, roll)
@@ -815,7 +814,6 @@ function RoundManager:InitializeUnit(unit, bElite)
 	spellAmpScale = math.min( maxSpellAmpScale, spellAmpScale ) * ( (1 +  RoundManager:GetAscensions()) * 3 )
 	
 	if powerScale then powerScale:SetStackCount( spellAmpScale ) end
-	unit:AddNewModifier(unit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
 	if not unit:IsMinion() then
 		local evasion = unit:AddNewModifier(unit, nil, "modifier_boss_evasion", {})
 		if evasion then evasion:SetStackCount( RoundManager:GetAscensions() * 100 + math.min( RoundManager:GetRaidsFinished(), RAIDS_PER_ZONE * ZONE_COUNT ) ) end

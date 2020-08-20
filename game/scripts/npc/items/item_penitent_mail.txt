@@ -35,7 +35,7 @@
 		"UpgradeRecipe"					"item_recipe_penitent_mail_2"
 		
 		"AvailableRuneSlots"			"0"
-	
+		"AbilitySharedCooldown"			"penitentmail"
 		"AbilityCooldown"				"15"
 		
 		// Special	
@@ -45,7 +45,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"20 30 40 50 60 70 80 90 100"
+				"reflect"				"15 20 25 30 35 40 45 50 55"
 			}
 			"02"
 			{
@@ -142,7 +142,7 @@
 		"UpgradeRecipe"					"item_recipe_penitent_mail_2"
 		
 		"AvailableRuneSlots"			"1"
-	
+		"AbilitySharedCooldown"			"penitentmail"
 		"AbilityCooldown"				"15"
 		
 		// Special	
@@ -152,7 +152,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"20 30 40 50 60 70 80 90 100"
+				"reflect"				"15 20 25 30 35 40 45 50 55"
 			}
 			"02"
 			{
@@ -250,7 +250,7 @@
 		"UpgradeRecipe"					"item_recipe_penitent_mail_2"
 		
 		"AvailableRuneSlots"			"1"
-	
+		"AbilitySharedCooldown"			"penitentmail"
 		"AbilityCooldown"				"15"
 		
 		// Special	
@@ -260,7 +260,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"20 30 40 50 60 70 80 90 100"
+				"reflect"				"15 20 25 30 35 40 45 50 55"
 			}
 			"02"
 			{
@@ -358,7 +358,7 @@
 		"UpgradeRecipe"					"item_recipe_penitent_mail_2"
 		
 		"AvailableRuneSlots"			"2"
-	
+		"AbilitySharedCooldown"			"penitentmail"
 		"AbilityCooldown"				"15"
 		
 		// Special	
@@ -368,7 +368,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"20 30 40 50 60 70 80 90 100"
+				"reflect"				"15 20 25 30 35 40 45 50 55"
 			}
 			"02"
 			{
@@ -466,7 +466,7 @@
 		"UpgradeRecipe"					"item_recipe_penitent_mail_2"
 		
 		"AvailableRuneSlots"			"2"
-	
+		"AbilitySharedCooldown"			"penitentmail"
 		"AbilityCooldown"				"15"
 		
 		// Special	
@@ -476,7 +476,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"20 30 40 50 60 70 80 90 100"
+				"reflect"				"15 20 25 30 35 40 45 50 55"
 			}
 			"02"
 			{
@@ -574,7 +574,7 @@
 		"UpgradeRecipe"					"item_recipe_penitent_mail_2"
 		
 		"AvailableRuneSlots"			"2"
-	
+		"AbilitySharedCooldown"			"penitentmail"
 		"AbilityCooldown"				"15"
 		
 		// Special	
@@ -584,7 +584,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"20 30 40 50 60 70 80 90 100"
+				"reflect"				"15 20 25 30 35 40 45 50 55"
 			}
 			"02"
 			{
@@ -682,7 +682,7 @@
 		"UpgradeRecipe"					"item_recipe_penitent_mail_2"
 		
 		"AvailableRuneSlots"			"3"
-	
+		"AbilitySharedCooldown"			"penitentmail"
 		"AbilityCooldown"				"15"
 		
 		// Special	
@@ -692,7 +692,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"20 30 40 50 60 70 80 90 100"
+				"reflect"				"15 20 25 30 35 40 45 50 55"
 			}
 			"02"
 			{
@@ -790,7 +790,7 @@
 		"UpgradeRecipe"					"item_recipe_penitent_mail_2"
 		
 		"AvailableRuneSlots"			"3"
-	
+		"AbilitySharedCooldown"			"penitentmail"
 		"AbilityCooldown"				"15"
 		
 		// Special	
@@ -800,7 +800,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"20 30 40 50 60 70 80 90 100"
+				"reflect"				"15 20 25 30 35 40 45 50 55"
 			}
 			"02"
 			{
@@ -898,7 +898,7 @@
 		"UpgradeRecipe"					"item_recipe_penitent_mail_2"
 		
 		"AvailableRuneSlots"			"3"
-	
+		"AbilitySharedCooldown"			"penitentmail"
 		"AbilityCooldown"				"15"
 		
 		// Special	
@@ -908,7 +908,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"20 30 40 50 60 70 80 90 100"
+				"reflect"				"15 20 25 30 35 40 45 50 55"
 			}
 			"02"
 			{

@@ -41,7 +41,7 @@ function modifier_boss_genesis_pacifism:OnAttack(params)
 end
 
 function modifier_boss_genesis_pacifism:GetAbsorbSpell(params)
-	if params.ability:GetCaster():GetTeam() ~= self:GetParent():GetTeam() and ability:IsCooldownReady() and not self:GetParent():PassivesDisabled() then
+	if params.ability and params.ability:GetCaster():GetTeam() ~= self:GetParent():GetTeam() and ability:IsCooldownReady() and not self:GetParent():PassivesDisabled() then
 		local duration = self:GetSpecialValueFor("duration")
 		params.ability:GetCaster():Disarm( self:GetParent(), ability, duration)
 		params.ability:GetCaster():Silence( self:GetParent(), ability, duration)

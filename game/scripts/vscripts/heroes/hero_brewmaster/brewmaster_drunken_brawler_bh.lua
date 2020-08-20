@@ -27,13 +27,8 @@ LinkLuaModifier("modifier_brewmaster_drunken_brawler_bh_handler", "heroes/hero_b
 function modifier_brewmaster_drunken_brawler_bh_handler:IsHidden() return true end
 
 function modifier_brewmaster_drunken_brawler_bh_handler:OnCreated()
-	self.crit_chance = self:GetTalentSpecialValueFor("crit_chance")
-	self.crit_damage = self:GetTalentSpecialValueFor("crit_multiplier")
-	self.evasion = self:GetTalentSpecialValueFor("dodge_chance")
-	self.delay = self:GetTalentSpecialValueFor("last_proc")
-	if IsServer() then 
-		self.lastCrit = self.delay
-		self.lastDodge = self.delay
+	self:OnRefresh()
+	if IsServer() then
 		self:StartIntervalThink(0.1) 
 	end
 end
@@ -46,6 +41,13 @@ function modifier_brewmaster_drunken_brawler_bh_handler:OnRefresh()
 	if IsServer() then 
 		self.lastCrit = self.delay
 		self.lastDodge = self.delay
+		self:GetParent():HookInModifier("GetModifierCriticalDamage", self)
+	end
+end
+
+function modifier_brewmaster_drunken_brawler_bh_handler:OnDestroy()
+	if IsServer() then
+		self:GetParent():HookOutModifier("GetModifierCriticalDamage", self)
 	end
 end
 
@@ -71,13 +73,12 @@ function modifier_brewmaster_drunken_brawler_bh_handler:OnIntervalThink()
 end
 
 function modifier_brewmaster_drunken_brawler_bh_handler:DeclareFunctions()
-	return {MODIFIER_PROPERTY_EVASION_CONSTANT, 
-			MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE, 
+	return {MODIFIER_PROPERTY_EVASION_CONSTANT,
 			MODIFIER_EVENT_ON_ATTACK_FAIL,
 			MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
 
-function modifier_brewmaster_drunken_brawler_bh_handler:GetModifierPreAttack_CriticalStrike(params)
+function modifier_brewmaster_drunken_brawler_bh_handler:GetModifierCriticalDamage(params)
 	self.crit = self:GetParent():HasModifier("modifier_brewmaster_drunken_brawler_bh_crit") or self:RollPRNG( self.crit_chance )
 	if self.crit then
 		return self.crit_damage

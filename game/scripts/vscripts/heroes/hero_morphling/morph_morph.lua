@@ -84,23 +84,20 @@ function morph_morph:OnSpellStart()
 		local incoming = self:GetTalentSpecialValueFor("incoming")
 
 		EmitSoundOn("Hero_Morphling.Replicate", caster)
-		
-		local callback = (function( illusion, parent, caster, ability )
-			FindClearSpaceForUnit(illusion, illusion:GetAbsOrigin(), true)
-			local duration = ability:GetTalentSpecialValueFor("duration")
-			caster:AddNewModifier(caster, ability, "modifier_morph_morph", {Duration = duration})
-			illusion:AddNewModifier(caster, ability, "modifier_morph_morph", {Duration = duration})
+		local illusions = target:ConjureImage( {outgoing_damage = outgoing, incoming_damage = incoming}, duration, caster, 1 )
+		FindClearSpaceForUnit(illusions[1], illusions[1]:GetAbsOrigin(), true)
+		local duration = self:GetTalentSpecialValueFor("duration")
+		caster:AddNewModifier(caster, self, "modifier_morph_morph", {Duration = duration})
+		illusions[1]:AddNewModifier(caster, self, "modifier_morph_morph", {Duration = duration})
 
-			if caster:HasTalent("special_bonus_unique_morph_morph_2") then
-				illusion:AddNewModifier(caster, ability, "modifier_morph_morph_water", {})
-			end
-			self.clone = illusion
-			
-			if caster:HasScepter() then
-				illusion:AddNewModifier(caster, ability, "modifier_morph_morph_scepter", {})
-			end
-		end)
-		target:ConjureImage( target:GetAbsOrigin(), duration, outgoing, incoming, nil, self, true, caster, callback )
+		if caster:HasTalent("special_bonus_unique_morph_morph_2") then
+			illusions[1]:AddNewModifier(caster, self, "modifier_morph_morph_water", {})
+		end
+		self.clone = illusions[1]
+		
+		if caster:HasScepter() then
+			illusions[1]:AddNewModifier(caster, self, "modifier_morph_morph_scepter", {})
+		end
 		self:EndCooldown()
 	end
 end

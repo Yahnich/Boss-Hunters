@@ -70,42 +70,52 @@ modifier_viper_nethertoxin_bh_debuff = class({})
 LinkLuaModifier("modifier_viper_nethertoxin_bh_debuff", "heroes/hero_viper/viper_nethertoxin_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_viper_nethertoxin_bh_debuff:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.min_damage = self:GetTalentSpecialValueFor("min_damage")
+	self.damage = self.min_damage
+	self.max_damage = self:GetTalentSpecialValueFor("max_damage")
+	self.max_delay = self:GetTalentSpecialValueFor("max_delay")
+	self.damage_gain = ( (self.max_damage - self.min_damage) / self.max_delay ) * 0.5
 	self.mr = self:GetTalentSpecialValueFor("magic_resistance")
 	if IsServer() then
-		self:StartIntervalThink( 1 )
-		if self:GetCaster():HasTalent("special_bonus_unique_viper_nethertoxin_2") then
-			local nFX = ParticleManager:CreateParticle( "particles/generic_gameplay/generic_silence.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() )
-			self:AddEffect(nFX)
-		end
+		self:StartIntervalThink( 0.5 )
 	end
 end
 
 function modifier_viper_nethertoxin_bh_debuff:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.min_damage = self:GetTalentSpecialValueFor("min_damage")
+	self.max_damage = self:GetTalentSpecialValueFor("max_damage")
+	self.max_delay = self:GetTalentSpecialValueFor("max_delay")
+	self.damage_gain = ( (self.max_damage - self.min_damage) / self.max_delay ) * 0.5
 	self.mr = self:GetTalentSpecialValueFor("magic_resistance")
 end
 
 function modifier_viper_nethertoxin_bh_debuff:OnIntervalThink()
 	local parent = self:GetParent()
 	parent:EmitSound("Hero_Viper.NetherToxin.Damage")
-	self:GetAbility():DealDamage( self:GetCaster(), parent, self.damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE )
+	self:GetAbility():DealDamage( self:GetCaster(), parent, self.damage * 0.5, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE )
+	if self.damage < self.max_damage then
+		self.damage = math.min( self.max_damage, self.damage + self.damage_gain )
+		if self.damage == self.max_damage then
+			self.triggeredBreak = true
+		
+			local breakFX = ParticleManager:CreateParticle( "particles/generic_gameplay/generic_break.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() )
+			self:AddEffect(breakFX)
+			if self:GetCaster():HasTalent("special_bonus_unique_viper_nethertoxin_2") then 
+				local silenceFX = ParticleManager:CreateParticle( "particles/generic_gameplay/generic_silence.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() )
+				self:AddEffect(silenceFX)
+			end
+		end
+	end
 end
 
 function modifier_viper_nethertoxin_bh_debuff:CheckState()
-	local state = {[MODIFIER_STATE_PASSIVES_DISABLED] = true}
-	if self:GetCaster():HasTalent("special_bonus_unique_viper_nethertoxin_2") then
-		state[MODIFIER_STATE_SILENCED] = true
+	if self.triggeredBreak then
+		local state = {[MODIFIER_STATE_PASSIVES_DISABLED] = true}
+		if self:GetCaster():HasTalent("special_bonus_unique_viper_nethertoxin_2") then
+			state[MODIFIER_STATE_SILENCED] = true
+		end
+		return state
 	end
-	return state
-end
-
-function modifier_viper_nethertoxin_bh_debuff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
-end
-
-function modifier_viper_nethertoxin_bh_debuff:GetModifierMagicalResistanceBonus()
-	return self.mr
 end
 
 function modifier_viper_nethertoxin_bh_debuff:GetEffectName()

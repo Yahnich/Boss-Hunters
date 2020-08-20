@@ -86,7 +86,7 @@ function modifier_juggernaut_dance_of_blades:OnIntervalThink()
 		self.freezeDuration = self.freezeDuration or self:GetRemainingTime()
 		self:SetDuration( -1, true )
 	end
-	return tick
+	self:StartIntervalThink(self.tick)
 end
 
 function modifier_juggernaut_dance_of_blades:DeclareFunctions()

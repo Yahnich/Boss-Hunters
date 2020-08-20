@@ -1,5 +1,4 @@
 ember_remnant_jump = class({})
-LinkLuaModifier("modifier_ember_remnant_jump", "heroes/hero_ember_spirit/ember_remnant_jump", LUA_MODIFIER_MOTION_NONE)
 
 function ember_remnant_jump:IsStealable()
 	return false
@@ -9,13 +8,8 @@ function ember_remnant_jump:IsHiddenWhenStolen()
 	return false
 end
 
-function ember_remnant_jump:GetCooldown(iLvl)
-    local cooldown = self.BaseClass.GetCooldown(self, iLvl)
-    local caster = self:GetCaster()
-    local talent = "special_bonus_unique_ember_remnant_jump_1"
-    local value = caster:FindTalentValue("special_bonus_unique_ember_remnant_jump_1")
-    if caster:HasTalent( talent ) then cooldown = cooldown + value end
-    return cooldown
+function ember_remnant_jump:GetIntrinsicModifierName()
+	return "modifier_ember_remnant_jump_passive"
 end
 
 function ember_remnant_jump:OnSpellStart()
@@ -30,12 +24,35 @@ function ember_remnant_jump:OnSpellStart()
 			table.insert(self.totesRems, remnant)
 		end
 	end
+	local radius = self:GetTalentSpecialValueFor("radius")
+	local damage = self:GetTalentSpecialValueFor("damage")
+	EmitSoundOn("Hero_EmberSpirit.FireRemnant.Explode", caster)
+	ParticleManager:FireParticle("particles/units/heroes/hero_ember_spirit/ember_spirit_hit.vpcf", PATTACH_POINT_FOLLOW, caster )
+	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
+	for _,enemy in pairs(enemies) do
+		if not enemy:TriggerSpellAbsorb( self ) then
+			self:DealDamage(caster, enemy, damage, {}, 0)
+		end
+	end
 
 	ProjectileManager:ProjectileDodge(caster)
 	caster:AddNewModifier(caster, self, "modifier_ember_remnant_jump", {Duration = 10})
 end
 
+
+modifier_ember_remnant_jump_passive = class({})
+LinkLuaModifier("modifier_ember_remnant_jump_passive", "heroes/hero_ember_spirit/ember_remnant_jump", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_ember_remnant_jump_passive:OnCreated(table)
+	self:GetCaster().remnantJump = self:GetAbility()
+end
+
+function modifier_ember_remnant_jump_passive:IsHidden()
+	return true
+end
+
 modifier_ember_remnant_jump = class({})
+LinkLuaModifier("modifier_ember_remnant_jump", "heroes/hero_ember_spirit/ember_remnant_jump", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_ember_remnant_jump:OnCreated(table)
 	if IsServer() then
@@ -104,14 +121,14 @@ function modifier_ember_remnant_jump:DoControlledMotion()
 		for _,remnant in ipairs(ability.totesRems) do
 			table.remove(ability.totesRems, _)
 			if remnant then
-				EmitSoundOn("Hero_EmberSpirit.FireRemnant.Explode", remnant)
-				if not parent:HasTalent("special_bonus_unique_ember_remnant_jump_1") then
+				print( parent:HasTalent("special_bonus_unique_ember_remnant_jump_1"), #ability.totesRems )
+				if ( parent:HasTalent("special_bonus_unique_ember_remnant_jump_1") and #ability.totesRems == 0 ) or not parent:HasTalent("special_bonus_unique_ember_remnant_jump_1") then
 					remnant:ForceKill(false)
 				end
 			end
 			break
 		end
-
+		EmitSoundOn("Hero_EmberSpirit.FireRemnant.Explode", parent)
 		local enemies = parent:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.radius)
 		for _,enemy in pairs(enemies) do
 			if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then

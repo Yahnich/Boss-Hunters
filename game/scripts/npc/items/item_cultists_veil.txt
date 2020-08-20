@@ -1,0 +1,792 @@
+"DOTAAbilities"
+{
+	"item_cultists_veil"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2380"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_cultists_veil"
+		"AbilityTextureName"			"veil/cultists_veil_1"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"550"
+		"ItemShopTags"					"magic"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"veil of discord"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+				
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"1"
+		
+		"AvailableRuneSlots"			"0"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"55"
+		"AbilitySharedCooldown"			"cultistsveil"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_cost_reduction"	"10 15 20 25 30 35 40 45 50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"600"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"16"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_spell_dmg"		"12 15 18 21 24 27 30 33 36"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 2
+	//=================================================================================================================
+	"item_recipe_cultists_veil_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2381"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1150"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_cultists_veil_2"
+		"ItemRequirements"
+		{
+			"01"						"item_cultists_veil"
+		}
+	}
+	"item_cultists_veil_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2382"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_cultists_veil"
+		"AbilityTextureName"			"veil/cultists_veil_2"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"soul ring"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"2"
+		
+		"AvailableRuneSlots"			"1"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"55"
+		"AbilitySharedCooldown"			"cultistsveil"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_cost_reduction"	"10 15 20 25 30 35 40 45 50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"600"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"16"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_spell_dmg"		"12 15 18 21 24 27 30 33 36"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_cultists_veil_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2383"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_cultists_veil_3"
+		"ItemRequirements"
+		{
+			"01"						"item_cultists_veil_2;item_recipe_cultists_veil_2"
+		}
+	}
+	
+	"item_cultists_veil_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2384"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_cultists_veil"
+		"AbilityTextureName"			"veil/cultists_veil_3"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"soul ring"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"3"
+		
+		"AvailableRuneSlots"			"1"
+	
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"55"
+		"AbilitySharedCooldown"			"cultistsveil"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_cost_reduction"	"10 15 20 25 30 35 40 45 50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"600"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"16"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_spell_dmg"		"12 15 18 21 24 27 30 33 36"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_cultists_veil_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2385"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_cultists_veil_4"
+		"ItemRequirements"
+		{
+			"01"						"item_cultists_veil_3;item_recipe_cultists_veil_2"
+		}
+	}
+	
+	"item_cultists_veil_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2386"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_cultists_veil"
+		"AbilityTextureName"			"veil/cultists_veil_4"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"soul ring"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"4"
+		
+		"AvailableRuneSlots"			"2"
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"55"
+		"AbilitySharedCooldown"			"cultistsveil"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_cost_reduction"	"10 15 20 25 30 35 40 45 50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"600"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"16"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_spell_dmg"		"12 15 18 21 24 27 30 33 36"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_cultists_veil_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2387"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_cultists_veil_5"
+		"ItemRequirements"
+		{
+			"01"						"item_cultists_veil_4;item_recipe_cultists_veil_2"
+		}
+	}
+	
+	"item_cultists_veil_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2388"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_cultists_veil"
+		"AbilityTextureName"			"veil/cultists_veil_5"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"soul ring"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"5"
+		
+		"AvailableRuneSlots"			"2"
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+	
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"55"
+		"AbilitySharedCooldown"			"cultistsveil"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_cost_reduction"	"10 15 20 25 30 35 40 45 50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"600"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"16"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_spell_dmg"		"12 15 18 21 24 27 30 33 36"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_cultists_veil_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2389"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_cultists_veil_6"
+		"ItemRequirements"
+		{
+			"01"						"item_cultists_veil_5;item_recipe_cultists_veil_2"
+		}
+	}
+	
+	"item_cultists_veil_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2390"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_cultists_veil"
+		"AbilityTextureName"			"veil/cultists_veil_6"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"soul ring"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"6"
+		
+		"AvailableRuneSlots"			"2"
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+	
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"55"
+		"AbilitySharedCooldown"			"cultistsveil"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_cost_reduction"	"10 15 20 25 30 35 40 45 50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"600"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"16"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_spell_dmg"		"12 15 18 21 24 27 30 33 36"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_cultists_veil_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2391"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_cultists_veil_7"
+		"ItemRequirements"
+		{
+			"01"						"item_cultists_veil_6;item_recipe_cultists_veil_2"
+		}
+	}
+	
+	"item_cultists_veil_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2392"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_cultists_veil"
+		"AbilityTextureName"			"veil/cultists_veil_7"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"soul ring"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"7"
+		
+		"AvailableRuneSlots"			"3"
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"55"
+		"AbilitySharedCooldown"			"cultistsveil"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_cost_reduction"	"10 15 20 25 30 35 40 45 50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"600"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"16"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_spell_dmg"		"12 15 18 21 24 27 30 33 36"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_cultists_veil_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2393"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_cultists_veil_8"
+		"ItemRequirements"
+		{
+			"01"						"item_cultists_veil_7;item_recipe_cultists_veil_2"
+		}
+	}
+	
+	"item_cultists_veil_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2394"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_cultists_veil"
+		"AbilityTextureName"			"veil/cultists_veil_8"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"soul ring"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"8"
+		
+		"AvailableRuneSlots"			"3"
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"55"
+		"AbilitySharedCooldown"			"cultistsveil"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_cost_reduction"	"10 15 20 25 30 35 40 45 50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"600"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"16"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_spell_dmg"		"12 15 18 21 24 27 30 33 36"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_cultists_veil_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2395"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_cultists_veil_9"
+		"ItemRequirements"
+		{
+			"01"						"item_cultists_veil_8;item_recipe_cultists_veil_2"
+		}
+	}
+	
+	"item_cultists_veil_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2396"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_cultists_veil"
+		"AbilityTextureName"			"veil/cultists_veil_9"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"soul ring"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"9"
+		
+		"AvailableRuneSlots"			"3"
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"55"
+		"AbilitySharedCooldown"			"cultistsveil"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_cost_reduction"	"10 15 20 25 30 35 40 45 50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"600"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"16"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_spell_dmg"		"12 15 18 21 24 27 30 33 36"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+}

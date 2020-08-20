@@ -87,6 +87,15 @@ function modifier_lycan_apex_predator_aura:OnCreated()
 			self.chance = self:GetCaster():FindTalentValue("special_bonus_unique_lycan_shapeshift_2")
 		end
 	end
+	if IsServer() then
+		self:GetParent():HookInModifier("GetModifierCriticalDamage", self)
+	end
+end
+
+function modifier_lycan_apex_predator_aura:OnDestroy()
+	if IsServer() then
+		self:GetParent():HookOutModifier("GetModifierCriticalDamage", self)
+	end
 end
 
 function modifier_lycan_apex_predator_aura:OnIntervalThink()
@@ -100,21 +109,11 @@ function modifier_lycan_apex_predator_aura:OnIntervalThink()
 	end
 end
 
-function modifier_lycan_apex_predator_aura:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
-			MODIFIER_PROPERTY_TOOLTIP,
-			}
-end
-
-function modifier_lycan_apex_predator_aura:GetModifierPreAttack_CriticalStrike()
+function modifier_lycan_apex_predator_aura:GetModifierCriticalDamage()
 	if IsClient() then
 		return self.damage
 	end
 	if self:RollPRNG( self.chance ) then
 		return self.damage
 	end
-end
-
-function modifier_lycan_apex_predator_aura:OnTooltip()
-	return self.chance
 end

@@ -1532,18 +1532,18 @@
 	
 		"Ability1"						"pl_spirit_lance"
 		"Ability2"						"pl_doppelganger"
-		"Ability3"						"pl_false_edge"
-		"Ability4"						"pl_phantom_rush"
-		"Ability6"						"pl_juxtapose"
+		"Ability3"						"pl_phantom_rush"
+		"Ability4"						"pl_juxtapose"
+		"Ability6"						"pl_false_edge"
 	
 		"Ability10"						"special_bonus_unique_pl_spirit_lance_1"
 		"Ability11"						"special_bonus_unique_pl_spirit_lance_2"
 		"Ability12"						"special_bonus_unique_pl_doppelganger_1"
 		"Ability13"						"special_bonus_unique_pl_doppelganger_2"
-		"Ability14"      	 			"special_bonus_unique_pl_false_edge_1"
-	    "Ability15"      	 			"special_bonus_unique_pl_false_edge_2"
-	    "Ability16"    		 	  		"special_bonus_unique_pl_juxtapose_2"
-	    "Ability17"  	     			"special_bonus_unique_pl_juxtapose_1"
+	    "Ability14"    		 	  		"special_bonus_unique_pl_phantom_rush_2"
+	    "Ability15"  	     			"special_bonus_unique_pl_phantom_rush_1"
+		"Ability16"      	 			"special_bonus_unique_pl_false_edge_1"
+	    "Ability17"      	 			"special_bonus_unique_pl_false_edge_2"
 	}
 	"npc_dota_hero_phoenix" // Justicar
 	{
@@ -1676,7 +1676,7 @@
 		"Ability1"						"razor_plasma_field_bh"					// Ability 2
 		"Ability2"						"razor_static_link_bh"					// Ability 2
 		"Ability3"						"razor_unstable_current_bh"					// Ability 3
-		"Ability4"						"razor_static_shock"					// Ability 3
+		"Ability4"						"razor_storm_surge_bh"					// Ability 3
 		"Ability6"						"razor_eye_of_the_storm_bh"					// Ability 3
 
 		"Ability10"						"special_bonus_unique_razor_plasma_field_bh_1"
@@ -2041,7 +2041,7 @@
 		"override_hero"					"npc_dota_hero_storm_spirit"
 		"Ability1"						"ss_static_remnant"
 		"Ability2"						"ss_electric_vortex"
-		"Ability3"						"ss_thunder_punch"
+		"Ability3"						"ss_voltaic_surge"
 		"Ability4"						"ss_overload"
 		"Ability6"						"ss_ball_lightning"
 		
@@ -2049,8 +2049,8 @@
 		"Ability11"						"special_bonus_unique_ss_static_remnant_2"
 		"Ability12"						"special_bonus_unique_ss_electric_vortex_1"
 		"Ability13"						"special_bonus_unique_ss_electric_vortex_2"
-		"Ability14"						"special_bonus_unique_ss_thunder_punch_1"
-		"Ability15"						"special_bonus_unique_ss_thunder_punch_2"
+		"Ability14"						"special_bonus_unique_ss_voltaic_surge_1"
+		"Ability15"						"special_bonus_unique_ss_voltaic_surge_2"
 		"Ability16"						"special_bonus_unique_ss_ball_lightning_1"
 		"Ability17"						"special_bonus_unique_ss_ball_lightning_2"
 	}

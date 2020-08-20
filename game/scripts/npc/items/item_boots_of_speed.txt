@@ -16,7 +16,7 @@
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"650"
+		"ItemCost"						"450"
 		"ItemShopTags"					"taunt;aggro;threat"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"blade mail;penitent mail"

@@ -514,13 +514,13 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"reduction"				"-80"
+				"reduction"				"80"
 				"LinkedSpecialBonus"	"special_bonus_unique_ursa_enrage_bh_2"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"status_resist"			"-50 -50 -50 -60 -70 -80"
+				"status_resist"			"50 50 50 60 70 80"
 				"LinkedSpecialBonus"	"special_bonus_unique_ursa_enrage_bh_2"
 			}
 			"05"
@@ -572,7 +572,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"-10"
+				"value"						"10"
 			}
 		}
 	}

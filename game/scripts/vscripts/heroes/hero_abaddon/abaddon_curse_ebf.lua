@@ -28,6 +28,7 @@ end
 
 function modifier_abaddon_curse_passive:OnTakeDamage(params)
 	if IsServer() then
+		if params.unit == self:GetParent() then return end
 		if params.attacker == self:GetParent() and not params.unit:HasModifier("modifier_abaddon_curse_curse") 
 		and ( ( params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK and not params.inflictor) 
 		or ( params.inflictor and params.attacker:HasAbility( params.inflictor:GetName() ) ) ) then

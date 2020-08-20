@@ -50,10 +50,10 @@ end
 function modifier_abaddon_brume_weaver_passive:OnTakeDamage(params)
 	if params.unit == self:GetParent() then
 		local damage = params.damage
-		local flHeal = math.ceil(params.damage * self.healFactor / self.healDuration)
+		local flHeal = math.max(params.damage * self.healFactor / self.healDuration, 0.1)
 		local healModifier = self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_abaddon_brume_weaver_handler_heal", {duration = self.healDuration})
 		if not healModifier then return end
-		healModifier:SetStackCount(flHeal)
+		healModifier:SetStackCount( math.floor( flHeal*10 ) )
 		local procBrume = ParticleManager:FireParticle("particles/abaddon_brume_proc_smoke3.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
 	end
 end
@@ -81,7 +81,7 @@ function modifier_abaddon_brume_weaver_handler_heal:DeclareFunctions()
 end
 
 function modifier_abaddon_brume_weaver_handler_heal:GetModifierConstantHealthRegen()
-	return self:GetStackCount()
+	return self:GetStackCount() / 10
 end
 
 function modifier_abaddon_brume_weaver_handler_heal:GetAttributes()

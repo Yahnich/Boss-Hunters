@@ -37,12 +37,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"blind"					"15"
+				"blind"					"15 15 15 15 17 20 25 30 35"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"radius"				"350 375 400 425 450 475 500 525 550"
+				"radius"				"350 375 425 450 500 550 550 550 550"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
 			}
 		}
 	}

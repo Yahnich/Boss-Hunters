@@ -108,7 +108,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"180"
+				"value"						"220"
 			}
 		}
 	}
@@ -289,11 +289,11 @@
 	
 	    // Time     
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "20"
+	    "AbilityCooldown"               "30 30 30 30 27 24 21"
 	
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityManaCost"               "35 60 85 110 135 160 185"
+	    "AbilityManaCost"               "85 85 85 85 100 115 130"
 	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -307,23 +307,41 @@
 			"02"
 	        {
 	            "var_type"                  "FIELD_FLOAT"
-	            "movement_slow"             "-35"
+	            "min_slow"					"-1"
+				"LinkedSpecialBonus"		"special_bonus_unique_undying_summon_zombies_1"
 	        }
 			"03"
 	        {
 	            "var_type"                  "FIELD_FLOAT"
-	            "turn_slow_tooltip"         "-35"
+	            "max_slow"         		    "-20 -25 -30 -35 -35 -35 -35"
+				"LinkedSpecialBonus"		"special_bonus_unique_undying_summon_zombies_1"
+				"LinkedSpecialBonusField"	"value2"
 	        }
 			"04"
 	        {
 	            "var_type"                  "FIELD_FLOAT"
-	            "damage"					"35 70 105 140 175 210 245"
+	            "min_dmg"					"-1"
+				"LinkedSpecialBonus"		"special_bonus_unique_undying_summon_zombies_1"
 	        }
 			"05"
 	        {
 	            "var_type"                  "FIELD_FLOAT"
-	            "heal_pct"         			"50"
-				"LinkedSpecialBonus"		"special_bonus_unique_undying_summon_zombies_2"
+	            "max_dmg"					"-20 -25 -30 -35 -35 -35 -35"
+	        }
+			"06"
+	        {
+	            "var_type"                  "FIELD_FLOAT"
+	            "damage"					"35 70 105 140 175 210 245"
+	        }
+			"07"
+	        {
+	            "var_type"                  "FIELD_FLOAT"
+	            "minimum_range"         	"900"
+	        }
+			"08"
+	        {
+	            "var_type"                  "FIELD_FLOAT"
+	            "maximum_range"         	"150"
 	        }
 	    }
 	}
@@ -345,7 +363,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"900"
+				"value"						"-14"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value2"					"-35"
 			}
 		}
 	}
@@ -367,7 +390,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"75"
+				"value"						"2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value2"					"1"
 			}
 		}
 	}
@@ -449,7 +477,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"75.0 75.0 75.0"
+		"AbilityCooldown"				"125"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -468,50 +496,23 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"30"
+				"duration"					"40 40 40 40 40 60"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"750"
+				"var_type"					"FIELD_FLOAT"
+				"bonus_strength"			"40 40 50 50 60 60"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"full_power_radius"			"200"
+				"var_type"					"FIELD_FLOAT"
+				"bonus_ms"					"35"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"max_damage_amp"			"20 25 30 35 40 45"
+				"var_type"					"FIELD_FLOAT"
+				"lifesteal"					"20 35 35 50 50 50"
 			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"min_damage_amp"			"1"
-				"LinkedSpecialBonus"		"special_bonus_unique_undying_flesh_golem_1"
-			}			
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"max_speed_slow"			"20"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"min_speed_slow"			"1"
-				"LinkedSpecialBonus"		"special_bonus_unique_undying_flesh_golem_1"
-			}
-			"08"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"death_heal"				"10"
-			}
-			"09"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"death_heal_creep"			"2"
-			}		
 		}
 	}
 	//=================================================================================================================
@@ -532,7 +533,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"19"
+				"value"						"10"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value2"					"25"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value3"					"300"
 			}
 		}
 	}
@@ -554,7 +565,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"10"
+				"value"						"15"
 			}
 			"02"
 			{

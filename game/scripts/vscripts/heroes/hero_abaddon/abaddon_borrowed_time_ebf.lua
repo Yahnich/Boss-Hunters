@@ -112,6 +112,7 @@ function modifier_abaddon_borrowed_time_active:DeclareFunctions()
 end
 
 function modifier_abaddon_borrowed_time_active:GetModifierIncomingDamage_Percentage(params)
+	if params.damage < 0 then return end
 	local parent = self:GetParent()
 	parent:HealEvent( params.damage, self:GetAbility(), self:GetCaster() )
 	ParticleManager:FireParticle("particles/units/heroes/hero_abaddon/abaddon_borrowed_time_heal.vpcf", PATTACH_POINT_FOLLOW, parent )

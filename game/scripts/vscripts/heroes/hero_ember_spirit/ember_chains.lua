@@ -19,24 +19,31 @@ function ember_chains:OnSpellStart()
 
 	local duration = self:GetTalentSpecialValueFor("duration")
 	local radius = self:GetTalentSpecialValueFor("radius")
-
+	local position = caster:GetAbsOrigin()
+	if caster:HasModifier("modifier_ember_fist") then
+		local fist = caster:FindModifierByName("modifier_ember_fist"):GetAbility()
+		if fist then
+			radius = radius + fist:GetTalentSpecialValueFor("radius")
+			position = fist:GetCursorPosition()
+		end
+	end
 	local maxTargets = self:GetTalentSpecialValueFor("unit_count")
 	local current = 0
 
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_ember_spirit/ember_spirit_searing_chains_cast.vpcf", PATTACH_POINT_FOLLOW, caster)
-				ParticleManager:SetParticleControl(nfx, 0, caster:GetAbsOrigin())
+				ParticleManager:SetParticleControl(nfx, 0, position)
 				ParticleManager:SetParticleControl(nfx, 1, Vector(radius, radius, radius))
 				ParticleManager:ReleaseParticleIndex(nfx)
 
-	local units = caster:FindAllUnitsInRadius(caster:GetAbsOrigin(), radius, {flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE})
+	local units = caster:FindEnemyUnitsInRadius( position, radius )
 	if #units > 0 then
 		for _,unit in pairs(units) do
-			if current < maxTargets then
-				if unit:GetTeam() ~= caster:GetTeam() and not unit:IsInvulnerable() then
+			if unit:GetTeam() ~= caster:GetTeam() and not unit:IsInvulnerable() then
+				if maxTargets > 0 or unit:IsMinion() then
 					EmitSoundOn("Hero_EmberSpirit.SearingChains.Cast", unit)
 
 					local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_ember_spirit/ember_spirit_searing_chains_start.vpcf", PATTACH_POINT, caster)
-								ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT, "attach_hitloc", caster:GetAbsOrigin(), true)
+								ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT, "attach_hitloc", position, true)
 								ParticleManager:SetParticleControlEnt(nfx, 1, unit, PATTACH_POINT_FOLLOW, "attach_hitloc", unit:GetAbsOrigin(), true)
 								ParticleManager:ReleaseParticleIndex(nfx)
 					if not unit:TriggerSpellAbsorb(self) then
@@ -52,32 +59,12 @@ function ember_chains:OnSpellStart()
 							unit:AddNewModifier(caster, self, "modifier_ember_chains_amp", {Duration = duration})
 						end
 					end
-					self:StartDelayedCooldown(duration)
-					current = current + 1
-				elseif unit:HasModifier("modifier_ember_remnant") then
-					EmitSoundOn("Hero_EmberSpirit.SearingChains.Cast", unit)
-
-					local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_ember_spirit/ember_spirit_searing_chains_start.vpcf", PATTACH_POINT, caster)
-								ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT, "attach_hitloc", caster:GetAbsOrigin(), true)
-								ParticleManager:SetParticleControlEnt(nfx, 1, unit, PATTACH_POINT_FOLLOW, "attach_hitloc", unit:GetAbsOrigin(), true)
-								ParticleManager:ReleaseParticleIndex(nfx)
-
-					local enemies = caster:FindEnemyUnitsInRadius(unit:GetAbsOrigin(), 400)
-					for _,enemy in pairs(enemies) do
-						if not enemy:TriggerSpellAbsorb(self) then
-							self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage")*duration)
-						end
+					if not unit:IsMinion() then
+						maxTargets = maxTargets - 1
 					end
-					unit:ForceKill(false)
-					current = current + 1
 				end
-			else
-				break
 			end
 		end
-	else
-		self:EndCooldown()
-		self:RefundManaCost()
 	end
 end
 

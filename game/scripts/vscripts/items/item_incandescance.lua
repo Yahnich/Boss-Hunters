@@ -58,10 +58,23 @@ modifier_item_incandescance = class(toggleModifierBaseClass)
 
 function modifier_item_incandescance:OnCreated()
 	self.radius = self:GetSpecialValueFor("radius")
+	self.damage = self:GetSpecialValueFor("damage")
+	if IsServer() then
+		self:StartIntervalThink( 1 )
+	end
 end
 
 function modifier_item_incandescance:OnRefresh()
 	self.radius = self:GetSpecialValueFor("radius")
+	self.damage = self:GetSpecialValueFor("damage")
+end
+
+function modifier_item_incandescance:OnIntervalThink()
+	local caster = self:GetCaster()
+	local ability = self:GetAbility()
+	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self.radius ) ) do
+		ability:DealDamage( caster, enemy, self.damage )
+	end
 end
 
 function modifier_item_incandescance:IsAura()
@@ -105,21 +118,10 @@ modifier_incandescance_debuff = class({})
 
 function modifier_incandescance_debuff:OnCreated()
 	self.blind = self:GetAbility():GetSpecialValueFor("blind")
-	if IsServer() then
-		self.damage = self:GetAbility():GetSpecialValueFor("damage")
-		self:StartIntervalThink(1)
-	end
 end
 
 function modifier_incandescance_debuff:OnRefresh()
-	self.blind = self:GetAbility():GetSpecialValueFor("blind")
-	if IsServer() then
-		self.damage = self:GetAbility():GetSpecialValueFor("damage")
-	end
-end
-
-function modifier_incandescance_debuff:OnIntervalThink()
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {damage_type = DAMAGE_TYPE_MAGICAL})
+	self.blind = math.max( self.blind, self:GetAbility():GetSpecialValueFor("blind") )
 end
 
 function modifier_incandescance_debuff:DeclareFunctions()
@@ -132,8 +134,4 @@ end
 
 function modifier_incandescance_debuff:GetEffectName()
 	return "particles/units/heroes/hero_invoker/invoker_chaos_meteor_burn_debuff.vpcf"
-end
-
-function modifier_incandescance_debuff:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE 
 end

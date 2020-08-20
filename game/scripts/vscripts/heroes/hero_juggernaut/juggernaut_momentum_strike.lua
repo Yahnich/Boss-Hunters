@@ -104,25 +104,28 @@ modifier_juggernaut_momentum_strike_passive = class({})
 LinkLuaModifier("modifier_juggernaut_momentum_strike_passive", "heroes/hero_juggernaut/juggernaut_momentum_strike", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_juggernaut_momentum_strike_passive:OnCreated()
-	self.crit_damage = self:GetTalentSpecialValueFor("critical_bonus")
-	self.crit_chance = self:GetTalentSpecialValueFor("critical_chance")
-	self.scepter_cdr = self:GetTalentSpecialValueFor("scepter_cdr_on_hit")
+	self:OnRefresh()
 end
 
 function modifier_juggernaut_momentum_strike_passive:OnRefresh()
 	self.crit_damage = self:GetTalentSpecialValueFor("critical_bonus")
 	self.crit_chance = self:GetTalentSpecialValueFor("critical_chance")
 	self.scepter_cdr = self:GetTalentSpecialValueFor("scepter_cdr_on_hit")
+	if IsServer() then
+		self:GetParent():HookInModifier("GetModifierCriticalDamage", self)
+	end
 end
 
-function modifier_juggernaut_momentum_strike_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE}
+function modifier_juggernaut_momentum_strike_passive:OnDestroy()
+	if IsServer() then
+		self:GetParent():HookOutModifier("GetModifierCriticalDamage", self)
+	end
 end
 
-function modifier_juggernaut_momentum_strike_passive:GetModifierPreAttack_CriticalStrike(params)
+function modifier_juggernaut_momentum_strike_passive:GetModifierCriticalDamage(params)
 	local caster = self:GetCaster()
 	local roll = self:RollPRNG( self.crit_chance  )
-	if roll then
+	if not caster:PassivesDisabled() and roll then
 		if self:GetAbility():IsCooldownReady() then
 			caster:AddNewModifier(caster, self:GetAbility(), "modifier_juggernaut_momentum_strike_momentum", {})
 		else

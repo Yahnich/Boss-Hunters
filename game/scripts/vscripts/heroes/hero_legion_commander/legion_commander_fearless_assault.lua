@@ -72,7 +72,7 @@ end
 function modifier_legion_commander_fearless_assault_buff:DeclareFunctions()
 	funcs = {
 				MODIFIER_EVENT_ON_TAKEDAMAGE,
-				MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT_ADJUST, 
+				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, 
 				MODIFIER_EVENT_ON_ATTACK,
 			}
 	return funcs
@@ -113,10 +113,6 @@ function modifier_legion_commander_fearless_assault_buff:GetModifierLifestealBon
 	end
 end
 
-function modifier_legion_commander_fearless_assault_buff:GetModifierAttackSpeedBonus(params)
+function modifier_legion_commander_fearless_assault_buff:GetModifierAttackSpeedBonus_Constant(params)
 	return 1000
-end
-
-function modifier_legion_commander_fearless_assault_buff:GetModifierBaseAttackTimeConstant_Adjust(params)
-	return -1.2
 end

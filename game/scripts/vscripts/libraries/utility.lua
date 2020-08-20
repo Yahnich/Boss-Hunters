@@ -281,6 +281,7 @@ function CDOTA_BaseNPC_Hero:CreateSummon(unitName, position, duration, bControll
 	if duration and duration > 0 then
 		local kill = summon:AddNewModifier(self, nil, "modifier_kill", {duration = duration})
 	end
+	summon:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
 	StartAnimation(summon, {activity = ACT_DOTA_SPAWN, rate = 1.5, duration = 2})
 	local endDur = summonMod:GetRemainingTime()
 	return summon, endDur
@@ -703,267 +704,106 @@ function CDOTA_BaseNPC:IsIllusion()
 	return isIllusion
 end
 
-function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, specIllusionModifier, ability, controllable, caster, callback )
-	local owner = caster or self
-	local original = self
-	local player = owner:GetPlayerID()
-	local respawnedIllusion
-	local unit_name = self:GetUnitName()
-	local origin = position or self:GetAbsOrigin() + RandomVector(100)
-	local outgoingDamage = outgoing or 0
-	local incomingDamage = incoming or 0
-	
-	if self:IsRealHero() then
-		self.illusionSpawnPool = self.illusionSpawnPool or {}
-		bControl = controllable
-		if bControl == nil then bControl = true end
-		-- handle_UnitOwner needs to be nil, else it will crash the game.
-		for i = #self.illusionSpawnPool, 1, -1 do
-			local illusion = self.illusionSpawnPool[i]
-			if illusion then
-				if illusion:IsNull() then
-					table.remove( self.illusionSpawnPool, i )
-				elseif not illusion:IsAlive() and not respawnedIllusion then
-					respawnedIllusion = illusion
-				end
+function CDOTA_BaseNPC:ConjureImage( illusionInfo, duration, caster, amount )
+	local illuInfo = illusionInfo or {}
+	illuInfo.outgoing_damage = illuInfo.outgoing_damage or 0
+	illuInfo.incoming_damage = illuInfo.incoming_damage or 0
+	if self:IsHero() then
+		illusionTable = CreateIllusions( caster or self , self, {outgoing_damage = illuInfo.outgoing_damage, incoming_damage = illuInfo.incoming_damage, duration = duration}, amount or 1, self:GetHullRadius() + self:GetCollisionPadding(), illuInfo.scramble or false, true )
+		for _, illusion in ipairs( illusionTable ) do
+			illusion:AddNewModifier( self, nil, "modifier_handler_handler", {})
+			illusion:AddNewModifier( illusion, nil, "modifier_stats_system_handler", {})
+			local trueParent = self
+			if self.unitOwnerEntity then
+				trueParent = self.unitOwnerEntity
 			end
-		end
-	end
-	if not respawnedIllusion then
-		local illusionIndex = CreateUnitByNameAsync("npc_illusion_template", origin, true, owner, owner, owner:GetTeamNumber(), function( illusion )
-			if bControl then illusion:SetControllableByPlayer(player, true) end
-			for abilitySlot=0,25 do
-				local abilityillu = self:GetAbilityByIndex(abilitySlot)
-				if abilityillu ~= nil then
-					local abilityLevel = abilityillu:GetLevel()
-					local abilityName = abilityillu:GetAbilityName()
-					if illusion:FindAbilityByName(abilityName) ~= nil then
-						local illusionAbility = illusion:FindAbilityByName(abilityName)
-						illusionAbility:SetLevel(abilityLevel)
-					else
-						local illusionAbility = illusion:AddAbility(abilityName)
-						if illusionAbility then illusionAbility:SetLevel(abilityLevel) end
-					end
-				end
-			end
-			illusion.hasBeenInitialized = true
-			
-			illusion:SetBaseDamageMax( self:GetBaseDamageMax() - 10 )
-			illusion:SetBaseDamageMin( self:GetBaseDamageMin() - 10 )
+			local modifier = illusion:AddNewModifier( self, nil, "modifier_stats_system_handler", {})
 			illusion:SetPhysicalArmorBaseValue( self:GetPhysicalArmorBaseValue() )
-			illusion:SetBaseAttackTime( self:GetBaseAttackTime() )
-			illusion:SetBaseMoveSpeed( self:GetBaseMoveSpeed() )
-			
-			illusion:SetOriginalModel( self:GetOriginalModel() )
-			illusion:SetModel( self:GetOriginalModel() )
-			illusion:SetModelScale( self:GetModelScale() )
-			
-			local moveCap = DOTA_UNIT_CAP_MOVE_NONE
-			if self:HasMovementCapability() then
-				moveCap = DOTA_UNIT_CAP_MOVE_GROUND
-				if self:HasFlyMovementCapability() then
-					moveCap = DOTA_UNIT_CAP_MOVE_FLY
-				end
-			end
-			illusion:SetMoveCapability( moveCap )
-			illusion:SetAttackCapability( self:GetOriginalAttackCapability() )
-			illusion:SetUnitName( self:GetUnitName() )
-			if self:IsRangedAttacker() then
-				illusion:SetRangedProjectileName( self:GetRangedProjectileName() )
-			end
-			
-			for _, modifier in ipairs( self:FindAllModifiers() ) do
-				if modifier.AllowIllusionDuplicate and modifier:AllowIllusionDuplicate() then
-					local caster = modifier:GetCaster()
-					if caster == self then
-						caster = illusion
-					end
-					illusion:AddNewModifier( caster, modifier:GetAbility(), modifier:GetName(), { duration = modifier:GetDuration() })
-				end
-			end
-			
-			-- Recreate the items of the caster
+			-- Check for runes
 			for itemSlot=0,5 do
 				local item = self:GetItemInSlot(itemSlot)
 				if item ~= nil then
 					local itemName = item:GetName()
-					local newItem = illusion:AddItemByName(itemName)
-					if newItem then
-						newItem:SetStacksWithOtherOwners(true)
-						newItem:SetPurchaser(nil)
-						newItem:SetSellable(false)
-						newItem:SetDroppable(false)
-					end
-				end
-			end
-		
-			-- Set the unit as an illusion
-			-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
-			if specIllusionModifier ~= nil and specIllusionModifier ~= "" then
-				illusion:AddNewModifier(owner, ability, specIllusionModifier, { duration = duration })
-			end
-			illusion:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
-			illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", {})
-			illusion:AddNewModifier( owner, nil, "modifier_illusion_bonuses", {})
-			if self:IsRealHero() then illusion:AddNewModifier( self, nil, "modifier_stats_system_handler", {}) end
-			illusion.wearableList = {}
-			local wearableWorker = {}
-			for _, wearable in ipairs( self.wearableTable or self:GetChildren() ) do
-				if wearable:GetClassname() == "dota_item_wearable" and wearable:GetModelName() ~= "" then
-					CreateUnitByNameAsync("wearable_dummy", origin, true, owner, owner, owner:GetTeamNumber(), function( newWearable )
-						newWearable:SetOriginalModel(wearable:GetModelName())
-						newWearable:SetModel(wearable:GetModelName())
-						newWearable:AddNewModifier(owner, ability, "modifier_wearable", {})
-						if specIllusionModifier ~= nil and specIllusionModifier ~= "" then	
-							newWearable:AddNewModifier(owner, ability, specIllusionModifier, {duration = duration})
+					local newItem = illusion:GetItemInSlot(itemSlot)
+					if newItem and item.itemData then
+						newItem.itemData = table.copy( item.itemData )
+						local passive = illusion:AddNewModifier( illusion, newItem, newItem:GetIntrinsicModifierName(), {} )
+						local funcs = {}
+						for slot, rune in pairs( item.itemData ) do
+							if rune and rune.funcs then
+								for func, result in pairs( rune.funcs ) do
+									funcs[func] = ( funcs[func] or 0 ) + result
+								end
+							end
 						end
-						newWearable:AddNewModifier(owner, ability, "modifier_illusion", {})
-						newWearable:SetParent(illusion, nil)
-						newWearable:FollowEntity(illusion, true)
-						newWearable:SetRenderColor(100,100,255)
-						table.insert( illusion.wearableList, newWearable )
-					end)
-					if not self.wearableTable then
-						table.insert( wearableWorker, wearable )
+						for func, result in pairs( funcs ) do
+							passive[func] = function() return result end
+						end
+						passive:ForceRefresh()
 					end
 				end
 			end
-			
-			-- Make illusion look like owner
-			illusion:SetBaseMaxHealth( math.max( 100, self:GetBaseMaxHealth() ) )
-			illusion:SetThreat( self:GetThreat() )
-			
-			if not self.wearableTable then
-				self.wearableTable = wearableWorker
-			end
-			if self:IsRealHero() then
-				illusion:SetUnitCanRespawn( true )
-				table.insert( self.illusionSpawnPool, illusion )
-			else
-				illusion:SetCoreHealth( self:GetMaxHealth() )
-				illusion:SetHealth( math.max( 100, self:GetHealth() ) )
-			end
-			illusion:MakeIllusion()
 			ResolveNPCPositions( illusion:GetAbsOrigin(), 128 )
-			Timers:CreateTimer(function()
-				illusion:SetHealth( math.max( 100, self:GetHealth() ) )
-				illusion:SetMana( math.max( 100, self:GetMana() ) )
-				if callback then
-					callback( illusion, self, caster, ability )
-				end
-			end)
-		end )
-	else
-		local illusion = respawnedIllusion
-		illusion:RespawnUnit()
-		illusion:SetCoreHealth( 100 )
-		FindClearSpaceForUnit( illusion, origin, true )
-		Timers:CreateTimer(function()
-			if not illusion:IsAlive() then
-				illusion:RespawnUnit()
-				illusion:SetCoreHealth( 100 )
-			end
-			if bControl then illusion:SetControllableByPlayer(player, true) end
-			for abilitySlot=0,25 do
-				local abilityillu = self:GetAbilityByIndex(abilitySlot)
-				if abilityillu ~= nil then
-					local abilityLevel = abilityillu:GetLevel()
-					local abilityName = abilityillu:GetAbilityName()
-					if illusion:FindAbilityByName(abilityName) ~= nil then
-						local illusionAbility = illusion:FindAbilityByName(abilityName)
-						illusionAbility:SetLevel(abilityLevel)
-					else
-						local illusionAbility = illusion:AddAbility(abilityName)
-						if illusionAbility then illusionAbility:SetLevel(abilityLevel) end
+			for i = 0, 23 do
+				local ability = illusion:GetAbilityByIndex( i )
+				if ability then
+					ability:SetActivated( false )
+					local ownerAbility = self:GetAbilityByIndex( i )
+					if ownerAbility then
+						ability:SetCooldown (  ownerAbility:GetCooldownTimeRemaining() )
+						if ownerAbility:GetAutoCastState() then
+							ability:ToggleAutoCast()
+						end
 					end
 				end
 			end
-			
-			illusion.hasBeenInitialized = true
-			
+			illusion:SetHealth( math.min( illusion:GetMaxHealth(), math.max( self:GetHealth(), 1 ) ) )
+			illusion:SetOwner(caster or self)
+			if illuInfo.controllable == false then
+				illusion:SetControllableByPlayer(-1, true)
+			end
+			if illuInfo.position then
+				FindClearSpaceForUnit( illusion, illuInfo.position, true )
+			end
+			if illuInfo.illusion_modifier then
+				illusion:AddNewModifier( caster or self, illuInfo.ability, illuInfo.illusion_modifier, {} )
+			end
+			illusion.hasBeenInitialized = true	
+			-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
+			illusion.isCustomIllusion = true
+		end
+		return illusionTable
+	else
+		local illusionTable = {}
+		local owner = caster or self
+		for i = 1, amount do
+			local illusion = CreateUnitByName( self:GetUnitName(), illuInfo.position or self:GetAbsOrigin(), true, owner, owner, owner:GetTeamNumber() )
+			illusion:AddNewModifier(owner, illuInfo.ability, "modifier_illusion", { duration = duration, outgoing_damage = illuInfo.outgoing_damage, incoming_damage = illuInfo.incoming_damage })
+			illusion:SetOwner(caster or self)
+			ResolveNPCPositions( illusion:GetAbsOrigin(), 128 )
+			for i = 0, 23 do
+				local ability = illusion:GetAbilityByIndex( i )
+				if ability then
+					ability:SetActivated( false )
+					local ownerAbility = owner:GetAbilityByIndex( i )
+					if ownerAbility then
+						ability:SetCooldown (  ownerAbility:GetCooldown() )
+					end
+				end
+			end
 			illusion:SetBaseDamageMax( self:GetBaseDamageMax() - 10 )
 			illusion:SetBaseDamageMin( self:GetBaseDamageMin() - 10 )
 			illusion:SetPhysicalArmorBaseValue( self:GetPhysicalArmorBaseValue() )
-			illusion:SetBaseAttackTime( self:GetBaseAttackTime() )
+			illusion:SetBaseAttackTime( self:GetSecondsPerAttack() )
 			illusion:SetBaseMoveSpeed( self:GetBaseMoveSpeed() )
-			
-			local moveCap = DOTA_UNIT_CAP_MOVE_NONE
-			if self:HasMovementCapability() then
-				moveCap = DOTA_UNIT_CAP_MOVE_GROUND
-				if self:HasFlyMovementCapability() then
-					moveCap = DOTA_UNIT_CAP_MOVE_FLY
-				end
+			if illuInfo.controllable == false then
+				illusion:SetControllableByPlayer(-1, true)
+			else
+				illusion:SetControllableByPlayer(caster:GetPlayerID(), true)
 			end
-			illusion:SetMoveCapability( moveCap )
-			illusion:SetAttackCapability( self:GetOriginalAttackCapability() )
-			if self:IsRangedAttacker() then
-				illusion:SetRangedProjectileName( self:GetRangedProjectileName() )
-			end
-			
-			for _, modifier in ipairs( self:FindAllModifiers() ) do
-				if modifier.AllowIllusionDuplicate and modifier:AllowIllusionDuplicate() then
-					local caster = modifier:GetCaster()
-					if caster == self then
-						caster = illusion
-					end
-					illusion:AddNewModifier( caster, modifier:GetAbility(), modifier:GetName(), { duration = modifier:GetDuration() })
-				end
-			end
-			
-			-- Recreate the items of the caster
-			for itemSlot=0,5 do
-				local item = illusion:GetItemInSlot(itemSlot)
-				if item ~= nil then
-					illusion:RemoveItem(item)
-				end
-			end
-			
-			for itemSlot=0,5 do
-				local item = self:GetItemInSlot(itemSlot)
-				if item ~= nil then
-					local itemName = item:GetName()
-					local newItem = illusion:AddItemByName(itemName)
-					if newItem then
-						newItem:SetStacksWithOtherOwners(true)
-						newItem:SetPurchaser(nil)
-						newItem:SetSellable(false)
-						newItem:SetDroppable(false)
-					end
-				end
-			end
-		
-			-- Set the unit as an illusion
-			-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
-			if specIllusionModifier and specIllusionModifier ~= "" then
-				illusion:AddNewModifier(owner, ability, specIllusionModifier, { duration = duration })
-			end
-			
-			illusion:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
-			illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", {})
-			illusion:AddNewModifier( owner, nil, "modifier_illusion_bonuses", {})
-			if self:IsRealHero() then illusion:AddNewModifier( self, nil, "modifier_stats_system_handler", {}) end
-			
-			illusion:RemoveNoDraw( )
-			for _, wearable in ipairs( illusion.wearableList ) do
-				wearable:RemoveNoDraw( )
-				if specIllusionModifier then
-					wearable:AddNewModifier(owner, ability, specIllusionModifier, {duration = duration})
-				end
-			end
-			
-			-- Make illusion look like owner
-			illusion:SetBaseMaxHealth( math.max( 100, self:GetBaseMaxHealth() ) )
-			illusion:SetThreat( self:GetThreat() )
-			Timers:CreateTimer( function()
-				illusion:SetHealth( math.max( 100, self:GetHealth() ) )
-				illusion:SetMana( math.max( 100, self:GetMana() ) )
-				if callback then
-					callback( illusion, self, caster, ability )
-				end
-			end)
-			
-			ResolveNPCPositions( illusion:GetAbsOrigin(), 128 )
-		end)
+			table.insert( illusionTable, illusion )
+		end
+		return illusionTable
 	end
 end
 
@@ -1341,9 +1181,13 @@ end
 
 function CDOTABaseAbility:SpendMana( flValue )
 	local value = flValue or self:GetManaCost( -1 )
-	local spentMana = self:GetCaster():GetMana() >= value
-	if spentMana then
-		self:GetCaster():SpendMana( value, self )
+	local caster = self:GetCaster()
+	local spentMana = true
+	local mana = caster:GetMana()
+	self:GetCaster():ReduceMana( value )
+	if mana <= 0 then
+		caster:SetMana( mana )
+		spentMana = false
 	end
 	return spentMana
 end

@@ -24,16 +24,31 @@ function wk_crit:OnProjectileHit(hTarget, vLocation)
 end
 
 modifier_wk_crit_passive = class({})
-function modifier_wk_crit_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE}
+
+function modifier_wk_crit_passive:OnCreated()
+	self:OnRefresh()
 end
 
-function modifier_wk_crit_passive:GetModifierPreAttack_CriticalStrike(params)
+function modifier_wk_crit_passive:OnRefresh()
+	self.crit_chance = self:GetTalentSpecialValueFor("crit_chance")
+	self.crit_dmg = self:GetTalentSpecialValueFor("crit_mult")
+	self.distance = self:GetTalentSpecialValueFor("cleave_distance")
+	self.width = self:GetTalentSpecialValueFor("cleave_width")
+	if IsServer() then
+		self:GetParent():HookInModifier("GetModifierCriticalDamage", self)
+	end
+end
+
+function modifier_wk_crit_passive:OnDestroy()
+	if IsServer() then
+		self:GetParent():HookOutModifier("GetModifierCriticalDamage", self)
+	end
+end
+
+function modifier_wk_crit_passive:GetModifierCriticalDamage(params)
 	local caster = self:GetCaster()
-	if self:RollPRNG( self:GetTalentSpecialValueFor("crit_chance") ) then
+	if not caster:PassivesDisabled() self:RollPRNG( self.crit_chance ) then
 		local velocity = caster:GetForwardVector() * 1000
-		local distance = self:GetTalentSpecialValueFor("cleave_distance")
-		local width = self:GetTalentSpecialValueFor("cleave_width")
 
 		local ability = caster:FindAbilityByName("wk_skeletons")
 		if ability and ability:IsTrained() then
@@ -42,8 +57,8 @@ function modifier_wk_crit_passive:GetModifierPreAttack_CriticalStrike(params)
 
 		self:GetAbility().target = params.target
 		params.target:EmitSound( "Hero_SkeletonKing.CriticalStrike" )
-		self:GetAbility():FireLinearProjectile("particles/vampiric_shockwave.vpcf", velocity, distance, width, {}, false, false, 0)
-		return self:GetTalentSpecialValueFor("crit_mult")
+		self:GetAbility():FireLinearProjectile("particles/vampiric_shockwave.vpcf", velocity, self.distance, self.width, {}, false, false, 0)
+		return self.crit_dmg
 	end
 end
 

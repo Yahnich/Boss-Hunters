@@ -34,11 +34,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"3.5"
+		"AbilityCooldown"				"3.5 3.5 3.5 3.5 3 2.5 2"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
+		"AbilityManaCost"				"70 80 90 100 100 100 100"
 		
 		"precache"
 		{
@@ -54,7 +54,9 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"120 170 220 270 320 370 420"
+				"damage"						"120 175 230 285 340 395 450"
+				"LinkedSpecialBonus"			"special_bonus_unique_ss_static_remnant_1"
+				"LinkedSpecialBonusField"		"damage"
 			}
 			"02"
 			{
@@ -101,6 +103,11 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"						"750"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"100"
 			}
 		}
 	}
@@ -159,7 +166,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"22 20 18 16 14 12 10"
+		"AbilityCooldown"				"16"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -179,12 +186,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"300 325 350 375 400 425 450"		
+				"cast_range"			"300 300 300 300 350 400 450"		
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.4 1.8 2.2 2.6 3 3.4 3.8"
+				"duration"				"1.4 1.8 2.2 2.6 2.6 2.6 2.6"
 			}
 		}
 	}
@@ -207,7 +214,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"2"
 			}
 		}
 	}
@@ -234,6 +241,360 @@
 		}
 	}
 
+	//=================================================================================================================
+	// Thunder Punch
+	//=================================================================================================================
+	"ss_voltaic_surge"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_storm_spirit/ss_voltaic_surge"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityTextureName"			"custom/storm_spirit_electric_dynamo"
+		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ss_voltaic_surge_1"	"1"
+			"special_bonus_unique_ss_voltaic_surge_2"	"1"
+		}
+		
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200 200 200 200 150 100 50"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_storm_spirit/ss_thunder_punch.vpcf"
+			
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_razor.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"buff_duration"					"8"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"debuff_duration"				"4"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"buff_as"						"50 75 100 125 125 125 125"
+				"LinkedSpecialBonus"			"special_bonus_unique_ss_voltaic_surge_2"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"buff_cdr"						"15 20 25 30 30 30 30"
+				"LinkedSpecialBonus"			"special_bonus_unique_ss_voltaic_surge_2"
+				"LinkedSpecialBonusField"		"value2"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"buff_cost"						"15 20 25 30 30 30 30"
+				"LinkedSpecialBonus"			"special_bonus_unique_ss_voltaic_surge_2"
+				"LinkedSpecialBonusField"		"value2"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"debuff_cost"					"100 100 100 100 70 40"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"debuff_cdr"					"50 50 50 50 40 30"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_ss_voltaic_surge_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"-4"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_ss_voltaic_surge_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"40"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"15"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Overload
+	//=================================================================================================================
+	"ss_overload"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_storm_spirit/ss_overload"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"storm_spirit_overload"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+		"HasScepterUpgrade"				"1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		"precache"
+		{	
+			"particle"					"particles/units/heroes/hero_stormspirit/stormspirit_overload_ambient.vpcf"
+			"particle"					"particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_damage"			"40"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_per_lvl"		"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"300"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_mana_gain"		"20"
+				"RequiresScepter"		"1"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_tick"			"0.2"
+				"RequiresScepter"		"1"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ball Lightning
+	//=================================================================================================================
+	"ss_ball_lightning"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_storm_spirit/ss_ball_lightning"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityTextureName"			"storm_spirit_ball_lightning"
+		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_ss_ball_lightning_1"	"1"
+			"special_bonus_unique_ss_ball_lightning_2"	"1"
+		}
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"0"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"30"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_stormspirit/stormspirit_ball_lightning.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{	
+			"01"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"damage"							"8 12 16 20 24 28"		
+			}
+			"02"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"mana_cost_pct"						"8"		
+			}
+			"03"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"mana_cost_base"					"30"		
+			}
+			"04"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"speed"								"1250 1875 2500 3125 3750 4375"		
+			}
+			"05"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"radius"							"200"		
+			}
+			"06"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"travel_cost_base"					"10"		
+			}
+			"07"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"travel_cost_percent"				"0.65"		
+			}
+			"08"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"vision_radius"						"400"		
+			}		
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_ss_ball_lightning_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"600"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_ss_ball_lightning_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// DEPRECATED
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//=================================================================================================================
 	// Thunder Punch
 	//=================================================================================================================
@@ -328,204 +689,6 @@
 	// Ability: Special Bonus
 	//=================================================================================================================
 	"special_bonus_unique_ss_thunder_punch_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Overload
-	//=================================================================================================================
-	"ss_overload"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_storm_spirit/ss_overload"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_NONE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"storm_spirit_overload"
-		"MaxLevel"						"1"
-		"InnateAbility"					"1"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"0"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
-
-		"precache"
-		{	
-			"particle"					"particles/units/heroes/hero_stormspirit/stormspirit_overload_ambient.vpcf"
-			"particle"					"particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf"
-
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts"
-		}
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"40"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_per_lvl"		"5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"300"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ball Lightning
-	//=================================================================================================================
-	"ss_ball_lightning"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_storm_spirit/ss_ball_lightning"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"AbilityTextureName"			"storm_spirit_ball_lightning"
-		"MaxLevel"						"6"
-		"HasScepterUpgrade"				"1"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_ss_ball_lightning_1"	"1"
-			"special_bonus_unique_ss_ball_lightning_2"	"1"
-		}
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.3"
-		"AbilityCastRange"				"0"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"0"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"30"
-		
-		"precache"
-		{
-			"particle"					"particles/units/heroes/hero_stormspirit/stormspirit_ball_lightning.vpcf"
-
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts"
-		}
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{	
-			"01"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"damage"							"8 12 16 20 24 28"		
-			}
-			"02"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"mana_cost_pct"						"8"		
-			}
-			"03"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"mana_cost_base"					"30"		
-			}
-			"04"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"speed"								"1250 1875 2500 3125 3750 4375"		
-			}
-			"05"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"radius"							"200"		
-			}
-			"06"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"travel_cost_base"					"12"		
-			}
-			"07"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"travel_cost_percent"				"0.7"		
-			}
-			"08"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"vision_radius"						"400"		
-			}		
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_ss_ball_lightning_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_ss_ball_lightning_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------

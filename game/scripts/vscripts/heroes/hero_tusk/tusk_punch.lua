@@ -70,11 +70,25 @@ function modifier_tusk_punch:IsHidden() return true end
 
 modifier_tusk_punch_crit = ({})
 function modifier_tusk_punch_crit:OnCreated(table)
+	self:OnRefresh()
     if IsServer() then
         self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_tusk/tusk_walruspunch_status.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
         ParticleManager:SetParticleControlEnt(self.nfx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_attack2", self:GetParent():GetAbsOrigin(), true)
     end
 end
+
+function modifier_tusk_punch_crit:OnRefresh()
+	if IsServer() then
+		self:GetParent():HookInModifier("GetModifierCriticalDamage", self)
+	end
+end
+
+function modifier_tusk_punch_crit:OnDestroy()
+	if IsServer() then
+		self:GetParent():HookOutModifier("GetModifierCriticalDamage", self)
+	end
+end
+
 
 function modifier_tusk_punch_crit:OnRemoved()
     if IsServer() then
@@ -84,14 +98,13 @@ end
 
 function modifier_tusk_punch_crit:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
         MODIFIER_EVENT_ON_ATTACK_LANDED,
         MODIFIER_EVENT_ON_ATTACK_START
     }
     return funcs
 end
 
-function modifier_tusk_punch_crit:GetModifierPreAttack_CriticalStrike(params)
+function modifier_tusk_punch_crit:GetModifierCriticalDamage(params)
 	StopSoundOn("Hero_Tusk.WalrusPunch.Cast", self:GetParent())
 	EmitSoundOn("Hero_Tusk.WalrusPunch.Target", params.target)
 	

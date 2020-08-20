@@ -27,14 +27,14 @@ end
 function ursa_earthshock_bh:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
 	if self:GetAutoCastState() then
-		caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST1_STATUE, 0.33/0.25)
+		caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 0.33/0.25)
 	end
 	return true
 end
 
 function ursa_earthshock_bh:OnAbilityPhaseInterrupted()
 	local caster = self:GetCaster()
-	caster:FadeGesture(ACT_DOTA_CAST1_STATUE)
+	caster:FadeGesture(ACT_DOTA_CAST_ABILITY_1)
 end
 
 function ursa_earthshock_bh:OnSpellStart()
@@ -168,7 +168,7 @@ function modifier_ursa_earthshock_movement:OnOrder( params )
 		if params.order_type == DOTA_UNIT_ORDER_STOP or params.order_type == DOTA_UNIT_ORDER_HOLD_POSITION then
 			self:Destroy()
 			params.unit:RemoveGesture(ACT_DOTA_CAST_ABILITY_1)
-			params.unit:StartGestureWithPlaybackRate(ACT_DOTA_CAST1_STATUE, 2)
+			params.unit:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 2)
 		end
 	end
 end

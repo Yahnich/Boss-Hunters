@@ -107,8 +107,9 @@ function modifier_weaver_fabric_tear_debuff:OnCreated(table)
 			end
 		end)
 
-		local image = caster:ConjureImage( parent:GetAbsOrigin() + RandomVector( 350 ), 1, 100, 100, "modifier_weaver_fabric_tear_bug", ability, false, caster, callback )
-		
+		local images = caster:ConjureImage( {outgoing_damage = 0, incoming_damage = 0, position = parent:GetAbsOrigin() + RandomVector( 350 ), controllable = false}, 1, caster, 1 )
+		images[1]:AddNewModifier(caster, ability, "modifier_weaver_fabric_tear_bug", {Duration = 1})
+		images[1]:SetForceAttackTarget(parent)
 	end
 end
 

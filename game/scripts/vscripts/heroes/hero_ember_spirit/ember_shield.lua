@@ -9,6 +9,33 @@ function ember_shield:IsHiddenWhenStolen()
 	return false
 end
 
+function ember_shield:GetAbilityTextureName()
+	local caster = self:GetCaster()
+	if caster:HasTalent("special_bonus_unique_ember_shield_2") and caster:HasModifier("modifier_ember_shield") then
+		return "custom/ember_spirit_shield_explode"
+	else
+		return "ember_spirit_flame_guard"
+	end
+end
+
+function ember_shield:GetCooldown( iLvl )
+	local caster = self:GetCaster()
+	if not caster:HasTalent("special_bonus_unique_ember_shield_2") or (caster:HasTalent("special_bonus_unique_ember_shield_2") and caster:HasModifier("modifier_ember_shield")) or iLvl ~= -1 then
+		return self.BaseClass.GetCooldown( self, iLvl )
+	else
+		return 0
+	end
+end
+
+function ember_shield:GetManaCost( iLvl )
+	local caster = self:GetCaster()
+	if caster:HasTalent("special_bonus_unique_ember_shield_2") and caster:HasModifier("modifier_ember_shield") then
+		return 0
+	else
+		return self.BaseClass.GetManaCost( self, iLvl )
+	end
+end
+
 function ember_shield:OnSpellStart()
 	local caster = self:GetCaster()
 
@@ -18,12 +45,11 @@ function ember_shield:OnSpellStart()
 
 	if caster:HasTalent("special_bonus_unique_ember_shield_2") then
 		if caster:HasModifier("modifier_ember_shield") then
-			self:RefundManaCost()
 			caster:RemoveModifierByName("modifier_ember_shield")
 		else
+			self.lastActivationTime = GameRules:GetGameTime()
 			caster:AddNewModifier(caster, self, "modifier_ember_shield", {Duration = duration})
 			if caster:HasScepter() then self:remnantShield() end
-			self:EndCooldown()
 		end
 	else
 		caster:AddNewModifier(caster, self, "modifier_ember_shield", {Duration = duration})
@@ -113,6 +139,25 @@ function modifier_ember_shield:OnIntervalThink()
 	end
 end
 
+function modifier_ember_shield:OnDestroy()
+	if IsServer() and self:GetCaster():HasTalent("special_bonus_unique_ember_shield_2") then
+		local ability = self:GetAbility()
+		local currCD = ability:GetCooldownTimeRemaining()
+		local actualCD = ability:GetCooldownTimeRemaining()
+		if currCD == 0 then
+			currCD = ability:GetEffectiveCooldown( ability:GetLevel() )
+		end
+		local realCooldown = currCD - (GameRules:GetGameTime() - ability.lastActivationTime)
+		local cd_limit = self:GetCaster():FindTalentValue("special_bonus_unique_ember_shield_2")
+		if actualCD > cd_limit then
+			ability:EndCooldown()
+			ability:StartCooldown( math.max( realCooldown - self:GetRemainingTime(), cd_limit ) )
+		else
+			ability:StartCooldown( 	realCooldown )
+		end
+	end
+end
+
 function modifier_ember_shield:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_AVOID_DAMAGE,
@@ -141,11 +186,12 @@ function modifier_ember_shield:OnRemoved()
 	if IsServer() and self:GetParent():IsHero() then
 		local caster = self:GetCaster()
 		StopSoundOn("Hero_EmberSpirit.FlameGuard.Loop", self:GetParent())
-		if caster:HasTalent("special_bonus_unique_ember_shield_2") then
+		if caster:HasTalent("special_bonus_unique_ember_shield_2") and self:GetRemainingTime() > 0 then
 			local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self.radius)
 			for _,enemy in pairs(enemies) do
-				self:GetAbility():DealDamage(caster, enemy, self.damage * self:GetDuration(), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+				self:GetAbility():DealDamage(caster, enemy, self.damage * self:GetRemainingTime(), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 			end
+			ParticleManager:FireParticle( "particles/units/heroes/hero_phoenix/phoenix_supernova_reborn_sphere_shockwave.vpcf", PATTACH_POINT_FOLLOW, caster, {[0] = caster:GetAbsOrigin()} )
 		end
 	end
 end

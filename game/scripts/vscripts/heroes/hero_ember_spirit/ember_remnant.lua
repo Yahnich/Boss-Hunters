@@ -25,6 +25,9 @@ function ember_remnant:GetCooldown(iLvl)
     local talent = "special_bonus_unique_ember_remnant_1"
     local value = caster:FindTalentValue("special_bonus_unique_ember_remnant_1", "cooldown")
     if caster:HasTalent( talent ) then cooldown = cooldown + value end
+	if self:GetCaster().remnantJump then
+		cooldown = cooldown + self:GetCaster().remnantJump:GetSpecialValueFor("remnant_charge_reduction")
+	end
     return cooldown
 end
 
@@ -49,23 +52,35 @@ function ember_remnant:OnSpellStart()
 	else
 		vision = caster:GetNightTimeVisionRange()
 	end
-
-	self:FireLinearProjectile("particles/units/heroes/hero_ember_spirit/ember_spirit_fire_remnant_trail.vpcf", vel, distance, caster:BoundingRadius2D()*3, {}, false, true, vision/2)
+	self.potentialRemnants = self.potentialRemnants or {}
+	local dummy = caster:CreateDummy(caster:GetAbsOrigin(), distance/speed+0.1)
+	dummy:AddNewModifier(caster, self, "modifier_ember_remnant", {})
+	local projectileHandle = self:FireLinearProjectile("particles/units/heroes/hero_ember_spirit/ember_spirit_fire_remnant_trail.vpcf", vel, distance, caster:BoundingRadius2D()*3, {}, false, true, vision/2)
+	self.potentialRemnants[projectileHandle] = dummy
 end
 
-function ember_remnant:OnProjectileThink(vLocation)
+function ember_remnant:OnProjectileThinkHandle(iProjectileHandle)
 	local caster = self:GetCaster()
-
+	
+	local potRemnant = self.potentialRemnants[iProjectileHandle]
+	local vLocation = ProjectileManager:GetLinearProjectileLocation( iProjectileHandle )
+	if potRemnant and not potRemnant:IsNull() and potRemnant:IsAlive()then
+		potRemnant:SetAbsOrigin( vLocation )
+	else
+		ProjectileManager:DestroyLinearProjectile( iProjectileHandle )
+	end
 	local point = GetGroundPosition(vLocation, caster)
 	GridNav:DestroyTreesAroundPoint(point, caster:BoundingRadius2D()*3, true)
 end
 
-function ember_remnant:OnProjectileHit(hTarget, vLocation)
+function ember_remnant:OnProjectileHitHandle(hTarget, vLocation, iProjectileHandle )
 	local caster = self:GetCaster()
 
 	if hTarget then
 		caster:PerformAttack(hTarget, true, true, true, true, false, false, true)
 	else
+		UTIL_Remove( self.potentialRemnants[iProjectileHandle] )
+		self.potentialRemnants[iProjectileHandle] = nil
 		local point = GetGroundPosition(vLocation, caster)
 		GridNav:DestroyTreesAroundPoint(point, caster:BoundingRadius2D()*3, true)
 		local duration = self:GetTalentSpecialValueFor("duration")

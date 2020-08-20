@@ -49,7 +49,7 @@ function ItemManager:ProcessAllRunesInformation(userid, event)
 	local player = PlayerResource:GetPlayer( event.PlayerID )
 	local unit = EntIndexToHScript( event.entindex )
 	local item = unit:GetItemInSlot( event.inventory )
-	if item.IsRuneStone and item:IsRuneStone() then
+	if item and item.IsRuneStone and item:IsRuneStone() then
 		local info = {}
 		info.itemData = {}
 		info.unit = event.entindex
@@ -78,6 +78,7 @@ function ItemManager:TryEnterRuneInSlot(userid, event)
 	if item then
 		local ItemCatch = function( ... )
 				local itemmodifier = unit:FindModifierByNameAndAbility( item:GetIntrinsicModifierName(), item )
+				if not itemmodifier then return end
 				if item:GetRuneSlots() < 1 then return end
 				item.itemData = item.itemData or {}
 				local totalSlots = item:GetRuneSlots()

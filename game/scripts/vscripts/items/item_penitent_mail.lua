@@ -32,11 +32,23 @@ modifier_item_penitent_mail_passive = class(itemBasicBaseClass)
 LinkLuaModifier( "modifier_item_penitent_mail_passive", "items/item_penitent_mail.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_penitent_mail_passive:OnCreatedSpecific()
+	self:OnRefreshSpecific()
+end
+
+function modifier_item_penitent_mail_passive:OnRefreshSpecific()
 	self.reflect = self:GetSpecialValueFor("reflect")
-	self.activereflect = self:GetSpecialValueFor("active_reflect")
 	self.bonusThreat = self:GetSpecialValueFor("bonus_threat")
 	self.threatGain = self:GetSpecialValueFor("threat_gain")
 	self.threatGainUlt = self:GetSpecialValueFor("threat_gain_ult")
+	if IsServer() then
+		self:GetCaster():HookInModifier( "GetModifierDamageReflectBonus", self )
+	end
+end
+
+function modifier_item_penitent_mail_passive:OnDestroySpecific()
+	if IsServer() then
+		self:GetCaster():HookOutModifier( "GetModifierDamageReflectBonus", self )
+	end
 end
 
 function modifier_item_penitent_mail_passive:DeclareFunctions()
@@ -57,26 +69,36 @@ function modifier_item_penitent_mail_passive:Bonus_ThreatGain()
 	return self.bonusThreat
 end
 
-function modifier_item_penitent_mail_passive:OnTakeDamage(params)
-	local hero = self:GetParent()
-	if hero:IsIllusion() or params.unit ~= hero then return end
-    local dmg = params.original_damage
-	local dmgtype = params.damage_type
-	local attacker = params.attacker
-    local reflectpct = self.reflect / 100
-	if hero:HasModifier("modifier_item_penitent_mail_active") then
-		reflectpct = self.activereflect / 100
-	end
-	if attacker:GetTeamNumber()  ~= hero:GetTeamNumber() and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ) then
-		if params.unit == hero then
-			dmg = dmg * reflectpct
-			self:GetAbility():DealDamage( hero, attacker, dmg, {damage_type = dmgtype, damage_flags = DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
-		end
-	end
+function modifier_item_penitent_mail_passive:GetModifierDamageReflectBonus(params)
+	return self.reflect
 end
 
 modifier_item_penitent_mail_active = class({})
 LinkLuaModifier( "modifier_item_penitent_mail_active", "items/item_penitent_mail.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+function modifier_item_penitent_mail_active:OnCreated()
+	self.reflect = self:GetSpecialValueFor("active_reflect")
+	if IsServer() then
+		self:GetCaster():HookInModifier( "GetModifierDamageReflectBonus", self )
+	end
+end
+
+function modifier_item_penitent_mail_active:OnCreated()
+	self.reflect = self:GetSpecialValueFor("active_reflect")
+	if IsServer() then
+		self:GetCaster():HookInModifier( "GetModifierDamageReflectBonus", self )
+	end
+end
+
+function modifier_item_penitent_mail_active:OnDestroy()
+	if IsServer() then
+		self:GetCaster():HookOutModifier( "GetModifierDamageReflectBonus", self )
+	end
+end
+
+function modifier_item_penitent_mail_active:GetModifierDamageReflectBonus(params)
+	return self.reflect
+end
 
 function modifier_item_penitent_mail_active:GetEffectName()
 	return "particles/items_fx/blademail.vpcf"

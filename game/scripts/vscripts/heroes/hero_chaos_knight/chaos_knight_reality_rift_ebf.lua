@@ -96,6 +96,9 @@ function chaos_knight_reality_rift_ebf:OnSpellStart()
 			FindClearSpaceForUnit(illusion, self.endPos, true)
 			illusion:FaceTowards(self.target:GetAbsOrigin())
 			illusion:MoveToTargetToAttack(self.target)
+			if self.caster:HasTalent("special_bonus_unique_chaos_knight_reality_rift_1") then
+				illusion:AddNewModifier(self.caster, self, "modifier_chaos_knight_reality_rift_talent", {duration = duration})
+			end	
 		end
 	end
 	
@@ -109,6 +112,10 @@ function chaos_knight_reality_rift_ebf:OnSpellStart()
 			end
 		end
 	end
+	if self.caster:HasTalent("special_bonus_unique_chaos_knight_reality_rift_1") then
+		print( self.caster:FindTalentValue("special_bonus_unique_chaos_knight_reality_rift_1", "duration") )
+		self.caster:AddNewModifier(self.caster, self, "modifier_chaos_knight_reality_rift_talent", {duration = duration})
+	end	
 end
 
 modifier_chaos_knight_reality_rift_ebf = class({})
@@ -138,4 +145,26 @@ end
 
 function modifier_chaos_knight_reality_rift_ebf:GetEffectName()
 	return "particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift_buff.vpcf"
+end
+
+modifier_chaos_knight_reality_rift_talent = class({})
+LinkLuaModifier("modifier_chaos_knight_reality_rift_talent", "heroes/hero_chaos_knight/chaos_knight_reality_rift_ebf", LUA_MODIFIER_MOTION_NONE)
+function modifier_chaos_knight_reality_rift_talent:OnCreated()
+	self:OnRefresh()
+end
+
+function modifier_chaos_knight_reality_rift_talent:OnRefresh()
+	self.dmg = self:GetCaster():FindTalentValue("special_bonus_unique_chaos_knight_reality_rift_1", "value2")
+end
+
+function modifier_chaos_knight_reality_rift_talent:DeclareFunctions()
+	return {MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE }
+end
+
+function modifier_chaos_knight_reality_rift_talent:GetModifierBaseAttack_BonusDamage()
+	return self.dmg
+end
+
+function modifier_chaos_knight_reality_rift_talent:AllowIllusionDuplicate()
+	return true
 end

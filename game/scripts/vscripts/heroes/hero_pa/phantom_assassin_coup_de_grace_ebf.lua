@@ -6,13 +6,32 @@ function phantom_assassin_coup_de_grace_ebf:GetIntrinsicModifierName()
 end
 
 modifier_phantom_assassin_coup_de_grace_ebf = class({})
-function modifier_phantom_assassin_coup_de_grace_ebf:DeclareFunctions()
-    return {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
-            MODIFIER_EVENT_ON_ATTACK_LANDED}
+
+function modifier_phantom_assassin_coup_de_grace_ebf:OnCreated()
+	self:OnRefresh()
 end
 
-function modifier_phantom_assassin_coup_de_grace_ebf:GetModifierPreAttack_CriticalStrike( params )
-    if not params.attacker:PassivesDisabled() and self:RollPRNG(self:GetTalentSpecialValueFor("crit_chance")) then
+function modifier_phantom_assassin_coup_de_grace_ebf:OnRefresh()
+	self.chance = self:GetTalentSpecialValueFor("crit_chance")
+	self.dmg = self:GetTalentSpecialValueFor("crit_bonus")
+	if IsServer() then
+		self:GetParent():HookInModifier("GetModifierCriticalDamage", self)
+	end
+end
+
+function modifier_phantom_assassin_coup_de_grace_ebf:OnDestroy()
+	if IsServer() then
+		self:GetParent():HookOutModifier("GetModifierCriticalDamage", self)
+	end
+end
+
+
+function modifier_phantom_assassin_coup_de_grace_ebf:DeclareFunctions()
+    return {MODIFIER_EVENT_ON_ATTACK_LANDED}
+end
+
+function modifier_phantom_assassin_coup_de_grace_ebf:GetModifierCriticalDamage( params )
+    if not params.attacker:PassivesDisabled() and self:RollPRNG( self.chance ) then
         local parent = self:GetParent()
         self.on_crit = true
         self.direction = -self:GetParent():GetForwardVector()
@@ -20,7 +39,7 @@ function modifier_phantom_assassin_coup_de_grace_ebf:GetModifierPreAttack_Critic
 			params.attacker:RefreshAllCooldowns( false, false )
 		end
         EmitSoundOn( "Hero_PhantomAssassin.CoupDeGrace", parent)
-        return self:GetTalentSpecialValueFor("crit_bonus")
+        return self.dmg
     end
 end
 

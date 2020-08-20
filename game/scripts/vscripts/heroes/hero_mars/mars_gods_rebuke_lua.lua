@@ -80,7 +80,20 @@ end
 modifier_mars_gods_rebuke_lua_crit = class({})
 
 function modifier_mars_gods_rebuke_lua_crit:OnCreated()
-	self.crit = self:GetSpecialValueFor("crit_mult")	
+	self:OnRefresh()
+end
+
+function modifier_mars_gods_rebuke_lua_crit:OnRefresh()
+	self.crit = self:GetSpecialValueFor("crit_mult")
+	if IsServer() then
+		self:GetParent():HookInModifier("GetModifierCriticalDamage", self)
+	end
+end
+
+function modifier_mars_gods_rebuke_lua_crit:OnDestroy()
+	if IsServer() then
+		self:GetParent():HookOutModifier("GetModifierCriticalDamage", self)
+	end
 end
 
 function modifier_mars_gods_rebuke_lua_crit:IsPurgable()
@@ -95,11 +108,7 @@ function modifier_mars_gods_rebuke_lua_crit:IsHidden()
 	return true
 end
 
-function modifier_mars_gods_rebuke_lua_crit:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE}
-end
-
-function modifier_mars_gods_rebuke_lua_crit:GetModifierPreAttack_CriticalStrike()
+function modifier_mars_gods_rebuke_lua_crit:GetModifierCriticalDamage()
 	return self.crit
 end
 

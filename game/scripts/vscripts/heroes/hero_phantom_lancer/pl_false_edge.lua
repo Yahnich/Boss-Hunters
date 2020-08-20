@@ -19,7 +19,12 @@ function pl_false_edge:OnSpellStart()
     ParticleManager:FireParticle("particles/econ/items/earthshaker/earthshaker_totem_ti6/earthshaker_totem_ti6_cast.vpcf", PATTACH_POINT, caster, {[0] = caster:GetAbsOrigin() + caster:GetForwardVector() * 75})
 
     caster:AddNewModifier(caster, self, "modifier_pl_false_edge", {Duration = duration})
-
+	if caster:HasScepter() then
+		local juxtapose = caster:FindAbilityByName("pl_juxtapose")
+		if juxtapose then
+			juxtapose:SpawnIllusion( true )
+		end
+	end
     local illusions = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
     for _,illusion in pairs(illusions) do
         if illusion:IsIllusion() and illusion:GetOwner() == caster then
@@ -28,7 +33,7 @@ function pl_false_edge:OnSpellStart()
     end
 
     if caster:HasTalent("special_bonus_unique_pl_false_edge_2") then
-        local radius = caster:FindTalentValue("special_bonus_unique_pl_false_edge_2")
+        local radius = caster:FindTalentValue("special_bonus_unique_pl_false_edge_2", "radius")
 
         local allies = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), radius)
         for _,ally in pairs(allies) do
@@ -44,13 +49,15 @@ function modifier_pl_false_edge:OnCreated(table)
     self.bonus_accuracy = self:GetTalentSpecialValueFor("bonus_accuracy")
 
     if self:GetCaster():HasTalent("special_bonus_unique_pl_false_edge_1") then
-        self.bonus_ms = self.bonus_as/2
+        self.bonus_ms = self.bonus_as  * self:GetCaster():FindTalentValue("special_bonus_unique_pl_false_edge_1") / 100
+        self.bonus_evasion = self.bonus_accuracy * self:GetCaster():FindTalentValue("special_bonus_unique_pl_false_edge_1", "value2") / 100
     end
 	if IsServer() then
 		local nFX = ParticleManager:CreateParticle("particles/econ/generic/generic_buff_1/generic_buff_1.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
 		ParticleManager:SetParticleControl(nFX, 14, Vector(1,1,1))
 		ParticleManager:SetParticleControl(nFX, 15, Vector(255,232,130))
 		self:AddEffect(nFX)
+		self:GetParent():HookInModifier("GetModifierBaseCriticalChanceBonus", self)
 	end
 end
 
@@ -66,20 +73,26 @@ end
 function modifier_pl_false_edge:DeclareFunctions()
     local funcs = { MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
                     MODIFIER_PROPERTY_TOOLTIP,
-                    MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+                    MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+					MODIFIER_PROPERTY_EVASION_CONSTANT }
     return funcs
 end
 
-function modifier_pl_false_edge:GetModifierMoveSpeedBonus_Percentage()
-    return self.bonus_ms
+
+function modifier_pl_false_edge:GetModifierBaseCriticalChanceBonus()
+    return self.bonus_accuracy
 end
 
 function modifier_pl_false_edge:GetModifierAttackSpeedBonus_Constant()
     return self.bonus_as
 end
 
-function modifier_pl_false_edge:GetAccuracy()
-    return self.bonus_accuracy
+function modifier_pl_false_edge:GetModifierMoveSpeedBonus_Percentage()
+    return self.bonus_ms
+end
+
+function modifier_pl_false_edge:GetModifierEvasion_Constant()
+    return self.bonus_evasion
 end
 
 function modifier_pl_false_edge:OnTooltip()
@@ -92,4 +105,8 @@ end
 
 function modifier_pl_false_edge:IsDebuff()
     return false
+end
+
+function modifier_pl_false_edge:AllowIllusionDuplicate()
+    return true
 end

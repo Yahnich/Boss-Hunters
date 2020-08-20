@@ -26,14 +26,16 @@ function pl_spirit_lance:OnSpellStart()
 
     local speed = 1000
 
-    self.hitUnits = {}
+    self.projectileList = self.projectileList or {}
 
-    self.maxBounces = caster:FindTalentValue("special_bonus_unique_pl_spirit_lance_1", "bounces")
-
-    self:FireTrackingProjectile("particles/units/heroes/hero_phantom_lancer/phantomlancer_spiritlance_projectile.vpcf", target, speed, {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, false, 0)
+    local projectile = self:FireTrackingProjectile("particles/units/heroes/hero_phantom_lancer/phantomlancer_spiritlance_projectile.vpcf", target, speed, {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, false, 0)
+	self.projectileList[projectile] = {}
+	self.projectileList[projectile].initialTarget = target
+	self.projectileList[projectile].hitUnits = {}
+	self.projectileList[projectile].maxBounces = caster:FindTalentValue("special_bonus_unique_pl_spirit_lance_1", "bounces")
 end
 
-function pl_spirit_lance:doProjectileHitStuff(hTarget, vLocation)
+function pl_spirit_lance:doProjectileHitStuff(hTarget, vLocation, projectile)
 	local caster = self:GetCaster()
 
 	EmitSoundOn("Hero_PhantomLancer.SpiritLance.Impact", hTarget)
@@ -48,47 +50,40 @@ function pl_spirit_lance:doProjectileHitStuff(hTarget, vLocation)
 	hTarget:Paralyze(self, caster, slow_duration)
 
 	self:DealDamage(caster, hTarget, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-
-	local callback = (function(image)
-		if image ~= nil then
-			caster:FindAbilityByName("pl_juxtapose"):GiveFxModifier(image)
-			image:SetForwardVector(CalculateDirection(hTarget, image))
-		end
-	end)
-
-	local image = caster:ConjureImage( vLocation + RandomVector( 72 ), illusion_duration, illusion_out, illusion_in, "modifier_phantom_lancer_juxtapose_illusion", self, true, caster, callback )
+	if self.projectileList[projectile].initialTarget == hTarget then
+		local illusions = caster:ConjureImage( {outgoing_damage = illusion_out, incoming_damage = illusion_in, illusion_modifier = "modifier_phantom_lancer_juxtapose_illusion", position = vLocation + RandomVector( 72 )}, illusion_duration, caster, 1 )
+		local image = illusions[1]
+		image:AddNewModifier( caster, self, "modifier_pl_juxtapose_illusion", {})
+		image:SetForwardVector(CalculateDirection(hTarget, image))
+	end
 end
 
-function pl_spirit_lance:OnProjectileHit(hTarget, vLocation)
+function pl_spirit_lance:OnProjectileHitHandle(hTarget, vLocation, iProjectileHandle )
 	local caster = self:GetCaster()
 
-	local radius = caster:FindTalentValue("special_bonus_unique_pl_spirit_lance_1", "radius")
+	local radius = self:GetTrueCastRange()
 	local speed = 1000
 
 	if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
-		if caster:HasTalent("special_bonus_unique_pl_spirit_lance_1") then
-
-			if not self.hitUnits[hTarget:entindex()] then
-
-				self:doProjectileHitStuff(hTarget, vLocation)
-
-				local enemies = caster:FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), radius)
-				for _,enemy in pairs(enemies) do
-					if self.maxBounces > 1 then
-						if enemy ~= hTarget and not self.hitUnits[enemy:entindex()] then
-							self:FireTrackingProjectile("particles/units/heroes/hero_phantom_lancer/phantomlancer_spiritlance_projectile.vpcf", enemy, speed, {source = hTarget, origin = hTarget:GetAbsOrigin()}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, false, 0)
-							self.maxBounces = self.maxBounces - 1
-							break
+		if not self.projectileList[iProjectileHandle].hitUnits[hTarget:entindex()] then
+			self:doProjectileHitStuff(hTarget, vLocation, iProjectileHandle)
+			self.projectileList[iProjectileHandle].hitUnits[hTarget:entindex()] = true
+			local enemies = caster:FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), radius, {order = FIND_CLOSEST})
+			for _,enemy in pairs(enemies) do
+				if self.projectileList[iProjectileHandle].maxBounces > 1 then
+					if enemy ~= hTarget and not  self.projectileList[iProjectileHandle].hitUnits[enemy:entindex()] then
+						local projectile = self:FireTrackingProjectile("particles/units/heroes/hero_phantom_lancer/phantomlancer_spiritlance_projectile.vpcf", enemy, speed, {source = hTarget, origin = hTarget:GetAbsOrigin()}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, false, 0)
+						self.projectileList[projectile] = {}
+						self.projectileList[projectile].initialTarget = self.projectileList[iProjectileHandle].hitUnits
+						self.projectileList[projectile].hitUnits = self.projectileList[iProjectileHandle].hitUnits
+						self.projectileList[projectile].maxBounces =  self.projectileList[iProjectileHandle].maxBounces
+						if not enemy:IsMinion() then
+							self.projectileList[projectile].maxBounces =  self.projectileList[projectile].maxBounces - 1
 						end
+						break
 					end
 				end
-				self.hitUnits[hTarget:entindex()] = true
-
 			end
-
-		else
-
-			self:doProjectileHitStuff(hTarget, vLocation)
 		end
 	end
 end

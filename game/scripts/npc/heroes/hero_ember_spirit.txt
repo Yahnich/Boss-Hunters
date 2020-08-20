@@ -31,7 +31,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"14 12 12 10 10 8 8"
+		"AbilityCooldown"				"13 12 11 10"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -58,7 +58,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"2.5"
+				"duration"						"2.5 2.5 2.5 2.5 3 3.5 4"
 				"LinkedSpecialBonus"			"special_bonus_unique_ember_chains_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}			
@@ -75,7 +75,7 @@
 			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"unit_count"					"2 2 3 3 4 4 5"
+				"unit_count"					"2"
 			}			
 		}
 	}
@@ -98,7 +98,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"10"
+				"value"						"25"
 			}
 		}
 	}
@@ -125,7 +125,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"slow"						"-50"
+				"slow"						"-60"
 			}
 		}
 	}
@@ -161,11 +161,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"18 16 14 12 10 8 6"
+		"AbilityCooldown"				"18 14 10 6 6 6 6"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50"
+		"AbilityManaCost"				"50 50 50 50 35 20 5"
 	
 		"precache"
 		{
@@ -184,22 +184,23 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"30 60 90 120 150 180 210"
+				"damage"					"40 80 120 160 200 240 280"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"250 350 450 550 650 750 850"
+				"radius"					"350 350 350 350 450 550 650"
 			}		
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"jump_rate"					"0.1"
+				"jump_rate"					"0.2"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"charges"					"3"
+				"charges"					"0"
+				"LinkedSpecialBonus"		"special_bonus_unique_ember_fist_1"
 			}
 			"05"
 			{
@@ -227,7 +228,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"2"
+				"value"						"3"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"cd"						"-2"
 			}
 		}
 	}
@@ -250,7 +256,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"15"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"5"
 			}
 		}
 	}
@@ -308,17 +319,17 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"absorb_amount"					"80 220 360 500 640 780 920"
+				"absorb_amount"					"220 360 500 640 920 1200 1480"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"30 40 50 60 70 80 90"
+				"damage"						"25 35 45 55 70 85 100"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"8 12 16 20 24 28 32"
+				"duration"						"8 12 16 20 20 20 20"
 			}
 			"04"
 			{
@@ -351,12 +362,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"health"					"10"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"damage"					"0.1"
+				"health"					"50"
 			}
 		}
 	}
@@ -379,7 +385,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"5"
 			}
 		}
 	}
@@ -451,7 +457,6 @@
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"450"
 			}
-			
 		}
 	}
 
@@ -526,15 +531,21 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"100 200 300 400 500 600"
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"100 200 300 350 400 450"
+				"LinkedSpecialBonus"			"special_bonus_unique_ember_remnant_jump_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
-			"01"
+			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"450"
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"450"
 			}
-			
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"remnant_charge_reduction"		"-2 -4 -6 -12 -18 -24"
+			}
 		}
 	}
 
@@ -556,7 +567,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"15"
+				"value"						"2"
 			}
 		}
 	}

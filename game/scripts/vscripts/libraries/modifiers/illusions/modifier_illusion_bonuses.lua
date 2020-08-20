@@ -7,12 +7,10 @@ function modifier_illusion_bonuses:OnCreated()
 	local strength = self:GetCaster():GetStrength()
 	local intellect = self:GetCaster():GetIntellect()
 	self.as = agility * 1
-	self.ms = agility * 0.05
-	self.hp = strength * 20
-	self.hpr = strength * 0.1
-	self.mp = intellect * 12
-	self.mpr = intellect * 0.05
-	self.amp = intellect * 0.07
+	self.ms = agility * 0.075
+	self.hp = strength * 25
+	self.mp = intellect * 20
+	self.amp = intellect * 0.25
 	self.ar = self:GetCaster():GetAttackRange()
 	if IsServer() then
 		EmitSoundOn("General.Illusion.Create", self:GetParent())

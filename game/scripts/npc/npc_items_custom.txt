@@ -42,6 +42,12 @@
 #base "items/item_shadow_whisper.txt"
 #base "items/item_arcane_absorber.txt"
 #base "items/item_lucifers_cage.txt"
+#base "items/item_allfathers_pipe.txt"
+#base "items/item_mirror_blade.txt"
+#base "items/item_nullifying_edge.txt"
+#base "items/item_ring_of_sacrifice.txt"
+#base "items/item_orb_of_renewal.txt"
+#base "items/item_cultists_veil.txt"
 
 //Meepo Runes for ult
 #base "items/item_meepo_rune_dd.txt"
@@ -57,7 +63,7 @@
 //Snapfire
 #base "items/item_snapfire_cookie.txt"
 
-// Next ID is 2296
+// Next ID is 2397
 
 "DOTAAbilities"
 {

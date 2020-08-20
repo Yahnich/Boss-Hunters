@@ -78,8 +78,8 @@ function modifier_ss_ball_lightning:OnIntervalThink()
 				self.manaDistance = CalculateDistance(self.previousPoint, currentPoint)
 			end
 
-			if parent:HasTalent("special_bonus_unique_ss_ball_lightning_1")then
-				if self.talentDistance >= 250 then
+			if parent:HasTalent("special_bonus_unique_ss_ball_lightning_1") then
+				if self.talentDistance >= parent:FindTalentValue("special_bonus_unique_ss_ball_lightning_1") then
 					local ability = parent:FindAbilityByName("ss_static_remnant")
 					if ability and ability:IsTrained() then
 						ability:CreateRemnant()
@@ -97,13 +97,9 @@ function modifier_ss_ball_lightning:OnIntervalThink()
 			for _,enemy in pairs(enemies) do
 				if not self.hitUnits[ enemy:entindex() ] then
 				
-					if parent:HasScepter() then
+					if parent:HasTalent("special_bonus_unique_ss_ball_lightning_2") then
 						local ability = parent:FindAbilityByName("ss_overload")
 						ability:AddOverloadStack()
-					end
-
-					if parent:HasTalent("special_bonus_unique_ss_ball_lightning_2") then
-						enemy:Paralyze(self:GetAbility(), parent, 1)
 					end
 
 					self:GetAbility():DealDamage(parent, enemy, self.damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)

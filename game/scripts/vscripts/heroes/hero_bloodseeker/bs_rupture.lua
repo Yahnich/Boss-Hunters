@@ -37,19 +37,27 @@ end
 
 modifier_bs_rupture = class({})
 function modifier_bs_rupture:OnCreated(table)
+	self:OnRefresh()
 	if IsServer() then
 		StopSoundOn("hero_bloodseeker.rupture_FP", self:GetParent())
-		EmitSoundOn("hero_bloodseeker.rupture_FP", self:GetParent())
-		self:StartIntervalThink(self:GetTalentSpecialValueFor("tick_rate"))
+		self:StartIntervalThink(self.tick)
 	end
+end
+
+function modifier_bs_rupture:OnRefresh()
+	self.bleed = self:GetTalentSpecialValueFor("bleed")/100
+	self.evasion = self:GetTalentSpecialValueFor("evasion_loss")
+	self.armor = self:GetTalentSpecialValueFor("armor_loss")
+	self.mr = self:GetTalentSpecialValueFor("mr_loss")
+	self.tick = self:GetTalentSpecialValueFor("tick_rate")
 end
 
 function modifier_bs_rupture:OnIntervalThink()
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
 
-	local damage = parent:GetHealth() * self:GetTalentSpecialValueFor("bleed")/100
-	self:GetAbility():DealDamage(caster, parent, damage*self:GetTalentSpecialValueFor("tick_rate"), {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_DAMAGE)
+	local damage = parent:GetHealth() * self.bleed
+	self:GetAbility():DealDamage(caster, parent, damage*self.tick, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_DAMAGE)
 end
 
 function modifier_bs_rupture:OnRemoved()
@@ -60,9 +68,24 @@ end
 
 function modifier_bs_rupture:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_EVASION_CONSTANT,
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 		MODIFIER_EVENT_ON_DEATH
 	}
 	return funcs
+end
+
+function modifier_bs_rupture:GetModifierEvasion_Constant()
+	return self.evasion
+end
+
+function modifier_bs_rupture:GetModifierPhysicalArmorBonus()
+	return self.armor
+end
+
+function modifier_bs_rupture:GetModifierMagicalResistanceBonus()
+	return self.mr
 end
 
 function modifier_bs_rupture:OnDeath(params)

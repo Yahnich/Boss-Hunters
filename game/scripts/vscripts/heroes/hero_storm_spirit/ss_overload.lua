@@ -1,6 +1,12 @@
 ss_overload = class({})
-LinkLuaModifier( "modifier_ss_overload_passive", "heroes/hero_storm_spirit/ss_overload" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_ss_overload_attack", "heroes/hero_storm_spirit/ss_overload" ,LUA_MODIFIER_MOTION_NONE )
+
+function ss_overload:GetBehavior()
+	if self:GetCaster():HasScepter() then
+		return DOTA_ABILITY_BEHAVIOR_TOGGLE + DOTA_ABILITY_BEHAVIOR_NO_TARGET
+	else
+		return DOTA_ABILITY_BEHAVIOR_PASSIVE
+	end
+end
 
 function ss_overload:IsStealable()
     return false
@@ -14,18 +20,67 @@ function ss_overload:GetIntrinsicModifierName()
 	return "modifier_ss_overload_passive"	
 end
 
+function ss_overload:OnToggle()
+	if self:GetToggleState() then
+		self:GetCaster():AddNewModifier( self:GetCaster(), self, "modifier_ss_overload_toggle", {} )
+	else
+		self:GetCaster():RemoveModifierByName("modifier_ss_overload_toggle")
+	end
+end
+
 function ss_overload:AddOverloadStack()
 	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_ss_overload_attack", {}):IncrementStackCount()	
 end
 
+modifier_ss_overload_toggle = class({})
+LinkLuaModifier( "modifier_ss_overload_toggle", "heroes/hero_storm_spirit/ss_overload" ,LUA_MODIFIER_MOTION_NONE )
+
+function modifier_ss_overload_toggle:OnCreated(table)
+	self:OnRefresh()
+end
+
+function modifier_ss_overload_toggle:OnRefresh(table)
+	self.base_damage = self:GetTalentSpecialValueFor("base_damage")
+	self.damage_per_lvl = self:GetTalentSpecialValueFor("damage_per_lvl")
+	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.tick = self:GetTalentSpecialValueFor("scepter_tick")
+	self.mana = self:GetTalentSpecialValueFor("scepter_mana_gain")
+	if IsServer() then
+		self:StartIntervalThink( self.tick )
+	end
+end
+
+function modifier_ss_overload_toggle:OnIntervalThink()
+	local caster = self:GetCaster()
+	local stacks = caster:FindModifierByName("modifier_ss_overload_attack")
+	if stacks and stacks:GetStackCount() > 0 then
+		stacks:DecrementStackCount()
+		if stacks:GetStackCount() == 0 then
+			stacks:Destroy()
+		end
+		ParticleManager:FireParticle("particles/items_fx/chain_lightning.vpcf", PATTACH_POINT, caster, {[0] = caster:GetAbsOrigin() + Vector(0,0,1000), [1] = "attach_hitloc"} )
+		
+		ParticleManager:FireParticle("particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf", PATTACH_POINT, caster, {[0]=caster:GetAbsOrigin()})
+		EmitSoundOn("Hero_StormSpirit.Overload", caster)
+		local damage = self.base_damage + self.damage_per_lvl * (caster:GetLevel() - 1)
+		caster:RestoreMana( self.mana )
+		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self.radius)
+		for _,enemy in pairs(enemies) do
+			enemy:Paralyze(self:GetAbility(), caster)
+			self:GetAbility():DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+		end
+	end
+end
+
 modifier_ss_overload_passive = class({})
+LinkLuaModifier( "modifier_ss_overload_passive", "heroes/hero_storm_spirit/ss_overload" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_ss_overload_passive:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ABILITY_EXECUTED}
 end
 
 function modifier_ss_overload_passive:OnAbilityExecuted(params)
 	if IsServer() then
-		if params.unit == self:GetParent() and self:GetAbility():IsCooldownReady() and not params.ability:IsOrbAbility() then
+		if params.unit == self:GetParent() and self:GetAbility():IsCooldownReady() and not params.ability:IsOrbAbility() and not params.ability:IsToggle() and not params.ability:IsItem() then
 			self:GetAbility():AddOverloadStack()
 		end
 	end
@@ -36,6 +91,7 @@ function modifier_ss_overload_passive:IsHidden()
 end
 
 modifier_ss_overload_attack = class({})
+LinkLuaModifier( "modifier_ss_overload_attack", "heroes/hero_storm_spirit/ss_overload" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_ss_overload_attack:OnCreated(table)
 	if IsServer() then
 		local base_damage = self:GetTalentSpecialValueFor("base_damage")

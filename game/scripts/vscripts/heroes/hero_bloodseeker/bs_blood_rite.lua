@@ -1,6 +1,4 @@
 bs_blood_rite = class({})
-LinkLuaModifier("modifier_bs_blood_rite", "heroes/hero_bloodseeker/bs_blood_rite", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_bs_bloodrage", "heroes/hero_bloodseeker/bs_bloodrage", LUA_MODIFIER_MOTION_NONE)
 
 function bs_blood_rite:IsStealable()
 	return true
@@ -26,34 +24,71 @@ function bs_blood_rite:OnSpellStart()
 end
 
 modifier_bs_blood_rite = class({})
+LinkLuaModifier("modifier_bs_blood_rite", "heroes/hero_bloodseeker/bs_blood_rite", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_bs_blood_rite:OnCreated(table)
+	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.duration = self:GetTalentSpecialValueFor("duration")
+	self.damage = self:GetTalentSpecialValueFor("damage")
 	if IsServer() then
-		local radius = self:GetTalentSpecialValueFor("radius")
 
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_spell_bloodbath_bubbles.vpcf", PATTACH_POINT, self:GetCaster())
 					ParticleManager:SetParticleControl(nfx, 0, self:GetParent():GetAbsOrigin())
-					ParticleManager:SetParticleControl(nfx, 1, Vector(radius,radius,radius))
+					ParticleManager:SetParticleControl(nfx, 1, Vector(self.radius,self.radius,self.radius))
 		self:AttachEffect(nfx)
 	end
 end
 
 function modifier_bs_blood_rite:OnRemoved()
 	if IsServer() then
-		local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+		local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self.radius)
 		if #enemies > 0 then
 			ParticleManager:FireParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster(), {})
 		end
+		local caster = self:GetCaster()
+		local ability = self:GetAbility()
 		for _,enemy in pairs(enemies) do
-			if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+			if not enemy:TriggerSpellAbsorb( ability ) then
 				EmitSoundOn("hero_bloodseeker.bloodRite.silence", enemy)
-				enemy:Silence(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("duration"), false)
-				if self:GetCaster():HasTalent("special_bonus_unique_bs_blood_rite_1") then
-					local ability = self:GetCaster():FindAbilityByName("bs_bloodrage")
-					enemy:AddNewModifier(self:GetCaster(), ability, "modifier_bs_bloodrage", {Duration = ability:GetTalentSpecialValueFor("duration")})
-				end
-				self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+				enemy:AddNewModifier( caster, ability, "modifier_bs_blood_rite_silence", {duration = self.duration})
+				ability:DealDamage(self:GetCaster(), enemy, self.damage, {}, 0)
 			end
 		end
 	end
+end
+
+modifier_bs_blood_rite_silence = class({})
+LinkLuaModifier("modifier_bs_blood_rite_silence", "heroes/hero_bloodseeker/bs_blood_rite", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_bs_blood_rite_silence:OnCreated(kv)
+	self:OnRefresh()
+end
+
+function modifier_bs_blood_rite_silence:OnRefresh(kv)
+	self.attackspeed = self:GetCaster():FindTalentValue("special_bonus_unique_bs_blood_rite_1")
+end
+
+function modifier_bs_blood_rite_silence:GetModifierAttackSpeedBonus()
+	return self.attackspeed
+end
+
+function modifier_bs_blood_rite_silence:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
+
+function modifier_bs_blood_rite_silence:IsHidden()
+	return false
+end
+
+function modifier_bs_blood_rite_silence:CheckState()
+	local state = { [MODIFIER_STATE_SILENCED] = true}
+	return state
+end
+
+function modifier_bs_blood_rite_silence:IsPurgable()
+	return true
+end
+
+function modifier_bs_blood_rite_silence:GetEffectName()
+	return "particles/units/heroes/hero_bloodseeker/bloodseeker_silenced.vpcf"
 end

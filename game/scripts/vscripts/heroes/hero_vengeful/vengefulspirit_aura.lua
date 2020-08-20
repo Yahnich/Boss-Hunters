@@ -84,16 +84,14 @@ end
 
 function modifier_vengefulspirit_aura_buff:OnDeath(params)
     if IsServer() then
-    	if params.unit == self:GetParent() and params.unit:IsHero() and not params.unit:IsIllusion() then
+    	if params.unit == self:GetParent() and params.unit:IsRealHero() then
             local damage = self:GetTalentSpecialValueFor("image_damage_out")
             if self:GetCaster():HasScepter() then
                 damage = self:GetTalentSpecialValueFor("scepter_image_damage_out")
             end
-			local callback = (function( illusion, self, caster, ability )
-				illusion:AddNewModifier(caster, ability, "modifier_vengefulspirit_aura_illusion", {})
-			end)
-    		self:GetParent():ConjureImage( self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("image_duration"), damage, self:GetTalentSpecialValueFor("image_damage_in"), nil, self, true, self:GetCaster(), callback )
-    		
+    		local illusion = self:GetParent():ConjureImage( {outgoing_damage = damage, incoming_damage = self:GetTalentSpecialValueFor("image_damage_in"), position = self:GetParent():GetAbsOrigin()}, self:GetTalentSpecialValueFor("image_duration"), self:GetCaster(), 1 )
+    		illusion[1]:AddNewModifier(caster, ability, "modifier_vengefulspirit_aura_illusion", {duration = self:GetTalentSpecialValueFor("image_duration")})
+			illusion[1]:SetHealth( illusion[1]:GetMaxHealth() )
     	end
     end
 end

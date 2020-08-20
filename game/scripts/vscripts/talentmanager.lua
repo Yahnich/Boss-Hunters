@@ -234,7 +234,34 @@ function TalentManager:ProcessUniqueTalents(userid, event)
 		end
 		talents[abilityName][talentName] = -1
 		hero:ModifyTalentPoints(-1)
-		hero:UpgradeAbility(talentEntity)
+		talentEntity:SetLevel(1)
+		local talentData = CustomNetTables:GetTableValue("talents", tostring(hero:entindex())) or {}
+		if GameRules.AbilityKV[talentName] then
+			if GameRules.AbilityKV[abilityName]["LinkedModifierName"] then
+				local modifierName = GameRules.AbilityKV[talentName]["LinkedModifierName"] 
+				for _, unit in ipairs( FindAllUnits() ) do
+					if unit:HasModifier(modifierName) then
+						local mList = unit:FindAllModifiersByName(modifierName)
+						for _, modifier in ipairs( mList ) do
+							local remainingDur = modifier:GetRemainingTime()
+							modifier:ForceRefresh()
+							if remainingDur > 0 then modifier:SetDuration(remainingDur, true) end
+						end
+					end
+				end
+			end
+			if GameRules.AbilityKV[talentName]["LinkedAbilityName"] then
+				local talentName = GameRules.AbilityKV[talentName]["LinkedAbilityName"] or ""
+				local ability = hero:FindAbilityByName(talentName)
+				if ability and ability.OnTalentLearned then
+					ability:OnTalentLearned(talentName)
+				end
+			end
+		end
+		talentData[talentName] = true
+		CustomNetTables:SetTableValue( "talents", tostring(hero:entindex()), talentData )
+		hero.talentsSkilled = hero.talentsSkilled + 1
+		
 		CustomGameEventManager:Send_ServerToAllClients("dota_player_talent_update", {PlayerID = pID, hero_entindex = entindex} )
 	else
 		CustomGameEventManager:Send_ServerToPlayer(player, "dota_player_talent_update_failure", {PlayerID = pID, hero_entindex = entindex} )

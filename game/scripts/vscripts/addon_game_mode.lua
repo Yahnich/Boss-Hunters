@@ -410,16 +410,22 @@ function CHoldoutGameMode:InitGameMode()
 														debug.sethook(nil, "c")
 													end
 												end, "fixing bug",0)
-														
+	Convars:RegisterCommand( "listentotomb", function()
+											if Convars:GetDOTACommandClient() and IsInToolsMode() then
+												local player = Convars:GetDOTACommandClient()
+												local hero = player:GetAssignedHero() 
+												ListenToGameEvent( "entity_killed", require("events/base_combat"), self )
+											end
+										end, "fixing bug",0)													
 	Convars:RegisterCommand( "spawn_elite", function(...) if IsInToolsMode() then return self.SpawnTestElites( ... ) end end, "look like someone try to steal my map :D",0)
 	
 	-- Hook into game events allowing reload of functions at run time
 	
 	ListenToGameEvent( "player_disconnect", Dynamic_Wrap( CHoldoutGameMode, 'OnPlayerDisconnected' ), self )
+	
 	ListenToGameEvent( "game_rules_state_change", Dynamic_Wrap( CHoldoutGameMode, "OnGameRulesStateChange" ), self )
 	ListenToGameEvent("dota_player_pick_hero", Dynamic_Wrap( CHoldoutGameMode, "OnHeroPick"), self )
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(CHoldoutGameMode, 'OnAbilityUsed'), self)
-	ListenToGameEvent('dota_player_learned_ability', Dynamic_Wrap(CHoldoutGameMode, 'OnAbilityLearned'), self)
 	ListenToGameEvent( "dota_player_gained_level", Dynamic_Wrap( CHoldoutGameMode, "OnHeroLevelUp" ), self )
 	ListenToGameEvent( "npc_spawned", Dynamic_Wrap( RoundManager, "OnNPCSpawned" ), RoundManager )
 	ListenToGameEvent( "dota_holdout_revive_complete", Dynamic_Wrap( RoundManager, 'OnHoldoutReviveComplete' ), RoundManager )
@@ -453,6 +459,7 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	local parent_index = filterTable["entindex_parent_const"]
     local caster_index = filterTable["entindex_caster_const"]
 	local ability_index = filterTable["entindex_ability_const"]
+	local name = filterTable["name_const"]
     if not parent_index or not caster_index then
         return true
     end
@@ -463,7 +470,6 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	if ability_index then
 		ability = EntIndexToHScript( ability_index )
 	end
-	local name = filterTable["name_const"]
 	local FilterModifiers = function( ... )
 		if name == "modifier_item_ultimate_scepter" then
 			for i = 0, parent:GetAbilityCount() - 1 do
@@ -473,7 +479,6 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 				end
 			end
 		end
-		
 		if duration ~= -1 and parent and caster then
 			local params = {caster = caster, target = parent, duration = duration, ability = ability, modifier_name = name}
 			duration = duration * caster:GetStatusAmplification( params )
@@ -481,19 +486,22 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 				duration = duration * parent:GetStatusResistance( params )
 			end
 		end
-		
+		if parent == caster and parent:IsIllusion() and duration ~= -1 then
+			local owner = parent:GetOwner()
+			if parent:GetOwner():IsPlayer() then
+				owner = parent:GetOwner():GetAssignedHero()
+			end
+			if owner:HasModifier(name) then
+				duration = owner:FindModifierByName(name):GetRemainingTime()
+			end
+		end
 		if parent then
 			local handler = parent:FindModifierByName("modifier_handler_handler")
 			Timers:CreateTimer(function()
 				if handler then handler:CheckIfUpdateNeeded( name, ability, duration ) end
 			end)
 		end
-		
 		if duration == 0 then return false end
-		if caster and duration and caster:GetTeam() == DOTA_TEAM_GOODGUYS and duration > 0 and name ~= "modifier_illusion" and (caster.lastDebuffTime or 0) + 0.25 < GameRules:GetGameTime() then
-			caster:ModifyThreat( math.log(1 + duration) + 0.2 )
-			caster.lastDebuffTime = GameRules:GetGameTime() 
-		end
 		filterTable["duration"] = duration
 		return true
 	end
@@ -573,6 +581,14 @@ function CHoldoutGameMode:FilterOrders( filterTable )
 			return false
 		end
 	end
+	if filterTable["order_type"] == DOTA_UNIT_ORDER_PICKUP_ITEM then
+		local itemContainer = EntIndexToHScript( filterTable.entindex_target )
+		local item = itemContainer:GetContainedItem()
+		if item:GetName() == "item_tombstone" and hero:IsMuted() then
+			EventManager:ShowErrorMessage(filterTable.issuer_player_id_const, "Cannot resurrect while muted.")
+			return false
+		end		
+	end
 	if RoundManager:GetCurrentEvent() 
 	and RoundManager:GetCurrentEvent():IsEvent()
 	and RoundManager:GetCurrentEvent()._playerChoices
@@ -623,7 +639,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	
 	-- VVVVVVVVVVVVVV REMOVE THIS SHIT IN THE FUTURE VVVVVVVVVVV --
 	if attacker:GetTeam() == DOTA_TEAM_GOODGUYS and ( not attacker:IsRealHero() or attacker:IsFakeHero() ) and attacker:GetOwner() then 
-		if attacker:GetOwner():GetClassname() == player then
+		if attacker:GetOwner():IsPlayer() then
 			attacker = attacker:GetOwner():GetAssignedHero()
 		else
 			attacker = attacker:GetOwner()
@@ -655,7 +671,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		end
 		local addedthreat = math.min( (damage / roundCurrTotalHP)*#enemies*100, (victim:GetHealth() * #enemies * 100) / roundCurrTotalHP )
 		if addedthreat > 0.01 then
-			attacker:ModifyThreat( addedthreat )
+			original_attacker:ModifyThreat( addedthreat )
 		end
 	end
     local attackerID = attacker:GetPlayerOwnerID()
@@ -755,56 +771,6 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 	end
 end
 
-function CHoldoutGameMode:OnAbilityLearned(event)
-	local abilityname = event.abilityname
-	local pID = event.PlayerID
-	if abilityname and pID and string.match(abilityname, "special_bonus" ) then
-		local hero = PlayerResource:GetSelectedHeroEntity( pID )
-		local leveledAbility = hero:FindAbilityByName(abilityname)
-		if leveledAbility and leveledAbility == 0 then return end
-		-- if hero:GetLevel() < (hero.talentsSkilled + 1) * 10 then
-			-- local talent = hero:FindAbilityByName(abilityname)
-			-- talent:SetLevel(0)
-			-- for _, modifier in ipairs( hero:FindAllModifiers() ) do
-				-- if modifier:GetAbility() then
-					-- if not modifier:GetAbility():IsInnateAbility() and modifier:GetCaster() == hero and not modifier:GetAbility():IsItem() and modifier:GetAbility():GetName() ~= "item_relic_handler" then -- destroy passive modifiers and any buffs
-						-- modifier:Destroy()
-					-- end
-				-- end
-			-- end
-			-- hero:SetAbilityPoints( hero:GetAbilityPoints() + 1 )
-			-- return false
-		-- end
-		
-		local talentData = CustomNetTables:GetTableValue("talents", tostring(hero:entindex())) or {}
-		if GameRules.AbilityKV[abilityname] then
-			if GameRules.AbilityKV[abilityname]["LinkedModifierName"] then
-				local modifierName = GameRules.AbilityKV[abilityname]["LinkedModifierName"] 
-				for _, unit in ipairs( FindAllUnits() ) do
-					if unit:HasModifier(modifierName) then
-						local mList = unit:FindAllModifiersByName(modifierName)
-						for _, modifier in ipairs( mList ) do
-							local remainingDur = modifier:GetRemainingTime()
-							modifier:ForceRefresh()
-							if remainingDur > 0 then modifier:SetDuration(remainingDur, true) end
-						end
-					end
-				end
-			end
-			if GameRules.AbilityKV[abilityname]["LinkedAbilityName"] then
-				local abilityName = GameRules.AbilityKV[abilityname]["LinkedAbilityName"] or ""
-				local ability = hero:FindAbilityByName(abilityName)
-				if ability and ability.OnTalentLearned then
-					ability:OnTalentLearned(abilityname)
-				end
-			end
-		end
-		talentData[abilityname] = true
-		CustomNetTables:SetTableValue( "talents", tostring(hero:entindex()), talentData )
-		hero.talentsSkilled = hero.talentsSkilled + 1
-	end
-end
-
 function CHoldoutGameMode:OnAbilityUsed(event)
     local PlayerID = event.PlayerID
     local abilityname = event.abilityname
@@ -899,12 +865,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 	if hero:IsFakeHero() then return end
 	Timers:CreateTimer(0.03, function()
 		if hero:IsFakeHero() then return end
-		for i = 0, 17 do
-			local skill = hero:GetAbilityByIndex(i)
-			if skill and skill:IsInnateAbility() then
-				skill:UpgradeAbility(true)
-			end
-		end
+		
 		hero.damageDone = 0
 		hero.hasBeenInitialized = true
 		
@@ -913,6 +874,12 @@ function CHoldoutGameMode:OnHeroPick (event)
 		hero:AddItemByName("item_potion_of_recovery")
 		hero:AddItemByName("item_potion_of_essence")
 		
+		for i = 0, 17 do
+			local skill = hero:GetAbilityByIndex(i)
+			if skill and skill:IsInnateAbility() then
+				skill:UpgradeAbility(true)
+			end
+		end
 		-- hero:AddExperience(GameRules.XP_PER_LEVEL[7],false,false)
 		if GameRules:GetGameDifficulty() > 2 then
 		else
@@ -923,7 +890,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 		else
 			hero:SetBaseMagicalResistanceValue(25.1)
 		end
-		hero:SetPhysicalArmorBaseValue( hero:GetPhysicalArmorBaseValue() + hero:GetAgility() * 0.16 )
+		hero:SetPhysicalArmorBaseValue( hero:GetPhysicalArmorBaseValue() + hero:GetAgility() * 0.17 )
 		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage
 		local ID = hero:GetPlayerID()
 		if not ID then return end

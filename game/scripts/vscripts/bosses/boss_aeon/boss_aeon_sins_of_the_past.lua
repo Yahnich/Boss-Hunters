@@ -10,15 +10,16 @@ function boss_aeon_sins_of_the_past:OnSpellStart()
 	local target = self:GetCursorTarget()
 	
 	if target:TriggerSpellAbsorb(self) or target:GetHealth() <= 0 then return end
-	local illusion = self:ConjureImage( target )
+	local illusions = target:ConjureImage( {outgoing_damage = self:GetSpecialValueFor("illusion_out") - 100, incoming_damage = self:GetSpecialValueFor("illusion_inc") -100, scramble = true}, -1, caster, 1 )
 	caster:AddNewModifier( caster, self, "modifier_boss_aeon_sins_of_the_past", {})
 	Timers:CreateTimer(function()
-		if not illusion:IsNull() and illusion:IsAlive() then
-			illusion:MoveToPositionAggressive( illusion:GetAbsOrigin() )
-			return 0.3
+		if not illusions[1]:IsNull() and illusions[1]:IsAlive() and not illusions[1]:IsMoving() and not illusions[1]:IsAttacking() then
+			illusions[1]:MoveToPositionAggressive( illusions[1]:GetAbsOrigin() )
 		else
 			caster:RemoveModifierByName("modifier_boss_aeon_sins_of_the_past")
+			return nil
 		end
+		return 0.3
 	end)
 end
 

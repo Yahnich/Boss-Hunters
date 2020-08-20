@@ -12,19 +12,20 @@ function fallen_one_fade_out:OnSpellStart()
 	if target:TriggerSpellAbsorb( self ) then return end
 	local duration = self:GetSpecialValueFor("illu_duration")
 	
-	local callback = (function( illusion, parent, caster, ability )
-		illusion.hasBeenInitialized = true
-		Timers:CreateTimer(0.5, function()
-			illusion:MoveToPositionAggressive( parent:GetAbsOrigin() )
-			caster:SetAbsOrigin( illusion:GetAbsOrigin() )
-			if not illusion or illusion:IsNull() or not illusion:IsAlive() and invuln then
-				invuln:Destroy()
-			end
-		end)
-	end)
-	
-	local illusion = target:ConjureImage( caster:GetAbsOrigin(), duration, self:GetSpecialValueFor("illu_out") - 100, self:GetSpecialValueFor("illu_inc") - 100, nil, self, false, caster, callback )
+	local illusions = target:ConjureImage( {outgoing_damage = self:GetSpecialValueFor("illu_inc") - 100, incoming_damage = self:GetSpecialValueFor("illu_out") - 100, position = caster:GetAbsOrigin(), ability = self}, duration, caster, 1 )
 	local invuln = caster:AddNewModifier(caster, self, "modifier_fallen_one_fade_out", {duration = duration})
+	Timers:CreateTimer(function()
+		if not (illusions[1]:IsMoving() or illusions[1]:IsAttacking()) then
+			illusions[1]:MoveToPositionAggressive( target:GetAbsOrigin() )
+		end
+		caster:SetAbsOrigin( illusions[1]:GetAbsOrigin() )
+		ResolveNPCPositions( illusions[1]:GetAbsOrigin(), 32 )
+		if not illusions or not illusions[1] or illusions[1]:IsNull() or not illusions[1]:IsAlive() and invuln then
+			invuln:Destroy()
+			return nil
+		end
+		return 0.1
+	end)
 end
 
 modifier_fallen_one_fade_out = class({})

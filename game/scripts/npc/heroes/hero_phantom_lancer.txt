@@ -35,11 +35,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"7"
+		"AbilityCooldown"				"7 7 7 7 6 5 4"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"125 130 135 140 145 150 155"
+		"AbilityManaCost"				"110 120 130 140 140 140 140"
 		
 		"precache"
 		{
@@ -140,7 +140,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"out_damage"				"15"
+				"out_damage"				"30"
 			}
 		}
 	}
@@ -171,11 +171,11 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"40 35 30 25 20 15 10"
+		"AbilityCooldown"				"25 20 15 10 10 10 10"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50"
+		"AbilityManaCost"				"45 45 45 45 30 15 0"
 		
 		"precache"
 		{
@@ -192,52 +192,52 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"illusion_1_in"				"100"
+				"var_type"						"FIELD_INTEGER"
+				"illusion_1_in"					"100"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"illusion_1_out"			"0"
-				"LinkedSpecialBonus"		"special_bonus_unique_pl_doppelganger_1"
-				"LinkedSpecialBonusField"	"out_1"
+				"var_type"						"FIELD_INTEGER"
+				"illusion_1_out"				"0"
+				"LinkedSpecialBonus"			"special_bonus_unique_pl_doppelganger_1"
+				"LinkedSpecialBonusField"		"out_1"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"illusion_2_in"				"600"
+				"var_type"						"FIELD_INTEGER"
+				"illusion_2_in"					"600"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"illusion_2_out"			"20"
-				"LinkedSpecialBonus"		"special_bonus_unique_pl_doppelganger_1"
-				"LinkedSpecialBonusField"	"out_2"
+				"var_type"						"FIELD_INTEGER"
+				"illusion_2_out"				"20"
+				"LinkedSpecialBonus"			"special_bonus_unique_pl_doppelganger_1"
+				"LinkedSpecialBonusField"		"out_2"
 			}
 			"05"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"target_aoe"				"325"
+				"var_type"						"FIELD_INTEGER"
+				"target_aoe"					"325"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"search_radius"				"900"
+				"var_type"						"FIELD_INTEGER"
+				"search_radius"					"900"
 			}
 			"07"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"delay"						"1"
+				"var_type"						"FIELD_FLOAT"
+				"delay"							"1"
 			}			
 			"08"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"illusion_duration"			"8"
+				"var_type"						"FIELD_FLOAT"
+				"illusion_duration"				"8"
 			}
 			"09"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"illusion_extended_duration"			"2"
+				"var_type"						"FIELD_FLOAT"
+				"illusion_extended_duration"	"2"
 			}
 		}
 	}
@@ -260,12 +260,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"out_1"						"20"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"out_2"						"-50"
+				"value"						"1"
 			}
 		}
 	}
@@ -289,116 +284,13 @@
 				"var_type"					"FIELD_INTEGER"
 				"value"						"-3"
 			}
-		}
-	}
-
-	"pl_false_edge"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_phantom_lancer/pl_false_edge"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"custom/phantom_lancer_false_edge"
-		"MaxLevel"						"7"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_pl_false_edge_1"	"1"
-			"special_bonus_unique_pl_false_edge_2"	"1"
-		}
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.3"
-		"AbilityCastRange"				"0"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"22 21 20 19 18 17 16"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-		
-		"precache"
-		{
-			"particle"  				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
-			"particle"  				"particles/econ/items/earthshaker/earthshaker_totem_ti6/earthshaker_totem_ti6_cast.vpcf"
-
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
-		}
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_as"					"20 40 60 80 100 120 140"
-			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_accuracy"			"20 25 30 35 40 45 50"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"6"
+				"value2"					"600"
 			}
 		}
 	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_pl_false_edge_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_pl_false_edge_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"300"
-			}
-		}
-	}
-
 	//=================================================================================================================
 	// Phantom Rush
 	//=================================================================================================================
@@ -408,15 +300,19 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_phantom_lancer/pl_phantom_rush"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityTextureName"			"phantom_lancer_phantom_edge"
-		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
-	
+		
+		"LinkedTalents"
+		{
+			"special_bonus_unique_pl_phantom_rush_1"	"1"
+			"special_bonus_unique_pl_phantom_rush_2"	"1"
+		}
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"4"
+		"AbilityCooldown"				"16 12 8 4 4 4 4"
 		
 		"precache"
 		{
@@ -433,12 +329,14 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"min_distance"				"150"
+				"LinkedSpecialBonus"		"special_bonus_unique_pl_phantom_rush_2"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"max_distance"				"1200"
-				"LinkedSpecialBonus"		"special_bonus_unique_phantom_lancer"
+				"LinkedSpecialBonus"		"special_bonus_unique_pl_phantom_rush_2"
+				"LinkedSpecialBonusField"	"value2"
 			}
 			"03"
 			{
@@ -448,31 +346,65 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_agility"				"20"
+				"bonus_agility"				"30 30 30 30 45 60 75"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"agility_duration"			"3.5"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"illusion_duration_scepter"	"3"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"illusion_in_scepter"		"400"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"illusion_out_scepter"		"20"
+				"agility_duration"			"2"
 			}
 		}
 	}
-
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_pl_phantom_rush_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"1.5"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_pl_phantom_rush_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"-2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"1200"
+			}
+		}
+	}
+	
 	//=================================================================================================================
 	// Juxtapose
 	//=================================================================================================================
@@ -484,16 +416,17 @@
 		"ScriptFile"					"heroes/hero_phantom_lancer/pl_juxtapose"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"phantom_lancer_juxtapose"
-		"MaxLevel"						"6"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+		"HasScepterUpgrade"				"1"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_pl_juxtapose_1"	"1"
-			"special_bonus_unique_pl_juxtapose_2"	"1"
-		}
+		// "LinkedTalents"
+		// {
+			// "special_bonus_unique_pl_juxtapose_1"	"1"
+			// "special_bonus_unique_pl_juxtapose_2"	"1"
+		// }
 
 		"precache"
 		{	
@@ -515,7 +448,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"chance"					"40 45 50 55 60 65"
+				"chance"					"40"
 			}
 			"03"
 			{
@@ -532,10 +465,16 @@
 				"var_type"					"FIELD_INTEGER"
 				"illusion_in"				"650"
 			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_out"				"22"
+			}
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"illusion_out"				"16 20 24 28 32 36"
+				"scepter_illusions"			"10"
+				"RequiresScepter"			"1"
 			}
 		}
 	}
@@ -581,6 +520,125 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"						"1"
+			}
+		}
+	}
+	"pl_false_edge"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_phantom_lancer/pl_false_edge"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/phantom_lancer_false_edge"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"						"6"
+		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_pl_false_edge_1"	"1"
+			"special_bonus_unique_pl_false_edge_2"	"1"
+		}
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"0"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"40"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+		
+		"precache"
+		{
+			"particle"  				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+			"particle"  				"particles/econ/items/earthshaker/earthshaker_totem_ti6/earthshaker_totem_ti6_cast.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_as"					"40 80 80 120 120 160"
+				"LinkedSpecialBonus"		"special_bonus_unique_pl_false_edge_2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_accuracy"			"20 20 30 30 40 40"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"6"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_pl_false_edge_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"50"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"100"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_pl_false_edge_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"40"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"600"
 			}
 		}
 	}

@@ -99,6 +99,14 @@ function modifier_dw_crown:OnRemoved()
 	end
 end
 
+function modifier_dw_crown:DeclareFunctions()
+	return { MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING }
+end
+
+function modifier_dw_crown:GetModifierStatusResistanceStacking()
+	return self.status_resist
+end
+
 function modifier_dw_crown:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

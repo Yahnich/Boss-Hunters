@@ -60,6 +60,7 @@ end
 function druid_bear:BearStats(unit)
 	local caster = self:GetCaster()
 
+	unit:RemoveModifierByName("modifier_handler_handler")
 	for i=0,3 do
 		local ability = unit:GetAbilityByIndex(i)
 		if ability then
@@ -67,19 +68,19 @@ function druid_bear:BearStats(unit)
 		end
 	end
 	local baseDamage = self:GetTalentSpecialValueFor("base_damage")
-	local baseHealth = self:GetTalentSpecialValueFor("base_health") 
-	local percent = self:GetTalentSpecialValueFor("percent")
+	local dmgScaling = self:GetTalentSpecialValueFor("dmg_scaling")
+	local baseHealth = self:GetTalentSpecialValueFor("base_health")
+	local hpScaling = self:GetTalentSpecialValueFor("hp_scaling")
 	unit:SetThreat(0)
 	
-	local bat = caster:GetBaseAttackTime()
+	local bat = caster:GetBaseAttackTime()/1.5
 	local ms = caster:GetBaseMoveSpeed()
 	--unit:SetForwardVector(caster:GetForwardVector())
-	unit:SetCoreHealth( baseHealth * caster:GetLevel() )
+	unit:SetCoreHealth( baseHealth + hpScaling * (caster:GetLevel() - 1) )
 	unit:SetBaseHealthRegen( caster:GetLevel() )
-	unit:SetMana(300)
 	unit:SetBaseManaRegen(0.5)
-	unit:SetBaseDamageMax( baseDamage * caster:GetLevel() - 5 )
-	unit:SetBaseDamageMin( baseDamage * caster:GetLevel() + 5 )
+	unit:SetBaseDamageMax( baseDamage + dmgScaling * (caster:GetLevel() -1) - 5 )
+	unit:SetBaseDamageMin( baseDamage + dmgScaling * (caster:GetLevel() -1) + 5 )
 	unit:SetBaseMagicalResistanceValue( caster:GetBaseMagicalResistanceValue() )
 	unit:SetBaseAttackTime(bat)
 	unit:SetBaseMoveSpeed(ms)
@@ -114,17 +115,15 @@ function druid_bear:BearStats(unit)
 	end
 
 	if not unit:HasAbility("druid_sunmoon_strike") and caster:HasScepter() then
-		print("?")
 		local sun = unit:AddAbility("druid_sunmoon_strike")
 		sun:SetLevel(1)
 		sun:SetHidden(false)
 	elseif unit:HasAbility("druid_sunmoon_strike") and not caster:HasScepter() then
-		print("!")
 		local sun = unit:RemoveAbility("druid_sunmoon_strike")
 	end
-	-- if caster:HasScepter() then
-		-- unit:AddNewModifier(caster, self, "modifier_druid_bear_odor", {})
-	-- end
+	unit:AddNewModifier(caster, self, "modifier_stats_system_handler", {})
+	unit:AddNewModifier(caster, self, "modifier_handler_handler", {})
+	unit:SetMana( unit:GetMaxMana() )
 end
 
 modifier_druid_bear_stats = ({})
@@ -132,15 +131,9 @@ LinkLuaModifier("modifier_druid_bear_stats", "heroes/hero_lone_druid/druid_bear"
 function modifier_druid_bear_stats:OnCreated()
 	local caster = self:GetCaster()
 	local percent = self:GetTalentSpecialValueFor("percent")/100
-	local HP_PER_STR = 20
-	local HPR_PER_STR = 0.1
-	local MR_PER_STR = 0.08
-	local AR_PER_AGI = 0.16
+	local HP_PER_STR = 25
 	local AS_PER_AGI = 1
-	local MS_PER_AGI = 0.05
-	local MP_PER_INT = 12
-	local MPR_PER_INT = 0.05
-	local SA_PER_INT = 0.4
+	local MP_PER_INT = 20
 	self.bonusDamage = caster:GetAgility() * percent
 	if self:GetCaster():GetPrimaryAttribute() == DOTA_ATTRIBUTE_STRENGTH  then
 		self.bonusDamage = caster:GetStrength() * percent
@@ -149,38 +142,19 @@ function modifier_druid_bear_stats:OnCreated()
 	local strength = caster:GetStrength() * percent
 	local agility = caster:GetAgility() * percent
 	local intelligence = caster:GetIntellect() * percent
-	
 	self.bonusHP = HP_PER_STR * strength
-	self.bonusHPRegen = HPR_PER_STR * strength
-	self.magicResist = MR_PER_STR * strength
-	self.armor = AR_PER_AGI * agility
 	self.attackSpeed = AS_PER_AGI * agility
-	self.moveSpeed = MS_PER_AGI * agility
 	self.bonusMana = MP_PER_INT * intelligence
-	self.bonusManaRegen = MPR_PER_INT * intelligence
-	self.bonusSpellAmp = SA_PER_INT * intelligence
 end
 
 function modifier_druid_bear_stats:OnRefresh()
 	local caster = self:GetCaster()
 	local percent = self:GetTalentSpecialValueFor("percent")/100
-	local HP_PER_STR = 18
-	local HPR_PER_STR = 0.1
-	local MR_PER_STR = 0.08
-	local AR_PER_AGI = 0.2
-	local AS_PER_AGI = 1.25
-	local MS_PER_AGI = 0.0625
-	local MP_PER_INT = 12
-	local MPR_PER_INT = 0.05
-	local SA_PER_INT = 0.07
+	local HP_PER_STR = 25
+	local AS_PER_AGI = 1
+	local MP_PER_INT = 20
 	self.bonusDamage = caster:GetAgility() * percent
 	if self:GetCaster():GetPrimaryAttribute() == DOTA_ATTRIBUTE_STRENGTH  then
-		HP_PER_STR = 22.5
-		HPR_PER_STR = 0.125
-		MR_PER_STR = 0.1
-		AR_PER_AGI = 0.16
-		AS_PER_AGI = 1
-		MS_PER_AGI = 0.05
 		self.bonusDamage = caster:GetStrength() * percent
 	end
 	
@@ -189,68 +163,32 @@ function modifier_druid_bear_stats:OnRefresh()
 	local intelligence = caster:GetIntellect() * percent
 	
 	self.bonusHP = HP_PER_STR * strength
-	self.bonusHPRegen = HPR_PER_STR * strength
-	self.magicResist = MR_PER_STR * strength
-	self.armor = AR_PER_AGI * agility
-	self.attackSpeed = AS_PER_AGI * agility
-	self.moveSpeed = MS_PER_AGI * agility
+	self.attackSpeed = 100 + AS_PER_AGI * agility
 	self.bonusMana = MP_PER_INT * intelligence
-	self.bonusManaRegen = MPR_PER_INT * intelligence
-	self.bonusSpellAmp = SA_PER_INT * intelligence
 end
 
 
 function modifier_druid_bear_stats:DeclareFunctions()
     return {MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
-			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 			MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
-			MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-			MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-			MODIFIER_PROPERTY_EXTRA_MANA_BONUS,
-			MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE}
+			MODIFIER_PROPERTY_EXTRA_MANA_BONUS}
 end
 
 function modifier_druid_bear_stats:GetModifierBaseAttack_BonusDamage()
     return self.bonusDamage
 end
 
-function modifier_druid_bear_stats:GetModifierConstantHealthRegen()
-    return self.bonusHPRegen
-end
-
 function modifier_druid_bear_stats:GetModifierExtraHealthBonus()
     return self.bonusHP
-end
-
-function modifier_druid_bear_stats:GetModifierMagicalResistanceBonus()
-    return self.magicResist
 end
 
 function modifier_druid_bear_stats:GetModifierAttackSpeedBonus_Constant()
     return self.attackSpeed
 end
 
-function modifier_druid_bear_stats:GetModifierPhysicalArmorBonus()
-    return self.armor
-end
-
-function modifier_druid_bear_stats:GetModifierMoveSpeedBonus_Percentage()
-    return self.moveSpeed
-end
-
-function modifier_druid_bear_stats:GetModifierConstantManaRegen()
-    return self.bonusManaRegen
-end
-
 function modifier_druid_bear_stats:GetModifierExtraManaBonus()
     return self.bonusMana
-end
-
-function modifier_druid_bear_stats:GetModifierSpellAmplify_Percentage()
-    return self.bonusSpellAmp
 end
 
 function modifier_druid_bear_stats:IsHidden()

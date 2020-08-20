@@ -40,7 +40,7 @@ end
 
 function modifier_boss_legion_commander_battlemaster_passive:OnAttackLanded(params)
 	if IsServer() then
-		if params.target == self:GetParent()then
+		if params.target == self:GetParent() and not self:GetParent():PassivesDisabled() then
 			local parent = self:GetParent()
 			local ability = self:GetAbility()
 			if not ability.counterAttack and ability:IsCooldownReady() then

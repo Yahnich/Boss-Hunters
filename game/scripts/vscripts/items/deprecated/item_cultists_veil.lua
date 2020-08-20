@@ -30,10 +30,12 @@ function modifier_cultists_veil_debuff:OnRefresh()
 end
 
 function modifier_cultists_veil_debuff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
+	return {MODIFIER_PROPERTY_INCOMING_SPELL_DAMAGE_CONSTANT}
 end
 
-function modifier_cultists_veil_debuff:GetModifierMagicalResistanceBonus()
+function modifier_cultists_veil_debuff:GetModifierIncomingSpellDamageConstant(params)
+	PrintAll( params )
+	print( params )
 	return self.mr
 end
 

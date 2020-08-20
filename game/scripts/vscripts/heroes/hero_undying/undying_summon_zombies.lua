@@ -3,6 +3,7 @@ undying_summon_zombies = class({})
 function undying_summon_zombies:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
+	if target:TriggerSpellAbsorb( self ) then return end
 	target:AddNewModifier(caster, self, "modifier_undying_summon_zombies", {duration = self:GetSpecialValueFor("zombie_duration")})
 end
 
@@ -10,59 +11,63 @@ modifier_undying_summon_zombies = class({})
 LinkLuaModifier("modifier_undying_summon_zombies", "heroes/hero_undying/undying_summon_zombies", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_undying_summon_zombies:OnCreated()
-	self.damage = self:GetSpecialValueFor("damage")
-	self.heal = self:GetSpecialValueFor("heal_pct")
-	self.slow = self:GetSpecialValueFor("movement_slow")
-	self.turn = self:GetSpecialValueFor("turn_slow_tooltip")
-	if IsServer() then
-		self:StartIntervalThink(1)
-	end
+	self:OnRefresh()
+	self:StartIntervalThink(0.25)
 end
 
 function modifier_undying_summon_zombies:OnRefresh()
 	self.damage = self:GetSpecialValueFor("damage")
-	self.heal = self:GetSpecialValueFor("heal_pct")
-	self.slow = self:GetSpecialValueFor("movement_slow")
-	self.turn = self:GetSpecialValueFor("turn_slow_tooltip")
+	self.min_dmg = self:GetTalentSpecialValueFor("min_dmg") 
+	self.max_dmg = self:GetTalentSpecialValueFor("max_dmg")
+	self.min_slow = self:GetTalentSpecialValueFor("min_slow")
+	self.max_slow = self:GetTalentSpecialValueFor("max_slow")
+	self.min_radius = self:GetTalentSpecialValueFor("minimum_range")
+	self.max_radius = self:GetTalentSpecialValueFor("maximum_range")
+	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_undying_summon_zombies_2")
+	self.talent2Timer = self:GetCaster():FindTalentValue("special_bonus_unique_undying_summon_zombies_2")
+	self.talentOG2Timer = self.talent2Timer
 end
 
 function modifier_undying_summon_zombies:OnIntervalThink()
 	local caster = self:GetCaster()
 	local target = self:GetParent()
 	local ability = self:GetAbility()
-	if target:TriggerSpellAbsorb( self ) then return end
-	caster:Lifesteal(ability, self.heal, self.damage, target, ability:GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY)
-	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-	EmitSoundOn("Hero_Bane.Enfeeble.Cast", caster)
-	Timers:CreateTimer(0.5,function()
-        StopSoundOn("Hero_Bane.Enfeeble.Cast", caster)
-    end)
 	
-	-- Set Control Point 1 for the backstab particle; this controls where it's positioned in the world. In this case, it should be positioned on the victim.
-	ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true) 
-	ParticleManager:SetParticleControlEnt(particle, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
-	
-	if caster:HasTalent("special_bonus_unique_undying_summon_zombies_1") then
-		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_undying_summon_zombies_1") ) ) do
-			if enemy ~= target and not enemy:HasModifier("modifier_undying_summon_zombies") then
-				enemy:AddNewModifier(caster, ability, "modifier_undying_summon_zombies", { duration = self:GetRemainingTime() })
-				break
+	if IsServer() then
+		ability:DealDamage( caster, target, self.damage * 0.25 )
+		if self.talent2 and caster:HasModifier("modifier_undying_the_undying") then
+			self.talent2Timer = self.talent2Timer - 0.25
+			if self.talent2Timer <= 0 then
+				self.talent2Timer = self.talentOG2Timer
+				caster:FindModifierByName("modifier_undying_the_undying"):OnDeath({unit = target})
 			end
 		end
+		local distance = CalculateDistance( self:GetParent(), self:GetCaster() )
+		
+		local boundRange = self.min_radius - self.max_radius
+		local distPct = math.ceil( ( (self.min_radius - distance) / boundRange ) * 100 )
+		self:SetStackCount(distPct)
 	end
+	self.total_slow = math.min( self.min_slow, math.max( self.max_slow, self:GetStackCount()/100 * self.max_slow ) )
+	self.total_dmg = math.min( self.min_dmg, math.max( self.max_dmg, self:GetStackCount()/100 * self.max_dmg ) ) * -1
 end
 
 function modifier_undying_summon_zombies:DeclareFunctions()
 	return {MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE,
-			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+			MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
 end
 
 function modifier_undying_summon_zombies:GetModifierTurnRate_Percentage()
-	return self.turn
+	return self.total_slow
 end
 
 function modifier_undying_summon_zombies:GetModifierMoveSpeedBonus_Percentage()
-	return self.slow
+	return self.total_slow
+end
+
+function modifier_undying_summon_zombies:GetModifierIncomingDamage_Percentage()
+	return self.total_dmg
 end
 
 function modifier_undying_summon_zombies:GetEffectName()

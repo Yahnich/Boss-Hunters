@@ -65,9 +65,9 @@ function modifier_terrorblade_zeal_passive:OnDeath(params)
 				if parent:HasTalent("special_bonus_unique_terrorblade_zeal_2") then
 					local conjure = parent:FindAbilityByName("terrorblade_conjure_image_bh")
 					if conjure then
-						for i = 1, parent:FindTalentValue("special_bonus_unique_terrorblade_zeal_2") do
-							local image = conjure:CreateImage( )
-							image:SetHealth( image:GetMaxHealth() )
+						local images = conjure:CreateImage( nil, nil, nil, nil, parent:FindTalentValue("special_bonus_unique_terrorblade_zeal_2") )
+						for i = 1, #images do
+							images[i]:SetHealth( images[i]:GetMaxHealth() )
 						end
 					end
 				end

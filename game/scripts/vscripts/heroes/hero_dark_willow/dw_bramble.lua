@@ -1,6 +1,4 @@
 dw_bramble = class({})
-LinkLuaModifier("modifier_dw_bramble", "heroes/hero_dark_willow/dw_bramble", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_dw_bramble_damage", "heroes/hero_dark_willow/dw_bramble", LUA_MODIFIER_MOTION_NONE)
 
 function dw_bramble:IsStealable()
     return true
@@ -79,9 +77,13 @@ function dw_bramble:GrowMaze(vLocation)
 end
 
 modifier_dw_bramble = class({})
+LinkLuaModifier("modifier_dw_bramble", "heroes/hero_dark_willow/dw_bramble", LUA_MODIFIER_MOTION_NONE)
+
 function modifier_dw_bramble:OnCreated(table)
+	local caster = self:GetCaster()
+	self.talent2 = caster:HasTalent("special_bonus_unique_dw_bramble_2")
+	self.talent2Radius = caster:FindTalentValue("special_bonus_unique_dw_bramble_2", "radius")
 	if IsServer() then
-		local caster = self:GetCaster()
 		local point = self:GetParent():GetAbsOrigin()
 
 		EmitSoundOn("Hero_DarkWillow.Bramble.Spawn", self:GetParent())
@@ -131,7 +133,56 @@ function modifier_dw_bramble:OnRemoved()
 	end
 end
 
+function modifier_dw_bramble:IsAura()
+	return self.talent2
+end
+
+function modifier_dw_bramble:GetModifierAura()
+	return "modifier_dw_bramble_talent"
+end
+
+function modifier_dw_bramble:GetAuraRadius()
+	return self.talent2Radius
+end
+
+function modifier_dw_bramble:GetAuraDuration()
+	return 0.5
+end
+
+function modifier_dw_bramble:GetAuraSearchTeam()    
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+
+function modifier_dw_bramble:GetAuraSearchType()    
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+
+function modifier_dw_bramble:GetAuraSearchFlags()    
+	return DOTA_UNIT_TARGET_FLAG_NONE
+end
+
+modifier_dw_bramble_talent = class({})
+LinkLuaModifier("modifier_dw_bramble_talent", "heroes/hero_dark_willow/dw_bramble", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_dw_bramble_talent:OnCreated()
+	self.resist = self:GetCaster():FindTalentValue("special_bonus_unique_dw_bramble_2")
+end
+
+function modifier_dw_bramble_talent:DeclareFunctions()
+	return {MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING, MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+end
+
+function modifier_dw_bramble_talent:GetModifierStatusResistanceStacking()
+	return self.resist
+end
+
+function modifier_dw_bramble_talent:GetModifierIncomingDamage_Percentage()
+	return self.resist * (-1)
+end
+
 modifier_dw_bramble_damage = class({})
+LinkLuaModifier("modifier_dw_bramble_damage", "heroes/hero_dark_willow/dw_bramble", LUA_MODIFIER_MOTION_NONE)
+
 function modifier_dw_bramble_damage:OnCreated(table)
 	if IsServer() then
 		local caster = self:GetCaster()

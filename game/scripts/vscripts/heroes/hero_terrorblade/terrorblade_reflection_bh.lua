@@ -38,8 +38,11 @@ function terrorblade_reflection_bh:CreateReflection( hero, position, duration, o
 		if not illusion:HasAbility("terrorblade_zeal") then illusion:AddAbility("terrorblade_zeal") end
 	end)
 	
-	local illusion = hero:ConjureImage( position, duration, outgoing - 100, -100, "modifier_terrorblade_conjureimage", self, false, caster, callback )
-	return illusion
+	local illusions = hero:ConjureImage( {outgoing_damage = outgoing, -999, position = position, illusion_modifier = "modifier_terrorblade_conjureimage", scramble = false, ability = self}, duration, caster )
+	illusions[1]:AddNewModifier(caster, self, "modifier_terrorblade_reflection_bh_illusion", {})
+	illusions[1]:MoveToPositionAggressive( position )
+	if not illusions[1]:HasAbility("terrorblade_zeal") then illusions[1]:AddAbility("terrorblade_zeal") end
+	return illusions[1]
 end
 
 modifier_terrorblade_reflection_bh_illusion = class({})

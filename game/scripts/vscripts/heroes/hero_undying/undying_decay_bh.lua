@@ -56,6 +56,10 @@ function modifier_undying_decay_bh:GetEffectName()
 	return "particles/units/heroes/hero_undying/undying_decay_strength_buff.vpcf"
 end
 
+function modifier_undying_decay_bh:IsPurgable()
+	return false
+end
+
 modifier_undying_decay_bh_talent = class({})
 LinkLuaModifier("modifier_undying_decay_bh_talent", "heroes/hero_undying/undying_decay_bh", LUA_MODIFIER_MOTION_NONE)
 
@@ -86,4 +90,8 @@ end
 
 function modifier_undying_decay_bh_talent:GetEffectName()
 	return "particles/units/heroes/hero_undying/undying_decay_strength_buff.vpcf"
+end
+
+function modifier_undying_decay_bh_talent:IsPurgable()
+	return false
 end

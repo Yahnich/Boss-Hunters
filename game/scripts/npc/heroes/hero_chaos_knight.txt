@@ -39,11 +39,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10.0 10.0 10.0 10.0"
+		"AbilityCooldown"				"13 13 13 13 12 11 10"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"140 140 140 140"
+		"AbilityManaCost"				"110 120 130 140 140 140 140"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -57,22 +57,22 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_min"				"0.5 0.75 1 1.25 1.5 1.75 2.0"
+				"stun_min"				"0.5 01 1.5 2.0 2.0 2.0 2.0"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_max"				"1.0 1.5 2.0 2.5 3.0 3.5 4.0"
+				"stun_max"				"1.0 2.0 3.0 4.0 4.0 4.0 4.0"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_min"			"75 100 125 150 175 200 225"
+				"damage_min"			"90 110 130 150 200 250 300"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_max"			"200 250 300 350 400 450 500"
+				"damage_max"			"180 220 260 300 400 500 600"
 			}
 			"06"
 			{
@@ -95,8 +95,13 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"25"
+				"var_type"				"FIELD_INTEGER"
+				"value"					"4"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"10"
 			}
 		}
 	}
@@ -114,8 +119,8 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"25"
+				"var_type"				"FIELD_FLOAT"
+				"value"					"50"
 			}
 		}
 	}
@@ -152,7 +157,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"24 21 18 15 12 9 6"
+		"AbilityCooldown"				"15 12 9 6 6 6 6"
 
 
 		// Cost
@@ -178,13 +183,13 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"armor_reduction"			"-2 -3 -4 -5 -6 -7 -8"
+				"armor_reduction"			"-3 -4 -5 -6 -7 -8 -9"
 				"LinkedSpecialBonus"		"special_bonus_unique_chaos_knight_reality_rift_1"
 			}		
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"armor_duration"			"8"
+				"armor_duration"			"8 8 8 8 10 12 14"
 			}
 		}
 	}
@@ -203,7 +208,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-4"
+				"value"					"-3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value2"				"40"
 			}	
 		}
 	}
@@ -265,23 +275,23 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"crit_chance"				"15"
+				"crit_chance"				"30"
+				"LinkedSpecialBonus"		"special_bonus_unique_chaos_knight_chaos_strike_2"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"crit_damage"				"160 195 230 265 300 335 370"
-			}	
+				"crit_min"					"120 120 120 120 135 150 165"
+			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"lifesteal"					"35"
+				"crit_max"					"140 170 200 230 230 230 230 "
 			}
 			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"activation_delay"			"6"
-				"LinkedSpecialBonus"		"special_bonus_unique_chaos_knight_chaos_strike_2"
+				"var_type"					"FIELD_INTEGER"
+				"lifesteal"					"70"
 			}
 		}
 	}
@@ -311,6 +321,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_chaos_knight_chaos_strike_ebf"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -319,7 +330,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-3"
+				"value"					"10"
 			}
 		}
 	}
@@ -359,7 +370,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"100"
+		"AbilityCooldown"				"75"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -377,7 +388,7 @@
 			"01"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"images_count"							"3"
+				"images_count"							"1 1 2 2 3 3"
 			}
 			"02"
 			{
@@ -388,27 +399,27 @@
 			"03"
 			{
 				"var_type"								"FIELD_FLOAT"
-				"illusion_duration"						"32"
+				"illusion_duration"						"30"
 			}	
 			"04"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"outgoing_damage"						"-50 -50 - 25 -25 -25 -0"
+				"outgoing_damage"						"-0"
 			}
 			"05"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"outgoing_damage_tooltip"				"50  50  75  75 75 100"
+				"outgoing_damage_tooltip"				"100"
 			}	
 			"06"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"incoming_damage"						"200 100 100 50 0 0"
+				"incoming_damage"						"100 50 50 25 25 0"
 			}
 			"07"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"incoming_damage_tooltip"				"300 200 200 150 100 100"
+				"incoming_damage_tooltip"				"200 150 150 125 125 100"
 			}			
 			"08"
 			{
@@ -424,6 +435,7 @@
 			{
 				"var_type"								"FIELD_INTEGER"
 				"cooldown_scepter"						"60"
+				"RequiresScepter"						"1"
 			}
 		}
 	}

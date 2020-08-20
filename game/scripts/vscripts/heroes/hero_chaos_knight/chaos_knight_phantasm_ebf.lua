@@ -64,24 +64,19 @@ if IsServer() then
 			ParticleManager:ClearParticle(cFX)
 			if caster:HasTalent("special_bonus_unique_chaos_knight_phantasm_1") then
 				local cBolt = caster:FindAbilityByName("chaos_knight_chaos_bolt_ebf")
-				local cStrike = caster:FindAbilityByName("chaos_knight_chaos_strike_ebf")
-				if cStrike then
-					caster:AddNewModifier( caster, cStrike, "modifier_chaos_knight_chaos_strike_actCrit", {} )
-				end
 				if cBolt then
 					local enemy = caster:FindRandomEnemyInRadius( caster:GetAbsOrigin(), cBolt:GetTrueCastRange() )
 					if enemy then 
 						cBolt:ThrowChaosBolt(enemy, target)
 					end
 				end
+				caster:RefreshAllCooldowns(false, true)
 			end
-			local callback = ( function( illusion, self, caster, ability )
-				if caster:HasTalent("special_bonus_unique_chaos_knight_phantasm_1") then
-					local cBolt = caster:FindAbilityByName("chaos_knight_chaos_bolt_ebf")
-					local cStrike = caster:FindAbilityByName("chaos_knight_chaos_strike_ebf")
-					if cStrike then
-						illusion:AddNewModifier( caster, cStrike, "modifier_chaos_knight_chaos_strike_actCrit", {} )
-					end
+			local illusionTable = target:ConjureImage( {outgoing_damage = outDmg, incoming_damage = inDmg, position = position, scramble = true}, duration, caster, illusions )
+			if caster:HasTalent("special_bonus_unique_chaos_knight_phantasm_1") then
+				local cBolt = caster:FindAbilityByName("chaos_knight_chaos_bolt_ebf")
+				local cStrike = caster:FindAbilityByName("chaos_knight_chaos_strike_ebf")
+				for _, illusion in ipairs( illusionTable ) do
 					if cBolt then
 						local enemy = caster:FindRandomEnemyInRadius( illusion:GetAbsOrigin(), cBolt:GetTrueCastRange() )
 						if enemy then 
@@ -89,9 +84,6 @@ if IsServer() then
 						end
 					end
 				end
-			end)
-			for i = 1, illusions do
-				local illusion = target:ConjureImage( position, duration, outDmg, inDmg, nil, self, true, caster, callback )
 			end
 		end)
 	end

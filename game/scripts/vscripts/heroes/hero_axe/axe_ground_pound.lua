@@ -71,16 +71,18 @@ modifier_ground_pound_critical = class({})
 LinkLuaModifier( "modifier_ground_pound_critical", "heroes/hero_axe/axe_ground_pound.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_ground_pound_critical:OnCreated()
 	self.crit = self:GetTalentSpecialValueFor("critical_damage")
+	if IsServer() then
+		self:GetParent():HookInModifier("GetModifierCriticalDamage", self)
+	end
 end
 
-function modifier_ground_pound_critical:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE 
-	}
-	return funcs
+function modifier_ground_pound_critical:OnDestroy()
+	if IsServer() then
+		self:GetParent():HookOutModifier("GetModifierCriticalDamage", self)
+	end
 end
 
-function modifier_ground_pound_critical:GetModifierPreAttack_CriticalStrike()
+function modifier_ground_pound_critical:GetModifierCriticalDamage()
 	return self.crit
 end
 

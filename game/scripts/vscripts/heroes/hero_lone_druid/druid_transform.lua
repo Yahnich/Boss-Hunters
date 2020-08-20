@@ -157,7 +157,7 @@ function modifier_druid_transform:DeclareFunctions()
 	local funcs = {	MODIFIER_PROPERTY_MODEL_CHANGE,
 					MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 					MODIFIER_PROPERTY_HEALTH_BONUS,
-					MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+					MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 					MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE}
 	return funcs
 end
@@ -174,7 +174,7 @@ function modifier_druid_transform:GetModifierHealthBonus()
 	return self.bonus_hp
 end
 
-function modifier_druid_transform:GetModifierMoveSpeedBonus_Percentage()
+function modifier_druid_transform:GetModifierMoveSpeedBonus_Constant()
 	return self.speed_loss
 end
 

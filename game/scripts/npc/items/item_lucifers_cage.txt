@@ -33,6 +33,7 @@
 		
 		"AbilityCooldown"				"16 16 16 14 14 14 12 12 12"
 		"AbilityCastRange"				"750"
+		"AbilitySharedCooldown"			"luciferscage"
 		"AbilityManaCost"				"25"
 
 		// Special	
@@ -119,6 +120,7 @@
 		"AvailableRuneSlots"			"1"
 		
 		"AbilityCooldown"				"16 16 16 14 14 14 12 12 12"
+		"AbilitySharedCooldown"			"luciferscage"
 		"AbilityCastRange"				"750"
 		"AbilityManaCost"				"25"
 
@@ -209,6 +211,7 @@
 		"AvailableRuneSlots"			"1"
 	
 		"AbilityCooldown"				"16 16 16 14 14 14 12 12 12"
+		"AbilitySharedCooldown"			"luciferscage"
 		"AbilityCastRange"				"750"
 		"AbilityManaCost"				"25"
 
@@ -299,6 +302,7 @@
 		"AvailableRuneSlots"			"2"
 	
 		"AbilityCooldown"				"16 16 16 14 14 14 12 12 12"
+		"AbilitySharedCooldown"			"luciferscage"
 		"AbilityCastRange"				"750"
 		"AbilityManaCost"				"25"
 		
@@ -387,6 +391,7 @@
 		"AvailableRuneSlots"			"2"
 	
 		"AbilityCooldown"				"16 16 16 14 14 14 12 12 12"
+		"AbilitySharedCooldown"			"luciferscage"
 		"AbilityCastRange"				"750"
 		"AbilityManaCost"				"25"
 		
@@ -475,6 +480,7 @@
 		"AvailableRuneSlots"			"2"
 	
 		"AbilityCooldown"				"16 16 16 14 14 14 12 12 12"
+		"AbilitySharedCooldown"			"luciferscage"
 		"AbilityCastRange"				"750"
 		"AbilityManaCost"				"25"
 		
@@ -563,6 +569,7 @@
 		"AvailableRuneSlots"			"3"
 	
 		"AbilityCooldown"				"16 16 16 14 14 14 12 12 12"
+		"AbilitySharedCooldown"			"luciferscage"
 		"AbilityCastRange"				"750"
 		"AbilityManaCost"				"25"
 		
@@ -651,6 +658,7 @@
 		"AvailableRuneSlots"			"3"
 	
 		"AbilityCooldown"				"16 16 16 14 14 14 12 12 12"
+		"AbilitySharedCooldown"			"luciferscage"
 		"AbilityCastRange"				"750"
 		"AbilityManaCost"				"25"
 		
@@ -739,6 +747,7 @@
 		"AvailableRuneSlots"			"3"
 	
 		"AbilityCooldown"				"16 16 16 14 14 14 12 12 12"
+		"AbilitySharedCooldown"			"luciferscage"
 		"AbilityCastRange"				"750"
 		"AbilityManaCost"				"25"
 		

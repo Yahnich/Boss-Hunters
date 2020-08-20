@@ -15,48 +15,31 @@ function pl_phantom_rush:GetCastRange( target, location)
 	return self:GetTalentSpecialValueFor("max_distance")
 end
 
+function pl_phantom_rush:GetCooldown( iLvl )
+	return self.BaseClass.GetCooldown( self, iLvl ) + self:GetCaster():FindTalentValue("special_bonus_unique_pl_phantom_rush_2")
+end
+
 function pl_phantom_rush:GetIntrinsicModifierName()
     return "modifier_pl_phantom_rush"
-end
-
-function pl_phantom_rush:GetBehavior()
-    if self:GetCaster():HasScepter() then
-        return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
-    end
-    return DOTA_ABILITY_BEHAVIOR_PASSIVE
-end
-
-function pl_phantom_rush:OnSpellStart()
-    local caster = self:GetCaster()
-
-    local image_duration = self:GetTalentSpecialValueFor("illusion_duration_scepter")
-
-    local image1_in = self:GetTalentSpecialValueFor("illusion_in_scepter")
-    local image1_out = self:GetTalentSpecialValueFor("illusion_out_scepter")
-
-    local callback = (function(image1)
-        if image1 ~= nil then
-            caster:FindAbilityByName("pl_juxtapose"):GiveFxModifier(image1)
-        end
-    end)
-
-    local image1 = caster:ConjureImage( caster:GetAbsOrigin() + RandomVector( 72 ), image_duration, image1_out, image1_in, "", self, true, caster, callback )
-
 end
 
 modifier_pl_phantom_rush = class({})
 
 function modifier_pl_phantom_rush:DeclareFunctions()
     local funcs = { MODIFIER_EVENT_ON_ORDER,
-                    MODIFIER_EVENT_ON_ATTACK_START}
+                    MODIFIER_EVENT_ON_ATTACK_START,
+					MODIFIER_EVENT_ON_ATTACK_LANDED}
     return funcs
 end
 
 function modifier_pl_phantom_rush:OnOrder(params)
     if IsServer() then
         local caster = self:GetCaster()
+        local parent = params.unit
         local target = params.target
         local caster_origin = caster:GetAbsOrigin()
+		
+		if params.unit ~= caster or params.ability then return end
         
         local ability = self:GetAbility()
         local cooldown = ability:GetCooldown(ability:GetLevel())
@@ -65,25 +48,56 @@ function modifier_pl_phantom_rush:OnOrder(params)
         local duration = 5
         
         -- Checks if the ability is off cooldown and if the caster is attacking a target
-        if target ~= null and ability:IsCooldownReady() then
-            -- Checks if the target is an enemy
-            if caster:GetTeam() ~= target:GetTeam() then
-                local target_origin = target:GetAbsOrigin()
-                local distance = CalculateDistance(target, caster)
-                ability.target = target
-                -- Checks if the caster is in range of the target
-                if distance >= min_distance and distance <= max_distance then
-                    -- Removes the 522 move speed cap
-                    caster:AddNewModifier(caster, ability, "modifier_pl_phantom_rush_speed", { duration = duration })
-                    -- Start cooldown on the passive
-                    ability:StartCooldown(cooldown)
-                -- If the caster is too far from the target, we continuously check his distance until the attack command is canceled
-                elseif distance >= max_distance then
-                    distance = CalculateDistance(target, caster)
-                end
-            end
+        if target ~= null and ability:IsCooldownReady() and not ability:GetAutoCastState() then
+			if caster:HasTalent("special_bonus_unique_pl_phantom_rush_1") then
+				local agiDuration = self:GetTalentSpecialValueFor("agility_duration")
+				local blinkPos = target:GetAbsOrigin() - target:GetForwardVector() * (parent:GetAttackRange() - 25)
+				ParticleManager:FireParticle("particles/units/heroes/hero_phantom_lancer/phantom_lancer_deathflash.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = parent:GetAbsOrigin() + Vector(0,0,32)} )
+				FindClearSpaceForUnit( parent, blinkPos, true )
+				ParticleManager:FireParticle("particles/units/heroes/hero_phantom_lancer/phantom_lancer_deathflash.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = blinkPos + Vector(0,0,32)} )
+				self.rootAttack = true
+				caster:AddNewModifier(caster, self:GetAbility(), "modifier_pl_phantom_rush_agi", {Duration = agiDuration})
+				ability:SetCooldown()
+				if caster:HasScepter() and caster:IsRealHero() then
+					local juxtapose = caster:FindAbilityByName("pl_juxtapose")
+					if juxtapose then
+						local illusion = juxtapose:SpawnIllusion( true )
+						illusion:SetThreat( caster:GetThreat() )
+					end
+				end
+			else
+				-- Checks if the target is an enemy
+				if caster:GetTeam() ~= target:GetTeam() then
+					local target_origin = target:GetAbsOrigin()
+					local distance = CalculateDistance(target, caster)
+					ability.target = target
+					-- Checks if the caster is in range of the target
+					if distance >= min_distance and distance <= max_distance then
+						-- Removes the 522 move speed cap
+						caster:AddNewModifier(caster, ability, "modifier_pl_phantom_rush_speed", { duration = duration })
+						-- Start cooldown on the passive
+						ability:SetCooldown()
+					-- If the caster is too far from the target, we continuously check his distance until the attack command is canceled
+					elseif distance >= max_distance then
+						distance = CalculateDistance(target, caster)
+					end
+				end
+			end
         elseif not target then
             caster:RemoveModifierByName("modifier_pl_phantom_rush_speed")
+        end
+    end
+end
+
+function modifier_pl_phantom_rush:OnAttackLanded(params)
+    if IsServer() then
+        local caster = self:GetCaster()
+		local ability = self:GetAbility()
+        local attacker = params.attacker
+
+        if attacker == caster and self.rootAttack then
+			params.target:Root(ability, caster, caster:FindTalentValue("special_bonus_unique_pl_phantom_rush_1"))
+			self.rootAttack = false
         end
     end
 end
@@ -91,13 +105,26 @@ end
 function modifier_pl_phantom_rush:OnAttackStart(params)
     if IsServer() then
         local caster = self:GetCaster()
+        local target = params.target
+		local ability = self:GetAbility()
         local attacker = params.attacker
-
-        if attacker == caster and caster:HasModifier("modifier_pl_phantom_rush_speed") then
-            local agiDuration = self:GetTalentSpecialValueFor("agility_duration")
-
-            caster:AddNewModifier(caster, self:GetAbility(), "modifier_pl_phantom_rush_agi", {Duration = agiDuration})
-            caster:RemoveModifierByName("modifier_pl_phantom_rush_speed")
+		
+        if attacker == caster then
+			local agiDuration = self:GetTalentSpecialValueFor("agility_duration")
+			if caster:HasModifier("modifier_pl_phantom_rush_speed") then
+				caster:AddNewModifier(caster, self:GetAbility(), "modifier_pl_phantom_rush_agi", {Duration = agiDuration})
+				caster:RemoveModifierByName("modifier_pl_phantom_rush_speed")
+			elseif ability:IsCooldownReady() and not ability:GetAutoCastState() then
+				caster:AddNewModifier(caster, self:GetAbility(), "modifier_pl_phantom_rush_agi", {Duration = agiDuration})
+				ability:SetCooldown()
+				if caster:HasTalent("special_bonus_unique_pl_phantom_rush_1") then
+					local blinkPos = target:GetAbsOrigin() - target:GetForwardVector() * (attacker:GetAttackRange() - 25)
+					ParticleManager:FireParticle("particles/units/heroes/hero_phantom_lancer/phantom_lancer_deathflash.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = attacker:GetAbsOrigin() + Vector(0,0,32)} )
+					FindClearSpaceForUnit( attacker, blinkPos, true )
+					ParticleManager:FireParticle("particles/units/heroes/hero_phantom_lancer/phantom_lancer_deathflash.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = blinkPos + Vector(0,0,32)} )
+					self.rootAttack = true
+				end
+			end
         end
     end
 end
@@ -156,12 +183,12 @@ end
 modifier_pl_phantom_rush_agi = class({})
 function modifier_pl_phantom_rush_agi:OnCreated(table)
     EmitSoundOn("Hero_PhantomLancer.PhantomEdge", self:GetParent())
-    self.bonus_agility = self:GetParent():GetAgility() * self:GetTalentSpecialValueFor("bonus_agility")/100
+    self.bonus_agility = self:GetTalentSpecialValueFor("bonus_agility")
 end
 
 function modifier_pl_phantom_rush_agi:OnRefresh(table)
     EmitSoundOn("Hero_PhantomLancer.PhantomEdge", self:GetParent())
-    self.bonus_agility = self:GetParent():GetAgility() * self:GetTalentSpecialValueFor("bonus_agility")/100
+    self.bonus_agility = self:GetTalentSpecialValueFor("bonus_agility")
 end
 
 function modifier_pl_phantom_rush_agi:DeclareFunctions()
@@ -176,6 +203,10 @@ function modifier_pl_phantom_rush_agi:IsDebuff()
     return false
 end
 
-function modifier_pl_phantom_rush_speed:IsPurgable()
+function modifier_pl_phantom_rush_agi:IsPurgable()
+    return true
+end
+
+function modifier_pl_phantom_rush_agi:AllowIllusionDuplicate()
     return true
 end

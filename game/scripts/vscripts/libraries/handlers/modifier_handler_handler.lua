@@ -20,16 +20,15 @@ function modifier_handler_handler:OnCreated()
 		-- base attack time init
 		self.baseAttackTime = parent:GetBaseAttackTime() * 100
 		if parent:IsRealHero() then
-			self.baseAttackTime = self.baseAttackTime * 1.5
 			self.str = parent:AddNewModifier(parent, nil, "modifier_strength_handler", {})
 			self.agi = parent:AddNewModifier(parent, nil, "modifier_agility_handler", {})
 			self.int = parent:AddNewModifier(parent, nil, "modifier_intellect_handler", {})
-			
+			self.baseAttackTime = self.baseAttackTime * 1.5
 			self.strModifiers = {}
 			self.agiModifiers = {}
 			self.intModifiers = {}
 		end
-		self.baseAttackTime =  math.floor( self.baseAttackTime )
+		self.baseAttackTime =  math.floor( self.baseAttackTime + 0.5 )
 		self.bat:SetStackCount( self.baseAttackTime )
 		-- health init
 		self.baseMaxHealth = parent:GetMaxHealth()
@@ -91,6 +90,23 @@ function modifier_handler_handler:OnCreated()
 	end
 end
 
+function modifier_handler_handler:OnRemoved()
+	local parent = self:GetParent()
+	if IsServer() then
+		parent:RemoveModifierByName("modifier_accuracy_handler")
+		parent:RemoveModifierByName("modifier_attack_speed_handler")
+		parent:RemoveModifierByName("modifier_base_attack_time_handler")
+		parent:RemoveModifierByName("modifier_cooldown_reduction_handler")
+		parent:RemoveModifierByName("modifier_health_handler")
+		parent:RemoveModifierByName("modifier_move_speed_handler")
+		parent:RemoveModifierByName("modifier_area_dmg_handler")
+		parent:RemoveModifierByName("modifier_evasion_handler")
+		parent:RemoveModifierByName("modifier_strength_handler")
+		parent:RemoveModifierByName("modifier_agility_handler")
+		parent:RemoveModifierByName("modifier_intellect_handler")
+	end
+end
+
 function modifier_handler_handler:OnIntervalThink()
 	if IsServer() then
 		if self.state == 1 then
@@ -130,9 +146,11 @@ function modifier_handler_handler:OnIntervalThink()
 		end
 		if self.state == 6 then
 			self.state = 7
-			if self:GetParent():IsRealHero() and #self.strModifiers + #self.agiModifiers + #self.intModifiers > 0 then
-				self:UpdateStats()
-				return
+			if self.strModifiers and self.agiModifiers and self.intModifiers then
+				if self:GetParent():IsRealHero() and #self.strModifiers + #self.agiModifiers + #self.intModifiers > 0 then
+					self:UpdateStats()
+					return
+				end
 			end
 		end
 		if self.state == 7 then

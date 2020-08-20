@@ -17,6 +17,7 @@ function druid_savage_roar:OnSpellStart()
 
 	local duration = self:GetTalentSpecialValueFor("duration")
 	local radius = self:GetTalentSpecialValueFor("radius")
+	local talent2 = caster:HasTalent("special_bonus_unique_druid_savage_roar_2")
 	local minionMultiplier = caster:FindTalentValue("special_bonus_unique_druid_savage_roar_2")
 
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_lone_druid/lone_druid_savage_roar.vpcf", PATTACH_POINT, caster)
@@ -28,7 +29,7 @@ function druid_savage_roar:OnSpellStart()
 	for _,enemy in pairs(enemies) do
 		if not enemy:TriggerSpellAbsorb( self ) then
 			local dur = duration
-			if enemy:IsMinion() then
+			if talent2 and enemy:IsMinion() then
 				dur = duration * minionMultiplier
 			end
 			enemy:Fear(self, caster, dur)

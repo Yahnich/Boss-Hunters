@@ -16,7 +16,7 @@ function ember_fist:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
     local caster = self:GetCaster()
     local talent = "special_bonus_unique_ember_fist_1"
-    local value = caster:FindTalentValue("special_bonus_unique_ember_fist_1")
+    local value = caster:FindTalentValue(talent, "cd")
     if caster:HasTalent( talent ) then cooldown = cooldown + value end
     return cooldown
 end
@@ -54,17 +54,21 @@ function ember_fist:OnSpellStart()
 					ParticleManager:SetParticleControl(castFx, 0, point)
 					ParticleManager:SetParticleControl(castFx, 1, Vector(radius, radius, radius))
 					ParticleManager:ReleaseParticleIndex(castFx)
-
+	local hasTalent2 = caster:HasTalent("special_bonus_unique_ember_fist_2")
+	local talent2Duration = caster:FindTalentValue("special_bonus_unique_ember_fist_2", "duration")
 	---Remnant Only lasts 10 seconds.-----
 	local enemies = caster:FindEnemyUnitsInRadius(point, radius, {flag = self:GetAbilityTargetFlags()})
 	if #enemies > 0 then
 		local duration = self:GetTalentSpecialValueFor("duration")
-		caster:FindAbilityByName("ember_remnant"):SpawnRemnant(startPos, duration)
+		local remnant = caster:FindAbilityByName("ember_remnant")
+		if remnant then
+			remnant:SpawnRemnant(startPos, duration)
+		end
 		local remenantFx = 	ParticleManager:CreateParticle("particles/units/heroes/hero_ember_spirit/ember_spirit_sleight_of_fist_caster.vpcf", PATTACH_POINT, caster)
 				 			ParticleManager:SetParticleControl(remenantFx, 0, startPos)
 				 			ParticleManager:SetParticleControlForward(remenantFx, 1, caster:GetForwardVector())
 
-		caster:AddNewModifier(caster, self, "modifier_ember_fist", {Duration = math.max(#enemies,0.1)})
+		caster:AddNewModifier(caster, self, "modifier_ember_fist", {Duration = math.max(#enemies*jumpRate+0.1,jumpRate)})
 		Timers:CreateTimer(function()
 			if current < #enemies then
 				for _,enemy in pairs(enemies) do
@@ -75,18 +79,15 @@ function ember_fist:OnSpellStart()
 						local secondPoint = enemy:GetAbsOrigin() + caster:GetForwardVector() * 50
 
 						----Damage Buff for Talent 2-------
-						if caster:HasTalent("special_bonus_unique_ember_fist_2") then
-							caster:AddNewModifier(caster, self, "modifier_ember_fist_damage_buff", {Duration = 5}):IncrementStackCount()
+						if hasTalent2 then
+							caster:AddNewModifier(caster, self, "modifier_ember_fist_damage_buff", {Duration = talent2Duration}):IncrementStackCount()
 						end
 
 						ParticleManager:FireRopeParticle("particles/units/heroes/hero_ember_spirit/ember_spirit_sleightoffist_trail.vpcf", PATTACH_POINT, caster, secondPoint, {[0]=firstPoint, [1]=secondPoint})
 
 						FindClearSpaceForUnit(caster, secondPoint, true)
 						caster:FaceTowards(enemy:GetAbsOrigin())
-						caster:PerformAttack(enemy, true, true, true, true, true, false, false)
-						if enemy:IsAlive() then
-							self:DealDamage(caster, enemy, baseDamage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-						end
+						caster:PerformGenericAttack(enemy, true, baseDamage, false, true)
 			            self.hitUnits[enemy:entindex()] = true
 			            current = current + 1
 			            return jumpRate
@@ -122,12 +123,22 @@ end
 
 function modifier_ember_fist:CheckState()
 	local state = { [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-					[MODIFIER_STATE_INVULNERABLE] = true}
+					[MODIFIER_STATE_DISARMED] = true,
+					[MODIFIER_STATE_INVULNERABLE] = true,
+					[MODIFIER_STATE_IGNORING_MOVE_AND_ATTACK_ORDERS ] = true}
 	return state
 end
 
-function modifier_ember_fist:GetEffectName()
-	return "particles/units/heroes/hero_ember_spirit/ember_spirit_searing_chains_debuff.vpcf"
+function modifier_ember_fist:GetStatusEffectName()
+	return "particles/status_fx/status_effect_snapfire_magma.vpcf"
+end
+
+function modifier_ember_fist:StatusEffectPriority()
+	return 20
+end
+
+function modifier_ember_fist:IsHidden()
+	return true
 end
 
 modifier_ember_fist_charges_handle = class({})
@@ -268,21 +279,18 @@ function modifier_ember_fist_charges:RemoveOnDeath()
 end
 
 function modifier_ember_fist_charges:IsHidden()
-	if self:GetCaster():HasTalent("special_bonus_unique_ember_fist_1") then
-    	return false
-    else
-    	return true
-    end
+	return false
 end
 
 modifier_ember_fist_damage_buff = class({})
 
 function modifier_ember_fist_damage_buff:OnCreated(table)
-	self.damage = 15 * self:GetStackCount()
+	self.damage = self:GetCaster():FindTalentValue("special_bonus_unique_ember_fist_2")
+	print( self.damage )
 end
 
 function modifier_ember_fist_damage_buff:OnRefresh(table)
-	self.damage = 15 * self:GetStackCount()
+	self.damage = self:GetCaster():FindTalentValue("special_bonus_unique_ember_fist_2")
 end
 
 function modifier_ember_fist_damage_buff:DeclareFunctions()
@@ -293,7 +301,7 @@ function modifier_ember_fist_damage_buff:DeclareFunctions()
 end
 
 function modifier_ember_fist_damage_buff:GetModifierPreAttack_BonusDamage()
-	return self.damage
+	return self.damage * self:GetStackCount()
 end
 
 function modifier_ember_fist_damage_buff:IsDebuff()

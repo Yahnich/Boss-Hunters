@@ -8,22 +8,13 @@ if IsServer() then
 					ParticleManager:SetParticleControlEnt(nfx, 1, self:GetParent(), PATTACH_OVERHEAD_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
 
 		self:AttachEffect(nfx)
-
+		
 		self:StartIntervalThink(0.5)
 	end
 	
 	function modifier_charm_generic:OnIntervalThink()
-		local direction = CalculateDirection(self:GetCaster(), self:GetParent())
-		local oldPos = self:GetParent():GetAbsOrigin()
-		local newPos = oldPos + direction * self:GetParent():GetIdealSpeed() * 0.5
-		if not GridNav:CanFindPath(oldPos, newPos) then
-			local iteration = 100
-			while not GridNav:CanFindPath(oldPos, newPos) and iteration > 0 do
-				newPos = self:GetParent():GetAbsOrigin() + RandomVector(self:GetParent():GetIdealSpeed() * 0.5)
-				iteration = iteration - 1
-			end
-		end
-		self:GetParent():MoveToPosition(newPos)
+		if self:GetParent():HasModifier("modifier_fear_generic") then return end
+		self:GetParent():MoveToPosition( self:GetCaster():GetAbsOrigin() )
 	end
 end
 
@@ -31,6 +22,7 @@ function modifier_charm_generic:CheckState()
 	return {[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
 			[MODIFIER_STATE_DISARMED] = true,
 			[MODIFIER_STATE_SILENCED] = true,
+			[MODIFIER_STATE_TAUNTED ] = true,
 			[MODIFIER_STATE_PROVIDES_VISION] = true,
 			}
 end

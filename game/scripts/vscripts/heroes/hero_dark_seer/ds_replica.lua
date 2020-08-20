@@ -22,18 +22,15 @@ function ds_replica:OnSpellStart()
 	local allies = caster:FindAllUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
 	for _,ally in pairs(allies) do
 		if ( ally:IsHero() or not ally:IsRoundNecessary() ) and not ally:IsIllusion() then
-			local callback = (function(image)
-				image:AddNewModifier(caster, self, "modifier_ds_replica", {})
+			local images = ally:ConjureImage( {outgoing_damage = outgoing - 100, incoming_damage = incoming - 100}, duration, caster, 1 )
+			images[1]:AddNewModifier(caster, self, "modifier_ds_replica", {})
+			if caster:HasScepter() then
+				images[1]:AddNewModifier(caster, caster:FindAbilityByName("ds_shell"), "modifier_ds_shell", {})
+			end
 
-				if caster:HasScepter() then
-					image:AddNewModifier(caster, caster:FindAbilityByName("ds_shell"), "modifier_ds_shell", {})
-				end
-
-				if caster:HasTalent("special_bonus_unique_ds_replica_1") then
-					FindClearSpaceForUnit(image, caster:GetAbsOrigin(), true)
-				end
-			end)
-			ally:ConjureImage( ally:GetAbsOrigin(), duration, outgoing - 100, incoming - 100, nil, self, true, caster, callback )
+			if caster:HasTalent("special_bonus_unique_ds_replica_1") then
+				FindClearSpaceForUnit(images[1], caster:GetAbsOrigin(), true)
+			end
 		end
 	end
 end

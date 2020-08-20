@@ -1,13 +1,57 @@
 viper_corrosive_skin_bh = class({})
 
+function viper_corrosive_skin_bh:GetBehavior()
+	if self:GetCaster():HasTalent("special_bonus_unique_viper_corrosive_skin_1") then
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+	else
+		return DOTA_ABILITY_BEHAVIOR_PASSIVE
+	end
+end
+
 function viper_corrosive_skin_bh:GetCastRange( target, position )
 	if self:GetCaster():HasTalent("special_bonus_unique_viper_corrosive_skin_1") then
 		return self:GetCaster():FindTalentValue("special_bonus_unique_viper_corrosive_skin_1")
 	end
 end
 
+function viper_corrosive_skin_bh:GetCooldown( iLvl )
+	if self:GetCaster():HasTalent("special_bonus_unique_viper_corrosive_skin_1") then
+		return self:GetCaster():FindTalentValue("special_bonus_unique_viper_corrosive_skin_1", "cd")
+	end
+end
+
+function viper_corrosive_skin_bh:OnSpellStart()
+	local caster = self:GetCaster()
+	caster:AddNewModifier( caster, self, "modifier_viper_corrosive_skin_bh_active", {duration = caster:FindTalentValue("special_bonus_unique_viper_corrosive_skin_1", "duration")})
+end
+
 function viper_corrosive_skin_bh:GetIntrinsicModifierName()
 	return "modifier_viper_corrosive_skin_bh"
+end
+
+
+modifier_viper_corrosive_skin_bh_active = class({})
+LinkLuaModifier("modifier_viper_corrosive_skin_bh_active", "heroes/hero_viper/viper_corrosive_skin_bh", LUA_MODIFIER_MOTION_NONE )
+
+function modifier_viper_corrosive_skin_bh_active:OnCreated(table)
+    if IsServer() then
+        local startFX = ParticleManager:CreateParticle("particles/units/heroes/hero_winter_wyvern/wyvern_arctic_burn_start.vpcf", PATTACH_POINT, self:GetCaster())
+        ParticleManager:SetParticleControl(startFX, 0, self:GetCaster():GetAbsOrigin())
+        ParticleManager:ReleaseParticleIndex(startFX)
+
+        local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_viper/viper_corrosive_skin_flying.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster())
+        ParticleManager:SetParticleControlEnt(nfx, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true)
+        ParticleManager:SetParticleControlEnt(nfx, 1, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true)
+        ParticleManager:SetParticleControlEnt(nfx, 2, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_wing_barb_1", self:GetCaster():GetAbsOrigin(), true)
+        ParticleManager:SetParticleControlEnt(nfx, 3, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_wing_barb_2", self:GetCaster():GetAbsOrigin(), true)
+        ParticleManager:SetParticleControlEnt(nfx, 4, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_wing_barb_3", self:GetCaster():GetAbsOrigin(), true)
+        ParticleManager:SetParticleControlEnt(nfx, 5, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_wing_barb_4", self:GetCaster():GetAbsOrigin(), true)
+		self:AddEffect( nfx )
+    end
+end
+
+function modifier_viper_corrosive_skin_bh_active:CheckState()
+	return {[MODIFIER_STATE_FLYING] = true}
 end
 
 modifier_viper_corrosive_skin_bh = class({})
@@ -45,7 +89,7 @@ function modifier_viper_corrosive_skin_bh:GetModifierMagicalResistanceBonus()
 end
 
 function modifier_viper_corrosive_skin_bh:IsAura()
-	return self.talent1
+	return self:GetCaster():HasModifier("modifier_viper_corrosive_skin_bh_active")
 end
 
 function modifier_viper_corrosive_skin_bh:GetModifierAura()
@@ -82,6 +126,7 @@ LinkLuaModifier("modifier_viper_corrosive_skin_bh_debuff", "heroes/hero_viper/vi
 function modifier_viper_corrosive_skin_bh_debuff:OnCreated()
 	self.as = self:GetTalentSpecialValueFor("bonus_attack_speed") * (-1)
 	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.talent1Damage = self:GetCaster():FindTalentValue("special_bonus_unique_viper_corrosive_skin_1", "damage")
 	if IsServer() then
 		self.tick = ( self:GetDuration() / self:GetTalentSpecialValueFor("duration") ) * 1
 		self:StartIntervalThink( self.tick )
@@ -101,7 +146,11 @@ function modifier_viper_corrosive_skin_bh_debuff:OnRefresh()
 end
 
 function modifier_viper_corrosive_skin_bh_debuff:OnIntervalThink()
-	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self.damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE )
+	local damage = self.damage
+	if self:GetCaster():HasModifier("modifier_viper_corrosive_skin_bh_active") then
+		damage = damage * self.talent1Damage
+	end
+	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE )
 end
 
 function modifier_viper_corrosive_skin_bh_debuff:DeclareFunctions()

@@ -26,7 +26,7 @@ function modifier_viper_viper_venombringer:GetModifierTotalDamageOutgoing_Percen
 			if modifier:GetCaster() == self:GetParent() 
 			and modifier:GetAbility() 
 			and modifier:GetAbility():GetCaster() == self:GetParent() 
-			and self:GetParent():HasAbility(modifier:GetAbility():GetAbilityName() )
+			and self:GetParent():HasAbility( modifier:GetAbility():GetAbilityName() )
 			and modifier:GetAbility() ~= params.inflictor then
 				debuffs = debuffs + 1
 			end

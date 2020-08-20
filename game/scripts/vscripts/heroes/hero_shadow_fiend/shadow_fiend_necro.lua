@@ -79,7 +79,7 @@ function modifier_shadow_fiend_necro_handle:OnDeath(params)
 			local requiem = self:GetCaster():FindAbilityByName("shadow_fiend_requiem")
 			if requiem and requiem:GetLevel() > 0 then requiem:ReleaseSouls(true) end
 			if not self:GetCaster():HasTalent("special_bonus_unique_shadow_fiend_requiem_1") then
-				self:SetStackCount( math.ceil(self:GetStackCount() * self.deathLoss) )
+				self:SetStackCount( math.ceil(self:GetStackCount() * (1 - self.deathLoss) ) )
 			end
     	end
     end

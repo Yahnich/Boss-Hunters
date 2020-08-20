@@ -77,7 +77,7 @@ function modifier_abaddon_aphotic_barrier:DeclareFunctions()
 end
 
 function modifier_abaddon_aphotic_barrier:GetModifierIncomingDamage_Percentage(params)
-	if not self:GetParent():HasModifier("modifier_abaddon_borrowed_time_active") then
+	if not self:GetParent():HasModifier("modifier_abaddon_borrowed_time_active") and params.damage > 0 then
 		if self.absorb > params.damage then
 			self.absorb = self.absorb - params.damage
 			return -999

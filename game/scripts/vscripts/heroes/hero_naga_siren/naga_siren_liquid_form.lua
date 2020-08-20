@@ -42,13 +42,15 @@ function naga_siren_liquid_form:OnSpellStart()
 			return nil
 		end
 	end)
-	local callback = 	(function(illusion, parent, caster, ability )
-							illusion:AddNewModifier(caster, ability, "modifier_naga_siren_liquid_form", {duration = ability:GetTalentSpecialValueFor("illu_duration")})
-							table.insert( parent.liquidFormIllusions, illusion )
-						end)
-			
-	for i = 1, self:GetTalentSpecialValueFor("max_illusions") do
-		target:ConjureImage( target:GetAbsOrigin() + RandomVector( 150 ), illuDur, out - 100, incomingDamage - 100, nil, self, true, caster, callback )
+	
+	local illusions = self:GetTalentSpecialValueFor("max_illusions")
+	local angle = 360 / illusions
+	local images = target:ConjureImage( {outgoing_damage = illuDur, out - 100, incoming_damage = incomingDamage - 100, position = target:GetAbsOrigin() + RandomVector( 150 ), scramble = true}, illuDur, caster,  illusions )
+	for i = 1, illusions do	
+		images[i]:AddNewModifier(caster, self, "modifier_naga_siren_liquid_form", {duration = illuDur})
+		images[i]:SetAbsOrigin( target:GetAbsOrigin() + RotateVector2D( -target:GetForwardVector(), ToRadians( angle ) * i ) * 150 )
+		images[i]:SetForwardVector( target:GetForwardVector() )
+		table.insert( caster.liquidFormIllusions, images[i] )
 	end
 end
 

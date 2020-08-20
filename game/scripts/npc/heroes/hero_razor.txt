@@ -31,7 +31,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"14"
+		"AbilityCooldown"				"10"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -47,20 +47,42 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"02"
+			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_max"				"160 230 300 370 440 510 580"
+				"damage"					"120 200 280 360 440 520 600"
+				"LinkedSpecialBonus"		"special_bonus_unique_razor_plasma_field_bh_2"
 			}
-			"03"
+			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"radius"					"700"
 			}
-			"04"
+			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"speed"						"636"  // 1.2 second to reach radius
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_speed"				"80 120 160 200 200 200 200"  // 1.2 second to reach radius
+				"LinkedSpecialBonus"		"special_bonus_unique_razor_plasma_field_bh_1"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"1.5 1.5 1.5 1.5 2 2.5 3"  // 1.2 second to reach radius
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration_increase"			"0.5 0.5 0.5 0.5 1 1.5 2"  // 1.2 second to reach radius
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration_minion"			"0.1"  // 1.2 second to reach radius
 			}
 		}
 	}
@@ -82,7 +104,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
+				"value"						"40"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"50"
 			}
 		}
 	}
@@ -104,7 +131,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"100"
 			}
 		}
 	}
@@ -115,7 +142,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_razor/razor_static_link_bh.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
@@ -139,7 +166,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"25"
+		"AbilityCooldown"				"40 35 30 25 25 25 25"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -160,7 +187,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"link_duration"			"5"
+				"link_duration"			"5 5 5 5 6 7 8"
 			}
 			"02"
 			{
@@ -170,8 +197,28 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"drain_rate"			"7 14 21 28 35 42 49"
+				"drain_rate"			"7 12 17 22 24 26 28"
 				"LinkedSpecialBonus"	"special_bonus_unique_razor_static_link_bh_1"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"link_radius"			"325"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"link_damage"			"33"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"link_damage"			"33"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"buffer_range"			"250"
 			}
 		}
 	}
@@ -215,7 +262,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"350"
+				"value"						"100"
 			}
 		}
 	}
@@ -226,7 +273,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_razor/razor_unstable_current_bh.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
@@ -245,7 +292,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"5"
+		"AbilityCooldown"				"21 18 15 12 12 12 12"
 		
 		"precache"
 		{
@@ -260,24 +307,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"60 100 140 180 220 260 300"
+				"damage"				"120 200 280 360 500 640 780"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"movement_speed_pct"	"4 8 12 16 20 24 28"
-				"LinkedSpecialBonus"	"special_bonus_unique_razor_unstable_current_bh_1"
-			}
-			"03"
-			{
 				"var_type"				"FIELD_FLOAT"
-				"hit_interval"			"7"
-				"LinkedSpecialBonus"	"special_bonus_unique_razor_unstable_current_bh_2"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"slow_duration"			"1.5"
+				"slow_duration"			"0.8 0.8 0.8 0.8 1.2 1.6 2"
 			}
 		}
 	}
@@ -291,6 +326,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_razor_unstable_current_bh"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -299,7 +335,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"16"
+				"value"						"-5"
 			}
 		}
 	}
@@ -321,17 +357,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"-3"
+				"value"						"-6"
 			}
 		}
 	}
 
-	"razor_static_shock"
+	"razor_storm_surge_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_razor/razor_static_shock.lua"
+		"ScriptFile"					"heroes/hero_razor/razor_storm_surge_bh.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
@@ -355,12 +391,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"500"
+				"movespeed_bonus"		"8"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"jump_count"			"3"
+				"duration"				"30"
 			}
 		}
 	}
@@ -397,7 +433,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"50"
+		"AbilityCooldown"				"80 70 70 60 60 50"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -416,31 +452,29 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"40 55 70 85 100 115"		
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"60 80 95 115 130 150"		
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"20"		
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"strike_interval"		"0.9 0.8 0.7 0.6 0.5 0.4"	
-				"LinkedSpecialBonus"	"special_bonus_unique_razor_eye_of_the_storm_bh_1"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"armor_reduction"		"1"
-				"LinkedSpecialBonus"	"special_bonus_unique_razor_eye_of_the_storm_bh_2"	
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"30"		
 			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"scepter_strike_interval"		"0.8 0.7 0.6 0.5 0.4 0.3"	
-				"LinkedSpecialBonus"			"special_bonus_unique_razor_eye_of_the_storm_bh_1"
+				"strike_interval"				"0.7 0.7 0.6 0.6 0.5 0.5"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"armor_reduction"				"1"
+				"LinkedSpecialBonus"			"special_bonus_unique_razor_eye_of_the_storm_bh_2"	
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"scepter_target"				"2"
 			}
 		}
 	}
@@ -462,7 +496,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"-0.1"
+				"value"						"-2"
 			}
 		}
 	}
@@ -485,6 +519,47 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"value"						"0.5"
+			}
+		}
+	}
+	////////////////////////////////////////////////////
+	// DEPRECATED OR OLD
+	////////////////////////////////////////////////////
+	"razor_static_shock"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_razor/razor_static_shock.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"						"1"
+		"AbilityTextureName"			"custom/razor_high_voltage"
+		"InnateAbility"					"1"
+		
+		"precache"
+		{
+			"particle"  				"particles/units/heroes/hero_razor/razor_base_attack.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_razor.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"jump_count"			"3"
 			}
 		}
 	}

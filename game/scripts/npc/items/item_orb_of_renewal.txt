@@ -1,0 +1,748 @@
+"DOTAAbilities"
+{
+	"item_orb_of_renewal"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2363"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_orb_of_renewal"
+		"AbilityTextureName"			"refresher/orb_of_renewal_1"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"880"
+		"ItemShopTags"					"refresh"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"refresher orb"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+				
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"1"
+		
+		"AvailableRuneSlots"			"0"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"AbilityCooldown"				"180 170 160 150 140 130 120 110 100"
+		"AbilityManaCost"				"375"
+		"AbilitySharedCooldown"			"orbofrenewal"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hp_gain"				"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_gain"				"10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"180 170 160 150 140 130 120 110 100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 2
+	//=================================================================================================================
+	"item_recipe_orb_of_renewal_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2364"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1420"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_orb_of_renewal_2"
+		"ItemRequirements"
+		{
+			"01"						"item_orb_of_renewal"
+		}
+	}
+	"item_orb_of_renewal_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2365"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_orb_of_renewal"
+		"AbilityTextureName"			"refresher/orb_of_renewal_2"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"soul ring"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"2"
+		
+		"AvailableRuneSlots"			"1"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"AbilityCooldown"				"180 170 160 150 140 130 120 110 100"
+		"AbilityManaCost"				"375"
+		"AbilitySharedCooldown"			"orbofrenewal"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hp_gain"				"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_gain"				"10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"180 170 160 150 140 130 120 110 100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_orb_of_renewal_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2366"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_orb_of_renewal_3"
+		"ItemRequirements"
+		{
+			"01"						"item_orb_of_renewal_2;item_recipe_orb_of_renewal_2"
+		}
+	}
+	
+	"item_orb_of_renewal_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2367"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_orb_of_renewal"
+		"AbilityTextureName"			"refresher/orb_of_renewal_3"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"soul ring"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"3"
+		
+		"AvailableRuneSlots"			"1"
+	
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"AbilityCooldown"				"180 170 160 150 140 130 120 110 100"
+		"AbilityManaCost"				"375"
+		"AbilitySharedCooldown"			"orbofrenewal"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hp_gain"				"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_gain"				"10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"180 170 160 150 140 130 120 110 100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_orb_of_renewal_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2368"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_orb_of_renewal_4"
+		"ItemRequirements"
+		{
+			"01"						"item_orb_of_renewal_3;item_recipe_orb_of_renewal_2"
+		}
+	}
+	
+	"item_orb_of_renewal_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2369"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_orb_of_renewal"
+		"AbilityTextureName"			"refresher/orb_of_renewal_4"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"soul ring"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"4"
+		
+		"AvailableRuneSlots"			"2"
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"AbilityCooldown"				"180 170 160 150 140 130 120 110 100"
+		"AbilityManaCost"				"375"
+		"AbilitySharedCooldown"			"orbofrenewal"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hp_gain"				"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_gain"				"10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"180 170 160 150 140 130 120 110 100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_orb_of_renewal_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2370"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_orb_of_renewal_5"
+		"ItemRequirements"
+		{
+			"01"						"item_orb_of_renewal_4;item_recipe_orb_of_renewal_2"
+		}
+	}
+	
+	"item_orb_of_renewal_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2371"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_orb_of_renewal"
+		"AbilityTextureName"			"refresher/orb_of_renewal_5"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"soul ring"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"5"
+		
+		"AvailableRuneSlots"			"2"
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+	
+		"AbilityCooldown"				"180 170 160 150 140 130 120 110 100"
+		"AbilityManaCost"				"375"
+		"AbilitySharedCooldown"			"orbofrenewal"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hp_gain"				"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_gain"				"10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"180 170 160 150 140 130 120 110 100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_orb_of_renewal_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2372"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_orb_of_renewal_6"
+		"ItemRequirements"
+		{
+			"01"						"item_orb_of_renewal_5;item_recipe_orb_of_renewal_2"
+		}
+	}
+	
+	"item_orb_of_renewal_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2373"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_orb_of_renewal"
+		"AbilityTextureName"			"refresher/orb_of_renewal_6"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"soul ring"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"6"
+		
+		"AvailableRuneSlots"			"2"
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+	
+		"AbilityCooldown"				"180 170 160 150 140 130 120 110 100"
+		"AbilityManaCost"				"375"
+		"AbilitySharedCooldown"			"orbofrenewal"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hp_gain"				"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_gain"				"10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"180 170 160 150 140 130 120 110 100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_orb_of_renewal_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2374"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_orb_of_renewal_7"
+		"ItemRequirements"
+		{
+			"01"						"item_orb_of_renewal_6;item_recipe_orb_of_renewal_2"
+		}
+	}
+	
+	"item_orb_of_renewal_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2375"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_orb_of_renewal"
+		"AbilityTextureName"			"refresher/orb_of_renewal_7"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"soul ring"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"7"
+		
+		"AvailableRuneSlots"			"3"
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+	
+		"AbilityCooldown"				"180 170 160 150 140 130 120 110 100"
+		"AbilityManaCost"				"375"
+		"AbilitySharedCooldown"			"orbofrenewal"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hp_gain"				"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_gain"				"10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"180 170 160 150 140 130 120 110 100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_orb_of_renewal_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2376"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_orb_of_renewal_8"
+		"ItemRequirements"
+		{
+			"01"						"item_orb_of_renewal_7;item_recipe_orb_of_renewal_2"
+		}
+	}
+	
+	"item_orb_of_renewal_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2377"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_orb_of_renewal"
+		"AbilityTextureName"			"refresher/orb_of_renewal_8"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"soul ring"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"8"
+		
+		"AvailableRuneSlots"			"3"
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"AbilityCooldown"				"180 170 160 150 140 130 120 110 100"
+		"AbilityManaCost"				"375"
+		"AbilitySharedCooldown"			"orbofrenewal"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hp_gain"				"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_gain"				"10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"180 170 160 150 140 130 120 110 100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_orb_of_renewal_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2378"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_orb_of_renewal_9"
+		"ItemRequirements"
+		{
+			"01"						"item_orb_of_renewal_8;item_recipe_orb_of_renewal_2"
+		}
+	}
+	
+	"item_orb_of_renewal_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2379"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_orb_of_renewal"
+		"AbilityTextureName"			"refresher/orb_of_renewal_9"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"soul ring"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"9"
+		
+		"AvailableRuneSlots"			"3"
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"AbilityCooldown"				"180 170 160 150 140 130 120 110 100"
+		"AbilityManaCost"				"375"
+		"AbilitySharedCooldown"			"orbofrenewal"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hp_gain"				"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_gain"				"10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"180 170 160 150 140 130 120 110 100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+}

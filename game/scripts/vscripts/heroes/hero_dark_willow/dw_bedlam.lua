@@ -19,9 +19,9 @@ end
 
 function dw_bedlam:GetManaCost(iLevel)
     if self:GetCaster():HasScepter() then
-    	return 0
+    	return self:GetTalentSpecialValueFor("scepter_mana_cost")
     end
-    return 150
+    return self.BaseClass.GetManaCost( self, iLevel )
 end
 
 function dw_bedlam:OnSpellStart()
@@ -61,7 +61,7 @@ function modifier_dw_bedlam:OnCreated(table)
 
 		self.direction = caster:GetForwardVector()
 		self.distance = self:GetTalentSpecialValueFor("radius")
-
+		self.scepter_cost = self:GetTalentSpecialValueFor("scepter_mana_cost")
 		self.i = 0
 
 		self.point = caster:GetAbsOrigin() + self.direction * self.distance + Vector(0, 0, 100)
@@ -90,15 +90,6 @@ function modifier_dw_bedlam:OnIntervalThink()
 	self.point = parentPos + self.direction * self.distance
 
 	self.i = self.i + parent:GetIdealSpeedNoSlows() * FrameTime()
-
-	if self:GetCaster():HasScepter() then
-		if parent:GetMana() >= 100 then
-			parent:ReduceMana(100*FrameTime())
-		else
-			self:GetAbility():SetCooldown()
-			self:Destroy()
-		end
-	end
 end
 
 function modifier_dw_bedlam:OnRemoved()
@@ -127,8 +118,9 @@ function modifier_dw_bedlam_bug:OnCreated(table)
 		self:AttachEffect(nfx)
 
 		self.radius = caster:GetAttackRange()
-
-		self:StartIntervalThink(self:GetTalentSpecialValueFor("attack_rate"))
+		self.attackRate = self:GetTalentSpecialValueFor("attack_rate")
+		self.scepter_cost = self:GetTalentSpecialValueFor("scepter_mana_cost") * self.attackRate
+		self:StartIntervalThink(self.attackRate)
 	end
 end
 
@@ -142,6 +134,14 @@ function modifier_dw_bedlam_bug:OnIntervalThink()
 	for _,enemy in pairs(enemies) do
 		self:GetAbility():FireTrackingProjectile("particles/units/heroes/hero_dark_willow/dark_willow_willowisp_base_attack.vpcf", enemy, 1400, {source = parent, origin = parent:GetAbsOrigin()}, DOTA_PROJECTILE_ATTACHMENT_HITLOCATION, true, true, 50)
 		break
+	end
+	if self:GetCaster():HasScepter() then
+		if caster:GetMana() >= self.scepter_cost then
+			caster:ReduceMana( self.scepter_cost )
+		else
+			self:GetAbility():SetCooldown()
+			caster:RemoveModifierByName("modifier_dw_bedlam")
+		end
 	end
 end
 

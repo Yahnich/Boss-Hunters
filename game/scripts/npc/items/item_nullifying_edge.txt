@@ -1,0 +1,724 @@
+"DOTAAbilities"
+{
+	"item_nullifying_edge"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2329"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_nullifying_edge"
+		"AbilityTextureName"			"diffusal/nullifying_edge_1"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"785"
+		"ItemShopTags"					"evasion"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"diffusal;nullifying_edge"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+				
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"1"
+		
+		"AvailableRuneSlots"			"0"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"AbilityCooldown"				"25 22 19 16 13 12 11 11 11"
+		"AbilitySharedCooldown"			"nullifyingedge"
+
+		"AbilityCastRange"				"600"
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"0.5 0.5 0.5 0.5 0.5 0.75 1 1.5 2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"25 22 19 16 13 12 11 11 11"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 2
+	//=================================================================================================================
+	"item_recipe_nullifying_edge_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2330"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1050"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_nullifying_edge_2"
+		"ItemRequirements"
+		{
+			"01"						"item_nullifying_edge"
+		}
+	}
+	"item_nullifying_edge_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2331"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_nullifying_edge"
+		"AbilityTextureName"			"diffusal/nullifying_edge_2"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"purge;dispel"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"diffusal blade;nullifier"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"2"
+		
+		"AvailableRuneSlots"			"1"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"AbilityCooldown"				"25 22 19 16 13 12 11 11 11"
+		"AbilitySharedCooldown"			"nullifyingedge"
+
+		"AbilityCastRange"				"600"
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"0.5 0.5 0.5 0.5 0.5 0.75 1 1.5 2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"25 22 19 16 13 12 11 11 11"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_nullifying_edge_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2332"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_nullifying_edge_3"
+		"ItemRequirements"
+		{
+			"01"						"item_nullifying_edge_2;item_recipe_nullifying_edge_2"
+		}
+	}
+	
+	"item_nullifying_edge_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2333"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_nullifying_edge"
+		"AbilityTextureName"			"diffusal/nullifying_edge_3"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"purge;dispel"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"diffusal blade;nullifier"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"3"
+		
+		"AvailableRuneSlots"			"1"
+	
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"AbilityCooldown"				"25 22 19 16 13 12 11 11 11"
+		"AbilitySharedCooldown"			"nullifyingedge"
+
+		"AbilityCastRange"				"600"
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"0.5 0.5 0.5 0.5 0.5 0.75 1 1.5 2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"25 22 19 16 13 12 11 11 11"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_nullifying_edge_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2334"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_nullifying_edge_4"
+		"ItemRequirements"
+		{
+			"01"						"item_nullifying_edge_3;item_recipe_nullifying_edge_2"
+		}
+	}
+	
+	"item_nullifying_edge_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2335"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_nullifying_edge"
+		"AbilityTextureName"			"diffusal/nullifying_edge_4"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"purge;dispel"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"diffusal blade;nullifier"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"4"
+		
+		"AvailableRuneSlots"			"2"
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+	
+		"AbilityCooldown"				"25 22 19 16 13 12 11 11 11"
+		"AbilitySharedCooldown"			"nullifyingedge"
+
+		"AbilityCastRange"				"600"
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"0.5 0.5 0.5 0.5 0.5 0.75 1 1.5 2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"25 22 19 16 13 12 11 11 11"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_nullifying_edge_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2336"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_nullifying_edge_5"
+		"ItemRequirements"
+		{
+			"01"						"item_nullifying_edge_4;item_recipe_nullifying_edge_2"
+		}
+	}
+	
+	"item_nullifying_edge_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2337"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_nullifying_edge"
+		"AbilityTextureName"			"diffusal/nullifying_edge_5"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"purge;dispel"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"diffusal blade;nullifier"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"5"
+		
+		"AvailableRuneSlots"			"2"
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+	
+		"AbilityCooldown"				"25 22 19 16 13 12 11 11 11"
+		"AbilitySharedCooldown"			"nullifyingedge"
+
+		"AbilityCastRange"				"600"
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"0.5 0.5 0.5 0.5 0.5 0.75 1 1.5 2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"25 22 19 16 13 12 11 11 11"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_nullifying_edge_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2338"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_nullifying_edge_6"
+		"ItemRequirements"
+		{
+			"01"						"item_nullifying_edge_5;item_recipe_nullifying_edge_2"
+		}
+	}
+	
+	"item_nullifying_edge_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2339"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_nullifying_edge"
+		"AbilityTextureName"			"diffusal/nullifying_edge_6"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"purge;dispel"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"diffusal blade;nullifier"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"6"
+		
+		"AvailableRuneSlots"			"2"
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+	
+		"AbilityCooldown"				"25 22 19 16 13 12 11 11 11"
+		"AbilitySharedCooldown"			"nullifyingedge"
+
+		"AbilityCastRange"				"600"
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"0.5 0.5 0.5 0.5 0.5 0.75 1 1.5 2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"25 22 19 16 13 12 11 11 11"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_nullifying_edge_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2340"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_nullifying_edge_7"
+		"ItemRequirements"
+		{
+			"01"						"item_nullifying_edge_6;item_recipe_nullifying_edge_2"
+		}
+	}
+	
+	"item_nullifying_edge_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2341"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_nullifying_edge"
+		"AbilityTextureName"			"diffusal/nullifying_edge_7"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"purge;dispel"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"diffusal blade;nullifier"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"7"
+		
+		"AvailableRuneSlots"			"3"
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+	
+		"AbilityCooldown"				"25 22 19 16 13 12 11 11 11"
+		"AbilitySharedCooldown"			"nullifyingedge"
+
+		"AbilityCastRange"				"600"
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"0.5 0.5 0.5 0.5 0.5 0.75 1 1.5 2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"25 22 19 16 13 12 11 11 11"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_nullifying_edge_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2342"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_nullifying_edge_8"
+		"ItemRequirements"
+		{
+			"01"						"item_nullifying_edge_7;item_recipe_nullifying_edge_2"
+		}
+	}
+	
+	"item_nullifying_edge_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2343"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_nullifying_edge"
+		"AbilityTextureName"			"diffusal/nullifying_edge_8"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"purge;dispel"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"diffusal blade;nullifier"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"8"
+		
+		"AvailableRuneSlots"			"3"
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+	
+		"AbilityCooldown"				"25 22 19 16 13 12 11 11 11"
+		"AbilitySharedCooldown"			"nullifyingedge"
+
+		"AbilityCastRange"				"600"
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"0.5 0.5 0.5 0.5 0.5 0.75 1 1.5 2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"25 22 19 16 13 12 11 11 11"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_nullifying_edge_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2344"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_nullifying_edge_9"
+		"ItemRequirements"
+		{
+			"01"						"item_nullifying_edge_8;item_recipe_nullifying_edge_2"
+		}
+	}
+	
+	"item_nullifying_edge_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2345"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_nullifying_edge"
+		"AbilityTextureName"			"diffusal/nullifying_edge_9"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"purge;dispel"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"diffusal blade;nullifier"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"9"
+		
+		"AvailableRuneSlots"			"3"
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+	
+		"AbilityCooldown"				"25 22 19 16 13 12 11 11 11"
+		"AbilitySharedCooldown"			"nullifyingedge"
+
+		"AbilityCastRange"				"600"
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"0.5 0.5 0.5 0.5 0.5 0.75 1 1.5 2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"25 22 19 16 13 12 11 11 11"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+}

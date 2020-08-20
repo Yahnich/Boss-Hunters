@@ -33,7 +33,7 @@ function weaver_time:OnSpellStart()
     ParticleManager:ReleaseParticleIndex(particle_ground)
     
     if caster:HasTalent("special_bonus_unique_weaver_time_1") then
-        target:ConjureImage( target:GetAbsOrigin(), 5, 200, 100, "", self, false, caster)
+		target:ConjureImage( {outgoing_damage = 200, incoming_damage = 100, position = target:GetAbsOrigin()}, 5, caster, 1 )
     end
 
     if caster:HasTalent("special_bonus_unique_weaver_time_2") then

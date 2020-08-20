@@ -56,10 +56,8 @@ function pango_swashbuckler:OnProjectileHit(hTarget, vLocation)
 	if hTarget then
 		if not hTarget:IsAttackImmune() and not hTarget:IsMagicImmune() then
 			EmitSoundOn("Hero_Pangolier.Swashbuckle.Damage", hTarget)
-
-			self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 			--caster:PerformGenericAttack(hTarget, true, 0, false, true)
-			caster:PerformAbilityAttack(hTarget, true, self, 0, false, true)
+			caster:PerformAbilityAttack(hTarget, true, self, self:GetTalentSpecialValueFor("damage"), false, true)
 		end
 	end
 end

@@ -1,0 +1,882 @@
+"DOTAAbilities"
+{
+	"item_allfathers_pipe"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2295"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_allfathers_pipe"
+		"AbilityTextureName"			"pipe/allfathers_pipe_1"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"480"
+		"ItemShopTags"					"evasion"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"pipe;allfathers_pipe"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+				
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"1"
+		
+		"AvailableRuneSlots"			"0"
+		
+		"precache"
+		{
+			"precache"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"AbilityCooldown"				"35"
+		"AbilityCastRange"				"1200"
+		"AbilitySharedCooldown"			"allfatherspipe"
+		"AbilityManaCost"				"100"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist"			"10 15 20 25 26 27 28 29 30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_resist"		"3 3 3 3 6 9 12 15 18"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_radius"			"900"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"barrier"				"175 225 275 325 400 475 550 625 700"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"barrier_radius"		"1200"
+			}
+			
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"12"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 2
+	//=================================================================================================================
+	"item_recipe_allfathers_pipe_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2296"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"860"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_allfathers_pipe_2"
+		"ItemRequirements"
+		{
+			"01"						"item_allfathers_pipe"
+		}
+	}
+	"item_allfathers_pipe_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2297"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_allfathers_pipe"
+		"AbilityTextureName"			"pipe/allfathers_pipe_2"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"barrier"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"pipe of insight;allfathers pipe"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"2"
+		
+		"AvailableRuneSlots"			"1"
+		
+		"AbilityCooldown"				"35"
+		"AbilityCastRange"				"1200"
+		"AbilitySharedCooldown"			"allfatherspipe"
+		"AbilityManaCost"				"100"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist"			"10 15 20 25 26 27 28 29 30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_resist"			"3 3 3 3 6 9 12 15 18"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_radius"			"900"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"barrier"				"175 225 275 325 400 475 550 625 700"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"barrier_radius"		"1200"
+			}
+			
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"12"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_allfathers_pipe_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2298"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_allfathers_pipe_3"
+		"ItemRequirements"
+		{
+			"01"						"item_allfathers_pipe_2;item_recipe_allfathers_pipe_2"
+		}
+	}
+	
+	"item_allfathers_pipe_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2299"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_allfathers_pipe"
+		"AbilityTextureName"			"pipe/allfathers_pipe_3"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"barrier"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"pipe of insight;allfathers pipe"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"3"
+		
+		"AvailableRuneSlots"			"1"
+	
+		"AbilityCooldown"				"35"
+		"AbilityCastRange"				"1200"
+		"AbilitySharedCooldown"			"allfatherspipe"
+		"AbilityManaCost"				"100"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist"			"10 15 20 25 26 27 28 29 30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_resist"		"3 3 3 3 6 9 12 15 18"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_radius"			"900"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"barrier"				"175 225 275 325 400 475 550 625 700"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"barrier_radius"		"1200"
+			}
+			
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"12"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_allfathers_pipe_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2300"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_allfathers_pipe_4"
+		"ItemRequirements"
+		{
+			"01"						"item_allfathers_pipe_3;item_recipe_allfathers_pipe_2"
+		}
+	}
+	
+	"item_allfathers_pipe_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2301"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_allfathers_pipe"
+		"AbilityTextureName"			"pipe/allfathers_pipe_4"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"barrier"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"pipe of insight;allfathers pipe"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"4"
+		
+		"AvailableRuneSlots"			"2"
+	
+		"AbilityCooldown"				"35"
+		"AbilityCastRange"				"1200"
+		"AbilitySharedCooldown"			"allfatherspipe"
+		"AbilityManaCost"				"100"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist"			"10 15 20 25 26 27 28 29 30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_resist"		"3 3 3 3 6 9 12 15 18"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_radius"			"900"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"barrier"				"175 225 275 325 400 475 550 625 700"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"barrier_radius"		"1200"
+			}
+			
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"12"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_allfathers_pipe_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2302"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_allfathers_pipe_5"
+		"ItemRequirements"
+		{
+			"01"						"item_allfathers_pipe_4;item_recipe_allfathers_pipe_2"
+		}
+	}
+	
+	"item_allfathers_pipe_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2303"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_allfathers_pipe"
+		"AbilityTextureName"			"pipe/allfathers_pipe_5"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"barrier"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"pipe of insight;allfathers pipe"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"5"
+		
+		"AvailableRuneSlots"			"2"
+	
+		"AbilityCooldown"				"35"
+		"AbilityCastRange"				"1200"
+		"AbilitySharedCooldown"			"allfatherspipe"
+		"AbilityManaCost"				"100"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist"			"10 15 20 25 26 27 28 29 30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_resist"		"3 3 3 3 6 9 12 15 18"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_radius"			"900"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"barrier"				"175 225 275 325 400 475 550 625 700"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"barrier_radius"		"1200"
+			}
+			
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"12"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_allfathers_pipe_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2304"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_allfathers_pipe_6"
+		"ItemRequirements"
+		{
+			"01"						"item_allfathers_pipe_5;item_recipe_allfathers_pipe_2"
+		}
+	}
+	
+	"item_allfathers_pipe_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2305"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_allfathers_pipe"
+		"AbilityTextureName"			"pipe/allfathers_pipe_6"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"barrier"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"pipe of insight;allfathers pipe"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"6"
+		
+		"AvailableRuneSlots"			"2"
+	
+		"AbilityCooldown"				"35"
+		"AbilityCastRange"				"1200"
+		"AbilitySharedCooldown"			"allfatherspipe"
+		"AbilityManaCost"				"100"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist"			"10 15 20 25 26 27 28 29 30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_resist"		"3 3 3 3 6 9 12 15 18"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_radius"			"900"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"barrier"				"175 225 275 325 400 475 550 625 700"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"barrier_radius"		"1200"
+			}
+			
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"12"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_allfathers_pipe_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2306"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_allfathers_pipe_7"
+		"ItemRequirements"
+		{
+			"01"						"item_allfathers_pipe_6;item_recipe_allfathers_pipe_2"
+		}
+	}
+	
+	"item_allfathers_pipe_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2307"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_allfathers_pipe"
+		"AbilityTextureName"			"pipe/allfathers_pipe_7"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"barrier"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"pipe of insight;allfathers pipe"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"7"
+		
+		"AvailableRuneSlots"			"3"
+	
+		"AbilityCooldown"				"35"
+		"AbilityCastRange"				"1200"
+		"AbilitySharedCooldown"			"allfatherspipe"
+		"AbilityManaCost"				"100"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist"			"10 15 20 25 26 27 28 29 30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_resist"		"3 3 3 3 6 9 12 15 18"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_radius"			"900"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"barrier"				"175 225 275 325 400 475 550 625 700"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"barrier_radius"		"1200"
+			}
+			
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"12"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_allfathers_pipe_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2308"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_allfathers_pipe_8"
+		"ItemRequirements"
+		{
+			"01"						"item_allfathers_pipe_7;item_recipe_allfathers_pipe_2"
+		}
+	}
+	
+	"item_allfathers_pipe_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2309"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_allfathers_pipe"
+		"AbilityTextureName"			"pipe/allfathers_pipe_8"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"barrier"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"pipe of insight;allfathers pipe"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"8"
+		
+		"AvailableRuneSlots"			"3"
+	
+		"AbilityCooldown"				"35"
+		"AbilityCastRange"				"1200"
+		"AbilitySharedCooldown"			"allfatherspipe"
+		"AbilityManaCost"				"100"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist"			"10 15 20 25 26 27 28 29 30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_resist"			"3 3 3 3 6 9 12 15 18"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_radius"			"900"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"barrier"				"175 225 275 325 400 475 550 625 700"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"barrier_radius"		"1200"
+			}
+			
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"12"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_allfathers_pipe_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2310"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_allfathers_pipe_9"
+		"ItemRequirements"
+		{
+			"01"						"item_allfathers_pipe_8;item_recipe_allfathers_pipe_2"
+		}
+	}
+	
+	"item_allfathers_pipe_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2311"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_allfathers_pipe"
+		"AbilityTextureName"			"pipe/allfathers_pipe_9"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"barrier"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"pipe of insight;allfathers pipe"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"9"
+		
+		"AvailableRuneSlots"			"3"
+	
+		"AbilityCooldown"				"35"
+		"AbilityCastRange"				"1200"
+		"AbilitySharedCooldown"			"allfatherspipe"
+		"AbilityManaCost"				"100"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist"			"10 15 20 25 26 27 28 29 30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_resist"			"3 3 3 3 6 9 12 15 18"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_radius"			"900"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"barrier"				"175 225 275 325 400 475 550 625 700"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"barrier_radius"		"1200"
+			}
+			
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"12"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+}

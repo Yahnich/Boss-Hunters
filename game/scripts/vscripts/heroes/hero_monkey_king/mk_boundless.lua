@@ -74,18 +74,23 @@ end
 
 modifier_mk_boundless_crit = class({})
 function modifier_mk_boundless_crit:OnCreated(table)
+	self:OnRefresh()
+end
+
+function modifier_mk_boundless_crit:OnRefresh()
 	self.crit = self:GetTalentSpecialValueFor("crit_mult")
+	if IsServer() then
+		self:GetParent():HookInModifier("GetModifierCriticalDamage", self)
+	end
 end
 
-function modifier_mk_boundless_crit:OnRefresh(table)
-	self.crit = self:GetTalentSpecialValueFor("crit_mult")
+function modifier_mk_boundless_crit:OnDestroy()
+	if IsServer() then
+		self:GetParent():HookOutModifier("GetModifierCriticalDamage", self)
+	end
 end
 
-function modifier_mk_boundless_crit:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE}
-end
-
-function modifier_mk_boundless_crit:GetModifierPreAttack_CriticalStrike(params)
+function modifier_mk_boundless_crit:GetModifierCriticalDamage(params)
 	return self.crit
 end
 

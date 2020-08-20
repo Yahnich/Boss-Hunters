@@ -39,7 +39,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"9 8 7 6 5 4 3"
+		"AbilityCooldown"				"14 14 14 14 12 10 8"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -51,39 +51,38 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"amp"					"25 30 35 40 45 50 55"
+				"var_type"						"FIELD_FLOAT"
+				"attack_speed_self"				"50 80 110 140 140 140 140"
+				"LinkedSpecialBonus"			"special_bonus_unique_bs_bloodrage_2"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"evasion_loss"			"25 30 35 40 45 50 55"
+				"var_type"						"FIELD_FLOAT"
+				"attack_speed_ally"				"25 40 55 70 70 70 70"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_loss"			"5 6 7 8 9 10 11"
+				"var_type"						"FIELD_FLOAT"
+				"spell_amp_self"				"10 20 30 40 40 40 40"
+				"LinkedSpecialBonus"			"special_bonus_unique_bs_bloodrage_2"
+				"LinkedSpecialBonusField"		"value2"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"mr_loss"				"25 30 35 40 45 50 55"
+				"var_type"						"FIELD_FLOAT"
+				"spell_amp_ally"				"5 10 15 20 20 20 20"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"9 10 11 12 13 14 15"
+				"var_type"						"FIELD_FLOAT"
+				"hp_loss"						"-2.2 -2.4 -2.6 -2.8 -2.8 -2.8 -2.8"
+				"LinkedSpecialBonus"			"special_bonus_unique_bs_bloodrage_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"max_heal"				"16 19 22 25 28 31 34"
-				"LinkedSpecialBonus"	"special_bonus_unique_bs_bloodrage_2"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal_radius"			"300"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"8"
 			}
 		}
 	}
@@ -105,7 +104,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
+				"value"						"-0.25"
 			}
 		}
 	}
@@ -128,6 +127,11 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"value"						"20"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value2"					"10"
 			}
 		}
 	}
@@ -222,7 +226,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"75"
+				"value"						"-60"
 			}
 		}
 	}
@@ -404,7 +408,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "percent"               "1"
+	            "lifesteal"				"15"
 	        }
 	    }
 	}
@@ -451,7 +455,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60"
+		"AbilityCooldown"				"60 55 55 50 50 45"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -469,23 +473,46 @@
 			}
 			"02"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"7 8 9 10 11 12"
+				"var_type"						"FIELD_INTEGER"
+				"evasion_loss"					"-30 -30 -40 -40 -50 -50"
+				"LinkedSpecialBonus"			"special_bonus_unique_bs_rupture_1"
+				"LinkedSpecialBonusField"		"value2"
 			}
 			"03"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"tick_rate"						"1"
+				"var_type"						"FIELD_INTEGER"
+				"armor_loss"					"-6 -6 -8 -8 -10 -10"
+				"LinkedSpecialBonus"			"special_bonus_unique_bs_rupture_1"
+				"LinkedSpecialBonusField"		"value3"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"scepter_charges"				"2"
+				"mr_loss"						"-30 -30 -40 -40 -50 -50"
+				"LinkedSpecialBonus"			"special_bonus_unique_bs_rupture_1"
+				"LinkedSpecialBonusField"		"value2"
 			}
 			"05"
 			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"7 8 9 10 11 12"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"tick_rate"						"1"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"scepter_charges"				"2"
+				"RequiresScepter"				"1"
+			}
+			"08"
+			{
 				"var_type"						"FIELD_INTEGER"
 				"scepter_charge_restore_time"	"40"
+				"RequiresScepter"				"1"
 			}
 		}
 	}
@@ -508,6 +535,16 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"value"						"1"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value2"					"-5"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value3"					"-2"
 			}
 		}
 	}

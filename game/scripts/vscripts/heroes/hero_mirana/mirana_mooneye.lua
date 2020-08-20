@@ -73,14 +73,24 @@ end
 modifier_mirana_mooneye_scepter = class({})
 LinkLuaModifier( "modifier_mirana_mooneye_scepter", "heroes/hero_mirana/mirana_mooneye.lua" ,LUA_MODIFIER_MOTION_NONE )
 
-function modifier_mirana_mooneye_scepter:DeclareFunctions()
-    local funcs = {
-        MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE
-    }   
-    return funcs
+function modifier_mirana_mooneye_scepter:OnCreated()
+	self:OnRefresh()
 end
 
-function modifier_mirana_mooneye_scepter:GetModifierPreAttack_CriticalStrike()
+function modifier_mirana_mooneye_scepter:OnRefresh()
+	if IsServer() then
+		self:GetParent():HookInModifier("GetModifierCriticalDamage", self)
+	end
+end
+
+function modifier_mirana_mooneye_scepter:OnDestroy()
+	if IsServer() then
+		self:GetParent():HookOutModifier("GetModifierCriticalDamage", self)
+	end
+end
+
+
+function modifier_mirana_mooneye_scepter:GetModifierCriticalDamage()
 	self:Destroy()
     return self:GetTalentSpecialValueFor("scepter_crit")
 end

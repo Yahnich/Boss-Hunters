@@ -22,21 +22,15 @@ end
 
 function modifier_boss_arthromos_hellraiser:OnDeath(params)
 	if params.attacker == self:GetParent() then
-		local callback = (function( illusion, parent, caster, ability )
-			illusion:SetHealth( illusion:GetMaxHealth() )
-			if not parent:IsRealHero() then
-				illusion:SetRenderColor( 125, 125, 255 )
+		local illusions = params.unit:ConjureImage( {outgoing_damage = self.outgoing, incoming = self.incoming}, -1, params.attacker, 1 )
+		illusions[1]:SetHealth( illusions[1]:GetMaxHealth() )
+		Timers:CreateTimer(0.5, function()
+			if params.attacker:IsNull() or not params.attacker:IsAlive() then
+				illusions[1]:ForceKill(false)
 			end
-			Timers:CreateTimer(0.5, function()
-				illusion:MoveToPositionAggressive( caster:GetAbsOrigin() )
-				if caster:IsNull() or not caster:IsAlive() then
-					illusion:SetHealth( 1 )
-					illusion:ForceKill(false)
-					UTIL_Remove( illusion )
-				end
-			end)
+			illusions[1]:MoveToPositionAggressive( params.attacker:GetAbsOrigin() + RandomVector( 600 ) )
+			return 0.5
 		end)
-		params.unit:ConjureImage( params.unit:GetAbsOrigin(), nil, self.outgoing, self.incoming, nil, self:GetAbility(), false, params.attacker, callback )
 	end
 end
 

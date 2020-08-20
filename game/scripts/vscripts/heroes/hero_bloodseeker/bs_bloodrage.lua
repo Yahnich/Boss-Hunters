@@ -14,68 +14,69 @@ function bs_bloodrage:OnSpellStart()
 	local target = self:GetCursorTarget()
 
 	EmitSoundOn("hero_bloodseeker.bloodRage", target)
-	if target:TriggerSpellAbsorb(self) and not target:IsSameTeam(caster) then return end
-	if caster:HasTalent("special_bonus_unique_bs_bloodrage_1") then
-		caster:AddNewModifier(caster, self, "modifier_bs_bloodrage", {Duration = self:GetTalentSpecialValueFor("duration")})
+	local duration = self:GetTalentSpecialValueFor("duration")
+	if caster:HasTalent("special_bonus_unique_bs_bloodrage_1") and target ~= caster then
+		caster:AddNewModifier(caster, self, "modifier_bs_bloodrage", {Duration = duration})
 	end
 
-	target:AddNewModifier(caster, self, "modifier_bs_bloodrage", {Duration = self:GetTalentSpecialValueFor("duration")})
+	target:AddNewModifier(caster, self, "modifier_bs_bloodrage", {Duration = duration})
 end
 
 modifier_bs_bloodrage = class({})
 function modifier_bs_bloodrage:OnCreated()
-	self.amp = self:GetTalentSpecialValueFor("amp")
-	self.evasion = self:GetTalentSpecialValueFor("evasion_loss") * (-1)
-	self.armor = self:GetTalentSpecialValueFor("armor_loss") * (-1)
-	self.mr = self:GetTalentSpecialValueFor("mr_loss") * (-1)
+	self:OnRefresh()
+	if IsServer() then
+		self:StartIntervalThink( 0.1 )
+	end
 end
 
 function modifier_bs_bloodrage:OnRefresh()
-	self:OnCreated()
+	if self:GetCaster() == self:GetParent() or self:GetCaster():HasTalent("special_bonus_unique_bs_bloodrage_2") then
+		self.spell_amp = self:GetTalentSpecialValueFor("spell_amp_self")
+		self.attack_speed = self:GetTalentSpecialValueFor("attack_speed_self")
+	else
+		self.spell_amp = self:GetTalentSpecialValueFor("spell_amp_ally")
+		self.attack_speed = self:GetTalentSpecialValueFor("attack_speed_ally")
+	end
+	self.hp_loss = self:GetTalentSpecialValueFor("hp_loss") / 100
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_bs_bloodrage_1")
 end
 
+function modifier_bs_bloodrage:OnIntervalThink()
+	local ability = self:GetAbility()
+	local parent = self:GetParent()
+	local caster = self:GetCaster()
+	if self.talent1 then
+		-- parent:HealEvent( parent:GetMaxHealth() * self.hp_loss * 0.1, ability, caster, true )
+	else
+		ability:DealDamage( parent, parent, parent:GetMaxHealth() * self.hp_loss * (-0.1), {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NON_LETHAL } )
+	end
+end
 
 function modifier_bs_bloodrage:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_EVASION_CONSTANT,
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
-		MODIFIER_EVENT_ON_DEATH
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
 	}
 	return funcs
 end
 
-function modifier_bs_bloodrage:GetModifierEvasion_Constant()
-	return self.evasion
+function modifier_bs_bloodrage:GetModifierSpellAmplify_Percentage()
+	return self.spell_amp
 end
 
-function modifier_bs_bloodrage:GetModifierPhysicalArmorBonus()
-	return self.armor
+function modifier_bs_bloodrage:GetModifierAttackSpeedBonus()
+	return self.attack_speed
 end
 
-function modifier_bs_bloodrage:GetModifierMagicalResistanceBonus()
-	return self.mr
-end
-
-function modifier_bs_bloodrage:GetModifierTotalDamageOutgoing_Percentage()
-	return self.amp
-end
-
-function modifier_bs_bloodrage:OnDeath(params)
-	if IsServer() then
-		if params.unit == self:GetParent() then
-			local enemies = self:GetParent():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("heal_radius"))
-			for _,enemy in pairs(enemies) do
-				local heal = enemy:GetMaxHealth() * self:GetTalentSpecialValueFor("max_heal")/100
-				enemy:HealEvent(heal, self:GetAbility(), enemy, false)
-			end
-
-		elseif params.attacker == self:GetParent() then
-			local heal = params.unit:GetMaxHealth() * self:GetTalentSpecialValueFor("max_heal")/100
-			self:GetParent():HealEvent(heal, self:GetAbility(), self:GetParent(), false)
-			
+function modifier_bs_bloodrage:GetModifierHealthRegenPercentage()
+	if self.talent1 then
+		if IsServer() then
+			local delta = GameRules:GetGameTime() - (self.deltaTime or GameRules:GetGameTime())
+			self:GetCaster().statsDamageHealed = (self:GetCaster().statsDamageHealed or 0) + math.min(  self:GetParent():GetMaxHealth() * self.hp_loss * delta, self:GetParent():GetHealthDeficit() )
+			self.deltaTime = GameRules:GetGameTime()
 		end
+		return self.hp_loss
 	end
 end
 
@@ -92,5 +93,5 @@ function modifier_bs_bloodrage:StatusEffectPriority()
 end
 
 function modifier_bs_bloodrage:IsDebuff()
-	return true
+	return not self.talent1
 end
