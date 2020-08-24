@@ -13,7 +13,7 @@ end
 
 function modifier_boss_necro_take_the_weak:OnTakeDamage(params)
 	if self:GetParent():PassivesDisabled() then return end
-	if params.attacker == self:GetParent() and params.unit ~= self:GetParent() and not params.unit:IsHero() and not HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) and params.inflictor ~= self:GetAbility() then
+	if params.attacker == self:GetParent() and params.unit ~= self:GetParent() and not params.unit:IsConsideredHero() and not HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) and params.inflictor ~= self:GetAbility() then
 		params.unit:AttemptKill(self:GetAbility(), params.attacker)
 	end
 end

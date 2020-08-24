@@ -668,6 +668,7 @@ end
 function CDOTA_BaseNPC:RefreshAllCooldowns(bItems, bNoUltimate)
     for i = 0, self:GetAbilityCount() - 1 do
         local ability = self:GetAbilityByIndex( i )
+		
         if ability then
 			if (bNoUltimate and ability:GetAbilityType() ~= 1) or not bNoUltimate then
 				ability:Refresh()
@@ -759,6 +760,8 @@ function CDOTA_BaseNPC:ConjureImage( illusionInfo, duration, caster, amount )
 			end
 			illusion:SetHealth( math.min( illusion:GetMaxHealth(), math.max( self:GetHealth(), 1 ) ) )
 			illusion:SetOwner(caster or self)
+			illusion:SetMaximumGoldBounty( 0 )
+			illusion:SetMinimumGoldBounty( 0 )
 			if illuInfo.controllable == false then
 				illusion:SetControllableByPlayer(-1, true)
 			end
@@ -796,6 +799,8 @@ function CDOTA_BaseNPC:ConjureImage( illusionInfo, duration, caster, amount )
 			illusion:SetPhysicalArmorBaseValue( self:GetPhysicalArmorBaseValue() )
 			illusion:SetBaseAttackTime( self:GetSecondsPerAttack() )
 			illusion:SetBaseMoveSpeed( self:GetBaseMoveSpeed() )
+			illusion:SetMaximumGoldBounty( 0 )
+			illusion:SetMinimumGoldBounty( 0 )
 			if illuInfo.controllable == false then
 				illusion:SetControllableByPlayer(-1, true)
 			else

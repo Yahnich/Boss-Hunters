@@ -48,6 +48,14 @@
 #base "items/item_ring_of_sacrifice.txt"
 #base "items/item_orb_of_renewal.txt"
 #base "items/item_cultists_veil.txt"
+#base "items/item_bloodletting_armlet.txt"
+#base "items/item_berserkers_mask.txt"
+#base "items/item_dark_lord_headdress.txt"
+#base "items/item_protection_sphere.txt"
+#base "items/item_phantomblade.txt"
+#base "items/item_anvil.txt"
+#base "items/item_cuirass_of_war.txt"
+#base "items/item_pearlescent_cape.txt"
 
 //Meepo Runes for ult
 #base "items/item_meepo_rune_dd.txt"
@@ -63,7 +71,7 @@
 //Snapfire
 #base "items/item_snapfire_cookie.txt"
 
-// Next ID is 2397
+// Next ID is 2548
 
 "DOTAAbilities"
 {

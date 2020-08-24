@@ -9,7 +9,7 @@ function boss_lifestealer_consume:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	caster:EmitSound( "Hero_LifeStealer.Assimilate.Target" )
-	if target:IsRealHero() then
+	if target:IsConsideredHero() then
 		if not target:TriggerSpellAbsorb(self) then
 			target:SetAttacking( caster )
 			target:MoveToTargetToAttack( caster ) 

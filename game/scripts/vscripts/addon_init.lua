@@ -12,6 +12,7 @@ SPELL_AMP_PER_INT = 0.0075
 require("templates/relic_base_class")
 require("templates/persistent_modifier")
 require("templates/item_basic_base_class")
+require("templates/item_aura_base_class")
 require("templates/toggle_modifier_base_class")
 require("templates/talent_base_class")
 require("templates/rune_base_class")

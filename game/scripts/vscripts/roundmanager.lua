@@ -689,28 +689,47 @@ function RoundManager:RegisterStatsForHero( hero, bWon )
 	end
 	
 
-	local packageLocation = SERVER_LOCATION..AUTH_KEY.."/"..heroName..'.json'
+	local packageLocation = SERVER_LOCATION..AUTH_KEY.."/heroes/"..heroName..'.json'
 	local getRequest = CreateHTTPRequestScriptVM( "GET", packageLocation)
 
 	getRequest:Send( function( result )
 		local putData = {}
+		putData.heroes = {}
 		local wins = 0
 		putData.wins = wins
 		putData.plays = 1
 		
+		local decoded = {}
 		if tostring(result.Body) ~= 'null' then
-			local decoded = json.decode(result.Body)
-			wins = (decoded.wins or 0)
-			putData.plays = (decoded.plays or 0) + 1
-			
-			putData.wins = wins
+			decoded = json.decode(result.Body)
 		end
-		
+		wins = (decoded.wins or 0)
 		if bWon then
 			wins = wins + 1
-			putData.wins = wins
 		end
-		putData.WR = tostring( math.floor((wins / putData.plays) * 10000) / 100 )..'%'
+		
+		putData.talents = {}
+		for i = 0, hero:GetAbilityCount() - 1 do
+			local ability = hero:GetAbilityByIndex( i )
+			if ability and ability:GetClassname() == "special_bonus_undefined" then
+				local talent = ability:GetAbilityName()
+				putData.talents[talent] = {}
+				local talentData = decoded[talent] or {}
+				local plays = (talentData.plays or 0)
+				if ability:GetLevel() > 0 then
+					plays = plays + 1
+				end
+				local wins = (talentData.wins or 0)
+				if bWon then
+					wins = wins + 1
+				end
+				putData.talents[talent].wins = wins
+				putData.talents[talent].plays = plays
+			end
+		end
+		
+		putData.plays = (decoded.plays or 0) + 1
+		putData.wins = wins
 		
 		local encoded = json.encode(putData)
 		local putRequest = CreateHTTPRequestScriptVM( "PUT", packageLocation)

@@ -1,0 +1,766 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: Dark Wand 2
+	//=================================================================================================================
+	"item_recipe_pearlescent_cape_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2532"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"700"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_pearlescent_cape_2"
+		"ItemRequirements"
+		{
+			"01"						"item_allfathers_pipe;item_dusk_blade"
+		}
+	}
+	"item_pearlescent_cape_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2533"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_pearlescent_cape"
+		"AbilityTextureName"			"glimmer/pearlescent_cape_2"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"invis"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"glimmer cape"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"8"
+		"ItemBaseLevel"					"1"
+		
+		"AvailableRuneSlots"			"1"
+		
+		"AbilityCooldown"				"14"
+		"AbilitySharedCooldown"			"pearlescentcape"
+		"AbilityManaCost"				"90"
+
+		"AbilityCastRange"				"800"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"80 120 160 200 240 280 320 360"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"invis_duration"		"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fade_delay"			"0.6"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist"			"15"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist_active"	"35 40 45 50 55 60 65 70"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 2
+	//=================================================================================================================
+	"item_recipe_pearlescent_cape_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2534"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1050"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_pearlescent_cape_3"
+		"ItemRequirements"
+		{
+			"01"						"item_pearlescent_cape_2;item_recipe_pearlescent_cape_2"
+		}
+	}
+	"item_pearlescent_cape_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2535"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_pearlescent_cape"
+		"AbilityTextureName"			"glimmer/pearlescent_cape_3"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"invis"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"glimmer cape"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"8"
+		"ItemBaseLevel"					"2"
+		
+		"AvailableRuneSlots"			"1"
+		
+		"AbilityCooldown"				"14"
+		"AbilitySharedCooldown"			"pearlescentcape"
+		"AbilityManaCost"				"90"
+
+		"AbilityCastRange"				"800"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"80 120 160 200 240 280 320 360"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"invis_duration"		"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fade_delay"			"0.6"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist"			"15"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist_active"	"35 40 45 50 55 60 65 70"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_pearlescent_cape_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2536"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_pearlescent_cape_4"
+		"ItemRequirements"
+		{
+			"01"						"item_pearlescent_cape_3;item_recipe_pearlescent_cape_2"
+		}
+	}
+	
+	"item_pearlescent_cape_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2537"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_pearlescent_cape"
+		"AbilityTextureName"			"glimmer/pearlescent_cape_4"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"invis"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"glimmer cape"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"8"
+		"ItemBaseLevel"					"3"
+		
+		"AvailableRuneSlots"			"2"
+		
+		"AbilityCooldown"				"14"
+		"AbilitySharedCooldown"			"pearlescentcape"
+		"AbilityManaCost"				"90"
+
+		"AbilityCastRange"				"800"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"80 120 160 200 240 280 320 360"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"invis_duration"		"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fade_delay"			"0.6"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist"			"15"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist_active"	"35 40 45 50 55 60 65 70"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_pearlescent_cape_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2538"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_pearlescent_cape_5"
+		"ItemRequirements"
+		{
+			"01"						"item_pearlescent_cape_4;item_recipe_pearlescent_cape_2"
+		}
+	}
+	
+	"item_pearlescent_cape_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2539"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_pearlescent_cape"
+		"AbilityTextureName"			"glimmer/pearlescent_cape_5"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"invis"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"glimmer cape"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"8"
+		"ItemBaseLevel"					"4"
+		
+		"AvailableRuneSlots"			"2"
+		
+		"AbilityCooldown"				"14"
+		"AbilitySharedCooldown"			"pearlescentcape"
+		"AbilityManaCost"				"90"
+
+		"AbilityCastRange"				"800"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"80 120 160 200 240 280 320 360"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"invis_duration"		"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fade_delay"			"0.6"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist"			"15"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist_active"	"35 40 45 50 55 60 65 70"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_pearlescent_cape_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2540"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_pearlescent_cape_6"
+		"ItemRequirements"
+		{
+			"01"						"item_pearlescent_cape_5;item_recipe_pearlescent_cape_2"
+		}
+	}
+	
+	"item_pearlescent_cape_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2541"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_pearlescent_cape"
+		"AbilityTextureName"			"glimmer/pearlescent_cape_6"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"invis"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"glimmer cape"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"8"
+		"ItemBaseLevel"					"5"
+		
+		"AvailableRuneSlots"			"2"
+		
+		"AbilityCooldown"				"14"
+		"AbilitySharedCooldown"			"pearlescentcape"
+		"AbilityManaCost"				"90"
+
+		"AbilityCastRange"				"800"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"80 120 160 200 240 280 320 360"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"invis_duration"		"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fade_delay"			"0.6"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist"			"15"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist_active"	"35 40 45 50 55 60 65 70"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_pearlescent_cape_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2542"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_pearlescent_cape_7"
+		"ItemRequirements"
+		{
+			"01"						"item_pearlescent_cape_6;item_recipe_pearlescent_cape_2"
+		}
+	}
+	
+	"item_pearlescent_cape_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2543"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_pearlescent_cape"
+		"AbilityTextureName"			"glimmer/pearlescent_cape_7"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"invis"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"glimmer cape"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"8"
+		"ItemBaseLevel"					"6"
+		
+		"AvailableRuneSlots"			"3"
+		
+		"AbilityCooldown"				"14"
+		"AbilitySharedCooldown"			"pearlescentcape"
+		"AbilityManaCost"				"90"
+
+		"AbilityCastRange"				"800"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"80 120 160 200 240 280 320 360"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"invis_duration"		"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fade_delay"			"0.6"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist"			"15"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist_active"	"35 40 45 50 55 60 65 70"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_pearlescent_cape_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2544"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_pearlescent_cape_8"
+		"ItemRequirements"
+		{
+			"01"						"item_pearlescent_cape_7;item_recipe_pearlescent_cape_2"
+		}
+	}
+	"item_pearlescent_cape_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2545"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_pearlescent_cape"
+		"AbilityTextureName"			"glimmer/pearlescent_cape_8"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"invis"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"glimmer cape"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"8"
+		"ItemBaseLevel"					"7"
+		
+		"AvailableRuneSlots"			"3"
+		
+		"AbilityCooldown"				"14"
+		"AbilitySharedCooldown"			"pearlescentcape"
+		"AbilityManaCost"				"90"
+
+		"AbilityCastRange"				"800"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"80 120 160 200 240 280 320 360"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"invis_duration"		"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fade_delay"			"0.6"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist"			"15"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist_active"	"35 40 45 50 55 60 65 70"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_pearlescent_cape_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2546"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_pearlescent_cape_9"
+		"ItemRequirements"
+		{
+			"01"						"item_pearlescent_cape_8;item_recipe_pearlescent_cape_2"
+		}
+	}
+	
+	"item_pearlescent_cape_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2547"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_pearlescent_cape"
+		"AbilityTextureName"			"glimmer/pearlescent_cape_9"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"aura"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"glimmer cape"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"8"
+		"ItemBaseLevel"					"8"
+		
+		"AvailableRuneSlots"			"3"
+		
+		"AbilityCooldown"				"14"
+		"AbilitySharedCooldown"			"pearlescentcape"
+		"AbilityManaCost"				"90"
+
+		"AbilityCastRange"				"800"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"80 120 160 200 240 280 320 360"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"invis_duration"		"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fade_delay"			"0.6"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist"			"15"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist_active"	"35 40 45 50 55 60 65 70"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+}

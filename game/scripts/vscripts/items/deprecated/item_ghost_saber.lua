@@ -13,6 +13,16 @@ function item_ghost_saber:OnSpellStart()
 	end
 end
 
+item_protection_sphere_2 = class(item_protection_sphere)
+item_protection_sphere_3 = class(item_protection_sphere)
+item_protection_sphere_4 = class(item_protection_sphere)
+item_protection_sphere_5 = class(item_protection_sphere)
+item_protection_sphere_6 = class(item_protection_sphere)
+item_protection_sphere_7 = class(item_protection_sphere)
+item_protection_sphere_8 = class(item_protection_sphere)
+item_protection_sphere_9 = class(item_protection_sphere)
+
+
 modifier_item_ghost_saber_passive = class(itemBaseClass)
 function modifier_item_ghost_saber_passive:OnCreated()
 	self.bonus_agi = self:GetSpecialValueFor("bonus_stats")

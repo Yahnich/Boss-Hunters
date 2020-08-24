@@ -47,7 +47,7 @@ end
 
 function modifier_wk_crit_passive:GetModifierCriticalDamage(params)
 	local caster = self:GetCaster()
-	if not caster:PassivesDisabled() self:RollPRNG( self.crit_chance ) then
+	if not caster:PassivesDisabled() and self:RollPRNG( self.crit_chance ) then
 		local velocity = caster:GetForwardVector() * 1000
 
 		local ability = caster:FindAbilityByName("wk_skeletons")

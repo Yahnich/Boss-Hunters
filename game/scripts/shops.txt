@@ -40,6 +40,8 @@
 		"item"		"item_mirror_blade"
 		"item"		"item_ice_fang"
 		"item"		"item_reaping_scythe"
+		"item"		"item_protection_sphere"
+		"item"		"item_anvil"
     }
     "misc"
     {
@@ -53,12 +55,18 @@
 		"item"		"item_ring_of_sacrifice"
 		"item"		"item_orb_of_renewal"
 		"item"		"item_cultists_veil"
+		"item"		"item_bloodletting_armlet"
+		"item"		"item_phantomblade"
     }
 	"magics"			
 	{
+		"item"		"item_pearlescent_cape_2"
 	}
 	"defense"
 	{
+		"item"		"item_berserkers_mask_4"
+		"item"		"item_dark_lord_headdress_4"
+		"item"		"item_cuirass_of_war_3"
 	}
 	"weapons"
 	{

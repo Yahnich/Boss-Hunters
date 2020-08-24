@@ -1,0 +1,506 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_dark_lord_headdress_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2455"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"600"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_dark_lord_headdress_4"
+		"ItemRequirements"
+		{
+			"01"						"item_sanguine_mask_3"
+		}
+	}
+	"item_dark_lord_headdress_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2456"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_dark_lord_headdress"
+		"AbilityTextureName"			"mask/dark_lord_headdress_4"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"lifesteal"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"mask of madness"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"6"
+		"ItemBaseLevel"					"1"
+		
+		"AvailableRuneSlots"			"1"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal"				"15 15 15 17 19 21"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mob_divider"			"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stone_share"			"20 25 30 30 30 30"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"400 500 600 700 800 900"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"1 1 1 2 2 2"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_dark_lord_headdress_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2457"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_dark_lord_headdress_5"
+		"ItemRequirements"
+		{
+			"01"						"item_dark_lord_headdress_4;item_recipe_dark_lord_headdress_4"
+		}
+	}
+	"item_dark_lord_headdress_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2458"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_dark_lord_headdress"
+		"AbilityTextureName"			"mask/dark_lord_headdress_5"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"lifesteal"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"mask of madness"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"6"
+		"ItemBaseLevel"					"2"
+		"AvailableRuneSlots"			"1"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal"				"15 15 15 17 19 21"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mob_divider"			"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stone_share"			"20 25 30 30 30 30"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"400 500 600 700 800 900"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"1 1 1 2 2 2"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_dark_lord_headdress_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2459"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_dark_lord_headdress_6"
+		"ItemRequirements"
+		{
+			"01"						"item_dark_lord_headdress_5;item_recipe_dark_lord_headdress_4"
+		}
+	}
+	"item_dark_lord_headdress_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2460"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_dark_lord_headdress"
+		"AbilityTextureName"			"mask/dark_lord_headdress_6"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"lifesteal"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"mask of madness"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"6"
+		"ItemBaseLevel"					"3"
+		
+		"AbilityCooldown"				"11"
+		"AbilitySharedCooldown"			"berserkersmask"
+		"AbilityManaCost"				"25"
+		
+		"AvailableRuneSlots"			"1"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal"				"15 15 15 17 19 21"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mob_divider"			"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stone_share"			"20 25 30 30 30 30"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"400 500 600 700 800 900"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"1 1 1 2 2 2"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_dark_lord_headdress_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2461"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_dark_lord_headdress_7"
+		"ItemRequirements"
+		{
+			"01"						"item_dark_lord_headdress_6;item_recipe_dark_lord_headdress_4"
+		}
+	}
+	
+	"item_dark_lord_headdress_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2462"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_dark_lord_headdress"
+		"AbilityTextureName"			"mask/dark_lord_headdress_7"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"lifesteal"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"mask of madness"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"6"
+		"ItemBaseLevel"					"4"
+		
+		"AbilityCooldown"				"10"
+		"AbilitySharedCooldown"			"berserkersmask"
+		"AbilityManaCost"				"25"
+		
+		"AvailableRuneSlots"			"2"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal"				"15 15 15 17 19 21"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mob_divider"			"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stone_share"			"20 25 30 30 30 30"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"400 500 600 700 800 900"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"1 1 1 2 2 2"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_dark_lord_headdress_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2463"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_dark_lord_headdress_8"
+		"ItemRequirements"
+		{
+			"01"						"item_dark_lord_headdress_7;item_recipe_dark_lord_headdress_4"
+		}
+	}
+	"item_dark_lord_headdress_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2464"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_dark_lord_headdress"
+		"AbilityTextureName"			"mask/dark_lord_headdress_8"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"lifesteal"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"mask of madness"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"6"
+		"ItemBaseLevel"					"5"
+		
+		"AbilityCooldown"				"9"
+		"AbilitySharedCooldown"			"berserkersmask"
+		"AbilityManaCost"				"25"
+		
+		"AvailableRuneSlots"			"2"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal"				"15 15 15 17 19 21"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mob_divider"			"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stone_share"			"20 25 30 30 30 30"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"400 500 600 700 800 900"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"1 1 1 2 2 2"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_dark_lord_headdress_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2465"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_dark_lord_headdress_9"
+		"ItemRequirements"
+		{
+			"01"						"item_dark_lord_headdress_8;item_recipe_dark_lord_headdress_4"
+		}
+	}
+	
+	"item_dark_lord_headdress_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2466"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_dark_lord_headdress"
+		"AbilityTextureName"			"mask/dark_lord_headdress_9"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"lifesteal"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"mask of madness"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"6"
+		"ItemBaseLevel"					"6"
+		
+		"AbilityCooldown"				"8"
+		"AbilitySharedCooldown"			"berserkersmask"
+		"AbilityManaCost"				"25"
+		
+		"AvailableRuneSlots"			"2"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal"				"15 15 15 17 19 21"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mob_divider"			"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stone_share"			"20 25 30 30 30 30"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"400 500 600 700 800 900"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"1 1 1 2 2 2"
+			}
+		}
+	}
+}

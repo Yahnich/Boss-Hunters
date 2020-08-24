@@ -389,7 +389,7 @@ function modifier_handler_handler:UpdateStats()
 	local hpPct = self:GetParent():GetHealth() / self:GetParent():GetMaxHealth()
 	parent:CalculateStatBonus()
 	if hpPct - 0.1 <= self:GetParent():GetHealth() / self:GetParent():GetMaxHealth() then 
-		parent:SetHealth( hpPct * self:GetParent():GetMaxHealth() )
+		parent:SetHealth( math.max( 1, hpPct * self:GetParent():GetMaxHealth() ) )
 	end
 end
 

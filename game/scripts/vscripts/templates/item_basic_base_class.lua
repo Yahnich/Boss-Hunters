@@ -1,6 +1,6 @@
 itemBasicBaseClass = class(persistentModifier)
 
-function itemBasicBaseClass:SetupRuneSystem()
+function itemBasicBaseClass:SetupRuneSystem(modifier)
 	-- find old modifier, -1 (slot unassigned) and not current item
 	for _,modifier in ipairs( self:GetParent():FindAllModifiersByName( self:GetName() ) ) do
 		ability = modifier:GetAbility()
@@ -26,7 +26,7 @@ function itemBasicBaseClass:SetupRuneSystem()
 	end
 	for func, result in pairs( modFuncs ) do
 		-- print( func, result, "end result" )
-		self[func] = function() return result end
+		self[func] = function() return result * (modifier or 100)/100 end
 	end
 	self:StoreRunesIntoModifier()
 end
@@ -45,7 +45,7 @@ function itemBasicBaseClass:OnCreated()
 		self:GetCaster():HookInModifier( "GetModifierBaseCriticalChanceBonus", self )
 		self:GetCaster():HookInModifier( "GetModifierBaseCriticalDamageBonus", self )
 		self:GetCaster():HookInModifier( "GetModifierAttackSpeedBonus", self )
-		self:SetupRuneSystem()
+		self:SetupRuneSystem(self.stone_share)
 		self:SetHasCustomTransmitterData( true )
 		
 	end
