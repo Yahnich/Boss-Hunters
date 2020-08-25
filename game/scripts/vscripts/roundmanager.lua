@@ -718,10 +718,10 @@ function RoundManager:RegisterStatsForHero( hero, bWon )
 				local plays = (talentData.plays or 0)
 				if ability:GetLevel() > 0 then
 					plays = plays + 1
-				end
-				local wins = (talentData.wins or 0)
-				if bWon then
-					wins = wins + 1
+					local wins = (talentData.wins or 0)
+					if bWon then
+						wins = wins + 1
+					end
 				end
 				putData.talents[talent].wins = wins
 				putData.talents[talent].plays = plays

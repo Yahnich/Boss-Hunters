@@ -30,7 +30,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16 14 12 10 8 6 4"
+		"AbilityCooldown"				"16 16 16 16 14 12 10"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -52,19 +52,24 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_as"					"64"
+				"var_type"						"FIELD_INTEGER"
+				"bonus_as"						"16 32 48 64 72 80 88"
+				"LinkedSpecialBonus"			"special_bonus_unique_visage_chill_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_ms"					"32"
+				"var_type"						"FIELD_INTEGER"
+				"bonus_ms"						"8 16 24 32 36 40 44"
+				"LinkedSpecialBonus"			"special_bonus_unique_visage_chill_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"1 2 3 4 5 6 7"
-				"LinkedSpecialBonus"		"special_bonus_unique_visage_chill_2"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"6 6 6 6 6.5 7 7.5"
+				"LinkedSpecialBonus"			"special_bonus_unique_visage_chill_2"
+				"LinkedSpecialBonusField"		"duration"
 			}
 		}
 	}
@@ -87,12 +92,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"int"						"100"
+				"damage"					"1"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"chill_amount"				"14"
+				"var_type"					"FIELD_FLOAT"
+				"evasion"					"-1.5"
 			}
 		}
 	}
@@ -114,7 +119,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"3"
+				"value"						"50"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"1.5"
 			}
 		}
 	}
@@ -183,6 +193,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"charge_damage"				"65"
+				"LinkedSpecialBonus"		"special_bonus_unique_visage_soul_2"
 			}
 			"04"
 			{
@@ -237,7 +248,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"chance"					"25"
+				"value"						"50"
 			}
 		}
 	}
@@ -279,12 +290,12 @@
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"reduction"							"8 10 12 14 16 18 20"
+				"reduction"							"-8 -12 -16 -20 -20 -20 -20 -20"
 			}
 			"03"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"recovery_time"						"9 8 7 6 5 4 3"
+				"recovery_time"						"6 6 6 6 5 4 3"
 			}
 		}
 	}
@@ -299,6 +310,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_visage_cloak_handle"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -308,6 +320,11 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"						"25"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"grace_period"				"0.25"
 			}
 		}
 	}
@@ -379,22 +396,38 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"familiar_hp"				"25"
+				"familiar_hp"				"500"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"familiar_armor"			"5"
+				"familiar_hp_scaling"		"25"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"familiar_ad"				"25"
+				"familiar_ad"				"20"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
+				"familiar_ad_scaling"		"2"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"familiar_armor"			"10"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"familiar_mr"				"50"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
 				"familiar_count_scepter"	"2"
+				"RequiresScepter"			"1"
 			}
 		}
 	}
@@ -501,6 +534,16 @@
 				"var_type"					"FIELD_INTEGER"
 				"value"						"4"
 			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"500"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"dmg_reduction"				"-80"
+			}
 		}
 	}
 	//=================================================================================================================
@@ -521,7 +564,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"100"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"knockback"					"250"
 			}
 		}
 	}

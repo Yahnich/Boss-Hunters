@@ -6,6 +6,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2210"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_incandescance"
 		"AbilityTextureName"			"radiance/incandescance_1"
@@ -83,6 +84,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2212"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_incandescance"
 		"AbilityTextureName"			"radiance/incandescance_2"
@@ -161,6 +163,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2214"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_incandescance"
 		"AbilityTextureName"			"radiance/incandescance_3"
@@ -240,6 +243,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2216"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_incandescance"
 		"AbilityTextureName"			"radiance/incandescance_4"
@@ -319,6 +323,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2218"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_incandescance"
 		"AbilityTextureName"			"radiance/incandescance_5"
@@ -398,6 +403,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2220"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_incandescance"
 		"AbilityTextureName"			"radiance/incandescance_6"
@@ -477,6 +483,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2222"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_incandescance"
 		"AbilityTextureName"			"radiance/incandescance_7"
@@ -555,6 +562,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2224"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_incandescance"
 		"AbilityTextureName"			"radiance/incandescance_8"
@@ -634,6 +642,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2226"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_incandescance"
 		"AbilityTextureName"			"radiance/incandescance_9"

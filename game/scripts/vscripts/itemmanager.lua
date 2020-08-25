@@ -17,6 +17,7 @@ function ItemManager:StartItemManager()
 		CustomGameEventManager:RegisterListener('bh_request_rune_data', Context_Wrap( ItemManager, 'ProcessRuneInformation'))
 		CustomGameEventManager:RegisterListener('bh_request_all_rune_data', Context_Wrap( ItemManager, 'ProcessAllRunesInformation'))
 		CustomGameEventManager:RegisterListener('bh_enter_rune_slot_request', Context_Wrap( ItemManager, 'TryEnterRuneInSlot'))
+		CustomGameEventManager:RegisterListener('bh_enter_remove_rune_request', Context_Wrap( ItemManager, 'TryRemoveRuneInSlot'))
 	end
 
 	print( "rune manager initialized", IsServer() )
@@ -48,21 +49,76 @@ end
 function ItemManager:ProcessAllRunesInformation(userid, event)
 	local player = PlayerResource:GetPlayer( event.PlayerID )
 	local unit = EntIndexToHScript( event.entindex )
-	local item = unit:GetItemInSlot( event.inventory )
-	if item and item.IsRuneStone and item:IsRuneStone() then
-		local info = {}
-		info.itemData = {}
-		info.unit = event.entindex
-		info.runeType = item:GetName()
-		info.runeInventory = item:GetItemSlot()
+	local info = {}
+	info.itemData = {}
+	info.unit = event.entindex
+	sendToPlayer = false
+	if event.inventory then
+		local item = unit:GetItemInSlot( event.inventory )
+		if item and item.IsRuneStone and item:IsRuneStone() then
+			info.runeType = item:GetName()
+			info.runeInventory = item:GetItemSlot()
+			sendToPlayer = true
+		end
+	else
+		sendToPlayer = true
+	end
+	if unit then
 		for i = 0, 5 do
 			local invItem = unit:GetItemInSlot( i )
 			if invItem then
 				info.itemData[i] = invItem.itemData
 			end
 		end
-		if player then
-			CustomGameEventManager:Send_ServerToPlayer(player, "bh_response_all_rune_data", info )
+	end
+	if player and sendToPlayer then
+		CustomGameEventManager:Send_ServerToPlayer(player, "bh_response_all_rune_data", info )
+	end
+end
+
+function ItemManager:TryRemoveRuneInSlot(userid, event)
+	local player = PlayerResource:GetPlayer( event.PlayerID )
+	local unit = EntIndexToHScript( event.entindex )
+	local item = unit:GetItemInSlot( tonumber(event.inventorySlot) )
+	local runeSlot = event.runeItemSlot
+	
+	
+	if item then
+		local ItemCatch = function( ... )
+			local itemmodifier = unit:FindModifierByNameAndAbility( item:GetIntrinsicModifierName(), item )
+			if not itemmodifier then return end
+			item.itemData = item.itemData or {}
+			local slotIndex = runeSlot
+			local lastRune = item:GetRuneSlot(slotIndex)
+			if lastRune and lastRune.rune_type then
+				unit:AddItemByName( lastRune.rune_type )
+				for funcName, result in pairs( lastRune.funcs ) do
+					itemmodifier[funcName] = function() return nil end
+				end
+				item.itemData[slotIndex] = {}
+			end
+			itemmodifier:ForceRefresh()
+			unit:CalculateStatBonus()
+		end
+		status, err, ret = xpcall(ItemCatch, debug.traceback, self, userid, event )
+		if not status  and not self.gameHasBeenBroken then
+			SendErrorReport(err, self)
+		elseif status then
+			local info = {}
+			info.itemData = {}
+			info.unit = event.entindex
+			sendToPlayer = false
+			if unit then
+				for i = 0, 5 do
+					local invItem = unit:GetItemInSlot( i )
+					if invItem then
+						info.itemData[i] = invItem.itemData
+					end
+				end
+			end
+			if player then
+				CustomGameEventManager:Send_ServerToPlayer(player, "bh_response_all_rune_data", info )
+			end
 		end
 	end
 end

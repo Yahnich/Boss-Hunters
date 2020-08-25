@@ -25,6 +25,17 @@ function visage_chill:OnSpellStart()
 				ParticleManager:ReleaseParticleIndex(nfx)
 	if target:TriggerSpellAbsorb( self ) then return end
 	caster:AddNewModifier(caster, self, "modifier_visage_chill_buff", {Duration = duration})
+	local units = caster:FindAllUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE })
+	for _,unit in pairs(units) do
+		if unit:GetOwner() == caster and unit:GetUnitLabel() == "visage_familiars" then
+			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_visage/visage_grave_chill_cast_beams.vpcf", PATTACH_POINT_FOLLOW, unit)
+			ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
+			ParticleManager:SetParticleControlEnt(nfx, 1, unit, PATTACH_POINT_FOLLOW, "attach_hitloc", unit:GetAbsOrigin(), true)
+			ParticleManager:ReleaseParticleIndex(nfx)
+			
+			unit:AddNewModifier(caster, self, "modifier_visage_chill_buff", {Duration = duration})
+		end
+	end
 	target:AddNewModifier(caster, self, "modifier_visage_chill_debuff", {Duration = duration})
 end
 
@@ -34,11 +45,6 @@ function modifier_visage_chill_buff:OnCreated(table)
 
 	self.bous_as = self:GetTalentSpecialValueFor("bonus_as")
 	self.bonus_ms = self:GetTalentSpecialValueFor("bonus_ms")
-
-	if caster:HasTalent("special_bonus_unique_visage_chill_2") then
-		self.bous_as = self.bous_as + 50
-		self.bonus_ms = self.bonus_ms + 50 
-	end
 
 	if IsServer() then
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_visage/visage_grave_chill_caster.vpcf", PATTACH_POINT_FOLLOW, caster)
@@ -57,11 +63,6 @@ function modifier_visage_chill_buff:OnRefresh(table)
 
 	self.bous_as = self:GetTalentSpecialValueFor("bonus_as")
 	self.bonus_ms = self:GetTalentSpecialValueFor("bonus_ms")
-
-	if caster:HasTalent("special_bonus_unique_visage_chill_2") then
-		self.bous_as = self.bous_as + 50
-		self.bonus_ms = self.bonus_ms + 50 
-	end
 end
 
 function modifier_visage_chill_buff:DeclareFunctions()
@@ -87,12 +88,12 @@ function modifier_visage_chill_debuff:OnCreated(table)
 
 	self.bous_as = self:GetTalentSpecialValueFor("bonus_as")
 	self.bonus_ms = self:GetTalentSpecialValueFor("bonus_ms")
-
-	if caster:HasTalent("special_bonus_unique_visage_chill_2") then
-		self.bous_as = self.bous_as + 50
-		self.bonus_ms = self.bonus_ms + 50 
+	if caster:HasTalent("special_bonus_unique_visage_chill_1") then
+		self.damage = caster:GetLevel() * caster:FindTalentValue("special_bonus_unique_visage_chill_1", "damage")
+		self.evasion_growth = caster:FindTalentValue("special_bonus_unique_visage_chill_1", "evasion")
+		self.evasion = self.evasion_growth
+		self:StartIntervalThink(0.5)
 	end
-
 	if IsServer() then
 		local parent = self:GetParent()
 
@@ -102,13 +103,6 @@ function modifier_visage_chill_debuff:OnCreated(table)
 					ParticleManager:SetParticleControlEnt(nfx, 2, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
 					
 		self:AttachEffect(nfx)
-
-		if caster:HasTalent("special_bonus_unique_visage_chill_1") then
-			self.damage = caster:GetIntellect() * caster:FindTalentValue("special_bonus_unique_visage_chill_1", "int")/100
-			self.chill_amount = caster:FindTalentValue("special_bonus_unique_visage_chill_1", "chill_amount")
-
-			self:StartIntervalThink(1)
-		end
 	end
 end
 
@@ -118,37 +112,34 @@ function modifier_visage_chill_debuff:OnRefresh(table)
 	self.bous_as = -self:GetTalentSpecialValueFor("bonus_as")
 	self.bonus_ms = -self:GetTalentSpecialValueFor("bonus_ms")
 
-	if caster:HasTalent("special_bonus_unique_visage_chill_2") then
-		self.bous_as = self.bous_as + 50
-		self.bonus_ms = self.bonus_ms + 50 
-	end
-
-	if IsServer() then
-		if caster:HasTalent("special_bonus_unique_visage_chill_1") then
-			self.damage = caster:GetIntellect() * caster:FindTalentValue("special_bonus_unique_visage_chill_1", "int")/100
-			self.chill_amount = caster:FindTalentValue("special_bonus_unique_visage_chill_1", "chill_amount")
-		end
+	if caster:HasTalent("special_bonus_unique_visage_chill_1") then
+		self.damage = caster:GetLevel() * caster:FindTalentValue("special_bonus_unique_visage_chill_1", "damage")
+		self.evasion_growth = caster:FindTalentValue("special_bonus_unique_visage_chill_1", "evasion")
+		self.evasion = self.evasion_growth
 	end
 end
 
 function modifier_visage_chill_debuff:OnIntervalThink()
+	self.evasion = self.evasion + self.evasion_growth
 	if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
 		local ability = self:GetAbility()
-
-		parent:AddChill(ability, caster, self:GetDuration(), self.chill_amount)
 		ability:DealDamage(caster, parent, self.damage, {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
 	end
 end
 
 function modifier_visage_chill_debuff:DeclareFunctions()
 	return {
-			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_EVASION_CONSTANT}
 end
 
 function modifier_visage_chill_debuff:GetModifierAttackSpeedBonus()
 	return -self.bous_as
+end
+
+function modifier_visage_chill_debuff:GetModifierEvasion_Constant()
+	return self.evasion
 end
 
 function modifier_visage_chill_debuff:GetModifierMoveSpeedBonus_Percentage()

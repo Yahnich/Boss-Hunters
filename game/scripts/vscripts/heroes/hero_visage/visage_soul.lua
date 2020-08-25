@@ -23,11 +23,15 @@ function visage_soul:OnSpellStart()
 	self:ReleaseSouls(target)
 
 	if caster:HasTalent("special_bonus_unique_visage_soul_1") then
+		local targets = caster:FindTalentValue("special_bonus_unique_visage_soul_1")
 		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTrueCastRange())
 		for _,enemy in pairs(enemies) do
 			if enemy ~= target then
 				self:ReleaseSouls(enemy)
-				break
+				targets = targets - 1
+				if targets <= 0 then
+					break
+				end
 			end
 		end
 	end
@@ -65,11 +69,6 @@ function visage_soul:OnProjectileHit(hTarget, vLocation)
 	if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
 
 		EmitSoundOn("Hero_Visage.SoulAssumption.Target", hTarget)
-
-		if caster:HasTalent("special_bonus_unique_visage_soul_2") and self:RollPRNG(caster:FindTalentValue("special_bonus_unique_visage_soul_1")) then
-			self:IncrementStacks()
-		end
-
 		self:DealDamage(caster, hTarget, totalDamage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 	end
 end

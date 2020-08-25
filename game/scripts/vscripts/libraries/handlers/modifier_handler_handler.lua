@@ -329,7 +329,9 @@ function modifier_handler_handler:UpdateHealth()
 	local hpStacks = tonumber(bonusHP)
 	if hpStacks ~= self.hp:GetStackCount() then 
 		if parent:IsAlive() and parent:GetHealth() ~= parent:GetMaxHealth() * (hpPct or 100) then
-			parent:SetHealth( parent:GetMaxHealth() * (hpPct or 100) )
+			parent:SetHealth( math.max( 1, parent:GetMaxHealth() * (hpPct or 100) ) )
+		elseif not parent:IsAlive() then
+			parent:SetHealth( 0 )
 		end
 		self.hp:SetStackCount( hpStacks )
 		self.hp = parent:AddNewModifier(parent, nil, "modifier_health_handler", {})

@@ -13,10 +13,11 @@ function visage_familiars:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	local totalCount = self:GetTalentSpecialValueFor("familiar_count")
-	local health = caster:GetMaxHealth() * self:GetTalentSpecialValueFor("familiar_hp")/100
-	local armor = caster:GetPhysicalArmorValue(false) * self:GetTalentSpecialValueFor("familiar_armor")/100
-	local speed = caster:GetIdealSpeedNoSlows()
-	local damage = caster:GetAttackDamage() * self:GetTalentSpecialValueFor("familiar_ad")/100
+	local health = self:GetTalentSpecialValueFor("familiar_hp") + self:GetTalentSpecialValueFor("familiar_hp_scaling") * caster:GetLevel()
+	local damage = self:GetTalentSpecialValueFor("familiar_ad") + self:GetTalentSpecialValueFor("familiar_ad_scaling") * caster:GetLevel()
+	local armor = self:GetTalentSpecialValueFor("familiar_armor")
+	local magic_resist = self:GetTalentSpecialValueFor("familiar_mr")
+	local speed = math.max( 430, caster:GetIdealSpeedNoSlows() )
 
 	if caster:HasScepter() then
 		totalCount = totalCount + self:GetTalentSpecialValueFor("familiar_count_scepter")
@@ -31,28 +32,24 @@ function visage_familiars:OnSpellStart()
 		end
 	end
 
-	health = health + 400
-	damage = damage + 30
-
 	for i=1,totalCount do
 		local familiar = caster:CreateSummon("npc_dota_visage_familiar1", caster:GetAbsOrigin())
 		familiar:RemoveAbility("visage_summon_familiars_stone_form")
-
-		if caster:FindAbilityByName("visage_stone"):IsTrained() then
+		familiar.visage = caster
+		if caster:HasAbility("visage_stone") then
 			familiar:AddAbility("visage_stone"):SetLevel(caster:FindAbilityByName("visage_stone"):GetLevel())
 		end
 
-		if caster:FindAbilityByName("visage_cloak"):IsTrained() then
+		if caster:HasAbility("visage_cloak") then
 			familiar:AddAbility("visage_cloak"):SetLevel(caster:FindAbilityByName("visage_cloak"):GetLevel())
 		end
 
 		familiar:AddNewModifier(caster, self, "modifier_visage_familiars", {})
 
-		familiar:SetMaxHealth(health)
-		familiar:SetBaseMaxHealth(health)
-		familiar:SetHealth(health)
+		familiar:SetCoreHealth(health)
 
 		familiar:SetPhysicalArmorBaseValue(armor)
+		familiar:SetBaseMagicalResistanceValue(magic_resist)
 
 		familiar:SetBaseMoveSpeed(speed)
 
@@ -78,10 +75,10 @@ function modifier_visage_familiars:CheckState()
 end
 
 function modifier_visage_familiars:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACK_RANGE_BONUS}
+	return {MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE}
 end
 
-function modifier_visage_familiars:GetModifierAttackRangeBonus()
+function modifier_visage_familiars:GetModifierAttackRangeOverride()
 	return self.range
 end
 

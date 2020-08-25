@@ -67,6 +67,9 @@ end
 function modifier_item_incandescance:OnRefresh()
 	self.radius = self:GetSpecialValueFor("radius")
 	self.damage = self:GetSpecialValueFor("damage")
+	if IsServer() then
+		self:StartIntervalThink( 1 )
+	end
 end
 
 function modifier_item_incandescance:OnIntervalThink()

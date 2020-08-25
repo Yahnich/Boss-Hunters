@@ -365,6 +365,9 @@ function CHoldoutGameMode:InitGameMode()
 											if Convars:GetDOTACommandClient() then
 												local player = Convars:GetDOTACommandClient()
 												local hero = player:GetAssignedHero() 
+												if not hero:IsAlive() then
+													hero:RespawnHero(false, false)
+												end
 												hero:SetHealth(1)
 												hero:ForceKill(true)
 											end

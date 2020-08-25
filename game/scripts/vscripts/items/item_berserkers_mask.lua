@@ -6,6 +6,10 @@ function item_berserkers_mask:OnSpellStart()
 	EmitSoundOn( "DOTA_Item.MaskOfMadness.Activate", self:GetCaster() )
 end
 
+function item_berserkers_mask:GetAssociatedUpgradeModifier()
+	return "modifier_item_sanguine_mask_passive"
+end
+
 function item_berserkers_mask:GetIntrinsicModifierName()
 	return "modifier_item_berserkers_mask"
 end

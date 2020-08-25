@@ -13,7 +13,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"pangolier_swashbuckle"
 		"MaxLevel"						"7"
@@ -59,7 +59,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"24 42 60 78 114 142 170"
+				"damage"					"24 42 60 78 78 78 78"
 				"LinkedSpecialBonus"		"special_bonus_unique_pango_swashbuckler_1"
 			}
 			"03"

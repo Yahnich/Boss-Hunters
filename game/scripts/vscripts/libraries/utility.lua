@@ -375,12 +375,16 @@ function CDOTABaseAbility:DealDamage(attacker, target, damage, data, spellText)
 	--OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, OVERHEAD_ALERT_DAMAGE, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, OVERHEAD_ALERT_MANA_LOSS
 	if self:IsNull() or target:IsNull() or attacker:IsNull() then return end
 	local internalData = data or {}
-	local damageType =  internalData.damage_type or self:GetAbilityDamageType() or DAMAGE_TYPE_MAGICAL
+	local damageType =  internalData.damage_type or self:GetAbilityDamageType()
+	if damageType == nil or damageType == 0 then
+		damageType = DAMAGE_TYPE_MAGICAL
+	end
 	local damageFlags = internalData.damage_flags or DOTA_DAMAGE_FLAG_NONE
 	local localdamage = damage or self:GetAbilityDamage() or 0
 	local spellText = spellText or 0
 	local ability = self or internalData.ability
 	local oldHealth = target:GetHealth()
+	print( damageType, localdamage, damageFlags, target, attacker, ability )
 	ApplyDamage({victim = target, attacker = attacker, ability = ability, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
 	if target:IsNull() then return oldHealth end
 	local newHealth = target:GetHealth()
@@ -2352,7 +2356,11 @@ function GameRules:RefreshPlayers(bDontHealFull, flPrepTime)
 		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
 			if PlayerResource:HasSelectedHero( nPlayerID ) then
 				local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
-				if hero ~=nil then
+				if hero ~= nil then
+					if hero:GetHealth() < 1 and hero:IsAlive() then
+						hero:SetHealth( 1 )
+						hero:ForceKill( true )
+					end
 					if not hero:IsAlive() then
 						hero:RespawnHero(false, false)
 						hero:SetHealth( 1 )

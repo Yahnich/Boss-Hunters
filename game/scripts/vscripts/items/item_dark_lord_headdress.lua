@@ -1,5 +1,9 @@
 item_dark_lord_headdress = class({})
 
+function item_berserkers_mask:GetAssociatedUpgradeModifier()
+	return "modifier_item_sanguine_mask_passive"
+end
+
 function item_dark_lord_headdress:GetIntrinsicModifierName()
 	return "modifier_item_dark_lord_headdress"
 end

@@ -2,7 +2,11 @@ itemBasicBaseClass = class(persistentModifier)
 
 function itemBasicBaseClass:SetupRuneSystem(modifier)
 	-- find old modifier, -1 (slot unassigned) and not current item
-	for _,modifier in ipairs( self:GetParent():FindAllModifiersByName( self:GetName() ) ) do
+	local modifierToLookup = self:GetName()
+	if  self:GetAbility().GetAssociatedUpgradeModifier and self:GetAbility():GetAssociatedUpgradeModifier() then
+		modifierToLookup = self:GetAbility():GetAssociatedUpgradeModifier()
+	end
+	for _,modifier in ipairs( self:GetParent():FindAllModifiersByName( modifierToLookup ) ) do
 		ability = modifier:GetAbility()
 		if ability:GetItemSlot() == -1 and ability ~= self:GetAbility() then
 			self:GetAbility().itemData = table.copy( ability.itemData )

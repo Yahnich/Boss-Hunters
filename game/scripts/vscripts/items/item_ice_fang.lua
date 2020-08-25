@@ -49,7 +49,6 @@ end
 function modifier_ice_fang:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() then
-			print( self:GetAbility():GetAppliedModifierName() )
 			params.target:AddNewModifier(params.attacker, self:GetAbility(), self:GetAbility():GetAppliedModifierName(), {Duration = self.duration})
 		end
 	end

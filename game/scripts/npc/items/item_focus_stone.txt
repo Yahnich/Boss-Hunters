@@ -39,7 +39,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_range"			"100 75 50 25"
+				"bonus_range"			"125 100 75 50"
 			}
 		}
 	}

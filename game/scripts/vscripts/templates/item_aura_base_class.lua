@@ -27,7 +27,6 @@ function itemAuraBaseClass:SetupRuneSystem(modifier)
 	for func, result in pairs( modFuncs ) do
 		-- print( func, result, "end result" )
 		self[func] = function() return result * (modifier or 100)/100 end
-		print( self[func](), result, func, modifier, self:GetStoneShareability() )
 	end
 	self:StoreRunesIntoModifier()
 end

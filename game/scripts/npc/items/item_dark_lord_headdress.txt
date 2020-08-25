@@ -209,10 +209,6 @@
 		"MaxUpgradeLevel"				"6"
 		"ItemBaseLevel"					"3"
 		
-		"AbilityCooldown"				"11"
-		"AbilitySharedCooldown"			"berserkersmask"
-		"AbilityManaCost"				"25"
-		
 		"AvailableRuneSlots"			"1"
 		
 		// Special	
@@ -295,10 +291,6 @@
 		"MaxUpgradeLevel"				"6"
 		"ItemBaseLevel"					"4"
 		
-		"AbilityCooldown"				"10"
-		"AbilitySharedCooldown"			"berserkersmask"
-		"AbilityManaCost"				"25"
-		
 		"AvailableRuneSlots"			"2"
 		
 		// Special	
@@ -379,11 +371,7 @@
 		
 		"MaxUpgradeLevel"				"6"
 		"ItemBaseLevel"					"5"
-		
-		"AbilityCooldown"				"9"
-		"AbilitySharedCooldown"			"berserkersmask"
-		"AbilityManaCost"				"25"
-		
+	
 		"AvailableRuneSlots"			"2"
 		
 		// Special	
@@ -465,10 +453,6 @@
 		
 		"MaxUpgradeLevel"				"6"
 		"ItemBaseLevel"					"6"
-		
-		"AbilityCooldown"				"8"
-		"AbilitySharedCooldown"			"berserkersmask"
-		"AbilityManaCost"				"25"
 		
 		"AvailableRuneSlots"			"2"
 		

@@ -11,6 +11,7 @@ end
 function relic_pale_blood:OnTakeDamage(params)
 	if params.attacker == self:GetParent() 
 	and self:GetParent():GetHealthDeficit() > params.damage 
+	and self:GetParent():GetHealth() > 0
 	and not (  HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) 
 			or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) 
 			or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL) )

@@ -39,7 +39,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"critical_damage"		"25 15 10 5"
+				"critical_damage"		"30 20 15 10"
 			}
 		}
 	}

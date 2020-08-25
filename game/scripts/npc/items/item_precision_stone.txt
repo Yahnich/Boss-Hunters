@@ -39,7 +39,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"critical_chance"		"10 7.5 5 2.5"
+				"critical_chance"		"7 6 4 2"
 			}
 		}
 	}

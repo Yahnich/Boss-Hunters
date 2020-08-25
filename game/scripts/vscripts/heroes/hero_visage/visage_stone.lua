@@ -16,7 +16,7 @@ end
 
 function visage_stone:OnSpellStart()
 	local caster = self:GetCaster()
-
+	local talentOwner = caster.visage or caster
 	local duration = self:GetTalentSpecialValueFor("stone_duration")
 
 	if caster:IsHero() then
@@ -32,7 +32,7 @@ function visage_stone:OnSpellStart()
 		end
 	end
 
-	if caster:IsHero() and caster:HasTalent("special_bonus_unique_visage_stone_1") then
+	if caster:IsHero() and talentOwner:HasTalent("special_bonus_unique_visage_stone_1") then
 		caster:AddNewModifier(caster, self, "modifier_visage_stone_talent", {Duration = duration})
 	else
 		caster:AddNewModifier(caster, self, "modifier_visage_stone", {Duration = duration})
@@ -67,7 +67,7 @@ function modifier_visage_stone:OnCreated(table)
 			local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), radius)
 			for _,enemy in pairs(enemies) do
 				EmitSoundOn("Visage_Familar.StoneForm.Stun", enemy)
-				if enemy:TriggerSpellAbsorb( self:GetAbility() ) then 
+				if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then 
 					self:GetAbility():Stun(enemy, duration)
 					self:GetAbility():DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 				end
@@ -119,14 +119,15 @@ function modifier_visage_stone:OnRemoved()
 		if not caster:IsHero() then
 			caster = caster:GetOwner()
 		end
-
+		local talentOwner = caster.visage or caster
 		local parent = self:GetParent()
 
-		if caster:HasTalent("special_bonus_unique_visage_stone_2") then
+		if talentOwner:HasTalent("special_bonus_unique_visage_stone_2") then
+			local knockback = talentOwner:FindTalentValue("special_bonus_unique_visage_stone_2", "knockback")
 			local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
 			for _,enemy in pairs(enemies) do
-				enemy:ApplyKnockBack(parent:GetAbsOrigin(), 0.5, 0.5, 250, 300, caster, self:GetAbility(), true)
-				self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage")/2, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+				enemy:ApplyKnockBack(parent:GetAbsOrigin(), 0.5, 0.5, knockback, 300, caster, self:GetAbility(), true)
+				self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 			end
 		end
 
@@ -142,12 +143,12 @@ modifier_visage_stone_talent = class({})
 
 function modifier_visage_stone_talent:OnCreated(table)
 	self.hpRegen = self:GetTalentSpecialValueFor("hp_regen")
-	self.damage_reduce = 80
 
 	if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
-
+		local talentOwner = caster.visage or parent
+		self.damage_reduce = talentOwner:FindTalentValue("special_bonus_unique_visage_stone_1", "dmg_reduction")
 		local radius = self:GetTalentSpecialValueFor("radius")
 		local damage = self:GetTalentSpecialValueFor("damage")
 		local duration = self:GetTalentSpecialValueFor("duration")
@@ -159,7 +160,7 @@ function modifier_visage_stone_talent:OnCreated(table)
 			self:GetAbility():Stun(enemy, duration)
 			self:GetAbility():DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		end
-
+		self.radius = talentOwner:FindTalentValue("special_bonus_unique_visage_stone_1", "radius")
 		self:StartIntervalThink(0.5)
 	end
 end
@@ -167,9 +168,10 @@ end
 function modifier_visage_stone_talent:OnIntervalThink()
 	local caster = self:GetCaster()
 
-	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), 500)
+	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self.radius)
+	local remainingTime = self:GetRemainingTime()
 	for _,enemy in pairs(enemies) do
-		enemy:Taunt(self:GetAbility(), caster, 3)
+		enemy:Taunt( self:GetAbility(), caster, remainingTime )
 	end
 end
 
@@ -185,7 +187,7 @@ function modifier_visage_stone_talent:DeclareFunctions()
 end
 
 function modifier_visage_stone_talent:GetModifierIncomingDamage_Percentage()
-	return -self.damage_reduce
+	return self.damage_reduce
 end
 
 function modifier_visage_stone_talent:GetModifierHealthRegenPercentage()
@@ -207,8 +209,8 @@ function modifier_visage_stone_talent:OnRemoved()
 			caster = caster:GetOwner()
 		end
 		local parent = self:GetParent()
-
-		if caster:HasTalent("special_bonus_unique_visage_stone_2") then
+		local talentOwner = caster.visage or parent
+		if talentOwner:HasTalent("special_bonus_unique_visage_stone_2") then
 			local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
 			for _,enemy in pairs(enemies) do
 				enemy:ApplyKnockBack(parent:GetAbsOrigin(), 0.5, 0.5, 250, 300, caster, self:GetAbility(), true)

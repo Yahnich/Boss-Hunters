@@ -1,6 +1,4 @@
 visage_cloak = class({})
-LinkLuaModifier( "modifier_visage_cloak_handle", "heroes/hero_visage/visage_cloak", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_visage_cloak", "heroes/hero_visage/visage_cloak", LUA_MODIFIER_MOTION_NONE )
 
 function visage_cloak:IsStealable()
     return false
@@ -11,19 +9,19 @@ function visage_cloak:IsHiddenWhenStolen()
 end
 
 function visage_cloak:CastFilterResultTarget(hTarget)
-    if hTarget == self:GetCaster() then
+    if hTarget:HasModifier("modifier_visage_cloak_handle") then
     	return UF_FAIL_CUSTOM
     end
 end
 
 function visage_cloak:GetCustomCastErrorTarget(hTarget)
-    if hTarget == self:GetCaster() then
-    	return "Cannot target self."
+    if hTarget:HasModifier("modifier_visage_cloak_handle") then
+    	return "Cannot target Visage or Familiars."
     end
 end
 
 function visage_cloak:GetBehavior()
-    local caster = self:GetCaster()
+    local caster = self.visage or self:GetCaster()
     if caster:HasTalent("special_bonus_unique_visage_cloak_2") then
     	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
     end
@@ -31,49 +29,49 @@ function visage_cloak:GetBehavior()
 end
 
 function visage_cloak:GetAbilityTargetTeam()
-    local caster = self:GetCaster()
+    local caster = self.visage or self:GetCaster()
     if caster:HasTalent("special_bonus_unique_visage_cloak_2") then
     	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
     end
 end
 
 function visage_cloak:GetAbilityTargetType()
-    local caster = self:GetCaster()
+    local caster = self.visage or self:GetCaster()
     if caster:HasTalent("special_bonus_unique_visage_cloak_2") then
     	return DOTA_UNIT_TARGET_ALL
     end
 end
 
 function visage_cloak:GetAbilityTargetFlags()
-    local caster = self:GetCaster()
+    local caster = self.visage or self:GetCaster()
     if caster:HasTalent("special_bonus_unique_visage_cloak_2") then
     	return DOTA_UNIT_TARGET_FLAG_NONE
     end
 end
 
 function visage_cloak:GetCastRange(vLocation, hTarget)
-    local caster = self:GetCaster()
+    local caster = self.visage or self:GetCaster()
     if caster:HasTalent("special_bonus_unique_visage_cloak_2") then
     	return 900
     end
 end
 
 function visage_cloak:GetCastAnimation()
-    local caster = self:GetCaster()
+    local caster = self.visage or self:GetCaster()
     if caster:HasTalent("special_bonus_unique_visage_cloak_2") then
     	return ACT_DOTA_CAST_ABILITY_4
     end
 end
 
 function visage_cloak:GetCastPoint()
-    local caster = self:GetCaster()
+    local caster = self.visage or self:GetCaster()
     if caster:HasTalent("special_bonus_unique_visage_cloak_2") then
     	return 0.2
     end
 end
 
 function visage_cloak:GetCooldown(iLevel)
-    local caster = self:GetCaster()
+    local caster = self.visage or self:GetCaster()
     if caster:HasTalent("special_bonus_unique_visage_cloak_2") then
     	return 20
     end
@@ -86,41 +84,58 @@ end
 function visage_cloak:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()
-
-    for i=1,4 do
-		target:AddNewModifier(caster, self, "modifier_visage_cloak", {}):IncrementStackCount()
+	local talentOwner = caster.visage or caster
+	local layers = self:GetTalentSpecialValueFor("max_layers")
+    target:AddNewModifier(caster, self, "modifier_visage_cloak", {}):SetStackCount(layers)
+	if talentOwner:HasTalent("special_bonus_unique_visage_cloak_1") then
+		target:AddNewModifier(caster, self, "modifier_visage_cloak_talent", {}):SetStackCount(layers)
 	end
 end
 
 modifier_visage_cloak_handle = class({})
+LinkLuaModifier( "modifier_visage_cloak_handle", "heroes/hero_visage/visage_cloak", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_visage_cloak_handle:OnCreated()
+	self:OnRefresh()
+end
+
+function modifier_visage_cloak_handle:OnRefresh()
+	self.recovery_time = self:GetTalentSpecialValueFor("recovery_time")
+	self.max = self:GetTalentSpecialValueFor("max_layers")
 	if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
-
-		for i=1,4 do
-			parent:AddNewModifier(caster, self:GetAbility(), "modifier_visage_cloak", {}):IncrementStackCount()
+		local talentOwner = caster.visage or parent
+		parent:AddNewModifier(caster, self:GetAbility(), "modifier_visage_cloak", {})
+		if talentOwner:HasTalent("special_bonus_unique_visage_cloak_1") then
+			parent:AddNewModifier(caster, self:GetAbility(), "modifier_visage_cloak_talent", {})
 		end
-		
-		self:StartIntervalThink(self:GetTalentSpecialValueFor("recovery_time"))
 	end
 end
 
-function modifier_visage_cloak_handle:OnIntervalThink()
+function modifier_visage_cloak_handle:PrepareNewLayer(modifierName)
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
 
 	if parent:IsAlive() then
-		if parent:HasModifier("modifier_visage_cloak") then
-			if parent:FindModifierByName("modifier_visage_cloak"):GetStackCount() < self:GetTalentSpecialValueFor("max_layers") then
-				parent:AddNewModifier(caster, self:GetAbility(), "modifier_visage_cloak", {}):IncrementStackCount()
-			end
-		else
-			parent:AddNewModifier(caster, self:GetAbility(), "modifier_visage_cloak", {}):IncrementStackCount()
+		local modifier = parent:FindModifierByName(modifierName)
+		if modifier then
+			modifier:SetDuration( self.recovery_time + 0.1, true )
 		end
+		Timers:CreateTimer( self.recovery_time, function()
+			local modifier = parent:FindModifierByName(modifierName)
+			if modifier then
+				if modifier:GetStackCount() < self.max then
+					modifier:IncrementStackCount()
+				end
+				if modifier:GetStackCount() == self.max then
+					modifier:SetDuration( -1, true )
+				end
+			else
+				parent:AddNewModifier( caster, self:GetAbility(), modifierName, {})
+			end
+		end)
 	end
-	self:StartIntervalThink(self:GetTalentSpecialValueFor("recovery_time"))
 end
 
 function modifier_visage_cloak_handle:IsHidden()
@@ -128,17 +143,14 @@ function modifier_visage_cloak_handle:IsHidden()
 end
 
 modifier_visage_cloak = class({})
+LinkLuaModifier( "modifier_visage_cloak", "heroes/hero_visage/visage_cloak", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_visage_cloak:OnCreated()
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
 
 	self.instances = self:GetTalentSpecialValueFor("max_layers")
-	self.block = self:GetTalentSpecialValueFor("reduction") * self:GetStackCount()
-	if caster:HasTalent("special_bonus_unique_visage_cloak_1") then
-		self.spellAmp = caster:FindTalentValue("special_bonus_unique_visage_cloak_1") * self:GetStackCount()
-	end
-
+	self.block = self:GetTalentSpecialValueFor("reduction")
 	if IsServer() then		
 		self.nfx =  ParticleManager:CreateParticle("particles/units/heroes/hero_visage/visage_cloak_ambient.vpcf", PATTACH_ABSORIGIN, caster)
 					ParticleManager:SetParticleAlwaysSimulate(self.nfx)
@@ -157,12 +169,10 @@ function modifier_visage_cloak:OnRefresh()
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
 
-	self.block = self:GetTalentSpecialValueFor("reduction") * self:GetStackCount()
-	if caster:HasTalent("special_bonus_unique_visage_cloak_1") then
-		self.spellAmp = caster:FindTalentValue("special_bonus_unique_visage_cloak_1") * self:GetStackCount()
-	end
-
+	self.block = self:GetTalentSpecialValueFor("reduction")
+	self.instances = self:GetTalentSpecialValueFor("max_layers")
 	if IsServer() then
+		self:SetStackCount(self.instances)
 		if self:GetStackCount() > 0 then
 			ParticleManager:SetParticleControl(self.nfx, 3, Vector(1,0,0))
 
@@ -180,11 +190,7 @@ end
 
 function modifier_visage_cloak:OnStackCountChanged(iStackCount)
 	local caster = self:GetCaster()
-		local parent = self:GetParent()
-
-	if caster:HasTalent("special_bonus_unique_visage_cloak_1") then
-		self.spellAmp = caster:FindTalentValue("special_bonus_unique_visage_cloak_1") * self:GetStackCount()
-	end
+	local parent = self:GetParent()
 		
 	if self:GetStackCount() < iStackCount then
 		if self:GetStackCount() < 4 then
@@ -209,29 +215,7 @@ end
 
 function modifier_visage_cloak:DeclareFunctions()
 	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-			MODIFIER_EVENT_ON_TAKEDAMAGE,
-			MODIFIER_EVENT_ON_ABILITY_EXECUTED,
-			MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE}
-end
-
-function modifier_visage_cloak:GetModifierSpellAmplify_Percentage()
-	return self.spellAmp
-end
-
-function modifier_visage_cloak:OnAbilityExecuted(params)
-	if IsServer() then
-		local caster = self:GetCaster()
-		local parent = self:GetParent()
-		local unit = params.unit
-
-		if unit == parent and caster:HasTalent("special_bonus_unique_visage_cloak_1") then
-			if self:GetStackCount() > 1 then
-				self:DecrementStackCount()
-			else
-				self:Destroy()
-			end
-		end
-	end
+			MODIFIER_EVENT_ON_TAKEDAMAGE}
 end
 
 function modifier_visage_cloak:OnTakeDamage(params)
@@ -241,9 +225,13 @@ function modifier_visage_cloak:OnTakeDamage(params)
 		local unit = params.unit
 		
 		if unit == parent then
-			if self:GetStackCount() > 1 then
+			if self:GetStackCount() > 0 then
+				if parent == caster then
+					parent:FindModifierByName("modifier_visage_cloak_handle"):PrepareNewLayer(self:GetName())
+				end
 				self:DecrementStackCount()
-			else
+			end
+			if parent ~= caster and self:GetStackCount() == 0 then
 				self:Destroy()
 			end
 		end
@@ -251,5 +239,79 @@ function modifier_visage_cloak:OnTakeDamage(params)
 end
 
 function modifier_visage_cloak:GetModifierIncomingDamage_Percentage(params)
-	return -self.block
+	return self.block * self:GetStackCount()
+end
+
+function modifier_visage_cloak:IsPurgable()
+	return false
+end
+
+function modifier_visage_cloak:RemoveOnDeath()
+	return false
+end
+
+function modifier_visage_cloak:DestroyOnExpire()
+	return false
+end
+
+modifier_visage_cloak_talent = class({})
+LinkLuaModifier( "modifier_visage_cloak_talent", "heroes/hero_visage/visage_cloak", LUA_MODIFIER_MOTION_NONE )
+
+function modifier_visage_cloak_talent:OnCreated()
+	self:OnRefresh()
+end
+
+function modifier_visage_cloak_talent:OnRefresh()
+	local caster = self:GetCaster()
+	local parent = self:GetParent()
+	local talentOwner = parent.visage or parent
+	self.instances = self:GetTalentSpecialValueFor("max_layers")
+	self.spellAmp = talentOwner:FindTalentValue("special_bonus_unique_visage_cloak_1")
+	self.grace_period = talentOwner:FindTalentValue("special_bonus_unique_visage_cloak_1", "grace_period")
+	if IsServer() then
+		self.lastAttackPeriod = GameRules:GetGameTime()
+		self:SetStackCount(self.instances)
+	end
+end
+
+function modifier_visage_cloak_talent:DeclareFunctions()
+	return {MODIFIER_EVENT_ON_TAKEDAMAGE,
+			MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE}
+end
+
+function modifier_visage_cloak_talent:GetModifierSpellAmplify_Percentage()
+	return self.spellAmp * self:GetStackCount()
+end
+
+function modifier_visage_cloak_talent:OnTakeDamage(params)
+	if IsServer() then
+		local caster = self:GetCaster()
+		local parent = self:GetParent()
+		local unit = params.attacker
+		
+		if unit == parent and params.inflictor and GameRules:GetGameTime() - self.lastAttackPeriod < self.grace_period then
+			if self:GetStackCount() > 0 then
+				if parent == caster then
+					parent:FindModifierByName("modifier_visage_cloak_handle"):PrepareNewLayer(self:GetName())
+				end
+				self.lastAttackPeriod = GameRules:GetGameTime()
+				self:DecrementStackCount()
+			end
+			if parent ~= caster and self:GetStackCount() == 0 then
+				self:Destroy()
+			end
+		end
+	end
+end
+
+function modifier_visage_cloak_talent:IsPurgable()
+	return false
+end
+
+function modifier_visage_cloak_talent:RemoveOnDeath()
+	return false
+end
+
+function modifier_visage_cloak_talent:DestroyOnExpire()
+	return false
 end

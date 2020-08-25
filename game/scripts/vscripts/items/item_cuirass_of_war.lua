@@ -52,6 +52,17 @@ function modifier_item_cuirass_of_war:GetAuraDuration()
 	return 0.5
 end
 
+function modifier_item_cuirass_of_war:GetAuraEntityReject( unit )
+	local caster = self:GetCaster()
+	if caster:IsIllusion() then
+		for _, modifier in ipairs( unit:FindAllModifiersByName( self:GetModifierAura() ) ) do
+			if modifier:GetCaster():GetUnitName() == caster:GetUnitName() and caster ~= modifier:GetCaster() then
+				return true
+			end
+		end
+	end
+end
+
 function modifier_item_cuirass_of_war:GetAuraSearchTeam()    
 	return DOTA_UNIT_TARGET_TEAM_BOTH
 end
