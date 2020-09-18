@@ -12,7 +12,7 @@ function troll_warlord_inflame:SwapTo()
 	caster:AddNewModifier(caster, self, "modifier_troll_warlord_inflame", {})
 end
 
-modifier_troll_warlord_inflame = class({})
+modifier_troll_warlord_inflame = class(toggleModifierBaseClass)
 LinkLuaModifier( "modifier_troll_warlord_inflame", "heroes/hero_troll_warlord/troll_warlord_inflame", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_troll_warlord_inflame:OnCreated()

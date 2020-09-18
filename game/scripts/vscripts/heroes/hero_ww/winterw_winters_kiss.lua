@@ -127,7 +127,11 @@ if IsServer() then
 	end
 end
 
-function modifier_winters_kiss_enemy:GetModifierAttackSpeedBonus()
+function modifier_winters_kiss_enemy:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+end
+
+function modifier_winters_kiss_enemy:GetModifierAttackSpeedBonus_Constant()
     return self:GetSpecialValueFor("bonus_as")
 end
 

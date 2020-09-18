@@ -87,13 +87,13 @@ function arc_warden_magnetic_field_bh_modifier:OnIntervalThink(  )
 	ProjectileManager:ProjectileDodge( self:GetParent() )
 end
 function arc_warden_magnetic_field_bh_modifier:DeclareFunctions()
-	return { MODIFIER_PROPERTY_EVASION_CONSTANT}
+	return { MODIFIER_PROPERTY_EVASION_CONSTANT, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
 end
 
 function arc_warden_magnetic_field_bh_modifier:GetModifierEvasion_Constant()
 	return self.evasion
 end
 
-function arc_warden_magnetic_field_bh_modifier:GetModifierAttackSpeedBonus()
+function arc_warden_magnetic_field_bh_modifier:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end

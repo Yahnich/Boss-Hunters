@@ -8,8 +8,9 @@ function sven_valiant_charge:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
 	
-	local distance = CalculateDistance(position, caster)
-	local endPosition = caster:GetAbsOrigin() + CalculateDirection(position, caster) * math.min( distance, self:GetTalentSpecialValueFor("distance") + caster:GetBonusCastRange() )
+	local runDistance = self:GetTalentSpecialValueFor("distance") + caster:GetBonusCastRange()
+	local distance = math.min( CalculateDistance(position, caster), runDistance )
+	local endPosition = caster:GetAbsOrigin() + CalculateDirection(position, caster) * distance
 	caster:MoveToPosition( endPosition )
 	caster:AddNewModifier(caster, self, "modifier_sven_valiant_charge", {duration = distance/( caster:GetIdealSpeed() * self:GetTalentSpecialValueFor("movespeed") / 100 ) })
 	caster:EmitSound("Hero_Sven.WarCry.Signet")
@@ -81,7 +82,7 @@ modifier_sven_valiant_charge_talent = class({})
 LinkLuaModifier("modifier_sven_valiant_charge_talent", "heroes/hero_sven/sven_valiant_charge", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_sven_valiant_charge_talent:OnCreated()
-	self.movespeed = self:GetTalentSpecialValueFor("movespeed")
+	self.movespeed = 550
 end
 
 function modifier_sven_valiant_charge_talent:CheckState()

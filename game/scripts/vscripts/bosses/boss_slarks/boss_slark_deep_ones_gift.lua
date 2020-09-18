@@ -20,7 +20,7 @@ end
 
 function modifier_boss_slark_deep_ones_gift:OnIntervalThink()
 	local parent = self:GetParent()
-	if not parent:HasModifier("modifier_boss_slark_deep_ones_gift_active") and parent:HasDebuffs() then
+	if not parent:HasModifier("modifier_boss_slark_deep_ones_gift_active") and parent:HasPurgableDebuffs() then
 		parent:AddNewModifier( parent, self:GetAbility(), "modifier_boss_slark_deep_ones_gift_active", {duration = self.delay} )
 	end
 end

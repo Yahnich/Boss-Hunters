@@ -10,10 +10,7 @@ end
 modifier_queenofpain_sadomasochism = class({})
 
 function modifier_queenofpain_sadomasochism:OnCreated()
-	self.bonus = self:GetAbility():GetTalentSpecialValueFor("damage_amp")
-	self.area = self:GetAbility():GetTalentSpecialValueFor("area_dmg")
-	self.lifesteal = self:GetAbility():GetTalentSpecialValueFor("lifesteal") / 100
-	self.minionLifesteal = self:GetAbility():GetTalentSpecialValueFor("minion_lifesteal") / 100
+	self:OnRefresh()
 end
 
 function modifier_queenofpain_sadomasochism:OnRefresh()
@@ -21,6 +18,11 @@ function modifier_queenofpain_sadomasochism:OnRefresh()
 	self.area = self:GetAbility():GetTalentSpecialValueFor("area_dmg")
 	self.lifesteal = self:GetAbility():GetTalentSpecialValueFor("lifesteal") / 100
 	self.minionLifesteal = self:GetAbility():GetTalentSpecialValueFor("minion_lifesteal") / 100
+	self:GetParent():HookInModifier( "GetModifierAreaDamage", self )
+end
+
+function modifier_queenofpain_sadomasochism:OnDestroy()
+	self:GetParent():HookOutModifier( "GetModifierAreaDamage", self )
 end
 
 function modifier_queenofpain_sadomasochism:DestroyOnExpire()
@@ -42,8 +44,8 @@ function modifier_queenofpain_sadomasochism:GetModifierAreaDamage(params)
 end
 
 function modifier_queenofpain_sadomasochism:OnTakeDamage(params)
-	if params.unit ~= params.attacker and params.attacker == self:GetCaster() and params.attacker:GetHealth() ~= 0 and params.attacker:GetHealthDeficit() > 0 then
-		local lifesteal = TernaryOperator( self.minionLifesteal, params.unit:IsMinion(), self.lifesteal )
+	if params.unit ~= params.attacker and params.attacker == self:GetCaster() and params.attacker:GetHealth() > 0 and params.attacker:GetHealthDeficit() > 0 then
+		local lifesteal = TernaryOperator( self.minionLifesteal, params.unit:IsMinion() and params.inflictor, self.lifesteal )
 		ParticleManager:FireParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.attacker)
 		ParticleManager:FireParticle("particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.attacker, {[1] = "attach_hitloc"})
 		params.attacker:HealEvent( params.damage * lifesteal, self:GetAbility(), params.attacker)

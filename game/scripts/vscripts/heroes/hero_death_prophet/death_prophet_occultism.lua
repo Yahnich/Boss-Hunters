@@ -15,16 +15,21 @@ function modifier_death_prophet_occultism:OnCreated()
 	self.ms = self:GetTalentSpecialValueFor("bonus_movespeed")
 	self.as = self:GetTalentSpecialValueFor("bonus_attackspeed")
 	self:GetCaster().passiveModifier = self
+	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )
 	if IsServer() then
 		self:SetStackCount( self:GetCaster():GetLevel() )
 	end
 end
 
-function modifier_death_prophet_occultism:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT}
+function modifier_death_prophet_occultism:OnDestroy()
+	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )
 end
 
-function modifier_death_prophet_occultism:GetModifierAttackSpeedBonus()
+function modifier_death_prophet_occultism:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+end
+
+function modifier_death_prophet_occultism:GetModifierAttackSpeedBonus_Constant()
 	return self.as * self:GetStackCount()
 end
 

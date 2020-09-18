@@ -39,6 +39,7 @@ function modifier_juggernaut_dance_of_blades:OnCreated()
 	self.cleave = caster:FindTalentValue("special_bonus_unique_juggernaut_dance_of_blades_1")
 	self.talent1 = caster:HasTalent("special_bonus_unique_juggernaut_dance_of_blades_1")
 	self.radius = self:GetTalentSpecialValueFor("radius")
+	self:GetParent():HookInModifier( "GetModifierAreaDamage", self )
 	if IsServer() then
 		caster:RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
 		self.rate = self:GetTalentSpecialValueFor("bounce_rate")
@@ -48,8 +49,13 @@ function modifier_juggernaut_dance_of_blades:OnCreated()
 	end
 end
 
+function modifier_juggernaut_dance_of_blades:OnRefresh()
+	self:OnCreated()
+end
+
 function modifier_juggernaut_dance_of_blades:OnDestroy()
 	local caster = self:GetCaster()
+	self:GetParent():HookOutModifier( "GetModifierAreaDamage", self )
 	if IsServer() then
 		caster:RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_4)
 		if caster:HasModifier("modifier_juggernaut_mirror_blades") then

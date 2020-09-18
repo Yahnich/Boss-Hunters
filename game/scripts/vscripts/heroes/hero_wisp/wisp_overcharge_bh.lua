@@ -29,6 +29,18 @@ end
 
 modifier_wisp_overcharge_bh = class({})
 function modifier_wisp_overcharge_bh:OnCreated(table)
+	self:OnRefresh()
+	if IsServer() then
+		EmitSoundOn("Hero_Wisp.Overcharge", self:GetParent())
+
+		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_wisp/wisp_overcharge.vpcf", PATTACH_POINT, self:GetCaster())
+					ParticleManager:SetParticleControlEnt(nfx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
+		
+		self:AttachEffect(nfx)
+	end
+end
+
+function modifier_wisp_overcharge_bh:OnRefresh(table)
 	self.bonus_as = self:GetTalentSpecialValueFor("bonus_as")
 	self.bonus_reduc = self:GetTalentSpecialValueFor("bonus_reduc")
 
@@ -46,13 +58,6 @@ function modifier_wisp_overcharge_bh:OnCreated(table)
 	end
 
 	if IsServer() then
-		EmitSoundOn("Hero_Wisp.Overcharge", self:GetParent())
-
-		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_wisp/wisp_overcharge.vpcf", PATTACH_POINT, self:GetCaster())
-					ParticleManager:SetParticleControlEnt(nfx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
-		
-		self:AttachEffect(nfx)
-
 		if self:GetParent() == self:GetCaster() then
 			local drain_interval = self:GetTalentSpecialValueFor("drain_interval")
 			self.drain_pct = self:GetTalentSpecialValueFor("drain_pct")/100 * drain_interval
@@ -60,11 +65,15 @@ function modifier_wisp_overcharge_bh:OnCreated(table)
 			self:StartIntervalThink(drain_interval)
 		end
 	end
+	self:GetParent():HookInModifier("GetModifierIntellectBonusPercentage", self)
+	self:GetParent():HookInModifier("GetModifierAgilityBonusPercentage", self)
+	self:GetParent():HookInModifier("GetModifierStrengthBonusPercentage", self)
 end
 
-function modifier_wisp_overcharge_bh:OnRefresh(table)
-	self.bonus_as = self:GetTalentSpecialValueFor("bonus_as")
-	self.bonus_reduc = self:GetTalentSpecialValueFor("bonus_reduc")
+function modifier_wisp_overcharge_bh:OnDestroy()
+	self:GetParent():HookOutModifier("GetModifierIntellectBonusPercentage", self)
+	self:GetParent():HookOutModifier("GetModifierAgilityBonusPercentage", self)
+	self:GetParent():HookOutModifier("GetModifierStrengthBonusPercentage", self)
 end
 
 function modifier_wisp_overcharge_bh:OnIntervalThink()
@@ -79,6 +88,7 @@ end
 
 function modifier_wisp_overcharge_bh:DeclareFunctions()
 	local funcs = { MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+					MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 					MODIFIER_PROPERTY_TOOLTIP,
 					MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 					MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
@@ -90,7 +100,7 @@ function modifier_wisp_overcharge_bh:GetModifierIncomingDamage_Percentage()
 	return -self.bonus_reduc
 end
 
-function modifier_wisp_overcharge_bh:GetModifierAttackSpeedBonus()
+function modifier_wisp_overcharge_bh:GetModifierAttackSpeedBonus_Constant()
 	return self.bonus_as
 end
 

@@ -15,7 +15,6 @@ end
 function obsidian_destroyer_arcane_missile:OnSpellStart()
 	local target = self:GetCursorTarget()
 	self.forceCast = true
-	self:RefundManaCost()
 	self:GetCaster():SetAttacking( target )
 	self:GetCaster():MoveToTargetToAttack( target )
 end
@@ -99,7 +98,9 @@ if IsServer() then
 	function modifier_obsidian_destroyer_arcane_missile_autocast:OnAttack(params)
 		if params.attacker == self:GetParent() and params.target and (self:GetAbility():GetAutoCastState() or self:GetAbility().forceCast) and params.attacker:GetMana() > self:GetAbility():GetManaCost(-1) and not self:GetParent():GetAttackTarget():IsMagicImmune() then
 			self:GetAbility():LaunchArcaneOrb(params.target)
-			self:GetAbility():SpendMana()
+			if not self:GetAbility().forceCast then
+				self:GetAbility():SpendMana()
+			end
 			self:GetAbility().forceCast = false
 		end
 	end

@@ -280,25 +280,26 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"60 100 140 180 220 260 300"
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"60 100 140 180 220 260 300"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"-25"
-				"LinkedSpecialBonus"	"special_bonus_unique_tide_anchor_1"
+				"var_type"						"FIELD_INTEGER"
+				"damage_reduction"				"-25"
+				"LinkedSpecialBonus"			"special_bonus_unique_tide_anchor_1"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6.0"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"6.0"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"350"
-				"LinkedSpecialBonus"	"special_bonus_unique_tide_anchor_2"
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"350"
+				"LinkedSpecialBonus"			"special_bonus_unique_tide_anchor_2"
 			}
 		}
 	

@@ -15,26 +15,26 @@ function item_meepo_rune_arcane:OnSpellStart()
 end
 
 modifier_item_meepo_rune_arcane_buff = class({})
-function modifier_item_meepo_rune_arcane_buff:OnCreated(table)
+function modifier_item_meepo_rune_arcane_buff:OnCreated()
 	self.cdr = self:GetSpecialValueFor("cdr")
 	self.mana_reduc = self:GetSpecialValueFor("mana_reduc")
 end
 
-function modifier_item_meepo_rune_arcane_buff:OnRefresh(table)
+function modifier_item_meepo_rune_arcane_buff:OnRefresh()
 	self.cdr = self:GetSpecialValueFor("cdr")
 	self.mana_reduc = self:GetSpecialValueFor("mana_reduc")
 end
 
 function modifier_item_meepo_rune_arcane_buff:DeclareFunctions()
     return {MODIFIER_PROPERTY_MANACOST_PERCENTAGE,
-			MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING}
+			MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE}
 end
 
 function modifier_item_meepo_rune_arcane_buff:GetModifierPercentageManacost()
     return self.mana_reduc
 end
 
-function modifier_item_meepo_rune_arcane_buff:GetModifierPercentageCooldownStacking()
+function modifier_item_meepo_rune_arcane_buff:GetModifierPercentageCooldown()
     return self.cdr
 end
 

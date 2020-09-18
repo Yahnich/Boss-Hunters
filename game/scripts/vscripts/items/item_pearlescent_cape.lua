@@ -12,6 +12,7 @@ function item_pearlescent_cape:OnSpellStart()
 	ParticleManager:FireRopeParticle("particles/items3_fx/glimmer_cape_initial_flash.vpcf", PATTACH_POINT_FOLLOW, caster, target, {})
 	target:HealEvent(self:GetSpecialValueFor("heal"), self, caster) 
 	target:AddNewModifier(caster, self, "modifier_item_pearlescent_cape_active", {Duration = self:GetSpecialValueFor("invis_duration")})
+	target:SetThreat(0)
 end
 
 item_pearlescent_cape_2 = class(item_pearlescent_cape)

@@ -47,6 +47,7 @@ end
 function modifier_earthshaker_enchant_totem_ebf:DeclareFunctions()
 	return {MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, 
 			MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
+			MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
 			MODIFIER_EVENT_ON_ATTACK,
 			MODIFIER_EVENT_ON_ATTACK_LANDED,
 			MODIFIER_EVENT_ON_ABILITY_EXECUTED,
@@ -88,7 +89,7 @@ function modifier_earthshaker_enchant_totem_ebf:GetModifierSpellAmplify_Percenta
 	return self.amp
 end
 
-function modifier_earthshaker_enchant_totem_ebf:GetCooldownReduction()
+function modifier_earthshaker_enchant_totem_ebf:GetModifierPercentageCooldown()
 	return self.cdr
 end
 

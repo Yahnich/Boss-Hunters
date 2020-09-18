@@ -64,7 +64,7 @@ function modifier_lifestealer_hunger_handle:OnIntervalThink()
 end
 
 function modifier_lifestealer_hunger_handle:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_TAKEDAMAGE}
+	return {MODIFIER_EVENT_ON_TAKEDAMAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 end
 
 function modifier_lifestealer_hunger_handle:OnTakeDamage(params)
@@ -77,7 +77,7 @@ function modifier_lifestealer_hunger_handle:OnTakeDamage(params)
 	end
 end
 
-function modifier_lifestealer_hunger_handle:GetModifierAttackSpeedBonus()
+function modifier_lifestealer_hunger_handle:GetModifierAttackSpeedBonus_Constant()
     return self.attackspeed
 end
 

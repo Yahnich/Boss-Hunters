@@ -384,23 +384,24 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"aftershock_range"			"725"
+				"var_type"						"FIELD_INTEGER"
+				"aftershock_range"				"725"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"max_duration"				"0.8"
+				"var_type"						"FIELD_FLOAT"
+				"max_duration"					"0.8"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"stat_damage"				"100"
+				"var_type"						"FIELD_FLOAT"
+				"stat_damage"					"100"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"scepter_radius"			"450"
+				"var_type"						"FIELD_FLOAT"
+				"scepter_radius"				"450"
 			}
 		}
 	}

@@ -47,12 +47,16 @@ end
 modifier_mirana_mooneye_stack = class({})
 LinkLuaModifier( "modifier_mirana_mooneye_stack", "heroes/hero_mirana/mirana_mooneye.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_mirana_mooneye_stack:OnCreated(table)
-    self.agi = self:GetSpecialValueFor("agi_mult")
+    self:OnRefresh()
 end
 
 function modifier_mirana_mooneye_stack:OnRefresh(table)
-	self.agi = 0
     self.agi = self:GetSpecialValueFor("agi_mult")
+	self:GetParent():HookInModifier("GetModifierAgilityBonusPercentage", self)
+end
+
+function modifier_mirana_mooneye_stack:OnDestroy()
+	self:GetParent():HookOutModifier("GetModifierAgilityBonusPercentage", self)
 end
 
 function modifier_mirana_mooneye_stack:DeclareFunctions()

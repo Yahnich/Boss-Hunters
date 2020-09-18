@@ -40,6 +40,7 @@ function modifier_brewmaster_primal_avatar:OnCreated()
 		
 		self:GetAbility():StartDelayedCooldown() 
 	end
+	self:GetParent():HookInModifier( "GetModifierAreaDamage", self )
 end
  
 function modifier_brewmaster_primal_avatar:OnRefresh()
@@ -56,6 +57,7 @@ function modifier_brewmaster_primal_avatar:OnRefresh()
 end
 
 function modifier_brewmaster_primal_avatar:OnDestroy()
+	self:GetParent():HookOutModifier( "GetModifierAreaDamage", self )
 	if IsServer() then self:GetAbility():EndDelayedCooldown() end
 end
 
@@ -67,7 +69,6 @@ function modifier_brewmaster_primal_avatar:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN, 
 			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 			MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-			
 			MODIFIER_PROPERTY_MODEL_SCALE}
 end
 

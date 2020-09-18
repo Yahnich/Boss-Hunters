@@ -100,6 +100,7 @@ function modifier_omniknight_seven_blessings:DeclareFunctions()
 			MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 			MODIFIER_PROPERTY_MANA_BONUS,
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 			}
 end
 
@@ -107,7 +108,7 @@ function modifier_omniknight_seven_blessings:GetModifierPreAttack_BonusDamage()
 	return self.ad
 end
 
-function modifier_omniknight_seven_blessings:GetModifierAttackSpeedBonus()
+function modifier_omniknight_seven_blessings:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

@@ -41,7 +41,7 @@ end
 function modifier_item_essence_piercer_passive:GetModifierSpellAmplify_Percentage()
 	return self.spellamp
 end
-function modifier_item_essence_piercer_passive:GetModifierAttackSpeedBonus()
+function modifier_item_essence_piercer_passive:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

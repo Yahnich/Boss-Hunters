@@ -11,7 +11,8 @@ end
 
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	
+	RelicManager:RollEliteRelicsForPlayer(event.pID)
+	RelicManager:RollEliteRelicsForPlayer(event.pID)
 	hero:AddCurse("event_buff_cultist_ritual")
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)

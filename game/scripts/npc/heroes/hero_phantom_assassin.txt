@@ -45,29 +45,30 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"450"
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"450"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4.0"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"4.0"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_as"				"20 25 30 35 40 45 50"
-				"LinkedSpecialBonus"	"special_bonus_unique_pa_flash_step_1"
+				"var_type"						"FIELD_INTEGER"
+				"bonus_as"						"20 25 30 35 40 45 50"
+				"LinkedSpecialBonus"			"special_bonus_unique_pa_flash_step_1"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"1000"
+				"var_type"						"FIELD_INTEGER"
+				"range"							"1000"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"5000"
+				"var_type"						"FIELD_INTEGER"
+				"speed"							"5000"
 			}
 		}
 	

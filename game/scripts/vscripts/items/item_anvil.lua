@@ -40,7 +40,7 @@ function modifier_item_anvil_passive:GetModifierProcAttack_BonusDamage_Physical(
 		local chance = TernaryOperator( self.bash_chance_ranged, params.attacker:IsRangedAttacker(), self.bash_chance_melee )
 		if self:RollPRNG( chance ) then
 			local damage = self.bash_damage_cd
-			if self:GetAbility():IsCooldownReady() then
+			if self:GetAbility():IsCooldownReady() and not params.attacker:IsIllusion() then
 				damage = self.bash_damage
 				self:GetAbility():Stun(params.target, self.bash_duration, true)
 				self:GetAbility():SetCooldown()

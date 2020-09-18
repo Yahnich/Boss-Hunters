@@ -125,18 +125,15 @@ end
 
 function HandoutRewards(self, bWon)
 	if self.foughtAsura then
-		local eventScaling = RoundManager:GetEventsFinished()
-		local raidScaling = 1 + RoundManager:GetRaidsFinished() * 0.2
-		local playerScaling = GameRules.BasePlayers - HeroList:GetActiveHeroCount()
-		local baseXP = ( 700 + ( (50 + 10 * playerScaling) * eventScaling ) ) * raidScaling
-		local baseGold = ( 250 + ( (20 + 3 * playerScaling) * eventScaling ) ) * raidScaling
+		local baseXP = RoundManager:GetStandardGoldReward()
+		local baseGold = RoundManager:GetStandardGoldReward()
 		if not bWon then
 			baseXP = baseXP / 4
 			baseGold = baseGold / 4
 		end
 		if self.touchedPentagram then
-			baseXP = baseXP * 3
-			baseGold = baseGold * 3
+			baseXP = baseXP * 2
+			baseGold = baseGold * 2
 		else
 			baseXP = baseXP * 1.5
 			baseGold = baseGold * 1.5

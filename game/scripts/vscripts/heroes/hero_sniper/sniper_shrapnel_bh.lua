@@ -117,6 +117,10 @@ function modifier_sniper_shrapnel_bh_talent:OnRefresh()
 	self.attackspeed = self:GetCaster():FindTalentValue("special_bonus_unique_sniper_shrapnel_bh_2")
 end
 
-function modifier_sniper_shrapnel_bh_talent:GetModifierAttackSpeedBonus()
+function modifier_sniper_shrapnel_bh_talent:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+end
+
+function modifier_sniper_shrapnel_bh_talent:GetModifierAttackSpeedBonus_Constant()
 	return self.attackspeed
 end

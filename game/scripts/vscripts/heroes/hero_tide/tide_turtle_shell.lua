@@ -29,7 +29,7 @@ function modifier_turtle_shell:IsHidden()
 end
 
 function modifier_turtle_shell:GetModifierTotal_ConstantBlock(params)
-    if IsServer() then
+    if IsServer() and params.attacker ~= self:GetParent() then
         self.currBlock = self:GetParent():GetPhysicalArmorValue(false) * self.blockPct
         if RollPercentage(self.crit) and self:GetAbility():IsCooldownReady() then 
             self.currBlock = self.currBlock * 2

@@ -18,7 +18,7 @@ function rattletrap_aegis_deflector:AegisProc(target, bKnockback)
 	
 	target:ApplyKnockBack(caster:GetAbsOrigin(), pushDuration, pushDuration, pushDistance, 0, caster, self)
 	local damage = self:DealDamage(caster, target, damage)
-	caster:RestoreMana( damage * self:GetTalentSpecialValueFor("mana_restore") )
+	caster:RestoreMana( damage * self:GetTalentSpecialValueFor("mana_restore") / 100 )
 	local zap = ParticleManager:CreateParticle("particles/units/heroes/hero_rattletrap/rattletrap_cog_attack.vpcf", PATTACH_POINT_FOLLOW, target)
 	ParticleManager:SetParticleControlEnt(zap, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 	ParticleManager:SetParticleControlEnt(zap, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)

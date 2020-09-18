@@ -5,7 +5,7 @@ function relic_tortoise_greatshield:DeclareFunctions()
 end
 
 function relic_tortoise_greatshield:GetModifierStatusAmplify_Percentage()
-	if not self:GetParent():HasModifier("relic_ritual_candle") then return -50 end
+	if not self:GetParent():HasModifier("relic_ritual_candle") then return -35 end
 end
 
 function relic_tortoise_greatshield:GetModifierStatusResistanceStacking(params)

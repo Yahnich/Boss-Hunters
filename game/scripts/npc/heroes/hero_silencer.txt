@@ -169,8 +169,9 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"intellect_damage_pct"	"15 20 25 30 35 40 45"
+				"var_type"						"FIELD_FLOAT"
+				"intellect_damage_pct"			"15 20 25 30 35 40 45"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"

@@ -109,11 +109,16 @@ modifier_centaur_stampede_ebf_slow = class({})
 LinkLuaModifier("modifier_centaur_stampede_ebf_slow", "heroes/hero_centaur/centaur_stampede_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_centaur_stampede_ebf_slow:OnCreated()
-	self.ms = self:GetTalentSpecialValueFor("slow_movement_speed") * (-1)
+	self:OnRefresh()
 end
 
 function modifier_centaur_stampede_ebf_slow:OnRefresh()
 	self.ms = self:GetTalentSpecialValueFor("slow_movement_speed") * (-1)
+	self:GetParent():HookInModifier("GetModifierAttackSpeedBonusPercentage", self)
+end
+
+function modifier_centaur_stampede_ebf_slow:OnDestroy()
+	self:GetParent():HookOutModifier("GetModifierAttackSpeedBonusPercentage", self)
 end
 
 function modifier_centaur_stampede_ebf_slow:DeclareFunctions()

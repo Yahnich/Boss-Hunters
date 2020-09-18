@@ -5,7 +5,7 @@ function relic_drop_of_all:DeclareFunctions()
 			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-			
+			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 			MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
 			MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 			MODIFIER_PROPERTY_MANA_BONUS,
@@ -30,7 +30,7 @@ function relic_drop_of_all:GetModifierMoveSpeedBonus_Constant()
 	return 10
 end
 
-function relic_drop_of_all:GetModifierAttackSpeedBonus()
+function relic_drop_of_all:GetModifierAttackSpeedBonus_Constant()
 	return 10
 end
 

@@ -91,8 +91,8 @@ function modifier_rot_lua_effect:OnIntervalThink()
     if IsServer() then
 		if self:GetCaster():FindModifierByName("modifier_rot_lua") then
 			self.damage = self:GetCaster():FindModifierByName("modifier_rot_lua").damage
+			self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage*self.tick, {}, 0)
 		end
-    	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage*self.tick, {}, 0)
     end
 end
 

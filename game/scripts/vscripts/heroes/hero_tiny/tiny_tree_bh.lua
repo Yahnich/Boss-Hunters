@@ -19,7 +19,7 @@ function tiny_tree_bh:GetAbilityTextureName()
 	if self:GetCaster():HasModifier("modifier_tiny_tree_bh") then
 		return "tiny_toss_tree"
 	end
-	return "tiny_craggy_exterior"
+	return "tiny_tree_grab"
 end
 
 function tiny_tree_bh:GetBehavior()

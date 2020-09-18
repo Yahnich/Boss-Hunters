@@ -12,8 +12,7 @@ modifier_boss_slardar_shin_shatter = class({})
 LinkLuaModifier( "modifier_boss_slardar_shin_shatter", "bosses/boss_slardar/boss_slardar_shin_shatter", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_boss_slardar_shin_shatter:OnCreated()
-	self.chance = self:GetSpecialValueFor("chance")
-	self.duration = self:GetSpecialValueFor("duration")
+	self:OnRefresh()
 end
 
 function modifier_boss_slardar_shin_shatter:OnRefresh()
@@ -46,10 +45,15 @@ LinkLuaModifier( "modifier_boss_slardar_shin_shatter_slow", "bosses/boss_slardar
 
 function modifier_boss_slardar_shin_shatter_slow:OnCreated()
 	self.slow = self:GetSpecialValueFor("slow")
+	self:GetParent():HookInModifier("GetModifierAttackSpeedBonusPercentage", self)
 end
 
 function modifier_boss_slardar_shin_shatter_slow:OnRefresh()
 	self:OnCreated()
+end
+
+function modifier_boss_slardar_shin_shatter_slow:OnDestroy()
+	self:GetParent():HookOutModifier("GetModifierAttackSpeedBonusPercentage", self)
 end
 
 function modifier_boss_slardar_shin_shatter_slow:DeclareFunctions()

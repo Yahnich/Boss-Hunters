@@ -50,10 +50,15 @@ function modifier_beast_mode_allies:OnCreated()
 	self.hpr = self:GetTalentSpecialValueFor("boar_bonus_regen")
 	self.ms = self:GetTalentSpecialValueFor("hawk_bonus_ms")
 	self.vis = self:GetTalentSpecialValueFor("hawk_bonus_vision")
+	self:GetParent():HookInModifier("GetModifierExtraHealthBonusPercentage", self)
 end
 
 function modifier_beast_mode_allies:OnRefresh()
 	self:OnCreated()
+end
+
+function modifier_beast_mode_allies:OnDestroy()
+	self:GetParent():HookOutModifier("GetModifierExtraHealthBonusPercentage", self)
 end
 
 function modifier_beast_mode_allies:DeclareFunctions()
@@ -61,17 +66,19 @@ function modifier_beast_mode_allies:DeclareFunctions()
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
 		MODIFIER_PROPERTY_BONUS_DAY_VISION,
 		MODIFIER_PROPERTY_BONUS_NIGHT_VISION
 	}
 	return funcs
 end
 
-function modifier_beast_mode_allies:GetCooldownReduction()
+function modifier_beast_mode_allies:GetModifierPercentageCooldown()
 	return self.cdr
 end
 
-function modifier_beast_mode_allies:GetModifierAttackSpeedBonus()
+function modifier_beast_mode_allies:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

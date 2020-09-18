@@ -52,7 +52,6 @@ function AttemptPurchaseTalent(talentName, abilityName){
 	{
 		hasQueuedAction = true
 		Game.EmitSound( "Button.Click" )
-		$.Msg("requested")
 		GameEvents.SendCustomGameEventToServer( "send_player_selected_unique", {pID : localID, entindex : lastRememberedHero,  talent : talentName, abilityName : abilityName} )
 	}
 }
@@ -118,14 +117,54 @@ function PerformTalentLayout( panelData ){
 function AddTalentToAbilityButton( talentContainer, talentName, talentIndex, talentPhase, abilityName ){
 	var talent = talentContainer.FindChildTraverse("UniqueTalent"+talentIndex)
 	talent.RemoveClass("IsHidden")
+	var regex = /\%(.*?)\%/;
 	if( talentPhase == 1 ){
 		talent.AddClass("Learned")
+		talent.SetPanelEvent("onactivate", function(){
+			var talentText = $.Localize( "#DOTA_Tooltip_Ability_"+talentName, talent) + " - " + $.Localize( "#DOTA_Tooltip_Ability_"+talentName+"_Description", talent)
+			var matched = regex.exec(talentText);
+			while ( matched != null ){
+				var talentEnt = Entities.GetAbilityByName( lastRememberedHero, talentName )
+				var value = Abilities.GetLevelSpecialValueFor( talentEnt, matched[1], 1 )
+				var talentText = talentText.replace(matched[0], value);
+				var matched = regex.exec(talentText);
+			}
+			var infoText = "I have " + talentText;
+			GameEvents.SendCustomGameEventToServer( "notify_selected_talent", {pID : localID, text : infoText} )
+		})
 	} else if ( talentPhase == 2 ) {
 		talent.AddClass("LevelReady")
 		talent.SetPanelEvent("onactivate", function(){
 			$.DispatchEvent("DOTAHideAbilityTooltip", talent)
-			talent.SetPanelEvent("onactivate", function(){})
-			AttemptPurchaseTalent(talentName, abilityName)} );
+			if(!GameUI.IsAltDown()){
+				talent.SetPanelEvent("onactivate", function(){})
+				AttemptPurchaseTalent(talentName, abilityName)
+			} else {
+				var talentText = $.Localize( "#DOTA_Tooltip_Ability_"+talentName, talent) + " - " + $.Localize( "#DOTA_Tooltip_Ability_"+talentName+"_Description", talent)
+				var matched = regex.exec(talentText);
+				while ( matched != null ){
+					var talentEnt = Entities.GetAbilityByName( lastRememberedHero, talentName )
+					var value = Abilities.GetLevelSpecialValueFor( talentEnt, matched[1], 1 )
+					var talentText = talentText.replace(matched[0], value);
+					var matched = regex.exec(talentText);
+				}
+				var infoText = "I will take " + talentText
+				GameEvents.SendCustomGameEventToServer( "notify_selected_talent", {pID : localID, text : infoText} )
+			}} );
+			
+	} else {
+		talent.SetPanelEvent("onactivate", function(){
+			var talentText = $.Localize( "#DOTA_Tooltip_Ability_"+talentName, talent) + " - " + $.Localize( "#DOTA_Tooltip_Ability_"+talentName+"_Description", talent)
+			var matched = regex.exec(talentText);
+			while ( matched != null ){
+				var talentEnt = Entities.GetAbilityByName( lastRememberedHero, talentName )
+				var value = Abilities.GetLevelSpecialValueFor( talentEnt, matched[1], 1 )
+				var talentText = talentText.replace(matched[0], value);
+				var matched = regex.exec(talentText);
+			}
+			var infoText = "I will take " + talentText
+			GameEvents.SendCustomGameEventToServer( "notify_selected_talent", {pID : localID, text : infoText} )
+		})
 	}
 	talent.SetPanelEvent("onmouseover", function(){
 			talent.AddClass("Highlighted")

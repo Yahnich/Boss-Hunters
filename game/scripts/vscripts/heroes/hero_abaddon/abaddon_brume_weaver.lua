@@ -109,7 +109,7 @@ end
 
 function modifier_abaddon_brume_weaver_active:CheckState()
 	if self:GetCaster():HasTalent("special_bonus_unique_abaddon_brume_weaver_2") then
-		return {MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY, MODIFIER_STATE_NO_UNIT_COLLISION}
+		return {[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true, [MODIFIER_STATE_NO_UNIT_COLLISION] = true}
 	end
 end
 

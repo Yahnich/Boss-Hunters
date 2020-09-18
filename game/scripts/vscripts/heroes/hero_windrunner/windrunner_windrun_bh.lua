@@ -19,8 +19,9 @@ end
 
 modifier_windrunner_windrun_bh_handle = class({})
 function modifier_windrunner_windrun_bh_handle:OnCreated(table)
+	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )
     if self:GetCaster():HasTalent("special_bonus_unique_windrunner_windrun_bh_2") then
-		self.fade_delay = 1
+		self.fade_delay = 0.75
         if IsServer() then
 			self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_invisible", {}):SetDuration(self:GetRemainingTime(), true)
 			self:StartIntervalThink(0.1)
@@ -31,7 +32,10 @@ end
 function modifier_windrunner_windrun_bh_handle:OnIntervalThink()
 	if IsServer() then
 		if self:GetParent():HasModifier("modifier_invisible") then
-			self.think = 0
+			if self:GetParent():GetLastAttackTime() >= GameRules:GetGameTime() - self.fade_delay or self:GetParent():HasActiveAbility() then
+				self:GetParent():RemoveModifierByName("modifier_invisible")
+				self.think = 0
+			end
 			return
 		else
 			self.think = (self.think or 0) + 0.1
@@ -42,13 +46,11 @@ function modifier_windrunner_windrun_bh_handle:OnIntervalThink()
 	end
 end
 
-function modifier_windrunner_windrun_bh_handle:CheckState()
-    if self:GetCaster():HasTalent("special_bonus_unique_windrunner_windrun_bh_2") then
-        local state = { [MODIFIER_STATE_INVISIBLE] = true,
-                        [MODIFIER_STATE_NO_UNIT_COLLISION] = true}
-        return state
-    end
+function modifier_windrunner_windrun_bh_handle:OnDestroy()
+	self:GetParent():HookOutModifier( "GetMoveSpeedLimitBonus", self )
+end
 
+function modifier_windrunner_windrun_bh_handle:CheckState()
     local state = { [MODIFIER_STATE_NO_UNIT_COLLISION] = true}
     return state
 end
@@ -57,13 +59,8 @@ function modifier_windrunner_windrun_bh_handle:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
         MODIFIER_PROPERTY_EVASION_CONSTANT,
-        MODIFIER_PROPERTY_INVISIBILITY_LEVEL
     }
     return funcs
-end
-
-function modifier_windrunner_windrun_bh_handle:GetModifierInvisibilityLevel()
-    return self.fade_delay / 2
 end
 
 function modifier_windrunner_windrun_bh_handle:GetModifierMoveSpeedBonus_Percentage()

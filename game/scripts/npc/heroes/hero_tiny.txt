@@ -275,7 +275,7 @@
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_TREE"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"AbilityTextureName"			"tiny_craggy_exterior"
+		"AbilityTextureName"			"tiny_tree_grab"
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"	
 		
@@ -351,6 +351,7 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"toss_splash_damage"			"60 80 100 120 140 160 180"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"05"
 			{
@@ -428,7 +429,7 @@
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 	    "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName"			"custom/tiny_Craggy_Exterior_icon_old"
+		"AbilityTextureName"			"tiny_craggy_exterior"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
 	

@@ -21,14 +21,18 @@ function relic_hungry_blade:OnIntervalThink()
 end
 
 function relic_hungry_blade:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,  MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE }
+	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,  
+			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, 
+			MODIFIER_EVENT_ON_ATTACK_LANDED, 
+			MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE, 
+			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
 end
 
 function relic_hungry_blade:GetModifierPreAttack_BonusDamage()
 	return 100
 end
 
-function relic_hungry_blade:GetModifierAttackSpeedBonus()
+function relic_hungry_blade:GetModifierAttackSpeedBonus_Constant()
 	return 100
 end
 

@@ -19,11 +19,12 @@ end
 function modifier_boss_slardar_blessing_of_the_tides:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT 
     }
     return funcs
 end
 
-function modifier_boss_slardar_blessing_of_the_tides:GetModifierAttackSpeedBonus()
+function modifier_boss_slardar_blessing_of_the_tides:GetModifierAttackSpeedBonus_Constant()
 	if self:GetCaster():InWater() then return self.as end
 end
 

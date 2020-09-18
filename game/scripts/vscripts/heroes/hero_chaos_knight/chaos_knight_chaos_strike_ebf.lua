@@ -81,7 +81,7 @@ end
 -- end
 
 function modifier_chaos_knight_chaos_strike_ebf:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE, MODIFIER_EVENT_ON_TAKEDAMAGE, MODIFIER_EVENT_ON_ATTACK_LANDED}
+	return {MODIFIER_EVENT_ON_TAKEDAMAGE, MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
 
 function modifier_chaos_knight_chaos_strike_ebf:GetModifierCriticalDamage( params )

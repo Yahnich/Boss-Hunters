@@ -50,7 +50,8 @@ function modifier_kotl_spirit:OnCreated(table)
     --end
 
     self.radius = self:GetSpecialValueFor("radius")
-
+	self:GetParent():HookInModifier("GetModifierIntellectBonusPercentage", self)
+	self:GetParent():HookInModifier("GetModifierManacostReduction", self)
     if IsServer() then
         EmitSoundOn("Hero_KeeperOfTheLight.SpiritForm", self:GetCaster())
 
@@ -61,6 +62,8 @@ function modifier_kotl_spirit:OnCreated(table)
 end
 
 function modifier_kotl_spirit:OnRemoved()
+	self:GetParent():HookOutModifier("GetModifierIntellectBonusPercentage", self)
+	self:GetParent():HookOutModifier("GetModifierManacostReduction", self)
     if IsServer() then
         StopSoundOn("Hero_KeeperOfTheLight.SpiritForm", self:GetCaster())
     end
@@ -80,7 +83,7 @@ function modifier_kotl_spirit:DeclareFunctions()
     return funcs
 end
 
-function modifier_kotl_spirit:GetModifierPercentageManacost()
+function modifier_kotl_spirit:GetModifierManacostReduction()
     return self.mana_cost
 end
 

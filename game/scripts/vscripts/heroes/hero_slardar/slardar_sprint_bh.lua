@@ -16,6 +16,7 @@ function modifier_slardar_sprint_bh:OnCreated()
 	self.red = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_1")
 	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_2")
 	self.dmg = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_2", "value2")
+	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )
 end
 
 function modifier_slardar_sprint_bh:OnRefresh()
@@ -23,13 +24,14 @@ function modifier_slardar_sprint_bh:OnRefresh()
 	self.red = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_1")
 	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_2")
 	self.dmg = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_2", "value2")
+	self:GetParent():HookOutModifier( "GetMoveSpeedLimitBonus", self )
 end
 
 function modifier_slardar_sprint_bh:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-		
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
     }
@@ -53,7 +55,7 @@ function modifier_slardar_sprint_bh:GetModifierIncomingDamage_Percentage()
     return red
 end
 
-function modifier_slardar_sprint_bh:GetModifierAttackSpeedBonus()
+function modifier_slardar_sprint_bh:GetModifierAttackSpeedBonus_Constant()
 	if self.as <= 0 then return end
 	local as = self.as
 	if self:GetCaster():InWater() then as = as * 2 end

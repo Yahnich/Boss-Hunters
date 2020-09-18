@@ -16,14 +16,14 @@ event_buff_safe_haven_2 = class(relicBaseClass)
 
 function event_buff_safe_haven_2:DeclareFunctions()
     local funcs = {
-        
+        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE
     }
 
     return funcs
 end
 
-function event_buff_safe_haven_2:GetModifierAttackSpeedBonus( params )
+function event_buff_safe_haven_2:GetModifierAttackSpeedBonus_Constant( params )
     return 30
 end
 

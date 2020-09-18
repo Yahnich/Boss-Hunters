@@ -57,13 +57,13 @@ function modifier_chen_god_hand:OnRefresh()
 end
 
 function modifier_chen_god_hand:DeclareFunctions()
-	return {MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE}
+	return {MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE, MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE }
 end
 
 function modifier_chen_god_hand:GetModifierBaseDamageOutgoing_Percentage()
 	return self.dmg
 end
 
-function modifier_chen_god_hand:GetCooldownReduction()
+function modifier_chen_god_hand:GetModifierPercentageCooldown()
 	return self.cdr
 end

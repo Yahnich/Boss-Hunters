@@ -2200,6 +2200,7 @@
 		"Ability2"						"treant_overgrowth_bh"
 		"Ability3"						"treant_living_armor_bh"
 		"Ability4"						"treant_leech_seed_bh"
+		"Ability5"						"generic_hidden"
 		"Ability6"						"treant_great_protector"
 	
 		"Ability10"						"special_bonus_unique_treant_little_tree_1"

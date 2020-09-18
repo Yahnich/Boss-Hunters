@@ -1,5 +1,13 @@
 relic_titans_jawbone = class(relicBaseClass)
 
+function relic_titans_jawbone:OnCreated()
+	self:GetParent():HookInModifier("GetModifierExtraHealthBonusPercentage", self)
+end
+
+function relic_titans_jawbone:OnDestroy()
+	self:GetParent():HookOutModifier("GetModifierExtraHealthBonusPercentage", self)
+end
+
 function relic_titans_jawbone:DeclareFunctions()
 	return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE}
 end

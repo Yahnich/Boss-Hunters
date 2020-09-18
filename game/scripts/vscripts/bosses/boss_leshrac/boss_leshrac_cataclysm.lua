@@ -18,7 +18,7 @@ function boss_leshrac_cataclysm:OnSpellStart()
 	local radius = self:GetSpecialValueFor("radius")
 	
 	for _, position in ipairs( self.strikePos ) do
-		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, -1 ) ) do
 			if not enemy:TriggerSpellAbsorb( self ) then
 				self:DealDamage( caster, enemy, damage )
 			end

@@ -5,10 +5,10 @@ function relic_rapid_totem:OnCreated()
 end
 
 function relic_rapid_totem:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE}
+	return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE, MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE }
 end
 
-function relic_rapid_totem:GetCooldownReduction()
+function relic_rapid_totem:GetModifierPercentageCooldown()
 	return 60
 end
 

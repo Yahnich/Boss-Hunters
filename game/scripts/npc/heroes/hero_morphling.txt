@@ -174,14 +174,15 @@
 		{
 			"01"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"100"
+				"var_type"							"FIELD_INTEGER"
+				"damage"							"100"
 				
 			}
 			"02"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"agi_max"						"1 1.25 1.5 1.75 2 2.25 2.5"
+				"var_type"							"FIELD_FLOAT"
+				"agi_max"							"1 1.25 1.5 1.75 2 2.25 2.5"
+				"CalculateSpellDamageTooltip"		"1"
 			}
 		}
 	}
@@ -283,34 +284,35 @@
 		{
 			"01"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"100"
-				"LinkedSpecialBonus"			"special_bonus_unique_morph_str_strike_1"
+				"var_type"							"FIELD_INTEGER"
+				"damage"							"100"
+				"LinkedSpecialBonus"				"special_bonus_unique_morph_str_strike_1"
 			}
 			"02"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"str_mult"						"0.5"
+				"var_type"							"FIELD_FLOAT"
+				"str_mult"							"0.5"
+				"CalculateSpellDamageTooltip"		"0"
 			}
 			"03"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"stun_min"						"0.5"
+				"var_type"							"FIELD_FLOAT"
+				"stun_min"							"0.5"
 			}
 			"04"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"stun_max"						"1.5 1.75 2 2.25 2.5 2.75 3"
+				"var_type"							"FIELD_FLOAT"
+				"stun_max"							"1.5 1.75 2 2.25 2.5 2.75 3"
 			}
 			"05"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"knockback_min"					"100"
+				"var_type"							"FIELD_INTEGER"
+				"knockback_min"						"100"
 			}
 			"06"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"knockback_max"					"500"
+				"var_type"							"FIELD_INTEGER"
+				"knockback_max"						"500"
 			}
 		}
 	}
@@ -491,12 +493,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"outgoing"				"260"
+				"incoming"				"260"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"incoming"				"100"
+				"outgoing"				"100"
 			}
 			"04"
 			{

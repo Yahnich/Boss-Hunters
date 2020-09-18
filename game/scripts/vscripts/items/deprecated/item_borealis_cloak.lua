@@ -99,7 +99,7 @@ function modifier_item_borealis_cloak_debuff:GetModifierMoveSpeedBonus_Percentag
 	return self.ms
 end
 
-function modifier_item_borealis_cloak_debuff:GetModifierAttackSpeedBonus()
+function modifier_item_borealis_cloak_debuff:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

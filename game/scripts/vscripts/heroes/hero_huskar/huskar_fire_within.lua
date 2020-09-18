@@ -60,7 +60,11 @@ function modifier_huskar_fire_within_talent:OnRefresh()
 	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_huskar_fire_within_1")
 end
 
-function modifier_huskar_fire_within_talent:GetModifierAttackSpeedBonus()
+function modifier_huskar_fire_within_talent:DeclareFunctions()
+	return { MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
+end
+
+function modifier_huskar_fire_within_talent:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

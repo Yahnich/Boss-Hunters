@@ -59,7 +59,8 @@ function modifier_lina_fire_soul:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
         MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
-        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
+        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
     }
 
     return funcs
@@ -73,7 +74,7 @@ function modifier_lina_fire_soul:GetModifierBaseDamageOutgoing_Percentage()
     return self.amp * self:GetStackCount()
 end
 
-function modifier_lina_fire_soul:GetModifierAttackSpeedBonus()
+function modifier_lina_fire_soul:GetModifierAttackSpeedBonus_Constant()
     return self.as * self:GetStackCount()
 end
 

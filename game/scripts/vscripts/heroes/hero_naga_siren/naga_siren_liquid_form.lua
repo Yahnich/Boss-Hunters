@@ -45,7 +45,7 @@ function naga_siren_liquid_form:OnSpellStart()
 	
 	local illusions = self:GetTalentSpecialValueFor("max_illusions")
 	local angle = 360 / illusions
-	local images = target:ConjureImage( {outgoing_damage = illuDur, out - 100, incoming_damage = incomingDamage - 100, position = target:GetAbsOrigin() + RandomVector( 150 ), scramble = true}, illuDur, caster,  illusions )
+	local images = target:ConjureImage( {outgoing_damage = out - 100, incoming_damage = incomingDamage - 100, position = target:GetAbsOrigin() + RandomVector( 150 ), scramble = true}, illuDur, caster,  illusions )
 	for i = 1, illusions do	
 		images[i]:AddNewModifier(caster, self, "modifier_naga_siren_liquid_form", {duration = illuDur})
 		images[i]:SetAbsOrigin( target:GetAbsOrigin() + RotateVector2D( -target:GetForwardVector(), ToRadians( angle ) * i ) * 150 )

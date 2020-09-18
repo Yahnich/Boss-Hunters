@@ -66,7 +66,7 @@ function modifier_item_trebuchet:GetModifierMoveSpeedBonus_Special_Boots()
 	return self.ms
 end
 
-function modifier_item_trebuchet:GetModifierAttackSpeedBonus()
+function modifier_item_trebuchet:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

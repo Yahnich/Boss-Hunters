@@ -87,7 +87,7 @@ end
 function modifier_ogre_magi_bloodlust_bh_buff:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_MODEL_SCALE,
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS
 	}
@@ -98,7 +98,7 @@ function modifier_ogre_magi_bloodlust_bh_buff:GetModifierMoveSpeedBonus_Percenta
 	return self:GetTalentSpecialValueFor("bonus_movement_speed")
 end
 
-function modifier_ogre_magi_bloodlust_bh_buff:GetModifierAttackSpeedBonus()
+function modifier_ogre_magi_bloodlust_bh_buff:GetModifierAttackSpeedBonus_Constant()
 	return self:GetTalentSpecialValueFor("bonus_attack_speed")
 end
 

@@ -65,7 +65,7 @@ end
 function modifier_slark_essence_shift_attr_debuff:DeclareFunctions()
 	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 			MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
-			
+			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
 end
 
@@ -73,7 +73,7 @@ function modifier_slark_essence_shift_attr_debuff:GetModifierPreAttack_BonusDama
 	return self.ad * self:GetStackCount()
 end
 
-function modifier_slark_essence_shift_attr_debuff:GetModifierAttackSpeedBonus()
+function modifier_slark_essence_shift_attr_debuff:GetModifierAttackSpeedBonus_Constant()
 	return self.as * self:GetStackCount()
 end
 

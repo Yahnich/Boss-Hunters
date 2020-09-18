@@ -53,7 +53,7 @@ function modifier_night_stalker_hunter_in_the_night_bh:OnRefresh()
 end
 
 function modifier_night_stalker_hunter_in_the_night_bh:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,  MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
 end
 
 function modifier_night_stalker_hunter_in_the_night_bh:GetModifierMoveSpeedBonus_Percentage()
@@ -72,7 +72,7 @@ function modifier_night_stalker_hunter_in_the_night_bh:GetModifierMoveSpeedBonus
 	return ms * multiplier
 end
 
-function modifier_night_stalker_hunter_in_the_night_bh:GetModifierAttackSpeedBonus()
+function modifier_night_stalker_hunter_in_the_night_bh:GetModifierAttackSpeedBonus_Constant()
 	local as = self.as
 	local caster = self:GetParent()
 	local multiplier = 1

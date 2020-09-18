@@ -38,6 +38,11 @@
 	brightness: 2.0;
 }
 
+.Clickthrough
+{
+	opacity: 0.5;
+}
+
 .ShopWrapper
 {
 	flow-children: down;
@@ -118,6 +123,7 @@
 .RuneSlotContainer
 {
 	flow-children: right;
+	opacity: 1;
 }
 
 .RuneSlotContainerIcon

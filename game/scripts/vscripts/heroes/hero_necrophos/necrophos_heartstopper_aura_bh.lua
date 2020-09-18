@@ -65,13 +65,13 @@ function modifier_necrophos_heart_stopper_bh_degen:OnIntervalThink()
 end
 
 function modifier_necrophos_heart_stopper_bh_degen:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE}
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE}
 end
 
 function modifier_necrophos_heart_stopper_bh_degen:GetModifierHealthRegenPercentage()
 	if IsClient() then return self.damage * (-1) end
 end
 
-function modifier_necrophos_heart_stopper_bh_degen:GetModifierAttackSpeedBonus()
+function modifier_necrophos_heart_stopper_bh_degen:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end

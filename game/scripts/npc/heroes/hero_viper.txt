@@ -486,11 +486,13 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"cooldown_scepter"		"10.0"
+				"RequiresScepter"		"1"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"cast_range_scepter"	"900"
+				"RequiresScepter"		"1"
 			}
 			"09"
 			{

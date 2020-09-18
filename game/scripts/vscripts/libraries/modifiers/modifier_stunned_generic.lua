@@ -1,11 +1,11 @@
 modifier_stunned_generic = class({})
 
-if IsServer() then
-	function modifier_stunned_generic:OnCreated(kv)
-		if self:GetParent():IsRoundNecessary() and not self:GetParent():IsBoss() or self:GetParent():IsChanneling() then
+function modifier_stunned_generic:OnCreated(kv)
+	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )
+	if IsServer() then
+		if self:GetParent():IsBoss() then
 			self:GetParent():Interrupt()
 			self:GetParent():Stop()
-			self:GetParent():StopMotionControllers(true)
 			self:GetParent():RemoveGesture(ACT_DOTA_DISABLED)
 		end
 		if kv.delay == nil or toboolean(kv.delay) == true and not self:GetParent():IsRoundNecessary() then
@@ -13,8 +13,11 @@ if IsServer() then
 			if self:GetAbility() then self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false) end
 		end
 	end
-	
-	function modifier_stunned_generic:OnDestroy()
+end
+
+function modifier_stunned_generic:OnDestroy()
+	self:GetParent():HookOutModifier( "GetMoveSpeedLimitBonus", self )
+	if IsServer() then
 		if self.delay and self:GetAbility() then self:GetAbility():EndDelayedCooldown() end
 	end
 end
@@ -33,7 +36,7 @@ function modifier_stunned_generic:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
 		MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE,
-		MODIFIER_PROPERTY_FIXED_ATTACK_RATE,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT ,
 		MODIFIER_PROPERTY_CASTTIME_PERCENTAGE, 
 		MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE
 	}
@@ -47,30 +50,34 @@ function modifier_stunned_generic:GetOverrideAnimation( params )
 	end
 end
 
-function modifier_stunned_generic:GetModifierFixedAttackRate( params )
-	if self:GetParent():IsRoundNecessary() then
-		return self:GetParent():GetBaseAttackTime() * 2
+function modifier_stunned_generic:GetModifierAttackSpeedBonus_Constant( params )
+	if self:GetParent():IsBoss() then
+		return -300
 	end
 end
 
 function modifier_stunned_generic:GetModifierMoveSpeedOverride( params )
-	if self:GetParent():IsRoundNecessary() then
+	if self:GetParent():IsBoss() then
 		return 100
 	end
 end
 
 function modifier_stunned_generic:GetMoveSpeedLimitBonus( params )
-	if self:GetParent():IsRoundNecessary() then
+	if self:GetParent():IsBoss() then
 		return -450
 	end
 end
 
 function modifier_stunned_generic:GetModifierPercentageCasttime()
-	return -100
+	if self:GetParent():IsBoss() then
+		return -50
+	end
 end
 
 function modifier_stunned_generic:GetModifierTurnRate_Percentage()
-	return -95
+	if self:GetParent():IsBoss() then
+		return -80
+	end
 end
 
 function modifier_stunned_generic:IsPurgable()

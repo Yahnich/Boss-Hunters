@@ -82,7 +82,7 @@ function ItemManager:TryRemoveRuneInSlot(userid, event)
 	local item = unit:GetItemInSlot( tonumber(event.inventorySlot) )
 	local runeSlot = event.runeItemSlot
 	
-	
+	if unit:GetPlayerID() ~= event.PlayerID then return end
 	if item then
 		local ItemCatch = function( ... )
 			local itemmodifier = unit:FindModifierByNameAndAbility( item:GetIntrinsicModifierName(), item )
@@ -129,7 +129,7 @@ function ItemManager:TryEnterRuneInSlot(userid, event)
 	local item = unit:GetItemInSlot( tonumber(event.inventorySlot) )
 	local runeEnt = unit:GetItemInSlot( tonumber(event.runeInventorySlot) )
 	local runeSlot = event.runeItemSlot
-	
+	local insertAll = toboolean(event.insertAll)
 	local priorLevel = 0
 	if item then
 		local ItemCatch = function( ... )
@@ -140,47 +140,54 @@ function ItemManager:TryEnterRuneInSlot(userid, event)
 				local totalSlots = item:GetRuneSlots()
 				local freeSlots = item:GetAvailableRuneSlots()
 				local slotIndex = runeSlot
-				local lastRune = item:GetRuneSlot(slotIndex)
 				
-				if lastRune and lastRune.rune_type then
-					if lastRune.rune_type == runeEnt:GetName() then -- upgrade rune
-						priorLevel = item.itemData[slotIndex].rune_level
-					else -- replace rune
-						unit:AddItemByName( lastRune.rune_type )
-						for funcName, result in pairs( lastRune.funcs ) do
-							itemmodifier[funcName] = function() return nil end
-						end
-						item.itemData[slotIndex] = {}
-					end
+				local loop = 1
+				if insertAll then
+					loop = runeEnt:GetCurrentCharges()
 				end
-				
-				item.itemData[slotIndex] = item.itemData[slotIndex] or {}
-				item.itemData[slotIndex].rune_level = priorLevel
-				item.itemData[slotIndex].rune_type = runeEnt:GetName()
-				item.itemData[slotIndex].funcs = item.itemData[slotIndex].funcs or {}
-				runeEnt:RuneProcessing( item, itemmodifier, slotIndex )
-				
-				local funcs = {}
-				for slot, rune in pairs( item.itemData ) do
-					if rune and rune.funcs then
-						for func, result in pairs( rune.funcs ) do
-							funcs[func] = ( funcs[func] or 0 ) + result
+				for i = 1, loop do
+					local lastRune = item:GetRuneSlot(slotIndex)
+					if lastRune and lastRune.rune_type then
+						if lastRune.rune_type == runeEnt:GetName() then -- upgrade rune
+							priorLevel = item.itemData[slotIndex].rune_level
+						else -- replace rune
+							unit:AddItemByName( lastRune.rune_type )
+							for funcName, result in pairs( lastRune.funcs ) do
+								itemmodifier[funcName] = function() return nil end
+							end
+							item.itemData[slotIndex] = {}
 						end
 					end
-				end
-				for func, result in pairs( funcs ) do
-					itemmodifier[func] = function() return result end
+					
+					item.itemData[slotIndex] = item.itemData[slotIndex] or {}
+					item.itemData[slotIndex].rune_level = priorLevel
+					item.itemData[slotIndex].rune_type = runeEnt:GetName()
+					item.itemData[slotIndex].funcs = item.itemData[slotIndex].funcs or {}
+					runeEnt:RuneProcessing( item, itemmodifier, slotIndex )
+					
+					local funcs = {}
+					for slot, rune in pairs( item.itemData ) do
+						if rune and rune.funcs then
+							for func, result in pairs( rune.funcs ) do
+								funcs[func] = ( funcs[func] or 0 ) + result
+							end
+						end
+					end
+					for func, result in pairs( funcs ) do
+						itemmodifier[func] = function() return result end
+					end
+					local charges = runeEnt:GetCurrentCharges()
+					if charges > 1 then
+						runeEnt:SetCurrentCharges( charges - 1 )
+					else
+						runeEnt:Destroy()
+					end
 				end
 				itemmodifier:ForceRefresh()
 				unit:CalculateStatBonus()
 				-- unit:AddNewModifier( unit, item, item:GetIntrinsicModifierName(), {} )
 				
-				local charges = runeEnt:GetCurrentCharges()
-				if charges > 1 then
-					runeEnt:SetCurrentCharges( charges - 1 )
-				else
-					runeEnt:Destroy()
-				end
+				
 			end
 		status, err, ret = xpcall(ItemCatch, debug.traceback, self, userid, event )
 		if not status  and not self.gameHasBeenBroken then

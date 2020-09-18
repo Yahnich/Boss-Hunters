@@ -29,6 +29,11 @@ modifier_item_culling_greataxe_passive = class(itemBasicBaseClass)
 
 function modifier_item_culling_greataxe_passive:OnCreatedSpecific()
 	self.splash = self:GetSpecialValueFor("splash_damage")
+	self:GetParent():HookInModifier("GetModifierAreaDamage", self)
+end
+
+function modifier_item_culling_greataxe_passive:OnDestroySpecific()
+	self:GetParent():HookOutModifier("GetModifierAreaDamage", self)
 end
 
 function modifier_item_culling_greataxe_passive:GetModifierAreaDamage()

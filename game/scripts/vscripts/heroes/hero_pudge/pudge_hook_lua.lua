@@ -12,7 +12,6 @@ end
 function pudge_hook_lua:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
 	if self:GetCaster():HasScepter() then cooldown = self:GetTalentSpecialValueFor("scepter_cooldown") end
-    if self:GetCaster():HasTalent("special_bonus_unique_pudge_hook_lua_2") then cooldown = cooldown * self:GetCaster():FindTalentValue("special_bonus_unique_pudge_hook_lua_2", "cdr") end
     return cooldown
 end
 

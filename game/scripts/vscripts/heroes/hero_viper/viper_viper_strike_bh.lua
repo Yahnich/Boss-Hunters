@@ -205,10 +205,13 @@ function modifier_viper_viper_strike_bh:OnIntervalThink()
 end
 
 function modifier_viper_viper_strike_bh:DeclareFunctions()
-	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_EVASION_CONSTANT, MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_ONGOING }
+	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, 
+			 MODIFIER_PROPERTY_EVASION_CONSTANT, 
+			 MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+			 MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_ONGOING }
 end
 
-function modifier_viper_viper_strike_bh:GetModifierAttackSpeedBonus()
+function modifier_viper_viper_strike_bh:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

@@ -474,16 +474,19 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"range_scepter"			"850"
+				"RequiresScepter"		"1"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bash_radius_scepter"	"250"
+				"RequiresScepter"		"1"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"cooldown_scepter"		"20"
+				"RequiresScepter"		"1"
 			}
 		}
 	}

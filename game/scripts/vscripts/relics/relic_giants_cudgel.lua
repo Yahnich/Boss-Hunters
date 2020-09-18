@@ -1,5 +1,15 @@
 relic_giants_cudgel = class(relicBaseClass)
 
+function relic_giants_cudgel:OnCreated()
+	self:GetParent():HookInModifier("GetModifierAttackSpeedBonusPercentage", self)
+	self:GetParent():HookInModifier( "GetModifierAreaDamage", self )
+end
+
+function relic_giants_cudgel:OnDestroy()
+	self:GetParent():HookOutModifier("GetModifierAttackSpeedBonusPercentage", self)
+	self:GetParent():HookOutModifier( "GetModifierAreaDamage", self )
+end
+
 function relic_giants_cudgel:DeclareFunctions()
 	return { MODIFIER_EVENT_ON_ATTACK_LANDED,
 			 MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE }

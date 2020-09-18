@@ -69,6 +69,7 @@
 			{
 				"var_type"						"FIELD_FLOAT"
 				"damage_reduction"				"10 15 20 25 25 25 25"
+				"CalculateSpellDamageTooltip"	"0"
 			}			
 			"05"
 			{

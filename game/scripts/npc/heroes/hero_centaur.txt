@@ -56,6 +56,7 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"self_damage"					"50"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 		}
 	
@@ -469,6 +470,8 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"damage_reduction_scepter"		"80"
+				"RequiresScepter"				"1"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 		}
 		

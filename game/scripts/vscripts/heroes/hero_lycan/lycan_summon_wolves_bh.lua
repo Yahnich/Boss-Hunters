@@ -13,10 +13,13 @@ function lycan_summon_wolves_bh:OnSpellStart()
 	local startPos = caster:GetAbsOrigin()
 	local wolfCount = self:GetTalentSpecialValueFor("wolf_count")
 	
+	for i = #caster.summonedWolves, 1, -1 do
+		if caster.summonedWolves[i]:IsNull() or not caster.summonedWolves[i]:UnitCanRespawn() then	
+			table.remove( caster.summonedWolves, i )
+		end
+	end
 	if caster:HasTalent("special_bonus_unique_lycan_summon_wolves_2") then 
-		wolfCount = math.floor(wolfCount / 2)
-	else
-		caster.summonedWolves = {}
+		wolfCount = math.ceil(wolfCount / 3)
 	end
 	
 	local distance = self:GetTalentSpecialValueFor("spawn_distance")
@@ -70,10 +73,18 @@ function lycan_summon_wolves_bh:ScaleWolf( wolf )
 	wolf:SetModelScale(0.8 + (self:GetLevel()/2)/10)
 	wolf:SetPhysicalArmorBaseValue( self:GetCaster():GetPhysicalArmorBaseValue() + 3 )
 	if self:GetLevel() > 1 then
-		wolf:FindAbilityByName("lycan_summon_wolves_critical_strike"):SetLevel( self:GetLevel() - 1 )
+		local crits = wolf:FindAbilityByName("lycan_summon_wolves_critical_strike")
+		if not crits then
+			crits = wolf:AddAbility("lycan_summon_wolves_critical_strike")
+		end
+		crits:SetLevel( self:GetLevel() - 1 )
 	end
 	if self:GetLevel() >= 4 then
-		wolf:FindAbilityByName("lycan_summon_wolves_invisibility"):SetLevel( 1 )
+		local invis = wolf:FindAbilityByName("lycan_summon_wolves_invisibility")
+		if not invis then
+			invis = wolf:AddAbility("lycan_summon_wolves_invisibility")
+		end
+		invis:SetLevel( 1 )
 	end
 	if self:GetLevel() >= 5 then
 		wolf:SetBaseHealthRegen(25 + (self:GetLevel() - 5) * 15)

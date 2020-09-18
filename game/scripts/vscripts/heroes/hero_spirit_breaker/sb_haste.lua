@@ -39,6 +39,29 @@ function sb_haste:OnSpellStart()
 end
 
 modifier_sb_haste_aura = class({})
+function modifier_sb_haste_aura:OnCreated()
+	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )
+end
+
+function modifier_sb_haste_aura:OnDestroy()
+	self:GetParent():HookOutModifier( "GetMoveSpeedLimitBonus", self )
+end
+
+function modifier_sb_haste_aura:DeclareFunctions()
+    local funcs = {
+        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+    }
+    return funcs
+end
+
+function modifier_sb_haste_aura:GetModifierMoveSpeedBonus_Percentage()
+    return self:GetTalentSpecialValueFor("bonus_ms_self")
+end
+
+function modifier_sb_haste_aura:GetMoveSpeedLimitBonus()
+    return 9999 - 550
+end
+
 function modifier_sb_haste_aura:IsAura()
     return true
 end
@@ -82,21 +105,6 @@ function modifier_sb_haste_aura:IsHidden()
     return true
 end
 
-function modifier_sb_haste_aura:DeclareFunctions()
-    local funcs = {
-        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-    }
-    return funcs
-end
-
-function modifier_sb_haste_aura:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("bonus_ms_self")
-end
-
-function modifier_sb_haste_aura:GetMoveSpeedLimitBonus()
-    return 99999
-end
-
 function modifier_sb_haste_aura:GetEffectName()
     return "particles/units/heroes/hero_spirit_breaker/spirit_breaker_haste_owner.vpcf"
 end
@@ -125,7 +133,7 @@ modifier_sb_haste_self = class({})
 function modifier_sb_haste_self:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-        
+        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
     }
     return funcs
 end
@@ -134,7 +142,7 @@ function modifier_sb_haste_self:GetModifierMoveSpeedBonus_Percentage()
     return self:GetTalentSpecialValueFor("bonus_ms_extra")
 end
 
-function modifier_sb_haste_self:GetModifierAttackSpeedBonus()
+function modifier_sb_haste_self:GetModifierAttackSpeedBonus_Constant()
 	if self:GetCaster():HasTalent("special_bonus_unique_sb_haste_1") then
     	return self:GetTalentSpecialValueFor("bonus_ms_extra")
     end

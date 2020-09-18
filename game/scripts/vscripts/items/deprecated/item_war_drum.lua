@@ -114,7 +114,7 @@ function modifier_item_war_drum_active:GetModifierMoveSpeedBonus_Percentage()
 	return self.bonus_ms_buff
 end
 
-function modifier_item_war_drum_active:GetModifierAttackSpeedBonus()
+function modifier_item_war_drum_active:GetModifierAttackSpeedBonus_Constant()
 	return self.bonus_as
 end
 

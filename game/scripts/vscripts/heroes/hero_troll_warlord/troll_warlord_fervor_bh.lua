@@ -45,10 +45,7 @@ modifier_troll_warlord_fervor_bh = class({})
 LinkLuaModifier("modifier_troll_warlord_fervor_bh", "heroes/hero_troll_warlord/troll_warlord_fervor_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_troll_warlord_fervor_bh:OnCreated()
-	self.bat = self:GetTalentSpecialValueFor("attack_speed")
-	self.max = self:GetTalentSpecialValueFor("max_stacks")
-	self.duration = self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_fervor_1")
-	self.talent = self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_fervor_1")
+	self:OnRefresh()
 end
 
 function modifier_troll_warlord_fervor_bh:OnRefresh()
@@ -56,6 +53,11 @@ function modifier_troll_warlord_fervor_bh:OnRefresh()
 	self.max = self:GetTalentSpecialValueFor("max_stacks")
 	self.duration = self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_fervor_1")
 	self.talent = self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_fervor_1")
+	self:GetParent():HookInModifier("GetBaseAttackTime_Bonus", self)
+end
+
+function modifier_troll_warlord_fervor_bh:OnDestroy()
+	self:GetParent():HookOutModifier("GetBaseAttackTime_Bonus", self)
 end
 
 function modifier_troll_warlord_fervor_bh:DeclareFunctions()

@@ -1,7 +1,7 @@
 relic_false_idol = class(relicBaseClass)
 
 function relic_false_idol:OnCreated()
-	self.damagePct = 0.20
+	self.damagePct = 0.1
 	if IsServer() then
 		self.lastPos = self:GetParent():GetAbsOrigin()
 		self:StartIntervalThink(0.1)

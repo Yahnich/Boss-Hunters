@@ -60,7 +60,8 @@ function modifier_clinkz_strafe_bh:DeclareFunctions()
         MODIFIER_EVENT_ON_PROJECTILE_DODGE,
         MODIFIER_EVENT_ON_ATTACK_FAIL,
 		MODIFIER_PROPERTY_EVASION_CONSTANT,
-		MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING  
+		MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
     }
     return funcs
 end
@@ -85,7 +86,7 @@ function modifier_clinkz_strafe_bh:OnAttackFail(params)
     end
 end
 
-function modifier_clinkz_strafe_bh:GetModifierAttackSpeedBonus()
+function modifier_clinkz_strafe_bh:GetModifierAttackSpeedBonus_Constant()
     return self.as
 end
 

@@ -94,7 +94,7 @@ function ursa_earthshock_bh:EarthShock()
 			end
 			local totalDamage = damage
 			if furySwipes and not caster:PassivesDisabled() then
-				furySwipesBonus = enemy:GetModifierStackCount( "modifier_ursa_fury_swipes_bh", caster ) * furySwipesDamage
+				local furySwipesBonus = enemy:GetModifierStackCount( "modifier_ursa_fury_swipes_bh", caster ) * furySwipesDamage
 				totalDamage = totalDamage + furySwipesBonus
 				if hasFurySwipesTalent1 then
 					caster:HealEvent( furySwipesBonus * furySwipesTalent1Heal, self, caster )

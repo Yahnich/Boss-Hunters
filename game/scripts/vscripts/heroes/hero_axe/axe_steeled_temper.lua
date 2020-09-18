@@ -13,11 +13,11 @@ function modifier_axe_steeled_temper:OnCreated()
 end
 
 function modifier_axe_steeled_temper:DeclareFunctions()
-	return {
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
 end
 
-function modifier_axe_steeled_temper:GetModifierAttackSpeedBonus()
+function modifier_axe_steeled_temper:GetModifierAttackSpeedBonus_Constant()
 	if self:GetCaster():HasScepter() then
 		return self:GetCaster():GetStrength() * self.as
 	end

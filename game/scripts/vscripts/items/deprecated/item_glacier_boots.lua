@@ -143,7 +143,7 @@ function modifier_glacier_boots_debuff:GetModifierMoveSpeedBonus_Percentage()
 	end
 end
 
-function modifier_glacier_boots_debuff:GetModifierAttackSpeedBonus()
+function modifier_glacier_boots_debuff:GetModifierAttackSpeedBonus_Constant()
 	if self:GetCaster():HasModifier("modifier_item_glacier_boots_toggle") then
 		return self.active_attackslow
 	else

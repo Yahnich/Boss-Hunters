@@ -1,8 +1,8 @@
 bh_raid_hardcore
 {
 	material materials/overviews/bh_raid_hardcore.vmat
-	pos_x -7883
+	pos_x -8331
 	pos_y 8320
-	scale 15.875
+	scale 16.750
 }
 

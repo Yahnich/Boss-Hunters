@@ -11,8 +11,38 @@ GameEvents.Subscribe( "dota_player_update_relic_inventory", UpdateRelicInventory
 GameEvents.Subscribe("dota_player_update_query_unit", SendRelicQuery);
 GameEvents.Subscribe("dota_player_update_selected_unit", SendRelicQuery);
 
+var mainHud = $.GetContextPanel().GetParent().GetParent().GetParent()
+var shopHud = mainHud.FindChildTraverse("HUDElements").FindChildTraverse("shop_launcher_block")
+
 var hasQueuedAction = false;
 var firstRelicOfGame = true;
+
+var globalRelicButton
+
+
+(function(){
+	var goldContainer = shopHud.FindChildTraverse("ShopCourierControls")
+	goldContainer.style.flowChildren = 'right';
+	var courier = goldContainer.FindChildTraverse("courier")
+	courier.visible = false;
+	var relicInventoryButton = $.CreatePanel("Panel", $.GetContextPanel(), "RelicInventoryButton");
+	relicInventoryButton.BLoadLayoutSnippet("RelicInventoryButtonSnippet");
+	relicInventoryButton.SetParent(goldContainer)
+	relicInventoryButton.SetPanelEvent("onactivate", function(){OpenRelicInventory()})
+	relicInventoryButton.SetPanelEvent("onmouseover", function(){
+		relicInventoryButton.SetHasClass("ButtonHover", true)
+		$.DispatchEvent("DOTAShowTextTooltip", relicInventoryButton, "Relics are permanent bonuses that can be gained by defeating bosses, elites or certain events.")
+	})
+	relicInventoryButton.SetPanelEvent("onmouseout", function(){
+		relicInventoryButton.SetHasClass("ButtonHover", false)
+		$.DispatchEvent("DOTAHideTextTooltip", relicInventoryButton)
+	})
+	$("#RelicRoot").SetHasClass("IsHidden", true);
+	SendDropQuery();
+	globalRelicButton = relicInventoryButton
+	var inventory = $("#RelicInventoryPanel")
+	inventory.SetHasClass("IsHidden", true )
+})()
 
 function SelectRelic(relic)
 {
@@ -45,6 +75,15 @@ function SkipRelics()
 	}
 }
 
+function HoldRelics()
+{
+	if(hasQueuedAction == false)
+	{
+		Game.EmitSound( "Button.Click" )
+		$("#RelicRoot").SetHasClass("IsHidden", true)
+	}
+}
+
 function SendRelicQuery(){
 	lastRememberedHero = Players.GetLocalPlayerPortraitUnit()
 	if ( !Entities.IsRealHero( lastRememberedHero ) ){ 
@@ -61,6 +100,7 @@ function SendDropQuery(){
 	if( lastRememberedHero = Players.GetPlayerHeroEntityIndex( localID ) ){
 		GameEvents.SendCustomGameEventToServer( "dota_player_query_relic_drops", {entindex : lastRememberedHero, playerID : localID} )
 	}
+	OpenRelicInventory(true)
 }
 
 function AddHover(panelID)
@@ -68,7 +108,7 @@ function AddHover(panelID)
 	var buttonPanel = $("#"+panelID)
 	buttonPanel.SetHasClass("ButtonHover", true)
 	if(panelID == "SkipButton"){
-		$.DispatchEvent("DOTAShowTextTooltip", buttonPanel, "Skipping a relic grants 500 gold and removes the skipped relics from your pool, preventing them from showing up again.")
+		$.DispatchEvent("DOTAShowTextTooltip", buttonPanel, $.Localize("#relic_info_skip_relic") )
 	}
 }
 
@@ -80,10 +120,6 @@ function RemoveHover(panelID)
 		$.DispatchEvent("DOTAHideTextTooltip", buttonPanel)
 	}
 }
-
-$("#RelicRoot").SetHasClass("IsHidden", true)
-SendDropQuery()
-
 function UpdatePendingDrops(relicTable){
 	var length = 0
 	$("#RelicInventoryNotifyIdiots").style.visibility = "collapse";
@@ -143,50 +179,72 @@ function HandleRelicMenu(relicTable)
 function CreateRelicSelection(relic)
 {
 	var holder = $("#RelicChoiceHolder")
-	$.CreatePanel("Panel", holder, "").SetHasClass("VerticalSeperator", true)
-	var relicChoice = $.CreatePanel("Panel", holder, "");
+	var relicChoice = $.CreatePanel("Panel", holder, "RelicSelection_"+relic.name);
 	relicChoice.BLoadLayoutSnippet("RelicChoiceContainer");
 	
-	var selectButton = relicChoice.FindChildTraverse("SelectButtonSnippet");
-	selectButton.SetPanelEvent("onactivate", function(){SelectRelic(relic.name)})
-	selectButton.SetPanelEvent("onmouseover", function(){selectButton.SetHasClass("ButtonHover", true)})
-	selectButton.SetPanelEvent("onmouseout", function(){selectButton.SetHasClass("ButtonHover", false)})
+	relicChoice.SetPanelEvent("onactivate", function(){SelectRelic(relic.name)})
+	relicChoice.SetPanelEvent("onmouseover", function(){
+		relicChoice.SetHasClass("ButtonHover", true)
+		$.DispatchEvent("DOTAShowTextTooltip", relicChoice, $.Localize( relic.name + "_Description" ) )
+	})
+	relicChoice.SetPanelEvent("onmouseout", function(){
+		relicChoice.SetHasClass("ButtonHover", false)
+		$.DispatchEvent("DOTAHideTextTooltip", relicChoice)
+	})
 	var typeLabel = relicChoice.FindChildTraverse("RelicNameSnippet")
+	var relicIcon = relicChoice.FindChildTraverse("RelicIconSnippet")
 	if(relic.rarity == "RARITY_EVENT"){
 		typeLabel.style.color = "#2ce004"
+		relicIcon.SetImage("file://{images}/custom_game/relics/relic_rarity_event.png")
 	} else if(relic.rarity == "RARITY_LEGENDARY"){
 		typeLabel.style.color = "#ff790c"
+		relicIcon.SetImage("file://{images}/custom_game/relics/relic_rarity_legendary.png")
 	} else if(relic.rarity == "RARITY_RARE"){
 		typeLabel.style.color = "#a100ff"
+		relicIcon.SetImage("file://{images}/custom_game/relics/relic_rarity_rare.png")
 	} else if(relic.rarity == "RARITY_UNCOMMON"){
 		typeLabel.style.color = "#0099ff"
+		relicIcon.SetImage("file://{images}/custom_game/relics/relic_rarity_uncommon.png")
 	} else if(relic.rarity == "RARITY_COMMON"){
 		typeLabel.style.color = "#ffffff"
+		relicIcon.SetImage("file://{images}/custom_game/relics/relic_rarity_common.png")
 	}
 	
 	if( relic.cursed == 1 ){
 		typeLabel.style.saturation = 0.6;
 		typeLabel.style.brightness = 0.6;
+		relicIcon.style.saturation = 0.6;
+		relicIcon.style.brightness = 0.6;
 	}
 	typeLabel.text = $.Localize( relic.name )
-	var relicDescription = relicChoice.FindChildTraverse("SnippetRelicDescription")
-	relicDescription.html = true;
-	relicDescription.text = $.Localize( relic.name + "_Description" )
-	
-	$.CreatePanel("Panel", holder, "").SetHasClass("VerticalSeperator", true)
 }
 
-$("#RelicInventoryPanel").SetHasClass("IsHidden", true)
-
-function OpenRelicInventory()
+var newRelics = {}
+function OpenRelicInventory(forceClose)
 {
 	var inventory = $("#RelicInventoryPanel")
-	var invButton = $("#RelicInventoryButton")
-	if(invButton.BHasClass("RelicButtonSelected") == false){
-		SendRelicQuery()
+	if(globalRelicButton){
+		if(globalRelicButton.BHasClass("RelicButtonSelected") == false){
+			HoldRelics()
+		}
+		if( forceClose == true ){
+			inventory.SetHasClass("IsHidden", true )
+			globalRelicButton.SetHasClass("RelicButtonSelected", false )
+		} else {
+			if(inventory.Children()[0] != null){
+				inventory.SetHasClass("IsHidden", globalRelicButton.BHasClass("RelicButtonSelected") )
+				if (globalRelicButton.BHasClass("RelicButtonSelected") == true ){
+					for(var relic of inventory.Children()){
+						if( newRelics[relic.relic_entindex] != null ){
+							newRelics[relic.relic_entindex] = false
+							relic.style.border = '0px solid #00000000';
+						}
+					}
+				}
+			}
+			globalRelicButton.SetHasClass("RelicButtonSelected", !globalRelicButton.BHasClass("RelicButtonSelected") )
+		}
 	}
-	inventory.SetHasClass("IsHidden", invButton.BHasClass("RelicButtonSelected") )
-	invButton.SetHasClass("RelicButtonSelected", !invButton.BHasClass("RelicButtonSelected") )
 }
 
 function UpdateRelicInventory(table){
@@ -201,8 +259,14 @@ function UpdateRelicInventory(table){
 		}
 		
 		if(table != null && table.relics != null){
+			for(var relic in newRelics){
+				if(table.relics[relic] == null){
+					newRelics[relic] = null;
+				}
+			}
 			for(var name in table.relics){
 				if(name != 0){
+					table.relics[name].relic_entindex = name
 					CreateRelicPanel(table.relics[name])
 				}
 			}
@@ -218,25 +282,34 @@ function CreateRelicPanel(relic)
 	var relicName = $.Localize( relic.name )
 	var relicDescr = $.Localize( relic.name + "_Description" )
 	var relicLabel = relicPanel.FindChildTraverse("RelicLabel")
+	var relicIcon = relicPanel.FindChildTraverse("RelicInventoryIconSnippet")
 	relicLabel.text = relicName
 	
 	if(relic.rarity == "RARITY_EVENT"){
 		relicLabel.style.color = "#2ce004"
+		relicIcon.SetImage("file://{images}/custom_game/relics/relic_rarity_event.png")
 	} else if(relic.rarity == "RARITY_LEGENDARY"){
 		relicLabel.style.color = "#ff790c"
+		relicIcon.SetImage("file://{images}/custom_game/relics/relic_rarity_legendary.png")
 	} else if(relic.rarity == "RARITY_RARE"){
 		relicLabel.style.color = "#a100ff"
+		relicIcon.SetImage("file://{images}/custom_game/relics/relic_rarity_rare.png")
 	} else if(relic.rarity == "RARITY_UNCOMMON"){
 		relicLabel.style.color = "#0099ff"
+		relicIcon.SetImage("file://{images}/custom_game/relics/relic_rarity_uncommon.png")
 	} else if(relic.rarity == "RARITY_COMMON"){
 		relicLabel.style.color = "#ffffff"
+		relicIcon.SetImage("file://{images}/custom_game/relics/relic_rarity_common.png")
 	}
 	
 	if( relic.cursed == 1 ){
 		relicLabel.style.saturation = 0.8;
 		relicLabel.style.brightness = 0.6;
 	}
-	
+	if( newRelics[relic.relic_entindex] != false ){
+		relicPanel.style.border = '1px solid #FFD700';
+		newRelics[relic.relic_entindex] = true
+	}
 	relicPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", relicPanel, relicDescr)});
 	relicPanel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", relicPanel);});
 	var ownerText = "I have "
@@ -244,14 +317,7 @@ function CreateRelicPanel(relic)
 		ownerText = $.Localize( Entities.GetUnitName( Players.GetLocalPlayerPortraitUnit() ) ) + " has "
 	}
 	relicPanel.SetPanelEvent("onactivate", function(){ GameEvents.SendCustomGameEventToServer( "player_notify_relic", {pID : localID, text : ownerText + relicName + " - " + relicDescr} ) });
-}
-
-function ShowRelicTooltip()
-{
-	$.DispatchEvent("DOTAShowTextTooltip", $("#RelicInventoryButton"), "Relics are permanent bonuses that can be gained by defeating bosses, elites or certain events.")
-}
-
-function HideRelicTooltip()
-{
-	$.DispatchEvent("DOTAHideTextTooltip", $("#RelicInventoryButton"))
+	
+	relicPanel.relic_name = relic.name;
+	relicPanel.relic_entindex = relic.relic_entindex;
 }

@@ -1,6 +1,6 @@
 item_dark_lord_headdress = class({})
 
-function item_berserkers_mask:GetAssociatedUpgradeModifier()
+function item_dark_lord_headdress:GetAssociatedUpgradeModifier()
 	return "modifier_item_sanguine_mask_passive"
 end
 
@@ -38,6 +38,17 @@ end
 
 function modifier_item_dark_lord_headdress:GetAuraRadius()
 	return self.radius
+end
+
+function modifier_item_dark_lord_headdress:GetAuraEntityReject( unit )
+	local caster = self:GetCaster()
+	if caster:IsIllusion() then
+		for _, modifier in ipairs( unit:FindAllModifiersByName( self:GetModifierAura() ) ) do
+			if modifier:GetCaster():GetUnitName() == caster:GetUnitName() and caster ~= modifier:GetCaster() then
+				return true
+			end
+		end
+	end
 end
 
 function modifier_item_dark_lord_headdress:GetAuraDuration()

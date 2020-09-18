@@ -38,12 +38,15 @@ end
 
 modifier_abaddon_borrowed_time_talent = class({})
 LinkLuaModifier("modifier_abaddon_borrowed_time_talent", "heroes/hero_abaddon/abaddon_borrowed_time_ebf", LUA_MODIFIER_MOTION_NONE)
-
 function modifier_abaddon_borrowed_time_talent:OnCreated()
 	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_abaddon_borrowed_time_1")
 end
 
-function modifier_abaddon_borrowed_time_talent:GetModifierAttackSpeedBonus()
+function modifier_abaddon_borrowed_time_talent:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+end
+
+function modifier_abaddon_borrowed_time_talent:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

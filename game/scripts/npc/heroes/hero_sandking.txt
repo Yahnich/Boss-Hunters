@@ -124,14 +124,6 @@
 		"MaxLevel"						"1"
 		"HasScepterUpgrade"				"1"
 		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_shadow_fiend_shadowraze_1"	"1"
-			"special_bonus_unique_shadow_fiend_shadowraze_2"	"1"
-		}
-		
 		"precache"
 		{
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts" //Ability.SandKing_CausticFinale

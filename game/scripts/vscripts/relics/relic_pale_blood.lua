@@ -1,7 +1,15 @@
 relic_pale_blood = class(relicBaseClass)
 
+function relic_pale_blood:OnCreated()
+	self:GetParent():HookInModifier("GetModifierExtraHealthBonusPercentage", self)
+end
+
+function relic_pale_blood:OnDestroy()
+	self:GetParent():HookOutModifier("GetModifierExtraHealthBonusPercentage", self)
+end
+
 function relic_pale_blood:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_TAKEDAMAGE, MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE}
+	return {MODIFIER_EVENT_ON_TAKEDAMAGE}
 end
 
 function relic_pale_blood:GetModifierExtraHealthBonusPercentage()
@@ -10,6 +18,7 @@ end
 
 function relic_pale_blood:OnTakeDamage(params)
 	if params.attacker == self:GetParent() 
+	and params.attacker ~= params.unit
 	and self:GetParent():GetHealthDeficit() > params.damage 
 	and self:GetParent():GetHealth() > 0
 	and not (  HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) 

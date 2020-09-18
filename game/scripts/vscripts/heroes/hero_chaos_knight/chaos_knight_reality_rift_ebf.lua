@@ -132,14 +132,14 @@ function modifier_chaos_knight_reality_rift_ebf:OnRefresh()
 end
 
 function modifier_chaos_knight_reality_rift_ebf:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
+	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
 end
 
 function modifier_chaos_knight_reality_rift_ebf:GetModifierPhysicalArmorBonus()
 	return self.armor
 end
 
-function modifier_chaos_knight_reality_rift_ebf:GetModifierAttackSpeedBonus()
+function modifier_chaos_knight_reality_rift_ebf:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

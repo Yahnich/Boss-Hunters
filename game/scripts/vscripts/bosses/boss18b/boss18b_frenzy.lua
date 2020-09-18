@@ -45,7 +45,7 @@ function modifier_boss18b_frenzy_thinker:OnIntervalThink()
 end
 
 function modifier_boss18b_frenzy_thinker:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, }
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
 end
 
 function modifier_boss18b_frenzy_thinker:CheckState()
@@ -56,7 +56,7 @@ function modifier_boss18b_frenzy_thinker:GetModifierMoveSpeedBonus_Percentage()
 	return self.movespeed
 end
 
-function modifier_boss18b_frenzy_thinker:GetModifierAttackSpeedBonus()
+function modifier_boss18b_frenzy_thinker:GetModifierAttackSpeedBonus_Constant()
 	return self.attackspeed
 end
 

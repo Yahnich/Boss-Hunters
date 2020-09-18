@@ -1,7 +1,7 @@
 relic_delirious_cowl = class(relicBaseClass)
 
 function relic_delirious_cowl:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ABILITY_FULLY_CAST}
+	return {MODIFIER_EVENT_ON_ABILITY_FULLY_CAST, MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE}
 end
 
 function relic_delirious_cowl:OnAbilityFullyCast(params)
@@ -17,6 +17,6 @@ function relic_delirious_cowl:OnAbilityFullyCast(params)
 	end
 end
 
-function relic_delirious_cowl:GetCooldownReduction()
+function relic_delirious_cowl:GetModifierPercentageCooldown()
 	if not self:GetParent():HasModifier("relic_ritual_candle") then return -50 end
 end

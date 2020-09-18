@@ -42,7 +42,7 @@ function modifier_item_mirrors_edge:DeclareFunctions()
 			}
 end
 
-function modifier_item_mirrors_edge:GetModifierAttackSpeedBonus()
+function modifier_item_mirrors_edge:GetModifierAttackSpeedBonus_Constant()
 	return self.attackSpeed
 end
 

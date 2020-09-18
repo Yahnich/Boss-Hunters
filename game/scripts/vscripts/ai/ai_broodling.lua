@@ -26,7 +26,7 @@ end
 
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
-		if thisEntity.spawn:IsFullyCastable() and AICore:SpecificAlliedUnitsAlive( thisEntity, "npc_dota_creature_spiderling", -1 ) < 15 then
+		if thisEntity.spawn:IsFullyCastable() then
 			ExecuteOrderFromTable({
 				UnitIndex = thisEntity:entindex(),
 				OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -34,7 +34,7 @@ function AIThink(thisEntity)
 			})
 			return thisEntity.spawn:GetCastPoint() + 0.1
 		end
-		if AICore:TotalAlliedUnitsInRange( thisEntity, 1200 ) > math.ceil(4 * (thisEntity:GetHealthPercent()/100)) then
+		if thisEntity:GetHealthPercent() > 50 or not AICore:BeingAttacked( thisEntity ) then
 			return AICore:AttackHighestPriority( thisEntity )
 		else
 			AICore:BeAHugeCoward( thisEntity, 800 )

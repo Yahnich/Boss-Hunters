@@ -15,7 +15,7 @@
 		</snippet>
 		<snippet name ="RuneSlotImage">
 			<DOTAItemImage class="RuneSlotImageIcon" showtooltip="false" itemname='item_health_stone' scaling='stretch-to-fit-y-preserve-aspect'>
-				<Panel class="RuneSlotBlack"/>
+				<!-- <Panel class="RuneSlotBlack"/> -->
 				<Label text="1" id="RuneSlotLevelLabel" class="ValueLabel"/>
 			</DOTAItemImage>
 		</snippet>

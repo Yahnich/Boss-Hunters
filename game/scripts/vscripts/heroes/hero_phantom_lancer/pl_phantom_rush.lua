@@ -48,8 +48,8 @@ function modifier_pl_phantom_rush:OnOrder(params)
         local duration = 5
         
         -- Checks if the ability is off cooldown and if the caster is attacking a target
-        if target ~= null and ability:IsCooldownReady() and not ability:GetAutoCastState() then
-			if caster:HasTalent("special_bonus_unique_pl_phantom_rush_1") then
+        if target ~= null and ability:IsCooldownReady() and not ability:GetAutoCastState() and CalculateDistance then
+			if caster:HasTalent("special_bonus_unique_pl_phantom_rush_1") and CalculateDistance( caster, target) < max_distance then
 				local agiDuration = self:GetTalentSpecialValueFor("agility_duration")
 				local blinkPos = target:GetAbsOrigin() - target:GetForwardVector() * (parent:GetAttackRange() - 25)
 				ParticleManager:FireParticle("particles/units/heroes/hero_phantom_lancer/phantom_lancer_deathflash.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = parent:GetAbsOrigin() + Vector(0,0,32)} )
@@ -114,9 +114,23 @@ function modifier_pl_phantom_rush:OnAttackStart(params)
 			if caster:HasModifier("modifier_pl_phantom_rush_speed") then
 				caster:AddNewModifier(caster, self:GetAbility(), "modifier_pl_phantom_rush_agi", {Duration = agiDuration})
 				caster:RemoveModifierByName("modifier_pl_phantom_rush_speed")
+				if caster:HasScepter() and caster:IsRealHero() then
+					local juxtapose = caster:FindAbilityByName("pl_juxtapose")
+					if juxtapose then
+						local illusion = juxtapose:SpawnIllusion( true )
+						illusion:SetThreat( caster:GetThreat() )
+					end
+				end
 			elseif ability:IsCooldownReady() and not ability:GetAutoCastState() then
 				caster:AddNewModifier(caster, self:GetAbility(), "modifier_pl_phantom_rush_agi", {Duration = agiDuration})
 				ability:SetCooldown()
+				if caster:HasScepter() and caster:IsRealHero() then
+					local juxtapose = caster:FindAbilityByName("pl_juxtapose")
+					if juxtapose then
+						local illusion = juxtapose:SpawnIllusion( true )
+						illusion:SetThreat( caster:GetThreat() )
+					end
+				end
 				if caster:HasTalent("special_bonus_unique_pl_phantom_rush_1") then
 					local blinkPos = target:GetAbsOrigin() - target:GetForwardVector() * (attacker:GetAttackRange() - 25)
 					ParticleManager:FireParticle("particles/units/heroes/hero_phantom_lancer/phantom_lancer_deathflash.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = attacker:GetAbsOrigin() + Vector(0,0,32)} )
@@ -151,18 +165,27 @@ end
 
 modifier_pl_phantom_rush_speed = class({})
 function modifier_pl_phantom_rush_speed:OnCreated(table)
-    self.bonus_ms = self:GetParent():GetIdealSpeedNoSlows() + 800
+	self:OnRefresh()
 end
 
 function modifier_pl_phantom_rush_speed:OnRefresh(table)
-    self.bonus_ms = self:GetParent():GetIdealSpeedNoSlows() + 800
+    self.bonus_ms = self:GetTalentSpecialValueFor("bonus_speed")
+    self:GetParent():HookInModifier("GetMoveSpeedLimitBonus", self)
+end
+
+function modifier_pl_phantom_rush_speed:OnDestroy(table)
+    self:GetParent():HookOutModifier("GetMoveSpeedLimitBonus", self)
 end
 
 function modifier_pl_phantom_rush_speed:DeclareFunctions()
-    return {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE}
+    return {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, }
 end
 
-function modifier_pl_phantom_rush_speed:GetModifierMoveSpeed_Absolute()
+function modifier_pl_phantom_rush_speed:GetModifierMoveSpeedBonus_Constant()
+    return self.bonus_ms
+end
+
+function modifier_pl_phantom_rush_speed:GetMoveSpeedLimitBonus()
     return self.bonus_ms
 end
 

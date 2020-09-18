@@ -36,13 +36,13 @@ function modifier_boss_ifdat_flashfire:OnIntervalThink()
 end
 
 function modifier_boss_ifdat_flashfire:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT}
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 end
 
 function modifier_boss_ifdat_flashfire:GetModifierMoveSpeedBonus_Constant()
 	return self.ms * self:GetStackCount()
 end
 
-function modifier_boss_ifdat_flashfire:GetModifierAttackSpeedBonus()
+function modifier_boss_ifdat_flashfire:GetModifierAttackSpeedBonus_Constant()
 	return self.as * self:GetStackCount()
 end

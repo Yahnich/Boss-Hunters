@@ -61,10 +61,10 @@ function modifier_boss_greymane_leaders_inspiration_buff:OnRefresh()
 end
 
 function modifier_boss_greymane_leaders_inspiration_buff:DeclareFunctions()
-	return { }
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 end
 
-function modifier_boss_greymane_leaders_inspiration_buff:GetModifierAttackSpeedBonus()
+function modifier_boss_greymane_leaders_inspiration_buff:GetModifierAttackSpeedBonus_Constant()
 	local hpPct = (100 - self:GetCaster():GetHealthPercent())
 	local attackspeed = 0
 	if self:GetParent() == self:GetCaster() then

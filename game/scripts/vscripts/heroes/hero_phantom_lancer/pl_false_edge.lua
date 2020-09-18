@@ -72,7 +72,6 @@ end
 
 function modifier_pl_false_edge:DeclareFunctions()
     local funcs = { MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-                    MODIFIER_PROPERTY_TOOLTIP,
                     MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 					MODIFIER_PROPERTY_EVASION_CONSTANT }
     return funcs
@@ -93,10 +92,6 @@ end
 
 function modifier_pl_false_edge:GetModifierEvasion_Constant()
     return self.bonus_evasion
-end
-
-function modifier_pl_false_edge:OnTooltip()
-    return self.bonus_accuracy
 end
 
 function modifier_pl_false_edge:IsPurgable()

@@ -21,14 +21,16 @@ function modifier_boss_arthromos_hellraiser:DeclareFunctions()
 end
 
 function modifier_boss_arthromos_hellraiser:OnDeath(params)
-	if params.attacker == self:GetParent() then
+	if params.attacker == self:GetParent() and not params.unit:IsSameTeam(params.attacker) and not params.unit:IsIllusion() then
 		local illusions = params.unit:ConjureImage( {outgoing_damage = self.outgoing, incoming = self.incoming}, -1, params.attacker, 1 )
 		illusions[1]:SetHealth( illusions[1]:GetMaxHealth() )
 		Timers:CreateTimer(0.5, function()
-			if params.attacker:IsNull() or not params.attacker:IsAlive() then
+			if not illusions[1] or illusions[1]:IsNull() then return end
+			if not params.attacker or params.attacker:IsNull() or not params.attacker:IsAlive() then
 				illusions[1]:ForceKill(false)
+			else
+				illusions[1]:MoveToPositionAggressive( params.attacker:GetAbsOrigin() + RandomVector( 600 ) )
 			end
-			illusions[1]:MoveToPositionAggressive( params.attacker:GetAbsOrigin() + RandomVector( 600 ) )
 			return 0.5
 		end)
 	end

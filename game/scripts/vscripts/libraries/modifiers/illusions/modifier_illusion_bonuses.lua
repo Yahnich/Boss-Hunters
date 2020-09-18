@@ -72,7 +72,7 @@ function modifier_illusion_bonuses:GetModifierAttackRangeOverride( params )
 	return self.ar
 end
 
-function modifier_illusion_bonuses:GetModifierAttackSpeedBonus( params )
+function modifier_illusion_bonuses:GetModifierAttackSpeedBonus_Constant( params )
     return self.as
 end
 

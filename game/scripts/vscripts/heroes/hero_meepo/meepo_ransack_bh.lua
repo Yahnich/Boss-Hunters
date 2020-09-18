@@ -86,7 +86,7 @@ function modifier_meepo_ransack_bh:OnAttackLanded(params)
 				if RollPercentage(caster:FindTalentValue("special_bonus_unique_meepo_ransack_bh_2", "chance")) then
 					local allies = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {type = DOTA_UNIT_TARGET_HERO})
 					for _,ally in pairs(allies) do
-						if ally:IsHero() then
+						if ally:IsRealHero() then
 							ally:AddGold(self.gold)
 						end
 					end

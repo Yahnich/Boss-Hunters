@@ -300,25 +300,26 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"6 8 10 12 14 16 18"
-				//"LinkedSpecialBonus"	"special_bonus_unique_vengeful_spirit_1"
+				"var_type"						"FIELD_INTEGER"
+				"bonus_damage"					"6 8 10 12 14 16 18"
+				//"LinkedSpecialBonus"			"special_bonus_unique_vengeful_spirit_1"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"50 75 100 125 150 175 200"
-				//"LinkedSpecialBonus"	"special_bonus_unique_vengeful_spirit_1"
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"50 75 100 125 150 175 200"
+				//"LinkedSpecialBonus"			"special_bonus_unique_vengeful_spirit_1"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"800"
+				"var_type"						"FIELD_INTEGER"
+				"speed"							"800"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"4"
 			}
 		}
 	}

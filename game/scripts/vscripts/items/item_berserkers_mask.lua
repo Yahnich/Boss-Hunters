@@ -88,7 +88,9 @@ function modifier_item_berserkers_mask_active:OnDestroy()
 end
 
 function modifier_item_berserkers_mask_active:DeclareFunctions()
-	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS }
+	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, 
+			 MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, 
+			 MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
 end
 
 function modifier_item_berserkers_mask_active:CheckState()
@@ -101,7 +103,7 @@ function modifier_item_berserkers_mask_active:GetModifierLifestealBonus(params)
 	end
 end
 
-function modifier_item_berserkers_mask_active:GetModifierAttackSpeedBonus()
+function modifier_item_berserkers_mask_active:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

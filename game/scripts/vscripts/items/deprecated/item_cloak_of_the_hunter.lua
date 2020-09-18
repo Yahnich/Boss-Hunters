@@ -45,7 +45,7 @@ function modifier_item_cloak_of_the_hunter_passive:GetModifierBonusStats_Intelle
 	return self.bonus_all
 end
 
-function modifier_item_cloak_of_the_hunter_passive:GetModifierAttackSpeedBonus()
+function modifier_item_cloak_of_the_hunter_passive:GetModifierAttackSpeedBonus_Constant()
 	return self.bonus_attack_speed
 end
 
@@ -103,7 +103,7 @@ function modifier_item_cloak_of_the_hunter_passive_aura:GetAccuracy()
 	return self.accuracy
 end
 
-function modifier_item_cloak_of_the_hunter_passive_aura:GetModifierAttackSpeedBonus()
+function modifier_item_cloak_of_the_hunter_passive_aura:GetModifierAttackSpeedBonus_Constant()
 	return self.attackspeed
 end
 

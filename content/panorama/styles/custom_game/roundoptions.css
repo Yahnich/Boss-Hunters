@@ -5,6 +5,209 @@
     overflow: clip;
 }
 
+.EventCardContainers
+{
+	height: fit-children;
+	min-height: 450px;
+	width: fit-children;
+	vertical-align: center;
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: -50px;
+}
+
+.EventCardContainer
+{
+	height: 700px;
+	min-height: fill-parent-flow(1);
+	width: 350px;
+	horizontal-align: center;
+	flow-children: down;
+	/* box-shadow: fill -3px -3px 6px 6px #C0C0C0; */
+	/* brightness: 1.5; */
+	margin-left: 25px;
+	margin-right: 25px;
+}
+
+.EventCardTop
+{
+	height: 70px;
+	width: fill-parent-flow(1);
+	background-image: url("s2r://panorama/images/textures/dashboard_bg_base_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: center;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.EventCardTitle
+{
+	width: 100%;
+	color: #FFFFFF;
+	font-size: 24px;
+	text-shadow: 1px 1px 2px 3.0 #000000cc;
+	text-align: center;
+	vertical-align: center;
+	padding: 5px;
+	z-index: 5;
+}
+
+.EventCardReward
+{
+	width: 48px;
+	height: 48px;
+	/* background-image: url("s2r://panorama/images/control_icons/shop_icon_main_psd.vtex"); */
+	/* background-image: url("s2r://panorama/images/plus/achievements/relics_icon_png.vtex"); */
+	background-image: url("s2r://panorama/images/hud/icon_gold_psd.vtex");
+	/* background-image: url("s2r://panorama/images/hud/icon_outpost_psd.vtex"); */
+	/* background-image: url("file://{images}/custom_game/events/reward_type_lives_icon_png.png"); */
+	/* background-image: url("s2r://panorama/images/control_icons/shop_icon_main_psd.vtex"); */
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: center;
+	margin-left: 10px;
+	vertical-align: center;
+}
+
+.EventCardType
+{
+	width: 60px;
+	height: 60px;
+	/* background-image: url("file://{images}/custom_game/events/encounter_room_icon_png.png"); */
+	/* background-image: url("file://{images}/custom_game/events/boss_room_icon_png.png"); */
+	/* background-image: url("file://{images}/custom_game/events/bonus_room_icon_png.png"); */
+	/* background-image: url("file://{images}/custom_game/events/encounter_room_icon_png.png"); */
+	/* background-image: url("file://{images}/custom_game/events/encounter_room_icon_png.png"); */
+	/* background-image: url("file://{images}/custom_game/events/encounter_room_icon_png.png"); */
+	/* background-image: url("file://{images}/custom_game/events/encounter_room_icon_png.png"); */
+	/* background-image: url("file://{images}/custom_game/events/encounter_room_icon_png.png"); */
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: center;
+	margin-right: 10px;
+	vertical-align: center;
+	horizontal-align: right;
+}
+
+.EventCardBottom
+{
+	height: fill-parent-flow(1);
+	padding-top: 10px;
+	width: fill-parent-flow(1);
+	background-image: url("s2r://panorama/images/textures/dashboard_bg_base_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: center;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	flow-children: down;
+}
+
+.EventCardRightFlowContainer
+{
+	flow-children: right;
+	vertical-align: center;
+	horizontal-align: left;
+}
+
+.EventCardLeftFlowContainerBackground
+{
+	width: 100%;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: fit-children;
+}
+
+.EventCardLeftFlowContainer
+{
+	flow-children: left;
+	vertical-align: center;
+	horizontal-align: right;
+}
+
+.EventCardFoeContainers
+{
+	flow-children: down;
+	width: 100%;
+}
+
+.EventCardFoeIcon
+{
+	vertical-align: center;
+}
+
+.EventCardEnemyPanel
+{
+	height: 64px;
+	width: 64px;
+	border-radius: 50%;
+}
+
+
+.EventCardFoeAbility
+{
+	max-height: 48px;
+	max-width: 48px;
+	height: width-percentage(100%);
+	width: fill-parent-flow( 1);
+	vertical-align: center;
+	margin: 1px;
+	border: 2px solid #111111FF;
+}
+
+.EventCardImage
+{
+	height: width-percentage(67%);
+	width: 99.5%;
+	horizontal-align: center;
+}
+
+.EventCardDescriptor
+{
+	color: #FFFFFF;
+	font-size: 20px;
+	line-height: 15px;
+	text-shadow: 1px 1px 2px 3.0 #000000cc;
+	text-align: left;
+	horizontal-align: left;
+	margin-left: 6px;
+	z-index: 5;
+}
+
+.EventCardText
+{
+	color: #FFFFFF;
+	font-size: 16px;
+	line-height: 15px;
+	text-shadow: 1px 1px 2px 3.0 #000000cc;
+	text-align: left;
+	horizontal-align: left;
+	margin-left: 6px;
+	z-index: 5;
+}
+
+.EventCardFoeCount
+{
+	color: #FFFFFF;
+	font-size: 20px;
+	line-height: 15px;
+	text-shadow: 1px 1px 2px 3.0 #000000cc;
+	text-align: left;
+	horizontal-align: right;
+	vertical-align: bottom;
+	margin-right: 6px;
+	z-index: 5;
+}
+
+.MiscInfoContainer
+{
+	height: fit-children;
+	width: 100%;
+	vertical-align: bottom;
+	flow-children: down;
+}
+
 #confirmation 
 {
     horizontal-align: center;

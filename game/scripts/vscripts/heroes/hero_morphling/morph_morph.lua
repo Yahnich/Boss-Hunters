@@ -80,8 +80,8 @@ function morph_morph:OnSpellStart()
 		caster:RemoveModifierByName("modifier_morph_morph")
 	else
 		local duration = self:GetTalentSpecialValueFor("duration")
-		local outgoing = self:GetTalentSpecialValueFor("outgoing")
-		local incoming = self:GetTalentSpecialValueFor("incoming")
+		local outgoing = self:GetTalentSpecialValueFor("outgoing") - 100
+		local incoming = self:GetTalentSpecialValueFor("incoming") - 100
 
 		EmitSoundOn("Hero_Morphling.Replicate", caster)
 		local illusions = target:ConjureImage( {outgoing_damage = outgoing, incoming_damage = incoming}, duration, caster, 1 )

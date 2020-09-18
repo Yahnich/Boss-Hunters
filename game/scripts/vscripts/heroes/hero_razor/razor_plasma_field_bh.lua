@@ -22,10 +22,10 @@ function modifier_razor_plasma_field_attackspeed:OnRefresh()
 end
 
 function modifier_razor_plasma_field_attackspeed:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 end
 
-function modifier_razor_plasma_field_attackspeed:GetModifierAttackSpeedBonus()
+function modifier_razor_plasma_field_attackspeed:GetModifierAttackSpeedBonus_Constant()
 	return self.attackspeed
 end
 

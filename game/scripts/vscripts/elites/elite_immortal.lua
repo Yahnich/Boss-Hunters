@@ -17,6 +17,11 @@ end
 function modifier_elite_immortal:OnRefresh()
 	self.regen = self:GetSpecialValueFor("health_regen")
 	self.hp = self:GetSpecialValueFor("health")
+	self:GetParent():HookInModifier("GetModifierExtraHealthBonusPercentage", self)
+end
+
+function modifier_elite_immortal:OnDestroy()
+	self:GetParent():HookOutModifier("GetModifierExtraHealthBonusPercentage", self)
 end
 
 function modifier_elite_immortal:DeclareFunctions()

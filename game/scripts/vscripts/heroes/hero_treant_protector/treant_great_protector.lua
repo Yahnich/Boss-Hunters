@@ -52,6 +52,7 @@ function modifier_treant_great_protector:OnCreated( kv )
 	self.chance = self:GetTalentSpecialValueFor("root_chance")
 	
 	self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_treant_great_protector_1", "armor")
+	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )
 	if IsServer() then
 		self.nHealTicks = 0
 		self:StartIntervalThink( 0.05 )
@@ -62,6 +63,7 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_treant_great_protector:OnRemoved()
+	self:GetParent():HookOutModifier( "GetMoveSpeedLimitBonus", self )
 	if IsServer() then
 		local flHealth = self:GetParent():GetHealth() 
 		local flMaxHealth = self:GetParent():GetMaxHealth()

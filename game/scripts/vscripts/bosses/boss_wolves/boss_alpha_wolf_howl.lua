@@ -26,10 +26,10 @@ function modifier_boss_alpha_wolf_howl:OnRefresh()
 end
 
 function modifier_boss_alpha_wolf_howl:DeclareFunctions()
-	return {  MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE }
+	return {  MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT  }
 end
 
-function modifier_boss_alpha_wolf_howl:GetModifierAttackSpeedBonus()
+function modifier_boss_alpha_wolf_howl:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

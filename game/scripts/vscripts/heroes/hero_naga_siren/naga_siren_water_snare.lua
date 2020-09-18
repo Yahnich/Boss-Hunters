@@ -93,11 +93,11 @@ function modifier_naga_siren_water_snare_talent:OnIntervalThink()
 end
 
 function modifier_naga_siren_water_snare_talent:DeclareFunctions()
-	return {
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 			MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE}
 end
 
-function modifier_naga_siren_water_snare_talent:GetModifierAttackSpeedBonus()
+function modifier_naga_siren_water_snare_talent:GetModifierAttackSpeedBonus_Constant()
 	if self:GetStackCount() == 0 then
 		return self.attackspeed
 	end

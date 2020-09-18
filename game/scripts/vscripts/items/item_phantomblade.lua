@@ -33,23 +33,6 @@ item_phantomblade_9 = class(item_phantomblade)
 modifier_item_phantomblade_passive = class(itemBasicBaseClass)
 LinkLuaModifier( "modifier_item_phantomblade_passive", "items/item_phantomblade.lua", LUA_MODIFIER_MOTION_NONE )
 
-function modifier_item_phantomblade_passive:DeclareFunctions()
-	local funcs = self:GetDefaultFunctions()
-	table.insert( funcs, MODIFIER_PROPERTY_ABSORB_SPELL )
-	return funcs
-end
-
-function modifier_item_phantomblade_passive:GetAbsorbSpell(params)
-	if self:GetAbility():IsCooldownReady() and not self:GetParent():IsMuted() and not self:GetParent():PassivesDisabled() and params.ability:GetCaster():GetTeam() ~= self:GetParent():GetTeam() then
-		ParticleManager:FireParticle( "particles/items_fx/immunity_sphere.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
-		self:GetAbility():SetCooldown()
-		return 1
-	end
-end
-function modifier_item_phantomblade_passive:IsHidden()
-	return true
-end
-
 modifier_item_phantomblade_buff = class({})
 LinkLuaModifier( "modifier_item_phantomblade_buff", "items/item_phantomblade.lua", LUA_MODIFIER_MOTION_NONE )
 

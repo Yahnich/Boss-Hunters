@@ -108,10 +108,10 @@ function modifier_boss_wk_reincarnation_enrage:GetAuraSearchFlags()
 end
 
 function modifier_boss_wk_reincarnation_enrage:DeclareFunctions()
-	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE }
+	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
 end
 
-function modifier_boss_wk_reincarnation_enrage:GetModifierAttackSpeedBonus()
+function modifier_boss_wk_reincarnation_enrage:GetModifierAttackSpeedBonus_Constant()
 	return self.as + self.bonus_as * self:GetStackCount()
 end
 

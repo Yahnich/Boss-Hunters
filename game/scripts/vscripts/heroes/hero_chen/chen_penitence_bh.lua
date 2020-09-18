@@ -87,6 +87,10 @@ function modifier_chen_penitence_bh_buff:OnRefresh()
 	self.as = self:GetTalentSpecialValueFor("bonus_as")
 end
 
-function modifier_chen_penitence_bh_buff:GetModifierAttackSpeedBonus()
+function modifier_chen_penitence_bh_buff:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+end
+
+function modifier_chen_penitence_bh_buff:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end

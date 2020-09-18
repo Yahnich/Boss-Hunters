@@ -87,9 +87,9 @@ function modifier_silencer_last_word_bh_talent_buff:OnCreated()
 end
 
 function modifier_silencer_last_word_bh_talent_buff:DeclareFunctions()
-	return {}
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 end
 
-function modifier_silencer_last_word_bh_talent_buff:GetModifierAttackSpeedBonus()
+function modifier_silencer_last_word_bh_talent_buff:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end

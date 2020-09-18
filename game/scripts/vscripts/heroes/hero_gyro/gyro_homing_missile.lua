@@ -163,7 +163,7 @@ function modifier_restricted:OnRemoved()
 		for _,enemy in pairs(enemies) do
 			self:GetParent():StopSound("Hero_Gyrocopter.HomingMissile")
 			if not enemy:TriggerSpellAbsorb(self:GetAbility()) then
-				self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetCaster():GetAttackDamage() * self:GetSpecialValueFor("missile_damage")/100, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+				self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetCaster():GetAttackDamage() * self:GetSpecialValueFor("missile_damage")/100, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 				--enemy:ApplyKnockBack(self:GetParent():GetAbsOrigin(), 0.5, 0.5, self:GetSpecialValueFor("missile_explos_radius")/2, 100, self:GetCaster(), self:GetAbility())
 				enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_homing_missile_mr", {Duration = self:GetSpecialValueFor("duration")})
 			end

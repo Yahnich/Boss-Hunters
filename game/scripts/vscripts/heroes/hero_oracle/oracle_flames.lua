@@ -17,6 +17,15 @@ function oracle_flames:GetBehavior()
     return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
 end
 
+function oracle_flames:GetManaCost( iLvl )
+	local caster = self:GetCaster()
+	if caster:HasScepter() and not caster:HasModifier("modifier_oracle_innate_offense") and not caster:HasModifier("modifier_oracle_innate_defense") then
+		return 0
+	else
+		return self.BaseClass.GetManaCost( self, iLvl )
+	end
+end
+
 function oracle_flames:GetIntrinsicModifierName()
     return "modifier_oracle_flames_handle"
 end

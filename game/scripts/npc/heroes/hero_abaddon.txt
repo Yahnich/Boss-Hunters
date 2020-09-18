@@ -51,6 +51,7 @@
 				"self_heal"						"75 100 125 150 175 200 225"
 				"LinkedSpecialBonus"			"special_bonus_unique_abaddon_death_coil_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
@@ -172,6 +173,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"damage_absorb"			"110 140 175 215 260 310 365"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
@@ -255,24 +257,25 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"heal_duration"				"10"
+				"var_type"						"FIELD_FLOAT"
+				"heal_duration"					"10"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"heal_pct"					"20"
-				"LinkedSpecialBonus"		"special_bonus_unique_abaddon_brume_weaver_1"
+				"var_type"						"FIELD_FLOAT"
+				"heal_pct"						"20"
+				"LinkedSpecialBonus"			"special_bonus_unique_abaddon_brume_weaver_1"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"base_heal"					"100 150 200 250 300 350 400"
+				"var_type"						"FIELD_FLOAT"
+				"base_heal"						"100 150 200 250 300 350 400"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"buff_duration"				"10"
+				"var_type"						"FIELD_FLOAT"
+				"buff_duration"					"10"
 			}
 		}
 	

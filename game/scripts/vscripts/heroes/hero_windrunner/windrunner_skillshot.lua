@@ -9,6 +9,10 @@ function windrunner_skillshot:IsHiddenWhenStolen()
     return false
 end
 
+function windrunner_skillshot:ShouldUseResources()
+	return true
+end
+
 function windrunner_skillshot:GetIntrinsicModifierName()
 	return "modifier_windrunner_skillshot_handle"
 end
@@ -67,12 +71,10 @@ function modifier_windrunner_skillshot_handle:DeclareFunctions()
 end
 
 function modifier_windrunner_skillshot_handle:OnAttackRecord(params)
-    if IsServer() and params.attacker == self:GetParent() and params.target and params.target:GetTeam() ~= self:GetCaster():GetTeam()  then
-    	if self.lastAttack + self.cd < GameRules:GetGameTime() and self:RollPRNG( self.chance ) then
+    if IsServer() and params.attacker == self:GetParent() and params.target and params.target:GetTeam() ~= self:GetCaster():GetTeam() and not params.attacker:PassivesDisabled() then
+    	if self:GetAbility():IsCooldownReady() and self:RollPRNG( self.chance ) then
     		self:GetAbility():FireTrackingProjectile("particles/skillshot.vpcf", params.target, params.attacker:GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1)
-    		if not self:GetCaster():HasTalent("special_bonus_unique_windrunner_focusfire_bh_1") and not self:GetCaster():HasModifier("modifier_windrunner_focusfire_bh") then
-    			self.lastAttack = GameRules:GetGameTime()
-    		end
+			self:GetAbility():SetCooldown( self.cd * self:GetParent():GetCooldownReduction() )
     	end
     end
 end

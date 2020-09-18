@@ -36,17 +36,18 @@ if IsServer() then
 		local parentPos = parent:GetAbsOrigin()
 
 		FindClearSpaceForUnit(parent, parentPos, true)
-		if parent:IsFrozen() then return end
-		local ability = self:GetAbility()
-		local damage = math.max( 75, math.min( self:GetSpecialValueFor("base_damage"), self:GetSpecialValueFor("base_damage") * parent:GetModelScale() / 1.8 ) )
-		local radius = math.max( 175, math.min( self:GetSpecialValueFor("base_radius"), self:GetSpecialValueFor("base_radius") * parent:GetModelScale() / 1.8 ) )
-		ParticleManager:FireParticle("particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", PATTACH_ABSORIGIN, parent, {[1] = Vector(radius, 1, 1)})
-		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parentPos, radius ) ) do
-			if not enemy:TriggerSpellAbsorb(self) then
-				ability:DealDamage(parent, enemy, damage)
+		if not (parent:IsFrozen() or self.distanceTraveled > 0) then
+			local ability = self:GetAbility()
+			local damage = math.max( 75, math.min( self:GetSpecialValueFor("base_damage"), self:GetSpecialValueFor("base_damage") * parent:GetModelScale() / 1.8 ) )
+			local radius = math.max( 175, math.min( self:GetSpecialValueFor("base_radius"), self:GetSpecialValueFor("base_radius") * parent:GetModelScale() / 1.8 ) )
+			ParticleManager:FireParticle("particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", PATTACH_ABSORIGIN, parent, {[1] = Vector(radius, 1, 1)})
+			for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parentPos, radius ) ) do
+				if not enemy:TriggerSpellAbsorb(self) then
+					ability:DealDamage(parent, enemy, damage)
+				end
 			end
+			EmitSoundOn("Ability.TossImpact", parent)
 		end
-		EmitSoundOn("Ability.TossImpact", parent)
 		self:StopMotionController()
 		ResolveNPCPositions( self:GetParent():GetAbsOrigin(), 500 ) 
 	end

@@ -55,6 +55,10 @@ function modifier_zeus_thunder_bolt_talent:OnCreated()
 	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_zeus_thunder_bolt_2")
 end
 
-function modifier_zeus_thunder_bolt_talent:GetModifierAttackSpeedBonus()
+function modifier_zeus_thunder_bolt_talent:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+end
+
+function modifier_zeus_thunder_bolt_talent:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end

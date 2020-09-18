@@ -11,8 +11,10 @@ end
 function boss_apotheosis_rampage:OnProjectileHit( target, position )
 	if target then
 		local caster = self:GetCaster()
-		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, self.radius ) ) do
-			self:DealDamage( caster, enemy, self.damage )
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, self.radius ) ) do	
+			if not enemy:TriggerSpellAbsorb( self ) then
+				self:DealDamage( caster, enemy, self.damage )
+			end
 		end
 		target:EmitSound("Hero_ObsidianDestroyer.ArcaneOrb.Impact")
 		UTIL_Remove(target)

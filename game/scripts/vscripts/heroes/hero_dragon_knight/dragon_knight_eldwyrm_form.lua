@@ -53,6 +53,7 @@ function modifier_dragon_knight_eldwyrm_form:OnRefresh()
 		self.reduction = 100 / self:GetDuration()
 		self:StartIntervalThink(1)
 	end
+	self:GetParent():HookInModifier( "GetModifierAreaDamage", self )
 	if IsServer() then
 		local caster = self:GetCaster()
 		caster:StartGesture( ACT_DOTA_CAST_ABILITY_4 )
@@ -69,6 +70,7 @@ function modifier_dragon_knight_eldwyrm_form:OnIntervalThink()
 end
 
 function modifier_dragon_knight_eldwyrm_form:OnDestroy()
+	self:GetParent():HookOutModifier( "GetModifierAreaDamage", self )
 	if IsServer() then
 		local caster = self:GetCaster()
 		-- caster:SetModel("models/heroes/dragon_knight/dragon_knight.vmdl")
@@ -93,6 +95,7 @@ function modifier_dragon_knight_eldwyrm_form:DeclareFunctions()
 			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 			MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE,
 			MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
+			MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE 
 			}
 end
 
@@ -116,11 +119,7 @@ function modifier_dragon_knight_eldwyrm_form:GetModifierAttackRangeOverride()
 	return self.range
 end
 
-function modifier_dragon_knight_eldwyrm_form:GetCooldownReduction()
-	return self.cdr
-end
-
-function modifier_dragon_knight_eldwyrm_form:GetCooldownReduction()
+function modifier_dragon_knight_eldwyrm_form:GetModifierPercentageCooldown()
 	return self.cdr
 end
 
@@ -167,10 +166,10 @@ function modifier_dragon_knight_eldwyrm_form_poison:OnIntervalThink()
 end
 
 function modifier_dragon_knight_eldwyrm_form_poison:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 end
 
-function modifier_dragon_knight_eldwyrm_form_poison:GetModifierAttackSpeedBonus()
+function modifier_dragon_knight_eldwyrm_form_poison:GetModifierAttackSpeedBonus_Constant()
 	return self.slow
 end
 

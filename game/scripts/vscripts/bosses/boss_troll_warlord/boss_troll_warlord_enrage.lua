@@ -41,19 +41,24 @@ end
 
 modifier_boss_troll_warlord_enrage = class({})
 function modifier_boss_troll_warlord_enrage:OnCreated(table)
+	self:GetParent():HookInModifier("GetBaseAttackTime_Bonus", self)
 	if IsServer() then AddAnimationTranslate(self:GetParent(), "melee")	end
+end
+
+function modifier_boss_troll_warlord_enrage:OnDestroy(table)
+	self:GetParent():HookOutModifier("GetBaseAttackTime_Bonus", self)
 end
 
 function modifier_boss_troll_warlord_enrage:DeclareFunctions()
     local funcs = {
-        
+        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
         MODIFIER_PROPERTY_MODEL_SCALE
     }
     return funcs
 end
 
-function modifier_boss_troll_warlord_enrage:GetModifierAttackSpeedBonus()
+function modifier_boss_troll_warlord_enrage:GetModifierAttackSpeedBonus_Constant()
 	if self:GetParent():PassivesDisabled() then return end
     return self:GetSpecialValueFor("bonus_as")
 end

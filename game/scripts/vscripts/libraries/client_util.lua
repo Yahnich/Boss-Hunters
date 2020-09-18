@@ -53,6 +53,24 @@ function C_DOTA_BaseNPC:GetAttackRange()
 	return self:Script_GetAttackRange()
 end
 
+function C_DOTA_BaseNPC:HookInModifier( modifierType, modifier )
+	local statsHandler = self.statsSystemHandlerModifier
+	if statsHandler then
+		statsHandler.modifierFunctions[modifierType] = statsHandler.modifierFunctions[modifierType] or {}
+		statsHandler.modifierFunctions[modifierType][modifier] = true
+		statsHandler:ForceRefresh()
+	end
+end
+
+function C_DOTA_BaseNPC:HookOutModifier( modifierType, modifier )
+	local statsHandler = self.statsSystemHandlerModifier
+	if statsHandler then
+		statsHandler.modifierFunctions[modifierType] = statsHandler.modifierFunctions[modifierType] or {}
+		statsHandler.modifierFunctions[modifierType][modifier] = nil
+		statsHandler:ForceRefresh()
+	end
+end
+
 function TernaryOperator(value, bCheck, default)
 	if bCheck then 
 		return value 

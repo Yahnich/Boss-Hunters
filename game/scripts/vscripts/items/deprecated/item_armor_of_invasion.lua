@@ -23,7 +23,7 @@ function modifier_armor_of_invasion_passive:GetModifierPhysicalArmorBonus()
 	return self.armor
 end
 
-function modifier_armor_of_invasion_passive:GetModifierAttackSpeedBonus()
+function modifier_armor_of_invasion_passive:GetModifierAttackSpeedBonus_Constant()
 	return self.attackspeed
 end
 
@@ -93,6 +93,6 @@ function modifier_armor_of_invasion_aura:GetModifierPhysicalArmorBonus()
 	return self.armor
 end
 
-function modifier_armor_of_invasion_aura:GetModifierAttackSpeedBonus()
+function modifier_armor_of_invasion_aura:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end

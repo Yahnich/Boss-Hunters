@@ -140,7 +140,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"ember_spirit_sleight_of_fist"
 		"MaxLevel"						"7"
@@ -183,29 +183,30 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"40 80 120 160 200 240 280"
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"40 80 120 160 200 240 280"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"350 350 350 350 450 550 650"
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"350 350 350 350 450 550 650"
 			}		
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"jump_rate"					"0.2"
+				"var_type"						"FIELD_FLOAT"
+				"jump_rate"						"0.2"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"charges"					"0"
-				"LinkedSpecialBonus"		"special_bonus_unique_ember_fist_1"
+				"var_type"						"FIELD_INTEGER"
+				"charges"						"0"
+				"LinkedSpecialBonus"			"special_bonus_unique_ember_fist_1"
 			}
 			"05"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"10"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"10"
 			}
 		}
 	}

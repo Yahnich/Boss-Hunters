@@ -178,10 +178,8 @@ function modifier_liquid_fire_caster:OnAttack(keys)
 				self.apply_aoe_modifier_debuff_on_hit[target] = self.apply_aoe_modifier_debuff_on_hit[target] + 1;
 			end
 
-			local cooldown = ability:GetCooldown( ability:GetLevel() - 1 ) *  (1 - caster:GetCooldownReduction() * 0.01)
-
 			-- Start cooldown
-			ability:StartCooldown( cooldown )
+			ability:SetCooldown( )
 		end
 	end
 end
@@ -285,12 +283,12 @@ end
 
 function modifier_liquid_fire_debuff:DeclareFunctions()
 	local funcs = {
-		
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT 
 	}
 	return funcs
 end
 
-function modifier_liquid_fire_debuff:GetModifierAttackSpeedBonus()
+function modifier_liquid_fire_debuff:GetModifierAttackSpeedBonus_Constant()
 	return self:GetTalentSpecialValueFor("slow_as")
 end
 

@@ -45,7 +45,7 @@ function modifier_ss_voltaic_surge_buff:OnRemoved()
 end
 
 function modifier_ss_voltaic_surge_buff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE, MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING }
+	return {MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE, MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, }
 end
 
 function modifier_ss_voltaic_surge_buff:GetModifierPercentageCooldown()
@@ -56,7 +56,7 @@ function modifier_ss_voltaic_surge_buff:GetModifierPercentageManacostStacking()
 	return self.cost
 end
 
-function modifier_ss_voltaic_surge_buff:GetModifierAttackSpeedBonus()
+function modifier_ss_voltaic_surge_buff:GetModifierAttackSpeedBonus_Constant()
 	return self.attackspeed
 end
 

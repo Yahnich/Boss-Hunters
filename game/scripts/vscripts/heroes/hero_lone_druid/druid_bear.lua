@@ -60,7 +60,6 @@ end
 function druid_bear:BearStats(unit)
 	local caster = self:GetCaster()
 
-	unit:RemoveModifierByName("modifier_handler_handler")
 	for i=0,3 do
 		local ability = unit:GetAbilityByIndex(i)
 		if ability then
@@ -122,7 +121,6 @@ function druid_bear:BearStats(unit)
 		local sun = unit:RemoveAbility("druid_sunmoon_strike")
 	end
 	unit:AddNewModifier(caster, self, "modifier_stats_system_handler", {})
-	unit:AddNewModifier(caster, self, "modifier_handler_handler", {})
 	unit:SetMana( unit:GetMaxMana() )
 end
 

@@ -187,10 +187,10 @@ function modifier_abyssal_underlord_pit_of_malice_bh_talent:OnCreated()
 end
 
 function modifier_abyssal_underlord_pit_of_malice_bh_talent:DeclareFunctions()
-	return {  MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE }
+	return {  MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
 end
 
-function modifier_abyssal_underlord_pit_of_malice_bh_talent:GetModifierAttackSpeedBonus()
+function modifier_abyssal_underlord_pit_of_malice_bh_talent:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

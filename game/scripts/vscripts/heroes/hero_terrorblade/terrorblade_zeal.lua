@@ -49,6 +49,7 @@ function modifier_terrorblade_zeal_passive:DeclareFunctions()
 	funcs = {
 				MODIFIER_EVENT_ON_DEATH,
 				MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 			}
 	return funcs
 end
@@ -84,9 +85,6 @@ function modifier_terrorblade_zeal_passive:OnDeath(params)
 	end
 end
 
-function modifier_terrorblade_zeal_passive:IsHidden()
-	return true
-end
 
 function modifier_terrorblade_zeal_passive:GetModifierConstantHealthRegen()
 	local regen = self.healthregen
@@ -96,12 +94,16 @@ function modifier_terrorblade_zeal_passive:GetModifierConstantHealthRegen()
 	return regen
 end
 
-function modifier_terrorblade_zeal_passive:GetModifierAttackSpeedBonus()
+function modifier_terrorblade_zeal_passive:GetModifierAttackSpeedBonus_Constant()
 	local as = self.attackspeed
 	if self:GetParent():HasModifier("modifier_terrorblade_zeal_scepter") then
 		as = as * self.increase
 	end
 	return as
+end
+
+function modifier_terrorblade_zeal_passive:IsHidden()
+	return true
 end
 
 modifier_terrorblade_zeal_scepter = class({})

@@ -21,7 +21,6 @@ function pango_swift_dash:OnSpellStart()
     ProjectileManager:ProjectileDodge(self:GetCaster())
 end
 
-
 modifier_pango_swift_dash_as = class({})
 function modifier_pango_swift_dash_as:OnCreated(table)
 	self.bonus_as = self:GetCaster():FindTalentValue("special_bonus_unique_pango_swift_dash_2")
@@ -33,12 +32,12 @@ end
 
 function modifier_pango_swift_dash_as:DeclareFunctions()
     local funcs = {
-        
+        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
     }
     return funcs
 end
 
-function modifier_pango_swift_dash_as:GetModifierAttackSpeedBonus()
+function modifier_pango_swift_dash_as:GetModifierAttackSpeedBonus_Constant()
 	return self.bonus_as
 end
 

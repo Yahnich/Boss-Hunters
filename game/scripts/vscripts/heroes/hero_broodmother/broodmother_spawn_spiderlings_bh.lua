@@ -43,11 +43,18 @@ function modifier_broodmother_spawn_spiderlings_bh:OnRemoved()
 			
 			spider:AddNewModifier( caster, ability, "modifier_broodmother_spawn_spiderlings_evasion", {})
 			
+			spider:SetBaseMagicalResistanceValue( mr )
+    		spider:SetAverageBaseDamage( damage, 15 )
+    		spider:SetBaseAttackTime( 1 )
+			spider:SetCoreHealth( hp )
+			
+    		spider:AddAbility("broodmother_bite"):SetLevel(1)
+    		
 			if caster:HasTalent("special_bonus_unique_broodmother_spawn_spiderlings_bh_1") then
 				local stealList = {}
 				for i = 0, 16 do
 					local stealAbility = parent:GetAbilityByIndex(i)
-					if stealAbility and stealAbility:IsPassive() then
+					if stealAbility and stealAbility:IsPassive() and ( not stealAbility.IsStealable or ( stealAbility.IsStealable and stealAbility:IsStealable() ) ) then
 						table.insert( stealList, stealAbility:GetName() )
 					end
 				end
@@ -57,14 +64,6 @@ function modifier_broodmother_spawn_spiderlings_bh:OnRemoved()
 					spider:SetRangedProjectileName( parent:GetRangedProjectileName() )
 				end
 			end
-			
-			spider:SetBaseMagicalResistanceValue( mr )
-    		spider:SetAverageBaseDamage( damage, 15 )
-    		spider:SetBaseAttackTime( 1 )
-			spider:SetCoreHealth( hp )
-			
-    		spider:AddAbility("broodmother_bite"):SetLevel(1)
-    		
     	end
     end
 end

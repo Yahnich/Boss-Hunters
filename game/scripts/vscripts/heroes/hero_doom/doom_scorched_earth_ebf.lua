@@ -126,12 +126,13 @@ end
 function modifier_doom_scorched_earth_buff:DeclareFunctions()
 	funcs = {
 				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-				MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE
+				MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE,
+				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
 			}
 	return funcs
 end
 
-function modifier_doom_scorched_earth_buff:GetModifierAttackSpeedBonus()
+function modifier_doom_scorched_earth_buff:GetModifierAttackSpeedBonus_Constant()
 	return self.attackspeed
 end
 

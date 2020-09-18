@@ -46,7 +46,7 @@ end
 
 function modifier_boss_doom_unstoppable_effect:DeclareFunctions()
 	return {MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
-			
+			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 			MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
 end
 
@@ -62,7 +62,7 @@ function modifier_boss_doom_unstoppable_effect:GetModifierDamageOutgoing_Percent
 	return self.dmg
 end
 
-function modifier_boss_doom_unstoppable_effect:GetModifierAttackSpeedBonus()
+function modifier_boss_doom_unstoppable_effect:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

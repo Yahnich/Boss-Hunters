@@ -40,14 +40,13 @@ function modifier_boss_hellbear_clap:OnRefresh()
 end
 
 function modifier_boss_hellbear_clap:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE }
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
 end
 
 function modifier_boss_hellbear_clap:GetModifierMoveSpeedBonus_Percentage()
 	return self.ms
 end
 
-
-function modifier_boss_hellbear_clap:GetModifierAttackSpeedBonus()
+function modifier_boss_hellbear_clap:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end

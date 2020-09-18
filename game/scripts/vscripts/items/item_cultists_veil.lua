@@ -36,16 +36,25 @@ LinkLuaModifier( "modifier_item_cultists_veil_passive", "items/item_cultists_vei
 
 function modifier_item_cultists_veil_passive:OnCreatedSpecific()
 	self.mana_cost = self:GetSpecialValueFor("mana_cost_reduction")
+	if IsServer() then
+		self:GetCaster():HookInModifier( "GetModifierManacostReduction", self )
+	end
 end
 
-function modifier_item_cultists_veil_passive:DeclareFunctions()
-	local funcs = self:GetDefaultFunctions()
-	table.insert(funcs, MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING)
-	return funcs
+function modifier_item_cultists_veil_passive:OnRefreshSpecific()
+	self.mana_cost = self:GetSpecialValueFor("mana_cost_reduction")
+	if IsServer() then
+		self:GetCaster():HookInModifier( "GetModifierManacostReduction", self )
+	end
 end
 
+function modifier_item_cultists_veil_passive:OnDestroySpecific()
+	if IsServer() then
+		self:GetCaster():HookOutModifier( "GetModifierManacostReduction", self )
+	end
+end
 
-function modifier_item_cultists_veil_passive:GetModifierPercentageManacostStacking(params)	
+function modifier_item_cultists_veil_passive:GetModifierManacostReduction(params)
 	return self.mana_cost
 end
 

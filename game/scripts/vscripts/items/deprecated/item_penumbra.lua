@@ -30,7 +30,7 @@ function modifier_item_penumbra_passive:DeclareFunctions()
 			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,}
 end
 
-function modifier_item_penumbra_passive:GetModifierAttackSpeedBonus()
+function modifier_item_penumbra_passive:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

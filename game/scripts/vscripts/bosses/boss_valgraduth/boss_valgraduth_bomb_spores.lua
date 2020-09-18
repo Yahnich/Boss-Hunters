@@ -36,7 +36,8 @@ if IsServer() then
 		local distance = RandomInt( self.spore_min_distance, self.spore_max_distance )
 		local duration = distance / self.spore_speed
 		local reAppliedKnockback = false
-		Timers:CreateTimer(function()
+		Timers:CreateTimer(function()	
+			if not spawn or spawn:IsNull() then return end
 			if not spawn:HasModifier("modifier_knockback") then
 				spawn:ApplyKnockBack(caster:GetAbsOrigin(), duration, duration, distance, 600, caster, ability, false)
 				return 0.1

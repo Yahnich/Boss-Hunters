@@ -472,16 +472,19 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_scepter"		"120 200 280 360 440 520"
+				"RequiresScepter"		"1"
 			}
 			"12"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"scepter_chill_init"	"40"
+				"RequiresScepter"		"1"
 			}
 			"13"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"scepter_chill_hit"		"7"
+				"RequiresScepter"		"1"
 			}
 			"16"
 			{

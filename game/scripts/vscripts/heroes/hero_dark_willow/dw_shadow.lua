@@ -275,10 +275,10 @@ function modifier_dw_shadow_bonus_as:OnRefresh(kv)
 end
 
 function modifier_dw_shadow_bonus_as:DeclareFunctions()
-	return {}
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 end
 
-function modifier_dw_shadow_bonus_as:GetModifierAttackSpeedBonus()
+function modifier_dw_shadow_bonus_as:GetModifierAttackSpeedBonus_Constant()
 	return self.bonus_as
 end
 

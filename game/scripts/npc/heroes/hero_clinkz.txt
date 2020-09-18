@@ -501,6 +501,14 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Clinkz.DeathPact"
 		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_clinkz_burning_army_1"	"1"
+			"special_bonus_unique_clinkz_burning_army_2"	"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

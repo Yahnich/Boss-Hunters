@@ -46,9 +46,8 @@ end
 function itemAuraBaseClass:OnCreated()
 	self:OnCreatedSpecific()
 	if IsServer() then
-		self:GetCaster():HookInModifier( "GetModifierBaseCriticalChanceBonus", self )
-		self:GetCaster():HookInModifier( "GetModifierBaseCriticalDamageBonus", self )
-		self:GetCaster():HookInModifier( "GetModifierAttackSpeedBonus", self )
+		self:GetParent():HookInModifier( "GetModifierBaseCriticalChanceBonus", self )
+		self:GetParent():HookInModifier( "GetModifierBaseCriticalDamageBonus", self )
 		self:SetupRuneSystem( self:GetStoneShareability() )
 		self:SetHasCustomTransmitterData( true )
 		
@@ -61,9 +60,8 @@ end
 function itemAuraBaseClass:OnRefresh()
 	self:OnRefreshSpecific()
 	if IsServer() then
-		self:GetCaster():HookInModifier( "GetModifierBaseCriticalChanceBonus", self )
-		self:GetCaster():HookInModifier( "GetModifierBaseCriticalDamageBonus", self )
-		self:GetCaster():HookInModifier( "GetModifierAttackSpeedBonus", self )
+		self:GetParent():HookInModifier( "GetModifierBaseCriticalChanceBonus", self )
+		self:GetParent():HookInModifier( "GetModifierBaseCriticalDamageBonus", self )
 		self:SetHasCustomTransmitterData( true )
 	end
 end
@@ -74,9 +72,8 @@ end
 function itemAuraBaseClass:OnDestroy()
 	self:OnDestroySpecific()
 	if IsServer() then
-		self:GetCaster():HookOutModifier( "GetModifierBaseCriticalChanceBonus", self )
-		self:GetCaster():HookOutModifier( "GetModifierBaseCriticalDamageBonus", self )
-		self:GetCaster():HookOutModifier( "GetModifierAttackSpeedBonus", self )
+		self:GetParent():HookOutModifier( "GetModifierBaseCriticalChanceBonus", self )
+		self:GetParent():HookOutModifier( "GetModifierBaseCriticalDamageBonus", self )
 		self:SetHasCustomTransmitterData( true )
 	end
 end
@@ -98,7 +95,9 @@ function itemAuraBaseClass:GetDefaultFunctions()
 				MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 				MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 				MODIFIER_PROPERTY_CAST_RANGE_BONUS,
-				MODIFIER_PROPERTY_ATTACK_RANGE_BONUS 
+				MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+				MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING 
 			}
 end 
 

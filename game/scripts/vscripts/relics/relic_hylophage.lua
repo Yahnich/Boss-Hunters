@@ -8,7 +8,7 @@ function relic_hylophage:OnCreated()
 end
 
 function relic_hylophage:OnIntervalThink()
-	self:SetStackCount(CutTreesInRadius(self:GetParent():GetAbsOrigin(), 600))
+	self:SetStackCount(CutTreesInRadius(self:GetParent():GetAbsOrigin(), 600, {ability = self:GetAbility(), caster = self:GetParent()}))
 	self:SetDuration(12.1, true)
 end
 

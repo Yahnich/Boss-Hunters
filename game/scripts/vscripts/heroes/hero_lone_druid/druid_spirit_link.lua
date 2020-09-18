@@ -156,6 +156,7 @@ end
 
 function modifier_druid_spirit_link_buff:DeclareFunctions()
 	local funcs = {MODIFIER_EVENT_ON_TAKEDAMAGE,
+					MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 				   MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE }
 	return funcs
 end
@@ -179,7 +180,7 @@ function modifier_druid_spirit_link_buff:OnTakeDamage(params)
 	end
 end
 
-function modifier_druid_spirit_link_buff:GetModifierAttackSpeedBonus()
+function modifier_druid_spirit_link_buff:GetModifierAttackSpeedBonus_Constant()
 	return self.bouns_as
 end
 

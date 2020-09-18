@@ -62,16 +62,14 @@ LinkLuaModifier("modifier_obsidian_destroyer_avatar_of_power_passive", "heroes/h
 
 function modifier_obsidian_destroyer_avatar_of_power_passive:OnCreated()
 	self.mana = self:GetTalentSpecialValueFor("bonus_mana")
-	self.manaregen = self:GetTalentSpecialValueFor("bonus_mana_regen")
 	self.spellamp = self:GetTalentSpecialValueFor("bonus_spell_amp")
 	
-	self.chance = self:GetCaster():FindTalentValue("special_bonus_unique_obsidian_destroyer_avatar_of_power_2", "chance")
-	self.essence = self:GetCaster():FindTalentValue("special_bonus_unique_obsidian_destroyer_avatar_of_power_2") / 100
+	self.chance = self:GetTalentSpecialValueFor("mana_restore_chance")
+	self.essence = self:GetTalentSpecialValueFor("mana_restore_pct") / 100
 end
 
 function modifier_obsidian_destroyer_avatar_of_power_passive:OnRefresh()
 	self.mana = self:GetTalentSpecialValueFor("bonus_mana")
-	self.manaregen = self:GetTalentSpecialValueFor("bonus_mana_regen")
 	self.spellamp = self:GetTalentSpecialValueFor("bonus_spell_amp")
 
 	self.chance = self:GetTalentSpecialValueFor("mana_restore_chance")
@@ -83,7 +81,7 @@ function modifier_obsidian_destroyer_avatar_of_power_passive:IsHidden()
 end
 
 function modifier_obsidian_destroyer_avatar_of_power_passive:IsActive()
-	return not self:GetCaster():HasModifier("modifier_obsidian_destroyer_avatar_of_power_active")
+	return self:GetCaster():HasModifier("modifier_obsidian_destroyer_avatar_of_power_active")
 end
 
 function modifier_obsidian_destroyer_avatar_of_power_passive:DeclareFunctions()
@@ -93,7 +91,7 @@ function modifier_obsidian_destroyer_avatar_of_power_passive:DeclareFunctions()
 end
 
 function modifier_obsidian_destroyer_avatar_of_power_passive:OnSpentMana(params)
-	if IsServer() and self:IsActive() then
+	if IsServer() and not self:IsActive() then
 		if params.unit == self:GetCaster() and self:RollPRNG( self.chance ) and params.cost > 0 then
 			local manaGain = math.ceil( self:GetCaster():GetMaxMana() * self.essence )
 			ParticleManager:FireParticle("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster() )

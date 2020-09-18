@@ -30,6 +30,7 @@ function modifier_enchantress_take_root:OnCreated(table)
 	self.bonus_dmg = self:GetTalentSpecialValueFor("bonus_dmg")
 	self.bonus_acc = self:GetTalentSpecialValueFor("bonus_acc")
 	
+	self:GetParent():HookInModifier("GetModifierAttackSpeedBonusPercentage", self)
 	if IsServer() then
 		local parent = self:GetParent()
 
@@ -40,6 +41,10 @@ function modifier_enchantress_take_root:OnCreated(table)
 					ParticleManager:SetParticleControlEnt(nfx, 1, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
 		self:AttachEffect(nfx)
 	end
+end
+
+function modifier_enchantress_take_root:OnDestroy()
+	self:GetParent():HookOutModifier("GetModifierAttackSpeedBonusPercentage", self)
 end
 
 function modifier_enchantress_take_root:DeclareFunctions()

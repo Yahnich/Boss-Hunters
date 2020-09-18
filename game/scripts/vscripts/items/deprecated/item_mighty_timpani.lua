@@ -116,7 +116,7 @@ function modifier_item_mighty_timpani_active:GetModifierMoveSpeedBonus_Percentag
 	return self.bonus_ms_buff
 end
 
-function modifier_item_mighty_timpani_active:GetModifierAttackSpeedBonus()
+function modifier_item_mighty_timpani_active:GetModifierAttackSpeedBonus_Constant()
 	return self.bonus_as
 end
 

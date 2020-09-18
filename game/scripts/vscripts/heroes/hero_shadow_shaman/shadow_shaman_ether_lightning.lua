@@ -19,7 +19,7 @@ function shadow_shaman_ether_lightning:OnSpellStart()
 	ParticleManager:SetParticleControl(lightningBolt,0,Vector(hCaster:GetAbsOrigin().x,hCaster:GetAbsOrigin().y,hCaster:GetAbsOrigin().z + hCaster:GetBoundingMaxs().z ))	
 	ParticleManager:SetParticleControl(lightningBolt,1,Vector(hTarget:GetAbsOrigin().x,hTarget:GetAbsOrigin().y,hTarget:GetAbsOrigin().z + hTarget:GetBoundingMaxs().z ))
 	ParticleManager:ReleaseParticleIndex(lightningBolt)
-	if not target:TriggerSpellAbsorb( self ) then
+	if not hTarget:TriggerSpellAbsorb( self ) then
 		local mainDmg = ApplyDamage({ victim = hTarget, attacker = hCaster, damage = damage, damage_type = damage_type, ability = self})
 		if hCaster:HasTalent("special_bonus_unique_shadow_shaman_ether_lightning_1") then -- stun
 			self:Stun(hTarget, hCaster:FindTalentValue("special_bonus_unique_shadow_shaman_ether_lightning_1"), false)

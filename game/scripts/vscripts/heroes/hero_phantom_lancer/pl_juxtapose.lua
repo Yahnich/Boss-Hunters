@@ -51,6 +51,11 @@ function pl_juxtapose:SpawnIllusion(forceIllusion)
 
         local image = original_hero:ConjureImage( {outgoing_damage = outgoingDamage, incoming_damage = incomingDamage, illusion_modifier = "modifier_phantom_lancer_juxtapose_illusion", position = origin}, duration, original_hero, 1 )
 		image[1]:AddNewModifier(original_hero, self, "modifier_pl_juxtapose_illusion", {})
+		if caster:GetAttackTarget() then
+			image[1]:MoveToTargetToAttack( caster:GetAttackTarget() )
+		else
+			image[1]:MoveToPositionAggressive( caster:GetAbsOrigin())
+		end
 		table.insert( original_ability.illusions, image[1] )
 		return image[1]
 	end

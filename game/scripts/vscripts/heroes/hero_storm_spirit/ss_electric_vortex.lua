@@ -50,7 +50,7 @@ function modifier_ss_electric_vortex_talent:OnAbilityExecuted(params)
 end
 
 function modifier_ss_electric_vortex_talent:GetModifierPercentageManacost()
-	return 100
+	return 999
 end
 
 modifier_ss_electric_vortex = class({})

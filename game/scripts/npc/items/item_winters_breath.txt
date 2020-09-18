@@ -47,6 +47,7 @@
 		
 		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"1"
+		"AvailableRuneSlots"			"2"
 		
 		"precache"
 		{
@@ -75,7 +76,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_slots"			"2 2 3 3 3"
 			}
 		}
 	}
@@ -154,7 +155,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_slots"			"2 2 3 3 3"
 			}
 		}
 	}
@@ -235,7 +236,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_slots"			"2 2 3 3 3"
 			}
 		}
 	}
@@ -315,7 +316,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_slots"			"2 2 3 3 3"
 			}
 		}
 	}
@@ -393,7 +394,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_slots"			"2 2 3 3 3"
 			}
 		}
 	}

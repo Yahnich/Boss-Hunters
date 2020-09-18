@@ -19,7 +19,7 @@ function modifier_item_orb_of_haste:DeclareFunctions()
 			}
 end
 
-function modifier_item_orb_of_haste:GetModifierAttackSpeedBonus()
+function modifier_item_orb_of_haste:GetModifierAttackSpeedBonus_Constant()
 	return self.attackSpeed
 end
 

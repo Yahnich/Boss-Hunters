@@ -61,7 +61,8 @@ end
 function modifier_ursa_overpower_bh:DeclareFunctions()
 	return {
 			MODIFIER_EVENT_ON_ATTACK,
-			MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
+			MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
+			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 			}
 end
 
@@ -69,7 +70,7 @@ function modifier_ursa_overpower_bh:GetActivityTranslationModifiers()
 	return "overpower" .. self:GetStackCount()
 end
 
-function modifier_ursa_overpower_bh:GetModifierAttackSpeedBonus()
+function modifier_ursa_overpower_bh:GetModifierAttackSpeedBonus_Constant()
 	return self.attack_speed
 end
 

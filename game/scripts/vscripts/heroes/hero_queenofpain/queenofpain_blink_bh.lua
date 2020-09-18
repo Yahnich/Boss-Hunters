@@ -46,14 +46,14 @@ function modifier_queenofpain_blink_bh_talent:OnRefresh()
 end
 
 function modifier_queenofpain_blink_bh_talent:DeclareFunctions()
-	return {}
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE }
 end
 
-function modifier_queenofpain_blink_bh_talent:GetModifierAttackSpeedBonus()
+function modifier_queenofpain_blink_bh_talent:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 
-function modifier_queenofpain_blink_bh_talent:GetCooldownReduction()
+function modifier_queenofpain_blink_bh_talent:GetModifierPercentageCooldown()
 	return self.cdr
 end
 

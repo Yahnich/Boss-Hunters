@@ -151,10 +151,13 @@ function modifier_huskar_raging_berserker_effect:OnIntervalThink()
 end
 
 function modifier_huskar_raging_berserker_effect:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT, MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, MODIFIER_PROPERTY_MODEL_SCALE}
+	return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT, 
+			MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, 
+			MODIFIER_PROPERTY_MODEL_SCALE, 
+			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
 end
 
-function modifier_huskar_raging_berserker_effect:GetModifierAttackSpeedBonus()
+function modifier_huskar_raging_berserker_effect:GetModifierAttackSpeedBonus_Constant()
 	return self.total_as
 end
 

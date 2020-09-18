@@ -89,13 +89,9 @@ function modifier_boss_aeon_distortion_field_aura:OnIntervalThink()
 end
 
 function modifier_boss_aeon_distortion_field_aura:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TOOLTIP, MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_ONGOING}
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 end
 
-function modifier_boss_aeon_distortion_field_aura:OnTooltip()
-	return self.as
-end
-
-function modifier_boss_aeon_distortion_field_aura:GetModifierAttackSpeedBonus()
+function modifier_boss_aeon_distortion_field_aura:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end

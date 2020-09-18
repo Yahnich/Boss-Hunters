@@ -107,7 +107,7 @@ function modifier_enchantress_untouchable_bh_slow:OnRefresh(table)
 end
 
 function modifier_enchantress_untouchable_bh_slow:DeclareFunctions()
-	local funcs = {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+	local funcs = {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
 	return funcs
 end
 
@@ -121,7 +121,7 @@ function modifier_enchantress_untouchable_bh_slow:OnRemoved()
 	end
 end
 
-function modifier_enchantress_untouchable_bh_slow:GetModifierAttackSpeedBonus()
+function modifier_enchantress_untouchable_bh_slow:GetModifierAttackSpeedBonus_Constant()
 	return self.slow_as
 end
 
@@ -156,22 +156,21 @@ function modifier_enchantress_untouchable_bh_passive_slow:OnRefresh(table)
 	self.slow_ms = self:GetCaster():FindTalentValue("special_bonus_unique_enchantress_untouchable_bh_1", "passive_ms")
 end
 
-function modifier_enchantress_untouchable_bh_passive_slow:DeclareFunctions()
-	local funcs = {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
-	return funcs
-end
-
-function modifier_enchantress_untouchable_bh_passive_slow:GetModifierMoveSpeedBonus_Percentage()
-	if not self:GetParent():HasModifier("modifier_enchantress_untouchable_bh_slow") then return self.slow_ms end
-end
-
 function modifier_enchantress_untouchable_bh_passive_slow:OnRemoved()
 	if IsServer() then
 		self:GetAbility():EndDelayedCooldown()
 	end
 end
 
-function modifier_enchantress_untouchable_bh_passive_slow:GetModifierAttackSpeedBonus()
+function modifier_enchantress_untouchable_bh_passive_slow:DeclareFunctions()
+	local funcs = {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
+	return funcs
+end
+
+function modifier_enchantress_untouchable_bh_passive_slow:GetModifierMoveSpeedBonus_Percentage()
+	if not self:GetParent():HasModifier("modifier_enchantress_untouchable_bh_slow") then return self.slow_ms end
+end
+function modifier_enchantress_untouchable_bh_passive_slow:GetModifierAttackSpeedBonus_Constant()
 	if not self:GetParent():HasModifier("modifier_enchantress_untouchable_bh_slow") then return self.slow_as end
 end
 

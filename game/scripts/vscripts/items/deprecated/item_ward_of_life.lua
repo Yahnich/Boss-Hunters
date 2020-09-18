@@ -70,9 +70,9 @@ function modifier_item_ward_of_life:GetModifierTotal_ConstantBlock(params)
 	local trigger = self:GetParent():GetHealth() * self.trigger / 100
 	if not self:GetParent():HasModifier("modifier_item_ward_of_life_cd") and params.damage >= trigger then
 		local buff = self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_item_ward_of_life_protection", {duration = self.duration } )
-		local cd = self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_item_ward_of_life_cd", {duration = self.duration + self.cd * self:GetParent():GetCooldownReduction() } )
+		local cd = self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_item_ward_of_life_cd", {duration = self.duration + self.cd * self:GetParent():GetModifierPercentageCooldown() } )
 		if cd and buff then
-			cd:SetDuration( buff:GetRemainingTime() + self.cd * self:GetParent():GetCooldownReduction(), true )
+			cd:SetDuration( buff:GetRemainingTime() + self.cd * self:GetParent():GetModifierPercentageCooldown(), true )
 		end
 		return params.damage
 	end

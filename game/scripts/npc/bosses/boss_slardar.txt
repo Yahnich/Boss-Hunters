@@ -22,7 +22,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"35"
+		"AbilityCooldown"				"40"
 		"AbilityCastPoint"				"0.3"
 	
 		// Cost
@@ -72,7 +72,7 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"12"
-		"AbilityCastPoint"				"1.25 0.75"
+		"AbilityCastPoint"				"1.5 1"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -150,7 +150,7 @@
 			"02"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "bonus_regen"       	 "10 15"  //The meteor lands on the ground this many seconds after it was cast.
+	            "bonus_regen"       	 "5 10"  //The meteor lands on the ground this many seconds after it was cast.
 	        }
 		}
 	}
@@ -173,7 +173,7 @@
 			"01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "chance"            	"20 25"
+	            "chance"            	"15 20"
 	        }
 			"02"
 	        {

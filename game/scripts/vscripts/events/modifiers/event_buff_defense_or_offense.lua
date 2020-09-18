@@ -3,7 +3,7 @@ event_buff_defense_or_offense_1 = class(relicBaseClass)
 function event_buff_defense_or_offense_1:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-		
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT 
     }
 
     return funcs
@@ -13,7 +13,7 @@ function event_buff_defense_or_offense_1:GetModifierPreAttack_BonusDamage( param
     return 40
 end
 
-function event_buff_defense_or_offense_1:GetModifierAttackSpeedBonus( params )
+function event_buff_defense_or_offense_1:GetModifierAttackSpeedBonus_Constant( params )
     return 40
 end
 

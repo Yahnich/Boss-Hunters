@@ -12,9 +12,7 @@ LinkLuaModifier( "modifier_boss_legion_commander_battlemaster_passive", "bosses/
 modifier_boss_legion_commander_battlemaster_passive = class({})
 
 function modifier_boss_legion_commander_battlemaster_passive:OnCreated()
-	self.procChance = self:GetAbility():GetTalentSpecialValueFor("trigger_chance")
-	self.lifesteal = self:GetAbility():GetTalentSpecialValueFor("lifesteal")
-	self.cleave = self:GetAbility():GetTalentSpecialValueFor("cleave")
+	self:OnRefresh()
 	if IsServer() then
 		AddAnimationTranslate(self:GetParent(), "arcana")
 	end
@@ -24,6 +22,13 @@ function modifier_boss_legion_commander_battlemaster_passive:OnRefresh()
 	self.procChance = self:GetAbility():GetTalentSpecialValueFor("trigger_chance")
 	self.lifesteal = self:GetAbility():GetTalentSpecialValueFor("lifesteal")
 	self.cleave = self:GetAbility():GetTalentSpecialValueFor("cleave")
+	
+	self:GetParent():HookInModifier( "GetModifierAreaDamage", self )
+end
+
+function modifier_boss_legion_commander_battlemaster_passive:OnDestroy()
+	self:GetParent():HookOutModifier( "GetModifierAreaDamage", self )
+
 end
 
 function modifier_boss_legion_commander_battlemaster_passive:IsHidden()

@@ -1,7 +1,7 @@
 relic_immaculate_staff = class(relicBaseClass)
 
 function relic_immaculate_staff:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_SPENT_MANA}
+	return {MODIFIER_EVENT_ON_SPENT_MANA, MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE}
 end
 
 function relic_immaculate_staff:OnSpentMana(params)
@@ -11,6 +11,6 @@ function relic_immaculate_staff:OnSpentMana(params)
 	end
 end
 
-function relic_immaculate_staff:GetCooldownReduction()
+function relic_immaculate_staff:GetModifierPercentageCooldown()
 	return 40
 end

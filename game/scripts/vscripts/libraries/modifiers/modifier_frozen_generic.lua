@@ -12,18 +12,11 @@ end
 function modifier_frozen_generic:OnIntervalThink()
 	if self:GetParent():IsChilled() then
 		self:GetParent():RemoveChill()
-		if RollPercentage(25) then
-			local units = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), 250, {})
-			for _,unit in pairs(units) do
-				unit:AddChill(self:GetAbility(), self:GetCaster(), 2.5)
-				break
-			end
-		end
 	end
 end
 
 function modifier_frozen_generic:CheckState()
-	if not self:GetParent():IsRoundNecessary() then
+	if not self:GetParent():IsBoss() then
 		local state = { [MODIFIER_STATE_STUNNED] = true,
 						[MODIFIER_STATE_FROZEN] = true}
 		return state
@@ -37,7 +30,7 @@ end
 
 function modifier_frozen_generic:DeclareFunctions()
 	local funcs = {
-		 
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_CASTTIME_PERCENTAGE, 
 		MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE
 	}
@@ -45,8 +38,8 @@ function modifier_frozen_generic:DeclareFunctions()
 	return funcs
 end
 
-function modifier_frozen_generic:GetModifierAttackSpeedBonus( params )
-	if self:GetParent():IsRoundNecessary() then
+function modifier_frozen_generic:GetModifierAttackSpeedBonus_Constant( params )
+	if self:GetParent():IsBoss() then
 		return -1000
 	end
 end

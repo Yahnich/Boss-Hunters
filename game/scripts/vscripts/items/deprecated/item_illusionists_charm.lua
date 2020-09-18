@@ -52,7 +52,7 @@ function modifier_item_illusionists_charm:DeclareFunctions()
 			}
 end
 
-function modifier_item_illusionists_charm:GetModifierAttackSpeedBonus()
+function modifier_item_illusionists_charm:GetModifierAttackSpeedBonus_Constant()
 	return self.attackSpeed
 end
 

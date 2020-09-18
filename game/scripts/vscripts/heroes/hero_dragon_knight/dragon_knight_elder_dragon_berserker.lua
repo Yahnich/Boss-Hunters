@@ -62,7 +62,7 @@ function modifier_dragon_knight_elder_dragon_berserker_active:GetModifierMoveSpe
 	return self.ms
 end
 
-function modifier_dragon_knight_elder_dragon_berserker_active:GetModifierAttackSpeedBonus()
+function modifier_dragon_knight_elder_dragon_berserker_active:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

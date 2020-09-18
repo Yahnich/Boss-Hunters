@@ -3,15 +3,16 @@ local function StartEvent(self)
 	self.bigCentaur = 1
 	self.smallCentaur = RoundManager:GetCurrentRaidTier() + 1 
 	self.enemiesToSpawn = self.bigCentaur
+	local spawnPos = RoundManager:PickRandomSpawn()
 	self.eventHandler = Timers:CreateTimer(3, function()
 		if self.bigCentaur > 0 then
-			local spawn = CreateUnitByName("npc_dota_boss_greater_centaur", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+			local spawn = CreateUnitByName("npc_dota_boss_greater_centaur", spawnPos, true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundNecessary = true
 			self.bigCentaur = self.bigCentaur - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 		end
 		for i = 1, self.smallCentaur do
-			local spawn = CreateUnitByName("npc_dota_boss_lesser_centaur", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+			local spawn = CreateUnitByName("npc_dota_boss_lesser_centaur", spawnPos, true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundNecessary = true
 		end
 		if self.bigCentaur > 0 then

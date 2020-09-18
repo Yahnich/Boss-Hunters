@@ -8,6 +8,7 @@ function undying_flesh_golem_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:AddNewModifier(caster, self, "modifier_undying_flesh_golem_bh", {duration = self:GetTalentSpecialValueFor("duration")})
 	caster:StartGesture( ACT_DOTA_SPAWN )
+	EmitSoundOn("Hero_Undying.FleshGolem.Cast", caster )
 end
 
 modifier_undying_flesh_golem_bh = class({})
@@ -17,21 +18,22 @@ function modifier_undying_flesh_golem_bh:OnCreated()
 	self:OnRefresh()
 end
 
-function modifier_undying_flesh_golem_bh:OnCreated()
+function modifier_undying_flesh_golem_bh:OnRefresh()
 	self.bonus_strength = self:GetTalentSpecialValueFor("bonus_strength")
 	self.bonus_ms = self:GetTalentSpecialValueFor("bonus_ms")
 	self.lifesteal = self:GetTalentSpecialValueFor("lifesteal")
 	self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_undying_flesh_golem_1")
 	self.mr = self:GetCaster():FindTalentValue("special_bonus_unique_undying_flesh_golem_1", "value2")
 	self.threat = self:GetCaster():FindTalentValue("special_bonus_unique_undying_flesh_golem_1", "value3")
-	if IsServer() then
-		self:GetCaster():HookInModifier("GetModifierLifestealBonus", self)
-	end
+	self:GetCaster():HookInModifier("GetModifierLifestealBonus", self)
+	self:GetCaster():HookInModifier("GetModifierStrengthBonusPercentage", self)
 end
 
 function modifier_undying_flesh_golem_bh:OnDestroy()
+	self:GetCaster():HookOutModifier("GetModifierLifestealBonus", self)
+	self:GetCaster():HookOutModifier("GetModifierStrengthBonusPercentage", self)
 	if IsServer() then
-		self:GetCaster():HookOutModifier("GetModifierLifestealBonus", self)
+		EmitSoundOn( "Hero_Undying.FleshGolem.End", self:GetCaster() )
 	end
 end
 

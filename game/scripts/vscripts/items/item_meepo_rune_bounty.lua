@@ -11,7 +11,7 @@ function item_meepo_rune_bounty:OnSpellStart()
 
 		local allies = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
 		for _,ally in ipairs(allies) do
-			if ally:IsHero() then
+			if ally:IsRealHero() then
 				ally:AddGold(goldBase + goldPer30)
 			end
 		end

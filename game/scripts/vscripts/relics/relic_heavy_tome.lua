@@ -2,6 +2,11 @@ relic_heavy_tome = class(relicBaseClass)
 
 function relic_heavy_tome:OnCreated()
 	self:StartIntervalThink(0.33)
+	self:GetParent():HookInModifier("GetModifierIntellectBonusPercentage", self)
+end
+
+function relic_heavy_tome:OnDestroy()
+	self:GetParent():HookOutModifier("GetModifierIntellectBonusPercentage", self)
 end
 
 function relic_heavy_tome:OnIntervalThink()

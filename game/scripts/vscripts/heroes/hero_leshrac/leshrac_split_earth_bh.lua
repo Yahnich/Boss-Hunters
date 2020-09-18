@@ -25,7 +25,7 @@ function leshrac_split_earth_bh:OnSpellStart()
 	
 	Timers:CreateTimer( delay, function()
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-			if enemy:TriggerSpellAbsorb( self ) then
+			if not enemy:TriggerSpellAbsorb( self ) then
 				self:DealDamage( caster, enemy, damage )
 				self:Stun( enemy, stunDur )
 				if talent2 and lightning then

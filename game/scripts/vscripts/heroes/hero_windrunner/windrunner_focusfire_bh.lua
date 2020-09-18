@@ -20,6 +20,7 @@ function modifier_windrunner_focusfire_bh:OnCreated(table)
 	self.as = self:GetTalentSpecialValueFor("bonus_as")
 	self.bat = self:GetTalentSpecialValueFor("bonus_at")
 	self.dmg = TernaryOperator( self:GetTalentSpecialValueFor("scepter_dmg_reduction"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("dmg_reduction") )
+	self:GetParent():HookInModifier("GetBaseAttackTime_Bonus", self)
     if IsServer() then
 		local caster = self:GetCaster()
 		self:StartIntervalThink( math.max( 0.31, ( caster:GetLastAttackTime( ) - GameRules:GetGameTime() ) + caster:GetSecondsPerAttack() ) )
@@ -30,7 +31,7 @@ function modifier_windrunner_focusfire_bh:OnIntervalThink()
     local caster = self:GetCaster()
     if not caster:HasActiveAbility() and ( GameRules:GetGameTime() - caster:GetLastAttackTime( ) ) >= caster:GetSecondsPerAttack() then
 		self.lastAttackTarget = caster:GetAttackTarget() or self.lastAttackTarget
-		if not self.lastAttackTarget or ( self.lastAttackTarget and CalculateDistance( self.lastAttackTarget, caster ) > caster:GetAttackRange() ) then
+		if not self.lastAttackTarget or self.lastAttackTarget:IsNull() or ( self.lastAttackTarget and CalculateDistance( self.lastAttackTarget, caster ) > caster:GetAttackRange() ) or not self.lastAttackTarget:IsAlive() then
 			self.lastAttackTarget = nil
 			local enemies = self:GetCaster():FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:GetAttackRange())
 			for _,enemy in pairs(enemies) do
@@ -38,8 +39,7 @@ function modifier_windrunner_focusfire_bh:OnIntervalThink()
 				break
 			end
 		end
-        if self.lastAttackTarget then
-			caster:SetForwardVector( CalculateDirection(self.lastAttackTarget, caster ) )
+        if self.lastAttackTarget and self.lastAttackTarget:IsAlive() then
 			caster:PerformAttack(self.lastAttackTarget, true, true, true, true, true, false, false)
             caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 1.7/caster:GetAttackSpeed())
         else
@@ -53,6 +53,7 @@ function modifier_windrunner_focusfire_bh:OnIntervalThink()
 end
 
 function modifier_windrunner_focusfire_bh:OnRemoved()
+	self:GetParent():HookOutModifier("GetBaseAttackTime_Bonus", self)
 	if IsServer() then
         --self:GetCaster():SetForceAttackTarget(nil)
 	end
@@ -60,13 +61,14 @@ end
 
 function modifier_windrunner_focusfire_bh:DeclareFunctions()
     local funcs = {
-        
-		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE
+        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
+		
     }
     return funcs
 end
 
-function modifier_windrunner_focusfire_bh:GetModifierAttackSpeedBonus()
+function modifier_windrunner_focusfire_bh:GetModifierAttackSpeedBonus_Constant()
     return self.as
 end
 

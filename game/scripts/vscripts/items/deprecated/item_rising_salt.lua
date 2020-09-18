@@ -46,7 +46,7 @@ function modifier_item_rising_salt_passive:GetModifierManaBonus()
 	return self.bonus_mana
 end
 
-function modifier_item_rising_salt_passive:GetCooldownReduction()
+function modifier_item_rising_salt_passive:GetModifierPercentageCooldown()
 	return self.bonus_cdr
 end
 

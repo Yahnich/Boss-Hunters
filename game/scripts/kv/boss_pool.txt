@@ -6,7 +6,6 @@
 		"sepulcher_boss_prophet"			"1"
 		"sepulcher_boss_undying"			"1"
 		"sepulcher_boss_wraith_king"		"1"
-		"grove_boss_green_dragon"			"1"
 		"sepulcher_boss_reaper"				"1"
 		"sepulcher_boss_vile_archmage"		"1"
 	}
@@ -20,6 +19,7 @@
 		"grove_boss_dragon"					"1"
 		"grove_boss_greymane"				"1"
 		"generic_boss_golem"				"1"
+		"grove_boss_green_dragon"			"1"
 	}
 	// Gods, spirits, elementals
 	"Elysium"
@@ -37,6 +37,7 @@
 		"solitude_boss_doom"				"1"
 		"solitude_boss_evil_core"			"1"
 		"solitude_boss_twin_demons"			"1"
+		"solitude_boss_warlock"				"1"
 		"elysium_boss_asura"				"1"
 	}
 }

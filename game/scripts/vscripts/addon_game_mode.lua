@@ -372,8 +372,21 @@ function CHoldoutGameMode:InitGameMode()
 												hero:ForceKill(true)
 											end
 										end, "fixing bug",0)
+	Convars:RegisterCommand( "hide_hero", function()
+											if Convars:GetDOTACommandClient() and IsInToolsMode() then
+												local player = Convars:GetDOTACommandClient()
+												local hero = player:GetAssignedHero()
+												if not hero.hasBeenConsoleCommandHidden then
+													hero:AddNoDraw()
+													hero.hasBeenConsoleCommandHidden = true
+												else
+													hero:RemoveNoDraw()
+													hero.hasBeenConsoleCommandHidden = false
+												end
+											end
+										end, "fixing bug",0)
 	Convars:RegisterCommand( "reload_modifiers", function()
-											if Convars:GetDOTACommandClient() then
+											if Convars:GetDOTACommandClient() and IsInToolsMode() then
 												local player = Convars:GetDOTACommandClient()
 												local hero = player:GetAssignedHero() 
 												if hero then
@@ -475,7 +488,7 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 		ability = EntIndexToHScript( ability_index )
 	end
 	local FilterModifiers = function( ... )
-		if name == "modifier_item_ultimate_scepter" then
+		if name == "modifier_item_ultimate_scepter" or  name == "modifier_item_ultimate_scepter_consumed" then
 			for i = 0, parent:GetAbilityCount() - 1 do
 				local scepterAbility = parent:GetAbilityByIndex( i )
 				if scepterAbility and scepterAbility.OnInventoryContentsChanged then
@@ -483,27 +496,20 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 				end
 			end
 		end
-		if duration ~= -1 and parent and caster then
-			local params = {caster = caster, target = parent, duration = duration, ability = ability, modifier_name = name}
-			duration = duration * caster:GetStatusAmplification( params )
-			if parent:GetTeam() ~= caster:GetTeam() then
-				duration = duration * parent:GetStatusResistance( params )
-			end
-		end
+		-- if duration ~= -1 and parent and caster then
+			-- local params = {caster = caster, target = parent, duration = duration, ability = ability, modifier_name = name}
+			-- duration = duration * caster:GetStatusAmplification( params )
+			-- if parent:GetTeam() ~= caster:GetTeam() then
+				-- duration = duration * parent:GetStatusResistance( params )
+			-- end
+		-- end
 		if parent == caster and parent:IsIllusion() and duration ~= -1 then
-			local owner = parent:GetOwner()
-			if parent:GetOwner():IsPlayer() then
-				owner = parent:GetOwner():GetAssignedHero()
+			for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+				if hero:GetUnitName() == parent:GetUnitName() and hero:HasModifier(name) then
+					duration = hero:FindModifierByName(name):GetRemainingTime()
+				end
+				break
 			end
-			if owner:HasModifier(name) then
-				duration = owner:FindModifierByName(name):GetRemainingTime()
-			end
-		end
-		if parent then
-			local handler = parent:FindModifierByName("modifier_handler_handler")
-			Timers:CreateTimer(function()
-				if handler then handler:CheckIfUpdateNeeded( name, ability, duration ) end
-			end)
 		end
 		if duration == 0 then return false end
 		filterTable["duration"] = duration
@@ -526,6 +532,8 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 	if target_index then target = EntIndexToHScript( target_index ) end
 	if source_index then source = EntIndexToHScript( source_index ) end
 	if not heal then return true end
+	if target:GetHealth() <= 0 then return end
+	if not target:IsAlive() then return end
 	-- if no caster then source is regen
 	local params = {healer = healer, target = target, heal = heal, ability = source}
 	healFactorSelf = 1
@@ -550,34 +558,46 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 			healFactorAllied = healFactorAllied * 0.25
 		end
 	end
-	filterTable["heal"] = math.max(0, heal * healFactorSelf * healFactorAllied)
-	if healer then healer.statsDamageHealed = (healer.statsDamageHealed or 0) + filterTable["heal"] end
-	
 	if healer and healer:IsRealHero() and target and healer ~= target and healer:HasRelic("relic_cursed_bloody_silk") then
-		target:HealEvent(50, nil, healer, true)
+		heal = heal + 50
 		if not self:GetParent():HasModifier("relic_unique_ritual_candle") then ApplyDamage({victim = healer, attacker = healer, damage = 20, damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }) end
 	end
+	local healing = math.max(0, heal * healFactorSelf * healFactorAllied) + (target.getLastExcessHealing or 0)
+	target.getLastExcessHealing = healing % 1
 	
+	filterTable["heal"] = math.max(0, math.floor(healing) )
+	if healer then healer.statsDamageHealed = (healer.statsDamageHealed or 0) + filterTable["heal"] end
 	if healer and healer:GetTeam() == DOTA_TEAM_GOODGUYS then
-		local totalHealth = 0
-		for _, ally in ipairs( healer:FindFriendlyUnitsInRadius( healer:GetAbsOrigin(), -1 ) ) do
-			totalHealth = totalHealth + ally:GetMaxHealth()
-		end
-		healer:ModifyThreat( math.max( target:GetHealthDeficit(), filterTable["heal"] ) / totalHealth)
+		local realHeal =  math.min( target:GetHealthDeficit(), filterTable["heal"] ) 
+		if realHeal > 1 then
+			healer:ModifyThreat( (realHeal / 100) * math.log10(realHeal) )
+		end 
 	end
 	
 	return true
 end
 
 function CHoldoutGameMode:FilterOrders( filterTable )
-	-- if filterTable["order_type"] == DOTA_UNIT_ORDER_PURCHASE_ITEM 
-	-- or filterTable["order_type"] == DOTA_UNIT_ORDER_DROP_ITEM  
-	-- or filterTable["order_type"] == DOTA_UNIT_ORDER_PICKUP_ITEM then 
-		-- PrintAll( filterTable )
-	-- end
+	
 	if not filterTable or not filterTable.units or not filterTable.units["0"] then return end
 	local hero = EntIndexToHScript( filterTable.units["0"] )
 	if not hero:IsRealHero() then return true end
+	-- if filterTable["order_type"] == DOTA_UNIT_ORDER_PURCHASE_ITEM then 
+		-- for i=0, 5, 1 do
+			-- local item = hero:GetItemInSlot(i)
+			-- if item ~= nil then
+				-- print( item:GetName() )
+			-- end
+		-- end
+		-- Timers:CreateTimer(  function()
+			-- for i=0, 5, 1 do
+				-- local item = hero:GetItemInSlot(i)
+				-- if item ~= nil then
+					-- print( item:GetName() )
+				-- end
+			-- end
+		-- end)
+	-- end
 	if filterTable["order_type"] == DOTA_UNIT_ORDER_MOVE_ITEM then
 		local item = EntIndexToHScript( filterTable.entindex_ability )
 		local targetItem = hero:GetItemInSlot( filterTable["entindex_target"] )
@@ -587,11 +607,13 @@ function CHoldoutGameMode:FilterOrders( filterTable )
 	end
 	if filterTable["order_type"] == DOTA_UNIT_ORDER_PICKUP_ITEM then
 		local itemContainer = EntIndexToHScript( filterTable.entindex_target )
-		local item = itemContainer:GetContainedItem()
-		if item:GetName() == "item_tombstone" and hero:IsMuted() then
-			EventManager:ShowErrorMessage(filterTable.issuer_player_id_const, "Cannot resurrect while muted.")
-			return false
-		end		
+		if itemContainer then
+			local item = itemContainer:GetContainedItem()
+			if item:GetName() == "item_tombstone" and hero:IsMuted() then
+				EventManager:ShowErrorMessage(filterTable.issuer_player_id_const, "Cannot resurrect while muted.")
+				return false
+			end
+		end
 	end
 	if RoundManager:GetCurrentEvent() 
 	and RoundManager:GetCurrentEvent():IsEvent()
@@ -640,7 +662,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	local original_attacker = attacker -- make a copy for threat
     local damagetype = filterTable["damagetype_const"]
 	if damage <= 0 then return true end
-	
 	-- VVVVVVVVVVVVVV REMOVE THIS SHIT IN THE FUTURE VVVVVVVVVVV --
 	if attacker:GetTeam() == DOTA_TEAM_GOODGUYS and ( not attacker:IsRealHero() or attacker:IsFakeHero() ) and attacker:GetOwner() then 
 		if attacker:GetOwner():IsPlayer() then
@@ -650,11 +671,16 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		end
 	end
 	if original_attacker:GetTeam() ~= victim:GetTeam() and not victim:CanEntityBeSeenByMyTeam(original_attacker) then
-		if original_attacker:GetTeam() == DOTA_TEAM_BADGUYS then
-			AddFOWViewer(DOTA_TEAM_GOODGUYS, original_attacker:GetAbsOrigin(), 256, 1, false)
-		else
-			AddFOWViewer(DOTA_TEAM_BADGUYS, original_attacker:GetAbsOrigin(), 256, 1, false)
+		original_attacker:MakeVisibleDueToAttack( victim:GetTeam(), 128 )
+	end
+	--- DAMAGE MANIPULATION ---
+	if ( victim:IsHero() and victim:HasRelic("relic_unbridled_power") ) or ( attacker:IsHero() and attacker:HasRelic("relic_unbridled_power") ) then
+		if damagetype == DAMAGE_TYPE_MAGICAL then
+			filterTable["damage"] = filterTable["damage"] / ( 1 - victim:GetMagicalArmorValue() )
+		elseif damagetype == DAMAGE_TYPE_PHYSICAL then
+			filterTable["damage"] = filterTable["damage"] / ( 1 - victim:GetPhysicalArmorReduction()/100 )
 		end
+		filterTable["damagetype_const"] = DAMAGE_TYPE_PURE
 	end
 	--- THREAT AND UI NO MORE DAMAGE MANIPULATION ---
 	local damage = filterTable["damage"]
@@ -665,15 +691,10 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		end
 		return true 
 	end
-	if not victim:IsHero() and victim ~= attacker then
+	if not victim:IsHero() and victim ~= attacker and damage > 1 then
 		-- if not victim.threatTable then victim.threatTable = {} end
 		if not attacker.threat then attacker.threat = 0 end
-		local roundCurrTotalHP = 0
-		local enemies = FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_ENEMY})
-		for _,unit in ipairs( enemies ) do
-			roundCurrTotalHP = roundCurrTotalHP + unit:GetMaxHealth()
-		end
-		local addedthreat = math.min( (damage / roundCurrTotalHP)*#enemies*100, (victim:GetHealth() * #enemies * 100) / roundCurrTotalHP )
+		local addedthreat = damage / 100 * math.log10(damage)
 		if addedthreat > 0.01 then
 			original_attacker:ModifyThreat( addedthreat )
 		end
@@ -686,13 +707,9 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			if victim:GetTeam() == DOTA_TEAM_BADGUYS then
 				hero.statsDamageDealt = (hero.statsDamageDealt or 0) + math.min(victim:GetHealth(), damage)
 			end
-			if hero.damageDone == 0 and damage > 0 then 
-				hero.first_damage_time = GameRules:GetGameTime()
-			end
-			hero.damageDone = math.floor(hero.damageDone + damage)
 		end
-		GameRules.TeamDamage = (GameRules.TeamDamage or 0 ) + damage
     end
+	
     return true
 end
 
@@ -702,8 +719,8 @@ function GetHeroDamageDone(hero)
 end
 
 function CHoldoutGameMode:OnHeroLevelUp(event)
-	local playerID = EntIndexToHScript(event.player):GetPlayerID()
 	local unit = EntIndexToHScript(event.hero_entindex)
+	local playerID = unit:GetPlayerID()
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 	if hero == unit then
 		if hero:GetLevel() % 10 == 0 then
@@ -1041,7 +1058,7 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 		Timers:CreateTimer(1,function()
 			if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 				for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-					hero:AddGold(1)
+					hero:AddGold(1, false)
 				end
 				return 1
 			end
@@ -1118,7 +1135,7 @@ function CDOTA_PlayerResource:SortThreat()
 	local aggrounit 
 	local aggrosecond
 	local heroes = HeroList:GetActiveHeroes()
-	for _,unit in pairs ( heroes ) do
+	for _,unit in ipairs ( heroes ) do
 		if not unit.threat then unit.threat = 0 end
 		if not unit:IsFakeHero() then
 			if unit.threat > currThreat then
@@ -1152,7 +1169,7 @@ function CHoldoutGameMode:SpawnTestElites(elite, amount, bossname)
 			PrecacheUnitByNameAsync( spawnName, function()
 				local entUnit = CreateUnitByName( spawnName, spawnLoc, true, nil, nil, DOTA_TEAM_BADGUYS )
 				if elite then
-					entUnit:AddAbilityPrecache(elite):SetLevel(1)
+					entUnit:AddAbilityPrecache(elite):UpgradeAbility(true)
 					local nParticle = ParticleManager:CreateParticle( "particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf", PATTACH_ABSORIGIN_FOLLOW, entUnit )
 					ParticleManager:ReleaseParticleIndex( nParticle )
 					entUnit:SetModelScale(entUnit:GetModelScale()*1.5)

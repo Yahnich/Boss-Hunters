@@ -469,11 +469,13 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_scepter"		"345 505 665 825 985 1145"
+				"RequiresScepter"		"1"
 			}
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"scepter_cd_reduction"	"50"
+				"RequiresScepter"		"1"
 			}
 		}
 	}

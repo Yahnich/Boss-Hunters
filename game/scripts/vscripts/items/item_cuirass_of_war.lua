@@ -4,6 +4,10 @@ function item_cuirass_of_war:GetIntrinsicModifierName()
 	return "modifier_item_cuirass_of_war"
 end
 
+function item_cuirass_of_war:GetAssociatedUpgradeModifier()
+	return "modifier_item_fortress_shield_passive"
+end
+
 item_cuirass_of_war_2 = class(item_cuirass_of_war)
 item_cuirass_of_war_3 = class(item_cuirass_of_war)
 item_cuirass_of_war_4 = class(item_cuirass_of_war)
@@ -54,11 +58,9 @@ end
 
 function modifier_item_cuirass_of_war:GetAuraEntityReject( unit )
 	local caster = self:GetCaster()
-	if caster:IsIllusion() then
-		for _, modifier in ipairs( unit:FindAllModifiersByName( self:GetModifierAura() ) ) do
-			if modifier:GetCaster():GetUnitName() == caster:GetUnitName() and caster ~= modifier:GetCaster() then
-				return true
-			end
+	for _, modifier in ipairs( unit:FindAllModifiersByName( self:GetModifierAura() ) ) do
+		if modifier:GetCaster():GetUnitName() == caster:GetUnitName() and caster ~= modifier:GetCaster() then
+			return true
 		end
 	end
 end
@@ -84,12 +86,12 @@ end
 
 function modifier_item_cuirass_of_war_aura:OnCreatedSpecific()
 	self.armor = TernaryOperator( self:GetSpecialValueFor("aura_armor"), self:GetParent():IsSameTeam( self:GetCaster() ), self:GetSpecialValueFor("armor_debuff") )
-	self.stone_share = self:GetSpecialValueFor("stone_share")
+	self.stone_share = TernaryOperator( self:GetSpecialValueFor("stone_share"), self:GetParent():IsSameTeam( self:GetCaster() ), 0 )
 end
 
 function modifier_item_cuirass_of_war_aura:OnRefreshSpecific()
 	self.armor = TernaryOperator( self:GetSpecialValueFor("aura_armor"), self:GetParent():IsSameTeam( self:GetCaster() ), self:GetSpecialValueFor("armor_debuff") )
-	self.stone_share = self:GetSpecialValueFor("stone_share")
+	self.stone_share = TernaryOperator( self:GetSpecialValueFor("stone_share"), self:GetParent():IsSameTeam( self:GetCaster() ), 0 )
 end
 
 function modifier_item_cuirass_of_war_aura:DeclareFunctions()

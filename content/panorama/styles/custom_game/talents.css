@@ -34,9 +34,9 @@
 
 .UniqueTalentsSelector
 {
-	width: 8px;
+	width: 9px;
 	height: 12px;
-	margin-left: 1px;
+	margin: 1px;
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111ff ), to( #000000ff ) );
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
@@ -51,8 +51,34 @@
 .LevelReady
 {
 	border: 1px solid #dbb43466;
-	border-radius: 0px;
 	box-shadow: fill #E0C24E44 -1px -1px 2px 2px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111ff ), to( #86742eff ) );
+	
+	animation-name: LevelReadyPulse;
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes 'LevelReadyPulse'
+{
+	0%
+	{
+		box-shadow: fill #E0C24E44 -1px -1px 2px 2px;
+		brightness: 0.5;
+    }
+
+    50% 
+	{
+        box-shadow: fill #E0C24E44 -2px -2px 4px 4px;
+		brightness: 5.0;
+    }
+
+    100%
+	{
+		box-shadow: fill #E0C24E44 -1px -1px 2px 2px;
+		brightness: 0.5;
+    }
 }
 
 .IsHidden

@@ -3,6 +3,7 @@ boss_greymane_furious_swipe = class({})
 function boss_greymane_furious_swipe:OnAbilityPhaseStart()
 	ParticleManager:FireLinearWarningParticle(	self:GetCaster():GetAbsOrigin(), 
 												self:GetCaster():GetAbsOrigin() + CalculateDirection( self:GetCursorPosition(), self:GetCaster() ) * self:GetCaster():GetAttackRange() * 2,
+												self:GetCaster():GetAttackRange(),
 												self:GetSpecialValueFor("cone_angle") * 2)
 	return true
 end
@@ -30,7 +31,7 @@ function modifier_boss_greymane_furious_swipe:OnCreated()
 	self.as = self:GetSpecialValueFor("as_slow")
 	self.ms = self:GetSpecialValueFor("ms_slow")
 	self.bleed = self:GetSpecialValueFor("bleed")
-	if self.bleed > 0 then
+	if self.bleed > 0 and IsServer() then
 		self:StartIntervalThink(1)
 	end
 end
@@ -40,14 +41,14 @@ function modifier_boss_greymane_furious_swipe:OnIntervalThink()
 end
 
 function modifier_boss_greymane_furious_swipe:DeclareFunctions()
-	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 end
 
 function modifier_boss_greymane_furious_swipe:GetModifierMoveSpeedBonus_Percentage()
 	return self.ms
 end
 
-function modifier_boss_greymane_furious_swipe:GetModifierAttackSpeedBonus()
+function modifier_boss_greymane_furious_swipe:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

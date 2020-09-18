@@ -181,7 +181,6 @@ function modifier_snapfire_mortimer_kisses_lua_buff:OnOrder(params)
         local order = params.order_type
 
         if parent == unit then
-			print( unit:IsRooted() )
         	if ( order == DOTA_UNIT_ORDER_HOLD_POSITION or order == DOTA_UNIT_ORDER_STOP ) and unit:IsRooted() then
         		self:Destroy()
         	elseif order == DOTA_UNIT_ORDER_MOVE_TO_POSITION or order == DOTA_UNIT_ORDER_MOVE_TO_TARGET

@@ -111,6 +111,7 @@ function modifier_luna_lunar_blessing_bh_aura:OnCreated()
 	
 	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_2", "as")
 	self.ms = self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_2", "ms")
+	self.mult = self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_1")
 	self.dmg_pct = self:GetAbility():GetTalentSpecialValueFor("bonus_damage_pct")
 end
 
@@ -131,7 +132,7 @@ function modifier_luna_lunar_blessing_bh_aura:DeclareFunctions()
 				MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 				MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 				MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
-				
+				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
 				,
 			}
@@ -167,16 +168,16 @@ function modifier_luna_lunar_blessing_bh_aura:GetModifierBaseDamageOutgoing_Perc
 	end
 end
 
-function modifier_luna_lunar_blessing_bh_aura:GetModifierAttackSpeedBonus()
+function modifier_luna_lunar_blessing_bh_aura:GetModifierAttackSpeedBonus_Constant()
 	local as = self.as
-	if as > 0 then return end
+	if as <= 0 then return end
 	if self:GetCaster():HasModifier("modifier_luna_lunar_blessing_active") then as = as * self.mult end
 	return as
 end
 
 function modifier_luna_lunar_blessing_bh_aura:GetModifierMoveSpeedBonus_Percentage()
 	local ms = self.ms
-	if ms > 0 then return end
+	if ms <= 0 then return end
 	if self:GetCaster():HasModifier("modifier_luna_lunar_blessing_active") then ms = ms * self.mult end
 	return ms
 end

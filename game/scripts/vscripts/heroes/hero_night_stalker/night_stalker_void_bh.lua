@@ -66,11 +66,11 @@ function modifier_night_stalker_void_bh:OnRefresh()
 end
 
 function modifier_night_stalker_void_bh:DeclareFunctions()
-	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 end
 
-function modifier_night_stalker_void_bh:GetModifierAttackSpeedBonus()
-	return self.ms
+function modifier_night_stalker_void_bh:GetModifierAttackSpeedBonus_Constant()
+	return self.as
 end
 
 function modifier_night_stalker_void_bh:GetModifierMoveSpeedBonus_Percentage()

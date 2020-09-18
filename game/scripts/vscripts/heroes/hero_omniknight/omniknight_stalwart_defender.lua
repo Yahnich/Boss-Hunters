@@ -17,7 +17,7 @@ function modifier_omniknight_stalwart_defender:OnCreated()
 	self.duration = self:GetTalentSpecialValueFor("armor_duration")
 	if IsServer() then
 		local nFX = ParticleManager:CreateParticle( "particles/units/heroes/hero_omniknight/omniknight_degen_aura.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster() )
-		ParticleManager:SetParticleControl(nFX, 1, Vector(0,0,30) )
+		ParticleManager:SetParticleControl(nFX, 1, Vector(0,0,75) )
 		ParticleManager:SetParticleControl(nFX, 1, Vector(self.radius) )
 	end
 end
@@ -91,7 +91,7 @@ function modifier_omniknight_stalwart_defender_aura:OnRefresh()
 end
 
 function modifier_omniknight_stalwart_defender_aura:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, }
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,}
 end
 
 function modifier_omniknight_stalwart_defender_aura:GetModifierMoveSpeedBonus_Percentage()
@@ -100,7 +100,7 @@ function modifier_omniknight_stalwart_defender_aura:GetModifierMoveSpeedBonus_Pe
 	return slow
 end
 
-function modifier_omniknight_stalwart_defender_aura:GetModifierAttackSpeedBonus()
+function modifier_omniknight_stalwart_defender_aura:GetModifierAttackSpeedBonus_Constant()
 	local slow = self.as
 	if self:GetCaster():HasScepter() then slow = slow + self.scepter_as * self:GetCaster():GetModifierStackCount("modifier_omniknight_stalwart_defender", self:GetCaster() ) end
 	return slow

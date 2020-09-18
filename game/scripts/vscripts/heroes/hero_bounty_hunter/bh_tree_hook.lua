@@ -83,6 +83,10 @@ function modifier_bh_tree_hook_pull:OnCreated(table)
         -- Main Hook loop
         Timers:CreateTimer(tick_rate, function()
             local trees = GridNav:GetAllTreesAroundPoint(hook_loc, hook_width/2, false)
+			if self:IsNull() then
+				ParticleManager:ClearParticle( self.hook_pfx )
+				return 
+			end
             if #trees > 0 then
                 for _,tree in pairs(trees) do
                     self.tree = tree:GetAbsOrigin()
@@ -159,7 +163,7 @@ function modifier_bh_tree_hook_pull:OnIntervalThink()
     local enemies = caster:FindEnemyUnitsInLine(self.tree, caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("width")/2, {})
     for _,enemy in pairs(enemies) do
 		if not self.hitUnits[enemy] then
-			if enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+			if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
 				EmitSoundOn("Hero_Meepo.Earthbind.Target", enemy)
 				enemy:AddNewModifier(caster, self:GetAbility(), "modifier_bh_tree_root", {Duration = self:GetTalentSpecialValueFor("root_duration")})
 				caster:AddNewModifier(caster, self:GetAbility(), "modifier_bh_tree_ms", {Duration = self:GetTalentSpecialValueFor("root_duration")})

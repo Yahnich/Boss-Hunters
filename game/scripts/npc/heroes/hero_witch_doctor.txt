@@ -163,6 +163,7 @@
 		"BaseClass"							"ability_lua"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"SpellDispellableType"				"SPELL_DISPELLABLE_NO"
+		"AbilityUnitDamageType"				"DAMAGE_TYPE_MAGICAL"	
 		"AbilityTextureName"				"witch_doctor_voodoo_restoration"
 		"ScriptFile"						"heroes/hero_witch_doctor/witch_doctor_voodoo_restoration_bh"
 		"MaxLevel"							"7"
@@ -213,23 +214,25 @@
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"heal"						"8 16 24 32 40 48 56"
+				"var_type"						"FIELD_INTEGER"
+				"heal"							"8 16 24 32 40 48 56"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"16 32 48 64 80 96 112"
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"16 32 48 64 80 96 112"
+				"CalculateSpellDamageTooltip"	"1"
 			}
 			"05"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"100"
+				"var_type"						"FIELD_INTEGER"
+				"bonus_damage"					"100"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"tick_interval"				"0.2"
+				"var_type"						"FIELD_FLOAT"
+				"tick_interval"					"0.2"
 			}
 		}
 	}
@@ -347,6 +350,7 @@
 			{
 				"var_type"						"FIELD_FLOAT"
 				"bonus_damage"					"7.5 7.5 7.5 7.5 10 12.5 15"
+				"CalculateSpellDamageTooltip"	"0"
 			}	
 			"05"
 			{
@@ -429,9 +433,6 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_witch_doctor/witch_doctor_marasa_mirror"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
 		"AbilityTextureName"			"custom/witch_doctor_marasa_mirror"

@@ -55,6 +55,7 @@ function modifier_treant_living_armor_bh:DeclareFunctions()
 end
 
 function modifier_treant_living_armor_bh:GetModifierTotal_ConstantBlock(params)
+	if HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS ) then return end
 	self:SetStackCount( self:GetStackCount() - 1)
 	if self:GetStackCount() <= 0 then
 		self:Destroy()

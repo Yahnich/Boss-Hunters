@@ -12,7 +12,7 @@ function troll_warlord_focus:SwapTo()
 	caster:AddNewModifier(caster, self, "modifier_troll_warlord_focus", {})
 end
 
-modifier_troll_warlord_focus = class({})
+modifier_troll_warlord_focus = class(toggleModifierBaseClass)
 LinkLuaModifier( "modifier_troll_warlord_focus", "heroes/hero_troll_warlord/troll_warlord_focus", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_troll_warlord_focus:OnCreated()

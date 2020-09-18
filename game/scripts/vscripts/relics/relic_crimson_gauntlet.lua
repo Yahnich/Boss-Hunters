@@ -1,6 +1,11 @@
 relic_crimson_gauntlet = class(relicBaseClass)
 
+function relic_crimson_gauntlet:OnDestroy()
+	self:GetParent():HookOutModifier("GetModifierExtraHealthBonusPercentage", self)
+end
+
 function relic_crimson_gauntlet:OnCreated()
+	self:GetParent():HookInModifier("GetModifierExtraHealthBonusPercentage", self)
 	if IsServer() then
 		self:StartIntervalThink(0.33)
 		LinkLuaModifier( "modifier_relic_crimson_gauntlet", "relics/relic_crimson_gauntlet", LUA_MODIFIER_MOTION_NONE)

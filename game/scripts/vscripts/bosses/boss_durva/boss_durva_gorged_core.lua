@@ -20,14 +20,17 @@ function boss_durva_gorged_core:OnRefresh()
 end
 
 function boss_durva_gorged_core:DeclareFunctions()
-	return { MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_EVENT_ON_DEATH }
+	return { MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE, 
+			 MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, 
+			 MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, 
+			 MODIFIER_EVENT_ON_DEATH }
 end
 
 function boss_durva_gorged_core:GetModifierBaseDamageOutgoing_Percentage()
 	return self.dmg * self:GetStackCount()
 end
 
-function boss_durva_gorged_core:GetModifierAttackSpeedBonus()
+function boss_durva_gorged_core:GetModifierAttackSpeedBonus_Constant()
 	return self.as * self:GetStackCount()
 end
 

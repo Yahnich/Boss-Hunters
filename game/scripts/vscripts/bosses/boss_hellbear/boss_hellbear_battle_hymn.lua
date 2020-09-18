@@ -54,7 +54,11 @@ function modifier_boss_hellbear_battle_hymn_buff:OnRefresh()
 	self.as = self:GetSpecialValueFor("bonus_as")
 end
 
-function modifier_boss_hellbear_battle_hymn_buff:GetModifierAttackSpeedBonus()
+function modifier_boss_hellbear_battle_hymn_buff:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+end
+
+function modifier_boss_hellbear_battle_hymn_buff:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

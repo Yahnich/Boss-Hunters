@@ -15,6 +15,7 @@ LinkLuaModifier("modifier_juggernaut_meditative_state", "heroes/hero_juggernaut/
 function modifier_juggernaut_meditative_state:OnCreated()
 	local parent = self:GetParent()
 	self.radius = parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_2")
+	self.talent2 = parent:HasTalent("special_bonus_unique_juggernaut_meditative_state_2")
 	self.auraLinger = parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_2", "linger")
 	self.linger = self:GetTalentSpecialValueFor("linger_duration")
 	self.regen = self:GetTalentSpecialValueFor("regeneration") * ( parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_1") / 100 )
@@ -31,6 +32,7 @@ end
 function modifier_juggernaut_meditative_state:OnRefresh()
 	local parent = self:GetParent()
 	self.radius = parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_2")
+	self.talent2 = parent:HasTalent("special_bonus_unique_juggernaut_meditative_state_2")
 	self.auraLinger = parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_2", "linger")
 	self.linger = self:GetTalentSpecialValueFor("linger_duration")
 	self.regen = self:GetTalentSpecialValueFor("regeneration") * ( parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_1") / 100 )
@@ -40,7 +42,10 @@ function modifier_juggernaut_meditative_state:OnIntervalThink()
 	local parent = self:GetParent()
 	if parent:IsMoving() then
 		if self.nextCheckDisabled then
-			self:StartIntervalThink(0)
+			self:StartIntervalThink(0.1)
+			for _, unit in ipairs( parent:FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), self.radius ) ) do
+				unit:RemoveModifierByName("modifier_juggernaut_meditative_state_aura")
+			end
 		else
 			self:StartIntervalThink(self.linger)
 			self.nextCheckDisabled = true
@@ -67,7 +72,7 @@ function modifier_juggernaut_meditative_state:IsAura()
 end
 
 function modifier_juggernaut_meditative_state:GetAuraEntityReject( unit )
-	return ( unit == self:GetCaster() and self.nextCheckDisabled ) or unit ~= self:GetCaster()
+	return ( unit == self:GetCaster() and self.nextCheckDisabled ) or ( not self.talent2 and unit ~= self:GetCaster() )
 end
 
 function modifier_juggernaut_meditative_state:GetAuraRadius( unit )
@@ -78,7 +83,7 @@ function modifier_juggernaut_meditative_state:GetAuraSearchTeam( )
 	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
 end
 
-function modifier_juggernaut_meditative_state:GetAuraRadius( unit )
+function modifier_juggernaut_meditative_state:GetAuraDuration( )
 	return self.auraLinger
 end
 

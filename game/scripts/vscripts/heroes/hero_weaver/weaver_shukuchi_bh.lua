@@ -25,7 +25,8 @@ end
 modifier_weaver_shukuchi_bh = class({})
 function modifier_weaver_shukuchi_bh:OnCreated(table)
     self.bonus_ms = self:GetTalentSpecialValueFor("speed")
-
+	
+	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )
     if IsServer() then
         local caster = self:GetCaster()
 
@@ -72,6 +73,10 @@ function modifier_weaver_shukuchi_bh:OnRefresh(table)
     end
 end
 
+function modifier_weaver_shukuchi_bh:OnDestroy()
+	self:GetParent():HookOutModifier( "GetMoveSpeedLimitBonus", self )
+end
+
 function modifier_weaver_shukuchi_bh:OnIntervalThink()
     local caster = self:GetParent()
 
@@ -82,7 +87,7 @@ function modifier_weaver_shukuchi_bh:OnIntervalThink()
                         ParticleManager:SetParticleControlEnt(nfx, 0, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
                         ParticleManager:SetParticleControlEnt(nfx, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
                         ParticleManager:ReleaseParticleIndex(nfx)
-			if enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+			if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
 				enemy:Paralyze(self:GetAbility(), caster, self:GetTalentSpecialValueFor("duration"))
 
 				self:GetAbility():DealDamage(caster, enemy, self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)

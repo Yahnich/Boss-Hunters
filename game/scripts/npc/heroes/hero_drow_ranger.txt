@@ -186,6 +186,7 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"arrow_damage_pct"				"95 110 125 140 155 170 185"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"05"
 			{
@@ -597,6 +598,7 @@
 		"ScriptFile"					"heroes/hero_drow_ranger/drow_ranger_huntress_mark"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityTextureName"			"drow_ranger_trueshot"
 		"MaxLevel"						"7"
@@ -631,13 +633,14 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"proc_chance"					"25 30 35 35 35 35"
+				"proc_chance"					"25 30 35 35 35 35 35"
 				"LinkedSpecialBonus"			"special_bonus_unique_drow_ranger_huntress_mark_1"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bonus_damage"					"60 70 80 120 160 200"
+				"bonus_damage"					"60 70 80 120 160 200 240"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
@@ -738,7 +741,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"12"
+		"AbilityManaCost"				"10"
 		
 		"precache"
 		{

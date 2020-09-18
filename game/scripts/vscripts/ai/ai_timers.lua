@@ -1,59 +1,52 @@
-TIMERS_VERSION = "1.05"
+TIMERS_VERSION = "1.06"
+require('libraries/binheap')
 
 --[[
-  -- A timer running every second that starts immediately on the next frame, respects pauses
-  AITimers:CreateTimer(function()
-      print ("Hello. I'm running immediately and then every second thereafter.")
-      return 1.0
-    end
-  )
-  -- The same timer as above with a shorthand call 
-  AITimers(function()
-    print ("Hello. I'm running immediately and then every second thereafter.")
-    return 1.0
-  end)
-  
-  -- A timer which calls a function with a table context
-  AITimers:CreateTimer(GameMode.someFunction, GameMode)
-  -- A timer running every second that starts 5 seconds in the future, respects pauses
-  AITimers:CreateTimer(5, function()
-      print ("Hello. I'm running 5 seconds after you called me and then every second thereafter.")
-      return 1.0
-    end
-  )
-  -- 10 second delayed, run once using gametime (respect pauses)
-  AITimers:CreateTimer({
-    endTime = 10, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
-    callback = function()
-      print ("Hello. I'm running 10 seconds after when I was started.")
-    end
-  })
-  -- 10 second delayed, run once regardless of pauses
-  AITimers:CreateTimer({
-    useGameTime = false,
-    endTime = 10, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
-    callback = function()
-      print ("Hello. I'm running 10 seconds after I was started even if someone paused the game.")
-    end
-  })
-  -- A timer running every second that starts after 2 minutes regardless of pauses
-  AITimers:CreateTimer("uniqueTimerString3", {
-    useGameTime = false,
-    endTime = 120,
-    callback = function()
-      print ("Hello. I'm running after 2 minutes and then every second thereafter.")
-      return 1
-    end
-  })
-  -- A timer using the old style to repeat every second starting 5 seconds ahead
-  AITimers:CreateTimer("uniqueTimerString3", {
-    useOldStyle = true,
-    endTime = GameRules:GetGameTime() + 5,
-    callback = function()
-      print ("Hello. I'm running after 5 seconds and then every second thereafter.")
-      return GameRules:GetGameTime() + 1
-    end
-  })
+	1.06 modified by Celireor (now uses binary heap priority queue instead of iteration to determine timer of shortest duration)
+	DO NOT MODIFY A REALTIME TIMER TO USE GAMETIME OR VICE VERSA MIDWAY WITHOUT FIRST REMOVING AND RE-ADDING THE TIMER
+	-- A timer running every second that starts immediately on the next frame, respects pauses
+	AITimers:CreateTimer(function()
+			print ("Hello. I'm running immediately and then every second thereafter.")
+			return 1.0
+		end
+	)
+	-- The same timer as above with a shorthand call
+	AITimers(function()
+		print ("Hello. I'm running immediately and then every second thereafter.")
+		return 1.0
+	end)
+	-- A timer which calls a function with a table context
+	AITimers:CreateTimer(GameMode.someFunction, GameMode)
+	-- A timer running every second that starts 5 seconds in the future, respects pauses
+	AITimers:CreateTimer(5, function()
+			print ("Hello. I'm running 5 seconds after you called me and then every second thereafter.")
+			return 1.0
+		end
+	)
+	-- 10 second delayed, run once using gametime (respect pauses)
+	AITimers:CreateTimer({
+		endTime = 10, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
+		callback = function()
+			print ("Hello. I'm running 10 seconds after when I was started.")
+		end
+	})
+	-- 10 second delayed, run once regardless of pauses
+	AITimers:CreateTimer({
+		useGameTime = false,
+		endTime = 10, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
+		callback = function()
+			print ("Hello. I'm running 10 seconds after I was started even if someone paused the game.")
+		end
+	})
+	-- A timer running every second that starts after 2 minutes regardless of pauses
+	AITimers:CreateTimer("uniqueTimerString3", {
+		useGameTime = false,
+		endTime = 120,
+		callback = function()
+			print ("Hello. I'm running after 2 minutes and then every second thereafter.")
+			return 1
+		end
+	})
 ]]
 
 
@@ -61,180 +54,160 @@ TIMERS_VERSION = "1.05"
 TIMERS_THINK = 0.01
 
 if AITimers == nil then
-  print ( '[AITimers] creating AITimers' )
-  AITimers = {}
-  setmetatable(AITimers, {
-    __call = function(t, ...)
-      return t:CreateTimer(...)
-    end
-  })
-  --AITimers.__index = AITimers
+	print ( '[AITimers] creating AITimers' )
+	AITimers = {}
+	setmetatable(AITimers, {
+		__call = function(t, ...)
+			return t:CreateTimer(...)
+		end
+	})
+	--AITimers.__index = AITimers
 end
 
 function AITimers:start()
-  AITimers = self
-  self.timers = {}
-  
-  --local ent = Entities:CreateByClassname("info_target") -- Entities:FindByClassname(nil, 'CWorld')
-  local ent = SpawnEntityFromTableSynchronous("info_target", {targetname="ai_thinker"})
-  ent:SetThink("Think", self, "timers", TIMERS_THINK)
+	self.started = true
+	AITimers = self
+	self:InitializeTimers()
+	self.nextTickCallbacks = {}
+
+	local ent = SpawnEntityFromTableSynchronous("info_target", {targetname="timers_lua_thinker"})
+	ent:SetThink("Think", self, "AIimers", TIMERS_THINK)
 end
 
 function AITimers:Think()
-	--if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
-	--return
-	--end
-	local AIThink = function(self)
-		-- Track game time, since the dt passed in to think is actually wall-clock time not simulation time.
-		local now = GameRules:GetGameTime()
-
-		-- Process timers
-		for k,v in pairs(AITimers.timers) do
-			local bUseGameTime = true
-			if v.useGameTime ~= nil and v.useGameTime == false then
-			  bUseGameTime = false
-			end
-			local bOldStyle = false
-			if v.useOldStyle ~= nil and v.useOldStyle == true then
-			  bOldStyle = true
-			end
-			
-			if not bUseGameTime then
-			  now = Time()
-			end
-
-			if v.endTime == nil then
-			  v.endTime = now
-			end
-			-- Check if the timer has finished
-			if now >= v.endTime then
-			  -- Remove from timers list
-			  AITimers.timers[k] = nil
-
-			  AITimers.runningTimer = k
-			  AITimers.removeSelf = false
-			  
-			  -- Run the callback
-			  local status = true
-			  local nextCall
-			  if v.context then
-				nextCall = v.callback(v.context, v)
-			  else
-				nextCall = v.callback(v)
-			  end
-
-			  AITimers.runningTimer = nil
-
-			  -- Make sure it worked
-			  if status then
-				-- Check if it needs to loop
-				if nextCall and not AITimers.removeSelf then
-				  -- Change its end time
-
-				  if bOldStyle then
-					v.endTime = v.endTime + nextCall - now
-				  else
-					v.endTime = v.endTime + nextCall
-				  end
-
-				  AITimers.timers[k] = v
-				end
-
-				-- Update timer data
-				--self:UpdateTimerData()
-			  else
-				-- Nope, handle the error
-				AITimers:HandleEventError('Timer', k, nextCall)
-			  end
-			end
+	local nextTickCallbacks = MergeTables({}, AITimers.nextTickCallbacks)
+	AITimers.nextTickCallbacks = {}
+	for _, cb in ipairs(nextTickCallbacks) do
+		local status, result = xpcall(cb, debug.traceback)
+		if not status then
+			AITimers:HandleEventError(result)
 		end
 	end
-	status, err, ret = xpcall(AIThink, debug.traceback, self, fPrep )
-	if not status then
-		print(err)
+	if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
+		return
 	end
+
+	-- Track game time, since the dt passed in to think is actually wall-clock time not simulation time.
+	local now = GameRules:GetGameTime()
+
+	-- Process timers
+	self:ExecuteTimers(self.realTimeHeap, Time())
+	self:ExecuteTimers(self.gameTimeHeap, GameRules:GetGameTime())
+
 	return TIMERS_THINK
 end
 
-function AITimers:HandleEventError(name, event, err)
-  print(err)
+function AITimers:ExecuteTimers(timerList, now)
+	--Empty timer, ignore
+	if not timerList[1] then return end
 
-  -- Ensure we have data
-  name = tostring(name or 'unknown')
-  event = tostring(event or 'unknown')
-  err = tostring(err or 'unknown')
+	--Timers are alr. sorted by end time upon insertion
+	local currentTimer = timerList[1]
 
-  -- Tell everyone there was an error
-  --Say(nil, name .. ' threw an error on event '..event, false)
-  --Say(nil, err, false)
+	currentTimer.endTime = currentTimer.endTime or now
+	--Check if timer has finished
+	if now >= currentTimer.endTime then
+		-- Remove from timers list
+		timerList:Remove(currentTimer)
+		AITimers.runningTimer = k
+		AITimers.removeSelf = false
 
-  -- Prevent loop arounds
-  if not self.errorHandled then
-    -- Store that we handled an error
-    self.errorHandled = true
-  end
+		-- Run the callback
+		local status, timerResult
+		if currentTimer.context then
+			status, timerResult = xpcall(function() return currentTimer.callback(currentTimer.context, currentTimer) end, debug.traceback)
+		else
+			status, timerResult = xpcall(function() return currentTimer.callback(currentTimer) end, debug.traceback)
+		end
+
+		AITimers.runningTimer = nil
+
+		-- Make sure it worked
+		if status then
+			-- Check if it needs to loop
+			if timerResult and not AITimers.removeSelf then
+				-- Change its end time
+
+				currentTimer.endTime = currentTimer.endTime + timerResult
+
+				timerList:Insert(currentTimer)
+			end
+
+			-- Update timer data
+			--self:UpdateTimerData()
+		else
+			-- Nope, handle the error
+			AITimers:HandleEventError(timerResult)
+		end
+		--run again!
+		self:ExecuteTimers(timerList, now)
+	end
 end
 
-function AITimers:CreateTimer(name, args, context)
-  if type(name) == "function" then
-    if args ~= nil then
-      context = args
-    end
-    args = {callback = name}
-    name = DoUniqueString("timer")
-  elseif type(name) == "table" then
-    args = name
-    name = DoUniqueString("timer")
-  elseif type(name) == "number" then
-    args = {endTime = name, callback = args}
-    name = DoUniqueString("timer")
-  end
-  if not args.callback then
-    print("Invalid timer created: "..name)
-    return
-  end
+function AITimers:HandleEventError(err)
+	if IsInToolsMode() then
+		print(err)
+	end
+end
 
+function AITimers:CreateTimer(arg1, arg2, context)
+	local timer
+	if type(arg1) == "function" then
+		if arg2 ~= nil then
+			context = arg2
+		end
+		timer = {callback = arg1}
+	elseif type(arg1) == "table" then
+		timer = arg1
+	elseif type(arg1) == "number" then
+		timer = {endTime = arg1, callback = arg2}
+	end
+	if not timer.callback then
+		print("Invalid timer created")
+		return
+	end
 
-  local now = GameRules:GetGameTime()
-  if args.useGameTime ~= nil and args.useGameTime == false then
-    now = Time()
-  end
+	local now = GameRules:GetGameTime()
+	local timerHeap = self.gameTimeHeap
+	if timer.useGameTime ~= nil and timer.useGameTime == false then
+		now = Time()
+		timerHeap = self.realTimeHeap
+	end
 
-  if args.endTime == nil then
-    args.endTime = now
-  elseif args.useOldStyle == nil or args.useOldStyle == false then
-    args.endTime = now + args.endTime
-  end
+	if timer.endTime == nil then
+		timer.endTime = now
+	else
+		timer.endTime = now + timer.endTime
+	end
 
-  args.context = context
+	timer.context = context
 
-  AITimers.timers[name] = args 
+	timerHeap:Insert(timer)
 
-  return name
+	return timer
+end
+
+function AITimers:NextTick(callback)
+	table.insert(AITimers.nextTickCallbacks, callback)
 end
 
 function AITimers:RemoveTimer(name)
-  AITimers.timers[name] = nil
-  if AITimers.runningTimer == name then
-    AITimers.removeSelf = true
-  end
+	local timerHeap = self.gameTimeHeap
+	if name.useGameTime ~= nil and name.useGameTime == false then
+		timerHeap = self.realTimeHeap
+	end
+
+	timerHeap:Remove(name)
+	if AITimers.runningTimer == name then
+		AITimers.removeSelf = true
+	end
 end
 
-function AITimers:RemoveTimers(killAll)
-  local timers = {}
-  AITimers.removeSelf = true
-
-  if not killAll then
-    for k,v in pairs(AITimers.timers) do
-      if v.persist then
-        timers[k] = v
-      end
-    end
-  end
-
-  AITimers.timers = timers
+function AITimers:InitializeTimers()
+	self.realTimeHeap = BinaryHeap("endTime")
+	self.gameTimeHeap = BinaryHeap("endTime")
 end
 
-if not AITimers.timers then AITimers:start() end
+if not AITimers.started then AITimers:start() end
 
 GameRules.AITimers = AITimers

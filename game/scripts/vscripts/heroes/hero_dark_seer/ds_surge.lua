@@ -54,6 +54,7 @@ function modifier_ds_surge:OnCreated(table)
 		self.bonus_as = self.bonusMs
 	end
 
+	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )
 	if IsServer() then
 		local parent = self:GetParent()
 		parent:Purge(false, true, false, true, false)
@@ -82,6 +83,7 @@ function modifier_ds_surge:OnRefresh(table)
 end
 
 function modifier_ds_surge:OnRemoved()
+	self:GetParent():HookOutModifier( "GetMoveSpeedLimitBonus", self )
 	if IsServer() then
 		self:GetAbility():EndDelayedCooldown()
 	end
@@ -89,6 +91,7 @@ end
 
 function modifier_ds_surge:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
         	}
 end
 
@@ -96,7 +99,7 @@ function modifier_ds_surge:CheckState()
 	return {[MODIFIER_STATE_UNSLOWABLE] = true}
 end
 
-function modifier_ds_surge:GetModifierAttackSpeedBonus()
+function modifier_ds_surge:GetModifierAttackSpeedBonus_Constant()
 	return self.bonus_as
 end
 

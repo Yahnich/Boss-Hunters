@@ -48,36 +48,37 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"175"
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"175"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"spread"					"450"
+				"var_type"						"FIELD_INTEGER"
+				"spread"						"450"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"range"						"1500"
+				"var_type"						"FIELD_INTEGER"
+				"range"							"1500"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"axe_damage"				"30 60 90 120 150 180 210"
-				"LinkedSpecialBonus"		"special_bonus_unique_beast_wild_axes_1"
+				"var_type"						"FIELD_INTEGER"
+				"axe_damage"					"30 60 90 120 150 180 210"
+				"LinkedSpecialBonus"			"special_bonus_unique_beast_wild_axes_1"
 			}
 			"05"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"10"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"10"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_amp"				"10 11 12 13 14 15 16"
-				"LinkedSpecialBonus"		"special_bonus_unique_beast_wild_axes_1"
-				"LinkedSpecialBonusField"	"amp"
+				"var_type"						"FIELD_INTEGER"
+				"damage_amp"					"10 11 12 13 14 15 16"
+				"LinkedSpecialBonus"			"special_bonus_unique_beast_wild_axes_1"
+				"LinkedSpecialBonusField"		"amp"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"

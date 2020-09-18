@@ -157,6 +157,10 @@ end
 modifier_beast_wild_axes_hawk = class({})
 LinkLuaModifier( "modifier_beast_wild_axes_hawk", "heroes/hero_beast/beast_wild_axes.lua" ,LUA_MODIFIER_MOTION_NONE )
 
-function modifier_beast_wild_axes_hawk:GetModifierAttackSpeedBonus()
+function modifier_beast_wild_axes_hawk:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+end
+
+function modifier_beast_wild_axes_hawk:GetModifierAttackSpeedBonus_Constant()
 	return self:GetStackCount()
 end

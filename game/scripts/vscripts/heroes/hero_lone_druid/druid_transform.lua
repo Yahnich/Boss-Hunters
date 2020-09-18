@@ -142,9 +142,11 @@ function modifier_druid_transform:OnCreated(table)
 
 		parent:SetPrimaryAttribute(DOTA_ATTRIBUTE_STRENGTH)
 	end
+	caster:HookInModifier("GetBaseAttackTime_BonusPercentage", self)
 end
 
 function modifier_druid_transform:OnRemoved()
+	caster:HookOutModifier("GetBaseAttackTime_BonusPercentage", self)
 	if IsServer() then
 		local parent = self:GetParent()
 		
@@ -232,11 +234,14 @@ modifier_druid_transform_talent = class({})
 function modifier_druid_transform_talent:OnCreated(table)
 	self.bonus_hp = self:GetTalentSpecialValueFor("bonus_hp")
 	self.bat = self:GetTalentSpecialValueFor("bat")
+	caster:HookInModifier("GetBaseAttackTime_BonusPercentage", self)
 end
 
 function modifier_druid_transform_talent:OnRefresh(table)
-	self.bonus_hp = self:GetTalentSpecialValueFor("bonus_hp")
-	self.bat = self:GetTalentSpecialValueFor("bat")
+	self:OnCreated()
+end
+function modifier_druid_transform_talent:OnDestroy()
+	caster:HookOutModifier("GetBaseAttackTime_BonusPercentage", self)
 end
 
 function modifier_druid_transform_talent:DeclareFunctions()

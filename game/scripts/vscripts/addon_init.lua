@@ -53,18 +53,6 @@ LinkLuaModifier( "modifier_boss_evasion", "libraries/modifiers/modifier_boss_eva
 LinkLuaModifier( "modifier_boss_hard_enrage", "libraries/modifiers/modifier_boss_hard_enrage.lua", LUA_MODIFIER_MOTION_NONE)
 
 LinkLuaModifier( "modifier_stats_system_handler", "libraries/handlers/modifier_stats_system_handler.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_cooldown_reduction_handler", "libraries/handlers/modifier_cooldown_reduction_handler.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_base_attack_time_handler", "libraries/handlers/modifier_base_attack_time_handler.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_accuracy_handler", "libraries/handlers/modifier_accuracy_handler.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_attack_speed_handler", "libraries/handlers/modifier_attack_speed_handler.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_move_speed_handler", "libraries/handlers/modifier_move_speed_handler.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_evasion_handler", "libraries/handlers/modifier_evasion_handler.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_health_handler", "libraries/handlers/modifier_health_handler.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_strength_handler", "libraries/handlers/modifier_strength_handler.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_agility_handler", "libraries/handlers/modifier_agility_handler.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_intellect_handler", "libraries/handlers/modifier_intellect_handler.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_area_dmg_handler", "libraries/handlers/modifier_area_dmg_handler.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_handler_handler", "libraries/handlers/modifier_handler_handler.lua", LUA_MODIFIER_MOTION_NONE)
 
 -- PERKS 
 LinkLuaModifier( "modifier_attacker_evasion", "libraries/modifiers/talents/modifier_attacker_evasion.lua", LUA_MODIFIER_MOTION_NONE )

@@ -129,10 +129,10 @@ function modifier_mag_charge_enemy:CheckState()
 end
 
 function modifier_mag_charge_enemy:DeclareFunctions()
-	return {  MODIFIER_PROPERTY_CASTTIME_PERCENTAGE, MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE }
+	return {  MODIFIER_PROPERTY_CASTTIME_PERCENTAGE, MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
 end
 
-function modifier_mag_charge_enemy:GetModifierAttackSpeedBonus()
+function modifier_mag_charge_enemy:GetModifierAttackSpeedBonus_Constant()
 	return -1000
 end
 

@@ -61,7 +61,8 @@ function modifier_worked_up_stack:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-		MODIFIER_PROPERTY_MODEL_SCALE
+		MODIFIER_PROPERTY_MODEL_SCALE,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
 	}	
 	return funcs
 end
@@ -74,7 +75,7 @@ function modifier_worked_up_stack:GetModifierMoveSpeedBonus_Percentage()
 	return self.ms * self:GetStackCount()
 end
 
-function modifier_worked_up_stack:GetModifierAttackSpeedBonus()
+function modifier_worked_up_stack:GetModifierAttackSpeedBonus_Constant()
 	return self.as * self:GetStackCount()
 end
 

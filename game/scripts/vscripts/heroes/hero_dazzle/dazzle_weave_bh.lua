@@ -23,7 +23,7 @@ function modifier_dazzle_weave_bh_handler:OnRefresh()
 end
 
 function modifier_dazzle_weave_bh_handler:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ABILITY_FULLY_CAST}
+	return {MODIFIER_EVENT_ON_ABILITY_FULLY_CAST, MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE }
 end
 
 function modifier_dazzle_weave_bh_handler:OnAbilityFullyCast(params)
@@ -48,7 +48,7 @@ function modifier_dazzle_weave_bh_handler:OnAbilityFullyCast(params)
 	end
 end
 
-function modifier_dazzle_weave_bh_handler:GetCooldownReduction()
+function modifier_dazzle_weave_bh_handler:GetModifierPercentageCooldown()
 	return self.cdr
 end
 

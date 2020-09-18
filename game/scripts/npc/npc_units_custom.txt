@@ -2227,7 +2227,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"22"
 		"ModelScale" 				"1.5"
-		"IsAncient"			"0"
+		"IsAncient"					"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsUndead"					"1"
@@ -10758,8 +10758,8 @@
 		"AttackDamageMax"			"100"		// Damage range max.
 		"AttackRate"				"1.25"
 		"AttackAnimationPoint"		"0.3"
-		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
-		"AttackRange"				"15000"		// Range within a target can be attacked.
+		"AttackAcquisitionRange"	"1200"		// Range within a target can be acquired.
+		"AttackRange"				"800"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_warlock/warlock_base_attack.vpcf"							// Particle system model for projectile.
 		"ProjectileSpeed"			"1200"									// Speed of projectile.
 	

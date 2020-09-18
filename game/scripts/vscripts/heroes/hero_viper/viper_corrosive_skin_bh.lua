@@ -74,7 +74,7 @@ function modifier_viper_corrosive_skin_bh:OnRefresh()
 end
 
 function modifier_viper_corrosive_skin_bh:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_TAKEDAMAGE; MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
+	return {MODIFIER_EVENT_ON_TAKEDAMAGE, MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
 end
 
 function modifier_viper_corrosive_skin_bh:OnTakeDamage(params)
@@ -154,10 +154,10 @@ function modifier_viper_corrosive_skin_bh_debuff:OnIntervalThink()
 end
 
 function modifier_viper_corrosive_skin_bh_debuff:DeclareFunctions()
-	return {}
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 end
 
-function modifier_viper_corrosive_skin_bh_debuff:GetModifierAttackSpeedBonus()
+function modifier_viper_corrosive_skin_bh_debuff:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

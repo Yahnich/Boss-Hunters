@@ -109,10 +109,10 @@ end
 
 function modifier_juggernaut_quickparry_talent:DeclareFunctions()
 	return {
-			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
 end
 
-function modifier_juggernaut_quickparry_talent:GetModifierAttackSpeedBonus(params)
+function modifier_juggernaut_quickparry_talent:GetModifierAttackSpeedBonus_Constant(params)
 	return self.as * self:GetStackCount()
 end
 

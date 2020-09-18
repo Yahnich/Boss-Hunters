@@ -13,7 +13,7 @@
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"1035"
+		"ItemCost"						"875"
 		"ItemShopTags"					"evasion"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"butterfly;blade_of_storm"
@@ -37,7 +37,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_evasion"			"10 15 20 25 30 35 40 45 50"
+				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
 			}
 			"08"
 			{
@@ -60,7 +60,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"965"
+		"ItemCost"						"925"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -103,7 +103,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_evasion"			"10 15 20 25 30 35 40 45 50"
+				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
 			}
 			"08"
 			{
@@ -171,7 +171,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_evasion"			"10 15 20 25 30 35 40 45 50"
+				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
 			}
 			"08"
 			{
@@ -239,7 +239,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_evasion"			"10 15 20 25 30 35 40 45 50"
+				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
 			}
 			"08"
 			{
@@ -307,7 +307,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_evasion"			"10 15 20 25 30 35 40 45 50"
+				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
 			}
 			"08"
 			{
@@ -375,7 +375,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_evasion"			"10 15 20 25 30 35 40 45 50"
+				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
 			}
 			"08"
 			{
@@ -443,7 +443,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_evasion"			"10 15 20 25 30 35 40 45 50"
+				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
 			}
 			"08"
 			{
@@ -511,7 +511,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_evasion"			"10 15 20 25 30 35 40 45 50"
+				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
 			}
 			"08"
 			{
@@ -579,7 +579,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_evasion"			"10 15 20 25 30 35 40 45 50"
+				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
 			}
 			"08"
 			{

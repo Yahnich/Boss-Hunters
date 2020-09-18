@@ -24,6 +24,6 @@ function warlock_imp_bolt:OnProjectileHit(hTarget, vLocation)
 	if hTarget then
 		EmitSoundOn("Hero_Jakiro.LiquidFire", hTarget)
 		local damage = caster:GetOwner():GetIntellect() * self:GetTalentSpecialValueFor("damage")/100
-		self:DealDamage(caster:GetOwner(), hTarget, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+		self:DealDamage(caster, hTarget, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 	end
 end

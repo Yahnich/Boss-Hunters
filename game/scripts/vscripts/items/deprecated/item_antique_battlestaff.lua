@@ -51,7 +51,7 @@ function modifier_item_antique_battlestaff:GetModifierBonusStats_Agility()
 	return self.bonus_agility
 end
 
-function modifier_item_antique_battlestaff:GetModifierAttackSpeedBonus()
+function modifier_item_antique_battlestaff:GetModifierAttackSpeedBonus_Constant()
 	return self.bonus_attack_speed
 end
 

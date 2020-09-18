@@ -47,7 +47,9 @@ function boss_apotheosis_decimate:CreateFlare(position, radius)
 	ParticleManager:FireParticle("particles/units/heroes/hero_invoker/invoker_sun_strike_team.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(radius,1,1)})
 	Timers:CreateTimer(delay + RandomFloat( 0.1, 0.4 ), function()
 		for _, hero in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-			self:DealDamage( caster, hero, damage )
+			if not hero:TriggerSpellAbsorb( self ) then
+				self:DealDamage( caster, hero, damage )
+			end
 		end
 		ParticleManager:FireParticle("particles/invoker_sun_strikev2.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(radius,1,1)})
 		EmitSoundOnLocationWithCaster( position, "Hero_Invoker.Cataclysm.Ignite", caster )

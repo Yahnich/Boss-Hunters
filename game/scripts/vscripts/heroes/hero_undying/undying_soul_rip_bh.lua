@@ -34,10 +34,12 @@ function undying_soul_rip_bh:OnSpellStart()
 	for _, unit in ipairs( units ) do
 		if not unit:IsSameTeam(caster) or caster:HasTalent("special_bonus_unique_undying_soul_rip_1") then
 			local flags = DOTA_DAMAGE_FLAG_HPLOSS
+			local damage = hploss
 			if unit:IsSameTeam(caster) then
-				 flags =  flags + DOTA_DAMAGE_FLAG_NON_LETHAL
+				flags =  flags + DOTA_DAMAGE_FLAG_NON_LETHAL
+				damage = damage / 2
 			end
-			self:DealDamage( caster, unit, hploss, {damage_type = DAMAGE_TYPE_PURE, damage_flags = flags})
+			self:DealDamage( caster, unit, damage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = flags})
 		end
 		unitCount = unitCount + 1
 		if not unit:IsMinion() or unit:IsRealHero() then
@@ -53,7 +55,7 @@ function undying_soul_rip_bh:OnSpellStart()
 		if caster:HasTalent("special_bonus_unique_undying_soul_rip_2") then
 			target:AddNewModifier(caster, self, "modifier_undying_soul_rip_bh_talent", {duration = caster:FindTalentValue("special_bonus_unique_undying_soul_rip_2", "duration")})
 		end
-	elseif not enemy:TriggerSpellAbsorb( self ) then
+	elseif not target:TriggerSpellAbsorb( self ) then
 		EmitSoundOn("Hero_Undying.SoulRip.Enemy", target)
 		self:DealDamage( caster, target, unitCount * healPUnit )
 		ripFX = "particles/units/heroes/hero_undying/undying_soul_rip_damage.vpcf"
@@ -73,6 +75,10 @@ function modifier_undying_soul_rip_bh_talent:OnCreated()
 	end
 end
 
-function modifier_undying_soul_rip_bh_talent:GetModifierAttackSpeedBonus()
+function modifier_undying_soul_rip_bh_talent:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+end
+
+function modifier_undying_soul_rip_bh_talent:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end

@@ -8,14 +8,22 @@ function boss_warlock_demon_lust:OnSpellStart()
 end
 
 modifier_boss_warlock_demon_lust = class({})
+function modifier_boss_warlock_demon_lust:OnCreated()
+	self:GetParent():HookInModifier("GetBaseAttackTime_Bonus", self)
+end
+
+function modifier_boss_warlock_demon_lust:OnDestroy()
+	self:GetParent():HookOutModifier("GetBaseAttackTime_Bonus", self)
+end
+
 function modifier_boss_warlock_demon_lust:DeclareFunctions()
     local funcs = {
-        
+        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT 
     }
     return funcs
 end
 
-function modifier_boss_warlock_demon_lust:GetModifierAttackSpeedBonus()
+function modifier_boss_warlock_demon_lust:GetModifierAttackSpeedBonus_Constant()
     return self:GetSpecialValueFor("bonus_as")
 end
 

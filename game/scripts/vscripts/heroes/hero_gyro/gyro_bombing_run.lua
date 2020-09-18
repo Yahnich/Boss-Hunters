@@ -27,8 +27,8 @@ function gyro_bombing_run:OnSpellStart()
 
 	local duration = distance/casterSpeed
 
-	caster:AddNewModifier(caster, nil, "modifier_movespeed_cap", { duration = duration })
-	caster:AddNewModifier(caster, self, "modifier_valkyrie", { duration = duration })
+	caster:AddNewModifier(caster, nil, "modifier_movespeed_cap", { duration = duration, ignoreStatusAmp = true })
+	caster:AddNewModifier(caster, self, "modifier_valkyrie", { duration = duration, ignoreStatusAmp = true })
 	caster:MoveToPosition(self:GetCursorPosition())
 end
 

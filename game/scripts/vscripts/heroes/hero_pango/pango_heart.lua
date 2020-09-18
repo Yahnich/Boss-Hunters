@@ -152,7 +152,11 @@ function modifier_pango_lucky_shot_attackslow:OnRefresh(table)
 	self.as = self:GetTalentSpecialValueFor("attack_slow")
 end
 
-function modifier_pango_lucky_shot_attackslow:GetModifierAttackSpeedBonus()
+function modifier_pango_lucky_shot_attackslow:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+end
+
+function modifier_pango_lucky_shot_attackslow:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

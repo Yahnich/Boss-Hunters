@@ -62,9 +62,16 @@ end
 function modifier_faceless_clock_stopper_handle:IsHidden() return true end
 
 modifier_faceless_clock_stopper_buff = class({})
+function modifier_faceless_clock_stopper_buff:OnCreated()
+	caster:HookInModifier("GetBaseAttackTime_Bonus", self)
+end
+
+function modifier_faceless_clock_stopper_buff:OnDestroy()
+	caster:HookOutModifier("GetBaseAttackTime_Bonus", self)
+end
+
 function modifier_faceless_clock_stopper_buff:DeclareFunctions()
-    local funcs = { MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
-					MODIFIER_EVENT_ON_ATTACK_START}
+    local funcs = { MODIFIER_EVENT_ON_ATTACK_START}
     return funcs
 end
 
@@ -78,7 +85,7 @@ function modifier_faceless_clock_stopper_buff:OnAttackStart(params)
 end
 
 function modifier_faceless_clock_stopper_buff:GetBaseAttackTime_Bonus()
-	return self:GetTalentSpecialValueFor("base_attack_time")
+	return self.bat
 end
 
 function modifier_faceless_clock_stopper_buff:GetStatusEffectName()

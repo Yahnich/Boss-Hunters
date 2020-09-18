@@ -62,14 +62,14 @@ function modifier_lich_cold_front_debuff:OnRefresh()
 end
 
 function modifier_lich_cold_front_debuff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 end
 
 function modifier_lich_cold_front_debuff:GetModifierMoveSpeedBonus_Percentage()
 	return self.ms
 end
 
-function modifier_lich_cold_front_debuff:GetModifierAttackSpeedBonus()
+function modifier_lich_cold_front_debuff:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

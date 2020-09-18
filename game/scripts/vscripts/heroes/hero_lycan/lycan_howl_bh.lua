@@ -12,7 +12,7 @@ function lycan_howl_bh:OnSpellStart()
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
 		enemy:AddNewModifier(caster, self, "modifier_lycan_howl_bh_buff", {duration = duration})
 		if talent1 then
-			enemy:AddNewModifier(caster, self, "modifier_lycan_howl_bh_fear", {duration = duration})
+			enemy:Fear(self, caster, duration)
 		end
 	end
 	
@@ -64,30 +64,4 @@ end
 
 function modifier_lycan_howl_bh_buff:GetEffectName()
 	return "particles/units/heroes/hero_lycan/lycan_howl_buff.vpcf"
-end
-
-modifier_lycan_howl_bh_fear = class({})
-LinkLuaModifier("modifier_lycan_howl_bh_fear", "heroes/hero_lycan/lycan_howl_bh", LUA_MODIFIER_MOTION_NONE)
-
-if IsServer() then
-	function modifier_lycan_howl_bh_fear:OnCreated()
-		self:StartIntervalThink(0.2)
-	end
-	
-	function modifier_lycan_howl_bh_fear:OnIntervalThink()
-		local direction = CalculateDirection(self:GetParent(), self:GetCaster())
-		self:GetParent():MoveToPosition(self:GetParent():GetAbsOrigin() + direction * self:GetParent():GetIdealSpeed() * 0.2)
-	end
-end
-
-function modifier_lycan_howl_bh_fear:GetEffectName()
-	return "particles/units/heroes/hero_lycan/lycan_howl_buff.vpcf"
-end
-
-function modifier_lycan_howl_bh_fear:CheckState()
-	return {[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
-			[MODIFIER_STATE_DISARMED] = true,
-			[MODIFIER_STATE_SILENCED] = true,
-			[MODIFIER_STATE_PROVIDES_VISION] = true,
-			}
 end

@@ -22,11 +22,11 @@ end
 
 
 function relic_kashas_wheelbarrow:DeclareFunctions()	
-	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
 end
 
-function relic_kashas_wheelbarrow:GetModifierAttackSpeedBonus()
-	return 10 * self:GetStackCount()
+function relic_kashas_wheelbarrow:GetModifierAttackSpeedBonus_Constant()
+	return 5 * self:GetStackCount()
 end
 
 function relic_kashas_wheelbarrow:GetModifierMoveSpeedBonus_Percentage()

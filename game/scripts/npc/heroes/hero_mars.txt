@@ -193,34 +193,35 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"crit_mult"					"160 200 240 280 320 360 400"
-				"LinkedSpecialBonus"		"special_bonus_unique_mars_gods_rebuke_extra_crit"
+				"var_type"							"FIELD_INTEGER"
+				"crit_mult"							"160 200 240 280 320 360 400"
+				"LinkedSpecialBonus"				"special_bonus_unique_mars_gods_rebuke_extra_crit"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"angle"						"140"
+				"var_type"							"FIELD_INTEGER"
+				"angle"								"140"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"distance"					"500"
+				"var_type"							"FIELD_INTEGER"
+				"distance"							"500"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"knockback_duration"		"0.3"
+				"var_type"							"FIELD_FLOAT"
+				"knockback_duration"				"0.3"
 			}			
 			"05"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"knockback_distance"		"150"
+				"var_type"							"FIELD_FLOAT"
+				"knockback_distance"				"150"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage_vs_bosses"	"25"
+				"var_type"							"FIELD_INTEGER"
+				"bonus_damage_vs_bosses"			"25"
+				"CalculateSpellDamageTooltip"		"0"
 			}
 		}
 	}

@@ -82,6 +82,7 @@ function modifier_roar_slow:DeclareFunctions()
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 	}
 	return funcs
 end
@@ -90,7 +91,7 @@ function modifier_roar_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
 end
 
-function modifier_roar_slow:GetModifierAttackSpeedBonus()
+function modifier_roar_slow:GetModifierAttackSpeedBonus_Constant()
 	return self.slow
 end
 

@@ -39,12 +39,12 @@ local function StartCombat(self)
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then
 				for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
-					hero:MakeVisibleToTeam( DOTA_TEAM_BADGUYS, 2.5 )
+					hero:MakeVisibleToTeam( DOTA_TEAM_BADGUYS, 5 )
 				end
 				local roll = RandomInt(1, 12)
 				local hp = 150
 				if GameRules:GetGameDifficulty() >= 4 then
-					hp = 200
+					hp = 250
 				end
 				local zombieType = "npc_dota_mini_boss1"
 				if roll <= 6 then
@@ -53,19 +53,20 @@ local function StartCombat(self)
 					zombieType = "npc_dota_boss3a_b"
 					hp = 200
 					if GameRules:GetGameDifficulty() >= 4 then
-						hp = 300
+						hp = 325
 					end
 				elseif roll == 12 then
 					zombieType = "npc_dota_boss3b"
 					hp = 175
 					if GameRules:GetGameDifficulty() >= 4 then
-						hp = 250
+						hp = 275
 					end
 				end
 				local zombie = CreateUnitByName(zombieType, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 				zombie:SetCoreHealth(hp)
+				zombie:SetBaseMoveSpeed( zombie:GetBaseMoveSpeed() * (1 + (GameRules:GetGameDifficulty()/10)*2 ) )
 				zombie:SetAverageBaseDamage( (roll + 20) * 10, 25 )
-				return math.max( 4, (self.timeRemaining or 60) / 15 ) / HeroList:GetActiveHeroCount()
+				return math.max( 1.5, (self.timeRemaining or 60) / 15 ) / HeroList:GetActiveHeroCount()
 			end
 		end
 	end)

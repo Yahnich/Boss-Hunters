@@ -123,10 +123,11 @@ function modifier_batrider_napalm_debuff:DeclareFunctions()
     -- MODIFIER_EVENT_ON_TAKEDAMAGE,
 	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 			MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE}
 end
 
-function modifier_batrider_napalm_debuff:GetModifierAttackSpeedBonus()
+function modifier_batrider_napalm_debuff:GetModifierAttackSpeedBonus_Constant()
 	return -self.slow_as
 end
 

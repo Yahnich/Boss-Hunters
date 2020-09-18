@@ -61,6 +61,7 @@
 				"var_type"					"FIELD_INTEGER"
 				"damage"					"24 42 60 78 78 78 78"
 				"LinkedSpecialBonus"		"special_bonus_unique_pango_swashbuckler_1"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{

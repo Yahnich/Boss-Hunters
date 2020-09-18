@@ -44,7 +44,8 @@ function modifier_troll_warlord_berserkers_rage_bh_melee:OnCreated()
 	self.hp = self:GetTalentSpecialValueFor("bonus_hp")
 	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
 	self.bat = self:GetTalentSpecialValueFor("base_attack_time") - 1.7
-
+	self:GetParent():HookInModifier("GetBaseAttackTime_Bonus", self)
+	self:GetParent():HookInModifier("GetModifierExtraHealthBonusPercentage", self)
 	if IsServer() then
 		self:GetParent().originalAttackCapability = DOTA_UNIT_CAP_MELEE_ATTACK
 		self:GetParent():SetAttackCapability( DOTA_UNIT_CAP_MELEE_ATTACK )
@@ -52,6 +53,8 @@ function modifier_troll_warlord_berserkers_rage_bh_melee:OnCreated()
 end
 
 function modifier_troll_warlord_berserkers_rage_bh_melee:OnDestroy()
+	self:GetParent():HookOutModifier("GetBaseAttackTime_Bonus", self)
+	self:GetParent():HookOutModifier("GetModifierExtraHealthBonusPercentage", self)
 	if IsServer() then
 		self:GetParent().originalAttackCapability = DOTA_UNIT_CAP_RANGED_ATTACK
 		self:GetParent():SetAttackCapability( self:GetParent():GetOriginalAttackCapability() )
@@ -59,7 +62,10 @@ function modifier_troll_warlord_berserkers_rage_bh_melee:OnDestroy()
 end
 
 function modifier_troll_warlord_berserkers_rage_bh_melee:DeclareFunctions()
-	return {MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE, MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS, MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE }
+	return {MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE, 
+			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, 
+			MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS, 
+			MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE}
 end
 
 function modifier_troll_warlord_berserkers_rage_bh_melee:GetModifierExtraHealthBonusPercentage()
@@ -84,4 +90,8 @@ end
 
 function modifier_troll_warlord_berserkers_rage_bh_melee:GetEffectName()
 	return "particles/units/heroes/hero_troll_warlord/troll_warlord_berserk_buff.vpcf"
+end
+
+function modifier_troll_warlord_berserkers_rage_bh_melee:GetModifierAttackRangeOverride()
+	return 150
 end

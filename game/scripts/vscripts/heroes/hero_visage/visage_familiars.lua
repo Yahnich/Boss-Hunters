@@ -85,3 +85,7 @@ end
 function modifier_visage_familiars:IsHidden()
 	return true
 end
+
+function modifier_visage_familiars:IsPurgable()
+	return false
+end

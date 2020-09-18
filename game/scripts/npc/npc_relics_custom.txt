@@ -476,6 +476,16 @@
 		"Rarity"			"RARITY_UNCOMMON"
 		"Cursed"			"0"
 	}
+	"relic_olive_branch"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"1"
+	}
+	"relic_evil_eye_amulet"
+	{
+		"Rarity"			"RARITY_UNCOMMON"
+		"Cursed"			"1"
+	}
 	/////////////////////////////////////////////////////////
 	// RARE RELICS
 	/////////////////////////////////////////////////////////
@@ -744,6 +754,21 @@
 		"Rarity"			"RARITY_RARE"
 		"Cursed"			"1"
 	}
+	"relic_tortoise_greatshield"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_ritual_kris"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
+	"relic_iron_maiden"
+	{
+		"Rarity"			"RARITY_RARE"
+		"Cursed"			"1"
+	}
 	/////////////////////////////////////////////////////////
 	// LEGENDARY RELICS
 	/////////////////////////////////////////////////////////
@@ -773,6 +798,11 @@
 		"Cursed"			"0"
 	}
 	"relic_unbridled_power"
+	{
+		"Rarity"			"RARITY_LEGENDARY"
+		"Cursed"			"1"
+	}
+	"relic_apple_of_eden"
 	{
 		"Rarity"			"RARITY_LEGENDARY"
 		"Cursed"			"1"

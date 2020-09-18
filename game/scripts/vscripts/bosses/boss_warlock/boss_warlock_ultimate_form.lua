@@ -5,6 +5,10 @@ function boss_warlock_ultimate_form:GetIntrinsicModifierName()
 	return "modifier_boss_warlock_ultimate_form"
 end
 
+function boss_warlock_ultimate_form:IsStealable()
+	return false
+end
+
 modifier_boss_warlock_ultimate_form = class({})
 function modifier_boss_warlock_ultimate_form:DeclareFunctions()
 	local funcs = {

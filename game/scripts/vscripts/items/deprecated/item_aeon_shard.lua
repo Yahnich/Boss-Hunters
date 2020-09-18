@@ -20,7 +20,7 @@ function modifier_item_aeon_shard_passive:DeclareFunctions()
 	return {}
 end
 
-function modifier_item_aeon_shard_passive:GetModifierAttackSpeedBonus()
+function modifier_item_aeon_shard_passive:GetModifierAttackSpeedBonus_Constant()
 	return self.bonus_attack_speed
 end
 
@@ -53,7 +53,7 @@ function modifier_item_aeon_shard_consumed:DeclareFunctions()
 	return {}
 end
 
-function modifier_item_aeon_shard_consumed:GetModifierAttackSpeedBonus()
+function modifier_item_aeon_shard_consumed:GetModifierAttackSpeedBonus_Constant()
 	return 30 * self:GetStackCount()
 end
 

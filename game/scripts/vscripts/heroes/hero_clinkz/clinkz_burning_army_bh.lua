@@ -87,8 +87,8 @@ function clinkz_burning_army_bh:CreateSkeletonArcher( position, duration, attack
 		searing:ToggleAutoCast()
 	end
 	
-	skeleton:SetBaseAttackTime( attackRate or self:GetTalentSpecialValueFor("attack_rate") )
 	local searchRadius = skeleton:GetAttackRange()
+	skeleton:AddNewModifier(caster, self, "modifier_clinkz_burning_army_bh_passive", {})
 	if caster:HasTalent("special_bonus_unique_clinkz_burning_army_2") then
 		skeleton:SetBaseMoveSpeed( caster:GetIdealSpeed() )
 		skeleton:SetMoveCapability( DOTA_UNIT_CAP_MOVE_GROUND )
@@ -137,4 +137,33 @@ function clinkz_burning_army_bh:CreateSkeletonArcher( position, duration, attack
 	local sfx = ParticleManager:CreateParticle("particles/units/heroes/hero_clinkz/clinkz_burning_army.vpcf", PATTACH_POINT_FOLLOW, skeleton)
 	ParticleManager:ReleaseParticleIndex(sfx)
 	skeleton:EmitSound("Hero_Clinkz.Skeleton_Archer.Spawn")
+end
+
+modifier_clinkz_burning_army_bh_passive = class({})
+LinkLuaModifier( "modifier_clinkz_burning_army_bh_passive", "heroes/hero_clinkz/clinkz_burning_army_bh.lua" ,LUA_MODIFIER_MOTION_NONE )
+function modifier_clinkz_burning_army_bh_passive:OnCreated()
+	self.attack_range = self:GetCaster():GetAttackRange()
+	self.attack_time = self:GetTalentSpecialValueFor("attack_rate")
+	if IsServer() then
+		self:SetStackCount( self:GetCaster():GetAverageBaseDamage() )
+	end
+end
+
+function modifier_clinkz_burning_army_bh_passive:OnDestroy()
+end
+
+function modifier_clinkz_burning_army_bh_passive:DeclareFunctions()
+	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE, MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE, MODIFIER_PROPERTY_FIXED_ATTACK_RATE }
+end
+
+function modifier_clinkz_burning_army_bh_passive:GetModifierPreAttack_BonusDamage()
+	return self:GetStackCount()
+end
+
+function modifier_clinkz_burning_army_bh_passive:GetModifierAttackRangeOverride()
+	return self.attack_range
+end
+
+function modifier_clinkz_burning_army_bh_passive:GetModifierFixedAttackRate()
+	return self.attack_time
 end

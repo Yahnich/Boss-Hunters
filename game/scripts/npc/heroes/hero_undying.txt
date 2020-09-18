@@ -190,6 +190,7 @@
 				"health_per_unit"				"18 22 26 30 34 38 42"
 				"LinkedSpecialBonus"			"special_bonus_unique_undying_soul_rip_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"CalculateSpellDamageTooltip"	"1"
 			}
 			"03"
 			{
@@ -261,7 +262,6 @@
 	    "AbilityTextureName"			"custom/undying_summon_zombies"
 		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_TOMBSTONE"
 	    "MaxLevel"						"7"
-		"HasScepterUpgrade"				"1"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------

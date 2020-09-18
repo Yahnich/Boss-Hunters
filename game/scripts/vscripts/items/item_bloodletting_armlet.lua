@@ -13,8 +13,10 @@ function item_bloodletting_armlet:GetAbilityTextureName()
 end
 
 function item_bloodletting_armlet:OnToggle()
-	if self:GetToggleState() then
-		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_bloodletting_armlet", {})
+	if self:GetToggleState()then
+		if not self.toggleModifier then
+			self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_bloodletting_armlet", {})
+		end
 	elseif self.toggleModifier and not self.toggleModifier:IsNull() then
 		self.toggleModifier:Destroy()
 	end
@@ -78,11 +80,19 @@ end
 function modifier_item_bloodletting_armlet:OnIntervalThink()
 	local caster = self:GetCaster()
 	local ability = self:GetAbility()
+	if not ability or ability:IsNull() then 
+		self:Destroy()
+		return
+	end
 	if self.healthToGrant > 0 then
 		self.healthToGrant = self.healthToGrant - self.healthStep
 		caster:SetHealth( math.min( caster:GetHealth() + self.healthStep, caster:GetMaxHealth() ) )
 	end
-	ability:DealDamage( caster, caster, self.drain * 0.1, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NON_LETHAL } )
+	if caster:IsIllusion() then
+		ability:DealDamage( caster, caster, self.drain * 0.1, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NON_LETHAL } )
+	else
+		ability:DealDamage( caster, caster, self.drain * 0.1, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NON_LETHAL } )
+	end
 	self:ForceRefresh()
 end
 
@@ -92,7 +102,7 @@ function modifier_item_bloodletting_armlet:OnRemoved()
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
 		local damageToDeal = self.bonus_strength * GameRules:GetGameModeEntity():GetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_STRENGTH_HP, self:GetCaster() )
-		ability:DealDamage( caster, caster, damageToDeal, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NON_LETHAL } )
+		ability:DealDamage( caster, caster, damageToDeal, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NON_LETHAL } )
 	end
 end
 

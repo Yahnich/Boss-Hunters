@@ -28,6 +28,10 @@ function relicBaseClass:AllowIllusionDuplicate()
 	return false
 end
 
+function relicBaseClass:IsRelicModifier()
+	return true
+end
+
 function relicBaseClass:GetAttributes()
 	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT + MODIFIER_ATTRIBUTE_MULTIPLE
 end

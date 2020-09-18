@@ -137,11 +137,11 @@ function modifier_item_echoing_tambourine_active:GetModifierMoveSpeedBonus_Perce
 	return self.bonus_ms_buff
 end
 
-function modifier_item_echoing_tambourine_active:GetModifierAttackSpeedBonus()
+function modifier_item_echoing_tambourine_active:GetModifierAttackSpeedBonus_Constant()
 	return self.bonus_as
 end
 
-function modifier_item_echoing_tambourine_active:GetCooldownReduction()
+function modifier_item_echoing_tambourine_active:GetModifierPercentageCooldown()
 	return self.cooldown_reduction_buff
 end
 

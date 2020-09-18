@@ -2,6 +2,10 @@ meepo_divided = class({})
 LinkLuaModifier("modifier_meepo_divided","heroes/hero_meepo/meepo_divided.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_meepo_divided_death","heroes/hero_meepo/meepo_divided.lua",LUA_MODIFIER_MOTION_NONE)
 
+function meepo_divided:IsRefreshable()
+	return false
+end
+
 function meepo_divided:OnHeroLevelUp()
     local caster = self:GetCaster()
     local PID = caster:GetPlayerOwnerID()
@@ -40,7 +44,7 @@ function meepo_divided:OnInventoryContentsChanged()
 		local firstItem
     	if currentItem then
 	        firstItem = currentItem:GetAbilityName()
-			if firstItem == "item_ultimate_scepter" or ( currentItem.IsConsumable and currentItem:IsConsumable() ) or firstItem == "item_ward_observer" then
+			if ( currentItem.IsConsumable and currentItem:IsConsumable() ) or firstItem == "item_ward_observer" then
 				firstItem = nil
 			end
 		end
@@ -54,6 +58,24 @@ function meepo_divided:OnInventoryContentsChanged()
 					local itemToClone = meepo:AddItemByName(firstItem)
 					if itemToClone then
 						meepo.ignoreInventoryEvent = true
+						if currentItem.itemData then
+							Timers:CreateTimer(function()
+								itemToClone.itemData = table.copy( currentItem.itemData )
+								local passive = meepo:FindModifierByNameAndAbility( itemToClone:GetIntrinsicModifierName(), itemToClone )
+								local funcs = {}
+								for slot, rune in pairs( currentItem.itemData ) do
+									if rune and rune.funcs then
+										for func, result in pairs( rune.funcs ) do
+											funcs[func] = ( funcs[func] or 0 ) + result
+										end
+									end
+								end
+								for func, result in pairs( funcs ) do
+									passive[func] = function() return result end
+								end
+								passive:ForceRefresh()
+							end)
+						end
 						itemToClone:SetStacksWithOtherOwners(true)
 						itemToClone:SetPurchaser(nil)
 						itemToClone:SetSellable(false)
@@ -225,7 +247,8 @@ function modifier_meepo_divided:OnDeath(params)
     elseif params.unit == parent and params.unit ~= mainMeepo then
         if mainMeepo:IsAlive() then
             local healthLoss = mainMeepo:GetMaxHealth() * self:GetSpecialValueFor("health_remove")/100
-            mainMeepo:ModifyHealth(mainMeepo:GetMaxHealth() - healthLoss, self:GetAbility(), true, 0)
+            mainMeepo:ModifyHealth(mainMeepo:GetHealth() - healthLoss, self:GetAbility(), true, 0)
+			self:GetAbility():SetCooldown(self.respawnTime)
         end
     end
 end

@@ -64,7 +64,7 @@ function modifier_lich_dark_sacrifice:OnRefresh()
 end
 
 function modifier_lich_dark_sacrifice:DeclareFunctions()
-	return {MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS, MODIFIER_PROPERTY_EXTRA_MANA_BONUS, MODIFIER_EVENT_ON_ATTACK_LANDED}
+	return {MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS, MODIFIER_PROPERTY_EXTRA_MANA_BONUS, MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE }
 end
 
 function modifier_lich_dark_sacrifice:GetModifierExtraHealthBonus()
@@ -75,7 +75,7 @@ function modifier_lich_dark_sacrifice:GetModifierExtraManaBonus()
 	return self:GetStackCount()
 end
 
-function modifier_lich_dark_sacrifice:GetCooldownReduction()
+function modifier_lich_dark_sacrifice:GetModifierPercentageCooldown()
 	return self.cdr
 end
 

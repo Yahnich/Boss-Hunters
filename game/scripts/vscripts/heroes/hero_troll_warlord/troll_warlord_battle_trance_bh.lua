@@ -16,13 +16,7 @@ modifier_troll_warlord_battle_trance_bh = class({})
 LinkLuaModifier( "modifier_troll_warlord_battle_trance_bh", "heroes/hero_troll_warlord/troll_warlord_battle_trance_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_troll_warlord_battle_trance_bh:OnCreated()
-	self.attackspeed = self:GetTalentSpecialValueFor("attack_speed")
-	self.movespeed = self:GetTalentSpecialValueFor("move_speed")
-	self.lifesteal = self:GetTalentSpecialValueFor("lifesteal") / 100
-	
-	self.cleave = self:GetTalentSpecialValueFor("scepter_cleave") / 100
-	self.range = self:GetTalentSpecialValueFor("scepter_attack_range")
-	self.sr = self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_battle_trance_1")
+	self:OnRefresh()
 end
 
 function modifier_troll_warlord_battle_trance_bh:OnRefresh()
@@ -33,6 +27,12 @@ function modifier_troll_warlord_battle_trance_bh:OnRefresh()
 	self.cleave = self:GetTalentSpecialValueFor("scepter_cleave") / 100
 	self.range = self:GetTalentSpecialValueFor("scepter_attack_range")
 	self.sr = self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_battle_trance_1")
+	
+	self:GetParent():HookInModifier("GetModifierAttackSpeedLimitBonus", self)
+end
+
+function modifier_troll_warlord_battle_trance_bh:OnDestroy()
+	self:GetParent():HookOutModifier("GetModifierAttackSpeedLimitBonus", self)
 end
 
 function modifier_troll_warlord_battle_trance_bh:CheckState()
@@ -45,6 +45,7 @@ end
 function modifier_troll_warlord_battle_trance_bh:DeclareFunctions()
 	return {MODIFIER_PROPERTY_STATUS_RESISTANCE, 
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, 
+			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 			MODIFIER_EVENT_ON_TAKEDAMAGE, 
 			MODIFIER_PROPERTY_MIN_HEALTH,
 			MODIFIER_EVENT_ON_ATTACK_LANDED,
@@ -83,7 +84,7 @@ function modifier_troll_warlord_battle_trance_bh:GetModifierStatusResistance()
 	return self.sr
 end
 
-function modifier_troll_warlord_battle_trance_bh:GetModifierAttackSpeedBonus()
+function modifier_troll_warlord_battle_trance_bh:GetModifierAttackSpeedBonus_Constant()
 	return self.attackspeed
 end
 
@@ -105,4 +106,8 @@ function modifier_troll_warlord_battle_trance_bh:StatusEffectPriority()
 	if self:GetParent():HasScepter() then
 		return 50
 	end
+end
+
+function modifier_troll_warlord_battle_trance_bh:IsPurgable()
+	return false
 end

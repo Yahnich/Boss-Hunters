@@ -8,6 +8,10 @@ function item_ice_fang:GetAppliedModifierName()
 	return "modifier_ice_fang_debuff"
 end
 
+function item_ice_fang:GetRuneSlots()
+	return self:GetSpecialValueFor("rune_slots")
+end
+
 item_ice_fang_2 = class(item_ice_fang)
 item_ice_fang_3 = class(item_ice_fang)
 item_ice_fang_4 = class(item_ice_fang)
@@ -77,7 +81,7 @@ function modifier_ice_fang_debuff:OnIntervalThink()
 end
 
 function modifier_ice_fang_debuff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 end
 
 function modifier_ice_fang_debuff:GetModifierMoveSpeedBonus_Percentage()
@@ -91,4 +95,4 @@ end
 modifier_winters_breath_debuff = class(modifier_ice_fang_debuff)
 LinkLuaModifier( "modifier_winters_breath_debuff", "items/item_ice_fang.lua" ,LUA_MODIFIER_MOTION_NONE )
 
-function modifier_winters_breath_debuff:GetModifierAttackSpeedBonus() return self.slow end
+function modifier_winters_breath_debuff:GetModifierAttackSpeedBonus_Constant() return self.slow end

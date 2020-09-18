@@ -10,7 +10,7 @@ function relic_unchanging_globe:OnAbilityFullyCast(params)
 		local delayedCD = params.ability:IsDelayedCooldown()
 		local cd = params.ability:GetCooldownTimeRemaining()
 		if not params.unit:HasModifier("relic_ritual_candle") or cd > 18 then
-			params.ability:Refresh()
+			params.ability:EndCooldown()
 			if delayedCD then
 				params.ability:StartDelayedCooldown(false, 18)
 			else

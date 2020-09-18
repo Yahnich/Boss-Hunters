@@ -42,37 +42,71 @@ var upgradeContent = mainShop.FindChildTraverse("GridUpgradeItems");
 })();
 
 var visibleRunes = false;
+var ctrlDown = false;
 (function(){
 	RuneThinkLoop();
 })();
 function RuneThinkLoop(){
-	if( GameUI.IsAltDown() && !visibleRunes ){
-		GameEvents.SendCustomGameEventToServer( "bh_request_all_rune_data", {entindex : Players.GetLocalPlayerPortraitUnit()} );
-		visibleRunes = true;
-	} else if ( !GameUI.IsAltDown() && visibleRunes ) {
-		RemoveRuneSlotsItem()
-		visibleRunes = false;
+	if( !panelIsBeingDragged ){
+		if( GameUI.IsAltDown() && !visibleRunes ){
+			GameEvents.SendCustomGameEventToServer( "bh_request_all_rune_data", {entindex : Players.GetLocalPlayerPortraitUnit()} );
+			visibleRunes = true;
+		} else if ( visibleRunes ) {
+			if ( !GameUI.IsAltDown() ){
+				RemoveRuneSlotsItem()
+				visibleRunes = false;
+				ctrlDown = false;
+			} else {
+				if(ctrlDown && !GameUI.IsControlDown()){ //control is now down and wasn't before, update rune panels
+					ctrlDown = false
+					for(var inventorySlot in itemRuneTableList){
+						for( var runeSlot in itemRuneTableList[inventorySlot] ){
+							var runePanel = itemRuneTableList[inventorySlot][runeSlot]
+							if(runePanel != null && runePanel != undefined){
+								runePanel.hittest = false;
+								runePanel.SetHasClass("Clickthrough", true)
+								runePanel.SetPanelEvent("onactivate", function(){})
+							}
+						}
+					}
+				} else if(!ctrlDown && GameUI.IsControlDown()){ //control is not down and was before, update rune panels
+					ctrlDown = true
+					var workFunction = function( rune ){
+						rune.hittest = true;
+						rune.SetHasClass("Clickthrough", false)
+						rune.SetPanelEvent("onactivate", function(){
+						$.Msg( rune )
+							if( GameUI.IsControlDown() ){
+								RequestRuneRemoval(rune.slot, rune.inventorySlot)
+							}
+						})
+					}
+					for(var inventorySlot in itemRuneTableList){
+						for( var runeSlot in itemRuneTableList[inventorySlot] ){
+							var runePanel = itemRuneTableList[inventorySlot][runeSlot]
+							if(runePanel != null && runePanel != undefined){
+								workFunction(runePanel);
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 	$.Schedule( 0.1, RuneThinkLoop )
 }
-// (function(){
-	// var key = Game.GetKeybindForCommand( DOTAKeybindCommand_t.DOTA_KEYBIND_DOTA_ALT )
-	// if(key == ""){
-		// key = "alt_key"
-	// }
-	// $.RegisterKeyBind($.GetContextPanel(), key, function() {
-	   // $.Msg("alt pressed");
-	// });
-// })();
 
 
+var panelIsBeingDragged = false
 function ApplyDraggableEvents( abilityButton, inventoryIndex ){
 	$.RegisterEventHandler( 'DragStart', abilityButton, function(info, info2){
 		RemoveRuneSlotsItem()
+		panelIsBeingDragged = true
 		GameEvents.SendCustomGameEventToServer( "bh_request_all_rune_data", {entindex : Players.GetLocalPlayerPortraitUnit(),  inventory : inventoryIndex} )
 	} );
 	$.RegisterEventHandler( 'DragEnd', abilityButton, function(info, info2){
 		 RemoveRuneSlotsItem()
+		 panelIsBeingDragged = false
 	} );
 }
 
@@ -90,7 +124,10 @@ function RemoveRuneSlotsItem(){
 			}
 		}
 	}
+	itemRuneTableList = {}
 }
+
+var itemRuneTableList = {}
 
 function WriteRuneInformationItem(eventData){
 	RemoveRuneSlotsItem()
@@ -98,14 +135,16 @@ function WriteRuneInformationItem(eventData){
 		CreateRuneSlotContainer( inventorySlot, eventData );
 	}
 }
+
 function CreateRuneSlotContainer( inventorySlot, eventData ){
 	var runePanelContainer = $.CreatePanel("Panel", $.GetContextPanel(), "AbilityRuneSlotsContainer");
 	runePanelContainer.AddClass("RuneSlotContainerIcon");
 	runePanelContainer.hittest = false;
 	runePanelContainer.inventorySlot = inventorySlot;
 	var runes = eventData.itemData[inventorySlot]
+	itemRuneTableList[inventorySlot] = {}
 	for(var runeSlot in runes){
-		CreateRuneSlotItem( runes[runeSlot], runePanelContainer, runeSlot, eventData.runeType )
+		itemRuneTableList[inventorySlot][runeSlot] = CreateRuneSlotItem( runes[runeSlot], runePanelContainer, runeSlot, eventData.runeType )
 	}
 	var inventory = mainHud.FindChildTraverse("center_block").FindChildTraverse("inventory")
 	var inventoryPanel = inventory.FindChildTraverse("inventory_slot_"+inventorySlot);
@@ -128,7 +167,7 @@ function CreateRuneSlotItem( runeData, runePanelContainer, runeSlot, potentialRu
 	}
 	
 	if ( runeData.rune_type == undefined ) {
-		runePanel.itemname = 'none'
+		runePanel.itemname = 'rubick_empty1'
 	} else {
 		runePanel.itemname = runeData.rune_type
 	}
@@ -141,7 +180,7 @@ function CreateRuneSlotItem( runeData, runePanelContainer, runeSlot, potentialRu
 		runePanel.SetDraggable( true )
 		$.RegisterEventHandler( 'DragDrop', runePanel, function(info, info2, info3){
 			if (!runePanel.isBeingDragged){
-				GameEvents.SendCustomGameEventToServer( "bh_enter_rune_slot_request", {entindex : Players.GetLocalPlayerPortraitUnit(), inventorySlot : runePanelContainer.inventorySlot, runeItemSlot : runePanel.slot, runeInventorySlot : runePanelContainer.runeInventorySlot} )
+				GameEvents.SendCustomGameEventToServer( "bh_enter_rune_slot_request", {entindex : Players.GetLocalPlayerPortraitUnit(), inventorySlot : runePanelContainer.inventorySlot, runeItemSlot : runePanel.slot, runeInventorySlot : runePanelContainer.runeInventorySlot, insertAll : GameUI.IsControlDown()} )
 			}
 		} );
 		$.RegisterEventHandler( 'DragLeave', runePanel, function(info, info2){
@@ -156,16 +195,17 @@ function CreateRuneSlotItem( runeData, runePanelContainer, runeSlot, potentialRu
 				runePanel.itemname = runePanel.potentialRune
 			}
 		} );
-	} else if ( runePanel.initialRune != "none" ) {
-		runePanel.hittest = true;
-		runePanel.SetPanelEvent("onactivate", function(){
-				RequestRuneRemoval(runePanel.slot, runePanel.inventorySlot)
-			})
+	} else {
+		runePanel.hittest = false;
+		runePanel.SetHasClass("Clickthrough", true)
 	}
+	return runePanel
 }
 
 function RequestRuneRemoval( runeSlot, itemSlot ){
-	GameEvents.SendCustomGameEventToServer( "bh_enter_remove_rune_request", {entindex : Players.GetLocalPlayerPortraitUnit(), inventorySlot : itemSlot, runeItemSlot : runeSlot} )
+	if( localID == Entities.GetPlayerOwnerID( Players.GetLocalPlayerPortraitUnit() ) ){
+		GameEvents.SendCustomGameEventToServer( "bh_enter_remove_rune_request", {entindex : Players.GetLocalPlayerPortraitUnit(), inventorySlot : itemSlot, runeItemSlot : runeSlot} )
+	}
 }
 
 function RemoveRuneSlots(){
@@ -212,7 +252,7 @@ function CreateRuneSlot( runeData, runePanelContainer, runeSlot ){
 	runePanel.BLoadLayoutSnippet("RuneSlotContainerDescription");
 	if ( runeData.rune_type == undefined ) {
 		runePanel.FindChildTraverse("RuneSlotContainerImage").itemname = 'none'
-		runePanel.FindChildTraverse("RuneSlotLabel").text = 'Empty Stone Slot'
+		runePanel.FindChildTraverse("RuneSlotLabel").text = 'Empty Stone Slot (Drag Stones In)'
 	} else {
 		runePanel.FindChildTraverse("RuneSlotContainerImage").itemname = runeData.rune_type
 		

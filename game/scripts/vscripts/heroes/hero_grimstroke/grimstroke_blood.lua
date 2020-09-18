@@ -138,7 +138,11 @@ function modifier_grimstroke_blood_toggle:OnIntervalThink()
 	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.drain, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS})
 end
 
-function modifier_grimstroke_blood_toggle:GetCooldownReduction()
+function modifier_grimstroke_blood_toggle:DeclareFunctions()
+	return {MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE }
+end
+
+function modifier_grimstroke_blood_toggle:GetModifierPercentageCooldown()
 	return self.cdr
 end
 

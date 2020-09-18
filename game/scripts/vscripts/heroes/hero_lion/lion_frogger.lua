@@ -54,9 +54,14 @@ end
 
 modifier_lion_frogger = class({})
 function modifier_lion_frogger:OnCreated(table)
+	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )
     if IsServer() then
         self:StartIntervalThink(FrameTime())
     end
+end
+
+function modifier_lion_frogger:OnDestroy()
+	self:GetParent():HookOutModifier( "GetMoveSpeedLimitBonus", self )
 end
 
 function modifier_lion_frogger:OnIntervalThink()

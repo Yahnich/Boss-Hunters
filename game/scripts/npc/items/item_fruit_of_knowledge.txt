@@ -13,17 +13,20 @@
 		"ScriptFile"					"items/item_fruit_of_knowledge"
 		"AbilityTextureName"			"item_pupils_gift"
 		"ItemKillable"					"1"
-		"ItemSellable"					"0"
+		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
-		"Model"							"models/props_gameplay/clarity.vmdl"	
+		"Model"							"models/props_gameplay/banana_prop_closed.vmdl"	
 		
 		"ItemCost"						"4000"
-		"ItemShopTags"					"xp;experience"
+		"ItemShopTags"					"xp"
 		"ItemQuality"					"consumable"
-		"ItemAliases"					"tome of knowledge;creed of knowledge"
+		"ItemAliases"					"skill points"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemStackable"					"1"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"ItemDisplayCharges"			"1"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------

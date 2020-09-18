@@ -9,18 +9,19 @@
 	<snippets>
         <snippet name="RelicInventoryContainer">
 			<Panel class="RelicInventoryContainer">
+				<Image id="RelicInventoryIconSnippet" src="file://{images}/custom_game/relics/relic_rarity_common.png" class="RelicInventoryRarityIcon"/>
 				<Label id="RelicLabel" class="RelicNameText" text="Mysterious Water"/>
 			</Panel>
 		</snippet>
 		<snippet name="RelicChoiceContainer">
 			<Panel class="RelicChoiceContainer" hittest="true">
-				<Label id="RelicNameSnippet" class="RelicNameLabel" text="DOTA_Tooltip_relic_generic_angelic_water"/>
-				<Panel class="RelicDescriptionContainer" hittest="true">
-					<Label id="SnippetRelicDescription" class="RelicDescriptionLabel" text="DOTA_Tooltip_relic_generic_angelic_water_Description"/>
-				</Panel>
-				<Button id="SelectButtonSnippet" class="SelectButton" onactivate="SelectRelic(1)" onmouseover="AddHover('SelectButtonGeneric')" onmouseout="RemoveHover('SelectButtonGeneric')">
-					<Label id="SelectButtonLabelSnippet" class="SelectButtonLabel" text="Select"/>
-				</Button>
+				<Image id="RelicIconSnippet" src="file://{images}/custom_game/relics/relic_rarity_common.png" class="RelicRarityIcon"/>
+				<Label id="RelicNameSnippet" class="RelicNameLabel" text="Angelic Water"/>
+			</Panel>
+		</snippet>
+		<snippet name="RelicInventoryButtonSnippet">
+			<Panel class="RelicInventoryButton" hittest="true">
+				<Label class='RelicInventoryButtonLabel' id="RelicInventoryButtonLabel" text="RELICS"/>
 			</Panel>
 		</snippet>
 	</snippets>
@@ -31,14 +32,16 @@
 			</Panel> 
 			<Panel class="HorizontalSeperator" hittest="true"/>
 			<Panel class="RelicButtonContainer" hittest="true">
-				<Button id="SkipButton" onactivate="SkipRelics()" onmouseover="AddHover('SkipButton')" onmouseout="RemoveHover('SkipButton')">
-					<Label id="SkipButtonLabel" text="Skip Relics"/>
+				<Button class="SelectionButton" id="SkipButton" onactivate="SkipRelics()" onmouseover="AddHover('SkipButton')" onmouseout="RemoveHover('SkipButton')">
+					<Label class='SelectionButtonLabel' id="SkipButtonLabel" text="Skip Relics"/>
+				</Button>
+				<Button class="SelectionButton" id="HoldButton" onactivate="HoldRelics()" onmouseover="AddHover('HoldButton')" onmouseout="RemoveHover('HoldButton')">
+					<Label class='SelectionButtonLabel' id="HoldButtonLabel" text="Hold Relics"/>
 				</Button>
 			</Panel>
 		</Panel>
 		<Panel id="RelicInventoryRoot" hittest="false">
 			<Panel id="RelicInventoryNotifyIdiots" hittest="true"/>
-			<Button id="RelicInventoryButton" onactivate="OpenRelicInventory()" onmouseover="ShowRelicTooltip()" onmouseout="HideRelicTooltip()" oncancel="HideAll"/>
 			<Panel id="RelicInventoryPanel" hittest="true">
 			</Panel>
 			<Button id="RelicDropNotification" onactivate="SendDropQuery()" hittest="true">

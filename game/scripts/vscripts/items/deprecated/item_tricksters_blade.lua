@@ -51,7 +51,7 @@ function modifier_item_tricksters_blade:DeclareFunctions()
 			}
 end
 
-function modifier_item_tricksters_blade:GetModifierAttackSpeedBonus()
+function modifier_item_tricksters_blade:GetModifierAttackSpeedBonus_Constant()
 	return self.attackSpeed
 end
 

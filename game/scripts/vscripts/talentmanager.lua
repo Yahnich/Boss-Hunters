@@ -227,12 +227,19 @@ function TalentManager:ProcessUniqueTalents(userid, event)
 	local talents = hero.masteryPerks.uniqueTalents
 	local talentEntity = hero:FindAbilityByName(talentName)
 	if talentEntity and not talentEntity:IsTrained() and hero:GetTalentPoints() > 0 then
-		for talent, levelRequirement in pairs( talents[abilityName] ) do
-			if levelRequirement ~= -1 then
-				talents[abilityName][talent] = math.min(levelRequirement + 30, 80)
+		-- level talent linked to all abilities
+		for ability, talentTable in pairs( talents ) do
+			if talentTable[talentName] then
+				for talentID, levelRequirement in pairs(talentTable) do
+					if talentID == talentName then
+						talentTable[talentID] = -1
+					elseif talentTable[talentID] ~= -1 then
+						talentTable[talentID] = math.min(levelRequirement + 30, 80)
+					end
+				end
 			end
 		end
-		talents[abilityName][talentName] = -1
+		-- end
 		hero:ModifyTalentPoints(-1)
 		talentEntity:SetLevel(1)
 		local talentData = CustomNetTables:GetTableValue("talents", tostring(hero:entindex())) or {}

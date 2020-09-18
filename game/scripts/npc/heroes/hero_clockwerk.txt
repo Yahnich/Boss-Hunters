@@ -121,7 +121,6 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"custom/rattletrap_aegis_deflector"
-		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
 		
 		// Talents		
@@ -387,7 +386,6 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_rattletrap/rattletrap_reactive_shielding"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/rattletrap_reactive_shielding"
@@ -399,7 +397,6 @@
 		"LinkedTalents"
 		{
 			"special_bonus_unique_rattletrap_reactive_shielding_1"	"1"
-			"special_bonus_unique_rattletrap_automated_artillery_1"	"1"
 		}
 
 		// Casting
@@ -434,6 +431,7 @@
 			{	
 				"var_type"						"FIELD_FLOAT"
 				"damage_reduction"				"-80"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"04"
 			{	
@@ -465,7 +463,6 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_rattletrap_reactive_shielding_1"	"1"
 			"special_bonus_unique_rattletrap_automated_artillery_1"	"1"
 		}
 

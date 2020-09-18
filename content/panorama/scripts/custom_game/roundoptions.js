@@ -24,7 +24,6 @@ GameEvents.Subscribe( "Close_RoundVote", close)
 
 $("#RoundOptions").visible = false;
 
-
 function open()
 {
 		$("#Vote_Yes").visible = true;

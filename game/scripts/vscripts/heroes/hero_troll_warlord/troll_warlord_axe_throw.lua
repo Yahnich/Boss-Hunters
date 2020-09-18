@@ -103,3 +103,7 @@ function modifier_troll_warlord_whirling_axes_talent:OnAttackLanded(params)
 		end
 	end
 end
+
+function modifier_troll_warlord_whirling_axes_talent:IsHidden()
+	return true
+end

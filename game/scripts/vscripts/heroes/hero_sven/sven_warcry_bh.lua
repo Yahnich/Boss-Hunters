@@ -37,7 +37,7 @@ function modifier_sven_warcry_bh_buff:DeclareFunctions()
 	funcs = {
 				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 				MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-				
+				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 				MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
 				
 			}
@@ -52,7 +52,7 @@ function modifier_sven_warcry_bh_buff:GetModifierPhysicalArmorBonus()
 	return self.armor
 end
 
-function modifier_sven_warcry_bh_buff:GetModifierAttackSpeedBonus()
+function modifier_sven_warcry_bh_buff:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

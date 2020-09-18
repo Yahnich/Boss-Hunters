@@ -46,7 +46,7 @@ function modifier_item_ferrum_ascensus:GetModifierPercentageManacost()
 	return self.manacost
 end
 
-function modifier_item_ferrum_ascensus:GetModifierAttackSpeedBonus()
+function modifier_item_ferrum_ascensus:GetModifierAttackSpeedBonus_Constant()
 	return self.attackSpeed
 end
 
@@ -88,7 +88,7 @@ function modifier_ferrum_ascensus_debuff:DeclareFunctions()
 			}
 end
 
-function modifier_ferrum_ascensus_debuff:GetModifierAttackSpeedBonus()
+function modifier_ferrum_ascensus_debuff:GetModifierAttackSpeedBonus_Constant()
 	return self.slow
 end
 

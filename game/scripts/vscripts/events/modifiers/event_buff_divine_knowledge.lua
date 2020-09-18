@@ -14,7 +14,11 @@ end
 
 event_buff_divine_knowledge_2 = class(relicBaseClass)
 
-function event_buff_divine_knowledge_2:GetCooldownReduction( params )
+function event_buff_divine_knowledge_2:DeclareFunctions()
+	return {MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE}
+end
+
+function event_buff_divine_knowledge_2:GetModifierPercentageCooldown( params )
     return 25
 end
 

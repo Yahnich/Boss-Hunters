@@ -19,14 +19,6 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_ember_chains_1"	"1"
-			"special_bonus_unique_ember_chains_2"	"1"
-		}
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
 			"special_bonus_unique_jakiro_dual_breath_bh_1"	"1"
 			"special_bonus_unique_jakiro_dual_breath_bh_2"	"1"
 		}
@@ -461,16 +453,19 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_scepter"		"125 175 225 275 325 375"
+				"RequiresScepter"		"1"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration_scepter"		"30"
+				"RequiresScepter"		"1"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"length_scepter"		"1800"
+				"RequiresScepter"		"1"
 			}
 		}
 	}

@@ -63,7 +63,9 @@ local function StartCombat(self, bFight)
 		end)
 	else
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-			hero:AddBlessing("event_buff_demon_shrine")
+			if self._playerChoices[hero:GetPlayerOwnerID()] == 1 then
+				hero:AddCurse("event_buff_demon_shrine")
+			end
 		end
 		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 1})
 		self:EndEvent(true)

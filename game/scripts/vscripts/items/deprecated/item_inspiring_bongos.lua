@@ -116,7 +116,7 @@ end
 function modifier_item_inspiring_bongos_passive_aura:GetModifierConstantHealthRegen()
 	return self.bonus_regen_aura
 end
-function modifier_item_inspiring_bongos_passive_aura:GetModifierAttackSpeedBonus()
+function modifier_item_inspiring_bongos_passive_aura:GetModifierAttackSpeedBonus_Constant()
 	return self.bonus_as_aura
 end
 
@@ -138,7 +138,7 @@ function modifier_item_inspiring_bongos_active:GetModifierMoveSpeedBonus_Percent
 	return self.bonus_ms_buff
 end
 
-function modifier_item_inspiring_bongos_active:GetModifierAttackSpeedBonus()
+function modifier_item_inspiring_bongos_active:GetModifierAttackSpeedBonus_Constant()
 	return self.bonus_as
 end
 

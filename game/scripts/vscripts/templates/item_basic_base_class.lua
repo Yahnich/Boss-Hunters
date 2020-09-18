@@ -2,16 +2,46 @@ itemBasicBaseClass = class(persistentModifier)
 
 function itemBasicBaseClass:SetupRuneSystem(modifier)
 	-- find old modifier, -1 (slot unassigned) and not current item
-	local modifierToLookup = self:GetName()
+	local parent = self:GetParent()
+	local modifiersToLookUp = {}
+	modifiersToLookUp[self:GetName()] = true
+	local associatedModifierName
 	if  self:GetAbility().GetAssociatedUpgradeModifier and self:GetAbility():GetAssociatedUpgradeModifier() then
-		modifierToLookup = self:GetAbility():GetAssociatedUpgradeModifier()
+		associatedModifierNames = self:GetAbility():GetAssociatedUpgradeModifier()
+		if type(associatedModifierNames) == 'table' then
+			for _,modifier in ipairs( associatedModifierNames ) do
+				modifiersToLookUp[modifier] = true
+			end
+		else
+			modifiersToLookUp[associatedModifierNames] = true
+		end
 	end
-	for _,modifier in ipairs( self:GetParent():FindAllModifiersByName( modifierToLookup ) ) do
-		ability = modifier:GetAbility()
-		if ability:GetItemSlot() == -1 and ability ~= self:GetAbility() then
-			self:GetAbility().itemData = table.copy( ability.itemData )
-			modifier:Destroy()
-			break
+	local hasBeenCopied = false
+	for _,modifier in ipairs( parent:FindAllModifiers( ) ) do
+		if modifiersToLookUp[modifier:GetName()] then
+			ability = modifier:GetAbility()
+			if ability and ability:GetItemSlot() == -1 and ability ~= self:GetAbility() then
+				if not hasBeenCopied then
+					self:GetAbility().itemData = table.copy( ability.itemData )
+					modifier:Destroy()
+					hasBeenCopied = true
+				else
+					for i = 1, ability:GetRuneSlots() do
+						local rune = ability.itemData[i] or {}
+						if rune.rune_type then
+							local item = FindItemInInventory( rune.rune_type )
+							if item then
+								item:SetCurrentCharges( item:GetCurrentCharges() + rune.rune_level )
+							else
+								item = parent:AddItemByName( rune.rune_type )
+								if item then
+									item:SetCurrentCharges( rune.rune_level )
+								end
+							end
+						end
+					end
+				end
+			end
 		end
 	end
 	self:GetAbility().itemData = self:GetAbility().itemData or self.itemData or {}
@@ -48,7 +78,6 @@ function itemBasicBaseClass:OnCreated()
 	if IsServer() then
 		self:GetCaster():HookInModifier( "GetModifierBaseCriticalChanceBonus", self )
 		self:GetCaster():HookInModifier( "GetModifierBaseCriticalDamageBonus", self )
-		self:GetCaster():HookInModifier( "GetModifierAttackSpeedBonus", self )
 		self:SetupRuneSystem(self.stone_share)
 		self:SetHasCustomTransmitterData( true )
 		
@@ -63,7 +92,6 @@ function itemBasicBaseClass:OnRefresh()
 	if IsServer() then
 		self:GetCaster():HookInModifier( "GetModifierBaseCriticalChanceBonus", self )
 		self:GetCaster():HookInModifier( "GetModifierBaseCriticalDamageBonus", self )
-		self:GetCaster():HookInModifier( "GetModifierAttackSpeedBonus", self )
 		self:SetHasCustomTransmitterData( true )
 		self:StoreRunesIntoModifier()
 	end
@@ -77,7 +105,6 @@ function itemBasicBaseClass:OnDestroy()
 	if IsServer() then
 		self:GetCaster():HookOutModifier( "GetModifierBaseCriticalChanceBonus", self )
 		self:GetCaster():HookOutModifier( "GetModifierBaseCriticalDamageBonus", self )
-		self:GetCaster():HookOutModifier( "GetModifierAttackSpeedBonus", self )
 		self:SetHasCustomTransmitterData( true )
 		self:StoreRunesIntoModifier()
 	end
@@ -99,8 +126,9 @@ function itemBasicBaseClass:GetDefaultFunctions()
 				MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 				MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 				MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-				MODIFIER_PROPERTY_CAST_RANGE_BONUS,
-				MODIFIER_PROPERTY_ATTACK_RANGE_BONUS 
+				MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
+				MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT 
 			}
 end 
 

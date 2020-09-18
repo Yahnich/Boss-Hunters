@@ -54,11 +54,12 @@ function modifier_moonlight_duration:DeclareFunctions()
     funcs = {
                 MODIFIER_EVENT_ON_ATTACK,
                 MODIFIER_EVENT_ON_ABILITY_EXECUTED,
+				MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE 
             }
     return funcs
 end
 
-function modifier_moonlight_duration:GetCooldownReduction()
+function modifier_moonlight_duration:GetModifierPercentageCooldown()
     if self:GetCaster():HasTalent("special_bonus_unique_mirana_stardust_reflection_2") then
         return self:GetCaster():FindTalentValue("special_bonus_unique_mirana_stardust_reflection_2")
     else

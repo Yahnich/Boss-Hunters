@@ -57,6 +57,7 @@ function modifier_bs_bloodrage:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 	}
 	return funcs
 end
@@ -65,7 +66,7 @@ function modifier_bs_bloodrage:GetModifierSpellAmplify_Percentage()
 	return self.spell_amp
 end
 
-function modifier_bs_bloodrage:GetModifierAttackSpeedBonus()
+function modifier_bs_bloodrage:GetModifierAttackSpeedBonus_Constant()
 	return self.attack_speed
 end
 

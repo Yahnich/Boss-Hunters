@@ -58,7 +58,10 @@ function lina_dragon:OnProjectileHit(hTarget, vLocation)
 end
 
 modifier_lina_dragon = class({})
+function modifier_lina_dragon:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+end
 
-function modifier_lina_dragon:GetModifierAttackSpeedBonus()
+function modifier_lina_dragon:GetModifierAttackSpeedBonus_Constant()
     return self:GetCaster():FindTalentValue("special_bonus_unique_lina_dragon_2")
 end

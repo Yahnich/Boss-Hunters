@@ -23,6 +23,9 @@ function modifier_lycan_shapeshift_bh:OnCreated()
 	self.bonus_ms = self:GetSpecialValueFor("speed")
 	self.vision = self:GetSpecialValueFor("bonus_night_vision")
 	self.bat = self:GetSpecialValueFor("bat_reduction")
+	
+	self:GetParent():HookInModifier("GetBaseAttackTime_Bonus", self)
+	self:GetParent():HookOutModifier( "GetMoveSpeedLimitBonus", self )
 	if IsServer() then
 		local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_lycan/lycan_shapeshift_buff.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 		ParticleManager:SetParticleControlEnt( nFXIndex, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetOrigin(), true )
@@ -31,6 +34,11 @@ function modifier_lycan_shapeshift_bh:OnCreated()
 		
 		self:StartIntervalThink(0.5)
 	end
+end
+
+function modifier_lycan_shapeshift_bh:OnDestroy()
+	self:GetParent():HookOutModifier("GetBaseAttackTime_Bonus", self)
+	self:GetParent():HookOutModifier( "GetMoveSpeedLimitBonus", self )
 end
 
 function modifier_lycan_shapeshift_bh:OnIntervalThink()

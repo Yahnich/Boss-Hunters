@@ -25,10 +25,10 @@ function modifier_boss3a_berserk:CheckState()
 end
 
 function modifier_boss3a_berserk:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, }
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
 end
 
-function modifier_boss3a_berserk:GetModifierAttackSpeedBonus()
+function modifier_boss3a_berserk:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

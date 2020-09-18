@@ -66,11 +66,11 @@ function modifier_visage_chill_buff:OnRefresh(table)
 end
 
 function modifier_visage_chill_buff:DeclareFunctions()
-	return {
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
 end
 
-function modifier_visage_chill_buff:GetModifierAttackSpeedBonus()
+function modifier_visage_chill_buff:GetModifierAttackSpeedBonus_Constant()
 	return self.bous_as
 end
 
@@ -130,11 +130,12 @@ function modifier_visage_chill_debuff:OnIntervalThink()
 end
 
 function modifier_visage_chill_debuff:DeclareFunctions()
-	return {
-			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_EVASION_CONSTANT}
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, 
+			MODIFIER_PROPERTY_EVASION_CONSTANT}
 end
 
-function modifier_visage_chill_debuff:GetModifierAttackSpeedBonus()
+function modifier_visage_chill_debuff:GetModifierAttackSpeedBonus_Constant()
 	return -self.bous_as
 end
 

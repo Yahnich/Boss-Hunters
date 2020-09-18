@@ -71,13 +71,7 @@ function timbersaw_chak2:OnProjectileThink(vLocation)
     ParticleManager:SetParticleControl(self.hook_pfx, 2, Vector(self:GetTalentSpecialValueFor("speed"), self:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius")) )
     ParticleManager:SetParticleControl(self.hook_pfx, 3, Vector(60, 60, 60) )]]
 
-    local treesCut = CutTreesInRadius(vLocation, self:GetTalentSpecialValueFor("radius"))
-    if treesCut > 0 then
-        local duration = caster:FindAbilityByName("timbersaw_hylophobia"):GetTalentSpecialValueFor("duration")
-        for i=1,treesCut do
-            caster:AddNewModifier(caster, caster:FindAbilityByName("timbersaw_hylophobia"), "modifier_timbersaw_hylophobia", {Duration = duration}):AddIndependentStack(duration)
-        end
-    end
+    CutTreesInRadius(vLocation, self:GetTalentSpecialValueFor("radius"), {ability = self})
 
     local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"))
     for _,enemy in pairs(enemies) do

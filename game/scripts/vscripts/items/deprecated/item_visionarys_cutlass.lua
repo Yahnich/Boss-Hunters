@@ -42,6 +42,6 @@ function modifier_item_visionarys_cutlass:GetModifierPreAttack_BonusDamage()
 	return self.bonus_damage
 end
 
-function modifier_item_visionarys_cutlass:GetModifierAttackSpeedBonus()
+function modifier_item_visionarys_cutlass:GetModifierAttackSpeedBonus_Constant()
 	return self.bonus_attack_speed
 end

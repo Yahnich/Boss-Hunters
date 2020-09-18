@@ -7,13 +7,11 @@
 
 #RelicRoot
 {
-	min-width: 300px;
-	vertical-align: center;
-	horizontal-align: center;
-	margin-top: -150px;
-	background-image: url("s2r://panorama/images/textures/popup_rock_bg_psd.vtex");
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
+	width: 500px;
+	vertical-align: bottom;
+	horizontal-align: right;
+	margin-bottom: 19%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1c2027 ), to( #010101ee ) );
 	flow-children: down;
 }
 .RelicChoiceRoot
@@ -21,50 +19,61 @@
 	margin-top: 20px;
 	padding-top: 3px;
 	padding: 10px;
-	flow-children: right;
+	flow-children: up;
 	max-height: 375px;
+}
+
+.RelicRarityIcon
+{
+	width: 32px;
+	height: 32px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: center;
+	vertical-align: center;
+	horizontal-align: center;
+	margin-left: 6px;
 }
 
 .RelicButtonContainer
 {
-	width: 100%;
+	vertical-align: bottom;
+	horizontal-align: center;
+	flow-children: left;
 }
 
-#SkipButton
+.SelectionButton
 {
 	width: 128px;
-	height: 59px;
+	height: 40px;
 	margin-bottom: 15px;
+	margin-left: 1px;
+	margin-right: 1px;
 	vertical-align: center;
 	horizontal-align: center;
 	
-	background-image: url("s2r://panorama/images/compendium/fall2015_button_2_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
-	background-position: center;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1c2027 ), to( #010101FF ) );
+	border: 1px solid #010101;
 }
 
 .RelicChoiceContainer
 {
-	flow-children: down;
-	width: 250px;
-}
-
-.VerticalSeperator 
-{
-	width: 2px;
-	height: 90%;
-	horizontal-align: middle;
-	background-color: #51515155;
-	margin: 12px;
+	flow-children: right;
+	
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1c2027 ), to( #010101FF ) );
+	border: 1px solid #010101;
+	margin-bottom: 3px;
 }
 
 .HorizontalSeperator 
 {
-	width: 70%;
-	height: 2px;
+	width: 90%;
+	height: 20px;
+	background-image: url("s2r://panorama/images/textures/fantasy_hbar_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: center;
 	horizontal-align: middle;
-	background-color: #51515155;
 	margin: 12px;
 }
 
@@ -99,14 +108,18 @@
 .RelicNameLabel
 {
 	color: #e1e1e1;
-	font-size: 24px;
+	font-size: 20px;
 	line-height: 15px;
 	text-shadow: 1px 1px 2px 3.0 #00000077;
-	text-align: center;
+	text-align: left;
+	margin-left: 30px;
 	vertical-align: center;
 	horizontal-align: center;
 	z-index: 5;
-	height: fill-parent-flow(0.3);
+	width: fill-parent-flow(0.3);
+	
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .RelicDescriptionContainer
@@ -155,7 +168,7 @@
 	height: fill-parent-flow( 1.0 );
 }
 
-#SkipButtonLabel
+.SelectionButtonLabel
 {
 	color: #e1e1e1;
 	font-size: 20px;
@@ -169,30 +182,39 @@
 
 #RelicInventoryRoot
 {
-	width: 200px;
 	height: 100%;
 	vertical-align: bottom;
 	horizontal-align: right;
-	margin-right: 270px;
 }
 
-.AspectRatio5x4 #RelicInventoryRoot
+.RelicInventoryButtonLabel
 {
-	margin-left: 338px;
-	margin-bottom: 160px;
+	color: #e1e1e1;
+	font-size: 20px;
+	line-height: 15px;
+	text-shadow: 1px 1px 2px 3.0 #00000077;
+	text-align: center;
+	vertical-align: center;
+	
+	horizontal-align: center;
+	z-index: 5;
 }
 
 #RelicInventoryPanel
 {
-	width: 100%;
-	max-height: 100%;
+	width: 300px;
+	max-height: 850px;
+	min-height: 150px;
+	padding-top: 10px;
 	vertical-align: bottom;
 	horizontal-align: right;
 	margin-bottom: 56px;
 	padding-bottom: 20px;
 	flow-children: down;
 	overflow: squish scroll;
-	background-color: #51515155;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1c2027 ), to( #010101ff ) );
+	
+	margin-bottom: 105px;
 }
 
 #RelicDropNotification
@@ -210,7 +232,7 @@
 	visibility: collapse;
 	
 	animation-name: RelicDroppedPulse;
-	animation-duration: 2s;
+	animation-duration: 1s;
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
 	
@@ -220,19 +242,19 @@
 {
 	0%
 	{
-		box-shadow: -8px -8px 16px 16px black;
+		box-shadow: -1px -1px 2px 2px black;
 		border: 1px solid #AA0000;
     }
 
     50% 
 	{
-        box-shadow: -16px -16px 32px 32px #AA0000;
+        box-shadow: -3px -3px 6px 6px #AA0000;
 		border: 3px solid #AA0000;
     }
 
     100%
 	{
-		box-shadow: -8px -8px 16px 16px black;
+		box-shadow: -1px -1px 2px 2px black;
 		border: 1px solid #AA0000;
     }
 }
@@ -285,30 +307,43 @@
     }
 }
 
-#RelicInventoryButton
+.RelicInventoryButton
 {
-	width: 120px;
-	height: 64px;
-	background-image: url("s2r://panorama/images/econ/tools/warhammer_treasure_png.vtex");
+	width: 100px;
+	height: 36px;
+	background-image: url("s2r://panorama/images/hud/hudv2_shopbutton_png.vtex");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
+	box-shadow: #000000aa 1px 1px 2px 2px;
 	vertical-align: bottom;
 	horizontal-align: center;
 	margin-bottom: 12px;
-	z-index: 5;
+	margin-left: 12px;
+	z-index: -1;
+}
+
+.RelicInventoryRarityIcon
+{
+	width: 24px;
+	height: 24px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: center;
+	vertical-align: center;
+	horizontal-align: center;
+	margin-left: 6px;
 }
 
 .RelicInventoryContainer
 {
-	margin-bottom: 12px;
 	horizontal-align: center;
 	padding: 4px;
-	margin-top: 8px;
-	background-image: url("s2r://panorama/images/hud/reborn/shop_launcher_button_psd.vtex");
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
-	width: 75%;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1c2027 ), to( #010101ee ) );
+	width: 290px;
 	z-index: 5;
+	flow-children: right;
 }
 
 .RelicNameText
@@ -317,9 +352,10 @@
 	font-size: 16px;
 	line-height: 15px;
 	text-shadow: 1px 1px 2px 3.0 #00000077;
-	text-align: center;
+	text-align: left;
 	vertical-align: center;
-	horizontal-align: center;
+	horizontal-align: left;
+	margin-left: 15px;
 	z-index: 5;
 }
 
@@ -330,7 +366,7 @@
 
 .ButtonHover
 {
-	border: 2px solid #55555599;
+	brightness: 2.0;
 }
 
 .IsHidden

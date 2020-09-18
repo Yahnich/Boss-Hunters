@@ -335,6 +335,7 @@
 				"var_type"						"FIELD_FLOAT"
 				"damage_amp"					"10 10 10 10 15 20 25"
 				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_sunder_soul_2"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
@@ -692,6 +693,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"reduction_damage"		"-50"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"06"
 			{

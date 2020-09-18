@@ -362,6 +362,7 @@ function RelicManager:ClearRelics(pID, bHardClear)
 	end
 	self:ResetRelicPool(pID, "cursed")
 	self:ResetRelicPool(pID, "other")
+	CustomGameEventManager:Send_ServerToAllClients( "dota_player_update_relic_inventory", { hero = hero:entindex(), relics = hero.ownedRelics } )
 	return relicCount
 end
 
@@ -383,6 +384,7 @@ function RelicManager:RemoveRelicOnPlayer(relic, pID, bAll)
 			if not bAll then break end
 		end
 	end
+	CustomGameEventManager:Send_ServerToAllClients( "dota_player_update_relic_inventory", { hero = hero:entindex(), relics = hero.ownedRelics } )
 end
 
 function CDOTA_BaseNPC_Hero:AddRelic(relic)

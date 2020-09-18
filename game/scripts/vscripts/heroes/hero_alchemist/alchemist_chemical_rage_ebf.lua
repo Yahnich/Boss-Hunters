@@ -23,6 +23,7 @@ function modifier_alchemist_chemical_rage_ebf:OnCreated()
 	self.hpr = self:GetTalentSpecialValueFor("bonus_health_regen")
 	self.mpr = self:GetTalentSpecialValueFor("bonus_mana_regen")
 	self.ms = self:GetTalentSpecialValueFor("bonus_movespeed")
+	self:GetParent():HookInModifier("GetBaseAttackTime_Bonus", self)
 	if IsServer() then
 		Timers:CreateTimer( function() self:GetCaster():HealEvent( self.hp, self:GetAbility(), self:GetCaster() ) end )
 		EmitSoundOn("Hero_Alchemist.ChemicalRage", self:GetParent()) 
@@ -34,6 +35,7 @@ function modifier_alchemist_chemical_rage_ebf:OnRefresh()
 	self.hp = self:GetTalentSpecialValueFor("bonus_hp")
 	self.hpr = self:GetTalentSpecialValueFor("bonus_health_regen")
 	self.mpr = self:GetTalentSpecialValueFor("bonus_mana_regen")
+	self:GetParent():HookInModifier("GetBaseAttackTime_Bonus", self)
 	self.ms = self:GetTalentSpecialValueFor("bonus_movespeed")
 	if IsServer() then
 		Timers:CreateTimer( function() self:GetCaster():HealEvent( self.hp, self:GetAbility(), self:GetCaster() ) end )
@@ -41,6 +43,7 @@ function modifier_alchemist_chemical_rage_ebf:OnRefresh()
 end
 
 function modifier_alchemist_chemical_rage_ebf:OnDestroy()
+	self:GetParent():HookOutModifier("GetBaseAttackTime_Bonus", self)
 	if IsServer() then StopSoundOn("Hero_Alchemist.ChemicalRage", self:GetParent()) end
 end
 

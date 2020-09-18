@@ -23,9 +23,9 @@ function death_prophet_crypt_swarm_bh:OnSpellStart()
 	
 	if caster:HasTalent("special_bonus_unique_death_prophet_crypt_swarm_2") then
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), distance ) ) do
-			self:OnProjectileHit( enemy, enemy:GetAbsOrigin() )
+			self:OnProjectileHitHandle( enemy, enemy:GetAbsOrigin() )
 		end
-		ParticleManager:FireParticle( "particles/units/heroes/hero_death_prophet/death_prophet_carrion_nova.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster )
+		ParticleManager:FireParticle( "particles/units/heroes/hero_death_prophet/death_prophet_carrion_nova.vpcf", PATTACH_ABSORIGIN, caster, {[0] = caster:GetAbsOrigin() + Vector(0,0,64)} )
 	else
 		self.projectiles = self.projectiles or {}
 		local id = self:FireLinearProjectile("", direction * speed, distance, width, {width_end = endWidth})
@@ -48,7 +48,7 @@ function death_prophet_crypt_swarm_bh:OnProjectileHitHandle( target, position, i
 			self:DealDamage( caster, target, damage )
 		end
 		target:EmitSound("Hero_DeathProphet.CarrionSwarm.Damage")
-	else
+	elseif id then
 		ParticleManager:ClearParticle( self.projectiles[id] )
 		self.projectiles[id] = nil
 	end

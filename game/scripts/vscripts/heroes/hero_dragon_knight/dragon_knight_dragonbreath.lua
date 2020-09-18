@@ -51,7 +51,7 @@ end
 function dragon_knight_dragonbreath:OnProjectileHit(target, position)
 	local caster = self:GetCaster()
 	if target and not target:IsMagicImmune() and not target:IsInvulnerable() and not target:TriggerSpellAbsorb(self) then
-		local damage = self:GetTalentSpecialValueFor("end_radius")
+		local damage = self:GetTalentSpecialValueFor("hit_damage")
 		local duration = self:GetTalentSpecialValueFor("duration")
 		
 		self:DealDamage( caster, target, damage )

@@ -88,6 +88,12 @@
 				"scepter_damage"		"180 270 360 450 540 630 720"
 				"RequiresScepter"		"1"
 			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_cooldown"		"4"
+				"RequiresScepter"		"1"
+			}
 		}
 	}
 

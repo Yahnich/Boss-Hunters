@@ -68,7 +68,11 @@ function modifier_bs_blood_rite_silence:OnRefresh(kv)
 	self.attackspeed = self:GetCaster():FindTalentValue("special_bonus_unique_bs_blood_rite_1")
 end
 
-function modifier_bs_blood_rite_silence:GetModifierAttackSpeedBonus()
+function modifier_bs_blood_rite_silence:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+end
+
+function modifier_bs_blood_rite_silence:GetModifierAttackSpeedBonus_Constant()
 	return self.attackspeed
 end
 

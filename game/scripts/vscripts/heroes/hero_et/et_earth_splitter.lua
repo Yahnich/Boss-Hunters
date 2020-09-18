@@ -80,7 +80,7 @@ function et_earth_splitter:OnSpellStart()
 
 		local enemies = caster:FindEnemyUnitsInLine(startPos, endPos, self:GetTalentSpecialValueFor("width"), {})
 		for _,enemy in pairs(enemies) do
-			if enemy:TriggerSpellAbsorb(self) then
+			if not enemy:TriggerSpellAbsorb(self) then
 				damage = enemy:GetMaxHealth() * self:GetTalentSpecialValueFor("damage")/100
 				if not caster:HasModifier("modifier_elder_spirit") then
 					if caster:FindAbilityByName("et_elder_spirit") and caster:FindAbilityByName("et_elder_spirit"):IsTrained() then

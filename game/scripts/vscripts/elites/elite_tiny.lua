@@ -23,14 +23,16 @@ end
 function modifier_elite_tiny:DeclareFunctions()
 	return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
 			MODIFIER_PROPERTY_MODEL_SCALE,
+			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+			MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE
 			}
 end
 
-function modifier_elite_tiny:GetModifierAttackSpeedBonus()
+function modifier_elite_tiny:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 
-function modifier_elite_tiny:GetCooldownReduction()
+function modifier_elite_tiny:GetModifierPercentageCooldown()
 	return self.cdr
 end
 

@@ -159,16 +159,22 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"base_dmg"					"100 150 200 250 350 400 450"
+				"var_type"						"FIELD_INTEGER"
+				"base_dmg"						"100 150 200 250 350 400 450"
+				"CalculateSpellDamageTooltip"	"1"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"net_worth_bonus_dmg"		"1"
-				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_midas_knuckle_2"
+				"var_type"						"FIELD_FLOAT"
+				"net_worth_bonus_dmg"			"1"
+				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_midas_knuckle_2"
 			}
 			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"gold_cost"						"10 20 30 40 40 40 40"
+			}
+			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"ministun"					"0.5"

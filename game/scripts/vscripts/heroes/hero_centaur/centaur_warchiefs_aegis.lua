@@ -35,13 +35,17 @@ modifier_centaur_warchiefs_aegis_return = class({})
 LinkLuaModifier("modifier_centaur_warchiefs_aegis_return", "heroes/hero_centaur/centaur_warchiefs_aegis", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_centaur_warchiefs_aegis_return:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("level_damage")
-	self.str_bonus = self:GetTalentSpecialValueFor("bonus_strength")
+	self:OnRefresh()
 end
 
 function modifier_centaur_warchiefs_aegis_return:OnRefresh()
 	self.damage = self:GetTalentSpecialValueFor("level_damage")
 	self.str_bonus = self:GetTalentSpecialValueFor("bonus_strength")
+	self:GetParent():HookInModifier("GetModifierStrengthBonusPercentage", self)
+end
+
+function modifier_centaur_warchiefs_aegis_return:OnDestroy()
+	self:GetParent():HookOutModifier("GetModifierStrengthBonusPercentage", self)
 end
 
 function modifier_centaur_warchiefs_aegis_return:ProcReturn(target)

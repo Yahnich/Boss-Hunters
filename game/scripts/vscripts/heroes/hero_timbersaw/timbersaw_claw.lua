@@ -99,13 +99,7 @@ function timbersaw_claw:OnSpellStart()
             travel_distance = CalculateDistance(hook_loc, caster_loc)
             --hook_speed = math.max(hook_speed, 5000 * tick_rate)
             if not caster:HasTalent("special_bonus_unique_timbersaw_claw_1") then
-                local treesCut = CutTreesInRadius(hook_loc, hook_width)
-                if treesCut > 0 then
-                    local duration = caster:FindAbilityByName("timbersaw_hylophobia"):GetSpecialValueFor("duration")
-                    for i=1,treesCut do
-                        caster:AddNewModifier(caster, caster:FindAbilityByName("timbersaw_hylophobia"), "modifier_timbersaw_hylophobia", {Duration = duration}):AddIndependentStack(duration)
-                    end
-                end
+				CutTreesInRadius(hook_loc, hook_width, {ability = self})
             end
 
             return tick_rate
@@ -126,13 +120,7 @@ function timbersaw_claw:OnSpellStart()
             direction = ( caster_loc - hook_loc )
             hook_step = direction:Normalized() * hook_speed
             --current_tick = current_tick + 1
-            local treesCut = CutTreesInRadius(hook_loc, hook_width)
-            if treesCut > 0 then
-                local duration = caster:FindAbilityByName("timbersaw_hylophobia"):GetTalentSpecialValueFor("duration")
-                for i=1,treesCut do
-                    caster:AddNewModifier(caster, caster:FindAbilityByName("timbersaw_hylophobia"), "modifier_timbersaw_hylophobia", {Duration = duration}):AddIndependentStack(duration)
-                end
-            end
+            CutTreesInRadius(hook_loc, hook_width, {ability = self})
 
             local enemies = caster:FindEnemyUnitsInRadius(hook_loc, hook_width, {})
             for _,enemy in pairs(enemies) do
@@ -199,16 +187,9 @@ function modifier_timbersaw_claw_pull:DoControlledMotion()
 
     if self.distance > 0 then
         self.distance = self.distance - 100
-        --GridNav:DestroyTreesAroundPoint(parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("width"), true)
         parent:SetAbsOrigin(GetGroundPosition(parent:GetAbsOrigin(), parent) + self.dir*100)
 
-        local treesCut = CutTreesInRadius(parent:GetAbsOrigin(), 225)
-        if treesCut > 0 then
-            local duration = parent:FindAbilityByName("timbersaw_hylophobia"):GetTalentSpecialValueFor("duration")
-            for i=1,treesCut do
-                parent:AddNewModifier(parent, parent:FindAbilityByName("timbersaw_hylophobia"), "modifier_timbersaw_hylophobia", {Duration = duration}):AddIndependentStack(duration)
-            end
-        end
+        CutTreesInRadius(parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("width"), {ability = self:GetAbility()})
     else
         FindClearSpaceForUnit(parent, parent:GetAbsOrigin(), true)
 

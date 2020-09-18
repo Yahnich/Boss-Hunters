@@ -357,29 +357,30 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"missile_damage"			"150"
+				"var_type"						"FIELD_INTEGER"
+				"missile_damage"				"150"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"missile_explos_radius"		"250"
+				"var_type"						"FIELD_INTEGER"
+				"missile_explos_radius"			"250"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"search_radius"				"1500"
+				"var_type"						"FIELD_INTEGER"
+				"search_radius"					"1500"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"magic_reduction"			"-20"
-				"LinkedSpecialBonus"		"special_bonus_unique_gyro_homing_missile_1"
+				"var_type"						"FIELD_FLOAT"
+				"magic_reduction"				"-20"
+				"LinkedSpecialBonus"			"special_bonus_unique_gyro_homing_missile_1"
 			}
 			"05"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"4"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"4"
 			}
 		}
 	

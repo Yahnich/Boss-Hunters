@@ -56,18 +56,20 @@ function modifier_boss_apotheosis_ruthless_hunter:DoControlledMotion()
 		local enemies = parent:FindEnemyUnitsInRadius(position, radius)
 		for _,enemy in pairs(enemies) do
 			if not self.hitUnits[enemy:entindex()] then
-				enemy:StopMotionControllers(false)
-				local modifierKnockback = {
-					center_x = position.x,
-					center_y = position.y,
-					center_z = position.z,
-					duration = self.stun,
-					knockback_duration = 0.5,
-					knockback_distance = self.knockback,
-					knockback_height = 125,
-				}
-				enemy:AddNewModifier( parent, ability, "modifier_knockback", modifierKnockback )
-				ability:DealDamage( parent, enemy, self.damage )
+				if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
+					enemy:StopMotionControllers(false)
+					local modifierKnockback = {
+						center_x = position.x,
+						center_y = position.y,
+						center_z = position.z,
+						duration = self.stun,
+						knockback_duration = 0.5,
+						knockback_distance = self.knockback,
+						knockback_height = 125,
+					}
+					enemy:AddNewModifier( parent, ability, "modifier_knockback", modifierKnockback )
+					ability:DealDamage( parent, enemy, self.damage )
+				end
 				self.hitUnits[enemy:entindex()] = true
 			end
 		end

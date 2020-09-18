@@ -55,11 +55,15 @@ end
 
 modifier_bh_jinada_maim = class({})
 
+function modifier_bh_jinada_maim:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING }
+end
+
 function modifier_bh_jinada_maim:GetModifierStatusResistanceStacking()
 	return self:GetTalentSpecialValueFor("sr_red")
 end
 
-function modifier_bh_jinada_maim:GetModifierAttackSpeedBonus()
+function modifier_bh_jinada_maim:GetModifierAttackSpeedBonus_Constant()
 	return self:GetTalentSpecialValueFor("slow_as")
 end
 
@@ -82,11 +86,15 @@ end
 
 modifier_bh_jinada_maim_shuriken = class({})
 
+function modifier_bh_jinada_maim_shuriken:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING }
+end
+
 function modifier_bh_jinada_maim_shuriken:GetModifierStatusResistanceStacking()
 	return self:GetTalentSpecialValueFor("sr_red") * 2
 end
 
-function modifier_bh_jinada_maim_shuriken:GetModifierAttackSpeedBonus()
+function modifier_bh_jinada_maim_shuriken:GetModifierAttackSpeedBonus_Constant()
 	return self:GetTalentSpecialValueFor("slow_as") * 2
 end
 

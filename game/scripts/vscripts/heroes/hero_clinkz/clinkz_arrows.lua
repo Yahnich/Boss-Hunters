@@ -40,22 +40,22 @@ function clinkz_arrows:OnSpellStart()
 	self:GetCaster():MoveToTargetToAttack( target )
 end
 
-function clinkz_arrows:FireSearingArrow(target)
-	local caster = self:GetCaster()
-	caster:SetProjectileModel("particles/empty_projectile.vcpf")
-	EmitSoundOn("Hero_Clinkz.SearingArrows", caster)
-	self:FireTrackingProjectile("particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf", target, caster:GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 200)
-	if caster:HasTalent("special_bonus_unique_clinkz_arrows_2") then
-		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:GetAttackRange() + 10)
-		for _,enemy in pairs(enemies) do
-			if enemy ~= target then
-				self:FireTrackingProjectile("particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf", enemy, caster:GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 50)	
-				break
-			end
-		end
-	end
-	caster:RevertProjectile()
-end
+-- function clinkz_arrows:FireSearingArrow(target)
+	-- local caster = self:GetCaster()
+	-- caster:SetProjectileModel("particles/empty_projectile.vcpf")
+	-- EmitSoundOn("Hero_Clinkz.SearingArrows", caster)
+	-- self:FireTrackingProjectile("particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf", target, caster:GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 200)
+	-- if caster:HasTalent("special_bonus_unique_clinkz_arrows_2") then
+		-- local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:GetAttackRange() + 10)
+		-- for _,enemy in pairs(enemies) do
+			-- if enemy ~= target then
+				-- self:FireTrackingProjectile("particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf", enemy, caster:GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 50)	
+				-- break
+			-- end
+		-- end
+	-- end
+	-- caster:RevertProjectile()
+-- end
 
 
 function clinkz_arrows:FireSearingArrow(target, bAttack)

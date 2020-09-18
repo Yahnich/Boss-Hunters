@@ -73,6 +73,7 @@
 				"var_type"						"FIELD_FLOAT"
 				"damage_multiplier"				"0.6 0.8 1.0 1.2 1.4 1.6 1.8"
 				"LinkedSpecialBonus"			"special_bonus_unique_riki_dagger_2"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"02"
 			{
@@ -171,14 +172,15 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"150 175 200 225 250 275 300"
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"150 175 200 225 250 275 300"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"800"
-				"LinkedSpecialBonus"	"special_bonus_unique_riki_dance_1"
+				"var_type"						"FIELD_INTEGER"
+				"range"							"800"
+				"LinkedSpecialBonus"			"special_bonus_unique_riki_dance_1"
 			}
 		}
 	

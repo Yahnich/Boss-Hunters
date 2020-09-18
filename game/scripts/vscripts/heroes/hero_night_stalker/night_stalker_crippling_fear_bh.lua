@@ -99,7 +99,11 @@ function modifier_night_stalker_crippling_fear_bh_silence:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW
 end
 
-function modifier_night_stalker_crippling_fear_bh_silence:GetModifierAttackSpeedBonus()
+function modifier_night_stalker_crippling_fear_bh_silence:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+end
+
+function modifier_night_stalker_crippling_fear_bh_silence:GetModifierAttackSpeedBonus_Constant()
 	return self.slow
 end
 

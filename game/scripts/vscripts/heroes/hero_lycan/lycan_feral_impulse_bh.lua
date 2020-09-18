@@ -63,11 +63,16 @@ function modifier_lycan_feral_impulse_bh_aura:OnCreated()
 			self.damage = self.damage + self:GetCaster():FindTalentValue("special_bonus_unique_lycan_feral_impulse_2")
 		end
 	end
+	self:GetParent():HookInModifier("GetModifierExtraHealthBonusPercentage", self)
 	if self:GetCaster():HasScepter() then
 		self.health = self:GetTalentSpecialValueFor("scepter_bonus_health")
 	else
 		self.health = 0
 	end
+end
+
+function modifier_lycan_feral_impulse_bh_aura:OnDestroy()
+	self:GetParent():HookOutModifier("GetModifierExtraHealthBonusPercentage", self)
 end
 
 function modifier_lycan_feral_impulse_bh_aura:OnIntervalThink()

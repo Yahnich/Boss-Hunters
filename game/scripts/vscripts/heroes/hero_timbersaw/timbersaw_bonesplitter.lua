@@ -30,13 +30,7 @@ function timbersaw_bonesplitter:Spray()
 	EmitSoundOn("Hero_Shredder.WhirlingDeath.Cast", self:GetCaster())
 	ParticleManager:FireParticle("particles/units/heroes/hero_shredder/shredder_whirling_death.vpcf", PATTACH_POINT_FOLLOW, caster, {[0]="attach_hitloc",[1]=caster:GetAbsOrigin(), [2]=Vector(self:GetTalentSpecialValueFor("radius"),self:GetTalentSpecialValueFor("radius"),self:GetTalentSpecialValueFor("radius")), [3]=caster:GetAbsOrigin()})
 	
-	local treesCut = CutTreesInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
-    if treesCut > 0 then
-        local duration = caster:FindAbilityByName("timbersaw_hylophobia"):GetTalentSpecialValueFor("duration")
-        for i=1,treesCut do
-            caster:AddNewModifier(caster, caster:FindAbilityByName("timbersaw_hylophobia"), "modifier_timbersaw_hylophobia", {Duration = duration}):AddIndependentStack(duration)
-        end
-    end
+	local treesCut = CutTreesInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {ability = self})
 
 	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
 	for _,enemy in pairs(enemies) do

@@ -46,8 +46,8 @@
 		{
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"attack_range_bonus"	"175 275 375 475 575 675 775"
+				"var_type"						"FIELD_INTEGER"
+				"attack_range_bonus"			"175 275 375 475 575 675 775"
 			}
 			"03"
 			{
@@ -58,38 +58,38 @@
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"burn_duration"			"5.0"
+				"var_type"						"FIELD_FLOAT"
+				"burn_duration"					"5.0"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8.0"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"8.0"
 			}			
 			"06"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_cost_scepter"		"40"
+				"var_type"						"FIELD_INTEGER"
+				"mana_cost_scepter"				"40"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"move_slow"				"-20 -25 -30 -35 -40 -45 -50"
+				"var_type"						"FIELD_INTEGER"
+				"move_slow"						"-20 -25 -30 -35 -40 -45 -50"
 			}
 			"08"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"night_vision_bonus"	"400"
+				"var_type"						"FIELD_INTEGER"
+				"night_vision_bonus"			"400"
 			}
 			"09"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"projectile_speed_bonus""500"
+				"var_type"						"FIELD_INTEGER"
+				"projectile_speed_bonus"		"500"
 			}
 			"10"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"tree_destruction_radius"	"250"
+				"var_type"						"FIELD_INTEGER"
+				"tree_destruction_radius"		"250"
 			}
 		}
 	

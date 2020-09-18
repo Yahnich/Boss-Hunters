@@ -13,12 +13,10 @@ function item_incandescance:GetAbilityTextureName()
 end
 
 function item_incandescance:OnToggle()
-	print( self:GetToggleState(), self:GetName() )
 	if self:GetToggleState() then
 		self:GetCaster():RemoveModifierByName("modifier_item_incandescance")
 	else
 		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_incandescance", {})
-		print( "got got")
 	end
 end
 
@@ -75,6 +73,10 @@ end
 function modifier_item_incandescance:OnIntervalThink()
 	local caster = self:GetCaster()
 	local ability = self:GetAbility()
+	if not ability or ability:IsNull() then 
+		self:Destroy()
+		return
+	end
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self.radius ) ) do
 		ability:DealDamage( caster, enemy, self.damage )
 	end

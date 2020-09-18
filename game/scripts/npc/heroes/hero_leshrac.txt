@@ -306,11 +306,13 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"interval_scepter"			"1.75"
+				"RequiresScepter"			"1"
 			}
 			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"radius_scepter"			"750"
+				"RequiresScepter"			"1"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"

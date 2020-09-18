@@ -86,10 +86,10 @@ function modifier_lich_chain_frost_bh:OnRefresh()
 end
 
 function modifier_lich_chain_frost_bh:DeclareFunctions()
-	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
 end
 
-function modifier_lich_chain_frost_bh:GetModifierAttackSpeedBonus()
+function modifier_lich_chain_frost_bh:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

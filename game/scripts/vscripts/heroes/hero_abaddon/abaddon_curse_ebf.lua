@@ -48,15 +48,17 @@ end
 function modifier_abaddon_curse_buff:DeclareFunctions()
 	funcs = {
 				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+				MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE
 			}
 	return funcs
 end
 
-function modifier_abaddon_curse_buff:GetCooldownReduction()
+function modifier_abaddon_curse_buff:GetModifierPercentageCooldown()
 	return self.cdr
 end
 
-function modifier_abaddon_curse_buff:GetModifierAttackSpeedBonus()
+function modifier_abaddon_curse_buff:GetModifierAttackSpeedBonus_Constant()
 	return self.attackspeed
 end
 
@@ -72,6 +74,9 @@ function modifier_abaddon_curse_debuff:OnCreated()
 	self.trigger_count = self:GetAbility():GetTalentSpecialValueFor("trigger_count")
 	if IsServer() then
 		self:IncrementStackCount()
+		self.overheadFX = ParticleManager:CreateParticle("particles/units/heroes/hero_abaddon/abaddon_curse_counter_stack.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() )
+		ParticleManager:SetParticleControl( self.overheadFX, 1, Vector(self:GetStackCount(), self:GetStackCount(), self:GetStackCount() ) )
+		self:AddOverHeadEffect( self.overheadFX )
 	end
 end
 
@@ -80,6 +85,7 @@ function modifier_abaddon_curse_debuff:OnRefresh()
 	self.trigger_count = self:GetAbility():GetTalentSpecialValueFor("trigger_count")
 	if IsServer() then
 		self:IncrementStackCount()
+		ParticleManager:SetParticleControl( self.overheadFX, 1, Vector(self:GetStackCount(), self:GetStackCount(), self:GetStackCount() ) )
 		if self:GetStackCount() >= self.trigger_count then
 			self:Destroy()
 			
@@ -129,6 +135,7 @@ end
 function modifier_abaddon_curse_curse:DeclareFunctions()
 	funcs = {
 				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
 			}
 	return funcs
 end
@@ -137,10 +144,10 @@ function modifier_abaddon_curse_curse:GetModifierMoveSpeedBonus_Percentage()
 	return self.movespeed
 end
 
-function modifier_abaddon_curse_curse:GetModifierAttackSpeedBonus()
+function modifier_abaddon_curse_curse:GetModifierAttackSpeedBonus_Constant()
 	return self.attackspeed
 end
 
 function modifier_abaddon_curse_curse:GetEffectName()
-	return "particles/units/heroes/hero_abaddon/abaddon_frost_slow.vpcf"
+	return "particles/units/heroes/hero_abaddon/abaddon_curse_frostmourne_debuff.vpcf"
 end

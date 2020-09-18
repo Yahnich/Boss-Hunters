@@ -39,7 +39,7 @@ function modifier_boss_necro_vile_aura:OnIntervalThink()
 	ParticleManager:FireWarningParticle( position, self:GetParent():GetHullRadius() * 2.5 )
 	local modifier = self
 	Timers:CreateTimer(1.5, function()
-		if parent:IsStunned() or parent:IsSilenced() or parent:IsRooted() then return end
+		if not parent or parent:IsNull() or parent:IsStunned() or parent:IsSilenced() or parent:IsRooted() then return end
 		parent:Blink(position)
 		AddFOWViewer( DOTA_TEAM_GOODGUYS, position, 256, 3, false )
 		GridNav:DestroyTreesAroundPoint( position, 256, true)

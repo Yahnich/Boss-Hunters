@@ -60,12 +60,27 @@ modifier_enchantress_impetus_bh_handle = class({
 
 function modifier_enchantress_impetus_bh_handle:DeclareFunctions()
 	local funcs = { MODIFIER_EVENT_ON_ATTACK,
+					MODIFIER_EVENT_ON_ATTACK_START,
 					MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS}
 	return funcs
 end
 
 function modifier_enchantress_impetus_bh_handle:GetActivityTranslationModifiers()
 	return "impetus"
+end
+
+function modifier_enchantress_impetus_bh_handle:OnAttackStart(keys)
+	if IsServer() then
+		local caster = self:GetCaster()
+		local target = keys.target
+		local attacker = keys.attacker
+		local ability = self:GetAbility()
+		if caster == attacker and ( ability:IsOwnersManaEnough() and ability:GetAutoCastState() or ability.forceCast ) and not target:IsMagicImmune() then
+			caster:SetProjectileModel("particles/empty_projectile.vcpf")
+		else
+			caster:RevertProjectile()
+		end
+	end
 end
 
 function modifier_enchantress_impetus_bh_handle:OnAttack(keys)
@@ -90,8 +105,11 @@ function modifier_enchantress_impetus_bh_handle:OnAttack(keys)
 					end
 				end
 			end
-
-			caster:SpendMana( ability:GetManaCost(-1) )
+			if not ability.forceCast then
+				ability:SpendMana()
+			end
+			
+			caster:RevertProjectile()
 		end
 	end
 end

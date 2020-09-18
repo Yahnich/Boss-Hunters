@@ -10,6 +10,10 @@ function modifier_attacker_attack_speed:OnRefresh()
 	self.value = tonumber(self.values[self.tier])
 end
 
-function modifier_attacker_attack_speed:GetModifierAttackSpeedBonus()
+function modifier_attacker_attack_speed:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
+end
+
+function modifier_attacker_attack_speed:GetModifierAttackSpeedBonus_Constant()
 	return self.value
 end

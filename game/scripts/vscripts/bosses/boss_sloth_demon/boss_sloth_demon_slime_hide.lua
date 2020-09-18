@@ -20,7 +20,7 @@ function modifier_boss_sloth_demon_slime_hide:DeclareFunctions()
 end
 
 function modifier_boss_sloth_demon_slime_hide:OnTakeDamage(params)
-	if params.attacker == self:GetParent() and not params.attacker:PassivesDisabled() then
+	if params.attacker == self:GetParent() and not params.attacker:PassivesDisabled() and not params.unit:IsMagicImmune() then
 		params.unit:AddNewModifier( params.attacker, self:GetAbility(), "modifier_boss_sloth_demon_slime_hide_debuff", {duration = self.duration} )
 	end
 end
@@ -49,13 +49,13 @@ function modifier_boss_sloth_demon_slime_hide_debuff:OnRefresh()
 end
 
 function modifier_boss_sloth_demon_slime_hide_debuff:DeclareFunctions()
-	return {}
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE }
 end
 
-function modifier_boss_sloth_demon_slime_hide_debuff:GetModifierAttackSpeedBonus()
+function modifier_boss_sloth_demon_slime_hide_debuff:GetModifierAttackSpeedBonus_Constant()
 	return self.as * self:GetStackCount()
 end
 
-function modifier_boss_sloth_demon_slime_hide_debuff:GetCooldownReduction()
+function modifier_boss_sloth_demon_slime_hide_debuff:GetModifierPercentageCooldown()
 	return self.cdr * self:GetStackCount()
 end

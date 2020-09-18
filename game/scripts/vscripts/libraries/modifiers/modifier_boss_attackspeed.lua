@@ -51,6 +51,7 @@ function modifier_boss_attackspeed:DeclareFunctions()
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_EVENT_ON_ABILITY_START,
 		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 		MODIFIER_EVENT_ON_ATTACK_START
@@ -58,7 +59,7 @@ function modifier_boss_attackspeed:DeclareFunctions()
 	return funcs
 end
 --------------------------------------------------------------------------------
-function modifier_boss_attackspeed:GetModifierAttackSpeedBonus( params )
+function modifier_boss_attackspeed:GetModifierAttackSpeedBonus_Constant( params )
 	return 100 + self:GetStackCount() * 25
 end
 

@@ -81,10 +81,12 @@ function meepo_dig:OnChannelFinish(bInterrupted)
 		CreateItemOnPositionSync(randoPoint, item)
 		ParticleManager:FireParticle("particles/generic_gameplay/dust_impact_medium.vpcf", PATTACH_ABSORIGIN, caster, {[0]=randoPoint})
 		item:SetCastOnPickup(true)
-
-		if caster:HasScepter() and caster.primaryMeepo then
+		
+		local PID = caster:GetPlayerOwnerID()
+		local mainMeepo = PlayerResource:GetSelectedHeroEntity(PID)
+		if caster:HasScepter() and caster == mainMeepo then
 			local rune = runes[ RandomInt( 1, #runes ) ]
-			local item = CreateItem(rune, caster, caster)
+			local item = CreateItem(rune, nil, nil)
 			local randoPoint = GetGroundPosition(caster:GetAbsOrigin(), caster) + ActualRandomVector(150, 50)
 			CreateItemOnPositionSync(randoPoint, item)
 			ParticleManager:FireParticle("particles/generic_gameplay/dust_impact_medium.vpcf", PATTACH_ABSORIGIN, caster, {[0]=randoPoint})

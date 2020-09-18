@@ -10,9 +10,8 @@ LinkLuaModifier( "modifier_boss_apotheosis_latent_potential", "bosses/boss_apoth
 function modifier_boss_apotheosis_latent_potential:OnCreated()
 	self.amp = self:GetSpecialValueFor("damage_amp")
 	self.interval = self:GetSpecialValueFor("double_timer")
-	self:SetStackCount( 1 )
-	
 	if IsServer() then
+		self:SetStackCount( 1 )
 		self:StartIntervalThink( self.interval)
 	end
 end

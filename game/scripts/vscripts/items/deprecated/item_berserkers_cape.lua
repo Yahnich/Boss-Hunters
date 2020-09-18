@@ -91,7 +91,7 @@ function modifier_item_berserkers_cape:GetModifierPhysicalArmorBonus()
 	return self.armor
 end
 
-function modifier_item_berserkers_cape:GetModifierAttackSpeedBonus()
+function modifier_item_berserkers_cape:GetModifierAttackSpeedBonus_Constant()
 	return self.attackspeed
 end
 

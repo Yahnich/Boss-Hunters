@@ -23,7 +23,7 @@
 		"ItemResult"					"item_cuirass_of_war_3"
 		"ItemRequirements"
 		{
-			"01"						"item_reaping_scythe_2;item_fortress_shield_2"
+			"01"						"item_reaping_scythe;item_fortress_shield_2"
 		}
 	}
 	"item_cuirass_of_war_3"
@@ -68,12 +68,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-4"
+				"armor_debuff"			"-2 -2 -2 -2 -3 -4 -5"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"40 40 40 40 50 60 70"
+				"stone_share"			"60"
 			}
 			"05"
 			{
@@ -155,12 +155,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-4"
+				"armor_debuff"			"-2 -2 -2 -2 -3 -4 -5"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"40 40 40 40 50 60 70"
+				"stone_share"			"60"
 			}
 			"05"
 			{
@@ -243,12 +243,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-4"
+				"armor_debuff"			"-2 -2 -2 -2 -3 -4 -5"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"40 40 40 40 50 60 70"
+				"stone_share"			"60"
 			}
 			"05"
 			{
@@ -331,12 +331,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-4"
+				"armor_debuff"			"-2 -2 -2 -2 -3 -4 -5"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"40 40 40 40 50 60 70"
+				"stone_share"			"60"
 			}
 			"05"
 			{
@@ -419,12 +419,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-4"
+				"armor_debuff"			"-2 -2 -2 -2 -3 -4 -5"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"40 40 40 40 50 60 70"
+				"stone_share"			"60"
 			}
 			"05"
 			{
@@ -506,12 +506,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-4"
+				"armor_debuff"			"-2 -2 -2 -2 -3 -4 -5"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"40 40 40 40 50 60 70"
+				"stone_share"			"60"
 			}
 			"05"
 			{
@@ -593,12 +593,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-4"
+				"armor_debuff"			"-2 -2 -2 -2 -3 -4 -5"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"40 40 40 40 50 60 70"
+				"stone_share"			"60"
 			}
 			"05"
 			{

@@ -119,13 +119,13 @@ function modifier_drastic_fallout_poison:OnIntervalThink()
 end
 
 function modifier_drastic_fallout_poison:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE }
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
 end
 
 function modifier_drastic_fallout_poison:GetModifierMoveSpeedBonus_Percentage()
 	return self.mSlow
 end
 
-function modifier_drastic_fallout:GetModifierAttackSpeedBonus()
+function modifier_drastic_fallout:GetModifierAttackSpeedBonus_Constant()
 	return self.aSlow
 end

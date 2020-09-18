@@ -18,7 +18,7 @@ function enigma_shattered_mass:CreateEidolon( position, tier )
 			eidolon:SetCoreHealth( self:GetTalentSpecialValueFor("dire_eidolon_hp") )
 			eidolon:SetAverageBaseDamage( self:GetOwnerEntity():GetAverageBaseDamage() * self:GetTalentSpecialValueFor("dire_eidolon_dmg") / 100, 15 )
 		end
-		
+		FindClearSpaceForUnit( eidolon, eidolon:GetAbsOrigin() )
 	end)
 end
 

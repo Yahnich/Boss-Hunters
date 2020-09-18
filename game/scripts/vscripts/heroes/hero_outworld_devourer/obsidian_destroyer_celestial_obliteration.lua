@@ -79,6 +79,10 @@ function modifier_obsidian_destroyer_celestial_obliteration_talent:OnCreated()
 	end
 end
 
-function modifier_obsidian_destroyer_celestial_obliteration_talent:GetCooldownReduction()
+function modifier_obsidian_destroyer_celestial_obliteration_talent:DeclareFunctions()
+	return {MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE }
+end
+
+function modifier_obsidian_destroyer_celestial_obliteration_talent:GetModifierPercentageCooldown()
 	return self.cdr
 end

@@ -21,10 +21,11 @@ function modifier_boss_ammetot_restless_warden:OnRefresh()
 end
 
 function modifier_boss_ammetot_restless_warden:DeclareFunctions()
-	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE, 
+			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 end
 
-function modifier_boss_ammetot_restless_warden:GetModifierAttackSpeedBonus()
+function modifier_boss_ammetot_restless_warden:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

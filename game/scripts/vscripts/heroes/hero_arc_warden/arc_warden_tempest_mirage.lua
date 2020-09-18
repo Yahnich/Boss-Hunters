@@ -15,7 +15,8 @@ function arc_warden_tempest_mirage:OnSpellStart()
 	if caster.currentMirage and not caster.currentMirage:IsNull() then
 		caster.currentMirage:ForceKill(false)
 	end
-	local mirageIndex = CreateUnitByNameAsync("npc_dota_arc_warden_tempest_mirage", caster:GetAbsOrigin() + caster:GetForwardVector() * 128, true, caster, caster, caster:GetTeamNumber(), function( mirage )
+	if not self.mirageIndex then
+	self.mirageIndex = CreateUnitByNameAsync("npc_dota_arc_warden_tempest_mirage", caster:GetAbsOrigin() + caster:GetForwardVector() * 128, true, caster, caster, caster:GetTeamNumber(), function( mirage )
 		local player = caster:GetPlayerID()
 		local duration = self:GetTalentSpecialValueFor("duration")
 		mirage:SetControllableByPlayer(player, true)
@@ -68,7 +69,7 @@ function arc_warden_tempest_mirage:OnSpellStart()
 		if illuBonus then illuBonus.GetDisableHealing = function() return 0 end end
 		mirage:AddNewModifier( caster, nil, "modifier_stats_system_handler", {})
 		for _, modifier in ipairs( caster:FindAllModifiers() ) do
-			if modifier:GetName() ~= "modifier_stats_system_handler" then
+			if modifier:GetName() ~= "modifier_stats_system_handler" and not (modifier.IsRelicModifier and modifier:IsRelicModifier()) then
 				local modCaster = modifier:GetCaster()
 				if modCaster == caster then
 					modCaster = mirage

@@ -1,5 +1,13 @@
 relic_red_key = class(relicBaseClass)
 
+function relic_red_key:OnCreated()
+	self:GetParent():HookInModifier("GetModifierExtraHealthBonusPercentage", self)
+end
+
+function relic_red_key:OnDestroy()
+	self:GetParent():HookOutModifier("GetModifierExtraHealthBonusPercentage", self)
+end
+
 function relic_red_key:DeclareFunctions()
 	return {MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE}
 end

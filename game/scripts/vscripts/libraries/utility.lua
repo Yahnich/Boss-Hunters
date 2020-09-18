@@ -253,7 +253,7 @@ end
 function CDOTABaseAbility:CreateDummy(position, duration)
 	local dummy = CreateUnitByName("npc_dummy_unit", position, false, nil, nil, self:GetCaster():GetTeam())
 	if duration and duration > 0 then
-		dummy:AddNewModifier(self, nil, "modifier_kill", {duration = duration})
+		dummy:AddNewModifier(self:GetCaster(), self, "modifier_kill", {duration = duration})
 	end
 	dummy:AddNewModifier(self:GetCaster(), nil, "modifier_hidden_generic", {})
 	return dummy
@@ -384,7 +384,6 @@ function CDOTABaseAbility:DealDamage(attacker, target, damage, data, spellText)
 	local spellText = spellText or 0
 	local ability = self or internalData.ability
 	local oldHealth = target:GetHealth()
-	print( damageType, localdamage, damageFlags, target, attacker, ability )
 	ApplyDamage({victim = target, attacker = attacker, ability = ability, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
 	if target:IsNull() then return oldHealth end
 	local newHealth = target:GetHealth()
@@ -633,10 +632,12 @@ function CDOTA_BaseNPC:SetProjectileModel(projectile)
 end
 
 function CDOTA_BaseNPC:RevertProjectile()
-	self:SetRangedProjectileName(self.previousProjectileModel)
-	local newModel = self.previousProjectileModel
-	self.previousProjectileModel = self.currentProjectileModel
-	self.currentProjectileModel = newModel
+	if self.currentProjectileModel ~= self.previousProjectileModel then
+		self:SetRangedProjectileName(self.previousProjectileModel)
+		local newModel = self.previousProjectileModel
+		self.previousProjectileModel = self.currentProjectileModel
+		self.currentProjectileModel = newModel
+	end
 end
 
 
@@ -673,12 +674,9 @@ function CDOTA_BaseNPC:RefreshAllCooldowns(bItems, bNoUltimate)
     for i = 0, self:GetAbilityCount() - 1 do
         local ability = self:GetAbilityByIndex( i )
 		
-        if ability then
+        if ability and not ability:IsToggle() then
 			if (bNoUltimate and ability:GetAbilityType() ~= 1) or not bNoUltimate then
 				ability:Refresh()
-			end
-			if ability:GetName() == "skeleton_king_reincarnation" then
-				self:RemoveModifierByName("modifier_skeleton_king_reincarnation_cooldown")
 			end
         end
     end
@@ -703,10 +701,36 @@ end
 
 function CDOTA_BaseNPC:IsIllusion()
 	local isIllusion = self:HasModifier("modifier_illusion")
-	if self:GetPlayerOwnerID() ~= -1 then
-		isIllusion = PlayerResource:GetSelectedHeroName( self:GetPlayerOwnerID() ) == self:GetUnitName() and PlayerResource:GetSelectedHeroEntity( self:GetPlayerOwnerID() ) ~= self and PlayerResource:GetSelectedHeroEntity( self:GetPlayerOwnerID() ) ~= nil
-	end
 	return isIllusion
+end
+
+function CDOTA_BaseNPC:AddItemCopiesFromOriginal( originalHero )
+	for itemSlot=0,5 do
+		local item = originalHero:GetItemInSlot(itemSlot)
+		if item ~= nil then
+			local itemName = item:GetName()
+			local newItem = self:GetItemInSlot(itemSlot)
+			if not newItem then
+				newItem = self:AddItemByName( itemName )
+			end
+			if newItem and item.itemData then
+				newItem.itemData = table.copy( item.itemData )
+				local passive = self:AddNewModifier( self, newItem, newItem:GetIntrinsicModifierName(), {} )
+				local funcs = {}
+				for slot, rune in pairs( item.itemData ) do
+					if rune and rune.funcs then
+						for func, result in pairs( rune.funcs ) do
+							funcs[func] = ( funcs[func] or 0 ) + result
+						end
+					end
+				end
+				for func, result in pairs( funcs ) do
+					passive[func] = function() return result end
+				end
+				passive:ForceRefresh()
+			end
+		end
+	end
 end
 
 function CDOTA_BaseNPC:ConjureImage( illusionInfo, duration, caster, amount )
@@ -714,41 +738,18 @@ function CDOTA_BaseNPC:ConjureImage( illusionInfo, duration, caster, amount )
 	illuInfo.outgoing_damage = illuInfo.outgoing_damage or 0
 	illuInfo.incoming_damage = illuInfo.incoming_damage or 0
 	if self:IsHero() then
-		illusionTable = CreateIllusions( caster or self , self, {outgoing_damage = illuInfo.outgoing_damage, incoming_damage = illuInfo.incoming_damage, duration = duration}, amount or 1, self:GetHullRadius() + self:GetCollisionPadding(), illuInfo.scramble or false, true )
+		local fDur = duration * caster:GetStatusAmplification( params )
+		local illusionTable = CreateIllusions( caster or self , self, {outgoing_damage = illuInfo.outgoing_damage, incoming_damage = illuInfo.incoming_damage, duration = fDur}, amount or 1, self:GetHullRadius() + self:GetCollisionPadding(), illuInfo.scramble or false, true )
+		if not illusionTable then return end
 		for _, illusion in ipairs( illusionTable ) do
-			illusion:AddNewModifier( self, nil, "modifier_handler_handler", {})
-			illusion:AddNewModifier( illusion, nil, "modifier_stats_system_handler", {})
+			illusion:AddNewModifier( self, nil, "modifier_stats_system_handler", {})
 			local trueParent = self
 			if self.unitOwnerEntity then
 				trueParent = self.unitOwnerEntity
 			end
-			local modifier = illusion:AddNewModifier( self, nil, "modifier_stats_system_handler", {})
 			illusion:SetPhysicalArmorBaseValue( self:GetPhysicalArmorBaseValue() )
 			-- Check for runes
-			for itemSlot=0,5 do
-				local item = self:GetItemInSlot(itemSlot)
-				if item ~= nil then
-					local itemName = item:GetName()
-					local newItem = illusion:GetItemInSlot(itemSlot)
-					if newItem and item.itemData then
-						newItem.itemData = table.copy( item.itemData )
-						local passive = illusion:AddNewModifier( illusion, newItem, newItem:GetIntrinsicModifierName(), {} )
-						local funcs = {}
-						for slot, rune in pairs( item.itemData ) do
-							if rune and rune.funcs then
-								for func, result in pairs( rune.funcs ) do
-									funcs[func] = ( funcs[func] or 0 ) + result
-								end
-							end
-						end
-						for func, result in pairs( funcs ) do
-							passive[func] = function() return result end
-						end
-						passive:ForceRefresh()
-					end
-				end
-			end
-			ResolveNPCPositions( illusion:GetAbsOrigin(), 128 )
+			illusion:AddItemCopiesFromOriginal( self )
 			for i = 0, 23 do
 				local ability = illusion:GetAbilityByIndex( i )
 				if ability then
@@ -778,6 +779,7 @@ function CDOTA_BaseNPC:ConjureImage( illusionInfo, duration, caster, amount )
 			illusion.hasBeenInitialized = true	
 			-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
 			illusion.isCustomIllusion = true
+			Timers:CreateTimer(0.1, function() ResolveNPCPositions( illusion:GetAbsOrigin(), 128 ) end )
 		end
 		return illusionTable
 	else
@@ -787,7 +789,6 @@ function CDOTA_BaseNPC:ConjureImage( illusionInfo, duration, caster, amount )
 			local illusion = CreateUnitByName( self:GetUnitName(), illuInfo.position or self:GetAbsOrigin(), true, owner, owner, owner:GetTeamNumber() )
 			illusion:AddNewModifier(owner, illuInfo.ability, "modifier_illusion", { duration = duration, outgoing_damage = illuInfo.outgoing_damage, incoming_damage = illuInfo.incoming_damage })
 			illusion:SetOwner(caster or self)
-			ResolveNPCPositions( illusion:GetAbsOrigin(), 128 )
 			for i = 0, 23 do
 				local ability = illusion:GetAbilityByIndex( i )
 				if ability then
@@ -810,6 +811,7 @@ function CDOTA_BaseNPC:ConjureImage( illusionInfo, duration, caster, amount )
 			else
 				illusion:SetControllableByPlayer(caster:GetPlayerID(), true)
 			end
+			Timers:CreateTimer(0.1, function() ResolveNPCPositions( illusion:GetAbsOrigin(), 128 ) end )
 			table.insert( illusionTable, illusion )
 		end
 		return illusionTable
@@ -901,7 +903,7 @@ function CDOTA_BaseNPC:SetThreat(val)
 			newVal = newVal + ( math.abs(val) * ( modifier:Bonus_ThreatGain()/100 ) )
 		end
 	end
-	self.threat = math.min(math.max(0, (self.threat or 0) + newVal ), 10000)
+	self.threat = math.min(math.max(0, (newVal or 0) ), 10000)
 	if self:IsHero() and not self:IsFakeHero() then 
 		local player = self:GetPlayerOwner()
 		local data = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex() ) or {}
@@ -943,7 +945,7 @@ function CDOTA_BaseNPC:ModifyThreat(val, bIgnoreCap)
 	self.threat = math.min( math.max(0, (self.threat or 0) + math.min(newVal * reduction, threatgainCap ) ), 999 )
 	if self:IsRealHero() then
 		local player = self:GetPlayerOwner()
-		if player and GameRules:GetGameTime() > (player.getLastHitTime or 0) + 0.5 then
+		if player and GameRules:GetGameTime() > (player.getLastHitTime or 0) + 0.33 then
 			PlayerResource:SortThreat()
 			local event_data =
 			{
@@ -1024,7 +1026,7 @@ end
 
 function CDOTA_BaseNPC:GetPhysicalArmorReduction()
 	local armornpc = self:GetPhysicalArmorValue(false)
-	local armor_reduction = 1 - ((0.052 * armornpc) / (0.9 + 0.048 * math.abs(armornpc)))
+	local armor_reduction = 1 - ((0.06 * armornpc) / (1 + 0.06 * math.abs(armornpc)))
 	armor_reduction = 100 - (armor_reduction * 100)
 	return armor_reduction
 end
@@ -1174,7 +1176,7 @@ function CDOTA_BaseNPC:IncreaseIntellect(amount)
 end
 
 function CDOTABaseAbility:GetTrueCooldown()
-	return self:GetCooldown(-1) * self:GetCaster():GetCooldownReduction()
+	return self:GetCooldown(-1) * self:GetCaster():GetModifierPercentageCooldown()
 end
 
 function CDOTABaseAbility:SetCooldown(fCD)
@@ -1194,6 +1196,9 @@ function CDOTABaseAbility:SpendMana( flValue )
 	local spentMana = true
 	local mana = caster:GetMana()
 	self:GetCaster():ReduceMana( value )
+	local realValue = math.max( 1, mana - caster:GetMana() )
+	caster:SetMana( mana )
+	self:GetCaster():SpendMana( realValue, self )
 	if mana <= 0 then
 		caster:SetMana( mana )
 		spentMana = false
@@ -1618,6 +1623,27 @@ function CDOTA_BaseNPC:HasDebuffs()
 	return false
 end
 
+function CDOTA_BaseNPC:HasPurgableDebuffs()
+	for _, modifier in ipairs( self:FindAllModifiers() ) do
+		local caster = modifier:GetCaster()
+		print( modifier:GetName(), modifier:IsDebuff() or (caster and not caster:IsSameTeam( self ) ), ((modifier.IsPurgable and modifier:IsPurgable()) or not modifier.IsPurgable), not modifier:HasAuraOrigin() )
+		if (modifier:IsDebuff() or (caster and not caster:IsSameTeam( self ) )) and ((modifier.IsPurgable and modifier:IsPurgable()) or not modifier.IsPurgable) and not modifier:HasAuraOrigin() then
+			print( modifier:GetName(), "this is the fucker" )
+			return true
+		end
+	end
+	return false
+end
+
+function CDOTA_Modifier_Lua:HasAuraOrigin()
+	for _, modifier in ipairs( self:GetCaster():FindAllModifiers() ) do
+		if modifier:GetModifierAura() == self:GetName() then
+			return true
+		end
+	end
+	return false
+end
+
 function CDOTA_Modifier_Lua:AddIndependentStack(duration, limit, bDontDestroy, tTimerTable)
 	local timerTable = tTimerTable or {}
 	self.stackTimers = self.stackTimers or {}
@@ -1666,7 +1692,7 @@ end
 function CDOTA_Modifier_Lua:StopMotionController(bForceDestroy)
 	FindClearSpaceForUnit(self:GetParent(), self:GetParent():GetAbsOrigin(), true)
 	if self.controlledMotionTimer then Timers:RemoveTimer(self.controlledMotionTimer) end
-	if bForceDestroy then self:Destroy() end
+	self:Destroy()
 end
 
 function CDOTA_BaseNPC:StopMotionControllers(bForceDestroy)
@@ -1872,7 +1898,7 @@ function CDOTABaseAbility:ApplyAOE(eventTable)
 	end)
 end
 
-function CDOTA_BaseNPC:GetCooldownReduction(bReduced)
+function CDOTA_BaseNPC:GetModifierPercentageCooldown(bReduced)
 	local cdr = self:FindModifierByName("modifier_cooldown_reduction_handler")
 	if bReduced then
 		if cdr then
@@ -2208,7 +2234,7 @@ function CDOTA_BaseNPC:AddGold(val, bSound)
 			gold = gold + (hero.bonusGoldExcessValue or 0)
 			hero.bonusGoldExcessValue = gold % 1
 			hero:SetGold(math.floor(gold), true)
-			if bSound then
+			if ( val > 0 and bSound ~= false ) or bSound == true then
 				SendOverheadEventMessage(self:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, self, val, self:GetPlayerOwner())
 			end
 		end
@@ -2232,11 +2258,22 @@ function CDOTA_BaseNPC:AddXP( val )
 	end
 end
 
-function CutTreesInRadius(vloc, radius)
+function CutTreesInRadius(vloc, radius, infoTable)
 	local trees = GridNav:GetAllTreesAroundPoint(vloc, radius, false)
 	local treesCut = 0
 	if #trees > 0 then
 		GridNav:DestroyTreesAroundPoint(vloc, radius, false)
+		if infoTable then
+			PrintAll( infoTable )
+			local ability = infoTable.ability
+			local caster = infoTable.caster or ability:GetCaster()
+			local params = {unit = caster, ability = ability, trees = #trees, position = vloc, radius = radius}
+			for _, modifier in ipairs( caster:FindAllModifiers(  ) ) do
+				if modifier.OnTreesCutDown then
+					modifier:OnTreesCutDown( params )
+				end
+			end
+		end
 	end
 	return #trees
 end
@@ -2544,23 +2581,37 @@ function CDOTA_Item:GetRuneSlot(index)
 end
 
 function CDOTA_BaseNPC:HookInModifier( modifierType, modifier )
-	local statsHandler = self:FindModifierByName("modifier_stats_system_handler")
+	local statsHandler = self.statsSystemHandlerModifier
 	if statsHandler then
 		statsHandler.modifierFunctions[modifierType] = statsHandler.modifierFunctions[modifierType] or {}
 		statsHandler.modifierFunctions[modifierType][modifier] = true
 		statsHandler:ForceRefresh()
 	end
-	local handler = self:FindModifierByName("modifier_handler_handler")
-	Timers:CreateTimer(function()
-		if handler then handler:CheckIfUpdateNeeded( name, ability, duration ) end
-	end)
 end
 
 function CDOTA_BaseNPC:HookOutModifier( modifierType, modifier )
-	local statsHandler = self:FindModifierByName("modifier_stats_system_handler")
+	local statsHandler = self.statsSystemHandlerModifier
 	if statsHandler then
 		statsHandler.modifierFunctions[modifierType] = statsHandler.modifierFunctions[modifierType] or {}
 		statsHandler.modifierFunctions[modifierType][modifier] = nil
 		statsHandler:ForceRefresh()
 	end
+end
+
+if not CDOTA_BaseNPC.oldAddNewModifier then
+	CDOTA_BaseNPC.oldAddNewModifier = CDOTA_BaseNPC.AddNewModifier
+end
+
+function CDOTA_BaseNPC:AddNewModifier(modifierCaster, modifierAbility, modifierName, modifierTable)
+	local kv = modifierTable or {}
+	local duration = kv.Duration or kv.duration or -1
+	if duration ~= -1 and self and modifierCaster and not kv.ignoreStatusAmp then
+		local params = {caster = modifierCaster, target = self, duration = duration, ability = modifierAbility, modifier_name = modifierName}
+		duration = duration * modifierCaster:GetStatusAmplification( params )
+		if self:GetTeam() ~= modifierCaster:GetTeam() then
+			duration = duration * self:GetStatusResistance( params )
+		end
+		kv.Duration = duration
+	end
+	return self:oldAddNewModifier( modifierCaster,  modifierAbility, modifierName, kv )
 end

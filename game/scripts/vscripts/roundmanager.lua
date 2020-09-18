@@ -115,7 +115,7 @@ function RoundManager:OnNPCSpawned(event)
 	Timers:CreateTimer(function()
 		if spawnedUnit and not spawnedUnit:IsNull() then
 			-- set up handlers
-			local handler = spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_handler_handler", {})
+			local handler = spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_stats_system_handler", {})
 			if spawnedUnit:IsAlive() and spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS then
 				AddFOWViewer(DOTA_TEAM_GOODGUYS, spawnedUnit:GetAbsOrigin(), 516, 3, false) -- show spawns
 				if spawnedUnit:IsRoundNecessary() then
@@ -623,9 +623,11 @@ end
 function RoundManager:GameIsFinished(bWon)
 	local GameFinishCatch = function()
 		EventManager:FireEvent("boss_hunters_game_finished")
-		-- Register Statistics for all heroes
-		for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
-			RoundManager:RegisterStatsForHero( hero, bWon )
+		-- Register Statistics for all heroes for ascension 0, who cares about that other shit
+		if RoundManager:GetAscensions() == 0 then
+			for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
+				RoundManager:RegisterStatsForHero( hero, bWon )
+			end
 		end
 		-- end registering
 		if bWon then
@@ -704,6 +706,7 @@ function RoundManager:RegisterStatsForHero( hero, bWon )
 			decoded = json.decode(result.Body)
 		end
 		wins = (decoded.wins or 0)
+		decoded.talents = decoded.talents or {}
 		if bWon then
 			wins = wins + 1
 		end
@@ -714,17 +717,17 @@ function RoundManager:RegisterStatsForHero( hero, bWon )
 			if ability and ability:GetClassname() == "special_bonus_undefined" then
 				local talent = ability:GetAbilityName()
 				putData.talents[talent] = {}
-				local talentData = decoded[talent] or {}
-				local plays = (talentData.plays or 0)
+				local talentData = decoded.talents[talent] or {}
+				local talentPlays = (talentData.plays or 0)
+				local talentWins = (talentData.wins or 0)
 				if ability:GetLevel() > 0 then
-					plays = plays + 1
-					local wins = (talentData.wins or 0)
+					talentPlays = talentPlays + 1
 					if bWon then
-						wins = wins + 1
+						talentWins = talentWins + 1
 					end
 				end
-				putData.talents[talent].wins = wins
-				putData.talents[talent].plays = plays
+				putData.talents[talent].wins = talentWins
+				putData.talents[talent].plays = talentPlays
 			end
 		end
 		
@@ -801,7 +804,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 			local eliteAbName = eliteTypes[roll]
 			table.remove(eliteTypes, roll)
 			local eliteAb = unit:AddAbilityPrecache(eliteAbName)
-			eliteAb:SetLevel(eliteAb:GetMaxLevel())
+			eliteAb:UpgradeAbility(true)
 		end
 	end
 	
@@ -949,6 +952,22 @@ function RoundManager:IsTouchingBoundingBox( unit )
 	return false
 end
 
+function RoundManager:FindBoundingBoxMinimumRadius( )
+	local checkPos = RoundManager:BoundingBoxPosition( )
+	local closest
+	local distance = 999999999
+	if RoundManager:GetBoundingBoxEdges() then
+		for _, boundingBox in ipairs( RoundManager:GetBoundingBoxEdges() ) do
+			local checkDist = CalculateDistance( boundingBox, checkPos )
+			if checkDist < distance then
+				distance = checkDist
+				closest = boundingBox
+			end
+		end
+	end
+	return distance
+end
+
 function RoundManager:FindNearestBoundingBoxEdge( unit )
 	local closest
 	local distance = 999999999
@@ -960,7 +979,7 @@ function RoundManager:FindNearestBoundingBoxEdge( unit )
 			end
 		end
 	end
-	return closest
+	return closest, distance
 end
 
 function RoundManager:GetCurrentRaidTier()

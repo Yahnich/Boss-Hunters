@@ -15,15 +15,17 @@ function fallen_one_fade_out:OnSpellStart()
 	local illusions = target:ConjureImage( {outgoing_damage = self:GetSpecialValueFor("illu_inc") - 100, incoming_damage = self:GetSpecialValueFor("illu_out") - 100, position = caster:GetAbsOrigin(), ability = self}, duration, caster, 1 )
 	local invuln = caster:AddNewModifier(caster, self, "modifier_fallen_one_fade_out", {duration = duration})
 	Timers:CreateTimer(function()
+		if not illusions or not illusions[1] or illusions[1]:IsNull() or not illusions[1]:IsAlive() then
+			if invuln and not invuln:IsNull() then
+				invuln:Destroy()
+			end
+			return nil
+		end
 		if not (illusions[1]:IsMoving() or illusions[1]:IsAttacking()) then
 			illusions[1]:MoveToPositionAggressive( target:GetAbsOrigin() )
 		end
 		caster:SetAbsOrigin( illusions[1]:GetAbsOrigin() )
 		ResolveNPCPositions( illusions[1]:GetAbsOrigin(), 32 )
-		if not illusions or not illusions[1] or illusions[1]:IsNull() or not illusions[1]:IsAlive() and invuln then
-			invuln:Destroy()
-			return nil
-		end
 		return 0.1
 	end)
 end

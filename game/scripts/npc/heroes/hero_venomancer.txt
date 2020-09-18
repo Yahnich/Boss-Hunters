@@ -80,11 +80,13 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration_scepter"			"18.0"
+				"RequiresScepter"			"1"
 			}
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"damage_scepter"			"60 85 110 135 160 185"
+				"RequiresScepter"			"1"
 			}
 			"08"
 			{

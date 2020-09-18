@@ -34,7 +34,7 @@ function modifier_item_legionnaires_dualswords:OnAttackLanded(params)
 	end
 end
 
-function modifier_item_legionnaires_dualswords:GetModifierAttackSpeedBonus()
+function modifier_item_legionnaires_dualswords:GetModifierAttackSpeedBonus_Constant()
 	return self.attackSpeed
 end
 
@@ -76,7 +76,7 @@ function modifier_legionnaires_dualswords_debuff:DeclareFunctions()
 			}
 end
 
-function modifier_legionnaires_dualswords_debuff:GetModifierAttackSpeedBonus()
+function modifier_legionnaires_dualswords_debuff:GetModifierAttackSpeedBonus_Constant()
 	return self.slow
 end
 

@@ -91,6 +91,7 @@ end
 function modifier_legion_commander_victorious_advance_debuff:DeclareFunctions()
 	funcs = {
 				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT 
 			}
 	return funcs
 end
@@ -99,7 +100,7 @@ function modifier_legion_commander_victorious_advance_debuff:GetModifierMoveSpee
 	return self.ms
 end
 
-function modifier_legion_commander_victorious_advance_debuff:GetModifierAttackSpeedBonus()
+function modifier_legion_commander_victorious_advance_debuff:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

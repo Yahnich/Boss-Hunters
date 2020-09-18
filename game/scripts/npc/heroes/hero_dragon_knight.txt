@@ -351,6 +351,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"dragon_knight_elder_dragon_form"
 		"MaxLevel"						"6"
@@ -393,88 +394,97 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"20.0"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"20.0"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"dot"						"25 30 35 40 45 50"
+				"var_type"						"FIELD_INTEGER"
+				"dot"							"25 30 35 40 45 50"
+				"CalculateSpellDamageTooltip"	"1"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"dot_duration"				"3"
+				"var_type"						"FIELD_FLOAT"
+				"dot_duration"					"3"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"area_damage"				"0 35 40 45 50 55 60"
+				"var_type"						"FIELD_INTEGER"
+				"area_damage"					"0 35 40 45 50 55 60"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"05"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"slow"						"0 0 -30 -40 -50 -60"
+				"var_type"						"FIELD_INTEGER"
+				"slow"							"0 0 -30 -40 -50 -60"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"magic_resist"				"0 0 0 30 30 35"
+				"var_type"						"FIELD_INTEGER"
+				"magic_resist"					"0 0 0 30 30 35"
 			}
 			"07"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"model_scale"				"0 0 0 0 35 50"
+				"var_type"						"FIELD_INTEGER"
+				"model_scale"					"0 0 0 0 35 50"
 			}
 			"08"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_str"					"0 0 0 0 40 50"
+				"var_type"						"FIELD_INTEGER"
+				"bonus_str"						"0 0 0 0 40 50"
 			}
 			"09"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"attack_range"				"150 150 150 150 250 350"
+				"var_type"						"FIELD_INTEGER"
+				"attack_range"					"150 150 150 150 250 350"
 			}
 			"10"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"cdr"						"0 0 0 0 0 35"
+				"var_type"						"FIELD_INTEGER"
+				"cdr"							"0 0 0 0 0 35"
 			}
 			"11"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_dot"				"70 75 80 85 90 95"
+				"var_type"						"FIELD_INTEGER"
+				"scepter_dot"					"70 75 80 85 90 95"
+				"RequiresScepter"				"1"
 			}
 			"12"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_area_damage"		"15 50 55 60 65 70 75"
+				"var_type"						"FIELD_INTEGER"
+				"scepter_area_damage"			"15 50 55 60 65 70 75"
+				"RequiresScepter"				"1"
 			}
 			"13"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_slow"				"-15 -15 -45 -55 -65 -75"
+				"var_type"						"FIELD_INTEGER"
+				"scepter_slow"					"-15 -15 -45 -55 -65 -75"
+				"RequiresScepter"				"1"
 			}
 			"14"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_magic_resist"		"15 15 15 45 45 50"
+				"var_type"						"FIELD_INTEGER"
+				"scepter_magic_resist"			"15 15 15 45 45 50"
+				"RequiresScepter"				"1"
 			}
 			"15"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_bonus_str"			"10 10 10 10 50 60"
+				"var_type"						"FIELD_INTEGER"
+				"scepter_bonus_str"				"10 10 10 10 50 60"
+				"RequiresScepter"				"1"
 			}
 			"16"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_attack_range"		"250 250 250 250 350 450"
+				"var_type"						"FIELD_INTEGER"
+				"scepter_attack_range"			"250 250 250 250 350 450"
+				"RequiresScepter"				"1"
 			}
 			"17"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_cdr"				"15 15 15 15 15 50"
+				"var_type"						"FIELD_INTEGER"
+				"scepter_cdr"					"15 15 15 15 15 50"
+				"RequiresScepter"				"1"
 			}
 		}
 	}

@@ -29,9 +29,16 @@ function boss19_burrow:OnSpellStart()
 	ParticleManager:FireParticle("particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(stunRadius, stunRadius, stunRadius)})
 	
 	if self.recast_count > 0 and caster:GetHealthPercent() < 40 then
-		local newPos = position + ActualRandomVector(1000, 400)
-		if RoundManager:GetBoundingBox() then
-			newPos = RoundManager:GetBoundingBox():GetAbsOrigin() + ActualRandomVector( FindRadius( RoundManager:GetBoundingBox() ) * 0.75, 150 )
+		local newPos = position + ActualRandomVector(600, 150)
+		if self:RollPRNG( 35 ) then
+			if RoundManager:GetBoundingBoxEdges() then
+				newPos = RoundManager:BoundingBoxPosition( ) + ActualRandomVector( RoundManager:FindBoundingBoxMinimumRadius( ) * 0.75, 150 )
+			end
+		else
+			for _, unit in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), -1, {flag = DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE } ) ) do
+				newPos = unit:GetAbsOrigin() + ActualRandomVector( stunRadius )
+				break
+			end
 		end
 		caster:SetCursorPosition( newPos )
 		self:OnAbilityPhaseStart(true)

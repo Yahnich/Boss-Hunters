@@ -60,6 +60,7 @@ function modifier_clinkz_walk:OnCreated(table)
     self.hitUnits = {}
 	self.talent = self:GetCaster():HasTalent("special_bonus_unique_clinkz_walk_1")
 
+	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )
 	if IsServer() then 
 		self:GetCaster():CalculateStatBonus()
 		self:StartIntervalThink(0.1)
@@ -76,6 +77,10 @@ function modifier_clinkz_walk:OnRefresh(table)
 		self:GetCaster():CalculateStatBonus()
 		self:StartIntervalThink(0.1)
 	end
+end
+
+function modifier_clinkz_walk:OnDestroy()
+	self:GetParent():HookOutModifier( "GetMoveSpeedLimitBonus", self )
 end
 
 function modifier_clinkz_walk:OnIntervalThink()

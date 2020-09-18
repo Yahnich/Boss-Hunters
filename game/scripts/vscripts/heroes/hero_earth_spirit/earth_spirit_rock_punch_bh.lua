@@ -33,7 +33,7 @@ function earth_spirit_rock_punch_bh:OnSpellStart()
 				ally:AddNewModifier( caster, self, "modifier_rock_punch_talent", {duration = duration} )
 			end
 		end
-	else
+	elseif not target:IsSameTeam( caster ) then
 		self:DealDamage( caster, target, damage )
 	end
 	

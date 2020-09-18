@@ -15,7 +15,7 @@ function modifier_item_gauntlet_of_alacrity_passive:DeclareFunctions()
 	return {}
 end
 
-function modifier_item_gauntlet_of_alacrity_passive:GetModifierAttackSpeedBonus()
+function modifier_item_gauntlet_of_alacrity_passive:GetModifierAttackSpeedBonus_Constant()
 	return self.bonus_attack_speed
 end
 
