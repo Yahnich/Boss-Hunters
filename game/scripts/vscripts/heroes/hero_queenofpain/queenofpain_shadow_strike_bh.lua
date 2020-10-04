@@ -1,10 +1,14 @@
 queenofpain_shadow_strike_bh = class({})
 
+function queenofpain_shadow_strike_bh:GetIntrinsicModifierName()
+	return "modifier_queen_of_pain_shadow_strike_bh_autocast"
+end
+
 function queenofpain_shadow_strike_bh:GetBehavior()
 	if self:GetCaster():HasTalent("special_bonus_unique_queenofpain_shadow_strike_1") then
-		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_AUTOCAST 
 	else
-		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
+		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AUTOCAST 
 	end
 end
 
@@ -14,12 +18,13 @@ function queenofpain_shadow_strike_bh:OnSpellStart()
 	
 	local speed = self:GetTalentSpecialValueFor("projectile_speed")
 	caster:EmitSound("Hero_QueenOfPain.ShadowStrike")
+	self:FireTrackingProjectile("particles/units/heroes/hero_queenofpain/queen_shadow_strike.vpcf", target, speed)
 	if caster:HasTalent("special_bonus_unique_queenofpain_shadow_strike_1") then
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self:GetTrueCastRange() ) ) do
-			self:FireTrackingProjectile("particles/units/heroes/hero_queenofpain/queen_shadow_strike.vpcf", enemy, speed)
+			if enemy ~= target then
+				self:FireTrackingProjectile("particles/units/heroes/hero_queenofpain/queen_shadow_strike.vpcf", enemy, speed)
+			end
 		end
-	else
-		self:FireTrackingProjectile("particles/units/heroes/hero_queenofpain/queen_shadow_strike.vpcf", target, speed)
 	end
 end
 
@@ -35,6 +40,24 @@ function queenofpain_shadow_strike_bh:OnProjectileHit( target, position )
 		target:EmitSound("Hero_QueenOfPain.ShadowStrike.Target")
 	end
 end
+
+modifier_queen_of_pain_shadow_strike_bh_autocast = class({})
+LinkLuaModifier("modifier_queen_of_pain_shadow_strike_bh_autocast", "heroes/hero_queenofpain/queenofpain_shadow_strike_bh", LUA_MODIFIER_MOTION_NONE )
+
+function modifier_queen_of_pain_shadow_strike_bh_autocast:DeclareFunctions()
+	return {MODIFIER_EVENT_ON_ATTACK }
+end
+
+function modifier_queen_of_pain_shadow_strike_bh_autocast:OnAttack(params)
+	if params.attacker == self:GetCaster() and self:GetAbility():GetAutoCastState() and self:GetAbility():IsFullyCastable() then
+		self:GetAbility():CastSpell(params.target)
+	end
+end
+
+function modifier_queen_of_pain_shadow_strike_bh_autocast:IsHidden()
+	return true
+end
+
 
 modifier_queen_of_pain_shadow_strike_bh = class({})
 LinkLuaModifier("modifier_queen_of_pain_shadow_strike_bh", "heroes/hero_queenofpain/queenofpain_shadow_strike_bh", LUA_MODIFIER_MOTION_NONE )

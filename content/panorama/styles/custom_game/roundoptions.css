@@ -23,10 +23,14 @@
 	width: 350px;
 	horizontal-align: center;
 	flow-children: down;
-	/* box-shadow: fill -3px -3px 6px 6px #C0C0C0; */
-	/* brightness: 1.5; */
 	margin-left: 25px;
 	margin-right: 25px;
+}
+
+.EventCardHighlighted
+{
+	box-shadow: fill -3px -3px 6px 6px #C0C0C0;
+	brightness: 1.5;
 }
 
 .EventCardTop
@@ -74,7 +78,7 @@
 {
 	width: 60px;
 	height: 60px;
-	/* background-image: url("file://{images}/custom_game/events/encounter_room_icon_png.png"); */
+	background-image: url("file://{images}/custom_game/events/encounter_room_icon_png.png");
 	/* background-image: url("file://{images}/custom_game/events/boss_room_icon_png.png"); */
 	/* background-image: url("file://{images}/custom_game/events/bonus_room_icon_png.png"); */
 	/* background-image: url("file://{images}/custom_game/events/encounter_room_icon_png.png"); */
@@ -207,82 +211,3 @@
 	vertical-align: bottom;
 	flow-children: down;
 }
-
-#confirmation 
-{
-    horizontal-align: center;
-	vertical-align: top;
-	font-size: 20px;
-    font-weight: bold;
-	margin-top: 80px;
-	color: #FFEA00;
-}
-
-#noheader
-{
-margin-top:40px;
-margin-left: 113px;
-horizontal-align:left;
-color: #FFEA00;
-font-size: 20px;
-font-weight: bold;
-}
-
-#yesheader
-{
-margin-top:40px;
-margin-right: 109px;
-horizontal-align:right;
-color: #FFEA00;
-font-size: 20px;
-font-weight: bold;
-}
-
-#noresults
-{
-margin-top:60px;
-margin-left: 100px;
-horizontal-align:left;
-}
-
-#yesresults
-{
-margin-top:60px;
-margin-right: 100px;
-horizontal-align:right;
-}
-
-#RoundOptions
-{
-  horizontal-align: center;
-  vertical-align: center;
-  margin-top: 50px;
-  width: 500px;
-  height: 150px;
- }
- #BG_Image
-{
-  width: 500px;
-    height: 300px;
- }
-
- #Vote_Yes
-{
-	horizontal-align: center;
-  vertical-align: top;
- margin-top: 100px;
-  width: 180px;
-    height: 45px;
- }
- 
-#question
-  {
-    horizontal-align: right;
-	vertical-align: top;
-	margin-right: 75px;
-	font-size: 20px;
-    font-weight: bold;
-	margin-top: 10px;
-	text-transform: uppercase;
-	color: #FFEA00;
- } 

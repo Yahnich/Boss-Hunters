@@ -4,6 +4,8 @@ function boss_sloth_demon_slime_trail:GetIntrinsicModifierName()
 	return "modifier_boss_sloth_demon_slime_trail"
 end
 
+boss_lesser_sloth_demon_slime_trail = class(boss_sloth_demon_slime_trail)
+
 modifier_boss_sloth_demon_slime_trail = class({})
 LinkLuaModifier( "modifier_boss_sloth_demon_slime_trail", "bosses/boss_sloth_demon/boss_sloth_demon_slime_trail", LUA_MODIFIER_MOTION_NONE )
 
@@ -23,6 +25,10 @@ if IsServer() then
 		end
 		CreateModifierThinker(caster, self:GetAbility(), "modifier_boss_sloth_demon_slime_trail_pool", {}, caster:GetAbsOrigin(), caster:GetTeamNumber(), false)
 	end
+end
+
+function modifier_boss_sloth_demon_slime_trail:IsHidden()
+	return true
 end
 
 modifier_boss_sloth_demon_slime_trail_pool = class({})

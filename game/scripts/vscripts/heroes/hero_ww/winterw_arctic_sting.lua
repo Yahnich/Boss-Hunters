@@ -56,6 +56,13 @@ end
 
 modifier_arctic_sting = ({})
 function modifier_arctic_sting:OnCreated(table)
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_winterw_arctic_sting_1")
+	self.talent1Radius = self:GetCaster():FindTalentValue("special_bonus_unique_winterw_arctic_sting_1")
+	self.scepter_cost = self:GetTalentSpecialValueFor("mana_cost_scepter")
+	self.attack_range = self:GetTalentSpecialValueFor("attack_range_bonus")
+	self.vision = self:GetTalentSpecialValueFor("night_vision_bonus")
+	self.projectile_speed = self:GetTalentSpecialValueFor("projectile_speed_bonus")
+	self.duration = self:GetTalentSpecialValueFor("burn_duration")
     if IsServer() then
         local startFX = ParticleManager:CreateParticle("particles/units/heroes/hero_winter_wyvern/wyvern_arctic_burn_start.vpcf", PATTACH_POINT, self:GetCaster())
         ParticleManager:SetParticleControl(startFX, 0, self:GetCaster():GetAbsOrigin())
@@ -75,8 +82,8 @@ function modifier_arctic_sting:OnCreated(table)
 end
 
 function modifier_arctic_sting:OnIntervalThink()
-    if self:GetCaster():HasScepter() then
-        self:GetCaster():SpendMana(self:GetTalentSpecialValueFor("mana_cost_scepter"), self:GetAbility())
+    if self:GetCaster():HasScepter() and self:GetAbility():GetToggleState() then
+        self:GetAbility():SpendMana( self.scepter_cost )
     end
 end
 
@@ -102,38 +109,46 @@ function modifier_arctic_sting:DeclareFunctions()
         MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
         MODIFIER_PROPERTY_BONUS_NIGHT_VISION,
         MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS,
-        MODIFIER_EVENT_ON_ATTACK_LANDED
+        MODIFIER_EVENT_ON_ATTACK_LANDED,
+        MODIFIER_EVENT_ON_ATTACK
     }
 
     return funcs
 end
 
 function modifier_arctic_sting:GetModifierAttackRangeBonus()
-    return self:GetTalentSpecialValueFor("attack_range_bonus")
+    return self.attack_range
 end
 
 function modifier_arctic_sting:GetBonusNightVision()
-    return self:GetTalentSpecialValueFor("night_vision_bonus")
+    return self.vision
 end
 
 function modifier_arctic_sting:GetModifierProjectileSpeedBonus()
-    return self:GetTalentSpecialValueFor("projectile_speed_bonus")
+    return self.projectile_speed
+end
+
+function modifier_arctic_sting:OnAttack(params)
+    if params.attacker == self:GetCaster() and params.target:IsAlive() and self.talent1 then
+        if not self.preventInfiniteLoopingLmao then
+			self.preventInfiniteLoopingLmao = true
+			for _, enemy in ipairs( params.attacker:FindEnemyUnitsInRadius( params.target:GetAbsOrigin(), self.talent1Radius) ) do
+				params.attacker:PerformGenericAttack( enemy )
+			end
+			self.preventInfiniteLoopingLmao = false
+		end
+    end
 end
 
 function modifier_arctic_sting:OnAttackLanded(params)
     if params.attacker == self:GetCaster() and params.target:IsAlive() then
-        
-        if self:GetCaster():HasTalent("special_bonus_unique_winterw_arctic_sting_2") then
-            params.target:AddChill(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("duration"), self:GetCaster():FindTalentValue("special_bonus_unique_winterw_arctic_sting_2"))
-        end
-
         if self:GetCaster():HasScepter() then
             EmitSoundOn("Hero_Winter_Wyvern.ArcticBurn.projectileImpact", params.target)
-            params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_arctic_sting_target", {Duration = self:GetTalentSpecialValueFor("burn_duration")})
+            params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_arctic_sting_target", {Duration = self.duration})
         else
             if not params.target:HasModifier("modifier_arctic_sting_target") then
                 EmitSoundOn("Hero_Winter_Wyvern.ArcticBurn.projectileImpact", params.target)
-                params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_arctic_sting_target", {Duration = self:GetTalentSpecialValueFor("burn_duration")})
+                params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_arctic_sting_target", {Duration = self.duration})
             end
         end
     end
@@ -161,15 +176,27 @@ end
 
 modifier_arctic_sting_target = ({})
 function modifier_arctic_sting_target:OnCreated(table)
+	self.damage_pct = self:GetTalentSpecialValueFor("burn_curr_hp")/100
+	self.damage_base = self:GetTalentSpecialValueFor("burn_damage")
+	self.slow = self:GetTalentSpecialValueFor("move_slow")
+	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_winterw_arctic_sting_2")
+	self.talent2Chill = self.damage_base * self:GetCaster():FindTalentValue("special_bonus_unique_winterw_arctic_sting_2") / 100
     if IsServer() then
+		self:OnIntervalThink()
         self:StartIntervalThink(1.0)
     end
 end
 
 function modifier_arctic_sting_target:OnIntervalThink()
-    local currentHealth = self:GetParent():GetHealth()
-    local damage = currentHealth * self:GetTalentSpecialValueFor("burn")/100
-    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), damage, {damage_flags=DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
+	local caster = self:GetCaster()
+	local parent = self:GetParent()
+	local ability = self:GetAbility()
+    local currentHealth = parent:GetHealth()
+    local damage = self.damage_base * caster:GetSpellAmplification( false ) + currentHealth * self.damage_pct
+    ability:DealDamage(caster, parent, damage, {damage_flags=DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
+	if self.talent2 then
+		parent:AddChill( ability, caster, self:GetRemainingTime(), math.floor(self.talent2Chill + 0.5) )
+	end
 end
 
 function modifier_arctic_sting_target:DeclareFunctions()
@@ -181,7 +208,7 @@ function modifier_arctic_sting_target:DeclareFunctions()
 end
 
 function modifier_arctic_sting_target:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("move_slow")
+    return self.slow
 end
 
 function modifier_arctic_sting_target:IsDebuff()

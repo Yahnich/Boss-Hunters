@@ -18,7 +18,7 @@ if IsServer() then
 		local parent = self:GetParent()
 		self.fadeTime = self:GetSpecialValueFor("fade_time")
 		self.searchRadius = self:GetSpecialValueFor("detection_radius")
-		local enemies = parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), self.searchRadius )
+		local enemies = parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), self.searchRadius, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE} )
 		
 		self:StartIntervalThink( 0.25 )
 		if not parent:HasModifier("modifier_elite_elusive_fade") then

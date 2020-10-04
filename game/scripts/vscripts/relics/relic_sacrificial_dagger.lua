@@ -22,7 +22,7 @@ function relic_sacrificial_dagger:DeclareFunctions()
 end
 
 function relic_sacrificial_dagger:OnDeath(params)
-	if params.unit == self:GetParent() and self:GetStackCount() > 0 then
+	if params.unit == self:GetParent() and self:GetStackCount() > 0 and not self:GetParent():WillReincarnate() then
 		self:DecrementStackCount()
 		GameRules:RefreshPlayers()
 	end

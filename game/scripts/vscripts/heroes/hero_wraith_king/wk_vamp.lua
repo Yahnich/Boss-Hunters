@@ -1,7 +1,4 @@
 wk_vamp = class({})
-LinkLuaModifier( "modifier_wk_vamp", "heroes/hero_wraith_king/wk_vamp.lua",LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_wk_vamp_effect", "heroes/hero_wraith_king/wk_vamp.lua",LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_wk_vamp_active", "heroes/hero_wraith_king/wk_vamp.lua",LUA_MODIFIER_MOTION_NONE )
 
 function wk_vamp:IsStealable()
     return true
@@ -15,55 +12,16 @@ function wk_vamp:GetIntrinsicModifierName()
     return "modifier_wk_vamp"
 end
 
-function wk_vamp:GetChannelTime()
-    return self:GetTalentSpecialValueFor("channel_duration")
-end
-
 function wk_vamp:OnSpellStart()
-    self.counter = 0
+    local caster = self:GetCaster()
+	caster:AddNewModifier( caster, self, "modifier_wk_vamp_active", {duration = self:GetTalentSpecialValueFor("active_duration")} )
 end
 
-function wk_vamp:OnChannelThink(flInterval)
-    if self.counter >= (0.5 + flInterval) then
-        local caster = self:GetCaster()
-
-        local healthDamage = caster:GetMaxHealth() * self:GetTalentSpecialValueFor("life_drain")/100
-        healthDamage = healthDamage * (0.5 + flInterval)
-
-        caster:ModifyHealth(caster:GetHealth() - healthDamage, self, false, 0)
-
-        local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
-        for _,enemy in pairs(enemies) do
-            local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_undying/undying_soul_rip_damage.vpcf", PATTACH_POINT, caster)
-                        ParticleManager:SetParticleControlEnt(nfx, 0, enemy, PATTACH_POINT, "attach_hitloc", enemy:GetAbsOrigin(), true)
-                        ParticleManager:SetParticleControl(nfx, 1, caster:GetAbsOrigin())
-                        ParticleManager:SetParticleControl(nfx, 2, caster:GetAbsOrigin())
-                        ParticleManager:ReleaseParticleIndex(nfx)
-
-            self:DealDamage(caster, enemy, healthDamage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, 0)
-        end
-
-        if caster:HasTalent("special_bonus_unique_wk_vamp_2") then
-            local allies = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
-            for _,ally in pairs(allies) do
-                if ally ~= caster then
-                    local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_undying/undying_fg_heal.vpcf", PATTACH_POINT, caster)
-                                ParticleManager:SetParticleControlEnt(nfx, 0, ally, PATTACH_POINT, "attach_hitloc", ally:GetAbsOrigin(), true)
-                                ParticleManager:SetParticleControl(nfx, 1, caster:GetAbsOrigin())
-                                ParticleManager:ReleaseParticleIndex(nfx)
-
-                    ally:HealEvent(healthDamage, self, caster, false)
-                end
-            end
-        end
-
-        self.counter = 0
-    else
-        self.counter = self.counter + FrameTime()
-    end 
-end
+modifier_wk_vamp_active = class({})
+LinkLuaModifier( "modifier_wk_vamp_active", "heroes/hero_wraith_king/wk_vamp.lua",LUA_MODIFIER_MOTION_NONE )
 
 modifier_wk_vamp = class({})
+LinkLuaModifier( "modifier_wk_vamp", "heroes/hero_wraith_king/wk_vamp.lua",LUA_MODIFIER_MOTION_NONE )
 function modifier_wk_vamp:IsAura()
     return true
 end
@@ -101,28 +59,97 @@ function modifier_wk_vamp:IsHidden()
 end
 
 modifier_wk_vamp_effect = class({})
+LinkLuaModifier( "modifier_wk_vamp_effect", "heroes/hero_wraith_king/wk_vamp.lua",LUA_MODIFIER_MOTION_NONE )
+
+function modifier_wk_vamp_effect:OnCreated()
+	self:OnRefresh()
+end
+
+function modifier_wk_vamp_effect:OnRefresh()
+	self.lifesteal = self:GetTalentSpecialValueFor("lifesteal")
+	self.attack_damage = self:GetTalentSpecialValueFor("attack_damage")
+	self.ranged_percentage = self:GetTalentSpecialValueFor("ranged_percentage") / 100
+	self.wk_percentage = 1 + self:GetTalentSpecialValueFor("wk_percentage") / 100
+	self.active_multiplier = self:GetTalentSpecialValueFor("active_multiplier")
+	if self:GetCaster():HasTalent("special_bonus_unique_wk_vamp_1") then
+		self.talent1 = true
+		self.talent1Dur = self:GetCaster():FindTalentValue("special_bonus_unique_wk_vamp_1", "duration")
+		self.talent1Mult = self:GetCaster():FindTalentValue("special_bonus_unique_wk_vamp_1")
+	end
+	self:GetParent():HookInModifier("GetModifierLifestealBonus", self)
+end
+
+function modifier_wk_vamp_effect:OnDestroy()
+	self:GetParent():HookOutModifier("GetModifierLifestealBonus", self)
+end
+
 function modifier_wk_vamp_effect:DeclareFunctions()
     local funcs = {
-        MODIFIER_EVENT_ON_ATTACK_LANDED
+        MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+		MODIFIER_EVENT_ON_ATTACK
     }
     return funcs
 end
 
-function modifier_wk_vamp_effect:OnAttackLanded(params)
-    if IsServer() then
-        local parent = self:GetParent()
-        local target = params.target
-        local attacker = params.attacker
-        local ability = self:GetAbility()
-        local damage = params.damage
+function modifier_wk_vamp_effect:OnAttack(params)
+	if self.talent1 and params.target == self:GetParent() then
+		params.target:AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_wk_vamp_talent", {duration = self.talent1Dur})
+	end
+end
 
-        if attacker == parent then
-            local lifestealPct = self:GetTalentSpecialValueFor("lifesteal")
-            attacker:Lifesteal(nil, lifestealPct, damage, nil, 0, DOTA_LIFESTEAL_SOURCE_NONE, true)
-        end
-    end
+function modifier_wk_vamp_effect:GetModifierPreAttack_BonusDamage(params)
+	local damage = self.attack_damage
+	if self:GetParent():IsRangedAttacker() then
+		damage = damage * self.ranged_percentage
+	end
+	if self:GetParent():GetPlayerOwnerID() == self:GetCaster():GetPlayerOwnerID() then
+		damage = damage * self.wk_percentage
+	end
+	if self:GetCaster():HasModifier("modifier_wk_vamp_active") then
+		damage = damage * self.active_multiplier
+	end
+	if self:GetParent():HasModifier("modifier_wk_vamp_talent") then
+		damage = damage * self.talent1Mult
+	end
+	return damage
+end
+
+function modifier_wk_vamp_effect:GetModifierLifestealBonus(params)
+    local lifesteal = self.lifesteal
+	if self:GetParent():IsRangedAttacker() then
+		lifesteal = lifesteal * self.ranged_percentage
+	end
+	if self:GetParent():GetPlayerOwnerID() == self:GetCaster():GetPlayerOwnerID() then
+		lifesteal = lifesteal * self.wk_percentage
+	end
+	if self:GetCaster():HasModifier("modifier_wk_vamp_active") then
+		lifesteal = lifesteal * self.active_multiplier
+	end
+	if self:GetParent():HasModifier("modifier_wk_vamp_talent") then
+		lifesteal = lifesteal * self.talent1Mult
+	end
+	return lifesteal
 end
 
 function modifier_wk_vamp:IsDebuff()
     return false
+end
+
+modifier_wk_vamp_talent = class({})
+LinkLuaModifier( "modifier_wk_vamp_talent", "heroes/hero_wraith_king/wk_vamp.lua",LUA_MODIFIER_MOTION_NONE )
+
+function modifier_wk_vamp_talent:DeclareFunctions()
+	return {MODIFIER_EVENT_ON_ATTACK_FAIL, MODIFIER_EVENT_ON_ATTACK_LANDED }
+end
+
+function modifier_wk_vamp_talent:OnAttackFail(params)
+	if params.attacker == self:GetParent() then
+		Timers:CreateTimer(function() self:Destroy() end)
+	end
+end
+
+function modifier_wk_vamp_talent:OnAttackLanded(params)
+	if params.attacker == self:GetParent() then
+		Timers:CreateTimer(function() self:Destroy() end)
+	end
 end

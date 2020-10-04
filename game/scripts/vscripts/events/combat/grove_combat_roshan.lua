@@ -1,18 +1,5 @@
 local function StartEvent(self)
-	self.enemiesToSpawn = 1 + RoundManager:GetCurrentRaidTier()
-	self.eventHandler = Timers:CreateTimer(3, function()
-		local spawn = CreateUnitByName("npc_dota_boss10", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-		spawn.unitIsRoundNecessary = true
-		
-		self.enemiesToSpawn = self.enemiesToSpawn - 1
-		if self.enemiesToSpawn > 0 then
-			return 6
-		end
-	end)
-	
-	self._vEventHandles = {
-		ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
-	}
+	self:StartCombatRound()
 end
 
 local function EndEvent(self, bWon)

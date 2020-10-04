@@ -1,6 +1,4 @@
---[[
-Broodking AI
-]]
+if IsClient() then return end
 if IsServer() then
 	require( "ai/ai_core" )
 	

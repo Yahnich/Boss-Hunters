@@ -32,6 +32,7 @@ end
 local function StartCombat(self, bFight)
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	if bFight then
+		self.eventTargetToBeProtected:Fear(nil, self.eventTargetToBeProtected, 600)
 		self._vEventHandles = {
 			ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
 		}
@@ -58,6 +59,7 @@ local function StartCombat(self, bFight)
 			spawn.unitIsRoundNecessary = true
 			self.bossesToSpawn = self.bossesToSpawn - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
+			spawn:Taunt(nil, self.eventTargetToBeProtected, 600)
 			if self.bossesToSpawn > 0 then
 				return 15 / (RoundManager:GetRaidsFinished() + 1)
 			end
@@ -67,6 +69,7 @@ local function StartCombat(self, bFight)
 			spawn.unitIsRoundNecessary = true
 			self.mobsToSpawn = self.mobsToSpawn - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
+			spawn:Taunt(nil, self.eventTargetToBeProtected, 600)
 			if self.mobsToSpawn > 0 then
 				return 5 / (RoundManager:GetRaidsFinished() + 1)
 			end
@@ -97,6 +100,9 @@ local function StartEvent(self)
 	self._vEventHandles = {}
 	self.timeRemaining = 15
 	self.eventEnded = false
+	self.eventTargetToBeProtected = CreateUnitByName("npc_dota_event_treant", RoundManager:GetHeroSpawnPosition(), true, nil, nil, DOTA_TEAM_GOODGUYS)
+	self.eventTargetToBeProtected:SetCoreHealth( 2000 );
+	self.eventTargetToBeProtected:SetHealth( 1000 );
 	self.waitTimer = Timers:CreateTimer(1, function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.eventEnded and not self.helpedTreant then
@@ -123,10 +129,15 @@ local function EndEvent(self, bWon)
 	end
 	
 	if self.helpedTreant and bWon then
+		if not self.eventTargetToBeProtected:IsNull() and self.eventTargetToBeProtected:IsAlive() then
+			self.eventTargetToBeProtected:Blink( Vector( 0, 0 ) )
+		end
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			hero:AddBlessing("event_buff_help_treant")
 		end
 		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = "grove_event_help_treant", reward = 1})
+	elseif not self.eventTargetToBeProtected:IsNull() and self.eventTargetToBeProtected:IsAlive() then
+		self.eventTargetToBeProtected:ForceKill( false )
 	end
 	
 	self.eventEnded = true

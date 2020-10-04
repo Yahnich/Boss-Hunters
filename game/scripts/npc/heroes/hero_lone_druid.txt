@@ -99,7 +99,7 @@
 		"LinkedTalents"
 		{
 			"special_bonus_unique_druid_battle_cry_1"	"1"
-			"special_bonus_unique_druid_battle_cry_2"	"1"
+			"special_bonus_unique_druid_battle_cry_3"	"1"
 		}
 	
 		// Casting
@@ -137,7 +137,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_armor"			"15 20 25 30 30 30 30"
-				"LinkedSpecialBonus"	"special_bonus_unique_druid_battle_cry_1"
 			}
 			"03"
 			{
@@ -170,12 +169,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"10"
+				"value"						"100"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"reduction"					"-50"
+				"reduction"					"-40"
 			}
 		}
 	}
@@ -198,6 +197,28 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_druid_battle_cry_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"33"
 			}
 		}
 	}
@@ -314,7 +335,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		//"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"lone_druid_savage_roar"
@@ -362,6 +383,13 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"radius"						"325"
+				"LinkedSpecialBonus"			"special_bonus_unique_druid_savage_roar_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"60 100 140 180 220 260 300"
 				"LinkedSpecialBonus"			"special_bonus_unique_druid_savage_roar_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
@@ -386,7 +414,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow"						"-50"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"amp"						"15"
 			}
 		}
 	}
@@ -503,6 +541,16 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"base_damage"			"40"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_hp_threshold"		"35"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"invuln_duration"		"1"
 			}
 		}
 

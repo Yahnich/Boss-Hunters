@@ -27,6 +27,7 @@ function slardar_slithereen_crush_bh:OnSpellStart(bForced)
 		local radius = self:GetTalentSpecialValueFor("crush_radius")
 		local damage = self:GetTalentSpecialValueFor("damage")
 		local stunDur = self:GetTalentSpecialValueFor("stun_duration")
+		local scepter_duration = self:GetTalentSpecialValueFor("scepter_duration")
 		local slowDur = self:GetTalentSpecialValueFor("crush_extra_slow_duration")
 		
 		local haze = caster:FindAbilityByName("slardar_amplify_damage_bh")
@@ -36,7 +37,7 @@ function slardar_slithereen_crush_bh:OnSpellStart(bForced)
 				self:Stun(enemy, stunDur)
 				enemy:AddNewModifier( caster, self, "modifier_slardar_slithereen_crush_bh", {duration = stunDur + slowDur} )
 				if caster:HasScepter() and haze then
-					haze:ApplyHaze( enemy )
+					haze:ApplyHaze( enemy, scepter_duration )
 				end
 			end
 		end
@@ -84,7 +85,7 @@ function modifier_slardar_slithereen_crush_bh_movement:OnCreated(table)
 		self.endPos = position
 		self.dir = CalculateDirection( position, parent )
 		self.distance = CalculateDistance( position, parent )
-		self.speed = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_slithereen_crush_1")
+		self.speed = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_slithereen_crush_1", "speed") / 100
 
 		self:StartMotionController()
 	end
@@ -100,8 +101,9 @@ end
 function modifier_slardar_slithereen_crush_bh_movement:DoControlledMotion()
 	local parent = self:GetParent()
 	if self.distance > 0 then
-		self.distance = self.distance - self.speed * FrameTime()
-		parent:SetAbsOrigin(GetGroundPosition(parent:GetAbsOrigin(), parent) + self.dir*self.speed * FrameTime() )
+		local speed = self:GetParent():GetIdealSpeed() * self.speed
+		self.distance = self.distance - speed * FrameTime()
+		parent:SetAbsOrigin(GetGroundPosition(parent:GetAbsOrigin(), parent) + self.dir*speed * FrameTime() )
 	else
 		parent:SetAbsOrigin(GetGroundPosition(self.endPos, parent) )
 		FindClearSpaceForUnit(parent, self.endPos, true)

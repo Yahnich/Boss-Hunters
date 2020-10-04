@@ -12,6 +12,14 @@ function obsidian_destroyer_arcane_missile:GetIntrinsicModifierName()
 	return "modifier_obsidian_destroyer_arcane_missile_autocast"
 end
 
+function obsidian_destroyer_arcane_missile:GetManaCost(iLvl)
+	if self.forceCast then
+		return 0
+	else
+		return self.BaseClass.GetManaCost( self, iLvl )
+	end
+end
+
 function obsidian_destroyer_arcane_missile:OnSpellStart()
 	local target = self:GetCursorTarget()
 	self.forceCast = true

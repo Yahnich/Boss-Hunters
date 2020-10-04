@@ -48,6 +48,12 @@ function modifier_mk_mastery_handle:OnIntervalThink()
 		if IsServer() then
 			self.lifesteal = self:GetTalentSpecialValueFor("lifesteal")/4
 		end
+	else
+		self.bonusDamage = 0
+
+		if IsServer() then
+			self.lifesteal = 0
+		end
 	end
 end
 
@@ -91,7 +97,7 @@ function modifier_mk_mastery_handle:OnAttackLanded(params)
 						mod:SetStackCount(self:GetTalentSpecialValueFor("charges"))
 
 						if caster:HasScepter() then
-							local damage = caster:GetAttackDamage() * 2
+							local damage = params.damage * 2
 							self:GetAbility():Cleave(target, damage, 150, 330, 625, "particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_crit.vpcf" )
 						end
 
@@ -179,14 +185,6 @@ end
 
 function modifier_mk_mastery_hits:GetModifierPreAttack_BonusDamage()
 	return self.bonus_Ad
-end
-
-function modifier_mk_mastery_hits:GetAccuracy()
-	if self:GetCaster():HasTalent("special_bonus_unique_mk_mastery_1") then
-		return 100
-	else
-		return 0
-	end
 end
 
 function modifier_mk_mastery_hits:IsDebuff()

@@ -1,6 +1,4 @@
---[[
-Broodking AI
-]]
+if IsClient() then return end
 
 require( "ai/ai_core" )
 function Spawn( entityKeyValues )

@@ -30,7 +30,7 @@ function modifier_green_dragon_rot_handle:OnAttackLanded(params)
 	if params.attacker ~= caster or not self:GetAbility():IsCooldownReady() or caster:PassivesDisabled() then return end
 	local enemy = params.target
 	if enemy:IsHero() and (not enemy:IsMagicImmune()) and (not enemy:IsInvulnerable()) and (not enemy:HasModifier("modifier_green_dragon_rot")) then
-		if not enemy:TriggerSpellAbsorb(self) then
+		if not enemy:TriggerSpellAbsorb(self:GetAbility()) then
 			enemy:AddNewModifier(caster, self:GetAbility(), "modifier_green_dragon_rot", {Duration = self.duration})
 		end
 		caster:ReduceMana(33)

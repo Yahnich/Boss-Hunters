@@ -42,5 +42,6 @@
 		"ATTACK_DAMAGE"	"25 50 100"
 		"SPELL_AMP"		"10 20 35"
 		"MOVESPEED"		"10 15 25"
+		"ALL_STATS"		"2"
 	}
 }

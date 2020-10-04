@@ -23,7 +23,7 @@ function juggernaut_quickparry:QuickParry(caster, target)
 		caster:PerformAbilityAttack(target, true, self)
 		local hpDiff = hp - target:GetHealth()
 		caster:SetForwardVector( direction )
-		if caster:HasTalent("special_bonus_unique_juggernaut_quickparry_2") then
+		if caster:HasTalent("special_bonus_unique_juggernaut_quickparry_1") then
 			caster:HealEvent( hpDiff, self, caster )
 			Timers:CreateTimer( 0.2, function()
 				for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), caster:GetAttackRange() ) ) do
@@ -61,7 +61,17 @@ function modifier_juggernaut_quickparry:OnRefresh()
 end
 
 function modifier_juggernaut_quickparry:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK, MODIFIER_PROPERTY_ABSORB_SPELL}
+	return {MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK, MODIFIER_PROPERTY_ABSORB_SPELL, MODIFIER_EVENT_ON_ATTACK_FAIL }
+end
+
+function modifier_juggernaut_quickparry:OnAttackFail(params)
+	if params.target == self:GetParent() 
+	and self:GetParent():GetHealth() > 0 
+	and self:GetParent():IsRealHero() then
+		local ability = self:GetAbility()
+		local caster = self:GetCaster()
+		ability:QuickParry(caster, params.attacker)
+	end
 end
 
 function modifier_juggernaut_quickparry:GetModifierTotal_ConstantBlock(params)

@@ -18,11 +18,16 @@ LinkLuaModifier( "modifier_troll_warlord_inflame", "heroes/hero_troll_warlord/tr
 function modifier_troll_warlord_inflame:OnCreated()
 	self.dmg = self:GetTalentSpecialValueFor("bonus_dmg")
 	self.ms = self:GetTalentSpecialValueFor("bonus_ms")
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_inflame_1")
+	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_battle_trance_2")
+	self.talent2Val = self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_battle_trance_2")
 end
 
 function modifier_troll_warlord_inflame:OnRefresh()
 	self.dmg = self:GetTalentSpecialValueFor("bonus_dmg")
 	self.ms = self:GetTalentSpecialValueFor("bonus_ms")
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_inflame_1")
+	self.talent2Val = self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_battle_trance_2")
 end
 
 function modifier_troll_warlord_inflame:DeclareFunctions()
@@ -31,22 +36,22 @@ end
 
 function modifier_troll_warlord_inflame:GetModifierMoveSpeedBonus_Constant()
 	local value = self.ms
-	if self:GetCaster():HasModifier("modifier_troll_warlord_battle_trance_bh") and self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_battle_trance_2") then
-		value = value * self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_battle_trance_2")
+	if self:GetCaster():HasModifier("modifier_troll_warlord_battle_trance_bh") and self.talent2 then
+		value = value * self.talent2Val
 	end
 	return value
 end
 
 function modifier_troll_warlord_inflame:GetModifierBaseAttack_BonusDamage()
 	local value = self.dmg
-	if self:GetCaster():HasModifier("modifier_troll_warlord_battle_trance_bh") and self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_battle_trance_2") then
-		value = value * self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_battle_trance_2")
+	if self:GetCaster():HasModifier("modifier_troll_warlord_battle_trance_bh") and self.talent2 then
+		value = value * self.talent2Val
 	end
 	return value
 end
 
 function modifier_troll_warlord_inflame:GetModifierMoveSpeed_Absolute()
-	if self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_inflame_1") then
+	if self.talent1 then
 		return 550
 	end
 end

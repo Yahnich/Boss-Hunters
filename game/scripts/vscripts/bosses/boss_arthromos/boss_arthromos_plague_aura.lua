@@ -46,12 +46,12 @@ end
 modifier_boss_arthromos_plague_aura_debuff = class({})
 LinkLuaModifier( "modifier_boss_arthromos_plague_aura_debuff", "bosses/boss_arthromos/boss_arthromos_plague_aura", LUA_MODIFIER_MOTION_NONE )
 
-function modifier_boss_arthromos_plague_aura_debuff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_DISABLE_HEALING}
+function modifier_boss_arthromos_plague_aura_debuff:OnCreated()
+	self.heal_amp = self:GetSpecialValueFor("heal_amp_loss")
 end
 
-function modifier_boss_arthromos_plague_aura_debuff:GetDisableHealing()
-	return 1
+function modifier_boss_arthromos_plague_aura_debuff:GetModifierHealAmplify_Percentage()
+	return self.heal_amp
 end
 
 function modifier_boss_arthromos_plague_aura_debuff:GetEffectName()

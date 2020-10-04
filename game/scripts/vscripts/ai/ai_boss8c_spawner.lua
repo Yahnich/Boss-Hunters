@@ -1,6 +1,4 @@
---[[
-Broodking AI
-]]
+if IsClient() then return end
 TECHIES_BEHAVIOR_SEEK_AND_DESTROY = 1
 TECHIES_BEHAVIOR_ROAM_AND_MINE = 2
 require( "ai/ai_core" )

@@ -48,7 +48,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"aura_resist"		"3 3 3 3 6 9 12 15 18"
+				"aura_resist"			"3 3 3 3 6 9 12 15 18"
 			}
 			"03"
 			{

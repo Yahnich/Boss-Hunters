@@ -20,7 +20,7 @@ local function FirstChoice(self, userid, event)
 			entindex = hero:entindex(),
 			forced = true,
 		}
-		StatsScreen:RespecAll(userid, respec)
+		TalentManager:RespecAll(userid, event)
 	end
 	
 	CheckPlayerChoices(self)

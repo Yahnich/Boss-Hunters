@@ -28,7 +28,8 @@ function queenofpain_blink_bh:OnSpellStart()
 	ParticleManager:FireParticle("particles/units/heroes/hero_queenofpain/queen_blink_end.vpcf", PATTACH_ABSORIGIN, caster, {[0] = caster:GetAbsOrigin()})
 	EmitSoundOn("Hero_QueenOfPain.Blink_in", caster)
 	if caster:HasTalent("special_bonus_unique_queenofpain_blink_1") then
-		caster:AddNewModifier(caster, self, "modifier_queenofpain_blink_bh_talent", {duration = caster:FindTalentValue("special_bonus_unique_queenofpain_blink_1", "duration") } )
+		local scream = caster:FindAbilityByName("queenofpain_scream_of_pain_bh")
+		scream:OnSpellStart()
 	end
 end
 

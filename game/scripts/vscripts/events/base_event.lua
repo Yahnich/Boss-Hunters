@@ -5,7 +5,13 @@ EVENT_TYPE_ELITE = 2
 EVENT_TYPE_EVENT = 3
 EVENT_TYPE_BOSS = 4
 
+EVENT_REWARD_GOLD = 1
+EVENT_REWARD_LIVES = 2
+EVENT_REWARD_RELIC = 3
+
 ROUND_END_DELAY = 3
+
+ELITE_ABILITIES_TO_GIVE = 1
 
 function SendErrorReport(err, context)
 	Notifications:BottomToAll({text="An error has occurred! Please screenshot this: "..err, duration=15.0})
@@ -19,6 +25,43 @@ function BaseEvent:constructor(zoneName, eventType, eventName)
 	self.zoneName = zoneName
 	self.eventID = DoUniqueString(eventName)
 	self.eventHasStarted = false
+	self.eventChampionModifiers = {}
+	self.eventEnemiesToSpawn = {}
+	
+	local eliteTypes = {}
+	for eliteType, weight in pairs(GameRules._Elites) do
+		if tonumber(weight) > 0 then
+			for i = 1, tonumber(weight) do
+				table.insert(eliteTypes, eliteType)
+			end
+		end
+	end
+	
+	if self.eventType == EVENT_TYPE_COMBAT then
+		for i = 1, ELITE_ABILITIES_TO_GIVE + math.max(0, RoundManager:GetAscensions() - 1) do
+			local roll = RandomInt(1, #eliteTypes)
+			local eliteAbName = eliteTypes[roll]
+			for i = #eliteTypes, 1, -1 do
+				if eliteTypes[i] == eliteAbName then
+					table.remove(eliteTypes, i)
+				end
+			end
+			table.insert( self.eventChampionModifiers, eliteAbName )
+		end
+	end
+	
+	local potentialEnemiesToSpawn = RoundManager.specificRoundKV[eventName]
+	if potentialEnemiesToSpawn then
+		local randomTable = {}
+		for id, content in pairs( potentialEnemiesToSpawn ) do
+			table.insert( randomTable, table.copy( content ) )
+		end
+		if #randomTable > 0 then
+			local pick = RandomInt(1, #randomTable)
+			self.eventEnemiesToSpawn = randomTable[pick]
+		end
+	end
+	
 	local eventFolder = "combat"
 	if self.eventType == EVENT_TYPE_EVENT then
 		eventFolder = "event"
@@ -46,6 +89,64 @@ end
 function BaseEvent:StartEvent()
 	print("Event not initialized")
 	return nil
+end
+
+function BaseEvent:StartCombatRound()
+	self.enemiesToSpawn = 0
+	self.enemiesToSpawn = 0
+	self.activeRoundSpawns = table.copy(self.eventEnemiesToSpawn)
+	for enemy, data in pairs( self.activeRoundSpawns ) do
+		data.SpawnDelay = data.SpawnDelay or 1
+		data.currentTimer = data.SpawnDelay
+		data.activeEnemies = 0
+		data.totalSpawns = (data.Amount or 0) + ( data.RaidBonus or 0 ) * (RoundManager:GetCurrentRaidTier() - 1) + math.floor( HeroList:GetActiveHeroCount() * (data.HeroBonus or 0) )
+		data.SpawnAmount = self.SpawnAmount or 1
+		self.enemiesToSpawn = self.enemiesToSpawn + data.totalSpawns
+	end
+	
+	self.eventHandler = Timers:CreateTimer(0.5, function()
+		for enemy, data in pairs( self.activeRoundSpawns ) do
+			data.currentTimer = data.currentTimer - 0.5
+			if data.currentTimer <= 0 or data.activeEnemies == 0 and data.totalSpawns > 0 then
+				data.currentTimer = data.SpawnDelay
+				data.activeEnemies = data.activeEnemies + 1
+				local toSpawn = math.min( data.SpawnAmount, data.totalSpawns )
+				for i = 1, toSpawn do
+					local spawn = CreateUnitByName(enemy, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+					if spawn then
+						if data.CoreHealth then
+							spawn:SetCoreHealth(data.CoreHealth)
+						end
+						if data.DelayAbilities then
+							for ability, cd in pairs( data.DelayAbilities ) do
+								local abilityFound = spawn:FindAbilityByName(ability)
+								if abilityFound then
+									abilityFound:SetCooldown( cd )
+								end
+							end
+						end
+						if data.BaseDamage then
+							spawn:SetAverageBaseDamage( data.BaseDamage, 40 )
+						end
+						spawn.unitIsRoundNecessary = true
+						if data.IsMinion and data.IsMinion == "1" then
+							spawn.unitIsMinion = true
+						end
+						if data.IsBoss and data.IsBoss == "1" then
+							spawn.unitIsBoss = true
+						end
+					end
+				end
+				data.totalSpawns = data.totalSpawns - toSpawn
+				self.enemiesToSpawn = self.enemiesToSpawn - toSpawn
+			end
+		end
+		return 0.5
+	end)
+	
+	self._vEventHandles = {
+		ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
+	}
 end
 
 function BaseEvent:PrecacheUnits()
@@ -149,6 +250,22 @@ end
 
 function BaseEvent:GetEventType()
 	return self.eventType
+end
+
+function BaseEvent:GetEventRewardType()
+	if self:GetEventType() == EVENT_TYPE_BOSS or self:GetEventType() == EVENT_TYPE_ELITE then
+		return EVENT_REWARD_RELIC
+	else	
+		return EVENT_REWARD_GOLD
+	end
+end
+
+function BaseEvent:ChampionSpawnModifiers()
+	return self.eventChampionModifiers
+end
+
+function BaseEvent:GetEnemiesToSpawn()
+	return self.eventEnemiesToSpawn
 end
 
 function BaseEvent:HasStarted()

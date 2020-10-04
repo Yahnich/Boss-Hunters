@@ -20,6 +20,8 @@
 		"item"		"item_brutality_stone"
 		"item"		"item_precision_stone"
 		"item"		"item_power_stone"
+		"item"		"item_heal_stone"
+		"item"		"item_longevity_stone"
 		"item"		"item_strength_stone"
 		"item"		"item_agility_stone"
 		"item"		"item_intellect_stone"
@@ -35,13 +37,13 @@
 		"item"		"item_blade_of_storm"
 		"item"		"item_fortress_shield"
 		"item"		"item_boots_of_speed"
-		"item"		"item_arcane_absorber"
+		"item"		"item_unyielding_totem"
 		"item"		"item_lucifers_cage"
 		"item"		"item_mirror_blade"
 		"item"		"item_ice_fang"
 		"item"		"item_reaping_scythe"
 		"item"		"item_protection_sphere"
-		"item"		"item_anvil"
+		"item"		"item_battlemaster_staff"
     }
     "misc"
     {
@@ -73,6 +75,8 @@
 		"item"		"item_gloaming_glaive_5"
 		"item"		"item_shadow_whisper_5"
 		"item"		"item_twilight_theft_5"
+		"item"		"item_anvil_5"
+		"item"		"item_voltaic_hammer_5"
 	}
 	"artifacts"
 	{

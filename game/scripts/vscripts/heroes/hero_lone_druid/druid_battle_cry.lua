@@ -1,6 +1,4 @@
 druid_battle_cry = class({})
-LinkLuaModifier("modifier_druid_battle_cry", "heroes/hero_lone_druid/druid_battle_cry", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_druid_battle_cry_bear", "heroes/hero_lone_druid/druid_battle_cry", LUA_MODIFIER_MOTION_NONE)
 
 function druid_battle_cry:IsStealable()
     return true
@@ -36,14 +34,21 @@ function druid_battle_cry:OnSpellStart()
 	local radius = self:GetTalentSpecialValueFor("radius")
 
 	EmitSoundOn("Hero_LoneDruid.BattleCry", caster)
-
+	
+	local talent3 = caster:HasTalent("special_bonus_unique_druid_battle_cry_3")
 	local allies = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), radius)
 	for _,ally in pairs(allies) do
-		ally:AddNewModifier(caster, self, "modifier_druid_battle_cry", {Duration = duration})
+		if ally:GetPlayerOwnerID() == caster:GetPlayerOwnerID() then
+			ally:AddNewModifier(caster, self, "modifier_druid_battle_cry", {Duration = duration})
+		end
+		if talent3 then
+			ally:AddNewModifier(caster, self, "modifier_druid_lesser_battle_cry", {Duration = duration})
+		end
 	end
 end
 
 modifier_druid_battle_cry = class({})
+LinkLuaModifier("modifier_druid_battle_cry", "heroes/hero_lone_druid/druid_battle_cry", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_druid_battle_cry:OnCreated(table)
 	self:OnRefresh()
@@ -60,7 +65,14 @@ function modifier_druid_battle_cry:OnCreated(table)
 					 ParticleManager:SetParticleControlEnt(nfx2, 0, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
 					 ParticleManager:SetParticleControlEnt(nfx2, 3, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
 
-		self:AddOverHeadEffect(nfx2)
+		self:AddEffect(nfx2)
+		
+		if self:GetCaster():HasTalent("special_bonus_unique_druid_battle_cry_1") then
+			local nfx3 = ParticleManager:CreateParticle("particles/items_fx/blademail.vpcf", PATTACH_POINT, caster)
+					 ParticleManager:SetParticleControlEnt(nfx3, 0, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
+
+			self:AddEffect(nfx3)
+		end
 
 		self:GetCaster():CalculateStatBonus()
 	end
@@ -73,6 +85,11 @@ function modifier_druid_battle_cry:OnRefresh(table)
 
 	if self:GetCaster():HasTalent("special_bonus_unique_druid_battle_cry_2") then
 		self.bonus_int = self:GetParent():GetIntellect()
+	end
+	
+	if self:GetCaster():HasTalent("special_bonus_unique_druid_battle_cry_1") then
+		self.reflect = self:GetCaster():FindTalentValue("special_bonus_unique_druid_battle_cry_1")
+		self:GetParent():HookInModifier("GetModifierDamageReflectPercentageBonus", self)
 	end
 
 	if IsServer() then
@@ -104,10 +121,37 @@ function modifier_druid_battle_cry:GetModifierIncomingDamage_Percentage()
 	return self.damage_reduction
 end
 
+function modifier_druid_battle_cry:GetModifierDamageReflectPercentageBonus()
+	return self.reflect
+end
+
 function modifier_druid_battle_cry:IsDebuff()
 	return false
 end
 
 function modifier_druid_battle_cry:IsPurgable()
 	return true
+end
+
+function modifier_druid_battle_cry:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
+
+modifier_druid_lesser_battle_cry = class(modifier_druid_battle_cry)
+LinkLuaModifier("modifier_druid_lesser_battle_cry", "heroes/hero_lone_druid/druid_battle_cry", LUA_MODIFIER_MOTION_NONE)
+
+
+function modifier_druid_lesser_battle_cry:OnRefresh(table)
+	local mult = self:GetCaster():FindTalentValue("special_bonus_unique_druid_battle_cry_3") / 100
+	self.bonus_ad = math.floor( self:GetTalentSpecialValueFor("bonus_ad") * mult + 0.5 )
+	self.bonus_armor = math.floor( self:GetTalentSpecialValueFor("bonus_armor") * mult + 0.5 )
+	self.damage_reduction = math.floor( self:GetCaster():FindTalentValue("special_bonus_unique_druid_battle_cry_1", "reduction") * mult + 0.5 )
+
+	if self:GetCaster():HasTalent("special_bonus_unique_druid_battle_cry_2") then
+		self.bonus_int = self:GetParent():GetIntellect()
+	end
+
+	if IsServer() then
+		self:GetCaster():CalculateStatBonus()
+	end
 end

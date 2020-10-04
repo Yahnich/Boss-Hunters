@@ -15,5 +15,7 @@
       <Panel hittest="false" id="BottomNotifications">
       </Panel>
     </Panel>
+	
+	<!-- <Image src="file://{images}/custom_game/event_cards/solitude_combat_sloth_demon.png" id="CloseImageID" class="CloseImage" hittest="false"/> -->
   </Panel>
 </root>

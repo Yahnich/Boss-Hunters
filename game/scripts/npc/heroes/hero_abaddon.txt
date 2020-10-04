@@ -111,7 +111,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
+				"value"						"2"
 			}
 		}
 	}
@@ -166,19 +166,19 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"15.0"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"15.0"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_absorb"			"110 140 175 215 260 310 365"
+				"var_type"						"FIELD_FLOAT"
+				"damage_absorb"					"110 140 175 215 260 310 365"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"675"
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"675"
 			}
 		}
 	}

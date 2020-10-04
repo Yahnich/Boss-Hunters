@@ -1,6 +1,4 @@
---[[
-Broodking AI
-]]
+if IsClient() then return end
 
 if IsServer() then
 	function Spawn( entityKeyValues )

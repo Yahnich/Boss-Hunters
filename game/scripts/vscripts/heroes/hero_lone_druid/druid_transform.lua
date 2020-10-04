@@ -234,14 +234,14 @@ modifier_druid_transform_talent = class({})
 function modifier_druid_transform_talent:OnCreated(table)
 	self.bonus_hp = self:GetTalentSpecialValueFor("bonus_hp")
 	self.bat = self:GetTalentSpecialValueFor("bat")
-	caster:HookInModifier("GetBaseAttackTime_BonusPercentage", self)
+	self:GetParent():HookInModifier("GetBaseAttackTime_BonusPercentage", self)
 end
 
 function modifier_druid_transform_talent:OnRefresh(table)
 	self:OnCreated()
 end
 function modifier_druid_transform_talent:OnDestroy()
-	caster:HookOutModifier("GetBaseAttackTime_BonusPercentage", self)
+	self:GetParent():HookOutModifier("GetBaseAttackTime_BonusPercentage", self)
 end
 
 function modifier_druid_transform_talent:DeclareFunctions()

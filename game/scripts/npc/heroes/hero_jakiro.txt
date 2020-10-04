@@ -20,7 +20,6 @@
 		"LinkedTalents"
 		{
 			"special_bonus_unique_jakiro_dual_breath_bh_1"	"1"
-			"special_bonus_unique_jakiro_dual_breath_bh_2"	"1"
 		}
 		
 		"precache"
@@ -41,11 +40,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10"
+		"AbilityCooldown"				"10 10 10 10 9 8 7"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"130 140 150 160 170 180 190"
+		"AbilityManaCost"				"140 150 160 170 170 170 170"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -53,35 +52,36 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"start_radius"			"225"
+				"var_type"					"FIELD_INTEGER"
+				"start_radius"				"225"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"end_radius"			"275"
+				"var_type"					"FIELD_INTEGER"
+				"end_radius"				"275"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"distance"				"750"
+				"var_type"					"FIELD_INTEGER"
+				"distance"					"750"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"chill_amount"			"18 22 26 30 34 38 42"
-				"LinkedSpecialBonus"	"special_bonus_unique_jakiro_dual_breath_bh_1"
+				"var_type"					"FIELD_FLOAT"
+				"chill_amount"				"18 26 34 42 42 42 42"
+				"LinkedSpecialBonus"		"special_bonus_unique_jakiro_dual_breath_bh_1"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"20 40 60 80 100 120 140"
-				"LinkedSpecialBonus"	"special_bonus_unique_jakiro_dual_breath_bh_2"
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"20 40 60 80 80 80 80"
+				"LinkedSpecialBonus"		"special_bonus_unique_jakiro_dual_breath_bh_1"
+				"LinkedSpecialBonusField"	"value2"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"5"
 			}
 		}
 	}
@@ -103,7 +103,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"22"
+				"value"						"18"
+			}
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value2"					"40"
 			}
 		}
 	}
@@ -150,7 +155,7 @@
 		"LinkedTalents"
 		{
 			"special_bonus_unique_jakiro_ice_path_bh_1"	"1"
-			"special_bonus_unique_jakiro_ice_path_bh_2"	"1"
+			"special_bonus_unique_jakiro_ice_path_bh_3"	"1"
 		}
 		
 		"precache"
@@ -170,7 +175,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12"
+		"AbilityCooldown"				"12 12 12 12 11 10 9"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -254,7 +259,28 @@
 			}
 		}
 	}
-
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_jakiro_ice_path_bh_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"50"
+			}
+		}
+	}
 	"jakiro_liquid_fire_bh"
 	{
 		// General
@@ -296,7 +322,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20 18 15 12 10 8 4"
+		"AbilityCooldown"				"19 14 9 4 4 4 4"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -308,25 +334,26 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"				"10 16 24 30 36 42 48"
+				"var_type"					"FIELD_FLOAT"
+				"damage"					"10 14 18 22 34 46 58"
+				"LinkedSpecialBonus"		"special_bonus_unique_jakiro_liquid_fire_bh_1"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
-				"LinkedSpecialBonus"	"special_bonus_unique_jakiro_liquid_fire_bh_2"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"5"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"slow_as"				"-30 -40 -50 -60 -70 -80 -90"
-				"LinkedSpecialBonus"	"special_bonus_unique_jakiro_liquid_fire_bh_1"
+				"var_type"					"FIELD_FLOAT"
+				"slow_as"					"-30 -30 -30 -30 -40 -50 -60"
+				"LinkedSpecialBonus"		"special_bonus_unique_jakiro_liquid_fire_bh_1"
+				"LinkedSpecialBonusField"	"value2"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"300"
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"300"
 			}
 		}
 	}
@@ -349,7 +376,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"-60"
+				"value"						"80"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"-15"
 			}
 		}
 	}
@@ -370,12 +402,98 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"3"
+				"var_type"					"FIELD_INTEGER"
+				"value"						"30"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"armor"						"-1"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow"						"50"
 			}
 		}
 	}
+	"jakiro_elemental_convergence"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_jakiro/jakiro_elemental_convergence.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/jakiro_elemental_convergence"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_jakiro_elemental_convergence_1"	"1"
+		}
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf"
+			"particle"  				"particles/units/heroes/hero_jakiro/jakiro_liquid_fire_explosion.vpcf"
+			"particle"  				"particles/units/heroes/hero_jakiro/jakiro_liquid_fire_ready.vpcf"
+			"particle"  				"particles/units/heroes/hero_jakiro/jakiro_base_attack_fire.vpcf"
 
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_increase"			"6"
+				"LinkedSpecialBonus"		"special_bonus_unique_jakiro_liquid_fire_bh_1"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration_increase"			"4"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"max_stacks"				"4"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_jakiro_elemental_convergence_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"-10"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"300"
+			}
+		}
+	}
 	"jakiro_macropyre_bh"
 	{
 		// General
@@ -399,7 +517,7 @@
 		"LinkedTalents"
 		{
 			"special_bonus_unique_jakiro_macropyre_bh_1"	"1"
-			"special_bonus_unique_jakiro_macropyre_bh_2"	"1"
+			"special_bonus_unique_jakiro_macropyre_bh_3"	"1"
 		}
 		
 		"precache"
@@ -448,6 +566,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"width"					"260"
+				"LinkedSpecialBonus"	"special_bonus_unique_jakiro_macropyre_bh_1"
 			}
 			"05"
 			{
@@ -458,13 +577,19 @@
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration_scepter"		"30"
+				"duration_scepter"		"15"
 				"RequiresScepter"		"1"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"length_scepter"		"1800"
+				"RequiresScepter"		"1"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cd_scepter"			"45"
 				"RequiresScepter"		"1"
 			}
 		}
@@ -487,7 +612,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"140"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cdr"						"25"
 			}
 		}
 	}
@@ -509,7 +639,30 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"-30"
+				"value"						"10"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_jakiro_macropyre_bh_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"10"
 			}
 		}
 	}

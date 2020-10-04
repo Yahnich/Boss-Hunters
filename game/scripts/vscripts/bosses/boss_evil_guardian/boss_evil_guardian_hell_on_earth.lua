@@ -48,7 +48,7 @@ function modifier_boss_evil_guardian_hell_on_earth_handler:OnIntervalThink()
 			local position = enemy:GetAbsOrigin()
 			ParticleManager:FireWarningParticle(position, self.radius)
 			Timers:CreateTimer(1, function()
-				if not self:GetAbility():IsNull() then
+				if self:IsNull() and not self:GetAbility():IsNull() then
 					self:GetAbility():CreateEvilPool(position, self.radius, self.damagePct, self.duration)
 				end
 			end)

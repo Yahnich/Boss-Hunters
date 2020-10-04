@@ -93,7 +93,9 @@ if IsServer() then
 		local ability = self:GetAbility()
 		local caster = self:GetCaster()
 		if params.attacker == self:GetParent() and params.target and (ability:GetAutoCastState() or ability.forceCast) and ability:IsOwnersManaEnough() and not params.target:IsMagicImmune() then
-			caster:SpendMana(ability:GetManaCost(-1), ability)
+			if not ability.DontSpendMana then
+				caster:SpendMana(ability:GetManaCost(-1), ability)
+			end
 			ability.forceCast = false
 			if self:GetParent().autoAttackFromAbilityState then
 				self:GetAbility():OnProjectileHit( params.target, params.target:GetAbsOrigin() )

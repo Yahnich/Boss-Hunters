@@ -1,9 +1,10 @@
 local function StartEvent(self)
+	self:StartCombatRound()
 	local spawnPos = RoundManager:PickRandomSpawn()
 	self.enemiesToSpawn = 3
 	self.eventEnded = false
 	self.eventHandler = Timers:CreateTimer(3, function()
-		local spawn = CreateUnitByName("npc_dota_boss34", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+		local spawn = CreateUnitByName("npc_dota_lesser_reaper", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 		spawn.unitIsRoundNecessary = true
 		
 		spawn:FindAbilityByName("boss_necro_plague_wave"):SetActivated(false)
@@ -28,7 +29,7 @@ local function EndEvent(self, bWon)
 end
 
 local function PrecacheUnits(self, context)
-	PrecacheUnitByNameSync("npc_dota_boss34", context)
+	PrecacheUnitByNameSync("npc_dota_lesser_reaper", context)
 	return true
 end
 

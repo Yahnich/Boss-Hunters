@@ -23,10 +23,6 @@ function chen_god_hand:OnSpellStart()
 		friend:HealEvent(friend:GetMaxHealth(), self, caster)
 		friend:AddNewModifier(caster, self, "modifier_chen_god_hand", {Duration = self:GetSpecialValueFor("duration")})
 
-		if caster:HasTalent("special_bonus_unique_chen_god_hand_1") then
-			caster:AddNewModifier(caster, self, "modifier_magicimmune", {Duration = self:GetSpecialValueFor("duration")})
-		end
-
 		if caster:HasTalent("special_bonus_unique_chen_god_hand_2") then
 			EmitSoundOn("Hero_Omniknight.Purification", friend)
 			
@@ -47,13 +43,13 @@ end
 
 modifier_chen_god_hand = class({})
 function modifier_chen_god_hand:OnCreated()
-	self.cdr = self:GetTalentSpecialValueFor("cdr")
-	self.dmg = self:GetTalentSpecialValueFor("dmg")
+	self:OnRefresh()
 end
 
 function modifier_chen_god_hand:OnRefresh()
 	self.cdr = self:GetTalentSpecialValueFor("cdr")
 	self.dmg = self:GetTalentSpecialValueFor("dmg")
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_chen_god_hand_1")
 end
 
 function modifier_chen_god_hand:DeclareFunctions()
@@ -66,4 +62,22 @@ end
 
 function modifier_chen_god_hand:GetModifierPercentageCooldown()
 	return self.cdr
+end
+
+function modifier_chen_god_hand:GetEffectName()
+	if self.talent1 then
+		return "particles/items_fx/black_king_bar_avatar.vpcf"
+	end
+end
+
+function modifier_chen_god_hand:GetStatusEffectName()
+	if self.talent1 then
+		return "particles/status_fx/status_effect_avatar.vpcf"
+	end
+end
+
+function modifier_chen_god_hand:StatusEffectPriority()
+	if self.talent1 then
+		return 10
+	end
 end

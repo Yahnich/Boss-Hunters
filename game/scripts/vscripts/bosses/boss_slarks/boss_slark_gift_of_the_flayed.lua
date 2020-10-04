@@ -16,6 +16,7 @@ function modifier_boss_slark_gift_of_the_flayed:OnCreated(table)
 	self.length = self:GetSpecialValueFor("distance")
 	self.duration = self:GetSpecialValueFor("duration")
 	if IsServer() then
+		self.hitEnemies = {}
 		local caster = self:GetParent()
 
 		EmitSoundOn("hero_bloodseeker.rupture_FP", caster)
@@ -36,11 +37,16 @@ function modifier_boss_slark_gift_of_the_flayed:OnIntervalThink()
 
 	local enemies = caster:FindEnemyUnitsInCone(vDir, vPos, self.radius, self.length, {})
 	for _,enemy in pairs(enemies) do
-		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_devils_blood_projectile_c.vpcf", PATTACH_POINT_FOLLOW, caster)
-					ParticleManager:SetParticleControlEnt(nfx, 0, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
-					ParticleManager:SetParticleControlEnt(nfx, 3, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
-					ParticleManager:ReleaseParticleIndex(nfx)
-		enemy:AddNewModifier( caster, ability, "modifier_boss_slark_gift_of_the_flayed_debuff", {duration = self.duration})
+		if not self.hitEnemies[enemy] then
+			if not enemy:TriggerSpellAbsorb( ability ) then
+				local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_devils_blood_projectile_c.vpcf", PATTACH_POINT_FOLLOW, caster)
+							ParticleManager:SetParticleControlEnt(nfx, 0, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
+							ParticleManager:SetParticleControlEnt(nfx, 3, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
+							ParticleManager:ReleaseParticleIndex(nfx)
+				enemy:AddNewModifier( caster, ability, "modifier_boss_slark_gift_of_the_flayed_debuff", {duration = self.duration})
+			end
+			self.hitEnemies[enemy] = true
+		end
 	end
 end
 

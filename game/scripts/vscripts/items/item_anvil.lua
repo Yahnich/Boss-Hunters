@@ -4,6 +4,10 @@ function item_anvil:GetIntrinsicModifierName()
 	return "modifier_item_anvil_passive"
 end
 
+function item_anvil:GetAssociatedUpgradeModifier()
+	return "modifier_item_battlemaster_staff_passive"
+end
+
 function item_anvil:ShouldUseResources()
 	return true
 end
@@ -26,7 +30,7 @@ function modifier_item_anvil_passive:OnCreatedSpecific()
 	self.bash_chance_ranged = self:GetSpecialValueFor("bash_chance_ranged")
 	self.bash_duration = self:GetSpecialValueFor("bash_duration")
 	self.bash_damage = self:GetSpecialValueFor("bash_damage")
-	self.bash_damage_cd = self.bash_damage * self:GetSpecialValueFor("bash_damage_cd") / 100
+	self.bash_damage_cd = self:GetSpecialValueFor("bash_damage_cd")
 end
 
 function modifier_item_anvil_passive:DeclareFunctions()

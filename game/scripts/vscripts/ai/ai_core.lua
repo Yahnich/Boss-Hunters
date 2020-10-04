@@ -34,6 +34,10 @@ DOTA_UNIT_ORDER_CAST_RUNE
 
 AICore = {}
 
+if IsClient() then
+end
+
+if IsServer() then
 
 AI_BEHAVIOR_AGGRESSIVE = 1 -- Threat is weighted towards damage
 AI_BEHAVIOR_CAUTIOUS = 2 -- Threat is weighted towards health
@@ -733,4 +737,6 @@ end
 function CDOTA_BaseNPC:GetAIBehavior()
 	self.AIbehavior = self.AIbehavior or RandomInt(1,3)
 	return self.AIbehavior
+end
+
 end

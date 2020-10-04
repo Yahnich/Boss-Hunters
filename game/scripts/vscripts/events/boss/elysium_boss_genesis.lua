@@ -1,19 +1,5 @@
 local function StartEvent(self)
-	local spawnPos = RoundManager:PickRandomSpawn()
-	self.eventEnded = false
-	self.enemiesToSpawn = 1
-	self.eventHandler = Timers:CreateTimer(3, function()
-		local spawn = CreateUnitByName("npc_dota_boss_genesis", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-		spawn.unitIsRoundNecessary = true
-		spawn.unitIsBoss = true
-		self.enemiesToSpawn = self.enemiesToSpawn - 1
-		if self.enemiesToSpawn > 0 then
-			return 25
-		end
-	end)
-	self._vEventHandles = {
-		ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
-	}
+	self:StartCombatRound()
 end
 
 local function EndEvent(self, bWon)

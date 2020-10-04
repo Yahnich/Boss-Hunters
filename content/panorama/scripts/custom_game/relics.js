@@ -279,8 +279,9 @@ function CreateRelicPanel(relic)
 	var inventory = $("#RelicInventoryPanel")
 	var relicPanel = $.CreatePanel("Panel", inventory, "");
 	relicPanel.BLoadLayoutSnippet("RelicInventoryContainer")
-	var relicName = $.Localize( relic.name )
-	var relicDescr = $.Localize( relic.name + "_Description" )
+	var relicName = $.Localize( relic.name, relicPanel )
+	var relicDescr = relic.name + "_Description"
+	
 	var relicLabel = relicPanel.FindChildTraverse("RelicLabel")
 	var relicIcon = relicPanel.FindChildTraverse("RelicInventoryIconSnippet")
 	relicLabel.text = relicName
@@ -303,20 +304,28 @@ function CreateRelicPanel(relic)
 	}
 	
 	if( relic.cursed == 1 ){
-		relicLabel.style.saturation = 0.8;
+		relicLabel.style.saturation = 0.6;
 		relicLabel.style.brightness = 0.6;
+		relicIcon.style.saturation = 0.6;
+		relicIcon.style.brightness = 0.6;
 	}
 	if( newRelics[relic.relic_entindex] != false ){
 		relicPanel.style.border = '1px solid #FFD700';
 		newRelics[relic.relic_entindex] = true
 	}
-	relicPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", relicPanel, relicDescr)});
+	relicPanel.SetPanelEvent("onmouseover", function(){
+		$.DispatchEvent("DOTAShowTextTooltip", relicPanel, relicDescr )
+		if( newRelics[relic.relic_entindex] != false ){
+			newRelics[relic.relic_entindex] = false
+			relicPanel.style.border = '0px solid #00000000';
+		}
+	});
 	relicPanel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", relicPanel);});
 	var ownerText = "I have "
 	if( Players.GetLocalPlayerPortraitUnit() != Players.GetPlayerHeroEntityIndex( localID ) ){
 		ownerText = $.Localize( Entities.GetUnitName( Players.GetLocalPlayerPortraitUnit() ) ) + " has "
 	}
-	relicPanel.SetPanelEvent("onactivate", function(){ GameEvents.SendCustomGameEventToServer( "player_notify_relic", {pID : localID, text : ownerText + relicName + " - " + relicDescr} ) });
+	relicPanel.SetPanelEvent("onactivate", function(){ GameEvents.SendCustomGameEventToServer( "player_notify_relic", {pID : localID, text : ownerText + relicName + " - " + $.Localize( relicDescr )} ) });
 	
 	relicPanel.relic_name = relic.name;
 	relicPanel.relic_entindex = relic.relic_entindex;

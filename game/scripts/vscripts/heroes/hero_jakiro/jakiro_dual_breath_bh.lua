@@ -64,11 +64,22 @@ function jakiro_dual_breath_bh:OnProjectileHitHandle(hTarget, vLocation, iProjec
 			hTarget:AddNewModifier(caster, self, "modifier_jakiro_dual_breath_bh_burn", {Duration = self:GetTalentSpecialValueFor("duration")})
 		end
 	end
+	local convergence = caster:FindAbilityByName("jakiro_elemental_convergence")
+	if convergence and not hTarget then
+		if iProjectileHandle == self.fire then
+			convergence:AddFireAttunement()
+		elseif iProjectileHandle == self.frost then
+			convergence.preventConvergence = true
+			convergence:AddIceAttunement()
+			convergence.preventConvergence = false
+		end
+	end
 end
 
 
 modifier_jakiro_dual_breath_bh_burn = class({})
 function modifier_jakiro_dual_breath_bh_burn:OnCreated(table)
+	self.damage = self:GetTalentSpecialValueFor("damage")
 	if IsServer() then
 		EmitSoundOn("Hero_Jakiro.DualBreath.Burn", self:GetParent())
 		self:StartIntervalThink(0.5)
@@ -82,7 +93,7 @@ function modifier_jakiro_dual_breath_bh_burn:OnRemoved()
 end
 
 function modifier_jakiro_dual_breath_bh_burn:OnIntervalThink()
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("damage")*0.5, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage*0.5, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 end
 
 function modifier_jakiro_dual_breath_bh_burn:GetEffectName()

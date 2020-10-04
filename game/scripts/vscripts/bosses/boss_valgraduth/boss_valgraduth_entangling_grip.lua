@@ -21,7 +21,7 @@ function modifier_boss_valgraduth_entangling_grip:DeclareFunctions()
 end
 
 function modifier_boss_valgraduth_entangling_grip:OnAttackLanded(params)
-	if self:GetAbility():IsCooldownReady() and params.attacker == self:GetParent() and self:RollPRNG( self.chance ) then
+	if self:GetAbility():IsCooldownReady() and params.attacker == self:GetParent() and not params.target:IsMagicImmune() and not params.attacker:PassivesDisabled() and self:RollPRNG( self.chance ) then
 		params.target:Root( self:GetAbility(), params.attacker, self.duration )
 		self:GetAbility():StartCooldown( self:GetAbility():GetCooldown( -1 ) )
 		EmitSoundOn( "Hero_Treant.LeechSeed.Target", self:GetParent() )

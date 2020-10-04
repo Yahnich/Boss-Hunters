@@ -3,14 +3,14 @@
 	//=================================================================================================================
 	// Ability: Slardar Sprint
 	//=================================================================================================================
-	"slardar_sprint_bh"
+	"slardar_blood_in_the_water"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_slardar/slardar_sprint_bh"
-		"AbilityTextureName"			"slardar_sprint"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"ScriptFile"					"heroes/hero_slardar/slardar_blood_in_the_water"
+		"AbilityTextureName"			"custom/slardar_blood_in_the_water"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilitySound"					"Hero_Slardar.Sprint"
 		"MaxLevel"						"7"
@@ -19,30 +19,32 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_slardar_sprint_1"	"1"
-			"special_bonus_unique_slardar_sprint_2"	"1"
+			"special_bonus_unique_slardar_blood_in_the_water_1"	"1"
+			"special_bonus_unique_slardar_blood_in_the_water_2"	"1"
 		}
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"17"
 		
 		"AbilitySpecial"
-		{			
+		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_speed"				"20 28 36 44 52 60 68"
+				"bonus_speed"				"10 15 20 25 26 27 28"
 			}
 			"02"
 			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_attack_speed"		"20 30 40 50 52 54 56"
+				"LinkedSpecialBonus"		"special_bonus_unique_slardar_blood_in_the_water_2"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"water_multiplier"			"2"
+			}
+			"04"
+			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"10"
+				"linger_duration"			"3 3 3 3 4 5 6"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
@@ -50,7 +52,7 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_slardar_sprint_1"
+	"special_bonus_unique_slardar_blood_in_the_water_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -65,14 +67,14 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"20"
+				"value"						"15"
 			}
 		}
 	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_slardar_sprint_2"
+	"special_bonus_unique_slardar_blood_in_the_water_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -87,7 +89,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
+				"value"						"30"
 			}
 			"02"
 			{
@@ -180,6 +182,12 @@
 				"LinkedSpecialBonus"			"special_bonus_unique_slardar_slithereen_crush_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
+			"07"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"scepter_duration"				"4"
+				"RequiresScepter"				"1"
+			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -201,12 +209,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"600"
+				"value"						"1200"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"speed"						"900"
+				"speed"						"250"
 			}
 		}
 	}
@@ -229,6 +237,376 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"						"2"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Slardar Bash
+	//=================================================================================================================
+	"slardar_grasp_of_the_deep"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_slardar/slardar_grasp_of_the_deep"
+		"AbilityTextureName"			"slardar_bash"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"AbilitySound"					"Hero_Slardar.Bash"
+		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_slardar_grasp_of_the_deep_1"	"1"
+			"special_bonus_unique_slardar_grasp_of_the_deep_2"	"1"
+		}
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportBonus"		"25"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bash_counter"			"5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"50 100 150 200 300 400 500"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"0.6 0.8 1 1.2 1.2 1.2 1.2"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"minion_stun_mul"		"4.0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"minion_dmg_mult"		"2.0"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_slardar_grasp_of_the_deep_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_slardar_grasp_of_the_deep"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_slardar_grasp_of_the_deep_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_slardar_grasp_of_the_deep"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"375"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"100"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Slardar Bash
+	//=================================================================================================================
+	"slardar_maw_of_the_void"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_slardar/slardar_maw_of_the_void"
+		"AbilityTextureName"			"custom/slardar_maw_of_the_void"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportBonus"		"25"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_steal"			"50"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
+	//=================================================================================================================
+	// Ability: Slardar Amplify Damage
+	//=================================================================================================================
+	"slardar_amplify_damage_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_slardar/slardar_amplify_damage_bh"
+		"AbilityTextureName"			"slardar_amplify_damage"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Slardar.Amplify_Damage"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_slardar_amplify_damage_2"	"1"
+			"special_bonus_unique_slardar_amplify_damage_3"	"1"
+		}
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.35 0.35 0.35"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"MaxLevel"						"6"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"5"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 25 50 50 75 75"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"6.0"	// Very valuable compared to cost.
+
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction"		"-10 -10 -15 -15 -20 -20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"15 18 18 21 21 24"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_slardar_amplify_damage_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"350"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_slardar_amplify_damage_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"10"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_slardar_amplify_damage_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"450"
+			}
+		}
+	}
+	
+	////////////////////////////////////////////////////////////////
+	// DEPRECATED ABILITIES
+	////////////////////////////////////////////////////////////////
+	//=================================================================================================================
+	// Ability: Slardar Sprint
+	//=================================================================================================================
+	"slardar_sprint_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_slardar/slardar_sprint_bh"
+		"AbilityTextureName"			"slardar_sprint"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilitySound"					"Hero_Slardar.Sprint"
+		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_slardar_sprint_1"	"1"
+			"special_bonus_unique_slardar_sprint_2"	"1"
+		}
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"17"
+		
+		"AbilitySpecial"
+		{			
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_speed"				"20 28 36 44 52 60 68"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"10"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+	}	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_slardar_sprint_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"20"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_slardar_sprint_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"50"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"15"
 			}
 		}
 	}
@@ -370,112 +748,6 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"						"15"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Slardar Amplify Damage
-	//=================================================================================================================
-	"slardar_amplify_damage_bh"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_slardar/slardar_amplify_damage_bh"
-		"AbilityTextureName"			"slardar_amplify_damage"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"FightRecapLevel"				"1"
-		"AbilitySound"					"Hero_Slardar.Amplify_Damage"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_slardar_amplify_damage_1"	"1"
-			"special_bonus_unique_slardar_amplify_damage_2"	"1"
-		}
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"700"
-		"AbilityCastPoint"				"0.35 0.35 0.35"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		"MaxLevel"						"6"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"35"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 100 125 150 175"
-
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"6.0"	// Very valuable compared to cost.
-
-		
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-5 -10 -15 -20 -25 -30"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"18"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_slardar_amplify_damage_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"350"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_slardar_amplify_damage_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
 			}
 		}
 	}

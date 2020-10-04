@@ -40,7 +40,7 @@ local function EndEvent(self, bWon)
 end
 
 local function PrecacheUnits(self, context)
-	PrecacheUnitByNameSync("npc_dota_boss38", context)
+	PrecacheUnitByNameSync("npc_dota_boss_apotheosis", context)
 	return true
 end
 

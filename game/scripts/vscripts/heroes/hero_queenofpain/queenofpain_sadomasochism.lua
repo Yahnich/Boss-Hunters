@@ -14,10 +14,12 @@ function modifier_queenofpain_sadomasochism:OnCreated()
 end
 
 function modifier_queenofpain_sadomasochism:OnRefresh()
-	self.bonus = self:GetAbility():GetTalentSpecialValueFor("damage_amp")
+	self.dmg = self:GetAbility():GetTalentSpecialValueFor("damage_amp")
 	self.area = self:GetAbility():GetTalentSpecialValueFor("area_dmg")
 	self.lifesteal = self:GetAbility():GetTalentSpecialValueFor("lifesteal") / 100
-	self.minionLifesteal = self:GetAbility():GetTalentSpecialValueFor("minion_lifesteal") / 100
+	self.minionMult = self:GetAbility():GetTalentSpecialValueFor("minion_lifesteal") / 100
+	self.stack_bonus = self:GetAbility():GetTalentSpecialValueFor("stack_increase")
+	self.duration = self:GetAbility():GetTalentSpecialValueFor("stack_duration")
 	self:GetParent():HookInModifier( "GetModifierAreaDamage", self )
 end
 
@@ -31,21 +33,33 @@ end
 
 function modifier_queenofpain_sadomasochism:DeclareFunctions()
   local funcs = { 	MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
+					MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
 					MODIFIER_EVENT_ON_TAKEDAMAGE}
   return funcs
 end
 
+function modifier_queenofpain_sadomasochism:OnAbilityFullyCast( params )
+	if params.unit == self:GetCaster() and not params.ability:IsItem() then
+		local duration = self.duration * self:GetCaster():GetStatusAmplification()
+		self:AddIndependentStack( duration )
+		self:SetDuration( duration, true )
+	end
+end
+
 function modifier_queenofpain_sadomasochism:GetModifierTotalDamageOutgoing_Percentage(params)
-	return self.bonus
+	return self.dmg + self.stack_bonus * self:GetStackCount()
 end
 
 function modifier_queenofpain_sadomasochism:GetModifierAreaDamage(params)
-	return self.area
+	return self.area + self.stack_bonus * self:GetStackCount()
 end
 
 function modifier_queenofpain_sadomasochism:OnTakeDamage(params)
 	if params.unit ~= params.attacker and params.attacker == self:GetCaster() and params.attacker:GetHealth() > 0 and params.attacker:GetHealthDeficit() > 0 then
-		local lifesteal = TernaryOperator( self.minionLifesteal, params.unit:IsMinion() and params.inflictor, self.lifesteal )
+		local lifesteal = self.lifesteal + self.stack_bonus * self:GetStackCount()
+		if params.unit:IsMinion() and params.inflictor then
+			lifesteal = lifesteal * self.minionMult
+		end
 		ParticleManager:FireParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.attacker)
 		ParticleManager:FireParticle("particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.attacker, {[1] = "attach_hitloc"})
 		params.attacker:HealEvent( params.damage * lifesteal, self:GetAbility(), params.attacker)
@@ -53,5 +67,9 @@ function modifier_queenofpain_sadomasochism:OnTakeDamage(params)
 end
 
 function modifier_queenofpain_sadomasochism:IsHidden()
-	return true
+	return self:GetStackCount() == 0
+end
+
+function modifier_queenofpain_sadomasochism:DestroyOnExpire()
+	return false
 end

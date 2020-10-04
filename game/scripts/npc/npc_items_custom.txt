@@ -12,6 +12,8 @@
 #base "items/item_all_stone.txt"
 #base "items/item_range_stone.txt"
 #base "items/item_focus_stone.txt"
+#base "items/item_heal_stone.txt"
+#base "items/item_longevity_stone.txt"
 
 // consumables
 #base "items/item_potion_of_recovery.txt"
@@ -40,7 +42,8 @@
 #base "items/item_twilight_theft.txt"
 #base "items/item_gloaming_glaive.txt"
 #base "items/item_shadow_whisper.txt"
-#base "items/item_arcane_absorber.txt"
+// #base "items/item_arcane_absorber.txt"
+#base "items/item_unyielding_totem.txt"
 #base "items/item_lucifers_cage.txt"
 #base "items/item_allfathers_pipe.txt"
 #base "items/item_mirror_blade.txt"
@@ -56,6 +59,8 @@
 #base "items/item_anvil.txt"
 #base "items/item_cuirass_of_war.txt"
 #base "items/item_pearlescent_cape.txt"
+#base "items/item_battlemaster_staff.txt"
+#base "items/item_voltaic_hammer.txt"
 
 //Meepo Runes for ult
 #base "items/item_meepo_rune_dd.txt"
@@ -71,7 +76,7 @@
 //Snapfire
 #base "items/item_snapfire_cookie.txt"
 
-// Next ID is 2548
+// Next ID is 2577
 
 "DOTAAbilities"
 {

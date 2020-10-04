@@ -1,35 +1,5 @@
 local function StartEvent(self)
-	local spawnPos = RoundManager:PickRandomSpawn()
-	self.greymane = 1
-	self.alpha = RoundManager:GetCurrentRaidTier() * RoundManager:GetAscensions()
-	self.wolf =  ( 1 + RoundManager:GetCurrentRaidTier() ) * RoundManager:GetAscensions()
-	self.enemiesToSpawn = self.greymane
-	self.eventEnded = false
-	self.eventHandler = Timers:CreateTimer(3, function()
-		if self.alpha > 0 then
-			local alpha = CreateUnitByName("npc_dota_boss_alpha_wolf", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-			alpha:SetCoreHealth(850)
-			self.alpha = self.alpha - 1
-		end
-		if self.wolf > 0 then
-			local wolf = CreateUnitByName("npc_dota_boss_wolf", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-			wolf:SetCoreHealth(500)
-			self.wolf = self.wolf - 1
-		end
-		if self.greymane > 0 then
-			local spawn = CreateUnitByName("npc_dota_boss_greymane", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-			spawn.unitIsBoss = true
-			spawn.unitIsRoundNecessary = true
-			self.enemiesToSpawn = self.enemiesToSpawn - 1
-			self.greymane = self.greymane - 1
-		end
-		if self.alpha + self.wolf + self.greymane > 0 then
-			return 10
-		end
-	end)
-	self._vEventHandles = {
-		ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
-	}
+	self:StartCombatRound()
 end
 
 local function EndEvent(self, bWon)

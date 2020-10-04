@@ -26,6 +26,8 @@ function boss_lifestealer_consume:OnSpellStart()
 		caster:SetBaseDamageMax( caster:GetBaseDamageMax() + damage )
 		caster:SetBaseDamageMin( caster:GetBaseDamageMin() + damage )
 		target:AttemptKill(self, caster)
+		self:EndCooldown()
+		self:SetCooldown( self:GetSpecialValueFor("consume_cd") )
 	end
 end
 
@@ -48,9 +50,19 @@ function modifier_boss_lifestealer_consume_swallow:OnIntervalThink()
 		return true
 	end
 	local parent = self:GetParent()
-	local damage = self:GetAbility():DealDamage( caster, parent, parent:GetMaxHealth() * self.digest, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION } )
-	caster:HealEvent( damage, self:GetAbility(), caster )
+	local ability = self:GetAbility()
+	local damage = ability:DealDamage( caster, parent, parent:GetMaxHealth() * self.digest, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION } )
+	caster:HealEvent( damage, ability, caster )
+	
+	if not parent:IsAlive() then
+		self:Destroy()
+		ability:EndCooldown()
+		ability:SetCooldown( self:GetSpecialValueFor("consume_cd") )
+		return true
+	end
+	
 	parent:SetAbsOrigin( caster:GetAbsOrigin() )
+	
 end
 
 function modifier_boss_lifestealer_consume_swallow:OnDestroy()
@@ -61,7 +73,7 @@ function modifier_boss_lifestealer_consume_swallow:OnDestroy()
 		if not caster:IsAlive() then
 			local position = parent:GetAbsOrigin()
 			FindClearSpaceForUnit( parent, position, true )
-			GridNav:DestroyTreesAroundPoint( position, 64, true ) 
+			GridNav:DestroyTreesAroundPoint( position, 64, true )
 		else
 			caster:StartGesture( ACT_DOTA_LIFESTEALER_EJECT )
 			local position = caster:GetAbsOrigin() + caster:GetForwardVector() * 250

@@ -17,12 +17,10 @@ LinkLuaModifier( "modifier_troll_warlord_focus", "heroes/hero_troll_warlord/trol
 
 function modifier_troll_warlord_focus:OnCreated()
 	self.ar = self:GetTalentSpecialValueFor("bonus_range")
-	self.acc = self:GetTalentSpecialValueFor("bonus_acc")
 end
 
 function modifier_troll_warlord_focus:OnRefresh()
 	self.ar = self:GetTalentSpecialValueFor("bonus_range")
-	self.acc = self:GetTalentSpecialValueFor("bonus_acc")
 end
 
 function modifier_troll_warlord_focus:DeclareFunctions()
@@ -35,18 +33,6 @@ function modifier_troll_warlord_focus:GetModifierAttackRangeBonus()
 		value = value * self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_battle_trance_2")
 	end
 	return value
-end
-
-function modifier_troll_warlord_focus:GetAccuracy()
-	if self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_focus_1") then
-		return 100
-	else
-		local value = self.acc
-		if self:GetCaster():HasModifier("modifier_troll_warlord_battle_trance_bh") and self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_battle_trance_2") then
-			value = value * self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_battle_trance_2")
-		end
-		return value
-	end
 end
 
 function modifier_troll_warlord_focus:IsHidden()

@@ -40,6 +40,7 @@ end
 
 modifier_dw_shadow = class({})
 function modifier_dw_shadow:OnCreated(table)
+	self.attack_range_bonus = self:GetTalentSpecialValueFor("attack_range_bonus")
 	if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
@@ -63,6 +64,7 @@ function modifier_dw_shadow:OnCreated(table)
 end
 
 function modifier_dw_shadow:OnRefresh(table)
+	self.attack_range_bonus = self:GetTalentSpecialValueFor("attack_range_bonus")
     if IsServer() then
     	self:GetAbility().damage = 0
     	self.damage = self:GetTalentSpecialValueFor("damage") * 0.1
@@ -94,9 +96,12 @@ function modifier_dw_shadow:CheckState()
 			[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
 end
 
-
 function modifier_dw_shadow:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ATTACK_START}
+	return {MODIFIER_EVENT_ON_ATTACK_START, MODIFIER_PROPERTY_ATTACK_RANGE_BONUS}
+end
+
+function modifier_dw_shadow:GetModifierAttackRangeBonus()
+	return self.attack_range_bonus
 end
 
 function modifier_dw_shadow:OnAttackStart(params)

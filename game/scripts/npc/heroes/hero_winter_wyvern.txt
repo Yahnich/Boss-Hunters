@@ -38,33 +38,37 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"90"
+		"AbilityManaCost"				"90 100 110 120 120 120 120"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"02"
+			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"attack_range_bonus"			"175 275 375 475 575 675 775"
+				"attack_range_bonus"			"175 275 375 475 475 475 475"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"burn_curr_hp"					"2"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"burn"							"3.0 3.25 3.5 3.75 4 4.25 4.5"
-				"CalculateSpellDamageTooltip"	"0"
-				"LinkedSpecialBonus"			"special_bonus_unique_winterw_arctic_sting_1"
+				"burn_damage"					"15 30 45 60 90 120 150"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"burn_duration"					"5.0"
+				"burn_duration"					"4.0"
 			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"8.0"
+				"duration"						"5 6 7 8 8 8 8"
 			}			
 			"06"
 			{
@@ -121,7 +125,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
+				"value"					"325"
 			}
 		}
 	}
@@ -140,7 +144,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"6"
+				"value"					"33"
 			}
 		}
 	}
@@ -239,7 +243,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1.0"
+				"value"					"2.0"
 			}
 		}
 	}
@@ -294,13 +298,12 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"24 22.5 21 19.5 18 17.5 16"
-		"HasPureCooldown"				"1"
+		"AbilityCooldown"				"24 24 24 24 20 16 12"
 		"AbilityDuration"				"4.0"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75"
+		"AbilityManaCost"				"75 75 75 75 60 45 30"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -309,13 +312,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"heal"					"3 3.5 4 4.5 5 5.5 6"
+				"heal_pct"				"1 2 3 4 4 4 4"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
+				"heal_base"				"12 24 36 48 50 52 54"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
 				"duration"				"4.0"
-				"LinkedSpecialBonus"	"special_bonus_unique_winterw_frozen_ice_shell_1"
 			}
 		}
 	
@@ -342,7 +349,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-2.0"
+				"value"					"50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor"					"50"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"4"
 			}
 		}
 	}
@@ -361,7 +378,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"8.0"
+				"value"					"1"
 			}
 		}
 	}
@@ -401,8 +418,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"80"
-		"HasPureCooldown"				"1"
+		"AbilityCooldown"				"90 90 90 90 80 70 60"
 		"AbilityDuration"				"4.0"
 	
 		// Cost
@@ -416,18 +432,18 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_as"				"85"
+				"bonus_as"				"60 90 120 120 120 120"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"3 3.25 3.5 3.75 4 4.25 4.5"
+				"duration"				"3 3.5 4 4 4 4"
 				"LinkedSpecialBonus"	"special_bonus_unique_winterw_winters_kiss_1"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"500"
+				"radius"				"500 500 500 600 700 800"
 			}
 		}
 	

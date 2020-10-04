@@ -5,7 +5,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2098"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_blade_of_storm"
 		"AbilityTextureName"			"butterfly/blade_of_storm_1"
@@ -29,7 +29,10 @@
 			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
 
-
+		"AbilityCooldown"				"20"
+		"AbilitySharedCooldown"			"bladeofstorm"
+		"AbilityManaCost"				"50"
+		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -39,7 +42,12 @@
 				"var_type"				"FIELD_FLOAT"
 				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
 			}
-			"08"
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3"
+			}
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rune_slots"			"0 1 1 2 2 2 3 3 3"
@@ -77,7 +85,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2100"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_blade_of_storm"
 		"AbilityTextureName"			"butterfly/blade_of_storm_2"
@@ -96,16 +104,25 @@
 		
 		"AvailableRuneSlots"			"1"
 		
+		"AbilityCooldown"				"20"
+		"AbilitySharedCooldown"			"bladeofstorm"
+		"AbilityManaCost"				"50"
+		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
 				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
 			}
-			"08"
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3"
+			}
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rune_slots"			"0 1 1 2 2 2 3 3 3"
@@ -144,7 +161,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2102"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_blade_of_storm"
 		"AbilityTextureName"			"butterfly/blade_of_storm_3"
@@ -164,16 +181,24 @@
 		
 		"AvailableRuneSlots"			"1"
 		
+		"AbilityCooldown"				"20"
+		"AbilitySharedCooldown"			"bladeofstorm"
+		"AbilityManaCost"				"50"
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
 				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
 			}
-			"08"
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3"
+			}
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rune_slots"			"0 1 1 2 2 2 3 3 3"
@@ -212,7 +237,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2104"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_blade_of_storm"
 		"AbilityTextureName"			"butterfly/blade_of_storm_4"
@@ -232,16 +257,25 @@
 		
 		"AvailableRuneSlots"			"2"
 		
+		"AbilityCooldown"				"20"
+		"AbilitySharedCooldown"			"bladeofstorm"
+		"AbilityManaCost"				"50"
+		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
 				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
 			}
-			"08"
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3"
+			}
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rune_slots"			"0 1 1 2 2 2 3 3 3"
@@ -280,7 +314,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2106"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_blade_of_storm"
 		"AbilityTextureName"			"butterfly/blade_of_storm_5"
@@ -300,16 +334,25 @@
 		
 		"AvailableRuneSlots"			"2"
 		
+		"AbilityCooldown"				"20"
+		"AbilitySharedCooldown"			"bladeofstorm"
+		"AbilityManaCost"				"50"
+		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
 				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
 			}
-			"08"
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3"
+			}
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rune_slots"			"0 1 1 2 2 2 3 3 3"
@@ -348,7 +391,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2108"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_blade_of_storm"
 		"AbilityTextureName"			"butterfly/blade_of_storm_6"
@@ -368,16 +411,25 @@
 		
 		"AvailableRuneSlots"			"2"
 		
+		"AbilityCooldown"				"20"
+		"AbilitySharedCooldown"			"bladeofstorm"
+		"AbilityManaCost"				"50"
+		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
 				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
 			}
-			"08"
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3"
+			}
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rune_slots"			"0 1 1 2 2 2 3 3 3"
@@ -416,7 +468,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2110"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_blade_of_storm"
 		"AbilityTextureName"			"butterfly/blade_of_storm_7"
@@ -436,16 +488,25 @@
 		
 		"AvailableRuneSlots"			"3"
 		
+		"AbilityCooldown"				"20"
+		"AbilitySharedCooldown"			"bladeofstorm"
+		"AbilityManaCost"				"50"
+		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
 				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
 			}
-			"08"
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3"
+			}
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rune_slots"			"0 1 1 2 2 2 3 3 3"
@@ -484,7 +545,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2112"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_blade_of_storm"
 		"AbilityTextureName"			"butterfly/blade_of_storm_8"
@@ -504,16 +565,25 @@
 		
 		"AvailableRuneSlots"			"3"
 		
+		"AbilityCooldown"				"20"
+		"AbilitySharedCooldown"			"bladeofstorm"
+		"AbilityManaCost"				"50"
+		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
 				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
 			}
-			"08"
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3"
+			}
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rune_slots"			"0 1 1 2 2 2 3 3 3"
@@ -552,7 +622,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2114"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_blade_of_storm"
 		"AbilityTextureName"			"butterfly/blade_of_storm_9"
@@ -572,16 +642,25 @@
 		
 		"AvailableRuneSlots"			"3"
 		
+		"AbilityCooldown"				"20"
+		"AbilitySharedCooldown"			"bladeofstorm"
+		"AbilityManaCost"				"50"
+		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
 				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
 			}
-			"08"
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3"
+			}
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rune_slots"			"0 1 1 2 2 2 3 3 3"

@@ -1,6 +1,4 @@
 wk_crit = class({})
-LinkLuaModifier("modifier_wk_crit_passive", "heroes/hero_wraith_king/wk_crit", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_wk_skeletons_charges", "heroes/hero_wraith_king/wk_skeletons", LUA_MODIFIER_MOTION_NONE)
 
 function wk_crit:IsStealable()
     return false
@@ -14,16 +12,39 @@ function wk_crit:GetIntrinsicModifierName()
 	return "modifier_wk_crit_passive"
 end
 
-function wk_crit:OnProjectileHit(hTarget, vLocation)
+function wk_crit:GetBehavior()
+	if self:GetCaster():HasTalent("special_bonus_unique_wk_crit_1") then
+		return DOTA_ABILITY_BEHAVIOR_POINT
+	else
+		return DOTA_ABILITY_BEHAVIOR_PASSIVE
+	end
+end
+
+function wk_crit:GetCastRange( position, target )
+	if self:GetCaster():HasTalent("special_bonus_unique_wk_crit_1") then
+		return self:GetCaster():GetAttackRange() * (4 or self:GetCaster():FindTalentValue("special_bonus_unique_wk_crit_1", "range"))
+	else
+		return DOTA_ABILITY_BEHAVIOR_PASSIVE
+	end
+end
+
+function wk_crit:OnSpellStart()
+	local caster = self:GetCaster()
+	local position = self:GetCursorPosition()
+	
+	self:FireLinearProjectile( "particles/vampiric_shockwave.vpcf", 900 * CalculateDirection(position, caster), self:GetTrueCastRange(), self:GetCaster():GetAttackRange() )
+end
+
+function wk_crit:OnProjectileHit(target, vLocation)
 	local caster = self:GetCaster()
 
-	if hTarget and hTarget ~= self.target then
-		local damage = caster:GetAttackDamage() * self:GetTalentSpecialValueFor("cleave_damage")/100
-		self:DealDamage(caster, hTarget, damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
+	if target then
+		caster:PerformAbilityAttack(target, true, self)
 	end
 end
 
 modifier_wk_crit_passive = class({})
+LinkLuaModifier("modifier_wk_crit_passive", "heroes/hero_wraith_king/wk_crit", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_wk_crit_passive:OnCreated()
 	self:OnRefresh()
@@ -32,8 +53,6 @@ end
 function modifier_wk_crit_passive:OnRefresh()
 	self.crit_chance = self:GetTalentSpecialValueFor("crit_chance")
 	self.crit_dmg = self:GetTalentSpecialValueFor("crit_mult")
-	self.distance = self:GetTalentSpecialValueFor("cleave_distance")
-	self.width = self:GetTalentSpecialValueFor("cleave_width")
 	if IsServer() then
 		self:GetParent():HookInModifier("GetModifierCriticalDamage", self)
 	end
@@ -48,20 +67,48 @@ end
 function modifier_wk_crit_passive:GetModifierCriticalDamage(params)
 	local caster = self:GetCaster()
 	if not caster:PassivesDisabled() and self:RollPRNG( self.crit_chance ) then
-		local velocity = caster:GetForwardVector() * 1000
-
-		local ability = caster:FindAbilityByName("wk_skeletons")
-		if ability and ability:IsTrained() then
-			ability:IncrementCharge()
+		local skeletons = caster:FindAbilityByName("wk_skeletons")
+		if skeletons and skeletons:IsTrained() then
+			skeletons:IncrementCharge()
 		end
-
+		caster:AddNewModifier( caster, self:GetAbility(), "modifier_wk_crit_str", {} )
+		
 		self:GetAbility().target = params.target
 		params.target:EmitSound( "Hero_SkeletonKing.CriticalStrike" )
-		self:GetAbility():FireLinearProjectile("particles/vampiric_shockwave.vpcf", velocity, self.distance, self.width, {}, false, false, 0)
 		return self.crit_dmg
 	end
 end
 
 function modifier_wk_crit_passive:IsHidden()
 	return true
+end
+
+modifier_wk_crit_str = class({})
+LinkLuaModifier("modifier_wk_crit_str", "heroes/hero_wraith_king/wk_crit", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_wk_crit_str:OnCreated()
+	self:OnRefresh()
+	if IsServer() then
+		self.funcID = EventManager:SubscribeListener("boss_hunters_event_finished", function(args) self:OnEventFinished(args) end)
+	end
+end
+
+function modifier_wk_crit_str:OnEventFinished(args)
+	self:Destroy()
+end
+
+function modifier_wk_crit_str:OnRefresh()
+	self.bonus_str = self:GetTalentSpecialValueFor("bonus_str")
+	if IsServer() then
+		self:IncrementStackCount()
+		self:GetCaster():CalculateStatBonus()
+	end
+end
+
+function modifier_wk_crit_str:DeclareFunctions()
+	return {MODIFIER_PROPERTY_EXTRA_STRENGTH_BONUS}
+end
+
+function modifier_wk_crit_str:GetModifierExtraStrengthBonus()
+	return self.bonus_str * self:GetStackCount()
 end

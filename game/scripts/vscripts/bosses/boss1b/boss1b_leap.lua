@@ -37,11 +37,12 @@ end
 
 function modifier_boss1b_leap_attack_thinker:OnDestroy()
 	if IsServer() then
+		local ability = self:GetAbility()
 		FindClearSpaceForUnit(self:GetParent(), self:GetParent():GetAbsOrigin(), true)
 		for _, enemy in ipairs( self:GetParent():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("leap_radius"))) do
-			if not enemy:TriggerSpellAbsorb(self) then
-				self:GetAbility():DealDamage(enemy, self:GetParent(), self:GetSpecialValueFor("leap_damage"))
-				enemy:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_boss1b_leap_slow", {duration = self:GetSpecialValueFor("slow_duration")})
+			if not enemy:TriggerSpellAbsorb(ability) then
+				ability:DealDamage(enemy, self:GetParent(), self:GetSpecialValueFor("leap_damage"))
+				enemy:AddNewModifier(self:GetParent(), ability, "modifier_boss1b_leap_slow", {duration = self:GetSpecialValueFor("slow_duration")})
 			end	
 		end
 		self:StopMotionController()

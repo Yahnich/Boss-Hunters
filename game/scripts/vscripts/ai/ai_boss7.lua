@@ -1,6 +1,4 @@
---[[
-Broodking AI
-]]
+if IsClient() then return end
 
 require( "ai/ai_core" )
 
@@ -15,73 +13,87 @@ function Spawn( entityKeyValues )
 	thisEntity.feast = thisEntity:FindAbilityByName("boss_lifestealer_feast")
 	thisEntity.consume = thisEntity:FindAbilityByName("boss_lifestealer_consume")
 	local level = math.floor(GameRules:GetGameDifficulty()/2)
-	AITimers:CreateTimer(0.1, function() 
-		thisEntity.rage:SetLevel( level )
-		thisEntity.wounds:SetLevel( level )
-		thisEntity.feast:SetLevel( level )
-		thisEntity.consume:SetLevel( level )
+	AITimers:CreateTimer(0.1, function()
+		if thisEntity.rage then
+			thisEntity.rage:SetLevel( level )
+		end
+		if thisEntity.wounds then
+			thisEntity.wounds:SetLevel( level )
+		end
+		if thisEntity.feast then
+			thisEntity.feast:SetLevel( level )
+		end
+		if thisEntity.consume then
+			thisEntity.consume:SetLevel( level )
+		end
 	end)
 end
 
 
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
-		local target = AICore:HighestThreatHeroInRange(thisEntity, thisEntity.wounds:GetTrueCastRange(), 15, false)
-		if not target then target = AICore:NearestEnemyHeroInRange( thisEntity, thisEntity.wounds:GetTrueCastRange(), false) end
-		if thisEntity.wounds:IsFullyCastable() and target and thisEntity:GetHealth() < thisEntity:GetMaxHealth()*0.8 then
-			ExecuteOrderFromTable({
-				UnitIndex = thisEntity:entindex(),
-				OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-				TargetIndex = target:entindex(),
-				AbilityIndex = thisEntity.wounds:entindex()
-			})
-			return thisEntity.wounds:GetCastPoint()
+		local target
+		if thisEntity.wounds then
+			target = AICore:HighestThreatHeroInRange(thisEntity, thisEntity.wounds:GetTrueCastRange(), 15, false)
+			if not target then target = AICore:NearestEnemyHeroInRange( thisEntity, thisEntity.wounds:GetTrueCastRange(), false) end
+			if thisEntity.wounds:IsFullyCastable() and target and thisEntity:GetHealth() < thisEntity:GetMaxHealth()*0.8 then
+				ExecuteOrderFromTable({
+					UnitIndex = thisEntity:entindex(),
+					OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+					TargetIndex = target:entindex(),
+					AbilityIndex = thisEntity.wounds:entindex()
+				})
+				return thisEntity.wounds:GetCastPoint()
+			end
 		end
 		if not target then
 			target = AICore:GetHighestPriorityTarget( thisEntity )
 		end
-		if thisEntity:IsDisabled() 
-		or ( target and ( ( CalculateDistance( target, thisEntity ) > thisEntity:GetAttackRange() and target:GetIdealSpeed() > thisEntity:GetIdealSpeed() ) 
-		or CalculateDistance( target, thisEntity ) > thisEntity:GetAttackRange() * 1.5 ) )
-		and thisEntity.rage:IsFullyCastable() then
-			ExecuteOrderFromTable({
-				UnitIndex = thisEntity:entindex(),
-				OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-				AbilityIndex = thisEntity.rage:entindex()
-			})
-			return 0.1
+		if thisEntity.rage then
+			if thisEntity.rage:IsFullyCastable() and ( thisEntity:IsDisabled() 
+			or ( target and ( ( CalculateDistance( target, thisEntity ) > thisEntity:GetAttackRange() and target:GetIdealSpeed() > thisEntity:GetIdealSpeed() ) 
+			or CalculateDistance( target, thisEntity ) > thisEntity:GetAttackRange() * 1.5 ) ) ) then
+				ExecuteOrderFromTable({
+					UnitIndex = thisEntity:entindex(),
+					OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+					AbilityIndex = thisEntity.rage:entindex()
+				})
+				return 0.1
+			end
 		end
-		if thisEntity.consume:IsFullyCastable() then
-			local heroes = {}
-			local consumeTarget
-			for _, unit in ipairs( thisEntity:FindAllUnitsInRadius( thisEntity:GetAbsOrigin(), thisEntity.consume:GetTrueCastRange() ) ) do
-				if unit ~= thisEntity then
-					if unit:IsRealHero() then
-						table.insert( heroes, unit )
-					elseif unit:GetHealth() <= thisEntity:GetHealthDeficit() * 1.5 or 
-					( consumeTarget and unit:GetHealth() > consumeTarget:GetHealth() 
-					and unit:GetHealth() < consumeTarget:GetHealthDeficit() ) then
-						consumeTarget = unit
+		if thisEntity.consume then
+			if thisEntity.consume:IsFullyCastable() then
+				local heroes = {}
+				local consumeTarget
+				for _, unit in ipairs( thisEntity:FindAllUnitsInRadius( thisEntity:GetAbsOrigin(), thisEntity.consume:GetTrueCastRange() ) ) do
+					if unit ~= thisEntity then
+						if unit:IsRealHero() then
+							table.insert( heroes, unit )
+						elseif unit:GetHealth() <= thisEntity:GetHealthDeficit() * 1.5 or 
+						( consumeTarget and unit:GetHealth() > consumeTarget:GetHealth() 
+						and unit:GetHealth() < consumeTarget:GetHealthDeficit() ) then
+							consumeTarget = unit
+						end
 					end
 				end
-			end
-			if consumeTarget then
-				ExecuteOrderFromTable({
-					UnitIndex = thisEntity:entindex(),
-					OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-					TargetIndex = consumeTarget:entindex(),
-					AbilityIndex = thisEntity.consume:entindex()
-				})
-				return thisEntity.consume:GetCastPoint()
-			elseif #heroes > 0 and RollPercentage( 35 ) then
-				consumeTarget = heroes[RandomInt(1, #heroes)]
-				ExecuteOrderFromTable({
-					UnitIndex = thisEntity:entindex(),
-					OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-					TargetIndex = consumeTarget:entindex(),
-					AbilityIndex = thisEntity.consume:entindex()
-				})
-				return thisEntity.consume:GetCastPoint()
+				if consumeTarget then
+					ExecuteOrderFromTable({
+						UnitIndex = thisEntity:entindex(),
+						OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+						TargetIndex = consumeTarget:entindex(),
+						AbilityIndex = thisEntity.consume:entindex()
+					})
+					return thisEntity.consume:GetCastPoint()
+				elseif #heroes > 0 and RollPercentage( 35 ) then
+					consumeTarget = heroes[RandomInt(1, #heroes)]
+					ExecuteOrderFromTable({
+						UnitIndex = thisEntity:entindex(),
+						OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+						TargetIndex = consumeTarget:entindex(),
+						AbilityIndex = thisEntity.consume:entindex()
+					})
+					return thisEntity.consume:GetCastPoint()
+				end
 			end
 		end
 		return AICore:AttackHighestPriority( thisEntity )

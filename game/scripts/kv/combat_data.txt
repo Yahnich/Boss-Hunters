@@ -1,0 +1,1508 @@
+"Combat"
+{
+	"sepulcher_combat_zombies"
+	{
+		"1"
+		{
+			"npc_dota_boss3a"
+			{
+				"Amount"		"6"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"5"
+			}
+			"npc_dota_boss3b"
+			{
+				"Amount"		"4"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"8"
+			}
+		}
+		"2"
+		{
+			"npc_dota_boss3a"
+			{
+				"Amount"		"9"
+				"RaidBonus"		"4"
+				"SpawnDelay"	"5"
+			}
+		}
+		"3"
+		{
+			"npc_dota_boss3b"
+			{
+				"Amount"		"6"
+				"RaidBonus"		"3"
+				"SpawnDelay"	"8"
+			}
+		}
+	}
+	"sepulcher_combat_bone_boys"
+	{
+		"1"
+		{
+			"npc_dota_boss24_archer"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"8"
+			}
+			"npc_dota_boss24_stomper"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"5"
+			}
+		}
+		"2"
+		{
+			"npc_dota_boss24_archer"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"8"
+			}
+			"npc_dota_boss24_stomper"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"5"
+			}
+		}
+		"3"
+		{
+			"npc_dota_boss24_archer"
+			{
+				"Amount"		"3"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"8"
+			}
+		}
+		"4"
+		{
+			"npc_dota_boss24_stomper"
+			{
+				"Amount"		"4"
+				"RaidBonus"		"3"
+				"SpawnDelay"	"5"
+			}
+		}
+	}
+	"sepulcher_combat_vhouls"
+	{
+		"1"
+		{
+			"npc_dota_boss1"
+			{
+				"Amount"		"4"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"1"
+			}
+			"npc_dota_boss2"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"1"
+			}
+		}
+		"2"
+		{
+			"npc_dota_boss2"
+			{
+				"Amount"		"4"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"1"
+			}
+			"npc_dota_boss1"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"1"
+			}
+		}
+		"3"
+		{
+			"npc_dota_boss1"
+			{
+				"Amount"		"5"
+				"RaidBonus"		"3"
+				"SpawnDelay"	"1"
+			}
+		}
+		"4"
+		{
+			"npc_dota_boss2"
+			{
+				"Amount"		"5"
+				"RaidBonus"		"3"
+				"SpawnDelay"	"1"
+			}
+		}
+	}
+	"sepulcher_combat_everything"
+	{
+		"1"
+		{
+			"npc_dota_boss7"
+			{
+				"Amount"		"1"
+				"SpawnDelay"	"5"
+			}
+			"npc_dota_boss1"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"1"
+			}
+			"npc_dota_boss2"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"1"
+			}
+		}
+		"2"
+		{
+			"npc_dota_boss7"
+			{
+				"Amount"		"1"
+				"SpawnDelay"	"5"
+			}
+			"npc_dota_boss3a"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"1"
+			}
+			"npc_dota_boss3b"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"1"
+			}
+		}
+		"3"
+		{
+			"npc_dota_boss1"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"5"
+			}
+			"npc_dota_boss2"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"5"
+			}
+			"npc_dota_boss3a"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"5"
+			}
+			"npc_dota_boss3b"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"5"
+			}
+		}
+		"4"
+		{
+			"npc_dota_boss1"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"5"
+			}
+			"npc_dota_boss2"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"5"
+			}
+			"npc_dota_boss3a"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"5"
+			}
+			"npc_dota_boss3b"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"5"
+			}
+		}
+	}
+	"sepulcher_combat_lifestealer"
+	{
+		"1"
+		{
+			"npc_dota_boss7"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"12"
+			}
+			"npc_dota_minion_carrion_worm"
+			{
+				"Amount"		"12"
+				"RaidBonus"		"8"
+				"SpawnDelay"	"1"
+			}
+		}
+		"2"
+		{
+			"npc_dota_lesser_boss7"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"24"
+			}
+		}
+	}
+	"sepulcher_combat_phantoms"
+	{
+		"1"
+		{
+			"npc_dota_boss_phantom"
+			{
+				"Amount"		"4"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"5"
+			}
+			"npc_dota_boss22b"
+			{
+				"Amount"		"8"
+				"RaidBonus"		"4"
+				"CoreHealth"	"1250"
+				"BaseDamage"	"100"
+				"IsMinion"		"1"
+				"SpawnDelay"	"1"
+			}
+		}
+	}
+	"sepulcher_combat_flesh_behemoths"
+	{
+		"1"
+		{
+			"npc_dota_boss_flesh_behemoth"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"12"
+			}
+		}
+	}
+	"generic_combat_slarks"	
+	{
+		"1"
+		{
+			"npc_dota_boss6"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"4"
+			}
+		}
+		"2"
+		{
+			"npc_dota_boss6"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"0"
+				"SpawnDelay"	"4"
+			}
+			"npc_dota_boss6_b"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"10"
+			}
+		}
+		"3"
+		{
+			"npc_dota_boss6_b"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"4"
+			}
+		}
+		"4"
+		{
+			"npc_dota_boss6"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"10"
+			}
+			"npc_dota_boss6_b"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"0"
+				"SpawnDelay"	"4"
+			}
+		}
+	}
+	"grove_combat_small_dragons"
+	{
+		"1"
+		{
+			"npc_dota_boss_drake"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"10"
+			}
+			"npc_dota_boss18"
+			{
+				"Amount"		"1"
+				"SpawnDelay"	"10"
+			}
+		}
+		"2"
+		{
+			"npc_dota_boss_drake"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"10"
+			}
+			"npc_dota_boss19"
+			{
+				"Amount"		"1"
+				"SpawnDelay"	"10"
+			}
+			"npc_dota_minion_greater_treant"
+			{
+				"Amount"		"-1"
+			}
+			"npc_dota_minion_minor_treant"
+			{
+				"Amount"		"-1"
+			}
+		}
+	}
+	"grove_combat_techies"	
+	{
+		"1"
+		{
+			"npc_dota_boss8c_spawner"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"HeroBonus"		"0.5"
+				"SpawnDelay"	"10"
+			}
+			"npc_dota_boss8c"
+			{
+				"Amount"		"-1"
+			}
+		}
+	}
+	"grove_combat_robots"	
+	{
+		"1"
+		{
+			"npc_dota_boss8a"
+			{
+				"Amount"		"3"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"5"
+			}
+			"npc_dota_boss8b"
+			{
+				"Amount"		"0"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"3"
+			}
+		}
+		"2"
+		{
+			"npc_dota_boss8b"
+			{
+				"Amount"		"3"
+				"RaidBonus"		"3"
+				"SpawnDelay"	"3"
+			}
+		}
+		"3"
+		{
+			"npc_dota_boss8a"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"5"
+			}
+			"npc_dota_boss8b"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"3"
+			}
+		}
+	}
+	"grove_combat_roborage"	
+	{
+		"1"
+		{
+			"npc_dota_boss8a"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"8"
+			}
+			"npc_dota_boss8b"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"6"
+			}
+			"npc_dota_boss8c_spawner"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"2"
+				"HeroBonus"		"0.33"
+				"SpawnDelay"	"15"
+			}
+		}
+		"1"
+		{
+			"npc_dota_boss8b"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"6"
+			}
+			"npc_dota_boss8c_spawner"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"2"
+				"HeroBonus"		"0.33"
+				"SpawnDelay"	"15"
+			}
+		}
+		"1"
+		{
+			"npc_dota_boss8a"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"8"
+			}
+			"npc_dota_boss8c_spawner"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"2"
+				"HeroBonus"		"0.33"
+				"SpawnDelay"	"15"
+			}
+		}
+	}
+	"grove_combat_bearboys"	
+	{
+		"1"
+		{
+			"npc_dota_boss26"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"6"
+			}
+		}
+		"2"
+		{
+			"npc_dota_boss26_mini"
+			{
+				"Amount"		"3"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"3"
+			}
+		}
+		"3"
+		{
+			"npc_dota_boss26"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"8"
+			}
+			"npc_dota_boss26_mini"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"3"
+			}
+		}
+	}
+	"grove_combat_trees"	
+	{
+		"1"
+		{
+			"npc_dota_boss18"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"10"
+			}
+		}
+		"2"
+		{
+			"npc_dota_boss19"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"10"
+			}
+			"npc_dota_minion_greater_treant"
+			{
+				"Amount"		"-1"
+			}
+			"npc_dota_minion_minor_treant"
+			{
+				"Amount"		"-1"
+			}
+		}
+		"3"
+		{
+			"npc_dota_boss18"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"10"
+			}
+			"npc_dota_boss19"
+			{
+				"Amount"		"1"
+				"SpawnDelay"	"10"
+			}
+			"npc_dota_minion_greater_treant"
+			{
+				"Amount"		"-1"
+			}
+			"npc_dota_minion_minor_treant"
+			{
+				"Amount"		"-1"
+			}
+		}
+		"4"
+		{
+			"npc_dota_boss18"
+			{
+				"Amount"		"1"
+				"SpawnDelay"	"10"
+			}
+			"npc_dota_boss19"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"10"
+			}
+			"npc_dota_minion_greater_treant"
+			{
+				"Amount"		"-1"
+			}
+			"npc_dota_minion_minor_treant"
+			{
+				"Amount"		"-1"
+			}
+		}
+	}
+	"grove_combat_slardar"	
+	{
+		"1"
+		{
+			"npc_dota_boss9"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"16"
+			}
+		}
+	}
+	"grove_combat_wolves"	
+	{
+		"1"
+		{
+			"npc_dota_boss_wolf"
+			{
+				"Amount"		"3"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"3"
+			}
+			"npc_dota_boss_alpha_wolf"
+			{
+				"Amount"		"1"
+				"SpawnDelay"	"12"
+			}
+		}
+	}
+	"generic_combat_ogres"	
+	{
+		"1"
+		{
+			"npc_dota_boss16"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"0"
+				"SpawnDelay"	"10"
+			}
+			"npc_dota_boss14"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"4"
+			}
+			"npc_dota_boss15"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"6"
+			}
+			"npc_dota_boss13"
+			{
+				"Amount"		"3"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"1"
+				"IsMinion"		"1"
+			}
+		}
+		"2"
+		{
+			"npc_dota_boss16"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"6"
+			}
+			"npc_dota_boss14"
+			{
+				"Amount"		"4"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"3"
+			}
+		}
+		"3"
+		{
+			"npc_dota_boss14"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"6"
+			}
+			"npc_dota_boss15"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"6"
+			}
+			"npc_dota_boss13"
+			{
+				"Amount"		"3"
+				"RaidBonus"		"3"
+				"SpawnDelay"	"6"
+				"IsMinion"		"1"
+			}
+		}
+		"4"
+		{
+			"npc_dota_boss14"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"8"
+			}
+			"npc_dota_boss13"
+			{
+				"Amount"		"6"
+				"RaidBonus"		"4"
+				"SpawnDelay"	"1"
+			}
+		}
+	}
+	"grove_combat_centaurs"	
+	{
+		"1"
+		{
+			"npc_dota_boss_greater_centaur"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"0"
+			}
+			"npc_dota_boss_lesser_centaur"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+			}
+		}
+	}
+	"generic_combat_leshrac"
+	{
+		"1"
+		{
+			"npc_dota_boss11"
+			{
+				"Amount"		"3"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"6"
+			}
+		}
+	}
+	"elysium_combat_spiders"
+	{
+		"1"
+		{
+			"npc_dota_creature_broodmother"
+			{
+				"Amount"		"4"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"8"
+			}
+			"npc_dota_creature_spiderling"
+			{
+				"Amount"		"-1"
+			}
+		}
+	}
+	"elysium_combat_warlock"
+	{
+		"1"
+		{
+			"npc_dota_boss_lesser_warlock"
+			{
+				"Amount"		"3"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"15"
+			}
+		}
+	}
+	"elysium_combat_reapers"
+	{
+		"1"
+		{
+			"npc_dota_lesser_reaper"
+			{
+				"Amount"		"3"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"20"
+			}
+		}
+	}
+	"elysium_combat_drowsas"
+	{
+		"1"
+		{
+			"npc_dota_boss28"
+			{
+				"Amount"		"3"
+				"CoreHealth"	"2250"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"4"
+			}
+		}
+	}
+	"solitude_combat_prophets"
+	{
+		"1"
+		{
+			"npc_dota_lesser_boss22"
+			{
+				"Amount"		"4"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"6"
+			}
+		}
+	}
+	"elysium_combat_archangels"
+	{
+		"2"
+		{
+			"npc_dota_boss_archangel"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"5"
+			}
+			"npc_dota_boss_fallen_one"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"0"
+				"SpawnDelay"	"1"
+			}
+		}
+	}
+	"elysium_combat_fallen_angels"
+	{
+		"1"
+		{
+			"npc_dota_boss_fallen_one"
+			{
+				"Amount"		"3"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"5"
+			}
+		}
+		"2"
+		{
+			"npc_dota_boss_archangel"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"0"
+				"SpawnDelay"	"1"
+			}
+			"npc_dota_boss_fallen_one"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"5"
+			}
+		}
+	}
+	"solitude_combat_golem"	
+	{
+		"1"
+		{
+			"npc_dota_boss_warlock_demon"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"HeroBonus"		"0.5"
+				"SpawnDelay"	"10"
+			}
+		}
+	}
+	"solitude_combat_commander"
+	{
+		"1"
+		{
+			"npc_dota_boss5"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"9"
+			}
+		}
+		"2"
+		{
+			"npc_dota_boss5"
+			{
+				"Amount"		"1"
+				"SpawnDelay"	"15"
+			}
+			"npc_dota_minion5"
+			{
+				"Amount"		"9"
+				"RaidBonus"		"5"
+				"ToSpawn"		"2"
+				"HeroBonus"		"1.5"
+				"SpawnDelay"	"5"
+				"IsMinion"		"1"
+			}
+		}
+	}
+	"solitude_combat_sloth_demon"
+	{
+		"1"
+		{
+			"npc_dota_boss_sloth_demon"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"15"
+			}
+		}
+		"2"
+		{
+			"npc_dota_boss_lesser_sloth_demon"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"8"
+			}
+		}
+	}
+	"solitude_combat_corrupt_drow"
+	{
+		"1"
+		{
+			"npc_dota_boss_sloth_demon"
+			{
+				"Amount"		"3"
+				"RaidBonus"		"1"
+				"HeroBonus"		"0.5"
+				"SpawnDelay"	"15"
+			}
+		}
+	}
+	"solitude_combat_angry_wraith"
+	{
+		"1"
+		{
+			"npc_dota_boss25"
+			{
+				"Amount"		"3"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"12"
+				"CoreHealth"	"2000"
+				"BaseDamage"	"100"
+			}
+		}
+	}
+	"solitude_combat_green_dragon"
+	{
+		"1"
+		{
+			"npc_dota_green_dragon"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"12"
+				"CoreHealth"	"2000"
+				"BaseDamage"	"100"
+				"DelayAbilities"
+				{
+					"green_dragon_toxic_pool"	"6"
+				}
+			}
+			"npc_dota_green_dragon_bug"
+			{
+				"Amount"		"-1"
+			}
+		}
+	}
+	"solitude_combat_satyrs"
+	{
+		"1"
+		{
+			"npc_dota_boss_satyr_champion"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"5"
+			}
+			"npc_dota_boss_satyr_mage"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"5"
+			}
+			"npc_dota_boss_satyr_follower"
+			{
+				"Amount"		"6"
+				"RaidBonus"		"3"
+				"SpawnDelay"	"5"
+			}
+		}
+		"2"
+		{
+			"npc_dota_boss_satyr_mage"
+			{
+				"Amount"		"2"
+				"SpawnDelay"	"5"
+			}
+			"npc_dota_boss_satyr_follower"
+			{
+				"Amount"		"12"
+				"RaidBonus"		"6"
+				"SpawnDelay"	"5"
+			}
+		}
+		"3"
+		{
+			"npc_dota_boss_satyr_mage"
+			{
+				"Amount"		"5"
+				"RaidBonus"		"3"
+				"SpawnDelay"	"5"
+			}
+			"npc_dota_boss_satyr_champion"
+			{
+				"Amount"		"1"
+				"SpawnDelay"	"5"
+			}
+		}
+	}
+	"solitude_combat_hellbears"
+	{
+		"1"
+		{
+			"npc_dota_boss_dire_hellbear"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"5"
+			}
+			"npc_dota_boss_minor_hellbear"
+			{
+				"Amount"		"4"
+				"RaidBonus"		"2"
+				"SpawnDelay"	"5"
+			}
+		}
+		"2"
+		{
+			"npc_dota_boss_dire_hellbear"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"5"
+			}
+		}
+		"3"
+		{
+			"npc_dota_boss_minor_hellbear"
+			{
+				"Amount"		"6"
+				"RaidBonus"		"4"
+				"SpawnDelay"	"5"
+			}
+		}
+	}
+	"grove_combat_roshan"	
+	{
+		"1"
+		{
+			"npc_dota_boss10"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"SpawnDelay"	"6"
+			}
+		}
+	}
+	"sepulcher_boss_prophet"
+	{
+		"1"
+		{
+			"npc_dota_boss22"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+		}
+	}
+	"sepulcher_boss_undying"
+	{
+		"1"
+		{
+			"npc_dota_boss4"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"IsBoss"		"1"
+				"SpawnDelay"	"15"
+			}
+		}
+	}
+	"sepulcher_boss_wraith_king"
+	{
+		"1"
+		{
+			"npc_dota_boss25"
+			{
+				"Amount"		"2"
+				"IsBoss"		"1"
+			}
+			"npc_dota_boss24_stomper"
+			{
+				"Amount"		"1"
+				"IsMinion"		"1"
+			}
+			"npc_dota_boss24_archer"
+			{
+				"Amount"		"2"
+				"IsMinion"		"1"
+			}
+		}
+		"2"
+		{
+			"npc_dota_boss25"
+			{
+				"Amount"		"2"
+				"IsBoss"		"1"
+			}
+			"npc_dota_boss24_stomper"
+			{
+				"Amount"		"2"
+				"IsMinion"		"1"
+			}
+			"npc_dota_boss24_archer"
+			{
+				"Amount"		"1"
+				"IsMinion"		"1"
+			}
+		}
+		"3"
+		{
+			"npc_dota_boss25"
+			{
+				"Amount"		"2"
+				"IsBoss"		"1"
+			}
+			"npc_dota_boss24_archer"
+			{
+				"Amount"		"3"
+				"IsMinion"		"1"
+			}
+		}
+		"4"
+		{
+			"npc_dota_boss25"
+			{
+				"Amount"		"2"
+				"IsBoss"		"1"
+			}
+			"npc_dota_boss24_stomper"
+			{
+				"Amount"		"3"
+				"IsMinion"		"1"
+			}
+		}
+	}
+	"sepulcher_boss_reaper"	
+	{
+		"1"
+		{
+			"npc_dota_boss34"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+		}
+	}
+	"sepulcher_boss_vile_archmage"
+	{
+		"1"
+		{
+			"npc_dota_boss_vile_archmage"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"IsBoss"		"1"
+				"SpawnDelay"	"15"
+			}
+		}
+	}
+	"grove_boss_drowsa"	
+	{
+		"1"
+		{
+			"npc_dota_boss28"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+		}
+	}
+	"grove_boss_axe"	
+	{
+		"1"
+		{
+			"npc_dota_boss21"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+		}
+	}
+	"grove_boss_bearmaster"
+	{
+		"1"
+		{
+			"npc_dota_boss27"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+			"npc_dota_boss26"
+			{
+				"Amount"		"-1"
+			}
+			"npc_dota_boss26_mini"
+			{
+				"Amount"		"-1"
+			}
+		}
+	}
+	"grove_boss_troll_warlord"
+	{
+		"1"
+		{
+			"npc_dota_boss_troll_warlord"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+		}
+	}
+	"grove_boss_dragon"	
+	{
+		"1"
+		{
+			"npc_dota_boss23"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+			"npc_dota_boss23_m"
+			{
+				"Amount"		"-1"
+			}
+		}
+	}
+	"grove_boss_greymane"
+	{
+		"1"
+		{
+			"npc_dota_boss_greymane"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+			"npc_dota_boss_alpha_wolf"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"CoreHealth"	"850"
+			}
+			"npc_dota_boss_wolf"
+			{
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"CoreHealth"	"500"
+			}
+		}
+	}
+	"generic_boss_golem"
+	{
+		"1"
+		{
+			"npc_dota_boss12_golem"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"IsBoss"		"1"
+			}
+		}
+	}
+	"grove_boss_green_dragon"
+	{
+		"1"
+		{
+			"npc_dota_green_dragon"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+			"npc_dota_green_dragon_bug"
+			{
+				"Amount"		"-1"
+			}
+		}
+	}
+	"elysium_boss_aether"
+	{
+		"1"
+		{
+			"npc_dota_boss39"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+		}
+	}
+	"elysium_boss_aeon"	
+	{
+		"1"
+		{
+			"npc_dota_boss38"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+		}
+	}
+	"elysium_boss_genesis"
+	{
+		"1"
+		{
+			"npc_dota_boss_genesis"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+		}
+	}
+	"elysium_boss_broodmother"
+	{
+		"1"
+		{
+			"npc_dota_boss37"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+			"npc_dota_creature_broodmother"
+			{
+				"Amount"		"-1"
+			}
+			"npc_dota_creature_spiderling"
+			{
+				"Amount"		"-1"
+			}
+		}
+	}
+	"elysium_boss_ifdat"
+	{
+		"1"
+		{
+			"npc_dota_boss_ifdat"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+		}
+	}
+	"generic_boss_scarab"
+	{
+		"1"
+		{
+			"npc_dota_boss30"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+		}
+	}
+	"solitude_boss_doom"
+	{
+		"1"
+		{
+			"npc_dota_boss35"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+				"SpawnDelay"	"30"
+			}
+			"npc_dota_boss35b"
+			{
+				"Amount"		"-1"
+			}
+		}
+	}
+	"solitude_boss_evil_core"
+	{
+		"1"
+		{
+			"npc_dota_boss36"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+		}
+	}
+	"solitude_boss_twin_demons"
+	{
+		"1"
+		{
+			"npc_dota_boss33_a"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+			"npc_dota_boss33_b"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+		}
+	}
+	"solitude_boss_warlock"
+	{
+		"1"
+		{
+			"npc_dota_boss_warlock"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+			"npc_dota_boss_warlock_demon"
+			{
+				"Amount"		"-1"
+			}
+			"npc_dota_boss_warlock_true_form"
+			{
+				"Amount"		"-1"
+			}
+		}
+	}
+	"elysium_boss_asura"
+	{
+		"1"
+		{
+			"npc_dota_boss36_guardian"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+		}
+	}
+	"solitude_elite_durva"
+	{
+		"1"
+		{
+			"npc_dota_boss_durva"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+		}
+	}
+	"grove_elite_valgraduth"
+	{
+		"1"
+		{
+			"npc_dota_boss_valgraduth"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+		}
+	}
+	"sepulcher_elite_arthromos"
+	{
+		"1"
+		{
+			"npc_dota_boss_arthromos"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+		}
+	}
+	"elysium_elite_ammetot"
+	{
+		"1"
+		{
+			"npc_dota_boss_ammetot"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+		}
+	}
+	
+	"elysium_boss_apotheosis"
+	{
+		"1"
+		{
+			"npc_dota_boss_apotheosis"
+			{
+				"Amount"		"1"
+				"IsBoss"		"1"
+			}
+		}
+	}
+}

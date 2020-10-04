@@ -58,7 +58,7 @@ function boss33a_dark_orb:CreateDarkOrb(direction)
 			local caster = self:GetCaster()
 			local ability = self:GetAbility()
 			if not self.hitUnits[target:entindex()] then
-				if target:TriggerSpellAbsorb(self) then return false end
+				if target:TriggerSpellAbsorb(ability) then return false end
 				ability:DealDamage(caster, target, self.damage)
 				EmitSoundOn("Hero_Puck.IIllusory_Orb_Damage", caster)
 				ParticleManager:FireParticle("particles/units/heroes/hero_puck/puck_illusory_orb_blink_out.vpcf", PATTACH_POINT_FOLLOW, target)

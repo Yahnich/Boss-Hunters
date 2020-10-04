@@ -12,6 +12,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"850"
 		"ItemShopTags"					"bash"
@@ -29,38 +30,40 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_chance"			"25"
+				"var_type"						"FIELD_FLOAT"
+				"bash_chance"					"25"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_chance_ranged"	"15"
+				"var_type"						"FIELD_FLOAT"
+				"bash_chance_ranged"			"15"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bash_damage"			"100 100 100 100 200 300 400 500 600"
+				"var_type"						"FIELD_INTEGER"
+				"bash_damage"					"200 300 400 500 600"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_damage_cd"		"25"
+				"var_type"						"FIELD_FLOAT"
+				"bash_damage_cd"				"100"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_duration"			"0.4 0.8 1.2 1.6 1.6 1.6 1.6 1.6 1.6"
+				"var_type"						"FIELD_FLOAT"
+				"bash_duration"					"0.4 0.8 1.2 1.6 2.2"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"5 4 3 2 2 2 2 2 2"
+				"var_type"						"FIELD_FLOAT"
+				"cooldown"						"5"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"var_type"						"FIELD_INTEGER"
+				"rune_slots"					"2 2 3 3 3"
 			}
 		}
 	}
@@ -75,6 +78,7 @@
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
+		"ItemPurchasable"				"0"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -102,6 +106,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"spellblock"
@@ -110,7 +115,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"2"
 		
 		"AvailableRuneSlots"			"1"
@@ -123,38 +128,40 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_chance"			"25"
+				"var_type"						"FIELD_FLOAT"
+				"bash_chance"					"25"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_chance_ranged"	"15"
+				"var_type"						"FIELD_FLOAT"
+				"bash_chance_ranged"			"15"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bash_damage"			"100 100 100 100 200 300 400 500 600"
+				"var_type"						"FIELD_INTEGER"
+				"bash_damage"					"200 300 400 500 600"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_damage_cd"		"25"
+				"var_type"						"FIELD_FLOAT"
+				"bash_damage_cd"				"100"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_duration"			"0.4 0.8 1.2 1.6 1.6 1.6 1.6 1.6 1.6"
+				"var_type"						"FIELD_FLOAT"
+				"bash_duration"					"0.4 0.8 1.2 1.6 2.2"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"5 4 3 2 2 2 2 2 2"
+				"var_type"						"FIELD_FLOAT"
+				"cooldown"						"5"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"var_type"						"FIELD_INTEGER"
+				"rune_slots"					"2 2 3 3 3"
 			}
 		}
 	}
@@ -169,6 +176,7 @@
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
+		"ItemPurchasable"				"0"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -197,6 +205,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"spellblock"
@@ -205,7 +214,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"3"
 		
 		"AvailableRuneSlots"			"1"
@@ -218,38 +227,40 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_chance"			"25"
+				"var_type"						"FIELD_FLOAT"
+				"bash_chance"					"25"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_chance_ranged"	"15"
+				"var_type"						"FIELD_FLOAT"
+				"bash_chance_ranged"			"15"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bash_damage"			"100 100 100 100 200 300 400 500 600"
+				"var_type"						"FIELD_INTEGER"
+				"bash_damage"					"200 300 400 500 600"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_damage_cd"		"25"
+				"var_type"						"FIELD_FLOAT"
+				"bash_damage_cd"				"100"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_duration"			"0.4 0.8 1.2 1.6 1.6 1.6 1.6 1.6 1.6"
+				"var_type"						"FIELD_FLOAT"
+				"bash_duration"					"0.4 0.8 1.2 1.6 2.2"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"5 4 3 2 2 2 2 2 2"
+				"var_type"						"FIELD_FLOAT"
+				"cooldown"						"5"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"var_type"						"FIELD_INTEGER"
+				"rune_slots"					"2 2 3 3 3"
 			}
 		}
 	}
@@ -264,6 +275,7 @@
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
+		"ItemPurchasable"				"0"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -292,6 +304,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"spellblock"
@@ -300,11 +313,11 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"4"
 		
 		"AvailableRuneSlots"			"2"
-		"AbilityCooldown"				"2"
+		"AbilityCooldown"				"5"
 		"AbilitySharedCooldown"			"anvil"
 		
 		// Special	
@@ -313,38 +326,40 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_chance"			"25"
+				"var_type"						"FIELD_FLOAT"
+				"bash_chance"					"25"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_chance_ranged"	"15"
+				"var_type"						"FIELD_FLOAT"
+				"bash_chance_ranged"			"15"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bash_damage"			"100 100 100 100 200 300 400 500 600"
+				"var_type"						"FIELD_INTEGER"
+				"bash_damage"					"200 300 400 500 600"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_damage_cd"		"25"
+				"var_type"						"FIELD_FLOAT"
+				"bash_damage_cd"				"100"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_duration"			"0.4 0.8 1.2 1.6 1.6 1.6 1.6 1.6 1.6"
+				"var_type"						"FIELD_FLOAT"
+				"bash_duration"					"0.4 0.8 1.2 1.6 2.2"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"5 4 3 2 2 2 2 2 2"
+				"var_type"						"FIELD_FLOAT"
+				"cooldown"						"5"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"var_type"						"FIELD_INTEGER"
+				"rune_slots"					"2 2 3 3 3"
 			}
 		}
 	}
@@ -362,7 +377,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"1050"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -371,7 +386,7 @@
 		"ItemResult"					"item_anvil_5"
 		"ItemRequirements"
 		{
-			"01"						"item_anvil_4;item_recipe_anvil_2"
+			"01"						"item_battlemaster_staff_4"
 		}
 	}
 	
@@ -395,11 +410,11 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
-		"ItemBaseLevel"					"5"
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"1"
 		
 		"AvailableRuneSlots"			"2"
-		"AbilityCooldown"				"2"
+		"AbilityCooldown"				"5"
 		"AbilitySharedCooldown"			"anvil"
 		
 		// Special	
@@ -408,38 +423,40 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_chance"			"25"
+				"var_type"						"FIELD_FLOAT"
+				"bash_chance"					"25"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_chance_ranged"	"15"
+				"var_type"						"FIELD_FLOAT"
+				"bash_chance_ranged"			"15"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bash_damage"			"100 100 100 100 200 300 400 500 600"
+				"var_type"						"FIELD_INTEGER"
+				"bash_damage"					"200 300 400 500 600"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_damage_cd"		"25"
+				"var_type"						"FIELD_FLOAT"
+				"bash_damage_cd"				"100"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_duration"			"0.4 0.8 1.2 1.6 1.6 1.6 1.6 1.6 1.6"
+				"var_type"						"FIELD_FLOAT"
+				"bash_duration"					"0.4 0.8 1.2 1.6 2.2"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"5 4 3 2 2 2 2 2 2"
+				"var_type"						"FIELD_FLOAT"
+				"cooldown"						"5"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"var_type"						"FIELD_INTEGER"
+				"rune_slots"					"2 2 3 3 3"
 			}
 		}
 	}
@@ -466,7 +483,7 @@
 		"ItemResult"					"item_anvil_6"
 		"ItemRequirements"
 		{
-			"01"						"item_anvil_5;item_recipe_anvil_2"
+			"01"						"item_anvil_5;item_recipe_anvil_5"
 		}
 	}
 	
@@ -490,11 +507,11 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
-		"ItemBaseLevel"					"6"
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"2"
 		
 		"AvailableRuneSlots"			"2"
-		"AbilityCooldown"				"2"
+		"AbilityCooldown"				"5"
 		"AbilitySharedCooldown"			"anvil"
 		
 		// Special	
@@ -503,38 +520,40 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_chance"			"25"
+				"var_type"						"FIELD_FLOAT"
+				"bash_chance"					"25"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_chance_ranged"	"15"
+				"var_type"						"FIELD_FLOAT"
+				"bash_chance_ranged"			"15"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bash_damage"			"100 100 100 100 200 300 400 500 600"
+				"var_type"						"FIELD_INTEGER"
+				"bash_damage"					"200 300 400 500 600"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_damage_cd"		"25"
+				"var_type"						"FIELD_FLOAT"
+				"bash_damage_cd"				"100"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_duration"			"0.4 0.8 1.2 1.6 1.6 1.6 1.6 1.6 1.6"
+				"var_type"						"FIELD_FLOAT"
+				"bash_duration"					"0.4 0.8 1.2 1.6 2.2"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"5 4 3 2 2 2 2 2 2"
+				"var_type"						"FIELD_FLOAT"
+				"cooldown"						"5"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"var_type"						"FIELD_INTEGER"
+				"rune_slots"					"2 2 3 3 3"
 			}
 		}
 	}
@@ -561,7 +580,7 @@
 		"ItemResult"					"item_anvil_7"
 		"ItemRequirements"
 		{
-			"01"						"item_anvil_6;item_recipe_anvil_2"
+			"01"						"item_anvil_6;item_recipe_anvil_5"
 		}
 	}
 	
@@ -585,11 +604,11 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
-		"ItemBaseLevel"					"7"
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"3"
 		
 		"AvailableRuneSlots"			"3"
-		"AbilityCooldown"				"2"
+		"AbilityCooldown"				"5"
 		"AbilitySharedCooldown"			"anvil"
 		
 		// Special	
@@ -598,38 +617,40 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_chance"			"25"
+				"var_type"						"FIELD_FLOAT"
+				"bash_chance"					"25"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_chance_ranged"	"15"
+				"var_type"						"FIELD_FLOAT"
+				"bash_chance_ranged"			"15"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bash_damage"			"100 100 100 100 200 300 400 500 600"
+				"var_type"						"FIELD_INTEGER"
+				"bash_damage"					"200 300 400 500 600"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_damage_cd"		"25"
+				"var_type"						"FIELD_FLOAT"
+				"bash_damage_cd"				"100"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_duration"			"0.4 0.8 1.2 1.6 1.6 1.6 1.6 1.6 1.6"
+				"var_type"						"FIELD_FLOAT"
+				"bash_duration"					"0.4 0.8 1.2 1.6 2.2"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"5 4 3 2 2 2 2 2 2"
+				"var_type"						"FIELD_FLOAT"
+				"cooldown"						"5"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"var_type"						"FIELD_INTEGER"
+				"rune_slots"					"2 2 3 3 3"
 			}
 		}
 	}
@@ -656,7 +677,7 @@
 		"ItemResult"					"item_anvil_8"
 		"ItemRequirements"
 		{
-			"01"						"item_anvil_7;item_recipe_anvil_2"
+			"01"						"item_anvil_7;item_recipe_anvil_5"
 		}
 	}
 	"item_anvil_8"
@@ -679,11 +700,11 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
-		"ItemBaseLevel"					"8"
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"4"
 		
 		"AvailableRuneSlots"			"3"
-		"AbilityCooldown"				"2"
+		"AbilityCooldown"				"5"
 		"AbilitySharedCooldown"			"anvil"
 		
 		// Special	
@@ -692,38 +713,40 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_chance"			"25"
+				"var_type"						"FIELD_FLOAT"
+				"bash_chance"					"25"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_chance_ranged"	"15"
+				"var_type"						"FIELD_FLOAT"
+				"bash_chance_ranged"			"15"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bash_damage"			"100 100 100 100 200 300 400 500 600"
+				"var_type"						"FIELD_INTEGER"
+				"bash_damage"					"200 300 400 500 600"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_damage_cd"		"25"
+				"var_type"						"FIELD_FLOAT"
+				"bash_damage_cd"				"100"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_duration"			"0.4 0.8 1.2 1.6 1.6 1.6 1.6 1.6 1.6"
+				"var_type"						"FIELD_FLOAT"
+				"bash_duration"					"0.4 0.8 1.2 1.6 2.2"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"5 4 3 2 2 2 2 2 2"
+				"var_type"						"FIELD_FLOAT"
+				"cooldown"						"5"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"var_type"						"FIELD_INTEGER"
+				"rune_slots"					"2 2 3 3 3"
 			}
 		}
 	}
@@ -750,7 +773,7 @@
 		"ItemResult"					"item_anvil_9"
 		"ItemRequirements"
 		{
-			"01"						"item_anvil_8;item_recipe_anvil_2"
+			"01"						"item_anvil_8;item_recipe_anvil_5"
 		}
 	}
 	
@@ -774,11 +797,11 @@
 		"ItemAliases"					"basher"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
-		"ItemBaseLevel"					"9"
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"5"
 		
 		"AvailableRuneSlots"			"3"
-		"AbilityCooldown"				"2"
+		"AbilityCooldown"				"5"
 		"AbilitySharedCooldown"			"anvil"
 		
 		// Special	
@@ -787,38 +810,40 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_chance"			"25"
+				"var_type"						"FIELD_FLOAT"
+				"bash_chance"					"25"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_chance_ranged"	"15"
+				"var_type"						"FIELD_FLOAT"
+				"bash_chance_ranged"			"15"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bash_damage"			"100 100 100 100 200 300 400 500 600"
+				"var_type"						"FIELD_INTEGER"
+				"bash_damage"					"200 300 400 500 600"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_damage_cd"		"25"
+				"var_type"						"FIELD_FLOAT"
+				"bash_damage_cd"				"100"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_duration"			"0.4 0.8 1.2 1.6 1.6 1.6 1.6 1.6 1.6"
+				"var_type"						"FIELD_FLOAT"
+				"bash_duration"					"0.4 0.8 1.2 1.6 2.2"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"5 4 3 2 2 2 2 2 2"
+				"var_type"						"FIELD_FLOAT"
+				"cooldown"						"5"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"var_type"						"FIELD_INTEGER"
+				"rune_slots"					"2 2 3 3 3"
 			}
 		}
 	}

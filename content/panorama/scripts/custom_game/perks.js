@@ -131,13 +131,13 @@ function CreateMasteryPanel( panelData ){
 		var talentProgression = netTable.talentProgression
 		var talentKeys = netTable.talentKeys
 		var price = 1
-		for(var perkType in talentKeys){
-			var perkIndex = perkType + ""
-			var perkTable = talentKeys[perkType]
-			for(var perkLevel in perkTable){
-				price = price + perkTable[perkLevel]
-			}
-		}
+		// for(var perkType in talentKeys){
+			// var perkIndex = perkType + ""
+			// var perkTable = talentKeys[perkType]
+			// for(var perkLevel in perkTable){
+				// price = price + perkTable[perkLevel]
+			// }
+		// }
 		purchaseAble = price <= Entities.GetAbilityPoints( lastRememberedHero ) && lastRememberedHero == Players.GetPlayerHeroEntityIndex( localID )
 		for(var overheadIndex in talentProgression){
 			var strIndex = overheadIndex + ""
@@ -145,13 +145,27 @@ function CreateMasteryPanel( panelData ){
 			var talentRowContainer = $.CreatePanel("Panel", masteryContainer, strIndex + "RowContainer");
 			talentRowContainer.SetHasClass("GenericTalentsRow", true)
 			for(var table in overhead){
-				CreateTalentContainer( talentRowContainer, talentProgression, talentKeys, overhead, strIndex, table, purchaseAble )
+				if(table != "ALL_STATS"){
+					CreateTalentContainer( talentRowContainer, talentProgression, talentKeys, overhead, strIndex, table, purchaseAble )
+				}
 			}
 		}
 	}
+	var statsPerPoint = talentProgression["Generic"]["ALL_STATS"][1]
+	var totalAllStats = statsPerPoint * talentKeys["Generic"]["ALL_STATS"]
 	var costLabel = $.CreatePanel("Label", masteryContainer, "SkillPointCostLabel");
 	costLabel.SetHasClass("SkillPointCostLabel", true)
-	costLabel.text = "Perk Skill Point Cost: " + price;
+	costLabel.text = "All Stats (+" + statsPerPoint + "): " + totalAllStats;
+	
+	costLabel.SetPanelEvent("onmouseover", function(){
+			costLabel.SetHasClass("Highlighted", true)
+		});
+	costLabel.SetPanelEvent("onmouseout", function(){
+			costLabel.SetHasClass("Highlighted", false)
+		});
+	costLabel.SetPanelEvent("onactivate", function(){
+			AttemptPurchaseTalent("Generic", "ALL_STATS")} );
+	
 	hasQueuedAction = false
 	UpdateSkillPoints()
 	serverRequestInProgress = false
@@ -198,8 +212,14 @@ function CreateTalentContainer( talentRowContainer, talentProgression, talentKey
 	}
 	talentContainer.SetDialogVariableInt( "number", bonusValue ); 
 	var infoText = $.Localize( titleVar + "_Description", talentContainer) + "<br><br><b>Next tier:</b> " + nextText
-	talentContainer.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTitleTextTooltip", talentContainer, titleText, infoText)});
-	talentContainer.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTitleTextTooltip", talentContainer);});
+	talentContainer.SetPanelEvent("onmouseover", function(){
+			$.DispatchEvent("DOTAShowTitleTextTooltip", talentContainer, titleText, infoText)
+			talentContainer.SetHasClass("Highlighted", true)
+		});
+	talentContainer.SetPanelEvent("onmouseout", function(){
+			$.DispatchEvent("DOTAHideTitleTextTooltip", talentContainer);
+			talentContainer.SetHasClass("Highlighted", false)
+		});
 	talentContainer.SetPanelEvent("onactivate", function(){
 			$.DispatchEvent("DOTAHideTitleTextTooltip", talentContainer)
 			AttemptPurchaseTalent(strIndex, table)} );

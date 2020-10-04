@@ -51,29 +51,29 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"damage_mod"				"30 37.5 45 52.5 60 67.5 75"
+				"var_type"						"FIELD_FLOAT"
+				"damage_mod"					"30 30 45 45 60 60 75"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"02"
 			{	
-				"var_type"					"FIELD_INTEGER"
-				"arrow_count"				"3"
+				"var_type"						"FIELD_INTEGER"
+				"arrow_count"					"2 3 3 4 4 5 5"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"split_shot_bonus_range"	"100"
+				"var_type"						"FIELD_INTEGER"
+				"split_shot_bonus_range"		"100"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"cone_spread"				"90"
+				"var_type"						"FIELD_INTEGER"
+				"cone_spread"					"90"
 			}
 			"05"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"width"						"25"
+				"var_type"						"FIELD_INTEGER"
+				"width"							"25"
 			}		
 		}
 	}
@@ -155,11 +155,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"11"
+		"AbilityCooldown"				"10"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"140 150 160 170 180 190 200"
+		"AbilityManaCost"				"135 135 135 135 90 45 0"
 	
 		"precache"
 		{
@@ -433,13 +433,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_per_mana"		"1"
+				"damage_per_mana"		"1.6"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"absorb"				"60"
+				"absorb"				"70"
 			}
 		}
 	}
@@ -480,7 +480,7 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200"
+		"AbilityManaCost"				"100"
 	
 		"precache"
 		{

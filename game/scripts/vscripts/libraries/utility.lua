@@ -81,6 +81,9 @@ function table.removeval(t1, val)
 end
 
 function table.copy(t1)
+	if t1 == nil then
+		return t1
+	end
 	if type(t1) == 'table' then
 		local copy = {}
 		for k,v in pairs(t1) do
@@ -281,7 +284,7 @@ function CDOTA_BaseNPC_Hero:CreateSummon(unitName, position, duration, bControll
 	if duration and duration > 0 then
 		local kill = summon:AddNewModifier(self, nil, "modifier_kill", {duration = duration})
 	end
-	summon:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
+	summon:AddNewModifier(self, nil, "modifier_stats_system_handler", {})
 	StartAnimation(summon, {activity = ACT_DOTA_SPAWN, rate = 1.5, duration = 2})
 	local endDur = summonMod:GetRemainingTime()
 	return summon, endDur
@@ -738,6 +741,7 @@ function CDOTA_BaseNPC:ConjureImage( illusionInfo, duration, caster, amount )
 	illuInfo.outgoing_damage = illuInfo.outgoing_damage or 0
 	illuInfo.incoming_damage = illuInfo.incoming_damage or 0
 	if self:IsHero() then
+		local params = {caster = caster, target = self, duration = duration, ability = illuInfo.ability, modifier_name = "modifier_illusion"}
 		local fDur = duration * caster:GetStatusAmplification( params )
 		local illusionTable = CreateIllusions( caster or self , self, {outgoing_damage = illuInfo.outgoing_damage, incoming_damage = illuInfo.incoming_damage, duration = fDur}, amount or 1, self:GetHullRadius() + self:GetCollisionPadding(), illuInfo.scramble or false, true )
 		if not illusionTable then return end
@@ -924,7 +928,7 @@ end
 
 function CDOTA_BaseNPC:ModifyThreat(val, bIgnoreCap)
 	self.lastHit = GameRules:GetGameTime()
-	local newVal = val
+	local newVal = val or 0
 	
 	self.threat = self.threat or 0
 	local reduction = 0.35 ^ math.floor( self.threat / 100 )
@@ -933,7 +937,7 @@ function CDOTA_BaseNPC:ModifyThreat(val, bIgnoreCap)
 	local newCap = threatgainCap
 	for _, modifier in ipairs( self:FindAllModifiers() ) do
 		if modifier.Bonus_ThreatGain and modifier:Bonus_ThreatGain() then
-			newVal = newVal + ( math.abs(val) * ( modifier:Bonus_ThreatGain()/100 ) )
+			newVal = newVal + ( math.abs(newVal) * ( modifier:Bonus_ThreatGain()/100 ) )
 			newCap = newCap + ( math.abs(threatgainCap) * ( modifier:Bonus_ThreatGain()/100 ) )
 		end
 	end
@@ -1113,7 +1117,11 @@ function CDOTA_BaseNPC:IsRealHero()
 end
 
 function CDOTABaseAbility:GetTalentSpecialValueFor(value)
-	local base = self:GetSpecialValueFor(value)
+	return self:GetTalentLevelSpecialValueFor(value, -1)
+end
+
+function CDOTABaseAbility:GetTalentLevelSpecialValueFor(value, level)
+	local base = self:GetLevelSpecialValueFor(value, level)
 	local talentName
 	local valname = "value"
 	local multiply = false
@@ -1137,7 +1145,7 @@ function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 		if unit:GetParentUnit() then
 			unit = unit:GetParentUnit()
 		end
-		local talent = self:GetCaster():FindAbilityByName(talentName)
+		local talent = unit:FindAbilityByName(talentName)
 		if talent and talent:GetLevel() > 0 then 
 			if multiply then
 				base = base * talent:GetSpecialValueFor(valname) 
@@ -1155,6 +1163,10 @@ end
 
 function CDOTA_Modifier_Lua:GetTalentSpecialValueFor(value)
 	return self:GetAbility():GetTalentSpecialValueFor(value)
+end
+
+function CDOTA_Modifier_Lua:GetTalentLevelSpecialValueFor(value, level)
+	return self:GetAbility():GetTalentLevelSpecialValueFor(value, level)
 end
 
 function CDOTA_BaseNPC:IncreaseStrength(amount)
@@ -1560,6 +1572,8 @@ function ParticleManager:FireParticle(effect, attach, owner, cps)
 		for cp, value in pairs(cps) do
 			if type(value) == "userdata" then
 				ParticleManager:SetParticleControl(FX, tonumber(cp), value)
+			elseif type(value) == "number" then
+				ParticleManager:SetParticleControl(FX, tonumber(cp), Vector(value, value, value) )
 			elseif type(value) == "table" then
 				ParticleManager:SetParticleControlEnt(FX, cp, value.owner or owner, value.attach or attach, value.point or "attach_hitloc", (value.owner or owner):GetAbsOrigin(), true)
 			else
@@ -1626,9 +1640,7 @@ end
 function CDOTA_BaseNPC:HasPurgableDebuffs()
 	for _, modifier in ipairs( self:FindAllModifiers() ) do
 		local caster = modifier:GetCaster()
-		print( modifier:GetName(), modifier:IsDebuff() or (caster and not caster:IsSameTeam( self ) ), ((modifier.IsPurgable and modifier:IsPurgable()) or not modifier.IsPurgable), not modifier:HasAuraOrigin() )
 		if (modifier:IsDebuff() or (caster and not caster:IsSameTeam( self ) )) and ((modifier.IsPurgable and modifier:IsPurgable()) or not modifier.IsPurgable) and not modifier:HasAuraOrigin() then
-			print( modifier:GetName(), "this is the fucker" )
 			return true
 		end
 	end
@@ -1666,8 +1678,8 @@ function CDOTA_Modifier_Lua:AddIndependentStack(duration, limit, bDontDestroy, t
 			self:IncrementStackCount()
 		end
 	end
-	local destroy = bDontDestroy
-	if bDontDestroy == nil then destroy = true end
+	local dontDestroy = bDontDestroy
+	if bDontDestroy == nil then dontDestroy = true end
 	timerTable.ID = Timers:CreateTimer(duration or self:GetRemainingTime(), function(timer)
 		if not self:IsNull() then
 			if timerTable.stacks then	
@@ -1681,7 +1693,7 @@ function CDOTA_Modifier_Lua:AddIndependentStack(duration, limit, bDontDestroy, t
 					break
 				end
 			end
-			if self:GetStackCount() == 0 and self:GetDuration() == -1 and not destroy then self:Destroy() end
+			if self:GetStackCount() == 0 and self:GetDuration() == -1 and not dontDestroy then self:Destroy() end
 		end
 	end)
 	
@@ -2398,7 +2410,7 @@ function GameRules:RefreshPlayers(bDontHealFull, flPrepTime)
 						hero:SetHealth( 1 )
 						hero:ForceKill( true )
 					end
-					if not hero:IsAlive() then
+					if not hero:IsAlive() and not hero:WillReincarnate() then
 						hero:RespawnHero(false, false)
 						hero:SetHealth( 1 )
 						hero:SetMana( 1 )
@@ -2580,11 +2592,11 @@ function CDOTA_Item:GetRuneSlot(index)
 	return self.itemData[index]
 end
 
-function CDOTA_BaseNPC:HookInModifier( modifierType, modifier )
+function CDOTA_BaseNPC:HookInModifier( modifierType, modifier, priority )
 	local statsHandler = self.statsSystemHandlerModifier
 	if statsHandler then
 		statsHandler.modifierFunctions[modifierType] = statsHandler.modifierFunctions[modifierType] or {}
-		statsHandler.modifierFunctions[modifierType][modifier] = true
+		statsHandler.modifierFunctions[modifierType][modifier] = priority or 1
 		statsHandler:ForceRefresh()
 	end
 end

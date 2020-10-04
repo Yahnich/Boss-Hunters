@@ -85,7 +85,7 @@ function modifier_chaos_knight_chaos_strike_ebf:DeclareFunctions()
 end
 
 function modifier_chaos_knight_chaos_strike_ebf:GetModifierCriticalDamage( params )
-	if self:RollPRNG( self.crit_chance ) and not params.attacker:PassivesDisabled() and not self:GetParent():HasModifier("modifier_chaos_knight_chaos_strike_actCrit") then
+	if not params.attacker:PassivesDisabled() and not self:GetParent():HasModifier("modifier_chaos_knight_chaos_strike_actCrit") and self:RollPRNG( self.crit_chance ) then
 		local parent = self:GetParent()
 		self.on_crit = true
 		EmitSoundOn( "Hero_ChaosKnight.ChaosStrike", parent)

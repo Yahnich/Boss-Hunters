@@ -3,24 +3,16 @@ modifier_restoration_disable = class({})
 function modifier_restoration_disable:OnCreated()
 	if IsServer() and self:GetParent():IsRealHero() then
 		self.mana = self:GetParent():GetMana()
+		self.hp = self:GetParent():GetHealth()
 		self:StartIntervalThink(0)
 	end
 end
 
 function modifier_restoration_disable:OnIntervalThink()
 	self:GetParent():SetMana( self.mana )
-end
-
-function modifier_restoration_disable:DeclareFunctions()
-    local funcs = {
-        MODIFIER_PROPERTY_DISABLE_HEALING
-    }
-
-    return funcs
-end
-
-function modifier_restoration_disable:GetDisableHealing()
-    return 1
+	if self:GetParent():IsAlive() and self.hp > 0 then
+		self:GetParent():SetHealth( self.hp )
+	end
 end
 
 function modifier_restoration_disable:GetTexture()

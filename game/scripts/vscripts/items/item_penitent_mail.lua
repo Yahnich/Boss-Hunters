@@ -37,23 +37,25 @@ end
 
 function modifier_item_penitent_mail_passive:OnRefreshSpecific()
 	self.reflect = self:GetSpecialValueFor("reflect")
+	self.thorns = self:GetSpecialValueFor("thorns")
 	self.bonusThreat = self:GetSpecialValueFor("bonus_threat")
 	self.threatGain = self:GetSpecialValueFor("threat_gain")
 	self.threatGainUlt = self:GetSpecialValueFor("threat_gain_ult")
 	if IsServer() then
 		self:GetCaster():HookInModifier( "GetModifierDamageReflectBonus", self )
+		self:GetCaster():HookInModifier( "GetModifierDamageReflectPercentageBonus", self )
 	end
 end
 
 function modifier_item_penitent_mail_passive:OnDestroySpecific()
 	if IsServer() then
 		self:GetCaster():HookOutModifier( "GetModifierDamageReflectBonus", self )
+		self:GetCaster():HookOutModifier( "GetModifierDamageReflectPercentageBonus", self )
 	end
 end
 
 function modifier_item_penitent_mail_passive:DeclareFunctions()
 	local funcs = self:GetDefaultFunctions()
-	table.insert( funcs, MODIFIER_EVENT_ON_TAKEDAMAGE )
 	table.insert( funcs, MODIFIER_EVENT_ON_ABILITY_FULLY_CAST )
 	return funcs
 end
@@ -70,33 +72,38 @@ function modifier_item_penitent_mail_passive:Bonus_ThreatGain()
 end
 
 function modifier_item_penitent_mail_passive:GetModifierDamageReflectBonus(params)
-	return self.reflect
+	if params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK  or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE) then
+		return self.thorns
+	end
+end
+
+function modifier_item_penitent_mail_passive:GetModifierDamageReflectPercentageBonus(params)
+	if params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE) then
+		return self.reflect
+	end
 end
 
 modifier_item_penitent_mail_active = class({})
 LinkLuaModifier( "modifier_item_penitent_mail_active", "items/item_penitent_mail.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_penitent_mail_active:OnCreated()
-	self.reflect = self:GetSpecialValueFor("active_reflect")
-	if IsServer() then
-		self:GetCaster():HookInModifier( "GetModifierDamageReflectBonus", self )
-	end
+	self:OnRefresh()
 end
 
-function modifier_item_penitent_mail_active:OnCreated()
-	self.reflect = self:GetSpecialValueFor("active_reflect")
+function modifier_item_penitent_mail_active:OnRefresh()
+	self.reflect = self:GetSpecialValueFor("active_reflect") - self:GetSpecialValueFor("reflect")
 	if IsServer() then
-		self:GetCaster():HookInModifier( "GetModifierDamageReflectBonus", self )
+		self:GetCaster():HookInModifier( "GetModifierDamageReflectPercentageBonus", self )
 	end
 end
 
 function modifier_item_penitent_mail_active:OnDestroy()
 	if IsServer() then
-		self:GetCaster():HookOutModifier( "GetModifierDamageReflectBonus", self )
+		self:GetCaster():HookOutModifier( "GetModifierDamageReflectPercentageBonus", self )
 	end
 end
 
-function modifier_item_penitent_mail_active:GetModifierDamageReflectBonus(params)
+function modifier_item_penitent_mail_active:GetModifierDamageReflectPercentageBonus(params)
 	return self.reflect
 end
 

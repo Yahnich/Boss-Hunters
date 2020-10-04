@@ -52,7 +52,7 @@ function phenx_dive:OnSpellStart()
         caster:RemoveModifierByName("modifier_phenx_dive_caster")
         self:RefundManaCost()
     else
-        caster:AddNewModifier(caster, self, "modifier_phenx_dive_caster", {Duration = self:GetTalentSpecialValueFor("dash_duration")})
+        caster:AddNewModifier(caster, self, "modifier_phenx_dive_caster", {Duration = self:GetTalentSpecialValueFor("dash_duration"), ignoreStatusAmp = true})
         self:EndCooldown()
         caster:SetHealth( caster:GetHealth() * ( 100 - self:GetTalentSpecialValueFor("hp_cost_perc") ) / 100 )
     end
@@ -80,7 +80,9 @@ end
 
 function modifier_phenx_dive_caster:OnDestroy()
     if IsServer() then
+        local caster = self:GetCaster()
         self:GetAbility():SetCooldown()
+		ResolveNPCPositions( caster:GetAbsOrigin(), caster:GetHullRadius() + caster:GetCollisionPadding() )
     end
 end
 

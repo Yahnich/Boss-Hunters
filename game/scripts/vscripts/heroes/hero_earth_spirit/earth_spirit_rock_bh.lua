@@ -23,7 +23,9 @@ end
 function earth_spirit_rock_bh:OnSpellStart()
     local caster = self:GetCaster()
     local point = self:GetCursorPosition()
-
+	if self:GetCursorTarget() == caster then
+		point = caster:GetAbsOrigin() + caster:GetForwardVector() * 150
+	end
     local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_earth_spirit/espirit_spawn.vpcf", PATTACH_POINT, caster)
 	ParticleManager:SetParticleControl(nfx, 0, point)
 	ParticleManager:SetParticleControl(nfx, 1, point)

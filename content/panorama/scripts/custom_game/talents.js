@@ -30,6 +30,7 @@ function ServerResponded(){
 }
 
 function CheckUnitChanged( eventData ){
+	hasQueuedAction = false
 	if(lastRememberedHero != Players.GetLocalPlayerPortraitUnit()){
 		RequestNewPanelData()
 	}
@@ -48,6 +49,7 @@ function RequestNewPanelData( eventData ){
 }
 
 function AttemptPurchaseTalent(talentName, abilityName){
+	$.Msg( hasQueuedAction )
 	if(!hasQueuedAction)
 	{
 		hasQueuedAction = true
@@ -117,7 +119,7 @@ function PerformTalentLayout( panelData ){
 function AddTalentToAbilityButton( talentContainer, talentName, talentIndex, talentPhase, abilityName ){
 	var talent = talentContainer.FindChildTraverse("UniqueTalent"+talentIndex)
 	talent.RemoveClass("IsHidden")
-	var regex = /\%(.*?)\%/;
+	var regex = /\%(\S*?)\%/;
 	if( talentPhase == 1 ){
 		talent.AddClass("Learned")
 		talent.SetPanelEvent("onactivate", function(){

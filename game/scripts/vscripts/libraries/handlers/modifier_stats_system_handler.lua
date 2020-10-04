@@ -9,6 +9,7 @@ function modifier_stats_system_handler:OnCreated()
 	self.modifierFunctions = {}
 	self.modifierFunctions["GetModifierBaseCriticalChanceBonus"] = {}
 	self.modifierFunctions["GetModifierBaseCriticalDamageBonus"] = {}
+	self.modifierFunctions["GetModifierDamageReflectPercentageBonus"] = {}
 	self.modifierFunctions["GetModifierDamageReflectBonus"] = {}
 	self.modifierFunctions["GetModifierLifestealBonus"] = {}
 	self.modifierFunctions["GetModifierManacostReduction"] = {}
@@ -23,6 +24,7 @@ function modifier_stats_system_handler:OnCreated()
 	self.modifierFunctions["GetModifierStrengthBonusPercentage"] = {}
 	self.modifierFunctions["GetModifierAgilityBonusPercentage"] = {}
 	self.modifierFunctions["GetModifierIntellectBonusPercentage"] = {}
+	self.modifierFunctions["GetReincarnationDelay"] = {}
 	if IsServer() then
 		-- find all non-hooked functions on creation (mostly for illusions, but in case we missed any)
 		for _, modifier in ipairs( self:GetParent():FindAllModifiers() ) do
@@ -34,6 +36,9 @@ function modifier_stats_system_handler:OnCreated()
 			end
 			if modifier.GetModifierDamageReflectBonus then
 				self.modifierFunctions["GetModifierDamageReflectBonus"][modifier] = true
+			end
+			if modifier.GetModifierDamageReflectPercentageBonus then
+				self.modifierFunctions["GetModifierDamageReflectPercentageBonus"][modifier] = true
 			end
 			if modifier.GetModifierLifestealBonus then
 				self.modifierFunctions["GetModifierLifestealBonus"][modifier] = true
@@ -70,6 +75,9 @@ function modifier_stats_system_handler:OnCreated()
 			end
 			if modifier.GetModifierIntellectBonusPercentage then
 				self.modifierFunctions["GetModifierIntellectBonusPercentage"][modifier] = true
+			end
+			if modifier.GetReincarnationDelay then
+				self.modifierFunctions["GetReincarnationDelay"][modifier] = true
 			end
 		end
 		self:UpdateStatValues()
@@ -166,9 +174,39 @@ function modifier_stats_system_handler:DeclareFunctions()
 		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
 		MODIFIER_PROPERTY_IGNORE_MOVESPEED_LIMIT,
 		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE 
+		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE ,
+		MODIFIER_PROPERTY_REINCARNATION
 	}
 	return funcs
+end
+
+function modifier_stats_system_handler:ReincarnateTime()
+	if IsServer() then
+		local firstToCheck
+		local firstToCheckPriority = MODIFIER_PRIORITY_LOW
+		local checking = true
+		local modifiersToCheck = MergeTables( self.modifierFunctions["GetReincarnationDelay"], {} )
+		while checking do
+			for modifier, priority in pairs( modifiersToCheck ) do
+				if priority >= firstToCheckPriority then
+					firstToCheckPriority = priority
+					firstToCheck = modifier
+				end
+			end
+			if firstToCheck and firstToCheck.GetReincarnationDelay then
+				modifiersToCheck[firstToCheck] = nil
+				local resurrectionDelay = firstToCheck:GetReincarnationDelay()
+				if resurrectionDelay then
+					checking = false
+					return resurrectionDelay
+				end
+				firstToCheck = nil
+			else
+				checking = false
+				return nil
+			end
+		end
+	end
 end
 
 function modifier_stats_system_handler:GetModifierExtraHealthPercentage()
@@ -286,7 +324,7 @@ end
 function modifier_stats_system_handler:GetModifierBonusStats_Strength()
 	if self.requestingStrengthData then return end
 	self.requestingStrengthData = true
-	local strength = self:GetParent():GetAgility()
+	local strength = self:GetParent():GetStrength()
 	local bonusStr = 0
 	self.requestingStrengthData = false
 	for modifier, active in pairs( self.modifierFunctions["GetModifierStrengthBonusPercentage"]  ) do
@@ -361,6 +399,7 @@ function modifier_stats_system_handler:GetModifierEvasion_Constant()
 		return 5 + (self.statsInfo.evasion or 0) + (1-(1-0.0035)^owner:GetAgility())*100 
 	end
 end
+
 function modifier_stats_system_handler:GetModifierPreAttack_CriticalStrike(params)
 	local critChance =  5 + (self.statsInfo.critChance or 0)
 	local owner = self:GetCaster() or self:GetParent()
@@ -431,18 +470,44 @@ function modifier_stats_system_handler:OnTakeDamage( params )
 	-------------------------------
 	if parent:IsIllusion() or params.unit ~= parent or params.attacker == parent or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) then 
 	else
+		local damageTables = {}
 		if self.modifierFunctions["GetModifierDamageReflectBonus"] then
 			for modifier, active in pairs( self.modifierFunctions["GetModifierDamageReflectBonus"] ) do
 				if modifier:IsNull() then
 					self.modifierFunctions["GetModifierDamageReflectBonus"][modifier] = nil
 				elseif active and modifier.GetModifierDamageReflectBonus and modifier:GetAbility() then
-					local reflect = (modifier:GetModifierDamageReflectBonus( params ) or 0) / 100
-					if params.original_damage * reflect > 1  then
-						modifier:GetAbility():DealDamage( parent, params.attacker, params.original_damage * reflect, {damage_type = params.damage_type, damage_flags = DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL} )
+					local modAb =  modifier:GetAbility()
+					damageTables[modAb] = damageTables[modAb] or {}
+					damageTables[modAb][DAMAGE_TYPE_PHYSICAL] = (damageTables[modAb][DAMAGE_TYPE_PHYSICAL] or 0) + (modifier:GetModifierDamageReflectBonus( params ) or 0)
+				end
+			end
+		end
+		if self.modifierFunctions["GetModifierDamageReflectPercentageBonus"] then
+			for modifier, active in pairs( self.modifierFunctions["GetModifierDamageReflectPercentageBonus"] ) do
+				if modifier:IsNull() then
+					self.modifierFunctions["GetModifierDamageReflectPercentageBonus"][modifier] = nil
+				elseif active and modifier.GetModifierDamageReflectPercentageBonus and modifier:GetAbility() then
+					local modAb =  modifier:GetAbility()
+					damageTables[modAb] = damageTables[modAb] or {}
+					local reflect = (modifier:GetModifierDamageReflectPercentageBonus( params ) or 0) / 100
+					if params.original_damage * reflect >= 1  then
+						damageTables[modAb][params.damage_type] = (damageTables[modAb][params.damage_type] or 0) + params.original_damage * reflect
 					end
 				end
 			end
 		end
+		for ability, damageTable in pairs( damageTables ) do
+			if (damageTable[DAMAGE_TYPE_PHYSICAL] or 0) > 0 then
+				ability:DealDamage( ability:GetCaster() or parent, params.attacker, damageTable[DAMAGE_TYPE_PHYSICAL], {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL} )
+			end
+			if (damageTable[DAMAGE_TYPE_MAGICAL] or 0) > 0 then
+				ability:DealDamage( ability:GetCaster() or parent, params.attacker, damageTable[DAMAGE_TYPE_MAGICAL], {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL} )
+			end
+			if (damageTable[DAMAGE_TYPE_PURE] or 0) > 0 then
+				ability:DealDamage( ability:GetCaster() or parent, params.attacker, damageTable[DAMAGE_TYPE_PURE], {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL} )
+			end
+		end
+		
 	end
 	-------------------------------
 	--- AREA DAMAGE
@@ -452,7 +517,7 @@ function modifier_stats_system_handler:OnTakeDamage( params )
 	if countAsAttack then
 		damage_flags = bit.bor(damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION)
 	end
-	if self.processingAreaDamageIgnore or params.attacker ~= self:GetParent() or params.unit:IsSameTeam(params.attacker) or params.damage <= 0 then
+	if params.attacker.processingAreaDamageIgnore or self.processingAreaDamageIgnore or params.attacker ~= self:GetParent() or params.unit:IsSameTeam(params.attacker) or params.damage <= 0 then
 	else
 		local spellValid = false
 		local spellValidTargeting = false
@@ -479,7 +544,7 @@ function modifier_stats_system_handler:OnTakeDamage( params )
 				self.processingAreaDamageIgnore = true
 				for _, enemy in ipairs( params.attacker:FindEnemyUnitsInRadius( params.unit:GetAbsOrigin(), 325 ) ) do
 					if enemy ~= params.unit then
-						ApplyDamage({victim = enemy, attacker = params.attacker, damage_type = params.damage_type, damage = params.original_damage * areaDamage / 100, ability = params.inflictor, damage_flags = damage_flags})
+						ApplyDamage({victim = enemy, attacker = params.attacker, damage_type = params.damage_type, damage = damage, ability = params.inflictor, damage_flags = damage_flags})
 					end
 				end
 				self.processingAreaDamageIgnore = false

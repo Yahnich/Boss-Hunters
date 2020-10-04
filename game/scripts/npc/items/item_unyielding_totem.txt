@@ -1,0 +1,702 @@
+"DOTAAbilities"
+{
+	"item_unyielding_totem"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2397"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_unyielding_totem"
+		"AbilityTextureName"			"bkb/unyielding_totem_1"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"980"
+		"ItemShopTags"					"spell immune"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"bkb;unyielding_totem"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+				
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"1"
+		
+		"AvailableRuneSlots"			"0"
+		
+		"precache"
+		{
+			"precache"					"soundevents/game_sounds_items.vsndevts"
+		}
+
+		"AbilityCooldown"				"60"
+		"AbilitySharedCooldown"			"unyieldingtotem"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5 6 7 8 8 8 8 8 8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"status_amp_loss"		"-40 -40 -40 -40 -35 -30 -25 -20 -15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"dmg_reduction"			"-40 -40 -40 -40 -35 -30 -25 -20 -15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 2
+	//=================================================================================================================
+	"item_recipe_unyielding_totem_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2398"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"965"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_unyielding_totem_2"
+		"ItemRequirements"
+		{
+			"01"						"item_unyielding_totem"
+		}
+	}
+	"item_unyielding_totem_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2399"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_unyielding_totem"
+		"AbilityTextureName"			"bkb/unyielding_totem_2"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"spell immune"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"bkb;black king bar"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"2"
+		
+		"AvailableRuneSlots"			"1"
+		
+		"AbilityCooldown"				"60"
+		"AbilitySharedCooldown"			"unyieldingtotem"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5 6 7 8 8 8 8 8 8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"status_amp_loss"		"-40 -40 -40 -40 -35 -30 -25 -20 -15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"dmg_reduction"			"-40 -40 -40 -40 -35 -30 -25 -20 -15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_unyielding_totem_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2400"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_unyielding_totem_3"
+		"ItemRequirements"
+		{
+			"01"						"item_unyielding_totem_2;item_recipe_unyielding_totem_2"
+		}
+	}
+	
+	"item_unyielding_totem_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2401"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_unyielding_totem"
+		"AbilityTextureName"			"bkb/unyielding_totem_3"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"spell immune"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"bkb;black king bar"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"3"
+		
+		"AvailableRuneSlots"			"1"
+	
+		"AbilityCooldown"				"60"
+		"AbilitySharedCooldown"			"unyieldingtotem"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5 6 7 8 8 8 8 8 8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"status_amp_loss"		"-40 -40 -40 -40 -35 -30 -25 -20 -15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"dmg_reduction"			"-40 -40 -40 -40 -35 -30 -25 -20 -15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_unyielding_totem_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2402"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_unyielding_totem_4"
+		"ItemRequirements"
+		{
+			"01"						"item_unyielding_totem_3;item_recipe_unyielding_totem_2"
+		}
+	}
+	
+	"item_unyielding_totem_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2403"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_unyielding_totem"
+		"AbilityTextureName"			"bkb/unyielding_totem_4"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"spell immune"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"bkb;black king bar"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"4"
+		
+		"AvailableRuneSlots"			"2"
+	
+		"AbilityCooldown"				"60"
+		"AbilitySharedCooldown"			"unyieldingtotem"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5 6 7 8 8 8 8 8 8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"status_amp_loss"		"-40 -40 -40 -40 -35 -30 -25 -20 -15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"dmg_reduction"			"-40 -40 -40 -40 -35 -30 -25 -20 -15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_unyielding_totem_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2404"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_unyielding_totem_5"
+		"ItemRequirements"
+		{
+			"01"						"item_unyielding_totem_4;item_recipe_unyielding_totem_2"
+		}
+	}
+	
+	"item_unyielding_totem_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2405"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_unyielding_totem"
+		"AbilityTextureName"			"bkb/unyielding_totem_5"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"spell immune"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"bkb;black king bar"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"5"
+		
+		"AvailableRuneSlots"			"2"
+	
+		"AbilityCooldown"				"60"
+		"AbilitySharedCooldown"			"unyieldingtotem"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5 6 7 8 8 8 8 8 8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"status_amp_loss"		"-40 -40 -40 -40 -35 -30 -25 -20 -15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"dmg_reduction"			"-40 -40 -40 -40 -35 -30 -25 -20 -15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_unyielding_totem_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2406"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_unyielding_totem_6"
+		"ItemRequirements"
+		{
+			"01"						"item_unyielding_totem_5;item_recipe_unyielding_totem_2"
+		}
+	}
+	
+	"item_unyielding_totem_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2407"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_unyielding_totem"
+		"AbilityTextureName"			"bkb/unyielding_totem_6"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"spell immune"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"bkb;black king bar"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"6"
+		
+		"AvailableRuneSlots"			"2"
+	
+		"AbilityCooldown"				"60"
+		"AbilitySharedCooldown"			"unyieldingtotem"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5 6 7 8 8 8 8 8 8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"status_amp_loss"		"-40 -40 -40 -40 -35 -30 -25 -20 -15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"dmg_reduction"			"-40 -40 -40 -40 -35 -30 -25 -20 -15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_unyielding_totem_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2408"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_unyielding_totem_7"
+		"ItemRequirements"
+		{
+			"01"						"item_unyielding_totem_6;item_recipe_unyielding_totem_2"
+		}
+	}
+	
+	"item_unyielding_totem_7"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2409"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_unyielding_totem"
+		"AbilityTextureName"			"bkb/unyielding_totem_7"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"spell immune"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"bkb;black king bar"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"7"
+		
+		"AvailableRuneSlots"			"3"
+	
+		"AbilityCooldown"				"60"
+		"AbilitySharedCooldown"			"unyieldingtotem"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5 6 7 8 8 8 8 8 8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"status_amp_loss"		"-40 -40 -40 -40 -35 -30 -25 -20 -15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"dmg_reduction"			"-40 -40 -40 -40 -35 -30 -25 -20 -15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_unyielding_totem_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2410"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_unyielding_totem_8"
+		"ItemRequirements"
+		{
+			"01"						"item_unyielding_totem_7;item_recipe_unyielding_totem_2"
+		}
+	}
+	
+	"item_unyielding_totem_8"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2411"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_unyielding_totem"
+		"AbilityTextureName"			"bkb/unyielding_totem_8"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"spell immune"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"bkb;black king bar"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"8"
+		
+		"AvailableRuneSlots"			"3"
+	
+		"AbilityCooldown"				"60"
+		"AbilitySharedCooldown"			"unyieldingtotem"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5 6 7 8 8 8 8 8 8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"status_amp_loss"		"-40 -40 -40 -40 -35 -30 -25 -20 -15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"dmg_reduction"			"-40 -40 -40 -40 -35 -30 -25 -20 -15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_unyielding_totem_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2412"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_unyielding_totem_9"
+		"ItemRequirements"
+		{
+			"01"						"item_unyielding_totem_8;item_recipe_unyielding_totem_2"
+		}
+	}
+	
+	"item_unyielding_totem_9"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2413"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_unyielding_totem"
+		"AbilityTextureName"			"bkb/unyielding_totem_9"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"spell immune"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"bkb;black king bar"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"9"
+		
+		"AvailableRuneSlots"			"3"
+	
+		"AbilityCooldown"				"60"
+		"AbilitySharedCooldown"			"unyieldingtotem"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5 6 7 8 8 8 8 8 8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"status_amp_loss"		"-40 -40 -40 -40 -35 -30 -25 -20 -15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"dmg_reduction"			"-40 -40 -40 -40 -35 -30 -25 -20 -15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+			}
+		}
+	}
+}

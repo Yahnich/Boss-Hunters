@@ -40,7 +40,7 @@ function boss4_death_ball:OnSpellStart()
 			local caster = self:GetCaster()
 			local ability = self:GetAbility()
 			if not self.hitUnits[target:entindex()] then
-				if target:TriggerSpellAbsorb(self) then return false end
+				if target:TriggerSpellAbsorb(ability) then return false end
 				ability:DealDamage(caster, target, self.damage)
 				caster:HealEvent(self.damage, ability, caster)
 				EmitSoundOn("Hero_Undying.PreAttack", caster)

@@ -24,7 +24,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_per_sec"		"2"
+				"damage_per_sec"		"5"
 			}
 			"02"
 			{
@@ -57,12 +57,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"as_per_stack"			"2 3"
+				"as_per_stack"			"3 5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"ms_per_stack"			"2 3"
+				"ms_per_stack"			"3 5"
 			}
 		}
 	}
@@ -139,7 +139,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_per_sec"			"33 50"
+				"damage_per_sec"			"80 100"
 			}
 		}
 	}
@@ -182,7 +182,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"25"
+				"damage"					"40"
 			}
 			"03"
 			{
@@ -225,7 +225,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"heal_per_stack"			"0.35 0.5"
+				"heal_per_stack"			"0.6 1"
 			}
 		}
 	}
@@ -295,7 +295,7 @@
 		
 		"AbilityCastRange"				"800"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCastPoint"				"1 0.75"
+		"AbilityCastPoint"				"1.35 1"
 		"AbilityCooldown"				"15"
 	
 		"precache"
@@ -308,7 +308,7 @@
 			"01"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "stacks_applied"     			"10 15"
+                "stacks_applied"     			"20 25"
             }
 		}
 	}

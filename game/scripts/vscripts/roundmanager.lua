@@ -24,13 +24,13 @@ EVENT_CHANCE = 100 - COMBAT_CHANCE
 
 PREP_TIME = 60
 
-ELITE_ABILITIES_TO_GIVE = 1
 
 function RoundManager:Initialize(context)
 	RoundManager = self
 	self.bossPool = LoadKeyValues('scripts/kv/boss_pool.txt')
 	self.eventPool = LoadKeyValues('scripts/kv/event_pool.txt')
 	self.combatPool = LoadKeyValues('scripts/kv/combat_pool.txt')
+	self.specificRoundKV = LoadKeyValues('scripts/kv/combat_data.txt')
 
 	self.zones = {}
 	self.eventsFinished = 0
@@ -48,13 +48,16 @@ function RoundManager:Initialize(context)
 end
 
 function RoundManager:VoteSkipPrepTime(userid, event)
-	self.votedToSkipPrep = self.votedToSkipPrep or 0
-	self.votedToSkipPrep = self.votedToSkipPrep + 1
-	local noVotes = HeroList:GetActiveHeroCount() - self.votedToSkipPrep
-	CustomGameEventManager:Send_ServerToAllClients("bh_update_votes_prep_time", {yes = self.votedToSkipPrep, no = noVotes})
-	if noVotes <= 0 then
-		self.prepTimer = 0
+	self.votedToSkipPrep = self.votedToSkipPrep or {}
+	self.votedToSkipPrep[event.pID] = true
+	self.prepTimer = self.prepTimer / 2
+	CustomGameEventManager:Send_ServerToAllClients("bh_update_votes_prep_time", {yes = self.votedToSkipPrep})
+	for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
+		if not self.votedToSkipPrep[hero:GetPlayerID()] then
+			return
+		end
 	end
+	self.prepTimer = math.max( (self.freezePreparationTime or 0) + 0.5, 0 )
 end
 
 function RoundManager:VoteNewGame(userid, event)
@@ -79,6 +82,7 @@ function RoundManager:VoteNewGame(userid, event)
 		self.bossPool = LoadKeyValues('scripts/kv/boss_pool.txt')
 		self.eventPool = LoadKeyValues('scripts/kv/event_pool.txt')
 		self.combatPool = LoadKeyValues('scripts/kv/combat_pool.txt')
+		self.specificRoundKV = LoadKeyValues('scripts/kv/combat_pool.txt')
 		POSSIBLE_ZONES = {"Grove", "Sepulcher", "Solitude", "Elysium"}
 		self.prepTimer = 0
 		for i = 1, ZONE_COUNT do
@@ -328,7 +332,35 @@ function RoundManager:StartPrepTime(fPrep)
 		if self.zones[self.currentZone] and self.zones[self.currentZone][1] and not self.prepTimeTimer then
 			local event = RoundManager:GetCurrentEvent()
 			event._playerChoices = {}
-			CustomGameEventManager:Send_ServerToAllClients("bh_start_prep_time", {})
+			local foes = {}
+			local events = {}
+			for enemy, data in pairs(event:GetEnemiesToSpawn()) do
+				local foe = {}
+				foe.name = enemy
+				foe.amount = (data.Amount or 0) + (data.RaidBonus or 0) * (RoundManager:GetCurrentRaidTier() - 1)
+				foe.abilities = {}
+				local unitKV = GameRules.UnitKV[enemy]
+				if unitKV then
+					for i = 1, 25 do
+						local abilityName = unitKV["Ability"..i]
+						if abilityName then
+							table.insert( foe.abilities, abilityName )
+						end
+					end
+				end
+				table.insert( foes, foe )
+			end
+			local maskedEventName = event:GetEventName()
+			if event:GetEventType() == EVENT_TYPE_EVENT then
+				maskedEventName = string.lower(self.currentZone).."_random_event"
+			end
+			local modifiersToSend = event:ChampionSpawnModifiers()
+			if RoundManager:GetEventsFinished() < 3 then
+				modifiersToSend = {}
+			end
+			local eventToSend = {foes = foes, modifiers = modifiersToSend, eventName = maskedEventName, eventType = event:GetEventType(), reward = event:GetEventRewardType()}
+			table.insert( events, eventToSend )
+			CustomGameEventManager:Send_ServerToAllClients("bh_start_prep_time", {events = events})
 			
 			for _, hero in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_FRIENDLY}) ) do
 				if hero:IsRealHero() then
@@ -362,7 +394,7 @@ function RoundManager:StartPrepTime(fPrep)
 			if RoundManager:GetAscensions() > 0 then
 				ascensionText = "A" .. RoundManager:GetAscensions()
 			end
-			CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { eventName = RoundManager:GetCurrentEventName(), roundText = self.currentZone.." "..romanVersion, ascensionText = ascensionText} )
+			CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { eventName = RoundManager:GetCurrentEventName(), roundText = (RoundManager:GetEventsFinished()+1).. ": "..self.currentZone.." "..romanVersion, ascensionText = ascensionText} )
 			self.prepTimeTimer = Timers:CreateTimer(1, function()
 				self.prepTimer = self.prepTimer - 1
 				CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(self.prepTimer + 0.5) } )
@@ -385,7 +417,7 @@ function RoundManager:EndPrepTime(bReset)
 		if self.prepTimeTimer then Timers:RemoveTimer( self.prepTimeTimer ) end
 		self.prepTimeTimer = nil
 		
-		self.votedToSkipPrep = 0
+		self.votedToSkipPrep = {}
 		CustomGameEventManager:Send_ServerToAllClients("bh_end_prep_time", {})
 		
 		for _, hero in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_FRIENDLY}) ) do
@@ -475,7 +507,7 @@ function RoundManager:EndEvent(bWonRound)
 			unit:SetThreat( 0 )
 		end
 		
-		local clearPeriod = 3
+		self.freezePreparationTime = 3
 		Timers:CreateTimer(function()
 			for _, unit in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_ENEMY, flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_DEAD + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD}) ) do
 				if unit:GetTeam() == DOTA_TEAM_BADGUYS then
@@ -490,17 +522,17 @@ function RoundManager:EndEvent(bWonRound)
 					end
 				end
 			end
-			clearPeriod = clearPeriod - 0.25
-			if clearPeriod > 0 then
+			self.freezePreparationTime = self.freezePreparationTime - 0.25
+			if self.freezePreparationTime > 0 then
 				return 0.25
 			else
 				collectgarbage()
 			end
 		end)
-		local fTime = (PREP_TIME or 30) / math.ceil( (GameRules:GetGameDifficulty() - 1) / 2 )
-		if RoundManager:GetCurrentEvent() and RoundManager:GetCurrentEvent():IsEvent() then
-			fTime = 5
-		end
+		local fTime = PREP_TIME
+		-- if RoundManager:GetCurrentEvent() and RoundManager:GetCurrentEvent():IsEvent() then
+			-- fTime = 5
+		-- end
 		CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
 		if GameRules._lives == 0 then
 			return RoundManager:GameIsFinished(false)
@@ -512,10 +544,10 @@ function RoundManager:EndEvent(bWonRound)
 		SendErrorReport(err, self)
 	end
 	if not status then -- go next phase
-		local fTime = (PREP_TIME or 30) / math.ceil( (GameRules:GetGameDifficulty() - 1) / 2 )
-		if RoundManager:GetCurrentEvent() and RoundManager:GetCurrentEvent():IsEvent() then
-			fTime = 5
-		end
+		local fTime = PREP_TIME
+		-- if RoundManager:GetCurrentEvent() and RoundManager:GetCurrentEvent():IsEvent() then
+			-- fTime = 5
+		-- end
 		CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
 		if GameRules._lives == 0 then
 			return RoundManager:GameIsFinished(false)
@@ -624,7 +656,7 @@ function RoundManager:GameIsFinished(bWon)
 	local GameFinishCatch = function()
 		EventManager:FireEvent("boss_hunters_game_finished")
 		-- Register Statistics for all heroes for ascension 0, who cares about that other shit
-		if RoundManager:GetAscensions() == 0 then
+		if RoundManager:GetAscensions() == 0 and not IsInToolsMode() then
 			for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
 				RoundManager:RegisterStatsForHero( hero, bWon )
 			end
@@ -742,9 +774,10 @@ function RoundManager:RegisterStatsForHero( hero, bWon )
 end
 
 function RoundManager:InitializeUnit(unit, bElite)
+	local event = RoundManager:GetCurrentEvent()
 	unit.hasBeenInitialized = true
 	unit.NPCIsElite = bElite
-	if bElite then RoundManager:GetCurrentEvent().eliteHasBeenInitialized = true end
+	if bElite and event then event.eliteHasBeenInitialized = true end
 	local expectedHP = unit:GetBaseMaxHealth() * RandomFloat(0.95, 1.05)
 	local expectedDamage = ( unit:GetAverageBaseDamage() + (RoundManager:GetEventsFinished() * 1.5) ) * RandomFloat(0.90, 1.10)
 	local playerHPMultiplier = 0.375
@@ -790,19 +823,8 @@ function RoundManager:InitializeUnit(unit, bElite)
 		ParticleManager:ReleaseParticleIndex( nParticle )
 		unit:SetModelScale(unit:GetModelScale()*1.15)
 		
-		local eliteTypes = {}
-		for eliteType, weight in pairs(GameRules._Elites) do
-			if tonumber(weight) > 0 then
-				for i = 1, tonumber(weight) do
-					table.insert(eliteTypes, eliteType)
-				end
-			end
-		end
-		
-		for i = 1, ELITE_ABILITIES_TO_GIVE do
-			local roll = RandomInt(1, #eliteTypes)
-			local eliteAbName = eliteTypes[roll]
-			table.remove(eliteTypes, roll)
+		local eliteAbilities = event:ChampionSpawnModifiers()
+		for _, eliteAbName in pairs( event:ChampionSpawnModifiers() ) do
 			local eliteAb = unit:AddAbilityPrecache(eliteAbName)
 			eliteAb:UpgradeAbility(true)
 		end

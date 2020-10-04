@@ -31,7 +31,7 @@ function treant_overgrowth_bh:ApplyOverGrowth(target, duration)
 	target:EmitSound("Hero_Treant.Overgrowth.Target")
 	if target:TriggerSpellAbsorb( self ) then return end
 	local flDur = duration or self:GetTalentSpecialValueFor("duration")
-	target:AddNewModifier(caster, self, "modifier_treant_overgrowth_bh_root", {duration = duration})
+	target:AddNewModifier(caster, self, "modifier_treant_overgrowth_bh_root", {duration = flDur})
 	
 	if caster:HasTalent("special_bonus_unique_treant_overgrowth_2") then
 		local seed = caster:FindAbilityByName("treant_leech_seed_bh")

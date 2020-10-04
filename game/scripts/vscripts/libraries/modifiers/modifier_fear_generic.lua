@@ -3,22 +3,38 @@ LinkLuaModifier("modifier_fear_generic", "libraries/modifiers/modifier_fear_gene
 
 if IsServer() then
 	function modifier_fear_generic:OnCreated()
-		if RoundManager.spawnPositions then
-			self:OnIntervalThink()
-		else
-			self:OnIntervalThink()
-			self:StartIntervalThink(0.15)
-		end
+		self:OnIntervalThink()
+		self:StartIntervalThink(0.5)
 	end
 	
 	function modifier_fear_generic:OnIntervalThink()
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
 		local newPos
+		local checkPos
+		if caster == parent then
+			for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), -1, {order = FIND_CLOSEST} ) ) do
+				caster = enemy
+				break
+			end
+		end
+		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), parent:GetIdealSpeed() * 2, {order = FIND_CLOSEST} ) ) do
+			checkPos = (( checkPos or enemy:GetAbsOrigin() ) + enemy:GetAbsOrigin() )/2
+			break
+		end
+		if caster == parent then
+			return
+		end
+		if not checkPos then
+			return
+		end
 		if RoundManager.spawnPositions then
 			for _, possiblePos in ipairs( RoundManager.spawnPositions ) do
-				if not newPos or CalculateDistance( caster, possiblePos ) > CalculateDistance( caster, newPos ) then
-					newPos = possiblePos
+				if not newPos or CalculateDistance( checkPos, possiblePos ) > CalculateDistance( checkPos, newPos )  then
+					local secondCheck = parent:GetAbsOrigin() + CalculateDirection( parent, checkPos ) * parent:GetIdealSpeed() * 0.5 -- we want the parent to move away when possible, cull movement towards the enemies
+					if GridNav:FindPathLength( secondCheck, possiblePos ) < GridNav:FindPathLength( parent:GetAbsOrigin(), possiblePos ) then
+						newPos = possiblePos
+					end
 				end
 			end
 		end
@@ -42,7 +58,10 @@ if IsServer() then
 				end
 			end
 		end
-		self:GetParent():MoveToPosition(newPos)
+		if CalculateDistance( caster, self.oldPos or caster ) < CalculateDistance( caster, newPos or caster ) then
+			self:GetParent():MoveToPosition(newPos)
+			self.oldPos = newPos
+		end
 	end
 end
 

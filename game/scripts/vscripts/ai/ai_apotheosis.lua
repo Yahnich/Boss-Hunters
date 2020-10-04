@@ -1,6 +1,4 @@
---[[
-Broodking AI
-]]
+if IsClient() then return end
 
 function Spawn( entityKeyValues )
 	AITimers:CreateTimer(function()

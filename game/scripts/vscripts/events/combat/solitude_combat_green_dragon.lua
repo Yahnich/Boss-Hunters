@@ -1,21 +1,5 @@
 local function StartEvent(self)
-	local spawnPos = RoundManager:PickRandomSpawn()
-	self.enemiesToSpawn = 1
-	self.eventEnded = false
-	self.eventHandler = Timers:CreateTimer(3, function()
-		local spawn = CreateUnitByName("npc_dota_green_dragon", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-		local greenPool = spawn:FindAbilityByName("green_dragon_toxic_pool")
-		if greenPool then greenPool:StartCooldown(10) end
-		spawn.unitIsRoundNecessary = true
-		spawn:SetCoreHealth(1750)
-		self.enemiesToSpawn = self.enemiesToSpawn - 1
-		if self.enemiesToSpawn > 0 then
-			return 10
-		end
-	end)
-	self._vEventHandles = {
-		ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
-	}
+	self:StartCombatRound()
 end
 
 local function EndEvent(self, bWon)

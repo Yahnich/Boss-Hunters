@@ -29,7 +29,7 @@ end
 function modifier_dazzle_weave_bh_handler:OnAbilityFullyCast(params)
 	local caster = params.unit
 	local castedAbility = params.ability
-	if caster == self:GetCaster() and not castedAbility:IsOrbAbility() and castedAbility:GetCooldownTimeRemaining() > 0 then
+	if caster == self:GetCaster() and not castedAbility:IsOrbAbility() and castedAbility:GetCooldownTimeRemaining() > 0 and not castedAbility:IsItem() then
 		local ability = self:GetAbility()
 		local casterPos = caster:GetAbsOrigin()
 		caster:EmitSound("Hero_Dazzle.Weave")

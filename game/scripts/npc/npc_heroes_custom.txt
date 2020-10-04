@@ -722,14 +722,15 @@
 	{
 		"override_hero"					"npc_dota_hero_faceless_void"
 		"Ability1"						"faceless_time_walk"
-		"Ability2"						"faceless_clock_stopper"
-		"Ability3"						"faceless_chrono_trigger"
+		"Ability2"						"faceless_time_dilation"
+		"Ability3"						"faceless_time_lock"
+		"Ability4"						"faceless_erase_timeline"
 		"Ability6"						"faceless_chrono"
 		
 		"Ability10"						"special_bonus_unique_faceless_time_walk_1"
 		"Ability11"						"special_bonus_unique_faceless_time_walk_2"
-		"Ability12"						"special_bonus_unique_faceless_clock_stopper_1"
-		"Ability13"						"special_bonus_unique_faceless_clock_stopper_2"
+		"Ability12"						"special_bonus_unique_faceless_time_dilation_1"
+		"Ability13"						"special_bonus_unique_faceless_time_dilation_2"
 		"Ability14"						"special_bonus_unique_faceless_chrono_trigger_1"
 		"Ability15"						"special_bonus_unique_faceless_chrono_trigger_2"
 		"Ability16"						"special_bonus_unique_faceless_chrono_1"
@@ -870,16 +871,17 @@
 		"Ability1"		"jakiro_dual_breath_bh"
 		"Ability2"		"jakiro_ice_path_bh"
 		"Ability3"		"jakiro_liquid_fire_bh"
+		"Ability4"		"jakiro_elemental_convergence"
 		"Ability6"		"jakiro_macropyre_bh"
 
 		"Ability10"		"special_bonus_unique_jakiro_dual_breath_bh_1"
-		"Ability11"		"special_bonus_unique_jakiro_dual_breath_bh_2"
+		"Ability11"		"special_bonus_unique_jakiro_elemental_convergence_1"
 		"Ability12"		"special_bonus_unique_jakiro_ice_path_bh_1"
-		"Ability13"		"special_bonus_unique_jakiro_ice_path_bh_2"
+		"Ability13"		"special_bonus_unique_jakiro_ice_path_bh_3"
 		"Ability14"		"special_bonus_unique_jakiro_liquid_fire_bh_1"
 		"Ability15"		"special_bonus_unique_jakiro_liquid_fire_bh_2"
 		"Ability16"		"special_bonus_unique_jakiro_macropyre_bh_1"
-		"Ability17"		"special_bonus_unique_jakiro_macropyre_bh_2"
+		"Ability17"		"special_bonus_unique_jakiro_macropyre_bh_3"
 	}
 
 	"npc_dota_hero_juggernaut_ebf"
@@ -1842,8 +1844,8 @@
 		"override_hero"					"npc_dota_hero_skeleton_king"
 		"Ability1"						"wk_blast"
 		"Ability2"						"wk_vamp"
-		"Ability3"						"wk_skeletons"
-		"Ability4"						"wk_crit"
+		"Ability3"						"wk_crit"
+		"Ability4"						"wk_skeletons"
 		"Ability6"						"wk_reincarnation"
 	
 		"Ability10"						"special_bonus_unique_wk_blast_1"
@@ -1851,9 +1853,9 @@
 		"Ability12"						"special_bonus_unique_wk_vamp_1"
 		"Ability13"						"special_bonus_unique_wk_vamp_2"
 		"Ability14"						"special_bonus_unique_wk_skeletons_1"
-		"Ability15"						"special_bonus_unique_wk_skeletons_2"
+		"Ability15"						"special_bonus_unique_wk_crit_1"
 		"Ability16"						"special_bonus_unique_wk_reincarnation_1"
-		"Ability17"						"special_bonus_unique_wk_reincarnation_2"
+		"Ability17"						"special_bonus_unique_wk_reincarnation_3"
 	}
 	"npc_dota_hero_lone_druid_ebf"
 	{
@@ -1866,7 +1868,7 @@
 		"Ability6"						"druid_transform"
 
 		"Ability10"						"special_bonus_unique_druid_battle_cry_1"
-		"Ability11"						"special_bonus_unique_druid_battle_cry_2"
+		"Ability11"						"special_bonus_unique_druid_battle_cry_3"
 		"Ability12"						"special_bonus_unique_druid_spirit_link_1"
 		"Ability13"						"special_bonus_unique_druid_spirit_link_2"
 		"Ability14"						"special_bonus_unique_druid_savage_roar_1"
@@ -1905,20 +1907,20 @@
 	"npc_dota_hero_slardar_ebf"
 	{
 		"override_hero"					"npc_dota_hero_slardar"
-		"Ability1"						"slardar_sprint_bh"
+		"Ability1"						"slardar_blood_in_the_water"
 		"Ability2"						"slardar_slithereen_crush_bh"
-		"Ability3"						"slardar_oathbreaker"
-		"Ability4"						"slardar_oathkeeper"
+		"Ability3"						"slardar_grasp_of_the_deep"
+		"Ability4"						"slardar_maw_of_the_void"
 		"Ability6"						"slardar_amplify_damage_bh"
 		
-		"Ability10"						"special_bonus_unique_slardar_sprint_1"
-		"Ability11"						"special_bonus_unique_slardar_sprint_2"
+		"Ability10"						"special_bonus_unique_slardar_blood_in_the_water_1"
+		"Ability11"						"special_bonus_unique_slardar_blood_in_the_water_2"
 		"Ability12"						"special_bonus_unique_slardar_slithereen_crush_1"
 		"Ability13"						"special_bonus_unique_slardar_slithereen_crush_2"
-		"Ability14"						"special_bonus_unique_slardar_oathbreaker_1"
-		"Ability15"						"special_bonus_unique_slardar_oathkeeper_1"
-		"Ability16"						"special_bonus_unique_slardar_amplify_damage_1"
-		"Ability17"						"special_bonus_unique_slardar_amplify_damage_2"
+		"Ability14"						"special_bonus_unique_slardar_grasp_of_the_deep_1"
+		"Ability15"						"special_bonus_unique_slardar_grasp_of_the_deep_2"
+		"Ability16"						"special_bonus_unique_slardar_amplify_damage_2"
+		"Ability17"						"special_bonus_unique_slardar_amplify_damage_3"
 	}
 	//=================================================================================================================
 	// HERO: slark
@@ -2190,7 +2192,6 @@
 
 		"AttributeBaseAgility"			"18"
 		"AttributeAgilityGain"			"1.2"
-		
 	}
 	"npc_dota_hero_treant" // Forest
 	{

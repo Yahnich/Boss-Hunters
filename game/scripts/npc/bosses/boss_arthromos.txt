@@ -80,6 +80,11 @@
 				"var_type"				"FIELD_FLOAT"
 				"radius"				"200 300"
 			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"heal_amp_loss"			"-75"
+			}
 		}
 	}
 	

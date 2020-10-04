@@ -1,6 +1,4 @@
---[[
-Broodking AI
-]]
+if IsClient() then return end
 
 function Spawn( entityKeyValues )
 	AITimers:CreateTimer(function()
@@ -8,22 +6,16 @@ function Spawn( entityKeyValues )
 			return AIThink(thisEntity)
 		end
 	end)
-	thisEntity.tendril = thisEntity:FindAbilityByName("boss_sloth_demon_slime_tendrils")
-	thisEntity.hide = thisEntity:FindAbilityByName("boss_sloth_demon_slime_hide")
-	thisEntity.trail = thisEntity:FindAbilityByName("boss_sloth_demon_slime_trail")
+	
 	thisEntity.cocoon = thisEntity:FindAbilityByName("boss_sloth_demon_slime_cocoon")
 
 	AITimers:CreateTimer(0.1, function()
-		if  math.floor(GameRules.gameDifficulty + 0.5) < 2 then 
-			thisEntity.tendril:SetLevel(1)
-			thisEntity.hide:SetLevel(1)
-			thisEntity.trail:SetLevel(1)
-			thisEntity.cocoon:SetLevel(1)
-		else
-			thisEntity.tendril:SetLevel(2)
-			thisEntity.hide:SetLevel(2)
-			thisEntity.trail:SetLevel(2)
-			thisEntity.cocoon:SetLevel(2)
+		 for i = 0, thisEntity:GetAbilityCount() - 1 do
+			local ability = thisEntity:GetAbilityByIndex( i )
+			
+			if ability then
+				ability:SetLevel( math.floor( GameRules.gameDifficulty/2 + 0.5) )
+			end
 		end
 	end)
 
@@ -32,8 +24,10 @@ end
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 		local target = AICore:GetHighestPriorityTarget( thisEntity )
-		if thisEntity.cocoon:IsFullyCastable() and ( AICore:BeingAttacked( thisEntity ) > 2 or thisEntity:GetHealthPercent() < 75 ) then
-			return CastCocoon(thisEntity)
+		if thisEntity.cocoon then
+			if thisEntity.cocoon:IsFullyCastable() and ( AICore:BeingAttacked( thisEntity ) > 2 or thisEntity:GetHealthPercent() < 75 ) then
+				return CastCocoon(thisEntity)
+			end
 		end
 		return AICore:AttackHighestPriority( thisEntity )
 	else

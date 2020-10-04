@@ -37,6 +37,7 @@ function modifier_razor_static_link_bh:OnCreated(kv)
 		self.drain = self:GetTalentSpecialValueFor("drain_rate")
 		self.buffer = self:GetTalentSpecialValueFor("buffer_range")
 		self.link_radius = self:GetTalentSpecialValueFor("link_radius")
+		self.split = self:GetTalentSpecialValueFor("link_damage") / 100
 		self.talent2 = caster:HasTalent("special_bonus_unique_razor_static_link_bh_2")
 		self.talent2Dmg = caster:FindTalentValue("special_bonus_unique_razor_static_link_bh_2") / 100
 		if self:GetParent() == self.target then
@@ -89,6 +90,19 @@ function modifier_razor_static_link_bh:OnRemoved()
 	end
 end
 
+function modifier_razor_static_link_bh:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_ATTACK_LANDED
+	}
+	return funcs
+end
+
+function modifier_razor_static_link_bh:OnAttackLanded(params)
+	if params.target == self.target and self:GetParent() ~= self.target then
+		self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), params.damage * self.split, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_PROPERTY_FIRE} )
+	end
+end
+
 function modifier_razor_static_link_bh:IsPurgeException()
 	return false
 end
@@ -108,7 +122,7 @@ end
 modifier_razor_static_link_bh_buff = class({})
 function modifier_razor_static_link_bh_buff:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 	}
 	return funcs
 end

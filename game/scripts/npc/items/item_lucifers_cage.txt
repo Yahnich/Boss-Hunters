@@ -31,7 +31,7 @@
 			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"AbilityCooldown"				"16 16 16 14 14 14 12 12 12"
+		"AbilityCooldown"				"16"
 		"AbilityCastRange"				"750"
 		"AbilitySharedCooldown"			"luciferscage"
 		"AbilityManaCost"				"25"
@@ -40,15 +40,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_amp"				"10 15 20 25 30 35 40 45 50"
-			}
+			// "01"
+			// {
+				// "var_type"				"FIELD_FLOAT"
+				// "heal_amp"				"10 15 20 25 30 35 40 45 50"
+			// }
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"35 50 65 75 85 95 100 105 110"
+				"healdamage"			"20 40 60 80 100 120 140 160 180 200"
 			}
 			"03"
 			{
@@ -58,7 +58,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 16 16 14 14 14 12 12 12"
+				"cooldown"				"16"
 			}
 			"03"
 			{
@@ -119,7 +119,7 @@
 		
 		"AvailableRuneSlots"			"1"
 		
-		"AbilityCooldown"				"16 16 16 14 14 14 12 12 12"
+		"AbilityCooldown"				"16"
 		"AbilitySharedCooldown"			"luciferscage"
 		"AbilityCastRange"				"750"
 		"AbilityManaCost"				"25"
@@ -129,15 +129,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_amp"				"10 15 20 25 30 35 40 45 50"
-			}
+			// "01"
+			// {
+				// "var_type"				"FIELD_FLOAT"
+				// "heal_amp"				"10 15 20 25 30 35 40 45 50"
+			// }
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"35 50 65 75 85 95 100 105 110"
+				"healdamage"			"20 40 60 80 100 120 140 160 180 200"
 			}
 			"03"
 			{
@@ -147,7 +147,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 16 16 14 14 14 12 12 12"
+				"cooldown"				"16"
 			}
 			"03"
 			{
@@ -210,7 +210,7 @@
 		
 		"AvailableRuneSlots"			"1"
 	
-		"AbilityCooldown"				"16 16 16 14 14 14 12 12 12"
+		"AbilityCooldown"				"16"
 		"AbilitySharedCooldown"			"luciferscage"
 		"AbilityCastRange"				"750"
 		"AbilityManaCost"				"25"
@@ -220,15 +220,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_amp"				"10 15 20 25 30 35 40 45 50"
-			}
+			// "01"
+			// {
+				// "var_type"				"FIELD_FLOAT"
+				// "heal_amp"				"10 15 20 25 30 35 40 45 50"
+			// }
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"35 50 65 75 85 95 100 105 110"
+				"healdamage"			"20 40 60 80 100 120 140 160 180 200"
 			}
 			"03"
 			{
@@ -238,7 +238,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 16 16 14 14 14 12 12 12"
+				"cooldown"				"16"
 			}
 			"03"
 			{
@@ -301,7 +301,7 @@
 		
 		"AvailableRuneSlots"			"2"
 	
-		"AbilityCooldown"				"16 16 16 14 14 14 12 12 12"
+		"AbilityCooldown"				"16"
 		"AbilitySharedCooldown"			"luciferscage"
 		"AbilityCastRange"				"750"
 		"AbilityManaCost"				"25"
@@ -310,15 +310,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_amp"				"10 15 20 25 30 35 40 45 50"
-			}
+			// "01"
+			// {
+				// "var_type"				"FIELD_FLOAT"
+				// "heal_amp"				"10 15 20 25 30 35 40 45 50"
+			// }
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"35 50 65 75 85 95 100 105 110"
+				"healdamage"			"20 40 60 80 100 120 140 160 180 200"
 			}
 			"03"
 			{
@@ -328,7 +328,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 16 16 14 14 14 12 12 12"
+				"cooldown"				"16"
 			}
 			"03"
 			{
@@ -390,7 +390,7 @@
 		
 		"AvailableRuneSlots"			"2"
 	
-		"AbilityCooldown"				"16 16 16 14 14 14 12 12 12"
+		"AbilityCooldown"				"16"
 		"AbilitySharedCooldown"			"luciferscage"
 		"AbilityCastRange"				"750"
 		"AbilityManaCost"				"25"
@@ -399,15 +399,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_amp"				"10 15 20 25 30 35 40 45 50"
-			}
+			// "01"
+			// {
+				// "var_type"				"FIELD_FLOAT"
+				// "heal_amp"				"10 15 20 25 30 35 40 45 50"
+			// }
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"35 50 65 75 85 95 100 105 110"
+				"healdamage"			"20 40 60 80 100 120 140 160 180 200"
 			}
 			"03"
 			{
@@ -417,7 +417,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 16 16 14 14 14 12 12 12"
+				"cooldown"				"16"
 			}
 			"03"
 			{
@@ -479,7 +479,7 @@
 		
 		"AvailableRuneSlots"			"2"
 	
-		"AbilityCooldown"				"16 16 16 14 14 14 12 12 12"
+		"AbilityCooldown"				"16"
 		"AbilitySharedCooldown"			"luciferscage"
 		"AbilityCastRange"				"750"
 		"AbilityManaCost"				"25"
@@ -488,15 +488,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_amp"				"10 15 20 25 30 35 40 45 50"
-			}
+			// "01"
+			// {
+				// "var_type"				"FIELD_FLOAT"
+				// "heal_amp"				"10 15 20 25 30 35 40 45 50"
+			// }
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"35 50 65 75 85 95 100 105 110"
+				"healdamage"			"20 40 60 80 100 120 140 160 180 200"
 			}
 			"03"
 			{
@@ -506,7 +506,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 16 16 14 14 14 12 12 12"
+				"cooldown"				"16"
 			}
 			"03"
 			{
@@ -568,7 +568,7 @@
 		
 		"AvailableRuneSlots"			"3"
 	
-		"AbilityCooldown"				"16 16 16 14 14 14 12 12 12"
+		"AbilityCooldown"				"16"
 		"AbilitySharedCooldown"			"luciferscage"
 		"AbilityCastRange"				"750"
 		"AbilityManaCost"				"25"
@@ -577,15 +577,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_amp"				"10 15 20 25 30 35 40 45 50"
-			}
+			// "01"
+			// {
+				// "var_type"				"FIELD_FLOAT"
+				// "heal_amp"				"10 15 20 25 30 35 40 45 50"
+			// }
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"35 50 65 75 85 95 100 105 110"
+				"healdamage"			"20 40 60 80 100 120 140 160 180 200"
 			}
 			"03"
 			{
@@ -595,7 +595,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 16 16 14 14 14 12 12 12"
+				"cooldown"				"16"
 			}
 			"03"
 			{
@@ -657,7 +657,7 @@
 		
 		"AvailableRuneSlots"			"3"
 	
-		"AbilityCooldown"				"16 16 16 14 14 14 12 12 12"
+		"AbilityCooldown"				"16"
 		"AbilitySharedCooldown"			"luciferscage"
 		"AbilityCastRange"				"750"
 		"AbilityManaCost"				"25"
@@ -666,15 +666,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_amp"				"10 15 20 25 30 35 40 45 50"
-			}
+			// "01"
+			// {
+				// "var_type"				"FIELD_FLOAT"
+				// "heal_amp"				"10 15 20 25 30 35 40 45 50"
+			// }
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"35 50 65 75 85 95 100 105 110"
+				"healdamage"			"20 40 60 80 100 120 140 160 180 200"
 			}
 			"03"
 			{
@@ -684,7 +684,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 16 16 14 14 14 12 12 12"
+				"cooldown"				"16"
 			}
 			"03"
 			{
@@ -746,7 +746,7 @@
 		
 		"AvailableRuneSlots"			"3"
 	
-		"AbilityCooldown"				"16 16 16 14 14 14 12 12 12"
+		"AbilityCooldown"				"16"
 		"AbilitySharedCooldown"			"luciferscage"
 		"AbilityCastRange"				"750"
 		"AbilityManaCost"				"25"
@@ -755,15 +755,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_amp"				"10 15 20 25 30 35 40 45 50"
-			}
+			// "01"
+			// {
+				// "var_type"				"FIELD_FLOAT"
+				// "heal_amp"				"10 15 20 25 30 35 40 45 50"
+			// }
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"35 50 65 75 85 95 100 105 110"
+				"healdamage"			"20 40 60 80 100 120 140 160 180 200"
 			}
 			"03"
 			{
@@ -773,7 +773,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 16 16 14 14 14 12 12 12"
+				"cooldown"				"16"
 			}
 			"03"
 			{

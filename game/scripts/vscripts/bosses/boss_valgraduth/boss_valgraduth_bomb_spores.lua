@@ -76,7 +76,7 @@ if IsServer() then
 		if parent:HasModifier("modifier_knockback") then
 			return
 		end
-		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( position, self.trigger_radius ) ) do
+		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( position, self.trigger_radius, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES} ) ) do
 			if CalculateDistance(parent, enemy, true) <= self.trigger_radius then
 				foundInTriggerRange = true
 				break

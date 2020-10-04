@@ -161,7 +161,11 @@ function C_DOTABaseAbility:GetAbilityTextureName()
 end
 
 function C_DOTABaseAbility:GetTalentSpecialValueFor(value)
-	local base = self:GetSpecialValueFor(value)
+	return self:GetTalentLevelSpecialValueFor( value, -1)
+end
+
+function C_DOTABaseAbility:GetTalentLevelSpecialValueFor(value, level)
+	local base = self:GetLevelSpecialValueFor(value, level)
 	local talentName
 	local kv = AbilityKV[self:GetName()]["AbilitySpecial"]
 	local valname = "value"
@@ -222,6 +226,10 @@ end
 
 function C_DOTA_Modifier_Lua:GetTalentSpecialValueFor(specVal)
 	return self:GetAbility():GetTalentSpecialValueFor(specVal)
+end
+
+function C_DOTA_Modifier_Lua:GetTalentLevelSpecialValueFor(specVal, level)
+	return self:GetAbility():GetTalentLevelSpecialValueFor(specVal, level)
 end
 
 function C_DOTA_Modifier_Lua:AddIndependentStack()

@@ -226,6 +226,7 @@ function TalentManager:ProcessUniqueTalents(userid, event)
 	if not mainAbility:IsTrained() then return end
 	local talents = hero.masteryPerks.uniqueTalents
 	local talentEntity = hero:FindAbilityByName(talentName)
+	print( talentEntity, talentName, hero:GetTalentPoints() )
 	if talentEntity and not talentEntity:IsTrained() and hero:GetTalentPoints() > 0 then
 		-- level talent linked to all abilities
 		for ability, talentTable in pairs( talents ) do
@@ -244,7 +245,7 @@ function TalentManager:ProcessUniqueTalents(userid, event)
 		talentEntity:SetLevel(1)
 		local talentData = CustomNetTables:GetTableValue("talents", tostring(hero:entindex())) or {}
 		if GameRules.AbilityKV[talentName] then
-			if GameRules.AbilityKV[abilityName]["LinkedModifierName"] then
+			if GameRules.AbilityKV[talentName]["LinkedModifierName"] then
 				local modifierName = GameRules.AbilityKV[talentName]["LinkedModifierName"] 
 				for _, unit in ipairs( FindAllUnits() ) do
 					if unit:HasModifier(modifierName) then
@@ -291,16 +292,23 @@ function TalentManager:ProcessHeroMasteries(userid, event)
 		maxTalentTier = maxTalentTier + 1
 	end
 	local price = 1
-	for talentCategory, talentTypes in pairs( talents.talentKeys ) do
-		for talentType, talentTier in pairs( talentTypes ) do
-			price = price + tonumber(talentTier)
-		end
-	end
-	local maxTier = maxTalentTier <= talents.talentKeys[talentCategory][talent]
+	-- for talentCategory, talentTypes in pairs( talents.talentKeys ) do
+		-- for talentType, talentTier in pairs( talentTypes ) do
+			-- price = price + tonumber(talentTier)
+		-- end
+	-- end
+	local maxTier = maxTalentTier <= talents.talentKeys[talentCategory][talent] and not (talentCategory == "Generic" and talent == "ALL_STATS")
 	local insufficientSkillPoints = hero:GetAbilityPoints() < price
 	if not (maxTier or insufficientSkillPoints) then
 		talents.talentKeys[talentCategory][talent] = talents.talentKeys[talentCategory][talent] + 1
-		self:ApplyTalentModifier( hero, talentCategory, talent )
+		if talentCategory == "Generic" and talent == "ALL_STATS" then
+			local stats = tonumber(talents.talentProgression[talentCategory][talent][1])
+			hero:ModifyStrength( stats )
+			hero:ModifyAgility( stats )
+			hero:ModifyIntellect( stats )
+		else
+			self:ApplyTalentModifier( hero, talentCategory, talent )
+		end
 		hero:SetAbilityPoints( hero:GetAbilityPoints() - price )
 		CustomGameEventManager:Send_ServerToAllClients("dota_player_talent_update", {PlayerID = pID, hero_entindex = entindex} )
 	else
@@ -348,10 +356,10 @@ function TalentManager:RespecAll(userid, event)
 			end
 		end)
 		hero:CalculateStatBonus()
-		hero.totalGainedTalentPoints = hero.totalGainedTalentPoints or 0
+		hero.uniqueTalentPoints = math.floor( hero:GetLevel() / 10 )
 		hero.bonusSkillPoints = hero.bonusSkillPoints or hero:GetLevel()
 		hero:SetAbilityPoints( hero.bonusSkillPoints + 1 )
-		hero:SetAttributePoints( hero.totalGainedTalentPoints)
 		CustomGameEventManager:Send_ServerToAllClients("dota_player_talent_info_response", {playerID = hero:GetPlayerID()} )
+		CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
 	end
 end

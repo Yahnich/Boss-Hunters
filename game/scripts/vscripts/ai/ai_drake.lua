@@ -1,6 +1,4 @@
---[[
-Broodking AI
-]]
+if IsClient() then return end
 
 if IsServer() then
 	function Spawn( entityKeyValues )
@@ -10,10 +8,8 @@ if IsServer() then
 			end
 		end)
 		thisEntity.heal = thisEntity:FindAbilityByName("boss16m_heal_aura")
-		if  math.floor(GameRules.gameDifficulty + 0.5) < 2 then 
-			thisEntity.heal:SetLevel(1)
-		else
-			thisEntity.heal:SetLevel(2)
+		if thisEntity.heal then
+			thisEntity.heal:SetLevel( math.ceil(GameRules:GetGameDifficulty() / 2) )
 		end
 	end
 

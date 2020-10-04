@@ -103,41 +103,132 @@ function VoteSkipPrep()
 	}
 }
 
-function RemovePrepVotes(args)
+function RemovePrepVotes()
 {
-	if(args.ascension != null){
-		$("#QuestsAscensionVoteHolder").visible =  false
-		var voteYes = $("#QuestAscensionVoteConfirmButton")
-		voteYes.SetPanelEvent("onmouseover", function(){});
-		voteYes.SetPanelEvent("onmouseout", function(){});
-		voteYes.SetPanelEvent("onactivate", function(){});
-		
-		var voteNo = $("#QuestAscensionVoteDeclineButton")
-		voteNo.SetPanelEvent("onmouseover", function(){});
-		voteNo.SetPanelEvent("onmouseout", function(){});
-		voteNo.SetPanelEvent("onactivate", function(){});
-	} else {
-		$("#QuestsPrepVoteHolder").visible =  false
-		var voteYes = $("#QuestPrepVoteConfirmButton")
-		voteYes.SetPanelEvent("onmouseover", function(){});
-		voteYes.SetPanelEvent("onmouseout", function(){});
-		voteYes.SetPanelEvent("onactivate", function(){});
+	var eventCards = $("#EventCards")
+	for(var card of eventCards.Children()){
+		card.style.visibility = "collapse"
+		card.RemoveAndDeleteChildren()
+		card.DeleteAsync(0)
 	}
 }
 
 
 function StartPrepVote(args)
 {
-	$("#QuestsPrepVoteHolder").visible =  true
+	for(var eventChoice in args.events){
+		CreateEventCard(args.events[eventChoice], eventChoice)
+	}
+}
+
+EVENT_TYPE_COMBAT = 1
+EVENT_TYPE_ELITE = 2
+EVENT_TYPE_EVENT = 3
+EVENT_TYPE_BOSS = 4
+
+EVENT_REWARD_GOLD = 1
+EVENT_REWARD_LIVES = 2
+EVENT_REWARD_RELIC = 3
+
+function CreateEventCard(eventInfo, eventID, eventContainer)
+{
+	var eventCards = $("#EventCards")
+	var eventCard = $.CreatePanel("Panel", eventCards, "EventCard"+eventID);
+	eventCard.BLoadLayoutSnippet("EventCardContainer");
 	
-	var voteYes = $("#QuestPrepVoteConfirmButton")
-	var voteLabel = $("#QuestsPrepVoteDescriptionLabel")
-	voteLabel.text = "Skip preparation time?"
-	$("#QuestPrepVoteNoLabel").text =  "No: " + 0
-	$("#QuestPrepVoteYesLabel").text =  "Yes: " + 0
-	voteYes.SetPanelEvent("onmouseover", function(){voteYes.SetHasClass("ButtonHover", true);});
-	voteYes.SetPanelEvent("onmouseout", function(){voteYes.SetHasClass("ButtonHover", false);});
-	voteYes.SetPanelEvent("onactivate", VoteSkipPrep);
+	var eventCardHeaderImage = eventCard.FindChildTraverse("EventCardHeaderCard")
+	var eventCardHeaderTitle = eventCard.FindChildTraverse("EventCardHeaderTitle")
+	eventCardHeaderTitle.text = $.Localize( "#event_" + eventInfo.eventName, eventCardHeaderTitle );
+	if( eventCardHeaderImage != null){
+		eventCardHeaderImage.SetImage("file://{images}/custom_game/event_cards/"+eventInfo.eventName+".png")
+	}
+	var eventCardHeaderReward = eventCard.FindChildTraverse("EventCardHeaderReward")
+	var rewardDescription = "None"
+	if(eventInfo.reward == EVENT_REWARD_GOLD){
+		eventCardHeaderReward.style.backgroundImage = "url('s2r://panorama/images/hud/icon_gold_psd.vtex');"
+		rewardDescription = $.Localize( "#EVENT_REWARD_GOLD_Description", eventCardHeaderReward );
+	} else if(eventInfo.reward == EVENT_REWARD_LIVES){
+		eventCardHeaderReward.style.backgroundImage = "url('file://{images}/custom_game/events/reward_type_lives_icon_png.png')"
+		rewardDescription = $.Localize( "#EVENT_REWARD_LIVES_Description", eventCardHeaderReward );
+	} else if(eventInfo.reward == EVENT_REWARD_RELIC){
+		eventCardHeaderReward.style.backgroundImage = "url('s2r://panorama/images/plus/achievements/relics_icon_png.vtex');"
+		rewardDescription = $.Localize( "#EVENT_REWARD_RELIC_Description", eventCardHeaderReward );
+	}
+	eventCardHeaderReward.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", eventCardHeaderReward, rewardDescription)});
+	eventCardHeaderReward.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", eventCardHeaderReward)});
+	
+	var eventCardHeaderType = eventCard.FindChildTraverse("EventCardHeaderType") 
+	var typeDescription = "None"
+	if(eventInfo.eventType == EVENT_TYPE_COMBAT){
+		eventCardHeaderType.style.backgroundImage = "url('file://{images}/custom_game/events/encounter_room_icon_png.png');"
+		typeDescription = $.Localize( "#EVENT_TYPE_COMBAT_Description", eventCardHeaderType );
+	} else if(eventInfo.eventType == EVENT_TYPE_ELITE){
+		eventCardHeaderType.style.backgroundImage = "url('file://{images}/custom_game/events/encounter_room_elite_icon_png.png')"
+		typeDescription = $.Localize( "#EVENT_TYPE_ELITE_Description", eventCardHeaderType );
+	} else if(eventInfo.eventType == EVENT_TYPE_EVENT){
+		eventCardHeaderType.style.backgroundImage = "url('file://{images}/custom_game/events/bonus_room_icon_png.png');"
+		typeDescription = $.Localize( "#EVENT_TYPE_COMBAT_Description", eventCardHeaderType );
+	} else if(eventInfo.eventType == EVENT_TYPE_EVENT){
+		eventCardHeaderType.style.backgroundImage = "url('file://{images}/custom_game/events/boss_room_icon_png.png');"
+		typeDescription = $.Localize( "#EVENT_TYPE_BOSS_Description", eventCardHeaderType );
+	}
+	eventCardHeaderType.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", eventCardHeaderType, typeDescription)});
+	eventCardHeaderType.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", eventCardHeaderType)});
+	
+	for(var foe in eventInfo.foes){
+		CreateFoeSlot(eventInfo.foes[foe], foe)
+	}
+	$.Msg(eventInfo.modifiers)
+	if(eventInfo.modifiers[1] != null){
+		var modifierContainer = eventCard.FindChildTraverse("EventCardModifiers");
+		for( var id in eventInfo.modifiers ){
+			CreateFoeAbility(eventInfo.modifiers[id], id, modifierContainer)
+		}
+	} else {
+		var modifierLabel = eventCard.FindChildTraverse("EventCardModifiersLabel");
+		modifierLabel.visible = false;
+	}
+	
+	
+	eventCard.SetPanelEvent("onmouseover", function(){eventCard.SetHasClass("EventCardHighlighted", true)});
+	eventCard.SetPanelEvent("onmouseout", function(){eventCard.SetHasClass("EventCardHighlighted", false)});
+	eventCard.SetPanelEvent("onactivate", function(){
+		GameEvents.SendCustomGameEventToServer( "bh_player_voted_to_skip", {pID : localID} )
+		RemovePrepVotes()
+	});
+}
+
+function CreateFoeSlot(foeData, count)
+{
+	if(foeData.amount == 0){return};
+	var foeContainer = $("#EventCardFoes")
+	var foeSlot = $.CreatePanel("Panel", foeContainer, "FoeInfo"+foeData.name);
+	foeSlot.BLoadLayoutSnippet("EventCardFoeContainer");
+	
+	var display = foeSlot.FindChildTraverse("EventCardFoeDisplay");
+	display.SetUnit(foeData.name, "default", false);
+	
+	var foeCount = foeSlot.FindChildTraverse("EventCardFoeDisplayCount");
+	foeCount.text = foeData.amount;
+	if(foeData.amount == -1){
+		foeCount.text = "?";
+	}
+	
+	var abilityContainer = foeSlot.FindChildTraverse("EventCardFoeAbilities");
+	for(var id in foeData.abilities){
+		var abilityName = foeData.abilities[id]
+		CreateFoeAbility( abilityName, id, abilityContainer )
+	} 
+}
+
+function CreateFoeAbility(abilityName, id, abilityContainer)
+{
+	if(abilityName == "" ){return true}
+	var abilitySlot = $.CreatePanel("DOTAAbilityImage", abilityContainer, "FoeAbility"+id);
+	abilitySlot.SetHasClass("EventCardFoeAbility", true)
+	abilitySlot.abilityname = abilityName;
+	abilitySlot.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowAbilityTooltip", abilitySlot, abilitySlot.abilityname);});
+	abilitySlot.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideAbilityTooltip", abilitySlot);});
 }
 
 function UpdateCameraPosition(args)
@@ -308,49 +399,6 @@ function ToggleQuests(arg)
 	}
 }
 
-var DELAYED_COOLDOWN = {"omniknight_repel_ebf":true,
-						"omniknight_guardian_angel_ebf":true,
-						"life_stealer_rage_bh":true,
-						"winterw_ice_shell":true,
-						"winterw_winters_kiss":true,
-						"dark_seer_adamantium_shell":true,
-						"death_prophet_weaken_silence":true,
-						"morphling_cosmic_projection":true,
-						"nyx_hide":true,
-						"skinwalker_kickback_fortress":true,
-						"windrunner_windrun":true,
-						"necrolyte_sadist":true,
-						"viper_nethertoxin":true,
-						"night_stalker_crippling_fear_ebf":true,
-						"weaver_shukuchi":true,
-						"bristleback_yer_mum":true,
-						"item_leechblade":true,
-						"rattletrap_battery_assault_ebf":true,
-						"rattletrap_reactive_shielding":true,
-						"rattletrap_automated_artillery":true,
-						"puck_phase_shift_ebf":true,
-						"item_penitent_mail":true,
-						"item_hurricane_blade":true,
-						"axe_forced_shout":true,
-						"skywrath_seal":true,
-						"item_everbright_shield":true,
-						"huskar_raging_berserker":true,
-						"brewmaster_primal_avatar":true,
-						"shadow_shaman_binding_shackles":true,
-						"shadow_shaman_ignited_voodoo":true,
-						"abaddon_borrowed_time_ebf":true,
-						"item_wrathbearers_robes":true,
-						"item_behemoths_heart":true,
-						"centaur_champions_presence":true,
-						"timbersaw_chak2":true,
-						"timbersaw_chak":true,
-						"dragon_knight_intervene":true,
-						"dragon_knight_elder_dragon_berserker":true,
-						"dark_willow_shadow_realm":true,
-						"bloodseeker_blood_bath":true,
-						"nyx_vendetta":true,
-						}
-
 function UpdateTooltipUI(id, abilityname, abilityid)
 {
 	var tooltips = dotaHud.FindChildTraverse("DOTAAbilityTooltip");
@@ -401,11 +449,6 @@ function Initialize(arg){
 	dotaHud.FindChildTraverse("GlyphScanContainer").style.visibility = "collapse";
 	$("#QuestBossText").visible =  false
 	$("#QuestRoundText").visible =  true
-	$("#QuestsPrepVoteHolder").visible =  false
-	
-	var voteYes = $("#QuestPrepVoteConfirmButton")
-	voteYes.SetPanelEvent("onmouseover", function(){voteYes.SetHasClass("ButtonHover", true);});
-	voteYes.SetPanelEvent("onmouseout", function(){voteYes.SetHasClass("ButtonHover", false);});
 }
 
 function UpdateLives(arg){

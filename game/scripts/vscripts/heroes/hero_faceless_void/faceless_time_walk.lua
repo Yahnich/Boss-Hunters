@@ -21,6 +21,10 @@ function faceless_time_walk:GetIntrinsicModifierName()
     end
 end
 
+function faceless_time_walk:GetCooldown( iLvl )
+	return self.BaseClass.GetCooldown( self, iLvl ) + self:GetCaster():FindTalentValue("special_bonus_unique_faceless_time_walk_1")
+end
+
 function faceless_time_walk:OnSpellStart()
     local caster = self:GetCaster()
     local point = self:GetCursorPosition()
@@ -56,9 +60,11 @@ function modifier_faceless_time_walk:OnCreated(table)
         self:AttachEffect(nfx)
 		self.hitUnits = {}
 		self.talent2 = caster:HasTalent("special_bonus_unique_faceless_time_walk_2")
-		self.lock = caster:FindAbilityByName("faceless_chrono_trigger")
+		self.lock = caster:FindAbilityByName("faceless_time_lock")
         self:StartIntervalThink(FrameTime())
         self:StartMotionController()
+		
+		caster:HealEvent(caster.time_walk_damage_taken, self:GetAbility(), caster, false)
     end
 end
 
@@ -88,11 +94,6 @@ end
 
 function modifier_faceless_time_walk:DoControlledMotion()
     local caster = self:GetParent()
-    
-    -- Heal recent damage
-    if caster.time_walk_damage_taken then
-        caster:HealEvent(caster.time_walk_damage_taken*FrameTime(), self:GetAbility(), caster, false)
-    end
 
     if self.currentDistance > 0 then
         local pos = GetGroundPosition(caster:GetAbsOrigin(), caster)

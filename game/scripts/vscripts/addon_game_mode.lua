@@ -137,6 +137,8 @@ function Precache( context )
 	PrecacheResource("particle", "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_lone_druid_savage_roar.vpcf", context)
 	
+	GameRules._Elites = LoadKeyValues( "scripts/kv/elites.kv" )
+	
 	RoundManager:Initialize(context)
 end
 
@@ -150,7 +152,6 @@ end
 
 function CHoldoutGameMode:InitGameMode()
 	print ("Initializing Boss Hunters")
-	GameRules._Elites = LoadKeyValues( "scripts/kv/elites.kv" )
 	GameRules._maxLives = 10
 	GameRules.gameDifficulty = 1
 	
@@ -503,6 +504,22 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 				-- duration = duration * parent:GetStatusResistance( params )
 			-- end
 		-- end
+		if parent then
+			local params = {caster = caster, unit = parent, duration = duration, ability = ability, modifier_name = name}
+			for _, modifier in ipairs( parent:FindAllModifiers() ) do
+				if modifier.OnUnitModifierAdded then
+					modifier:OnUnitModifierAdded(params)
+				end
+			end
+		end
+		if caster then
+			local params = {caster = caster, unit = parent, duration = duration, ability = ability, modifier_name = name}
+			for _, modifier in ipairs( caster:FindAllModifiers() ) do
+				if modifier.OnUnitModifierAdded then
+					modifier:OnUnitModifierAdded(params)
+				end
+			end
+		end
 		if parent == caster and parent:IsIllusion() and duration ~= -1 then
 			for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 				if hero:GetUnitName() == parent:GetUnitName() and hero:HasModifier(name) then

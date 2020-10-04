@@ -5,7 +5,7 @@ function relic_the_pact:DeclareFunctions()
 end
 
 function relic_the_pact:OnTakeDamage(params)
-	if params.attacker == self:GetParent() and params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE) and params.attacker ~= params.unit then
+	if params.attacker == self:GetParent() and params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE) and params.attacker ~= params.unit and params.source then
 		local heal = params.damage
 		if heal > 0 and params.attacker:IsAlive() and params.attacker:GetHealth() ~= 0 then
 			self:GetParent():HealEvent( heal, self:GetAbility(), params.attacker)

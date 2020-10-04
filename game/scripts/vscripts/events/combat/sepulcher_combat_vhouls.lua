@@ -1,23 +1,5 @@
 local function StartEvent(self)
-	local spawnPos = RoundManager:PickRandomSpawn()
-	self.enemiesToSpawn = math.min(15, 3 + math.floor( math.log( RoundManager:GetEventsFinished() + 1 ) ) )
-	self.eventHandler = Timers:CreateTimer(3, function()
-		local vhoulName = "npc_dota_boss1"
-		if RollPercentage(50) then
-			vhoulName = "npc_dota_boss2"
-		end
-		local spawn = CreateUnitByName(vhoulName, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-		spawn.unitIsRoundNecessary = true
-		
-		self.enemiesToSpawn = self.enemiesToSpawn - 1
-		if self.enemiesToSpawn > 0 then
-			return ( 5 - GameRules:GetGameDifficulty() )
-		end
-	end)
-	
-	self._vEventHandles = {
-		ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
-	}
+	self:StartCombatRound()
 end
 
 local function EndEvent(self, bWon)

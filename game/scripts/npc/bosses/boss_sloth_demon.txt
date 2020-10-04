@@ -134,6 +134,58 @@
 			}
 		}
 	}
+	"boss_lesser_sloth_demon_slime_trail"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_sloth_demon/boss_sloth_demon_slime_trail.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"batrider_firefly"
+		"MaxLevel"						"2"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_venomancer/venomancer_venomous_gale.vpcf"
+			"particle"  				"particles/units/heroes/hero_venomancer/venomancer_gale_poison_debuff.vpcf"
+			"particle"  				"particles/units/heroes/hero_viper/viper_nethertoxin.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_damage"			"35 50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stack_damage"			"15 25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_radius"			"250 300"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"min_radius"			"50"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3.5"
+			}
+		}
+	}
 	"boss_sloth_demon_slime_cocoon"
 	{
 		// General

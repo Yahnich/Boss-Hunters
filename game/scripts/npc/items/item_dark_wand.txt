@@ -217,7 +217,6 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilitySharedCooldown"			"dagon"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dark_wand"
 		"AbilityTextureName"			"dagon/dark_wand_1"

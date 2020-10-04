@@ -81,6 +81,10 @@ function jakiro_liquid_fire_bh:OnProjectileHit(hTarget, vLocation)
 		for _,enemy in pairs(enemies) do
 			enemy:AddNewModifier(caster, self, modifier_liquid_fire_debuff, { duration = duration })
 		end
+		local convergence = caster:FindAbilityByName("jakiro_elemental_convergence")
+		if convergence then
+			convergence:AddFireAttunement()
+		end
 		caster:PerformAttack(target, true, true, true, true, false, false, false)
 	end
 end
@@ -142,7 +146,7 @@ function modifier_liquid_fire_caster:OnAttackStart(keys)
 		local attacker = keys.attacker
 
 		if caster == attacker then
-			if not ability:IsHidden() and not target:IsMagicImmune() and ability:GetAutoCastState() and ability:IsCooldownReady() then
+			if not ability:IsHidden() and not caster:PassivesDisabled() and not caster:IsSilenced() and not target:IsMagicImmune() and ability:GetAutoCastState() and ability:IsCooldownReady() then
 
 				-- Special animation for jakiro
 				if caster:GetUnitName() == "npc_dota_hero_jakiro" then
@@ -153,7 +157,7 @@ function modifier_liquid_fire_caster:OnAttackStart(keys)
 				caster:SetProjectileModel("particles/units/heroes/hero_jakiro/jakiro_base_attack_fire.vpcf")
 			elseif self:_IsLiquidFireProjectile() then
 				-- Revert projectile
-				caster:RevertProjectile()
+				caster:SetProjectileModel(caster:GetBaseProjectileModel())
 			end
 		end
 	end
@@ -189,8 +193,10 @@ function modifier_liquid_fire_caster:_ApplyAOELiquidFire( keys )
 		local caster = self.caster
 		local attacker = keys.attacker
 		local target = keys.target
+		local ability = self.ability
 		local target_liquid_fire_counter = self.apply_aoe_modifier_debuff_on_hit[target]
-
+		
+		if caster:PassivesDisabled() or caster:IsSilenced() or not ability:GetAutoCastState() then return end
 		if caster == attacker and target_liquid_fire_counter and target_liquid_fire_counter > 0 then
 			self.apply_aoe_modifier_debuff_on_hit[target] = target_liquid_fire_counter - 1;
 			-- Remove key reference
@@ -198,7 +204,6 @@ function modifier_liquid_fire_caster:_ApplyAOELiquidFire( keys )
 				self.apply_aoe_modifier_debuff_on_hit[target] = nil
 			end
 
-			local ability = self.ability
 
 			local ability_level = ability:GetLevel() - 1
 			local particle_liquid_fire = "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_explosion.vpcf"
@@ -220,6 +225,10 @@ function modifier_liquid_fire_caster:_ApplyAOELiquidFire( keys )
 			local enemies = FindUnitsInRadius(caster:GetTeamNumber(), target:GetAbsOrigin(), nil, radius, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 			for _,enemy in pairs(enemies) do
 				enemy:AddNewModifier(caster, ability, modifier_liquid_fire_debuff, { duration = duration })
+			end
+			local convergence = caster:FindAbilityByName("jakiro_elemental_convergence")
+			if convergence then
+				convergence:AddFireAttunement()
 			end
 		end
 	end
@@ -272,24 +281,54 @@ end
 
 modifier_liquid_fire_debuff = ({})
 function modifier_liquid_fire_debuff:OnCreated(table)
+	self:OnRefresh()
 	if IsServer() then
 		self:StartIntervalThink(0.5)
 	end
 end
 
+function modifier_liquid_fire_debuff:OnRefresh()
+	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.attackspeed = self:GetTalentSpecialValueFor("slow_as")
+	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_jakiro_liquid_fire_bh_2")
+	self.talent2Threshold = self:GetCaster():FindTalentValue("special_bonus_unique_jakiro_liquid_fire_bh_2")
+	self.talent2Armor = self:GetCaster():FindTalentValue("special_bonus_unique_jakiro_liquid_fire_bh_2", "armor")
+	self.talent2Slow = self.attackspeed * self:GetCaster():FindTalentValue("special_bonus_unique_jakiro_liquid_fire_bh_2", "slow") / 100
+	self.damageDealt = 0
+end
+
 function modifier_liquid_fire_debuff:OnIntervalThink()
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("damage")*0.5, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+	local damage = self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage*0.5, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+	self.damageDealt = self.damageDealt + damage
+	if self.damageDealt >= self.talent2Threshold then
+		self.damageDealt = 0
+		self:IncrementStackCount( )
+	end
 end
 
 function modifier_liquid_fire_debuff:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT 
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 	}
 	return funcs
 end
 
 function modifier_liquid_fire_debuff:GetModifierAttackSpeedBonus_Constant()
-	return self:GetTalentSpecialValueFor("slow_as")
+	return self.attackspeed
+end
+
+function modifier_liquid_fire_debuff:GetModifierMoveSpeedBonus_Percentage()
+	if self.talent2 then
+		return self.talent2Slow
+	end
+end
+
+function modifier_liquid_fire_debuff:GetModifierPhysicalArmorBonus()
+	if self.talent2 then
+		return self.talent2Armor * self:GetStackCount()
+	end
 end
 
 function modifier_liquid_fire_debuff:GetEffectName() 
@@ -298,4 +337,8 @@ end
 
 function modifier_liquid_fire_debuff:GetEffectAttachType() 
 	return PATTACH_ABSORIGIN_FOLLOW 
+end
+
+function modifier_liquid_fire_debuff:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE 
 end

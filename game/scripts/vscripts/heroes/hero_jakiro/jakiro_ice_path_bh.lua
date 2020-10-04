@@ -1,5 +1,4 @@
 jakiro_ice_path_bh = class({})
-LinkLuaModifier("modifier_jakiro_ice_path_bh", "heroes/hero_jakiro/jakiro_ice_path_bh", LUA_MODIFIER_MOTION_NONE)
 
 function jakiro_ice_path_bh:IsStealable()
 	return true
@@ -27,6 +26,7 @@ end
 
 
 modifier_jakiro_ice_path_bh = class({})
+LinkLuaModifier("modifier_jakiro_ice_path_bh", "heroes/hero_jakiro/jakiro_ice_path_bh", LUA_MODIFIER_MOTION_NONE)
 function modifier_jakiro_ice_path_bh:OnCreated(table)
 	if IsServer() then
 		local caster = self:GetCaster()
@@ -36,9 +36,10 @@ function modifier_jakiro_ice_path_bh:OnCreated(table)
 		local width = self:GetTalentSpecialValueFor("width")
 		local delay = self:GetTalentSpecialValueFor("delay")
 		local duration = self:GetTalentSpecialValueFor("duration")
+		self.damage = self:GetTalentSpecialValueFor("damage")
+		self.talent3 = caster:HasTalent("special_bonus_unique_jakiro_ice_path_bh_3")
 
 		local point = ability:GetCursorPosition()
-
 		if ability:GetCursorTarget() then
 			point = ability:GetCursorTarget():GetAbsOrigin()
 		end
@@ -84,6 +85,10 @@ function modifier_jakiro_ice_path_bh:OnCreated(table)
 			self:OnIntervalThink()
 			self:StartIntervalThink( 0.5 )
 		end)
+		local convergence = caster:FindAbilityByName("jakiro_elemental_convergence")
+		if convergence then
+			convergence:AddIceAttunement()
+		end
 	end
 end
 
@@ -101,11 +106,31 @@ function modifier_jakiro_ice_path_bh:OnIntervalThink()
 		if not self.hitUnits[enemy] then
 			if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
 				enemy:Freeze(self:GetAbility(), caster, self:GetRemainingTime())
-				local damage = self:GetTalentSpecialValueFor("damage")
+				if self.talent3 then
+					enemy:AddNewModifier(caster, ability, "modifier_jakiro_ice_path_bh_talent", {duration = self:GetRemainingTime()})
+				end
+				local damage = self.damage
 				self:GetAbility():DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 			end
 			self.hitUnits[enemy] = true
 		end
 		
+	end
+end
+
+modifier_jakiro_ice_path_bh_talent = class({})
+LinkLuaModifier("modifier_jakiro_ice_path_bh_talent", "heroes/hero_jakiro/jakiro_ice_path_bh", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_jakiro_ice_path_bh_talent:OnCreated()
+	self.amp = self:GetCaster():FindTalentValue("special_bonus_unique_jakiro_ice_path_bh_3")
+end
+
+function modifier_jakiro_ice_path_bh_talent:DeclareFunctions()
+	return { MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE }
+end
+
+function modifier_jakiro_ice_path_bh_talent:GetModifierIncomingDamage_Percentage( params )
+	if params.inflictor and params.inflictor:GetCaster() == self:GetCaster() and not params.inflictor:IsItem() then
+		return self.amp
 	end
 end

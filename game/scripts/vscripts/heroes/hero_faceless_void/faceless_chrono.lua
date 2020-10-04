@@ -12,21 +12,25 @@ function faceless_chrono:IsHiddenWhenStolen()
 end
 
 function faceless_chrono:OnSpellStart()
-    local caster = self:GetCaster()
-    local point = self:GetCursorPosition()
+    self:CreateChronosphere( self:GetCursorPosition() )
+end
 
-    EmitSoundOn("Hero_FacelessVoid.Chronosphere", caster)
+function faceless_chrono:CreateChronosphere( position, duration, radius )
+    local caster = self:GetCaster()
+	EmitSoundOn("Hero_FacelessVoid.Chronosphere", caster)
 	
-    CreateModifierThinker(caster, self, "modifier_faceless_chrono", {Duration = self:GetTalentSpecialValueFor("duration")}, point, caster:GetTeam(), false)
-    AddFOWViewer(caster:GetTeam(), point, self:GetTalentSpecialValueFor("radius"), self:GetTalentSpecialValueFor("duration"), true)
+	local fDur = duration or self:GetTalentSpecialValueFor("duration")
+	local fRadius = radius or self:GetTalentSpecialValueFor("radius")
+    CreateModifierThinker(caster, self, "modifier_faceless_chrono", {duration = fDur, radius = fRadius}, position, caster:GetTeam(), false)
+    AddFOWViewer(caster:GetTeam(), position, fRadius, fDur, true)
 end
 
 modifier_faceless_chrono = class({})
-function modifier_faceless_chrono:OnCreated(table)
+function modifier_faceless_chrono:OnCreated(kv)
     if IsServer() then
         local caster = self:GetCaster()
         local point = self:GetParent():GetAbsOrigin()
-        local radius = self:GetTalentSpecialValueFor("radius")
+        local radius = kv.radius or self:GetTalentSpecialValueFor("radius")
 
         local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_faceless_void/faceless_void_chronosphere_surface.vpcf", PATTACH_POINT, caster)
                     ParticleManager:SetParticleControl(nfx, 0, point)
@@ -108,6 +112,19 @@ function modifier_faceless_chrono_lock:CheckState()
 end
 
 modifier_faceless_chrono_buff = class({}) 
+function modifier_faceless_chrono_buff:OnCreated()
+	self:GetParent():HookInModifier("GetMoveSpeedLimitBonus", self)
+	if self:GetCaster():HasTalent("special_bonus_unique_faceless_chrono_2") then
+		self.talent2Val = self:GetCaster():FindTalentValue("special_bonus_unique_faceless_chrono_2")
+		self:GetParent():HookInModifier("GetModifierBaseCriticalChanceBonus", self)
+	end
+end
+
+function modifier_faceless_chrono_buff:OnDestroy()
+	self:GetParent():HookOutModifier("GetMoveSpeedLimitBonus", self)
+	self:GetParent():HookOutModifier("GetModifierBaseCriticalChanceBonus", self)
+end
+
 function modifier_faceless_chrono_buff:IsDebuff()    return false end
 function modifier_faceless_chrono_buff:IsHidden()    return true end
 
@@ -119,14 +136,21 @@ function modifier_faceless_chrono_buff:CheckState()
 end
 
 function modifier_faceless_chrono_buff:DeclareFunctions()
-    local funcs = { MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
-                    MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+    local funcs = { MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
                     MODIFIER_PROPERTY_EVASION_CONSTANT}
     return funcs
 end
 
 function modifier_faceless_chrono_buff:GetModifierMoveSpeed_AbsoluteMin()
     return 2000
+end
+
+function modifier_faceless_chrono_buff:GetMoveSpeedLimitBonus()
+    return 2000
+end
+
+function modifier_faceless_chrono_buff:GetModifierBaseCriticalChanceBonus()
+    return self.talent2Val
 end
 
 function modifier_faceless_chrono_buff:GetModifierEvasion_Constant()

@@ -45,39 +45,44 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"15 20 25 30 35 40 45 50 55"
+				"reflect"				"20"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_reflect"		"100 125 150 175 200 225 250 275 300"
+				"thorns"				"10 20 30 40 50 60 70 80 90"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_threat"			"20 35 50 65 80 95 110 125 140"
+				"active_reflect"		"100 125 150 175 200 225 250 275 300"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain"			"5"
+				"bonus_threat"			"20 35 50 65 80 95 110 125 140"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain_ult"		"20"
+				"threat_gain"			"5"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
+				"threat_gain_ult"		"20"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
 				"duration"				"8"
 			}
-			"08"
+			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rune_slots"			"0 1 1 2 2 2 3 3 3"
@@ -152,39 +157,44 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"15 20 25 30 35 40 45 50 55"
+				"reflect"				"20"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_reflect"		"100 125 150 175 200 225 250 275 300"
+				"thorns"				"10 20 30 40 50 60 70 80 90"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_threat"			"20 35 50 65 80 95 110 125 140"
+				"active_reflect"		"100 125 150 175 200 225 250 275 300"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain"			"5"
+				"bonus_threat"			"20 35 50 65 80 95 110 125 140"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain_ult"		"20"
+				"threat_gain"			"5"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
+				"threat_gain_ult"		"20"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
 				"duration"				"8"
 			}
-			"08"
+			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rune_slots"			"0 1 1 2 2 2 3 3 3"
@@ -260,39 +270,44 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"15 20 25 30 35 40 45 50 55"
+				"reflect"				"20"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_reflect"		"100 125 150 175 200 225 250 275 300"
+				"thorns"				"10 20 30 40 50 60 70 80 90"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_threat"			"20 35 50 65 80 95 110 125 140"
+				"active_reflect"		"100 125 150 175 200 225 250 275 300"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain"			"5"
+				"bonus_threat"			"20 35 50 65 80 95 110 125 140"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain_ult"		"20"
+				"threat_gain"			"5"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
+				"threat_gain_ult"		"20"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
 				"duration"				"8"
 			}
-			"08"
+			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rune_slots"			"0 1 1 2 2 2 3 3 3"
@@ -368,39 +383,44 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"15 20 25 30 35 40 45 50 55"
+				"reflect"				"20"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_reflect"		"100 125 150 175 200 225 250 275 300"
+				"thorns"				"10 20 30 40 50 60 70 80 90"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_threat"			"20 35 50 65 80 95 110 125 140"
+				"active_reflect"		"100 125 150 175 200 225 250 275 300"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain"			"5"
+				"bonus_threat"			"20 35 50 65 80 95 110 125 140"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain_ult"		"20"
+				"threat_gain"			"5"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
+				"threat_gain_ult"		"20"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
 				"duration"				"8"
 			}
-			"08"
+			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rune_slots"			"0 1 1 2 2 2 3 3 3"
@@ -476,39 +496,44 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"15 20 25 30 35 40 45 50 55"
+				"reflect"				"20"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_reflect"		"100 125 150 175 200 225 250 275 300"
+				"thorns"				"10 20 30 40 50 60 70 80 90"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_threat"			"20 35 50 65 80 95 110 125 140"
+				"active_reflect"		"100 125 150 175 200 225 250 275 300"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain"			"5"
+				"bonus_threat"			"20 35 50 65 80 95 110 125 140"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain_ult"		"20"
+				"threat_gain"			"5"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
+				"threat_gain_ult"		"20"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
 				"duration"				"8"
 			}
-			"08"
+			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rune_slots"			"0 1 1 2 2 2 3 3 3"
@@ -584,39 +609,44 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"15 20 25 30 35 40 45 50 55"
+				"reflect"				"20"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_reflect"		"100 125 150 175 200 225 250 275 300"
+				"thorns"				"10 20 30 40 50 60 70 80 90"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_threat"			"20 35 50 65 80 95 110 125 140"
+				"active_reflect"		"100 125 150 175 200 225 250 275 300"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain"			"5"
+				"bonus_threat"			"20 35 50 65 80 95 110 125 140"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain_ult"		"20"
+				"threat_gain"			"5"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
+				"threat_gain_ult"		"20"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
 				"duration"				"8"
 			}
-			"08"
+			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rune_slots"			"0 1 1 2 2 2 3 3 3"
@@ -692,39 +722,44 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"15 20 25 30 35 40 45 50 55"
+				"reflect"				"20"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_reflect"		"100 125 150 175 200 225 250 275 300"
+				"thorns"				"10 20 30 40 50 60 70 80 90"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_threat"			"20 35 50 65 80 95 110 125 140"
+				"active_reflect"		"100 125 150 175 200 225 250 275 300"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain"			"5"
+				"bonus_threat"			"20 35 50 65 80 95 110 125 140"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain_ult"		"20"
+				"threat_gain"			"5"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
+				"threat_gain_ult"		"20"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
 				"duration"				"8"
 			}
-			"08"
+			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rune_slots"			"0 1 1 2 2 2 3 3 3"
@@ -800,39 +835,44 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"15 20 25 30 35 40 45 50 55"
+				"reflect"				"20"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_reflect"		"100 125 150 175 200 225 250 275 300"
+				"thorns"				"10 20 30 40 50 60 70 80 90"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_threat"			"20 35 50 65 80 95 110 125 140"
+				"active_reflect"		"100 125 150 175 200 225 250 275 300"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain"			"5"
+				"bonus_threat"			"20 35 50 65 80 95 110 125 140"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain_ult"		"20"
+				"threat_gain"			"5"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
+				"threat_gain_ult"		"20"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
 				"duration"				"8"
 			}
-			"08"
+			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rune_slots"			"0 1 1 2 2 2 3 3 3"
@@ -908,39 +948,44 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"15 20 25 30 35 40 45 50 55"
+				"reflect"				"20"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_reflect"		"100 125 150 175 200 225 250 275 300"
+				"thorns"				"10 20 30 40 50 60 70 80 90"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_threat"			"20 35 50 65 80 95 110 125 140"
+				"active_reflect"		"100 125 150 175 200 225 250 275 300"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain"			"5"
+				"bonus_threat"			"20 35 50 65 80 95 110 125 140"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threat_gain_ult"		"20"
+				"threat_gain"			"5"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
+				"threat_gain_ult"		"20"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
 				"duration"				"8"
 			}
-			"08"
+			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rune_slots"			"0 1 1 2 2 2 3 3 3"

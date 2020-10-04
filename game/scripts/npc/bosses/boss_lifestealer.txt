@@ -191,12 +191,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"spit_dmg"				"10 15"
+				"spit_dmg"				"15 20"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"digest_dmg"			"5 6"
+				"digest_dmg"			"7.5 10"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"consume_cd"			"10 6"
 			}
 		}
 	}

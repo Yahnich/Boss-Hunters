@@ -71,6 +71,40 @@ function winterw_frozen_splinter:OnSpellStart()
 	end
 end
 
+function winterw_frozen_splinter:CreateFrozenSplinters( target )
+	local enemies = self:GetCaster():FindEnemyUnitsInRadius(target:GetAbsOrigin(), self:GetTalentSpecialValueFor("search_radius"), {})
+	local i = 0
+	for _,enemy in pairs(enemies) do
+		if enemy ~= target then
+			if i < 2 then
+				local info = 
+				{
+					Target = enemy,
+					Source = target,
+					Ability = self,	
+					EffectName = "particles/units/heroes/hero_winter_wyvern/wyvern_splinter_blast.vpcf",
+					iMoveSpeed = 750,
+					iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
+					bDrawsOnMinimap = false,                          -- Optional
+					bDodgeable = true,                                -- Optional
+					bIsAttack = false,                                -- Optional
+					bVisibleToEnemies = true,                         -- Optional
+					bReplaceExisting = false,                         -- Optional
+					flExpireTime = GameRules:GetGameTime() + 10,      -- Optional but recommended
+					bProvidesVision = true,                           -- Optional
+					iVisionRadius = 400,                              -- Optional
+					iVisionTeamNumber = self:GetCaster():GetTeamNumber(),        -- Optional
+					ExtraData = {name = "secondProj"}
+				}
+				ProjectileManager:CreateTrackingProjectile(info)
+				i = i + 1
+			else
+				break
+			end
+		end
+	end
+end
+
 function winterw_frozen_splinter:OnProjectileHit_ExtraData(hTarget, vLocation, table)
 	if hTarget and hTarget:IsAlive() and not hTarget:TriggerSpellAbsorb( self ) then
 		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_frozen_splinter", {Duration = self:GetTalentSpecialValueFor("slow_duration")})
@@ -83,38 +117,7 @@ function winterw_frozen_splinter:OnProjectileHit_ExtraData(hTarget, vLocation, t
 
 			self:DealDamage(self:GetCaster(), hTarget, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 			
-			local i = 0
-
-			local enemies = self:GetCaster():FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetTalentSpecialValueFor("search_radius"), {})
-			for _,enemy in pairs(enemies) do
-				if enemy ~= hTarget then
-					if i < 2 then
-						local info = 
-						{
-							Target = enemy,
-							Source = hTarget,
-							Ability = self,	
-							EffectName = "particles/units/heroes/hero_winter_wyvern/wyvern_splinter_blast.vpcf",
-						    iMoveSpeed = 750,
-							iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
-							bDrawsOnMinimap = false,                          -- Optional
-					        bDodgeable = true,                                -- Optional
-					        bIsAttack = false,                                -- Optional
-					        bVisibleToEnemies = true,                         -- Optional
-					        bReplaceExisting = false,                         -- Optional
-					        flExpireTime = GameRules:GetGameTime() + 10,      -- Optional but recommended
-							bProvidesVision = true,                           -- Optional
-							iVisionRadius = 400,                              -- Optional
-							iVisionTeamNumber = self:GetCaster():GetTeamNumber(),        -- Optional
-							ExtraData = {name = "secondProj"}
-						}
-						ProjectileManager:CreateTrackingProjectile(info)
-						i = i + 1
-					else
-						break
-					end
-				end
-			end
+			self:CreateFrozenSplinters( hTarget )
 		elseif table.name == "secondProj" then
 			EmitSoundOn("Hero_Winter_Wyvern.SplinterBlast.Splinter", hTarget)
 

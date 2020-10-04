@@ -72,7 +72,7 @@ function boss33a_devitalize:OnSpellStart()
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
 		if not self.hitUnits[target:entindex()] then
-			if target:TriggerSpellAbsorb(self) then return false end
+			if target:TriggerSpellAbsorb(ability) then return false end
 			EmitSoundOn("Hero_ShadowDemon.ShadowPoison.Impact", caster)
 			ParticleManager:FireParticle("particles/units/heroes/hero_shadow_demon/shadow_demon_shadow_poison_release.vpcf", PATTACH_POINT_FOLLOW, target)
 			target:AddNewModifier(caster, ability, "modifier_boss33a_devitalize_debuff", {duration = self.modDuration or ability:GetSpecialValueFor("duration")})

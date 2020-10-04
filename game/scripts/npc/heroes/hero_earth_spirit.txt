@@ -6,7 +6,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_earth_spirit/earth_spirit_rock_punch_bh.lua"
-		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName"			"earth_spirit_boulder_smash"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
@@ -145,7 +145,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_earth_spirit/earth_spirit_boulder_bh.lua"
-		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName"			"earth_spirit_rolling_boulder"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
@@ -392,7 +392,9 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_earth_spirit/earth_spirit_rock_bh.lua"
-		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityTextureName"			"earth_spirit_stone_caller"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"

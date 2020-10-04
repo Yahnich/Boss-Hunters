@@ -36,7 +36,7 @@ function drow_ranger_multishot_bh:InitializeMultishot()
 	self.wasVectorCast = caster:HasTalent("special_bonus_unique_drow_ranger_multishot_2")
 	self.seconds_per_wave = self:GetChannelTime() / waves - 0.1
 	self.arrows = self:GetTalentSpecialValueFor("arrows_per_salvo")
-	self.damage = self:GetTalentSpecialValueFor("arrow_damage_pct") / 100
+	self.damage = self:GetTalentSpecialValueFor("arrow_damage_pct")
 	self.spread = self:GetTalentSpecialValueFor("arrow_angle")
 	self.range = caster:GetAttackRange() * self:GetTalentSpecialValueFor("arrow_range_multiplier")
 	if self.wasVectorCast then
@@ -79,6 +79,7 @@ function drow_ranger_multishot_bh:FireBurst( direction )
 	local FX = "particles/frostivus_gameplay/drow_linear_arrow.vpcf"
 	if self.glacier and self.glacier:GetAutoCastState() then
 		FX = "particles/frostivus_gameplay/drow_linear_frost_arrow.vpcf"
+		self.glacier:SpendMana( self.glacier:GetManaCost(-1) * self.arrows )
 	end
 	local initPos = caster:GetAbsOrigin() + direction * 90
 	local divider = 0
@@ -97,7 +98,14 @@ end
 function drow_ranger_multishot_bh:OnProjectileHit( target, position )
 	if target and not target:TriggerSpellAbsorb(self) then
 		local caster = self:GetCaster()
-		caster:PerformAbilityAttack(target, true, self, -100, true, true)
-		self:DealDamage( caster, target, caster:GetAttackDamage() * self.damage, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
+		caster.processingAreaDamageIgnore = true
+		if self.glacier then
+			self.glacier.DontSpendMana = true
+		end
+		caster:PerformAbilityAttack(target, true, self, self.damage - 100, true, true)
+		caster.processingAreaDamageIgnore = false
+		if self.glacier then
+			self.glacier.DontSpendMana = false
+		end
 	end
 end

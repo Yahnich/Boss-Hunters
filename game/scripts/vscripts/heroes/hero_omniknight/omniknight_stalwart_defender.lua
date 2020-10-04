@@ -17,8 +17,9 @@ function modifier_omniknight_stalwart_defender:OnCreated()
 	self.duration = self:GetTalentSpecialValueFor("armor_duration")
 	if IsServer() then
 		local nFX = ParticleManager:CreateParticle( "particles/units/heroes/hero_omniknight/omniknight_degen_aura.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster() )
-		ParticleManager:SetParticleControl(nFX, 1, Vector(0,0,75) )
-		ParticleManager:SetParticleControl(nFX, 1, Vector(self.radius) )
+		ParticleManager:SetParticleControl(nFX, 0, Vector(0,0,75) )
+		ParticleManager:SetParticleControlEnt(nFX, 0, self:GetCaster(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", Vector(0,0,75), true)
+		ParticleManager:SetParticleControl(nFX, 1, Vector(self.radius, self.radius, self.radius) )
 	end
 end
 

@@ -37,31 +37,23 @@ modifier_boss_arthromos_touch_of_decay_debuff = class({})
 LinkLuaModifier( "modifier_boss_arthromos_touch_of_decay_debuff", "bosses/boss_arthromos/boss_arthromos_touch_of_decay", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_boss_arthromos_touch_of_decay_debuff:OnCreated()
-	self.regen = self:GetSpecialValueFor("hp_pct")
+	self.regen = self:GetSpecialValueFor("hp_pct") / 100
 	if IsServer() then
 		self:StartIntervalThink( 0.33 )
 	end
 end
 
 function modifier_boss_arthromos_touch_of_decay_debuff:OnRefresh()
-	self.regen = self:GetSpecialValueFor("hp_pct")
+	self.regen = self:GetSpecialValueFor("hp_pct") / 100
 	if IsServer() then
 		self:StartIntervalThink( 0.33 )
 	end
 end
 
 function modifier_boss_arthromos_touch_of_decay_debuff:OnIntervalThink()
-	if self:GetParent():GetHealthRegen() < 0 then
-		self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), math.ceil( math.abs( self:GetParent():GetHealthRegen() ) * 0.33 ), {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NON_LETHAL + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL} )
-	end
-end
-
-function modifier_boss_arthromos_touch_of_decay_debuff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE}
-end
-
-function modifier_boss_arthromos_touch_of_decay_debuff:GetModifierHealthRegenPercentage()
-	return self.regen
+	local damage =  self:GetParent():GetMaxHealth() * self.regen * 0.33
+	local damageDealt = self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), damage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NON_LETHAL + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL} )
+	self:GetCaster():HealEvent( damageDealt, self:GetAbility(), self:GetCaster() )
 end
 
 function modifier_boss_arthromos_touch_of_decay_debuff:GetEffectName()

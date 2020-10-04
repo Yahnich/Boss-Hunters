@@ -12,8 +12,10 @@ function boss_vanguard_shin_shatter:OnSpellStart()
 	local duration = self:GetSpecialValueFor("stun_duration")
 	local radius = self:GetSpecialValueFor("radius")
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
-		self:DealDamage( caster, enemy, damage )
-		self:Stun(enemy, duration)
+		if not enemy:TriggerSpellAbsorb( self ) then
+			self:DealDamage( caster, enemy, damage )
+			self:Stun(enemy, duration)
+		end
 	end
 	ParticleManager:FireParticle("particles/test_particle/ogre_melee_smash.vpcf", PATTACH_POINT_FOLLOW, caster, {[0] = caster:GetAbsOrigin(), [1] = Vector(radius, 1, 1) })
 	EmitSoundOnLocationWithCaster(caster:GetAbsOrigin(), "Ability.MeleeSmashLand", caster)

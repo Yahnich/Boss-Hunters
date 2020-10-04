@@ -29,7 +29,7 @@ function phenx_egg:OnSpellStart()
 	local hp = self:GetTalentSpecialValueFor("max_hero_attacks")
 	egg:SetCoreHealth(hp * 2)
 	
-    egg:AddNewModifier(caster, self, "modifier_phenx_egg_form", {Duration = self:GetTalentSpecialValueFor("duration")})
+    egg:AddNewModifier(caster, self, "modifier_phenx_egg_form", {Duration = self:GetTalentSpecialValueFor("duration"), ignoreStatusAmp = true})
 	egg.owners = {}
     EmitSoundOn("Hero_Phoenix.SuperNova.Begin", egg)
 

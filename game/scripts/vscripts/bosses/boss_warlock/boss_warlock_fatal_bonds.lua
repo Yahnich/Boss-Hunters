@@ -47,7 +47,7 @@ function modifier_boss_warlock_fatal_bonds_primary:OnTakeDamage(params)
 	if IsServer() then
 		local parent = self:GetParent()
 		local caster = self:GetCaster()
-		if params.unit == parent then
+		if params.unit == parent and not HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION ) then
 			local damage = params.damage * self:GetSpecialValueFor("damage")/100
 			local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
 			for _,enemy in pairs(enemies) do
@@ -56,7 +56,7 @@ function modifier_boss_warlock_fatal_bonds_primary:OnTakeDamage(params)
 								ParticleManager:SetParticleControlEnt(nfx, 0, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
 								ParticleManager:SetParticleControlEnt(nfx, 1, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
 								ParticleManager:ReleaseParticleIndex(nfx)
-					self:GetAbility():DealDamage(caster, enemy, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_DAMAGE)
+					self:GetAbility():DealDamage(caster, enemy, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_REFLECTION}, OVERHEAD_ALERT_DAMAGE)
 				end
 			end
 		end

@@ -63,11 +63,12 @@ function modifier_faceless_clock_stopper_handle:IsHidden() return true end
 
 modifier_faceless_clock_stopper_buff = class({})
 function modifier_faceless_clock_stopper_buff:OnCreated()
-	caster:HookInModifier("GetBaseAttackTime_Bonus", self)
+	self.bat = self:GetTalentSpecialValueFor("base_attack_time")
+	self:GetCaster():HookInModifier("GetBaseAttackTime_Bonus", self)
 end
 
 function modifier_faceless_clock_stopper_buff:OnDestroy()
-	caster:HookOutModifier("GetBaseAttackTime_Bonus", self)
+	self:GetCaster():HookOutModifier("GetBaseAttackTime_Bonus", self)
 end
 
 function modifier_faceless_clock_stopper_buff:DeclareFunctions()

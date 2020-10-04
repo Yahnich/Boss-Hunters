@@ -30,14 +30,35 @@ modifier_slardar_amplify_damage_bh = class({})
 LinkLuaModifier( "modifier_slardar_amplify_damage_bh", "heroes/hero_slardar/slardar_amplify_damage_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_slardar_amplify_damage_bh:OnCreated()
-	self.armor = self:GetTalentSpecialValueFor("armor_reduction") - self:GetCaster():GetPhysicalArmorBaseValue() * self:GetCaster():FindTalentValue("special_bonus_unique_slardar_amplify_damage_2") / 100
+	self.armor = self:GetTalentSpecialValueFor("armor_reduction")
+	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_slardar_amplify_damage_2")
+	self.talent2Dmg = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_amplify_damage_2")
+	self.talent3 = self:GetCaster():HasTalent("special_bonus_unique_slardar_amplify_damage_3")
+	self.talent3Radius = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_amplify_damage_3")
+	if self.talent3 then
+		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_slardar/slardar_sprint.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
+		self:AddEffect( nfx )
+	end
 	if IsServer() then
 		self:StartIntervalThink(0)
 	end
 end
 
 function modifier_slardar_amplify_damage_bh:OnRefresh()
-	self.armor = self:GetTalentSpecialValueFor("armor_reduction") - self:GetCaster():GetPhysicalArmorBaseValue() * self:GetCaster():FindTalentValue("special_bonus_unique_slardar_amplify_damage_2") / 100
+	self.armor = self:GetTalentSpecialValueFor("armor_reduction")
+	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_slardar_amplify_damage_2")
+	self.talent2Dmg = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_amplify_damage_2")
+	self.talent3 = self:GetCaster():HasTalent("special_bonus_unique_slardar_amplify_damage_3")
+	self.talent3Radius = self:GetCaster():HasTalent("special_bonus_unique_slardar_amplify_damage_3")
+	if IsServer() and self.talent2 then
+		self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self:GetCaster():GetPhysicalArmorValue(false) * self.talent2Dmg, {damage_type = DAMAGE_TYPE_PHYSICAL} )
+	end
+end
+
+function modifier_slardar_amplify_damage_bh:OnRemoved()
+	if IsServer() and self.talent2 then
+		self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self:GetCaster():GetPhysicalArmorValue(false) * self.talent2Dmg, {damage_type = DAMAGE_TYPE_PHYSICAL} )
+	end
 end
 
 function modifier_slardar_amplify_damage_bh:OnIntervalThink()
@@ -54,6 +75,31 @@ end
 
 function modifier_slardar_amplify_damage_bh:GetModifierPhysicalArmorBonus()
 	return self.armor
+end
+
+
+function modifier_slardar_amplify_damage_bh:IsAura()
+	return self.talent3
+end
+
+function modifier_slardar_amplify_damage_bh:GetModifierAura()
+	return "modifier_in_water"
+end
+
+function modifier_slardar_amplify_damage_bh:GetAuraRadius()
+	return self.talent3Radius
+end
+
+function modifier_slardar_amplify_damage_bh:GetAuraDuration()
+	return 0.5
+end
+
+function modifier_slardar_amplify_damage_bh:GetAuraSearchTeam()    
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+
+function modifier_slardar_amplify_damage_bh:GetAuraSearchType()    
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
 end
 
 function modifier_slardar_amplify_damage_bh:GetEffectName()

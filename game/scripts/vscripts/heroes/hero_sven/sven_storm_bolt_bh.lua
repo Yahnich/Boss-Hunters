@@ -34,7 +34,7 @@ function sven_storm_bolt_bh:OnProjectileHit( target, position )
 		local tDuration = caster:FindTalentValue("special_bonus_unique_sven_storm_bolt_2", "duration")
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), radius ) ) do
 			self:Stun( enemy, stunDur )
-			self:DealDamage( caster, target, damage )
+			self:DealDamage( caster, enemy, damage )
 			if talent then
 				caster:AddNewModifier(caster, self, "modifier_sven_storm_bolt_talent", {duration = tDuration})
 			end
@@ -57,8 +57,8 @@ end
 function modifier_sven_storm_bolt_talent:OnRefresh()
 	self.str = self:GetCaster():FindTalentValue("special_bonus_unique_sven_storm_bolt_2")
 	if IsServer() then
-		self:GetCaster():CalculateStatBonus()
 		self:AddIndependentStack(self:GetRemainingTime())
+		self:GetCaster():CalculateStatBonus()
 	end
 end
 

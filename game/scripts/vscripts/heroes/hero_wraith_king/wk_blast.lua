@@ -1,5 +1,4 @@
 wk_blast = class({})
-LinkLuaModifier( "modifier_wk_blast", "heroes/hero_wraith_king/wk_blast.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function wk_blast:IsStealable()
     return true
@@ -10,12 +9,16 @@ function wk_blast:IsHiddenWhenStolen()
 end
 
 function wk_blast:GetBehavior()
-    local caster = self:GetCaster()
-    if caster:HasTalent("special_bonus_unique_wk_blast_1") then
-        return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_DIRECTIONAL
-    else
-        return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
-    end
+    -- local caster = self:GetCaster()
+    -- if caster:HasTalent("special_bonus_unique_wk_blast_1") then
+        -- return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_DIRECTIONAL
+    -- else
+        return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AOE
+    -- end
+end
+
+function wk_blast:GetAOERadius()
+	return self:GetCaster():FindTalentValue("special_bonus_unique_wk_blast_1")
 end
 
 function wk_blast:OnAbilityPhaseStart()
@@ -31,11 +34,11 @@ end
 function wk_blast:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:EmitSound("Hero_SkeletonKing.Hellfire_Blast")
-    if caster:HasTalent("special_bonus_unique_wk_blast_1") then
-        self:floatyOrb(self:GetCursorPosition())
-    else
+    -- if caster:HasTalent("special_bonus_unique_wk_blast_1") then
+        -- self:floatyOrb(self:GetCursorPosition())
+    -- else
         self:FireBlast(self:GetCursorTarget())
-    end 
+    -- end 
 end
 
 function wk_blast:FireBlast(target)
@@ -108,16 +111,29 @@ function wk_blast:OnProjectileHit(hTarget, vLocation)
         self:Stun(hTarget, stun_duration, true)
         hTarget:AddNewModifier(caster, self, "modifier_wk_blast", {Duration = dot_duration})
 		hTarget:EmitSound("Hero_SkeletonKing.Hellfire_BlastImpact")
+		if caster:HasTalent("special_bonus_unique_wk_blast_1") then
+			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( hTarget:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_wk_blast_1") ) ) do
+				if enemy ~= hTarget and not enemy:TriggerSpellAbsorb( self ) then
+					self:DealDamage(caster, enemy, damage, {}, 0)
+					enemy:AddNewModifier(caster, self, "modifier_wk_blast", {Duration = dot_duration})
+				end
+			end
+		end
     end
 end
 
 
 modifier_wk_blast = class({})
-function modifier_wk_blast:IsDebuff()
-    return true
-end
+LinkLuaModifier( "modifier_wk_blast", "heroes/hero_wraith_king/wk_blast.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_wk_blast:OnCreated(table)
+	self.slow = self:GetTalentSpecialValueFor("slow")
+	self.damage = self:GetTalentSpecialValueFor("dot_damage")
+	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_wk_blast_2") 
+	if self.talent2 then
+		self.talentSlow = self.slow * self:GetCaster():FindTalentValue("special_bonus_unique_wk_blast_2") / 100
+		self.talen2Dur = self:GetCaster():FindTalentValue("special_bonus_unique_wk_blast_2", "duration")
+	end
     if IsServer() then
         self:StartIntervalThink(1)
     end
@@ -126,22 +142,70 @@ end
 function modifier_wk_blast:OnIntervalThink()
     local caster = self:GetCaster()
     local parent = self:GetParent()
-    local damage = self:GetTalentSpecialValueFor("dot_damage")
 
-    self:GetAbility():DealDamage(caster, parent, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+    self:GetAbility():DealDamage(caster, parent, self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 end
 
 function modifier_wk_blast:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
+        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		MODIFIER_EVENT_ON_ATTACK_LANDED
     }
     return funcs
 end
 
 function modifier_wk_blast:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("slow")
+    return self.slow
+end
+
+function modifier_wk_blast:GetModifierAttackSpeedBonus_Constant()
+    return self.talentSlow
+end
+
+function modifier_wk_blast:OnAttackLanded(params)
+    if self.talent2 and params.target == self:GetParent() and params.attacker:GetPlayerOwnerID() == self:GetCaster():GetPlayerOwnerID() then
+		params.attacker:AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_wk_blast_buff_talent", {duration = self.talen2Dur} )
+	end
 end
 
 function modifier_wk_blast:GetEffectName()
     return "particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast_debuff.vpcf"
+end
+
+function modifier_wk_blast:IsDebuff()
+    return true
+end
+
+modifier_wk_blast_buff_talent = class({})
+LinkLuaModifier( "modifier_wk_blast_buff_talent", "heroes/hero_wraith_king/wk_blast.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+
+function modifier_wk_blast_buff_talent:OnCreated(table)
+	self.ms = self:GetTalentSpecialValueFor("slow")
+	self.as = self.ms * self:GetCaster():FindTalentValue("special_bonus_unique_wk_blast_2") / 100
+end
+
+function modifier_wk_blast_buff_talent:DeclareFunctions()
+    local funcs = {
+        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+    }
+    return funcs
+end
+
+function modifier_wk_blast_buff_talent:GetModifierMoveSpeedBonus_Percentage()
+    return -self.ms
+end
+
+function modifier_wk_blast_buff_talent:GetModifierAttackSpeedBonus_Constant()
+    return -self.as
+end
+
+function modifier_wk_blast_buff_talent:GetEffectName()
+    return "particles/units/heroes/hero_wraith_king/wraith_king_kings_decree.vpcf"
+end
+
+function modifier_wk_blast_buff_talent:IsBuff()
+    return true
 end

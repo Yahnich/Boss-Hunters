@@ -1,5 +1,37 @@
 earth_spirit_rock_punch_bh = class({})
 
+function earth_spirit_rock_punch_bh:GetCastRange( position, target )
+	if IsClient() then
+		return 250
+	elseif target then
+		if target:GetName() == "npc_dota_earth_spirit_stone" then
+			return 250
+		else
+			local caster = self:GetCaster()
+			local stones = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), 250, {type = DOTA_UNIT_TARGET_ALL, flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE })
+			for _,stone in ipairs(stones) do
+				if stone:GetName() == "npc_dota_earth_spirit_stone" then
+					self.castingBehavior = "stone"
+					return 1200
+				end
+			end
+			self.castingBehavior = "target"
+			return 250
+		end
+	else
+		local caster = self:GetCaster()
+		local stones = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), 250, {type = DOTA_UNIT_TARGET_ALL, flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE })
+		for _,stone in ipairs(stones) do
+			if stone:GetName() == "npc_dota_earth_spirit_stone" then
+				self.castingBehavior = "stone"
+				return 1200
+			end
+		end
+		self.castingBehavior = "target"
+		return 250
+	end
+end
+
 function earth_spirit_rock_punch_bh:IsStealable()
 	return true
 end
@@ -12,9 +44,42 @@ function earth_spirit_rock_punch_bh:GetAOERadius()
 	return self:GetTalentSpecialValueFor("radius")
 end
 
+function earth_spirit_rock_punch_bh:OnAbilityPhaseStart()
+	local target = self:GetCursorTarget()
+	if not target and self.castingBehavior ~= "stone" or target == self:GetCaster() then
+		return false
+	end
+	return true
+end
+
 function earth_spirit_rock_punch_bh:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()
+    local position = self:GetCursorPosition()
+	
+	self.target = target
+	
+	if self.castingBehavior == "stone" then
+		local stones = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), 250, {type = DOTA_UNIT_TARGET_ALL, flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE })
+		for _,stone in ipairs(stones) do
+			if stone:GetName() == "npc_dota_earth_spirit_stone" then
+				stone:SetAbsOrigin( caster:GetAbsOrigin() + CalculateDirection(position, caster) * 50 )
+				target = stone
+				break
+			end
+		end
+	elseif self.castingBehavior == "target" then
+		
+	end
+	if not target and CalculateDistance() then
+		local stones = caster:FindFriendlyUnitsInRadius(self:GetCursorPosition(), 200, {type = DOTA_UNIT_TARGET_ALL, flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE })
+		for _,stone in ipairs(stones) do
+			if stone:GetName() == "npc_dota_earth_spirit_stone" then
+				target = stone
+				break
+			end
+		end
+	end
 	
 	local distance = self:GetTalentSpecialValueFor("distance")
 	if target:GetName() == "npc_dota_earth_spirit_stone" then

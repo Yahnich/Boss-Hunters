@@ -2,7 +2,6 @@ wk_reincarnation = class({})
 LinkLuaModifier("modifier_wk_reincarnation", "heroes/hero_wraith_king/wk_reincarnation.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_wk_reincarnation_wraith_form_buff", "heroes/hero_wraith_king/wk_reincarnation.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_wk_reincarnation_wraith_form", "heroes/hero_wraith_king/wk_reincarnation.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_wk_reincarnation_slow", "heroes/hero_wraith_king/wk_reincarnation.lua", LUA_MODIFIER_MOTION_NONE)
 
 function wk_reincarnation:IsStealable()
     return false
@@ -14,8 +13,7 @@ end
 
 function wk_reincarnation:GetManaCost(iLevel)
 	local caster = self:GetCaster()
-    local talent = "special_bonus_unique_wk_reincarnation_2"
-    if caster:HasTalent( talent ) then return 0 end
+    if caster:HasTalent(  "special_bonus_unique_wk_reincarnation_2" ) or not caster:IsRealHero() then return 0 end
     return 160
 end
 
@@ -33,22 +31,26 @@ end
 
 modifier_wk_reincarnation =  class({})
 
-function modifier_wk_reincarnation:OnCreated()    
-		-- Ability properties
-		self.caster = self:GetCaster()
-		self.ability = self:GetAbility()    
-		self.particle_death = "particles/units/heroes/hero_skeletonking/wraith_king_reincarnate.vpcf"
-		self.sound_death = "Hero_SkeletonKing.Reincarnate"
-		self.sound_reincarnation = "Hero_SkeletonKing.Reincarnate.Stinger"
-		self.sound_be_back = "Hero_WraithKing.IllBeBack"
-		self.modifier_wraith = "modifier_wk_reincarnation_wraith_form"
+function modifier_wk_reincarnation:OnCreated() 
+	-- Ability properties
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()    
+	self.particle_death = "particles/units/heroes/hero_skeletonking/wraith_king_reincarnate.vpcf"
+	self.sound_death = "Hero_SkeletonKing.Reincarnate"
+	self.sound_reincarnation = "Hero_SkeletonKing.Reincarnate.Stinger"
+	self.sound_be_back = "Hero_WraithKing.IllBeBack"
+	self.modifier_wraith = "modifier_wk_reincarnation_wraith_form"
 
-		-- Ability specials
-		self.reincarnate_delay = self.ability:GetTalentSpecialValueFor("reincarnate_time")        
-		self.slow_radius = self.ability:GetTalentSpecialValueFor("radius")
-		self.slow_duration = self.ability:GetTalentSpecialValueFor("duration")
-		self.scepter_wraith_form_radius = self.ability:GetTalentSpecialValueFor("aura_radius")        
-
+	-- Ability specials
+	self.reincarnate_delay = self.ability:GetTalentSpecialValueFor("reincarnate_time")        
+	self.slow_radius = self.ability:GetTalentSpecialValueFor("radius")
+	self.slow_duration = self.ability:GetTalentSpecialValueFor("duration")
+	self.scepter_wraith_form_radius = self.ability:GetTalentSpecialValueFor("aura_radius")        
+	
+	self.talent1 = self:GetTalentSpecialValueFor("special_bonus_unique_wk_reincarnation_1")
+	self.talent3 = self:GetTalentSpecialValueFor("special_bonus_unique_wk_reincarnation_3")
+	
+	self:GetParent():HookInModifier("GetReincarnationDelay", self, self:GetPriority() )
 	if IsServer() then
 		-- Set WK as immortal!
 		self.can_die = false
@@ -56,6 +58,10 @@ function modifier_wk_reincarnation:OnCreated()
 		-- Start interval think
 		self:StartIntervalThink(FrameTime())
 	end
+end
+
+function modifier_wk_reincarnation:OnDestroy()
+	self:GetParent():HookOutModifier("GetReincarnationDelay", self)
 end
 
 function modifier_wk_reincarnation:IsHidden() 
@@ -68,41 +74,54 @@ end
 function modifier_wk_reincarnation:IsPurgable() return false end
 function modifier_wk_reincarnation:IsDebuff() return false end
 
-function modifier_wk_reincarnation:OnIntervalThink()
-	-- If caster has sufficent mana and the ability is ready, apply
-	if self.ability:IsOwnersManaEnough() and self.ability:IsCooldownReady() then
-		self.can_die = false
-	else
-		self.can_die = true
-	end
-end
 
 function modifier_wk_reincarnation:OnRefresh()
 	self:OnCreated()
 end
 
 function modifier_wk_reincarnation:DeclareFunctions()
-	local decFuncs = {MODIFIER_PROPERTY_REINCARNATION,                      
-					  MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
-					  MODIFIER_EVENT_ON_DEATH,
-					  MODIFIER_PROPERTY_RESPAWNTIME_STACKING}
+	local decFuncs = {MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
+				      MODIFIER_PROPERTY_REINCARNATION,
+					  MODIFIER_EVENT_ON_DEATH}
 
 	return decFuncs
 end
 
-function modifier_wk_reincarnation:ReincarnateTime()
-	if IsServer() then  
-		if not self.can_die and self.caster:IsRealHero() then
+function modifier_wk_reincarnation:GetReincarnationDelay()
+	if IsServer() then
+		if self.ability:IsOwnersManaEnough() and self.ability:IsCooldownReady() and not self.caster:IsIllusion() then
+			self.unitWillResurrect = true
+			self.ability:UseResources(true, false, true)
 			self:GetCaster():EmitSound("Hero_SkeletonKing.Reincarnate")
+			
+			local enemies = self.caster:FindEnemyUnitsInRadius(self.caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+			for _,enemy in pairs(enemies) do
+				enemy:AddNewModifier(self.caster, self.ability, "modifier_wk_reincarnation_slow", {Duration = self:GetTalentSpecialValueFor("duration")})
+				
+				if self.caster:IsRealHero() and self.talent1 and self.caster:FindAbilityByName("wk_blast") then
+					self.caster:FindAbilityByName("wk_blast"):FireBlast(enemy)
+				end
+			end
+			if self.caster:IsRealHero() and self.talent1 and self.caster:FindAbilityByName("wk_skeletons")then
+				self.caster:FindAbilityByName("wk_skeletons"):SpawnDeathKnight( self:GetCaster():GetAbsOrigin() + RandomVector(150) )
+			end
+			if self.caster:HasTalent("special_bonus_unique_wk_reincarnation_3") then
+				Timers:CreateTimer( self.reincarnate_delay + 0.1, function()
+					self.caster:AddNewModifier( self.caster, self.ability, "modifier_wk_reincarnation_buff", {duration = self.caster:FindTalentValue("special_bonus_unique_wk_reincarnation_3")} )
+				end)
+			end
+			AddFOWViewer( self.caster:GetTeam(), self.caster:GetAbsOrigin(), 600, self.reincarnate_delay, true ) 
 			return self.reincarnate_delay
 		end
-
-		return nil
 	end
 end
 
+function modifier_wk_reincarnation:ReincarnateTime()
+	return self:GetReincarnationDelay()
+end
+
 function modifier_wk_reincarnation:GetActivityTranslationModifiers()
-	if self.reincarnation_death then
+	if self.unitWillResurrect then
 		return "reincarnate"
 	end
 
@@ -113,17 +132,16 @@ function modifier_wk_reincarnation:OnDeath(keys)
 	if IsServer() then
 		local unit = keys.unit
 		local reincarnate = keys.reincarnate
-		
-		if unit == self.caster and self.ability:IsCooldownReady() and self.ability:IsOwnersManaEnough() then
-			self.ability:UseResources(true, false, true)
+		if unit == self.caster and self.unitWillResurrect then
+			self.caster.unitWillResurrect = false
 			unit:EmitSound("Hero_SkeletonKing.Reincarnate.Stinger")
-			local enemies = self.caster:FindEnemyUnitsInRadius(self.caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
-			for _,enemy in pairs(enemies) do
-				enemy:AddNewModifier(self.caster, self.ability, "modifier_wk_reincarnation_slow", {Duration = self:GetTalentSpecialValueFor("duration")})
-				
-				if self.caster:HasTalent("special_bonus_unique_wk_reincarnation_1") then
-					self.caster:FindAbilityByName("wk_blast"):FireBlast(enemy)
-				end
+		elseif unit == self.caster and not unit:IsHero() then
+			local respawnTime = self:GetReincarnationDelay()
+			if respawnTime then
+				Timers:CreateTimer( respawnTime, function()
+					unit:RespawnUnit()
+					unit:StartGesture( ACT_DOTA_SPAWN )
+				end)
 			end
 		end
 	end
@@ -171,6 +189,9 @@ function modifier_wk_reincarnation:IsAura()
 	return false
 end
 
+function modifier_wk_reincarnation:GetPriority()
+	return MODIFIER_PRIORITY_SUPER_ULTRA
+end
 
 -- Wraith Form modifier (given from aura, not yet Wraith Form)
 modifier_wk_reincarnation_wraith_form_buff = modifier_wk_reincarnation_wraith_form_buff or class({})
@@ -311,6 +332,7 @@ function modifier_wk_reincarnation_wraith_form:IsDebuff()
 end
 
 modifier_wk_reincarnation_slow = class({})
+LinkLuaModifier("modifier_wk_reincarnation_slow", "heroes/hero_wraith_king/wk_reincarnation.lua", LUA_MODIFIER_MOTION_NONE)
 function modifier_wk_reincarnation_slow:IsDebuff()
     return true
 end
@@ -329,4 +351,23 @@ end
 
 function modifier_wk_reincarnation_slow:GetModifierAttackSpeedBonus_Constant()
     return self:GetTalentSpecialValueFor("slow_as")
+end
+
+modifier_wk_reincarnation_buff = class({})
+LinkLuaModifier("modifier_wk_reincarnation_buff", "heroes/hero_wraith_king/wk_reincarnation.lua", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_wk_reincarnation_buff:DeclareFunctions()
+    local funcs = {
+        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+    }
+    return funcs
+end
+
+function modifier_wk_reincarnation_buff:GetModifierMoveSpeedBonus_Percentage()
+    return -self:GetTalentSpecialValueFor("slow_ms")
+end
+
+function modifier_wk_reincarnation_buff:GetModifierAttackSpeedBonus_Constant()
+    return -self:GetTalentSpecialValueFor("slow_as")
 end
