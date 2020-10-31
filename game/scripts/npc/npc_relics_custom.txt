@@ -323,7 +323,7 @@
 	}
 	"relic_leather_buckler"
 	{
-		"Rarity"			"RARITY_UNCOMMON"
+		"Rarity"			"RARITY_COMMON"
 		"Cursed"			"0"
 	}
 	"relic_weighted_gloves"
@@ -586,7 +586,7 @@
 	}
 	"relic_eagles_beak"
 	{
-		"Rarity"			"RARITY_RARE"
+		"Rarity"			"RARITY_UNCOMMON"
 		"Cursed"			"0"
 	}
 	"relic_deathrow"
@@ -679,15 +679,10 @@
 		"Rarity"			"RARITY_RARE"
 		"Cursed"			"1"
 	}
-	// "relic_phoenix_down"
-	// {
-		// "Rarity"			"RARITY_RARE"
-		// "Cursed"			"1"
-	// }
-	"relic_symbiote"
+	"relic_phoenix_down"
 	{
 		"Rarity"			"RARITY_RARE"
-		"Cursed"			"1"
+		"Cursed"				"0"
 	}
 	"relic_the_pact"
 	{
@@ -707,7 +702,7 @@
 	"relic_crystal_skull"
 	{
 		"Rarity"			"RARITY_RARE"
-		"Cursed"			"1"
+		"Cursed"			"0"
 	}
 	"relic_unchanging_globe"
 	{
@@ -735,11 +730,6 @@
 		"Cursed"			"1"
 	}
 	"relic_thorned_bandages"
-	{
-		"Rarity"			"RARITY_RARE"
-		"Cursed"			"1"
-	}
-	"relic_archmages_reliquary"
 	{
 		"Rarity"			"RARITY_RARE"
 		"Cursed"			"1"
@@ -803,6 +793,16 @@
 		"Cursed"			"1"
 	}
 	"relic_apple_of_eden"
+	{
+		"Rarity"			"RARITY_LEGENDARY"
+		"Cursed"			"1"
+	}
+	"relic_symbiote"
+	{
+		"Rarity"			"RARITY_LEGENDARY"
+		"Cursed"			"1"
+	}
+	"relic_archmages_reliquary"
 	{
 		"Rarity"			"RARITY_LEGENDARY"
 		"Cursed"			"1"

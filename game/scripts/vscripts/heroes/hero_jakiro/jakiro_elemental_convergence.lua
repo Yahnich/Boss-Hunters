@@ -69,49 +69,6 @@ function modifier_jakiro_elemental_convergence:DeclareFunctions()
 			 MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL_VALUE}
 end
 
-
-function modifier_jakiro_elemental_convergence:GetModifierOverrideAbilitySpecial(params)
-	if params.ability and not params.ability:IsItem() then
-		local caster = params.ability:GetCaster()
-		local specialValue = params.ability_special_value
-		if specialValue == "damage" or specialValue == "damage_scepter" then
-			if caster:HasModifier("modifier_jakiro_elemental_convergence_convergence") or caster:HasModifier("modifier_jakiro_elemental_convergence_fire") then
-				return 1
-			end
-		elseif specialValue == "duration" or specialValue == "duration_scepter" then
-			if caster:HasModifier("modifier_jakiro_elemental_convergence_convergence") or caster:HasModifier("modifier_jakiro_elemental_convergence_ice") then
-				return 1
-			end
-		end
-	end
-end
-
-function modifier_jakiro_elemental_convergence:GetModifierOverrideAbilitySpecialValue(params)
-	if params.ability and not params.ability:IsItem() then
-		local caster = params.ability:GetCaster()
-		local specialValue = params.ability_special_value
-		if specialValue == "damage" or specialValue == "damage_scepter" then
-			if caster:HasModifier("modifier_jakiro_elemental_convergence_convergence") or caster:HasModifier("modifier_jakiro_elemental_convergence_fire") then
-				local fireStacks = caster:GetModifierStackCount("modifier_jakiro_elemental_convergence_fire", caster)
-				if caster:HasModifier("modifier_jakiro_elemental_convergence_convergence") then
-					fireStacks = self.max_stacks * 2
-				end
-				local flBaseValue = params.ability:GetLevelSpecialValueNoOverride( specialValue, params.ability_special_level )
-				return flBaseValue * (1 + self.damage_increase * fireStacks )
-			end
-		elseif specialValue == "duration" or specialValue == "duration_scepter" then
-			if caster:HasModifier("modifier_jakiro_elemental_convergence_convergence") or caster:HasModifier("modifier_jakiro_elemental_convergence_ice") then
-				local iceStacks = caster:GetModifierStackCount("modifier_jakiro_elemental_convergence_ice", caster)
-				if caster:HasModifier("modifier_jakiro_elemental_convergence_convergence") then
-					iceStacks = self.max_stacks * 2
-				end
-				local flBaseValue = params.ability:GetLevelSpecialValueNoOverride( specialValue, params.ability_special_level )
-				return flBaseValue * (1 + self.duration_increase * iceStacks )
-			end
-		end
-	end
-end
-
 function modifier_jakiro_elemental_convergence:IsHidden()
 	return true
 end

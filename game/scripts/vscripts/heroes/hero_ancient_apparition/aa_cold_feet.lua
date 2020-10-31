@@ -32,8 +32,8 @@ end
 function modifier_aa_cold_feet:OnIntervalThink()
 	EmitSoundOn("Hero_Ancient_Apparition.ColdFeetTick", self:GetParent())
 	local damage = self:GetTalentSpecialValueFor("damage")
-	if self:GetCaster():HasTalent("special_bonus_unique_aa_cold_feet_2") and self:GetParent():IsChilled() then
-		damage = damage * 2
+	if self:GetCaster():HasTalent("special_bonus_unique_aa_cold_feet_2") and ( self:GetParent():IsChilled() or self:GetParent():IsFrozenGeneric() ) then
+		damage = damage * self:GetCaster():FindTalentValue("special_bonus_unique_aa_cold_feet_2")
 	end
 	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), damage)
 	self:StartIntervalThink(1)

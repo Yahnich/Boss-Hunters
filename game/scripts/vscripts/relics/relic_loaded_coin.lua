@@ -5,9 +5,9 @@ function relic_loaded_coin:DeclareFunctions()
 end
 
 function relic_loaded_coin:GetModifierIncomingDamage_Percentage()
-	if RollPercentage( 70 ) then
+	if RollPercentage( 60 ) then
 		return -100
 	elseif not self:GetParent():HasModifier("relic_ritual_candle") then 
-		return 200 
+		return 100 
 	end
 end

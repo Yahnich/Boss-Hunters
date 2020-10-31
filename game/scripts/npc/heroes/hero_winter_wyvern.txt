@@ -125,7 +125,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"325"
+				"value"					"100"
 			}
 		}
 	}

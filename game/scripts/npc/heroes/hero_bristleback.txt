@@ -59,25 +59,36 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"armor_per_stack"		"-2 -2.5 -3 -3.5 -4 -4.5 -5"
+				"base_armor"			"-2 -2 -2 -2 -3 -4 -5"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"move_slow_per_stack"	"-15"
+				"var_type"				"FIELD_FLOAT"
+				"armor_per_stack"		"-1.4 -1.9 -2.4 -2.9 -2.9 -2.9 -2.9"
 			}
 			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_move_slow"		"-20 -20 -20 -20 -25 -30 -35"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"move_slow_per_stack"	"-3 -6 -9 -12 -12 -12 -12"
+			}
+			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"stack_limit"			"4"
 				"LinkedSpecialBonus"	"special_bonus_unique_bristleback_snot_1"
 			}
-			"06"
+			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"scepter_radius"		"750"
+				"RequiresScepter"		"1"
 			}
-			"07"
+			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"attackspeed_loss"		"0"
@@ -108,7 +119,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
+				"value"					"4"
 			}
 		}
 	}
@@ -228,7 +239,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"15"
+				"value"						"25"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"50"
 			}
 		}
 	}
@@ -250,7 +266,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"80"
+				"value"						"60"
 			}
 		}
 	}
@@ -275,7 +291,7 @@
 			"special_bonus_unique_bristleback_yer_mum_2"	"1"
 		}
 		
-		"AbilityCooldown"				"16 14 12 10 8 6 4"
+		"AbilityCooldown"				"24 20 16 12 12 12 12"
 		"AbilityManaCost"				"75"
 	
 		// Special
@@ -285,18 +301,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"8"
+				"duration"				"5"
 			}
-			"01"
+			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"-90"
+				"attackspeed_increase"	"100 100 100 100 150 200 250"
 			}
-			"01"
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reduction_chance"		"25"
-				"LinkedSpecialBonus"	"special_bonus_unique_bristleback_yer_mum_1"
+				"damage_reduction"		"-50 -50 -50 -50 -60 -70 -80"
 			}
 		}
 	}
@@ -315,7 +330,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"20"
+				"value"					"35"
 			}
 		}
 	}
@@ -428,18 +443,23 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_as"				"10 12 14 16 18 20"
-				"LinkedSpecialBonus"	"special_bonus_unique_bristleback_work_up_2"
+				"max_stacks"			"5 5 7 7 9 9"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_ms"				"1.5 1.75 2 2.25 2.5 2.75"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_dmg"				"22 28 28 34 34 40"
+				"LinkedSpecialBonus"	"special_bonus_unique_bristleback_work_up_2"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"16.0"
+				"bonus_ms"				"3 4 4 5 5 6"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"14"
 			}
 		}
 	
@@ -485,7 +505,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"10"
+				"value"					"24"
 			}
 		}
 	}

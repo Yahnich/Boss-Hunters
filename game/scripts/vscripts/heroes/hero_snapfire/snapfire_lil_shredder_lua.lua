@@ -53,7 +53,7 @@ function modifier_snapfire_lil_shredder_lua_buff:OnCreated(table)
     self.bonus_ar = self:GetTalentSpecialValueFor("attack_range_bonus")
     self.bonus_bat = self:GetTalentSpecialValueFor("base_attack_time")
 
-	caster:HookInModifier("GetBaseAttackTime_BonusPercentage", self)
+	self:GetParent():HookInModifier("GetBaseAttackTime_BonusPercentage", self)
     if IsServer() then 
         local parent = self:GetParent()
 
@@ -75,7 +75,7 @@ function modifier_snapfire_lil_shredder_lua_buff:OnRefresh(table)
     self.bonus_ar = self:GetTalentSpecialValueFor("attack_range_bonus")
     self.bonus_bat = self:GetTalentSpecialValueFor("base_attack_time")
 	
-	caster:HookInModifier("GetBaseAttackTime_BonusPercentage", self)
+	self:GetParent():HookInModifier("GetBaseAttackTime_BonusPercentage", self)
     if IsServer() then 
         local parent = self:GetParent()
 
@@ -99,7 +99,7 @@ function modifier_snapfire_lil_shredder_lua_buff:OnIntervalThink()
 end
 
 function modifier_snapfire_lil_shredder_lua_buff:OnRemoved()
-	caster:HookOutModifier("GetBaseAttackTime_BonusPercentage", self)
+	self:GetParent():HookOutModifier("GetBaseAttackTime_BonusPercentage", self)
     if IsServer() then        
         if self:GetStackCount() < 2 then
             self:GetParent():StartGesture(ACT_DOTA_CAST_ABILITY_3_END)

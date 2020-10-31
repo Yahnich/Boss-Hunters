@@ -124,6 +124,7 @@ modifier_morph_morph = class({})
 function modifier_morph_morph:OnRemoved()
 	if IsServer() then
 		local caster = self:GetCaster()
+		self:GetAbility():SetCooldown()
 		local clones = caster:FindAllUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
 		for _,clone in pairs(clones) do
 			if clone and clone:HasModifier("modifier_morph_morph") then

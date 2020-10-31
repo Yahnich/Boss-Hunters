@@ -31,11 +31,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"2.5"
+		"AbilityCooldown"				"5 4 3 2 2 2 2"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"70 75 80 85 90 95 100"
+		"AbilityManaCost"				"90 90 90 90 70 50 30"
 		
 		"precache"
 		{
@@ -51,12 +51,12 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"damage"						"40 80 120 160 200 240 280"
+				"damage"						"60 80 100 120 125 130 135"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"int_multiplier"				"160"
+				"int_multiplier"				"140"
 				"LinkedSpecialBonus"			"special_bonus_unique_skywrath_arcane_2"
 				"CalculateSpellDamageTooltip"	"0"
 			}
@@ -90,12 +90,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"radius"					"325"
+				"value"						"0.25"
 			}
 		}
 	}
@@ -117,7 +112,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"40"
+				"value"						"25"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"5"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stacks"					"3"
 			}
 		}
 	}
@@ -152,11 +157,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"18 16 14 12 10 8 6"
+		"AbilityCooldown"				"18 18 18 18 16 14 12"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"95"
+		"AbilityManaCost"				"80 85 90 95 95 95 95"
 		
 		"precache"
 		{
@@ -173,18 +178,28 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"70 140 210 280 350 420 490"
+				"damage"				"100 160 220 280 320 360 400"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"minion_damage"			"75"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"250"
-				"LinkedSpecialBonus"	"special_bonus_unique_skywrath_concussive_2"
+				"LinkedSpecialBonus"	"special_bonus_unique_skywrath_concussive_1"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"slow"					"30"
+				"var_type"				"FIELD_FLOAT"
+				"slow"					"30 35 40 45 45 45 45"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"minion_slow"			"30"
 			}
 			"04"
 			{
@@ -226,7 +241,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"125"
 			}
 		}
 	}
@@ -248,7 +263,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"250"
+				"value"						"3"
 			}
 		}
 	}
@@ -283,11 +298,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
+		"AbilityCooldown"				"14"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"80 90 100 110 120 130 140"
+		"AbilityManaCost"				"80 90 100 110 110 110 110"
 		
 		"precache"
 		{
@@ -303,12 +318,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"2 2.5 3 3.5 4 4.5 5"
+				"duration"				"3 3 3 3 4 5 6"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mr_reduc"				"-35"
+				"mr_reduc"				"-30 -35 -40 -45 -45 -45 -45"
 				"LinkedSpecialBonus"	"special_bonus_unique_skywrath_seal_1"
 			}
 		}
@@ -353,7 +368,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"-7"
+				"value"						"20"
 			}
 		}
 	}
@@ -414,11 +429,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"60 60 40 40 20 20"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"400 700 1000 1300 1600 1900"
+		"AbilityManaCost"				"300 550 550 800 800 1050"
 		
 		"precache"
 		{
@@ -433,8 +448,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"600 1000 1400 1800 2200 2600"
-				"LinkedSpecialBonus"			"special_bonus_unique_skywrath_flare_1"
+				"damage"						"750 1175 1175 1600 1600 2025"
 			}
 			"02"
 			{
@@ -445,8 +459,6 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"radius"						"170"
-				"LinkedSpecialBonus"			"special_bonus_unique_skywrath_flare_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"04"
 			{
@@ -473,7 +485,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"600"
+				"value"						"100"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"2.4"
 			}
 		}
 	}
@@ -495,7 +512,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"3"
+				"value"						"200"
 			}
 		}
 	}

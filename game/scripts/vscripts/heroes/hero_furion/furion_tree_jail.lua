@@ -46,6 +46,8 @@ function furion_tree_jail:OnSpellStart()
 		ParticleManager:SetParticleControl( sprout, 0, dummy:GetOrigin() )
 	ParticleManager:ReleaseParticleIndex(sprout)
 	EmitSoundOn("Hero_Furion.Sprout", dummy)
+	
+	ResolveNPCPositions( point, vision_range + radius ) 
 end
 
 

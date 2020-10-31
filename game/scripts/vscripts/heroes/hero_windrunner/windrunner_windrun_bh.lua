@@ -1,6 +1,4 @@
 windrunner_windrun_bh = class({})
-LinkLuaModifier("modifier_windrunner_windrun_bh_handle", "heroes/hero_windrunner/windrunner_windrun_bh", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_windrunner_windrun_bh", "heroes/hero_windrunner/windrunner_windrun_bh", LUA_MODIFIER_MOTION_NONE)
 
 function windrunner_windrun_bh:IsStealable()
 	return true
@@ -10,39 +8,110 @@ function windrunner_windrun_bh:IsHiddenWhenStolen()
 	return false
 end
 
+function windrunner_windrun_bh:HasCharges()
+	return self:GetCaster():HasScepter()
+end
+
+
+function windrunner_windrun_bh:GetIntrinsicModifierName()
+	return "modifier_windrunner_windrun_bh_charges"
+end
+
+function windrunner_windrun_bh:OnInventoryContentsChanged()
+	if self:GetCaster():HasScepter() then
+		local charges = self:GetCaster():FindModifierByName("modifier_windrunner_windrun_bh_charges")
+        if charges and charges:GetStackCount() > 0 then
+			self:EndCooldown( )
+		end
+    else
+		local charges = self:GetCaster():FindModifierByName("modifier_windrunner_windrun_bh_charges")
+        if charges and charges:GetRemainingTime() > 0 then
+			self:SetCooldown( charges:GetRemainingTime() )
+		end
+    end
+end
+
 function windrunner_windrun_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
     EmitSoundOn("Ability.Windrun", caster)
 	caster:AddNewModifier(caster, self, "modifier_windrunner_windrun_bh_handle", {Duration = self:GetTalentSpecialValueFor("buff_duration")})
-end
-
-modifier_windrunner_windrun_bh_handle = class({})
-function modifier_windrunner_windrun_bh_handle:OnCreated(table)
-	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )
-    if self:GetCaster():HasTalent("special_bonus_unique_windrunner_windrun_bh_2") then
-		self.fade_delay = 0.75
-        if IsServer() then
-			self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_invisible", {}):SetDuration(self:GetRemainingTime(), true)
-			self:StartIntervalThink(0.1)
+	
+	if caster:HasTalent("special_bonus_unique_windrunner_windrun_bh_1") then
+		local knockback = caster:FindTalentValue("special_bonus_unique_windrunner_windrun_bh_1")
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), knockback ) ) do
+			enemy:ApplyKnockBack( caster:GetAbsOrigin(), 0.5, 0.5, knockback, 0, caster, self, false)
 		end
     end
 end
 
-function modifier_windrunner_windrun_bh_handle:OnIntervalThink()
-	if IsServer() then
-		if self:GetParent():HasModifier("modifier_invisible") then
-			if self:GetParent():GetLastAttackTime() >= GameRules:GetGameTime() - self.fade_delay or self:GetParent():HasActiveAbility() then
-				self:GetParent():RemoveModifierByName("modifier_invisible")
-				self.think = 0
-			end
-			return
-		else
-			self.think = (self.think or 0) + 0.1
-			if self.think >= self.fade_delay then
-				self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_invisible", {}):SetDuration(self:GetRemainingTime(), true)
-			end
-		end 
+modifier_windrunner_windrun_talent = class({})
+LinkLuaModifier("modifier_windrunner_windrun_talent", "heroes/hero_windrunner/windrunner_windrun_bh", LUA_MODIFIER_MOTION_NONE)
+function modifier_windrunner_windrun_talent:OnCreated()
+	self.crit = self:GetCaster():FindTalentValue("special_bonus_unique_windrunner_windrun_bh_2")
+	self.duration = self:GetCaster():FindTalentValue("special_bonus_unique_windrunner_windrun_bh_2", "duration")
+	
+	self:GetParent():HookInModifier("GetModifierBaseCriticalChanceBonus", self)
+end
+
+function modifier_windrunner_windrun_talent:OnDestroy()
+	self:GetParent():HookOutModifier("GetModifierBaseCriticalChanceBonus", self)
+end
+
+function modifier_windrunner_windrun_talent:CheckState()
+	return {[MODIFIER_STATE_INVISIBLE] = true}
+end
+
+function modifier_windrunner_windrun_talent:DeclareFunctions()
+	return {MODIFIER_PROPERTY_INVISIBILITY_LEVEL, MODIFIER_EVENT_ON_ATTACK_LANDED }
+end
+
+function modifier_windrunner_windrun_talent:GetModifierInvisibilityLevel()
+	return 1.0
+end
+
+function modifier_windrunner_windrun_talent:GetModifierBaseCriticalChanceBonus()
+	return self.crit
+end
+
+function modifier_windrunner_windrun_talent:OnAttackLanded(params)
+	if params.attacker == self:GetParent() then
+		self:Destroy()
+		params.target:Break(self:GetAbility(), self:GetCaster(), self.duration)
+	end
+end
+
+modifier_windrunner_windrun_talent_lesser = class(modifier_windrunner_windrun_talent)
+LinkLuaModifier("modifier_windrunner_windrun_talent_lesser", "heroes/hero_windrunner/windrunner_windrun_bh", LUA_MODIFIER_MOTION_NONE)
+function modifier_windrunner_windrun_talent_lesser:OnCreated()
+	local mult = self:GetCaster():FindTalentValue("special_bonus_unique_windrunner_powershot_bh_2") / 100
+	self.crit = self:GetCaster():FindTalentValue("special_bonus_unique_windrunner_windrun_bh_2") * mult
+	self.duration = self:GetCaster():FindTalentValue("special_bonus_unique_windrunner_windrun_bh_2", "duration") * mult
+	
+	self:GetParent():HookInModifier("GetModifierBaseCriticalChanceBonus", self)
+end
+
+modifier_windrunner_windrun_bh_handle = class({})
+LinkLuaModifier("modifier_windrunner_windrun_bh_handle", "heroes/hero_windrunner/windrunner_windrun_bh", LUA_MODIFIER_MOTION_NONE)
+function modifier_windrunner_windrun_bh_handle:OnCreated(table)
+	self:OnRefresh()
+end
+
+function modifier_windrunner_windrun_bh_handle:OnRefresh()
+	self.movespeed = TernaryOperator( self:GetTalentSpecialValueFor("scepter_ms"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("movespeed_bonus_pct") )
+	self.evasion = self:GetTalentSpecialValueFor("evasion")
+	
+	self.aura_linger = self:GetTalentSpecialValueFor("debuff_duration")
+	self.aura_radius = self:GetTalentSpecialValueFor("radius")
+	
+	if self:GetCaster():HasScepter() then
+		self.limit = 9999
+	end
+	
+	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )
+    
+	if IsServer() and self:GetCaster():HasTalent("special_bonus_unique_windrunner_windrun_bh_2") then
+		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_windrunner_windrun_talent", {Duration =  self:GetTalentSpecialValueFor("buff_duration")})
 	end
 end
 
@@ -64,15 +133,15 @@ function modifier_windrunner_windrun_bh_handle:DeclareFunctions()
 end
 
 function modifier_windrunner_windrun_bh_handle:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("movespeed_bonus_pct")
+    return self.movespeed
 end
 
 function modifier_windrunner_windrun_bh_handle:GetMoveSpeedLimitBonus()
-    return self:GetTalentSpecialValueFor("movespeed_bonus_limit")
+    return self.limit
 end
 
 function modifier_windrunner_windrun_bh_handle:GetModifierEvasion_Constant()
-    return self:GetTalentSpecialValueFor("evasion")
+    return self.evasion
 end
 
 function modifier_windrunner_windrun_bh_handle:GetEffectName()
@@ -84,11 +153,11 @@ function modifier_windrunner_windrun_bh_handle:IsAura()
 end
 
 function modifier_windrunner_windrun_bh_handle:GetAuraDuration()
-    return self:GetTalentSpecialValueFor("debuff_duration")
+    return self.aura_linger
 end
 
 function modifier_windrunner_windrun_bh_handle:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self.aura_radius
 end
 
 function modifier_windrunner_windrun_bh_handle:GetAuraSearchFlags()
@@ -104,29 +173,171 @@ function modifier_windrunner_windrun_bh_handle:GetAuraSearchType()
 end
 
 function modifier_windrunner_windrun_bh_handle:GetModifierAura()
-    return "modifier_windrunner_windrun_bh"
+    return "modifier_windrunner_windrun_bh_debuff"
 end
 
 function modifier_windrunner_windrun_bh_handle:IsDebuff()
     return false
 end
 
-modifier_windrunner_windrun_bh = class({})
-function modifier_windrunner_windrun_bh:DeclareFunctions()
+modifier_windrunner_windrun_bh_lesser = class(modifier_windrunner_windrun_bh_handle)
+LinkLuaModifier("modifier_windrunner_windrun_bh_lesser", "heroes/hero_windrunner/windrunner_windrun_bh", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_windrunner_windrun_bh_lesser:OnRefresh()
+	local mult = self:GetCaster():FindTalentValue("special_bonus_unique_windrunner_powershot_bh_2") / 100
+	self.movespeed = TernaryOperator( self:GetTalentSpecialValueFor("scepter_ms"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("movespeed_bonus_pct") ) * mult
+	self.evasion = self:GetTalentSpecialValueFor("evasion") * mult
+	
+	self.aura_linger = self:GetTalentSpecialValueFor("debuff_duration") * mult
+	self.aura_radius = self:GetTalentSpecialValueFor("radius")
+	
+	if self:GetCaster():HasScepter() then
+		self.limit = 9999
+	end
+	
+	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )
+    
+	if IsServer() and self:GetCaster():HasTalent("special_bonus_unique_windrunner_windrun_bh_2") then
+		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_windrunner_windrun_talent_lesser", {Duration =  self:GetTalentSpecialValueFor("buff_duration")})
+	end
+end
+
+modifier_windrunner_windrun_bh_debuff = class({})
+LinkLuaModifier("modifier_windrunner_windrun_bh_debuff", "heroes/hero_windrunner/windrunner_windrun_bh", LUA_MODIFIER_MOTION_NONE)
+function modifier_windrunner_windrun_bh_debuff:OnCreated()
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_windrunner_windrun_bh_1")
+	if self.talent1 then
+		if IsServer() then
+			self.talent1Chill = self:GetCaster():FindTalentValue("special_bonus_unique_windrunner_windrun_bh_1",  "bonus_chill")
+			self:GetParent():AddChill(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("debuff_duration"), -self:GetTalentSpecialValueFor("enemy_movespeed_bonus_pct"))
+			self:StartIntervalThink(1)
+		end
+	else
+		self.movespeed = self:GetTalentSpecialValueFor("enemy_movespeed_bonus_pct")
+	end
+end
+
+function modifier_windrunner_windrun_bh_debuff:OnIntervalThink()
+	self:GetParent():AddChill(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("debuff_duration"), self.talent1Chill)
+end
+
+function modifier_windrunner_windrun_bh_debuff:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
     }
     return funcs
 end
 
-function modifier_windrunner_windrun_bh:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("enemy_movespeed_bonus_pct")
+function modifier_windrunner_windrun_bh_debuff:GetModifierMoveSpeedBonus_Percentage()
+    return self.movespeed
 end
 
-function modifier_windrunner_windrun_bh:IsDebuff()
+function modifier_windrunner_windrun_bh_debuff:IsDebuff()
     return true
 end
 
-function modifier_windrunner_windrun_bh:GetEffectName()
+function modifier_windrunner_windrun_bh_debuff:GetEffectName()
     return "particles/units/heroes/hero_windrunner/windrunner_windrun_slow.vpcf"
+end
+
+modifier_windrunner_windrun_bh_charges = class({})
+LinkLuaModifier("modifier_windrunner_windrun_bh_charges", "heroes/hero_windrunner/windrunner_windrun_bh", LUA_MODIFIER_MOTION_NONE)
+if IsServer() then
+    function modifier_windrunner_windrun_bh_charges:Update()
+		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
+		self.kv.max_count = self:GetTalentSpecialValueFor("scepter_charges")
+
+		if self:GetStackCount() == self.kv.max_count then
+			self:SetDuration(-1, true)
+		elseif self:GetStackCount() > self.kv.max_count then
+			self:SetDuration(-1, true)
+			self:SetStackCount(self.kv.max_count)
+		elseif self:GetStackCount() < self.kv.max_count then
+			local duration = self.kv.replenish_time
+            self:SetDuration(duration, true)
+            self:StartIntervalThink(duration)
+		end
+
+        if self:GetStackCount() == 0 then
+            self:GetAbility():StartCooldown(self:GetRemainingTime())
+        end
+    end
+
+    function modifier_windrunner_windrun_bh_charges:OnCreated()
+		kv = {
+			max_count = self:GetTalentSpecialValueFor("scepter_charges"),
+			replenish_time = self:GetAbility():GetTrueCooldown()
+		}
+        self:SetStackCount(kv.start_count or kv.max_count)
+        self.kv = kv
+
+        if kv.start_count and kv.start_count ~= kv.max_count then
+            self:Update()
+        end
+    end
+	
+	function modifier_windrunner_windrun_bh_charges:OnRefresh()
+		self.kv.max_count = self:GetTalentSpecialValueFor("scepter_charges")
+		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
+        if self:GetStackCount() ~= kv.max_count then
+            self:Update()
+        end
+    end
+	
+    function modifier_windrunner_windrun_bh_charges:DeclareFunctions()
+        local funcs = {
+            MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
+        }
+
+        return funcs
+    end
+
+    function modifier_windrunner_windrun_bh_charges:OnAbilityFullyCast(params)
+        if params.unit == self:GetParent() and params.unit:HasScepter() then
+			self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
+			self.kv.max_count = self:GetTalentSpecialValueFor("scepter_charges")
+			
+            local ability = params.ability
+            if params.ability == self:GetAbility() then
+                self:DecrementStackCount()
+				ability:EndCooldown()
+                self:Update()
+			elseif string.find( params.ability:GetName(), "orb_of_renewal" ) and self:GetStackCount() < self.kv.max_count then
+                self:IncrementStackCount()
+                self:Update()
+            end
+        end
+
+        return 0
+    end
+
+    function modifier_windrunner_windrun_bh_charges:OnIntervalThink()
+        local stacks = self:GetStackCount()
+		local caster = self:GetCaster()
+		local octarine = caster:GetCooldownReduction()
+		
+		self.kv.replenish_time = self:GetTalentSpecialValueFor("scepter_charge_restore_time") * octarine
+		self.kv.max_count = self:GetTalentSpecialValueFor("scepter_charges")
+		
+        if stacks < self.kv.max_count then
+            self:IncrementStackCount()
+			self:Update()
+        end
+    end
+end
+
+function modifier_windrunner_windrun_bh_charges:DestroyOnExpire()
+    return false
+end
+
+function modifier_windrunner_windrun_bh_charges:IsPurgable()
+    return false
+end
+
+function modifier_windrunner_windrun_bh_charges:RemoveOnDeath()
+    return false
+end
+
+function modifier_windrunner_windrun_bh_charges:IsHidden()
+	return not self:GetCaster():HasScepter()
 end

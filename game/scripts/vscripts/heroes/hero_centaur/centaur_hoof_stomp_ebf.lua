@@ -35,6 +35,12 @@ function centaur_hoof_stomp_ebf:OnSpellStart()
 			end
 		end
 	end
+	if caster:HasTalent("special_bonus_unique_centaur_hoof_stomp_1") then
+		local stampede = caster:FindAbilityByName("centaur_stampede_ebf")
+		if stampede then
+			caster:AddNewModifier(caster, stampede, "modifier_centaur_stampede_ebf", {duration = stampede:GetTalentSpecialValueFor("duration")})
+		end
+	end
 	ParticleManager:FireParticle("particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", PATTACH_ABSORIGIN, caster, {[1] = Vector(radius, 0, 0)})
 	EmitSoundOn( "Hero_Centaur.HoofStomp", caster )
 end

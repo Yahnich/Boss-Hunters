@@ -19,9 +19,9 @@ function pango_swashbuckler:GetCastRange(target, position)
 	return self:GetTalentSpecialValueFor("dash_range")
 end
 
--- function pango_swashbuckler:GetIntrinsicModifierName()
-    -- return "modifier_pango_swashbuckler_passive"
--- end
+function pango_swashbuckler:GetIntrinsicModifierName()
+    return "modifier_pango_swashbuckler_passive"
+end
 
 function pango_swashbuckler:IsVectorTargeting()
 	return true

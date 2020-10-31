@@ -25,9 +25,14 @@ modifier_clinkz_shot_caster = class({
 })
 
 function modifier_clinkz_shot_caster:OnCreated(table)
+	self:OnRefresh()
 	if IsServer() then
 		self:StartIntervalThink(0.5)
 	end
+end
+
+function modifier_clinkz_shot_caster:OnRefresh()
+	self.targets = self:GetTalentSpecialValueFor("targets")
 end
 
 function modifier_clinkz_shot_caster:OnIntervalThink()
@@ -36,14 +41,22 @@ function modifier_clinkz_shot_caster:OnIntervalThink()
 		local ability = self:GetAbility()
 		
 		if ability:IsCooldownReady() and caster:IsAttacking() and not caster:HasModifier("modifier_clinkz_walk") then
-			local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:GetAttackRange()+ 50, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
-			for _,enemy in pairs(enemies) do
-				StartAnimation(caster, {duration=caster:GetSecondsPerAttack(), activity=ACT_DOTA_ATTACK, rate=1/caster:GetSecondsPerAttack()})
-				ability:SetCooldown()
-				caster.forceSearingArrows = true
-				caster:PerformAttack(enemy, true, true, true, true, true, false, false)
-				break
-			end
+			local targets = self.targets
+			ability:SetCooldown()
+			Timers:CreateTimer(0.25, function()
+				local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:GetAttackRange()+ 50, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
+				for _,enemy in pairs(enemies) do
+					caster.forceSearingArrows = true
+					caster:PerformAttack(enemy, true, true, true, true, true, false, false)
+					caster.forceSearingArrows = false
+					targets = targets - 1
+					StartAnimation(caster, {duration=caster:GetSecondsPerAttack(), activity=ACT_DOTA_ATTACK, rate=1/caster:GetSecondsPerAttack()})
+					break
+				end
+				if targets > 0 then
+					return 0.25
+				end
+			end)
 		end
 	end
 end

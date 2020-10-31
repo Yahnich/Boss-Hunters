@@ -1,5 +1,116 @@
 "DOTAAbilities"
 {
+	"mirana_starcall"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_mirana/mirana_starcall.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"mirana_starfall"
+		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_mirana_starcall_1"	"1"
+			"special_bonus_unique_mirana_starcall_2"	"1"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"80 105 130 155 180 205 230"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"75 150 225 300 375 450 525"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"950"		
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"wave_delay"				"0.8"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"wave_damage"				"75"
+			}
+			
+		}
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+			"particle" 			"particles/econ/items/mirana/mirana_starstorm_bow/mirana_starstorm_starfall_attack.vpcf"
+			"particle"  		"particles/units/heroes/hero_mirana/mirana_loadout.vpcf"
+		}
+	}
+	"special_bonus_unique_mirana_starcall_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedAbilityName"				"mirana_starcall"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"6"
+			}
+		}
+	}
+	"special_bonus_unique_mirana_starcall_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"3"
+			}
+		}
+	}
 	"mirana_astral_arrow"
 	{
 		// General
@@ -14,12 +125,13 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"mirana_arrow"
 		"MaxLevel"						"7"
+		"HasScepterUpgrade"				"1"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_mirana_astral_arrow_1"	"1"
+			"special_bonus_unique_mirana_astral_arrow_3"	"1"
 			"special_bonus_unique_mirana_astral_arrow_2"	"1"
 		}
 		
@@ -31,7 +143,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12"
+		"AbilityCooldown"				"14 14 14 14 12 10 8"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -44,17 +156,15 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"agi_damage"				"30"
+				"damage"					"160 250 340 430 445 460 475"
+				"LinkedSpecialBonus"		"special_bonus_unique_mirana_astral_arrow_2"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"50 140 230 320 410 500 590"
-			}
-			"03"
-			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"1.0"		
+				"duration"					"1.5"		
+				"LinkedSpecialBonus"		"special_bonus_unique_mirana_astral_arrow_2"
+				"LinkedSpecialBonusField"	"value2"
 			}
 		}
 	
@@ -99,8 +209,32 @@
 		{
 			"01"
 			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"120"
+			}
+			"02"
+			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-5"
+				"value2"				"1.5"
+			}
+		}
+	}
+	"special_bonus_unique_mirana_astral_arrow_3" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"100"
 			}
 		}
 	}
@@ -110,12 +244,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_mirana/mirana_celestial_jump.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"mirana_leap"
 		"MaxLevel"						"7"
 		
@@ -135,7 +265,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"6.0"
+		"AbilityCooldown"				"35 35 35 35 30 25 20"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -148,38 +278,42 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_agi"					"30 40 50 60 70 80 90"
+				"bonus_attackspeed"			"25 50 75 100 100 100 100"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"4.0"
+				"var_type"					"FIELD_INTEGER"
+				"bonus_movespeed"			"8 16 24 32 32 32 32"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"jump_duration"				"0.75"
+				"duration"					"2.5 2.5 2.5 2.5 3.0 3.5 4.0"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"jump_distance"				"550 650 750 850 950 1050 1150"
+				"var_type"					"FIELD_FLOAT"
+				"jump_duration"				"0.75"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"max_height"				"250"
+				"jump_distance"				"575"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"250"
+				"max_height"				"250"
 			}
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"charges"					"0"
-				"LinkedSpecialBonus"		"special_bonus_unique_mirana_celestial_jump_2"	
+				"radius"					"325"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"charges"					"3"
 			}
 		}
 	
@@ -198,6 +332,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_mirana_celestial_jump_charges"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -206,7 +341,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"75"
+				"value"					"-10"
 			}
 		}
 	}
@@ -225,7 +360,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"3"
+				"value"					"100"
 			}
 		}
 	}
@@ -242,36 +377,15 @@
 		"AbilityTextureName"			"custom/mirana_mooneye_2"
 		"InnateAbility"					"1"
 		"MaxLevel"						"1"
-		"HasScepterUpgrade"				"1"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"agi_mult"				"30"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"chance"				"25"
-			}
-			"05"
+			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"5.0"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"scepter_crit"			"1000"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"scepter_cd"			"60.0"
+				"agi_spellamp"			"0.15"
 			}
 		}
 	
@@ -281,124 +395,6 @@
 		{
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
 			"particle" 			"particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_cast_moonlight_glow02_ti_5.vpcf"
-		}
-	}
-	
-	"mirana_starcall"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_mirana/mirana_starcall.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName"			"mirana_starfall"
-		"MaxLevel"						"7"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_mirana_starcall_1"	"1"
-			"special_bonus_unique_mirana_starcall_2"	"1"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.5"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"80 105 130 155 180 205 230"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"agi_damage"				"30"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"75 150 225 300 375 450 525"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"950"		
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"wave_delay"				"0.8" //default Dota
-				"LinkedSpecialBonus"		"special_bonus_unique_mirana_starcall_2"	
-			}
-			
-		}
-	
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
-			"particle" 			"particles/econ/items/mirana/mirana_starstorm_bow/mirana_starstorm_starfall_attack.vpcf"
-			"particle"  		"particles/units/heroes/hero_mirana/mirana_loadout.vpcf"
-		}
-	}
-	"special_bonus_unique_mirana_starcall_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"LinkedAbilityName"				"mirana_starcall"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"7"
-			}
-		}
-	}
-	"special_bonus_unique_mirana_starcall_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-0.4"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"				"0.5"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -441,11 +437,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"100"
+		"AbilityCooldown"				"100 100 100 80 60 40"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75"
+		"AbilityManaCost"				"125"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -454,17 +450,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"12.0"
+				"duration"				"18"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"fade_delay"			"0.7 0.6 0.5 0.4 0.3 0.2 0.1"
+				"fade_delay"			"2 1.4 0.8 0.8 0.8 0.8"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"100"
+				"movespeed"				"9 12 15 18 21 24"
 			}
 		}
 	}
@@ -483,7 +479,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-70"
+				"value"					"25"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"amp"					"50"
 			}
 		}
 	}
@@ -503,6 +504,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value"					"50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dmg"					"300"
 			}
 		}
 	}

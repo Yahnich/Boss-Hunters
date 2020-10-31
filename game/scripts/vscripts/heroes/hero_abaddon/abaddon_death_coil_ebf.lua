@@ -79,13 +79,13 @@ function abaddon_death_coil_ebf:OnProjectileHit(target, position)
 			local targetAllies = RollPercentage(50) and (#allies > 0)
 			if targetAllies then
 				for _, ally in ipairs( allies ) do
-					if ally:IsRealHero() and not ally:IsFakeHero() and ally ~= target then
+					if ally:IsRealHero() and not ally:IsFakeHero() and ally ~= target and ally ~= caster then
 						self:CreateMistCoil(ally, target)
 						return
 					end
 				end
 				for _, ally in ipairs( allies ) do
-					if ally ~= target then
+					if ally ~= target and ally ~= caster then
 						self:CreateMistCoil(ally, target)
 						return
 					end

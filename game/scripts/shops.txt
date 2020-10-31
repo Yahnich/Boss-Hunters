@@ -63,6 +63,8 @@
 	"magics"			
 	{
 		"item"		"item_pearlescent_cape_2"
+		"item"		"item_phantom_slippers_3"
+		"item"		"item_steadfast_waders_3"
 	}
 	"defense"
 	{

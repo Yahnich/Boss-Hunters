@@ -70,7 +70,7 @@ function AITimers:start()
 	self:InitializeTimers()
 	self.nextTickCallbacks = {}
 
-	local ent = SpawnEntityFromTableSynchronous("info_target", {targetname="timers_lua_thinker"})
+	local ent = SpawnEntityFromTableSynchronous("info_target", {targetname="aitimers_lua_thinker"})
 	ent:SetThink("Think", self, "AIimers", TIMERS_THINK)
 end
 

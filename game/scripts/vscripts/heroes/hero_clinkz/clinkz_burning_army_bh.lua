@@ -9,15 +9,11 @@ function clinkz_burning_army_bh:IsHiddenWhenStolen()
 end
 
 function clinkz_burning_army_bh:GetCooldown(iLvl)
-    local cooldown = self.BaseClass.GetCooldown(self, iLvl)
-    local caster = self:GetCaster()
-    local talent = "special_bonus_unique_clinkz_burning_army_bh_2"
-    if caster:HasTalent( talent ) then cooldown = cooldown + caster:FindTalentValue( talent ) end
-    return cooldown
+    return self.BaseClass.GetCooldown( self, iLvl ) + self:GetCaster():FindTalentValue( "special_bonus_unique_clinkz_burning_army_1", "cd" )
 end
 
 function clinkz_burning_army_bh:IsVectorTargeting()
-	return true
+	return not self:GetCaster():HasTalent("special_bonus_unique_clinkz_burning_army_1")
 end
 
 function clinkz_burning_army_bh:GetVectorTargetRange()
@@ -39,7 +35,7 @@ end
 
 function clinkz_burning_army_bh:OnVectorCastStart()
 	local caster = self:GetCaster()
-	local position = self:GetVectorPosition() 
+	local position = self:GetCursorPosition() 
 
 	caster:EmitSound("Hero_Clinkz.BurningArmy.SpellStart")
 	local ogSkeletons = self:GetTalentSpecialValueFor("count")
@@ -60,7 +56,7 @@ function clinkz_burning_army_bh:OnVectorCastStart()
 			end
 		end)
 	else
-		local spawnDistance = self:GetTalentSpecialValueFor("range") / skeletons
+		local spawnDistance = self:GetTalentSpecialValueFor("range") / (skeletons - 1)
 		local spawnDirection = self:GetVectorDirection()
 		local spawnPosition = self:GetVectorPosition()
 		Timers:CreateTimer(spawnRate, function()
@@ -143,17 +139,14 @@ modifier_clinkz_burning_army_bh_passive = class({})
 LinkLuaModifier( "modifier_clinkz_burning_army_bh_passive", "heroes/hero_clinkz/clinkz_burning_army_bh.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_clinkz_burning_army_bh_passive:OnCreated()
 	self.attack_range = self:GetCaster():GetAttackRange()
-	self.attack_time = self:GetTalentSpecialValueFor("attack_rate")
+	self.attack_speed = ( 1.7 / self:GetTalentSpecialValueFor("attack_rate") ) * 100 - 100
 	if IsServer() then
 		self:SetStackCount( self:GetCaster():GetAverageBaseDamage() )
 	end
 end
 
-function modifier_clinkz_burning_army_bh_passive:OnDestroy()
-end
-
 function modifier_clinkz_burning_army_bh_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE, MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE, MODIFIER_PROPERTY_FIXED_ATTACK_RATE }
+	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE, MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
 end
 
 function modifier_clinkz_burning_army_bh_passive:GetModifierPreAttack_BonusDamage()
@@ -164,6 +157,6 @@ function modifier_clinkz_burning_army_bh_passive:GetModifierAttackRangeOverride(
 	return self.attack_range
 end
 
-function modifier_clinkz_burning_army_bh_passive:GetModifierFixedAttackRate()
-	return self.attack_time
+function modifier_clinkz_burning_army_bh_passive:GetModifierAttackSpeedBonus_Constant()
+	return self.attack_speed
 end

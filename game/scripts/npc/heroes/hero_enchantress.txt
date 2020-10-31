@@ -513,7 +513,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"625"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"heal"						"100"
 			}
 		}
 	}
@@ -535,7 +540,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"10"
 			}
 		}
 	}

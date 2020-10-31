@@ -55,14 +55,6 @@ function modifier_naga_siren_water_snare:CheckState()
 			[MODIFIER_STATE_INVISIBLE] = false}
 end
 
-function modifier_naga_siren_water_snare:DeclareFunctions()
-	return {MODIFIER_PROPERTY_EVASION_CONSTANT}
-end
-
-function modifier_naga_siren_water_snare:GetModifierEvasion_Constant()
-	return -100
-end
-
 function modifier_naga_siren_water_snare:GetEffectName()
 	return "particles/units/heroes/hero_siren/siren_net.vpcf"
 end

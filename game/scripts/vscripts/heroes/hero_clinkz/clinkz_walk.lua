@@ -18,11 +18,11 @@ function clinkz_walk:GetBehavior()
 end
 
 function clinkz_walk:GetCastRange(vLocation, hTarget)
-	if self:GetCaster():HasTalent("special_bonus_unique_clinkz_walk_1") then
-		return 1000
-	else
-		return 0
-	end
+	return self:GetCaster():FindTalentValue("special_bonus_unique_clinkz_walk_1", "range")
+end
+
+function clinkz_walk:GetCooldown(iLvl )
+	return self.BaseClass.GetCooldown( self, iLvl ) + self:GetCaster():FindTalentValue("special_bonus_unique_clinkz_walk_1", "cd")
 end
 
 function clinkz_walk:OnSpellStart()
@@ -31,22 +31,45 @@ function clinkz_walk:OnSpellStart()
 
 	EmitSoundOn("Hero_Clinkz.WindWalk", caster)
 
-	ProjectileManager:ProjectileDodge(caster)
-
-	ParticleManager:FireParticle("particles/units/heroes/hero_clinkz/clinkz_windwalk.vpcf", PATTACH_POINT, caster, {[0]=caster:GetAbsOrigin()})
+	
 
 	if caster:HasTalent("special_bonus_unique_clinkz_walk_1") then
 		local point = self:GetCursorPosition()
 		FindClearSpaceForUnit(caster, point, true)
 		caster:AddNewModifier(caster, self, "modifier_clinkz_walk", {Duration = self:GetTalentSpecialValueFor("duration")/2})
 
+		ParticleManager:FireParticle("particles/units/heroes/hero_clinkz/clinkz_windwalk.vpcf", PATTACH_POINT, caster, {[0]=caster:GetAbsOrigin()})
 		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), 345)
 		for _,enemy in pairs(enemies) do
 			enemy:Fear(self, caster, 2)
 		end
+		if caster:HasTalent("special_bonus_unique_clinkz_burning_army_2") then
+			local skeletons = {}
+			for _, skeleton in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), -1 ) ) do
+				if skeleton:GetUnitName() == "npc_dota_clinkz_skeleton_archer" then
+					table.insert( skeletons, skeleton )
+				end
+			end
+			for i = 1, #skeletons do
+				local skeleton = skeletons[i]
+				local newPos = point + RotateVector2D( caster:GetForwardVector(), ToRadians( 360/#skeletons ) * (i-1) ) * 150
+				ProjectileManager:ProjectileDodge(skeleton)
+
+				ParticleManager:FireParticle("particles/units/heroes/hero_clinkz/clinkz_windwalk.vpcf", PATTACH_POINT, skeleton, {[0]=skeleton:GetAbsOrigin()})
+				FindClearSpaceForUnit(skeleton, newPos, true)
+				skeleton:AddNewModifier(caster, self, "modifier_clinkz_walk", {Duration = self:GetTalentSpecialValueFor("duration")/2})
+
+				ParticleManager:FireParticle("particles/units/heroes/hero_clinkz/clinkz_windwalk.vpcf", PATTACH_POINT, skeleton, {[0]=skeleton:GetAbsOrigin()})
+			end
+		end
 	else
 		Timers:CreateTimer(fadeTime, function()
 			caster:AddNewModifier(caster, self, "modifier_clinkz_walk", {Duration = self:GetTalentSpecialValueFor("duration")})
+			for _, skeleton in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), -1 ) ) do
+				if skeleton:GetUnitName() == "npc_dota_clinkz_skeleton_archer" then
+					skeleton:AddNewModifier(caster, self, "modifier_clinkz_walk", {Duration = self:GetTalentSpecialValueFor("duration")})
+				end
+			end
 		end)
 
 		self:StartDelayedCooldown(self:GetTalentSpecialValueFor("duration"))

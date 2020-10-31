@@ -19,7 +19,7 @@ function SendErrorReport(err, context)
 	if context then context.gameHasBeenBroken = true end
 end
 
-function BaseEvent:constructor(zoneName, eventType, eventName)
+function BaseEvent:constructor(zoneName, eventType, eventName, eventReward)
 	self.eventType = tonumber(eventType)
 	self.eventName = eventName
 	self.zoneName = zoneName
@@ -37,7 +37,7 @@ function BaseEvent:constructor(zoneName, eventType, eventName)
 		end
 	end
 	
-	if self.eventType == EVENT_TYPE_COMBAT then
+	if self.eventType == EVENT_TYPE_ELITE then
 		for i = 1, ELITE_ABILITIES_TO_GIVE + math.max(0, RoundManager:GetAscensions() - 1) do
 			local roll = RandomInt(1, #eliteTypes)
 			local eliteAbName = eliteTypes[roll]
@@ -48,6 +48,16 @@ function BaseEvent:constructor(zoneName, eventType, eventName)
 			end
 			table.insert( self.eventChampionModifiers, eliteAbName )
 		end
+	end
+	
+	if eventReward == nil then
+		if self:GetEventType() == EVENT_TYPE_BOSS or self:GetEventType() == EVENT_TYPE_ELITE then
+			self.eventRewardType = EVENT_REWARD_RELIC
+		else	
+			self.eventRewardType = EVENT_REWARD_GOLD
+		end
+	else
+		self.eventRewardType = eventReward
 	end
 	
 	local potentialEnemiesToSpawn = RoundManager.specificRoundKV[eventName]
@@ -65,7 +75,7 @@ function BaseEvent:constructor(zoneName, eventType, eventName)
 	local eventFolder = "combat"
 	if self.eventType == EVENT_TYPE_EVENT then
 		eventFolder = "event"
-	elseif self.eventType == EVENT_TYPE_BOSS or self.eventType == EVENT_TYPE_ELITE then
+	elseif self.eventType == EVENT_TYPE_BOSS then
 		eventFolder = "boss"
 	end
 	
@@ -201,23 +211,44 @@ function BaseEvent:HandoutRewards(bWon)
 	if not self:IsEvent() then
 		local baseXP = self:GetStandardXPReward()
 		local baseGold = self:GetStandardGoldReward()
+		if self:IsCombat() and self:GetEventRewardType() ~= EVENT_REWARD_GOLD then
+			baseGold = baseGold / 3
+		end
 		if not bWon then
 			baseXP = baseXP / 4
 			baseGold = baseGold / 4
+		else
+			if self:IsElite() then
+				baseXP = baseXP * 1.2
+				if self:GetEventRewardType() == EVENT_REWARD_GOLD then
+					baseGold = baseGold * 2
+				end
+			elseif self:IsBoss() then
+				baseXP = baseXP * 1.5
+				baseGold = baseGold * 1.5
+			end
 		end
-		if self:IsBoss() then
-			baseXP = baseXP * 1.5
-			baseGold = baseGold * 1.5
-		end
+		
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			hero:AddGold( baseGold )
 			hero:AddXP( baseXP )
+			if self:GetEventRewardType() == EVENT_REWARD_LIVES then
+				hero:ModifyLives( 1 )
+			end
 			local pID = hero:GetPlayerOwnerID()
 			if bWon then
-				if self:IsElite() and RoundManager:GetAscensions() < 1 then
-					RelicManager:RollEliteRelicsForPlayer(pID)
-				elseif self:IsBoss() and RoundManager:GetAscensions() < 2 then
-					RelicManager:RollBossRelicsForPlayer(pID)
+				if self:IsBoss() then
+					if RoundManager:GetAscensions() < 2 then
+						RelicManager:RollBossRelicsForPlayer(pID)
+					else
+						hero:AddGold( 1500 )
+					end
+				elseif self:GetEventRewardType() == EVENT_REWARD_RELIC then
+					if RoundManager:GetAscensions() < 1 then
+						RelicManager:RollEliteRelicsForPlayer(pID)
+					else
+						hero:AddGold( 500 )
+					end
 				end
 			end
 		end
@@ -253,11 +284,7 @@ function BaseEvent:GetEventType()
 end
 
 function BaseEvent:GetEventRewardType()
-	if self:GetEventType() == EVENT_TYPE_BOSS or self:GetEventType() == EVENT_TYPE_ELITE then
-		return EVENT_REWARD_RELIC
-	else	
-		return EVENT_REWARD_GOLD
-	end
+	return self.eventRewardType
 end
 
 function BaseEvent:ChampionSpawnModifiers()

@@ -253,7 +253,7 @@ end
 function modifier_medusa_gaze_stun_lesser:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE,
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 	}
 	return funcs
 end

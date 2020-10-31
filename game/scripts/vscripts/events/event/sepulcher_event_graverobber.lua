@@ -1,71 +1,38 @@
 local function CheckPlayerChoices(self)
-	local votedYes = 0
-	local votedNo = 0
-	local voted = 0
-	local players = 0
-	for i = 0, GameRules.BasePlayers do
-		if PlayerResource:IsValidPlayerID(i) and PlayerResource:GetPlayer(i) then
-			players = players + 1
-			if self._playerChoices[i] ~= nil then
-				voted = voted + 1
-				if self._playerChoices[i] then
-					votedYes = votedYes + 1
-				else
-					votedNo = votedNo + 1
-				end
-			end
-		end
-	end
-
-	if votedYes > votedNo + (players - voted) then -- yes votes exceed non-votes and no votes
-		self:GiveRelicChoices(true)
-		return true
-	elseif votedNo > votedYes + (players - voted) then -- no votes exceed yes and non-votes and every other situation
-		self:EndEvent(true)
-		return true
-	end
-	return false
-end
-
-local function GiveRelicChoices(self)
-	local votesWithOfuda = 0
-	local votesWithout = 0
-	for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+	for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
 		local pID = hero:GetPlayerID()
-		local cursedTable = {}
-		local uniqueTable = {}
-		for i = 1, 3 do
-			table.insert(cursedTable, RelicManager:RollRandomRelicForPlayer(pID, "RARITY_UNCOMMON", false, true) )
-		end
-		for i = 1, 3 do
-			table.insert(uniqueTable, RelicManager:RollRandomRelicForPlayer(pID, "RARITY_UNCOMMON", false, false) )
-		end
-		
-		RelicManager:PushCustomRelicDropsForPlayer(pID, cursedTable)
-		RelicManager:PushCustomRelicDropsForPlayer(pID, uniqueTable)
-		if self._playerChoices[pID] and hero:HasRelic("relic_unique_ofuda") and hero:FindModifierByName("relic_unique_ofuda"):GetStackCount() > 0 then
-			votesWithOfuda = votesWithOfuda + 1
-		elseif self._playerChoices[pID] then
-			votesWithout = votesWithout + 1
-		end
-	end
-	if votesWithOfuda < votesWithout then
-		GameRules:SetLives(1, true)
-	else
-		for id, vote in pairs(self._playerChoices) do
-			local hero = PlayerResource:GetSelectedHeroEntity(id)
-			if vote and hero:HasRelic("relic_unique_ofuda")  and hero:FindModifierByName("relic_unique_ofuda"):GetStackCount() > 0 then
-				local ofuda = hero:FindModifierByName("relic_unique_ofuda")
-				ofuda:DecrementStackCount()
-			end
+		if pID and not self._playerChoices[pID] then
+			return false
 		end
 	end
 	self:EndEvent(true)
+	return true
+end
+
+
+local function GiveRelicChoices(self, hero)
+	local votesWithOfuda = 0
+	local votesWithout = 0
+	local pID = hero:GetPlayerID()
+	local cursedTable = {}
+	local uniqueTable = {}
+	for i = 1, 3 do
+		table.insert(cursedTable, RelicManager:RollRandomRelicForPlayer(pID, "RARITY_UNCOMMON", false, true) )
+	end
+	for i = 1, 3 do
+		table.insert(uniqueTable, RelicManager:RollRandomRelicForPlayer(pID, "RARITY_UNCOMMON", false, false) )
+	end
+	
+	RelicManager:PushCustomRelicDropsForPlayer(pID, cursedTable)
+	RelicManager:PushCustomRelicDropsForPlayer(pID, uniqueTable)
 end
 
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
 	self._playerChoices[event.pID] = true
+	
+	hero:AddCurse("event_buff_graverobber_curse")	
+	self:GiveRelicChoices(hero)
 	CheckPlayerChoices(self)
 end
 
@@ -96,6 +63,7 @@ local function StartEvent(self)
 			end
 		end
 	end)
+	LinkLuaModifier("event_buff_graverobber_curse", "events/modifiers/event_buff_graverobber", LUA_MODIFIER_MOTION_NONE)
 	self._playerChoices = {}
 end
 

@@ -39,7 +39,7 @@ end
 
 function TalentManager:ApplyTalentModifier( hero, talentCategory, talentType )
 	local modifier = "modifier_".. string.lower( talentCategory ) .. "_" .. string.lower( talentType )
-	hero:AddNewModifier( hero, nil, modifier, {} )
+	return hero:AddNewModifier( hero, nil, modifier, {} )
 end
 
 function TalentManager:GetTalentDataForType( talentCategory, talentType )
@@ -197,6 +197,7 @@ function TalentManager:RegisterPlayer(hero, bRespec)
 	hero:SetAttributePoints( 0 )
 	print(hero:GetName(), "registered for stats")
 	hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
+	hero:AddNewModifier(hero, nil, "modifier_lives_handler", {})
 end
 
 function TalentManager:GetAbilityLinkedTalents( abilityName, hero )
@@ -251,9 +252,13 @@ function TalentManager:ProcessUniqueTalents(userid, event)
 					if unit:HasModifier(modifierName) then
 						local mList = unit:FindAllModifiersByName(modifierName)
 						for _, modifier in ipairs( mList ) do
-							local remainingDur = modifier:GetRemainingTime()
-							modifier:ForceRefresh()
-							if remainingDur > 0 then modifier:SetDuration(remainingDur, true) end
+							if modifier:HasAuraOrigin() then
+								modifier:Destroy()
+							else
+								local remainingDur = modifier:GetRemainingTime()
+								modifier:ForceRefresh()
+								if remainingDur > 0 then modifier:SetDuration(remainingDur, true) end
+							end
 						end
 					end
 				end
@@ -301,13 +306,16 @@ function TalentManager:ProcessHeroMasteries(userid, event)
 	local insufficientSkillPoints = hero:GetAbilityPoints() < price
 	if not (maxTier or insufficientSkillPoints) then
 		talents.talentKeys[talentCategory][talent] = talents.talentKeys[talentCategory][talent] + 1
+		hero.respecInfoTalents = hero.respecInfoTalents or {}
 		if talentCategory == "Generic" and talent == "ALL_STATS" then
 			local stats = tonumber(talents.talentProgression[talentCategory][talent][1])
 			hero:ModifyStrength( stats )
 			hero:ModifyAgility( stats )
 			hero:ModifyIntellect( stats )
+			hero.respecInfoTalents["ALL_STATS"] = (hero.respecInfoTalents["ALL_STATS"] or 0) + stats
 		else
-			self:ApplyTalentModifier( hero, talentCategory, talent )
+			hero.respecInfoTalents[talentCategory] = hero.respecInfoTalents[talentCategory] or {}
+			table.insert( hero.respecInfoTalents[talentCategory], self:ApplyTalentModifier( hero, talentCategory, talent ) )
 		end
 		hero:SetAbilityPoints( hero:GetAbilityPoints() - price )
 		CustomGameEventManager:Send_ServerToAllClients("dota_player_talent_update", {PlayerID = pID, hero_entindex = entindex} )
@@ -355,6 +363,17 @@ function TalentManager:RespecAll(userid, event)
 				end
 			end
 		end)
+		for talentCategory, data in pairs( hero.respecInfoTalents ) do
+			if talentCategory == "ALL_STATS" then
+				hero:ModifyStrength( -data )
+				hero:ModifyAgility( -data )
+				hero:ModifyIntellect( -data )
+			else
+				for _, modifier in ipairs( data ) do
+					modifier:Destroy()	
+				end
+			end
+		end
 		hero:CalculateStatBonus()
 		hero.uniqueTalentPoints = math.floor( hero:GetLevel() / 10 )
 		hero.bonusSkillPoints = hero.bonusSkillPoints or hero:GetLevel()

@@ -134,7 +134,7 @@ function wk_skeletons:UpdateSkeleton( skeleton )
 			skeletonReincarnation:EndCooldown()
 		end
 	elseif skeleton:FindAbilityByName("wk_reincarnation") then
-		
+		skeleton:RemoveAbility("wk_reincarnation")
 	end
 end
 

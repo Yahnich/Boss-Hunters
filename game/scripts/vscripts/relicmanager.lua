@@ -370,6 +370,7 @@ function RelicManager:RemoveRelicOnPlayer(relic, pID, bAll)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	
 	local pool = "other"
+	print( relic )
 	local rarity = self.masterList[relic]["Rarity"]
 	if self.masterList[relic]["Cursed"] == "1" then
 		pool = "cursed"
@@ -396,7 +397,13 @@ function CDOTA_BaseNPC_Hero:AddRelic(relic)
 	
 	local relicEntity = CreateItem("item_relic_handler", nil, nil)
 	local relicData = {}
-	relicData.modifier = self:AddNewModifier( self, relicEntity, relic, {} )
+	Timers:CreateTimer( 0, function()
+		if self:IsAlive() then
+			relicData.modifier = self:AddNewModifier( self, relicEntity, relic, {} )
+		else
+			return 0.1
+		end
+	end)
 	relicData.name = relic
 	relicData.rarity = RelicManager.masterList[relic]["Rarity"]
 	relicData.cursed = RelicManager.masterList[relic]["Cursed"]

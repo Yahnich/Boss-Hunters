@@ -15,8 +15,11 @@ function arc_warden_tempest_mirage:OnSpellStart()
 	if caster.currentMirage and not caster.currentMirage:IsNull() then
 		caster.currentMirage:ForceKill(false)
 	end
-	local mirage = EntIndexToHScript( self.mirageIndex )
-	print( self.mirageIndex, mirage )
+	
+	local mirage
+	if self.mirageIndex then
+		mirage = EntIndexToHScript( self.mirageIndex )
+	end
 	if not mirage or mirage:IsNull() then
 		self.mirageIndex = CreateUnitByNameAsync("npc_dota_arc_warden_tempest_mirage", caster:GetAbsOrigin() + caster:GetForwardVector() * 128, true, caster, caster, caster:GetTeamNumber(), function( mirage )
 			local player = caster:GetPlayerID()

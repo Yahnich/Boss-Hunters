@@ -25,7 +25,7 @@ end
 
 
 function clinkz_arrows:GetManaCost(iLvl)
-	if self:GetCaster():GetClassname() == "npc_dota_clinkz_skeleton_archer" then
+	if self:GetCaster():GetClassname() == "npc_dota_clinkz_skeleton_archer" or self.forceCast then
 		return 0
 	else
 		return self.BaseClass.GetManaCost( self, iLvl )
@@ -35,7 +35,7 @@ end
 function clinkz_arrows:OnSpellStart()
 	local target = self:GetCursorTarget()
 	self.forceCast = true
-	self:RefundManaCost()
+	
 	self:GetCaster():SetAttacking( target )
 	self:GetCaster():MoveToTargetToAttack( target )
 end
@@ -82,14 +82,10 @@ end
 function clinkz_arrows:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 	if hTarget then
-		local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"), {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
-		local damage = self:GetTalentSpecialValueFor("damage")
+		EmitSoundOn("Hero_Clinkz.SearingArrows.Impact", enemy)
+		self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"))
 		if caster:HasTalent("special_bonus_unique_clinkz_arrows_1") and not hTarget:HasModifier("modifier_clinkz_arrows_debuff") then
 			hTarget:AddNewModifier( caster, self, "modifier_clinkz_arrows_debuff", {duration = caster:FindTalentValue("special_bonus_unique_clinkz_arrows_1")})
-		end
-		for _,enemy in pairs(enemies) do
-			EmitSoundOn("Hero_Clinkz.SearingArrows.Impact", enemy)
-			self:DealDamage(caster, enemy, damage)
 		end
 	end
 end
@@ -99,14 +95,22 @@ if IsServer() then
 	function modifier_clinkz_arrows_debuff:OnCreated()
 		local caster = self:GetCaster()
 		self:SetDuration( math.min( caster:FindTalentValue("special_bonus_unique_clinkz_arrows_1"), self:GetRemainingTime() ), true )
+		
 		self:StartIntervalThink( self:GetRemainingTime() - 0.1 )
 	end
 	function modifier_clinkz_arrows_debuff:OnIntervalThink()
 		local target = self:GetParent()
 		local caster = self:GetCaster()
+		local ability = self:GetAbility()
+		
+		local damage = self:GetTalentSpecialValueFor("damage") * caster:FindTalentValue("special_bonus_unique_clinkz_arrows_1")
+		local radius = caster:FindTalentValue("special_bonus_unique_clinkz_arrows_1", "radius")
+		
 		ParticleManager:FireParticle("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_base_attack_impact.vpcf", PATTACH_POINT_FOLLOW, target, {[1] = "attach_hitloc"})
 		EmitSoundOn("Hero_Clinkz.SearingArrows.Impact", target)
-		self:GetAbility():DealDamage( caster, target, self:GetTalentSpecialValueFor("damage") * caster:FindTalentValue("special_bonus_unique_clinkz_arrows_1"), {damage_type = DAMAGE_TYPE_MAGICAL} )
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), radius ) ) do
+			ability:DealDamage( caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL} )
+		end
 	end
 end
 modifier_clinkz_arrows_caster = class({
@@ -149,19 +153,21 @@ function modifier_clinkz_arrows_caster:OnAttack(keys)
 		local attacker = keys.attacker
 		local ability = self:GetAbility()
 		if caster == attacker and target and ability:IsOwnersManaEnough() and ( ability:GetAutoCastState() or ability.forceCast ) and not ability.loopPrevention then
-			if caster:HasTalent("special_bonus_unique_clinkz_arrows_2") then
-				local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:GetAttackRange() + 10)
-				for _,enemy in pairs(enemies) do
-					if enemy ~= target then
-						ability.loopPrevention = true
-						ability:FireSearingArrow( enemy, true )
-						ability.loopPrevention = false
-						break
-					end
-				end
-			end
+			-- if caster:HasTalent("special_bonus_unique_clinkz_arrows_2") then
+				-- local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:GetAttackRange() + 10)
+				-- for _,enemy in pairs(enemies) do
+					-- if enemy ~= target then
+						-- ability.loopPrevention = true
+						-- ability:FireSearingArrow( enemy, true )
+						-- ability.loopPrevention = false
+						-- break
+					-- end
+				-- end
+			-- end
 			ability:FireSearingArrow( target )
-			ability:SpendMana()
+			if not ability.forceCast then
+				ability:SpendMana()
+			end
 			ability.forceCast = false
 		end
 	end

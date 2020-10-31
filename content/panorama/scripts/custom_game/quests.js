@@ -13,7 +13,8 @@ GameEvents.Subscribe( "updateQuestPrepTime", UpdateTimer);
 GameEvents.Subscribe( "updateQuestRound", UpdateRound);
 GameEvents.Subscribe( "updateQuestBoss", UpdateBoss);
 GameEvents.Subscribe( "heroLoadIn", Initialize);
-GameEvents.Subscribe("dota_player_update_query_unit", UpdateCustomHud);
+// GameEvents.Subscribe("dota_player_update_query_unit", UpdateCustomHud);
+// GameEvents.Subscribe("dota_player_update_selected_unit", UpdateCustomHud);
 GameEvents.Subscribe( "boss_hunters_event_has_ended", RemoveEventPopup);
 GameEvents.Subscribe( "boss_hunters_event_has_started", ShowEventPopup);
 GameEvents.Subscribe( "boss_hunters_prep_time_has_ended", RemoveRewardsPopup);
@@ -78,39 +79,106 @@ function VoteNG(bVote)
 
 function UpdatePrepVote(args)
 {
-	if(args.ascension != null){
-		$("#QuestAscensionVoteNoLabel").text =  "No: " + args.no
-		$("#QuestAscensionVoteYesLabel").text =  "Yes: " + args.yes
-		pressed = false
-	} else {
-		$("#QuestPrepVoteNoLabel").text =  "No: " + args.no
-		$("#QuestPrepVoteYesLabel").text =  "Yes: " + args.yes
-		pressed = false
+	for(var eventID in args.votes){
+		var eventCard = $.GetContextPanel().FindChildTraverse("EventCard" + eventID)
+		if( eventCard != null ){
+			var eventVotes = eventCard.FindChildTraverse("EventCardVotes")
+			for(var vote of eventVotes.Children()){
+				vote.style.visibility = "collapse"
+				vote.RemoveAndDeleteChildren()
+				vote.DeleteAsync(0)
+			}
+			var icons = 0
+			for(vote in args.votes[eventID]){
+				var voteIcon = $.CreatePanel("DOTAHeroImage", eventVotes, "EventCardVoteIcon"+vote);
+				var heroEntindex = Players.GetPlayerHeroEntityIndex( parseInt(vote) )
+				voteIcon.heroname = Entities.GetUnitName( heroEntindex )
+				voteIcon.heroimagestyle = "icon";
+				voteIcon.SetHasClass("EventCardVoteIcon", true)
+				icons++;
+			}
+			if( icons == 0 ){
+				var voteIcon = $.CreatePanel("DOTAHeroImage", eventVotes, "EventCardVoteIconNil");
+				voteIcon.SetHasClass("EventCardVoteIcon", true)
+				voteIcon.heroname = "npc_dota_hero_unknown";
+				voteIcon.heroimagestyle = "icon";
+			}
+		}
 	}
 	
-}
-
-function VoteSkipPrep()
-{
-	$("#QuestsPrepVoteHolder").visible =  false
-	if(pressed == false){
-		GameEvents.SendCustomGameEventToServer( "bh_player_voted_to_skip", {pID : localID} )
-		var voteYes = $("#QuestPrepVoteConfirmButton")
-		voteYes.SetPanelEvent("onmouseover", function(){});
-		voteYes.SetPanelEvent("onmouseout", function(){});
-		voteYes.SetPanelEvent("onactivate", function(){});
-		pressed = true
-	}
 }
 
 function RemovePrepVotes()
 {
 	var eventCards = $("#EventCards")
+	UnhidePrepVotes()
 	for(var card of eventCards.Children()){
 		card.style.visibility = "collapse"
 		card.RemoveAndDeleteChildren()
 		card.DeleteAsync(0)
 	}
+}
+
+function HidePrepVotes()
+{
+	var eventCards = $("#EventCards")
+	for(var card of eventCards.Children()){
+		card.style.height = "fit-children";
+		
+		var cardImage = card.FindChildTraverse("EventCardHeaderCard")
+		cardImage.style.visibility = "collapse"
+		
+		var cardBody = card.FindChildTraverse("EventCardBody")
+		cardBody.style.height = "fit-children"
+		
+		var foeTitle = card.FindChildTraverse("EventCardFoesTitle")
+		foeTitle.style.visibility = "collapse"
+		
+		var foeContainer = card.FindChildTraverse("EventCardFoes")
+		foeContainer.style.visibility = "collapse"
+		
+		var voteLabel = card.FindChildTraverse("EventCardVotesModifiersLabels");
+		voteLabel.style.visibility = "collapse"
+		
+		var modifierContainer = card.FindChildTraverse("EventCardModifiers");
+		modifierContainer.style.visibility = "collapse"
+		
+		card.eventIsCollapsed = true
+	}
+	$("#EventCards").style.verticalAlign = "bottom";
+	$("#EventCards").style.marginTop = "0px";
+	$("#EventCards").style.marginBottom = "-50px";
+}
+
+function UnhidePrepVotes()
+{
+	var eventCards = $("#EventCards")
+	for(var card of eventCards.Children()){
+		card.style.height = "700px";
+		
+		var cardImage = card.FindChildTraverse("EventCardHeaderCard")
+		cardImage.style.visibility = "visible"
+		
+		var cardBody = card.FindChildTraverse("EventCardBody")
+		cardBody.style.height = "fill-parent-flow(1)"
+		
+		var foeTitle = card.FindChildTraverse("EventCardFoesTitle")
+		foeTitle.style.visibility = "visible"
+		
+		var foeContainer = card.FindChildTraverse("EventCardFoes")
+		foeContainer.style.visibility = "visible"
+		
+		var voteLabel = card.FindChildTraverse("EventCardVotesModifiersLabels");
+		voteLabel.style.visibility = "visible"
+		
+		var modifierContainer = card.FindChildTraverse("EventCardModifiers");
+		modifierContainer.style.visibility = "visible"
+		
+		card.eventIsCollapsed = false
+	}
+	$("#EventCards").style.verticalAlign = "center";
+	$("#EventCards").style.marginTop = "-50px";
+	$("#EventCards").style.marginBottom = "0px";
 }
 
 
@@ -135,7 +203,7 @@ function CreateEventCard(eventInfo, eventID, eventContainer)
 	var eventCards = $("#EventCards")
 	var eventCard = $.CreatePanel("Panel", eventCards, "EventCard"+eventID);
 	eventCard.BLoadLayoutSnippet("EventCardContainer");
-	
+	eventCard.eventID = eventID;
 	var eventCardHeaderImage = eventCard.FindChildTraverse("EventCardHeaderCard")
 	var eventCardHeaderTitle = eventCard.FindChildTraverse("EventCardHeaderTitle")
 	eventCardHeaderTitle.text = $.Localize( "#event_" + eventInfo.eventName, eventCardHeaderTitle );
@@ -144,6 +212,7 @@ function CreateEventCard(eventInfo, eventID, eventContainer)
 	}
 	var eventCardHeaderReward = eventCard.FindChildTraverse("EventCardHeaderReward")
 	var rewardDescription = "None"
+	$.Msg( eventInfo.reward )
 	if(eventInfo.reward == EVENT_REWARD_GOLD){
 		eventCardHeaderReward.style.backgroundImage = "url('s2r://panorama/images/hud/icon_gold_psd.vtex');"
 		rewardDescription = $.Localize( "#EVENT_REWARD_GOLD_Description", eventCardHeaderReward );
@@ -167,18 +236,18 @@ function CreateEventCard(eventInfo, eventID, eventContainer)
 		typeDescription = $.Localize( "#EVENT_TYPE_ELITE_Description", eventCardHeaderType );
 	} else if(eventInfo.eventType == EVENT_TYPE_EVENT){
 		eventCardHeaderType.style.backgroundImage = "url('file://{images}/custom_game/events/bonus_room_icon_png.png');"
-		typeDescription = $.Localize( "#EVENT_TYPE_COMBAT_Description", eventCardHeaderType );
-	} else if(eventInfo.eventType == EVENT_TYPE_EVENT){
+		typeDescription = $.Localize( "#EVENT_TYPE_EVENT_Description", eventCardHeaderType );
+	} else if(eventInfo.eventType == EVENT_TYPE_BOSS){
 		eventCardHeaderType.style.backgroundImage = "url('file://{images}/custom_game/events/boss_room_icon_png.png');"
 		typeDescription = $.Localize( "#EVENT_TYPE_BOSS_Description", eventCardHeaderType );
 	}
 	eventCardHeaderType.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", eventCardHeaderType, typeDescription)});
 	eventCardHeaderType.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", eventCardHeaderType)});
 	
+	var foeContainer = eventCard.FindChildTraverse("EventCardFoes")
 	for(var foe in eventInfo.foes){
-		CreateFoeSlot(eventInfo.foes[foe], foe)
+		CreateFoeSlot(eventInfo.foes[foe], foe, foeContainer )
 	}
-	$.Msg(eventInfo.modifiers)
 	if(eventInfo.modifiers[1] != null){
 		var modifierContainer = eventCard.FindChildTraverse("EventCardModifiers");
 		for( var id in eventInfo.modifiers ){
@@ -188,20 +257,35 @@ function CreateEventCard(eventInfo, eventID, eventContainer)
 		var modifierLabel = eventCard.FindChildTraverse("EventCardModifiersLabel");
 		modifierLabel.visible = false;
 	}
+	var eventVotes = eventCard.FindChildTraverse("EventCardVotes")
+	var voteIcon = $.CreatePanel("DOTAHeroImage", eventVotes, "EventCardVoteIconNil");
+	voteIcon.SetHasClass("EventCardVoteIcon", true)
+	voteIcon.heroname = "npc_dota_hero_unknown";
+	voteIcon.heroimagestyle = "icon";
 	
-	
+	eventCard.eventIsCollapsed = false
 	eventCard.SetPanelEvent("onmouseover", function(){eventCard.SetHasClass("EventCardHighlighted", true)});
 	eventCard.SetPanelEvent("onmouseout", function(){eventCard.SetHasClass("EventCardHighlighted", false)});
 	eventCard.SetPanelEvent("onactivate", function(){
-		GameEvents.SendCustomGameEventToServer( "bh_player_voted_to_skip", {pID : localID} )
-		RemovePrepVotes()
+		if( eventCard.eventIsCollapsed ){
+			if( GameUI.IsAltDown()){
+				UnhidePrepVotes()
+			} else {
+				GameEvents.SendCustomGameEventToServer( "bh_player_voted_to_skip", {pID : localID, eventID : eventCard.eventID} )
+			}
+		} else {
+			if( !GameUI.IsAltDown()){
+				GameEvents.SendCustomGameEventToServer( "bh_player_voted_to_skip", {pID : localID, eventID : eventCard.eventID} )
+			}
+			HidePrepVotes()
+		}
+		
 	});
 }
 
-function CreateFoeSlot(foeData, count)
+function CreateFoeSlot(foeData, count, foeContainer)
 {
 	if(foeData.amount == 0){return};
-	var foeContainer = $("#EventCardFoes")
 	var foeSlot = $.CreatePanel("Panel", foeContainer, "FoeInfo"+foeData.name);
 	foeSlot.BLoadLayoutSnippet("EventCardFoeContainer");
 	
@@ -415,6 +499,12 @@ function UpdateTooltipUI(id, abilityname, abilityid)
 
 
 function UpdateCustomHud(){
+	if (vector_target_particle !== undefined){
+		var currentSelected = Players.GetLocalPlayerPortraitUnit();
+		if(currentSelected != vectorTargetUnit){
+			GameUI.SelectUnit(vectorTargetUnit, false)
+		}
+	}
 	// var index = Players.GetLocalPlayerPortraitUnit();
 	// var bReset = true
 	// var healthText = healthBar.FindChildTraverse("HealthLabel");
@@ -447,38 +537,38 @@ function Initialize(arg){
 	var killCS = dotaHud.FindChildTraverse("quickstats");
 	killCS.FindChildTraverse("QuickStatsContainer").style.visibility = "collapse";
 	dotaHud.FindChildTraverse("GlyphScanContainer").style.visibility = "collapse";
-	$("#QuestBossText").visible =  false
-	$("#QuestRoundText").visible =  true
+	// $("#QuestBossText").visible =  false
+	// $("#QuestRoundText").visible =  true
 }
 
 function UpdateLives(arg){
-	$("#QuestLifeText").SetDialogVariableInt( "lives", arg.lives );
-	$("#QuestLifeText").SetDialogVariableInt( "maxLives", arg.maxLives );
-	$("#QuestLifeText").text =  $.Localize( "#QuestLifeText", $("#QuestLifeText") );
+	// $("#QuestLifeText").SetDialogVariableInt( "lives", arg.lives );
+	// $("#QuestLifeText").SetDialogVariableInt( "maxLives", arg.maxLives );
+	// $("#QuestLifeText").text =  $.Localize( "#QuestLifeText", $("#QuestLifeText") );
 }
 
 function UpdateTimer(arg){
-	if( arg.prepTime > 0){	
-		$("#QuestPrepText").visible =  true
-		$("#QuestPrepText").SetDialogVariableInt( "prepTime", arg.prepTime );
-		$("#QuestPrepText").text =  $.Localize( "#QuestPrepText", $("#QuestPrepText") );
-	} else {
-		$("#QuestPrepText").visible =  false
-	}
+	// if( arg.prepTime > 0){	
+		// $("#QuestPrepText").visible =  true
+		// $("#QuestPrepText").SetDialogVariableInt( "prepTime", arg.prepTime );
+		// $("#QuestPrepText").text =  $.Localize( "#QuestPrepText", $("#QuestPrepText") );
+	// } else {
+		// $("#QuestPrepText").visible =  false
+	// }
 }
 
 function UpdateRound(arg){
-	$("#QuestRoundText").visible =  true
-	var ascension = "";
-	if(arg.ascensionText != null){
-		ascension = arg.ascensionText + ": "
-	}
-	$("#QuestRoundText").text = ascension + arg.roundText + " - " + $.Localize( "#event_" + arg.eventName, $("#QuestRoundText") )
+	// $("#QuestRoundText").visible =  true
+	// var ascension = "";
+	// if(arg.ascensionText != null){
+		// ascension = arg.ascensionText + ": "
+	// }
+	// $("#QuestRoundText").text = ascension + arg.roundText + " - " + $.Localize( "#event_" + arg.eventName, $("#QuestRoundText") )
 }
 
 function UpdateBoss(arg){
-	$("#QuestBossText").visible =  true
-	$("#QuestBossText").text = "UPCOMING BOSS - " + $.Localize( "#event_" + arg.bossName, $("#QuestBossText") )
+	// $("#QuestBossText").visible =  true
+	// $("#QuestBossText").text = "UPCOMING BOSS - " + $.Localize( "#event_" + arg.bossName, $("#QuestBossText") )
 }
 
 var error = null;
@@ -488,7 +578,7 @@ function DisplayErrorMessage(event)
 		HideError()
 	}
 	error = $.CreatePanel('DOTAErrorMsg', $.GetContextPanel(), 'customErrorMessage');
-	error.AddClass('VisGroup_Top')
+	error.AddClass('VisGroup_Top') 
 	error.AddClass('PopOutEffect')
 	error.SetHasClass("ShowErrorMsg", true)
 	error.style.opacity = 1.0;
@@ -520,7 +610,9 @@ var CONTINUE_PROCESSING_EVENT = false;
 //main variables
 var active_ability = undefined;
 var vector_target_particle = undefined;
+var vectorTargetUnit = undefined;
 var vector_start_position = undefined;
+var mouseClickBlocker = undefined;
 var vector_range = 800;
 var click_start = false;
 var resetSchedule;
@@ -546,6 +638,7 @@ function OnVectorTargetingStart(fStartWidth, fEndWidth, fCastLength)
 	var casterLoc = Entities.GetAbsOrigin(mainSelected);
 	var testPos = [casterLoc[0] + Math.min( 1500, vector_range), casterLoc[1], casterLoc[2]];
 	vector_target_particle = Particles.CreateParticle("particles/ui_mouseactions/range_finder_cone.vpcf", ParticleAttachment_t.PATTACH_CUSTOMORIGIN, mainSelected);
+	vectorTargetUnit = mainSelected
 	Particles.SetParticleControl(vector_target_particle, 1, Vector_raiseZ(worldPosition, 100));
 	Particles.SetParticleControl(vector_target_particle, 2, Vector_raiseZ(testPos, 100));
 	Particles.SetParticleControl(vector_target_particle, 3, [endWidth, startWidth, 0]);
@@ -557,7 +650,10 @@ function OnVectorTargetingStart(fStartWidth, fEndWidth, fCastLength)
 	var direction = Vector_normalize(Vector_sub(vector_start_position, unitPosition));
 	var newPosition = Vector_add(vector_start_position, Vector_mult(direction, vector_range));
 	Particles.SetParticleControl(vector_target_particle, 2, newPosition);
-
+	
+	mouseClickBlocker = $.CreatePanel( "Button", $.GetContextPanel(), "MouseClickBlockerVectorTargeting");
+	mouseClickBlocker.style.width = "100%";
+	mouseClickBlocker.style.height = "100%";
 	//Start position updates
 	ShowVectorTargetingParticle();
 	return CONTINUE_PROCESSING_EVENT;
@@ -566,12 +662,15 @@ function OnVectorTargetingStart(fStartWidth, fEndWidth, fCastLength)
 //End the particle effect
 function OnVectorTargetingEnd(bSend)
 {
+	if( bSend ){
+		SendPosition();
+	}
 	if (vector_target_particle) {
 		Particles.DestroyParticleEffect(vector_target_particle, true)
 		vector_target_particle = undefined;
-	}
-	if( bSend ){
-		SendPosition();
+		vectorTargetUnit = undefined;
+		mouseClickBlocker.DeleteAsync(0);
+		mouseClickBlocker = undefined;
 	}
 }
 
@@ -582,8 +681,6 @@ function SendPosition() {
 	var cPos = vector_start_position;
 	var pID = Players.GetLocalPlayer();
 	GameEvents.SendCustomGameEventToServer("send_vector_position", {"playerID" : pID, "unit" : vectorTargetUnit, "abilityIndex":active_ability, "PosX" : cPos[0], "PosY" : cPos[1], "PosZ" : cPos[2], "Pos2X" : ePos[0], "Pos2Y" : ePos[1], "Pos2Z" : ePos[2]});
-	
-	$.Schedule(1 / 144, function(){GameUI.SelectUnit(vectorTargetUnit, false);} );
 }
 
 //Updates the particle effect and detects when the ability is actually casted

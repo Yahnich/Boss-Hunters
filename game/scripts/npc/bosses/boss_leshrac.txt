@@ -101,7 +101,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"hit_radius"			"265"
+				"hit_radius"			"175"
 			}
 			"03"
 			{
@@ -176,7 +176,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"350"
+				"damage"				"375"
 			}
 			"05"
 			{

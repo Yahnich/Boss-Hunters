@@ -4,10 +4,14 @@ function modifier_tombstone_respawn_immunity:CheckState()
 	return {[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 			[MODIFIER_STATE_ATTACK_IMMUNE] = true,
 			[MODIFIER_STATE_MAGIC_IMMUNE] = true,
-			[MODIFIER_STATE_DISARMED] = true,
-			[MODIFIER_STATE_MUTED] = true,
-			[MODIFIER_STATE_SILENCED] = true,
 			[MODIFIER_STATE_INVULNERABLE] = true,
 			[MODIFIER_STATE_NO_HEALTH_BAR] = true}
 end
 
+function modifier_tombstone_respawn_immunity:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+end
+
+function modifier_tombstone_respawn_immunity:GetModifierMoveSpeedBonus_Percentage()
+	return 100
+end

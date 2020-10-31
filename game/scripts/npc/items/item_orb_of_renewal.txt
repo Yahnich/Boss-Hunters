@@ -29,7 +29,7 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"AbilityCooldown"				"180 170 160 150 140 130 120 110 100"
+		"AbilityCooldown"				"180"
 		"AbilityManaCost"				"375"
 		"AbilitySharedCooldown"			"orbofrenewal"
 		
@@ -40,17 +40,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_gain"				"30"
+				"hp_gain"				"18 21 24 27 30 40 50 60 70"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"10"
+				"mana_gain"				"2 3 4 5 6 8 10 12 14"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"180 170 160 150 140 130 120 110 100"
+				"cooldown"				"180 160 140 120 100 100 100 100 100"
 			}
 			"04"
 			{
@@ -114,7 +114,7 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"AbilityCooldown"				"180 170 160 150 140 130 120 110 100"
+		"AbilityCooldown"				"160"
 		"AbilityManaCost"				"375"
 		"AbilitySharedCooldown"			"orbofrenewal"
 		
@@ -125,17 +125,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_gain"				"30"
+				"hp_gain"				"18 21 24 27 30 40 50 60 70"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"10"
+				"mana_gain"				"2 3 4 5 6 8 10 12 14"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"180 170 160 150 140 130 120 110 100"
+				"cooldown"				"180 160 140 120 100 100 100 100 100"
 			}
 			"04"
 			{
@@ -201,7 +201,7 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"AbilityCooldown"				"180 170 160 150 140 130 120 110 100"
+		"AbilityCooldown"				"140"
 		"AbilityManaCost"				"375"
 		"AbilitySharedCooldown"			"orbofrenewal"
 		
@@ -212,17 +212,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_gain"				"30"
+				"hp_gain"				"18 21 24 27 30 40 50 60 70"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"10"
+				"mana_gain"				"2 3 4 5 6 8 10 12 14"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"180 170 160 150 140 130 120 110 100"
+				"cooldown"				"180 160 140 120 100 100 100 100 100"
 			}
 			"04"
 			{
@@ -287,7 +287,7 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"AbilityCooldown"				"180 170 160 150 140 130 120 110 100"
+		"AbilityCooldown"				"120"
 		"AbilityManaCost"				"375"
 		"AbilitySharedCooldown"			"orbofrenewal"
 		
@@ -298,17 +298,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_gain"				"30"
+				"hp_gain"				"18 21 24 27 30 40 50 60 70"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"10"
+				"mana_gain"				"2 3 4 5 6 8 10 12 14"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"180 170 160 150 140 130 120 110 100"
+				"cooldown"				"180 160 140 120 100 100 100 100 100"
 			}
 			"04"
 			{
@@ -373,7 +373,7 @@
 		}
 		
 	
-		"AbilityCooldown"				"180 170 160 150 140 130 120 110 100"
+		"AbilityCooldown"				"100"
 		"AbilityManaCost"				"375"
 		"AbilitySharedCooldown"			"orbofrenewal"
 		
@@ -384,17 +384,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_gain"				"30"
+				"hp_gain"				"18 21 24 27 30 40 50 60 70"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"10"
+				"mana_gain"				"2 3 4 5 6 8 10 12 14"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"180 170 160 150 140 130 120 110 100"
+				"cooldown"				"180 160 140 120 100 100 100 100 100"
 			}
 			"04"
 			{
@@ -459,7 +459,7 @@
 		}
 		
 	
-		"AbilityCooldown"				"180 170 160 150 140 130 120 110 100"
+		"AbilityCooldown"				"100"
 		"AbilityManaCost"				"375"
 		"AbilitySharedCooldown"			"orbofrenewal"
 		
@@ -470,17 +470,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_gain"				"30"
+				"hp_gain"				"18 21 24 27 30 40 50 60 70"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"10"
+				"mana_gain"				"2 3 4 5 6 8 10 12 14"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"180 170 160 150 140 130 120 110 100"
+				"cooldown"				"180 160 140 120 100 100 100 100 100"
 			}
 			"04"
 			{
@@ -545,7 +545,7 @@
 		}
 		
 	
-		"AbilityCooldown"				"180 170 160 150 140 130 120 110 100"
+		"AbilityCooldown"				"100"
 		"AbilityManaCost"				"375"
 		"AbilitySharedCooldown"			"orbofrenewal"
 		
@@ -556,17 +556,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_gain"				"30"
+				"hp_gain"				"18 21 24 27 30 40 50 60 70"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"10"
+				"mana_gain"				"2 3 4 5 6 8 10 12 14"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"180 170 160 150 140 130 120 110 100"
+				"cooldown"				"180 160 140 120 100 100 100 100 100"
 			}
 			"04"
 			{
@@ -630,7 +630,7 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"AbilityCooldown"				"180 170 160 150 140 130 120 110 100"
+		"AbilityCooldown"				"100"
 		"AbilityManaCost"				"375"
 		"AbilitySharedCooldown"			"orbofrenewal"
 		
@@ -641,17 +641,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_gain"				"30"
+				"hp_gain"				"18 21 24 27 30 40 50 60 70"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"10"
+				"mana_gain"				"2 3 4 5 6 8 10 12 14"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"180 170 160 150 140 130 120 110 100"
+				"cooldown"				"180 160 140 120 100 100 100 100 100"
 			}
 			"04"
 			{
@@ -715,7 +715,7 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"AbilityCooldown"				"180 170 160 150 140 130 120 110 100"
+		"AbilityCooldown"				"100"
 		"AbilityManaCost"				"375"
 		"AbilitySharedCooldown"			"orbofrenewal"
 		
@@ -726,17 +726,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_gain"				"30"
+				"hp_gain"				"18 21 24 27 30 40 50 60 70"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"10"
+				"mana_gain"				"2 3 4 5 6 8 10 12 14"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"180 170 160 150 140 130 120 110 100"
+				"cooldown"				"180 160 140 120 100 100 100 100 100"
 			}
 			"04"
 			{

@@ -12,7 +12,7 @@ function relic_lunar_needle:OnTakeDamage(params)
 	if params.attacker == self:GetParent() and params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK and self:GetParent():GetHealth() > 0 and self:GetParent():IsRealHero() then
 		local flHeal = params.damage * 0.15
 		for _, ally in ipairs( self:GetParent():FindFriendlyUnitsInRadius( params.unit:GetAbsOrigin(), 900 ) ) do
-			ally:HealEvent(flHeal, self:GetAbility(), params.attacker)
+			ally:HealEvent(flHeal, self:GetAbility(), params.attacker? {heal_type = HEAL_TYPE_LIFESTEAL})
 		end
 	end
 end

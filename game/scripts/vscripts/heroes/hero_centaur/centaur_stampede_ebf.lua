@@ -8,12 +8,12 @@ function centaur_stampede_ebf:IsHiddenWhenStolen()
 	return false
 end
 
-function centaur_stampede_ebf:PiercesDisableResistance()
-    return true
-end
-
 function centaur_stampede_ebf:IsStealable()
 	return true
+end
+
+function centaur_stampede_ebf:GetCooldown( iLvl )
+	return self.BaseClass.GetCooldown( self, iLvl ) + self:GetCaster():FindTalentValue("special_bonus_unique_centaur_stampede_2")
 end
 
 function centaur_stampede_ebf:OnSpellStart()
@@ -36,7 +36,8 @@ if IsServer() then
 		self.radius = self:GetTalentSpecialValueFor("radius")
 		self.damage = self:GetTalentSpecialValueFor("base_damage") + self:GetCaster():GetStrength() * self:GetTalentSpecialValueFor("strength_damage") 
 		self.slowDuration = self:GetTalentSpecialValueFor("slow_duration")
-		
+		self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_centaur_stampede_2")
+		self.talent1Dur = self:GetCaster():FindTalentValue("special_bonus_unique_centaur_stampede_1", "duration")
 		local oFX = ParticleManager:CreateParticle("particles/units/heroes/hero_centaur/centaur_stampede_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent())
 		self:AddOverHeadEffect(oFX)
 		local sFX = ParticleManager:CreateParticle("particles/units/heroes/hero_centaur/centaur_stampede.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
@@ -56,6 +57,9 @@ if IsServer() then
 	
 	function modifier_centaur_stampede_ebf:OnIntervalThink()
 		local parent = self:GetParent()
+		if self.talent2 then
+			GridNav:DestroyTreesAroundPoint( parent:GetAbsOrigin(), 128, true )
+		end
 		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), self.radius ) ) do
 			if not self.hitTable[tostring(enemy:entindex())] then
 				self.hitTable[tostring( enemy:entindex() )] = true
@@ -75,7 +79,7 @@ if IsServer() then
 		EmitSoundOn("Hero_Centaur.Stampede.Stun", target)
 		self:GetAbility():DealDamage( caster, target, self.damage )
 		if caster:HasTalent("special_bonus_unique_centaur_stampede_1") then
-			self:GetAbility():Stun( target, self.slowDuration, false )
+			self:GetAbility():Stun( target, self.talent1Dur, false )
 		end
 		target:AddNewModifier( caster, self:GetAbility(), "modifier_centaur_stampede_ebf_slow", {duration = self.slowDuration} )
 	end
@@ -87,18 +91,14 @@ end
 
 function modifier_centaur_stampede_ebf:CheckState()
 	local state = {[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
-	if self:GetCaster():HasScepter() then
+	if self.talent2 then
 		state[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true
 	end
 	return state
 end
 
 function modifier_centaur_stampede_ebf:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN, MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
-end
-
-function modifier_centaur_stampede_ebf:GetModifierIncomingDamage_Percentage()
-	if  self:GetCaster():HasScepter() then return self:GetTalentSpecialValueFor("damage_reduction_scepter") end
+	return {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN}
 end
 
 function modifier_centaur_stampede_ebf:GetModifierMoveSpeed_AbsoluteMin()

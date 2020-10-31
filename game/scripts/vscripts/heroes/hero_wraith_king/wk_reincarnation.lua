@@ -47,8 +47,8 @@ function modifier_wk_reincarnation:OnCreated()
 	self.slow_duration = self.ability:GetTalentSpecialValueFor("duration")
 	self.scepter_wraith_form_radius = self.ability:GetTalentSpecialValueFor("aura_radius")        
 	
-	self.talent1 = self:GetTalentSpecialValueFor("special_bonus_unique_wk_reincarnation_1")
-	self.talent3 = self:GetTalentSpecialValueFor("special_bonus_unique_wk_reincarnation_3")
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_wk_reincarnation_1")
+	self.talent3 = self:GetCaster():HasTalent("special_bonus_unique_wk_reincarnation_3")
 	
 	self:GetParent():HookInModifier("GetReincarnationDelay", self, self:GetPriority() )
 	if IsServer() then
@@ -81,8 +81,7 @@ end
 
 function modifier_wk_reincarnation:DeclareFunctions()
 	local decFuncs = {MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
-				      MODIFIER_PROPERTY_REINCARNATION,
-					  MODIFIER_EVENT_ON_DEATH}
+				      MODIFIER_EVENT_ON_DEATH}
 
 	return decFuncs
 end
@@ -92,8 +91,9 @@ function modifier_wk_reincarnation:GetReincarnationDelay()
 		if self.ability:IsOwnersManaEnough() and self.ability:IsCooldownReady() and not self.caster:IsIllusion() then
 			self.unitWillResurrect = true
 			self.ability:UseResources(true, false, true)
-			self:GetCaster():EmitSound("Hero_SkeletonKing.Reincarnate")
-			
+			if self.caster:IsRealHero() then
+				self:GetCaster():EmitSound("Hero_SkeletonKing.Reincarnate")
+			end
 			local enemies = self.caster:FindEnemyUnitsInRadius(self.caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
 			for _,enemy in pairs(enemies) do
 				enemy:AddNewModifier(self.caster, self.ability, "modifier_wk_reincarnation_slow", {Duration = self:GetTalentSpecialValueFor("duration")})
@@ -105,7 +105,7 @@ function modifier_wk_reincarnation:GetReincarnationDelay()
 			if self.caster:IsRealHero() and self.talent1 and self.caster:FindAbilityByName("wk_skeletons")then
 				self.caster:FindAbilityByName("wk_skeletons"):SpawnDeathKnight( self:GetCaster():GetAbsOrigin() + RandomVector(150) )
 			end
-			if self.caster:HasTalent("special_bonus_unique_wk_reincarnation_3") then
+			if self.talent3 then
 				Timers:CreateTimer( self.reincarnate_delay + 0.1, function()
 					self.caster:AddNewModifier( self.caster, self.ability, "modifier_wk_reincarnation_buff", {duration = self.caster:FindTalentValue("special_bonus_unique_wk_reincarnation_3")} )
 				end)
@@ -114,10 +114,6 @@ function modifier_wk_reincarnation:GetReincarnationDelay()
 			return self.reincarnate_delay
 		end
 	end
-end
-
-function modifier_wk_reincarnation:ReincarnateTime()
-	return self:GetReincarnationDelay()
 end
 
 function modifier_wk_reincarnation:GetActivityTranslationModifiers()
@@ -132,7 +128,7 @@ function modifier_wk_reincarnation:OnDeath(keys)
 	if IsServer() then
 		local unit = keys.unit
 		local reincarnate = keys.reincarnate
-		if unit == self.caster and self.unitWillResurrect then
+		if unit == self.caster and unit:IsRealHero() and self.unitWillResurrect then
 			self.caster.unitWillResurrect = false
 			unit:EmitSound("Hero_SkeletonKing.Reincarnate.Stinger")
 		elseif unit == self.caster and not unit:IsHero() then

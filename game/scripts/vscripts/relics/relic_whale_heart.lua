@@ -5,7 +5,7 @@ function relic_whale_heart:DeclareFunctions()
 end
 
 function relic_whale_heart:GetModifierHPRegenAmplify_Percentage()
-	local regen = 50
+	local regen = 100
 	if not self:GetParent():HasModifier("modifier_in_water") and not self:GetParent():HasModifier("relic_ritual_candle") then
 		regen = -50
 	end

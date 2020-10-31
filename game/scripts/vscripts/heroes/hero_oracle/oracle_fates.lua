@@ -25,58 +25,59 @@ function oracle_fates:OnSpellStart()
 	if caster:HasTalent("special_bonus_unique_oracle_fates_2") and target:GetTeam() ~= caster:GetTeam() then
 		target:Daze(self, caster, duration)
 	end
-
-	self:StartDelayedCooldown(duration)
 end
 
 modifier_oracle_fates = class({})
 function modifier_oracle_fates:OnCreated(table)
-	self.mr = 100
-	self.noMagic = 1
-	self.slow_ms = -100
-
-	if self:GetCaster():HasTalent("special_bonus_unique_oracle_fates_1") then
-		self.mr = 50
-		self.noMagic = 0
-		self.slow_ms = -50
+	self:OnRefresh()
+	if IsServer() then
+		self:GetAbility():EndCooldown()
+		self:GetAbility():SetActivated(false)
 	end
 end
 
 function modifier_oracle_fates:OnRefresh(table)
-	self.mr = 100
-	self.noMagic = 1
-	self.slow_ms = -100
-
-	if self:GetCaster():HasTalent("special_bonus_unique_oracle_fates_1") then
-		self.mr = 50
-		self.noMagic = 0
-		self.slow_ms = -50
+	if IsServer() then
+		local caster = self:GetCaster()
+		self.mr = 100
+		self.disarm = true
+		if caster:IsSameTeam( self:GetParent() ) then
+			local pactmaker = caster:FindAbilityByName("oracle_pactmaker")
+			if pactmaker and pactmaker:IsCooldownReady() and not caster:PassivesDisabled() then
+				pactmaker:SetCooldown()
+				self.disarm = false
+			end
+		else
+			local pactbreaker = caster:FindAbilityByName("oracle_pactbreaker")
+			if pactbreaker and pactbreaker:IsCooldownReady() and not caster:PassivesDisabled() then
+				pactbreaker:SetCooldown()
+				self.mr = 0
+			end
+		end
+		
+		self:SetHasCustomTransmitterData( true )
 	end
+end
+
+function modifier_oracle_fates:OnDestroy()
+	if IsServer() then
+		self:GetAbility():SetCooldown()
+		self:GetAbility():SetActivated(true)
+	end
+end
+
+function modifier_oracle_fates:CheckState()
+	return {[MODIFIER_STATE_DISARMED] = self.disarm}
 end
 
 function modifier_oracle_fates:DeclareFunctions()
-	local funcs = { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-					MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-					MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL}
+	local funcs = { MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS }
 	return funcs
 end
 
+
 function modifier_oracle_fates:GetModifierMagicalResistanceBonus()
 	return self.mr
-end
-
-function modifier_oracle_fates:GetModifierMoveSpeedBonus_Percentage()
-	return self.slow_ms
-end
-
-function modifier_oracle_fates:GetAbsoluteNoDamageMagical()
-	return self.noMagic
-end
-
-function modifier_oracle_fates:OnRemoved()
-	if IsServer() then
-		self:GetAbility():EndDelayedCooldown()
-	end
 end
 
 function modifier_oracle_fates:GetEffectName()
@@ -84,9 +85,22 @@ function modifier_oracle_fates:GetEffectName()
 end
 
 function modifier_oracle_fates:IsDebuff()
-	return false
+	return self.disarm
 end
 
 function modifier_oracle_fates:IsPurgable()
 	return true
+end
+
+function modifier_oracle_fates:AddCustomTransmitterData( )
+	return
+	{
+		mr = self.mr,
+		disarm = self.disarm
+	}
+end
+
+function modifier_oracle_fates:HandleCustomTransmitterData( data )
+	self.mr = data.mr
+	self.disarm = toboolean( data.disarm )
 end

@@ -11,20 +11,29 @@ function weaver_fabric_tear:IsHiddenWhenStolen()
     return false
 end
 
+function weaver_fabric_tear:GetAOERadius()
+	return self:GetTalentSpecialValueFor("radius")
+end
+
 function weaver_fabric_tear:OnSpellStart()
+	self:CreateFabricTear( self:GetCursorPosition() )
+end
+
+function weaver_fabric_tear:CreateFabricTear( position, duration )
 	local caster = self:GetCaster()
-	local point = self:GetCursorPosition()
+	local point = position or self:GetCaster():GetAbsOrigin()
 	
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local thinkerDur = duration or self:GetTalentSpecialValueFor("duration")
 
 	EmitSoundOn("Hero_ArcWarden.MagneticField.Cast", caster)
-	CreateModifierThinker(caster, self, "modifier_weaver_fabric_tear", {Duration = duration}, point, caster:GetTeam(), false)
+	CreateModifierThinker(caster, self, "modifier_weaver_fabric_tear", {Duration = thinkerDur}, point, caster:GetTeam(), false)
 end
 
 modifier_weaver_fabric_tear = class({})
 function modifier_weaver_fabric_tear:OnCreated(table)
 	if IsServer() then
 		local caster = self:GetCaster()
+		local ability = self:GetAbility()
 		local parent = self:GetParent()
 		local parentPoint = parent:GetAbsOrigin()
 
@@ -39,9 +48,9 @@ function modifier_weaver_fabric_tear:OnCreated(table)
 		self:AttachEffect(nfx)
 
 		if caster:HasTalent("special_bonus_unique_weaver_fabric_tear_1") then
-			local enemies = caster:FindEnemyUnitsInRadius(parentPoint, radius)
+			local enemies = caster:FindEnemyUnitsInRadius(parentPoint, radius + caster:FindTalentValue("special_bonus_unique_weaver_fabric_tear_1"))
 			for _,enemy in pairs(enemies) do
-				FindClearSpaceForUnit(enemy, parentPoint, true)
+				enemy:ApplyKnockBack(parentPoint, 0.5, 0.5, -(CalculateDistance( parentPoint, enemy ) - 64), 0, caster, ability, false)
 			end
 		end
 	end

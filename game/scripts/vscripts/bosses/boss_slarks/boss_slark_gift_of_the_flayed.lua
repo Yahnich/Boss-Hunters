@@ -87,6 +87,10 @@ function modifier_boss_slark_gift_of_the_flayed_debuff:OnIntervalThink()
 	if distance < self.moveLimit and distance > 10 then
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
+		if not ability or not caster then 
+			self:Destroy()
+			return
+		end
 		ability:DealDamage( caster, parent, damage )
 	end
 end

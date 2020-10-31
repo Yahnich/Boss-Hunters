@@ -47,7 +47,7 @@ function modifier_boss_warlock_fatal_bonds_primary:OnTakeDamage(params)
 	if IsServer() then
 		local parent = self:GetParent()
 		local caster = self:GetCaster()
-		if params.unit == parent and not HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION ) then
+		if params.unit == parent and not HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION ) and params.damage then
 			local damage = params.damage * self:GetSpecialValueFor("damage")/100
 			local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
 			for _,enemy in pairs(enemies) do

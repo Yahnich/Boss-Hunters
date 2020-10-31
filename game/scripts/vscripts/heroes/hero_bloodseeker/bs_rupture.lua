@@ -1,7 +1,5 @@
 bs_rupture = class({})
 LinkLuaModifier("modifier_bs_rupture", "heroes/hero_bloodseeker/bs_rupture", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_bs_rupture_charges", "heroes/hero_bloodseeker/bs_rupture", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_bs_rupture_charges_handle", "heroes/hero_bloodseeker/bs_rupture", LUA_MODIFIER_MOTION_NONE)
 
 function bs_rupture:IsStealable()
 	return true
@@ -12,11 +10,25 @@ function bs_rupture:IsHiddenWhenStolen()
 end
 
 function bs_rupture:GetIntrinsicModifierName()
-	return "modifier_bs_rupture_charges_handle"
+	return "modifier_bs_rupture_charges"
 end
 
 function bs_rupture:HasCharges()
 	return true
+end
+
+function bs_rupture:OnInventoryContentsChanged()
+    if self:GetCaster():HasScepter() then
+		local charges = self:GetCaster():FindModifierByName("modifier_bs_rupture_charges")
+        if charges and charges:GetStackCount() > 0 then
+			self:EndCooldown( )
+		end
+    else
+		local charges = self:GetCaster():FindModifierByName("modifier_bs_rupture_charges")
+        if charges and charges:GetRemainingTime() > 0 then
+			self:SetCooldown( charges:GetRemainingTime() )
+		end
+    end
 end
 
 function bs_rupture:GetCooldown(iLvl)
@@ -24,6 +36,7 @@ function bs_rupture:GetCooldown(iLvl)
     if self:GetCaster():HasScepter() then cooldown = cooldown - 20 end
     return cooldown
 end
+
 
 function bs_rupture:OnSpellStart()
 	local caster = self:GetCaster()
@@ -108,46 +121,8 @@ function modifier_bs_rupture:IsDebuff()
 	return true
 end
 
-modifier_bs_rupture_charges_handle = class({})
-
-function modifier_bs_rupture_charges_handle:OnCreated()
-    if IsServer() then
-        self:StartIntervalThink(0.1)
-    end
-end
-
-function modifier_bs_rupture_charges_handle:OnIntervalThink()
-    local caster = self:GetCaster()
-
-    if self:GetCaster():HasScepter() then
-        if not caster:HasModifier("modifier_bs_rupture_charges") then
-            self:GetAbility():EndCooldown()
-            caster:AddNewModifier(caster, self:GetAbility(), "modifier_bs_rupture_charges", {})
-        end
-    else
-    	if caster:HasModifier("modifier_bs_rupture_charges") then
-    		caster:RemoveModifierByName("modifier_bs_rupture_charges")
-    	end
-    end
-end
-
-function modifier_bs_rupture_charges_handle:DestroyOnExpire()
-    return false
-end
-
-function modifier_bs_rupture_charges_handle:IsPurgable()
-    return false
-end
-
-function modifier_bs_rupture_charges_handle:RemoveOnDeath()
-    return false
-end
-
-function modifier_bs_rupture_charges_handle:IsHidden()
-    return true
-end
-
 modifier_bs_rupture_charges = class({})
+LinkLuaModifier("modifier_bs_rupture_charges", "heroes/hero_bloodseeker/bs_rupture", LUA_MODIFIER_MOTION_NONE)
 if IsServer() then
     function modifier_bs_rupture_charges:Update()
 		self.kv.replenish_time = self:GetTalentSpecialValueFor("scepter_charge_restore_time") * self:GetCaster():GetCooldownReduction()
@@ -199,7 +174,7 @@ if IsServer() then
     end
 
     function modifier_bs_rupture_charges:OnAbilityFullyCast(params)
-        if params.unit == self:GetParent() then
+        if params.unit == self:GetParent() and params.unit:HasScepter() then
 			self.kv.replenish_time = self:GetTalentSpecialValueFor("scepter_charge_restore_time") * self:GetCaster():GetCooldownReduction()
 			self.kv.max_count = self:GetTalentSpecialValueFor("scepter_charges")
 			
@@ -208,7 +183,7 @@ if IsServer() then
                 self:DecrementStackCount()
 				ability:EndCooldown()
                 self:Update()
-			elseif params.ability:GetName() == "item_refresher" and self:GetStackCount() < self.kv.max_count then
+			elseif string.find( params.ability:GetName(), "orb_of_renewal" ) and self:GetStackCount() < self.kv.max_count then
                 self:IncrementStackCount()
                 self:Update()
             end
@@ -245,9 +220,5 @@ function modifier_bs_rupture_charges:RemoveOnDeath()
 end
 
 function modifier_bs_rupture_charges:IsHidden()
-	if self:GetCaster():HasScepter() then
-    	return false
-    else
-    	return true
-    end
+	return not self:GetCaster():HasScepter()
 end

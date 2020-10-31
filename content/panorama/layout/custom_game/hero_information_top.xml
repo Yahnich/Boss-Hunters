@@ -1,0 +1,52 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/dotastyles.css" />
+		<include src="file://{resources}/styles/custom_game/hero_information_top.css" />
+	</styles>
+
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/hero_information_top.js" />
+	</scripts>
+	<snippets>
+		<snippet name="HeroInformationContainer">
+			<Panel class="HeroInformationContainer" acceptsfocus="false" >
+				<Label hittest="false" id="PlayerName" class="HeroInformationName" text="houthakker" html="true"/>	
+				<Panel id="HeroInformationHeroImageContainer" >
+					<DOTAHeroImage hittest="false" id="HeroImage" class="HeroInformationHeroImage" scaling="stretch-to-cover-preserve-aspect" />
+					<Panel id="DisconnectIcon" hittest="false"/>
+					<Panel id="RespawnTimer" hittest="false">
+						<Label id="RespawnTimerLabel" text="0"/> 
+					</Panel>
+					<Panel id="HeroInformationLivesButton" class="HeroInformationLivesIcon" hittest="true">
+						<Label id="TotalLivesLabel" class="HeroInformationLivesLabel" text="0"/>
+					</Panel>
+				</Panel>
+				<ProgressBar hittest="false" id="HealthBar" class="HeroInformationHealthBar" min="0" max="100" value="98"/>
+				<ProgressBar hittest="false" id="ManaBar" class="HeroInformationManaBar" min="0" max="100" value="98"/>
+				<Panel id="HeroInformationButton" class="HeroInformationTheat" hittest="true">
+					<Panel class="HeroInformationTheatContent">
+						<Label id="HeroThreatLabel" class="HeroInformationTheatLabel" text="0.00"/>
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel hittest="false" class="HeroInformationTopBar">
+		<!-- <Panel class="HeroInformationContainer"> -->
+			<!-- <DOTAHeroImage class="HeroInformationHeroImage" heroname="npc_dota_hero_bristleback" scaling="stretch-to-cover-preserve-aspect"/> -->
+			<!-- <ProgressBar hittest="false" id="HealthBar" class="HeroInformationHealthBar" min="0" max="100" value="100"/> -->
+			<!-- <ProgressBar hittest="false" id="ManaBar" class="HeroInformationManaBar" min="0" max="100" value="100"/> -->
+		<!-- </Panel> -->
+		<!-- <Panel id="HeroIconContainer" > -->
+			<!-- <DOTAHeroImage hittest="false" id="HeroImage" class="PartyPortraitImage" scaling="stretch-to-cover-preserve-aspect" /> -->
+			<!-- <Panel id="DisconnectIcon" hittest="false"/> -->
+			<!-- <Panel id="RespawnTimer" hittest="false"> -->
+				<!-- <Label text="{d:respawn_seconds}"/>  -->
+			<!-- </Panel> -->
+		<!-- </Panel> -->
+		<!-- <ProgressBar hittest="false" id="HealthBar" class="PartyPortraitHealthBar" min="0" max="100" value="100"/> -->
+		<!-- <ProgressBar hittest="false" id="ManaBar" class="PartyPortraitManaBar" min="0" max="100" value="100"/> -->
+		
+	</Panel>
+</root>
+

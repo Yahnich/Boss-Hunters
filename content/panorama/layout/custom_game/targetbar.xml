@@ -17,9 +17,9 @@
 	<Panel class="targetPanelRoot" hittest="false">
 		<DOTAAbilityImage id="currentlyCastAbility" abilityname="generic_hidden"/>
 		
-		<Panel id="targetPanelMain" hittest="false">
+		<Panel id="targetPanelMain" hittest="false"> 
 			<Panel id="bossNameContainer" hittestchildren="false">
-				<Label hittest="false" id="bossNameLabel" text="Dildo King" />s
+				<Label hittest="false" id="bossNameLabel" text="Dildo King" />
 			</Panel>
 			<Panel id="hpBarRoot" hittestchildren="false">
 				<Panel id="hpBarCurrent" hittestchildren="false"/>
@@ -30,9 +30,9 @@
 				<Label hittest="false" class="barCurrentText" id="mpBarCurrentText" text="10" />
 			</Panel>
 			<Panel id="bottomContainer" hittestchildren="true">
-				<Button id="threatButton" onactivate='tell_threat()'>
-					<Label hittest="true" id="threatLabel" text= "85.3"/>
-				</Button>
+				<!-- <Button id="threatButton" onactivate='tell_threat()'> -->
+					<!-- <Label hittest="true" id="threatLabel" text= "0.0"/> -->
+				<!-- </Button> -->
 				<Image src="file://{images}/custom_game/icons/eliteBorder.png" id="MinionTypeIcon" hittest="true"/>
 				<Panel id="TypeInfoContainer">
 					<Image src="file://{images}/custom_game/icons/celestialTypeIcon.png" id="CelestialTypeIcon" class="TypeIcon" hittest="true"/>

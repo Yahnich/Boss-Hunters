@@ -17,6 +17,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"oracle_fortunes_end"
 		"MaxLevel"						"7"
+		"HasScepterUpgrade"				"1"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -34,7 +35,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"24 21 18 15 12 9 6"
+		"AbilityCooldown"				"15 12 9 6 6 6 6"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -58,7 +59,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"240 270 300 330 360 390 420"
+				"damage"					"120 150 180 210 300 390 480"
 			}
 			"02"
 			{
@@ -69,12 +70,28 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"max_duration"				"2.5"
-				"LinkedSpecialBonus"		"special_bonus_unique_oracle_2"
 			}
 			"04"
 			{
+				"var_type"					"FIELD_FLOAT"
+				"max_channel"				"2.5 2.5 2.5 2.5 2.0 1.5 1.0"
+			}
+			"05"
+			{
 				"var_type"					"FIELD_INTEGER"
 				"radius"					"300"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"scepter_stun_pct"			"50"
+				"RequiresScepter"			"1"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_cast_range_bonus"	"800"
+				"RequiresScepter"			"1"
 			}
 		}
 	}
@@ -144,7 +161,6 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_oracle_fates_1"	"1"
 			"special_bonus_unique_oracle_fates_2"	"1"
 		}
 	
@@ -156,11 +172,11 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"35"
+		"AbilityCooldown"				"16 13 10 7 7 7 7"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200"
+		"AbilityManaCost"				"50"
 		
 		"precache"
 		{
@@ -179,7 +195,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"1 1.33 1.66 2 2.33 2.66 3"
+				"duration"				"3 3 3 3 3.5 4 4.5"
 			}
 		}
 	}
@@ -247,14 +263,13 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"oracle_purifying_flames"
 		"MaxLevel"						"7"
-		"HasScepterUpgrade"				"1"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
 			"special_bonus_unique_oracle_flames_1"	"1"
-			"special_bonus_unique_oracle_flames_2"	"1"
+			"special_bonus_unique_oracle_flames_3"	"1"
 		}
 	
 		// Casting
@@ -289,7 +304,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"90 180 270 360 450 540 630"
-				"LinkedSpecialBonus"	"special_bonus_unique_oracle_flames_1"
 			}			
 			"02"
 			{
@@ -321,12 +335,16 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-90"
+				"var_type"					"FIELD_FLOAT"
+				"value"						"0.15"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"max"						"10"
 			}
 		}
 	}
-
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -345,22 +363,84 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"10"
 			}
 		}
 	}
-
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_oracle_flames_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"10"
+			}
+		}
+	}
 	//=================================================================================================================
 	// Innate
 	//=================================================================================================================
-	"oracle_innate"
+	"oracle_pactmaker"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_oracle/oracle_innate"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityTextureName"			"custom/oracle_balance"
+		"ScriptFile"					"heroes/hero_oracle/oracle_pactmaker"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/oracle_pactmaker"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+		
+		"LinkedTalents"
+		{
+			"special_bonus_unique_oracle_pactmaker_1"		"1"
+		}
+
+		"precache"
+		{	
+			"particle"					"particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle_body.vpcf"
+			"particle"					"particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_oracle.vsndevts"
+		}
+		
+		"AbilityCooldown"				"13"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"cooldown"						"13"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Innate
+	//=================================================================================================================
+	"oracle_pactbreaker"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_oracle/oracle_pactbreaker"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/oracle_pactbreaker"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
 
@@ -372,29 +452,42 @@
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_oracle.vsndevts"
 		}
 		
+		"AbilityCooldown"				"13"
+		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"25"
+				"var_type"						"FIELD_INTEGER"
+				"cooldown"						"13"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_healing"			"25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_cost"				"25"
 			}
 		}
 	}
-
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_oracle_pactmaker_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"-6"
+			}
+		}
+	}
 	//=================================================================================================================
 	// False Promise
 	//=================================================================================================================
@@ -405,7 +498,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_oracle/oracle_promise"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
@@ -430,11 +523,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"117.5 100 82.5 65 47.5 30"
+		"AbilityCooldown"				"115 115 80 80 45 45"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200"
+		"AbilityManaCost"				"100 150 150 200 200 250"
 		
 		"precache"
 		{
@@ -454,9 +547,19 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"3 4 5 6 7 8"
+				"duration"				"8 9 9 10 10 11"
 				"LinkedSpecialBonus"	"special_bonus_unique_oracle_promise_2"
-			}			
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"heal_amp"				"50"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_amp"			"50"
+			}
 		}
 	}
 

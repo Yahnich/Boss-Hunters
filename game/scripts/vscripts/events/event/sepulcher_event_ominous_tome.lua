@@ -74,6 +74,8 @@ local function StartCombat(self, bFight)
 	else
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			hero:AddBlessing("event_buff_ominous_tome_blessing")
+			hero:ModifyBonusMaxLives(1)
+			hero:ModifyLives(1)
 			hero:AddCurse("event_buff_ominous_tome_curse")
 		end
 		GameRules:ModifyLives(1, true)

@@ -77,7 +77,7 @@ function modifier_bs_bloodrage:GetModifierHealthRegenPercentage()
 			self:GetCaster().statsDamageHealed = (self:GetCaster().statsDamageHealed or 0) + math.min(  self:GetParent():GetMaxHealth() * self.hp_loss * delta, self:GetParent():GetHealthDeficit() )
 			self.deltaTime = GameRules:GetGameTime()
 		end
-		return self.hp_loss
+		return self.hp_loss * (100)
 	end
 end
 

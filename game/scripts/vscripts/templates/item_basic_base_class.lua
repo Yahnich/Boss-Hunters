@@ -1,6 +1,6 @@
 itemBasicBaseClass = class(persistentModifier)
 
-function itemBasicBaseClass:SetupRuneSystem(modifier)
+function itemBasicBaseClass:SetupRuneSystem(slotModifier)
 	-- find old modifier, -1 (slot unassigned) and not current item
 	local parent = self:GetParent()
 	local modifiersToLookUp = {}
@@ -60,14 +60,16 @@ function itemBasicBaseClass:SetupRuneSystem(modifier)
 	end
 	for func, result in pairs( modFuncs ) do
 		-- print( func, result, "end result" )
-		self[func] = function() return result * (modifier or 100)/100 end
+		self[func] = function() return result * (slotModifier or 100)/100 end
 	end
 	self:StoreRunesIntoModifier()
 end
 
 function itemBasicBaseClass:StoreRunesIntoModifier(data)
-	self:GetAbility().itemData = data or self:GetAbility().itemData or self.itemData or {}
-	self.itemData = table.copy( self:GetAbility().itemData )
+	if self:GetAbility() then
+		self:GetAbility().itemData = data or self:GetAbility().itemData or self.itemData or {}
+		self.itemData = table.copy( self:GetAbility().itemData )
+	end
 end
 
 function itemBasicBaseClass:OnCreatedSpecific()
@@ -78,7 +80,7 @@ function itemBasicBaseClass:OnCreated()
 	if IsServer() then
 		self:GetCaster():HookInModifier( "GetModifierBaseCriticalChanceBonus", self )
 		self:GetCaster():HookInModifier( "GetModifierBaseCriticalDamageBonus", self )
-		self:SetupRuneSystem(self.stone_share)
+		self:SetupRuneSystem( self.stone_share )
 		self:SetHasCustomTransmitterData( true )
 		
 	end

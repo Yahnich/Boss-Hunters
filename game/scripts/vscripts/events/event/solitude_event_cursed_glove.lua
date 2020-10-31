@@ -15,6 +15,12 @@ local function FirstChoice(self, userid, event)
 	local item = hero:GetItemInSlot(0)
 	if item then
 		local cost = item:GetCost()
+		for i = 1, item:GetRuneSlots() do
+			local rune = item.itemData[i] or {}
+			if rune.rune_type then
+				cost = cost + GameRules.AbilityKV[rune.rune_type]["ItemCost"]
+			end
+		end
 
 		item:Destroy()
 		UTIL_Remove(item)

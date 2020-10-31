@@ -38,6 +38,20 @@ function AddTableToTable( t1, t2)
 	end
 end
 
+function toboolean(thing)
+	if type(thing) == "number" then
+		if thing == 1 then return true
+		elseif thing == 0 then return false
+		else error("number type not 1 or 0") end
+	elseif type(thing) == "string" then
+		if thing == "true" or thing == "1" then return true
+		elseif thing == "false" or thing == "0" then return false
+		else error("string type not true or false") end
+	else -- tables and bools
+		return thing
+	end
+end
+
 function string.split( inputStr, delimiter )
 	local d = delimiter or '%s' 
 	local t={} 
@@ -53,18 +67,18 @@ function C_DOTA_BaseNPC:GetAttackRange()
 	return self:Script_GetAttackRange()
 end
 
-function C_DOTA_BaseNPC:HookInModifier( modifierType, modifier )
+function C_DOTA_BaseNPC:HookInModifier( modifierType, modifier, priority )
 	local statsHandler = self.statsSystemHandlerModifier
-	if statsHandler then
+	if statsHandler and not statsHandler:IsNull() then
 		statsHandler.modifierFunctions[modifierType] = statsHandler.modifierFunctions[modifierType] or {}
-		statsHandler.modifierFunctions[modifierType][modifier] = true
+		statsHandler.modifierFunctions[modifierType][modifier] = priority or modifier:GetPriority() or 1
 		statsHandler:ForceRefresh()
 	end
 end
 
 function C_DOTA_BaseNPC:HookOutModifier( modifierType, modifier )
 	local statsHandler = self.statsSystemHandlerModifier
-	if statsHandler then
+	if statsHandler and not statsHandler:IsNull() then
 		statsHandler.modifierFunctions[modifierType] = statsHandler.modifierFunctions[modifierType] or {}
 		statsHandler.modifierFunctions[modifierType][modifier] = nil
 		statsHandler:ForceRefresh()
@@ -119,7 +133,7 @@ function C_DOTA_BaseNPC:IsSameTeam(unit)
 end
 
 function C_DOTA_BaseNPC:GetThreat()
-	local data = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex() ) or {}
+	local data = CustomNetTables:GetTableValue("hero_properties", tostring(self:entindex()) ) or {}
 	local threat = data.threat or 0
 	return self.threat
 end

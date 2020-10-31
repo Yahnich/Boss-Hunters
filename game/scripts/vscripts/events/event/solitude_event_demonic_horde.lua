@@ -54,7 +54,9 @@ local function StartCombat(self)
 				if demon then
 					demon:SetAverageBaseDamage( math.min(7, roll) * 20, 35 )
 					if demonType ~= "npc_dota_minion5" then
-						demon:SetCoreHealth(250)
+						demon:SetCoreHealth(325)
+					else
+						demon:SetCoreHealth(175)
 					end
 					demon:SetModelScale(1)
 				end

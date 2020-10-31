@@ -22,7 +22,7 @@ end
 
 function modifier_boss_arthromos_hellraiser:OnDeath(params)
 	if params.attacker == self:GetParent() and not params.unit:IsSameTeam(params.attacker) and not params.unit:IsIllusion() then
-		local illusions = params.unit:ConjureImage( {outgoing_damage = self.outgoing, incoming = self.incoming}, -1, params.attacker, 1 )
+		local illusions = params.unit:ConjureImage( {outgoing_damage = self.outgoing, incoming_damage = self.incoming}, -1, params.attacker, 1 )
 		illusions[1]:SetHealth( illusions[1]:GetMaxHealth() )
 		Timers:CreateTimer(0.5, function()
 			if not illusions[1] or illusions[1]:IsNull() then return end

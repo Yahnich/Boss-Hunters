@@ -8,9 +8,6 @@ var lastRememberedHero = Players.GetPlayerHeroEntityIndex( localID )
 
 lowerHud.FindChildTraverse("StatBranchDrawer").style.visibility = "collapse";
 
-
-
-
 GameEvents.Subscribe("dota_player_gained_level", RequestNewPanelData);
 GameEvents.Subscribe("dota_player_learned_ability", RequestNewPanelData);
 GameEvents.Subscribe("dota_player_update_query_unit", CheckUnitChanged);
@@ -125,11 +122,17 @@ function AddTalentToAbilityButton( talentContainer, talentName, talentIndex, tal
 		talent.SetPanelEvent("onactivate", function(){
 			var talentText = $.Localize( "#DOTA_Tooltip_Ability_"+talentName, talent) + " - " + $.Localize( "#DOTA_Tooltip_Ability_"+talentName+"_Description", talent)
 			var matched = regex.exec(talentText);
-			while ( matched != null ){
-				var talentEnt = Entities.GetAbilityByName( lastRememberedHero, talentName )
-				var value = Abilities.GetLevelSpecialValueFor( talentEnt, matched[1], 1 )
-				var talentText = talentText.replace(matched[0], value);
-				var matched = regex.exec(talentText);
+			while ( matched != null){
+				if(matched[0] == "%%"){
+					var value = "%"
+					var talentText = talentText.replace(matched[0], value);
+					var matched = regex.exec(talentText);
+				} else {
+					var talentEnt = Entities.GetAbilityByName( lastRememberedHero, talentName )
+					var value = Abilities.GetLevelSpecialValueFor( talentEnt, matched[1], 1 )
+					var talentText = talentText.replace(matched[0], value);
+					var matched = regex.exec(talentText);
+				}
 			}
 			var infoText = "I have " + talentText;
 			GameEvents.SendCustomGameEventToServer( "notify_selected_talent", {pID : localID, text : infoText} )
@@ -144,11 +147,17 @@ function AddTalentToAbilityButton( talentContainer, talentName, talentIndex, tal
 			} else {
 				var talentText = $.Localize( "#DOTA_Tooltip_Ability_"+talentName, talent) + " - " + $.Localize( "#DOTA_Tooltip_Ability_"+talentName+"_Description", talent)
 				var matched = regex.exec(talentText);
-				while ( matched != null ){
-					var talentEnt = Entities.GetAbilityByName( lastRememberedHero, talentName )
-					var value = Abilities.GetLevelSpecialValueFor( talentEnt, matched[1], 1 )
-					var talentText = talentText.replace(matched[0], value);
-					var matched = regex.exec(talentText);
+				while ( matched != null){
+					if(matched[0] == "%%"){
+						var value = "%"
+						var talentText = talentText.replace(matched[0], value);
+						var matched = regex.exec(talentText);
+					} else {
+						var talentEnt = Entities.GetAbilityByName( lastRememberedHero, talentName )
+						var value = Abilities.GetLevelSpecialValueFor( talentEnt, matched[1], 1 )
+						var talentText = talentText.replace(matched[0], value);
+						var matched = regex.exec(talentText);
+					}
 				}
 				var infoText = "I will take " + talentText
 				GameEvents.SendCustomGameEventToServer( "notify_selected_talent", {pID : localID, text : infoText} )
@@ -158,11 +167,17 @@ function AddTalentToAbilityButton( talentContainer, talentName, talentIndex, tal
 		talent.SetPanelEvent("onactivate", function(){
 			var talentText = $.Localize( "#DOTA_Tooltip_Ability_"+talentName, talent) + " - " + $.Localize( "#DOTA_Tooltip_Ability_"+talentName+"_Description", talent)
 			var matched = regex.exec(talentText);
-			while ( matched != null ){
-				var talentEnt = Entities.GetAbilityByName( lastRememberedHero, talentName )
-				var value = Abilities.GetLevelSpecialValueFor( talentEnt, matched[1], 1 )
-				var talentText = talentText.replace(matched[0], value);
-				var matched = regex.exec(talentText);
+			while ( matched != null){
+				if(matched[0] == "%%"){
+					var value = "%"
+					var talentText = talentText.replace(matched[0], value);
+					var matched = regex.exec(talentText);
+				} else {
+					var talentEnt = Entities.GetAbilityByName( lastRememberedHero, talentName )
+					var value = Abilities.GetLevelSpecialValueFor( talentEnt, matched[1], 1 )
+					var talentText = talentText.replace(matched[0], value);
+					var matched = regex.exec(talentText);
+				}
 			}
 			var infoText = "I will take " + talentText
 			GameEvents.SendCustomGameEventToServer( "notify_selected_talent", {pID : localID, text : infoText} )

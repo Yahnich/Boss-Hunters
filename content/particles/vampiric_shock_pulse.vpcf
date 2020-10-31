@@ -1,4 +1,4 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf27:version{36c3961f-02a4-4c52-bf8f-6e3147d7d142} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -22,30 +22,10 @@
 			m_flFadeOutTime = 1.0
 		},
 		{
-			_class = "C_OP_Decay"
-			m_bDisableOperator = true
-		},
-		{
 			_class = "C_OP_InterpolateRadius"
 			m_flBias = 0.75
 			m_flEndScale = 4.0
 			m_flStartScale = 0.0
-		},
-		{
-			_class = "C_OP_SetSingleControlPointPosition"
-			m_vecCP1Pos = [ 0.0, 100.0, 0.0 ]
-			m_nCP1 = 5
-			m_nHeadLocation = 3
-		},
-		{
-			_class = "C_OP_SetSingleControlPointPosition"
-			m_nCP1 = 6
-			m_vecCP1Pos = [ 0.0, -100.0, 0.0 ]
-			m_nHeadLocation = 3
-		},
-		{
-			_class = "C_OP_EnableChildrenFromParentParticleCount"
-			m_nNumChildrenToEnable = 11
 		},
 		{
 			_class = "C_OP_SetCPOrientationToDirection"
@@ -57,9 +37,10 @@
 			m_nInputControlPoint = 3
 		},
 		{
-			_class = "C_OP_StopAfterCPDuration"
-			m_bDestroyImmediately = true
-			m_flDuration = 3.0
+			_class = "C_OP_EndCapDecay"
+		},
+		{
+			_class = "C_OP_DecayOffscreen"
 		},
 	]
 	m_Initializers = 
@@ -90,15 +71,31 @@
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
-			m_flEmitRate = 7.0
-			m_flEmissionDuration = 1.25
+			m_flEmissionDuration = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.25
+			}
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 7.0
+			}
 		},
 		{
 			_class = "C_OP_ContinuousEmitter"
 			m_bInitFromKilledParentParticles = true
 			m_bDisableOperator = true
-			m_flEmissionDuration = 2.0
-			m_flEmitRate = 3.0
+			m_flEmissionDuration = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 2.0
+			}
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 3.0
+			}
 		},
 	]
 	m_Children = 
@@ -135,6 +132,53 @@
 		},
 		{
 			m_ChildRef = resource:"particles/vampiric_shockwave_pulse_hit.vpcf"
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_vecCP1Pos = [ 0.0, 100.0, 0.0 ]
+			m_nCP1 = 5
+			m_nHeadLocation = 3
+		},
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_nCP1 = 6
+			m_vecCP1Pos = [ 0.0, -100.0, 0.0 ]
+			m_nHeadLocation = 3
+		},
+		{
+			_class = "C_OP_EnableChildrenFromParentParticleCount"
+			m_nNumChildrenToEnable = 11
+		},
+		{
+			_class = "C_OP_StopAfterCPDuration"
+			m_bDestroyImmediately = true
+			m_flDuration = 3.0
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
 		},
 	]
 }

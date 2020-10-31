@@ -1,3 +1,5 @@
+if IsClient() then return end
+
 function Spawn( entityKeyValues )
 	AITimers:CreateTimer(function()
 		if thisEntity and not thisEntity:IsNull() then

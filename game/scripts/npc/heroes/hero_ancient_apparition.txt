@@ -106,7 +106,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"3"
 			}
 		}
 	}
@@ -146,7 +146,7 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"80 90 100 110 120 130 140"
+		"AbilityManaCost"				"80"
 		
 		"precache"
 		{
@@ -257,7 +257,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_ancient_apparition/aa_chilling_touch.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
@@ -275,16 +275,16 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.01"
+		"AbilityCastPoint"				"0.0"
 		"AbilityCastAnimation"			"ACT_DOTA_CHILLING_TOUCH"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30 26 22 18 14 10 6"
+		"AbilityCooldown"				"15 11 7 3 3 3 3"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"110 120 130 140 150 160 170"
+		"AbilityManaCost"				"30 50 70 90 90 90 90"
 		
 		"precache"
 		{
@@ -302,24 +302,22 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"bonus_damage"					"30 45 60 75 90 105 120"
-				"LinkedSpecialBonus"			"special_bonus_unique_aa_chilling_touch_1"
-				"CalculateSpellDamageTooltip"	"1"
+				"bonus_damage"					"50 90 130 170 230 290 350"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"15"
+				"bonus_attack_range"			"240"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"move_speed_pct"				"30"
+				"chill"							"30"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"move_speed_duration"			"0.5"
+				"chill_duration"				"1.5"
 			}
 		}
 	}
@@ -363,7 +361,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"150"
+				"value"						"120"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"3"
 			}
 		}
 	}

@@ -10,10 +10,12 @@ LinkLuaModifier( "modifier_slardar_maw_of_the_void_handler", "heroes/hero_slarda
 function modifier_slardar_maw_of_the_void_handler:OnCreated()
 	self.modifierList = {}
 	self.armor_steal = self:GetTalentSpecialValueFor("armor_steal") / 100
+	self.minion_steal = self:GetTalentSpecialValueFor("minion_steal") / 100
 end
 
 function modifier_slardar_maw_of_the_void_handler:OnRefresh()
 	self.armor_steal = self:GetTalentSpecialValueFor("armor_steal") / 100
+	self.minion_steal = self:GetTalentSpecialValueFor("minion_steal") / 100
 end
 
 function modifier_slardar_maw_of_the_void_handler:OnIntervalThink()
@@ -25,7 +27,7 @@ function modifier_slardar_maw_of_the_void_handler:OnIntervalThink()
 				if modifier:GetCaster() and modifier:GetCaster() == caster then
 					if modifier.GetModifierPhysicalArmorBonus then
 						local armor = modifier:GetModifierPhysicalArmorBonus()
-						if armor < 0 then
+						if armor and armor < 0 then
 							stacks = stacks + math.abs( armor ) * self.armor_steal
 						end
 					end
@@ -47,7 +49,7 @@ function modifier_slardar_maw_of_the_void_handler:GetModifierPhysicalArmorBonus(
 end
 
 function modifier_slardar_maw_of_the_void_handler:OnUnitModifierAdded(params)
-	if params.caster == self:GetCaster() and not params.unit:IsSameTeam( params.caster ) and params.ability and params.caster:HasAbility( params.ability:GetAbilityName() ) then
+	if params.caster == self:GetCaster() and not params.unit:IsSameTeam( params.caster ) then
 		self.modifierList[params.unit] = true
 		self:StartIntervalThink( 0.25 )
 	end

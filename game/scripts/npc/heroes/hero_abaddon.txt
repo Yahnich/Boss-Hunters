@@ -30,11 +30,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"4.5"
+		"AbilityCooldown"				"5.5 5 4.5 4 4 4 4"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"20 25 30 35 40 45 50"
+		"AbilityManaCost"				"50 50 50 50 40 30 20"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@
 			}
 			"02"
 			{
-				"var_type"						"FIELD_FLOAT"
+				"var_type"						"FIELD_INTEGER"
 				"self_heal"						"75 100 125 150 175 200 225"
 				"LinkedSpecialBonus"			"special_bonus_unique_abaddon_death_coil_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
@@ -110,7 +110,7 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"value"						"2"
 			}
 		}
@@ -137,7 +137,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_abaddon_aphotic_barrier_1" "1"
+			"special_bonus_unique_abaddon_aphotic_barrier_3" "1"
 			"special_bonus_unique_abaddon_aphotic_barrier_2"	"1"
 		}
 		
@@ -148,11 +148,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10.0"
+		"AbilityCooldown"				"12 10 8 6 6 6 6"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"60 80 100 120 140 160 180"
+		"AbilityManaCost"				"100"
 	
 		"precache"
 		{
@@ -172,7 +172,8 @@
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"damage_absorb"					"110 140 175 215 260 310 365"
+				"damage_absorb"					"110 140 170 200 250 300 350"
+				"LinkedSpecialBonus"			"special_bonus_unique_abaddon_aphotic_barrier_3"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
@@ -200,7 +201,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"350"
+				"value"						"350"
 			}
 		}
 	}
@@ -222,7 +223,34 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"-6"
+				"value"						"100"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_abaddon_aphotic_barrier_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"130"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cd"						"-2"
 			}
 		}
 	}
@@ -304,7 +332,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"10"
+				"value"						"100"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"450"
 			}
 		}
 	}
@@ -342,6 +375,10 @@
 		"MaxLevel"					"1"
 		"InnateAbility"				"1"
 		
+		"LinkedTalents"
+		{
+			"special_bonus_unique_abaddon_curse_1"	"1"
+		}
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -396,6 +433,28 @@
 		}
 	}
 	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_abaddon_curse_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"10"
+			}
+		}
+	}
+	//=================================================================================================================
 	// Abaddon: Borrowed Time
 	//=================================================================================================================
 	"abaddon_borrowed_time_ebf"
@@ -416,7 +475,6 @@
 		"LinkedTalents"
 		{
 			"special_bonus_unique_abaddon_borrowed_time_1"	"1"
-			"special_bonus_unique_abaddon_borrowed_time_2"	"1"
 		}
 		
 		// Time		

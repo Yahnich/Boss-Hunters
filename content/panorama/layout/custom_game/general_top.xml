@@ -1,0 +1,15 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/dotastyles.css" />
+		<include src="file://{resources}/styles/custom_game/general_top.css" />
+	</styles>
+
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/general_top.js" />
+	</scripts>
+	<Panel hittest="false" class="GeneralTopBar">
+		<Label id="GameTimer" class="TopBarInformationLabel" text="-0:00"/>
+		<Label id="GameRound" class="TopBarInformationLabel" text=""/>
+	</Panel>
+</root>
+

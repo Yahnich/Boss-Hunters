@@ -33,7 +33,7 @@ function modifier_pugna_power_vacuum:OnTakeDamage(params)
 		end
 		ParticleManager:FireParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self)
 		if params.attacker:GetHealth() < params.attacker:GetMaxHealth() then
-			params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
+			params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker, {heal_type = HEAL_TYPE_LIFESTEAL})
 		else
 			params.attacker:RestoreMana( flHeal )
 		end

@@ -14,13 +14,13 @@ local function FirstChoice(self, userid, event)
 	self._playerChoices[event.pID] = true
 	
 	if hero then
-		StatsScreen:RegisterPlayer( hero, hero.hasRespecced ) -- Reset stats screen
+		TalentManager:RegisterPlayer( hero, hero.hasRespecced ) -- Reset stats screen
 		local respec = {
 			pID = event.pID,
 			entindex = hero:entindex(),
 			forced = true,
 		}
-		TalentManager:RespecAll(userid, event)
+		TalentManager:RespecAll(userid, respec)
 	end
 	
 	CheckPlayerChoices(self)

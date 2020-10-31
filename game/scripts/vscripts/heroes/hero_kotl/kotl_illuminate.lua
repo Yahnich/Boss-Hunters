@@ -50,6 +50,8 @@ function kotl_illuminate:OnSpellStart()
     
     EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Charge", caster)
 
+	local thinker = self:GetTalentSpecialValueFor("max_channel") / self:GetTalentSpecialValueFor("max_horse")
+	self.hitUnits = {}
     if caster:HasModifier("modifier_kotl_illuminate") then
         EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Discharge", caster)
         StopSoundOn("Hero_KeeperOfTheLight.Illuminate.Charge", caster)
@@ -74,11 +76,10 @@ function kotl_illuminate:OnSpellStart()
             ParticleManager:SetParticleControlEnt(self.castNfx2, 0, self.spirit, PATTACH_POINT_FOLLOW, "attach_attack1", self.spirit:GetAbsOrigin(), true)
 
             self.count = 0
-
             Timers:CreateTimer(FrameTime(), function()
                 if caster:HasModifier("modifier_kotl_illuminate") then
                     self.count = self.count + 0.5
-                    return 0.25
+                    return thinker / 2
                 else
                     EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Discharge", caster)
                     StopSoundOn("Hero_KeeperOfTheLight.Illuminate.Charge", caster)
@@ -113,7 +114,7 @@ function kotl_illuminate:OnSpellStart()
                 Timers:CreateTimer(FrameTime(), function()
                     if self:IsChanneling() then
                         self.count = self.count + 0.5
-                        return 0.25
+                        return thinker / 2
                     else
                         EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Discharge", caster)
                         StopSoundOn("Hero_KeeperOfTheLight.Illuminate.Charge", caster)
@@ -130,7 +131,14 @@ function kotl_illuminate:OnChannelFinish(bInterrupted)
 
     EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Discharge", caster)
     StopSoundOn("Hero_KeeperOfTheLight.Illuminate.Charge", caster)
-    self:LaunchHorses(caster, caster:GetAbsOrigin(), CalculateDirection(self:GetCursorPosition(), caster:GetAbsOrigin()))
+	local direction = CalculateDirection(self:GetCursorPosition(), caster:GetAbsOrigin())
+    self:LaunchHorses(caster, caster:GetAbsOrigin(), direction)
+	if caster:HasTalent("special_bonus_unique_kotl_illuminate_1") then
+		for i = 1, caster:FindTalentValue("special_bonus_unique_kotl_illuminate_1") do
+			local newDirection = RotateVector2D( direction, ToRadians( 90 ) * i )
+			self:LaunchHorses(caster, caster:GetAbsOrigin(), newDirection)
+		end
+	end
     caster:StartGesture(ACT_DOTA_CAST_ABILITY_1_END)
 
 end
@@ -138,11 +146,12 @@ end
 function kotl_illuminate:OnProjectileHit(hTarget, vLocation)
     local caster = self:GetCaster()
 
-    if hTarget then
-        local damage = self:GetTalentSpecialValueFor("damage_per_horse")
-
-        if hTarget:GetTeam() ~= caster:GetTeam() and not hTarget:TriggerSpellAbsorb( self ) then
-            EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Target", hTarget)
+    if hTarget and not self.hitUnits[hTarget] then
+        if hTarget:GetTeam() == caster:GetTeam() then
+			EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Target.Secondary", hTarget)
+			hTarget:HealEvent(self:GetTalentSpecialValueFor("heal_per_horse"), self, caster)
+        elseif hTarget:GetTeam() ~= caster:GetTeam() and not hTarget:TriggerSpellAbsorb( self ) then
+			EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Target", hTarget)
             ParticleManager:FireParticle("particles/units/heroes/hero_keeper_of_the_light/kotl_illuminate_impact_hero.vpcf", PATTACH_POINT, hTarget, {})
             
             if caster:HasTalent("special_bonus_unique_kotl_illuminate_2") then
@@ -151,11 +160,8 @@ function kotl_illuminate:OnProjectileHit(hTarget, vLocation)
             end
 
             self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage_per_horse"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-
-        elseif caster:HasTalent("special_bonus_unique_kotl_illuminate_1") then
-			EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Target.Secondary", hTarget)
-			hTarget:HealEvent(damage, self, caster)
         end
+		self.hitUnits[hTarget] = true
     end
 end
 
@@ -167,7 +173,8 @@ function kotl_illuminate:LaunchHorses(hCaster, vLocation, direction)
     local speed = self:GetTalentSpecialValueFor("speed")
     local radius = self:GetTalentSpecialValueFor("radius")
     local distance = self:GetTrueCastRange()
-
+	
+	local rightDir = RotateVector2D( direction, ToRadians( -90 ) )
     local firstHorse = spawn_point
     local vel = direction * speed
 
@@ -179,11 +186,11 @@ function kotl_illuminate:LaunchHorses(hCaster, vLocation, direction)
 		local prevLeft = spawn_point
 		local prevRight = spawn_point
 		for i = 1, math.floor( self.count / 2 ) do
-			local left_Point = prevLeft - caster:GetRightVector() * (25 + 25 * i) - caster:GetForwardVector() * 25 * i
+			local left_Point = prevLeft - rightDir * (25 + 25 * i) - direction * 25 * i
 			local left_vel = RotateVector2D(vel, ToRadians( 5 ) * i ) * speed
 			prevLeft = left_Point
 			
-			local right_Point = prevRight + caster:GetRightVector() * (25 + 25 * i) - caster:GetForwardVector() * 25 * i
+			local right_Point = prevRight + rightDir * (25 + 25 * i) - direction * 25 * i
 			local right_vel = RotateVector2D(vel, ToRadians( -5 ) * i ) * speed
 			prevRight = right_Point
 			

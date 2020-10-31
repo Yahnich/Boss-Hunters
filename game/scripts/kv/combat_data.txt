@@ -457,45 +457,72 @@
 			"npc_dota_boss8b"
 			{
 				"Amount"		"1"
-				"RaidBonus"		"1"
+				"HeroBonus"		"0.33"
+				"RaidBonus"		"0"
+				
 				"SpawnDelay"	"6"
 			}
 			"npc_dota_boss8c_spawner"
 			{
 				"Amount"		"1"
-				"RaidBonus"		"2"
+				"RaidBonus"		"1"
 				"HeroBonus"		"0.33"
 				"SpawnDelay"	"15"
 			}
 		}
-		"1"
+		"2"
+		{
+			"npc_dota_boss8a"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"0"
+				"HeroBonus"		"0.33"
+				"SpawnDelay"	"8"
+			}
+			"npc_dota_boss8b"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"0"
+				"SpawnDelay"	"6"
+			}
+			"npc_dota_boss8c_spawner"
+			{
+				"Amount"		"1"
+				"RaidBonus"		"1"
+				"HeroBonus"		"0.33"
+				"SpawnDelay"	"15"
+			}
+		}
+		"3"
 		{
 			"npc_dota_boss8b"
 			{
-				"Amount"		"2"
+				"Amount"		"1"
 				"RaidBonus"		"1"
+				"HeroBonus"		"0.33"
 				"SpawnDelay"	"6"
 			}
 			"npc_dota_boss8c_spawner"
 			{
 				"Amount"		"2"
-				"RaidBonus"		"2"
+				"RaidBonus"		"1"
 				"HeroBonus"		"0.33"
 				"SpawnDelay"	"15"
 			}
 		}
-		"1"
+		"4"
 		{
 			"npc_dota_boss8a"
 			{
-				"Amount"		"2"
+				"Amount"		"1"
 				"RaidBonus"		"1"
+				"HeroBonus"		"0.33"
 				"SpawnDelay"	"8"
 			}
 			"npc_dota_boss8c_spawner"
 			{
 				"Amount"		"2"
-				"RaidBonus"		"2"
+				"RaidBonus"		"1"
 				"HeroBonus"		"0.33"
 				"SpawnDelay"	"15"
 			}
@@ -784,8 +811,9 @@
 		{
 			"npc_dota_lesser_reaper"
 			{
-				"Amount"		"3"
-				"RaidBonus"		"2"
+				"Amount"		"2"
+				"RaidBonus"		"1"
+				"HeroBonus"		"0.33"
 				"SpawnDelay"	"20"
 			}
 		}
@@ -927,7 +955,7 @@
 	{
 		"1"
 		{
-			"npc_dota_boss_sloth_demon"
+			"npc_dota_boss28_corrupt"
 			{
 				"Amount"		"3"
 				"RaidBonus"		"1"
@@ -1102,17 +1130,19 @@
 		{
 			"npc_dota_boss25"
 			{
-				"Amount"		"2"
+				"Amount"		"1"
 				"IsBoss"		"1"
 			}
 			"npc_dota_boss24_stomper"
 			{
 				"Amount"		"1"
+				"RaidBonus"		"1"
 				"IsMinion"		"1"
 			}
 			"npc_dota_boss24_archer"
 			{
 				"Amount"		"2"
+				"RaidBonus"		"1"
 				"IsMinion"		"1"
 			}
 		}
@@ -1120,17 +1150,19 @@
 		{
 			"npc_dota_boss25"
 			{
-				"Amount"		"2"
+				"Amount"		"1"
 				"IsBoss"		"1"
 			}
 			"npc_dota_boss24_stomper"
 			{
 				"Amount"		"2"
+				"RaidBonus"		"1"
 				"IsMinion"		"1"
 			}
 			"npc_dota_boss24_archer"
 			{
 				"Amount"		"1"
+				"RaidBonus"		"1"
 				"IsMinion"		"1"
 			}
 		}
@@ -1138,12 +1170,13 @@
 		{
 			"npc_dota_boss25"
 			{
-				"Amount"		"2"
+				"Amount"		"1"
 				"IsBoss"		"1"
 			}
 			"npc_dota_boss24_archer"
 			{
 				"Amount"		"3"
+				"RaidBonus"		"2"
 				"IsMinion"		"1"
 			}
 		}
@@ -1151,12 +1184,13 @@
 		{
 			"npc_dota_boss25"
 			{
-				"Amount"		"2"
+				"Amount"		"1"
 				"IsBoss"		"1"
 			}
 			"npc_dota_boss24_stomper"
 			{
 				"Amount"		"3"
+				"RaidBonus"		"2"
 				"IsMinion"		"1"
 			}
 		}

@@ -103,15 +103,14 @@ function modifier_bristleback_snot_autocast:IsHidden() return true end
 
 modifier_snot = class({})
 function modifier_snot:OnCreated()
-	self.slow = self:GetTalentSpecialValueFor("move_slow_per_stack")
-	self.armor = self:GetTalentSpecialValueFor("armor_per_stack")
-	self.as = self:GetTalentSpecialValueFor("attackspeed_loss")
-	if IsServer() then self:SetStackCount( 1 ) end
+	self:OnRefresh()
 end
 
 function modifier_snot:OnRefresh()
-	self.slow = self:GetTalentSpecialValueFor("move_slow_per_stack")
-	self.armor = self:GetTalentSpecialValueFor("armor_per_stack")
+	self.base_slow = self:GetTalentSpecialValueFor("base_move_slow")
+	self.slow_per_stack = self:GetTalentSpecialValueFor("move_slow_per_stack")
+	self.base_armor = self:GetTalentSpecialValueFor("base_armor")
+	self.armor_per_stack = self:GetTalentSpecialValueFor("armor_per_stack")
 	self.as = self:GetTalentSpecialValueFor("attackspeed_loss")
 	if IsServer() then self:SetStackCount( math.min( self:GetStackCount() + 1, self:GetTalentSpecialValueFor("stack_limit")) ) end
 end
@@ -126,11 +125,11 @@ function modifier_snot:DeclareFunctions()
 end
 
 function modifier_snot:GetModifierMoveSpeedBonus_Percentage()
-    return self.slow * self:GetStackCount()
+    return self.base_slow + self.slow_per_stack * self:GetStackCount()
 end
 
 function modifier_snot:GetModifierPhysicalArmorBonus()
-    return self.armor * self:GetStackCount()
+    return self.base_armor + self.armor_per_stack * self:GetStackCount()
 end
 
 function modifier_snot:GetModifierAttackSpeedBonus_Constant()

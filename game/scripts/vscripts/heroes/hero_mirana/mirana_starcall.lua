@@ -31,34 +31,56 @@ end
 
 function mirana_starcall:OnSpellStart()
     local caster = self:GetCaster()
+	
     local damage = self:GetTalentSpecialValueFor("damage")
-    local agi_damage = self:GetTalentSpecialValueFor("agi_damage")/100
-
-    EmitSoundOn("Ability.Starfall", caster)
-
-    damage = damage + caster:GetAgility() * agi_damage
+    -- local agi_damage = self:GetTalentSpecialValueFor("agi_damage")/100
+    -- damage = damage + caster:GetAgility() * agi_damage
 	local radius = self:GetTalentSpecialValueFor("radius")
 	self:StarFall( radius, damage, 0 )
-	local damage2 = damage * 0.75
-	self:StarFall( radius, damage2, self:GetTalentSpecialValueFor("wave_delay") )
-	if caster:HasTalent("special_bonus_unique_mirana_starcall_2") then
-		local damage3 = damage * caster:FindTalentValue("special_bonus_unique_mirana_starcall_2", "damage")
-		self:StarFall( radius, damage3, self:GetSpecialValueFor("wave_delay") )
+	local damage2 = damage * self:GetTalentSpecialValueFor("wave_damage") / 100
+	local target
+	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius, {order = FIND_CLOSEST} ) ) do
+		if not enemy:IsMinion() then
+			target = enemy
+			break
+		end
 	end
+	self:StarFall( radius, damage2, self:GetTalentSpecialValueFor("wave_delay"), target )
+	-- if caster:HasTalent("special_bonus_unique_mirana_starcall_2") then
+		-- local damage3 = damage * caster:FindTalentValue("special_bonus_unique_mirana_starcall_2", "damage")
+		-- self:StarFall( radius, damage3, self:GetSpecialValueFor("wave_delay") )
+	-- end
 end
 
-function mirana_starcall:StarFall( radius, damage, delay)
+function mirana_starcall:StarFall( radius, damage, delay, target)
 	local caster = self:GetCaster()
 	 Timers:CreateTimer(delay or 0, function()
+		if target then
+			self:StarDrop( target )
+		end
         local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
         for _,enemy in pairs(enemies) do
-            ParticleManager:FireParticle("particles/units/heroes/hero_mirana/mirana_loadout.vpcf", PATTACH_POINT_FOLLOW, enemy, {[0]=enemy:GetAbsOrigin()})
-            Timers:CreateTimer(0.57, function() --particle delay
-                EmitSoundOn("Ability.StarfallImpact", enemy)
-                if not enemy:TriggerSpellAbsorb(self) then self:DealDamage(caster, enemy, damage, {}, 0) end
-            end)
+			if not target or (target and enemy ~= target and enemy:IsMinion()) then
+				self:StarDrop( enemy, damage)
+			end
         end
     end)
+end
+
+function mirana_starcall:StarDrop(target, damage)
+	local caster = self:GetCaster()
+	ParticleManager:FireParticle("particles/units/heroes/hero_mirana/mirana_loadout.vpcf", PATTACH_POINT_FOLLOW, target, {[0]=target:GetAbsOrigin()})
+	Timers:CreateTimer(0.57, function() --particle delay
+		EmitSoundOn("Ability.StarfallImpact", target)
+		if not target:TriggerSpellAbsorb(self) then
+			self:DealDamage(caster, target, damage, {}, 0) 
+			if caster:HasTalent("special_bonus_unique_mirana_starcall_2") then
+				local tDur = caster:FindTalentValue("special_bonus_unique_mirana_starcall_2")
+				target:Daze(self, caster, tDur)
+				target:Break(self, caster, tDur)
+			end
+		end
+	end)
 end
 
 modifier_mirana_starcall = class({})

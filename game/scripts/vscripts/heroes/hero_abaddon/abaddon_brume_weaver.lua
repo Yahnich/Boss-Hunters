@@ -8,10 +8,6 @@ function abaddon_brume_weaver:IsHiddenWhenStolen()
 	return false
 end
 
-function abaddon_brume_weaver:GetIntrinsicModifierName()
-	return "modifier_abaddon_brume_weaver_passive"
-end
-
 function abaddon_brume_weaver:GetCastAnimation()
 	return ACT_DOTA_ATTACK
 end
@@ -92,11 +88,24 @@ LinkLuaModifier( "modifier_abaddon_brume_weaver_active", "heroes/hero_abaddon/ab
 modifier_abaddon_brume_weaver_active = class({})
 
 function modifier_abaddon_brume_weaver_active:OnCreated()
-	self.restoration = self:GetAbility():GetTalentSpecialValueFor("base_heal") / self:GetDuration()
+	self.restoration = self:GetAbility():GetTalentSpecialValueFor("base_heal") / self:GetTalentSpecialValueFor("buff_duration")
+	if IsServer() and self:GetCaster():HasTalent("special_bonus_unique_abaddon_brume_weaver_1") then	
+		self.talent1Dmg = self:GetCaster():FindTalentValue("special_bonus_unique_abaddon_brume_weaver_1") / 100
+		self.talent1Radius = self:GetCaster():FindTalentValue("special_bonus_unique_abaddon_brume_weaver_1", "radius")
+		self:StartIntervalThink( 1 * self:GetDuration() / self:GetTalentSpecialValueFor("buff_duration") )
+	end
 end
 
 function modifier_abaddon_brume_weaver_active:OnRefresh()
-	self.restoration = self:GetAbility():GetTalentSpecialValueFor("base_heal") / self:GetDuration()
+	self.restoration = self:GetAbility():GetTalentSpecialValueFor("base_heal") / self:GetTalentSpecialValueFor("buff_duration")
+end
+
+function modifier_abaddon_brume_weaver_active:OnIntervalThink()
+	local caster = self:GetCaster()
+	local ability = self:GetAbility()
+	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self.talent1Radius ) ) do
+		ability:DealDamage( caster, enemy, self.talent1Dmg * self.restoration, {damage_type = DAMAGE_TYPE_MAGICAL} )
+	end
 end
 
 function modifier_abaddon_brume_weaver_active:DeclareFunctions()
@@ -119,4 +128,8 @@ end
 
 function modifier_abaddon_brume_weaver_active:GetModifierConstantManaRegen()
 	return self.restoration
+end
+
+function modifier_abaddon_brume_weaver_active:GetEffectName()
+	return "particles/units/heroes/hero_abaddon/abaddon_brume_weaver.vpcf"
 end

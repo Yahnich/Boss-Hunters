@@ -43,10 +43,21 @@ function enchantress_impetus_bh:OnProjectileHit_ExtraData(hTarget, vLocation, ta
 		local damage = distance * self:GetTalentSpecialValueFor("distance_damage_pct")/100
 
 		if caster:HasTalent("special_bonus_unique_enchantress_impetus_bh_2") then
-			hTarget:AddNewModifier(caster, self, "modifier_enchantress_impetus_bh_slow", {Duration = 1}):IncrementStackCount()
+			local mod = hTarget:AddNewModifier(caster, self, "modifier_enchantress_impetus_bh_slow", {Duration = 1})
+			mod:SetStackCount(mod:GetStackCount() + caster:FindTalentValue("special_bonus_unique_enchantress_impetus_bh_2"))
 		end
 
-		self:DealDamage(caster, hTarget, damage, {}, OVERHEAD_ALERT_DAMAGE)
+		local damage = self:DealDamage(caster, hTarget, damage, {}, OVERHEAD_ALERT_DAMAGE)
+		if caster:HasTalent("special_bonus_unique_enchantress_impetus_bh_1") then
+			local heal = damage * caster:FindTalentValue("special_bonus_unique_enchantress_impetus_bh_1", "heal")
+			local radius = caster:FindTalentValue("special_bonus_unique_enchantress_impetus_bh_1")
+			caster:HealEvent( heal, self, caster )
+			for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( hTarget:GetAbsOrigin(), radius ) ) do
+				if ally ~= caster then
+					ally:HealEvent( heal, self, caster )
+				end
+			end
+		end
 	end
 end
 
@@ -131,6 +142,7 @@ function modifier_enchantress_impetus_bh_slow:OnRefresh(table)
 end
 
 function modifier_enchantress_impetus_bh_slow:OnStackCountChanged(iStackCount)
+	self.slow_ms = -self:GetStackCount()
 	if self:GetStackCount() > 99 then
 		self:Destroy()
 	end
@@ -149,7 +161,7 @@ function modifier_enchantress_impetus_bh_slow:DeclareFunctions()
 	return funcs
 end
 
-function modifier_enchantress_impetus_bh_slow:GetModifierMoveSpeedBonus_Percentage_Unique()
+function modifier_enchantress_impetus_bh_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow_ms 
 end
 
@@ -176,5 +188,5 @@ function modifier_enchantress_impetus_bh_root:CheckState()
 end
 
 function modifier_enchantress_impetus_bh_root:IsDebuff()
-	return false
+	return true
 end

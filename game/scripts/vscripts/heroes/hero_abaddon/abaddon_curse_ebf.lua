@@ -31,7 +31,8 @@ function modifier_abaddon_curse_passive:OnTakeDamage(params)
 		if params.unit == self:GetParent() then return end
 		if params.attacker == self:GetParent() and not params.unit:HasModifier("modifier_abaddon_curse_curse") 
 		and ( ( params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK and not params.inflictor) 
-		or ( params.inflictor and params.attacker:HasAbility( params.inflictor:GetName() ) ) ) then
+		or ( params.inflictor and params.attacker:HasAbility( params.inflictor:GetName() ) ) )
+		and not HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION ) then
 			params.unit:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_abaddon_curse_debuff", {duration = self.duration} )
 		end
 	end
@@ -130,6 +131,13 @@ end
 function modifier_abaddon_curse_curse:OnCreated()
 	self.movespeed = self:GetAbility():GetTalentSpecialValueFor("curse_slow")
 	self.attackspeed = self:GetAbility():GetTalentSpecialValueFor("curse_as")
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_abaddon_curse_1")
+end
+
+function modifier_abaddon_curse_curse:CheckState()
+	if self.talent1 then
+		return {[MODIFIER_STATE_SILENCED] = true}
+	end
 end
 
 function modifier_abaddon_curse_curse:DeclareFunctions()

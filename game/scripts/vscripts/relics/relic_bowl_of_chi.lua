@@ -5,9 +5,9 @@ function relic_bowl_of_chi:DeclareFunctions()
 end
 
 function relic_bowl_of_chi:GetModifierStatusAmplify_Percentage()
-	return 15
+	return 10
 end
 
 function relic_bowl_of_chi:GetModifierStatusResistanceStacking()
-	return 15
+	return 10
 end

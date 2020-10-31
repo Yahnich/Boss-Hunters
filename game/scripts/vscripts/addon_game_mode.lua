@@ -187,13 +187,12 @@ function CHoldoutGameMode:InitGameMode()
 	local mapInfo = LoadKeyValues( "addoninfo.txt" )[GetMapName()]
 	
 	GameRules.BasePlayers = mapInfo.MaxPlayers
-	GameRules._maxLives =  mapInfo.Lives
+	GameRules._maxLives =  mapInfo.MaxLives
+	GameRules._startingLives =  mapInfo.StartingLives
 	GameRules.gameDifficulty =  mapInfo.Difficulty
 	CustomNetTables:SetTableValue( "game_info", "difficulty", {difficulty = GameRules.gameDifficulty} )
 	CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = 0} )
-
-	GameRules._lives = GameRules._maxLives
-	CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
+	
 	
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, mapInfo.MaxPlayers)
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 0)
@@ -232,12 +231,9 @@ function CHoldoutGameMode:InitGameMode()
 	-- Custom console commands
 	Convars:RegisterCommand( "bh_test_round", function( command, zone, roundName, roundType )
 											if Convars:GetDOTACommandClient() and IsInToolsMode() then
-												RoundManager:EndEvent(false)
-												RoundManager:EndPrepTime(true)
 												local event = BaseEvent(zone, roundType, roundName )
-												RoundManager.zones[RoundManager.currentZone][1][1] = event
-												GameRules:SetLives(3)
-												RoundManager:StartPrepTime()
+												table.insert( RoundManager.zones[RoundManager.currentZone][1], 1, {event} )
+												RoundManager:StartPrepTime(30, true)
 											end
 										end, "adding relics",0)
 	Convars:RegisterCommand( "bh_unit_stress_test", function( command, units )
@@ -555,29 +551,13 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 	local params = {healer = healer, target = target, heal = heal, ability = source}
 	healFactorSelf = 1
 	healFactorAllied = 1
-	if target then
-		for _, modifier in ipairs( target:FindAllModifiers() ) do
-			if modifier.GetModifierHealAmplify_Percentage then
-				healFactorSelf = healFactorSelf + (modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100
-			end
-		end
-		if RoundManager:GetAscensions() >= 3 then
-			healFactorSelf = healFactorSelf * 0.25
-		end
-	end
-	if healer and healer ~= target then
-		for _, modifier in ipairs( healer:FindAllModifiers() ) do
-			if modifier.GetModifierHealAmplify_Percentage then
-				healFactorAllied = healFactorAllied + ( modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100
-			end
-		end
-		if RoundManager:GetAscensions() >= 3 then
-			healFactorAllied = healFactorAllied * 0.25
-		end
-	end
+	
 	if healer and healer:IsRealHero() and target and healer ~= target and healer:HasRelic("relic_cursed_bloody_silk") then
 		heal = heal + 50
 		if not self:GetParent():HasModifier("relic_unique_ritual_candle") then ApplyDamage({victim = healer, attacker = healer, damage = 20, damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }) end
+		if RoundManager:GetAscensions() >= 3 then
+			healFactorSelf = healFactorSelf * 0.25
+		end
 	end
 	local healing = math.max(0, heal * healFactorSelf * healFactorAllied) + (target.getLastExcessHealing or 0)
 	target.getLastExcessHealing = healing % 1
@@ -632,7 +612,8 @@ function CHoldoutGameMode:FilterOrders( filterTable )
 			end
 		end
 	end
-	if RoundManager:GetCurrentEvent() 
+	if RoundManager:IsRoundGoing()
+	and RoundManager:GetCurrentEvent() 
 	and RoundManager:GetCurrentEvent():IsEvent()
 	and RoundManager:GetCurrentEvent()._playerChoices
 	and RoundManager:GetCurrentEvent()._playerChoices[ filterTable["issuer_player_id_const"] ] == nil
@@ -641,7 +622,7 @@ function CHoldoutGameMode:FilterOrders( filterTable )
 	or filterTable["order_type"] == DOTA_UNIT_ORDER_PURCHASE_ITEM
 	or filterTable["order_type"] == DOTA_UNIT_ORDER_DISASSEMBLE_ITEM
 	or filterTable["order_type"] == DOTA_UNIT_ORDER_EJECT_ITEM_FROM_STASH ) then
-		EventManager:ShowErrorMessage(filterTable.issuer_player_id_const, "Cannot manipulate inventory during events.")
+		EventManager:ShowErrorMessage(filterTable.issuer_player_id_const, "Cannot manipulate inventory during events until voted.")
 		return false
 	end
 	if GameRules:State_Get() < DOTA_GAMERULES_STATE_GAME_IN_PROGRESS 
@@ -784,9 +765,13 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 										if unit:HasModifier(modifierName) then
 											local mList = unit:FindAllModifiersByName(modifierName)
 											for _, modifier in ipairs( mList ) do
-												local remainingDur = modifier:GetRemainingTime()
-												modifier:ForceRefresh()
-												if remainingDur > 0 then modifier:SetDuration(remainingDur, true) end
+												if modifier:HasAuraOrigin() then
+													modifier:Destroy()
+												else
+													local remainingDur = modifier:GetRemainingTime()
+													modifier:ForceRefresh()
+													if remainingDur > 0 then modifier:SetDuration(remainingDur, true) end
+												end
 											end
 										end
 									end
@@ -865,17 +850,12 @@ end
 
 function CHoldoutGameMode:Tell_threat(event)
 	--print ("show asura core count")
-	local pID = event.pID
+	local pID = event.PlayerID
 	local player = PlayerResource:GetPlayer(pID)
-	local hero = player:GetAssignedHero() 
-	if not hero.threat then hero.threat = 0 end
-	local result = math.floor( hero.threat*10 + 0.5 ) / 10
-	if result == 0 then result = "no" end
-	local message = "I have "..result.." threat!"
-	hero.tellThreatDelayTimer = hero.tellThreatDelayTimer or 0
-	if GameRules:GetGameTime() > hero.tellThreatDelayTimer + 1 then
-		Say(player, message, true)
-		hero.tellThreatDelayTimer = GameRules:GetGameTime()
+	player.tellThreatDelayTimer = player.tellThreatDelayTimer or 0
+	if GameRules:GetGameTime() > player.tellThreatDelayTimer + 1 then
+		Say(player, event.threatText, true)
+		player.tellThreatDelayTimer = GameRules:GetGameTime()
 	end
 end
 
@@ -1074,11 +1054,14 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 		RoundManager:StartGame()
 		Timers:CreateTimer(1,function()
 			if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-				for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-					hero:AddGold(1, false)
+				if RoundManager:GetCurrentEvent() and not RoundManager:GetCurrentEvent():IsEvent() then
+					for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+						hero:AddGold(1, false)
+					end
 				end
 				return 1
 			end
+			
 		end)
 	end
 end
@@ -1117,7 +1100,7 @@ function CHoldoutGameMode:OnThink()
 						unit.lastAttackTargetUI = unit:GetAttackTarget()
 						CustomGameEventManager:Send_ServerToPlayer( unit:GetPlayerOwner(), "bh_update_attack_target", {entindex = unit:GetAttackTarget():entindex()} )
 					end
-					playerData[unit:GetPlayerID()] = {DT = unit.statsDamageTaken or 0, DD = unit.statsDamageDealt or 0, DH = unit.statsDamageHealed or 0}
+					playerData[unit:GetPlayerID()] = {damageTaken = unit.statsDamageTaken or 0, damageDealt = unit.statsDamageDealt or 0, damageHealed = unit.statsDamageHealed or 0, deaths = unit.statsDeaths or 0 }
 					-- Threat
 					if unit.threat then
 					if not unit:IsAlive() then
@@ -1127,14 +1110,12 @@ function CHoldoutGameMode:OnThink()
 					else unit.threat = 0 end
 					if unit.lastHit then
 						if unit.lastHit + 2 <= currTime and unit.threat > 0 then
-							unit.threat = unit.threat - (unit.threat/10)
-							unit:ModifyThreat( -(unit.threat/10) )
+							unit:ModifyThreat( -math.max( 0.5, unit.threat/10 ) )
 						end
 					else unit.lastHit = currTime end
 				end	
 			end
 			CustomGameEventManager:Send_ServerToAllClients( "player_update_stats", playerData )
-			PlayerResource:SortThreat()
 		end
 		status, err, ret = pcall(OnPThink, self)
 		if not status  and not self.gameHasBeenBroken then
@@ -1143,7 +1124,7 @@ function CHoldoutGameMode:OnThink()
 	elseif GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then		-- Safe guard catching any state that may exist beyond DOTA_GAMERULES_STATE_POST_GAME
 		return nil
 	end
-	return 0.5
+	return 0.33
 end
 
 function CDOTA_PlayerResource:SortThreat()

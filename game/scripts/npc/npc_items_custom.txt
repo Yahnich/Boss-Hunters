@@ -61,6 +61,8 @@
 #base "items/item_pearlescent_cape.txt"
 #base "items/item_battlemaster_staff.txt"
 #base "items/item_voltaic_hammer.txt"
+#base "items/item_phantom_slippers.txt"
+#base "items/item_steadfast_waders.txt"
 
 //Meepo Runes for ult
 #base "items/item_meepo_rune_dd.txt"
@@ -76,7 +78,7 @@
 //Snapfire
 #base "items/item_snapfire_cookie.txt"
 
-// Next ID is 2577
+// Next ID is 2591
 
 "DOTAAbilities"
 {
@@ -101,7 +103,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"150"
 		"AbilityCastPoint"				"0.0"
-		"AbilityChannelTime"			"7.0"
+		"AbilityChannelTime"			"10.0"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------

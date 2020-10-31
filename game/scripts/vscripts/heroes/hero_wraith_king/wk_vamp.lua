@@ -99,10 +99,10 @@ end
 
 function modifier_wk_vamp_effect:GetModifierPreAttack_BonusDamage(params)
 	local damage = self.attack_damage
-	if self:GetParent():IsRangedAttacker() then
+		if self:GetParent():IsRangedAttacker() or not self:GetParent():IsHero() then
 		damage = damage * self.ranged_percentage
 	end
-	if self:GetParent():GetPlayerOwnerID() == self:GetCaster():GetPlayerOwnerID() then
+	if self:GetParent() == self:GetCaster() then
 		damage = damage * self.wk_percentage
 	end
 	if self:GetCaster():HasModifier("modifier_wk_vamp_active") then
@@ -115,20 +115,22 @@ function modifier_wk_vamp_effect:GetModifierPreAttack_BonusDamage(params)
 end
 
 function modifier_wk_vamp_effect:GetModifierLifestealBonus(params)
-    local lifesteal = self.lifesteal
-	if self:GetParent():IsRangedAttacker() then
-		lifesteal = lifesteal * self.ranged_percentage
+	if params.attacker == self:GetParent() and ( params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE) ) then
+		local lifesteal = self.lifesteal
+		if self:GetParent():IsRangedAttacker() or not self:GetParent():IsHero() then
+			lifesteal = lifesteal * self.ranged_percentage
+		end
+		if self:GetParent() == self:GetCaster() then
+			lifesteal = lifesteal * self.wk_percentage
+		end
+		if self:GetCaster():HasModifier("modifier_wk_vamp_active") then
+			lifesteal = lifesteal * self.active_multiplier
+		end
+		if self:GetParent():HasModifier("modifier_wk_vamp_talent") then
+			lifesteal = lifesteal * self.talent1Mult
+		end
+		return lifesteal
 	end
-	if self:GetParent():GetPlayerOwnerID() == self:GetCaster():GetPlayerOwnerID() then
-		lifesteal = lifesteal * self.wk_percentage
-	end
-	if self:GetCaster():HasModifier("modifier_wk_vamp_active") then
-		lifesteal = lifesteal * self.active_multiplier
-	end
-	if self:GetParent():HasModifier("modifier_wk_vamp_talent") then
-		lifesteal = lifesteal * self.talent1Mult
-	end
-	return lifesteal
 end
 
 function modifier_wk_vamp:IsDebuff()

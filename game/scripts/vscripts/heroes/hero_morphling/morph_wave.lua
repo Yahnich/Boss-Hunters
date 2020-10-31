@@ -230,7 +230,7 @@ if IsServer() then
                 self:DecrementStackCount()
 				ability:EndCooldown()
                 self:Update()
-			elseif params.ability:GetName() == "item_refresher" and self:GetStackCount() < self.kv.max_count then
+			elseif string.find( params.ability:GetName(), "orb_of_renewal" ) and self:GetStackCount() < self.kv.max_count then
                 self:IncrementStackCount()
                 self:Update()
             end

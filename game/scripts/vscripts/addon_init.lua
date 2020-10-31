@@ -53,6 +53,7 @@ LinkLuaModifier( "modifier_boss_evasion", "libraries/modifiers/modifier_boss_eva
 LinkLuaModifier( "modifier_boss_hard_enrage", "libraries/modifiers/modifier_boss_hard_enrage.lua", LUA_MODIFIER_MOTION_NONE)
 
 LinkLuaModifier( "modifier_stats_system_handler", "libraries/handlers/modifier_stats_system_handler.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_lives_handler", "libraries/handlers/modifier_lives_handler.lua", LUA_MODIFIER_MOTION_NONE)
 
 -- PERKS 
 LinkLuaModifier( "modifier_attacker_evasion", "libraries/modifiers/talents/modifier_attacker_evasion.lua", LUA_MODIFIER_MOTION_NONE )

@@ -40,31 +40,41 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"18 16 14 12 10 8 6"
+		"AbilityCooldown"				"16 14 12 10 10 10 10"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"70 85 100 115 130 145 160"
+		"AbilityManaCost"				"70 85 100 115 115 115 115"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"02"
+			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"575"
 			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"2 2.5 3 3.5 3.5 3.5 3.5"
+			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"2"
-				"LinkedSpecialBonus"	"special_bonus_unique_windrunner_bolas_1"
+				"fail_duration"			"0.75 0.75 0.75 0.75 1 1.25 1.5"
 			}
-			"06"
+			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"50 75 100 125 150 175 200"
+				"damage"				"30 50 70 90 100 110 120"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"targets"				"2"
+				"LinkedSpecialBonus"	"special_bonus_unique_windrunner_bolas_2"
 			}
 		}
 	}
@@ -86,7 +96,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
+				"value"						"-30"
 			}
 		}
 	}
@@ -108,7 +118,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"2"
 			}
 		}
 	}
@@ -119,7 +129,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_windrunner/windrunner_powershot_bh.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
@@ -145,36 +155,36 @@
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"2600"
+		"AbilityCastRange"				"800"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12 11 10 9 8 7 6"
+		"AbilityCooldown"				"12 11 10 9 9 9 9"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"90 100 110 120 130 140 150"
+		"AbilityManaCost"				"90 100 110 120 120 120 120"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"channel_time"			"2"
-			}
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"300 400 500 600 700 800 900"
+				"damage"				"150 250 350 450 500 550 600"
 				"LinkedSpecialBonus"	"special_bonus_unique_windrunner_powershot_bh_1"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_reduction"		"20"
+				"damage_reduction"		"20 20 20 20 17 15 11"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"minion_reduction"		"5 5 5 5 4 3 2"
 			}
 			"03"
 			{
@@ -206,7 +216,6 @@
 				"var_type"				"FIELD_FLOAT"
 				"vision_duration"		"3.34"
 			}
-			
 		}
 	}
 	//=================================================================================================================
@@ -227,7 +236,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"300"
+				"value"						"50"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cdr"						"-3"
 			}
 		}
 	}
@@ -249,7 +263,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"33"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"3"
 			}
 		}
 	}
@@ -267,6 +286,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"windrunner_windrun"
 		"MaxLevel"						"7"
+		"HasScepterUpgrade"				"1"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -285,11 +305,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"24"
+		"AbilityCooldown"				"24 24 24 24 22 20 18"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50"
+		"AbilityManaCost"				"125 125 125 125 100 75 50"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -298,17 +318,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"buff_duration"				"3 4 5 6 7 8 9"
+				"buff_duration"				"3 4 5 6 6 6 6"
 			}		
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"movespeed_bonus_pct"		"100"		
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"movespeed_bonus_limit"		"200"		
+				"movespeed_bonus_pct"		"30 40 50 60 60 60 60"		
 			}
 			"04"
 			{
@@ -318,8 +333,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"enemy_movespeed_bonus_pct"	"-15 -20 -25 -30 -35 -40 -45"
-				"LinkedSpecialBonus"		"special_bonus_unique_windrunner_windrun_bh_1"
+				"enemy_movespeed_bonus_pct"	"-15 -20 -25 -30 -30 -30 -30"	
 			}
 			"06"
 			{
@@ -331,7 +345,16 @@
 				"var_type"					"FIELD_FLOAT"
 				"debuff_duration"			"2.5"
 			}
-				
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"scepter_charges"			"2"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"scepter_ms"				"70 80 90 100 100 100 100"
+			}
 		}
 	}
 	//=================================================================================================================
@@ -352,7 +375,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"-30"
+				"value"						"600"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"bonus_chill"				"20"
 			}
 		}
 	}
@@ -374,11 +402,132 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
+				"value"						"100"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"3"
+			}
+		}
+	}
+	"windrunner_focusfire_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_windrunner/windrunner_focusfire_bh.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"windrunner_focusfire"
+		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_windrunner_focusfire_bh_1"	"1"
+			"special_bonus_unique_windrunner_focusfire_bh_2"	"1"
+		}
+		
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_windrunner/windrunner_windrun_slow.vpcf"
+			"particle"  	"particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"70 70 50 50 30 30"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"75 100 100 125 125 150"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_as"						"500"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"dmg_reduction"					"-50 -40 -40 -30 -30 -20"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"duration"						"15"
+			}				
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_windrunner_focusfire_bh_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"100"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_windrunner_focusfire_bh_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
 				"value"						"1"
 			}
 		}
 	}
-
+	
+	//=================================================================================================================
+	//=================================================================================================================
+	//=================================================================================================================
+	// DEPRECATED
+	//=================================================================================================================
+	//=================================================================================================================
+	//=================================================================================================================
 	"windrunner_skillshot"
 	{
 		// General
@@ -447,126 +596,5 @@
 		}
 	}
 
-	"windrunner_focusfire_bh"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_windrunner/windrunner_focusfire_bh.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityTextureName"			"windrunner_focusfire"
-		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"6"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_windrunner_focusfire_bh_1"	"1"
-			"special_bonus_unique_windrunner_focusfire_bh_2"	"1"
-		}
-		
-		"precache"
-		{
-			"particle"		"particles/units/heroes/hero_windrunner/windrunner_windrun_slow.vpcf"
-			"particle"  	"particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf"
-			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"600"
-		"AbilityCastPoint"				"0"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75 100 125 150 175 200"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_as"						"400"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bonus_at"						"-0.2"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"dmg_reduction"					"-25"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"scepter_dmg_reduction"			"0"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"duration"						"8 9 10 11 12 13"
-				"LinkedSpecialBonus"			"special_bonus_unique_windrunner_focusfire_bh_2"
-			}				
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_windrunner_focusfire_bh_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_windrunner_focusfire_bh_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"5"
-			}
-		}
-	}
 
 }

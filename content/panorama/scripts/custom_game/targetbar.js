@@ -43,10 +43,6 @@ $("#targetPanelMain").visible = false;
 	var minionTypeIcon = $("#MinionTypeIcon")
 	minionTypeIcon.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", minionTypeIcon, "This enemy is a Minion.")} );
 	minionTypeIcon.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", minionTypeIcon)} );
-	
-	var threatButton = $("#threatButton")
-	threatButton.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", threatButton, "This is your current threat. Threat dictates who is targeted by the enemy.\n\nRed threat means you have the highest amount of threat in your team, orange means you are second.")} );
-	threatButton.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", threatButton)} );
 })();
 
 function UpdatedSelection()
@@ -93,7 +89,6 @@ var currBossAbility = "generic_hidden"
 function UpdateHealthBar()
 {
 	var sUnit = newestBoss
-	$.GetContextPanel().style.marginTop = "1.5%";
 	if(sUnit == null || !Entities.IsAlive( sUnit ) && $("#targetPanelMain").visible){
 		$("#targetPanelMain").visible = false;
 		var localAbility = $("#currentlyCastAbility")
@@ -252,7 +247,7 @@ function UpdateHealthBar()
 			}
 		}
 	}
-	$.Schedule( 0.15, UpdateHealthBar )
+	$.Schedule( 0.33, UpdateHealthBar )
 }
 
 function CreateMainBuff(heroID, buffID, heroName)
@@ -343,15 +338,15 @@ function CreateMainBuff(heroID, buffID, heroName)
 GameEvents.Subscribe( "Update_threat", update_threat);
 function update_threat(arg)
 {
-	var threat = arg.threat.toFixed(1);
-	$("#threatLabel").text = threat.toString();
-	if (arg.aggro != null && arg.aggro == 1){
-		$("#threatLabel").style.color = "#FF0000"
-	} else if (arg.aggro != null && arg.aggro == 2){
-		$("#threatLabel").style.color = "#FF8100"
-	} else {
-		$("#threatLabel").style.color= "#2FFF00"
-	}
+	// var threat = arg.threat.toFixed(1);
+	// $("#threatLabel").text = threat.toString();
+	// if (arg.aggro != null && arg.aggro == 1){
+		// $("#threatLabel").style.color = "#FF0000"
+	// } else if (arg.aggro != null && arg.aggro == 2){
+		// $("#threatLabel").style.color = "#FF8100"
+	// } else {
+		// $("#threatLabel").style.color= "#2FFF00"
+	// }
 }
 
 function tell_threat()

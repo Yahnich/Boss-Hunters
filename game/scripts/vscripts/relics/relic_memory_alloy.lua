@@ -12,7 +12,7 @@ function relic_memory_alloy:OnTakeDamage(params)
 		local parent = self:GetParent()
 		Timers:CreateTimer(0.33, function()
 			healticks = healticks - 1
-			parent:HealEvent(healpTick, nil, parent, true)
+			parent:HealEvent(healpTick, nil, parent, {heal_type = HEAL_TYPE_REGEN})
 			if healticks > 0 then
 				return 0.33
 			end

@@ -11,12 +11,12 @@
 		
 		"Ability10"				"special_bonus_unique_abaddon_death_coil_1"
 		"Ability11"				"special_bonus_unique_abaddon_death_coil_2"
-		"Ability12"				"special_bonus_unique_abaddon_aphotic_barrier_1"
+		"Ability12"				"special_bonus_unique_abaddon_aphotic_barrier_3"
 		"Ability13"				"special_bonus_unique_abaddon_aphotic_barrier_2"
 		"Ability14"				"special_bonus_unique_abaddon_brume_weaver_1"
 		"Ability15"				"special_bonus_unique_abaddon_brume_weaver_2"
 		"Ability16"				"special_bonus_unique_abaddon_borrowed_time_1"
-		"Ability17"				"special_bonus_unique_abaddon_borrowed_time_2"
+		"Ability17"				"special_bonus_unique_abaddon_curse_1"
 			
 	}
 	//=================================================================================================================
@@ -321,13 +321,13 @@
 		"Ability6"						"centaur_stampede_ebf"
 		
 		"Ability10"						"special_bonus_unique_centaur_champions_presence_1"
-		"Ability11"						"special_bonus_unique_centaur_stampede_1"
-		"Ability12"						"special_bonus_unique_centaur_great_edge_1"
-		"Ability13"						"special_bonus_unique_centaur_great_edge_2"
+		"Ability11"						"special_bonus_unique_centaur_champions_presence_2"
+		"Ability12"						"special_bonus_unique_centaur_great_edge_3"
+		"Ability13"						"special_bonus_unique_centaur_great_edge_1"
 		"Ability14"						"special_bonus_unique_centaur_hoof_stomp_1"
 		"Ability15"						"special_bonus_unique_centaur_hoof_stomp_2"
-		"Ability16"						"special_bonus_unique_centaur_warchiefs_aegis_1"
-		"Ability17"						"special_bonus_unique_centaur_warchiefs_aegis_2"
+		"Ability16"						"special_bonus_unique_centaur_stampede_1"
+		"Ability17"						"special_bonus_unique_centaur_stampede_2"
 		
 		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"			"23"
@@ -391,7 +391,7 @@
 		"Ability10"						"special_bonus_unique_clinkz_strafe_bh_1"
 		"Ability11"						"special_bonus_unique_clinkz_strafe_bh_2"
 		"Ability12"						"special_bonus_unique_clinkz_arrows_1"
-		"Ability13"						"special_bonus_unique_clinkz_arrows_2"
+		"Ability13"						"special_bonus_unique_clinkz_shot_1"
 		"Ability14"						"special_bonus_unique_clinkz_walk_1"
 		"Ability15"						"special_bonus_unique_clinkz_walk_2"
 		"Ability16"						"special_bonus_unique_clinkz_burning_army_1"
@@ -429,7 +429,7 @@
 
 		"Ability10"						"special_bonus_unique_ds_vacuum_1"
 		"Ability11"						"special_bonus_unique_ds_vacuum_2"
-		"Ability12"						"special_bonus_unique_ds_shell_1"
+		"Ability12"						"special_bonus_unique_ds_shell_3"
 		"Ability13"						"special_bonus_unique_ds_shell_2"
 		"Ability14"						"special_bonus_unique_ds_surge_1"
 		"Ability15"						"special_bonus_unique_ds_surge_2"
@@ -1163,7 +1163,7 @@
 		"override_hero"					"npc_dota_hero_medusa"
 		"Ability1"						"medusa_split"
 		"Ability2"						"medusa_snake"					
-		"Ability3"						"medusa_viper"
+		"Ability3"						"medusa_slither"
 		"Ability4"						"medusa_shield"						
 		"Ability6"						"medusa_gaze"
 		
@@ -1171,8 +1171,8 @@
 		"Ability11"						"special_bonus_unique_medusa_split_2"
 		"Ability12"						"special_bonus_unique_medusa_snake_1"
 		"Ability13"						"special_bonus_unique_medusa_snake_2"
-		"Ability14"						"special_bonus_unique_medusa_viper_1"
-		"Ability15"						"special_bonus_unique_medusa_viper_2"
+		"Ability14"						"special_bonus_unique_medusa_slither_1"
+		"Ability15"						"special_bonus_unique_medusa_slither_2"
 		"Ability16"						"special_bonus_unique_medusa_gaze_1"
 		"Ability17"						"special_bonus_unique_medusa_gaze_2"
 	}
@@ -1211,7 +1211,7 @@
 		
 		"Ability10"						"special_bonus_unique_mirana_starcall_1"
 		"Ability11"						"special_bonus_unique_mirana_starcall_2"
-		"Ability12"						"special_bonus_unique_mirana_astral_arrow_1"
+		"Ability12"						"special_bonus_unique_mirana_astral_arrow_3"
 		"Ability13"						"special_bonus_unique_mirana_astral_arrow_2"
 		"Ability14"						"special_bonus_unique_mirana_celestial_jump_1"
 		"Ability15"						"special_bonus_unique_mirana_celestial_jump_2"
@@ -1462,15 +1462,16 @@
 		"Ability1"				   		"oracle_fortunes"
 		"Ability2"				   		"oracle_fates"
 		"Ability3"				   		"oracle_flames"
-		"Ability4"			   			"oracle_innate"
+		"Ability4"			   			"oracle_pactmaker"
+		"Ability5"			   			"oracle_pactbreaker"
 		"Ability6"			   			"oracle_promise"
 		
 		"Ability10"				   		"special_bonus_unique_oracle_fortunes_1"
 		"Ability11"			   			"special_bonus_unique_oracle_fortunes_2"
-		"Ability12"				   		"special_bonus_unique_oracle_fates_1"
+		"Ability12"				   		"special_bonus_unique_oracle_pactmaker_1"
 		"Ability13"			   			"special_bonus_unique_oracle_fates_2"
 		"Ability14"      	   		 	"special_bonus_unique_oracle_flames_1"
-	    "Ability15"      	   		 	"special_bonus_unique_oracle_flames_2"
+	    "Ability15"      	   		 	"special_bonus_unique_oracle_flames_3"
 	    "Ability16"    		   		   	"special_bonus_unique_oracle_promise_1"
 	    "Ability17"  	  			   	"special_bonus_unique_oracle_promise_2"
 	}
@@ -2299,20 +2300,21 @@
 	"npc_dota_hero_vengefulspirit_ebf"
 	{
 		"override_hero"					"npc_dota_hero_vengefulspirit"
-		"Ability1"						"vengefulspirit_magic_missile_ebf"
+		"Ability1"						"vengefulspirit_magic_barrage"
 		"Ability2"						"vengefulspirit_wave"
-		"Ability3"						"vengefulspirit_haunt"
-		"Ability4"						"vengefulspirit_aura"
-		"Ability6"						"vengefulspirit_swap"
+		"Ability3"						"vengefulspirit_aura"
+		"Ability4"						"vengefulspirit_swap"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"vengefulspirit_haunt"
 		
-		"Ability10"						"special_bonus_unique_vengefulspirit_magic_missile_ebf_1"
-		"Ability11"						"special_bonus_unique_vengefulspirit_magic_missile_ebf_2"  
+		"Ability10"						"special_bonus_unique_vengefulspirit_magic_barrage_1"
+		"Ability11"						"special_bonus_unique_vengefulspirit_magic_barrage_2"  
 		"Ability12"						"special_bonus_unique_vengefulspirit_wave_1"
 		"Ability13"						"special_bonus_unique_vengefulspirit_wave_2"
+		"Ability16"						"special_bonus_unique_vengefulspirit_aura_1"
+		"Ability17"						"special_bonus_unique_vengefulspirit_aura_2"
 		"Ability14"						"special_bonus_unique_vengefulspirit_haunt_1"
 		"Ability15"						"special_bonus_unique_vengefulspirit_haunt_2"
-		"Ability16"						"special_bonus_unique_vengefulspirit_swap_1"
-		"Ability17"						"special_bonus_unique_vengefulspirit_swap_2"
 	}
 	"npc_dota_hero_venomancer_ebf"
 	{
@@ -2411,7 +2413,6 @@
 		"Ability1"						"windrunner_bolas"
 		"Ability2"						"windrunner_powershot_bh"
 		"Ability3"						"windrunner_windrun_bh"
-		"Ability4"						"windrunner_skillshot"
 		"Ability6"						"windrunner_focusfire_bh"
 		
 		"Ability10"						"special_bonus_unique_windrunner_bolas_1"
@@ -2422,16 +2423,8 @@
 		"Ability15"						"special_bonus_unique_windrunner_windrun_bh_2"
 		"Ability16"						"special_bonus_unique_windrunner_focusfire_bh_1"
 		"Ability17"						"special_bonus_unique_windrunner_focusfire_bh_2"
-
-		"AttributePrimary"				"DOTA_ATTRIBUTE_AGILITY"
-		"AttributeBaseStrength"			"17"
-		"AttributeStrengthGain"			"2.8"
-		"AttributeBaseIntelligence"		"17"
-		"AttributeIntelligenceGain"		"1.4"
-		"AttributeBaseAgility"			"18"
-		"AttributeAgilityGain"			"2.6"
 	}
-	"npc_dota_hero_winter_wyvern_ebf"
+	"npc_dota_hero_winter_wyvern"
 	{
 		"override_hero"					"npc_dota_hero_winter_wyvern"
 		"Ability1"						"winterw_arctic_sting"
@@ -2450,7 +2443,7 @@
 	
 			
 	}
-	"npc_dota_hero_wisp_ebf"
+	"npc_dota_hero_wisp"
 	{
 		"override_hero"					"npc_dota_hero_wisp"
 		"Ability1"						"wisp_tether_bh"

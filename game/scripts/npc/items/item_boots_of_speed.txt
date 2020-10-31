@@ -99,8 +99,6 @@
 		"UpgradeRecipe"					"item_recipe_boots_of_speed_2"
 		
 		"AvailableRuneSlots"			"1"
-	
-		"AbilityCooldown"				"15"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -172,8 +170,6 @@
 		"UpgradeRecipe"					"item_recipe_boots_of_speed_2"
 		
 		"AvailableRuneSlots"			"1"
-	
-		"AbilityCooldown"				"15"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -245,8 +241,6 @@
 		"UpgradeRecipe"					"item_recipe_boots_of_speed_2"
 		
 		"AvailableRuneSlots"			"2"
-	
-		"AbilityCooldown"				"15"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -318,8 +312,6 @@
 		"UpgradeRecipe"					"item_recipe_boots_of_speed_2"
 		
 		"AvailableRuneSlots"			"2"
-	
-		"AbilityCooldown"				"15"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -391,8 +383,6 @@
 		"UpgradeRecipe"					"item_recipe_boots_of_speed_2"
 		
 		"AvailableRuneSlots"			"2"
-	
-		"AbilityCooldown"				"15"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -464,8 +454,6 @@
 		"UpgradeRecipe"					"item_recipe_boots_of_speed_2"
 		
 		"AvailableRuneSlots"			"3"
-	
-		"AbilityCooldown"				"15"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -537,8 +525,6 @@
 		"UpgradeRecipe"					"item_recipe_boots_of_speed_2"
 		
 		"AvailableRuneSlots"			"3"
-	
-		"AbilityCooldown"				"15"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -610,8 +596,6 @@
 		"UpgradeRecipe"					"item_recipe_boots_of_speed_2"
 		
 		"AvailableRuneSlots"			"3"
-	
-		"AbilityCooldown"				"15"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------

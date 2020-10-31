@@ -23,11 +23,14 @@ function vengefulspirit_wave:OnSpellStart()
 	self:FireLinearProjectile("particles/units/heroes/hero_vengeful/vengeful_wave_of_terror_orig.vpcf", velocity, distance, self:GetTalentSpecialValueFor("width"), {}, false, true, self:GetTalentSpecialValueFor("width"))
 end
 
-function vengefulspirit_wave:OnProjectileHit(hTarget, vLocation)
-	if hTarget ~= nil and not hTarget:TriggerSpellAbsorb( self ) then
-		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_vengefulspirit_wave", {Duration = self:GetTalentSpecialValueFor("duration")}):AddIndependentStack(self:GetTalentSpecialValueFor("duration"))
-		hTarget:Daze(self, self:GetCaster(), self:GetTalentSpecialValueFor("daze_duration"))
-		self:DealDamage(self:GetCaster(), hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
+function vengefulspirit_wave:OnProjectileHit(target, vLocation)
+	if target ~= nil and not target:TriggerSpellAbsorb( self ) then
+		local caster = self:GetCaster()
+		target:AddNewModifier(caster, self, "modifier_vengefulspirit_wave", {Duration = self:GetTalentSpecialValueFor("duration")}):AddIndependentStack()
+		if caster:HasTalent("special_bonus_unique_vengefulspirit_wave_2") then
+			target:Fear(self, caster, caster:FindTalentValue("special_bonus_unique_vengefulspirit_wave_2") )
+		end
+		self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {}, 0)
 	end
 end
 

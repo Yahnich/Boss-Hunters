@@ -18,6 +18,14 @@ function winterw_arctic_sting:GetBehavior()
     return behavior
 end
 
+function winterw_arctic_sting:GetCooldown( iLvl )
+	if self:GetCaster():HasScepter() then
+		return 0
+	else
+		return self.BaseClass.GetCooldown( self, iLvl )
+	end
+end
+
 function winterw_arctic_sting:OnToggle()
     local caster = self:GetCaster()
     if self:GetToggleState() then
@@ -57,12 +65,15 @@ end
 modifier_arctic_sting = ({})
 function modifier_arctic_sting:OnCreated(table)
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_winterw_arctic_sting_1")
-	self.talent1Radius = self:GetCaster():FindTalentValue("special_bonus_unique_winterw_arctic_sting_1")
+	self.talent1Cleave = self:GetCaster():FindTalentValue("special_bonus_unique_winterw_arctic_sting_1")
 	self.scepter_cost = self:GetTalentSpecialValueFor("mana_cost_scepter")
 	self.attack_range = self:GetTalentSpecialValueFor("attack_range_bonus")
 	self.vision = self:GetTalentSpecialValueFor("night_vision_bonus")
 	self.projectile_speed = self:GetTalentSpecialValueFor("projectile_speed_bonus")
 	self.duration = self:GetTalentSpecialValueFor("burn_duration")
+	if self.talent1 then
+		self:GetParent():HookInModifier("GetModifierAreaDamage", self )
+	end
     if IsServer() then
         local startFX = ParticleManager:CreateParticle("particles/units/heroes/hero_winter_wyvern/wyvern_arctic_burn_start.vpcf", PATTACH_POINT, self:GetCaster())
         ParticleManager:SetParticleControl(startFX, 0, self:GetCaster():GetAbsOrigin())
@@ -83,7 +94,10 @@ end
 
 function modifier_arctic_sting:OnIntervalThink()
     if self:GetCaster():HasScepter() and self:GetAbility():GetToggleState() then
-        self:GetAbility():SpendMana( self.scepter_cost )
+		if self:GetAbility():SpendMana( self.scepter_cost ) then
+		else
+			self:GetAbility():ToggleAbility()
+		end
     end
 end
 
@@ -97,6 +111,9 @@ function modifier_arctic_sting:OnRemoved()
         GridNav:DestroyTreesAroundPoint(self:GetCaster():GetAbsOrigin(), 250, true)
         ParticleManager:DestroyParticle(self.nfx, false)
     end
+	if self.talent1 then
+		self:GetParent():HookOutModifier("GetModifierAreaDamage", self )
+	end
 end
 
 function modifier_arctic_sting:CheckState()
@@ -120,6 +137,10 @@ function modifier_arctic_sting:GetModifierAttackRangeBonus()
     return self.attack_range
 end
 
+function modifier_arctic_sting:GetModifierAreaDamage()
+    return self.talent1Cleave * 2
+end
+
 function modifier_arctic_sting:GetBonusNightVision()
     return self.vision
 end
@@ -129,15 +150,15 @@ function modifier_arctic_sting:GetModifierProjectileSpeedBonus()
 end
 
 function modifier_arctic_sting:OnAttack(params)
-    if params.attacker == self:GetCaster() and params.target:IsAlive() and self.talent1 then
-        if not self.preventInfiniteLoopingLmao then
-			self.preventInfiniteLoopingLmao = true
-			for _, enemy in ipairs( params.attacker:FindEnemyUnitsInRadius( params.target:GetAbsOrigin(), self.talent1Radius) ) do
-				params.attacker:PerformGenericAttack( enemy )
-			end
-			self.preventInfiniteLoopingLmao = false
-		end
-    end
+    -- if params.attacker == self:GetCaster() and params.target:IsAlive() and self.talent1 then
+        -- if not self.preventInfiniteLoopingLmao then
+			-- self.preventInfiniteLoopingLmao = true
+			-- for _, enemy in ipairs( params.attacker:FindEnemyUnitsInRadius( params.target:GetAbsOrigin(), self.talent1Radius) ) do
+				-- params.attacker:PerformGenericAttack( enemy )
+			-- end
+			-- self.preventInfiniteLoopingLmao = false
+		-- end
+    -- end
 end
 
 function modifier_arctic_sting:OnAttackLanded(params)
@@ -151,6 +172,16 @@ function modifier_arctic_sting:OnAttackLanded(params)
                 params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_arctic_sting_target", {Duration = self.duration})
             end
         end
+		if self.talent1 then
+			for _, enemy in ipairs( params.attacker:FindEnemyUnitsInRadius( params.target:GetAbsOrigin(), 325) ) do
+				if enemy ~= params.target then
+					if self:GetCaster():HasScepter() or not enemy:HasModifier("modifier_arctic_sting_target") then
+						EmitSoundOn("Hero_Winter_Wyvern.ArcticBurn.projectileImpact", enemy)
+						enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_arctic_sting_target", {Duration = self.duration})
+					end
+				end
+			end
+		end
     end
 end
 

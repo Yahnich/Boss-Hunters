@@ -8,6 +8,7 @@
 		"sepulcher_boss_wraith_king"		"1"
 		"sepulcher_boss_reaper"				"1"
 		"sepulcher_boss_vile_archmage"		"1"
+		"sepulcher_elite_arthromos"			"1"
 	}
 	// Regular ass monsters
 	"Grove"
@@ -20,6 +21,7 @@
 		"grove_boss_greymane"				"1"
 		"generic_boss_golem"				"1"
 		"grove_boss_green_dragon"			"1"
+		"grove_elite_valgraduth"			"1"
 	}
 	// Gods, spirits, elementals
 	"Elysium"
@@ -30,6 +32,7 @@
 		"elysium_boss_broodmother"			"1"
 		"elysium_boss_ifdat"				"1"
 		"generic_boss_scarab"				"1"
+		"elysium_elite_ammetot"				"1"
 	}
 	// Demons, corrupted things
 	"Solitude"
@@ -39,5 +42,6 @@
 		"solitude_boss_twin_demons"			"1"
 		"solitude_boss_warlock"				"1"
 		"elysium_boss_asura"				"1"
+		"solitude_elite_durva"				"1"
 	}
 }

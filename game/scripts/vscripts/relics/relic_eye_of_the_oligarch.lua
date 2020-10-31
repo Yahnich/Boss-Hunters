@@ -2,32 +2,15 @@ relic_eye_of_the_oligarch = class(relicBaseClass)
 
 function relic_eye_of_the_oligarch:OnCreated(kv)
 	if IsServer() then
-		self:SetStackCount( self:GetParent():GetGold() )
-		self:StartIntervalThink(0.33)
+		self.lastGoldCheck = self:GetParent():GetGold()
+		self:StartIntervalThink(0.1)
 	end
 end
 
 function relic_eye_of_the_oligarch:OnIntervalThink()
-	self:SetStackCount( self:GetParent():GetGold() )
-end
-
-function relic_eye_of_the_oligarch:DeclareFunctions()
-	return {MODIFIER_PROPERTY_FIXED_DAY_VISION,
-			MODIFIER_PROPERTY_FIXED_NIGHT_VISION}
-end
-
-function relic_eye_of_the_oligarch:GetFixedDayVision(params)
-	if not self:GetParent():HasModifier("relic_ritual_candle") then
-		return self:GetStackCount()
-	else
-		return math.max( 1800, self:GetStackCount() )
+	AddFOWViewer( self:GetParent():GetTeamNumber(), self:GetParent():GetAbsOrigin(), self:GetParent():GetGold(), 0.1, false )
+	if self.lastGoldCheck > self:GetParent():GetGold() then -- assume a purchase
+		self:GetParent():SetGold(self:GetParent():GetGold() - 50, true)
 	end
-end
-
-function relic_eye_of_the_oligarch:GetFixedNightVision(params)
-	if not self:GetParent():HasModifier("relic_ritual_candle") then
-		return self:GetStackCount()
-	else
-		return math.max( 800, self:GetStackCount() )
-	end
+	self.lastGoldCheck = self:GetParent():GetGold()
 end

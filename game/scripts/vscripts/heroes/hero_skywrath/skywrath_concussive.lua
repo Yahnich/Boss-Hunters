@@ -1,9 +1,8 @@
 skywrath_concussive = class({})
-LinkLuaModifier( "modifier_skywrath_concussive","heroes/hero_skywrath/skywrath_concussive.lua",LUA_MODIFIER_MOTION_NONE )
 
 function skywrath_concussive:GetCastRange(vLocation, hTarget)
 	if self:GetCaster():HasTalent("special_bonus_unique_skywrath_concussive_1") then
-		return 100000
+		return -1
 	end
 	return self:GetTalentSpecialValueFor("search_range")
 end
@@ -34,22 +33,50 @@ function skywrath_concussive:OnProjectileHit(hTarget, vLocation)
 
     if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
     	EmitSoundOn("Hero_SkywrathMage.ConcussiveShot.Target", hTarget)
-        local enemies = caster:FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+		local radius = self:GetTalentSpecialValueFor("radius")
+        local enemies = caster:FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), radius)
+		local damage = self:GetTalentSpecialValueFor("damage")
+		local minion_mult = self:GetTalentSpecialValueFor("minion_damage") / 100
         for _,enemy in pairs(enemies) do
         	enemy:AddNewModifier(caster, self, "modifier_skywrath_concussive", {Duration = self:GetTalentSpecialValueFor("slow_duration")})
-        	self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+			local endDamage = damage
+			if enemy:IsMinion() then
+				endDamage = damage * (1 + minion_mult)
+			end
+        	self:DealDamage(caster, enemy, endDamage, {}, 0)
         end
+		if caster:HasTalent("special_bonus_unique_skywrath_concussive_2") then
+			local talentRadius = radius * caster:FindTalentValue("special_bonus_unique_skywrath_concussive_2")
+			local enemies = caster:FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), talentRadius)
+			for _,enemy in pairs(enemies) do
+				local distance = CalculateDistance( enemy, hTarget )
+				local buffer = enemy:GetHullRadius() + hTarget:GetHullRadius() + enemy:GetCollisionPadding() + hTarget:GetCollisionPadding()
+				enemy:ApplyKnockBack(hTarget:GetAbsOrigin(), 0.75, 0.75, -math.max( 0, (distance - buffer) ), 0, caster, self, false)
+			end
+		end
     end
 end
 
 modifier_skywrath_concussive = class({})
+LinkLuaModifier( "modifier_skywrath_concussive","heroes/hero_skywrath/skywrath_concussive.lua",LUA_MODIFIER_MOTION_NONE )
+function modifier_skywrath_concussive:OnCreated()
+	self:OnRefresh()
+end
+
+function modifier_skywrath_concussive:OnRefresh()
+	self.slow = self:GetTalentSpecialValueFor("slow")
+	if self:GetParent():IsMinion() then
+		self.slow = self.slow + self:GetTalentSpecialValueFor("minion_slow")
+	end
+end
+
 function modifier_skywrath_concussive:DeclareFunctions()
     funcs = {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
     return funcs
 end
 
 function modifier_skywrath_concussive:GetModifierMoveSpeedBonus_Percentage()
-    return -self:GetTalentSpecialValueFor("slow")
+    return -self.slow
 end
 
 function modifier_skywrath_concussive:GetEffectAttachType()

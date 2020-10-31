@@ -47,17 +47,32 @@ function RoundManager:Initialize(context)
 	self:PrecacheRounds(context)
 end
 
-function RoundManager:VoteSkipPrepTime(userid, event)
+function RoundManager:VoteSkipPrepTime(userid, info)
 	self.votedToSkipPrep = self.votedToSkipPrep or {}
-	self.votedToSkipPrep[event.pID] = true
-	self.prepTimer = self.prepTimer / 2
-	CustomGameEventManager:Send_ServerToAllClients("bh_update_votes_prep_time", {yes = self.votedToSkipPrep})
-	for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
-		if not self.votedToSkipPrep[hero:GetPlayerID()] then
-			return
+	
+	self.votedToSkipPrep[info.eventID] = self.votedToSkipPrep[info.eventID] or {}
+	for event, playerVotes in pairs( self.votedToSkipPrep ) do
+		playerVotes[info.pID] = nil
+	end
+	self.votedToSkipPrep[info.eventID][info.pID] = true
+	local highestChoiceVotes = 0
+	for event, playerVotes in pairs( self.votedToSkipPrep ) do
+		local eventChoiceVotes = 0
+		for playerVote, _ in pairs( playerVotes ) do
+			eventChoiceVotes = eventChoiceVotes + 1
+		end
+		if eventChoiceVotes > highestChoiceVotes then
+			highestChoiceVotes = eventChoiceVotes
+			self.currentlyActiveEvent = self.zones[self.currentZone][1][1][tonumber(event)]
 		end
 	end
-	self.prepTimer = math.max( (self.freezePreparationTime or 0) + 0.5, 0 )
+	if highestChoiceVotes < HeroList:GetActiveHeroCount() then
+		self.prepTimer = self.maximumAllotedPrepTime / (highestChoiceVotes + 1)
+	else
+		self.prepTimer = math.max( (self.freezePreparationTime or 0) + 0.5, 0 )
+	end
+	CustomGameEventManager:Send_ServerToAllClients("bh_update_votes_prep_time", {votes = self.votedToSkipPrep})
+	CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) + self.prepTimer } )
 end
 
 function RoundManager:VoteNewGame(userid, event)
@@ -82,9 +97,10 @@ function RoundManager:VoteNewGame(userid, event)
 		self.bossPool = LoadKeyValues('scripts/kv/boss_pool.txt')
 		self.eventPool = LoadKeyValues('scripts/kv/event_pool.txt')
 		self.combatPool = LoadKeyValues('scripts/kv/combat_pool.txt')
-		self.specificRoundKV = LoadKeyValues('scripts/kv/combat_pool.txt')
+		self.specificRoundKV = LoadKeyValues('scripts/kv/combat_data.txt')
 		POSSIBLE_ZONES = {"Grove", "Sepulcher", "Solitude", "Elysium"}
-		self.prepTimer = 0
+		self.prepTimer = 5
+		CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) + self.prepTimer } )
 		for i = 1, ZONE_COUNT do
 			local zoneName = POSSIBLE_ZONES[i]
 			RoundManager:ConstructRaids(zoneName)
@@ -127,7 +143,7 @@ function RoundManager:OnNPCSpawned(event)
 					EmitSoundOn("DOTA_Item.BlinkDagger.NailedIt", spawnedUnit)
 				end
 				if not spawnedUnit.hasBeenInitialized then
-					RoundManager:InitializeUnit(spawnedUnit, RoundManager:GetEventsFinished() >= 3 and spawnedUnit:IsRoundNecessary() and ( (RoundManager:GetCurrentEvent() and RoundManager:GetCurrentEvent():IsCombat() and not RoundManager:GetCurrentEvent().eliteHasBeenInitialized) or RoundManager:GetAscensions() > 0) )
+					RoundManager:InitializeUnit(spawnedUnit, (spawnedUnit:IsRoundNecessary() and (RoundManager:GetCurrentEvent() and RoundManager:GetCurrentEvent():IsElite() )) or RoundManager:GetAscensions() > 0)
 					GridNav:DestroyTreesAroundPoint(spawnedUnit:GetAbsOrigin(), spawnedUnit:GetHullRadius() + spawnedUnit:GetCollisionPadding() + 350, true)
 					FindClearSpaceForUnit(spawnedUnit, spawnedUnit:GetAbsOrigin(), true)
 				end
@@ -157,7 +173,7 @@ function RoundManager:OnNPCSpawned(event)
 					if not RoundManager:IsTouchingBoundingBox(spawnedUnit) then
 						FindClearSpaceForUnit( spawnedUnit, RoundManager:GetHeroSpawnPosition(), true ) 
 					end
-					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_tombstone_respawn_immunity", {duration = 2.9}) 
+					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_tombstone_respawn_immunity", {duration = 3}) 
 				end)
 			end
 		end
@@ -213,28 +229,36 @@ function RoundManager:ConstructRaids(zoneName)
 		local raid = {}
 		for i = 1, EVENTS_PER_RAID do
 			local raidContent
+			local raidPackage = {}
+			local eventsForPackage = RandomInt( 1, 3 )
 			self.eventsCreated = self.eventsCreated + 1
-			if self.eventsCreated % 10 == 8 then -- elite round
-				combatPick = "grove_elite_valgraduth"
-				if zoneName == "Sepulcher" then
-					combatPick = "sepulcher_elite_arthromos"
-				elseif zoneName == "Solitude" then
-					combatPick = "solitude_elite_durva"
-				elseif zoneName == "Elysium" then
-					combatPick = "elysium_elite_ammetot"
-				end
-				print("created elite", combatPick)
-				raidContent = BaseEvent(zoneName, EVENT_TYPE_ELITE, combatPick )
-			else -- non fixed round
+			POSSIBLE_REWARDS = {EVENT_REWARD_GOLD, EVENT_REWARD_LIVES, EVENT_REWARD_RELIC}
+			for i = 1, eventsForPackage do 
+				-- if self.eventsCreated % 10 == 8 then -- elite round
+					-- combatPick = "grove_elite_valgraduth"
+					-- if zoneName == "Sepulcher" then
+						-- combatPick = "sepulcher_elite_arthromos"
+					-- elseif zoneName == "Solitude" then
+						-- combatPick = "solitude_elite_durva"
+					-- elseif zoneName == "Elysium" then
+						-- combatPick = "elysium_elite_ammetot"
+					-- end
+					-- print("created elite", combatPick)
+					-- raidContent = BaseEvent(zoneName, EVENT_TYPE_ELITE, combatPick )
+				-- else -- non fixed round
+				local rewardKey = RandomInt( 1, math.min( #POSSIBLE_REWARDS, i ) )
+				local reward = POSSIBLE_REWARDS[rewardKey]
 				if RollPercentage(COMBAT_CHANCE) or self.eventsCreated < 3 then -- Rolled Combat
 					local combatType = EVENT_TYPE_COMBAT
-
+					if RollPercentage( 25 ) then
+						combatType = EVENT_TYPE_ELITE
+					end
 					if zoneCombatPool[1] == nil then
 						zoneCombatPool = TableToWeightedArray( self.combatPool[zoneName] )
 					end
 					
 					local combatPick = zoneCombatPool[RandomInt(1, #zoneCombatPool)]
-					raidContent = BaseEvent(zoneName, combatType, combatPick )
+					raidContent = BaseEvent(zoneName, combatType, combatPick, rewardKey )
 					for id = #zoneCombatPool, 1, -1 do
 						local event = zoneCombatPool[id]
 						if event == combatPick then
@@ -254,30 +278,42 @@ function RoundManager:ConstructRaids(zoneName)
 						end
 					end
 				end
+				table.insert( raidPackage, raidContent )
 			end
-			table.insert( raid, raidContent )
+			table.insert( raid, raidPackage )
 		end
 		
 		if zoneBossPool[1] == nil then
 			zoneBossPool = TableToWeightedArray( self.bossPool[zoneName] )
 		end
+		local bossPicks = {}
 		local bossPick = zoneBossPool[RandomInt(1, #zoneBossPool)]
-		RoundManager:RemoveEventFromPool(bossPick, "boss")
+		local bossEvent = BaseEvent(zoneName, EVENT_TYPE_BOSS, bossPick )
+		table.insert( bossPicks, bossEvent )
 		for id = #zoneBossPool, 1, -1 do
 			local event = zoneBossPool[id]
 			if event == bossPick then
 				table.remove( zoneBossPool, id )
 			end
 		end
+		local bossPick2 = zoneBossPool[RandomInt(1, #zoneBossPool)]
+		local bossEvent2 = BaseEvent(zoneName, EVENT_TYPE_BOSS, bossPick2 )
+		table.insert( bossPicks, bossEvent2 )
+		for id = #zoneBossPool, 1, -1 do
+			local event = zoneBossPool[id]
+			if event == bossPick2 then
+				table.remove( zoneBossPool, id )
+			end
+		end
 		self.eventsCreated = self.eventsCreated + 1
 		
-		table.insert( raid, BaseEvent(zoneName, EVENT_TYPE_BOSS, bossPick ) )
+		table.insert( raid, bossPicks )
 		table.insert( self.zones[zoneName], raid )
 	end
 	-- Final Boss bruh
 	if zoneName == "Elysium" then 
 		local finalBoss = BaseEvent(zoneName, EVENT_TYPE_BOSS, "elysium_boss_apotheosis" )
-		table.insert( self.zones[zoneName][#self.zones[zoneName]], finalBoss )
+		table.insert( self.zones[zoneName][#self.zones[zoneName]], {finalBoss} )
 	end
 end
 
@@ -294,10 +330,6 @@ end
 function RoundManager:StartGame()
 	self.currentZone = POSSIBLE_ZONES[1]
 	table.remove(POSSIBLE_ZONES, 1)
-	if self.zones[self.currentZone][1] then
-		local boss = self.zones[self.currentZone][1][#self.zones[self.currentZone][1]]
-		CustomGameEventManager:Send_ServerToAllClients( "updateQuestBoss", { bossName = boss:GetEventName() } ) 
-	end
 	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
 		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS and PlayerResource:IsValidPlayerID( nPlayerID ) then
 			if PlayerResource:HasSelectedHero( nPlayerID ) then
@@ -309,9 +341,13 @@ function RoundManager:StartGame()
 		end
 	end
 	self.raidsFinished = (self.raidsFinished or 0) + 1
-	
+	if self.prepTimeTimer then 
+		Timers:RemoveTimer( self.prepTimeTimer )
+		self.prepTimeTimer = nil
+	end
 	local lastSpawns = RoundManager.boundingBox
 	RoundManager:LoadSpawns()
+	CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_new_zone_started", { zone = self.currentZone, tier = self:GetCurrentRaidTier() } )
 	for _, hero in ipairs(HeroList:GetRealHeroes() ) do
 		hero.statsDamageTaken = 0
 		hero.statsDamageDealt = 0
@@ -326,78 +362,66 @@ function RoundManager:StartGame()
 	RoundManager:StartPrepTime()
 end
 
-function RoundManager:StartPrepTime(fPrep)
+function RoundManager:StartPrepTime(fPrep, forceSet)
 	local PrepCatch = function( ... )
 		self.lastPrepTimeDuration = fPrep
-		if self.zones[self.currentZone] and self.zones[self.currentZone][1] and not self.prepTimeTimer then
-			local event = RoundManager:GetCurrentEvent()
-			event._playerChoices = {}
-			local foes = {}
+		if forceSet then
+			if self.prepTimeTimer then Timers:RemoveTimer( self.prepTimeTimer ) end
+			self.prepTimeTimer = nil
+			CustomGameEventManager:Send_ServerToAllClients("bh_end_prep_time", {})
+		end
+		if self.zones[self.currentZone] and self.zones[self.currentZone][1] and self.zones[self.currentZone][1][1] and not self.prepTimeTimer then
+			self.currentlyActiveEvent = nil
 			local events = {}
-			for enemy, data in pairs(event:GetEnemiesToSpawn()) do
-				local foe = {}
-				foe.name = enemy
-				foe.amount = (data.Amount or 0) + (data.RaidBonus or 0) * (RoundManager:GetCurrentRaidTier() - 1)
-				foe.abilities = {}
-				local unitKV = GameRules.UnitKV[enemy]
-				if unitKV then
-					for i = 1, 25 do
-						local abilityName = unitKV["Ability"..i]
-						if abilityName then
-							table.insert( foe.abilities, abilityName )
+			self.votedToSkipPrep = {}
+			for id, event in pairs( self.zones[self.currentZone][1][1] ) do
+				event._playerChoices = {}
+				local foes = {}
+				for enemy, data in pairs(event:GetEnemiesToSpawn()) do
+					local foe = {}
+					foe.name = enemy
+					foe.amount = (data.Amount or 0) + (data.RaidBonus or 0) * (RoundManager:GetCurrentRaidTier() - 1)
+					foe.abilities = {}
+					local unitKV = GameRules.UnitKV[enemy]
+					if unitKV then
+						for i = 1, 25 do
+							local abilityName = unitKV["Ability"..i]
+							if abilityName then
+								table.insert( foe.abilities, abilityName )
+							end
 						end
 					end
+					table.insert( foes, foe )
 				end
-				table.insert( foes, foe )
+				local maskedEventName = event:GetEventName()
+				if event:GetEventType() == EVENT_TYPE_EVENT then
+					maskedEventName = string.lower(self.currentZone).."_random_event"
+				end
+				local modifiersToSend = event:ChampionSpawnModifiers()
+				self.votedToSkipPrep[id] = {}
+				local eventToSend = {foes = foes, modifiers = modifiersToSend, eventName = maskedEventName, eventType = event:GetEventType(), reward = event:GetEventRewardType()}
+				table.insert( events, eventToSend )
 			end
-			local maskedEventName = event:GetEventName()
-			if event:GetEventType() == EVENT_TYPE_EVENT then
-				maskedEventName = string.lower(self.currentZone).."_random_event"
-			end
-			local modifiersToSend = event:ChampionSpawnModifiers()
-			if RoundManager:GetEventsFinished() < 3 then
-				modifiersToSend = {}
-			end
-			local eventToSend = {foes = foes, modifiers = modifiersToSend, eventName = maskedEventName, eventType = event:GetEventType(), reward = event:GetEventRewardType()}
-			table.insert( events, eventToSend )
 			CustomGameEventManager:Send_ServerToAllClients("bh_start_prep_time", {events = events})
-			
 			for _, hero in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_FRIENDLY}) ) do
 				if hero:IsRealHero() then
 					PlayerResource:SetCustomBuybackCost(hero:GetPlayerID(), 100 + RoundManager:GetEventsFinished() * 25)
 				end
 				hero:AddNewModifier( hero, nil, "modifier_restoration_disable", {} )
 			end
-			ResolveNPCPositions( event:GetHeroSpawnPosition(), 150 )
+			ResolveNPCPositions( RoundManager:GetHeroSpawnPosition(), 150 )
 			for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 				hero:SetRespawnPosition( GetGroundPosition(hero:GetAbsOrigin(), hero) )
 			end
 			self.prepTimer = fPrep or PREP_TIME
-			local textFormatting = RAIDS_PER_ZONE - #self.zones[self.currentZone] + 1
-			local romanVersion = ""
-			if textFormatting < 4 then
-				for i = 1, textFormatting do
-					romanVersion = romanVersion.."I"
-				end
-			elseif textFormatting == 4 then
-				romanVersion = "IV"
-			else
-				textFormatting = textFormatting - 5
-				romanVersion = "V"
-				if textFormatting > 0 then
-					for i = textFormatting, 3 do
-						romanVersion = romanVersion.."I"
-					end
-				end
-			end
-			local ascensionText
-			if RoundManager:GetAscensions() > 0 then
-				ascensionText = "A" .. RoundManager:GetAscensions()
-			end
-			CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { eventName = RoundManager:GetCurrentEventName(), roundText = (RoundManager:GetEventsFinished()+1).. ": "..self.currentZone.." "..romanVersion, ascensionText = ascensionText} )
+			self.maximumAllotedPrepTime = self.prepTimer
+			
+			CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) + self.prepTimer } )
+			CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_rounds", { rounds = self:GetEventsFinished(), round_name = "interlude", ascensions = RoundManager:GetAscensions() } )
+			
 			self.prepTimeTimer = Timers:CreateTimer(1, function()
 				self.prepTimer = self.prepTimer - 1
-				CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(self.prepTimer + 0.5) } )
+				self.maximumAllotedPrepTime = self.maximumAllotedPrepTime - 1
 				if self.prepTimer <= 0 then
 					RoundManager:EndPrepTime()
 				else
@@ -416,14 +440,16 @@ function RoundManager:EndPrepTime(bReset)
 	local EndPrepCatch = function( ... )
 		if self.prepTimeTimer then Timers:RemoveTimer( self.prepTimeTimer ) end
 		self.prepTimeTimer = nil
-		
 		self.votedToSkipPrep = {}
 		CustomGameEventManager:Send_ServerToAllClients("bh_end_prep_time", {})
 		
 		for _, hero in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_FRIENDLY}) ) do
 			hero:RemoveModifierByName( "modifier_restoration_disable" )
 		end
-		
+		if not self:GetCurrentEvent() then
+			local eventChoices = self.zones[self.currentZone][1][1]
+			self.currentlyActiveEvent = eventChoices[RandomInt(1, #eventChoices)]
+		end
 		if not bReset then
 			RoundManager:StartEvent()
 		end
@@ -436,7 +462,7 @@ end
 
 function RoundManager:StartEvent()
 	local StartEventCatch = function( ... )
-		GameRules:RefreshPlayers( GameRules:GetGameDifficulty() >= 3, self.lastPrepTimeDuration ) 
+		GameRules:RefreshPlayers( false, self.lastPrepTimeDuration ) 
 		EmitGlobalSound("Round.Start")
 		
 		local playerData = {}
@@ -446,11 +472,14 @@ function RoundManager:StartEvent()
 			end
 		end
 		CustomGameEventManager:Send_ServerToAllClients( "player_update_stats", playerData )
-		if self.zones[self.currentZone] and self.zones[self.currentZone][1] and self.zones[self.currentZone][1][1] then
+		if RoundManager:GetCurrentEvent() then
 			local event = RoundManager:GetCurrentEvent()
 			event.eventHasStarted = true
 			event.eventEnded = false
 			event:StartEvent()
+			
+			CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) + (event.timeRemaining or 0) } )
+			CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_rounds", { rounds = self:GetEventsFinished(), round_name = event:GetEventName() } )
 			
 			EventManager:FireEvent("boss_hunters_event_started", {eventType = event:GetEventType()})
 			if event:GetEventType() == EVENT_TYPE_BOSS then
@@ -477,7 +506,7 @@ function RoundManager:EndEvent(bWonRound)
 	local EndEventCatch = function(  )
 		GameRules:RefreshPlayers( GameRules:GetGameDifficulty() >= 3 and bWonRound ) 
 		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
-		local event = self.zones[self.currentZone][1][1]
+		local event = self:GetCurrentEvent()
 		event.eventEnded = true
 		event.eventHasStarted = false
 		if event.eventHandler then Timers:RemoveTimer( event.eventHandler ) end
@@ -496,9 +525,9 @@ function RoundManager:EndEvent(bWonRound)
 				for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 					hero:AddGold( gold )
 				end
-				GameRules._lives = GameRules._lives - 1
 				event:HandoutRewards(false)
 				EmitGlobalSound("Round.Lost")
+				return RoundManager:GameIsFinished(false)
 			end
 		end
 		
@@ -507,7 +536,7 @@ function RoundManager:EndEvent(bWonRound)
 			unit:SetThreat( 0 )
 		end
 		
-		self.freezePreparationTime = 3
+		self.freezePreparationTime = 3.5
 		Timers:CreateTimer(function()
 			for _, unit in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_ENEMY, flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_DEAD + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD}) ) do
 				if unit:GetTeam() == DOTA_TEAM_BADGUYS then
@@ -534,9 +563,9 @@ function RoundManager:EndEvent(bWonRound)
 			-- fTime = 5
 		-- end
 		CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
-		if GameRules._lives == 0 then
-			return RoundManager:GameIsFinished(false)
-		end
+		-- if GameRules._lives == 0 then
+			-- return RoundManager:GameIsFinished(false)
+		-- end
 		self:StartPrepTime(fTime)
 	end
 	status, err, ret = xpcall(EndEventCatch, debug.traceback, self, bWonRound )
@@ -592,15 +621,12 @@ function RoundManager:RaidIsFinished()
 		if self.currentZone == nil then
 			return
 		end
-		if self.zones[self.currentZone] and self.zones[self.currentZone][1] then
-			local boss = self.zones[self.currentZone][1][#self.zones[self.currentZone][1]]
-			CustomGameEventManager:Send_ServerToAllClients( "updateQuestBoss", { bossName = boss:GetEventName() } )
-		end
 		
 		self.raidsFinished = (self.raidsFinished or 0) + 1
 		
 		local lastSpawns = RoundManager.boundingBox
 		RoundManager:LoadSpawns()
+		CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_new_zone_started", { zone = self.currentZone, tier = self:GetCurrentRaidTier() } )
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			hero.statsDamageTaken = 0
 			hero.statsDamageDealt = 0
@@ -668,9 +694,9 @@ function RoundManager:GameIsFinished(bWon)
 			self.votedToNG = 0
 			self.votedNoNg = 0
 			CustomGameEventManager:Send_ServerToAllClients("bh_start_ng_vote", {ascLevel = RoundManager:GetAscensions() + 1})
+			CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) + self.prepTimer } )
 			GameRules.Winner = DOTA_TEAM_GOODGUYS
 			Timers(1, function()
-				CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(self.prepTimer + 0.5) } )
 				if self.prepTimer <= 0 then
 					if not self.ng then
 						GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
@@ -791,7 +817,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
 	
-	local HPMultiplierFunc = function( events, raids, zones ) return (0.2 + (events * 0.065)) * ( 1 + raids * 0.1 ) * ( 1 + zones * 0.1 ) end
+	local HPMultiplierFunc = function( events, raids, zones ) return (0.2 + (events * 0.065)) * ( 1 + raids * 0.1 ) * ( 1 + zones * 0.12 ) end
 	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.25 + (events * 0.05)) * ( 1 + raids * 0.035) * ( 1 + zones * 0.025 ) end
 	
 	local effPlayerHPMult =  HPMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
@@ -801,7 +827,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	maxPlayerHPMult = HPMultiplierFunc( ( EVENTS_PER_RAID + 1 ) * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
 	
 	effPlayerHPMult = math.min( effPlayerHPMult, maxPlayerHPMult )
-	effPlayerHPMult = effPlayerHPMult * ( 1 + RoundManager:GetAscensions() * 0.40 )  * (1 + effective_multiplier * playerHPMultiplier )
+	effPlayerHPMult = effPlayerHPMult * ( 1 + RoundManager:GetAscensions() * 0.40 )  * (1 + effective_multiplier * playerHPMultiplier + effective_multiplier / 10 )
 
 	maxPlayerDMGMult = DMGMultiplierFunc( ( EVENTS_PER_RAID + 1 ) * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
 	effPlayerDMGMult = math.min( effPlayerDMGMult, maxPlayerDMGMult )
@@ -877,8 +903,10 @@ end
 function RoundManager:PrecacheRounds(context)
 	for zone, raids in pairs( self.zones ) do
 		for _, raid in pairs( raids ) do
-			for _, event in pairs(raid) do
-				event:PrecacheUnits(context)
+			for _, eventChoices in pairs(raid) do
+				for _, event in pairs(eventChoices) do
+					event:PrecacheUnits(context)
+				end
 			end
 		end
 	end
@@ -887,9 +915,7 @@ end
 --- UTILITY FUNCTIONS
 
 function RoundManager:GetCurrentEvent()
-	if self.currentZone and self.zones and self.zones[self.currentZone] and self.zones[self.currentZone][1] and self.zones[self.currentZone][1][1] then
-		return self.zones[self.currentZone][1][1]
-	end
+	return self.currentlyActiveEvent
 end
 
 function RoundManager:PickRandomSpawn()
@@ -924,7 +950,7 @@ function RoundManager:GetAscensions()
 end
 
 function RoundManager:GetCurrentEventName()
-	return self.zones[self.currentZone][1][1]:GetEventName()
+	return self:GetCurrentEvent():GetEventName()
 end
 
 function RoundManager:GetCurrentZone()

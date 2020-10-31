@@ -19,34 +19,48 @@ modifier_bristleback_yer_mum = class({})
 LinkLuaModifier("modifier_bristleback_yer_mum", "heroes/hero_bristleback/bristleback_yer_mum", 0)
 
 function modifier_bristleback_yer_mum:OnCreated()
-	self.chance = self:GetTalentSpecialValueFor("reduction_chance")
-	self.reduction = self:GetTalentSpecialValueFor("damage_reduction")
-	self.amp = self:GetCaster():FindTalentValue("special_bonus_unique_bristleback_yer_mum_2")
-	self:GetAbility():StartDelayedCooldown()
+	self:OnRefresh()
 end
 
 function modifier_bristleback_yer_mum:OnRefresh()
-	self.chance = self:GetTalentSpecialValueFor("reduction_chance")
+	self.attackspeed = self:GetTalentSpecialValueFor("attackspeed_increase")
 	self.reduction = self:GetTalentSpecialValueFor("damage_reduction")
 	self.amp = self:GetCaster():FindTalentValue("special_bonus_unique_bristleback_yer_mum_2")
-	self:GetAbility():StartDelayedCooldown()
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_bristleback_yer_mum_1")
+	if self.talent1 then
+		self.lifesteal = self:GetCaster():FindTalentValue("special_bonus_unique_bristleback_yer_mum_1")
+		self:GetParent():HookInModifier("GetModifierLifestealTargetBonus", self )
+	end
 end
 
 function modifier_bristleback_yer_mum:OnDestroy()
-	self:GetAbility():EndDelayedCooldown()
+	if self.talent1 then
+		self:GetParent():HookOutModifier("GetModifierLifestealTargetBonus", self )
+	end
+end
+
+function modifier_bristleback_yer_mum:CheckState()
+	return {[MODIFIER_STATE_SILENCED] = true}
 end
 
 function modifier_bristleback_yer_mum:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE, 
-			MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+	return { MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE }
 end
 
-function modifier_bristleback_yer_mum:GetModifierTotalDamageOutgoing_Percentage(params)
-	if self:RollPRNG(self.chance) then return self.reduction end
+function modifier_bristleback_yer_mum:GetModifierAttackSpeedBonus_Constant(params)
+	return self.attackspeed
+end
+
+function modifier_bristleback_yer_mum:GetModifierBaseDamageOutgoing_Percentage(params)
+	return self.reduction
 end
 
 function modifier_bristleback_yer_mum:GetModifierTotalDamageOutgoing_Percentage(params)
 	return self.amp
+end
+
+function modifier_bristleback_yer_mum:GetModifierLifestealTargetBonus(params)
+	return self.lifesteal
 end
 
 function modifier_bristleback_yer_mum:GetTauntTarget()

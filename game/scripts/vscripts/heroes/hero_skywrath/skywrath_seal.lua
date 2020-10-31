@@ -28,12 +28,19 @@ end
 
 modifier_skywrath_seal = class({})
 function modifier_skywrath_seal:OnCreated(table)
+	self:OnRefresh()
 	if IsServer() then
 		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_debuff.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetCaster())
    		ParticleManager:SetParticleControlEnt(self.nfx, 0, self:GetParent(), PATTACH_OVERHEAD_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
    		ParticleManager:SetParticleControlEnt(self.nfx, 1, self:GetParent(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
 		self:GetAbility():StartDelayedCooldown()
 	end
+end
+
+function modifier_skywrath_seal:OnRefresh()
+	self.mr = self:GetTalentSpecialValueFor("mr_reduc")
+	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_skywrath_seal_2")
+	self.talent2Lifesteal = self:GetCaster():FindTalentValue("special_bonus_unique_skywrath_seal_2") / 100
 end
 
 function modifier_skywrath_seal:OnRemoved()
@@ -49,12 +56,22 @@ function modifier_skywrath_seal:CheckState()
 end
 
 function modifier_skywrath_seal:DeclareFunctions()
-    funcs = {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
+	local funcs = {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
+	if self:GetCaster():HasTalent("special_bonus_unique_skywrath_seal_2") then
+		table.insert( funcs, MODIFIER_EVENT_ON_TAKEDAMAGE )
+	end
     return funcs
 end
 
 function modifier_skywrath_seal:GetModifierMagicalResistanceBonus()
-    return self:GetTalentSpecialValueFor("mr_reduc")
+    return self.mr
+end
+
+function modifier_skywrath_seal:OnTakeDamage(params)
+	if params.unit == self:GetParent() then
+		local heal = params.damage * self.talent2Lifesteal
+		self:GetCaster():HealEvent( heal, self:GetAbility(), self:GetCaster(), {heal_type = HEAL_TYPE_LIFESTEAL} )
+	end
 end
 
 function modifier_skywrath_seal:IsDebuff()

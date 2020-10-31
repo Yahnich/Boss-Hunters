@@ -36,16 +36,6 @@ end
 
 modifier_oracle_promise = class({})
 function modifier_oracle_promise:OnCreated(table)
-	self.invs = 0 
-	self.state = {}
-
-	if self:GetCaster():HasTalent("special_bonus_unique_oracle_promise_1") then
-		self.invs = 1
-		self.state = {[MODIFIER_STATE_INVISIBLE] = true}
-		self:GetParent():Stop()
-		self:GetParent():SetThreat(0)
-	end
-
 	if IsServer() then
 		self.damage = 0
 		self.heal = 0
@@ -58,31 +48,42 @@ function modifier_oracle_promise:OnCreated(table)
 					ParticleManager:SetParticleControlEnt(nfx, 1, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
 		self:AttachEffect(nfx)
 	end
+	self:OnRefresh()
 end
 
 function modifier_oracle_promise:OnRefresh(table)
+	local caster = self:GetCaster()
 	self.invs = 0 
+	self.heal_amp = 1 + (self:GetTalentSpecialValueFor("heal_amp"))/100
+	self.damage_amp = 1 + (self:GetTalentSpecialValueFor("damage_amp"))/100
 	self.state = {}
 
-	if self:GetCaster():HasTalent("special_bonus_unique_oracle_promise_1") then
-		self.invs = 1
-		self.state = {[MODIFIER_STATE_INVISIBLE] = true}
-		self:GetParent():Stop()
-		self:GetParent():SetThreat(0)
-	end
-
-	if IsServer() then
-		self.damage = 0
-		self.heal = 0
+	if caster:IsSameTeam( self:GetParent() ) then
+		if self:GetCaster():HasTalent("special_bonus_unique_oracle_promise_1") then
+			self.invs = 1
+			self.state = {[MODIFIER_STATE_INVISIBLE] = true}
+			self:GetParent():Stop()
+			self:GetParent():SetThreat(0)
+		end
+		if IsServer() then
+			local pactmaker = caster:FindAbilityByName("oracle_pactmaker")
+			if pactmaker and pactmaker:IsCooldownReady() and not caster:PassivesDisabled() then
+				pactmaker:SetCooldown()
+				self.damage_amp = 1
+			end
+		end
+	elseif IsServer() then
+		local pactbreaker = caster:FindAbilityByName("oracle_pactbreaker")
+		if pactbreaker and pactbreaker:IsCooldownReady() and not caster:PassivesDisabled() then
+			pactbreaker:SetCooldown()
+			self.heal_amp = 1
+		end
 	end
 end
 
 function modifier_oracle_promise:DeclareFunctions()
-	local funcs = { MODIFIER_EVENT_ON_TAKEDAMAGE,
-					MODIFIER_EVENT_ON_HEAL_RECEIVED,
-					MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL,
-					MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
-					MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE,
+	local funcs = { MODIFIER_EVENT_ON_HEAL_RECEIVED,
+					MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 					MODIFIER_PROPERTY_DISABLE_HEALING,
 					MODIFIER_PROPERTY_INVISIBILITY_LEVEL}
 	return funcs
@@ -92,32 +93,17 @@ function modifier_oracle_promise:CheckState()
 	return self.state
 end
 
-function modifier_oracle_promise:GetAbsoluteNoDamagePhysical()
-	return 1
-end
-
-function modifier_oracle_promise:GetAbsoluteNoDamagePhysical()
-	return 1
-end
-
-function modifier_oracle_promise:GetAbsoluteNoDamageMagical()
-	return 1
-end
-
-function modifier_oracle_promise:GetAbsoluteNoDamagePure()
-	return 1
-end
-
-function modifier_oracle_promise:OnTakeDamage(params)
+function modifier_oracle_promise:GetModifierIncomingDamage_Percentage(params)
+	if params.damage < 0 then return end
 	if IsServer() then
 		local parent = self:GetParent()
-		local unit = params.unit
-
+		local unit = params.target
+		
 		if unit == parent then
-			self.damage = self.damage + params.damage
-			self.heal = self.heal - params.damage
+			self.damage = self.damage + params.damage * self.damage_amp
 		end
 	end
+	return -999
 end
 
 function modifier_oracle_promise:OnHealReceived(params)
@@ -126,7 +112,7 @@ function modifier_oracle_promise:OnHealReceived(params)
 		local unit = params.unit
 
 		if unit == parent then
-			self.heal = self.heal + params.gain
+			self.heal = self.heal + params.gain * self.heal_amp
 		end
 	end
 end
@@ -151,7 +137,7 @@ function modifier_oracle_promise:OnRemoved()
 						ParticleManager:SetParticleControlEnt(nfx, 0, self:GetParent(), PATTACH_ABSORIGIN, "attach_hitloc", parent:GetAbsOrigin(), true)
 						ParticleManager:ReleaseParticleIndex(nfx)
 
-			parent:HealEvent(self.heal, self:GetAbility(), caster, false)
+			parent:HealEvent(self.heal - self.damage, self:GetAbility(), caster, false)
 		else
 			EmitSoundOn("Hero_Oracle.FalsePromise.Damaged", parent)
 			
@@ -159,7 +145,7 @@ function modifier_oracle_promise:OnRemoved()
 						ParticleManager:SetParticleControlEnt(nfx, 0, self:GetParent(), PATTACH_ABSORIGIN, "attach_hitloc", parent:GetAbsOrigin(), true)
 						ParticleManager:ReleaseParticleIndex(nfx)
 
-			self:GetAbility():DealDamage(caster, parent, self.damage, {damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS}, OVERHEAD_ALERT_DAMAGE)
+			self:GetAbility():DealDamage(caster, parent, self.damage - self.heal, {damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS}, OVERHEAD_ALERT_DAMAGE)
 		end
 
 		self:GetAbility():EndDelayedCooldown()

@@ -1,6 +1,6 @@
 itemAuraBaseClass = class(persistentModifier)
 
-function itemAuraBaseClass:SetupRuneSystem(modifier)
+function itemAuraBaseClass:SetupRuneSystem(slotModifier)
 	-- find old modifier, -1 (slot unassigned) and not current item
 	for _,modifier in ipairs( self:GetParent():FindAllModifiersByName( self:GetName() ) ) do
 		ability = modifier:GetAbility()
@@ -26,14 +26,16 @@ function itemAuraBaseClass:SetupRuneSystem(modifier)
 	end
 	for func, result in pairs( modFuncs ) do
 		-- print( func, result, "end result" )
-		self[func] = function() return result * (modifier or 100)/100 end
+		self[func] = function() return result * (slotModifier or 100)/100 end
 	end
 	self:StoreRunesIntoModifier()
 end
 
 function itemAuraBaseClass:StoreRunesIntoModifier(data)
-	self:GetAbility().itemData = data or self:GetAbility().itemData or self.itemData or {}
-	self.itemData = table.copy( self:GetAbility().itemData )
+	if self:GetAbility() then
+		self:GetAbility().itemData = data or self:GetAbility().itemData or self.itemData or {}
+		self.itemData = table.copy( self:GetAbility().itemData )
+	end
 end
 
 function itemAuraBaseClass:OnCreatedSpecific()
@@ -102,10 +104,14 @@ function itemAuraBaseClass:GetDefaultFunctions()
 end 
 
 function itemAuraBaseClass:AddCustomTransmitterData( )
-	return
-	{
-		itemData = self:GetAbility().itemData
-	}
+	if self:GetAbility() then
+		return
+		{
+			itemData = self:GetAbility().itemData
+		}
+	else
+		self:Destroy()
+	end
 end
 
 --------------------------------------------------------------------------------

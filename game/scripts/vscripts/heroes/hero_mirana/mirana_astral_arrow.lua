@@ -8,12 +8,6 @@ function mirana_astral_arrow:IsHiddenWhenStolen()
     return false
 end
 
-function mirana_astral_arrow:GetCooldown(iLvl)
-    local cooldown = self.BaseClass.GetCooldown(self, iLvl)
-    if self:GetCaster():HasTalent("special_bonus_unique_mirana_astral_arrow_2") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_mirana_astral_arrow_2") end
-    return cooldown
-end
-
 function mirana_astral_arrow:OnSpellStart()
     local caster = self:GetCaster()
     local point = self:GetCursorPosition()
@@ -24,9 +18,9 @@ function mirana_astral_arrow:OnSpellStart()
 
     EmitSoundOn("Hero_Mirana.ArrowCast", caster)
 
-    self:FireLinearProjectile("particles/econ/items/mirana/mirana_crescent_arrow/mirana_spell_crescent_arrow.vpcf", direction*speed, self:GetTrueCastRange(), 96, {}, false, true, 500)
+    self:FireLinearProjectile("particles/units/heroes/hero_mirana/mirana_spell_arrow.vpcf", direction*speed, self:GetTrueCastRange(), 96, {}, false, true, 500)
     
-    if caster:HasTalent("special_bonus_unique_mirana_astral_arrow_1") then
+    if caster:HasScepter() then
         local spawn_point = casterPos + direction * self:GetTrueCastRange() 
 
         -- Set QAngles
@@ -41,21 +35,40 @@ function mirana_astral_arrow:OnSpellStart()
         local right_spawn_point = RotatePosition(caster:GetAbsOrigin(), right_QAngle, spawn_point)
         local right_direction = (right_spawn_point - caster:GetAbsOrigin()):Normalized()
 
-        self:FireLinearProjectile("particles/econ/items/mirana/mirana_crescent_arrow/mirana_spell_crescent_arrow.vpcf", right_direction*speed, self:GetTrueCastRange(), 96, {}, false, true, 500)
-        self:FireLinearProjectile("particles/econ/items/mirana/mirana_crescent_arrow/mirana_spell_crescent_arrow.vpcf", left_direction*speed, self:GetTrueCastRange(), 96, {}, false, true, 500)
+        self:FireLinearProjectile("particles/units/heroes/hero_mirana/mirana_spell_arrow.vpcf", right_direction*speed, self:GetTrueCastRange(), 96, {}, false, true, 500)
+        self:FireLinearProjectile("particles/units/heroes/hero_mirana/mirana_spell_arrow.vpcf", left_direction*speed, self:GetTrueCastRange(), 96, {}, false, true, 500)
     end
+	if caster:HasTalent("special_bonus_unique_mirana_astral_arrow_3") then
+		caster:AddNewModifier( caster, self, "modifier_mirana_astral_arrow_talent", {} )
+	end
 end
 
 function mirana_astral_arrow:OnProjectileHit(hTarget, vLocation)
     local caster = self:GetCaster()
     local damage = self:GetTalentSpecialValueFor("damage")
-    local agi_damage = self:GetTalentSpecialValueFor("agi_damage")/100
-
-    damage = damage + caster:GetAgility() * agi_damage
     if hTarget ~= nil and not hTarget:TriggerSpellAbsorb(self) then
-        --EmitSoundOn("Hero_Mirana.ArrowImpact", hTarget)
+        if not hTarget:IsMinion() then EmitSoundOn("Hero_Mirana.ArrowImpact", hTarget) end
 
         self:DealDamage(caster, hTarget, damage, {}, 0)
         self:Stun(hTarget, self:GetTalentSpecialValueFor("duration"), false)
+		return not hTarget:IsMinion()
     end
+end
+
+modifier_mirana_astral_arrow_talent = class({})
+LinkLuaModifier("modifier_mirana_astral_arrow_talent", "heroes/hero_mirana/mirana_astral_arrow", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_mirana_astral_arrow_talent:OnCreated()
+	self.damage_bonus = self:GetCaster():FindTalentValue("special_bonus_unique_mirana_astral_arrow_3")
+end
+
+function modifier_mirana_astral_arrow_talent:DeclareFunctions()
+	return {MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE}
+end
+
+function modifier_mirana_astral_arrow_talent:GetModifierDamageOutgoing_Percentage(params)
+	if IsServer() and params.attacker then
+		self:Destroy()
+	end
+	return self.damage_bonus
 end

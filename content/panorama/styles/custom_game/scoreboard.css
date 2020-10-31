@@ -1,0 +1,642 @@
+#CustomScoreboard
+{
+	background-image: url("s2r://panorama/images/events/aghanim/aghanims__icon_bg_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: right;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #48495C ), color-stop(0.5, #30313D ), to( #1B1B21 ) );
+	border-top: 1px solid #071644;
+	border-right: 1px solid #071644;
+	border-bottom: 1px solid #071644;
+
+	
+	transition-property: box-shadow, height;
+	transition-duration: .36s, .18s;
+	transition-delay: .16s, 0s;
+	transition-timing-function: ease-in-out;
+	box-shadow: #000000f5 -4px -4px 8px 8px;
+	min-height: 295px;
+	width: 100%;
+
+	flow-children: down;
+}
+
+.FlyoutScoreboardRoot
+{
+    transform: translatex( -1250px );
+    transition-property: transform;
+    transition-duration: 0.1s;
+	width: 840px;
+
+	horizontal-align: left;
+	margin-top: 140px;
+}
+
+#PlayerContainer
+{
+	flow-children: down;
+}
+
+.FlyoutScoreboardRoot.flyout_scoreboard_visible
+{
+    transform: translatey( 0px );
+}
+
+.FlyoutScoreboardRoot.round_over
+{
+    transform: translatey( 0px );
+}
+
+.AghanimLabelHeader
+{
+	horizontal-align: left;
+	text-align: left;
+	margin: 8px;
+	margin-left: 24px;
+	margin-bottom: 0;
+}
+
+#PlayerScoreHeader
+{
+	margin-left: 199px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	width: 1095px;
+}
+
+.LabelSmall
+{
+	width: 136px;
+	text-align: left;
+	margin-right: 8px;
+}
+
+.Mute
+{
+	width: 104px;
+}
+
+.Header
+{
+}
+
+.PlayerRow
+{
+	height: 48px;
+	width: 100%;
+
+	background-color: #00000076;
+	/* border-top: 1px solid #264a57;
+	border-bottom: 1px solid #14282f; */
+	margin-bottom: 2px;
+}
+
+
+.PlayerHeroImage
+{
+	vertical-align: center;
+	horizontal-align: left;
+	margin-left: 4px;
+	height: 32px;
+	width: 32px;
+}
+
+.PlayerNamesContainer
+{
+	width: 159px;
+	flow-children: down;
+}
+
+.PlayerName
+{
+	color: white;
+    font-weight: normal;
+    text-shadow: 1px 1px 2px 2.0 #00000011;
+
+    font-family: Radiance,FZKai-Z03,TH Sarabun New,YDYGO 540;
+    font-size: 20px;
+    text-overflow: clip;
+    margin-left: 5px;
+    margin-top: 4px;
+}
+
+.HeroName
+{
+	font-size: 14px;
+	font-weight: thin;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+    color: #768598;
+    margin-left: 5px;
+    margin-bottom: 5px;
+	margin-top: -2px;
+}
+
+.ScoreLabel
+{
+	text-align: left;
+	vertical-align: center;
+	font-size: 20px;
+	font-weight: normal;
+}
+
+.PlayerColor
+{
+	width: 4px;
+	height: 100%;
+
+	background-image: url("s2r://panorama/images/hud/reborn/scoreboard_playerslot_vignette_psd.vtex");
+	background-size: 92% 100%;
+	background-repeat: no-repeat;
+}
+
+
+#CloseButton
+{
+	z-index: 10;
+	horizontal-align: right;
+}
+
+.MuteButtonContainer
+{
+	horizontal-align: center;
+	vertical-align: center;
+	min-width: 84px;
+	height: 32px;
+    background-size: 100%;
+    //background-color: purple; 
+	visibility: visible;
+	opacity: 0.8;
+	margin-right: 64px;
+	margin-left: -32px;
+}
+
+
+.MuteButton
+{
+	horizontal-align: center;
+	vertical-align: center;
+	width: 32px;
+	height: 32px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-image: url("s2r://panorama/images/custom_game/button_audio_on_psd.vtex");
+	visibility: visible;
+	opacity: 0.8;
+}
+
+.MuteButton:hover
+{
+	opacity: 1;
+}
+
+.player_muted .MuteButton
+{
+    background-image: url("s2r://panorama/images/custom_game/button_audio_off_psd.vtex");
+}
+
+.local_player .MuteButton
+{
+	visibility: collapse;
+}
+
+#Player0Rewards,
+#Player1Rewards,
+#Player2Rewards,
+#Player3Rewards
+{
+	flow-children: right;
+
+	vertical-align: center;
+	horizontal-align: left;
+	padding: 0px;
+
+}
+
+.RewardIcon
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: middle;
+	horizontal-align: center;
+	margin-top: 2px;
+	background-image: none;
+}
+
+#AghanimScoreboard .RewardOptionType_REWARD_TYPE_MINOR_STATS_UPGRADE .RewardIcon
+{
+	background-size: cover;
+}
+
+.RewardDescription,
+.RewardName
+{
+	visibility: collapse;
+}
+
+.RewardOptionRarity_0,
+.RewardOptionRarity_1,
+.RewardOptionRarity_2
+{
+	vertical-align: center;
+	width: 45px;
+	height: 45px;
+	padding: 2px;
+	margin-right: 4px;
+}
+
+//Common Rarity
+.RewardOptionRarity_0
+{
+	background-color: gradient( radial, 55% 22%, 0% 0%, 55% 25%, from( #27272b ), to( #19191f ) );
+	border: 2px solid common_rarity_color;	
+	background-repeat: no-repeat;
+}
+
+//Rare Rarity
+.RewardOptionRarity_1
+{
+	background-color: gradient( radial, 55% 22%, 0% 0%, 55% 25%, from( #45251d ), to( #1f100c ) );
+	border: 2px solid elite_rarity_color;
+}
+//Epic Rarity
+.RewardOptionRarity_2
+{
+    background-color: gradient( radial, 55% 22%, 0% 0%, 55% 25%, from( #63124e ), to( #1f0418 ) );
+	border: 2px solid #9266FF;
+}
+
+//
+// Room rewards
+//
+
+#RoomRewardsList
+{
+	flow-children: right;
+}
+
+.RoomRewardsLabel
+{
+	padding-left: 16px;
+	text-transform: uppercase;
+	vertical-align: center;
+	width: 580px;
+}
+
+.RoomReward
+{
+	width: 45px;
+	height: 45px;
+	padding: 4px;
+	margin-right: 4px;
+}
+
+.RoomRewardImage
+{
+	width: 100%;
+	height: 100%;
+	horizontal-align: center;
+	vertical-align: center;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.REWARD_TYPE_GOLD_BAG .RoomRewardImage
+{
+	background-image: url("s2r://panorama/images/events/aghanim/reward_type_gold_icon_png.vtex");
+}
+
+.REWARD_TYPE_GOLD .RoomRewardImage
+{
+	background-image: url("s2r://panorama/images/events/aghanim/reward_type_gold_coin_icon_png.vtex");
+}
+
+.REWARD_TYPE_EXTRA_LIVES .RoomRewardImage
+{
+	background-image: url("s2r://panorama/images/events/aghanim/reward_type_lives_icon_png.vtex");
+}
+
+.REWARD_TYPE_TREASURE .RoomRewardImage
+{
+	background-image: url("s2r://panorama/images/events/aghanim/reward_type_treasure_icon_png.vtex");
+}
+
+//
+// Blessings
+//
+
+#BlessingsIcon
+{
+	background-image: url("s2r://panorama/images/events/aghanim/aghanims_blessings_png.vtex");
+	background-size: cover;
+	background-position: center;
+	width: 32px;
+	height: 32px;
+
+	margin-right: 8px;
+}
+
+.BlessingsContainer
+{
+	margin-top: 8px;
+	flow-children: down;
+	width: 100%;
+}
+
+.ShowBlessingsButton,
+.HideBlessingsButton
+{
+	horizontal-align: left;
+	margin-bottom: 8px;
+
+	background-color: gradient (linear, 0% 0%, 100% 0%, from(#144480ee), color-stop(0.5, #144480ee), to(#14448000 ));
+	border: 0px transparent #fff;
+	box-shadow: 0 0 0 #ffffff00;
+	padding: 8px;
+	padding-right: 64px;
+	padding-left: 12px;
+
+	transition-property: brightness;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in;
+}
+
+.ShowBlessingsButton Label,
+.HideBlessingsButton Label
+
+{
+	font-size: 20px;
+	line-height: 100%;
+	vertical-align: middle;
+	text-align: center;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+
+	color: #DFE9F2;
+
+	text-shadow: 0px 0px 4px #41A0F2;
+}
+
+.ShowBlessingsButton:hover,
+.HideBlessingsButton:hover
+{
+	brightness: 2.0;
+}
+
+.ShowBlessingsButton:active,
+.HideBlessingsButton:active
+{
+	brightness: 0.8;
+}
+
+#BlessingPlayers
+{
+	visibility: collapse;
+	flow-children: down;
+	width: 100%;
+}
+
+.ShowBlessings,
+.HideBlessings
+{
+	flow-children: right;
+}
+
+.BlessingsVisible #BlessingPlayers
+{
+	visibility: visible;
+}
+
+.BlessingsVisible .ShowBlessings
+{
+	visibility: collapse;
+}
+
+.HideBlessings
+{
+	visibility: collapse;
+}
+
+.BlessingsVisible .HideBlessings
+{
+	visibility: visible;
+}
+
+.BlessingRow
+{
+	width:100%;
+	flow-children: right;
+	background-color: #00000076;
+	margin-bottom: 2px;
+}
+
+.BlessingRow .PlayerHeroImage,
+.BlessingRow .PlayerNamesContainer
+{
+	vertical-align: center;
+}
+
+#BlessingsList
+{ 
+	flow-children: right-wrap;
+	max-height: 96px;
+	vertical-align: middle;
+}
+
+.Blessing
+{
+	/* border: 1px solid rgb(235, 214, 138); */
+	img-shadow: 0px 0px 4px #000000;
+
+	width: 48px;
+	height: 48px;
+	//margin: 4px;
+}
+
+#BlessingImage
+{
+	width: 100%;
+	height: 100%;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.blessing_armor_bonus 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_armor_bonus_png.vtex");
+}
+
+.blessing_damage_reflection 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_damage_reflection_png.vtex");
+}
+
+.blessing_bonus_life 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_bonus_life_png.vtex");
+}
+
+.blessing_stat_str,
+.blessing_stat_str_2,
+.blessing_stat_str_3
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_stat_str_png.vtex");
+}
+
+.blessing_stat_agi,
+.blessing_stat_agi_2,
+.blessing_stat_agi_3
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_stat_agi_png.vtex");
+}
+
+.blessing_stat_int,
+.blessing_stat_int_2,
+.blessing_stat_int_3
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_stat_int_png.vtex");
+}
+
+.blessing_death_detonation 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_death_detonation_png.vtex");
+}
+
+.blessing_respawn_time_reduction 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_respawn_time_reduction_png.vtex");
+}
+
+.blessing_respawn_invulnerability 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_respawn_invulnerability_png.vtex");
+}
+
+.blessing_damage_bonus 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_damage_bonus_png.vtex");
+}
+
+.blessing_book_strength 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_book_strength_png.vtex");
+}
+
+.blessing_movement_speed 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_movement_speed_png.vtex");
+}
+
+.blessing_potion_arcanist 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_potion_arcanist_png.vtex");
+}
+
+.blessing_evasion 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_evasion_png.vtex");
+}
+
+.blessing_book_agility 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_book_agility_png.vtex");
+}
+
+.blessing_magic_damage_bonus 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_magic_damage_bonus_png.vtex");
+}
+
+.blessing_magic_resist 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_magic_resist_png.vtex");
+}
+
+.blessing_book_intelligence 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_book_intelligence_png.vtex");
+}
+
+.blessing_gold_start_bonus 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_gold_start_bonus_png.vtex");
+}
+
+.blessing_potion_dragon 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_potion_dragon_png.vtex");
+}
+
+.blessing_potion_shadow_wave 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_potion_shadow_wave_png.vtex");
+}
+
+.blessing_potion_purification 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_potion_purification_png.vtex");
+}
+
+.blessing_potion_health 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_potion_health_png.vtex");
+}
+
+.blessing_potion_torrent 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_potion_torrent_png.vtex");
+}
+
+.blessing_potion_ravage 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_potion_ravage_png.vtex");
+}
+
+.blessing_potion_mana 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_potion_mana_png.vtex");
+}
+
+.blessing_bottle_upgrade  
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_bottle_upgrade_png.vtex");
+}
+
+.blessing_attack_speed 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_attack_speed_png.vtex");
+}
+
+.blessing_mana_boost 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_mana_boost_png.vtex");
+}
+
+.blessing_potion_echo_slam 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_potion_echo_slam_png.vtex");
+}
+
+.blessing_health_boost 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_health_boost_png.vtex");
+}
+
+.blessing_life_steal 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_life_steal_png.vtex");
+}
+
+.blessing_spell_life_steal 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_spell_life_steal_png.vtex");
+}
+
+.blessing_restore_mana 
+{
+	background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_restore_mana_png.vtex");
+}

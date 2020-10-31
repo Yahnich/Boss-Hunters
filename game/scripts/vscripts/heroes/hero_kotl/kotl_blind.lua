@@ -31,9 +31,11 @@ function kotl_blind:OnSpellStart()
     local knockback_duration = self:GetSpecialValueFor("knockback_duration")
     local knockback_distance = self:GetSpecialValueFor("knockback_distance")
     local damage = self:GetSpecialValueFor("damage")
+	local direction = 1
 
     if caster:HasTalent("special_bonus_unique_kotl_blind_1") then
-        knockback_distance = -knockback_distance
+        direction = -1
+		knockback_distance = self:GetSpecialValueFor("knockback_distance") * direction
     end
 
     AddFOWViewer(caster:GetTeam(), point, radius, knockback_duration, true)
@@ -44,7 +46,7 @@ function kotl_blind:OnSpellStart()
     for _,enemy in pairs(enemies) do
 		if not enemy:TriggerSpellAbsorb( self ) then
 			enemy:Blind(miss_rate, self, caster, duration)
-			enemy:ApplyKnockBack(point, knockback_duration, knockback_duration, knockback_distance, 50, caster, self)
+			enemy:ApplyKnockBack(point, knockback_duration, knockback_duration, math.max( CalculateDistance( enemy, point) * direction, knockback_distance ), 50, caster, self)
 			self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		end
     end
@@ -60,11 +62,16 @@ end
 
 modifier_kotl_blind_talent = class({})
 function modifier_kotl_blind_talent:OnCreated(table)
-    self.bonus_accuracy = self:GetCaster():FindTalentValue("special_bonus_unique_kotl_blind_2", "bonus_accuracy")
+    self:OnRefresh()
 end
 
 function modifier_kotl_blind_talent:OnRefresh(table)
-    self.bonus_accuracy = self:GetCaster():FindTalentValue("special_bonus_unique_kotl_blind_2", "bonus_accuracy")
+    self.bonus_accuracy = self:GetSpecialValueFor("miss_rate") * self:GetCaster():FindTalentValue("special_bonus_unique_kotl_blind_2") / 100
+	self:GetParent():HookInModifier("GetModifierBaseCriticalChanceBonus", self)
+end
+
+function modifier_kotl_blind_talent:OnDestroy(table)
+	self:GetParent():HookOutModifier("GetModifierBaseCriticalChanceBonus", self)
 end
 
 function modifier_kotl_blind_talent:DeclareFunctions()
@@ -78,7 +85,7 @@ function modifier_kotl_blind_talent:OnTooltip()
     return self.bonus_accuracy
 end
 
-function modifier_kotl_blind_talent:GetAccuracy()
+function modifier_kotl_blind_talent:GetModifierBaseCriticalChanceBonus()
     return self.bonus_accuracy
 end
 

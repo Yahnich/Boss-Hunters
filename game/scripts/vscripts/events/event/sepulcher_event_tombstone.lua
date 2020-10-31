@@ -153,12 +153,10 @@ local function EndEvent(self, bWon)
 		if self.totemUnit and not self.totemUnit:IsNull() and self.totemUnit:IsAlive() then
 			for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 				hero:AddBlessing("event_buff_tombstone")
+				hero:ModifyLives(1)
 			end
 			reward = 2
 			if self.totemUnit:GetHealth() == self.totemUnit:GetMaxHealth() then
-				GameRules._lives = GameRules._lives + 1
-				GameRules._maxLives = GameRules._maxLives + 1
-				CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
 				reward = 1
 			end
 			self.totemUnit:ForceKill(false)

@@ -9,6 +9,6 @@ function relic_torn_prayer_card:GetModifierIncomingDamage_Percentage(params)
 		self:GetParent():ReduceMana( params.original_damage )
 		return -999
 	elseif not self:GetParent():HasModifier("relic_ritual_candle") then
-		return 50
+		return 30
 	end
 end

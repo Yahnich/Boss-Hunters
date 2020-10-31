@@ -10,12 +10,12 @@ end
 
 function abaddon_aphotic_barrier:GetCooldown(iLvl)
 	local cd = self.BaseClass.GetCooldown(self, iLvl)
-	if self:GetCaster():HasTalent("special_bonus_unique_abaddon_aphotic_barrier_2") then cd = cd + self:GetCaster():FindTalentValue("special_bonus_unique_abaddon_aphotic_barrier_2") end
+	if self:GetCaster():HasTalent("special_bonus_unique_abaddon_aphotic_barrier_3") then cd = cd + self:GetCaster():FindTalentValue("special_bonus_unique_abaddon_aphotic_barrier_3", "cd") end
 	return cd
 end
 
 function abaddon_aphotic_barrier:GetBehavior(iLvl)
-	if self:GetCaster():HasTalent("special_bonus_unique_abaddon_aphotic_barrier_2") then
+	if self:GetCaster():HasTalent("special_bonus_unique_abaddon_aphotic_barrier_3") then
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
 	end
 	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
@@ -43,6 +43,8 @@ LinkLuaModifier("modifier_abaddon_aphotic_barrier", "heroes/hero_abaddon/abaddon
 
 function modifier_abaddon_aphotic_barrier:OnCreated()
 	self.absorb = self:GetTalentSpecialValueFor("damage_absorb")
+	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_abaddon_aphotic_barrier_2")
 	if IsServer() then
 		local nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_abaddon/abaddon_aphotic_shield.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		local sRadius = self:GetParent():GetModelRadius() * 0.6 + 25
@@ -62,7 +64,7 @@ function modifier_abaddon_aphotic_barrier:OnDestroy()
 		local parent = self:GetParent()
 		
 		EmitSoundOn("Hero_Abaddon.AphoticShield.Destroy", parent)
-		local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+		local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.radius)
 		local damage =  self:GetTalentSpecialValueFor("damage_absorb")
 		for _, enemy in ipairs( enemies ) do
 			if not enemy:TriggerSpellAbsorb(self:GetAbility()) then
@@ -79,6 +81,14 @@ end
 function modifier_abaddon_aphotic_barrier:GetModifierIncomingDamage_Percentage(params)
 	if not self:GetParent():HasModifier("modifier_abaddon_borrowed_time_active") and params.damage > 0 then
 		if self.absorb > params.damage then
+			if self.talent2 and not HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION ) then
+				local caster = self:GetCaster()
+				local ability = self:GetAbility()
+				ParticleManager:FireParticle( "particles/units/heroes/hero_abaddon/abaddon_aphotic_shield_explosion_wave.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
+				for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), self.radius ) ) do
+					ability:DealDamage( caster, enemy, params.damage, {damage_type = params.damage_type, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_REFLECTION } )
+				end
+			end
 			self.absorb = self.absorb - params.damage
 			return -999
 		else

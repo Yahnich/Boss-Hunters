@@ -1,0 +1,49 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/scoreboard.css" />
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/hudstyles.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/scoreboard.js" />
+	</scripts>
+	<snippets>
+		<snippet name="PlayerInfoContainer">
+			<Panel hittest="false" class="PlayerRow LeftRightFlow">
+				<Panel hittest="false" id="PlayerColor" class="PlayerColor"/>
+				<DOTAHeroImage hittest="false" id="PlayerHeroImage" class="PlayerHeroImage" heroimagestyle="icon" heroid="55"/>
+				<Panel hittest="false" class="PlayerNamesContainer TopBottomFlow">
+					<Label hittest="false" id="PlayerPlayerName" class="PlayerName" text="Jonathan"/>
+					<Label hittest="false" id="PlayerHeroName" class="HeroName" text="Jakiro"/>
+				</Panel>    
+
+				<Panel class="MuteButtonContainer">
+					<Button id="PlayerMuteButton" class="MuteButton"/>
+				</Panel>
+
+				<Label hittest="false" id="PlayerDealt" class="LabelSmall ScoreLabel" text="0"/>
+				<Label hittest="false" id="PlayerTaken" class="LabelSmall ScoreLabel" text="0"/>
+				<Label hittest="false" id="PlayerHealed" class="LabelSmall ScoreLabel" text="0"/>
+				<Label hittest="false" id="PlayerDeaths" class="LabelSmall ScoreLabel" text="0"/>
+
+				<Panel hittest="false" id="Player0Rewards"/>
+			</Panel>	
+		</snippet>
+	</snippets>
+	<Panel hittest="true" class="FlyoutScoreboardRoot"> 
+		<Button id="CloseButton" class="CloseButton" onactivate="CloseCustomScoreboard();" />
+		<Panel id="CustomScoreboard" onactivate="DummyClickAghanimScoreboard();" >
+			<Label hittest="false" id="ScoreboardHeader" class="AghanimLabelHeader" text="PRE-GAME"/>
+			<Panel hittest="false" id="PlayerContainer" class="TopBottomFlow">
+				<Panel hittest="false" id="PlayerScoreHeader" class="LeftRightFlow">
+					<Label hittest="false" class="LabelSmall Header Mute" text="#DOTA_HUD_Mute"/> 
+					<Label hittest="false" class="LabelSmall Header" text="#DOTA_HUD_DamageDealt"/>
+					<Label hittest="false" class="LabelSmall Header" text="#DOTA_HUD_DamageTaken"/>
+					<Label hittest="false" class="LabelSmall Header" text="#DOTA_HUD_DamageHealed"/>
+					<Label hittest="false" class="LabelSmall Header" text="#DOTA_HUD_Deaths"/>    
+				</Panel>
+			</Panel>
+		</Panel>
+
+	</Panel>
+</root>

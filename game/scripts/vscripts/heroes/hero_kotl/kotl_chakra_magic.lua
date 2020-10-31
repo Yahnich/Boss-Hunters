@@ -9,6 +9,10 @@ function kotl_chakra_magic:IsHiddenWhenStolen()
     return false
 end
 
+function kotl_chakra_magic:GetCooldown( iLvl )
+	return self.BaseClass.GetCooldown( self, iLvl ) + self:GetCaster():FindTalentValue("special_bonus_unique_kotl_chakra_magic_2")
+end
+
 function kotl_chakra_magic:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()
@@ -50,11 +54,11 @@ end
 
 modifier_kotl_chakra_magic = class({})
 function modifier_kotl_chakra_magic:OnCreated(table)
-    self.bonus_spell_amp = self:GetCaster():FindTalentValue("special_bonus_unique_kotl_chakra_magic_1", "bonus_spell_amp")
+    self.bonus_spell_amp = self:GetCaster():FindTalentValue("special_bonus_unique_kotl_chakra_magic_1")
 end
 
 function modifier_kotl_chakra_magic:OnRefresh(table)
-    self.bonus_spell_amp = self:GetCaster():FindTalentValue("special_bonus_unique_kotl_chakra_magic_1", "bonus_spell_amp")
+    self.bonus_spell_amp = self:GetCaster():FindTalentValue("special_bonus_unique_kotl_chakra_magic_1")
 end
 
 function modifier_kotl_chakra_magic:DeclareFunctions()

@@ -20,9 +20,17 @@ function wk_crit:GetBehavior()
 	end
 end
 
+function wk_crit:GetCooldown( iLvl )
+	return self:GetCaster():FindTalentValue("special_bonus_unique_wk_crit_1", "cd")
+end
+
+function wk_crit:GetManaCost( iLvl )
+	return self:GetCaster():FindTalentValue("special_bonus_unique_wk_crit_1", "mana_cost")
+end
+
 function wk_crit:GetCastRange( position, target )
 	if self:GetCaster():HasTalent("special_bonus_unique_wk_crit_1") then
-		return self:GetCaster():GetAttackRange() * (4 or self:GetCaster():FindTalentValue("special_bonus_unique_wk_crit_1", "range"))
+		return self:GetCaster():GetAttackRange() * self:GetCaster():FindTalentValue("special_bonus_unique_wk_crit_1", "range")
 	else
 		return DOTA_ABILITY_BEHAVIOR_PASSIVE
 	end
@@ -32,14 +40,18 @@ function wk_crit:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
 	
-	self:FireLinearProjectile( "particles/vampiric_shockwave.vpcf", 900 * CalculateDirection(position, caster), self:GetTrueCastRange(), self:GetCaster():GetAttackRange() )
+	self.projectiles = self.projectiles or {} 
+	
+	local directionVector = 900 * CalculateDirection(position, caster)
+	self:FireLinearProjectile( "particles/units/heroes/hero_wraith_king/wraith_king_grim_harvest.vpcf", directionVector, self:GetTrueCastRange(), self:GetCaster():GetAttackRange() )
 end
 
-function wk_crit:OnProjectileHit(target, vLocation)
+function wk_crit:OnProjectileHitHandle(target, vLocation, projectile)
 	local caster = self:GetCaster()
 
 	if target then
 		caster:PerformAbilityAttack(target, true, self)
+	else
 	end
 end
 
@@ -95,6 +107,12 @@ end
 
 function modifier_wk_crit_str:OnEventFinished(args)
 	self:Destroy()
+end
+
+function modifier_wk_crit_str:OnDestroy(args)
+	if IsServer() then
+		EventManager:UnsubscribeListener("boss_hunters_event_finished", self.funcID)
+	end
 end
 
 function modifier_wk_crit_str:OnRefresh()

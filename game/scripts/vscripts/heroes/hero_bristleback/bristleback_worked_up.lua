@@ -32,11 +32,8 @@ end
 
 modifier_worked_up_stack = class({})
 function modifier_worked_up_stack:OnCreated(kv)
-	self.as = self:GetTalentSpecialValueFor("bonus_as")
-	self.ms =  self:GetTalentSpecialValueFor("bonus_ms")
-	self.sa =  self:GetCaster():FindTalentValue("special_bonus_unique_bristleback_work_up_1")
+	self:OnRefresh()
 	if IsServer() then
-		self:SetStackCount(1)
 		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_bristleback/bristleback_warpath.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControlEnt(self.nfx, 3, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetCaster():GetAbsOrigin(), true)
 		ParticleManager:SetParticleControlEnt(self.nfx, 4, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_attack2", self:GetCaster():GetAbsOrigin(), true)
@@ -45,10 +42,11 @@ function modifier_worked_up_stack:OnCreated(kv)
 end
 
 function modifier_worked_up_stack:OnRefresh(kv)
-	self.as = self:GetTalentSpecialValueFor("bonus_as")
+	self.dmg = self:GetTalentSpecialValueFor("bonus_dmg")
 	self.ms =  self:GetTalentSpecialValueFor("bonus_ms")
+	self.max =  self:GetTalentSpecialValueFor("max_stacks")
 	self.sa =  self:GetCaster():FindTalentValue("special_bonus_unique_bristleback_work_up_1")
-	if IsServer() then self:AddIndependentStack(self:GetDuration()) end
+	if IsServer() then self:AddIndependentStack(self:GetRemainingTime(), self.max) end
 end
 
 function modifier_worked_up_stack:OnStackCountChanged(iStacks)
@@ -62,7 +60,7 @@ function modifier_worked_up_stack:DeclareFunctions()
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_MODEL_SCALE,
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE
 	}	
 	return funcs
 end
@@ -75,8 +73,8 @@ function modifier_worked_up_stack:GetModifierMoveSpeedBonus_Percentage()
 	return self.ms * self:GetStackCount()
 end
 
-function modifier_worked_up_stack:GetModifierAttackSpeedBonus_Constant()
-	return self.as * self:GetStackCount()
+function modifier_worked_up_stack:GetModifierPreAttack_BonusDamage()
+	return self.dmg * self:GetStackCount()
 end
 
 function modifier_worked_up_stack:GetModifierModelScale()

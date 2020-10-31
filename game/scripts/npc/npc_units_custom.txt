@@ -4350,7 +4350,7 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/heroes/warlock/warlock.mdl"	// Model.
+		"Model"						"models/heroes/warlock/warlock.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"51"
@@ -4443,6 +4443,16 @@
 			}
 			
 			"DefaultState"				"Invade"
+			"AttachWearables" // Default npc_dota_hero_omniknight
+			{
+				"1" { "ItemDef" "9919" } 
+				"2" { "ItemDef" "9920" } 
+				"3" { "ItemDef" "9922" } 
+				"4" { "ItemDef" "9923" } 
+				"5" { "ItemDef" "9924" } 
+				"6" { "ItemDef" "9925" } 
+				"7" { "ItemDef" "9926" } 
+			}
 		}
 	}
 	"npc_dota_boss_lesser_warlock"
@@ -4540,6 +4550,16 @@
 			}
 			
 			"DefaultState"				"Invade"
+			"AttachWearables" // Default npc_dota_hero_omniknight
+			{
+				"1" { "ItemDef" "9919" } 
+				"2" { "ItemDef" "9920" } 
+				"3" { "ItemDef" "9922" } 
+				"4" { "ItemDef" "9923" } 
+				"5" { "ItemDef" "9924" } 
+				"6" { "ItemDef" "9925" } 
+				"7" { "ItemDef" "9926" } 
+			}
 		}
 	}
 	"npc_dota_boss33_a"
@@ -4905,10 +4925,9 @@
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
 		"Ability1"					"boss_necro_fear_the_reaper"			// Ability 2.
-		"Ability2"					"boss_necro_swans_song"			// Ability 3.
-		"Ability3"					"boss_necro_guillotine"			// Ability 3.
-		"Ability4"					"boss_necro_vile_aura"			// Ability 3.
-		"Ability5"					"boss_necro_deathbringer"			// Ability 3.
+		"Ability2"					"boss_necro_guillotine"			// Ability 3.
+		"Ability3"					"boss_necro_vile_aura"			// Ability 3.
+		"Ability4"					"boss_necro_deathbringer"			// Ability 3.
 	
 		// Armor
 		//----------------------------------------------------------------

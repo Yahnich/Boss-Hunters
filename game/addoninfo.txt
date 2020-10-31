@@ -7,7 +7,8 @@
 	"bh_raid_hardcore"
 	{
 		"MaxPlayers"                    "5"
-		"Lives"							"2"
+		"MaxLives"						"3"
+		"StartingLives"					"2"
 		"Difficulty"					"4"
 	}
 }

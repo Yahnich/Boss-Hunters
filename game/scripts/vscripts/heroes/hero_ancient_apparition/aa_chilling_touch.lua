@@ -1,71 +1,80 @@
 aa_chilling_touch = class({})
-LinkLuaModifier("modifier_aa_chilling_touch", "heroes/hero_ancient_apparition/aa_chilling_touch", LUA_MODIFIER_MOTION_NONE)
+
+function aa_chilling_touch:GetIntrinsicModifierName()
+	return "modifier_aa_chilling_touch_passive"
+end
 
 function aa_chilling_touch:OnSpellStart()
 	local caster = self:GetCaster()
-	local radius = 5000
 	ParticleManager:FireParticle("particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch.vpcf", PATTACH_POINT, caster, {[0]=caster:GetAbsOrigin(),[1]=Vector(radius,radius,radius)})
 	EmitSoundOn("Hero_Ancient_Apparition.ChillingTouchCast", caster)
 
-	local friends = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
-	for _,friend in pairs(friends) do
-		if friend:IsHero() then
-			friend:AddNewModifier(caster, self, "modifier_aa_chilling_touch", {Duration = self:GetTalentSpecialValueFor("duration")})
-		end
+	caster:AddNewModifier(caster, self, "modifier_aa_chilling_touch", {})
+	if caster:HasTalent("special_bonus_unique_aa_chilling_touch_2") then
+		caster:AddNewModifier( caster, self, "modifier_aa_chilling_touch_talent", {duration = caster:FindTalentValue("special_bonus_unique_aa_chilling_touch_2", "duration")} )
 	end
 end
 
-modifier_aa_chilling_touch = class({})
-function modifier_aa_chilling_touch:OnCreated(table)
-	if IsServer() then 
-		self.damage = self:GetTalentSpecialValueFor("bonus_damage")
-		self.chill = self:GetTalentSpecialValueFor("move_speed_pct")
+function aa_chilling_touch:OnProjectileHit( target, position )
+	local caster = self:GetCaster()
+	local damage = self:GetTalentSpecialValueFor("bonus_damage")
+	if caster:HasTalent("special_bonus_unique_aa_chilling_touch_1") and target:IsFrozenGeneric() then
+		damage = damage * caster:FindTalentValue("special_bonus_unique_aa_chilling_touch_1")
 	end
-
-	if self:GetParent() == self:GetCaster() and self:GetCaster():HasTalent("special_bonus_unique_aa_chilling_touch_2") then
-		self.as = self:GetCaster():FindTalentValue("special_bonus_unique_aa_chilling_touch_2")
-	else
-		self.as = 0
-	end 
+	self:DealDamage(caster, target, damage, {damage_type=DAMAGE_TYPE_MAGICAL, damage_flags=DOTA_DAMAGE_FLAG_PROPERTY_FIRE}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+	local chill = self:GetTalentSpecialValueFor("chill")
+	target:AddChill(self, caster, self:GetTalentSpecialValueFor("chill_duration"), chill )
 end
 
-function modifier_aa_chilling_touch:OnRefresh(table)
-	if IsServer() then 
-		self.damage = self:GetTalentSpecialValueFor("bonus_damage")
-		self.chill = self:GetTalentSpecialValueFor("move_speed_pct")
-	end
+modifier_aa_chilling_touch_passive = class({})
+LinkLuaModifier("modifier_aa_chilling_touch_passive", "heroes/hero_ancient_apparition/aa_chilling_touch", LUA_MODIFIER_MOTION_NONE)
 
-	if self:GetParent() == self:GetCaster() and self:GetCaster():HasTalent("special_bonus_unique_aa_chilling_touch_2") then
-		self.as = self:GetCaster():FindTalentValue("special_bonus_unique_aa_chilling_touch_2")
-	else
-		self.as = 0
-	end 
+function modifier_aa_chilling_touch_passive:DeclareFunctions()
+	return {MODIFIER_EVENT_ON_ATTACK}
 end
 
-function modifier_aa_chilling_touch:DeclareFunctions()
+function modifier_aa_chilling_touch_passive:OnAttack(params)
+    if IsServer() and params.attacker == self:GetParent() and self:GetAbility():IsFullyCastable() and self:GetAbility():GetAutoCastState() then
+    	self:GetAbility():CastSpell()
+    end
+	if params.attacker:HasModifier("modifier_aa_chilling_touch") then
+		params.attacker:RemoveModifierByName("modifier_aa_chilling_touch")
+		self:GetAbility():FireTrackingProjectile("particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch_projectile.vpcf", params.target, params.attacker:GetProjectileSpeed(), nil, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1 )
+	end
+end
+
+function modifier_aa_chilling_touch_passive:IsHidden()
+	return true
+end
+
+modifier_aa_chilling_touch_talent = class({})
+LinkLuaModifier("modifier_aa_chilling_touch_talent", "heroes/hero_ancient_apparition/aa_chilling_touch", LUA_MODIFIER_MOTION_NONE)
+function modifier_aa_chilling_touch_talent:OnCreated(table)
+	self:OnRefresh()
+end
+
+function modifier_aa_chilling_touch_talent:OnRefresh(table)
+	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_aa_chilling_touch_2")
+end
+
+function modifier_aa_chilling_touch_talent:DeclareFunctions()
     local funcs = {
-        MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
     }
     return funcs
 end
 
-function modifier_aa_chilling_touch:OnAttackLanded(params)
-    if IsServer() and params.attacker == self:GetParent() and params.target and params.target:GetTeam() ~= self:GetCaster():GetTeam() then
-    	local damage = self:GetTalentSpecialValueFor("bonus_damage")
-		if params.target:IsFrozenGeneric() then
-			damage = damage * params.attacker:FindTalentValue("special_bonus_unique_aa_chilling_touch_1")
-		end
-		self:GetAbility():DealDamage(self:GetCaster(), params.target, damage, {damage_type=DAMAGE_TYPE_MAGICAL, damage_flags=DOTA_DAMAGE_FLAG_PROPERTY_FIRE}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-		local chill = math.max( self.chill - self:GetChillAmount(), 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) )
-    	params.target:AddChill(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("move_speed_duration"), chill )
-    end
-end
-
-function modifier_aa_chilling_touch:GetModifierAttackSpeedBonus_Constant()
+function modifier_aa_chilling_touch_talent:GetModifierAttackSpeedBonus_Constant()
     return self.as
 end
 
-function modifier_aa_chilling_touch:GetEffectName()
+function modifier_aa_chilling_touch_talent:GetEffectName()
 	return "particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch_buff.vpcf"
+end
+
+modifier_aa_chilling_touch = class({})
+LinkLuaModifier("modifier_aa_chilling_touch", "heroes/hero_ancient_apparition/aa_chilling_touch", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_aa_chilling_touch:IsHidden()
+	return true
 end

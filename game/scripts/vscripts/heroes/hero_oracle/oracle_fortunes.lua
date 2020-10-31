@@ -10,8 +10,16 @@ function oracle_fortunes:IsHiddenWhenStolen()
     return false
 end
 
+function oracle_fortunes:GetCastRange( position, target )
+	local range = self.BaseClass.GetCastRange( self, position, target )
+	if self:GetCaster():HasScepter() then
+		range = range + self:GetTalentSpecialValueFor("scepter_cast_range_bonus")
+	end
+	return range
+end
+
 function oracle_fortunes:GetChannelTime()
-    return self:GetTalentSpecialValueFor("max_duration")
+    return self:GetTalentSpecialValueFor("max_channel")
 end
 
 function oracle_fortunes:GetAOERadius()
@@ -30,12 +38,13 @@ function oracle_fortunes:OnSpellStart()
 	
 	EmitSoundOn("Hero_Oracle.FortunesEnd.Channel", caster)
 
-	caster:AddNewModifier(caster, self, "modifier_oracle_fortunes_channel", {Duration = self:GetTalentSpecialValueFor("max_duration")})
+	caster:AddNewModifier(caster, self, "modifier_oracle_fortunes_channel", {Duration = self:GetTalentSpecialValueFor("max_channel"), ignoreStatusAmp = true})
 end
 
 function oracle_fortunes:OnProjectileHit_ExtraData(hTarget, vLocation, table)
     local caster = self:GetCaster()
-    local damage = table.damage
+    local damage = self:GetTalentSpecialValueFor("damage")
+    local scepter_mult = self:GetTalentSpecialValueFor("scepter_stun_pct") / 100
     local rootDuration = table.root
 
     local radius = self:GetTalentSpecialValueFor("radius")
@@ -53,7 +62,7 @@ function oracle_fortunes:OnProjectileHit_ExtraData(hTarget, vLocation, table)
     	for _,unit in pairs(units) do
     		if unit:GetTeam() == caster:GetTeam() then
     			unit:Purge(false, true, false, true, false)
-
+				unit:RemoveModifierByName("modifier_oracle_fates")
     			if caster:HasTalent("special_bonus_unique_oracle_fortunes_1") then
     				unit:HealEvent(damage, self, caster, false)
     			end
@@ -69,7 +78,9 @@ function oracle_fortunes:OnProjectileHit_ExtraData(hTarget, vLocation, table)
     			if caster:HasTalent("special_bonus_unique_oracle_fortunes_2") then
     				unit:AddNewModifier(caster, self, "modifier_oracle_fortunes_status_resist", {Duration = rootDuration})
     			end
-
+				if caster:HasScepter() then
+					self:Stun(unit, rootDuration * scepter_mult)
+				end
     			unit:Root(self, caster, rootDuration)
     			self:DealDamage(caster, unit, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
     		end
