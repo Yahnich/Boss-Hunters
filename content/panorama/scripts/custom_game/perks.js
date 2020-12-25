@@ -39,22 +39,6 @@ GameEvents.Subscribe("dota_player_talent_update", UpdateSkillPoints);
 GameEvents.Subscribe("dota_player_talent_update_failure", ServerResponded);
 
 var hasQueuedAction = false;
-let conversionArray = {	ATTACK_SPEED:"talentASIcon",
-						EVASION:"talentEvIcon",
-						HEALTH:"talentHPIcon",
-						MOVESPEED:"talentMSIcon",
-						MANA:"talentMPIcon",
-						MANA_REGEN:"talentMPRIcon",
-						SPELL_AMP:"talentSpAIcon",
-						AREA_DAMAGE:"talentArDIcon",
-						ARMOR:"talentPDIcon",
-						MAGIC_RESIST:"talentMDIcon",
-						THREAT_AMP:"talentTUIcon",
-						STATUS_AMP:"talentStAIcon",
-						THREAT_DOWN:"talentTDIcon",
-						HEAL_AMP:"talentHAIcon",
-						ATTACK_DAMAGE:"talentADIcon",
-						}
 
 if (lastRememberedHero != -1){
 	RequestNewPanelData( )
@@ -101,9 +85,9 @@ function RequestNewPanelData( ){
 	}
 }
 
-RemovePanel('MainStatsPanel')
+RemovePanel('RootContainer')
 function CreateMasteryPanel( panelData ){
-	var buttonPanel = $("#MainStatsPanel")
+	var buttonPanel = $("#RootContainer")
 	if(buttonPanel.requestOpen){
 		buttonPanel.requestOpen = false
 		buttonPanel.SetHasClass("IsHidden", false)
@@ -174,7 +158,6 @@ function CreateMasteryPanel( panelData ){
 function CreateTalentContainer( talentRowContainer, talentProgression, talentKeys, overhead, strIndex, table, purchaseAble ){
 	var talentContainer = $.CreatePanel("Panel", talentRowContainer, overhead[table]+"TalentContainer");
 	talentContainer.BLoadLayoutSnippet("TalentContainer")
-	talentContainer.FindChildTraverse("GenericTalentImage").SetImage("file://{images}/custom_game/icons/" + conversionArray[table] + ".png")
 
 	var stars = 3
 	if(overhead[table]["3"] == null){
@@ -223,6 +206,8 @@ function CreateTalentContainer( talentRowContainer, talentProgression, talentKey
 	talentContainer.SetPanelEvent("onactivate", function(){
 			$.DispatchEvent("DOTAHideTitleTextTooltip", talentContainer)
 			AttemptPurchaseTalent(strIndex, table)} );
+	
+	talentContainer.FindChildTraverse("GenericTalentImage").SetImage("file://{images}/custom_game/icons/MASTERY_" + titleVar + ".png")
 }
  
 function AttemptPurchaseTalent(talentRow, talentType){
@@ -257,7 +242,8 @@ function FocusPanel(panelID)
 
 function Reveal()
 {
-	var buttonPanel = $("#MainStatsPanel")
+	var buttonPanel = $("#RootContainer")
+	$.Msg( "??" )
 	if(buttonPanel.BHasClass("IsHidden") ){
 		buttonPanel.SetFocus()
 		buttonPanel.SetHasClass("IsBlurred", false)

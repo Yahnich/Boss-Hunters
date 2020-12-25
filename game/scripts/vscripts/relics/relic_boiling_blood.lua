@@ -6,6 +6,7 @@ end
 
 function relic_boiling_blood:OnIntervalThink()
 	local parent = self:GetParent()
+	if not parent:IsAlive() then return end
 	local enemies = parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), 600 )
 	for _, enemy in ipairs( enemies ) do
 		ApplyDamage({victim = enemy, attacker = parent, damage = math.ceil(parent:GetMaxHealth() * 0.02), damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})

@@ -28,7 +28,6 @@ function modifier_weaver_shukuchi_bh:OnCreated(table)
         local caster = self:GetCaster()
 
         self:GetParent():SetThreat(0)
-        self:GetParent():Stop()
 		
         local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_weaver/weaver_shukuchi.vpcf", PATTACH_POINT_FOLLOW, caster)
                     ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)

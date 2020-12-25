@@ -9,9 +9,6 @@ LinkLuaModifier("modifier_elite_heavy", "elites/elite_heavy", LUA_MODIFIER_MOTIO
 
 function modifier_elite_heavy:OnCreated()
 	self:OnRefresh()
-	if IsServer() then
-		self:AddEffect( ParticleManager:CreateParticle( "particles/units/elite_warning_offense_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() ) )
-	end
 end
 
 function modifier_elite_heavy:OnRefresh()
@@ -47,4 +44,8 @@ end
 
 function modifier_elite_heavy:IsHidden()
 	return true
+end
+
+function modifier_elite_heavy:GetEffectName()
+	return "particles/units/elite_warning_offense_overhead.vpcf"
 end

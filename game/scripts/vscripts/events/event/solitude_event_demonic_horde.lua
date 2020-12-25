@@ -23,8 +23,7 @@ local function StartCombat(self)
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	self.eventType = EVENT_TYPE_COMBAT
 	local activeHeroes = HeroList:GetActiveHeroCount()
-	Timers:CreateTimer(function()
-		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
+	local timerFunc = (function()
 		self.timeRemaining = self.timeRemaining - 1
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then
@@ -34,6 +33,7 @@ local function StartCombat(self)
 			end
 		end
 	end)
+	self:StartEventTimer( 60, timerFunc )
 	Timers:CreateTimer(1, function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.combatEnded then
@@ -89,12 +89,11 @@ local function StartEvent(self)
 	self._vEventHandles = {
 		ListenToGameEvent( "entity_killed", OnEntityKilled, self ),
 	}
-	self.timeRemaining = 10
 	self.eventEnded = false
 	self.combatStarted = false
 	self.combatEnded = false
 	self._playerChoices = {}
-	Timers:CreateTimer(1, function()
+	local timerFunc = (function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.combatStarted then
 			if self.timeRemaining >= 0 then
@@ -105,6 +104,7 @@ local function StartEvent(self)
 			end
 		end
 	end)
+	self:StartEventTimer( 10, timerFunc )
 	LinkLuaModifier("event_buff_demonic_horde", "events/modifiers/event_buff_demonic_horde", LUA_MODIFIER_MOTION_NONE)
 end
 

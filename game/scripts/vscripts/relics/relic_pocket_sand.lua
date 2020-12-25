@@ -10,7 +10,8 @@ function relic_pocket_sand:DeclareFunctions()
 end
 
 function relic_pocket_sand:OnTakeDamage(params)
-	if params.unit == self:GetParent() and self:GetParent() ~= params.attacker and self:GetDuration() == -1 then
+	if params.unit == self:GetParent() and self:GetParent() ~= params.attacker and self:GetDuration() == -1 and self:GetParent().isBeingPocketSandDisplaced then
+		self:GetParent().isBeingPocketSandDisplaced = true
 		local direction = CalculateDirection( params.unit, params.attacker )
 		FindClearSpaceForUnit(params.unit, params.unit:GetAbsOrigin() + direction * 300, true)
 		
@@ -18,6 +19,7 @@ function relic_pocket_sand:OnTakeDamage(params)
 		
 		self:SetDuration(12, true)
 		self:StartIntervalThink(12)
+		self:GetParent().isBeingPocketSandDisplaced = false
 	end
 end
 

@@ -15,10 +15,10 @@
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"1150"
-		"ItemShopTags"					"spellblock"
+		"ItemCost"						"675"
+		"ItemShopTags"					"ghost"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"ethereal sphere;phantomblade"
+		"ItemAliases"					"ethereal blade;phantomblade"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		"AvailableRuneSlots"			"0"
@@ -32,12 +32,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"restoration_amp"		"20 40 60 80 100 100 100 100"
+				"restoration_amp"		"50 60 70 80 90 100 100 100 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"status_resist"			"40 40 40 40 40 55 70 85 100"
+				"status_resist"			"20 20 20 20 20 20 35 50 75"
 			}
 			"03"
 			{
@@ -65,7 +65,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"850"
+		"ItemCost"						"975"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -93,7 +93,7 @@
 		"ItemDroppable"					"1"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"spellblock"
+		"ItemShopTags"					"ghost"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"ethereal"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
@@ -175,7 +175,7 @@
 		"ItemDroppable"					"1"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"spellblock"
+		"ItemShopTags"					"ghost"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"ethereal"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
@@ -257,7 +257,7 @@
 		"ItemDroppable"					"1"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"spellblock"
+		"ItemShopTags"					"ghost"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"ethereal"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
@@ -339,7 +339,7 @@
 		"ItemDroppable"					"1"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"spellblock"
+		"ItemShopTags"					"ghost"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"ethereal"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
@@ -421,7 +421,7 @@
 		"ItemDroppable"					"1"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"spellblock"
+		"ItemShopTags"					"ghost"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"ethereal"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
@@ -503,7 +503,7 @@
 		"ItemDroppable"					"1"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"spellblock"
+		"ItemShopTags"					"ghost"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"ethereal"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
@@ -584,7 +584,7 @@
 		"ItemDroppable"					"1"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"spellblock"
+		"ItemShopTags"					"ghost"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"ethereal"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"

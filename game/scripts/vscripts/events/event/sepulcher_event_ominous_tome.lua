@@ -43,6 +43,7 @@ local function StartCombat(self, bFight)
 	if bFight then
 		self.foughtElites = true
 		self.eventType = EVENT_TYPE_ELITE
+		self.eventRewardType = EVENT_REWARD_RELIC
 
 		self._vEventHandles = {
 			ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
@@ -78,7 +79,6 @@ local function StartCombat(self, bFight)
 			hero:ModifyLives(1)
 			hero:AddCurse("event_buff_ominous_tome_curse")
 		end
-		GameRules:ModifyLives(1, true)
 		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 1})
 		self:EndEvent(true)
 	end
@@ -110,10 +110,9 @@ local function StartEvent(self)
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_3', Context_Wrap( self, 'ThirdChoice') ),
 	}
 	self._vEventHandles = {}
-	self.timeRemaining = 15
 	self.eventEnded = false
 	self.foughtElites = false
-	self.waitTimer = Timers:CreateTimer(1, function()
+	local timerFunc = (function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.eventEnded and not self.foughtElites then
 			if self.timeRemaining >= 0 then
@@ -126,6 +125,7 @@ local function StartEvent(self)
 			end
 		end
 	end)
+	self.waitTimer = self:StartEventTimer( 30, timerFunc )
 	LinkLuaModifier("event_buff_ominous_tome_blessing", "events/modifiers/event_buff_ominous_tome", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("event_buff_ominous_tome_curse", "events/modifiers/event_buff_ominous_tome", LUA_MODIFIER_MOTION_NONE)
 	self._playerChoices = {}

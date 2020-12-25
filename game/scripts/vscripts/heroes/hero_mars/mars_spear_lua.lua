@@ -1,6 +1,4 @@
 mars_spear_lua = class({})
-LinkLuaModifier( "modifier_mars_spear_lua_spear", "heroes/hero_mars/mars_spear_lua.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_mars_spear_lua_debuff", "heroes/hero_mars/mars_spear_lua.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function mars_spear_lua:IsStealable()
 	return true
@@ -15,7 +13,25 @@ function mars_spear_lua:GetCastRange(vLocation, hTarget)
 end
 
 function mars_spear_lua:OnSpellStart()
-	self:LaunchSpear()
+	local caster = self:GetCaster()
+	local direction = CalculateDirection( self:GetCursorPosition(), caster )
+	self:LaunchSpear( caster, direction )
+	if caster:HasTalent("special_bonus_unique_mars_spear_lua_1") then
+		local rebuke = caster:FindAbilityByName("mars_gods_rebuke_lua")
+		if rebuke then
+			rebuke:EndCooldown()
+			caster:AddNewModifier( caster, self, "modifier_mars_spear_rebuke_mana", {} )
+		end
+	end
+	self.hitUnits = {}
+	if caster:HasTalent("special_bonus_unique_mars_phalanx_1") then
+		for _, warrior in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), -1, {flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE } ) ) do
+			if warrior:HasModifier("modifier_mars_phalanx_warrior") then
+				warrior:StartGesture( ACT_DOTA_ATTACK )
+				self:LaunchSpear( warrior, warrior:GetForwardVector(), true )
+			end
+		end
+	end
 end
 
 --[[function mars_spear_lua:OnProjectileHit(hTarget, vLocation)
@@ -79,14 +95,13 @@ end]]
 	end
 end]]
 
-function mars_spear_lua:LaunchSpear()
+function mars_spear_lua:LaunchSpear( origin, direction, secondary )
 	local caster = self:GetCaster()
-	local endPos = self:GetCursorPosition()
-
-	local startPos = caster:GetAbsOrigin()
+	local source = origin or caster
+	local startPos = source:GetAbsOrigin()
 
 	local distance = self:GetTrueCastRange()
-	local direction = CalculateDirection(endPos, startPos)
+	local direction = direction or CalculateDirection(self:GetCursorPosition(), startPos)
 
 	local speed = self:GetSpecialValueFor("spear_speed")
 
@@ -103,10 +118,11 @@ function mars_spear_lua:LaunchSpear()
 	local duration = distance/speed
 
 	--Purely cosmetic only-------
-	EmitSoundOn("Hero_Mars.Spear.Cast", caster)
-	EmitSoundOn("Hero_Mars.Spear", caster)
-
-	local projectile = self:FireLinearProjectile("particles/units/heroes/hero_mars/mars_spear.vpcf", velocity, distance, startWidth, {}, false, true, spear_vision)
+	if caster == self:GetCaster() then
+		EmitSoundOn("Hero_Mars.Spear.Cast", caster)
+		EmitSoundOn("Hero_Mars.Spear", caster)
+	end
+	local projectile = self:FireLinearProjectile("particles/units/heroes/hero_mars/mars_spear.vpcf", velocity, distance, startWidth, {source = source}, false, true, spear_vision)
 	-----------------------------
 
 	--Projectile Data------------
@@ -117,25 +133,30 @@ function mars_spear_lua:LaunchSpear()
 		self.hitUnits = self.hitUnits or {}
 		self.target = self.target or nil
 		if not self.hitUnits[target:entindex()] then
+			if self.secondary and ability.hitUnits[target:entindex()] then return false end
 			if target:TriggerSpellAbsorb(self) then return false end
 
 			EmitSoundOn("Hero_Mars.Spear.Target", target)
 
 			ability:DealDamage(caster, target, self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-			if self.target == nil and not target:IsMinion() then
+			if self.target == nil and (not self.secondary or not target:HasModifier("modifier_mars_spear_lua_spear") ) and not target:IsMinion() then
 				self.target = target
-				target:AddNewModifier(caster, self, "modifier_mars_spear_lua_spear", {Duration = self.duration})
+				target:RemoveModifierByName("modifier_mars_spear_lua_spear")
+				self.internalModifier = target:AddNewModifier(caster, self, "modifier_mars_spear_lua_spear", {Duration = self.duration})
 			else
 				EmitSoundOn("Hero_Mars.Spear.Knockback", target)
-				target:ApplyKnockBack(position, self.knockback_duration, self.knockback_duration, self.knockback_distance, 0, caster, ability, true)
-				
-				if caster:HasTalent("special_bonus_unique_mars_spear_lua_2") and not target:IsBoss() then
+				if not target:HasModifier("modifier_mars_spear_lua_spear") then
+					target:ApplyKnockBack(position, self.knockback_duration, self.knockback_duration, self.knockback_distance, 0, caster, ability, false)
+				end
+				if caster:HasTalent("special_bonus_unique_mars_spear_lua_2") then
+					local stunDuration = TernaryOperator( caster:FindTalentValue("special_bonus_unique_mars_spear_lua_2"), target:IsMinion(), caster:FindTalentValue("special_bonus_unique_mars_spear_lua_2", "value2")
 					Timers:CreateTimer(self.knockback_duration, function()
-						self:Stun(target, caster:FindTalentValue("special_bonus_unique_mars_spear_lua_2"), false)
+						self:Stun(target, stunDuration, false)
 					end)
 				end
 			end
 			self.hitUnits[target:entindex()] = target
+			if self.secondary then ability.hitUnits[target:entindex()] = target end
 		end
 
 		return true
@@ -162,7 +183,8 @@ function mars_spear_lua:LaunchSpear()
 				--if GridNav:IsTraversable(expected_location) 
 				if not GridNav:IsNearbyTree(expected_location, projRadius, false) 
 					and not GridNav:IsBlocked(expected_location) and heightDiff >= 0 
-					and not self.target:HasModifier("modifier_mars_innate_check") then
+					and not self.target:HasModifier("modifier_mars_innate_check") 
+					and not self.internalModifier:IsNull() then
 					
 					self.target:SetForwardVector(-projVel)
 					self.target:SetAbsOrigin(vLocation)
@@ -186,6 +208,7 @@ function mars_spear_lua:LaunchSpear()
 		caster = caster,
 		ability = self,
 		speed = speed,
+		secondary = secondary,
 		radius = startWidth,
 		velocity = velocity,
 		distance = distance,
@@ -196,7 +219,15 @@ function mars_spear_lua:LaunchSpear()
 	})
 end
 
+modifier_mars_spear_rebuke_mana = class({})
+LinkLuaModifier( "modifier_mars_spear_rebuke_mana", "heroes/hero_mars/mars_spear_lua.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+function modifier_mars_spear_rebuke_mana:IsHidden()
+	return true
+end
+
 modifier_mars_spear_lua_spear = class({})
+LinkLuaModifier( "modifier_mars_spear_lua_spear", "heroes/hero_mars/mars_spear_lua.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_mars_spear_lua_spear:OnRemoved()
 	if IsServer() then
@@ -237,6 +268,7 @@ function modifier_mars_spear_lua_spear:GetOverrideAnimation()
 end
 
 modifier_mars_spear_lua_debuff = class({})
+LinkLuaModifier( "modifier_mars_spear_lua_debuff", "heroes/hero_mars/mars_spear_lua.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_mars_spear_lua_debuff:OnCreated()
 	if IsServer() then
@@ -275,11 +307,6 @@ function modifier_mars_spear_lua_debuff:OnIntervalThink()
 	self.spear:SetForwardVector(-self:GetParent():GetForwardVector())
 
 	if self.secondsTime >= 1.04 then
-		if self:GetCaster():HasTalent("special_bonus_unique_mars_spear_lua_1") then
-			local damage = self:GetCaster():FindTalentValue("special_bonus_unique_mars_spear_lua_1")/100 * self:GetSpecialValueFor("damage")
-
-			self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), damage, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
-		end
 		self.secondsTime = 0
 	else
 		self.secondsTime = self.secondsTime + 0.04

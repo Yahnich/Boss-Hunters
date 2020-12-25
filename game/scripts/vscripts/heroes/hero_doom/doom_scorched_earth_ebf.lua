@@ -8,17 +8,68 @@ function doom_scorched_earth_ebf:IsHiddenWhenStolen()
 	return false
 end
 
+function doom_scorched_earth_ebf:GetIntrinsicModifierName()
+	if self:GetCaster():HasTalent("special_bonus_unique_doom_scorched_earth_ebf_2") then
+		return "modifier_doom_scorched_earth_talent"
+	end
+end
+
+function doom_scorched_earth_ebf:OnTalentLearned()
+	if self:GetCaster():HasTalent("special_bonus_unique_doom_scorched_earth_ebf_2") then
+		self:GetCaster():AddNewModifier( self:GetCaster(), self, "modifier_doom_scorched_earth_talent", {} )
+	end
+end
+
 function doom_scorched_earth_ebf:OnSpellStart()
 	if IsServer() then
 		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_doom_scorched_earth_aura", {duration = self:GetTalentSpecialValueFor("duration")})
-		if self:GetCaster():HasTalent("special_bonus_unique_doom_4") and not self:GetCaster():HasModifier("modifier_doom_scorched_earth_talent") then
-			self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_doom_scorched_earth_talent", {})
+	end
+end
+
+modifier_doom_scorched_earth_talent = class({})
+LinkLuaModifier( "modifier_doom_scorched_earth_talent", "heroes/hero_doom/doom_scorched_earth_ebf" ,LUA_MODIFIER_MOTION_NONE )
+
+function modifier_doom_scorched_earth_talent:OnCreated()
+	self.damage = self:GetTalentSpecialValueFor("damage_per_second") * self:GetCaster():FindTalentValue("special_bonus_unique_doom_scorched_earth_ebf_2", "damage") / 100
+	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_doom_scorched_earth_ebf_1")
+	self.talent1Val = self:GetCaster():FindTalentValue("special_bonus_unique_doom_scorched_earth_ebf_1") / 100
+	self.talent1Minion = self:GetCaster():FindTalentValue("special_bonus_unique_doom_scorched_earth_ebf_1", "value2") / 100
+	if IsServer() then
+		self:StartIntervalThink( 1 )
+		local nfx = ParticleManager:CreateParticle( "particles/econ/events/ti10/radiance_ti10.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster() )
+		ParticleManager:SetParticleControlEnt(nfx, 1, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true)
+		ParticleManager:SetParticleControl(nfx, 25, Vector(0,255,255))
+		self:AddEffect( nfx )
+	end
+end
+
+function modifier_doom_scorched_earth_talent:OnRefresh()
+	self:OnCreated()
+end
+
+function modifier_doom_scorched_earth_talent:OnIntervalThink()
+	local caster = self:GetParent()
+	local ability = self:GetAbility()
+	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self.radius ) ) do
+		local damage = ability:DealDamage( caster, enemy, self.damage )
+		if self.talent1 then
+			local healing =  TernaryOperator( damage * self.talent1Val * self.talent1Minion, enemy:IsMinion(), damage * self.talent1Val )
+			local heal = caster:HealEvent( healing, ability, caster, {heal_type = HEAL_TYPE_LIFESTEAL} )
 		end
 	end
 end
 
-LinkLuaModifier( "modifier_doom_scorched_earth_aura", "heroes/hero_doom/doom_scorched_earth_ebf" ,LUA_MODIFIER_MOTION_NONE )
+function modifier_doom_scorched_earth_talent:IsPurgable()
+    return false
+end
+
+function modifier_doom_scorched_earth_talent:IsHidden()
+    return true
+end
+
 modifier_doom_scorched_earth_aura = class({})
+LinkLuaModifier( "modifier_doom_scorched_earth_aura", "heroes/hero_doom/doom_scorched_earth_ebf" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_doom_scorched_earth_aura:OnCreated()
 	self.aura_radius = self:GetAbility():GetTalentSpecialValueFor("radius")
@@ -76,57 +127,49 @@ function modifier_doom_scorched_earth_aura:IsPurgable()
     return false
 end
 
-LinkLuaModifier( "modifier_doom_scorched_earth_talent", "heroes/hero_doom/doom_scorched_earth_ebf" ,LUA_MODIFIER_MOTION_NONE )
-modifier_doom_scorched_earth_talent = class({})
-
-function modifier_doom_scorched_earth_talent:IsHidden()
-	return true
-end
-
-function modifier_doom_scorched_earth_talent:RemoveOnDeath()
-	return false
-end
-
-
 LinkLuaModifier( "modifier_doom_scorched_earth_buff", "heroes/hero_doom/doom_scorched_earth_ebf" ,LUA_MODIFIER_MOTION_NONE )
 modifier_doom_scorched_earth_buff = class({})
 
 function modifier_doom_scorched_earth_buff:OnCreated()
 	self.movespeed = self:GetAbility():GetTalentSpecialValueFor("bonus_movement_speed_pct")
 	self.attackspeed = self:GetAbility():GetTalentSpecialValueFor("bonus_attack_speed")
-	self.healamp = self:GetCaster():FindTalentValue("special_bonus_unique_doom_scorched_earth_ebf_1")
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_doom_scorched_earth_ebf_1")
+	self.talent1Val = self:GetCaster():FindTalentValue("special_bonus_unique_doom_scorched_earth_ebf_1") / 100
+	self.talent1Minion = self:GetCaster():FindTalentValue("special_bonus_unique_doom_scorched_earth_ebf_1", "value2") / 100
+	if self:GetParent() ~= self:GetCaster() then
+		local pct = self:GetTalentSpecialValueFor("ally_pct") / 100
+		self.movespeed = self.movespeed * pct
+		self.attackspeed = self.attackspeed * pct
+	end
 	if not self:GetParent():IsSameTeam(self:GetCaster()) then
-		self.healamp = self.healamp * (-0.5)
 		self.movespeed = self.movespeed * -1
 		self.attackspeed = self.attackspeed * -1
 		self.damage = self:GetAbility():GetTalentSpecialValueFor("damage_per_second")
 		if IsServer() then
-			ApplyDamage({victim = self:GetParent(), attacker = self:GetCaster(), damage = self.damage, damage_type = self:GetAbility():GetAbilityDamageType(), ability = self:GetAbility()})
+			self:OnIntervalThink()
 			self:StartIntervalThink(1)
 		end
 	end
 end
 
 function modifier_doom_scorched_earth_buff:OnRefresh()
-	self.movespeed = self:GetAbility():GetTalentSpecialValueFor("bonus_movement_speed_pct")
-	self.attackspeed = self:GetAbility():GetTalentSpecialValueFor("bonus_attack_speed")
-	self.healamp = self:GetCaster():FindTalentValue("special_bonus_unique_doom_scorched_earth_ebf_1")
-	if not self:GetParent():IsSameTeam(self:GetCaster()) then
-		self.healamp = self.healamp * (-0.5)
-		self.movespeed = self.movespeed * -1
-		self.attackspeed = self.attackspeed * -1
-		self.damage = self:GetAbility():GetTalentSpecialValueFor("damage_per_second")
-	end
+	self:OnCreated()
 end
 
 function modifier_doom_scorched_earth_buff:OnIntervalThink()
-	ApplyDamage({victim = self:GetParent(), attacker = self:GetCaster(), damage = self.damage, damage_type = self:GetAbility():GetAbilityDamageType(), ability = self:GetAbility()})
+	local ability = self:GetAbility()
+	local caster = self:GetCaster()
+	local target = self:GetParent()
+	local damage = ability:DealDamage( caster, target, self.damage )
+	if self.talent1 then
+		local healing = TernaryOperator( damage * self.talent1Val * self.talent1Minion, target:IsMinion(), damage * self.talent1Val )
+		local heal = caster:HealEvent( healing, ability, caster, {heal_type = HEAL_TYPE_LIFESTEAL} )
+	end
 end
 
 function modifier_doom_scorched_earth_buff:DeclareFunctions()
 	funcs = {
 				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-				MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE,
 				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
 			}
 	return funcs
@@ -138,10 +181,6 @@ end
 
 function modifier_doom_scorched_earth_buff:GetModifierMoveSpeedBonus_Percentage()
 	return self.movespeed
-end
-
-function modifier_doom_scorched_earth_buff:GetModifierHealAmplify_Percentage()
-	return self.healamp
 end
 
 function modifier_doom_scorched_earth_buff:GetEffectName()	

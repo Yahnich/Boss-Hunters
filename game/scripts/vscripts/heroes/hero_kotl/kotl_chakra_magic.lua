@@ -41,7 +41,7 @@ function kotl_chakra_magic:DoChakraStuff(hTarget)
     target:RestoreMana( mana_restore )
     for i = 0, target:GetAbilityCount() - 1 do
         local ability = target:GetAbilityByIndex(i)
-        if ability and ability:GetAbilityType() ~= 1 and not ability:IsItem() then
+        if ability and ability ~= self and ability:GetAbilityType() ~= 1 and not ability:IsItem() then
             ability:SetCooldown(ability:GetCooldownTimeRemaining() - cooldown_reduction)
         end
     end

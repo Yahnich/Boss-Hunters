@@ -24,7 +24,10 @@ LinkLuaModifier("modifier_boss1a_rushdown_attack_thinker", "bosses/boss1a/boss1a
 
 function modifier_boss1a_rushdown_attack_thinker:OnCreated()
 	self.ms = self:GetSpecialValueFor("rush_speed")
-	if IsServer() then self:StartIntervalThink(self:GetParent():GetSecondsPerAttack()) end
+	if IsServer() then 
+		self:OnIntervalThink()
+		self:StartIntervalThink(self:GetParent():GetSecondsPerAttack()) 
+	end
 end
 
 function modifier_boss1a_rushdown_attack_thinker:OnIntervalThink()

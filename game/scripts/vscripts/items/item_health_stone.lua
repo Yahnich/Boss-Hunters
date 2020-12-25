@@ -9,7 +9,6 @@ function item_health_stone:RuneProcessing( item, itemmodifier, slotIndex )
 	item.itemData = item.itemData or {}
 	local level = ( item.itemData[slotIndex].rune_level or 0 ) + 1
 	item.itemData[slotIndex].rune_level = level
-	print( self:GetLevelSpecialValueFor( "health", level-1 ), level )
 	item.itemData[slotIndex].funcs["GetModifierExtraHealthBonus"] = (item.itemData[slotIndex].funcs["GetModifierExtraHealthBonus"] or 0) + self:GetLevelSpecialValueFor( "health", level-1 )
 	item.itemData[slotIndex].funcs["GetModifierConstantHealthRegen"] = (item.itemData[slotIndex].funcs["GetModifierConstantHealthRegen"] or 0) + self:GetLevelSpecialValueFor( "health_regeneration", level-1 )
 end

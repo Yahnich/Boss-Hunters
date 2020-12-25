@@ -18,6 +18,7 @@ LinkLuaModifier("modifier_elite_blinking", "elites/elite_blinking", LUA_MODIFIER
 
 if IsServer() then
 	function modifier_elite_blinking:OnCreated()
+		if self:GetCaster():IsRealHero() then return end
 		self:StartIntervalThink( 1 )
 	end
 

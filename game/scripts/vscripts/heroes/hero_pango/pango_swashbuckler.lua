@@ -44,7 +44,7 @@ function pango_swashbuckler:OnVectorCastStart()
 	local distance = CalculateDistance(self:GetVectorPosition(), caster)
 	local speed = self:GetTalentSpecialValueFor("speed")
 	local duration = distance / speed
-    self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_pango_swift_dash", {duration = duration})
+    self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_pango_swift_dash", {duration = duration+0.5})
 	if caster:HasTalent("special_bonus_unique_pango_swashbuckler_2") then
 		ProjectileManager:ProjectileDodge(self:GetCaster())
 	end
@@ -218,9 +218,9 @@ function modifier_pango_swift_dash:OnCreated(table)
 	if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
-		self.endPos = self:GetAbility():GetCursorPosition()
-		self.dir = CalculateDirection(self:GetAbility():GetCursorPosition(), self:GetParent():GetAbsOrigin())
-		self.distance = CalculateDistance(self:GetAbility():GetCursorPosition(), parent:GetAbsOrigin())
+		self.endPos = self:GetAbility():GetVectorPosition()
+		self.dir = CalculateDirection(self:GetAbility():GetVectorPosition(), self:GetParent():GetAbsOrigin())
+		self.distance = CalculateDistance(self:GetAbility():GetVectorPosition(), parent:GetAbsOrigin())
 		self.speed = self:GetTalentSpecialValueFor("speed")
 		self.hitUnits = {}
 		if self.distance <= self.speed * 0.04 then
@@ -231,24 +231,14 @@ function modifier_pango_swift_dash:OnCreated(table)
 	end
 end
 
-function modifier_pango_swift_dash:OnIntervalThink()
-	local enemies = self:GetParent():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetParent():GetAttackRange())
-	for _,enemy in pairs(enemies) do
-		if not self.hitUnits[ enemy:entindex() ] and not enemy:IsAttackImmune() then
-			self:GetParent():PerformGenericAttack(enemy, true, 0, false, false)
-			self.hitUnits[ enemy:entindex() ] = true
-			break
-		end
-	end
-end
-
 function modifier_pango_swift_dash:DoControlledMotion()
 	local parent = self:GetParent()
-	if self.distance > 0 then
-		local speed = self.speed * 0.03
+	if self.distance >= 0 then
+		local speed = self.speed * FrameTime()
 		self.distance = self.distance - speed
 		parent:SetAbsOrigin(GetGroundPosition(parent:GetAbsOrigin(), parent) + self.dir*speed)
 	else
+		parent:SetAbsOrigin( GetGroundPosition(self.endPos, parent) )
 		self:Destroy()
 		return nil
 	end
@@ -293,6 +283,7 @@ function modifier_pango_swift_dash:OnRemoved()
 		self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_pango_swashbuckler", {})
 		self:GetParent():RemoveGesture(ACT_DOTA_CAST_ABILITY_1)
 		self:StopMotionController(false)
+		ResolveNPCPositions( self:GetParent():GetAbsOrigin(), 64 )
 	end
 end
 

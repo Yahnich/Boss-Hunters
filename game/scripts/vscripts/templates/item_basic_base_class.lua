@@ -3,40 +3,38 @@ itemBasicBaseClass = class(persistentModifier)
 function itemBasicBaseClass:SetupRuneSystem(slotModifier)
 	-- find old modifier, -1 (slot unassigned) and not current item
 	local parent = self:GetParent()
-	local modifiersToLookUp = {}
-	modifiersToLookUp[self:GetName()] = true
-	local associatedModifierName
-	if  self:GetAbility().GetAssociatedUpgradeModifier and self:GetAbility():GetAssociatedUpgradeModifier() then
-		associatedModifierNames = self:GetAbility():GetAssociatedUpgradeModifier()
-		if type(associatedModifierNames) == 'table' then
-			for _,modifier in ipairs( associatedModifierNames ) do
-				modifiersToLookUp[modifier] = true
-			end
-		else
-			modifiersToLookUp[associatedModifierNames] = true
-		end
-	end
+	-- local modifiersToLookUp = {}
+	-- modifiersToLookUp[self:GetName()] = true
+	-- local associatedModifierName
+	-- if  self:GetAbility().GetAssociatedUpgradeModifier and self:GetAbility():GetAssociatedUpgradeModifier() then
+		-- associatedModifierNames = self:GetAbility():GetAssociatedUpgradeModifier()
+		-- if type(associatedModifierNames) == 'table' then
+			-- for _,modifier in ipairs( associatedModifierNames ) do
+				-- modifiersToLookUp[modifier] = true
+			-- end
+		-- else
+			-- modifiersToLookUp[associatedModifierNames] = true
+		-- end
+	-- end
 	local hasBeenCopied = false
 	for _,modifier in ipairs( parent:FindAllModifiers( ) ) do
-		if modifiersToLookUp[modifier:GetName()] then
-			ability = modifier:GetAbility()
-			if ability and ability:GetItemSlot() == -1 and ability ~= self:GetAbility() then
-				if not hasBeenCopied then
-					self:GetAbility().itemData = table.copy( ability.itemData )
-					modifier:Destroy()
-					hasBeenCopied = true
-				else
-					for i = 1, ability:GetRuneSlots() do
-						local rune = ability.itemData[i] or {}
-						if rune.rune_type then
-							local item = FindItemInInventory( rune.rune_type )
+		local ability = modifier:GetAbility()
+		if ability and ability:IsItem() and ability:GetItemSlot() == -1 and ability ~= self:GetAbility() then
+			if not hasBeenCopied then
+				self:GetAbility().itemData = table.copy( ability.itemData )
+				modifier:Destroy()
+				hasBeenCopied = true
+			elseif ability:GetRuneSlots() > 0 then
+				for i = 1, ability:GetRuneSlots() do
+					local rune = ability.itemData[i] or {}
+					if rune.rune_type then
+						local item = FindItemInInventory( rune.rune_type )
+						if item then
+							item:SetCurrentCharges( item:GetCurrentCharges() + rune.rune_level )
+						else
+							item = parent:AddItemByName( rune.rune_type )
 							if item then
-								item:SetCurrentCharges( item:GetCurrentCharges() + rune.rune_level )
-							else
-								item = parent:AddItemByName( rune.rune_type )
-								if item then
-									item:SetCurrentCharges( rune.rune_level )
-								end
+								item:SetCurrentCharges( rune.rune_level )
 							end
 						end
 					end
@@ -59,10 +57,8 @@ function itemBasicBaseClass:SetupRuneSystem(slotModifier)
 		end
 	end
 	for func, result in pairs( modFuncs ) do
-		-- print( func, result, "end result" )
 		self[func] = function() return result * (slotModifier or 100)/100 end
 	end
-	self:StoreRunesIntoModifier()
 end
 
 function itemBasicBaseClass:StoreRunesIntoModifier(data)
@@ -77,12 +73,13 @@ end
 
 function itemBasicBaseClass:OnCreated()
 	self:OnCreatedSpecific()
+	self:SetHasCustomTransmitterData( true )
 	if IsServer() then
 		self:GetCaster():HookInModifier( "GetModifierBaseCriticalChanceBonus", self )
 		self:GetCaster():HookInModifier( "GetModifierBaseCriticalDamageBonus", self )
 		self:SetupRuneSystem( self.stone_share )
-		self:SetHasCustomTransmitterData( true )
-		
+		self:SendBuffRefreshToClients()
+		self:StoreRunesIntoModifier()
 	end
 end
 
@@ -95,6 +92,7 @@ function itemBasicBaseClass:OnRefresh()
 		self:GetCaster():HookInModifier( "GetModifierBaseCriticalChanceBonus", self )
 		self:GetCaster():HookInModifier( "GetModifierBaseCriticalDamageBonus", self )
 		self:SetHasCustomTransmitterData( true )
+		self:SendBuffRefreshToClients()
 		self:StoreRunesIntoModifier()
 	end
 end
@@ -107,7 +105,6 @@ function itemBasicBaseClass:OnDestroy()
 	if IsServer() then
 		self:GetCaster():HookOutModifier( "GetModifierBaseCriticalChanceBonus", self )
 		self:GetCaster():HookOutModifier( "GetModifierBaseCriticalDamageBonus", self )
-		self:SetHasCustomTransmitterData( true )
 		self:StoreRunesIntoModifier()
 	end
 end
@@ -135,18 +132,13 @@ function itemBasicBaseClass:GetDefaultFunctions()
 end 
 
 function itemBasicBaseClass:AddCustomTransmitterData( )
-	return
-	{
-		itemData = self:GetAbility().itemData
-	}
+	local clientData = MergeTables( { itemData = self:GetAbility().itemData }, {} )
+	return clientData
 end
 
 --------------------------------------------------------------------------------
 
 function itemBasicBaseClass:HandleCustomTransmitterData( data )
-	if data.itemData == nil then return end
-	-- reset functions
-	-- print('------------------ RESET -------------')
 	if self.itemData ~= nil then
 		for slotIndex, info in pairs( self.itemData ) do
 			-- print( slotIndex, info.rune_type )
@@ -159,6 +151,11 @@ function itemBasicBaseClass:HandleCustomTransmitterData( data )
 			end
 		end
 	end
+	if data.itemData == nil then return end
+	PrintAll(data.itemData )
+	-- reset functions
+	-- print('------------------ RESET -------------')
+	
 	-- print('------------------ UPDATE -------------')
 	-- update functions
 	local funcs = {}

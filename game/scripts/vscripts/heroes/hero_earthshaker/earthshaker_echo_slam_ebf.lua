@@ -13,6 +13,10 @@ function earthshaker_echo_slam_ebf:GetCooldown(iLvl)
 	return cooldown
 end
 
+function earthshaker_echo_slam_ebf:GetCastRange( position, target )
+	return self:GetTalentSpecialValueFor("search_radius")
+end
+
 function earthshaker_echo_slam_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 	EmitSoundOn( "Hero_EarthShaker.EchoSlam", caster )
@@ -26,7 +30,7 @@ function earthshaker_echo_slam_ebf:OnSpellStart()
 		if not enemy:TriggerSpellAbsorb(self) then
 			self:DealDamage( caster, enemy, baseDamage )
 			ParticleManager:FireParticle("particles/units/heroes/hero_earthshaker/earthshaker_echoslam_end.vpcf", PATTACH_POINT_FOLLOW, enemy)
-			EmitSoundOn("Hero_EarthShaker.EchoSlamEcho", origin)
+			EmitSoundOn("Hero_EarthShaker.EchoSlamEcho", enemy)
 			for _, echoTarget in ipairs( caster:FindEnemyUnitsInRadius( enemy:GetAbsOrigin(), radius) ) do
 				if enemy:entindex() ~= echoTarget:entindex() then
 					self:CreateEcho( enemy, echoTarget, echoDamage )

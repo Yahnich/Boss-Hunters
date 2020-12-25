@@ -146,7 +146,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"50 75"
+				"heal"					"20 30"
 			}
 			"03"
 			{

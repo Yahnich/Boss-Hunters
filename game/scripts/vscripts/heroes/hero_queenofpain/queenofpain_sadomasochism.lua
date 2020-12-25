@@ -56,7 +56,7 @@ end
 
 function modifier_queenofpain_sadomasochism:OnTakeDamage(params)
 	if params.unit ~= params.attacker and params.attacker == self:GetCaster() and params.attacker:GetHealth() > 0 and params.attacker:GetHealthDeficit() > 0 then
-		local lifesteal = self.lifesteal + self.stack_bonus * self:GetStackCount()
+		local lifesteal = self.lifesteal + (self.stack_bonus / 100) * self:GetStackCount()
 		if params.unit:IsMinion() and params.inflictor then
 			lifesteal = lifesteal * self.minionMult
 		end

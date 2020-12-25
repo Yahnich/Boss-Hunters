@@ -37,7 +37,7 @@ function BaseEvent:constructor(zoneName, eventType, eventName, eventReward)
 		end
 	end
 	
-	if self.eventType == EVENT_TYPE_ELITE then
+	if self.eventType == EVENT_TYPE_ELITE or RoundManager:GetAscensions() > 0 then
 		for i = 1, ELITE_ABILITIES_TO_GIVE + math.max(0, RoundManager:GetAscensions() - 1) do
 			local roll = RandomInt(1, #eliteTypes)
 			local eliteAbName = eliteTypes[roll]
@@ -58,6 +58,11 @@ function BaseEvent:constructor(zoneName, eventType, eventName, eventReward)
 		end
 	else
 		self.eventRewardType = eventReward
+		if eventReward == EVENT_REWARD_RELIC then
+			if RoundManager:GetAscensions() > 0 and self:GetEventType() ~= EVENT_TYPE_BOSS or RoundManager:GetAscensions() > 1 then
+				self.eventRewardType = EVENT_REWARD_GOLD
+			end
+		end
 	end
 	
 	local potentialEnemiesToSpawn = RoundManager.specificRoundKV[eventName]
@@ -114,7 +119,7 @@ function BaseEvent:StartCombatRound()
 		self.enemiesToSpawn = self.enemiesToSpawn + data.totalSpawns
 	end
 	
-	self.eventHandler = Timers:CreateTimer(0.5, function()
+	self.eventHandler = Timers:CreateTimer(1.5, function()
 		for enemy, data in pairs( self.activeRoundSpawns ) do
 			data.currentTimer = data.currentTimer - 0.5
 			if data.currentTimer <= 0 or data.activeEnemies == 0 and data.totalSpawns > 0 then
@@ -255,6 +260,23 @@ function BaseEvent:HandoutRewards(bWon)
 	end
 end
 
+function BaseEvent:StartEventTimer(duration, timerFunc)
+	self.timeRemaining = duration or 30
+	self.eventEnded = false
+	CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) + self.timeRemaining } )
+	local localFunc = timerFunc or (function()
+		if not self.eventEnded then
+			if self.timeRemaining >= 0 then
+				self.timeRemaining = self.timeRemaining - 1
+				return 1
+			else
+				self:EndEvent(true)
+			end
+		end
+	end)
+	return Timers:CreateTimer(1, localFunc)
+end
+
 function BaseEvent:IsEvent()
 	return self.eventType == EVENT_TYPE_EVENT
 end
@@ -284,7 +306,7 @@ function BaseEvent:GetEventType()
 end
 
 function BaseEvent:GetEventRewardType()
-	return self.eventRewardType
+	return self.eventRewardType or EVENT_REWARD_GOLD
 end
 
 function BaseEvent:ChampionSpawnModifiers()

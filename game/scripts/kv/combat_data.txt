@@ -258,7 +258,7 @@
 			{
 				"Amount"		"2"
 				"RaidBonus"		"2"
-				"SpawnDelay"	"24"
+				"SpawnDelay"	"12"
 			}
 		}
 	}
@@ -896,7 +896,7 @@
 			{
 				"Amount"		"2"
 				"RaidBonus"		"1"
-				"HeroBonus"		"0.5"
+				"HeroBonus"		"0.25"
 				"SpawnDelay"	"10"
 			}
 		}

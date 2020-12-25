@@ -10,7 +10,7 @@
         <snippet name="TalentContainer">
 			<Panel class="GenericTalentContainer">
 				<Button class="GenericTalentsSelector">
-					<Image id="GenericTalentImage" src="file://{images}/custom_game/icons/talentMSIcon.png"/>
+					<Image class="GenericTalentImage" id="GenericTalentImage" src="file://{images}/custom_game/icons/talentMSIcon.png"/>
 				</Button>
 				<Panel class="GenericTalentStarContainer">
 					<Image id="LevelStar1" src="file://{images}/custom_game/icons/unleveledTalentTierIcon.png" class="LevelStar"/>
@@ -21,53 +21,46 @@
 		</snippet>
 	</snippets>
 	<Panel class="root" hittest="false">
-		<Panel id="RootContainer" hittest="false" oncancel="RemovePanel('MainStatsPanel')" >
+		<Panel id="RootContainer" hittest="false" oncancel="RemovePanel('RootContainer')" >
+			<Panel id="TalentRootContainerBackground"/>
 			<Panel id="MainStatsPanel" class="GenericStatsContainer" onmouseout="BlurPanel('MainStatsPanel')" onactivate="FocusPanel('MainStatsPanel')">
 				<Panel class="TalentHeader">
 					<Label id="TalentHeaderLabel" text="HERO MASTERIES"/>
 				</Panel>
 				<Panel id="TalentRowContainer" class="GenericTalentsRowContainer">
 					<!-- <Panel class="GenericTalentsRow"> -->
-						<!-- <Panel class="GenericTalentContainer"> -->
-							<!-- <Button class="GenericTalentsSelector">  -->
-								<!-- <Image src="file://{images}/custom_game/icons/crownsymbolunactive.png"/> -->
-							<!-- </Button> -->
-							<!-- <Panel class="GenericTalentStarContainer"> -->
-								<!-- <Image src="file://{images}/custom_game/icons/leveledTalentTierIcon.png" class="LevelStar"/> -->
-								<!-- <Image src="file://{images}/custom_game/icons/unleveledTalentTierIcon.png" class="LevelStar"/> -->
-								<!-- <Image src="file://{images}/custom_game/icons/unleveledTalentTierIcon.png" class="LevelStar"/> -->
-							<!-- </Panel> -->
-						<!-- </Panel> -->
-						<!-- <Panel class="GenericTalentContainer"> -->
-							<!-- <Button class="GenericTalentsSelector"> -->
-								<!-- <Image src="file://{images}/custom_game/icons/talentMPRIcon.png"/> -->
-							<!-- </Button> -->
-							<!-- <Panel class="GenericTalentStarContainer"> -->
-								<!-- <Image src="file://{images}/custom_game/icons/leveledTalentTierIcon.png" class="LevelStar"/> -->
-								<!-- <Image src="file://{images}/custom_game/icons/leveledTalentTierIcon.png" class="LevelStar"/> -->
-								<!-- <Image src="file://{images}/custom_game/icons/unleveledTalentTierIcon.png" class="LevelStar"/> -->
-							<!-- </Panel> -->
-						<!-- </Panel> -->
-						<!-- <Panel class="GenericTalentContainer"> -->
-							<!-- <Button class="GenericTalentsSelector"> -->
-								<!-- <Image src="file://{images}/custom_game/icons/talentSpAIcon.png"/> -->
-							<!-- </Button> -->
-							<!-- <Panel class="GenericTalentStarContainer"> -->
-								<!-- <Image src="file://{images}/custom_game/icons/leveledTalentTierIcon.png" class="LevelStar"/> -->
-								<!-- <Image src="file://{images}/custom_game/icons/leveledTalentTierIcon.png" class="LevelStar"/> -->
-								<!-- <Image src="file://{images}/custom_game/icons/leveledTalentTierIcon.png" class="LevelStar"/> -->
-							<!-- </Panel> -->
-						<!-- </Panel> -->
-						<!-- <Panel class="GenericTalentContainer"> -->
-							<!-- <Button class="GenericTalentsSelector"> -->
-								<!-- <Image src="file://{images}/custom_game/icons/talentArDIcon.png"/> -->
-							<!-- </Button> -->
-							<!-- <Panel class="GenericTalentStarContainer"> -->
-								<!-- <Image src="file://{images}/custom_game/icons/unleveledTalentTierIcon.png" class="LevelStar"/> -->
-								<!-- <Image src="file://{images}/custom_game/icons/unleveledTalentTierIcon.png" class="LevelStar"/> -->
-								<!-- <Image src="file://{images}/custom_game/icons/unleveledTalentTierIcon.png" class="LevelStar"/> -->
-							<!-- </Panel> -->
-						<!-- </Panel> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Attacker_AREA_DAMAGE.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Attacker_ATTACK_SPEED.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Attacker_EVASION.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Attacker_HEALTH.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Defender_ARMOR.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Defender_HEALTH.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Defender_MAGIC_RESIST.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Defender_THREAT_AMP.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Defensive_ARMOR.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Defensive_HEALTH.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Defensive_HEALTH_REGEN.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Defensive_MAGIC_RESIST.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Healer_HEAL_AMP.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Healer_HEALTH.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Healer_MANA.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Healer_MANA_REGEN.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Nuker_AREA_DAMAGE.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Nuker_MANA.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Nuker_MANA_REGEN.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Nuker_SPELL_AMP.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Offensive_ATTACK_DAMAGE.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Offensive_ATTACK_SPEED.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Offensive_SPELL_AMP.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Offensive_STATUS_AMP.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Support_HEAL_AMP.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Support_MANA.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Support_STATUS_AMP.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Support_THREAT_DOWN.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Utility_HEAL_AMP.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Utility_MANA.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Utility_MANA_REGEN.png"/> -->
+						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Utility_MOVESPEED.png"/>  -->
 					<!-- </Panel> -->
 				</Panel>
 			</Panel>

@@ -8,11 +8,11 @@ modifier_elite_graverobber = class({})
 LinkLuaModifier("modifier_elite_graverobber", "elites/elite_graverobber", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_elite_graverobber:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_DEATH}
+	return {MODIFIER_EVENT_ON_TAKEDAMAGE}
 end
 
-function modifier_elite_graverobber:OnDeath(params)
-	if params.attacker == self:GetParent() then
+function modifier_elite_graverobber:OnTakeDamage(params)
+	if params.attacker == self:GetParent() and ( params.damage > params.unit:GetHealth() or params.unit:GetHealth() <= 0 ) then
 		params.unit.tombstoneDisabled = true
 	end
 end

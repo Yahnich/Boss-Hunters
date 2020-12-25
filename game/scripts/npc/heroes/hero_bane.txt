@@ -6,7 +6,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_bane/bane_enfeeble_ebf"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
@@ -31,20 +31,6 @@
 			"particle"  	"particles/units/heroes/hero_bane/bane_enfeeble_projectile.vpcf"		
 		}
 	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1000"
-		"AbilityCastPoint"				"0.4"
-		"AbilityCastAnimation"			"ACT_DOTA_ENFEEBLE"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16 14 12 10 8 6 4"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"95"		
-	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -52,14 +38,24 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"dmg_reduction"					"-10 -12.5 -15 -17.5 -20 -22.5 -25"
+				"magic_resist_reduction"		"-4 -8 -12 -16 -18 -20 -22"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"status_amp_reduction"			"-20 -25 -30 -35 -40 -45 -50"
+				"status_resist_reduction"		"-15 -20 -25 -30 -32 -34 -36"
 			}
-			"02"
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"spell_amp_reduction"			"0 0 0 0 -15 -30 -45"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"status_amp_reduction"			"0 0 0 0 -15 -30 -45"
+			}
+			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"debuff_duration"				"16.0"
@@ -112,6 +108,16 @@
 				"var_type"				"FIELD_INTEGER"
 				"end_radius"			"450"
 			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cd"					"40"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"1000"
+			}
 		}
 	}
 	"bane_brain_feast"
@@ -155,11 +161,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"6.0"
+		"AbilityCooldown"				"14 13 12 11 10 9 8"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"60 80 100 120 140 160 180"
+		"AbilityManaCost"				"100"
 	
 		
 		"AbilitySpecial"
@@ -169,25 +175,17 @@
 				"var_type"						"FIELD_INTEGER"
 				"heal_damage"					"100 200 300 400 500 600 700"
 			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"debuff_duration"				"5"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_on_cast"				"60 120 180 240 300 360 420"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"scepter_cooldown"				"1.5"
+				"RequiresScepter"				"1"
 			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"scepter_mana_cost"				"0.6"
+				"RequiresScepter"				"1"
 			}
 		}
 	}
@@ -206,7 +204,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"4"
+				"value"					"2"
 			}
 		}
 	}
@@ -225,7 +223,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"900"
+				"value"					"100"
 			}
 		}
 	}
@@ -267,7 +265,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"38 34 30 26 22 18 14"
+		"AbilityCooldown"				"22 19 16 13 13 13 13"
 		"AbilityDuration"				"1.0"
 
 	
@@ -287,20 +285,25 @@
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"7.0"
-				"LinkedSpecialBonus"			"special_bonus_unique_bane_nightmare_prison_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"min_duration"				"1"
+				"var_type"						"FIELD_FLOAT"
+				"min_duration"					"1"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"damage"					"20"
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"20"
+				"LinkedSpecialBonus"			"special_bonus_unique_bane_nightmare_prison_2"
 			}
-			
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"burst_damage"					"100 150 200 250 350 450 550"
+				"LinkedSpecialBonus"			"special_bonus_unique_bane_nightmare_prison_2"
+				"LinkedSpecialBonusField"		"value2"
+			}
 		}
 	}
 	"special_bonus_unique_bane_nightmare_prison_1" 
@@ -317,8 +320,13 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"6"
+				"var_type"				"FIELD_INTEGER"
+				"value"					"80"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value2"				"100"
 			}
 		}
 	}
@@ -337,7 +345,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"0.5"
+				"value"					"-50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value2"				"35"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6"
 			}
 		}
 	}
@@ -413,7 +431,7 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityChannelTime"			"5.0"
-		"AbilityCooldown"				"60"
+		"AbilityCooldown"				"120 110 100 90 80 70"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -442,7 +460,12 @@
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"fiend_grip_damage"				"100 160 220 280 340 400"
+				"fiend_grip_damage"				"100 155 215 280 350 425"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"debuff_increase"				"25"
 			}
 		}
 	}

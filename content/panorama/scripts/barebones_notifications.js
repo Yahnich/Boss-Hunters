@@ -116,4 +116,67 @@ function AddNotification(msg, panel) {
   GameEvents.Subscribe( "bottom_notification", BottomNotification );
   GameEvents.Subscribe( "top_remove_notification", TopRemoveNotification );
   GameEvents.Subscribe( "bottom_remove_notification", BottomRemoveNotification );
+  GameEvents.Subscribe( "dota_push_to_chat", CreateChatMessageInLine );
 })();
+
+const NON_BREAKING_SPACE = "\u00A0";
+const BASE_MESSAGE_INDENT = NON_BREAKING_SPACE.repeat(19);
+const DOTAHud = $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse("HUDElements")
+// event data includes: PlayerID, isTeam and textData
+function CreateChatMessageInLine(event){
+	let text = BASE_MESSAGE_INDENT;
+	const chatLinesPanel = DOTAHud.FindChildTraverse("ChatLinesPanel");
+	const message = $.CreatePanelWithProperties("Label", chatLinesPanel, "", {
+		class: "ChatLine",
+		html: "true",
+		selectionpos: "auto",
+		hittest: "false",
+		hittestchildren: "false",
+	});
+	message.style.flowChildren = "right";
+	message.style.color = "#faeac9";
+	message.style.opacity = 1;
+	$.Schedule(7, () => {
+		message.style.opacity = null;
+	});
+	
+	if (event.PlayerID > -1) {
+		const playerInfo = Game.GetPlayerInfo(event.PlayerID);
+		const localTeamColor = "#" + intToARGB(Players.GetPlayerColor( event.PlayerID ));
+		
+		text += event.isTeam ? `[${$.Localize("#DOTA_ChatCommand_GameAllies_Name")}] ` : NON_BREAKING_SPACE;
+		text += `<font color='${localTeamColor}'>${playerInfo.player_name}</font>: `;
+		
+		$.CreatePanelWithProperties("Panel", message, "", { class: "HeroBadge", selectionpos: "auto" });
+
+		const heroIcon = $.CreatePanelWithProperties("Image", message, "", { class: "HeroIcon", selectionpos: "auto" });
+		heroIcon.SetImage('file://{images}/heroes/' + playerInfo.player_selected_hero + '.png');
+	} else {
+		text += event.isTeam ? `[${$.Localize("#DOTA_ChatCommand_GameAllies_Name")}] ` : NON_BREAKING_SPACE;
+	}
+
+	text += event.textData.replace(/%%\d*(.+?)%%/g, (_, token) => $.Localize(token));
+	if(event.abilityID != null){
+		text = text.replace(/\%(\S*?)\%/g, (_, token) => {
+			if(token == ""){
+				return "%"
+			} else {
+				var level = event.abilityLevel | 1;
+				return Math.abs( Abilities.GetLevelSpecialValueFor( event.abilityID, token, level ) )
+			}
+		});
+	}
+	message.text = text;
+	var inlineImages = message.FindChildrenWithClassTraverse( "InlineImage" )
+	for( let chatIcon of inlineImages ) {
+		chatIcon.AddClass( "ChatWheelIcon" )
+	}
+};
+
+function intToARGB(i) 
+{ 
+	return  ('00' + ( i & 0xFF).toString( 16 ) ).substr( -2 ) +
+			('00' + ( ( i >> 8 ) & 0xFF ).toString( 16 ) ).substr( -2 ) +
+			('00' + ( ( i >> 16 ) & 0xFF ).toString( 16 ) ).substr( -2 ) + 
+			('00' + ( ( i >> 24 ) & 0xFF ).toString( 16 ) ).substr( -2 );
+}

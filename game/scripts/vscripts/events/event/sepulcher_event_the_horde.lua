@@ -23,8 +23,7 @@ local function StartCombat(self)
 	self.timeRemaining = 60
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	local activeHeroes = HeroList:GetActiveHeroCount()
-	Timers:CreateTimer(function()
-		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
+	local timerFunc = (function()
 		self.timeRemaining = self.timeRemaining - 1
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then
@@ -34,8 +33,8 @@ local function StartCombat(self)
 			end
 		end
 	end)
+	self:StartEventTimer( 60, timerFunc )
 	Timers:CreateTimer(1, function()
-		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then
 				for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
@@ -95,14 +94,11 @@ local function StartEvent(self)
 	self._vEventHandles = {
 		ListenToGameEvent( "entity_killed", OnEntityKilled, self ),
 	}
-
-	self.timeRemaining = 10
 	self.eventEnded = false
 	self.combatStarted = false
 	self.combatEnded = false
 	self._playerChoices = {}
-	Timers:CreateTimer(1, function()
-		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
+	local timerFunc = (function()
 		if not self.combatStarted then
 			if self.timeRemaining >= 0 then
 				self.timeRemaining = self.timeRemaining - 1
@@ -112,6 +108,7 @@ local function StartEvent(self)
 			end
 		end
 	end)
+	self:StartEventTimer( 10, timerFunc )
 end
 
 local function EndEvent(self, bWon)

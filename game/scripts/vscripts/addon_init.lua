@@ -85,6 +85,21 @@ LinkLuaModifier( "modifier_generic_health", "libraries/modifiers/talents/modifie
 LinkLuaModifier( "modifier_generic_attack_damage", "libraries/modifiers/talents/modifier_generic_attack_damage.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_generic_movespeed", "libraries/modifiers/talents/modifier_generic_movespeed.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_generic_spell_amp", "libraries/modifiers/talents/modifier_generic_spell_amp.lua", LUA_MODIFIER_MOTION_NONE )
+
+LinkLuaModifier( "modifier_defensive_armor", "libraries/modifiers/talents/modifier_defensive_armor.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_defensive_magic_resist", "libraries/modifiers/talents/modifier_defensive_magic_resist.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_defensive_health", "libraries/modifiers/talents/modifier_defensive_health.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_defensive_health_regen", "libraries/modifiers/talents/modifier_defensive_health_regen.lua", LUA_MODIFIER_MOTION_NONE )
+
+LinkLuaModifier( "modifier_offensive_attack_damage", "libraries/modifiers/talents/modifier_offensive_attack_damage.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_offensive_attack_speed", "libraries/modifiers/talents/modifier_offensive_attack_speed.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_offensive_spell_amp", "libraries/modifiers/talents/modifier_offensive_spell_amp.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_offensive_status_amp", "libraries/modifiers/talents/modifier_offensive_status_amp.lua", LUA_MODIFIER_MOTION_NONE )
+
+LinkLuaModifier( "modifier_utility_heal_amp", "libraries/modifiers/talents/modifier_utility_heal_amp.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_utility_mana", "libraries/modifiers/talents/modifier_utility_mana.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_utility_mana_regen", "libraries/modifiers/talents/modifier_utility_mana_regen.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_utility_movespeed", "libraries/modifiers/talents/modifier_utility_movespeed.lua", LUA_MODIFIER_MOTION_NONE )
 ----------------------------------------
 ----------------------------------------
 

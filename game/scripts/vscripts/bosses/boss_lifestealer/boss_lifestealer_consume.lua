@@ -9,7 +9,8 @@ function boss_lifestealer_consume:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	caster:EmitSound( "Hero_LifeStealer.Assimilate.Target" )
-	if target:IsConsideredHero() then
+	if caster:IsRealHero() and caster:IsSameTeam( target ) and target:IsRealHero() then return end
+	if ( caster:IsRealHero() and not target:IsMinion() ) or target:IsConsideredHero() then
 		if not target:TriggerSpellAbsorb(self) then
 			target:SetAttacking( caster )
 			target:MoveToTargetToAttack( caster ) 
@@ -23,8 +24,13 @@ function boss_lifestealer_consume:OnSpellStart()
 		caster:SetMaxHealth( caster:GetMaxHealth() + health )
 		caster:SetBaseMaxHealth( caster:GetBaseMaxHealth() + health )
 		caster:HealEvent( health, self, caster )
-		caster:SetBaseDamageMax( caster:GetBaseDamageMax() + damage )
-		caster:SetBaseDamageMin( caster:GetBaseDamageMin() + damage )
+		if caster:IsRealHero() then
+			caster:SetBaseDamageMax( caster:GetBaseDamageMax() + caster:GetLevel() )
+			caster:SetBaseDamageMin( caster:GetBaseDamageMin() + caster:GetLevel() )
+		else
+			caster:SetBaseDamageMax( caster:GetBaseDamageMax() + damage )
+			caster:SetBaseDamageMin( caster:GetBaseDamageMin() + damage )
+		end
 		target:AttemptKill(self, caster)
 		self:EndCooldown()
 		self:SetCooldown( self:GetSpecialValueFor("consume_cd") )

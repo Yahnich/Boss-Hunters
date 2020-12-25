@@ -5,7 +5,7 @@ function item_incandescance:GetIntrinsicModifierName()
 end
 
 function item_incandescance:GetAbilityTextureName()
-	if self:GetCaster():HasModifier("modifier_item_incandescance") then
+	if self.toggleModifier and not self.toggleModifier:IsNull() then
 		return "radiance/incandescance_"..self:GetLevel()
 	else
 		return "item_radiance_inactive"
@@ -14,8 +14,9 @@ end
 
 function item_incandescance:OnToggle()
 	if self:GetToggleState() then
-		self:GetCaster():RemoveModifierByName("modifier_item_incandescance")
+		if self.toggleModifier then self.toggleModifier:Destroy() end
 	else
+		if self.toggleModifier then self.toggleModifier:Destroy() end
 		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_incandescance", {})
 	end
 end
@@ -46,8 +47,8 @@ function modifier_item_incandescance_passive:OnRefreshSpecific()
 end
 
 function modifier_item_incandescance_passive:OnDestroySpecific()
-	if IsServer() and not self:GetCaster():HasModifier("modifier_item_incandescance_passive") then
-		self:GetCaster():RemoveModifierByName("modifier_item_incandescance")
+	if IsServer() and self:GetAbility().toggleModifier then
+		self:GetAbility().toggleModifier:Destroy()
 	end
 end
 
@@ -55,24 +56,25 @@ LinkLuaModifier( "modifier_item_incandescance", "items/item_incandescance.lua" ,
 modifier_item_incandescance = class(toggleModifierBaseClass)
 
 function modifier_item_incandescance:OnCreated()
-	self.radius = self:GetSpecialValueFor("radius")
-	self.damage = self:GetSpecialValueFor("damage")
-	if IsServer() then
-		self:StartIntervalThink( 1 )
-	end
+	self:OnRefresh()
 end
 
 function modifier_item_incandescance:OnRefresh()
 	self.radius = self:GetSpecialValueFor("radius")
 	self.damage = self:GetSpecialValueFor("damage")
 	if IsServer() then
+		if self:GetAbility().toggleModifier then
+			self:GetAbility().toggleModifier:Destroy()
+		end
 		self:StartIntervalThink( 1 )
 	end
+	self:GetAbility().toggleModifier = self
 end
 
 function modifier_item_incandescance:OnIntervalThink()
 	local caster = self:GetCaster()
 	local ability = self:GetAbility()
+	
 	if not ability or ability:IsNull() then 
 		self:Destroy()
 		return
@@ -80,6 +82,10 @@ function modifier_item_incandescance:OnIntervalThink()
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self.radius ) ) do
 		ability:DealDamage( caster, enemy, self.damage )
 	end
+end
+
+function modifier_item_incandescance:OnDestroy()
+	self:GetAbility().toggleModifier = nil
 end
 
 function modifier_item_incandescance:IsAura()
@@ -116,6 +122,10 @@ end
 
 function modifier_item_incandescance:IsHidden()    
 	return true
+end
+
+function modifier_item_incandescance:GetAttributes()    
+	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 LinkLuaModifier( "modifier_incandescance_debuff", "items/item_incandescance.lua" ,LUA_MODIFIER_MOTION_NONE )

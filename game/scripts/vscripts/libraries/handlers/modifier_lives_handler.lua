@@ -11,7 +11,7 @@ end
 function modifier_lives_handler:OnRefresh()
 	if IsServer() then
 		self.limit = 3 + (5 - PlayerResource:GetActivePlayerCount() ) + (self:GetParent().bonusLivesProvided or 0)
-		self:SetStackCount( math.min( self.limit, self:GetStackCount() ) )
+		self:SetStackCount( math.min( self.limit, math.max( 0, self:GetStackCount() ) ) )
 	end
 end
 

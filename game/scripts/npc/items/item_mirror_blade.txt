@@ -40,7 +40,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"evasion_loss"			"-15 -15 -15 -15 -20 -25 -30 -35 -40"
+				"evasion_loss"			"-15 -20 -20 -25 -25 -30 -30 -35 -35"
 			}
 			"02"
 			{
@@ -50,9 +50,14 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"8 7 6 5.5 5 5 5 5 4"
+				"cooldown"				"12 12 10 10 8 8 6 6 4"
 			}
 			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"ranged_cooldown"		"18 18 15 15 12 12 9 9 6"
+			}
+			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rune_slots"			"0 1 1 2 2 2 3 3 3"

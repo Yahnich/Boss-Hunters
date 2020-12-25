@@ -54,7 +54,7 @@ function AIThink(thisEntity)
 			})
 			return AI_THINK_RATE
 		end
-		if thisEntity.submergeLoc then
+		if thisEntity.submergeLoc and not thisEntity:IsTaunted() then
 			if CalculateDistance( thisEntity, thisEntity.submergeLoc ) > (thisEntity:GetIdealSpeed() * 0.5) + thisEntity.crush:GetSpecialValueFor("pool_radius") and thisEntity.getBehaviorState ~= BEHAVIOR_RETURNING then
 				thisEntity.getBehaviorState = BEHAVIOR_RETURNING
 				ExecuteOrderFromTable({

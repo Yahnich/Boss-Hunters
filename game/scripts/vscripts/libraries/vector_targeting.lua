@@ -2,48 +2,6 @@ if not VectorTarget then
 	VectorTarget = class({})
 end
 
-ListenToGameEvent("game_rules_state_change", function()
-	if GameRules:State_Get() == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
-		print("[VT] Initializing VectorTarget...")
-		CustomGameEventManager:RegisterListener("send_vector_position", Dynamic_Wrap(VectorTarget, "StartVectorCast"))
-		local mode = GameRules:GetGameModeEntity()
-	end
-end, nil)
-
-function VectorTarget:StartVectorCast( event )
-	local caster = PlayerResource:GetSelectedHeroEntity(event.playerID)
-	local unit = EntIndexToHScript(event.unit)
-	local position = Vector(event.PosX, event.PosY, event.PosZ)
-	local position2 = Vector(event.Pos2X, event.Pos2Y, event.Pos2Z)
-	local abilityName = event.abilityName
-
-	local ability = EntIndexToHScript(event.abilityIndex)
-	local direction = -(position - position2):Normalized()
-
-	if position == position2 then
-		direction = -(unit:GetAbsOrigin() - position):Normalized()
-	end
-	direction = Vector(direction.x, direction.y, 0)
-	if ability then
-		unit.isVectorCasting = true
-		ability.vectorTargetPosition = position
-		ability.vectorTargetPosition2 = position2
-		ability.vectorTargetDirection = direction
-		ExecuteOrderFromTable({
-			UnitIndex = event.unit,
-			OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
-			Position = position,
-			AbilityIndex = event.abilityIndex
-		})
-		local function OverrideSpellStart(self, position, direction)
-			self:OnVectorCastStart(position, direction)
-		end
-		unit.inVectorCast = nil
-		unit.isVectorCasting = false
-		ability.OnSpellStart = function(self) return OverrideSpellStart(self, position, direction) end
-	end
-end
-
 CANCEL_EVENT = {[DOTA_UNIT_ORDER_MOVE_TO_POSITION] = true,
 				[DOTA_UNIT_ORDER_MOVE_TO_TARGET] = true,
 				[DOTA_UNIT_ORDER_ATTACK_MOVE] = true,
@@ -64,29 +22,22 @@ CANCEL_EVENT = {[DOTA_UNIT_ORDER_MOVE_TO_POSITION] = true,
 function VectorTarget:OrderFilter(event)
 	if not event.units["0"] then return true end
 	local unit = EntIndexToHScript(event.units["0"])
-	if event.entindex_ability > 0 and not unit.isVectorCasting then
-		local ability = EntIndexToHScript(event.entindex_ability)
-		local playerID = unit:GetPlayerID()
-		local player = PlayerResource:GetPlayer(playerID)
-		-- check if valid vector cast
-		if ability and unit.inVectorCast == nil and event.order_type == DOTA_UNIT_ORDER_CAST_POSITION and ability.IsVectorTargeting and ability:IsVectorTargeting() then
-			CustomGameEventManager:Send_ServerToPlayer(player, "vector_target_cast_start", {ability = event.entindex_ability, 
-																							startWidth = ability:GetVectorTargetStartRadius(), 
-																							endWidth = ability:GetVectorTargetEndRadius(), 
-																							castLength = ability:GetVectorTargetRange(), })
-			unit.inVectorCast = event.entindex_ability
-			return false
-		elseif unit.inVectorCast ~= nil then -- fire the spell or cancel the order depending on what ability is being cast
-			CustomGameEventManager:Send_ServerToPlayer(player, "vector_target_cast_stop", {cast = unit.inVectorCast == event.entindex_ability})
-			unit.inVectorCast = nil
-			-- filter out 'regular' cast attempt
-			return false
+	local ability = EntIndexToHScript( event.entindex_ability )
+	if ability and ability.GetBehavior and ability:GetBehavior() and HasBit( ability:GetBehavior(), DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING ) then
+		if event.order_type == DOTA_UNIT_ORDER_VECTOR_TARGET_POSITION then
+			ability.vectorTargetPosition2 = Vector( event.position_x, event.position_y, 0 )
 		end
-	elseif unit.inVectorCast and CANCEL_EVENT[event.order_type] then
-		local playerID = unit:GetPlayerID()
-		local player = PlayerResource:GetPlayer(playerID)
-		CustomGameEventManager:Send_ServerToPlayer(player, "vector_target_cast_stop", {cast = false})
-		unit.inVectorCast = nil
+		if event.order_type == DOTA_UNIT_ORDER_CAST_POSITION then
+			ability.vectorTargetPosition = Vector( event.position_x, event.position_y, 0 )
+			local position = ability:GetVectorPosition()
+			local direction = CalculateDirection( ability.vectorTargetPosition2, position )
+			direction = Vector(direction.x, direction.y, 0):Normalized()
+			ability.vectorTargetDirection = direction
+			local function OverrideSpellStart(self, position, direction)
+				self:OnVectorCastStart(position, direction)
+			end
+			ability.OnSpellStart = function(self) return OverrideSpellStart(self, position, direction) end
+		end
 	end
 	return true
 end

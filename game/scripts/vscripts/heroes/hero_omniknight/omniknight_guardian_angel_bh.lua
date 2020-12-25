@@ -3,9 +3,22 @@ omniknight_guardian_angel_bh = class({})
 function omniknight_guardian_angel_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
+	local purification = caster:FindAbilityByName("omniknight_purification_bh")
+	local grace = caster:FindAbilityByName("omniknight_heavenly_grace_bh")
+	
 	local duration = self:GetTalentSpecialValueFor("duration")
+	caster:AddNewModifier(caster, self, "modifier_omniknight_guardian_angel_bh", {duration = duration})
 	for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius") ) ) do
 		ally:AddNewModifier(caster, self, "modifier_omniknight_guardian_angel_bh", {duration = duration})
+		if caster:HasScepter() then
+			caster:SetCursorCastTarget( ally )
+			if grace then
+				grace:OnSpellStart() 
+			end
+			if purification then 
+				purification:OnSpellStart() 
+			end
+		end
 	end
 end
 

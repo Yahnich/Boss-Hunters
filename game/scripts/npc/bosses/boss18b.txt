@@ -148,8 +148,8 @@
 		"AbilityTextureName"			"ursa_earthshock"
 		"MaxLevel"						"2"
 		
-		"AbilityCooldown"				"10 9"
-		"AbilityCastPoint"				"0.75 0.6"
+		"AbilityCooldown"				"12"
+		"AbilityCastPoint"				"1 0.75"
 		"AbilityCastAnimation"			"ACT_DOTA_ABILITY_END"
 		
 		"precache"
@@ -170,17 +170,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"starting_radius"		"200"
+				"starting_radius"		"175"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius_growth"			"25 35"
+				"radius_growth"			"35 50"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"jumps"					"2 3"
+				"jumps"					"1 2"
 			}
 			"04"
 			{
@@ -190,7 +190,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"1"
+				"stun_duration"			"1.5"
 			}
 		}
 	}
@@ -219,17 +219,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aura_radius"			"750 900"
+				"aura_radius"			"750"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-12 -15"
+				"armor_reduction"		"-9 -12"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_per_sec"		"60 80"
+				"damage_per_sec"		"35 50"
 			}
 		}
 	}

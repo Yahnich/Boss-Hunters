@@ -61,11 +61,7 @@ end
 
 function modifier_necrophos_heart_stopper_bh_degen:OnIntervalThink()
 	local damage = self:GetParent():GetMaxHealth() * (self.damage * 0.33) / 100
-	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), damage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL})
-end
-
-function modifier_necrophos_heart_stopper_bh_degen:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE}
+	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), math.ceil(damage), {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL})
 end
 
 function modifier_necrophos_heart_stopper_bh_degen:GetModifierHealthRegenPercentage()

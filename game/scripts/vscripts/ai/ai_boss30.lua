@@ -83,17 +83,15 @@ if IsServer() then
 						})
 						return thisEntity.burrow:GetCastPoint() + 0.1
 					end
-				else
-					if thisEntity.burrow:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, 800 ) == 0 then
-						local randomPos = target:GetAbsOrigin() + ActualRandomVector(1000, 400)
-						ExecuteOrderFromTable({
-							UnitIndex = thisEntity:entindex(),
-							OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
-							Position = randomPos,
-							AbilityIndex = thisEntity.burrow:entindex()
-						})
-						return thisEntity.burrow:GetCastPoint() + 0.1
-					end
+				elseif thisEntity.burrow:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, 800 ) == 0 then
+					local randomPos = target:GetAbsOrigin() + ActualRandomVector(1000, 400)
+					ExecuteOrderFromTable({
+						UnitIndex = thisEntity:entindex(),
+						OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+						Position = randomPos,
+						AbilityIndex = thisEntity.burrow:entindex()
+					})
+					return thisEntity.burrow:GetCastPoint() + 0.1
 				end
 				return AICore:AttackHighestPriority( thisEntity )
 			else

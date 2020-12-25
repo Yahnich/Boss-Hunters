@@ -31,8 +31,10 @@ if IsServer() then
 		self.delay = self:GetSpecialValueFor("bramble_rate")
 		
 		EmitSoundOn("n_black_dragon.Fireball.Target", caster)
-		self:StartIntervalThink( self.delay )
-		CreateModifierThinker(caster, ability, "modifier_elite_overgrown_dummy", {Duration = self.lifetime}, caster:GetAbsOrigin() + ActualRandomVector(750, 150), caster:GetTeam(), false)
+		self:StartIntervalThink( self.delay + 1.5 )
+		local position = caster:GetAbsOrigin() + ActualRandomVector(750, 150)
+		CreateModifierThinker(caster, ability, "modifier_elite_overgrown_dummy", {Duration = self.lifetime}, position, caster:GetTeam(), false)
+		ParticleManager:FireWarningParticle( position, self:GetSpecialValueFor("root_radius") )
 	end
 end
 
@@ -43,7 +45,7 @@ function modifier_elite_overgrown_dummy:OnCreated()
 	if IsServer() then
 		local  bramble = ParticleManager:CreateParticle("particles/units/heroes/hero_dark_willow/dark_willow_bramble.vpcf", PATTACH_ABSORIGIN, self:GetParent())
 		self:AddEffect( bramble )
-		self:StartIntervalThink(1)
+		self:StartIntervalThink(1.5)
 	end
 end
 

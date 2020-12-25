@@ -1,13 +1,29 @@
 bane_enfeeble_ebf = class({})
 
+function bane_enfeeble_ebf:GetIntrinsicModifierName()
+	return "modifier_bane_enfeeble_handler"
+end
+
 function bane_enfeeble_ebf:GetBehavior()
 	local caster = self:GetCaster()
 	if caster:HasTalent("special_bonus_unique_bane_enfeeble_ebf_2") then
 		return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
 	else
-		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
+		return DOTA_ABILITY_BEHAVIOR_PASSIVE
 	end
 end
+
+function bane_enfeeble_ebf:GetCooldown(iLvl)
+	if self:GetCaster():HasTalent("special_bonus_unique_bane_enfeeble_ebf_2") then
+		return self:GetCaster():FindTalentValue("special_bonus_unique_bane_enfeeble_ebf_2", "cd")
+	end
+end 
+
+function bane_enfeeble_ebf:GetCastRange( target, position )
+	if self:GetCaster():HasTalent("special_bonus_unique_bane_enfeeble_ebf_2") then
+		return self:GetCaster():FindTalentValue("special_bonus_unique_bane_enfeeble_ebf_2", "range")
+	end
+end 
 
 function bane_enfeeble_ebf:OnSpellStart()
 	local caster = self:GetCaster()
@@ -27,43 +43,77 @@ function bane_enfeeble_ebf:OnSpellStart()
 end
 
 function bane_enfeeble_ebf:OnProjectileHit(target, position)
-	if target then self:ApplyEnfeeble(target) end
+	if target then
+		if target:TriggerSpellAbsorb(self) then return end
+		self:ApplyEnfeeble(target)
+	end
 end
 
 function bane_enfeeble_ebf:ApplyEnfeeble(target)
-	if target:TriggerSpellAbsorb(self) then return end
 	local caster = self:GetCaster()
-	target:AddNewModifier(caster, self, "modifier_bane_enfeeble_debuff", {duration = self:GetTalentSpecialValueFor("debuff_duration")})
+	local baseDuration = 0
+	local enfeeble = target:FindModifierByName( "modifier_bane_enfeeble_debuff" )
+	if enfeeble then
+		baseDuration = math.min( enfeeble:GetRemainingTime(), self:GetTalentSpecialValueFor("debuff_duration") ) + 1
+		enfeeble:SetDuration( baseDuration, true )
+	else
+		target:AddNewModifier(caster, self, "modifier_bane_enfeeble_debuff", {duration = baseDuration + self:GetTalentSpecialValueFor("debuff_duration")})
+	end
+	
 	if caster:HasTalent("special_bonus_unique_bane_enfeeble_ebf_1") then
 		caster:AddNewModifier(caster, self, "modifier_bane_enfeeble_buff", {duration = self:GetTalentSpecialValueFor("debuff_duration")})
 	end
 	EmitSoundOn("Hero_Bane.Enfeeble", caster)
 end
 
+modifier_bane_enfeeble_handler = class({})
+LinkLuaModifier( "modifier_bane_enfeeble_handler", "heroes/hero_bane/bane_enfeeble_ebf", LUA_MODIFIER_MOTION_NONE )
+
+function modifier_bane_enfeeble_handler:DeclareFunctions()
+	return {MODIFIER_EVENT_ON_ABILITY_FULLY_CAST }
+end
+
+function modifier_bane_enfeeble_handler:OnAbilityFullyCast(params)
+	if params.target and params.unit == self:GetParent() and params.unit:HasAbility( params.ability:GetAbilityName() ) then
+		self:GetAbility():ApplyEnfeeble(params.target)
+	end
+end
+
+function modifier_bane_enfeeble_handler:IsHidden()
+	return true
+end
+
 modifier_bane_enfeeble_debuff = class({})
 LinkLuaModifier("modifier_bane_enfeeble_debuff", "heroes/hero_bane/bane_enfeeble_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_bane_enfeeble_debuff:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("dmg_reduction")
+	self.magic_resist = self:GetTalentSpecialValueFor("magic_resist_reduction")
+	self.status_resist = self:GetTalentSpecialValueFor("status_resist_reduction")
+	self.spell_amp = self:GetTalentSpecialValueFor("spell_amp_reduction")
 	self.status_amp = self:GetTalentSpecialValueFor("status_amp_reduction")
 end
 
 function modifier_bane_enfeeble_debuff:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("dmg_reduction")
-	self.status_amp = self:GetTalentSpecialValueFor("status_amp_reduction")
+	self:OnCreated()
 end
 
 function modifier_bane_enfeeble_debuff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE ,
-			MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+			MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
+			MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE 
+	}
 end
 
-function modifier_bane_enfeeble_debuff:GetModifierIncomingDamage_Percentage()
-	return 8
+function modifier_bane_enfeeble_debuff:GetModifierMagicalResistanceBonus()
+	return self.magic_resist
 end
 
-function modifier_bane_enfeeble_debuff:GetModifierTotalDamageOutgoing_Percentage()
-	return self.damage
+function modifier_bane_enfeeble_debuff:GetModifierStatusResistanceStacking()
+	return self.status_resist
+end
+
+function modifier_bane_enfeeble_debuff:GetModifierSpellAmplify_Percentage()
+	return self.spell_amp
 end
 
 function modifier_bane_enfeeble_debuff:GetModifierStatusAmplify_Percentage()
@@ -82,21 +132,33 @@ modifier_bane_enfeeble_buff = class({})
 LinkLuaModifier("modifier_bane_enfeeble_buff", "heroes/hero_bane/bane_enfeeble_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_bane_enfeeble_buff:OnCreated()
-	self.damage = -self:GetTalentSpecialValueFor("dmg_reduction")
+	self.magic_resist = -self:GetTalentSpecialValueFor("magic_resist_reduction")
+	self.status_resist = -self:GetTalentSpecialValueFor("status_resist_reduction")
+	self.spell_amp = -self:GetTalentSpecialValueFor("spell_amp_reduction")
 	self.status_amp = -self:GetTalentSpecialValueFor("status_amp_reduction")
 end
 
 function modifier_bane_enfeeble_buff:OnRefresh()
-	self.damage = -self:GetTalentSpecialValueFor("dmg_reduction")
-	self.status_amp = -self:GetTalentSpecialValueFor("status_amp_reduction")
+	self:OnRefresh()
 end
 
 function modifier_bane_enfeeble_buff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE}
+	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+			MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
+			MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE 
+	}
 end
 
-function modifier_bane_enfeeble_buff:GetModifierTotalDamageOutgoing_Percentage()
-	return self.damage
+function modifier_bane_enfeeble_buff:GetModifierMagicalResistanceBonus()
+	return self.magic_resist
+end
+
+function modifier_bane_enfeeble_buff:GetModifierStatusResistanceStacking()
+	return self.status_resist
+end
+
+function modifier_bane_enfeeble_buff:GetModifierSpellAmplify_Percentage()
+	return self.spell_amp
 end
 
 function modifier_bane_enfeeble_buff:GetModifierStatusAmplify_Percentage()

@@ -49,9 +49,10 @@ function SelectRelic(relic)
 	if(hasQueuedAction == false)
 	{
 		if( GameUI.IsAltDown() ){
-			var relicName = $.Localize( relic )
-			var relicDescr = $.Localize( relic + "_Description" )
-			GameEvents.SendCustomGameEventToServer( "player_notify_relic", {pID : localID, text : "I will take following relic: " + relicName + " - " + relicDescr} )
+			let relicText = "%%#" + relic + "%%" + " (%%#BOSSHUNTERS_TakingRelic%%)"
+						   + ' <img src="file://{images}/control_icons/chat_wheel_icon.png" style="width:8px;height:8px" width="8" height="8" > '
+						   + "%%#" + relic + "_Description%%"
+			GameEvents.SendCustomGameEventToServer( "server_dota_push_to_chat", {PlayerID : localID, textData : relicText, isTeam : true} )
 		} else {
 			hasQueuedAction = true
 			Game.EmitSound( "Relics.SelectedRelic" )
@@ -60,12 +61,13 @@ function SelectRelic(relic)
 	}
 }
 
-function SkipRelics()
+function SkipRelics(relic)
 {
 	if(hasQueuedAction == false)
 	{
 		if( GameUI.IsAltDown() ){
-			GameEvents.SendCustomGameEventToServer( "player_notify_relic", {pID : localID, text : "I will skip my relic."} )
+			let relicText = "%%#BOSSHUNTERS_SkippingRelics%%"
+			GameEvents.SendCustomGameEventToServer( "server_dota_push_to_chat", {PlayerID : localID, textData : relicText, isTeam : true} )
 		} else {
 			Game.EmitSound( "Button.Click" )
 			hasQueuedAction = true
@@ -276,14 +278,19 @@ function UpdateRelicInventory(table){
 
 function CreateRelicPanel(relic)
 {
-	var inventory = $("#RelicInventoryPanel")
-	var relicPanel = $.CreatePanel("Panel", inventory, "");
+	const inventory = $("#RelicInventoryPanel")
+	const relicPanel = $.CreatePanel("Panel", inventory, "");
 	relicPanel.BLoadLayoutSnippet("RelicInventoryContainer")
-	var relicName = $.Localize( relic.name, relicPanel )
-	var relicDescr = relic.name + "_Description"
+	let relicName = $.Localize( relic.name, relicPanel )
+	let relicDescr = relic.name + "_Description"
 	
-	var relicLabel = relicPanel.FindChildTraverse("RelicLabel")
-	var relicIcon = relicPanel.FindChildTraverse("RelicInventoryIconSnippet")
+	relicPanel.rarity = relic.rarity
+	relicPanel.cursed = relic.cursed
+	relicPanel.name = relic.name
+	relicPanel.relic_entindex = relic.relic_entindex;
+	
+	let relicLabel = relicPanel.FindChildTraverse("RelicLabel")
+	let relicIcon = relicPanel.FindChildTraverse("RelicInventoryIconSnippet")
 	relicLabel.text = relicName
 	
 	if(relic.rarity == "RARITY_EVENT"){
@@ -321,12 +328,23 @@ function CreateRelicPanel(relic)
 		}
 	});
 	relicPanel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", relicPanel);});
-	var ownerText = "I have "
+	
 	if( Players.GetLocalPlayerPortraitUnit() != Players.GetPlayerHeroEntityIndex( localID ) ){
 		ownerText = $.Localize( Entities.GetUnitName( Players.GetLocalPlayerPortraitUnit() ) ) + " has "
 	}
-	relicPanel.SetPanelEvent("onactivate", function(){ GameEvents.SendCustomGameEventToServer( "player_notify_relic", {pID : localID, text : ownerText + relicName + " - " + $.Localize( relicDescr )} ) });
-	
-	relicPanel.relic_name = relic.name;
-	relicPanel.relic_entindex = relic.relic_entindex;
+	relicPanel.SetPanelEvent("onactivate", function(){ 
+		let relicBaseText = ""
+		const relicLabel = relicPanel.FindChildTraverse("RelicLabel")
+		let notLocalHero = Players.GetLocalPlayerPortraitUnit() != Players.GetPlayerHeroEntityIndex( localID )
+		if( notLocalHero ) {
+			relicBaseText = "%%#" + Entities.GetUnitName( lastRememberedHero ) + '%%'
+						  + ' <img src="file://{images}/control_icons/chat_wheel_icon.png" style="width:8px;height:8px" width="8" height="8" > ' 
+		}
+		let relicInfoText = relicBaseText 
+						  + "<font color='" + relicLabel.style.color +"'>"
+						  +"%%#" + relicPanel.name + "%% " + "(%%BOSSHUNTERS_RELIC_" +  relicPanel.rarity + "%%)</font>"
+						  + ' <img src="file://{images}/control_icons/chat_wheel_icon.png" style="width:8px;height:8px" width="8" height="8" > ' 
+						  + "%%#" + relicPanel.name + "_Description%% "
+		GameEvents.SendCustomGameEventToServer( "server_dota_push_to_chat", {PlayerID : localID, textData : relicInfoText, isTeam : true} )
+	});
 }

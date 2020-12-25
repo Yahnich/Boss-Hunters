@@ -36,9 +36,10 @@ local function StartCombat(self, bFight, bHard)
 	if bFight then
 		self.foughtAsura = true
 		self.eventType = EVENT_TYPE_COMBAT
-		self.eliteHasBeenInitialized = true
+		self.eventRewardType = EVENT_REWARD_GOLD
 		if bHard then
-			self.eliteHasBeenInitialized = false
+			self.eventType = EVENT_TYPE_ELITE
+			self.eventRewardType = EVENT_REWARD_RELIC
 		end
 		self._vEventHandles = {
 			ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
@@ -89,11 +90,11 @@ local function StartEvent(self)
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_3', Context_Wrap( self, 'ThirdChoice') ),
 	}
 	self._vEventHandles = {}
-	self.timeRemaining = 15
+	self.timeRemaining = 30
 	self.eventEnded = false
 	self.foughtAsura = false
+	CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) + self.timeRemaining } )
 	self.waitTimer = Timers:CreateTimer(1, function()
-		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.eventEnded and not self.foughtAsura then
 			if self.timeRemaining >= 0 then
 				self.timeRemaining = self.timeRemaining - 1

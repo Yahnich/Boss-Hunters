@@ -1,0 +1,288 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf31:version{593cd181-a1d6-4c6f-9a8c-0534e8d44db0} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 32
+	m_BoundingBoxMax = [ 10.0, 10.0, 110.0 ]
+	m_ConstantColor = [ 174, 139, 73, 255 ]
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_flStartFadeSize = 1.0
+			m_flEndFadeSize = 1.4
+			m_bDisableZBuffering = true
+			m_bBlendFramesSeq0 = false
+			m_flAnimationRate = 1.5
+			m_nAnimationType = "ANIMATION_TYPE_FIT_LIFETIME"
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/smoke3/smoke3b.vtex"
+					m_nTextureChannels = "SPRITECARD_TEXTURE_CHANNEL_MIX_A"
+				},
+				{
+					m_hTexture = resource:"materials/particle/smoke3/smoke3b.vtex"
+					m_TextureControls = 
+					{
+						m_flZoomScale = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = 4.0
+						}
+					}
+					m_nTextureChannels = "SPRITECARD_TEXTURE_CHANNEL_MIX_RGB"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ALPHA"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.1
+		},
+		{
+			_class = "C_OP_RemapSpeed"
+			m_flInputMax = 10.0
+			m_nFieldOutput = "5"
+			m_bScaleInitialRange = true
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+			m_flBias = 0.9
+			m_flStartScale = 0.0
+			m_flEndTime = 0.1
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.1
+		},
+		{
+			_class = "C_OP_RampScalarLinear"
+			m_RateMax = 2.0
+			m_RateMin = -1.0
+			m_nField = "4"
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_bLockRot = true
+			m_flRange = 700.0
+		},
+		{
+			_class = "C_OP_Orient2DRelToCP"
+		},
+		{
+			_class = "C_OP_FadeIn"
+			m_bProportional = false
+			m_flFadeInTimeMax = 0.5
+		},
+		{
+			_class = "C_OP_AlphaDecay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_flEndTime = 999999.0
+			m_Rate = -1.8
+			m_nField = "16"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_RampScalarLinear"
+			m_flEndTime_max = 999999.0
+			m_flEndTime_min = 999999.0
+			m_RateMax = 500.0
+			m_RateMin = -300.0
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_OscillateVector"
+		},
+		{
+			_class = "C_OP_OscillateVector"
+			m_bProportionalOp = false
+			m_flEndTime_max = 999999.0
+			m_flEndTime_min = 999999.0
+			m_FrequencyMax = [ 0.25, 0.25, 0.25 ]
+			m_FrequencyMin = [ 0.25, 0.25, 0.25 ]
+			m_RateMax = [ 5.0, 5.0, 5.0 ]
+			m_RateMin = [ -5.0, -5.0, -5.0 ]
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMax = 90.0
+			m_fLifetimeMin = 90.0
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMax = 2.5
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 5
+		},
+		{
+			_class = "C_INIT_RandomSecondSequence"
+			m_nSequenceMax = 9
+			m_nSequenceMin = 9
+		},
+		{
+			_class = "C_INIT_RandomAlpha"
+			m_nAlphaMax = 26
+			m_nAlphaMin = 22
+		},
+		{
+			_class = "C_INIT_RingWave"
+			m_flInitialRadius = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 0.35
+			}
+			m_flThickness = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 1
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 0.5
+			}
+			m_flInitialSpeedMin = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 2
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 0.35
+			}
+			m_flInitialSpeedMax = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 2
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 0.5
+			}
+			m_flRoll = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.0
+			}
+			m_flPitch = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.0
+			}
+			m_flYaw = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.0
+			}
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_flNoiseScale = 0.0
+			m_flNoiseScaleLoc = 2.0
+			m_vecOutputMin = [ -400.0, -400.0, 200.0 ]
+			m_vecOutputMax = [ 400.0, 400.0, 400.0 ]
+			m_bLocalSpace = true
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+		{
+			_class = "C_INIT_PositionWarp"
+			m_vecWarpMin = [ 1.0, 1.0, 0.0 ]
+			m_vecWarpMax = [ 1.0, 1.0, 0.0 ]
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 0.65 ]
+			m_OffsetMax = [ 0.0, 0.0, 0.65 ]
+			m_bProportional = true
+		},
+		{
+			_class = "C_INIT_RemapCPtoScalar"
+			m_flOutputMax = 250.0
+			m_nCPInput = 1
+			m_flInputMin = 100.0
+			m_flInputMax = 1000.0
+			m_flOutputMin = 50.0
+			m_bScaleInitialRange = true
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_flStartTime = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.0
+			}
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 32.0
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_sandking/sandking_sandstorm_eruption_dust.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_sandking/sandking_sandstorm_start.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_sandking/sandking_sandstorm_cloud_center.vpcf"
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetControlPointRotation"
+			m_flRotRate = 35.0
+		},
+	]
+	m_nFirstMultipleOverride_BackwardCompat = 7
+	m_nBehaviorVersion = 9
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 1.0, 1.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+}

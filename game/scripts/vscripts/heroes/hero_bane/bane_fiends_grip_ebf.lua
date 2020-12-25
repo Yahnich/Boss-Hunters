@@ -50,16 +50,15 @@ LinkLuaModifier("modifier_bane_fiends_grip_ebf", "heroes/hero_bane/bane_fiends_g
 
 if IsServer() then
 	function modifier_bane_fiends_grip_ebf:OnCreated()
-		self.damage = self:GetTalentSpecialValueFor("fiend_grip_damage")
-		self.drain = self:GetTalentSpecialValueFor("fiend_grip_mana_drain") / 100
-		self.tick = self:GetTalentSpecialValueFor("fiend_grip_tick_interval")
+		self:OnRefresh()
+		self.tick = 0
 		self:StartIntervalThink(0.1)
 	end
 	
 	function modifier_bane_fiends_grip_ebf:OnRefresh()
 		self.damage = self:GetTalentSpecialValueFor("fiend_grip_damage")
 		self.drain = self:GetTalentSpecialValueFor("fiend_grip_mana_drain") / 100
-		self.tick = self:GetTalentSpecialValueFor("fiend_grip_tick_interval")
+		self.debuff_increase = self:GetTalentSpecialValueFor("debuff_increase") / 100
 	end
 	
 	function modifier_bane_fiends_grip_ebf:OnIntervalThink()
@@ -67,22 +66,19 @@ if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
 		
-		if caster:IsChanneling() or self:GetCaster():HasTalent("special_bonus_unique_bane_fiends_grip_ebf_2") then
-			self.tick = self.tick - 0.1
-			if self.tick <= 0 then
-				self.tick = self:GetTalentSpecialValueFor("fiend_grip_tick_interval")
-				ability:DealDamage( caster, parent, self.damage, {damage_type = DAMAGE_TYPE_MAGICAL} )
-				local drain = self.drain * parent:GetMaxMana()
-				caster:RestoreMana(drain)
-				parent:ReduceMana( drain )
-				if caster:HasTalent("special_bonus_unique_bane_fiends_grip_ebf_1") then
-					for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_bane_fiends_grip_ebf_1") ) ) do
-						enemy:AddNewModifier(caster, ability, "modifier_bane_fiends_grip_ebf", {duration = self:GetRemainingTime()})
-						break
-					end
-				end
+		self.tick = self.tick - 0.1
+		for _, modifier in ipairs( parent:FindAllModifiers() ) do
+			if modifier:IsDebuff() or not parent:IsSameTeam( modifier:GetCaster() ) then
+				modifier:SetDuration( modifier:GetRemainingTime() + 0.1 * (1+self.debuff_increase), true )
 			end
-		else
+		end
+		if self.tick <= 0 then
+			self.tick = self:GetTalentSpecialValueFor("fiend_grip_tick_interval")
+			local damage = ability:DealDamage( caster, parent, self.damage, {damage_type = DAMAGE_TYPE_MAGICAL} )
+			local drain = self.drain * damage
+			caster:RestoreMana(drain)
+		end
+		if not caster:HasModifier("modifier_bane_fiends_grip_ebf_channel") and not self:GetCaster():HasTalent("special_bonus_unique_bane_fiends_grip_ebf_2") then
 			self:Destroy()
 		end
 	end

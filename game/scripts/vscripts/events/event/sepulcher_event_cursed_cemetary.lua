@@ -104,11 +104,9 @@ local function StartEvent(self)
 	self._vEventHandles = {
 		ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
 	}
-	self.timeRemaining = 15
 	self.eventEnded = false
 	self.combatStarted = false
-	self.waitTimer = Timers:CreateTimer(1, function()
-		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
+	local timerFunc = (function()
 		if not self.eventEnded and not self.combatStarted then
 			if self.timeRemaining >= 0 then
 				self.timeRemaining = self.timeRemaining - 1
@@ -120,6 +118,7 @@ local function StartEvent(self)
 			end
 		end
 	end)
+	self.waitTimer = self:StartEventTimer( 30, timerFunc )
 	
 	self._playerChoices = {}
 end

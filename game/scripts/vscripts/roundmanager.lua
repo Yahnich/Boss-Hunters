@@ -54,6 +54,7 @@ function RoundManager:VoteSkipPrepTime(userid, info)
 	for event, playerVotes in pairs( self.votedToSkipPrep ) do
 		playerVotes[info.pID] = nil
 	end
+	
 	self.votedToSkipPrep[info.eventID][info.pID] = true
 	local highestChoiceVotes = 0
 	for event, playerVotes in pairs( self.votedToSkipPrep ) do
@@ -76,6 +77,7 @@ function RoundManager:VoteSkipPrepTime(userid, info)
 end
 
 function RoundManager:VoteNewGame(userid, event)
+	print( self.ng, "hello?" )
 	if self.ng then return end
 	self.votedToNG = (self.votedToNG or 0)
 	self.votedNoNg = (self.votedNoNg or 0)
@@ -86,7 +88,8 @@ function RoundManager:VoteNewGame(userid, event)
 	end
 	local noVotes = HeroList:GetActiveHeroCount() - self.votedToNG
 	local nonVotes = HeroList:GetActiveHeroCount() - self.votedToNG
-	CustomGameEventManager:Send_ServerToAllClients("bh_update_votes_prep_time", {yes = self.votedToNG, no = noVotes, ascension = true})
+	CustomGameEventManager:Send_ServerToAllClients("bh_update_votes_newgame", {yes = self.votedToNG, no = noVotes})
+	print( self.prepTimer, "hello2?", noVotes, self.votedToNG, self.votedNoNg, math.ceil( HeroList:GetActiveHeroCount() / 2 ) )
 	if self.prepTimer <= 0 then return end
 	if noVotes <= self.votedToNG and not self.ng then
 		self.ng = true
@@ -108,6 +111,7 @@ function RoundManager:VoteNewGame(userid, event)
 	elseif self.votedNoNg >= math.ceil( HeroList:GetActiveHeroCount() / 2 ) then
 		self.ng = false
 		self.prepTimer = 0
+		CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) + self.prepTimer } )
 	end
 end
 
@@ -143,7 +147,7 @@ function RoundManager:OnNPCSpawned(event)
 					EmitSoundOn("DOTA_Item.BlinkDagger.NailedIt", spawnedUnit)
 				end
 				if not spawnedUnit.hasBeenInitialized then
-					RoundManager:InitializeUnit(spawnedUnit, (spawnedUnit:IsRoundNecessary() and (RoundManager:GetCurrentEvent() and RoundManager:GetCurrentEvent():IsElite() )) or RoundManager:GetAscensions() > 0)
+					RoundManager:InitializeUnit(spawnedUnit, not spawnedUnit:IsMinion() and ((RoundManager:GetCurrentEvent() and RoundManager:GetCurrentEvent():IsElite() ) or RoundManager:GetAscensions() > 0))
 					GridNav:DestroyTreesAroundPoint(spawnedUnit:GetAbsOrigin(), spawnedUnit:GetHullRadius() + spawnedUnit:GetCollisionPadding() + 350, true)
 					FindClearSpaceForUnit(spawnedUnit, spawnedUnit:GetAbsOrigin(), true)
 				end
@@ -248,9 +252,9 @@ function RoundManager:ConstructRaids(zoneName)
 				-- else -- non fixed round
 				local rewardKey = RandomInt( 1, math.min( #POSSIBLE_REWARDS, i ) )
 				local reward = POSSIBLE_REWARDS[rewardKey]
-				if RollPercentage(COMBAT_CHANCE) or self.eventsCreated < 3 then -- Rolled Combat
+				if RollPercentage( COMBAT_CHANCE ) or self.eventsCreated < 3 then -- Rolled Combat
 					local combatType = EVENT_TYPE_COMBAT
-					if RollPercentage( 25 ) then
+					if self.eventsCreated >= 3 and RollPercentage( ELITE_CHANCE ) then
 						combatType = EVENT_TYPE_ELITE
 					end
 					if zoneCombatPool[1] == nil then
@@ -380,7 +384,7 @@ function RoundManager:StartPrepTime(fPrep, forceSet)
 				for enemy, data in pairs(event:GetEnemiesToSpawn()) do
 					local foe = {}
 					foe.name = enemy
-					foe.amount = (data.Amount or 0) + (data.RaidBonus or 0) * (RoundManager:GetCurrentRaidTier() - 1)
+					foe.amount = (data.Amount or 0) + (data.RaidBonus or 0) * (RoundManager:GetCurrentRaidTier() - 1) + math.floor( HeroList:GetActiveHeroCount() * (data.HeroBonus or 0) )
 					foe.abilities = {}
 					local unitKV = GameRules.UnitKV[enemy]
 					if unitKV then
@@ -479,7 +483,7 @@ function RoundManager:StartEvent()
 			event:StartEvent()
 			
 			CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) + (event.timeRemaining or 0) } )
-			CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_rounds", { rounds = self:GetEventsFinished(), round_name = event:GetEventName() } )
+			CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_rounds", { rounds = self:GetEventsFinished(), round_name = event:GetEventName(), ascensions = RoundManager:GetAscensions() } )
 			
 			EventManager:FireEvent("boss_hunters_event_started", {eventType = event:GetEventType()})
 			if event:GetEventType() == EVENT_TYPE_BOSS then
@@ -507,10 +511,10 @@ function RoundManager:EndEvent(bWonRound)
 		GameRules:RefreshPlayers( GameRules:GetGameDifficulty() >= 3 and bWonRound ) 
 		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 		local event = self:GetCurrentEvent()
-		event.eventEnded = true
-		event.eventHasStarted = false
-		if event.eventHandler then Timers:RemoveTimer( event.eventHandler ) end
 		if event then
+			event.eventEnded = true
+			event.eventHasStarted = false
+			if event.eventHandler then Timers:RemoveTimer( event.eventHandler ) end
 			if bWonRound then
 				EventManager:FireEvent("boss_hunters_event_finished", {eventType = event:GetEventType()})
 				event:HandoutRewards(true)
@@ -536,7 +540,7 @@ function RoundManager:EndEvent(bWonRound)
 			unit:SetThreat( 0 )
 		end
 		
-		self.freezePreparationTime = 3.5
+		self.freezePreparationTime = 1
 		Timers:CreateTimer(function()
 			for _, unit in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_ENEMY, flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_DEAD + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD}) ) do
 				if unit:GetTeam() == DOTA_TEAM_BADGUYS then
@@ -806,8 +810,8 @@ function RoundManager:InitializeUnit(unit, bElite)
 	if bElite and event then event.eliteHasBeenInitialized = true end
 	local expectedHP = unit:GetBaseMaxHealth() * RandomFloat(0.95, 1.05)
 	local expectedDamage = ( unit:GetAverageBaseDamage() + (RoundManager:GetEventsFinished() * 1.5) ) * RandomFloat(0.90, 1.10)
-	local playerHPMultiplier = 0.375
-	local playerDMGMultiplier = 0.125
+	local playerHPMultiplier = 0.5
+	local playerDMGMultiplier = 0.15
 	local playerArmorMultiplier = 0.075
 	if GameRules:GetGameDifficulty() == 4 then 
 		expectedHP = expectedHP * 1.4
@@ -817,23 +821,28 @@ function RoundManager:InitializeUnit(unit, bElite)
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
 	
-	local HPMultiplierFunc = function( events, raids, zones ) return (0.2 + (events * 0.065)) * ( 1 + raids * 0.1 ) * ( 1 + zones * 0.12 ) end
-	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.25 + (events * 0.05)) * ( 1 + raids * 0.035) * ( 1 + zones * 0.025 ) end
+	local HPMultiplierFunc = function( events, raids, zones ) return (0.14 + (events * 0.02)) * ( 1 + raids * (0.8 + HeroList:GetActiveHeroCount()/50) ) * ( 1 + zones * (0.10 + HeroList:GetActiveHeroCount()/100) ) end
+	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.13 + (events * 0.035)) * ( 1 + raids * (0.028 + HeroList:GetActiveHeroCount()/50)) * ( 1 + zones * (0.023 + HeroList:GetActiveHeroCount()/100) ) end
+	
+	
 	
 	local effPlayerHPMult =  HPMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
 	local effPlayerDMGMult = DMGMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
 	local effPlayerArmorMult = 0.7 + (effective_multiplier * playerArmorMultiplier) 
 	
+	print( "multiplier:", effPlayerHPMult, effPlayerDMGMult, effPlayerArmorMult )
+	
 	maxPlayerHPMult = HPMultiplierFunc( ( EVENTS_PER_RAID + 1 ) * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
 	
 	effPlayerHPMult = math.min( effPlayerHPMult, maxPlayerHPMult )
-	effPlayerHPMult = effPlayerHPMult * ( 1 + RoundManager:GetAscensions() * 0.40 )  * (1 + effective_multiplier * playerHPMultiplier + effective_multiplier / 10 )
+	effPlayerHPMult = effPlayerHPMult * ( 1.4^RoundManager:GetAscensions() )  * (1 + effective_multiplier * playerHPMultiplier + effective_multiplier / 10 )
 
 	maxPlayerDMGMult = DMGMultiplierFunc( ( EVENTS_PER_RAID + 1 ) * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
 	effPlayerDMGMult = math.min( effPlayerDMGMult, maxPlayerDMGMult )
-	effPlayerDMGMult = effPlayerDMGMult * ( 1 + RoundManager:GetAscensions() * 1 )  * (1 + effective_multiplier * playerDMGMultiplier )
+	effPlayerDMGMult = effPlayerDMGMult * ( 2^RoundManager:GetAscensions() )  * (1 + effective_multiplier * playerDMGMultiplier )
 	
-	effPlayerArmorMult = effPlayerArmorMult * ( 1 + RoundManager:GetAscensions() * 0.15 )
+	
+	effPlayerArmorMult = effPlayerArmorMult * ( 1.15^RoundManager:GetAscensions() )
 	
 	if unit:IsMinion() then
 		effPlayerHPMult = effPlayerHPMult / 2
@@ -856,15 +865,11 @@ function RoundManager:InitializeUnit(unit, bElite)
 		end
 	end
 	
-	expectedHP = math.max( 1, expectedHP * effPlayerHPMult )
-	unit:SetCoreHealth(expectedHP)
-	
-	unit:SetAverageBaseDamage( math.max( 20 + HeroList:GetActiveHeroCount(), expectedDamage * effPlayerDMGMult ), 33)
-	unit:SetBaseHealthRegen(RoundManager:GetEventsFinished() * RandomFloat(0.85, 1.15) )
 	
 	local msBonus = unit:GetBaseMoveSpeed() * 0.035 * effective_multiplier * (GameRules:GetGameDifficulty() / 2)
 	unit:SetBaseMoveSpeed( unit:GetBaseMoveSpeed() + msBonus )
 	
+	local expectedRegen = RoundManager:GetEventsFinished() * RandomFloat(0.85, 1.15)
 	local bonusArmor = math.min( RoundManager:GetRaidsFinished() * 2 + RoundManager:GetZonesFinished() * 4, 50 )
 	if unit:IsMinion() then
 		bonusArmor =  math.min( RoundManager:GetRaidsFinished(), 20 )
@@ -873,15 +878,38 @@ function RoundManager:InitializeUnit(unit, bElite)
 		bonusArmor = math.floor( bonusArmor * 0.75 )
 	end
 	
+	local SAMultiplierFunc = function( events, raids, zones ) return 2 * math.floor( (events) * (1 + (raids * 0.2 ) * ( zones * 0.2 ) ) ) end
+	local maxSpellAmpScale = SAMultiplierFunc( (EVENTS_PER_RAID + 1) * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
+	local spellAmpScale = SAMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
+	
+	if RoundManager:GetAscensions() > 0 then
+		expectedRegen = math.min( expectedRegen, 80 ) * (1 + (RoundManager:GetAscensions() * 0.15))
+		if unit:IsMinion() then
+			expectedHP = expectedHP + RoundManager:GetEventsFinished() * 25
+			expectedRegen = expectedRegen / 2
+			expectedDamage = expectedDamage + RoundManager:GetEventsFinished() * 0.33
+			bonusArmor = bonusArmor + RoundManager:GetRaidsFinished() * 0.5
+			spellAmpScale = spellAmpScale + RoundManager:GetEventsFinished() / 2
+		else
+			expectedHP = expectedHP + RoundManager:GetEventsFinished() * 100
+			expectedDamage = expectedDamage + RoundManager:GetEventsFinished() * 0.5
+			bonusArmor = bonusArmor + RoundManager:GetRaidsFinished() * 2
+			spellAmpScale = spellAmpScale + RoundManager:GetEventsFinished()
+		end
+	end
+	spellAmpScale = math.min( maxSpellAmpScale, spellAmpScale ) * ( (1 +  RoundManager:GetAscensions()) * 3 )
+	
 	unit:SetPhysicalArmorBaseValue( math.min( 175, (unit:GetPhysicalArmorBaseValue() + bonusArmor ) * effPlayerArmorMult ) )
+	
+	expectedHP = math.max( 1, expectedHP * effPlayerHPMult )
+	unit:SetCoreHealth(expectedHP)
+	
+	unit:SetAverageBaseDamage( math.max( 20 + HeroList:GetActiveHeroCount(), expectedDamage * effPlayerDMGMult ), 33)
+	unit:SetBaseHealthRegen( expectedRegen )
 	
 	unit:AddNewModifier(unit, nil, "modifier_boss_attackspeed", {})
 	local powerScale = unit:AddNewModifier(unit, nil, "modifier_power_scaling", {})
 	
-	local SAMultiplierFunc = function( events, raids, zones ) return 2 * math.floor( (events) * (1 + (raids * 0.2 ) * ( zones * 0.2 ) ) ) end
-	local maxSpellAmpScale = SAMultiplierFunc( (EVENTS_PER_RAID + 1) * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
-	local spellAmpScale = SAMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
-	spellAmpScale = math.min( maxSpellAmpScale, spellAmpScale ) * ( (1 +  RoundManager:GetAscensions()) * 3 )
 	
 	if powerScale then powerScale:SetStackCount( spellAmpScale ) end
 	if not unit:IsMinion() then
@@ -1043,9 +1071,10 @@ function RoundManager:IsRoundGoing()
 end
 
 function RoundManager:GetStandardGoldReward()
-	local EVENT_MAX = (EVENTS_PER_RAID + 1 * RAIDS_PER_ZONE * ZONE_COUNT)
+	local EVENT_MAX = ( (EVENTS_PER_RAID + 1) * RAIDS_PER_ZONE * ZONE_COUNT )
+	local RAID_MAX = RAIDS_PER_ZONE * ZONE_COUNT
 	local eventScaling = math.min( RoundManager:GetEventsFinished(), EVENT_MAX ) * 0.75
-	local raidScaling = 1 + math.min( RoundManager:GetRaidsFinished(), EVENT_MAX ) * 0.125
+	local raidScaling = 1 + math.min( RoundManager:GetRaidsFinished(), RAID_MAX ) * 0.125
 	local playerScaling = 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) / 10
 	local baseGold = ( ( 200 + ( (25) * eventScaling ) ) + (80 * raidScaling) ) 
 	return baseGold * playerScaling
@@ -1053,9 +1082,10 @@ end
 
 function RoundManager:GetStandardXPReward()
 	local EVENT_MAX = (EVENTS_PER_RAID + 1 * RAIDS_PER_ZONE * ZONE_COUNT)
+	local RAID_MAX = RAIDS_PER_ZONE * ZONE_COUNT
 	local eventScaling = math.min( RoundManager:GetEventsFinished(), EVENT_MAX ) * 0.75
-	local raidScaling = 1 + math.min( RoundManager:GetRaidsFinished(), EVENT_MAX ) * 0.15
+	local raidScaling = 1 + math.min( RoundManager:GetRaidsFinished(), RAID_MAX ) * 0.15
 	local playerScaling = 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) / 10
-	local baseXP = ( ( 150 + ( (35) * eventScaling ) ) + (275 * raidScaling) )
+	local baseXP = ( ( 150 + ( (40) * eventScaling ) ) + (275 * raidScaling) )
 	return baseXP * playerScaling
 end

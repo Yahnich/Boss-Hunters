@@ -39,8 +39,8 @@ local function StartEvent(self)
 	}
 	self.timeRemaining = 30
 	self.eventEnded = false
+	CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) + self.timeRemaining } )
 	Timers:CreateTimer(1, function()
-		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if self.timeRemaining >= 0 then
 			self.timeRemaining = self.timeRemaining - 1
 			return 1

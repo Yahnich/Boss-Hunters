@@ -61,26 +61,27 @@ function modifier_item_bloodletting_armlet:OnCreated()
 	self.hp_damage = self:GetSpecialValueFor("max_hp_dmg") / 100
 	self.drain = self:GetSpecialValueFor("health_drain")
 	self:GetAbility().toggleModifier = self
+	self:SetHasCustomTransmitterData( true )
 	if IsServer() then
 		self.damage = self:GetCaster():GetHealth() * self.hp_damage
 		self.healthToGrant = self.bonus_strength * GameRules:GetGameModeEntity():GetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_STRENGTH_HP, self:GetCaster() )
 		self.healthStep = self.healthToGrant / 6
 		self:StartIntervalThink( 0.1 )
-		self:SetHasCustomTransmitterData( true )
+		self:SendBuffRefreshToClients()
 	end
 end
 
 function modifier_item_bloodletting_armlet:OnRefresh()
 	if IsServer() then
 		self.damage = self:GetCaster():GetHealth() * self.hp_damage
-		self:SetHasCustomTransmitterData( true )
+		self:SendBuffRefreshToClients()
 	end
 end
 
 function modifier_item_bloodletting_armlet:OnIntervalThink()
 	local caster = self:GetCaster()
 	local ability = self:GetAbility()
-	if not ability or ability:IsNull() then 
+	if not ability or ability:IsNull() or ability:GetItemSlot() > 5 then 
 		self:Destroy()
 		return
 	end
@@ -97,8 +98,12 @@ function modifier_item_bloodletting_armlet:OnIntervalThink()
 end
 
 function modifier_item_bloodletting_armlet:OnRemoved()
+	if not self:GetAbility() then return end
 	self:GetAbility().toggleModifier = nil
 	if IsServer() then
+		if self:GetAbility():GetToggleState() then
+			self:GetAbility():ToggleAbility()
+		end
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
 		local damageToDeal = self.bonus_strength * GameRules:GetGameModeEntity():GetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_STRENGTH_HP, self:GetCaster() )

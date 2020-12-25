@@ -23,26 +23,14 @@ function vengefulspirit_swap:OnSpellStart()
 
 	if target:GetTeam() ~= caster:GetTeam() then
 		if not target:TriggerSpellAbsorb( self ) then
-			target:Daze(self, caster, self:GetTalentSpecialValueFor("daze_duration"))
-			self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {}, 0)
-			
-			if caster:HasTalent("special_bonus_unique_vengefulspirit_swap_1") then
-				local enemies = caster:FindEnemyUnitsInRadius(endPos, caster:FindTalentValue("special_bonus_unique_vengefulspirit_swap_1"))
-				for _,enemy in pairs(enemies) do
-					if enemy ~= target then
-						enemy:Daze(self, caster, self:GetTalentSpecialValueFor("daze_duration"))
-						self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
-						FindClearSpaceForUnit(enemy, startPos, true)
-					end
-				end
-			end
-
 			FindClearSpaceForUnit(caster, endPos, true)
 			FindClearSpaceForUnit(target, startPos, true)
 		end
 	else
+		local threat = caster:GetThreat()
 		caster:SetThreat(target:GetThreat())
-		target:SetThreat(0)
+		target:SetThreat(threat)
+		caster:AddNewModifier(caster, self, "modifier_vengefulspirit_swap", {Duration = self:GetTalentSpecialValueFor("duration")})
 		target:AddNewModifier(caster, self, "modifier_vengefulspirit_swap", {Duration = self:GetTalentSpecialValueFor("duration")})
 		FindClearSpaceForUnit(caster, endPos, true)
 		FindClearSpaceForUnit(target, startPos, true)

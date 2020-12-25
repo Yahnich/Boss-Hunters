@@ -72,13 +72,6 @@ function Precache( context )
 	-- Hero Precaches
 	PrecacheResource("particle", "particles/warlock_deepfire_ember.vpcf", context)
 	
-	-- UAM particles
-	PrecacheResource("particle", "particles/desolator3_projectile.vpcf", context)
-	PrecacheResource("particle", "particles/desolator4_projectile.vpcf", context)
-	PrecacheResource("particle", "particles/desolator5_projectile.vpcf", context)
-	PrecacheResource("particle", "particles/desolator6_projectile.vpcf", context)
-	PrecacheResource("particle", "particles/skadi2_projectile.vpcf", context)
-	
 	-- Relic particles
 	PrecacheResource("particle", "particles/relics/relic_cursed_demon_wings_trail.vpcf", context)
 	PrecacheResource("particle", "particles/relics/molten_crystal/molten_crystal_fire.vpcf", context)
@@ -144,8 +137,8 @@ end
 
 -- Actually make the game mode when we activate
 function Activate()
-	GameRules.holdOut = CHoldoutGameMode()
-	GameRules.holdOut:InitGameMode()
+	GameRules.bossHuntersEntity = CHoldoutGameMode()
+	GameRules.bossHuntersEntity:InitGameMode()
 	require("projectilemanager")
 	-- require('statsmanager')
 end
@@ -440,6 +433,8 @@ function CHoldoutGameMode:InitGameMode()
 	ListenToGameEvent( "game_rules_state_change", Dynamic_Wrap( CHoldoutGameMode, "OnGameRulesStateChange" ), self )
 	ListenToGameEvent("dota_player_pick_hero", Dynamic_Wrap( CHoldoutGameMode, "OnHeroPick"), self )
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(CHoldoutGameMode, 'OnAbilityUsed'), self)
+    ListenToGameEvent('dota_player_learned_ability', Dynamic_Wrap(CHoldoutGameMode, 'OnAbilityLearned'), self)
+    ListenToGameEvent('dota_hero_inventory_item_change', Dynamic_Wrap(CHoldoutGameMode, 'OnInventoryChanged'), self)
 	ListenToGameEvent( "dota_player_gained_level", Dynamic_Wrap( CHoldoutGameMode, "OnHeroLevelUp" ), self )
 	ListenToGameEvent( "npc_spawned", Dynamic_Wrap( RoundManager, "OnNPCSpawned" ), RoundManager )
 	ListenToGameEvent( "dota_holdout_revive_complete", Dynamic_Wrap( RoundManager, 'OnHoldoutReviveComplete' ), RoundManager )
@@ -447,12 +442,14 @@ function CHoldoutGameMode:InitGameMode()
 	CustomGameEventManager:RegisterListener('Tell_Threat', Dynamic_Wrap( CHoldoutGameMode, 'Tell_threat'))
 	CustomGameEventManager:RegisterListener('bh_notify_modifier', Dynamic_Wrap( CHoldoutGameMode, 'NotifyBuffs'))
 	CustomGameEventManager:RegisterListener('playerUILoaded', Dynamic_Wrap( CHoldoutGameMode, 'OnPlayerUIInitialized'))
+	CustomGameEventManager:RegisterListener('server_dota_push_to_chat', Dynamic_Wrap( CHoldoutGameMode, 'OnPushToChat'))
 
 	-- Register OnThink with the game engine so it is called every 0.25 seconds
 	GameRules:GetGameModeEntity():SetExecuteOrderFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterOrders" ), self )
 	GameRules:GetGameModeEntity():SetDamageFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterDamage" ), self )
 	GameRules:GetGameModeEntity():SetHealingFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterHeal" ), self )
 	GameRules:GetGameModeEntity():SetModifierGainedFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterModifiers" ), self )
+	GameRules:GetGameModeEntity():SetTrackingProjectileFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterTrackingProjectiles" ), self )
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, 1 )
 	
 	-- Custom stats
@@ -467,6 +464,51 @@ function CHoldoutGameMode:InitGameMode()
 	RelicManager:Initialize()
 	
 	SendToConsole("rate 200000")
+end
+
+function CHoldoutGameMode:OnPushToChat( event )
+	local playerID = event.PlayerID
+	local player = PlayerResource:GetPlayer(playerID)
+	
+	player.tellThreatDelayTimer = player.tellThreatDelayTimer or 0
+	if Time() > player.tellThreatDelayTimer + 1 then
+		if event.abilityID then	
+			local ability = EntIndexToHScript( event.abilityID )
+			event.abilityLevel = ability:GetLevel()
+		end
+		if event.isTeam and toboolean( event.isTeam ) then
+			CustomGameEventManager:Send_ServerToTeam( PlayerResource:GetTeam( playerID ), "dota_push_to_chat", event )
+		else
+			CustomGameEventManager:Send_ServerToAllClients( "dota_push_to_chat", event )
+		end
+		player.tellThreatDelayTimer = Time();
+	end
+end
+
+function CHoldoutGameMode:FilterTrackingProjectiles( filterTable )
+	local target_index = filterTable["entindex_target_const"]
+	local target = EntIndexToHScript( target_index )
+	local attacker_index = filterTable["entindex_source_const"]
+	local attacker = EntIndexToHScript( attacker_index )
+	local ability_index = filterTable["entindex_ability_const"]
+	local ability = EntIndexToHScript( ability_index )
+	
+	local dodgeable = toboolean( filterTable["dodgeable"] )
+	local isAttack = toboolean( filterTable["is_attack"] )
+	if isAttack and target then
+		local params = {unit = attacker, target = target, is_attack = isAttack, dodgeable = dodgeable, ability = ability}
+		for _, unit in ipairs( FindAllUnits() ) do
+			if unit ~= target then
+				for _, modifier in ipairs( unit:FindAllModifiers() ) do
+					if modifier.GetTrackingProjectileRedirectChance and modifier:RollPRNG( modifier:GetTrackingProjectileRedirectChance(params) ) then
+						attacker:PerformGenericAttack( unit )
+						return false
+					end
+				end
+			end
+		end
+	end
+	return true
 end
 
 function CHoldoutGameMode:FilterModifiers( filterTable )
@@ -575,7 +617,6 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 end
 
 function CHoldoutGameMode:FilterOrders( filterTable )
-	
 	if not filterTable or not filterTable.units or not filterTable.units["0"] then return end
 	local hero = EntIndexToHScript( filterTable.units["0"] )
 	if not hero:IsRealHero() then return true end
@@ -642,6 +683,7 @@ function CHoldoutGameMode:FilterOrders( filterTable )
 		end
 	end
 	return VectorTarget:OrderFilter(filterTable)
+	-- return VectorTarget:OrderFilter(filterTable)
 end
 
 function CHoldoutGameMode:FilterDamage( filterTable )
@@ -714,6 +756,35 @@ end
 
 function GetHeroDamageDone(hero)
     return hero.damageDone
+end
+
+function CHoldoutGameMode:OnInventoryChanged( event )
+	local hero = EntIndexToHScript( event.hero_entindex )
+	local item = EntIndexToHScript( event.item_entindex )
+	local vector_data = {}
+	if item and HasBit( item:GetBehavior(), DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING ) then
+		if not event.removed then
+			vector_data.startWidth = item:GetVectorTargetStartRadius()
+			vector_data.endWidth = item:GetVectorTargetEndRadius()
+			vector_data.castLength = item:GetVectorTargetRange()
+		else
+			vector_data = nil
+		end
+		CustomNetTables:SetTableValue( "vector_targeting", item:entindex().."", vector_data )
+	end
+end
+
+function CHoldoutGameMode:OnAbilityLearned( event )
+	local playerID = event.PlayerID
+	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+	local ability = hero:FindAbilityByName(event.abilityname)
+	local vector_data = {}
+	if ability and HasBit( ability:GetBehavior(), DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING ) then
+		vector_data.startWidth = ability:GetVectorTargetStartRadius()
+		vector_data.endWidth = ability:GetVectorTargetEndRadius()
+		vector_data.castLength = ability:GetVectorTargetRange()
+		CustomNetTables:SetTableValue( "vector_targeting", ability:entindex().."", vector_data )
+	end
 end
 
 function CHoldoutGameMode:OnHeroLevelUp(event)
@@ -958,14 +1029,10 @@ function CHoldoutGameMode:OnPlayerUIInitialized(keys)
 			CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {playerID = pID, drops = hero.relicsToSelect})
 			if TalentManager:IsPlayerRegistered(hero) and not hero:HasModifier("modifier_stats_system_handler") then hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {}) end
 			CustomGameEventManager:Send_ServerToPlayer(player, "heroLoadIn", {})
-			if GameRules.holdOut._flPrepTimeEnd then
-				local timeLeft = GameRules.holdOut._flPrepTimeEnd - GameRules:GetGameTime()
-				CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(timeLeft + 0.5) } )
-			end
 			if GameRules.UnitKV[hero:GetUnitName()]["Abilities"] and not hero.hasSkillsSelected then
 				CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "checkNewHero", {})
 			end
-			if GameRules.holdOut._currentRound then CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { roundNumber = GameRules.holdOut._nRoundNumber, roundText = GameRules.holdOut._currentRound._szRoundQuestTitle } ) end
+			if GameRules.bossHuntersEntity._currentRound then CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { roundNumber = GameRules.bossHuntersEntity._nRoundNumber, roundText = GameRules.bossHuntersEntity._currentRound._szRoundQuestTitle } ) end
 		elseif not PlayerResource:HasSelectedHero(playerID) then
 			player:MakeRandomHeroSelection()
 			local newHero = CreateHeroForPlayer(PlayerResource:GetSelectedHeroName( playerID ), player)
@@ -1052,6 +1119,7 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 		end)
 	elseif nNewState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 		RoundManager:StartGame()
+		Say(nil, "Alt-clicking event cards will minimize them", true)
 		Timers:CreateTimer(1,function()
 			if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 				if RoundManager:GetCurrentEvent() and not RoundManager:GetCurrentEvent():IsEvent() then

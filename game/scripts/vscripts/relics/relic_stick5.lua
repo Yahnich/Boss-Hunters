@@ -10,7 +10,7 @@ end
 function relic_stick5:OnEventFinished(args)
 	EVENT_TYPE_EVENT = 3
 	if args.eventType ~= EVENT_TYPE_EVENT then
-		self:SetStackCount( math.max( 1000, math.ceil(self:GetStackCount() * 1.01) ) )
+		self:SetStackCount( math.min( 1000, math.ceil(self:GetStackCount() * 1.01) ) )
 	end
 end
 

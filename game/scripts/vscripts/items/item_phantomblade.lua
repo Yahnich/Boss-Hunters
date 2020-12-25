@@ -54,7 +54,7 @@ function modifier_item_phantomblade_buff:CheckState()
 end
 
 function modifier_item_phantomblade_buff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MP_RESTORE_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_MP_REGEN_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING}
+	return {MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_MP_RESTORE_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_MP_REGEN_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING}
 end
 
 function modifier_item_phantomblade_buff:GetModifierStatusResistanceStacking()
@@ -62,6 +62,10 @@ function modifier_item_phantomblade_buff:GetModifierStatusResistanceStacking()
 end
 
 function modifier_item_phantomblade_buff:GetModifierHealAmplify_Percentage()
+	return self.restoration_amp
+end
+
+function modifier_item_phantomblade_buff:GetModifierHPRegenAmplify_Percentage()
 	return self.restoration_amp
 end
 
@@ -106,11 +110,15 @@ function modifier_item_phantomblade_debuff:CheckState()
 end
 
 function modifier_item_phantomblade_debuff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MP_RESTORE_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_MP_REGEN_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING}
+	return {MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_MP_RESTORE_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_MP_REGEN_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING}
 end
 
 function modifier_item_phantomblade_debuff:GetModifierStatusResistanceStacking()
 	return self.status_resist
+end
+
+function modifier_item_phantomblade_debuff:GetModifierHPRegenAmplify_Percentage()
+	return self.restoration_amp
 end
 
 function modifier_item_phantomblade_debuff:GetModifierHealAmplify_Percentage()

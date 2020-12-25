@@ -70,6 +70,12 @@ function modifier_boss18b_corrupted_huntress_debuff:OnRefresh()
 end
 
 function modifier_boss18b_corrupted_huntress_debuff:OnIntervalThink()
+	if not self:GetCaster() or self:GetCaster():IsNull()
+	or not self:GetParent() or self:GetParent():IsNull()
+	or not self:GetAbility() or self:GetAbility():IsNull() then
+		self:Destroy()
+		return
+	end
 	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self.damage )
 end
 

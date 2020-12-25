@@ -82,7 +82,6 @@ function UpdateStats( info ){
 		}
     }
 }
- 
 
 function ToggleMute( nPlayerID )
 {
@@ -140,6 +139,10 @@ function UpdateScoreboard( playerID, data )
 
 		var playerDeaths = playerRow.FindChildTraverse( "PlayerDeaths" );
 		playerDeaths.text = 0;
+		
+		let muteButton = playerRow.FindChildTraverse( "PlayerMuteButton" );
+		muteButton.playerID = playerID;
+		muteButton.SetPanelEvent("onactivate", function(){ ToggleMute( muteButton.playerID ) } )
 	}
 	if ( playerRow === null )
 		return

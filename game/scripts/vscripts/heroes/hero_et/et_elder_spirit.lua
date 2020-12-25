@@ -28,7 +28,9 @@ function et_elder_spirit:GetAOERadius()
 end
 
 function et_elder_spirit:GetIntrinsicModifierName()
-    return "modifier_elder_spirit_check"
+	if not self:GetCaster():HasModifier("modifier_elder_spirit_check_out") then
+		return "modifier_elder_spirit_check"
+	end
 end
 
 function et_elder_spirit:OnSpellStart()

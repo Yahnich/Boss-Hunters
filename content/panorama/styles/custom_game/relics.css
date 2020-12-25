@@ -13,6 +13,11 @@
 	margin-bottom: 19%;
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1c2027 ), to( #010101ee ) );
 	flow-children: down;
+	
+	
+	transition-property: transform;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
 }
 .RelicChoiceRoot
 {
@@ -185,6 +190,7 @@
 	height: 100%;
 	vertical-align: bottom;
 	horizontal-align: right;
+	
 }
 
 .RelicInventoryButtonLabel
@@ -215,6 +221,10 @@
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1c2027 ), to( #010101ff ) );
 	
 	margin-bottom: 105px;
+	
+	transition-property: transform;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
 }
 
 #RelicDropNotification
@@ -371,5 +381,5 @@
 
 .IsHidden
 {
-	visibility: collapse;
+	transform: translateX(1000px);
 }

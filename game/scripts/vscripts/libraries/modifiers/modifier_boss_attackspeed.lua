@@ -11,6 +11,7 @@ function modifier_boss_attackspeed:OnCreated()
 		self.thinkLimit = 2.5 * self:GetStackCount()
 		self.armor = self:GetParent():GetPhysicalArmorBaseValue() * 0.0625 * self:GetStackCount() + self:GetStackCount() + math.min( 8, RoundManager:GetRaidsFinished() ) + math.min( 4, RoundManager:GetZonesFinished() ) * 5
 		self.mr = math.min( 2.75 * self:GetStackCount(), 60 ) + self:GetStackCount() + math.min( 8, RoundManager:GetRaidsFinished() ) * 0.65 + math.min( 4, RoundManager:GetZonesFinished() ) * 3
+		self.regenAmp = RoundManager:GetAscensions() * 50
 		if self:GetParent():IsRangedAttacker() then 
 			self.armor = self.armor / 2 
 			self.mr = self.mr / 1.5
@@ -58,7 +59,8 @@ function modifier_boss_attackspeed:DeclareFunctions()
 		MODIFIER_EVENT_ON_ABILITY_START,
 		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
-		MODIFIER_EVENT_ON_ATTACK_START
+		MODIFIER_EVENT_ON_ATTACK_START,
+		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE
 	}
 	return funcs
 end
@@ -85,6 +87,10 @@ end
 
 function modifier_boss_attackspeed:GetModifierMagicalResistanceBonus( params )
 	return self.mr
+end
+
+function modifier_boss_attackspeed:GetModifierHPRegenAmplify_Percentage( params )
+	return self.regenAmp
 end
 
 function modifier_boss_attackspeed:GetModifierStatusResistanceStacking( params )
@@ -128,11 +134,13 @@ function itemBasicBaseClass:AddCustomTransmitterData( )
 	return
 	{
 		armor = self.armor,
-		mr = self.mr
+		mr = self.mr,
+		regenAmp = self.regenAmp
 	}
 end
 
 function itemBasicBaseClass:HandleCustomTransmitterData( data )
 	self.armor = data.armor
 	self.mr = data.mr
+	self.regenAmp = data.regenAmp
 end

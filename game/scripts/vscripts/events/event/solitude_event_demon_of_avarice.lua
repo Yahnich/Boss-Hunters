@@ -16,26 +16,16 @@ end
 
 local function StartCombat(self)
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
-	self.eventEnded = true
+	self.combatStarted = true
 	self.combatEnded = false
 	local START_VECTOR = self:GetHeroSpawnPosition()
 	self.eventType = EVENT_TYPE_COMBAT
-	self.timeRemaining = 30
 	
 	self.demon = CreateUnitByName("npc_dota_money_roshan", START_VECTOR, true, nil, nil, DOTA_TEAM_BADGUYS)
 	self.demon:FindAbilityByName("generic_gold_dropper"):SetLevel(1)
 	
 	local activeHeroes = HeroList:GetActiveHeroCount()
-	
-	Timers:CreateTimer(1, function()
-		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
-		self.timeRemaining = self.timeRemaining - 1
-		if self.timeRemaining >= 0 then
-			return 1
-		else
-			self:EndEvent(true)
-		end
-	end)
+	self:StartEventTimer( 30 )
 end
 
 local function StartEvent(self)
@@ -43,12 +33,9 @@ local function StartEvent(self)
 	self._vListenerHandles = {
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_1', Context_Wrap( self, 'FirstChoice') ),
 	}
-	
-	self.timeRemaining = 10
-	self.eventEnded = false
-	Timers:CreateTimer(1, function()
-		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
-		if not self.eventEnded then
+	self.combatStarted = false
+	local timerFunc = (function()
+		if not self.combatStarted then
 			if self.timeRemaining >= 0 then
 				self.timeRemaining = self.timeRemaining - 1
 				return 1
@@ -58,6 +45,7 @@ local function StartEvent(self)
 		end
 	end)
 	
+	self:StartEventTimer( 10, timerFunc )
 	self._playerChoices = {}
 end
 

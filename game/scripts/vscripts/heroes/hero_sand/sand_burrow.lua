@@ -10,7 +10,11 @@ function sand_burrow:IsHiddenWhenStolen()
 end
 
 function sand_burrow:GetCastRange(vLocation, hTarget)
-    return self:GetTalentSpecialValueFor("range")
+	if self:GetCaster():HasScepter() then
+		return self:GetTalentSpecialValueFor("scepter_cast_range")
+	else
+		return self:GetTalentSpecialValueFor("range")
+	end
 end
 
 function sand_burrow:PiercesDisableResistance()
@@ -29,28 +33,48 @@ function sand_burrow:OnSpellStart()
     ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin())
     ParticleManager:SetParticleControl(particle, 1, point)
     ParticleManager:ReleaseParticleIndex(particle)
+	
+	local duration = self:GetTalentSpecialValueFor("duration")
+	local damage = self:GetTalentSpecialValueFor("damage")
+	local width = self:GetTalentSpecialValueFor("width")
+	
+	local talent1 = caster:HasTalent("special_bonus_unique_sand_burrow_1")
+	local talent2 = caster:HasTalent("special_bonus_unique_sand_burrow_2")
 
-    local enemies = caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), point, self:GetTalentSpecialValueFor("width"), {})
+    local enemies = caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), point, width, {})
     for _,enemy in pairs(enemies) do
         if enemy and enemy:IsAlive() and not enemy:IsKnockedBack() and not enemy:TriggerSpellAbsorb( self ) then
             enemy:ApplyKnockBack(enemy:GetAbsOrigin(), 0.5, 0.5, 0, 350, caster, self)
-
+			if talent1 and enemy:HasModifier("modifier_caustics_enemy") then
+				enemy.forcedCausticRemoval = true
+				enemy:RemoveModifierByName("modifier_caustics_enemy")
+				enemy.forcedCausticRemoval = false
+			end
+			if not enemy:IsMinion() then
+				talent2 = false
+			end
             Timers:CreateTimer(0.5,function()
-                self:Stun(enemy, self:GetTalentSpecialValueFor("duration"), false)
-                self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+                self:Stun(enemy, duration, false)
+                self:DealDamage(caster, enemy, damage, {}, 0)
 
-                if caster:HasTalent("special_bonus_unique_sand_burrow_1") then
+                if caster:HasScepter() then
                     local ability = caster:FindAbilityByName("sand_caustics")
-                    enemy:AddNewModifier(caster, ability, "modifier_caustics_enemy", {Duration = ability:GetTalentSpecialValueFor("duration")})
+					if ability then
+						enemy:AddNewModifier(caster, ability, "modifier_caustics_enemy", {Duration = ability:GetTalentSpecialValueFor("duration")})
+					end
                 end
             end)
         end
     end
-
     caster:EmitSound("Ability.SandKing_BurrowStrike")
     FindClearSpaceForUnit(caster, point, true)
 
-    GridNav:DestroyTreesAroundPoint(point, self:GetTalentSpecialValueFor("width"), false)
+    GridNav:DestroyTreesAroundPoint(point, width, false)
 
     caster:StartGesture(ACT_DOTA_SAND_KING_BURROW_OUT)
+	
+	if talent2 then
+		self:EndCooldown()
+		self:StartCooldown( ( self:GetCooldown(-1) + caster:FindTalentValue("special_bonus_unique_sand_burrow_2") ) * caster:GetCooldownReduction( ) )
+	end
 end

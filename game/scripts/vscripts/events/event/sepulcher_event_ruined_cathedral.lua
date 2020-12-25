@@ -104,7 +104,7 @@ local function StartEvent(self)
 	self.timeRemaining = 15
 	self.eventEnded = false
 	self.combatStarted = false
-	self.waitTimer = Timers:CreateTimer(1, function()
+	local timerFunc = (function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.eventEnded and not self.combatStarted then
 			if self.timeRemaining >= 0 then
@@ -117,6 +117,7 @@ local function StartEvent(self)
 			end
 		end
 	end)
+	self.waitTimer = self:StartEventTimer( 15, timerFunc )
 	
 	self._playerChoices = {}
 	LinkLuaModifier("event_buff_ruined_cathedral", "events/modifiers/event_buff_ruined_cathedral", LUA_MODIFIER_MOTION_NONE)

@@ -5,6 +5,6 @@
     "game_info",
 	"talents",
 	"hero_properties",
-	"stats_panel",
+	"vector_targeting",
   ]
 }

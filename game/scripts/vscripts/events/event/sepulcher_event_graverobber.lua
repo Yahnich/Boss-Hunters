@@ -48,21 +48,7 @@ local function StartEvent(self)
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_1', Context_Wrap( self, 'FirstChoice') ),
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'SecondChoice') ),
 	}
-	self.timeRemaining = 15
-	self.eventEnded = false
-	self.waitTimer = Timers:CreateTimer(1, function()
-		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
-		if not self.eventEnded then
-			if self.timeRemaining >= 0 then
-				self.timeRemaining = self.timeRemaining - 1
-				return 1
-			else
-				if not CheckPlayerChoices(self) then
-					self:EndEvent(true)
-				end
-			end
-		end
-	end)
+	self:StartEventTimer( )
 	LinkLuaModifier("event_buff_graverobber_curse", "events/modifiers/event_buff_graverobber", LUA_MODIFIER_MOTION_NONE)
 	self._playerChoices = {}
 end

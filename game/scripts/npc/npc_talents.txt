@@ -3,45 +3,62 @@
 {
 	"Attacker"
 	{
-		"ATTACK_SPEED"	"20 50 100"
-		"EVASION"	"10 20 30"
-		"HEALTH"	"250 500 1000"
-		"MOVESPEED"	"10 15 25"
+		"ATTACK_SPEED"	"20 50 100" // icon ready
+		"EVASION"		"10 20 30" // icon ready
+		"HEALTH"		"250 500 1000" // icon ready
+		"AREA_DAMAGE"	"20 35 60"
 	}
 	"Nuker"
 	{
-		"MANA"			"250 750 1500"
-		"MANA_REGEN"	"2 5 10"
-		"SPELL_AMP"		"15 30 50"
-		"AREA_DAMAGE"	"10 15 25"
+		"MANA"			"375 750 1500" // icon ready
+		"MANA_REGEN"	"2 5 10" // icon ready
+		"SPELL_AMP"		"15 30 50" // icon ready
+		"AREA_DAMAGE"	"20 35 60" // icon ready
 	}
 	"Defender"
 	{
-		"ARMOR"			"3 6 9"
-		"MAGIC_RESIST"	"10 20 30"
-		"HEALTH"		"250 750 1500"
-		"THREAT_AMP"	"10 20 30"
+		"ARMOR"			"3 7 14" // icon ready
+		"MAGIC_RESIST"	"15 25 35" // icon ready
+		"HEALTH"		"375 750 1500" // icon ready
+		"THREAT_AMP"	"25 50 100" // icon ready
 	}
 	"Support"
 	{
-		"STATUS_AMP"	"15 30 50"
-		"MANA"			"250 750 1500"
-		"THREAT_DOWN"	"-10 -20 -30"
+		"STATUS_AMP"	"10 20 35"
+		"MANA"			"375 750 1500" // icon ready
+		"THREAT_DOWN"	"-25 -35 -45" // icon ready
 		"HEAL_AMP"		"10 20 30"
 	}
 	"Healer"
 	{
-		"MANA"			"250 750 1500"
-		"MANA_REGEN"	"2 5 10"
-		"HEALTH"		"250 500 1000"
+		"MANA"			"375 750 1500" // icon ready
+		"MANA_REGEN"	"2 5 10" // icon ready
+		"HEALTH"		"250 500 1000" // icon ready
 		"HEAL_AMP"		"15 30 50"
 	}
 	"Generic"
 	{
-		"HEALTH"		"250 500 1000"
-		"ATTACK_DAMAGE"	"25 50 100"
-		"SPELL_AMP"		"10 20 35"
-		"MOVESPEED"		"10 15 25"
 		"ALL_STATS"		"2"
+	}
+	"Offensive"
+	{
+		"ATTACK_SPEED"	"16 32 64" // icon ready
+		"ATTACK_DAMAGE"	"25 50 100" // icon ready
+		"SPELL_AMP"		"10 20 35" // icon ready
+		"STATUS_AMP"	"6 12 18"  // icon ready
+	}
+	"Defensive"
+	{
+		"HEALTH"		"250 500 1000" // icon ready
+		"HEALTH_REGEN"	"4 8 16" // icon ready
+		"ARMOR"			"3 6 9" // icon ready
+		"MAGIC_RESIST"	"10 15 25"  // icon ready
+	}
+	"Utility"
+	{
+		"MOVESPEED"		"10 15 20" // icon ready
+		"HEAL_AMP"		"10 20 30" // icon ready
+		"MANA"			"250 500 1000" // icon ready
+		"MANA_REGEN"	"2 4 6"  // icon ready
 	}
 }

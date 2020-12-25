@@ -56,9 +56,7 @@ local function StartEvent(self)
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_1', Context_Wrap( self, 'FirstChoice') ),
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'SecondChoice') )
 	}
-	self.timeRemaining = 15
-	self.eventEnded = false
-	Timers:CreateTimer(1, function()
+	local timerFunc = (function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.eventEnded then
 			if self.timeRemaining >= 0 then
@@ -71,6 +69,8 @@ local function StartEvent(self)
 			end
 		end
 	end)
+	
+	self:StartEventTimer( 30, timerFunc)
 	
 	self._playerChoices = {}
 end

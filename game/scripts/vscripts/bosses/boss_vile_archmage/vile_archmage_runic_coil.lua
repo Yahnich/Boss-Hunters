@@ -39,7 +39,7 @@ function modifier_vile_archmage_runic_coil_thinker:DeclareFunctions()
 end
 
 function modifier_vile_archmage_runic_coil_thinker:GetModifierIncomingDamage_Percentage(params)
-	if params.inflictor then return -999 end
+	if params.inflictor and not HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE ) then return -999 end
 	if params.damage <= 0 then return end
 	local damage = 1
 	if params.attacker:IsRealHero() then

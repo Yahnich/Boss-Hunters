@@ -9,7 +9,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_earthshaker/earthshaker_fissure_ebf"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
@@ -377,6 +377,7 @@
 		"LevelsBetweenUpgrades"			"1"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
+		"HasScepterUpgrade"				"1"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -398,10 +399,11 @@
 				"stat_damage"					"100"
 				"CalculateSpellDamageTooltip"	"0"
 			}
-			"03"
+			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"scepter_radius"				"450"
+				"RequiresScepter"				"1"
 			}
 		}
 	}
@@ -422,7 +424,6 @@
 		"AbilityTextureName"			"earthshaker_echo_slam"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"6"
-		"HasScepterUpgrade"				"1"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -475,12 +476,6 @@
 				"LinkedSpecialBonus"		"special_bonus_unique_earthshaker_echo_slam_ebf_1"
 			}
 			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_cd_reduction"		"-1"
-			}
-			
-			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"search_radius"				"600"

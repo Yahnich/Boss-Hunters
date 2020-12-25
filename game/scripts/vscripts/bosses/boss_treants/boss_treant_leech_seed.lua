@@ -66,6 +66,7 @@ function modifier_boss_treant_leech_seed_debuff:OnIntervalThink()
 	end
 	if enemyFound then
 		EmitSoundOn( "Hero_Treant.LeechSeed.Tick", parent )
+		ability:DealDamage( caster, parent, self.damage )
 	end
 end
 

@@ -13,24 +13,21 @@ LinkLuaModifier( "modifier_boss_slardar_submerge", "bosses/boss_slardar/boss_sla
 if IsServer() then
 	function modifier_boss_slardar_submerge:OnCreated()
 		self.spawns = self:GetSpecialValueFor("spawns_sec")
-		self.max = math.min(15 - ( 5-HeroList:GetActiveHeroCount() ), self:GetSpecialValueFor("max_slithereen") + RoundManager:GetEventsFinished() )
+		self.max = math.min(15 - ( 5-HeroList:GetActiveHeroCount() ), self:GetSpecialValueFor("max_slithereen") + math.ceil( math.log( RoundManager:GetEventsFinished() ) * 3 ) )
 		self:StartIntervalThink( 1 / self.spawns )
 	end
 	
 	function modifier_boss_slardar_submerge:OnIntervalThink()
 		local caster = self:GetCaster()
 		local slardars = caster.slardarList
-		for i = #slardars, 1, -1 do
-			if not slardars[i] or slardars[i]:IsNull() or not slardars[i]:IsAlive() then
-				table.remove( slardars, i )
-			end
-		end
 		if #slardars < self.max then
 			local slardar = CreateUnitByName("npc_dota_mini_slither", caster:GetAbsOrigin() + ActualRandomVector(500, 150), true, caster, caster, caster:GetTeamNumber())
 			slardar:AddNewModifier( slardar, self, "modifier_phased", {})
 			slardar:FindAbilityByName("boss_slardar_blessing_of_the_tides"):SetLevel( self:GetAbility():GetLevel() )
 			slardar:FindAbilityByName("boss_slardar_shin_shatter"):SetLevel( self:GetAbility():GetLevel() )
 			table.insert( slardars, slardar )
+		else
+			self:Destroy()
 		end
 	end
 end

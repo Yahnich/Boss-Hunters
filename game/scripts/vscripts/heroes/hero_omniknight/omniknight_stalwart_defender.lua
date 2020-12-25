@@ -13,8 +13,6 @@ LinkLuaModifier("modifier_omniknight_stalwart_defender", "heroes/hero_omniknight
 
 function modifier_omniknight_stalwart_defender:OnCreated()
 	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.armor = self:GetTalentSpecialValueFor("armor_on_cast")
-	self.duration = self:GetTalentSpecialValueFor("armor_duration")
 	if IsServer() then
 		local nFX = ParticleManager:CreateParticle( "particles/units/heroes/hero_omniknight/omniknight_degen_aura.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster() )
 		ParticleManager:SetParticleControl(nFX, 0, Vector(0,0,75) )
@@ -25,22 +23,6 @@ end
 
 function modifier_omniknight_stalwart_defender:OnRefresh()
 	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.armor = self:GetTalentSpecialValueFor("armor_on_cast")
-	self.duration = self:GetTalentSpecialValueFor("armor_duration")
-end
-
-function modifier_omniknight_stalwart_defender:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ABILITY_FULLY_CAST, MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
-end
-
-function modifier_omniknight_stalwart_defender:OnAbilityFullyCast(params)
-	if params.unit == self:GetParent() and params.ability:GetCooldown(-1) > 0 then
-		self:AddIndependentStack( self.duration )
-	end
-end
-
-function modifier_omniknight_stalwart_defender:GetModifierPhysicalArmorBonus()
-	return self:GetStackCount() * self.armor
 end
 
 function modifier_omniknight_stalwart_defender:IsAura()
@@ -60,7 +42,7 @@ function modifier_omniknight_stalwart_defender:GetAuraDuration()
 end
 
 function modifier_omniknight_stalwart_defender:GetAuraSearchTeam()    
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
+	return DOTA_UNIT_TARGET_TEAM_BOTH
 end
 
 function modifier_omniknight_stalwart_defender:GetAuraSearchType()    
@@ -71,40 +53,43 @@ function modifier_omniknight_stalwart_defender:GetAuraSearchFlags()
 	return DOTA_UNIT_TARGET_FLAG_NONE
 end
 
+function modifier_omniknight_stalwart_defender:IsHidden()
+	return true
+end
+
 modifier_omniknight_stalwart_defender_aura = class({})
 LinkLuaModifier("modifier_omniknight_stalwart_defender_aura", "heroes/hero_omniknight/omniknight_stalwart_defender", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_omniknight_stalwart_defender_aura:OnCreated()
-	self.ms = self:GetTalentSpecialValueFor("speed_bonus")
-	self.as = self:GetTalentSpecialValueFor("attack_bonus_tooltip")
-	
-	self.scepter_ms = self:GetTalentSpecialValueFor("scepter_speed_bonus")
-	self.scepter_as = self:GetTalentSpecialValueFor("scepter_attack_bonus")
+	if self:GetCaster():IsSameTeam( self:GetParent() ) then
+		self.armor = self:GetTalentSpecialValueFor("aura_armor")
+		if self:GetCaster():HasTalent("special_bonus_unique_omniknight_stalwart_defender_1") then
+			self.as = self:GetTalentSpecialValueFor("aura_slow") * (-1) * self:GetCaster():FindTalentValue("special_bonus_unique_omniknight_stalwart_defender_1")/100
+		end
+	else
+		self.ms = self:GetTalentSpecialValueFor("aura_slow")
+	end
 end
 
 
 function modifier_omniknight_stalwart_defender_aura:OnRefresh()
-	self.ms = self:GetTalentSpecialValueFor("speed_bonus")
-	self.as = self:GetTalentSpecialValueFor("attack_bonus_tooltip")
-	
-	self.scepter_ms = self:GetTalentSpecialValueFor("scepter_speed_bonus")
-	self.scepter_as = self:GetTalentSpecialValueFor("scepter_attack_bonus")
+	self:OnCreated()
 end
 
 function modifier_omniknight_stalwart_defender_aura:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,}
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
 end
 
 function modifier_omniknight_stalwart_defender_aura:GetModifierMoveSpeedBonus_Percentage()
-	local slow = self.ms
-	if self:GetCaster():HasScepter() then slow = slow + self.scepter_ms * self:GetCaster():GetModifierStackCount("modifier_omniknight_stalwart_defender", self:GetCaster() ) end
-	return slow
+	return self.ms
 end
 
 function modifier_omniknight_stalwart_defender_aura:GetModifierAttackSpeedBonus_Constant()
-	local slow = self.as
-	if self:GetCaster():HasScepter() then slow = slow + self.scepter_as * self:GetCaster():GetModifierStackCount("modifier_omniknight_stalwart_defender", self:GetCaster() ) end
-	return slow
+	return self.as
+end
+
+function modifier_omniknight_stalwart_defender_aura:GetModifierPhysicalArmorBonus()
+	return self.armor
 end
 
 function modifier_omniknight_stalwart_defender_aura:GetEffectName()

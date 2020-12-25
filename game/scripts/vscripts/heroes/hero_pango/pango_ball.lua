@@ -58,10 +58,7 @@ function pango_ball:OnSpellStart()
 		self:RefundManaCost()
 	else
 		caster:AddNewModifier(caster, self, "modifier_pango_ball_movement", {Duration = self:GetTalentSpecialValueFor("duration")})
-		
-		if not caster:HasTalent("special_bonus_unique_pango_ball_2") then
-			self:EndCooldown()
-		end
+		self:EndCooldown()
 	end
 end
 

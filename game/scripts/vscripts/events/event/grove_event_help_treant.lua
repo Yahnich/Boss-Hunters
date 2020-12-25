@@ -98,13 +98,11 @@ local function StartEvent(self)
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'SecondChoice') ),
 	}
 	self._vEventHandles = {}
-	self.timeRemaining = 15
 	self.eventEnded = false
 	self.eventTargetToBeProtected = CreateUnitByName("npc_dota_event_treant", RoundManager:GetHeroSpawnPosition(), true, nil, nil, DOTA_TEAM_GOODGUYS)
 	self.eventTargetToBeProtected:SetCoreHealth( 2000 );
 	self.eventTargetToBeProtected:SetHealth( 1000 );
-	self.waitTimer = Timers:CreateTimer(1, function()
-		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
+	local timerFunc = (function()
 		if not self.eventEnded and not self.helpedTreant then
 			if self.timeRemaining >= 0 then
 				self.timeRemaining = self.timeRemaining - 1
@@ -116,6 +114,7 @@ local function StartEvent(self)
 			end
 		end
 	end)
+	self.waitTimer = self:StartEventTimer( 30, timerFunc )
 	LinkLuaModifier("event_buff_help_treant", "events/modifiers/event_buff_help_treant", LUA_MODIFIER_MOTION_NONE)
 	self._playerChoices = {}
 end
@@ -131,13 +130,14 @@ local function EndEvent(self, bWon)
 	if self.helpedTreant and bWon then
 		if not self.eventTargetToBeProtected:IsNull() and self.eventTargetToBeProtected:IsAlive() then
 			self.eventTargetToBeProtected:Blink( Vector( 0, 0 ) )
+			self.eventTargetToBeProtected:ForceKill( false )
 		end
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			hero:AddBlessing("event_buff_help_treant")
 		end
 		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = "grove_event_help_treant", reward = 1})
 	elseif not self.eventTargetToBeProtected:IsNull() and self.eventTargetToBeProtected:IsAlive() then
-		self.eventTargetToBeProtected:ForceKill( false )
+		
 	end
 	
 	self.eventEnded = true

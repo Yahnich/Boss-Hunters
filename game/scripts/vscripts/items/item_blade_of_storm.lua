@@ -31,6 +31,10 @@ function modifier_item_blade_of_storm_passive:OnCreatedSpecific()
 	self.evasion = self:GetSpecialValueFor("bonus_evasion")
 end
 
+function modifier_item_blade_of_storm_passive:OnRefreshSpecific()
+	self.evasion = self:GetSpecialValueFor("bonus_evasion")
+end
+
 function modifier_item_blade_of_storm_passive:DeclareFunctions()
 	local funcs = self:GetDefaultFunctions()
 	table.insert( funcs, MODIFIER_PROPERTY_EVASION_CONSTANT )

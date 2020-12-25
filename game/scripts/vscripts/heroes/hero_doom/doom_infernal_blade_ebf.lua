@@ -8,16 +8,17 @@ function doom_infernal_blade_ebf:IsStealable()
 	return false
 end
 
-function doom_infernal_blade_ebf:OnAbilityPhasteStart()
-	self.autocast = true
-	self:StartInfernalBlade()
-	return true
+function doom_infernal_blade_ebf:GetCastRange( position, target )
+	return self:GetCaster():GetAttackRange()
 end
 
 function doom_infernal_blade_ebf:OnSpellStart()
 	local target = self:GetCursorTarget()
-	self.autocast = false
-	self:InfernalBlade(target)
+	self.autocast = true
+	self:GetCaster():SetAttacking( target )
+	self:GetCaster():MoveToTargetToAttack( target )
+	self:RefundManaCost()
+	self:EndCooldown()
 end
 
 function doom_infernal_blade_ebf:IsStealable()
@@ -33,19 +34,26 @@ function doom_infernal_blade_ebf:GetAOERadius()
 end
 
 function doom_infernal_blade_ebf:StartInfernalBlade()
-	ParticleManager:FireParticle("particles/units/heroes/hero_doom_bringer/doom_infernal_blade.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
+	-- ParticleManager:FireParticle("particles/units/heroes/hero_doom_bringer/doom_infernal_blade.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
 	EmitSoundOn("Hero_DoomBringer.InfernalBlade.PreAttack", self:GetCaster())
 end
 
 function doom_infernal_blade_ebf:InfernalBlade(target)
 	local caster = self:GetCaster()
-	if caster:HasTalent("special_bonus_unique_doom_infernal_blade_ebf_1") then
-		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_doom_infernal_blade_ebf_1", "radius") ) ) do
+	if caster:HasScepter() then
+		local startPos = target:GetAbsOrigin()
+		local direction = CalculateDirection( target, caster )
+		local length = self:GetTalentSpecialValueFor("scepter_length")
+		local width = self:GetTalentSpecialValueFor("scepter_width")
+		for _, enemy in ipairs( caster:FindEnemyUnitsInLine( startPos, startPos + direction * length, width ) ) do
 			if not enemy:TriggerSpellAbsorb(self) then
 				enemy:AddNewModifier(caster, self, "modifier_doom_infernal_blade_ebf_debuff", {duration = self:GetTalentSpecialValueFor("burn_duration")})
 				self:Stun(enemy, self:GetTalentSpecialValueFor("ministun_duration"), false)
 				ParticleManager:FireParticle("particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf", PATTACH_POINT_FOLLOW, enemy)
 			end
+		end
+		for i = 1, math.floor( length / width + 0.5 ) do
+			ParticleManager:FireParticle("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf", PATTACH_ABSORIGIN, caster, {[0] = startPos + direction * (i-1) * width } )
 		end
 	elseif not target:TriggerSpellAbsorb(self) then
 		target:AddNewModifier(caster, self, "modifier_doom_infernal_blade_ebf_debuff", {duration = self:GetTalentSpecialValueFor("burn_duration")})
@@ -63,18 +71,20 @@ function modifier_doom_infernal_blade_ebf_autocast:IsHidden()
 end
 
 function modifier_doom_infernal_blade_ebf_autocast:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ATTACK, MODIFIER_EVENT_ON_ATTACK_START, MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS}
+	return {MODIFIER_EVENT_ON_ATTACK, MODIFIER_EVENT_ON_ATTACK, MODIFIER_EVENT_ON_ATTACK_START, MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS}
 end
 
 if IsServer() then
 	function modifier_doom_infernal_blade_ebf_autocast:OnAttackStart(params)
-		if params.attacker == self:GetParent() and params.target and self:GetAbility():GetAutoCastState() and self:GetAbility():IsCooldownReady() then
+		if params.attacker == self:GetParent() and params.target and (( self:GetAbility():GetAutoCastState() and self:GetAbility():IsCooldownReady() ) or self:GetAbility().autocast) then
 			self:GetAbility():StartInfernalBlade()
 		end
 	end
 	function modifier_doom_infernal_blade_ebf_autocast:OnAttack(params)
-		if params.attacker == self:GetParent() and params.target and self:GetAbility():GetAutoCastState() and self:GetAbility():IsCooldownReady() then
-			self:GetAbility():CastSpell(params.target)
+		if params.attacker == self:GetParent() and params.target and (( self:GetAbility():GetAutoCastState() and self:GetAbility():IsCooldownReady() ) or self:GetAbility().autocast) then
+			self:GetAbility():UseResources( true, false, true )
+			self:GetAbility():InfernalBlade(params.target)
+			self:GetAbility().autocast = false
 		end
 	end
 end
@@ -87,24 +97,23 @@ end
 modifier_doom_infernal_blade_ebf_debuff = class({})
 LinkLuaModifier("modifier_doom_infernal_blade_ebf_debuff", "heroes/hero_doom/doom_infernal_blade_ebf", LUA_MODIFIER_MOTION_NONE)
 
-if IsServer() then
-	function modifier_doom_infernal_blade_ebf_debuff:OnCreated()
-		self.damage = self:GetParent():GetMaxHealth() * self:GetTalentSpecialValueFor("burn_damage_pct") / 100
-		self.baseDamage = self:GetTalentSpecialValueFor("burn_damage")
-		self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_doom_infernal_blade_ebf_2")
+function modifier_doom_infernal_blade_ebf_debuff:OnCreated()
+	self.damage = self:GetParent():GetMaxHealth() * self:GetTalentSpecialValueFor("burn_damage_pct") / 100
+	self.baseDamage = self:GetTalentSpecialValueFor("burn_damage")
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_doom_infernal_blade_ebf_1")
+	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_doom_infernal_blade_ebf_2")
+	if IsServer() then
 		self:StartIntervalThink(1)
 	end
-	
-	function modifier_doom_infernal_blade_ebf_debuff:OnIntervalThink()
-		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
-		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.baseDamage)
-		SendOverheadEventMessage(self:GetCaster():GetPlayerOwner(), OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, self:GetParent(), self.damage + self.baseDamage,self:GetParent():GetPlayerOwner())
-	end
-	
-	function modifier_doom_infernal_blade_ebf_debuff:OnDestroy()
-		if self:GetParent():IsMinion() and self.talent2 then
-			self:GetParent():AttemptKill( self:GetAbility(), self:GetCaster() )
-		end
+end
+
+function modifier_doom_infernal_blade_ebf_debuff:OnIntervalThink()
+	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage + self.baseDamage * self:GetCaster():GetSpellAmplification( false ), {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+end
+
+function modifier_doom_infernal_blade_ebf_debuff:CheckState()
+	if self.talent1 then
+		return {[MODIFIER_STATE_PASSIVES_DISABLED] = true}
 	end
 end
 

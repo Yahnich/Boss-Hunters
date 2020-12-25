@@ -37,19 +37,18 @@ local function StartEvent(self)
 	self.timeRemaining = 15
 	self.eventEnded = false
 	self.foughtElites = false
-	self.waitTimer = Timers:CreateTimer(1, function()
+	local timerFunc = (function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.eventEnded and not self.foughtElites then
 			if self.timeRemaining >= 0 then
 				self.timeRemaining = self.timeRemaining - 1
 				return 1
-			else
-				if not CheckPlayerChoices(self) then
-					self:EndEvent(true)
-				end
+			elseif not self.eventEnded then
+				CheckPlayerChoices(self)
 			end
 		end
 	end)
+	self.waitTimer = BaseEvent:StartEventTimer( 30, timerFunc )
 	LinkLuaModifier("event_buff_cultist_ritual", "events/modifiers/event_buff_cultist_ritual", LUA_MODIFIER_MOTION_NONE)
 	self._playerChoices = {}
 end

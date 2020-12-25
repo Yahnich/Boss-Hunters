@@ -39,6 +39,8 @@ end
 
 function TalentManager:ApplyTalentModifier( hero, talentCategory, talentType )
 	local modifier = "modifier_".. string.lower( talentCategory ) .. "_" .. string.lower( talentType )
+	hero:CalculateGenericBonuses( )
+	hero:CalculateStatBonus( )
 	return hero:AddNewModifier( hero, nil, modifier, {} )
 end
 
@@ -62,13 +64,13 @@ function TalentManager:ParseInformationRequest(userid, request)
 	local hero = EntIndexToHScript( request.entindex )
 	local player = PlayerResource:GetPlayer( playerID )
 	hero.lastInformationRequestTime = hero.lastInformationRequestTime or {}
-	if not hero.masteryPerks or ((hero.lastInformationRequestTime[playerID] or 0) + 0.1) > GameRules:GetGameTime() then
+	if not hero.masteryPerks or ((hero.lastInformationRequestTime[playerID] or 0) + 0.25) > Time() then
 		if player then
 			CustomGameEventManager:Send_ServerToPlayer(player, "dota_player_talent_update_failure", {PlayerID = pID, hero_entindex = entindex} )
 		end
 		return 
 	end
-	hero.lastInformationRequestTime[playerID] = GameRules:GetGameTime()
+	hero.lastInformationRequestTime[playerID] = Time()
 	local player = PlayerResource:GetPlayer( playerID )
 	if player then
 		CustomGameEventManager:Send_ServerToPlayer(player, "dota_player_talent_info_response", {playerID = pID, response = hero.masteryPerks, talentPoints = hero:GetTalentPoints(), entindex = request.entindex} )
@@ -83,6 +85,9 @@ function TalentManager:ConvertPerkTableToOrderedArray( talentTable ) -- blast yo
 	returnTable[4] = "Support"
 	returnTable[5] = "Healer"
 	returnTable[6] = "Generic"
+	returnTable[7] = "Offensive"
+	returnTable[8] = "Defensive"
+	returnTable[9] = "Utility"
 	for id, name in ipairs( returnTable ) do
 		if talentTable.talentProgression[name] then
 			returnTable[id] = {[name] = table.copy( talentTable.talentProgression[name] )}
@@ -173,6 +178,24 @@ function TalentManager:RegisterPlayer(hero, bRespec)
 		talents.talentKeys["Generic"][talentType] = 0
 	end
 	
+	-- talents.talentProgression["Offensive"] = table.copy( self.talentKV.Offensive )
+	-- talents.talentKeys["Offensive"] = {}
+	-- for talentType, talentValues in pairs( self.talentKV.Offensive ) do
+		-- talents.talentKeys["Offensive"][talentType] = 0
+	-- end
+	
+	-- talents.talentProgression["Defensive"] = table.copy( self.talentKV.Defensive )
+	-- talents.talentKeys["Defensive"] = {}
+	-- for talentType, talentValues in pairs( self.talentKV.Defensive ) do
+		-- talents.talentKeys["Defensive"][talentType] = 0
+	-- end
+	
+	-- talents.talentProgression["Utility"] = table.copy( self.talentKV.Utility )
+	-- talents.talentKeys["Utility"] = {}
+	-- for talentType, talentValues in pairs( self.talentKV.Utility ) do
+		-- talents.talentKeys["Utility"][talentType] = 0
+	-- end
+	
 	talents.uniqueTalents = {}
 	for i = 0, hero:GetAbilityCount() - 1 do
         local ability = hero:GetAbilityByIndex( i )
@@ -184,6 +207,7 @@ function TalentManager:RegisterPlayer(hero, bRespec)
         end
     end
 	hero.masteryPerks = talents
+	hero.respecInfoTalents = hero.respecInfoTalents or {}
 	local player = hero:GetPlayerOwner()
 	if player then
 		Timers:CreateTimer(1, function()
@@ -275,6 +299,7 @@ function TalentManager:ProcessUniqueTalents(userid, event)
 		CustomNetTables:SetTableValue( "talents", tostring(hero:entindex()), talentData )
 		hero.talentsSkilled = hero.talentsSkilled + 1
 		
+		GameRules.bossHuntersEntity:OnAbilityLearned( {PlayerID = pID, abilityname = abilityName} )
 		CustomGameEventManager:Send_ServerToAllClients("dota_player_talent_update", {PlayerID = pID, hero_entindex = entindex} )
 	else
 		CustomGameEventManager:Send_ServerToPlayer(player, "dota_player_talent_update_failure", {PlayerID = pID, hero_entindex = entindex} )
@@ -306,7 +331,6 @@ function TalentManager:ProcessHeroMasteries(userid, event)
 	local insufficientSkillPoints = hero:GetAbilityPoints() < price
 	if not (maxTier or insufficientSkillPoints) then
 		talents.talentKeys[talentCategory][talent] = talents.talentKeys[talentCategory][talent] + 1
-		hero.respecInfoTalents = hero.respecInfoTalents or {}
 		if talentCategory == "Generic" and talent == "ALL_STATS" then
 			local stats = tonumber(talents.talentProgression[talentCategory][talent][1])
 			hero:ModifyStrength( stats )

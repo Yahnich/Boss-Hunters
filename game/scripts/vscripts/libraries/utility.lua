@@ -247,14 +247,20 @@ function CalculateDirection(ent1, ent2)
 	local pos2 = ent2
 	if ent1.GetAbsOrigin then pos1 = ent1:GetAbsOrigin() end
 	if ent2.GetAbsOrigin then pos2 = ent2:GetAbsOrigin() end
-	local direction = (pos1 - pos2):Normalized()
+	local direction = (pos1 - pos2)
 	direction.z = 0
-	return direction
+	return direction:Normalized()
 end
 
 
-if not CDOTA_BaseNPC.oldAddNewModifier then
-	CDOTA_BaseNPC.oldAddNewModifier = CDOTA_BaseNPC.AddNewModifier
+
+if not CDOTA_BaseNPC_Hero.oldCalculateStatBonus then
+	CDOTA_BaseNPC_Hero.oldCalculateStatBonus = CDOTA_BaseNPC_Hero.CalculateStatBonus
+end
+
+function CDOTA_BaseNPC_Hero:CalculateStatBonus( forceRefresh )
+	local bRef = forceRefresh or true
+	self:oldCalculateStatBonus( bRef )
 end
 
 if not oldCreateModifierThinker then
@@ -274,6 +280,10 @@ function CreateModifierThinker( modifierCaster, modifierAbility, modifierName, m
 		kv.duration = duration
 	end
 	return oldCreateModifierThinker( modifierCaster,  modifierAbility, modifierName, kv, thinkerPosition, teamNumber, blockPathing )
+end
+
+if not CDOTA_BaseNPC.oldAddNewModifier then
+	CDOTA_BaseNPC.oldAddNewModifier = CDOTA_BaseNPC.AddNewModifier
 end
 
 function CDOTA_BaseNPC:AddNewModifier(modifierCaster, modifierAbility, modifierName, modifierTable)
@@ -429,6 +439,7 @@ end
 function CDOTABaseAbility:DealDamage(attacker, target, damage, data, spellText)
 	--OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, OVERHEAD_ALERT_DAMAGE, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, OVERHEAD_ALERT_MANA_LOSS
 	if self:IsNull() or target:IsNull() or attacker:IsNull() then return end
+	if not target:IsAlive() then return end
 	local internalData = data or {}
 	local damageType =  internalData.damage_type or self:GetAbilityDamageType()
 	if damageType == nil or damageType == 0 then
@@ -607,6 +618,7 @@ function CDOTA_BaseNPC:FindSpecificTalentValue(talentName, value)
 end
 
 function CDOTA_BaseNPC:NotDead()
+	print( self:IsReincarnating() )
 	if self:IsAlive() or 
 	self:IsReincarnating() or 
 	self.resurrectionStoned then
@@ -737,12 +749,12 @@ function CDOTA_BaseNPC:GetAngleDifference(hEntity)
 	return result_angle
 end
 
-function CDOTA_BaseNPC:IsAtAngleWithEntity(hEntity, flDesiredAngle)
+function CDOTA_BaseNPC:IsAtAngleWithEntity(hEntity, flDesiredAngle, bCheckForward)
 	local angleDiff = self:GetAngleDifference(hEntity)
-	if angleDiff >= (180 - flDesiredAngle / 2) and angleDiff <= (180 + flDesiredAngle / 2) then 
-		return true
+	if bCheckForward then 
+		return angleDiff <= flDesiredAngle / 2 or angleDiff >= (360 - flDesiredAngle / 2)
 	else
-		return false
+		return angleDiff >= (180 - flDesiredAngle / 2) and angleDiff <= (180 + flDesiredAngle / 2)
 	end
 end
 
@@ -1032,7 +1044,7 @@ function CDOTA_BaseNPC:IsBoss()
 end
 
 function CDOTA_BaseNPC:IsMinion()
-	return self.unitIsRoundNecessary ~= true or self.unitIsMinion
+	return (not self:IsHero() and self.unitIsRoundNecessary ~= true) or self.unitIsMinion
 end
 
 function CDOTA_BaseNPC:IsUndead()
@@ -1467,9 +1479,9 @@ function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer, data) -- for future s
 	if not hData.heal_type then
 		hData.heal_type = HEAL_TYPE_HEAL
 	end
-	
 	local healFactorAllied = 1
 	local healFactorSelf = 1
+	local params = {original_amount = flAmount, amount = flAmount, source = sourceAb, unit = healer, target = self, heal_type = hData.heal_type}
 	if hData.heal_type ~= HEAL_TYPE_REGEN and hData.heal_type ~= HEAL_TYPE_LIFESTEAL then
 		if healer and not healer:IsNull() then
 			for _,modifier in ipairs( healer:FindAllModifiers() ) do
@@ -1490,21 +1502,38 @@ function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer, data) -- for future s
 				end
 			end
 		end
+	elseif hData.heal_type == HEAL_TYPE_REGEN then
+		if target then
+			for _, modifier in ipairs( target:FindAllModifiers() ) do
+				if modifier.GetModifierHPRegenAmplify_Percentage then
+					healFactorSelf = healFactorSelf + (modifier:GetModifierHPRegenAmplify_Percentage( params ) or 0 )/100
+				end
+			end
+		end
+	elseif hData.heal_type == HEAL_TYPE_LIFESTEAL then
+		if target then
+			for _, modifier in ipairs( target:FindAllModifiers() ) do
+				if modifier.GetModifierLifestealRegenAmplify_Percentage then
+					healFactorSelf = healFactorSelf + (modifier:GetModifierLifestealRegenAmplify_Percentage( params ) or 0 )/100
+				end
+			end
+		end
 	end
+	local flOriginalAmount = flAmount
 	flAmount = math.max( flAmount * healFactorAllied * healFactorSelf, 0 )
-	local params = {amount = flAmount, source = sourceAb, unit = healer, target = self, heal_type = hData.heal_type}
+	local params2 = {original_amount = flOriginalAmount, amount = flAmount, source = sourceAb, unit = healer, target = self, heal_type = hData.heal_type}
 	local units = self:FindAllUnitsInRadius(self:GetAbsOrigin(), -1)
 	for _, unit in ipairs(units) do
 		if unit.FindAllModifiers then
 			for _, modifier in ipairs( unit:FindAllModifiers() ) do
 				if modifier.OnHealed then
-					modifier:OnHealed(params)
+					modifier:OnHealed(params2)
 				end
 				if modifier.OnHeal then
-					modifier:OnHeal(params)
+					modifier:OnHeal(params2)
 				end
 				if modifier.OnHealRedirect then
-					modifier:OnHealRedirect(params)
+					modifier:OnHealRedirect(params2)
 				end
 			end
 		end
@@ -1874,6 +1903,9 @@ function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, da
 	if bDelete then delete = bDelete end
 	local provideVision = true
 	if bVision then provideVision = bVision end
+	if internalData.source and not internalData.origin then
+		internalData.origin = internalData.source:GetAbsOrigin()
+	end
 	local info = {
 		EffectName = FX,
 		Ability = self,
@@ -2133,6 +2165,11 @@ end
 
 function CDOTA_BaseNPC:Taunt(hAbility, hCaster, tauntDuration)
 	self:AddNewModifier(hCaster, hAbility, "modifier_taunt_generic", {Duration = tauntDuration})
+	ExecuteOrderFromTable({
+		UnitIndex = self:entindex(),
+		OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+		TargetIndex = hCaster:entindex()
+	})
 end
 
 function CDOTA_BaseNPC:IsTaunted()
@@ -2333,22 +2370,24 @@ function CDOTA_BaseNPC:AddGold(val, bSound)
 	if self:GetPlayerID() >= 0 then
 		local hero = PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() )
 		if hero then
-			local gold = val or 0
+			local baseGold = val or 0
+			local gold = baseGold
 			if gold >= 0 then
 				for _, modifier in pairs(hero:FindAllModifiers()) do
-					if modifier.GetBonusGold and modifier:GetBonusGold() then
-						gold = gold * math.max( 0, (1 + (modifier:GetBonusGold() / 100)) )
+					if modifier.GetBonusGold then
+						gold = gold + baseGold * (modifier:GetBonusGold() or 0) / 100
 					end
 				end
 			end
-			local gold = hero:GetGold() + gold
+			local newGold = hero:GetGold() + gold
 			hero:SetGold(0, false)
-			gold = gold + (hero.bonusGoldExcessValue or 0)
-			hero.bonusGoldExcessValue = gold % 1
-			hero:SetGold(math.floor(gold), true)
+			newGold = newGold + (hero.bonusGoldExcessValue or 0)
+			hero.bonusGoldExcessValue = newGold % 1
+			hero:SetGold(math.floor(newGold), true)
 			if ( val > 0 and bSound ~= false ) or bSound == true then
 				SendOverheadEventMessage(self:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, self, val, self:GetPlayerOwner())
 			end
+			return gold
 		end
 	end
 end
@@ -2536,23 +2575,6 @@ end
 
 function GameRules:GetGameDifficulty()
 	return GameRules.gameDifficulty
-end
-
-function GameRules:SetLives(val, bMax)
-	GameRules._lives = val
-	CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
-end
-
-function GameRules:ModifyLives(val, bMax)
-	GameRules._lives = GameRules._lives + val
-	if bMax then
-		GameRules._maxLives = GameRules._maxLives + val
-	end
-	CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
-end
-
-function GameRules:GetLives()
-	return GameRules._lives
 end
 
 function CDOTA_BaseNPC_Hero:GetLives()

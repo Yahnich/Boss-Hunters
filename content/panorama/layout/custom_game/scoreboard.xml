@@ -25,14 +25,12 @@
 				<Label hittest="false" id="PlayerTaken" class="LabelSmall ScoreLabel" text="0"/>
 				<Label hittest="false" id="PlayerHealed" class="LabelSmall ScoreLabel" text="0"/>
 				<Label hittest="false" id="PlayerDeaths" class="LabelSmall ScoreLabel" text="0"/>
-
-				<Panel hittest="false" id="Player0Rewards"/>
 			</Panel>	
 		</snippet>
 	</snippets>
 	<Panel hittest="true" class="FlyoutScoreboardRoot"> 
 		<Button id="CloseButton" class="CloseButton" onactivate="CloseCustomScoreboard();" />
-		<Panel id="CustomScoreboard" onactivate="DummyClickAghanimScoreboard();" >
+		<Panel id="CustomScoreboard" hittest="false" onactivate="DummyClickCustomScoreboard();" >
 			<Label hittest="false" id="ScoreboardHeader" class="AghanimLabelHeader" text="PRE-GAME"/>
 			<Panel hittest="false" id="PlayerContainer" class="TopBottomFlow">
 				<Panel hittest="false" id="PlayerScoreHeader" class="LeftRightFlow">
@@ -40,7 +38,7 @@
 					<Label hittest="false" class="LabelSmall Header" text="#DOTA_HUD_DamageDealt"/>
 					<Label hittest="false" class="LabelSmall Header" text="#DOTA_HUD_DamageTaken"/>
 					<Label hittest="false" class="LabelSmall Header" text="#DOTA_HUD_DamageHealed"/>
-					<Label hittest="false" class="LabelSmall Header" text="#DOTA_HUD_Deaths"/>    
+					<Label hittest="false" class="LabelSmall Header" text="#DOTA_HUD_Deaths"/>      
 				</Panel>
 			</Panel>
 		</Panel>

@@ -69,8 +69,6 @@ local function StartCombat(self, bFight)
 		Timers:CreateTimer(5, function()
 			local spawn = CreateUnitByName("npc_dota_boss18", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundNecessary = true
-			spawn.armor = spawn:FindAbilityByName("boss_living_armor")
-			if spawn.armor then spawn.armor:SetLevel( math.max(5, self.treesCut ) ) end
 			
 			self.treantsToSpawn = self.treantsToSpawn - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
@@ -81,11 +79,8 @@ local function StartCombat(self, bFight)
 		Timers:CreateTimer(6, function()
 			local spawn = CreateUnitByName("npc_dota_boss19", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundNecessary = true
-			spawn.armor = spawn:FindAbilityByName("boss_living_armor")
-			if spawn.armor then spawn.armor:SetLevel( math.max(5, self.treesCut ) ) end
 			
 			self.furionsToSpawn = self.furionsToSpawn - 1
-			
 			self.enemiesToSpawn = self.enemiesToSpawn - 1	
 			if self.furionsToSpawn > 0 then
 				return 10
@@ -99,6 +94,21 @@ end
 local function RetryVote(self)
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = "grove_event_cut_the_trees", choices = 2})
 	self.timeRemaining = 15
+	local timerFunc = (function()
+		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
+		if not self.eventEnded and not self.combatStarted then
+			if self.timeRemaining >= 0 then
+				self.timeRemaining = self.timeRemaining - 1
+				return 1
+			else
+				if not CheckPlayerChoices(self) then
+					self:EndEvent(true)
+				end
+			end
+		end
+	end)
+	self.waitTimer = self:StartEventTimer( 30, timerFunc )
+	
 	self._playerChoices = {}
 end
 
@@ -126,20 +136,7 @@ local function StartEvent(self)
 	self.timeRemaining = 15
 	self.eventEnded = false
 	if not self.combatStarted then
-		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = "grove_event_cut_the_trees", choices = 2})
-		self.waitTimer = Timers:CreateTimer(1, function()
-			CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
-			if not self.eventEnded and not self.combatStarted then
-				if self.timeRemaining >= 0 then
-					self.timeRemaining = self.timeRemaining - 1
-					return 1
-				else
-					if not CheckPlayerChoices(self) then
-						self:EndEvent(true)
-					end
-				end
-			end
-		end)
+		self:RetryVote()
 	else
 		self:StartCombat(true)
 	end

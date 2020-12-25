@@ -13,9 +13,9 @@ end
 
 function luna_lucent_beam_bh:GetBehavior()
 	if self:GetCaster():HasTalent("special_bonus_unique_luna_lucent_beam_1") then
-		return DOTA_ABILITY_BEHAVIOR_POINT
+		return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE
 	else	
-		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
+		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AOE
 	end
 end
 

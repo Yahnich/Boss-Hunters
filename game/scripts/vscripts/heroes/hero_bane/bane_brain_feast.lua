@@ -43,15 +43,10 @@ function bane_brain_feast:OnSpellStart()
 	end
 	local heal = self:DealDamage(caster, target, damage)
 	caster:HealEvent(heal, self, caster)
-	target:AddNewModifier(caster, self, "modifier_bane_brain_feast_debuff", {duration = self:GetTalentSpecialValueFor("debuff_duration")})
+	
 
 	if caster:HasTalent("special_bonus_unique_bane_brain_feast_2") then
-		for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_bane_brain_feast_2") ) ) do
-			if ally ~= caster then
-				ParticleManager:FireRopeParticle("particles/units/heroes/hero_bane/bane_sap.vpcf", PATTACH_POINT_FOLLOW, ally, caster)
-				ally:HealEvent(damage, self, caster)
-			end
-		end
+		target:AddNewModifier(caster, self, "modifier_bane_brain_feast_debuff", {duration = self:GetTalentSpecialValueFor("debuff_duration")})
 	end
 end
 
@@ -76,26 +71,19 @@ modifier_bane_brain_feast_debuff = class({})
 LinkLuaModifier("modifier_bane_brain_feast_debuff", "heroes/hero_bane/bane_brain_feast", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_bane_brain_feast_debuff:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("damage_on_cast")
+	self.slow = -self:GetCaster():GetIntellect()
 end
 
 function modifier_bane_brain_feast_debuff:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("damage_on_cast")
+	self:OnRefresh()
 end
 
 function modifier_bane_brain_feast_debuff:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
-			MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT}
 end
 
-function modifier_bane_brain_feast_debuff:GetModifierIncomingDamage_Percentage()
-	return 8
-end
-
-function modifier_bane_brain_feast_debuff:OnAbilityFullyCast(params)
-	if params.unit == self:GetParent() then
-		self:GetAbility():DealDamage( self:GetCaster(), params.unit, self.damage )
-	end
+function modifier_bane_brain_feast_debuff:GetModifierMoveSpeedBonus_Constant()
+	return self.slow
 end
 
 function modifier_bane_brain_feast_debuff:GetEffectName()

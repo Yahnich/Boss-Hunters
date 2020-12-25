@@ -44,3 +44,7 @@ end
 function relic_rotting_flesh:IsHidden()
 	return self:GetStackCount() == 1
 end
+
+function relic_rotting_flesh:GetPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end

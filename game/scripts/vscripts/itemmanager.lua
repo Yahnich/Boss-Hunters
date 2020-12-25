@@ -97,8 +97,12 @@ function ItemManager:TryRemoveRuneInSlot(userid, event)
 				end
 				item.itemData[slotIndex] = {}
 			end
-			itemmodifier:ForceRefresh()
 			unit:CalculateStatBonus()
+			unit:CalculateGenericBonuses()
+			itemmodifier:ForceRefresh()
+			itemmodifier:SendBuffRefreshToClients()
+			unit:CalculateStatBonus()
+			unit:CalculateGenericBonuses()
 		end
 		status, err, ret = xpcall(ItemCatch, debug.traceback, self, userid, event )
 		if not status  and not self.gameHasBeenBroken then
@@ -183,9 +187,12 @@ function ItemManager:TryEnterRuneInSlot(userid, event)
 						runeEnt:Destroy()
 					end
 				end
+				-- unit:CalculateStatBonus()
+				-- itemmodifier:Destroy()
+				-- unit:AddNewModifier( unit, item, item:GetIntrinsicModifierName(), {} )
+				unit:CalculateStatBonus()
 				itemmodifier:ForceRefresh()
 				unit:CalculateStatBonus()
-				-- unit:AddNewModifier( unit, item, item:GetIntrinsicModifierName(), {} )
 				
 				
 			end

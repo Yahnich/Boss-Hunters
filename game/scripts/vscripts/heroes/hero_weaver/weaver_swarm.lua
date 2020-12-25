@@ -143,6 +143,7 @@ function modifier_weaver_swarm_bug:CheckState()
 	return {[MODIFIER_STATE_STUNNED] = true,
 			[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
 			[MODIFIER_STATE_UNSELECTABLE] = true,
+			[MODIFIER_STATE_MAGIC_IMMUNE] = true,
 			[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 			[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true}
 end

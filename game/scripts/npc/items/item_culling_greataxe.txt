@@ -17,7 +17,7 @@
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"425"
+		"ItemCost"						"650"
 		"ItemShopTags"					"damage"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"battle fury;culling greataxe"
@@ -47,7 +47,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"15 20 25 35 40 45 50 55 60"
+				"splash_damage"			"25 35 40 45 50 55 60 65 70"
 			}
 			"02"
 			{
@@ -75,7 +75,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1075"	
+		"ItemCost"						"965"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -134,7 +134,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"15 20 25 35 40 45 50 55 60"
+				"splash_damage"			"25 35 40 45 50 55 60 65 70"
 			}
 			"02"
 			{
@@ -221,7 +221,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"15 20 25 35 40 45 50 55 60"
+				"splash_damage"			"25 35 40 45 50 55 60 65 70"
 			}
 			"02"
 			{
@@ -308,7 +308,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"15 20 25 35 40 45 50 55 60"
+				"splash_damage"			"25 35 40 45 50 55 60 65 70"
 			}
 			"02"
 			{
@@ -395,7 +395,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"15 20 25 35 40 45 50 55 60"
+				"splash_damage"			"25 35 40 45 50 55 60 65 70"
 			}
 			"02"
 			{
@@ -482,7 +482,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"15 20 25 35 40 45 50 55 60"
+				"splash_damage"			"25 35 40 45 50 55 60 65 70"
 			}
 			"02"
 			{
@@ -569,7 +569,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"15 20 25 35 40 45 50 55 60"
+				"splash_damage"			"25 35 40 45 50 55 60 65 70"
 			}
 			"02"
 			{
@@ -656,7 +656,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"15 20 25 35 40 45 50 55 60"
+				"splash_damage"			"25 35 40 45 50 55 60 65 70"
 			}
 			"02"
 			{
@@ -743,7 +743,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"15 20 25 35 40 45 50 55 60"
+				"splash_damage"			"25 35 40 45 50 55 60 65 70"
 			}
 			"02"
 			{

@@ -19,7 +19,7 @@ function modifier_item_range_stone_passive:OnCreated()
 end
 
 function modifier_item_range_stone_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACK_RANGE_BONUS }
+	return { MODIFIER_PROPERTY_ATTACK_RANGE_BONUS }
 end
 
 function modifier_item_range_stone_passive:GetModifierAttackRangeBonus()

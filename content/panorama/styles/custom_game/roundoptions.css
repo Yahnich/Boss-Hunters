@@ -10,10 +10,9 @@
 	height: fit-children;
 	min-height: 450px;
 	width: fit-children;
-	vertical-align: center;
+	vertical-align: top;
 	horizontal-align: center;
 	flow-children: right;
-	margin-top: -50px;
 }
 
 .EventCardContainer
@@ -25,6 +24,16 @@
 	flow-children: down;
 	margin-left: 15px;
 	margin-right: 15px;
+	margin-top: 50px;
+	
+	/* opacity: 0; */
+	/* pre-transform-rotate2d: 45deg; */
+	transform: rotateY( -45deg ) translate3d( 0px, -1000px, 0px );
+	transform-origin: 50% 0%;
+	
+	/* transition: opacity 0.5s ease-in-out 0.0s; */
+	transition: transform 0.5s ease-in-out 0.0s, opacity 0.35s ease-in-out 0.0s;
+	/* transition: pre-transform-rotate2d 0.5s ease-in-out 0.0s; */
 }
 
 .EventCardHighlighted
@@ -216,4 +225,17 @@
 {
 	height: 32px;
 	width: 32px;
+}
+
+.FadeIn
+{
+	/* opacity: 1; */
+	transform: rotateX( 0deg ) translate3d( 0px, 0px, 0px );
+	sound: "whoosh_in";
+}
+
+.FadeOut
+{
+	opacity: 0;
+	sound: "whoosh_out";
 }

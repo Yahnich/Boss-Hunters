@@ -20,6 +20,15 @@ function earthshaker_fissure_ebf:GetVectorTargetStartRadius()
 	return self:GetTalentSpecialValueFor("fissure_radius")
 end
 
+function earthshaker_fissure_ebf:OnAbilityPhaseStart()
+	EmitSoundOn( "Hero_EarthShaker.Whoosh", self:GetCaster() )
+	return true
+end
+
+function earthshaker_fissure_ebf:OnAbilityPhaseInterrupted()
+	StopSoundOn( "Hero_EarthShaker.Whoosh", self:GetCaster() )
+end
+
 function earthshaker_fissure_ebf:OnVectorCastStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorPosition()
@@ -28,10 +37,20 @@ function earthshaker_fissure_ebf:OnVectorCastStart()
 	local damage = self:GetTalentSpecialValueFor("damage")
 	local stunDuration = self:GetTalentSpecialValueFor("stun_duration")
 	
-	local psoList = self:LaunchFissure(self:GetVectorPosition(), self:GetVectorDirection(), fissureDuration, damage, stunDuration)
+	EmitSoundOn( "Hero_EarthShaker.Fissure", caster )
+	
+	local direction = self:GetVectorDirection()
+	if direction:Length2D() == 0 then
+		direction = CalculateDirection( self:GetVectorPosition(), caster )
+	end
+	
+	local psoList = self:LaunchFissure(self:GetVectorPosition(), direction, fissureDuration, damage, stunDuration)
 	Timers:CreateTimer(fissureDuration, function()
 		for _, entity in pairs(psoList) do
-			if not entity:IsNull() then	UTIL_Remove(entity) end
+			if not entity:IsNull() then
+				EmitSoundOn( "Hero_EarthShaker.FissureDestroy", entity )
+				UTIL_Remove(entity) 
+			end
 		end
 		local retry
 		for _, entity in pairs(psoList) do
@@ -55,10 +74,10 @@ function earthshaker_fissure_ebf:LaunchFissure(position, direction, fissureDurat
 	
 	local posTable = {}
 	for i = 1, count do
-		psoPos = psoPos + direction * PSO_RADIUS
 		local pso = SpawnEntityFromTableSynchronous('point_simple_obstruction', {origin = GetGroundPosition(psoPos, caster)}) 
 		table.insert(deleteTable, pso)
 		table.insert(posTable, psoPos)
+		psoPos = psoPos + direction * PSO_RADIUS
 	end
 	local aftershock = caster:FindAbilityByName("earthshaker_aftershock_ebf")
 	local echo = caster:FindAbilityByName("earthshaker_echo_slam_ebf")
@@ -84,6 +103,6 @@ function earthshaker_fissure_ebf:LaunchFissure(position, direction, fissureDurat
 			enemy:ApplyKnockBack(fissurePosition, 0.5, 0.5, -distance, 0, caster, self)
 		end
 	end
-	ParticleManager:FireParticle("particles/units/heroes/hero_earthshaker/earthshaker_fissure.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position + direction * PSO_RADIUS, [1] = psoPos, [2] = Vector( fissureDuration, 0, 0)})
+	ParticleManager:FireParticle("particles/units/heroes/hero_earthshaker/earthshaker_fissure.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = psoPos, [2] = Vector( fissureDuration, 0, 0)})
 	return deleteTable
 end

@@ -9,8 +9,9 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"MaxLevel"						"7"
-		"AbilityCastRange"				"700"
+		"AbilityCastRange"				"300"
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		
@@ -18,15 +19,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_doom_demons_bargain_1"	"1"
-			"special_bonus_unique_doom_demons_bargain_2"	"1"
+			"special_bonus_unique_doom_demons_bargain_3"	"1"
+			"special_bonus_unique_doom_demons_bargain_4"	"1"
 		}
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10.0"
-		"AbilityManaCost"				"40 50 60 70 80 90 100"
-		"AbilityTextureName"			"custom/doom_devour"
+		"AbilityCooldown"				"80 80 80 80 70 60 50"
+		"AbilityManaCost"				"70 80 90 100 100 100 100"
+		"AbilityTextureName"			"doom_bringer_devour"
 		
 		"precache"
 		{
@@ -42,20 +43,35 @@
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"total_gold"						"15 25 35 45 55 65 75"
+				"total_gold"						"50 100 150 200 220 240 260"
 				"LinkedSpecialBonus"				"special_bonus_unique_doom_demons_bargain_1"
 				"LinkedSpecialBonusOperation"		"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
 			{
-				"var_type"							"FIELD_INTEGER"
-				"regen"								"4 8 13 18 24 30 40"
+				"var_type"							"FIELD_FLOAT"
+				"regen"								"10 12.5 15 17.5 20 25 30 35"
 				"LinkedSpecialBonus"				"special_bonus_unique_doom_demons_bargain_2"
 			}
 			"03"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"duration"							"10"
+				"duration"							"40"
+			}
+			"04"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"dmg_mult"							"3"
+			}
+			"05"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"dmg_mult_minion"					"12"
+			}
+			"05"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"hp_regen_mult"						"2"
 			}
 		}
 	}
@@ -97,6 +113,49 @@
 			}
 		}
 	}
+	"special_bonus_unique_doom_demons_bargain_3" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"2"
+			}
+		}
+	}
+	"special_bonus_unique_doom_demons_bargain_4" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value2"				"1"
+			}
+		}
+	}
 	"doom_scorched_earth_ebf"
 	{
 		// General
@@ -130,13 +189,12 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.2"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"600"
-		"AbilityCooldown"				"55.0"
+		"AbilityCooldown"				"50 45 40 35 35 35 35"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -149,7 +207,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_per_second"			"16 24 32 40 48 56 64"
+				"damage_per_second"			"15 30 45 60 75 90 105"
 			}
 			"02"
 			{
@@ -160,19 +218,22 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_movement_speed_pct"	"14"
+				"bonus_movement_speed_pct"	"9 11 13 15 16 17 18"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_attack_speed"		"30 45 60 75 90 105 120"
+				"bonus_attack_speed"		"15 30 45 60 70 80 90"
 			}
-			"04"
+			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"22.0"
-				"LinkedSpecialBonus"		"special_bonus_unique_doom_scorched_earth_ebf_2"
-				"LinkedSpecialBonusField"	"duration"
+				"duration"					"15 15 15 15 16 17 18"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"ally_pct"					"50"
 			}
 		}
 	}
@@ -183,6 +244,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_doom_scorched_earth_talent"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -193,6 +255,11 @@
 				"var_type"				"FIELD_INTEGER"
 				"value"					"50"
 			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value2"				"25"
+			}
 		}
 	}
 	"special_bonus_unique_doom_scorched_earth_ebf_2" 
@@ -202,6 +269,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedAbilityName"				"doom_scorched_earth_ebf"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -210,12 +278,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"1200"
+				"value"					"600"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"5"
+				"damage"				"33"
 			}
 		}
 	}
@@ -235,23 +303,22 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"doom_bringer_infernal_blade"
+		"HasScepterUpgrade"				"1"
 		"IsOrb"							"1"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_doom_infernal_blade_ebf_1"	"1"
-			"special_bonus_unique_doom_infernal_blade_ebf_2"	"1"
+			"special_bonus_unique_doom_infernal_blade_1"	"1"
+			"special_bonus_unique_doom_infernal_blade_2"	"1"
 		}
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8 7.5 7 6.5 6 5.5 5"
+		"AbilityCooldown"				"16 12 8 4 4 4 4"
 		"AbilityManaCost"				"40"
-		"AbilityCastRange"				"150"
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
-		"AbilityCastPoint"				"0.57"
+		"AbilityCastRange"				"175"
 		"MaxLevel"						"7"
 		
 		"precache"
@@ -270,28 +337,44 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"burn_damage"					"25 30 35 40 45 50 55"
+				"burn_damage"					"16 20 24 28 56 84 112"
+				"LinkedSpecialBonus"			"special_bonus_unique_doom_infernal_blade_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"LinkedSpecialBonusField"		"value2"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"burn_damage_pct"				"1.3"
-				"LinkedSpecialBonus"			"special_bonus_unique_doom_infernal_blade_ebf_1"
+				"burn_damage_pct"				"1.6 1.6 1.6 1.6 1.9 2.2 2.5"
+				"LinkedSpecialBonus"			"special_bonus_unique_doom_infernal_blade_1"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"burn_duration"					"2.0"
+				"burn_duration"					"4"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"ministun_duration"				"0.1"
+				"ministun_duration"				"0.4"
+				"LinkedSpecialBonus"			"special_bonus_unique_doom_infernal_blade_2"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"scepter_length"				"650"
+				"RequiresScepter"				"1"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"scepter_width"					"125"
+				"RequiresScepter"				"1"
 			}
 		}
 	}
-	"special_bonus_unique_doom_infernal_blade_ebf_1" 
+	"special_bonus_unique_doom_infernal_blade_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -308,14 +391,14 @@
 				"var_type"				"FIELD_FLOAT"
 				"value"					"0.5"
 			}
-			"01"
+			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"250"
+				"value2"				"2"
 			}
 		}
 	}
-	"special_bonus_unique_doom_infernal_blade_ebf_2" 
+	"special_bonus_unique_doom_infernal_blade_2" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -329,8 +412,8 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
+				"var_type"				"FIELD_FLOAT"
+				"value"					"0.6"
 			}
 		}
 	}
@@ -346,7 +429,6 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"HasScepterUpgrade"				"1"
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"custom/doom_bringer_apocalypse"
 		"MaxLevel"						"6"
@@ -356,7 +438,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_doom_apocalypse_1"	"1"
+			"special_bonus_unique_doom_apocalypse_3"	"1"
 			"special_bonus_unique_doom_apocalypse_2"	"1"
 		}
 	
@@ -378,12 +460,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"110"
+		"AbilityCooldown"				"145 125 105 105 105 105"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"150 200 250 300 350 400"
-		"AbilityThreat"					"50"
+		"AbilityManaCost"				"150 200 250 250 250 250"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -392,12 +473,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"12.0"
+				"duration"				"12 12 12 13 14 15"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"25 40 55 70 85 100"
+				"damage"				"25 40 55 65 75 85"
 			}
 		}
 	}
@@ -421,6 +502,25 @@
 		}
 	}
 	"special_bonus_unique_doom_apocalypse_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_doom_apocalypse_3" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------

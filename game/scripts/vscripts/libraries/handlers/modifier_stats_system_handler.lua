@@ -15,7 +15,6 @@ function modifier_stats_system_handler:OnCreated()
 	self.modifierFunctions["GetModifierLifestealTargetBonus"] = {}
 	self.modifierFunctions["GetModifierManacostReduction"] = {}
 	self.modifierFunctions["GetModifierAttackSpeedBonus_Constant"] = {}
-	self.modifierFunctions["GetModifierAttackSpeedBonus_Constant"] = {}
 	self.modifierFunctions["GetModifierAttackSpeedLimitBonus"] = {}
 	self.modifierFunctions["GetModifierAttackSpeedBonusPercentage"] = {}
 	self.modifierFunctions["GetBaseAttackTimeOverride"] = {}
@@ -91,15 +90,15 @@ function modifier_stats_system_handler:OnCreated()
 		end
 		self:UpdateStatValues()
 		self:SetHasCustomTransmitterData( true )
-		self:GetParent():CalculateStatBonus()
+		self:GetParent():CalculateStatBonus(true)
 	end
 end
 
 function modifier_stats_system_handler:OnRefresh(iStacks)
 	if IsServer() then
 		self:UpdateStatValues()
-		self:SetHasCustomTransmitterData( true )
-		self:GetParent():CalculateStatBonus()
+		self:SendBuffRefreshToClients()
+		self:GetParent():CalculateStatBonus(true)
 	end
 end
 
@@ -189,12 +188,26 @@ function modifier_stats_system_handler:DeclareFunctions()
 	return funcs
 end
 
+function modifier_stats_system_handler:GetModifierBaseAttack_BonusDamage()
+	local owner = self:GetCaster() or self:GetParent()
+	local heroBonus = 0
+	if owner:IsRealHero() then
+		heroBonus = owner:GetLevel()
+	end
+	return owner:GetAgility() * 0.5 + heroBonus
+end
+
 function modifier_stats_system_handler:ReincarnateTime(params)
 	if IsServer() then
 		local firstToCheck
 		local firstToCheckPriority = MODIFIER_PRIORITY_LOW
 		local checking = true
 		local modifiersToCheck = MergeTables( self.modifierFunctions["GetReincarnationDelay"], {} )
+		print( self:GetParent().tombstoneDisabled )
+		if self:GetParent().tombstoneDisabled then
+			self:GetParent().tombstoneDisabled = false
+			return nil 
+		end
 		while checking do
 			for modifier, priority in pairs( modifiersToCheck ) do
 				print( modifier:GetName(), priority, firstToCheckPriority )
@@ -209,6 +222,7 @@ function modifier_stats_system_handler:ReincarnateTime(params)
 					local resurrectionDelay = firstToCheck:GetReincarnationDelay(params)
 					if resurrectionDelay then
 						checking = false
+						print( resurrectionDelay )
 						return resurrectionDelay
 					end
 				end
@@ -305,9 +319,14 @@ function modifier_stats_system_handler:GetModifierAttackSpeedBonus_Constant()
 	if attackspeed + bonusAttackspeed > ATTACK_SPEED_MAX then
 		bonusAttackspeed = ATTACK_SPEED_MAX - (attackspeed + bonusAttackspeed)
 	end
-	if bonusAttackspeed ~= 0 then
-		return bonusAttackspeed
+	local unitAttackspeed = 0
+	if self:GetParent():IsRealHero() then
+		unitAttackspeed = self:GetParent():GetLevel()
 	end
+	if bonusAttackspeed ~= 0 then
+		return bonusAttackspeed + unitAttackspeed
+	end
+	return unitAttackspeed
 end
 
 function modifier_stats_system_handler:GetModifierBonusStats_Agility()
@@ -360,7 +379,7 @@ end
 
 function modifier_stats_system_handler:GetModifierMoveSpeedBonus_Percentage()
 	local owner = self:GetCaster() or self:GetParent()
-	return owner:GetAgility() * 0.075 
+	return owner:GetAgility() * 0.125
 end
 
 function modifier_stats_system_handler:GetModifierPercentageManacostStacking()
@@ -369,7 +388,7 @@ end
 
 function modifier_stats_system_handler:GetModifierManaBonus()
 	if self:GetParent():IsHero() then
-		return 500 + (self.statsInfo.mp or 0)
+		return 500 + (self.statsInfo.mp or 0) + self:GetParent():GetLevel() * 5
 	end
 end
 function modifier_stats_system_handler:GetModifierConstantManaRegen() 
@@ -379,7 +398,11 @@ end
 	
 function modifier_stats_system_handler:GetModifierSpellAmplify_Percentage()
 	local owner = self:GetCaster() or self:GetParent()
-	return owner:GetIntellect() * 0.25 + (self.statsInfo.sa or 0) 
+	local heroBonus = 0
+	if owner:IsRealHero() then
+		heroBonus = owner:GetLevel()
+	end
+	return owner:GetIntellect() * 0.25 + (self.statsInfo.sa or 0) + heroBonus
 end
 	
 function modifier_stats_system_handler:GetModifierHealAmplify_Percentage()
@@ -402,7 +425,7 @@ end
 
 function modifier_stats_system_handler:GetModifierExtraHealthBonus() 
 	if self:GetParent():IsHero() then
-		return 300 + (self.statsInfo.hp or 0)
+		return 300 + (self.statsInfo.hp or 0) + self:GetParent():GetLevel() * 5
 	end
 end
 function modifier_stats_system_handler:GetModifierConstantHealthRegen() 
@@ -416,17 +439,20 @@ function modifier_stats_system_handler:GetModifierEvasion_Constant()
 	if self.requestingEvasionData then return end
 	if self:GetParent():IsStunned() or self:GetParent():IsRooted() then
 		self.requestingEvasionData = true
-		local evasion = self:GetParent():GetEvasion()
+		local evasion = 0
+		if not self:GetParent():IsNull() and self:GetParent().GetEvasion then
+			evasion = self:GetParent():GetEvasion()
+		end
 		self.requestingEvasionData = false
 		if evasion > 0 then
 			return -evasion
 		end
 	else
-		if owner.statsSystemLastAgiCheck ~= owner:GetAgility() then
-			owner.statsSystemLastAgiCheck = owner:GetAgility()
-			owner.statsSystemEvasionInnate = (1-(1-0.0035)^owner:GetAgility())*100 
-		end
-		return 5 + (self.statsInfo.evasion or 0) + owner.statsSystemEvasionInnate
+		-- if owner.statsSystemLastAgiCheck ~= owner:GetAgility() then
+			-- owner.statsSystemLastAgiCheck = owner:GetAgility()
+			-- owner.statsSystemEvasionInnate = (1-(1-0.0035)^owner:GetAgility())*100 
+		-- end
+		return 5 + (self.statsInfo.evasion or 0)
 	end
 end
 
@@ -495,7 +521,7 @@ function modifier_stats_system_handler:OnTakeDamage( params )
 			end
 		end
 	end
-	if params.unit == parent and params.attacker ~= parent and params.attacker:GetHealth() > 0 and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL) ) then
+	if params.unit == parent and ( params.attacker and params.attacker ~= parent ) and params.attacker:GetHealth() > 0 and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL) ) then
 		if self.modifierFunctions["GetModifierLifestealTargetBonus"] then
 			for modifier, active in pairs( self.modifierFunctions["GetModifierLifestealTargetBonus"] ) do
 				if modifier:IsNull() then

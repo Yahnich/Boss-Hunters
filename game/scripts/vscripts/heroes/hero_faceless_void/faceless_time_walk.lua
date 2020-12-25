@@ -22,7 +22,7 @@ function faceless_time_walk:GetIntrinsicModifierName()
 end
 
 function faceless_time_walk:GetCooldown( iLvl )
-	return self.BaseClass.GetCooldown( self, iLvl ) + self:GetCaster():FindTalentValue("special_bonus_unique_faceless_time_walk_1")
+	return self.BaseClass.GetCooldown( self, iLvl ) + self:GetCaster():FindTalentValue("special_bonus_unique_faceless_time_walk_1", "cd")
 end
 
 function faceless_time_walk:OnSpellStart()
