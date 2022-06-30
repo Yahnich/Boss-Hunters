@@ -45,14 +45,12 @@ end
 modifier_pl_false_edge = class({})
 
 function modifier_pl_false_edge:OnCreated(table)
-    self.bonus_as = self:GetTalentSpecialValueFor("bonus_as")
-    self.bonus_accuracy = self:GetTalentSpecialValueFor("bonus_accuracy")
-
-    if self:GetCaster():HasTalent("special_bonus_unique_pl_false_edge_1") then
-        self.bonus_ms = self.bonus_as  * self:GetCaster():FindTalentValue("special_bonus_unique_pl_false_edge_1") / 100
-        self.bonus_evasion = self.bonus_accuracy * self:GetCaster():FindTalentValue("special_bonus_unique_pl_false_edge_1", "value2") / 100
-    end
+    self:OnRefresh()
 	if IsServer() then
+		if self.juxtapose then
+			local juxtapose = self:GetParent():FindModifierByName("modifier_pl_juxtapose")
+			if juxtapose then juxtapose:ForceRefresh() end
+		end
 		local nFX = ParticleManager:CreateParticle("particles/econ/generic/generic_buff_1/generic_buff_1.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
 		ParticleManager:SetParticleControl(nFX, 14, Vector(1,1,1))
 		ParticleManager:SetParticleControl(nFX, 15, Vector(255,232,130))
@@ -64,16 +62,35 @@ end
 function modifier_pl_false_edge:OnRefresh(table)
     self.bonus_as = self:GetTalentSpecialValueFor("bonus_as")
     self.bonus_accuracy = self:GetTalentSpecialValueFor("bonus_accuracy")
+    self.juxtapose_chance = self:GetTalentSpecialValueFor("bonus_juxtapose")
+	
+	self.juxtapose = self:GetParent():FindAbilityByName("pl_juxtapose")
 
     if self:GetCaster():HasTalent("special_bonus_unique_pl_false_edge_1") then
         self.bonus_ms = self.bonus_as/2
+        self.bonus_evasion = self.bonus_accuracy * self:GetCaster():FindTalentValue("special_bonus_unique_pl_false_edge_1", "value2") / 100
     end
+end
+
+function modifier_pl_false_edge:OnRemoved()
+	if IsServer() then
+		if self.juxtapose then
+			local parent = self:GetParent()
+			Timers:CreateTimer( 0.1, function()
+				local juxtapose = parent:FindModifierByName("modifier_pl_juxtapose")
+				if juxtapose then juxtapose:ForceRefresh() end
+			end )
+		end
+	end
 end
 
 function modifier_pl_false_edge:DeclareFunctions()
     local funcs = { MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
                     MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-					MODIFIER_PROPERTY_EVASION_CONSTANT }
+					MODIFIER_PROPERTY_EVASION_CONSTANT,
+					MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL,
+					MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL_VALUE
+					}
     return funcs
 end
 
@@ -92,6 +109,25 @@ end
 
 function modifier_pl_false_edge:GetModifierEvasion_Constant()
     return self.bonus_evasion
+end
+
+function modifier_pl_false_edge:GetModifierOverrideAbilitySpecial(params)
+	if params.ability == self.juxtapose then
+		local specialValue = params.ability_special_value
+		if specialValue == "illusion_chance" or specialValue == "chance" then
+			return 1
+		end
+	end
+end
+
+function modifier_pl_false_edge:GetModifierOverrideAbilitySpecialValue(params)
+	if params.ability == self.juxtapose then
+		local specialValue = params.ability_special_value
+		if specialValue == "illusion_chance" or specialValue == "chance" then
+			local flBaseValue = params.ability:GetLevelSpecialValueNoOverride( specialValue, params.ability_special_level )
+			return flBaseValue + self.juxtapose_chance
+		end
+	end
 end
 
 function modifier_pl_false_edge:IsPurgable()

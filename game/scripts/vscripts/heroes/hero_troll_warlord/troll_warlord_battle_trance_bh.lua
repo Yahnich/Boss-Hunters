@@ -22,43 +22,45 @@ end
 function modifier_troll_warlord_battle_trance_bh:OnRefresh()
 	self.attackspeed = self:GetTalentSpecialValueFor("attack_speed")
 	self.movespeed = self:GetTalentSpecialValueFor("move_speed")
-	self.lifesteal = self:GetTalentSpecialValueFor("lifesteal") / 100
+	self.lifesteal = self:GetTalentSpecialValueFor("lifesteal")
 	
-	self.cleave = self:GetTalentSpecialValueFor("scepter_cleave") / 100
-	self.range = self:GetTalentSpecialValueFor("scepter_attack_range")
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_battle_trance_1")
 	self.sr = self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_battle_trance_1")
+	self.cleave = self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_battle_trance_1")
+	self.evasion = self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_battle_trance_1", "value2")
 	
+	self:GetParent():HookInModifier("GetModifierLifestealBonus", self)
 	self:GetParent():HookInModifier("GetModifierAttackSpeedLimitBonus", self)
+	self:GetParent():HookInModifier("GetModifierAreaDamage", self)
 end
 
 function modifier_troll_warlord_battle_trance_bh:OnDestroy()
+	self:GetParent():HookOutModifier("GetModifierLifestealBonus", self)
 	self:GetParent():HookOutModifier("GetModifierAttackSpeedLimitBonus", self)
+	self:GetParent():HookOutModifier("GetModifierAreaDamage", self)
 end
 
 function modifier_troll_warlord_battle_trance_bh:CheckState()
-	if self:GetParent():HasScepter() then
-		state[MODIFIER_STATE_INVULNERABLE] = true
+	if self.talent1 then
+		return {[MODIFIER_STATE_CANNOT_MISS] = true}
 	end
-	return state
 end
 
 function modifier_troll_warlord_battle_trance_bh:DeclareFunctions()
 	return {MODIFIER_PROPERTY_STATUS_RESISTANCE, 
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, 
 			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-			MODIFIER_EVENT_ON_TAKEDAMAGE, 
-			MODIFIER_PROPERTY_MIN_HEALTH,
-			MODIFIER_EVENT_ON_ATTACK_LANDED,
-			MODIFIER_PROPERTY_ATTACK_RANGE_BONUS }
+			MODIFIER_PROPERTY_EVASION_CONSTANT,
+			MODIFIER_PROPERTY_MIN_HEALTH }
 end
 
 function modifier_troll_warlord_battle_trance_bh:GetMinHealth()
 	return 1
 end
 
-function modifier_troll_warlord_battle_trance_bh:GetModifierAttackRangeBonus()
-	if self:GetParent():HasScepter() and self:GetParent():IsRangedAttacker() then
-		return self.range
+function modifier_troll_warlord_battle_trance_bh:GetModifierEvasion_Constant()
+	if self.talent1 and self:GetParent():IsRangedAttacker() then
+		return self.evasion
 	end
 end
 
@@ -74,14 +76,16 @@ function modifier_troll_warlord_battle_trance_bh:OnTakeDamage(params)
 	end
 end
 
-function modifier_troll_warlord_battle_trance_bh:OnAttackLanded(params)
-	if params.attacker == self:GetParent() and self:GetParent():HasScepter() and not self:GetParent():IsRangedAttacker() then
-		self:GetAbility():Cleave(params.target, self.cleave * params.damage, 150, 400, 600, "particles/items_fx/battlefury_cleave.vpcf" )
-	end
+function modifier_troll_warlord_battle_trance_bh:GetModifierStatusResistance()
+	if self.talent1 and not self:GetParent():IsRangedAttacker() then return self.sr end
 end
 
-function modifier_troll_warlord_battle_trance_bh:GetModifierStatusResistance()
-	return self.sr
+function modifier_troll_warlord_battle_trance_bh:GetModifierAreaDamage()
+	if self.talent1 and not self:GetParent():IsRangedAttacker() then return self.cleave end
+end
+
+function modifier_troll_warlord_battle_trance_bh:GetModifierLifestealBonus()
+	return self.lifesteal
 end
 
 function modifier_troll_warlord_battle_trance_bh:GetModifierAttackSpeedBonus_Constant()
@@ -94,18 +98,6 @@ end
 
 function modifier_troll_warlord_battle_trance_bh:GetEffectName()
 	return "particles/units/heroes/hero_troll_warlord/troll_warlord_battletrance_buff.vpcf"
-end
-
-function modifier_troll_warlord_battle_trance_bh:GetStatusEffectName()
-	if self:GetParent():HasScepter() then
-		return "particles/status_fx/status_effect_repel.vpcf"
-	end
-end
-
-function modifier_troll_warlord_battle_trance_bh:StatusEffectPriority()
-	if self:GetParent():HasScepter() then
-		return 50
-	end
 end
 
 function modifier_troll_warlord_battle_trance_bh:IsPurgable()

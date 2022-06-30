@@ -10,7 +10,7 @@ function modifier_boss_attackspeed:OnCreated()
 		self.thinkTime = 0
 		self.thinkLimit = 2.5 * self:GetStackCount()
 		self.armor = self:GetParent():GetPhysicalArmorBaseValue() * 0.0625 * self:GetStackCount() + self:GetStackCount() + math.min( 8, RoundManager:GetRaidsFinished() ) + math.min( 4, RoundManager:GetZonesFinished() ) * 5
-		self.mr = math.min( 2.75 * self:GetStackCount(), 60 ) + self:GetStackCount() + math.min( 8, RoundManager:GetRaidsFinished() ) * 0.65 + math.min( 4, RoundManager:GetZonesFinished() ) * 3
+		self.mr = math.min( 2.75 * self:GetStackCount(), 60 ) + math.min( 8, RoundManager:GetRaidsFinished() ) * 0.65 + math.min( 4, RoundManager:GetZonesFinished() ) * 3
 		self.regenAmp = RoundManager:GetAscensions() * 50
 		if self:GetParent():IsRangedAttacker() then 
 			self.armor = self.armor / 2 
@@ -20,7 +20,7 @@ function modifier_boss_attackspeed:OnCreated()
 			self.armor = 0
 			self.mr = self.mr * 1.5
 		end
-		self:StartIntervalThink(0.33)
+		self:StartIntervalThink(0.1)
 		self:SetHasCustomTransmitterData( true )
 	end
 end
@@ -36,10 +36,14 @@ function modifier_boss_attackspeed:OnIntervalThink()
 			AddFOWViewer(DOTA_TEAM_GOODGUYS, position, 516, 1, false)
 		end
 	end
+	self.destroyTrees = (self.destroyTrees or 0) + 0.1
+	if not parent:IsMinion() and self.destroyTrees > 2.5 then
+		GridNav:DestroyTreesAroundPoint(position, self.radius, true)
+		self.destroyTrees = 0
+	end
 	if parent:IsStunned() then
 		parent:RemoveGesture(ACT_DOTA_ATTACK)
 	end
-	GridNav:DestroyTreesAroundPoint(position, self.radius, true)
 end
 
 function modifier_boss_attackspeed:GetPriority()

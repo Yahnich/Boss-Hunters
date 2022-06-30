@@ -31,3 +31,7 @@ end
 function relic_sacrificial_dagger:IsHidden()
 	return self:GetStackCount() == 0
 end
+
+function relic_sacrificial_dagger:GetPriority()
+	return MODIFIER_PRIORITY_HIGH
+end

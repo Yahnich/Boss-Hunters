@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1050"	
+		"ItemCost"						"2100"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_shadow_whisper_5"
 		"ItemRequirements"
 		{
-			"01"						"item_dusk_blade_4"
+			"01"						"item_dusk_blade_2"
 		}
 	}
 	
@@ -46,7 +46,7 @@
 		"ItemAliases"					"shadow blade"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"5"
+		"MaxUpgradeLevel"				"3"
 		"ItemBaseLevel"					"1"
 		
 		"AbilityCooldown"				"28"
@@ -77,12 +77,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"debuff_duration"		"1.5 2 2.5 3 3.5"
+				"debuff_duration"		"3 4.5 6"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"2 2 3 3 3"
+				"rune_scaling"			"140 160 180"
 			}
 		}
 	}
@@ -110,7 +110,6 @@
 		"ItemRequirements"
 		{
 			"01"						"item_shadow_whisper_5;item_recipe_shadow_whisper_5"
-			"02"						"item_dusk_blade_5;item_recipe_shadow_whisper_5"
 		}
 	}
 	
@@ -133,7 +132,7 @@
 		"ItemAliases"					"shadow blade"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"5"
+		"MaxUpgradeLevel"				"3"
 		"ItemBaseLevel"					"2"
 		
 		"AbilityCooldown"				"28"
@@ -164,12 +163,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"debuff_duration"		"1.5 2 2.5 3 3.5"
+				"debuff_duration"		"3 4.5 6"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"2 2 3 3 3"
+				"rune_scaling"			"140 160 180"
 			}
 		}
 	}
@@ -197,7 +196,6 @@
 		"ItemRequirements"
 		{
 			"01"						"item_shadow_whisper_6;item_recipe_shadow_whisper_5"
-			"02"						"item_dusk_blade_6;item_recipe_shadow_whisper_5"
 		}
 	}
 	
@@ -220,14 +218,14 @@
 		"ItemAliases"					"shadow blade"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"5"
+		"MaxUpgradeLevel"				"3"
 		"ItemBaseLevel"					"3"
 		
 		"AbilityCooldown"				"28"
 		"AbilitySharedCooldown"			"shadowwhisper"
 		"AbilityManaCost"				"75"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -251,12 +249,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"debuff_duration"		"1.5 2 2.5 3 3.5"
+				"debuff_duration"		"3 4.5 6"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"2 2 3 3 3"
+				"rune_scaling"			"140 160 180"
 			}
 		}
 	}
@@ -274,12 +272,13 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_shadow_whisper_8"
 		"ItemRequirements"
 		{
@@ -299,6 +298,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"invis"
@@ -306,14 +306,14 @@
 		"ItemAliases"					"shadow blade"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"5"
+		"MaxUpgradeLevel"				"3"
 		"ItemBaseLevel"					"4"
 		
 		"AbilityCooldown"				"28"
 		"AbilitySharedCooldown"			"shadowwhisper"
 		"AbilityManaCost"				"75"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -337,12 +337,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"debuff_duration"		"1.5 2 2.5 3 3.5"
+				"debuff_duration"		"3 4.5 6"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"2 2 3 3 3"
+				"rune_scaling"			"140 160 180"
 			}
 		}
 	}
@@ -361,6 +361,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -386,6 +387,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"invis"
@@ -393,14 +395,14 @@
 		"ItemAliases"					"shadow blade"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"5"
+		"MaxUpgradeLevel"				"3"
 		"ItemBaseLevel"					"5"
 		
 		"AbilityCooldown"				"28"
 		"AbilitySharedCooldown"			"shadowwhisper"
 		"AbilityManaCost"				"75"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -424,12 +426,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"debuff_duration"		"1.5 2 2.5 3 3.5"
+				"debuff_duration"		"3 4.5 6"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"2 2 3 3 3"
+				"rune_scaling"			"140 160 180"
 			}
 		}
 	}

@@ -75,8 +75,7 @@ end
 
 function modifier_shadow_fiend_dark_lord_aura:OnRefresh()
 	self.evasion = self:GetTalentSpecialValueFor("evasion")
-	self.movespeed = self:GetCaster():FindTalentValue("special_bonus_unique_shadow_fiend_dark_lord_2")
-	self.threat_reduction = self.evasion * self:GetCaster():FindTalentValue("special_bonus_unique_shadow_fiend_dark_lord_2", "value2") * (-1)
+	self.movespeed = self.evasion * self:GetCaster():FindTalentValue("special_bonus_unique_shadow_fiend_dark_lord_3") / 100
 end
 
 function modifier_shadow_fiend_dark_lord_aura:DeclareFunctions()
@@ -91,9 +90,6 @@ function modifier_shadow_fiend_dark_lord_aura:GetModifierEvasion_Constant()
 	return self.evasion
 end
 
-function modifier_shadow_fiend_dark_lord_aura:Bonus_ThreatGain()
-	return self.threat_reduction
-end
 modifier_shadow_fiend_dark_lord_mr = class({})
 LinkLuaModifier( "modifier_shadow_fiend_dark_lord_mr","heroes/hero_shadow_fiend/shadow_fiend_dark_lord.lua",LUA_MODIFIER_MOTION_NONE )
 function modifier_shadow_fiend_dark_lord_mr:OnCreated()
@@ -107,15 +103,20 @@ end
 
 function modifier_shadow_fiend_dark_lord_mr:OnRefresh()
 	self.mr = self:GetTalentSpecialValueFor("mr_reduction")
+	self.slow = self:GetTalentSpecialValueFor("mr_reduction") * self:GetCaster():FindTalentValue("special_bonus_unique_shadow_fiend_dark_lord_3", "value2") / 100
 	if IsServer() then
 		self:AddIndependentStack()
 	end
 end
 
 function modifier_shadow_fiend_dark_lord_mr:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
+	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
 end
 
 function modifier_shadow_fiend_dark_lord_mr:GetModifierMagicalResistanceBonus()
 	return self.mr * self:GetStackCount()
+end
+
+function modifier_shadow_fiend_dark_lord_mr:GetModifierMoveSpeedBonus_Percentage()
+	return self.slow * self:GetStackCount()
 end

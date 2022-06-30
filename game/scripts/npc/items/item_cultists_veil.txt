@@ -19,10 +19,10 @@
 		"ItemAliases"					"veil of discord"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 				
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"1"
 		
-		"AvailableRuneSlots"			"0"
+		"AvailableRuneSlots"			"2"
 		
 		"precache"
 		{
@@ -40,7 +40,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"10 15 20 25 30 35 40 45 50"
+				"mana_cost_reduction"	"10 20 30 40 50"
 			}
 			"02"
 			{
@@ -55,12 +55,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_dmg"		"12 15 18 21 24 27 30 33 36"
+				"bonus_spell_dmg"		"12 18 24 30 36"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -78,7 +78,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1150"
+		"ItemCost"						"2300"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -109,10 +109,10 @@
 		"ItemAliases"					"soul ring"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		
 		"precache"
 		{
@@ -130,7 +130,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"10 15 20 25 30 35 40 45 50"
+				"mana_cost_reduction"	"10 20 30 40 50"
 			}
 			"02"
 			{
@@ -145,12 +145,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_dmg"		"12 15 18 21 24 27 30 33 36"
+				"bonus_spell_dmg"		"12 18 24 30 36"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -201,10 +201,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"3"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 	
 		"precache"
 		{
@@ -222,7 +222,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"10 15 20 25 30 35 40 45 50"
+				"mana_cost_reduction"	"10 20 30 40 50"
 			}
 			"02"
 			{
@@ -237,12 +237,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_dmg"		"12 15 18 21 24 27 30 33 36"
+				"bonus_spell_dmg"		"12 18 24 30 36"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -293,7 +293,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"4"
 		
 		"AvailableRuneSlots"			"2"
@@ -313,7 +313,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"10 15 20 25 30 35 40 45 50"
+				"mana_cost_reduction"	"10 20 30 40 50"
 			}
 			"02"
 			{
@@ -328,12 +328,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_dmg"		"12 15 18 21 24 27 30 33 36"
+				"bonus_spell_dmg"		"12 18 24 30 36"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -383,7 +383,7 @@
 		"ItemAliases"					"soul ring"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"5"
 		
 		"AvailableRuneSlots"			"2"
@@ -404,7 +404,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"10 15 20 25 30 35 40 45 50"
+				"mana_cost_reduction"	"10 20 30 40 50"
 			}
 			"02"
 			{
@@ -419,12 +419,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_dmg"		"12 15 18 21 24 27 30 33 36"
+				"bonus_spell_dmg"		"12 18 24 30 36"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -442,12 +442,13 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_cultists_veil_6"
 		"ItemRequirements"
 		{
@@ -467,6 +468,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"mana"
@@ -474,7 +476,7 @@
 		"ItemAliases"					"soul ring"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"6"
 		
 		"AvailableRuneSlots"			"2"
@@ -495,7 +497,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"10 15 20 25 30 35 40 45 50"
+				"mana_cost_reduction"	"10 20 30 40 50"
 			}
 			"02"
 			{
@@ -510,12 +512,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_dmg"		"12 15 18 21 24 27 30 33 36"
+				"bonus_spell_dmg"		"12 18 24 30 36"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -534,6 +536,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -558,6 +561,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"mana"
@@ -565,10 +569,10 @@
 		"ItemAliases"					"soul ring"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"7"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
@@ -585,7 +589,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"10 15 20 25 30 35 40 45 50"
+				"mana_cost_reduction"	"10 20 30 40 50"
 			}
 			"02"
 			{
@@ -600,12 +604,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_dmg"		"12 15 18 21 24 27 30 33 36"
+				"bonus_spell_dmg"		"12 18 24 30 36"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -624,6 +628,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -648,6 +653,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"mana"
@@ -655,10 +661,10 @@
 		"ItemAliases"					"soul ring"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"8"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
@@ -675,7 +681,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"10 15 20 25 30 35 40 45 50"
+				"mana_cost_reduction"	"10 20 30 40 50"
 			}
 			"02"
 			{
@@ -690,12 +696,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_dmg"		"12 15 18 21 24 27 30 33 36"
+				"bonus_spell_dmg"		"12 18 24 30 36"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -714,6 +720,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -738,6 +745,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"mana"
@@ -745,10 +753,10 @@
 		"ItemAliases"					"soul ring"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"9"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
@@ -765,7 +773,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"10 15 20 25 30 35 40 45 50"
+				"mana_cost_reduction"	"10 20 30 40 50"
 			}
 			"02"
 			{
@@ -780,12 +788,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_dmg"		"12 15 18 21 24 27 30 33 36"
+				"bonus_spell_dmg"		"12 18 24 30 36"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}

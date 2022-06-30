@@ -20,24 +20,23 @@ item_cuirass_of_war_9 = class(item_cuirass_of_war)
 modifier_item_cuirass_of_war = class(itemBasicBaseClass)
 LinkLuaModifier( "modifier_item_cuirass_of_war", "items/item_cuirass_of_war.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function modifier_item_cuirass_of_war:GetRuneModifier()
+	return -self.rune_mod
+end
+
 function modifier_item_cuirass_of_war:OnCreatedSpecific()
 	self.radius = self:GetSpecialValueFor("aura_radius")
-	self.armor = self:GetSpecialValueFor("bonus_armor")
+	self.rune_mod = self:GetSpecialValueFor("stone_share")
 end
 
 function modifier_item_cuirass_of_war:OnRefreshSpecific()
 	self.radius = self:GetSpecialValueFor("aura_radius")
-	self.armor = self:GetSpecialValueFor("bonus_armor")
+	self.rune_mod = self:GetSpecialValueFor("stone_share")
 end
 
 function modifier_item_cuirass_of_war:DeclareFunctions()
 	local funcs = self:GetDefaultFunctions()
-	table.insert( funcs, MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS )
 	return funcs
-end
-
-function modifier_item_cuirass_of_war:GetModifierPhysicalArmorBonus(params)
-	return self.armor
 end
 
 function modifier_item_cuirass_of_war:IsAura()
@@ -45,7 +44,7 @@ function modifier_item_cuirass_of_war:IsAura()
 end
 
 function modifier_item_cuirass_of_war:GetModifierAura()
-	return "modifier_item_cuirass_of_war_aura_"..self:GetAbility():GetItemSlot()
+	return "modifier_item_cuirass_of_war_aura"
 end
 
 function modifier_item_cuirass_of_war:GetAuraRadius()
@@ -54,15 +53,6 @@ end
 
 function modifier_item_cuirass_of_war:GetAuraDuration()
 	return 0.5
-end
-
-function modifier_item_cuirass_of_war:GetAuraEntityReject( unit )
-	local caster = self:GetCaster()
-	for _, modifier in ipairs( unit:FindAllModifiersByName( self:GetModifierAura() ) ) do
-		if modifier:GetCaster():GetUnitName() == caster:GetUnitName() and caster ~= modifier:GetCaster() then
-			return true
-		end
-	end
 end
 
 function modifier_item_cuirass_of_war:GetAuraSearchTeam()    
@@ -80,18 +70,18 @@ end
 LinkLuaModifier( "modifier_item_cuirass_of_war_aura", "items/item_cuirass_of_war.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_item_cuirass_of_war_aura = class(itemAuraBaseClass)
 
-function modifier_item_cuirass_of_war_aura:GetStoneShareability()
-	return self.stone_share
+function modifier_item_cuirass_of_war_aura:GetRuneModifier()
+	return self.rune_mod
 end
 
 function modifier_item_cuirass_of_war_aura:OnCreatedSpecific()
-	self.armor = TernaryOperator( self:GetSpecialValueFor("aura_armor"), self:GetParent():IsSameTeam( self:GetCaster() ), self:GetSpecialValueFor("armor_debuff") )
-	self.stone_share = TernaryOperator( self:GetSpecialValueFor("stone_share"), self:GetParent():IsSameTeam( self:GetCaster() ), 0 )
+	self.armor = TernaryOperator( 0, self:GetParent():IsSameTeam( self:GetCaster() ), self:GetSpecialValueFor("armor_debuff") )
+	self.rune_mod = TernaryOperator( self:GetSpecialValueFor("stone_share"), self:GetParent():IsSameTeam( self:GetCaster() ), 0 )
 end
 
 function modifier_item_cuirass_of_war_aura:OnRefreshSpecific()
-	self.armor = TernaryOperator( self:GetSpecialValueFor("aura_armor"), self:GetParent():IsSameTeam( self:GetCaster() ), self:GetSpecialValueFor("armor_debuff") )
-	self.stone_share = TernaryOperator( self:GetSpecialValueFor("stone_share"), self:GetParent():IsSameTeam( self:GetCaster() ), 0 )
+	self.armor = TernaryOperator( 0, self:GetParent():IsSameTeam( self:GetCaster() ), self:GetSpecialValueFor("armor_debuff") )
+	self.rune_mod = TernaryOperator( self:GetSpecialValueFor("stone_share"), self:GetParent():IsSameTeam( self:GetCaster() ), 0 )
 end
 
 function modifier_item_cuirass_of_war_aura:DeclareFunctions()

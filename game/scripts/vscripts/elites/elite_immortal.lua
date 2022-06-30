@@ -30,11 +30,15 @@ function modifier_elite_immortal:DeclareFunctions()
 end
 
 function modifier_elite_immortal:GetModifierHealthRegenPercentage()
-	return self.regen
+	if not self:GetParent():PassivesDisabled() then 
+		return self.regen
+	end
 end
 
 function modifier_elite_immortal:GetModifierExtraHealthBonusPercentage()
-	return self.hp
+	if not self:GetParent():PassivesDisabled() then 
+		return self.hp
+	end
 end
 
 function modifier_elite_immortal:GetAttributes()

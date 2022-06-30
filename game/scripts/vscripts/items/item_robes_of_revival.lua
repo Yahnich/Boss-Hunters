@@ -5,10 +5,6 @@ function item_robes_of_revival:GetIntrinsicModifierName()
 	return "modifier_item_robes_of_revival_passive"
 end
 
-function item_robes_of_revival:GetRuneSlots()
-	return self:GetSpecialValueFor("rune_slots")
-end
-
 function item_robes_of_revival:OnSpellStart()
 	local caster = self:GetCaster()
 	

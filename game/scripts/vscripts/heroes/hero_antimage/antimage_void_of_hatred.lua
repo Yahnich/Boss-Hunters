@@ -17,6 +17,10 @@ function antimage_void_of_hatred:GetCastAnimation()
 	return ACT_DOTA_CAST_ABILITY_4
 end
 
+function antimage_void_of_hatred:GetIntrinsicModifierName()
+	return "modifier_antimage_void_of_hatred_handler"
+end
+
 function antimage_void_of_hatred:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
@@ -26,17 +30,9 @@ function antimage_void_of_hatred:OnSpellStart()
 	local stunDur = self:GetTalentSpecialValueFor("ministun")
 	local radius = self:GetTalentSpecialValueFor("radius")
 	
-	local damage = baseDmg
-	local magus = target:FindModifierByNameAndCaster("modifier_antimage_magus_breaker_debuff", caster)
-	local breaker = caster:FindModifierByNameAndCaster("modifier_antimage_ender_of_magic_buff", caster)
-	if magus then 
-		damage = damage + stackDmg * magus:GetStackCount()
-		if not caster:HasScepter() then magus:Destroy() end
-	end
-	if breaker then
-		damage = damage + stackDmg * breaker:GetStackCount()
-		if not caster:HasScepter() then breaker:Destroy() end
-	end
+	local handler = caster:FindModifierByNameAndCaster("modifier_antimage_void_of_hatred_handler", caster)
+	local damage = handler:GetStackCount()
+	handler:SetStackCount( 0 )
 	
 	self:Stun( target, stunDur )
 	
@@ -53,4 +49,35 @@ function antimage_void_of_hatred:OnSpellStart()
 			end
 		end
 	end
+end
+
+modifier_antimage_void_of_hatred_handler = class({})
+LinkLuaModifier( "modifier_antimage_void_of_hatred_handler", "heroes/hero_antimage/antimage_void_of_hatred", LUA_MODIFIER_MOTION_NONE )
+
+function modifier_antimage_void_of_hatred_handler:OnCreated()
+	self:OnRefresh()
+end
+
+function modifier_antimage_void_of_hatred_handler:OnRefresh()
+	self.max = self:GetTalentSpecialValueFor("damage_cap")
+	self.perc = self:GetTalentSpecialValueFor("damage_storage") / 100
+end
+
+function modifier_antimage_void_of_hatred_handler:DeclareFunctions()
+	return {MODIFIER_EVENT_ON_TAKEDAMAGE }
+end
+
+function modifier_antimage_void_of_hatred_handler:OnTakeDamage( params )
+	local caster = self:GetCaster()
+	if params.damage_category == DOTA_DAMAGE_CATEGORY_SPELL 
+	and not HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE ) 
+	and ( params.unit == caster or params.attacker == caster )
+	and params.inflictor ~= self:GetAbility()
+	and self:GetStackCount() < self.max then
+		self:SetStackCount( math.min( self.max, self:GetStackCount() + params.damage * self.perc ) )
+	end
+end
+
+function modifier_antimage_void_of_hatred_handler:IsHidden()
+	return false
 end

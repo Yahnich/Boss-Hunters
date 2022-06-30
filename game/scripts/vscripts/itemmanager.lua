@@ -29,7 +29,7 @@ function ItemManager:ProcessRuneInformation(userid, event)
 	local info = {}
 	if event.inventory then
 		local item = unit:GetItemInSlot( event.inventory )
-		info = {itemData = item.itemData, item = item:GetName()}
+		info = {itemData = item.itemData, item = item:GetName(), itemScaling = item:GetSpecialValueFor("rune_scaling") / 100}
 	elseif event.item then
 		local itemData = {}
 		local slotCount = 0
@@ -167,19 +167,21 @@ function ItemManager:TryEnterRuneInSlot(userid, event)
 					item.itemData[slotIndex].rune_level = priorLevel
 					item.itemData[slotIndex].rune_type = runeEnt:GetName()
 					item.itemData[slotIndex].funcs = item.itemData[slotIndex].funcs or {}
+					item.itemData[slotIndex].baseFuncs = item.itemData[slotIndex].baseFuncs or {}
 					runeEnt:RuneProcessing( item, itemmodifier, slotIndex )
 					
-					local funcs = {}
-					for slot, rune in pairs( item.itemData ) do
-						if rune and rune.funcs then
-							for func, result in pairs( rune.funcs ) do
-								funcs[func] = ( funcs[func] or 0 ) + result
-							end
-						end
-					end
-					for func, result in pairs( funcs ) do
-						itemmodifier[func] = function() return result end
-					end
+					-- local funcs = {}
+					-- for slot, rune in pairs( item.itemData ) do
+						-- if rune and rune.funcs then
+							-- for func, result in pairs( rune.funcs ) do
+								-- funcs[func] = ( funcs[func] or 0 ) + result
+							-- end
+						-- end
+					-- end
+					-- for func, result in pairs( funcs ) do
+						-- itemmodifier[func] = function() return result end
+					-- end
+					itemmodifier:SetupRuneSystem(slotModifier)
 					local charges = runeEnt:GetCurrentCharges()
 					if charges > 1 then
 						runeEnt:SetCurrentCharges( charges - 1 )
@@ -187,14 +189,18 @@ function ItemManager:TryEnterRuneInSlot(userid, event)
 						runeEnt:Destroy()
 					end
 				end
+				
+				local runeModifier = unit:FindModifierByNameAndAbility( runeEnt:GetIntrinsicModifierName(), runeEnt )
+				if runeModifier then runeModifier:ForceRefresh() end
 				-- unit:CalculateStatBonus()
 				-- itemmodifier:Destroy()
 				-- unit:AddNewModifier( unit, item, item:GetIntrinsicModifierName(), {} )
 				unit:CalculateStatBonus()
+				unit:CalculateGenericBonuses()
 				itemmodifier:ForceRefresh()
+				itemmodifier:SendBuffRefreshToClients()
 				unit:CalculateStatBonus()
-				
-				
+				unit:CalculateGenericBonuses()
 			end
 		status, err, ret = xpcall(ItemCatch, debug.traceback, self, userid, event )
 		if not status  and not self.gameHasBeenBroken then

@@ -19,10 +19,10 @@
 		"ItemAliases"					"refresher orb"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 				
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"1"
 		
-		"AvailableRuneSlots"			"0"
+		"AvailableRuneSlots"			"2"
 		
 		"precache"
 		{
@@ -40,22 +40,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_gain"				"18 21 24 27 30 40 50 60 70"
+				"hp_gain"				"30 40 50 60 70"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"2 3 4 5 6 8 10 12 14"
+				"mana_gain"				"8 10 12 14 16"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"180 160 140 120 100 100 100 100 100"
+				"cooldown"				"180 160 140 120 100"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -73,7 +73,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1420"
+		"ItemCost"						"2440"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -104,10 +104,10 @@
 		"ItemAliases"					"soul ring"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		
 		"precache"
 		{
@@ -116,6 +116,7 @@
 		
 		"AbilityCooldown"				"160"
 		"AbilityManaCost"				"375"
+		
 		"AbilitySharedCooldown"			"orbofrenewal"
 		
 		// Special	
@@ -125,22 +126,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_gain"				"18 21 24 27 30 40 50 60 70"
+				"hp_gain"				"30 40 50 60 70"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"2 3 4 5 6 8 10 12 14"
+				"mana_gain"				"8 10 12 14 16"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"180 160 140 120 100 100 100 100 100"
+				"cooldown"				"180 160 140 120 100"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -190,11 +191,10 @@
 		"ItemAliases"					"soul ring"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"3"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 	
 		"precache"
 		{
@@ -212,22 +212,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_gain"				"18 21 24 27 30 40 50 60 70"
+				"hp_gain"				"30 40 50 60 70"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"2 3 4 5 6 8 10 12 14"
+				"mana_gain"				"8 10 12 14 16"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"180 160 140 120 100 100 100 100 100"
+				"cooldown"				"180 160 140 120 100"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -278,7 +278,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"4"
 		
 		"AvailableRuneSlots"			"2"
@@ -298,22 +298,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_gain"				"18 21 24 27 30 40 50 60 70"
+				"hp_gain"				"30 40 50 60 70"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"2 3 4 5 6 8 10 12 14"
+				"mana_gain"				"8 10 12 14 16"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"180 160 140 120 100 100 100 100 100"
+				"cooldown"				"180 160 140 120 100"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -363,7 +363,7 @@
 		"ItemAliases"					"soul ring"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"5"
 		
 		"AvailableRuneSlots"			"2"
@@ -384,22 +384,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_gain"				"18 21 24 27 30 40 50 60 70"
+				"hp_gain"				"30 40 50 60 70"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"2 3 4 5 6 8 10 12 14"
+				"mana_gain"				"8 10 12 14 16"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"180 160 140 120 100 100 100 100 100"
+				"cooldown"				"180 160 140 120 100"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -417,12 +417,13 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_orb_of_renewal_6"
 		"ItemRequirements"
 		{
@@ -442,6 +443,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"mana"
@@ -449,7 +451,7 @@
 		"ItemAliases"					"soul ring"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"6"
 		
 		"AvailableRuneSlots"			"2"
@@ -470,22 +472,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_gain"				"18 21 24 27 30 40 50 60 70"
+				"hp_gain"				"30 40 50 60 70"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"2 3 4 5 6 8 10 12 14"
+				"mana_gain"				"8 10 12 14 16"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"180 160 140 120 100 100 100 100 100"
+				"cooldown"				"180 160 140 120 100"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -504,6 +506,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -528,6 +531,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"mana"
@@ -535,10 +539,10 @@
 		"ItemAliases"					"soul ring"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"7"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
@@ -556,22 +560,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_gain"				"18 21 24 27 30 40 50 60 70"
+				"hp_gain"				"30 40 50 60 70"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"2 3 4 5 6 8 10 12 14"
+				"mana_gain"				"8 10 12 14 16"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"180 160 140 120 100 100 100 100 100"
+				"cooldown"				"180 160 140 120 100"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -590,6 +594,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -614,6 +619,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"mana"
@@ -621,10 +627,10 @@
 		"ItemAliases"					"soul ring"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"8"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
@@ -641,22 +647,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_gain"				"18 21 24 27 30 40 50 60 70"
+				"hp_gain"				"30 40 50 60 70"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"2 3 4 5 6 8 10 12 14"
+				"mana_gain"				"8 10 12 14 16"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"180 160 140 120 100 100 100 100 100"
+				"cooldown"				"180 160 140 120 100"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -675,6 +681,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -699,6 +706,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"mana"
@@ -706,10 +714,10 @@
 		"ItemAliases"					"soul ring"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"9"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
@@ -726,22 +734,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_gain"				"18 21 24 27 30 40 50 60 70"
+				"hp_gain"				"30 40 50 60 70"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"2 3 4 5 6 8 10 12 14"
+				"mana_gain"				"8 10 12 14 16"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"180 160 140 120 100 100 100 100 100"
+				"cooldown"				"180 160 140 120 100"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}

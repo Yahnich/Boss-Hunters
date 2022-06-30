@@ -9,32 +9,31 @@ function item_brutality_stone:RuneProcessing( item, itemmodifier, slotIndex )
 	item.itemData = item.itemData or {}
 	local level = ( item.itemData[slotIndex].rune_level or 0 ) + 1
 	item.itemData[slotIndex].rune_level = level
-	item.itemData[slotIndex].funcs["GetModifierBaseCriticalDamageBonus"] = (item.itemData[slotIndex].funcs["GetModifierBaseCriticalDamageBonus"] or 0) + self:GetLevelSpecialValueFor( "critical_damage", level-1 )
+	item.itemData[slotIndex].baseFuncs["GetModifierBaseCriticalDamageBonus"] = (item.itemData[slotIndex].baseFuncs["GetModifierBaseCriticalDamageBonus"] or 0) + self:GetLevelSpecialValueFor( "critical_damage", level-1 )
 end
 
 modifier_item_brutality_stone_passive = class(persistentModifier)
 
 function modifier_item_brutality_stone_passive:OnCreated()
-	self.criticalChance = self:GetSpecialValueFor("critical_damage")
+	self:OnRefresh()
 	if IsServer() then
 		self:GetCaster():HookInModifier( "GetModifierBaseCriticalDamageBonus", self )
 	end
 end
 
 function modifier_item_brutality_stone_passive:OnRefresh()
-	self.criticalChance = self:GetSpecialValueFor("critical_damage")
-	if IsServer() then
-		self:GetCaster():HookInModifier( "GetModifierBaseCriticalDamageBonus", self )
+	self.criticalDmg = 0
+	for i = 1, self:GetAbility():GetCurrentCharges() do
+		self.criticalDmg = self.criticalDmg + self:GetAbility():GetLevelSpecialValueFor( "critical_damage", i-1 )
 	end
 end
 
 function modifier_item_brutality_stone_passive:OnDestroy()
-	self.criticalChance = self:GetSpecialValueFor("critical_damage")
 	if IsServer() then
 		self:GetCaster():HookOutModifier( "GetModifierBaseCriticalDamageBonus", self )
 	end
 end
 
 function modifier_item_brutality_stone_passive:GetModifierBaseCriticalDamageBonus()
-	return self.criticalChance
+	return self.criticalDmg
 end

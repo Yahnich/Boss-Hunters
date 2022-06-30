@@ -10,9 +10,11 @@ function pudge_hook_lua:OnAbilityPhaseInterrupted()
 end
 
 function pudge_hook_lua:GetCooldown(iLvl)
-    local cooldown = self.BaseClass.GetCooldown(self, iLvl)
-	if self:GetCaster():HasScepter() then cooldown = self:GetTalentSpecialValueFor("scepter_cooldown") end
-    return cooldown
+	if self:GetCaster():HasScepter() then
+		return self:GetTalentSpecialValueFor("scepter_cooldown") 
+	else
+		return self.BaseClass.GetCooldown(self, iLvl) + self:GetCaster():FindTalentValue("special_bonus_unique_pudge_hook_lua_2")
+	end
 end
 
 function pudge_hook_lua:OnSpellStart()
@@ -44,9 +46,11 @@ function pudge_hook_lua:OnSpellStart()
 			self:FireMeatHook( newDir )
 		end
 	end
-	if caster:HasTalent("special_bonus_unique_pudge_hook_lua_1") and not caster:HasModifier("modifier_meat_hook_talent") then
-		local duration = ( self:GetTrueCastRange() / self:GetTalentSpecialValueFor("speed") ) * 2 + caster:FindTalentValue("special_bonus_unique_pudge_hook_lua_1", "duration")
-		caster:AddNewModifier( caster, self, "modifier_meat_hook_talent", {duration = duration}) 
+	if caster:HasTalent("special_bonus_unique_pudge_hook_lua_1") then
+		local duration = caster:FindTalentValue("special_bonus_unique_pudge_hook_lua_1", "duration")
+		caster:AddNewModifier( caster, self, "modifier_meat_hook_talent", {duration = duration})
+	else
+		caster:AddNewModifier( caster, self, "modifier_meat_hook_followthrough_lua", {duration = self:GetTrueCastRange() / self:GetTalentSpecialValueFor("speed")})
 	end
 end
 
@@ -77,20 +81,27 @@ function pudge_hook_lua:FireMeatHook( direction )
 	self.hooks[projectileIndex].particleIndex = hook_pfx
 	self.hooks[projectileIndex].hook_speed = hook_speed
 	self.hooks[projectileIndex].hook_width = hook_width
+	self.hooks[projectileIndex].targets = {}
 end
 
 function pudge_hook_lua:OnProjectileHitHandle( target, position, projectileIndex )
 	local caster = self:GetCaster()
 	if target and target ~= caster then
+		for id, hookData in pairs( self.hooks ) do
+			for _, unit in ipairs( hookData.targets ) do
+				if unit == target then
+					return
+				end
+			end
+		end
 		local damage = TernaryOperator( self:GetTalentSpecialValueFor("scepter_damage"), caster:HasScepter(), self:GetTalentSpecialValueFor("damage") )
+		if target:IsMinion() then
+			damage = damage + damage * self:GetTalentSpecialValueFor("minion_damage")/100
+		end
 		self.hooks[projectileIndex].targets = self.hooks[projectileIndex].targets or {}
 		table.insert( self.hooks[projectileIndex].targets, target )
 		self:DealDamage( caster, target, damage )
 		target:AddNewModifier( caster, self, "modifier_meat_hook_root", {})
-		local skinHeap = caster:FindAbilityByName("pudge_flesh_heap_lua")
-		if skinHeap and not target:IsMinion() then
-			skinHeap:AddSkinHeap()
-		end
 	elseif target == caster then
 		ParticleManager:ClearParticle(self.hooks[projectileIndex].particleIndex)
 		if caster:IsHero() then
@@ -124,6 +135,8 @@ function pudge_hook_lua:OnProjectileHitHandle( target, position, projectileIndex
 		ParticleManager:SetParticleControl(self.hooks[newProjectile].particleIndex, 1, caster:GetAbsOrigin())
 		self.hooks[newProjectile].reelBack = true
 		self.hooks[projectileIndex] = nil
+		
+		caster:RemoveModifierByName("modifier_meat_hook_followthrough_lua")
 	end
 end
 
@@ -257,3 +270,7 @@ end
 
 modifier_meat_hook_followthrough_lua = class({})
 LinkLuaModifier( "modifier_meat_hook_followthrough_lua", "heroes/hero_pudge/pudge_hook_lua.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+function modifier_meat_hook_followthrough_lua:CheckState()
+	return {[MODIFIER_STATE_STUNNED] = true}
+end

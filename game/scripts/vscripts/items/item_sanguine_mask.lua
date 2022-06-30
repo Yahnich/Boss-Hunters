@@ -17,15 +17,12 @@ item_sanguine_mask_9 = class(item_sanguine_mask)
 modifier_item_sanguine_mask_passive = class(itemBasicBaseClass)
 
 function modifier_item_sanguine_mask_passive:OnCreatedSpecific()
-	self.lifesteal = self:GetSpecialValueFor("lifesteal")
-	self.mLifesteal = self:GetSpecialValueFor("mob_divider") / 100
-	if IsServer() then
-		self:GetCaster():HookInModifier( "GetModifierLifestealBonus", self )
-	end
+	self:OnRefreshSpecific()
 end
 
 function modifier_item_sanguine_mask_passive:OnRefreshSpecific()
-	self.lifesteal = self:GetSpecialValueFor("lifesteal")
+	self.melee_lifesteal = self:GetSpecialValueFor("melee_lifesteal")
+	self.ranged_lifesteal = self:GetSpecialValueFor("ranged_lifesteal")
 	self.mLifesteal = self:GetSpecialValueFor("mob_divider") / 100
 	if IsServer() then
 		self:GetCaster():HookInModifier( "GetModifierLifestealBonus", self )
@@ -39,7 +36,7 @@ function modifier_item_sanguine_mask_passive:OnDestroySpecific()
 end
 
 function modifier_item_sanguine_mask_passive:GetModifierLifestealBonus(params)
-	local lifesteal = self.lifesteal
+	local lifesteal = TernaryOperator( self.ranged_lifesteal, self:GetParent():IsRangedAttacker(), self.melee_lifesteal )
 	if params.inflictor then
 		if params.unit:IsMinion() then
 			lifesteal = lifesteal * self.mLifesteal

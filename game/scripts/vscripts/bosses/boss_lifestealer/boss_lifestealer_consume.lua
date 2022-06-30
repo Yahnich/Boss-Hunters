@@ -57,7 +57,7 @@ function modifier_boss_lifestealer_consume_swallow:OnIntervalThink()
 	end
 	local parent = self:GetParent()
 	local ability = self:GetAbility()
-	local damage = ability:DealDamage( caster, parent, parent:GetMaxHealth() * self.digest, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION } )
+	local damage = ability:DealDamage( caster, parent, parent:GetHealth() * self.digest, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION } )
 	caster:HealEvent( damage, ability, caster )
 	
 	if not parent:IsAlive() then

@@ -22,6 +22,7 @@ end
 
 function modifier_elite_draining_buff:OnAttackLanded(params)
 	local hero = self:GetParent()
+	if hero:PassivesDisabled() then return end
 	if params.target == hero then
 		local burn = params.attacker:GetMana()
 		params.attacker:SpendMana( self.hitBurn, nil )

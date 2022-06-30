@@ -1,64 +1,127 @@
-// Dota Heroes File
 "DOTAMasteries"
 {
-	"Attacker"
+	"HEALTH"
 	{
-		"ATTACK_SPEED"	"20 50 100" // icon ready
-		"EVASION"		"10 20 30" // icon ready
-		"HEALTH"		"250 500 1000" // icon ready
-		"AREA_DAMAGE"	"20 35 60"
+		"1"				"200 400 600 800 1000"
+		"2"				"250 500 750 1000 1250"
+		"3"				"300 600 900 1200 1500"
 	}
-	"Nuker"
+	"HEALTH_REGEN"
 	{
-		"MANA"			"375 750 1500" // icon ready
-		"MANA_REGEN"	"2 5 10" // icon ready
-		"SPELL_AMP"		"15 30 50" // icon ready
-		"AREA_DAMAGE"	"20 35 60" // icon ready
+		"1"				"2 4 6 8 10"
+		"2"				"3 6 9 12 15"
+		"3"				"4 8 12 16 20"
 	}
-	"Defender"
+	"MANA"
 	{
-		"ARMOR"			"3 7 14" // icon ready
-		"MAGIC_RESIST"	"15 25 35" // icon ready
-		"HEALTH"		"375 750 1500" // icon ready
-		"THREAT_AMP"	"25 50 100" // icon ready
+		"1"				"200 400 600 800 1000"
+		"2"				"250 500 750 1000 1250"
+		"3"				"300 600 900 1200 1500"
 	}
-	"Support"
+	"MANA_REGEN"
 	{
-		"STATUS_AMP"	"10 20 35"
-		"MANA"			"375 750 1500" // icon ready
-		"THREAT_DOWN"	"-25 -35 -45" // icon ready
-		"HEAL_AMP"		"10 20 30"
+		"1"				"2 4 6 8 10"
+		"2"				"3 6 9 12 15"
+		"3"				"4 8 12 16 20"
 	}
-	"Healer"
+	"MOVESPEED"
 	{
-		"MANA"			"375 750 1500" // icon ready
-		"MANA_REGEN"	"2 5 10" // icon ready
-		"HEALTH"		"250 500 1000" // icon ready
-		"HEAL_AMP"		"15 30 50"
+		"1"				"5 10 15 20 25"
+		"2"				"10 20 30 40 50"
+		"3"				"15 30 45 60 75"
 	}
-	"Generic"
+	"MAGIC_RESIST"
 	{
-		"ALL_STATS"		"2"
+		"1"				"10 15 20 25 30"
+		"2"				"12 20 28 36 44"
+		"3"				"15 25 35 45 55"
 	}
-	"Offensive"
+	"ARMOR"
 	{
-		"ATTACK_SPEED"	"16 32 64" // icon ready
-		"ATTACK_DAMAGE"	"25 50 100" // icon ready
-		"SPELL_AMP"		"10 20 35" // icon ready
-		"STATUS_AMP"	"6 12 18"  // icon ready
+		"1"				"2 4 6 8 10"
+		"2"				"3 6 9 12 15"
+		"3"				"4 8 12 16 20"
 	}
-	"Defensive"
+	"THREAT_DOWN"
 	{
-		"HEALTH"		"250 500 1000" // icon ready
-		"HEALTH_REGEN"	"4 8 16" // icon ready
-		"ARMOR"			"3 6 9" // icon ready
-		"MAGIC_RESIST"	"10 15 25"  // icon ready
+		"1"				"-15 -20 -25 -30 -35"
+		"2"				"-20 -28 -36 -44 -52"
+		"3"				"-25 -35 -45 -55 -65"
 	}
-	"Utility"
+	"THREAT_AMP"
 	{
-		"MOVESPEED"		"10 15 20" // icon ready
-		"HEAL_AMP"		"10 20 30" // icon ready
-		"MANA"			"250 500 1000" // icon ready
-		"MANA_REGEN"	"2 4 6"  // icon ready
+		"1"				"15 20 25 30 35"
+		"2"				"20 28 36 44 52"
+		"3"				"25 35 45 55 65"
+	}
+	"HEAL_AMP"
+	{
+		"1"				"7 14 21 28 35"
+		"2"				"10 20 30 40 50"
+		"3"				"12 24 36 48 60"
+	}
+	"STATUS_AMP"
+	{
+		"1"				"5 10 15 20 25"
+		"2"				"8 16 24 32 40"
+		"3"				"10 20 30 40 50"
+	}
+	"SPELL_AMP"
+	{
+		"1"				"7 14 21 28 35"
+		"2"				"10 20 30 40 50"
+		"3"				"12 24 36 48 60"
+	}
+	"AREA_DAMAGE"
+	{
+		"1"				"10 20 30 40 50"
+		"2"				"15 30 45 60 75"
+		"3"				"20 40 60 80 100"
+	}
+	"EVASION"
+	{
+		"1"				"5 10 15 20 25"
+		"2"				"8 16 24 32 40"
+		"3"				"10 20 30 40 50"
+	}
+	"ATTACK_DAMAGE"
+	{
+		"1"				"20 40 60 80 100"
+		"2"				"25 50 75 100 125"
+		"3"				"30 60 90 120 150"
+	}
+	"ATTACK_SPEED"
+	{
+		"1"				"16 32 48 64 80"
+		"2"				"20 40 60 80 100"
+		"3"				"25 50 75 100 125"
+	}
+	"STRENGTH"
+	{
+		"1"				"6 12 18 24 30"
+		"2"				"8 16 24 32 40"
+		"3"				"10 20 30 40 50"
+	}
+	"AGILITY"
+	{
+		"1"				"6 12 18 24 30"
+		"2"				"8 16 24 32 40"
+		"3"				"10 20 30 40 50"
+	}
+	"INTELLIGENCE"
+	{
+		"1"				"6 12 18 24 30"
+		"2"				"8 16 24 32 40"
+		"3"				"10 20 30 40 50"
+	}
+	"ALL_STATS"
+	{
+		"1"				"5 10 15 20 25"
+		"2"				"6 12 18 24 30"
+		"3"				"7 14 21 28 35"
+	}
+	"INF_STATS"
+	{
+		"1"				"2"
 	}
 }

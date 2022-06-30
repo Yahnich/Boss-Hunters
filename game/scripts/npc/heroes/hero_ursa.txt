@@ -395,12 +395,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_ad"				"9 18 27 36 50 64 78"
+				"bonus_ad"				"9 18 27 36 40 44 48"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"8 12 16 20 20 20 20"
+				"duration"				"8 8 8 8 12 16 20"
 			}
 		}
 	}
@@ -481,7 +481,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"50 40 30 30 30 30"
+		"AbilityCooldown"				"70 70 50 50 30 30"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -500,15 +500,10 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"fury_multiplier"		"1.4 1.7 2 2 2"
-			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"4 4 4 4.5 5 5.5"
+				"duration"				"4 4.5 4.5 5 5 5.5"
 				"LinkedSpecialBonus"	"special_bonus_unique_ursa_enrage_bh_1"
 			}
 			"03"
@@ -520,13 +515,13 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"status_resist"			"50 50 50 60 70 80"
+				"status_resist"			"80"
 				"LinkedSpecialBonus"	"special_bonus_unique_ursa_enrage_bh_2"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown_scepter"		"30 24 18 18 18 18"
+				"cooldown_scepter"		"30 30 24 24 18 18"
 				"RequiresScepter"		"1"
 			}
 		}
@@ -542,6 +537,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_ursa_fury_swipes_bh_handle"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -550,7 +546,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"1.5"
+				"value"						"1.8"
 			}
 		}
 	}
@@ -572,7 +568,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"10"
+				"value"						"5"
+			}
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"1.5"
 			}
 		}
 	}

@@ -23,15 +23,13 @@
 		"ItemAliases"					"blink;keelans dagger of escape"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"1"
 		
-		"UpgradesItems"					"item_dagger_of_escape;item_dagger_of_escape_2;item_dagger_of_escape_3;item_dagger_of_escape_4;item_dagger_of_escape_5;item_dagger_of_escape_6;item_dagger_of_escape_7;item_dagger_of_escape_8;item_dagger_of_escape_9"
-		"UpgradeRecipe"					"item_recipe_dagger_of_escape_2"
 		
-		"AvailableRuneSlots"			"0"
+		"AvailableRuneSlots"			"2"
 		
-		"AbilityCooldown"				"16"
+		"AbilityCooldown"				"24"
 		"AbilitySharedCooldown"			"daggerofescape"
 		"AbilitySpecial"
 		{
@@ -43,12 +41,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"16 15 14 13 12 11 9 8 7"
+				"cooldown"				"20 16 14 10 8"
 			}
 			"03"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"3.0 3.0 1.5 1.5 0"
+			}
+			"04"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 0 1 1 1 2 2 2 2"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -66,7 +69,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"900"	
+		"ItemCost"						"1800"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -100,15 +103,12 @@
 		"ItemAliases"					"blink;keelans dagger of escape"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"2"
 		
-		"UpgradesItems"					"item_dagger_of_escape;item_dagger_of_escape_2;item_dagger_of_escape_3;item_dagger_of_escape_4;item_dagger_of_escape_5;item_dagger_of_escape_6;item_dagger_of_escape_7;item_dagger_of_escape_8;item_dagger_of_escape_9"
-		"UpgradeRecipe"					"item_recipe_dagger_of_escape_2"
+		"AvailableRuneSlots"			"2"
 		
-		"AvailableRuneSlots"			"0"
-		
-		"AbilityCooldown"				"15"
+		"AbilityCooldown"				"22"
 		"AbilitySharedCooldown"			"daggerofescape"
 		
 		"AbilitySpecial"
@@ -121,12 +121,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"16 15 14 13 12 11 9 8 7"
+				"cooldown"				"20 16 14 10 8"
 			}
 			"03"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"3.0 3.0 1.5 1.5 0"
+			}
+			"04"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 0 1 1 1 2 2 2 2"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -178,15 +183,13 @@
 		"ItemAliases"					"blink;keelans dagger of escape"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"3"
 		
-		"UpgradesItems"					"item_dagger_of_escape;item_dagger_of_escape_2;item_dagger_of_escape_3;item_dagger_of_escape_4;item_dagger_of_escape_5;item_dagger_of_escape_6;item_dagger_of_escape_7;item_dagger_of_escape_8;item_dagger_of_escape_9"
-		"UpgradeRecipe"					"item_recipe_dagger_of_escape_2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		
-		"AbilityCooldown"				"14"
+		"AbilityCooldown"				"20"
 		"AbilitySharedCooldown"			"daggerofescape"
 		
 		"AbilitySpecial"
@@ -199,12 +202,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"16 15 14 13 12 11 9 8 7"
+				"cooldown"				"20 16 14 10 8"
 			}
 			"03"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"3.0 3.0 1.5 1.5 0"
+			}
+			"04"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 0 1 1 1 2 2 2 2"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -257,15 +265,13 @@
 		"ItemAliases"					"blink;keelans dagger of escape"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"4"
 		
-		"UpgradesItems"					"item_dagger_of_escape;item_dagger_of_escape_2;item_dagger_of_escape_3;item_dagger_of_escape_4;item_dagger_of_escape_5;item_dagger_of_escape_6;item_dagger_of_escape_7;item_dagger_of_escape_8;item_dagger_of_escape_9"
-		"UpgradeRecipe"					"item_recipe_dagger_of_escape_2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		
-		"AbilityCooldown"				"13"
+		"AbilityCooldown"				"18"
 		"AbilitySharedCooldown"			"daggerofescape"
 		
 		"AbilitySpecial"
@@ -278,12 +284,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"16 15 14 13 12 11 9 8 7"
+				"cooldown"				"20 16 14 10 8"
 			}
 			"03"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"3.0 3.0 1.5 1.5 0"
+			}
+			"04"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 0 1 1 1 2 2 2 2"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -336,15 +347,13 @@
 		"ItemAliases"					"blink;keelans dagger of escape"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"5"
 		
-		"UpgradesItems"					"item_dagger_of_escape;item_dagger_of_escape_2;item_dagger_of_escape_3;item_dagger_of_escape_4;item_dagger_of_escape_5;item_dagger_of_escape_6;item_dagger_of_escape_7;item_dagger_of_escape_8;item_dagger_of_escape_9"
-		"UpgradeRecipe"					"item_recipe_dagger_of_escape_2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		
-		"AbilityCooldown"				"12"
+		"AbilityCooldown"				"16"
 		"AbilitySharedCooldown"			"daggerofescape"
 		
 		"AbilitySpecial"
@@ -357,12 +366,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"16 15 14 13 12 11 9 8 7"
+				"cooldown"				"20 16 14 10 8"
 			}
 			"03"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"3.0 3.0 1.5 1.5 0"
+			}
+			"04"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 0 1 1 1 2 2 2 2"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -382,11 +396,12 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_dagger_of_escape_6"
 		"ItemRequirements"
 		{
@@ -409,21 +424,20 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemShopTags"					"blink;mobility"
 		"ItemQuality"					"artifact"
 		"ItemAliases"					"blink;keelans dagger of escape"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"6"
 		
-		"UpgradesItems"					"item_dagger_of_escape;item_dagger_of_escape_2;item_dagger_of_escape_3;item_dagger_of_escape_4;item_dagger_of_escape_5;item_dagger_of_escape_6;item_dagger_of_escape_7;item_dagger_of_escape_8;item_dagger_of_escape_9"
-		"UpgradeRecipe"					"item_recipe_dagger_of_escape_2"
 		
 		"AvailableRuneSlots"			"2"
 		
-		"AbilityCooldown"				"11"
+		"AbilityCooldown"				"14"
 		"AbilitySharedCooldown"			"daggerofescape"
 		
 		"AbilitySpecial"
@@ -436,12 +450,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"16 15 14 13 12 11 9 8 7"
+				"cooldown"				"20 16 14 10 8"
 			}
 			"03"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"3.0 3.0 1.5 1.5 0"
+			}
+			"04"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 0 1 1 1 2 2 2 2"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -461,6 +480,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -488,21 +508,20 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemShopTags"					"blink;mobility"
 		"ItemQuality"					"artifact"
 		"ItemAliases"					"blink;keelans dagger of escape"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"7"
 		
-		"UpgradesItems"					"item_dagger_of_escape;item_dagger_of_escape_2;item_dagger_of_escape_3;item_dagger_of_escape_4;item_dagger_of_escape_5;item_dagger_of_escape_6;item_dagger_of_escape_7;item_dagger_of_escape_8;item_dagger_of_escape_9"
-		"UpgradeRecipe"					"item_recipe_dagger_of_escape_2"
 		
 		"AvailableRuneSlots"			"2"
 		
-		"AbilityCooldown"				"9"
+		"AbilityCooldown"				"12"
 		"AbilitySharedCooldown"			"daggerofescape"
 		
 		"AbilitySpecial"
@@ -515,12 +534,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"16 15 14 13 12 11 9 8 7"
+				"cooldown"				"20 16 14 10 8"
 			}
 			"03"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"3.0 3.0 1.5 1.5 0"
+			}
+			"04"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 0 1 1 1 2 2 2 2"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -540,6 +564,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -567,21 +592,20 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemShopTags"					"blink;mobility"
 		"ItemQuality"					"artifact"
 		"ItemAliases"					"blink;keelans dagger of escape"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"8"
 		
-		"UpgradesItems"					"item_dagger_of_escape;item_dagger_of_escape_2;item_dagger_of_escape_3;item_dagger_of_escape_4;item_dagger_of_escape_5;item_dagger_of_escape_6;item_dagger_of_escape_7;item_dagger_of_escape_8;item_dagger_of_escape_9"
-		"UpgradeRecipe"					"item_recipe_dagger_of_escape_2"
 		
 		"AvailableRuneSlots"			"2"
 		
-		"AbilityCooldown"				"8"
+		"AbilityCooldown"				"10"
 		"AbilitySharedCooldown"			"daggerofescape"
 		
 		"AbilitySpecial"
@@ -594,12 +618,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"16 15 14 13 12 11 9 8 7"
+				"cooldown"				"20 16 14 10 8"
 			}
 			"03"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"3.0 3.0 1.5 1.5 0"
+			}
+			"04"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 0 1 1 1 2 2 2 2"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -619,6 +648,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -646,21 +676,20 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemShopTags"					"blink;mobility"
 		"ItemQuality"					"artifact"
 		"ItemAliases"					"blink;keelans dagger of escape"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"9"
 		
-		"UpgradesItems"					"item_dagger_of_escape;item_dagger_of_escape_2;item_dagger_of_escape_3;item_dagger_of_escape_4;item_dagger_of_escape_5;item_dagger_of_escape_6;item_dagger_of_escape_7;item_dagger_of_escape_8;item_dagger_of_escape_9"
-		"UpgradeRecipe"					"item_recipe_dagger_of_escape_2"
 		
 		"AvailableRuneSlots"			"2"
 		
-		"AbilityCooldown"				"7"
+		"AbilityCooldown"				"10"
 		"AbilitySharedCooldown"			"daggerofescape"
 		
 		"AbilitySpecial"
@@ -673,12 +702,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"16 15 14 13 12 11 9 8 7"
+				"cooldown"				"20 16 14 10 8"
 			}
 			"03"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"3.0 3.0 1.5 1.5 0"
+			}
+			"04"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 0 1 1 1 2 2 2 2"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}

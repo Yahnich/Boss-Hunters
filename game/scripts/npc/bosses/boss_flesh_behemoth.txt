@@ -21,7 +21,7 @@
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
 		}
 		
-		"AbilityCooldown"				"1 0.8"
+		"AbilityCooldown"				"6"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -35,7 +35,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"zombie_health"			"1000 1400"
+				"zombie_health"			"1000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"zombie_count"			"4 6"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"min_dmg"				"100"
 			}
 		}
 	}

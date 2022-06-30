@@ -1,5 +1,25 @@
 troll_warlord_axe_throw = class({})
 
+function troll_warlord_axe_throw:GetCooldown( iLvl )
+	local cd = self.BaseClass.GetCooldown( self, iLvl )
+	if self:GetCaster():HasScepter() then
+		cd = cd + self:GetTalentSpecialValueFor("scepter_cdr")
+	end
+	return cd
+end
+
+function troll_warlord_axe_throw:GetCastRange( target, position )
+	return self:GetTalentSpecialValueFor("axe_range")
+end
+
+function troll_warlord_axe_throw:GetManaCost( iLvl )
+	if self:GetCaster():HasScepter() then
+		return 0
+	else
+		return self.BaseClass.GetManaCost( self, iLvl )
+	end
+end
+
 function troll_warlord_axe_throw:GetIntrinsicModifierName()
 	if self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_whirling_axes_1") then
 		return "modifier_troll_warlord_whirling_axes_talent"
@@ -22,9 +42,17 @@ function troll_warlord_axe_throw:OnSpellStart()
 	
 	local axes = self:GetTalentSpecialValueFor("axe_count")
 	local speed = self:GetTalentSpecialValueFor("axe_speed")
-	local distance = self:GetTalentSpecialValueFor("axe_range")
+	local distance = self:GetTrueCastRange( )
 	local width = self:GetTalentSpecialValueFor("axe_width")
 	local angle = self:GetTalentSpecialValueFor("axe_spread") / 2
+	
+	self.castIndex = (self.castIndex or 0) + 1
+	if self.castIndex > 10 then
+		self.castIndex = 0
+	end
+	self.axes = {}
+	self.casts = {}
+	self.casts[self.castIndex] = {}
 	
 	for i = 1, axes do
 		local divider = 0
@@ -34,26 +62,33 @@ function troll_warlord_axe_throw:OnSpellStart()
 		local newAngle = math.abs( math.ceil( ( i - ( (axes % 2) ) ) / 2 ) * (angle) - divider ) * (-1)^i ;
 		local newInit = RotatePosition(caster:GetAbsOrigin(), QAngle(0, newAngle, 0), initPos)
 		local newDir = CalculateDirection(newInit, caster)
-		self:AxeThrow( newDir, speed, distance, width)
+		
+		local projID = self:AxeThrow( newDir, speed, distance, width)
+		self.axes[projID] = self.castIndex
 	end
 	caster:EmitSound("Hero_TrollWarlord.WhirlingAxes.Ranged")
 end
 
 function troll_warlord_axe_throw:AxeThrow(direction, fSpeed, fDistance, fWidth)
 	local speed = fSpeed or self:GetTalentSpecialValueFor("axe_speed")
-	local distance = fDistance or self:GetTalentSpecialValueFor("axe_range")
+	local distance = fDistance or self:GetTrueCastRange( )
 	local width = fWidth or self:GetTalentSpecialValueFor("axe_width")
-	self:FireLinearProjectile("particles/units/heroes/hero_troll_warlord/troll_warlord_whirling_axe_ranged.vpcf", direction * speed, distance, width, nil, false, true, width)
+	return self:FireLinearProjectile("particles/units/heroes/hero_troll_warlord/troll_warlord_whirling_axe_ranged.vpcf", direction * speed, distance, width, nil, false, true, width)
 end
 
-function troll_warlord_axe_throw:OnProjectileHit( target, position )
+function troll_warlord_axe_throw:OnProjectileHitHandle( target, position, projID )
 	if target and not target:TriggerSpellAbsorb( self ) then
 		local caster = self:GetCaster()
 		
 		local damage = self:GetTalentSpecialValueFor("axe_damage")
 		local slowDur = self:GetTalentSpecialValueFor("axe_slow_duration")
-		self:DealDamage( caster, target, damage )
-		target:AddNewModifier( caster, self, "modifier_troll_warlord_axe_throw", {duration = slowDur})
+		if not self.axes[projID] or not self.casts[self.axes[projID]][target] then
+			self:DealDamage( caster, target, damage )
+			target:AddNewModifier( caster, self, "modifier_troll_warlord_axe_throw", {duration = slowDur})
+			
+			if caster:HasScepter() then target:Dispel() end
+			if self.axes[projID] then self.casts[self.axes[projID]][target] = true end
+		end
 		
 		target:EmitSound("Hero_TrollWarlord.WhirlingAxes.Target")
 	end
@@ -94,11 +129,10 @@ end
 
 function modifier_troll_warlord_whirling_axes_talent:OnAttackLanded(params)
 	local parent = self:GetParent()
-	if params.attacker == parent and parent:HasModifier("modifier_troll_warlord_berserkers_rage_bh_melee") then
-		if self:RollPRNG(self.chance) then
+	if params.attacker == parent then
+		if parent:IsRangedAttacker() and self:RollPRNG(self.chance) then
 			self:GetAbility():AxeThrow( parent:GetForwardVector() )
-		end
-		if self.axes:RollPRNG(self.chance) then
+		elseif not parent:IsRangedAttacker() and self:RollPRNG(self.chance) then
 			self.axes:SummonWhirlingAxe( 1.75 )
 		end
 	end

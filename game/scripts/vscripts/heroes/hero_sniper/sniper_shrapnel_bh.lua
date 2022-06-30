@@ -16,6 +16,7 @@ function sniper_shrapnel_bh:OnSpellStart()
 
 	local duration =  self:GetTalentSpecialValueFor("duration")
 	local radius =  self:GetTalentSpecialValueFor("radius")
+	print( self:GetSpecialValueFor("AbilityCharges") )
 	
 	EmitSoundOn("Hero_Sniper.ShrapnelShoot", caster)
 	

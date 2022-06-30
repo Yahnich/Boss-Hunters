@@ -9,7 +9,7 @@ function Spawn( entityKeyValues )
 			return AIThink(thisEntity)
 		end
 	end)
-	thisEntity.suicide = thisEntity:FindAbilityByName("boss_suicide")
+	thisEntity.suicide = thisEntity:FindAbilityByName("boss_techies_suicide")
 	thisEntity.mine = thisEntity:FindAbilityByName("boss_proximity")
 	thisEntity.AIstate = RandomInt(1,2)
 	if  math.floor(GameRules.gameDifficulty + 0.5) > 2 then

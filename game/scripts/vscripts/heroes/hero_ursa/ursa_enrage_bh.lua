@@ -1,5 +1,4 @@
 ursa_enrage_bh = class({})
-LinkLuaModifier("modifier_ursa_enrage_bh", "heroes/hero_ursa/ursa_enrage_bh", LUA_MODIFIER_MOTION_NONE)
 
 function ursa_enrage_bh:IsStealable()
 	return true
@@ -35,38 +34,7 @@ function ursa_enrage_bh:OnSpellStart()
 end
 
 modifier_ursa_enrage_bh = class({})
-
-function modifier_ursa_enrage_bh:AllowIllusionDuplicate()
-	return false
-end
-
-function modifier_ursa_enrage_bh:GetEffectName()
-	return "particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
-end
-
-function modifier_ursa_enrage_bh:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
-function modifier_ursa_enrage_bh:GetStatusEffectName()
-	return "particles/units/heroes/hero_ursa/status_effect_ursa_enrage_bh_3.vpcf"
-end
-
-function modifier_ursa_enrage_bh:StatusEffectPriority()
-	return 11
-end
-
-function modifier_ursa_enrage_bh:IsDebuff()
-	return false
-end
-
-function modifier_ursa_enrage_bh:IsHidden()
-	return false
-end
-
-function modifier_ursa_enrage_bh:IsPurgable()
-	return false
-end
+LinkLuaModifier("modifier_ursa_enrage_bh", "heroes/hero_ursa/ursa_enrage_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_ursa_enrage_bh:OnCreated()
 	local caster = self:GetCaster()
@@ -103,4 +71,35 @@ end
 
 function modifier_ursa_enrage_bh:GetModifierStatusResistanceStacking()
 	return self.status_resist
+end
+function modifier_ursa_enrage_bh:AllowIllusionDuplicate()
+	return false
+end
+
+function modifier_ursa_enrage_bh:GetEffectName()
+	return "particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
+end
+
+function modifier_ursa_enrage_bh:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+
+function modifier_ursa_enrage_bh:GetStatusEffectName()
+	return "particles/units/heroes/hero_ursa/status_effect_ursa_enrage_bh_3.vpcf"
+end
+
+function modifier_ursa_enrage_bh:StatusEffectPriority()
+	return 11
+end
+
+function modifier_ursa_enrage_bh:IsDebuff()
+	return false
+end
+
+function modifier_ursa_enrage_bh:IsHidden()
+	return false
+end
+
+function modifier_ursa_enrage_bh:IsPurgable()
+	return false
 end

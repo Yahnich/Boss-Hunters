@@ -52,7 +52,7 @@ function boss19_the_swarm:OnSpellStart()
 		local dirAngle = ToRadians(360 / beetleCount) 
 		
 		for i = 1, beetleCount do
-			self:FireLinearProjectile("particles/units/heroes/hero_weaver/weaver_swarm_projectile.vpcf", vDir * speed, distance, width)
+			self:FireLinearProjectile("particles/units/heroes/hero_weaver/weaver_swarm_projectile.vpcf", vDir * speed, distance, width, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
 			vDir = RotateVector2D(vDir, dirAngle)
 			newPos = casterPos + vDir * distance
 		end
@@ -81,6 +81,7 @@ end
 
 function boss19_the_swarm:OnProjectileHit(target, position)
 	if not target then return end
+	if target:TriggerSpellAbsorb( self ) then return true end
 	local caster = self:GetCaster()
 	target:AddNewModifier(caster, self, "modifier_boss19_the_swarm_debuff", {duration = self:GetSpecialValueFor("duration")})
 	local critbuff = caster:AddNewModifier(caster, self, "modifier_boss19_the_swarm_crit", {})

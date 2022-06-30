@@ -1,0 +1,646 @@
+"DOTAAbilities"
+{
+	"item_behemoths_heart"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_behemoths_heart"
+		"AbilityTextureName"			"heart/behemoths_heart_1"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		"ItemPurchasable"				"1"
+		
+		"ItemCost"						"1050"
+		"ItemShopTags"					"regen"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"heart;hot"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"1"
+		
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"6"
+		
+		"AbilitySharedCooldown"			"behemoths_heart"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"health_regen_amp"				"20 50 80 110 140"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"max_regen"						"0.75 0.75 1.0 1.0 1.5"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"rune_scaling"					"100 120 140 160 180"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 2
+	//=================================================================================================================
+	"item_recipe_behemoths_heart_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		"ItemPurchasable"				"1"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1950"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_behemoths_heart_2"
+		"ItemRequirements"
+		{
+			"01"						"item_behemoths_heart"
+		}
+	}
+	"item_behemoths_heart_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_behemoths_heart"
+		"AbilityTextureName"			"heart/behemoths_heart_2"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		"ItemPurchasable"				"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"spellblock"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"heart"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"2"
+		
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"4"
+		"AbilitySharedCooldown"			"behemoths_heart"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"health_regen_amp"				"20 50 80 110 140"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"max_regen"						"0.75 0.75 1.0 1.0 1.5"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"rune_scaling"					"100 120 140 160 180"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_behemoths_heart_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		"ItemPurchasable"				"1"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_behemoths_heart_3"
+		"ItemRequirements"
+		{
+			"01"						"item_behemoths_heart_2;item_recipe_behemoths_heart_2"
+		}
+	}
+	
+	"item_behemoths_heart_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_behemoths_heart"
+		"AbilityTextureName"			"heart/behemoths_heart_3"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		"ItemPurchasable"				"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"spellblock"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"heart"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"3"
+		
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"3"
+		"AbilitySharedCooldown"			"behemoths_heart"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"health_regen_amp"				"20 50 80 110 140"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"max_regen"						"0.75 0.75 1.0 1.0 1.5"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"rune_scaling"					"100 120 140 160 180"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_behemoths_heart_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		"ItemPurchasable"				"1"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_behemoths_heart_4"
+		"ItemRequirements"
+		{
+			"01"						"item_behemoths_heart_3;item_recipe_behemoths_heart_2"
+		}
+	}
+	
+	"item_behemoths_heart_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_behemoths_heart"
+		"AbilityTextureName"			"heart/behemoths_heart_4"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		"ItemPurchasable"				"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"spellblock"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"heart"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"4"
+		
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"6"
+		"AbilitySharedCooldown"			"behemoths_heart"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"health_regen_amp"				"20 50 80 110 140"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"max_regen"						"0.75 0.75 1.0 1.0 1.5"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"rune_scaling"					"100 120 140 160 180"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_behemoths_heart_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_behemoths_heart_5"
+		"ItemRequirements"
+		{
+			"01"						"item_behemoths_heart_4;item_recipe_behemoths_heart_2"
+		}
+	}
+	
+	"item_behemoths_heart_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_behemoths_heart"
+		"AbilityTextureName"			"heart/behemoths_heart_5"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"spellblock"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"heart"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"5"
+		
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"6"
+		"AbilitySharedCooldown"			"behemoths_heart"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"health_regen_amp"				"20 50 80 110 140"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"max_regen"						"0.75 0.75 1.0 1.0 1.5"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"rune_scaling"					"100 120 140 160 180"
+			}
+		}
+	}
+	// =================================================================================================================
+	// Recipe: Dark Wand 3
+	// =================================================================================================================
+	"item_recipe_behemoths_heart_6"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
+		"ItemShopTags"					""
+		
+		// Recipe
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"0"
+		"ItemResult"					"item_behemoths_heart_6"
+		"ItemRequirements"
+		{
+			"01"						"item_behemoths_heart_5;item_recipe_behemoths_heart_2"
+		}
+	}
+	
+	"item_behemoths_heart_6"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_behemoths_heart"
+		"AbilityTextureName"			"heart/behemoths_heart_6"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"spellblock"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"heart"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"6"
+		
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"6"
+		"AbilitySharedCooldown"			"behemoths_heart"
+		
+		// Special	
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"health_regen_amp"				"20 50 80 110 140"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"max_regen"						"1"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"rune_scaling"					"100 120 140 160 180"
+			}
+		}
+	}
+	// =================================================================================================================
+	// Recipe: Dark Wand 3
+	// =================================================================================================================
+	"item_recipe_behemoths_heart_7"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
+		"ItemShopTags"					""
+		
+		// Recipe
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"0"
+		"ItemResult"					"item_behemoths_heart_7"
+		"ItemRequirements"
+		{
+			"01"						"item_behemoths_heart_6;item_recipe_behemoths_heart_2"
+		}
+	}
+	
+	"item_behemoths_heart_7"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_behemoths_heart"
+		"AbilityTextureName"			"heart/behemoths_heart_7"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"spellblock"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"heart"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"7"
+		
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"6"
+		"AbilitySharedCooldown"			"behemoths_heart"
+		
+		// Special	
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"health_regen_amp"				"20 50 80 110 140"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"max_regen"						"1"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"rune_scaling"					"100 120 140 160 180"
+			}
+		}
+	}
+	// =================================================================================================================
+	// Recipe: Dark Wand 3
+	// =================================================================================================================
+	"item_recipe_behemoths_heart_8"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
+		"ItemShopTags"					""
+		
+		// Recipe
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_behemoths_heart_8"
+		"ItemRequirements"
+		{
+			"01"						"item_behemoths_heart_7;item_recipe_behemoths_heart_2"
+		}
+	}
+	"item_behemoths_heart_8"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_behemoths_heart"
+		"AbilityTextureName"			"heart/behemoths_heart_8"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"spellblock"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"heart"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"8"
+		
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"6"
+		"AbilitySharedCooldown"			"behemoths_heart"
+		
+		// Special	
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"health_regen_amp"				"20 50 80 110 140"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"max_regen"						"1"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"rune_scaling"					"100 120 140 160 180"
+			}
+		}
+	}
+	// =================================================================================================================
+	// Recipe: Dark Wand 3
+	// =================================================================================================================
+	"item_recipe_behemoths_heart_9"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
+		"ItemShopTags"					""
+		
+		// Recipe
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_behemoths_heart_9"
+		"ItemRequirements"
+		{
+			"01"						"item_behemoths_heart_8;item_recipe_behemoths_heart_2"
+		}
+	}
+	
+	"item_behemoths_heart_9"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_behemoths_heart"
+		"AbilityTextureName"			"heart/behemoths_heart_9"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"regen"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"heart"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"MaxUpgradeLevel"				"9"
+		"ItemBaseLevel"					"9"
+		
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"6"
+		"AbilitySharedCooldown"			"behemoths_heart"
+		
+		// Special	
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"health_regen_amp"				"20 50 80 110 140"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"max_regen"						"1.5"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"rune_scaling"					"100 120 140 160 180"
+			}
+		}
+	}
+}

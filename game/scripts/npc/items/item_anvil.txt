@@ -4,7 +4,6 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2501"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_anvil"
@@ -20,8 +19,8 @@
 		"ItemAliases"					"basher;anvil"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"AvailableRuneSlots"			"0"
-		"AbilityCooldown"				"5"
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"10"
 		"AbilitySharedCooldown"			"anvil"
 		
 		// Special	
@@ -31,39 +30,39 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bash_chance"					"25"
+				"bash_chance"					"30"
 			}
 			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_chance_ranged"			"15"
-			}
-			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"bash_damage"					"200 300 400 500 600"
 				"CalculateSpellDamageTooltip"	"0"
 			}
-			"04"
+			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"bash_damage_cd"				"100"
 				"CalculateSpellDamageTooltip"	"0"
 			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bash_duration"					"1.1 1.2 1.3 1.4 1.5"
+			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bash_duration"					"0.4 0.8 1.2 1.6 2.2"
+				"minion_duration"				"3.3 3.6 3.9 4.2 4.5"
 			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"cooldown"						"5"
+				"cooldown"						"6"
 			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"rune_slots"					"2 2 3 3 3"
+				"rune_scaling"					"140 160 180"
 			}
 		}
 	}
@@ -74,7 +73,6 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2502"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -98,7 +96,6 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2503"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_anvil"
@@ -115,10 +112,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"5"
+		"MaxUpgradeLevel"				"3"
 		"ItemBaseLevel"					"2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"4"
 		"AbilitySharedCooldown"			"anvil"
 		
@@ -129,39 +126,39 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bash_chance"					"25"
+				"bash_chance"					"30"
 			}
 			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_chance_ranged"			"15"
-			}
-			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"bash_damage"					"200 300 400 500 600"
 				"CalculateSpellDamageTooltip"	"0"
 			}
-			"04"
+			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"bash_damage_cd"				"100"
 				"CalculateSpellDamageTooltip"	"0"
 			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bash_duration"					"1.1 1.2 1.3 1.4 1.5"
+			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bash_duration"					"0.4 0.8 1.2 1.6 2.2"
+				"minion_duration"				"3.3 3.6 3.9 4.2 4.5"
 			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"cooldown"						"5"
+				"cooldown"						"6"
 			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"rune_slots"					"2 2 3 3 3"
+				"rune_scaling"					"140 160 180"
 			}
 		}
 	}
@@ -172,7 +169,6 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2504"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -197,7 +193,6 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2505"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_anvil"
@@ -214,10 +209,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"5"
+		"MaxUpgradeLevel"				"3"
 		"ItemBaseLevel"					"3"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"3"
 		"AbilitySharedCooldown"			"anvil"
 		
@@ -228,39 +223,39 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bash_chance"					"25"
+				"bash_chance"					"30"
 			}
 			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_chance_ranged"			"15"
-			}
-			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"bash_damage"					"200 300 400 500 600"
 				"CalculateSpellDamageTooltip"	"0"
 			}
-			"04"
+			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"bash_damage_cd"				"100"
 				"CalculateSpellDamageTooltip"	"0"
 			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bash_duration"					"1.1 1.2 1.3 1.4 1.5"
+			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bash_duration"					"0.4 0.8 1.2 1.6 2.2"
+				"minion_duration"				"3.3 3.6 3.9 4.2 4.5"
 			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"cooldown"						"5"
+				"cooldown"						"6"
 			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"rune_slots"					"2 2 3 3 3"
+				"rune_scaling"					"140 160 180"
 			}
 		}
 	}
@@ -271,15 +266,14 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2506"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
-		"ItemPurchasable"				"0"
+		"ItemPurchasable"				"1"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"2100"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -288,7 +282,7 @@
 		"ItemResult"					"item_anvil_4"
 		"ItemRequirements"
 		{
-			"01"						"item_anvil_3;item_recipe_anvil_2"
+			"01"						"item_mirror_blade_2"
 		}
 	}
 	
@@ -296,7 +290,6 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2507"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_anvil"
@@ -304,7 +297,6 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
-		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"spellblock"
@@ -312,12 +304,11 @@
 		"ItemAliases"					"basher"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		
-		"MaxUpgradeLevel"				"5"
-		"ItemBaseLevel"					"4"
+		"MaxUpgradeLevel"				"3"
+		"ItemBaseLevel"					"1"
 		
 		"AvailableRuneSlots"			"2"
-		"AbilityCooldown"				"5"
+		"AbilityCooldown"				"10"
 		"AbilitySharedCooldown"			"anvil"
 		
 		// Special	
@@ -327,39 +318,27 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bash_chance"					"25"
+				"bash_duration"					"1.0 1.4 1.8"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bash_chance_ranged"			"15"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bash_damage"					"200 300 400 500 600"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_damage_cd"				"100"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_duration"					"0.4 0.8 1.2 1.6 2.2"
+				"minion_duration"				"3.0 4.2 5.4"
 			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"cooldown"						"5"
+				"cooldown"						"10"
 			}
-			"07"
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"ranged_cooldown"				"15"
+			}
+			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"rune_slots"					"2 2 3 3 3"
+				"rune_scaling"					"140 160 180"
 			}
 		}
 	}
@@ -377,7 +356,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1050"	
+		"ItemCost"						"0"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -386,7 +365,7 @@
 		"ItemResult"					"item_anvil_5"
 		"ItemRequirements"
 		{
-			"01"						"item_battlemaster_staff_4"
+			"01"						"item_anvil_4;item_recipe_anvil_4"
 		}
 	}
 	
@@ -410,11 +389,11 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"5"
-		"ItemBaseLevel"					"1"
+		"MaxUpgradeLevel"				"3"
+		"ItemBaseLevel"					"2"
 		
 		"AvailableRuneSlots"			"2"
-		"AbilityCooldown"				"5"
+		"AbilityCooldown"				"10"
 		"AbilitySharedCooldown"			"anvil"
 		
 		// Special	
@@ -424,39 +403,27 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bash_chance"					"25"
+				"bash_duration"					"1.0 1.4 1.8"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bash_chance_ranged"			"15"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bash_damage"					"200 300 400 500 600"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_damage_cd"				"100"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_duration"					"0.4 0.8 1.2 1.6 2.2"
+				"minion_duration"				"3.0 4.2 5.4"
 			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"cooldown"						"5"
+				"cooldown"						"10"
 			}
-			"07"
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"ranged_cooldown"				"15"
+			}
+			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"rune_slots"					"2 2 3 3 3"
+				"rune_scaling"					"140 160 180"
 			}
 		}
 	}
@@ -483,7 +450,7 @@
 		"ItemResult"					"item_anvil_6"
 		"ItemRequirements"
 		{
-			"01"						"item_anvil_5;item_recipe_anvil_5"
+			"01"						"item_anvil_5;item_recipe_anvil_4"
 		}
 	}
 	
@@ -507,11 +474,11 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"5"
-		"ItemBaseLevel"					"2"
+		"MaxUpgradeLevel"				"3"
+		"ItemBaseLevel"					"3"
 		
 		"AvailableRuneSlots"			"2"
-		"AbilityCooldown"				"5"
+		"AbilityCooldown"				"10"
 		"AbilitySharedCooldown"			"anvil"
 		
 		// Special	
@@ -521,39 +488,27 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bash_chance"					"25"
+				"bash_duration"					"1.0 1.4 1.8"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bash_chance_ranged"			"15"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bash_damage"					"200 300 400 500 600"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_damage_cd"				"100"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_duration"					"0.4 0.8 1.2 1.6 2.2"
+				"minion_duration"				"3.0 4.2 5.4"
 			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"cooldown"						"5"
+				"cooldown"						"10"
 			}
-			"07"
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"ranged_cooldown"				"15"
+			}
+			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"rune_slots"					"2 2 3 3 3"
+				"rune_scaling"					"140 160 180"
 			}
 		}
 	}
@@ -571,16 +526,17 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_anvil_7"
 		"ItemRequirements"
 		{
-			"01"						"item_anvil_6;item_recipe_anvil_5"
+			"01"						"item_anvil_6;item_recipe_anvil_4"
 		}
 	}
 	
@@ -596,6 +552,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"spellblock"
@@ -604,11 +561,11 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"5"
-		"ItemBaseLevel"					"3"
+		"MaxUpgradeLevel"				"3"
+		"ItemBaseLevel"					"4"
 		
-		"AvailableRuneSlots"			"3"
-		"AbilityCooldown"				"5"
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"10"
 		"AbilitySharedCooldown"			"anvil"
 		
 		// Special	
@@ -618,39 +575,27 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bash_chance"					"25"
+				"bash_duration"					"1.0 1.4 1.8"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bash_chance_ranged"			"15"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bash_damage"					"200 300 400 500 600"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_damage_cd"				"100"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_duration"					"0.4 0.8 1.2 1.6 2.2"
+				"minion_duration"				"3.0 4.2 5.4"
 			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"cooldown"						"5"
+				"cooldown"						"10"
 			}
-			"07"
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"ranged_cooldown"				"15"
+			}
+			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"rune_slots"					"2 2 3 3 3"
+				"rune_scaling"					"140 160 180"
 			}
 		}
 	}
@@ -669,6 +614,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -677,7 +623,7 @@
 		"ItemResult"					"item_anvil_8"
 		"ItemRequirements"
 		{
-			"01"						"item_anvil_7;item_recipe_anvil_5"
+			"01"						"item_anvil_7;item_recipe_anvil_4"
 		}
 	}
 	"item_anvil_8"
@@ -692,6 +638,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"spellblock"
@@ -700,11 +647,11 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"5"
-		"ItemBaseLevel"					"4"
+		"MaxUpgradeLevel"				"3"
+		"ItemBaseLevel"					"5"
 		
-		"AvailableRuneSlots"			"3"
-		"AbilityCooldown"				"5"
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"10"
 		"AbilitySharedCooldown"			"anvil"
 		
 		// Special	
@@ -714,39 +661,27 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bash_chance"					"25"
+				"bash_duration"					"1.0 1.4 1.8"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bash_chance_ranged"			"15"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bash_damage"					"200 300 400 500 600"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_damage_cd"				"100"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_duration"					"0.4 0.8 1.2 1.6 2.2"
+				"minion_duration"				"3.0 4.2 5.4"
 			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"cooldown"						"5"
+				"cooldown"						"10"
 			}
-			"07"
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"ranged_cooldown"				"15"
+			}
+			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"rune_slots"					"2 2 3 3 3"
+				"rune_scaling"					"140 160 180"
 			}
 		}
 	}
@@ -765,6 +700,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -773,7 +709,7 @@
 		"ItemResult"					"item_anvil_9"
 		"ItemRequirements"
 		{
-			"01"						"item_anvil_8;item_recipe_anvil_5"
+			"01"						"item_anvil_8;item_recipe_anvil_4"
 		}
 	}
 	
@@ -790,6 +726,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"bash"
@@ -797,11 +734,11 @@
 		"ItemAliases"					"basher"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"5"
-		"ItemBaseLevel"					"5"
+		"MaxUpgradeLevel"				"3"
+		"ItemBaseLevel"					"6"
 		
-		"AvailableRuneSlots"			"3"
-		"AbilityCooldown"				"5"
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"10"
 		"AbilitySharedCooldown"			"anvil"
 		
 		// Special	
@@ -811,39 +748,27 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bash_chance"					"25"
+				"bash_duration"					"1.0 1.4 1.8"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bash_chance_ranged"			"15"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bash_damage"					"200 300 400 500 600"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_damage_cd"				"100"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_duration"					"0.4 0.8 1.2 1.6 2.2"
+				"minion_duration"				"3.0 4.2 5.4"
 			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"cooldown"						"5"
+				"cooldown"						"10"
 			}
-			"07"
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"ranged_cooldown"				"15"
+			}
+			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"rune_slots"					"2 2 3 3 3"
+				"rune_scaling"					"140 160 180"
 			}
 		}
 	}

@@ -22,7 +22,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"reincarnation_cd"			"60 45"
+				"reincarnation_cd"			"60"
 			}
 			"02"
 			{
@@ -37,12 +37,12 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"enrage_as"					"300 400"
+				"enrage_as"					"200 300"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"enrage_ms"					"30 50"
+				"enrage_ms"					"25 35"
 			}
 			"06"
 			{
@@ -57,7 +57,7 @@
 			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"revive_bonus_as"			"100 200"
+				"revive_bonus_as"			"50 100"
 			}
 			"09"
 			{

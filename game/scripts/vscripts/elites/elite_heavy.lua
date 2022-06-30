@@ -33,7 +33,7 @@ function modifier_elite_heavy:GetModifierModelScale()
 end
 
 function modifier_elite_heavy:OnAttackLanded(params)
-	if params.attacker == self:GetParent() and params.target.GetHealth then
+	if params.attacker == self:GetParent() and params.target.GetHealth and not params.attacker:PassivesDisabled() then
 		self:GetAbility():DealDamage( params.attacker, params.target, params.target:GetMaxHealth() * self.dmg, {damage_type = DAMAGE_TYPE_PHYSICAL} )
 	end
 end

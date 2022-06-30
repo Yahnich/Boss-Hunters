@@ -22,11 +22,15 @@
 		"ItemAliases"					"orb of venom;ice fang"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"2"
+		
 		"precache"
 		{
 			"particle"					"particles/generic_gameplay/generic_slowed_cold.vpcf"
 		}
-		"AvailableRuneSlots"			"0"
+		"AvailableRuneSlots"			"2"
+		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -34,7 +38,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"15 30 45 60 100 140 180 220 260"
+				"base_damage"			"20 30 50 125 200"
 			}
 			"02"
 			{
@@ -44,12 +48,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"-12 -14 -16 -18 -18 -18 -18 -18 -18"
+				"slow"					"-12 -16 -18 -18 -18"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -68,7 +72,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"925"
+		"ItemCost"						"1850"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -94,19 +98,15 @@
 		"ItemDroppable"					"1"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemShopTags"					"slow;dot;damage"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blade mail;penitent mail"
+		"ItemAliases"					"oov;orb of venom"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		
-		"MaxUpgradeLevel"				"9"
+	
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"2"
 		
-		"UpgradesItems"					"item_ice_fang;item_ice_fang_2;item_ice_fang_3;item_ice_fang_4;item_ice_fang_5;item_ice_fang_6;item_ice_fang_7;item_ice_fang_8;item_ice_fang_9"
-		"UpgradeRecipe"					"item_recipe_ice_fang_2"
-		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -114,7 +114,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"15 30 45 60 100 140 180 220 260"
+				"base_damage"			"20 30 50 125 200"
 			}
 			"02"
 			{
@@ -124,12 +124,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"-12 -14 -16 -18 -18 -18 -18 -18 -18"
+				"slow"					"-12 -16 -18 -18 -18"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -174,19 +174,16 @@
 		"ItemDroppable"					"1"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemShopTags"					"slow;dot;damage"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blade mail;penitent mail"
+		"ItemAliases"					"oov;orb of venom"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"3"
 		
-		"UpgradesItems"					"item_ice_fang;item_ice_fang_2;item_ice_fang_3;item_ice_fang_4;item_ice_fang_5;item_ice_fang_6;item_ice_fang_7;item_ice_fang_8;item_ice_fang_9"
-		"UpgradeRecipe"					"item_recipe_ice_fang_2"
-		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -194,7 +191,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"15 30 45 60 100 140 180 220 260"
+				"base_damage"			"20 30 50 125 200"
 			}
 			"02"
 			{
@@ -204,12 +201,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"-12 -14 -16 -18 -18 -18 -18 -18 -18"
+				"slow"					"-12 -16 -18 -18 -18"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -253,17 +250,14 @@
 		"ItemDroppable"					"1"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemShopTags"					"slow;dot;damage"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blade mail;penitent mail"
+		"ItemAliases"					"oov;orb of venom"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"4"
-		
-		"UpgradesItems"					"item_ice_fang;item_ice_fang_2;item_ice_fang_3;item_ice_fang_4;item_ice_fang_5;item_ice_fang_6;item_ice_fang_7;item_ice_fang_8;item_ice_fang_9"
-		"UpgradeRecipe"					"item_recipe_ice_fang_2"
 		
 		"AvailableRuneSlots"			"2"
 	
@@ -273,7 +267,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"15 30 45 60 100 140 180 220 260"
+				"base_damage"			"20 30 50 125 200"
 			}
 			"02"
 			{
@@ -283,12 +277,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"-12 -14 -16 -18 -18 -18 -18 -18 -18"
+				"slow"					"-12 -16 -18 -18 -18"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -333,17 +327,13 @@
 		"ItemDroppable"					"1"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemShopTags"					"slow;dot;damage"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blade mail;penitent mail"
+		"ItemAliases"					"oov;orb of venom"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"5"
-		
-		"UpgradesItems"					"item_ice_fang;item_ice_fang_2;item_ice_fang_3;item_ice_fang_4;item_ice_fang_5;item_ice_fang_6;item_ice_fang_7;item_ice_fang_8;item_ice_fang_9"
-		"UpgradeRecipe"					"item_recipe_ice_fang_2"
 		
 		"AvailableRuneSlots"			"2"
 	
@@ -353,7 +343,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"15 30 45 60 100 140 180 220 260"
+				"base_damage"			"20 30 50 125 200"
 			}
 			"02"
 			{
@@ -363,12 +353,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"-12 -14 -16 -18 -18 -18 -18 -18 -18"
+				"slow"					"-12 -16 -18 -18 -18"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -386,12 +376,13 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_ice_fang_6"
 		"ItemRequirements"
 		{
@@ -412,19 +403,17 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemShopTags"					"slow;dot;damage"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blade mail;penitent mail"
+		"ItemAliases"					"oov;orb of venom"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"6"
-		
-		"UpgradesItems"					"item_ice_fang;item_ice_fang_2;item_ice_fang_3;item_ice_fang_4;item_ice_fang_5;item_ice_fang_6;item_ice_fang_7;item_ice_fang_8;item_ice_fang_9"
-		"UpgradeRecipe"					"item_recipe_ice_fang_2"
 		
 		"AvailableRuneSlots"			"2"
 	
@@ -434,7 +423,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"15 30 45 60 100 140 180 220 260"
+				"base_damage"			"20 30 50 125 200"
 			}
 			"02"
 			{
@@ -444,12 +433,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"-12 -14 -16 -18 -18 -18 -18 -18 -18"
+				"slow"					"-12 -16 -18 -18 -18"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -468,6 +457,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -493,21 +483,19 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemShopTags"					"slow;dot;damage"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blade mail;penitent mail"
+		"ItemAliases"					"oov;orb of venom"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"7"
 		
-		"UpgradesItems"					"item_ice_fang;item_ice_fang_2;item_ice_fang_3;item_ice_fang_4;item_ice_fang_5;item_ice_fang_6;item_ice_fang_7;item_ice_fang_8;item_ice_fang_9"
-		"UpgradeRecipe"					"item_recipe_ice_fang_2"
-		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -515,7 +503,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"15 30 45 60 100 140 180 220 260"
+				"base_damage"			"20 30 50 125 200"
 			}
 			"02"
 			{
@@ -525,12 +513,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"-12 -14 -16 -18 -18 -18 -18 -18 -18"
+				"slow"					"-12 -16 -18 -18 -18"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -549,6 +537,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -573,21 +562,19 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemShopTags"					"slow;dot;damage"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blade mail;penitent mail"
+		"ItemAliases"					"oov;orb of venom"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"8"
 		
-		"UpgradesItems"					"item_ice_fang;item_ice_fang_2;item_ice_fang_3;item_ice_fang_4;item_ice_fang_5;item_ice_fang_6;item_ice_fang_7;item_ice_fang_8;item_ice_fang_9"
-		"UpgradeRecipe"					"item_recipe_ice_fang_2"
-		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -595,7 +582,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"15 30 45 60 100 140 180 220 260"
+				"base_damage"			"20 30 50 125 200"
 			}
 			"02"
 			{
@@ -605,12 +592,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"-12 -14 -16 -18 -18 -18 -18 -18 -18"
+				"slow"					"-12 -16 -18 -18 -18"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -629,6 +616,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -638,7 +626,6 @@
 		"ItemRequirements"
 		{
 			"01"						"item_ice_fang_8;item_recipe_ice_fang_2"
-			"02"						"item_winters_breath_8;item_recipe_ice_fang_2"
 		}
 	}
 	
@@ -654,21 +641,19 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemShopTags"					"slow;dot;damage"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blade mail;penitent mail"
+		"ItemAliases"					"oov;orb of venom"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"9"
 		
-		"UpgradesItems"					"item_ice_fang;item_ice_fang_2;item_ice_fang_3;item_ice_fang_4;item_ice_fang_5;item_ice_fang_6;item_ice_fang_7;item_ice_fang_8;item_ice_fang_9"
-		"UpgradeRecipe"					"item_recipe_ice_fang_2"
-		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -676,7 +661,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"15 30 45 60 100 140 180 220 260"
+				"base_damage"			"20 30 50 125 200"
 			}
 			"02"
 			{
@@ -686,12 +671,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"-12 -14 -16 -18 -18 -18 -18 -18 -18"
+				"slow"					"-12 -16 -18 -18 -18"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}

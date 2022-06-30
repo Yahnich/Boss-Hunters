@@ -36,7 +36,7 @@ function modifier_boss18b_frenzy_thinker:OnIntervalThink()
 	
 	if caster:IsStunned() or caster:IsDisarmed() or caster:IsRooted() then return end
 	
-	local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), caster:GetAttackRange() )
+	local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), caster:GetAttackRange(), {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES} )
 	AddFOWViewer(DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), caster:GetAttackRange(), self:GetParent():GetSecondsPerAttack() + 0.1, false)
 	for _, enemy in ipairs(enemies) do
 		caster:PerformGenericAttack(enemy, true)

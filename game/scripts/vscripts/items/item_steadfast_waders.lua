@@ -8,10 +8,6 @@ function item_steadfast_waders:GetAssociatedModifierName()
 	return "modifier_item_boots_of_speed_passive"
 end
 
-function item_steadfast_waders:GetRuneSlots()
-	return self:GetSpecialValueFor("rune_slots")
-end
-
 function item_steadfast_waders:ShouldUseResources()
 	return true
 end
@@ -43,7 +39,7 @@ function modifier_item_steadfast_waders_passive:DeclareFunctions()
 end
 
 function modifier_item_steadfast_waders_passive:CheckState()
-	if self:GetAbility():GetLevel() >= 3 then
+	if self:GetAbility():GetLevel() >= 2 then
 		return {[MODIFIER_STATE_UNSLOWABLE] = true, [MODIFIER_STATE_ROOTED] = false}
 	end
 end

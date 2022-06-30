@@ -64,7 +64,7 @@ function modifier_item_bloodletting_armlet:OnCreated()
 	self:SetHasCustomTransmitterData( true )
 	if IsServer() then
 		self.damage = self:GetCaster():GetHealth() * self.hp_damage
-		self.healthToGrant = self.bonus_strength * GameRules:GetGameModeEntity():GetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_STRENGTH_HP, self:GetCaster() )
+		self.healthToGrant = self.bonus_strength * GameRules:GetGameModeEntity():GetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_STRENGTH_HP )
 		self.healthStep = self.healthToGrant / 6
 		self:StartIntervalThink( 0.1 )
 		self:SendBuffRefreshToClients()
@@ -106,7 +106,7 @@ function modifier_item_bloodletting_armlet:OnRemoved()
 		end
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
-		local damageToDeal = self.bonus_strength * GameRules:GetGameModeEntity():GetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_STRENGTH_HP, self:GetCaster() )
+		local damageToDeal = self.bonus_strength * GameRules:GetGameModeEntity():GetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_STRENGTH_HP )
 		ability:DealDamage( caster, caster, damageToDeal, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NON_LETHAL } )
 	end
 end

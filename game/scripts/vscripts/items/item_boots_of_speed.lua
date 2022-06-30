@@ -5,10 +5,6 @@ function item_boots_of_speed:GetIntrinsicModifierName()
 	return "modifier_item_boots_of_speed_passive"
 end
 
-function item_boots_of_speed:GetRuneSlots()
-	return self:GetSpecialValueFor("rune_slots")
-end
-
 item_boots_of_speed_2 = class(item_boots_of_speed)
 item_boots_of_speed_3 = class(item_boots_of_speed)
 item_boots_of_speed_4 = class(item_boots_of_speed)

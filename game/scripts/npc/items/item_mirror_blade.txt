@@ -13,16 +13,16 @@
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"1200"
+		"ItemCost"						"850"
 		"ItemShopTags"					"evasion"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"echo sabre;mirror blade"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 				
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"1"
 		
-		"AvailableRuneSlots"			"0"
+		"AvailableRuneSlots"			"2"
 		
 		"precache"
 		{
@@ -40,7 +40,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"evasion_loss"			"-15 -20 -20 -25 -25 -30 -30 -35 -35"
+				"evasion_loss"			"-15 -20 -25 -30 -35"
 			}
 			"02"
 			{
@@ -50,17 +50,17 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"12 12 10 10 8 8 6 6 4"
+				"cooldown"				"12 10 8 6 4"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"ranged_cooldown"		"18 18 15 15 12 12 9 9 6"
+				"ranged_cooldown"		"18 15 12 9 6"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -78,7 +78,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1050"
+		"ItemCost"						"2100"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -109,10 +109,10 @@
 		"ItemAliases"					"echo sabre;mirror blade"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		
 		"AbilityCooldown"				"7"
 		"AbilitySharedCooldown"			"mirrorblade"
@@ -124,7 +124,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"evasion_loss"			"-15 -15 -15 -15 -20 -25 -30 -35 -40"
+				"evasion_loss"			"-15 -20 -25 -30 -35"
 			}
 			"02"
 			{
@@ -134,12 +134,17 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"8 7 6 5.5 5 5 5 5 4"
+				"cooldown"				"12 10 8 6 4"
 			}
 			"04"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"ranged_cooldown"		"18 15 12 9 6"
+			}
+			"05"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -190,10 +195,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"3"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 	
 		"AbilityCooldown"				"6"
 		"AbilitySharedCooldown"			"mirrorblade"
@@ -205,7 +210,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"evasion_loss"			"-15 -15 -15 -15 -20 -25 -30 -35 -40"
+				"evasion_loss"			"-15 -20 -25 -30 -35"
 			}
 			"02"
 			{
@@ -215,12 +220,17 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"8 7 6 5.5 5 5 5 5 4"
+				"cooldown"				"12 10 8 6 4"
 			}
 			"04"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"ranged_cooldown"		"18 15 12 9 6"
+			}
+			"05"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -271,7 +281,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"4"
 		
 		"AvailableRuneSlots"			"2"
@@ -286,7 +296,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"evasion_loss"			"-15 -15 -15 -15 -20 -25 -30 -35 -40"
+				"evasion_loss"			"-15 -20 -25 -30 -35"
 			}
 			"02"
 			{
@@ -296,12 +306,17 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"8 7 6 5.5 5 5 5 5 4"
+				"cooldown"				"12 10 8 6 4"
 			}
 			"04"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"ranged_cooldown"		"18 15 12 9 6"
+			}
+			"05"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -351,7 +366,7 @@
 		"ItemAliases"					"echo sabre;mirror blade"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"5"
 		
 		"AvailableRuneSlots"			"2"
@@ -366,7 +381,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"evasion_loss"			"-15 -15 -15 -15 -20 -25 -30 -35 -40"
+				"evasion_loss"			"-15 -20 -25 -30 -35"
 			}
 			"02"
 			{
@@ -376,12 +391,17 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"8 7 6 5.5 5 5 5 5 4"
+				"cooldown"				"12 10 8 6 4"
 			}
 			"04"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"ranged_cooldown"		"18 15 12 9 6"
+			}
+			"05"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -399,12 +419,13 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_mirror_blade_6"
 		"ItemRequirements"
 		{
@@ -424,6 +445,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"barrier"
@@ -431,7 +453,7 @@
 		"ItemAliases"					"echo sabre;mirror blade"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"6"
 		
 		"AvailableRuneSlots"			"2"
@@ -446,7 +468,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"evasion_loss"			"-15 -15 -15 -15 -20 -25 -30 -35 -40"
+				"evasion_loss"			"-15 -20 -25 -30 -35"
 			}
 			"02"
 			{
@@ -456,12 +478,17 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"8 7 6 5.5 5 5 5 5 4"
+				"cooldown"				"12 10 8 6 4"
 			}
 			"04"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"ranged_cooldown"		"18 15 12 9 6"
+			}
+			"05"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -480,6 +507,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -504,6 +532,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"barrier"
@@ -511,10 +540,10 @@
 		"ItemAliases"					"echo sabre;mirror blade"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"7"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		"AbilityCooldown"				"5"
 		"AbilitySharedCooldown"			"mirrorblade"
@@ -526,7 +555,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"evasion_loss"			"-15 -15 -15 -15 -20 -25 -30 -35 -40"
+				"evasion_loss"			"-15 -20 -25 -30 -35"
 			}
 			"02"
 			{
@@ -536,12 +565,17 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"8 7 6 5.5 5 5 5 5 4"
+				"cooldown"				"12 10 8 6 4"
 			}
 			"04"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"ranged_cooldown"		"18 15 12 9 6"
+			}
+			"05"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -560,6 +594,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -584,6 +619,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"barrier"
@@ -591,10 +627,10 @@
 		"ItemAliases"					"echo sabre;mirror blade"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"8"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		"AbilityCooldown"				"5"
 		"AbilitySharedCooldown"			"mirrorblade"
@@ -606,7 +642,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"evasion_loss"			"-15 -15 -15 -15 -20 -25 -30 -35 -40"
+				"evasion_loss"			"-15 -20 -25 -30 -35"
 			}
 			"02"
 			{
@@ -616,12 +652,17 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"8 7 6 5.5 5 5 5 5 4"
+				"cooldown"				"12 10 8 6 4"
 			}
 			"04"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"ranged_cooldown"		"18 15 12 9 6"
+			}
+			"05"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -640,6 +681,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -664,6 +706,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"barrier"
@@ -671,10 +714,10 @@
 		"ItemAliases"					"echo sabre;mirror blade"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"9"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		"AbilityCooldown"				"4"
 		"AbilitySharedCooldown"			"mirrorblade"
@@ -686,7 +729,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"evasion_loss"			"-15 -15 -15 -15 -20 -25 -30 -35 -40"
+				"evasion_loss"			"-15 -20 -25 -30 -35"
 			}
 			"02"
 			{
@@ -696,12 +739,17 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"8 7 6 5.5 5 5 5 5 4"
+				"cooldown"				"12 10 8 6 4"
 			}
 			"04"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"ranged_cooldown"		"18 15 12 9 6"
+			}
+			"05"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}

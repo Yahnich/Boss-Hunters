@@ -130,7 +130,7 @@ function HidePrepVotes()
 	for(var card of eventCards.Children()){
 		card.style.height = "fit-children";
 		
-		var cardImage = card.FindChildTraverse("EventCardHeaderCard")
+		var cardImage = card.FindChildTraverse("EventCardHeaderCardHolder")
 		cardImage.style.visibility = "collapse"
 		
 		var cardBody = card.FindChildTraverse("EventCardBody")
@@ -155,7 +155,7 @@ function UnhidePrepVotes()
 	for(var card of eventCards.Children()){
 		card.style.height = "700px";
 		
-		var cardImage = card.FindChildTraverse("EventCardHeaderCard")
+		var cardImage = card.FindChildTraverse("EventCardHeaderCardHolder")
 		cardImage.style.visibility = "visible"
 		
 		var cardBody = card.FindChildTraverse("EventCardBody")
@@ -207,6 +207,21 @@ function CreateEventCard(eventInfo, eventID, delay)
 	if( eventCardHeaderImage != null){
 		eventCardHeaderImage.SetImage("file://{images}/custom_game/event_cards/"+eventInfo.eventName+".png")
 	}
+	
+	var eventCardHeaderTimeOfDay = eventCard.FindChildTraverse("EventCardTimeOfDayIcon")
+	var timeDescription = "None"
+	$.Msg( eventInfo.reward )
+	if(eventInfo.daytime == true){
+		eventCardHeaderTimeOfDay.style.backgroundImage = "url('s2r://panorama/images/hud/reborn/icon_sun_psd.vtex');"
+		timeDescription = $.Localize( "#EVENT_DAYTIME_Description", eventCardHeaderTimeOfDay );
+	} else {
+		eventCardHeaderTimeOfDay.style.backgroundImage = "url('s2r://panorama/images/hud/reborn/icon_moon_psd.vtex');"
+		timeDescription = $.Localize( "#EVENT_NIGHTTIME_Description", eventCardHeaderTimeOfDay );
+	}
+	
+	eventCardHeaderTimeOfDay.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", eventCardHeaderTimeOfDay, timeDescription)});
+	eventCardHeaderTimeOfDay.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", eventCardHeaderTimeOfDay)});
+	
 	var eventCardHeaderReward = eventCard.FindChildTraverse("EventCardHeaderReward")
 	var rewardDescription = "None"
 	$.Msg( eventInfo.reward )
@@ -326,6 +341,7 @@ GameEvents.Subscribe( "game_tools_ask_nettable_info", SendNetTableInfo);
 (function()
 {
 	$.RegisterForUnhandledEvent( "DOTAShowAbilityTooltipForEntityIndex", UpdateTooltipUI );
+	$.RegisterForUnhandledEvent( "DOTAShowAbilityInventoryItemTooltip", UpdateTooltipUI );
 	UpdateAccuracyTooltip()
 })();
 

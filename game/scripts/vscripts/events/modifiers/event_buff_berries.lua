@@ -1,6 +1,7 @@
 event_buff_berries_curse = class({})
 
 function event_buff_berries_curse:OnCreated(kv)
+	self.hp_reduction = math.min( -400, self:GetParent():GetMaxHealth() - 1 )
 	if IsServer() then
 		self:SetStackCount(3)
 		self.funcID = EventManager:SubscribeListener("boss_hunters_event_finished", function(args) self:OnEventFinished(args) end)
@@ -33,7 +34,7 @@ function event_buff_berries_curse:DeclareFunctions()
 end
 
 function event_buff_berries_curse:GetModifierExtraHealthBonus()
-	return -800
+	return self.hp_reduction
 end
 
 function event_buff_berries_curse:IsDebuff()

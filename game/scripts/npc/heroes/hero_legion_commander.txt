@@ -41,7 +41,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 110 120 130 140 150 160"
+		"AbilityManaCost"				"100 110 120 130 130 130 130"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -54,24 +54,24 @@
 			}
 			"02"
 			{
-				"var_type"						"FIELD_INTEGER"
+				"var_type"						"FIELD_FLOAT"
 				"damage"						"100 180 260 340 360 380 400"
 				"LinkedSpecialBonus"			"special_bonus_unique_legion_commander_victorious_advance_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_per_unit"				"30 60 90 120 120 120 120"
+				"damage_per_unit"				"30 60 90 120 125 130 135"
 				"LinkedSpecialBonus"			"special_bonus_unique_legion_commander_victorious_advance_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"LinkedSpecialBonusField"		"value2"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_per_minion"				"10 15 20 25 25 25 25"
+				"damage_per_minion"				"10 15 20 25 26 27 28"
 				"LinkedSpecialBonus"			"special_bonus_unique_legion_commander_victorious_advance_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"LinkedSpecialBonusField"		"value3"
 			}
 			"05"
 			{
@@ -81,7 +81,7 @@
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bonus_speed_minion"			"1.5 1.5 1.5 1.5 2.0 2.5 3.0"
+				"bonus_speed_minion"			"3.0 3.0 3.0 3.0 3.5 4.0 4.5"
 			}
 			"06"
 			{
@@ -104,8 +104,18 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
+				"var_type"				"FIELD_FLOAT"
+				"value"					"100"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value2"				"30"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value3"				"5"
 			}
 		}
 	}
@@ -165,7 +175,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"18 17 16 15 14 13 12"
+		"AbilityCooldown"				"16 16 16 16 15 14 13"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -190,21 +200,28 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"10.0"
+				"duration"					"5.0"
+				"LinkedSpecialBonus"		"special_bonus_unique_legion_commander_unbreakable_morale_2"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"attack_speed"				"70 110 150 190 190 190 190"
-				"LinkedSpecialBonus"		"special_bonus_unique_legion_commander_unbreakable_morale_2"
-				"LinkedSpecialBonusField"	"value"
+				"attack_speed"				"65 90 115 140 150 160 170"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"hp_regen"					"30 30 30 30 60 90 120"
-				"LinkedSpecialBonus"		"special_bonus_unique_legion_commander_unbreakable_morale_2"
-				"LinkedSpecialBonusField"	"value2"
+				"attack_speed_increase"		"10"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"hp_regen"					"30 40 50 60 65 70 75"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"hp_regen_increase"			"5"
 			}
 		}
 	}
@@ -223,12 +240,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"100"
+				"value"					"60"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value2"				"15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value_increase"		"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value2_increase"		"1"
 			}
 		}
 	}
@@ -246,18 +273,13 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"400"
+				"var_type"				"FIELD_FLOAT"
+				"value"					"5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value2"				"15"
+				"radius"				"1200"
 			}
 		}
 	}
@@ -288,7 +310,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"1.4 1.4 1.4 1.4 1.2 1 0.8"
+		"AbilityCooldown"				"2.3 1.8 1.3 0.8 0.8 0.8 0.8"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -297,7 +319,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"trigger_chance"			"25 25 25 25 30 35 40"
+				"trigger_chance"			"25 25 25 25 28 32 36"
 			}
 			"02"
 			{
@@ -307,7 +329,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"hp_leech_percent"			"45 55 65 75 75 75 75"
+				"hp_leech_percent"			"55 65 75 85 90 95 100"
 				"LinkedSpecialBonus"		"special_bonus_unique_legion_commander_fearless_assault_2"
 			}
 		}
@@ -333,7 +355,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value2"					"50"
+				"value2"				"50"
 			}
 		}
 	}
@@ -352,9 +374,14 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"25"
+				"value"					"50"
 			}
 			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"share_pct"				"50"
+			}
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"600"
@@ -380,7 +407,7 @@
 		}
 		
 		"AbilityCastRange"				"450"
-		"AbilityCooldown"				"70 60 40 40 40 40"
+		"AbilityCooldown"				"50"
 		"AbilityManaCost"				"200"
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
@@ -413,7 +440,7 @@
 			}
 			"03"
 			{
-				"var_type"						"FIELD_INTEGER"
+				"var_type"						"FIELD_FLOAT"
 				"damage_resist"					"25 25 37.5 37.5 50 50"
 			}
 			"04"
@@ -424,12 +451,12 @@
 			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"radius"						"400 400 400 500 600 700"
+				"radius"						"600"
 			}
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"duration"						"15"
+				"duration"						"13 14 15 16 17 18"
 			}
 		}
 	}
@@ -449,7 +476,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"15"
+				"value"					"20"
 			}
 			"02"
 			{

@@ -22,9 +22,8 @@ if IsServer() then
 	
 	function modifier_elite_nimble:OnIntervalThink()
 		local caster = self:GetCaster()
-		if caster:PassivesDisabled() or not caster:IsAlive() or caster:HasActiveAbility() then return end
 		local ability = self:GetAbility()
-		if not ability:IsFullyCastable() then return end
+		if not ability:IsFullyCastable() or caster:IsStunned() or caster:IsSilenced() or caster:GetCurrentActiveAbility() or caster:IsHexed() then return end
 		if #caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), 800 ) <= 0 then return end
 		
 		ability:CastSpell()

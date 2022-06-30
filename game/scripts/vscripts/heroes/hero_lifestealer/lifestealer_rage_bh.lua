@@ -10,25 +10,26 @@ function lifestealer_rage_bh:OnSpellStart()
     caster:StartGesture(ACT_DOTA_LIFESTEALER_RAGE)
 	caster:EmitSound("Hero_LifeStealer.Rage")
 	local duration = self:GetTalentSpecialValueFor("duration")
+	
+    caster:AddNewModifier(caster, self, "modifier_lifestealer_rage_bh", {Duration = duration})
+	caster:Dispel(caster, true)
+	-- infest management
 	if caster:HasModifier("modifier_lifestealer_infest_bh") then
 		local modifier = caster:FindModifierByName("modifier_lifestealer_infest_bh")
 		if modifier then
 			local target = modifier.target
-			print( target )
-			if target then
-				print("?")
+			if target and target:IsSameTeam( caster ) then
 				target:AddNewModifier(caster, self, "modifier_lifestealer_rage_bh", {Duration = duration})
 			end
 		end
 	end
-    caster:AddNewModifier(caster, self, "modifier_lifestealer_rage_bh", {Duration = duration})
 end
 
 modifier_lifestealer_rage_bh = class({})
 
 
 function modifier_lifestealer_rage_bh:OnCreated(table)
-	self.damage = self:GetTalentSpecialValueFor("damage_bonus")
+	self:OnRefresh()
 	if IsServer() then
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_life_stealer/life_stealer_rage.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 					ParticleManager:SetParticleControlEnt(nfx, 2, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloch", self:GetParent():GetAbsOrigin(), true)
@@ -37,20 +38,16 @@ function modifier_lifestealer_rage_bh:OnCreated(table)
 	end
 end
 
-if IsServer() then
-	function modifier_lifestealer_rage_bh:OnRefresh()
-		-- self:GetAbility():StartDelayedCooldown()
-	end
-	
-	function modifier_lifestealer_rage_bh:OnDestroy()
-		-- self:GetAbility():EndDelayedCooldown()
-	end
+function modifier_lifestealer_rage_bh:OnRefresh()
+	self.ms = self:GetTalentSpecialValueFor("bonus_movespeed")
+	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
 end
 
 function modifier_lifestealer_rage_bh:DeclareFunctions()
     funcs = {
                 MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-                MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE
+                MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+				MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS 
             }
     return funcs
 end
@@ -64,8 +61,12 @@ function modifier_lifestealer_rage_bh:GetModifierMagicalResistanceBonus()
     return 100
 end
 
-function modifier_lifestealer_rage_bh:GetModifierBaseDamageOutgoing_Percentage()
-    return self.damage
+function modifier_lifestealer_rage_bh:GetModifierMoveSpeedBonus_Percentage()
+    return self.ms
+end
+
+function modifier_lifestealer_rage_bh:GetModifierPhysicalArmorBonus()
+    return self.armor
 end
 
 function modifier_lifestealer_rage_bh:IsHidden()

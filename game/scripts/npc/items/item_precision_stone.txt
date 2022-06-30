@@ -19,7 +19,7 @@
 		"ItemStackable"					"1"
 		"ItemInitialCharges"			"1"
 		"ItemDisplayCharges"			"1"
-		"ItemCost"						"850"
+		"ItemCost"						"1700"
 		
 		"MaxUpgradeLevel"				"4"
 		"ItemBaseLevel"					"1"
@@ -39,7 +39,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"critical_chance"		"7 6 4 2"
+				"critical_chance"		"9 7 5 3"
 			}
 		}
 	}

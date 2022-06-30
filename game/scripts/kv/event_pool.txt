@@ -54,6 +54,6 @@
 		"solitude_event_lake_of_lava"			"1"
 		"solitude_event_ominous_pentagram"		"1"
 		"solitude_event_demonic_horde"			"1"
-		"solitude_event_black_ritual"			"1"
+		// "solitude_event_black_ritual"		"1"
 	}
 }

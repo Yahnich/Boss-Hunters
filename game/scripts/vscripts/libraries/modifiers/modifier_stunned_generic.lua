@@ -2,11 +2,12 @@ modifier_stunned_generic = class({})
 
 function modifier_stunned_generic:OnCreated(kv)
 	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )
+	
 	if IsServer() then
+		self:GetParent():RemoveGesture(ACT_DOTA_DISABLED)
 		if self:GetParent():IsBoss() then
 			self:GetParent():Interrupt()
 			self:GetParent():Stop()
-			self:GetParent():RemoveGesture(ACT_DOTA_DISABLED)
 		end
 		if kv.delay == nil or toboolean(kv.delay) == true and not self:GetParent():IsRoundNecessary() then
 			self.delay = true
@@ -45,7 +46,7 @@ function modifier_stunned_generic:DeclareFunctions()
 end
 
 function modifier_stunned_generic:GetOverrideAnimation( params )
-	if not self:GetParent():IsBoss() then
+	if self:GetParent():IsStunned() then
 		return ACT_DOTA_DISABLED
 	end
 end

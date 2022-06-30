@@ -127,9 +127,15 @@ function modifier_pl_doppelganger:OnRemoved()
 			illuModifier:SetDuration( illuModifier:GetRemainingTime() + self:GetTalentSpecialValueFor("illusion_extended_duration"), true )
 			parent:SetThreat( caster:GetThreat() )
         end
-		if self:GetCaster():HasTalent("special_bonus_unique_pl_doppelganger_1") then
-			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
-				caster:PerformGenericAttack(enemy, true)
+		if caster:HasTalent("special_bonus_unique_pl_doppelganger_1") then
+			local phantom = caster:FindAbilityByName("pl_phantom_rush")
+			if phantom and phantom:IsTrained() then
+				parent:AddNewModifier( caster, phantom, "modifier_pl_phantom_rush_agi", {duration = phantom:GetTalentSpecialValueFor("agility_duration")} )
+			end
+			if parent:IsRealHero() then
+				for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
+					caster:PerformGenericAttack(enemy, true)
+				end
 			end
 		end
     end

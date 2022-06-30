@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"700"
+		"ItemCost"						"1400"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -48,10 +48,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"8"
+		"MaxUpgradeLevel"				"4"
 		"ItemBaseLevel"					"1"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		
 		"AbilityCooldown"				"14"
 		"AbilitySharedCooldown"			"pearlescentcape"
@@ -66,7 +66,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"80 120 160 200 240 280 320 360"
+				"heal"					"120 200 280 360"
 			}
 			"02"
 			{
@@ -86,12 +86,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"magic_resist_active"	"35 40 45 50 55 60 65 70"
+				"magic_resist_active"	"40 50 60 70"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 1 2 2 2 3 3 3"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}
@@ -143,10 +143,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"8"
+		"MaxUpgradeLevel"				"4"
 		"ItemBaseLevel"					"2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		
 		"AbilityCooldown"				"14"
 		"AbilitySharedCooldown"			"pearlescentcape"
@@ -161,7 +161,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"80 120 160 200 240 280 320 360"
+				"heal"					"120 200 280 360"
 			}
 			"02"
 			{
@@ -181,12 +181,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"magic_resist_active"	"35 40 45 50 55 60 65 70"
+				"magic_resist_active"	"40 50 60 70"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 1 2 2 2 3 3 3"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}
@@ -238,7 +238,7 @@
 		"ItemAliases"					"glimmer cape"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"8"
+		"MaxUpgradeLevel"				"4"
 		"ItemBaseLevel"					"3"
 		
 		"AvailableRuneSlots"			"2"
@@ -256,7 +256,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"80 120 160 200 240 280 320 360"
+				"heal"					"120 200 280 360"
 			}
 			"02"
 			{
@@ -276,12 +276,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"magic_resist_active"	"35 40 45 50 55 60 65 70"
+				"magic_resist_active"	"40 50 60 70"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 1 2 2 2 3 3 3"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}
@@ -334,7 +334,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"8"
+		"MaxUpgradeLevel"				"4"
 		"ItemBaseLevel"					"4"
 		
 		"AvailableRuneSlots"			"2"
@@ -352,7 +352,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"80 120 160 200 240 280 320 360"
+				"heal"					"120 200 280 360"
 			}
 			"02"
 			{
@@ -372,12 +372,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"magic_resist_active"	"35 40 45 50 55 60 65 70"
+				"magic_resist_active"	"40 50 60 70"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 1 2 2 2 3 3 3"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}
@@ -395,12 +395,13 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_pearlescent_cape_6"
 		"ItemRequirements"
 		{
@@ -422,6 +423,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"invis"
@@ -430,7 +432,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"8"
+		"MaxUpgradeLevel"				"4"
 		"ItemBaseLevel"					"5"
 		
 		"AvailableRuneSlots"			"2"
@@ -448,7 +450,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"80 120 160 200 240 280 320 360"
+				"heal"					"120 200 280 360"
 			}
 			"02"
 			{
@@ -468,12 +470,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"magic_resist_active"	"35 40 45 50 55 60 65 70"
+				"magic_resist_active"	"40 50 60 70"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 1 2 2 2 3 3 3"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}
@@ -492,6 +494,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -518,6 +521,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"invis"
@@ -526,10 +530,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"8"
+		"MaxUpgradeLevel"				"4"
 		"ItemBaseLevel"					"6"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		
 		"AbilityCooldown"				"14"
 		"AbilitySharedCooldown"			"pearlescentcape"
@@ -544,7 +548,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"80 120 160 200 240 280 320 360"
+				"heal"					"120 200 280 360"
 			}
 			"02"
 			{
@@ -564,12 +568,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"magic_resist_active"	"35 40 45 50 55 60 65 70"
+				"magic_resist_active"	"40 50 60 70"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 1 2 2 2 3 3 3"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}
@@ -588,6 +592,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -613,6 +618,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"invis"
@@ -621,10 +627,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"8"
+		"MaxUpgradeLevel"				"4"
 		"ItemBaseLevel"					"7"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		
 		"AbilityCooldown"				"14"
 		"AbilitySharedCooldown"			"pearlescentcape"
@@ -639,7 +645,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"80 120 160 200 240 280 320 360"
+				"heal"					"120 200 280 360"
 			}
 			"02"
 			{
@@ -659,12 +665,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"magic_resist_active"	"35 40 45 50 55 60 65 70"
+				"magic_resist_active"	"40 50 60 70"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 1 2 2 2 3 3 3"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}
@@ -683,6 +689,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -709,6 +716,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"aura"
@@ -716,10 +724,10 @@
 		"ItemAliases"					"glimmer cape"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"8"
+		"MaxUpgradeLevel"				"4"
 		"ItemBaseLevel"					"8"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		
 		"AbilityCooldown"				"14"
 		"AbilitySharedCooldown"			"pearlescentcape"
@@ -734,7 +742,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"80 120 160 200 240 280 320 360"
+				"heal"					"120 200 280 360"
 			}
 			"02"
 			{
@@ -754,12 +762,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"magic_resist_active"	"35 40 45 50 55 60 65 70"
+				"magic_resist_active"	"40 50 60 70"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 1 2 2 2 3 3 3"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}

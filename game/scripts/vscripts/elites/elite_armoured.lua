@@ -21,7 +21,9 @@ function modifier_elite_armoured:DeclareFunctions()
 end
 
 function modifier_elite_armoured:GetModifierPhysicalArmorBonus()
-	return self.armor
+	if not self:GetParent():PassivesDisabled() then
+		return self.armor
+	end
 end
 
 function modifier_elite_armoured:GetAttributes()

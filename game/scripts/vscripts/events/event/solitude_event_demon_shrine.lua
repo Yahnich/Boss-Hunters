@@ -113,7 +113,7 @@ local function StartEvent(self)
 			end
 		end
 	end)
-	self.waitTimer = self:StartEventTimer( 30, timerFunc ) 
+	self.waitTimer = self:StartEventTimer( 45, timerFunc ) 
 	LinkLuaModifier("event_buff_demon_shrine", "events/modifiers/event_buff_demon_shrine", LUA_MODIFIER_MOTION_NONE)
 	self._playerChoices = {}
 end

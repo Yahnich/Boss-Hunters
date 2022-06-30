@@ -20,12 +20,18 @@ item_dark_lord_headdress_9 = class(item_dark_lord_headdress)
 modifier_item_dark_lord_headdress = class(itemBasicBaseClass)
 LinkLuaModifier( "modifier_item_dark_lord_headdress", "items/item_dark_lord_headdress.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function modifier_item_dark_lord_headdress:GetRuneModifier()
+	return -self.rune_mod
+end
+
 function modifier_item_dark_lord_headdress:OnCreatedSpecific()
 	self.radius = self:GetSpecialValueFor("radius")
+	self.rune_mod = self:GetSpecialValueFor("stone_share")
 end
 
 function modifier_item_dark_lord_headdress:OnRefreshSpecific()
 	self.radius = self:GetSpecialValueFor("radius")
+	self.rune_mod = self:GetSpecialValueFor("stone_share")
 end
 
 function modifier_item_dark_lord_headdress:IsAura()
@@ -33,7 +39,7 @@ function modifier_item_dark_lord_headdress:IsAura()
 end
 
 function modifier_item_dark_lord_headdress:GetModifierAura()
-	return "modifier_item_dark_lord_headdress_aura_"..self:GetAbility():GetItemSlot()
+	return "modifier_item_dark_lord_headdress_aura"
 end
 
 function modifier_item_dark_lord_headdress:GetAuraRadius()
@@ -70,24 +76,24 @@ end
 LinkLuaModifier( "modifier_item_dark_lord_headdress_aura", "items/item_dark_lord_headdress.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_item_dark_lord_headdress_aura = class(itemAuraBaseClass)
 
-function modifier_item_dark_lord_headdress_aura:GetStoneShareability()
-	return self.stone_share
+function modifier_item_dark_lord_headdress_aura:GetRuneModifier()
+	return self.rune_mod
 end
 
 function modifier_item_dark_lord_headdress_aura:OnCreatedSpecific()
 	self.lifesteal = self:GetSpecialValueFor("lifesteal")
-	self.stone_share = self:GetSpecialValueFor("stone_share")
+	self.rune_mod = self:GetSpecialValueFor("stone_share")
 	self.mLifesteal = self:GetSpecialValueFor("mob_divider") / 100
 	if IsServer() then
 		self:GetParent():HookInModifier( "GetModifierLifestealBonus", self )
-		self:SetupRuneSystem(self.stone_share)
+		self:SetupRuneSystem(self.rune_mod)
 		self:SetHasCustomTransmitterData( true )
 	end
 end
 
 function modifier_item_dark_lord_headdress_aura:OnRefreshSpecific()
 	self.lifesteal = self:GetSpecialValueFor("lifesteal")
-	self.stone_share = self:GetSpecialValueFor("stone_share")
+	self.rune_mod = self:GetSpecialValueFor("stone_share")
 	self.mLifesteal = self:GetSpecialValueFor("mob_divider") / 100
 	if IsServer() then
 		self:GetParent():HookInModifier( "GetModifierLifestealBonus", self )

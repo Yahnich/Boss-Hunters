@@ -92,7 +92,6 @@
 	vertical-align: center;
 	horizontal-align: center;
 	z-index: 5;
-	
 }
 
 #GenericRelicType
@@ -252,20 +251,20 @@
 {
 	0%
 	{
-		box-shadow: -1px -1px 2px 2px black;
+		box-shadow: 0px 0px 30px 3px #AA0000CC;
 		border: 1px solid #AA0000;
     }
 
     50% 
 	{
-        box-shadow: -3px -3px 6px 6px #AA0000;
+        box-shadow: 0px 0px 2px 9px #AA000000;
 		border: 3px solid #AA0000;
     }
 
     100%
 	{
 		box-shadow: -1px -1px 2px 2px black;
-		border: 1px solid #AA0000;
+		border: 1px solid #AA0000CC;
     }
 }
 
@@ -382,4 +381,8 @@
 .IsHidden
 {
 	transform: translateX(1000px);
+}
+.IsHiddenFlipped
+{
+	transform: translateX(-1000px);
 }

@@ -70,7 +70,7 @@ local function StartEvent(self)
 		end
 	end)
 	
-	self:StartEventTimer( 30, timerFunc)
+	self:StartEventTimer( 120, timerFunc)
 	
 	self._playerChoices = {}
 end

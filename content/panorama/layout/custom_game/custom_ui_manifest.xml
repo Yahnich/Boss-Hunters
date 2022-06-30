@@ -22,6 +22,7 @@
 		GameUI.CustomUIConfig().team_colors = {}
 		GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_GOODGUYS] = "#ffc821;";
 		GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_BADGUYS ] = "#ff1010;";
+		$.Msg( "hello??")
 	</script>
 
 	<Panel>

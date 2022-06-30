@@ -14,7 +14,7 @@ function juggernaut_quickparry:OnSpellStart()
 end
 
 function juggernaut_quickparry:QuickParry(caster, target)
-	
+	self.cooldown = true
 	caster:StartGestureWithPlaybackRate( ACT_DOTA_ATTACK_EVENT, 5 )
 	if CalculateDistance( caster, target ) <= caster:GetAttackRange() then
 		local direction = caster:GetForwardVector()
@@ -42,6 +42,7 @@ function juggernaut_quickparry:QuickParry(caster, target)
 			end)
 		end
 	end
+	Timers:CreateTimer( 0.2, function() self.cooldown = false end)
 	if caster:HasTalent("special_bonus_unique_juggernaut_quickparry_2") then
 		caster:AddNewModifier(caster, self, "modifier_juggernaut_quickparry_talent", {duration = caster:FindTalentValue("special_bonus_unique_juggernaut_quickparry_2", "duration")})
 	end
@@ -67,7 +68,8 @@ end
 function modifier_juggernaut_quickparry:OnAttackFail(params)
 	if params.target == self:GetParent() 
 	and self:GetParent():GetHealth() > 0 
-	and self:GetParent():IsRealHero() then
+	and self:GetParent():IsRealHero()
+	and not self:GetAbility().cooldown then
 		local ability = self:GetAbility()
 		local caster = self:GetCaster()
 		ability:QuickParry(caster, params.attacker)
@@ -80,14 +82,15 @@ function modifier_juggernaut_quickparry:GetModifierTotal_ConstantBlock(params)
 	if params.attacker == self:GetParent() then return end
 	if ( ( params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK and not params.inflictor) or HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE) )
 	and self:GetParent():GetHealth() > 0 
-	and self:GetParent():IsRealHero() then
+	and self:GetParent():IsRealHero() 
+	and not self:GetAbility().cooldown then
 		ability:QuickParry(caster, params.attacker)
 		return params.damage
 	end
 end
 
 function modifier_juggernaut_quickparry:GetAbsorbSpell(params)
-	if params.ability:GetCaster():GetTeam() ~= self:GetParent():GetTeam() then
+	if params.ability and params.ability:GetCaster():GetTeam() ~= self:GetParent():GetTeam() and not self:GetAbility().cooldown then
 		self:GetAbility():QuickParry(self:GetParent(), params.ability:GetCaster() )
 		return 1
 	end

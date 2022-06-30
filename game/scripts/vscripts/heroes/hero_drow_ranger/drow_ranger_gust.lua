@@ -31,6 +31,7 @@ function drow_ranger_gust:OnProjectileHit( target, position )
 		end
 		if caster:HasTalent("special_bonus_unique_drow_ranger_gust_1") then
 			target:Blind(caster:FindTalentValue("special_bonus_unique_drow_ranger_gust_1"), self, caster, duration)
+			target:Root( self,  caster, knockBackDuration + caster:FindTalentValue("special_bonus_unique_drow_ranger_gust_1", "duration") )
 		end
 	end
 end

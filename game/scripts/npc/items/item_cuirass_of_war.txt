@@ -3,18 +3,92 @@
 	//=================================================================================================================
 	// Recipe: Dark Wand 2
 	//=================================================================================================================
-	"item_recipe_cuirass_of_war_3"
+	"item_recipe_cuirass_of_war_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2518"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1050"
+		"ItemCost"						"2100"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_cuirass_of_war_2"
+		"ItemRequirements"
+		{
+			"01"						"item_reaping_scythe"
+		}
+	}
+	"item_cuirass_of_war_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_cuirass_of_war"
+		"AbilityTextureName"			"cuirass/cuirass_of_war_2"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"spellblock"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"assault cuirass"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"1"
+		
+		"AvailableRuneSlots"			"2"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_debuff"			"-3 -4 -5 -6"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stone_share"			"60"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_radius"			"450 600 750 900"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rune_scaling"			"120 140 160 180"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 2
+	//=================================================================================================================
+	"item_recipe_cuirass_of_war_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +97,7 @@
 		"ItemResult"					"item_cuirass_of_war_3"
 		"ItemRequirements"
 		{
-			"01"						"item_reaping_scythe;item_fortress_shield_2"
+			"01"						"item_cuirass_of_war_2;item_recipe_cuirass_of_war_2"
 		}
 	}
 	"item_cuirass_of_war_3"
@@ -46,29 +120,19 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"7"
-		"ItemBaseLevel"					"1"
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"4"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aura_armor"			"2 3 4 5 5 5 5"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-2 -2 -2 -2 -3 -4 -5"
+				"armor_debuff"			"-3 -4 -5 -6"
 			}
 			"04"
 			{
@@ -78,12 +142,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"900"
+				"aura_radius"			"450 600 750 900"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 1 1 1 2 2 2"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}
@@ -110,7 +174,7 @@
 		"ItemResult"					"item_cuirass_of_war_4"
 		"ItemRequirements"
 		{
-			"01"						"item_cuirass_of_war_3;item_recipe_cuirass_of_war_3"
+			"01"						"item_cuirass_of_war_3;item_recipe_cuirass_of_war_2"
 		}
 	}
 	
@@ -133,29 +197,19 @@
 		"ItemAliases"					"assault cuirass"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"7"
-		"ItemBaseLevel"					"2"
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"3"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"4"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aura_armor"			"2 3 4 5 5 5 5"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-2 -2 -2 -2 -3 -4 -5"
+				"armor_debuff"			"-3 -4 -5 -6"
 			}
 			"04"
 			{
@@ -165,12 +219,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"900"
+				"aura_radius"			"450 600 750 900"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 1 1 1 2 2 2"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}
@@ -197,7 +251,7 @@
 		"ItemResult"					"item_cuirass_of_war_5"
 		"ItemRequirements"
 		{
-			"01"						"item_cuirass_of_war_4;item_recipe_cuirass_of_war_3"
+			"01"						"item_cuirass_of_war_4;item_recipe_cuirass_of_war_2"
 		}
 	}
 	
@@ -221,29 +275,19 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"7"
-		"ItemBaseLevel"					"3"
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"4"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"4"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aura_armor"			"2 3 4 5 5 5 5"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-2 -2 -2 -2 -3 -4 -5"
+				"armor_debuff"			"-3 -4 -5 -6"
 			}
 			"04"
 			{
@@ -253,12 +297,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"900"
+				"aura_radius"			"450 600 750 900"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 1 1 1 2 2 2"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}
@@ -276,16 +320,17 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_cuirass_of_war_6"
 		"ItemRequirements"
 		{
-			"01"						"item_cuirass_of_war_5;item_recipe_cuirass_of_war_3"
+			"01"						"item_cuirass_of_war_5;item_recipe_cuirass_of_war_2"
 		}
 	}
 	
@@ -309,29 +354,19 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"7"
-		"ItemBaseLevel"					"4"
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"5"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"4"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aura_armor"			"2 3 4 5 5 5 5"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-2 -2 -2 -2 -3 -4 -5"
+				"armor_debuff"			"-3 -4 -5 -6"
 			}
 			"04"
 			{
@@ -341,12 +376,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"900"
+				"aura_radius"			"450 600 750 900"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 1 1 1 2 2 2"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}
@@ -365,6 +400,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -373,7 +409,7 @@
 		"ItemResult"					"item_cuirass_of_war_7"
 		"ItemRequirements"
 		{
-			"01"						"item_cuirass_of_war_6;item_recipe_cuirass_of_war_3"
+			"01"						"item_cuirass_of_war_6;item_recipe_cuirass_of_war_2"
 		}
 	}
 	
@@ -389,6 +425,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"spellblock"
@@ -397,8 +434,8 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"7"
-		"ItemBaseLevel"					"5"
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"6"
 		
 		"AvailableRuneSlots"			"2"
 		
@@ -406,20 +443,10 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"4"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aura_armor"			"2 3 4 5 5 5 5"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-2 -2 -2 -2 -3 -4 -5"
+				"armor_debuff"			"-3 -4 -5 -6"
 			}
 			"04"
 			{
@@ -429,12 +456,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"900"
+				"aura_radius"			"450 600 750 900"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 1 1 1 2 2 2"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}
@@ -453,6 +480,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -461,7 +489,7 @@
 		"ItemResult"					"item_cuirass_of_war_8"
 		"ItemRequirements"
 		{
-			"01"						"item_cuirass_of_war_7;item_recipe_cuirass_of_war_3"
+			"01"						"item_cuirass_of_war_7;item_recipe_cuirass_of_war_2"
 		}
 	}
 	"item_cuirass_of_war_8"
@@ -476,6 +504,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"spellblock"
@@ -484,8 +513,8 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"7"
-		"ItemBaseLevel"					"6"
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"7"
 		
 		"AvailableRuneSlots"			"2"
 		
@@ -493,20 +522,10 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"4"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aura_armor"			"2 3 4 5 5 5 5"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-2 -2 -2 -2 -3 -4 -5"
+				"armor_debuff"			"-3 -4 -5 -6"
 			}
 			"04"
 			{
@@ -516,12 +535,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"900"
+				"aura_radius"			"450 600 750 900"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 1 1 1 2 2 2"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}
@@ -540,6 +559,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -548,7 +568,7 @@
 		"ItemResult"					"item_cuirass_of_war_9"
 		"ItemRequirements"
 		{
-			"01"						"item_cuirass_of_war_8;item_recipe_cuirass_of_war_3"
+			"01"						"item_cuirass_of_war_8;item_recipe_cuirass_of_war_2"
 		}
 	}
 	
@@ -564,6 +584,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"aura"
@@ -571,8 +592,8 @@
 		"ItemAliases"					"assault cuirass"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"7"
-		"ItemBaseLevel"					"7"
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"8"
 		
 		"AvailableRuneSlots"			"2"
 		
@@ -580,20 +601,10 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"4"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aura_armor"			"2 3 4 5 5 5 5"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-2 -2 -2 -2 -3 -4 -5"
+				"armor_debuff"			"-3 -4 -5 -6"
 			}
 			"04"
 			{
@@ -603,12 +614,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"900"
+				"aura_radius"			"450 600 750 900"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 1 1 1 2 2 2"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}

@@ -187,7 +187,20 @@ function RelicManager:SkipRelicSelection(userid, event)
 		RelicManager:PushCustomRelicDropsForPlayer(pID, dropTable)
 		return
 	else
-		hero:AddGold(500, true)
+		local gold = 0
+		for id, relicData in pairs( copy ) do
+			local rarity = self.masterList[relicData.name]["Rarity"]
+			if rarity == "RARITY_COMMON" and gold < 150 then
+				 gold = 150
+			elseif rarity == "RARITY_UNCOMMON" and gold < 300 then
+				 gold = 300
+			elseif rarity == "RARITY_RARE" and gold < 450 then
+				 gold = 450
+			elseif (rarity == "RARITY_LEGENDARY" or rarity == "RARITY_EVENT") and gold < 600 then
+				 gold = 600
+			end
+		end
+		hero:AddGold(gold, true)
 	end
 	if hero:HasRelic("relic_icon_of_envy") then
 		hero:FindModifierByName("relic_icon_of_envy"):IncrementStackCount()
@@ -370,7 +383,6 @@ function RelicManager:RemoveRelicOnPlayer(relic, pID, bAll)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	
 	local pool = "other"
-	print( relic )
 	local rarity = self.masterList[relic]["Rarity"]
 	if self.masterList[relic]["Cursed"] == "1" then
 		pool = "cursed"

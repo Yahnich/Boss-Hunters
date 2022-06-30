@@ -21,10 +21,10 @@
 		"ItemAliases"					"vessel;lucifers_cage"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 				
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"1"
 		
-		"AvailableRuneSlots"			"0"
+		"AvailableRuneSlots"			"2"
 		
 		"precache"
 		{
@@ -48,7 +48,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"20 40 60 80 100 120 140 160 180 200"
+				"healdamage"			"20 60 100 160 200"
 			}
 			"03"
 			{
@@ -63,7 +63,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -81,7 +81,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"785"
+		"ItemCost"						"1570"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -114,10 +114,10 @@
 		"ItemAliases"					"spirit vessel;lucifers cage"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		
 		"AbilityCooldown"				"16"
 		"AbilitySharedCooldown"			"luciferscage"
@@ -137,7 +137,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"20 40 60 80 100 120 140 160 180 200"
+				"healdamage"			"20 60 100 160 200"
 			}
 			"03"
 			{
@@ -152,7 +152,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -205,10 +205,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"3"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 	
 		"AbilityCooldown"				"16"
 		"AbilitySharedCooldown"			"luciferscage"
@@ -228,7 +228,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"20 40 60 80 100 120 140 160 180 200"
+				"healdamage"			"20 60 100 160 200"
 			}
 			"03"
 			{
@@ -243,7 +243,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -296,7 +296,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"4"
 		
 		"AvailableRuneSlots"			"2"
@@ -318,7 +318,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"20 40 60 80 100 120 140 160 180 200"
+				"healdamage"			"20 60 100 160 200"
 			}
 			"03"
 			{
@@ -333,7 +333,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -385,7 +385,7 @@
 		"ItemAliases"					"spirit vessel;lucifers cage"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"5"
 		
 		"AvailableRuneSlots"			"2"
@@ -407,7 +407,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"20 40 60 80 100 120 140 160 180 200"
+				"healdamage"			"20 60 100 160 200"
 			}
 			"03"
 			{
@@ -422,7 +422,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -440,12 +440,13 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_lucifers_cage_6"
 		"ItemRequirements"
 		{
@@ -467,6 +468,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"heal"
@@ -474,7 +476,7 @@
 		"ItemAliases"					"spirit vessel;lucifers cage"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"6"
 		
 		"AvailableRuneSlots"			"2"
@@ -496,7 +498,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"20 40 60 80 100 120 140 160 180 200"
+				"healdamage"			"20 60 100 160 200"
 			}
 			"03"
 			{
@@ -511,7 +513,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -530,6 +532,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -556,6 +559,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"heal"
@@ -563,10 +567,10 @@
 		"ItemAliases"					"spirit vessel;lucifers cage"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"7"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		"AbilityCooldown"				"16"
 		"AbilitySharedCooldown"			"luciferscage"
@@ -585,7 +589,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"20 40 60 80 100 120 140 160 180 200"
+				"healdamage"			"20 60 100 160 200"
 			}
 			"03"
 			{
@@ -600,7 +604,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -619,6 +623,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -645,6 +650,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"heal"
@@ -652,10 +658,10 @@
 		"ItemAliases"					"spirit vessel;lucifers cage"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"8"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		"AbilityCooldown"				"16"
 		"AbilitySharedCooldown"			"luciferscage"
@@ -674,7 +680,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"20 40 60 80 100 120 140 160 180 200"
+				"healdamage"			"20 60 100 160 200"
 			}
 			"03"
 			{
@@ -689,7 +695,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -708,6 +714,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -734,6 +741,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"heal"
@@ -741,10 +749,10 @@
 		"ItemAliases"					"spirit vessel;lucifers cage"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"9"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		"AbilityCooldown"				"16"
 		"AbilitySharedCooldown"			"luciferscage"
@@ -763,7 +771,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"20 40 60 80 100 120 140 160 180 200"
+				"healdamage"			"20 60 100 160 200"
 			}
 			"03"
 			{
@@ -778,7 +786,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}

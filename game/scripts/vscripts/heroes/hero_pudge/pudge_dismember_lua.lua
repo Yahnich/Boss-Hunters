@@ -1,7 +1,6 @@
 pudge_dismember_lua = class({})
 LinkLuaModifier( "modifier_pudge_dismember_lua", "heroes/hero_pudge/pudge_dismember_lua.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_pudge_dismember_lua_armor", "heroes/hero_pudge/pudge_dismember_lua.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier("modifier_pudge_flesh_heap_lua_effect", "heroes/hero_pudge/pudge_flesh_heap_lua", LUA_MODIFIER_MOTION_NONE)
 
 function pudge_dismember_lua:GetConceptRecipientType()
 	return DOTA_SPEECH_USER_ALL
@@ -61,10 +60,6 @@ function pudge_dismember_lua:OnChannelThink(flInterval)
 		ParticleManager:FireParticle("particles/units/heroes/hero_pudge/pudge_dismember.vpcf", PATTACH_POINT_FOLLOW, caster, {[0]="attach_attack2"})
 			
 		local enemies = caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), endPoint, self:GetTalentSpecialValueFor("width"), {})
-		if #enemies > 0 then
-			local fleshheap = caster:FindAbilityByName("pudge_flesh_heap_lua")
-			caster:AddNewModifier(caster, fleshheap, "modifier_pudge_flesh_heap_lua_effect", {Duration = fleshheap:GetTalentSpecialValueFor("duration")}):AddIndependentStack(fleshheap:GetTalentSpecialValueFor("duration"))
-		end
 		for _,enemy in pairs(enemies) do
 			if not enemy:TriggerSpellAbsorb( self ) then
 				if not enemy:HasModifier("modifier_pudge_dismember_lua") then

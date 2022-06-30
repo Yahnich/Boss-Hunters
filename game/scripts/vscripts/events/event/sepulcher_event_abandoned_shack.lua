@@ -135,7 +135,7 @@ local function StartEvent(self)
 			end
 		end
 	end)
-	self.waitTimer = self:StartEventTimer( 30, timerFunc )
+	self.waitTimer = self:StartEventTimer( 45, timerFunc )
 	self._playerChoices = {}
 end
 

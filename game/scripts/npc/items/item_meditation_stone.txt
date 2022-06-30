@@ -1,0 +1,34 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Mana Stone
+	//=================================================================================================================
+	"item_meditation_stone"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_meditation_stone"
+		"AbilityTextureName"			"item_void_stone"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		"ItemPurchasable"				"1"
+		"ItemStackable"					"1"
+		"ItemInitialCharges"			"1"
+		"ItemDisplayCharges"			"1"
+		"ItemCost"						"750"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_regen"			"2.5 1.75 1.25 0.75"
+			}
+		}
+	}
+}

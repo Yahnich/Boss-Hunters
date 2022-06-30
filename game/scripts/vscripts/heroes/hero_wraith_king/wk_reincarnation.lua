@@ -13,15 +13,15 @@ end
 
 function wk_reincarnation:GetManaCost(iLevel)
 	local caster = self:GetCaster()
-    if caster:HasTalent(  "special_bonus_unique_wk_reincarnation_2" ) or not caster:IsRealHero() then return 0 end
-    return 160
+    -- if caster:HasTalent(  "special_bonus_unique_wk_reincarnation_2" ) or not caster:IsRealHero() then return 0 end
+    if caster:IsRealHero() then return self.BaseClass.GetManaCost( self, iLevel ) end
 end
 
 function wk_reincarnation:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
-    local caster = self:GetCaster()
-    local talent = "special_bonus_unique_wk_reincarnation_2"
-    if caster:HasTalent( talent ) then cooldown = cooldown + caster:FindTalentValue( talent ) end
+    -- local caster = self:GetCaster()
+    -- local talent = "special_bonus_unique_wk_reincarnation_2"
+    -- if caster:HasTalent( talent ) then cooldown = cooldown + caster:FindTalentValue( talent ) end
     return cooldown
 end
 
@@ -48,6 +48,7 @@ function modifier_wk_reincarnation:OnCreated()
 	self.scepter_wraith_form_radius = self.ability:GetTalentSpecialValueFor("aura_radius")        
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_wk_reincarnation_1")
+	self.talent1Skeletons = self:GetCaster():FindTalentValue("special_bonus_unique_wk_reincarnation_1")
 	self.talent3 = self:GetCaster():HasTalent("special_bonus_unique_wk_reincarnation_3")
 	
 	self:GetParent():HookInModifier("GetReincarnationDelay", self, self:GetPriority() )
@@ -103,7 +104,11 @@ function modifier_wk_reincarnation:GetReincarnationDelay()
 				end
 			end
 			if self.caster:IsRealHero() and self.talent1 and self.caster:FindAbilityByName("wk_skeletons")then
-				self.caster:FindAbilityByName("wk_skeletons"):SpawnDeathKnight( self:GetCaster():GetAbsOrigin() + RandomVector(150) )
+				local skeletons = self.caster:FindAbilityByName("wk_skeletons")
+				for i = 1, self.talent1Skeletons do
+					local pointRando = self.caster:GetAbsOrigin() + ActualRandomVector(500, 150)
+					skeletons:SpawnSkeleton(pointRando)
+				end
 			end
 			if self.talent3 then
 				Timers:CreateTimer( self.reincarnate_delay + 0.1, function()
@@ -131,12 +136,13 @@ function modifier_wk_reincarnation:OnDeath(keys)
 		if unit == self.caster and unit:IsRealHero() and self.unitWillResurrect then
 			self.caster.unitWillResurrect = false
 			unit:EmitSound("Hero_SkeletonKing.Reincarnate.Stinger")
-		elseif unit == self.caster and not unit:IsHero() then
+		elseif unit == self.caster and not unit:IsRealHero() then
 			local respawnTime = self:GetReincarnationDelay()
 			if respawnTime then
 				Timers:CreateTimer( respawnTime, function()
 					unit:RespawnUnit()
 					unit:StartGesture( ACT_DOTA_SPAWN )
+					print("what")
 				end)
 			end
 		end
@@ -178,9 +184,9 @@ function modifier_wk_reincarnation:GetModifierAura()
 end
 
 function modifier_wk_reincarnation:IsAura()
-	if self.caster:IsRealHero() and self.caster:HasScepter() and self.caster == self:GetParent() then
-		return true        
-	end
+	-- if self.caster:IsRealHero() and self.caster:HasScepter() and self.caster == self:GetParent() then
+		-- return true        
+	-- end
 
 	return false
 end

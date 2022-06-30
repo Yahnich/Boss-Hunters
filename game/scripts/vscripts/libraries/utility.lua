@@ -6,6 +6,9 @@ HEAL_TYPE_HEAL = 0
 HEAL_TYPE_REGEN = 1
 HEAL_TYPE_LIFESTEAL = 2
 
+HEAL_FLAG_NONE = 0
+HEAL_FLAG_IGNORE_AMPLIFICATION = 1
+
 function SendClientSync(key, value)
 	CustomNetTables:SetTableValue( "syncing_purposes",key, {value = value} )
 end
@@ -22,16 +25,17 @@ function GetTableLength(rndTable)
 	return counter
 end
 
-function MergeTables( t1, t2 )
+
+function MergeTables( t1, t2, bDebugPrint )
 	local copyTable = {}
 	for name, info in pairs(t1) do
 		copyTable[name] = info
 	end
     for name,info in pairs(t2) do
 		if type(info) == "table"  and type(copyTable[name]) == "table" then
-			MergeTables(copyTable[name], info)
+			copyTable[name] = MergeTables(copyTable[name], info, printThisShit)
 		else
-			copyTable[name] = info
+			copyTable[name] = table.copy(info) 
 		end
 	end
 	return copyTable
@@ -154,7 +158,7 @@ function TableToArray(t1, bValue)
 end
 
 function TernaryOperator(value, bCheck, default)
-	if bCheck then 
+	if bCheck == true then 
 		return value 
 	else 
 		return default
@@ -191,6 +195,11 @@ function FindProjectedPointOnLine( position, lineSegment)
 	local sqrLen = (lineVector.x * lineVector.x) + (lineVector.y * lineVector.y)
 	local projPoint = Vector( lineSegment[1].x + (dotProduct * lineVector.x) / sqrLen, lineSegment[1].y + (dotProduct * lineVector.y) / sqrLen )
 	return projPoint
+end
+
+function FindSideOfLine( point, lineSegment )
+	local d = ( point.x - lineSegment[1].x ) * ( lineSegment[2].y - lineSegment[1].y ) - ( point.y - lineSegment[1].y ) * ( lineSegment[2].x - lineSegment[1].x )
+	return d
 end
 
 function ActualRandomVector(maxLength, flMinLength)
@@ -438,8 +447,9 @@ end
 
 function CDOTABaseAbility:DealDamage(attacker, target, damage, data, spellText)
 	--OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, OVERHEAD_ALERT_DAMAGE, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, OVERHEAD_ALERT_MANA_LOSS
+	if not self or not target or not attacker then return end
 	if self:IsNull() or target:IsNull() or attacker:IsNull() then return end
-	if not target:IsAlive() then return end
+	if not target:IsAlive() then return 0 end
 	local internalData = data or {}
 	local damageType =  internalData.damage_type or self:GetAbilityDamageType()
 	if damageType == nil or damageType == 0 then
@@ -618,10 +628,10 @@ function CDOTA_BaseNPC:FindSpecificTalentValue(talentName, value)
 end
 
 function CDOTA_BaseNPC:NotDead()
-	print( self:IsReincarnating() )
 	if self:IsAlive() or 
 	self:IsReincarnating() or 
-	self.resurrectionStoned then
+	self.resurrectionStoned or 
+	self:GetLives() > 0 then
 		return true
 	else
 		return false
@@ -630,6 +640,13 @@ end
 
 function CDOTA_BaseNPC:GetAverageBaseDamage()
 	return (self:GetBaseDamageMax() + self:GetBaseDamageMin())/2
+end
+
+function CDOTA_BaseNPC:GetTrueAttackDamage( target )
+	local variance = math.ceil( self:GetBaseDamageMax() - self:GetBaseDamageMin() ) / 2
+	local average = self:GetAverageTrueAttackDamage( target )
+	local range = RandomInt( -variance, variance )
+	return average + range
 end
 
 function CDOTA_BaseNPC:SetAverageBaseDamage(average, variance) -- variance is in percent (50 not 0.5)
@@ -647,35 +664,16 @@ function CDOTABaseAbility:Refresh()
     self:EndCooldown()
 end
 
-function CDOTABaseAbility:GetTrueCastRange()
+function CDOTABaseAbility:GetTrueCastRange( target )
 	local caster = self:GetCaster()
 	local castrange = self:GetCastRange(caster:GetAbsOrigin(), caster)
 	if castrange == -1 then return -1 end
-	castrange = castrange + caster:GetBonusCastRange()
+	castrange = castrange + caster:GetBonusCastRange( target )
 	return castrange
 end
 
-function CDOTA_Ability_Lua:GetTrueCastRange()
-	local caster = self:GetCaster()
-	local castrange = self:GetCastRange(caster:GetAbsOrigin(), caster)
-	if castrange == -1 then return -1 end
-	castrange = castrange + caster:GetBonusCastRange()
-	return castrange
-end
-
-function CDOTA_BaseNPC:GetBonusCastRange()
-	local staticRange = 0
-	local stackingRange = 0
-	for _, modifier in ipairs( self:FindAllModifiers() ) do
-		if modifier.GetModifierCastRangeBonus and modifier:GetModifierCastRangeBonus() and modifier:GetModifierCastRangeBonus() > staticRange then
-			staticRange = modifier:GetModifierCastRangeBonus()
-		end
-		if modifier.GetModifierCastRangeBonusStacking and modifier:GetModifierCastRangeBonusStacking() then
-			stackingRange = stackingRange + modifier:GetModifierCastRangeBonusStacking()
-		end
-	end
-	local aether_range = staticRange + stackingRange
-    return aether_range
+function CDOTA_BaseNPC:GetBonusCastRange(target)
+    return self:GetCastRangeBonus(  )
 end
 
 function CDOTA_BaseNPC:GetOriginalAttackCapability()
@@ -843,6 +841,11 @@ function CDOTA_BaseNPC:ConjureImage( illusionInfo, duration, caster, amount )
 			illusion:SetPhysicalArmorBaseValue( self:GetPhysicalArmorBaseValue() )
 			-- Check for runes
 			illusion:AddItemCopiesFromOriginal( self )
+			for _, modifier in ipairs( self:FindAllModifiers() ) do
+				if modifier.AllowIllusionDuplicate and modifier:AllowIllusionDuplicate() then
+					illusion:AddNewModifier( modifier:GetCaster(), modifier:GetAbility(), modifier:GetName(), {duration = modifier:GetRemainingTime()} ):SetStackCount( modifier:GetStackCount() )
+				end
+			end
 			for i = 0, 23 do
 				local ability = illusion:GetAbilityByIndex( i )
 				if ability then
@@ -1048,6 +1051,7 @@ function CDOTA_BaseNPC:IsMinion()
 end
 
 function CDOTA_BaseNPC:IsUndead()
+	if not GameRules.UnitKV[self:GetUnitName()] then return false end
 	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsUndead"]
 	if monsterType == 1 then
 		return true
@@ -1057,6 +1061,7 @@ function CDOTA_BaseNPC:IsUndead()
 end
 
 function CDOTA_BaseNPC:IsWild()
+	if not GameRules.UnitKV[self:GetUnitName()] then return false end
 	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsWild"]
 	if monsterType == 1 then
 		return true
@@ -1066,6 +1071,7 @@ function CDOTA_BaseNPC:IsWild()
 end
 
 function CDOTA_BaseNPC:IsDemon()
+	if not GameRules.UnitKV[self:GetUnitName()] then return false end
 	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsDemon"]
 	if monsterType == 1 then
 		return true
@@ -1075,6 +1081,7 @@ function CDOTA_BaseNPC:IsDemon()
 end
 
 function CDOTA_BaseNPC:IsCelestial()
+	if not GameRules.UnitKV[self:GetUnitName()] then return false end
 	local monsterType = GameRules.UnitKV[self:GetUnitName()]["IsCelestial"]
 	if monsterType == 1 then
 		return true
@@ -1211,13 +1218,22 @@ function CDOTABaseAbility:GetTalentLevelSpecialValueFor(value, level)
 			end
 		end
 	end
+	if kv["AbilityValues"] then
+		local valueData = kv["AbilityValues"][value]
+		if type(valueData) == "table" then
+			talentName = valueData["LinkedSpecialBonus"]
+			if valueData["LinkedSpecialBonusOperation"] and valueData["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_MULTIPLY" then multiply = true end
+			if valueData["LinkedSpecialBonusOperation"] and valueData["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_SUBTRACT" then subtract = true end
+			if valueData["LinkedSpecialBonusOperation"] and valueData["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_PERCENTAGE_ADD" then zadd = true end
+		end
+	end
 	if talentName then 
 		local unit = self:GetCaster()
 		if unit:GetParentUnit() then
 			unit = unit:GetParentUnit()
 		end
 		local talent = unit:FindAbilityByName(talentName)
-		if talent and talent:GetLevel() > 0 then 
+		if talent and talent:GetLevel() > 0 then
 			if multiply then
 				base = base * talent:GetSpecialValueFor(valname) 
 			elseif subtract then
@@ -1314,7 +1330,7 @@ function CDOTA_BaseNPC:GetStatusAmplification( tParams )
 	return math.max( 0.25, 1 + (amp / 100) )
 end
 
-function CDOTA_BaseNPC:GetStatusResistance( tParams)
+function CDOTA_BaseNPC:GetStatusResistance( tParams )
 	local params = tParams or {}
 	local resistance = 0
 	local stackResist = 0
@@ -1479,42 +1495,49 @@ function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer, data) -- for future s
 	if not hData.heal_type then
 		hData.heal_type = HEAL_TYPE_HEAL
 	end
+	if not hData.heal_flags then
+		hData.heal_flags = HEAL_FLAG_NONE
+	end
+
 	local healFactorAllied = 1
 	local healFactorSelf = 1
 	local params = {original_amount = flAmount, amount = flAmount, source = sourceAb, unit = healer, target = self, heal_type = hData.heal_type}
-	if hData.heal_type ~= HEAL_TYPE_REGEN and hData.heal_type ~= HEAL_TYPE_LIFESTEAL then
-		if healer and not healer:IsNull() then
-			for _,modifier in ipairs( healer:FindAllModifiers() ) do
-				if modifier.GetModifierHeal_Const then
-					flAmount = flAmount + ((modifier:GetModifierHeal_Const() or 0)/100)
-				end
-				if healer ~= target then
-					if modifier.GetModifierHealAmplify_Percentage then
-						healFactorAllied = healFactorAllied + ( modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100
+	
+	if not HasBit( hData.heal_flags, HEAL_FLAG_IGNORE_AMPLIFICATION ) then
+		if hData.heal_type == HEAL_TYPE_HEAL then
+			if healer and not healer:IsNull() then
+				for _,modifier in ipairs( healer:FindAllModifiers() ) do
+					if modifier.GetModifierHealAmplify_Const then
+						flAmount = flAmount + ((modifier:GetModifierHeal_Const() or 0)/100)
+					end
+					if healer ~= self then
+						if modifier.GetModifierHealAmplify_Percentage then
+							healFactorAllied = healFactorAllied + ( modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100
+						end
 					end
 				end
 			end
-		end
-		if target then
-			for _, modifier in ipairs( target:FindAllModifiers() ) do
-				if modifier.GetModifierHealAmplify_Percentage then
-					healFactorSelf = healFactorSelf + (modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100
+			if self then
+				for _, modifier in ipairs( self:FindAllModifiers() ) do
+					if modifier.GetModifierHealAmplify_Percentage then
+						healFactorSelf = healFactorSelf + (modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100
+					end
 				end
 			end
-		end
-	elseif hData.heal_type == HEAL_TYPE_REGEN then
-		if target then
-			for _, modifier in ipairs( target:FindAllModifiers() ) do
-				if modifier.GetModifierHPRegenAmplify_Percentage then
-					healFactorSelf = healFactorSelf + (modifier:GetModifierHPRegenAmplify_Percentage( params ) or 0 )/100
+		elseif hData.heal_type == HEAL_TYPE_REGEN then
+			if self then
+				for _, modifier in ipairs( self:FindAllModifiers() ) do
+					if modifier.GetModifierHPRegenAmplify_Percentage then
+						healFactorSelf = healFactorSelf + (modifier:GetModifierHPRegenAmplify_Percentage( params ) or 0 )/100
+					end
 				end
 			end
-		end
-	elseif hData.heal_type == HEAL_TYPE_LIFESTEAL then
-		if target then
-			for _, modifier in ipairs( target:FindAllModifiers() ) do
-				if modifier.GetModifierLifestealRegenAmplify_Percentage then
-					healFactorSelf = healFactorSelf + (modifier:GetModifierLifestealRegenAmplify_Percentage( params ) or 0 )/100
+		elseif hData.heal_type == HEAL_TYPE_LIFESTEAL then
+			if self then
+				for _, modifier in ipairs( self:FindAllModifiers() ) do
+					if modifier.GetModifierLifestealRegenAmplify_Percentage then
+						healFactorSelf = healFactorSelf + (modifier:GetModifierLifestealRegenAmplify_Percentage( params ) or 0 )/100
+					end
 				end
 			end
 		end
@@ -1538,7 +1561,7 @@ function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer, data) -- for future s
 			end
 		end
 	end
-	flAmount = math.min( params.amount, self:GetHealthDeficit() )
+	flAmount = math.min( params2.amount, self:GetHealthDeficit() )
 	if flAmount > 0 then
 		local hp = self:GetHealth()
 		self:Heal(flAmount, sourceAb)
@@ -1725,6 +1748,27 @@ function ParticleManager:FireRopeParticle(effect, attach, owner, target, tCP, sA
 	ParticleManager:ReleaseParticleIndex(FX)
 end
 
+
+function ParticleManager:CreateRopeParticle(effect, attach, owner, target, tCP, sAttachPoint)
+	if not owner or not target or not attach or not effect then return end
+	local FX = ParticleManager:CreateParticle(effect, attach, owner)
+
+	local attachPoint = sAttachPoint or "attach_hitloc"
+	ParticleManager:SetParticleControlEnt(FX, 0, owner, attach, attachPoint, owner:GetAbsOrigin(), true)
+	if target.GetAbsOrigin then -- npc (has getabsorigin function
+		ParticleManager:SetParticleControlEnt(FX, 1, target, attach, "attach_hitloc", target:GetAbsOrigin(), true)
+	else
+		ParticleManager:SetParticleControl(FX, 1, target) -- vector
+	end
+	
+	if tCP then
+		for cp, value in pairs(tCP) do
+			ParticleManager:SetParticleControl(FX, tonumber(cp), value)
+		end
+	end
+	return FX
+end
+
 function ParticleManager:ClearParticle(cFX, bImmediate)
 	if cFX then
 		self:DestroyParticle(cFX, bImmediate or false)
@@ -1888,7 +1932,15 @@ function CDOTABaseAbility:Stun(target, duration, bDelay)
 	if not target or target:IsNull() then return end
 	local delay = false
 	if bDelay then delay = Bdelay end
-	local modifier = target:AddNewModifier(self:GetCaster(), self, "modifier_stunned_generic", {duration = duration, delay = delay})
+	local modifier
+	modifier = target:FindModifierByNameAndAbility("modifier_stunned_generic", self)
+	if modifier then
+		if modifier:GetRemainingTime() < duration then
+			modifier:SetDuration( duration, true )
+		end
+	else
+		modifier = target:AddNewModifier(self:GetCaster(), self, "modifier_stunned_generic", {duration = duration, delay = delay})
+	end
 	return modifier
 end
 
@@ -1917,7 +1969,7 @@ function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, da
 		Source = internalData.source or self:GetCaster(),
 		iUnitTargetTeam = internalData.team or DOTA_UNIT_TARGET_TEAM_ENEMY,
 		iUnitTargetType = internalData.type or DOTA_UNIT_TARGET_ALL,
-		iUnitTargetFlags = internalData.type or DOTA_UNIT_TARGET_FLAG_NONE,
+		iUnitTargetFlags = internalData.flag or DOTA_UNIT_TARGET_FLAG_NONE,
 		iSourceAttachment = internalData.attach or DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
 		bDeleteOnHit = delete,
 		fExpireTime = GameRules:GetGameTime() + 10.0,
@@ -1936,7 +1988,7 @@ function CDOTABaseAbility:FireTrackingProjectile(FX, target, speed, data, iAttac
 	if bDodge ~= nil then dodgable = bDodge end
 	local provideVision = false
 	if bVision ~= nil then provideVision = bVision end
-	origin = self:GetCaster():GetAbsOrigin()
+	local origin = self:GetCaster():GetAbsOrigin()
 	if internalData.origin then
 		origin = internalData.origin
 	elseif internalData.source then
@@ -2233,6 +2285,7 @@ function CDOTA_BaseNPC:ApplyKnockBack(position, stunDuration, knockbackDuration,
 		knockback_duration = knockbackDuration,
 		knockback_distance = distance,
 		knockback_height = height or 0,
+		ignoreStatusAmp = true
 	}
 	if bStun == nil or bStun == true then
 		local stun = self:AddNewModifier(caster, ability, "modifier_stunned_generic", {duration = stunDuration})
@@ -2451,7 +2504,7 @@ function FindRelativeProbability( weight )
     sumNpProcOnN = 0.0
 	maxFails = math.ceil(1.0 / weight)
 	for N = 1, maxFails do
-        pProcOnN = min( 1.0, N * weight ) * (1.0 - pProcByN)
+        pProcOnN = math.min( 1.0, N * weight ) * (1.0 - pProcByN)
         pProcByN = pProcByN + pProcOnN
         sumNpProcOnN = sumNpProcOnN + N * pProcOnN
 	end
@@ -2502,6 +2555,18 @@ function CDOTA_Modifier_Lua:RollPRNG( percentage )
 	return RollPRNGFormula( self, percentage )
 end
 
+-- function CBaseEntity:RollPRNG( percentage, prngStream )
+	-- return RollPseudoRandomPercentage( percentage, prngStream or DOTA_PSEUDO_RANDOM_CUSTOM_GAME_1, self )
+-- end
+
+-- function CDOTA_Ability_Lua:RollPRNG( percentage, prngStream )
+	-- return self:GetCaster():RollPRNG( percentage, prngStream or DOTA_PSEUDO_RANDOM_CUSTOM_GAME_2 )
+-- end
+
+-- function CDOTA_Modifier_Lua:RollPRNG( percentage, prngStream )
+	-- return self:GetParent():RollPRNG( percentage, prngStream or DOTA_PSEUDO_RANDOM_CUSTOM_GAME_3 )
+-- end
+
 function CDOTA_BaseNPC:FindEnemyUnitsInCone(vDirection, vPosition, flSideRadius, flLength, hData)
 	if not self:IsNull() then
 		local vDirectionCone = Vector( vDirection.y, -vDirection.x, 0.0 )
@@ -2530,8 +2595,15 @@ function CDOTA_BaseNPC:FindEnemyUnitsInCone(vDirection, vPosition, flSideRadius,
 end
 
 function CDOTA_BaseNPC:RestoreMana( flMana )
-	SendOverheadEventMessage(self:GetPlayerOwner(),OVERHEAD_ALERT_MANA_ADD ,self,flMana,self:GetPlayerOwner())
-	self:GiveMana( flMana )
+	local manaToGive = math.min( flMana, self:GetManaDeficit() )
+	if manaToGive > 0 then
+		SendOverheadEventMessage( nil, OVERHEAD_ALERT_MANA_ADD, self, manaToGive, nil)
+		self:GiveMana( flMana )
+	end
+end
+
+function GameRules:GetMatchID()
+	return GameRules:Script_GetMatchID()
 end
 
 function GameRules:RefreshPlayers(bDontHealFull, flPrepTime)
@@ -2571,6 +2643,10 @@ function GameRules:RefreshPlayers(bDontHealFull, flPrepTime)
 			end
 		end
 	end
+end
+
+function CDOTA_BaseNPC:GetManaDeficit()
+	return self:GetMaxMana() - self:GetMana()
 end
 
 function GameRules:GetGameDifficulty()
@@ -2781,4 +2857,12 @@ function CDOTA_BaseNPC:HookOutModifier( modifierType, modifier )
 		statsHandler.modifierFunctions[modifierType][modifier] = nil
 		statsHandler:ForceRefresh()
 	end
+end
+
+function ProjectileManager:GetProjectileLocation( projectile )
+	local position = ProjectileManager:GetTrackingProjectileLocation( projectile )
+	if CalculateDistance( Vector(0, 0, 0), position ) < 0.5 then
+		position = ProjectileManager:GetLinearProjectileLocation( projectile )
+	end
+	return position
 end

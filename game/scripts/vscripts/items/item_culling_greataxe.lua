@@ -11,11 +11,6 @@ function item_culling_greataxe:OnSpellStart()
 	GridNav:DestroyTreesAroundPoint(tree, 20, true)
 end
 
-function item_culling_greataxe:GetRuneSlots()
-	return self:GetSpecialValueFor("rune_slots")
-end
-
-
 item_culling_greataxe_2 = class(item_culling_greataxe)
 item_culling_greataxe_3 = class(item_culling_greataxe)
 item_culling_greataxe_4 = class(item_culling_greataxe)
@@ -29,13 +24,13 @@ modifier_item_culling_greataxe_passive = class(itemBasicBaseClass)
 
 function modifier_item_culling_greataxe_passive:OnCreatedSpecific()
 	self.splash = self:GetSpecialValueFor("splash_damage")
-	self:GetParent():HookInModifier("GetModifierAreaDamage", self)
+	if self:GetCaster():IsRealHero() then self:GetParent():HookInModifier("GetModifierAreaDamage", self) end
 end
 
 function modifier_item_culling_greataxe_passive:OnDestroySpecific()
-	self:GetParent():HookOutModifier("GetModifierAreaDamage", self)
+	if self:GetCaster():IsRealHero() then self:GetParent():HookOutModifier("GetModifierAreaDamage", self) end
 end
 
 function modifier_item_culling_greataxe_passive:GetModifierAreaDamage()
-	return self.splash
+	if self:GetCaster():IsRealHero() then return self.splash end
 end

@@ -1,5 +1,13 @@
 troll_warlord_whirling_axes = class({})
 
+function troll_warlord_whirling_axes:GetCooldown( iLvl )
+	local cd = self.BaseClass.GetCooldown( self, iLvl )
+	if self:GetCaster():HasScepter() then
+		cd = cd + self:GetTalentSpecialValueFor("scepter_cdr")
+	end
+	return cd
+end
+
 function troll_warlord_whirling_axes:OnSpellStart()
 	local caster = self:GetCaster()
 	
@@ -8,6 +16,8 @@ function troll_warlord_whirling_axes:OnSpellStart()
 	self:SummonWhirlingAxe( duration, -caster:GetForwardVector() )
 	caster:EmitSound("Hero_TrollWarlord.WhirlingAxes.Melee")
 	caster:StartGesture(ACT_DOTA_CAST_ABILITY_3)
+	
+	if caster:HasScepter() then caster:Dispel() end
 end
 
 function troll_warlord_whirling_axes:SummonWhirlingAxe( duration, direction )

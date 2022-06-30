@@ -59,7 +59,7 @@ function modifier_boss3a_tombstone_thinker:DeclareFunctions()
 end
 
 function modifier_boss3a_tombstone_thinker:GetModifierModelChange()
-	return "models/props_gameplay/tombstoneb01.vmdl"
+	return "models/heroes/phantom_assassin/arcana_tombstone.vmdl"
 end
 
 function modifier_boss3a_tombstone_thinker:OnTakeDamage(params)

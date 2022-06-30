@@ -1,0 +1,53 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf36:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_BoundingBoxMin = [ -10.0, -10.0, -100.0 ]
+	m_BoundingBoxMax = [ 10.0, 10.0, -100.0 ]
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_slark/slark_shard_depth_shroud_smoke.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_slark/slark_shard_depth_shroud_smoke_poof.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_slark/slark_shard_depth_shroud_water_splash_activation.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_slark/slark_shard_depth_shroud_bubbles.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_slark/slark_shard_depth_shroud_ground_energy.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_slark/slark_shard_depth_shroud_decal_dark.vpcf"
+		},
+	]
+}

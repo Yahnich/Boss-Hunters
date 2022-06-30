@@ -10,14 +10,13 @@ function juggernaut_mirror_blades:ShouldUseResources()
 	return true
 end
 
-modifier_juggernaut_mirror_blades = class(toggleModifierBaseClass)
+modifier_juggernaut_mirror_blades = class({})
 LinkLuaModifier("modifier_juggernaut_mirror_blades", "heroes/hero_juggernaut/juggernaut_mirror_blades", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_juggernaut_mirror_blades:OnCreated()
 	local caster = self:GetCaster()
 	self:OnRefresh()
 	if IsServer() then
-		self:MirrorBladeDamage(self.radius, self.damage)
 		EmitSoundOn("Hero_Juggernaut.BladeFuryStart" , self:GetParent() )
 		local spinFX = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf", PATTACH_POINT_FOLLOW, caster)
 		ParticleManager:SetParticleControl(spinFX, 5, Vector(self.radius, 1, 1))
@@ -30,17 +29,13 @@ function modifier_juggernaut_mirror_blades:OnRefresh()
 	self.damage = self:GetTalentSpecialValueFor("damage")
 	self.radius = self:GetTalentSpecialValueFor("radius")
 	self.tick = self:GetTalentSpecialValueFor("damage_tick")
-	self.bat = self:GetTalentSpecialValueFor("base_attack_time")
+	self.dmg = self:GetTalentSpecialValueFor("damage_reduction")
 	
-	self.ms = caster:FindTalentValue("special_bonus_unique_juggernaut_mirror_blades_2")
-	self.talent2 = caster:HasTalent("special_bonus_unique_juggernaut_mirror_blades_2")
-	self:StartIntervalThink(self.tick)
+	self.ms = caster:FindTalentValue("special_bonus_unique_juggernaut_mirror_blades_2", "value2")
+	
 	if IsServer() then
-		self:MirrorBladeDamage(self.radius, self.damage)
-		EmitSoundOn("Hero_Juggernaut.BladeFuryStart" , self:GetParent() )
+		self:StartIntervalThink(self.tick)
 	end
-	
-	caster:HookInModifier("GetBaseAttackTime_BonusPercentage", self)
 end
 
 function modifier_juggernaut_mirror_blades:OnDestroy()
@@ -82,15 +77,17 @@ function modifier_juggernaut_mirror_blades:MirrorBladeDamage(radius, damage)
 end
 
 function modifier_juggernaut_mirror_blades:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT}
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE }
 end
 
 function modifier_juggernaut_mirror_blades:GetModifierMoveSpeedBonus_Constant()
 	return self.ms
 end
 
-function modifier_juggernaut_mirror_blades:GetBaseAttackTime_BonusPercentage()
-	return (self.bat - 1) * 100
+function modifier_juggernaut_mirror_blades:GetModifierDamageOutgoing_Percentage(event)
+    if IsServer() and not self:GetCaster():IsInAbilityAttackMode() then
+		return self.dmg
+	end
 end
 
 function modifier_juggernaut_mirror_blades:CheckState()

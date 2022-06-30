@@ -39,7 +39,7 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"110 120 130 140 140 140 140"
+		"AbilityManaCost"				"120"
 		
 		"precache"
 		{
@@ -61,7 +61,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"100 150 200 250 300 350 400"
+				"damage"					"100 160 220 280 320 360 400"
 			}
 			"03"
 			{
@@ -312,7 +312,7 @@
 		}
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16 12 8 4 4 4 4"
+		"AbilityCooldown"				"13 10 7 4 4 4 4"
 		
 		"precache"
 		{
@@ -346,12 +346,12 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_agility"				"30 30 30 30 45 60 75"
+				"bonus_agility"				"10 20 30 40 45 50 55"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"agility_duration"			"2"
+				"agility_duration"			"4"
 			}
 		}
 	}
@@ -448,7 +448,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"chance"					"40"
+				"chance"					"45"
 			}
 			"03"
 			{
@@ -581,6 +581,11 @@
 				"bonus_accuracy"			"20 20 30 30 40 40"
 			}
 			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_juxtapose"			"30 35 40 45 50 55"
+			}
+			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"6"

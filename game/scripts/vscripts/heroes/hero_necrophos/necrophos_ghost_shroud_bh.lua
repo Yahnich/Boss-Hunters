@@ -1,5 +1,9 @@
 necrophos_ghost_shroud_bh = class({})
 
+function necrophos_ghost_shroud_bh:GetCooldown( iLvl )
+	return self.BaseClass.GetCooldown( self, iLvl ) + self:GetCaster():FindTalentValue("special_bonus_unique_necrophos_ghost_shroud_1")
+end
+
 function necrophos_ghost_shroud_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	if caster:HasModifier("modifier_necrophos_ghost_shroud_bh") then
@@ -114,14 +118,6 @@ LinkLuaModifier( "modifier_necrophos_ghost_shroud_bh_slow", "heroes/hero_necroph
 
 function modifier_necrophos_ghost_shroud_bh_slow:OnCreated()
 	self.slow = self:GetTalentSpecialValueFor("movement_speed") * (-1)
-	if IsServer() and self:GetCaster():HasTalent("special_bonus_unique_necrophos_ghost_shroud_2") then
-		self.dmg = self:GetCaster():FindTalentValue("special_bonus_unique_necrophos_ghost_shroud_2") / 100
-		self:StartIntervalThink(1)
-	end
-end
-
-function modifier_necrophos_ghost_shroud_bh_slow:OnIntervalThink()
-	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self:GetCaster():GetIntellect() * self.dmg, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION } )
 end
 
 function modifier_necrophos_ghost_shroud_bh_slow:DeclareFunctions()

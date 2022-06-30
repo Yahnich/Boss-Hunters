@@ -33,7 +33,10 @@
 					<Panel id="EventCardHeaderReward" hittest="true" class="EventCardReward"/>
 					<Panel id="EventCardHeaderType" hittest="true" class="EventCardType"/>
 				</Panel>
-				<Image id="EventCardHeaderCard" class="EventCardImage" src="file://{images}/custom_game/event_cards/generic_boss_scarab.png"/>
+				<Panel id="EventCardHeaderCardHolder" class="EventCardHeaderCardContainer">
+					<Panel id="EventCardTimeOfDayIcon" class="EventCardTimeOfDay"/> 
+					<Image id="EventCardHeaderCard" class="EventCardImage" src="file://{images}/custom_game/event_cards/generic_boss_scarab.png"/>
+				</Panel>
 				<Panel id="EventCardBody" class="EventCardBottom">
 					<Label id="EventCardFoesTitle" hittest="false" class="EventCardDescriptor" text="Foes" style="horizontal-align: center;padding:5px;"/>
 					<Panel id="EventCardFoes" class="EventCardFoeContainers">

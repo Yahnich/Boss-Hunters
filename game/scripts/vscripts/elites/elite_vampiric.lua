@@ -12,7 +12,7 @@ function modifier_elite_vampiric:DeclareFunctions()
 end
 
 function modifier_elite_vampiric:OnTakeDamage(params)
-	if params.attacker == self:GetParent() and params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK and self:GetParent():GetHealth() > 0 and not params.inflictor then
+	if params.attacker == self:GetParent() and params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK and self:GetParent():GetHealth() > 0 and not params.inflictor and not params.attacker:PassivesDisabled() then
 		ParticleManager:FireParticle( "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
 		local flHeal = params.damage * self:GetSpecialValueFor("lifesteal") / 100
 		params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)

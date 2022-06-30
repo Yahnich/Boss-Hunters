@@ -21,7 +21,7 @@ if IsServer() then
 	function modifier_elite_massive:OnIntervalThink()
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
-		if caster:PassivesDisabled() or not ability:IsFullyCastable() or caster:HasActiveAbility() then return end
+		if not ability:IsFullyCastable() or caster:IsStunned() or caster:IsSilenced() or caster:GetCurrentActiveAbility() or caster:IsHexed() or caster:IsRooted() then return end
 		ability:CastSpell()
 	end
 end

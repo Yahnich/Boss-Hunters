@@ -19,7 +19,7 @@ function SendErrorReport(err, context)
 	if context then context.gameHasBeenBroken = true end
 end
 
-function BaseEvent:constructor(zoneName, eventType, eventName, eventReward)
+function BaseEvent:constructor(zoneName, eventType, eventName, eventReward, miscData)
 	self.eventType = tonumber(eventType)
 	self.eventName = eventName
 	self.zoneName = zoneName
@@ -63,6 +63,12 @@ function BaseEvent:constructor(zoneName, eventType, eventName, eventReward)
 				self.eventRewardType = EVENT_REWARD_GOLD
 			end
 		end
+	end
+	
+	if miscData then
+		self.daytime = miscData.daytime
+	else
+		self.daytime = RollPercentage(50)
 	end
 	
 	local potentialEnemiesToSpawn = RoundManager.specificRoundKV[eventName]
@@ -144,10 +150,10 @@ function BaseEvent:StartCombatRound()
 							spawn:SetAverageBaseDamage( data.BaseDamage, 40 )
 						end
 						spawn.unitIsRoundNecessary = true
-						if data.IsMinion and data.IsMinion == "1" then
+						if data.IsMinion and toboolean( data.IsMinion ) then
 							spawn.unitIsMinion = true
 						end
-						if data.IsBoss and data.IsBoss == "1" then
+						if data.IsBoss and toboolean( data.IsBoss ) then
 							spawn.unitIsBoss = true
 						end
 					end
@@ -261,13 +267,26 @@ function BaseEvent:HandoutRewards(bWon)
 end
 
 function BaseEvent:StartEventTimer(duration, timerFunc)
-	self.timeRemaining = duration or 30
+	self.timeRemaining = duration or 120
 	self.eventEnded = false
 	CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) + self.timeRemaining } )
 	local localFunc = timerFunc or (function()
 		if not self.eventEnded then
+			allowTimer = (self._playerChoices == nil)
+			if self._playerChoices then
+				for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
+					local pID = hero:GetPlayerID()
+					if pID and self._playerChoices[pID] then
+						allowTimer = true
+					end
+				end
+			end
 			if self.timeRemaining >= 0 then
-				self.timeRemaining = self.timeRemaining - 1
+				if allowTimer then
+					self.timeRemaining = self.timeRemaining - 1
+				else
+					CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) + self.timeRemaining } )
+				end
 				return 1
 			else
 				self:EndEvent(true)

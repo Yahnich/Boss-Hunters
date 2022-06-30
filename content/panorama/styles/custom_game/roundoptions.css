@@ -38,7 +38,7 @@
 
 .EventCardHighlighted
 {
-	box-shadow: fill -3px -3px 6px 6px #C0C0C0;
+	box-shadow: 0px 0px 10px #C0C0C066;
 	brightness: 1.5;
 }
 
@@ -169,12 +169,34 @@
 	border: 2px solid #111111FF;
 }
 
-.EventCardImage
+.EventCardTimeOfDay
+{
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/hud/reborn/icon_sun_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: center;
+	margin-left: 10px;
+	vertical-align: top;
+	horizontal-align: left;
+	z-index: 10;
+}
+
+.EventCardHeaderCardContainer
 {
 	height: width-percentage(67%);
 	width: 99.5%;
 	horizontal-align: center;
 }
+
+.EventCardImage
+{
+	height: 100%;
+	width: 100%;
+}
+
+
 
 .EventCardDescriptor
 {

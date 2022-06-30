@@ -69,7 +69,8 @@
 			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"base_attack_time"				"2"
+				"damage_reduction"				"-100"
+				"LinkedSpecialBonus"			"special_bonus_unique_juggernaut_mirror_blades_2"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
@@ -109,6 +110,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value"					"75"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value2"				"100"
 			}
 		}
 	}
@@ -218,7 +224,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"linger"				"2.5"
+				"value2"				"-50"
 			}
 		}
 	}
@@ -320,7 +326,6 @@
 		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_momentum_strike"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName"			"juggernaut_blade_dance"
-		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
 		
@@ -365,12 +370,6 @@
 	            "var_type"              "FIELD_INTEGER"
 	            "maximum_charges"  		"3"
 	        }
-			"06"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "scepter_cdr_on_hit"  	"-1"
-	            "RequiresScepter" 	 	"1"
-	        }
 	    }
 	}
 	"special_bonus_unique_juggernaut_momentum_strike_1" 
@@ -394,6 +393,57 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"cd"					"6"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Juggernaut Omni Slash
+	//=================================================================================================================
+	"juggernaut_hidden_blade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_hidden_blade"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"AbilityTextureName"			"juggernaut_swift_slash"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"1"
+		"IsGrantedByScepter"			"1"
+		"HasScepterUpgrade"				"1"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"550"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"125"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// damage only
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"0.8"
+				"RequiresScepter"				"1"
 			}
 		}
 	}
@@ -428,15 +478,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"350"
 		"AbilityCastPoint"				"0.3 0.3 0.3"
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"100 100 100 80 60 40"
+		"AbilityCooldown"				"140 140 140 105 90 65"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200 275 350 425 500 575"
+		"AbilityManaCost"				"200 275 350 350 350 350"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -455,17 +505,17 @@
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"3.0 3.5 4.0 4.0 4.0 4.0"
+				"duration"						"3.0 3.25 3.5 3.5 3.5 3.5"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"radius"						"425"
+				"radius"						"275"
 			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bounce_rate"					"2.2"
+				"bounce_rate"					"1.6"
 			}
 		}
 	}

@@ -22,13 +22,13 @@
 		"ItemAliases"					"blade mail;penitent mail"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"1"
 		
 		"UpgradesItems"					"item_boots_of_speed;item_boots_of_speed_2;item_boots_of_speed_3;item_boots_of_speed_4;item_boots_of_speed_5;item_boots_of_speed_6;item_boots_of_speed_7;item_boots_of_speed_8;item_boots_of_speed_9"
 		"UpgradeRecipe"					"item_recipe_boots_of_speed_2"
 		
-		"AvailableRuneSlots"			"0"
+		"AvailableRuneSlots"			"2"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -37,12 +37,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"40 50 60 70 80 90 100 110 120"
+				"movespeed"				"40 60 80 100 120"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -92,13 +92,13 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"2"
 		
 		"UpgradesItems"					"item_boots_of_speed;item_boots_of_speed_2;item_boots_of_speed_3;item_boots_of_speed_4;item_boots_of_speed_5;item_boots_of_speed_6;item_boots_of_speed_7;item_boots_of_speed_8;item_boots_of_speed_9"
 		"UpgradeRecipe"					"item_recipe_boots_of_speed_2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -107,12 +107,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"40 50 60 70 80 90 100 110 120"
+				"movespeed"				"40 60 80 100 120"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -163,13 +163,13 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"3"
 		
 		"UpgradesItems"					"item_boots_of_speed;item_boots_of_speed_2;item_boots_of_speed_3;item_boots_of_speed_4;item_boots_of_speed_5;item_boots_of_speed_6;item_boots_of_speed_7;item_boots_of_speed_8;item_boots_of_speed_9"
 		"UpgradeRecipe"					"item_recipe_boots_of_speed_2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -178,12 +178,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"40 50 60 70 80 90 100 110 120"
+				"movespeed"				"40 60 80 100 120"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -234,7 +234,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"4"
 		
 		"UpgradesItems"					"item_boots_of_speed;item_boots_of_speed_2;item_boots_of_speed_3;item_boots_of_speed_4;item_boots_of_speed_5;item_boots_of_speed_6;item_boots_of_speed_7;item_boots_of_speed_8;item_boots_of_speed_9"
@@ -249,12 +249,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"40 50 60 70 80 90 100 110 120"
+				"movespeed"				"40 60 80 100 120"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -305,7 +305,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"5"
 		
 		"UpgradesItems"					"item_boots_of_speed;item_boots_of_speed_2;item_boots_of_speed_3;item_boots_of_speed_4;item_boots_of_speed_5;item_boots_of_speed_6;item_boots_of_speed_7;item_boots_of_speed_8;item_boots_of_speed_9"
@@ -320,12 +320,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"40 50 60 70 80 90 100 110 120"
+				"movespeed"				"40 60 80 100 120"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -343,12 +343,13 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_boots_of_speed_6"
 		"ItemRequirements"
 		{
@@ -368,6 +369,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"taunt;aggro;threat"
@@ -376,7 +378,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"6"
 		
 		"UpgradesItems"					"item_boots_of_speed;item_boots_of_speed_2;item_boots_of_speed_3;item_boots_of_speed_4;item_boots_of_speed_5;item_boots_of_speed_6;item_boots_of_speed_7;item_boots_of_speed_8;item_boots_of_speed_9"
@@ -391,12 +393,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"40 50 60 70 80 90 100 110 120"
+				"movespeed"				"40 60 80 100 120"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -415,6 +417,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -439,6 +442,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"taunt;aggro;threat"
@@ -447,13 +451,13 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"7"
 		
 		"UpgradesItems"					"item_boots_of_speed;item_boots_of_speed_2;item_boots_of_speed_3;item_boots_of_speed_4;item_boots_of_speed_5;item_boots_of_speed_6;item_boots_of_speed_7;item_boots_of_speed_8;item_boots_of_speed_9"
 		"UpgradeRecipe"					"item_recipe_boots_of_speed_2"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -462,12 +466,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"40 50 60 70 80 90 100 110 120"
+				"movespeed"				"40 60 80 100 120"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -486,6 +490,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -510,6 +515,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"taunt;aggro;threat"
@@ -518,13 +524,13 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"8"
 		
 		"UpgradesItems"					"item_boots_of_speed;item_boots_of_speed_2;item_boots_of_speed_3;item_boots_of_speed_4;item_boots_of_speed_5;item_boots_of_speed_6;item_boots_of_speed_7;item_boots_of_speed_8;item_boots_of_speed_9"
 		"UpgradeRecipe"					"item_recipe_boots_of_speed_2"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -533,12 +539,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"40 50 60 70 80 90 100 110 120"
+				"movespeed"				"40 60 80 100 120"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -557,6 +563,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -581,6 +588,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"taunt;aggro;threat"
@@ -589,13 +597,13 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"9"
 		
 		"UpgradesItems"					"item_boots_of_speed;item_boots_of_speed_2;item_boots_of_speed_3;item_boots_of_speed_4;item_boots_of_speed_5;item_boots_of_speed_6;item_boots_of_speed_7;item_boots_of_speed_8;item_boots_of_speed_9"
 		"UpgradeRecipe"					"item_recipe_boots_of_speed_2"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -604,12 +612,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"40 50 60 70 80 90 100 110 120"
+				"movespeed"				"40 60 80 100 120"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}

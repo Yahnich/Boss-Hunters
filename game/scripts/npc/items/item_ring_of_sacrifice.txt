@@ -5,7 +5,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2346"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ring_of_sacrifice"
 		"AbilityTextureName"			"soul_ring/ring_of_sacrifice_1"
@@ -19,18 +19,16 @@
 		"ItemAliases"					"soul_ring;ring_of_sacrifice"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 				
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"1"
 		
-		"AvailableRuneSlots"			"0"
+		"AvailableRuneSlots"			"2"
 		
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"AbilityCooldown"				"25 22 19 16 13 10 7 4 1"
-		"AbilitySharedCooldown"			"ringofsacrifice"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -39,27 +37,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"health_loss"			"180"
+				"health_loss"			"7 10 14 25 180"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"25 22 19 16 13 10 7 4 1"
+				"mana_gain"				"8 11 16 29 200"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -77,7 +65,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"690"
+		"ItemCost"						"1600"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -94,7 +82,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2348"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ring_of_sacrifice"
 		"AbilityTextureName"			"soul_ring/ring_of_sacrifice_2"
@@ -108,18 +96,16 @@
 		"ItemAliases"					"soul ring"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"AbilityCooldown"				"25 22 19 16 13 10 7 4 1"
-		"AbilitySharedCooldown"			"ringofsacrifice"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -128,27 +114,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"health_loss"			"180"
+				"health_loss"			"7 10 14 25 180"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"25 22 19 16 13 10 7 4 1"
+				"mana_gain"				"8 11 16 29 200"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -184,7 +160,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2350"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ring_of_sacrifice"
 		"AbilityTextureName"			"soul_ring/ring_of_sacrifice_3"
@@ -199,18 +175,16 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"3"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 	
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"AbilityCooldown"				"25 22 19 16 13 10 7 4 1"
-		"AbilitySharedCooldown"			"ringofsacrifice"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -219,27 +193,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"health_loss"			"180"
+				"health_loss"			"7 10 14 25 180"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"25 22 19 16 13 10 7 4 1"
+				"mana_gain"				"8 11 16 29 200"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -275,7 +239,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2352"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ring_of_sacrifice"
 		"AbilityTextureName"			"soul_ring/ring_of_sacrifice_4"
@@ -290,7 +254,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"4"
 		
 		"AvailableRuneSlots"			"2"
@@ -299,8 +263,6 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"AbilityCooldown"				"25 22 19 16 13 10 7 4 1"
-		"AbilitySharedCooldown"			"ringofsacrifice"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -309,27 +271,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"health_loss"			"180"
+				"health_loss"			"7 10 14 25 180"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"25 22 19 16 13 10 7 4 1"
+				"mana_gain"				"8 11 16 29 200"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -365,7 +317,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2354"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ring_of_sacrifice"
 		"AbilityTextureName"			"soul_ring/ring_of_sacrifice_5"
@@ -379,7 +331,7 @@
 		"ItemAliases"					"soul ring"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"5"
 		
 		"AvailableRuneSlots"			"2"
@@ -389,8 +341,6 @@
 		}
 		
 	
-		"AbilityCooldown"				"25 22 19 16 13 10 7 4 1"
-		"AbilitySharedCooldown"			"ringofsacrifice"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -399,27 +349,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"health_loss"			"180"
+				"health_loss"			"7 10 14 25 180"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"25 22 19 16 13 10 7 4 1"
+				"mana_gain"				"8 11 16 29 200"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -437,12 +377,13 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_ring_of_sacrifice_6"
 		"ItemRequirements"
 		{
@@ -455,13 +396,14 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2356"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ring_of_sacrifice"
 		"AbilityTextureName"			"soul_ring/ring_of_sacrifice_6"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"mana"
@@ -469,7 +411,7 @@
 		"ItemAliases"					"soul ring"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"6"
 		
 		"AvailableRuneSlots"			"2"
@@ -479,8 +421,6 @@
 		}
 		
 	
-		"AbilityCooldown"				"25 22 19 16 13 10 7 4 1"
-		"AbilitySharedCooldown"			"ringofsacrifice"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -489,27 +429,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"health_loss"			"180"
+				"health_loss"			"7 10 14 25 180"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"25 22 19 16 13 10 7 4 1"
+				"mana_gain"				"8 11 16 29 200"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -528,6 +458,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -545,13 +476,14 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2358"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ring_of_sacrifice"
 		"AbilityTextureName"			"soul_ring/ring_of_sacrifice_7"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"mana"
@@ -559,18 +491,16 @@
 		"ItemAliases"					"soul ring"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"7"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
 	
-		"AbilityCooldown"				"25 22 19 16 13 10 7 4 1"
-		"AbilitySharedCooldown"			"ringofsacrifice"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -579,27 +509,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"health_loss"			"180"
+				"health_loss"			"7 10 14 25 180"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"25 22 19 16 13 10 7 4 1"
+				"mana_gain"				"8 11 16 29 200"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -618,6 +538,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -635,13 +556,14 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2360"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ring_of_sacrifice"
 		"AbilityTextureName"			"soul_ring/ring_of_sacrifice_8"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"mana"
@@ -649,17 +571,15 @@
 		"ItemAliases"					"soul ring"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"8"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"AbilityCooldown"				"25 22 19 16 13 10 7 4 1"
-		"AbilitySharedCooldown"			"ringofsacrifice"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -668,27 +588,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"health_loss"			"180"
+				"health_loss"			"7 10 14 25 180"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"25 22 19 16 13 10 7 4 1"
+				"mana_gain"				"8 11 16 29 200"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -707,6 +617,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -724,13 +635,14 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2362"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ring_of_sacrifice"
 		"AbilityTextureName"			"soul_ring/ring_of_sacrifice_9"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"mana"
@@ -738,17 +650,15 @@
 		"ItemAliases"					"soul ring"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"9"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"AbilityCooldown"				"25 22 19 16 13 10 7 4 1"
-		"AbilitySharedCooldown"			"ringofsacrifice"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -757,27 +667,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"health_loss"			"180"
+				"health_loss"			"7 10 14 25 180"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_gain"				"200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"25 22 19 16 13 10 7 4 1"
+				"mana_gain"				"8 11 16 29 200"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}

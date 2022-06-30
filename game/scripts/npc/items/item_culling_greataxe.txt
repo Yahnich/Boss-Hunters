@@ -30,13 +30,13 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"1"
 		
 		"UpgradesItems"					"item_culling_greataxe;item_culling_greataxe_2;item_culling_greataxe_3;item_culling_greataxe_4;item_culling_greataxe_5;item_culling_greataxe_6;item_culling_greataxe_7;item_culling_greataxe_8;item_culling_greataxe_9"
 		"UpgradeRecipe"					"item_recipe_culling_greataxe_2"
 		
-		"AvailableRuneSlots"			"0"
+		"AvailableRuneSlots"			"2"
 	
 		"AbilityCooldown"				"0"
 		
@@ -47,7 +47,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"25 35 40 45 50 55 60 65 70"
+				"splash_damage"			"25 35 45 55 70"
 			}
 			"02"
 			{
@@ -57,7 +57,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -75,7 +75,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"965"	
+		"ItemCost"						"1900"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -117,13 +117,13 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"2"
 		
 		"UpgradesItems"					"item_culling_greataxe;item_culling_greataxe_2;item_culling_greataxe_3;item_culling_greataxe_4;item_culling_greataxe_5;item_culling_greataxe_6;item_culling_greataxe_7;item_culling_greataxe_8;item_culling_greataxe_9"
 		"UpgradeRecipe"					"item_recipe_culling_greataxe_2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 	
 		"AbilityCooldown"				"0"
 		
@@ -134,7 +134,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"25 35 40 45 50 55 60 65 70"
+				"splash_damage"			"25 35 45 55 70"
 			}
 			"02"
 			{
@@ -144,7 +144,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -204,13 +204,13 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"3"
 		
 		"UpgradesItems"					"item_culling_greataxe;item_culling_greataxe_2;item_culling_greataxe_3;item_culling_greataxe_4;item_culling_greataxe_5;item_culling_greataxe_6;item_culling_greataxe_7;item_culling_greataxe_8;item_culling_greataxe_9"
 		"UpgradeRecipe"					"item_recipe_culling_greataxe_2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 	
 		"AbilityCooldown"				"0"
 		
@@ -221,7 +221,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"25 35 40 45 50 55 60 65 70"
+				"splash_damage"			"25 35 45 55 70"
 			}
 			"02"
 			{
@@ -231,7 +231,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -291,7 +291,7 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"4"
 		
 		"UpgradesItems"					"item_culling_greataxe;item_culling_greataxe_2;item_culling_greataxe_3;item_culling_greataxe_4;item_culling_greataxe_5;item_culling_greataxe_6;item_culling_greataxe_7;item_culling_greataxe_8;item_culling_greataxe_9"
@@ -308,7 +308,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"25 35 40 45 50 55 60 65 70"
+				"splash_damage"			"25 35 45 55 70"
 			}
 			"02"
 			{
@@ -318,7 +318,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -378,7 +378,7 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"5"
 		
 		"UpgradesItems"					"item_culling_greataxe;item_culling_greataxe_2;item_culling_greataxe_3;item_culling_greataxe_4;item_culling_greataxe_5;item_culling_greataxe_6;item_culling_greataxe_7;item_culling_greataxe_8;item_culling_greataxe_9"
@@ -395,7 +395,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"25 35 40 45 50 55 60 65 70"
+				"splash_damage"			"25 35 45 55 70"
 			}
 			"02"
 			{
@@ -405,7 +405,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -423,12 +423,13 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_culling_greataxe_6"
 		"ItemRequirements"
 		{
@@ -451,6 +452,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"425"
 		"ItemShopTags"					"damage"
@@ -465,7 +467,7 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"6"
 		
 		"UpgradesItems"					"item_culling_greataxe;item_culling_greataxe_2;item_culling_greataxe_3;item_culling_greataxe_4;item_culling_greataxe_5;item_culling_greataxe_6;item_culling_greataxe_7;item_culling_greataxe_8;item_culling_greataxe_9"
@@ -482,7 +484,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"25 35 40 45 50 55 60 65 70"
+				"splash_damage"			"25 35 45 55 70"
 			}
 			"02"
 			{
@@ -492,7 +494,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -511,6 +513,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -538,6 +541,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"425"
 		"ItemShopTags"					"damage"
@@ -552,13 +556,13 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"7"
 		
 		"UpgradesItems"					"item_culling_greataxe;item_culling_greataxe_2;item_culling_greataxe_3;item_culling_greataxe_4;item_culling_greataxe_5;item_culling_greataxe_6;item_culling_greataxe_7;item_culling_greataxe_8;item_culling_greataxe_9"
 		"UpgradeRecipe"					"item_recipe_culling_greataxe_2"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		"AbilityCooldown"				"0"
 		
@@ -569,7 +573,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"25 35 40 45 50 55 60 65 70"
+				"splash_damage"			"25 35 45 55 70"
 			}
 			"02"
 			{
@@ -579,7 +583,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -598,6 +602,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -625,6 +630,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"425"
 		"ItemShopTags"					"damage"
@@ -639,13 +645,13 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"8"
 		
 		"UpgradesItems"					"item_culling_greataxe;item_culling_greataxe_2;item_culling_greataxe_3;item_culling_greataxe_4;item_culling_greataxe_5;item_culling_greataxe_6;item_culling_greataxe_7;item_culling_greataxe_8;item_culling_greataxe_9"
 		"UpgradeRecipe"					"item_recipe_culling_greataxe_2"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		"AbilityCooldown"				"0"
 		
@@ -656,7 +662,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"25 35 40 45 50 55 60 65 70"
+				"splash_damage"			"25 35 45 55 70"
 			}
 			"02"
 			{
@@ -666,7 +672,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -685,6 +691,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -712,6 +719,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"425"
 		"ItemShopTags"					"damage"
@@ -726,13 +734,13 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"9"
 		
 		"UpgradesItems"					"item_culling_greataxe;item_culling_greataxe_2;item_culling_greataxe_3;item_culling_greataxe_4;item_culling_greataxe_5;item_culling_greataxe_6;item_culling_greataxe_7;item_culling_greataxe_8;item_culling_greataxe_9"
 		"UpgradeRecipe"					"item_recipe_culling_greataxe_2"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		"AbilityCooldown"				"0"
 		
@@ -743,7 +751,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"25 35 40 45 50 55 60 65 70"
+				"splash_damage"			"25 35 45 55 70"
 			}
 			"02"
 			{
@@ -753,7 +761,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}

@@ -72,7 +72,6 @@ function modifier_boss_aeon_distortion_field_aura:OnIntervalThink()
 			if cd > 0 then
 				ability:EndCooldown()
 				ability:StartCooldown(cd - (0.1 * (self.cdr/100)))
-				print( cd, ability:GetCooldownTimeRemaining() )
 			end
         end
     end

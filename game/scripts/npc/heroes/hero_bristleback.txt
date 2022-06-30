@@ -36,7 +36,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"5"
+		"AbilityCooldown"				"1.75"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -54,45 +54,44 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"goo_duration"			"10.0"
+				"goo_duration"			"5.0"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_armor"			"-2 -2 -2 -2 -3 -4 -5"
+				"minion_duration"		"10.0"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"armor_per_stack"		"-1.4 -1.9 -2.4 -2.9 -2.9 -2.9 -2.9"
+				"base_armor"			"-2 -2 -2 -2 -3 -4 -5"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"base_move_slow"		"-20 -20 -20 -20 -25 -30 -35"
+				"var_type"				"FIELD_FLOAT"
+				"armor_per_stack"		"-1.5 -2.0 -2.5 -3.0 -3.0 -3.0 -3.0"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"move_slow_per_stack"	"-3 -6 -9 -12 -12 -12 -12"
+				"base_move_slow"		"-15 -15 -15 -15 -20 -25 -30"
 			}
 			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"move_slow_per_stack"	"-3 -6 -9 -12 -12 -12 -12"
+			}
+			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"stack_limit"			"4"
 				"LinkedSpecialBonus"	"special_bonus_unique_bristleback_snot_1"
 			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_radius"		"750"
-				"RequiresScepter"		"1"
-			}
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"attackspeed_loss"		"0"
-				"LinkedSpecialBonus"	"special_bonus_unique_bristleback_snot_2"
+				"scepter_radius"		"800"
+				"RequiresScepter"		"1"
 			}
 		}
 	
@@ -165,8 +164,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_bristleback_quills_1"	"1"
 			"special_bonus_unique_bristleback_quills_2"	"1"
+			"special_bonus_unique_bristleback_quills_3"	"1"
 		}
 	
 		// Casting
@@ -175,7 +174,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"4.0"
+		"AbilityCooldown"				"3.0 3.0 3.0 3.0 2.8 2.6 2.4"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -188,23 +187,22 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"quill_base_damage"			"100 140 180 220 260 300 340"
-				"LinkedSpecialBonus"		"special_bonus_unique_bristleback_quills_2"
+				"quill_base_damage"			"25 45 65 85 110 125 160"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"cdr_per_stack"				"0.1"
+				"quill_stack_damage"		"28 30 32 34 34 34 34"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"quill_stack_duration"		"10.0"
+				"quill_stack_duration"		"14.0"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"quill_max_stacks"			"25"
+				"quill_max_dmg"				"550"
 			}
 			"05"
 			{
@@ -265,8 +263,40 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"60"
+				"var_type"					"FIELD_FLOAT"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_bristleback_quills_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"500"
+			}
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"minion_dmg"				"25"
+			}
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"minion_radius"				"350"
 			}
 		}
 	}
@@ -306,12 +336,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"attackspeed_increase"	"100 100 100 100 150 200 250"
+				"attackspeed_increase"	"100"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"-50 -50 -50 -50 -60 -70 -80"
+				"damage_reduction"		"-60 -60 -60 -60 -65 -70 -75"
 			}
 		}
 	}
@@ -368,6 +398,7 @@
 		"AbilityTextureName"			"bristleback_bristleback"
 	
 		"InnateAbility"					"1"
+		"AbilityCooldown"				"0.25"
 	
 	
 		// Special
@@ -376,14 +407,27 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"chance"				"20"
+				"var_type"					"FIELD_INTEGER"
+				"back_damage_reduction"		"40"
+				"LinkedSpecialBonus"		"special_bonus_unique_bristleback_spiky_shell"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"25"
-				"LinkedSpecialBonus"	"special_bonus_unique_bristleback_spiky_shell"
+				"var_type"					"FIELD_INTEGER"
+				"side_damage_reduction"		"20"
+				"LinkedSpecialBonus"		"special_bonus_unique_bristleback_spiky_shell"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"back_chance"				"40"
+				"LinkedSpecialBonus"		"special_bonus_unique_bristleback_spiky_shell"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"side_chance"				"20"
+				"LinkedSpecialBonus"		"special_bonus_unique_bristleback_spiky_shell"
 			}
 		}
 	
@@ -459,7 +503,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"14"
+				"duration"				"14 14 16 16 18 18"
 			}
 		}
 	

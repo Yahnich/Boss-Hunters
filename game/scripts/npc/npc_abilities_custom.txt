@@ -202,6 +202,7 @@
 #base "heroes/hero_mars.txt"
 #base "heroes/hero_void_spirit.txt"
 #base "heroes/hero_snapfire.txt"
+#base "heroes/hero_hoodwink.txt"
 
 "DOTAAbilities"
 {
@@ -346,6 +347,11 @@
 				"var_type"				"FIELD_INTEGER"
 				"distance_scepter"		"1800"
 			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"40 60"
+			}
 		}
 	}
 	"boss_proximity"
@@ -389,7 +395,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"600 800"
+				"damage"					"500 750"
 			}
 			"04"
 			{
@@ -675,32 +681,41 @@
 			}
 		}
 	}
-	"boss_suicide"
+	"boss_techies_suicide"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"techies_suicide"			
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_techies/boss_techies_suicide.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"   
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
-		"MaxLevel"						"2"
-	
-	
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"techies_suicide"
+		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_tech_blasting_off_1"	"1"
+			"special_bonus_unique_tech_blasting_off_2"	"1"
+		}
+		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"400 600"
-		"AbilityCastPoint"				"1.5 1.0"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"1.0"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
+		"AbilityCooldown"				"35"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0 0 0 0"
+		"AbilityManaCost"				"0"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -709,28 +724,28 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"250 300"
+				"damage"					"400 600"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"600 800"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"0.75"
 			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"silence_duration"			"6"
-			} 
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"hp_cost"					"100"
-			} 
+				"radius"					"400"
+			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"0.8 0.75"
+				"silence_duration"			"5 6"
 			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"jump_duration"				"0.85 0.75"
+			} 			
 		}
 	}
 	//-------------------

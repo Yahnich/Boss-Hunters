@@ -107,7 +107,7 @@
 			"03"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "radius"             	"350"  //The meteor lands on the ground this many seconds after it was cast.
+	            "radius"             	"325"  //The meteor lands on the ground this many seconds after it was cast.
 	        }
 			"04"
 	        {

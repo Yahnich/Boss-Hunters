@@ -117,7 +117,7 @@ local function StartEvent(self)
 			end
 		end
 	end)
-	self.waitTimer = self:StartEventTimer( 15, timerFunc )
+	self.waitTimer = self:StartEventTimer( 45, timerFunc )
 	
 	self._playerChoices = {}
 	LinkLuaModifier("event_buff_ruined_cathedral", "events/modifiers/event_buff_ruined_cathedral", LUA_MODIFIER_MOTION_NONE)

@@ -21,7 +21,7 @@
 		"ItemAliases"					"linkens sphere;protection_sphere"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"AvailableRuneSlots"			"0"
+		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"16"
 		"AbilitySharedCooldown"			"protectionsphere"
 		
@@ -32,7 +32,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 15 14 13 12 11 10 9 8"
+				"cooldown"				"16 14 12 10 8"
 			}
 			"02"
 			{
@@ -42,7 +42,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -60,7 +60,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"900"
+		"ItemCost"						"1800"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -94,11 +94,11 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"2"
 		
-		"AvailableRuneSlots"			"1"
-		"AbilityCooldown"				"15"
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"14"
 		"AbilitySharedCooldown"			"protectionsphere"
 		
 		// Special	
@@ -108,7 +108,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 15 14 13 12 11 10 9 8"
+				"cooldown"				"16 14 12 10 8"
 			}
 			"02"
 			{
@@ -118,7 +118,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -171,11 +171,11 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"3"
 		
-		"AvailableRuneSlots"			"1"
-		"AbilityCooldown"				"14"
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"12"
 		"AbilitySharedCooldown"			"protectionsphere"
 		
 		// Special	
@@ -185,7 +185,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 15 14 13 12 11 10 9 8"
+				"cooldown"				"16 14 12 10 8"
 			}
 			"02"
 			{
@@ -195,7 +195,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -248,11 +248,11 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"4"
 		
 		"AvailableRuneSlots"			"2"
-		"AbilityCooldown"				"13"
+		"AbilityCooldown"				"10"
 		"AbilitySharedCooldown"			"protectionsphere"
 		
 		// Special	
@@ -262,7 +262,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 15 14 13 12 11 10 9 8"
+				"cooldown"				"16 14 12 10 8"
 			}
 			"02"
 			{
@@ -272,7 +272,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -325,11 +325,11 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"5"
 		
 		"AvailableRuneSlots"			"2"
-		"AbilityCooldown"				"12"
+		"AbilityCooldown"				"8"
 		"AbilitySharedCooldown"			"protectionsphere"
 		
 		// Special	
@@ -339,7 +339,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 15 14 13 12 11 10 9 8"
+				"cooldown"				"16 14 12 10 8"
 			}
 			"02"
 			{
@@ -349,7 +349,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -367,12 +367,13 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_protection_sphere_6"
 		"ItemRequirements"
 		{
@@ -394,6 +395,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"spellblock"
@@ -402,7 +404,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"6"
 		
 		"AvailableRuneSlots"			"2"
@@ -416,7 +418,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 15 14 13 12 11 10 9 8"
+				"cooldown"				"16 14 12 10 8"
 			}
 			"02"
 			{
@@ -426,7 +428,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -445,6 +447,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -471,6 +474,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"spellblock"
@@ -479,10 +483,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"7"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"10"
 		"AbilitySharedCooldown"			"protectionsphere"
 		
@@ -493,7 +497,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 15 14 13 12 11 10 9 8"
+				"cooldown"				"16 14 12 10 8"
 			}
 			"02"
 			{
@@ -503,7 +507,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -522,6 +526,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -547,6 +552,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"spellblock"
@@ -555,10 +561,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"8"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"9"
 		"AbilitySharedCooldown"			"protectionsphere"
 		
@@ -569,7 +575,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 15 14 13 12 11 10 9 8"
+				"cooldown"				"16 14 12 10 8"
 			}
 			"02"
 			{
@@ -579,7 +585,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -598,6 +604,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -624,6 +631,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"spellblock"
@@ -631,10 +639,10 @@
 		"ItemAliases"					"linkens"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"9"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"8"
 		"AbilitySharedCooldown"			"protectionsphere"
 		
@@ -645,7 +653,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 15 14 13 12 11 10 9 8"
+				"cooldown"				"16 14 12 10 8"
 			}
 			"02"
 			{
@@ -655,7 +663,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}

@@ -149,7 +149,7 @@ function mars_spear_lua:LaunchSpear( origin, direction, secondary )
 					target:ApplyKnockBack(position, self.knockback_duration, self.knockback_duration, self.knockback_distance, 0, caster, ability, false)
 				end
 				if caster:HasTalent("special_bonus_unique_mars_spear_lua_2") then
-					local stunDuration = TernaryOperator( caster:FindTalentValue("special_bonus_unique_mars_spear_lua_2"), target:IsMinion(), caster:FindTalentValue("special_bonus_unique_mars_spear_lua_2", "value2")
+					local stunDuration = TernaryOperator( caster:FindTalentValue("special_bonus_unique_mars_spear_lua_2"), target:IsMinion(), caster:FindTalentValue("special_bonus_unique_mars_spear_lua_2", "value2") )
 					Timers:CreateTimer(self.knockback_duration, function()
 						self:Stun(target, stunDuration, false)
 					end)

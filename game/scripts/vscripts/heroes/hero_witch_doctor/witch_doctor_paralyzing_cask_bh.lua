@@ -77,7 +77,7 @@ function witch_doctor_paralyzing_cask_bh:OnProjectileHit_ExtraData(target, vLoca
 		self:DealDamage( caster, target, self:GetTalentSpecialValueFor("damage") )
 	elseif target:IsSameTeam(caster) and extraData.mirror == "1" then
 		target:HealEvent(self:GetTalentSpecialValueFor("heal"), self, caster)
-		target:Dispel( caster, caster:HasTalent("special_bonus_unique_witch_doctor_paralyzing_cask_2") )
+		target:Dispel( caster, false )
 	end
 	local effectFX = "particles/units/heroes/hero_witchdoctor/witchdoctor_cask.vpcf"
 	if extraData.mirror == "1" then

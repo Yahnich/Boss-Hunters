@@ -19,7 +19,7 @@
 		"ItemStackable"					"1"
 		"ItemInitialCharges"			"1"
 		"ItemDisplayCharges"			"1"
-		"ItemCost"						"600"
+		"ItemCost"						"900"
 		
 		"MaxUpgradeLevel"				"4"
 		"ItemBaseLevel"					"1"
@@ -39,7 +39,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"8 6 4 3"
+				"bonus_strength"		"10 6 4 3"
 			}
 		}
 	}

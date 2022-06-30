@@ -44,12 +44,13 @@ function bristleback_snot:OnSpellStart()
 	
 end
 
-function bristleback_snot:FireSnot(target)
+function bristleback_snot:FireSnot(target, hSource)
 	local caster = self:GetCaster()	
+	local source = hSource or caster
 	local info = 
 	{
 		Target = target,
-		Source = caster,
+		Source = source,
 		Ability = self,	
 		EffectName = "particles/units/heroes/hero_bristleback/bristleback_viscous_nasal_goo.vpcf",
 	    iMoveSpeed = self:GetTalentSpecialValueFor("goo_speed"),
@@ -69,8 +70,9 @@ end
 
 function bristleback_snot:OnProjectileHit(hTarget, vLocation)
 	if hTarget ~= nil and hTarget:IsAlive() and not hTarget:TriggerSpellAbsorb( self ) then
+		local duration = TernaryOperator( self:GetTalentSpecialValueFor("minion_duration"), hTarget:IsMinion(), self:GetTalentSpecialValueFor("goo_duration") )
 		EmitSoundOn("Hero_Bristleback.ViscousGoo.Target", hTarget)
-		local snot = hTarget:AddNewModifier(self:GetCaster(), self, "modifier_snot", {Duration = self:GetTalentSpecialValueFor("goo_duration")})
+		local snot = hTarget:AddNewModifier(self:GetCaster(), self, "modifier_snot", {Duration = duration})
 		if snot then
 			local stacks = math.min( self:GetTalentSpecialValueFor("stack_limit"), snot:GetStackCount() + 1 )
 		end

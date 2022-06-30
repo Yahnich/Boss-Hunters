@@ -20,29 +20,62 @@ function modifier_sniper_headshot_bh:OnRefresh()
 	self.talent1 = caster:HasTalent("special_bonus_unique_sniper_headshot_bh_1")
 	self.talent1Dmg = self.damage * caster:FindTalentValue("special_bonus_unique_sniper_headshot_bh_1", "damage") / 100
 	self.talent1Radius = caster:FindTalentValue("special_bonus_unique_sniper_headshot_bh_1", "radius")
+	
+	self.recordsProc = {}
 end
 
 function modifier_sniper_headshot_bh:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
 	return funcs
 end
 
-function modifier_sniper_headshot_bh:OnAttackLanded(params)
-	if IsServer() then
+function modifier_sniper_headshot_bh:OnAttackLanded( params )
+	if IsServer() and params.attacker == self:GetParent() and self.recordsProc[params.record] then
 		local caster = params.attacker
 		local target = params.target
-		if caster == self:GetCaster() and caster:RollPRNG(self.chance ) then
-			local ability = self:GetAbility()
-			if self.talent1 then
-				for _, enemy in ipairs( caster:FindEnemyUnitsInCone(CalculateDirection(target, caster), target:GetAbsOrigin(), self.talent1Radius/2, self.talent1Radius ) ) do
-					ability:DealDamage( caster, enemy, self.talent1Dmg )
-				end
+		local ability = self:GetAbility()
+		if self.talent1 then
+			for _, enemy in ipairs( caster:FindEnemyUnitsInCone(CalculateDirection(target, caster), target:GetAbsOrigin(), self.talent1Radius/2, self.talent1Radius ) ) do
+				ability:DealDamage( caster, enemy, self.talent1Dmg )
 			end
+		end
+		for i = 1, self.recordsProc[params.record] do
+			EmitSoundOn( "Hero_Sniper.MKG_impact", target )
+		end
+		target:AddNewModifier(caster, self:GetAbility(), "modifier_sniper_headshot_bh_slow", {Duration = self.duration})
+		
+		
+		self.recordsProc[params.record] = nil
+	end
+end
 
-			target:AddNewModifier(caster, self:GetAbility(), "modifier_sniper_headshot_bh_slow", {Duration = self.duration})
-			ability:DealDamage(caster, target, self.damage)
+function modifier_sniper_headshot_bh:GetModifierPreAttack_BonusDamage(params)
+	if IsServer() and params.attacker and params.target then
+		local caster = params.attacker
+		local target = params.target
+		
+		local chance = self:GetTalentSpecialValueFor("chance")
+		local damage = self.damage
+		local duration = self.duration
+		local power = 0
+		if chance >= 100 then
+			power = 1
+			chance = chance - 100
+			if chance > 0 and caster:RollPRNG( chance ) then
+				damage = damage + self.damage
+				duration = duration + self.duration
+				power = 2
+			end
+		elseif caster:RollPRNG( chance ) then
+			power = 1
+		end
+		
+		if caster == self:GetCaster() and power > 0 then
+			self.recordsProc[params.record] = power
+			return self.damage
 
 			-- if caster:RollPRNG( self:GetTalentSpecialValueFor("assassinate_chance")) and not caster:HasModifier("modifier_sniper_rapid_fire") then
 				-- local assassinate = caster:FindAbilityByName("sniper_assassinate_bh")

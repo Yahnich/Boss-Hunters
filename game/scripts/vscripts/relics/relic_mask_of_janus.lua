@@ -8,12 +8,10 @@ if IsServer() then
 		local relicList = {}
 		for item, relic in pairs( hero.ownedRelics ) do
 			if relic.name and relic.name ~= "relic_mask_of_janus" then	
-				print("added")
 				table.insert(relicList, relic.name)
 			end
 		end
 		local relicName = relicList[RandomInt(1, #relicList)]
-		print(relicName, "got selected" )
 		RelicManager:RemoveRelicOnPlayer(relicName, pID)
 		hero:AddRelic( RelicManager:RollRandomRelicForPlayer(pID).name )
 	end

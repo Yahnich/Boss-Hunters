@@ -19,11 +19,11 @@
 		"ItemAliases"					"radiance;fortress_shield"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"AbilityCooldown"				"16 16 16 16 16 16 14 12 10"
+		"AbilityCooldown"				"18 16 14 12 8"
 		"AbilitySharedCooldown"			"shield"
 		"AbilityManaCost"				"50"
 		
-		"AvailableRuneSlots"			"0"
+		"AvailableRuneSlots"			"2"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -32,22 +32,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"80"
+				"damage_reduction"		"60 70 80 90 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_armor"			"4 6 8 10 12 13 14 15 16"
+				"linger_duration"		"0.35 0.35 0.5 0.5 0.9"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 16 16 16 16 16 14 12 10"
+				"cooldown"				"18 16 14 12 8"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -96,14 +96,14 @@
 		"ItemAliases"					"blade mail;penitent mail"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"2"
 		
-		"AbilityCooldown"				"16 16 16 16 16 16 14 12 10"
+		"AbilityCooldown"				"18 16 14 12 8"
 		"AbilitySharedCooldown"			"shield"
 		"AbilityManaCost"				"50"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -111,22 +111,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"80"
+				"damage_reduction"		"60 70 80 90 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_armor"			"4 6 8 10 12 13 14 15 16"
+				"linger_duration"		"0.35 0.35 0.5 0.5 0.9"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 16 16 16 16 16 14 12 10"
+				"cooldown"				"18 16 14 12 8"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -177,17 +177,17 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"3"
 		
 		"UpgradesItems"					"item_fortress_shield;item_fortress_shield_2;item_fortress_shield_3;item_fortress_shield_4;item_fortress_shield_5;item_fortress_shield_6;item_fortress_shield_7;item_fortress_shield_8;item_fortress_shield_9"
 		"UpgradeRecipe"					"item_recipe_fortress_shield_2"
 		
-		"AbilityCooldown"				"16 16 16 16 16 16 14 12 10"
+		"AbilityCooldown"				"18 16 14 12 8"
 		"AbilitySharedCooldown"			"shield"
 		"AbilityManaCost"				"50"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -195,22 +195,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"80"
+				"damage_reduction"		"60 70 80 90 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_armor"			"4 6 8 10 12 13 14 15 16"
+				"linger_duration"		"0.35 0.35 0.5 0.5 0.9"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 16 16 16 16 16 14 12 10"
+				"cooldown"				"18 16 14 12 8"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -261,10 +261,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"4"
 		
-		"AbilityCooldown"				"16 16 16 16 16 16 14 12 10"
+		"AbilityCooldown"				"18 16 14 12 8"
 		"AbilitySharedCooldown"			"shield"
 		"AbilityManaCost"				"50"
 		
@@ -276,22 +276,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"80"
+				"damage_reduction"		"60 70 80 90 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_armor"			"4 6 8 10 12 13 14 15 16"
+				"linger_duration"		"0.35 0.35 0.5 0.5 0.9"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 16 16 16 16 16 14 12 10"
+				"cooldown"				"18 16 14 12 8"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -342,10 +342,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"5"
 		
-		"AbilityCooldown"				"16 16 16 16 16 16 14 12 10"
+		"AbilityCooldown"				"18 16 14 12 8"
 		"AbilitySharedCooldown"			"shield"
 		"AbilityManaCost"				"50"
 		
@@ -357,22 +357,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"80"
+				"damage_reduction"		"60 70 80 90 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_armor"			"4 6 8 10 12 13 14 15 16"
+				"linger_duration"		"0.35 0.35 0.5 0.5 0.9"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 16 16 16 16 16 14 12 10"
+				"cooldown"				"18 16 14 12 8"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -390,12 +390,13 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_fortress_shield_6"
 		"ItemRequirements"
 		{
@@ -415,6 +416,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"taunt;aggro;threat"
@@ -423,10 +425,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"6"
 		
-		"AbilityCooldown"				"16 16 16 16 16 16 14 12 10"
+		"AbilityCooldown"				"18 16 14 12 8"
 		"AbilitySharedCooldown"			"shield"
 		"AbilityManaCost"				"50"
 		
@@ -438,22 +440,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"80"
+				"damage_reduction"		"60 70 80 90 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_armor"			"4 6 8 10 12 13 14 15 16"
+				"linger_duration"		"0.5"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 16 16 16 16 16 14 12 10"
+				"cooldown"				"18 16 14 12 8"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -472,6 +474,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -496,6 +499,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"taunt;aggro;threat"
@@ -504,14 +508,14 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"7"
 		
-		"AbilityCooldown"				"16 16 16 16 16 16 14 12 10"
+		"AbilityCooldown"				"18 16 14 12 8"
 		"AbilitySharedCooldown"			"shield"
 		"AbilityManaCost"				"50"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -519,22 +523,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"80"
+				"damage_reduction"		"60 70 80 90 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_armor"			"4 6 8 10 12 13 14 15 16"
+				"linger_duration"		"0.5"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 16 16 16 16 16 14 12 10"
+				"cooldown"				"18 16 14 12 8"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -553,6 +557,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -576,6 +581,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"taunt;aggro;threat"
@@ -584,14 +590,14 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"8"
 		
-		"AbilityCooldown"				"16 16 16 16 16 16 14 12 10"
+		"AbilityCooldown"				"18 16 14 12 8"
 		"AbilitySharedCooldown"			"shield"
 		"AbilityManaCost"				"50"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -599,22 +605,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"80"
+				"damage_reduction"		"60 70 80 90 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_armor"			"4 6 8 10 12 13 14 15 16"
+				"linger_duration"		"0.5"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 16 16 16 16 16 14 12 10"
+				"cooldown"				"18 16 14 12 8"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -633,6 +639,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -657,6 +664,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"taunt;aggro;threat"
@@ -665,14 +673,14 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"9"
 		
-		"AbilityCooldown"				"16 16 16 16 16 16 14 12 10"
+		"AbilityCooldown"				"18 16 14 12 8"
 		"AbilitySharedCooldown"			"shield"
 		"AbilityManaCost"				"50"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -680,22 +688,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"80"
+				"damage_reduction"		"60 70 80 90 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_armor"			"4 6 8 10 12 13 14 15 16"
+				"linger_duration"		"0.9"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16 16 16 16 16 16 14 12 10"
+				"cooldown"				"18 16 14 12 8"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}

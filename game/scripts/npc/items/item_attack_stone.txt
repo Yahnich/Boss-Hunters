@@ -19,7 +19,7 @@
 		"ItemStackable"					"1"
 		"ItemInitialCharges"			"1"
 		"ItemDisplayCharges"			"1"
-		"ItemCost"						"550"
+		"ItemCost"						"975"
 		
 		"MaxUpgradeLevel"				"4"
 		"ItemBaseLevel"					"1"
@@ -39,7 +39,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"attack_damage"			"24 20 16 12"
+				"attack_damage"			"28 21 15 9"
 			}
 		}
 	}

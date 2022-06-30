@@ -165,11 +165,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"18 16 14 12 10 8 6"
+		"AbilityCooldown"				"14 13 12 11 11 11 11"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75 100 125 150 175 200 225"
+		"AbilityManaCost"				"75 100 125 150 150 150 150"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -182,42 +182,36 @@
 		{
 			"01"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"100 155 210 265 320 375 430"
+				"var_type"						"FIELD_FLOAT"
+				"damage"						"100 170 240 310 380 450 520"
 				"LinkedSpecialBonus"			"special_bonus_unique_huskar_fire_within_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"radius"						"500"
 				"LinkedSpecialBonus"			"special_bonus_unique_huskar_fire_within_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"disarm_duration"				"4"
+				"disarm_duration"				"3.25 3.25 3.25 3.25 4.0 4.75 5.5"
 			}
 			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bonus_damage"					"10 20 30 40 50 60 70"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"knockback_distance"			"550"
 				"LinkedSpecialBonus"			"special_bonus_unique_huskar_fire_within_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
 			}
-			"07"
+			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"knockback_duration"			"0.6"
 				"LinkedSpecialBonus"			"special_bonus_unique_huskar_fire_within_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
@@ -237,12 +231,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"-250"
+				"value"					"-200"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
+				"duration"				"4"
 			}
 		}
 	}
@@ -260,8 +254,8 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
+				"var_type"				"FIELD_FLOAT"
+				"value"					"80"
 			}
 		}
 	}
@@ -313,17 +307,17 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"health_cost"					"15"
+				"health_cost"					"3"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"burn_damage"					"5 10 15 20 25 30 35"
+				"burn_damage"					"4 8 12 16 18 20 22"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"duration"						"8"
+				"duration"						"9 9 9 9 10 11 12"
 			}
 		}
 	}
@@ -408,23 +402,18 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"maximum_as"					"120 160 200 240 280 320 360"
+				"maximum_as"					"160 210 260 310 320 330 340"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"maximum_resistance"			"65 70 75 80 85 90 95"
+				"maximum_regen"					"50 70 90 110 115 120 125"
+				"LinkedSpecialBonus"			"special_bonus_unique_huskar_ignited_spears_2"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"maximum_regen"					"100"
-				"LinkedSpecialBonus"			"special_bonus_unique_huskar_ignited_spears_2"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"hp_threshold_max"				"5"
+				"hp_threshold_max"				"10 10 10 10 15 20 25"
 			}
 		}
 	}
@@ -443,7 +432,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"10"
+				"value"					"25"
 			}
 			"02"
 			{
@@ -469,6 +458,41 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value"					"600"
+			}
+		}
+	}
+	"huskar_sacred_inferno"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_huskar/huskar_sacred_inferno"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+		"AbilityCooldown"				"0.5"
+	
+		"AbilityTextureName"			"custom/huskar_sacred_inferno"
+		
+		"precache"
+		{
+			"particle"	"particles/econ/items/templar_assassin/templar_assassin_focal/templar_assassin_meld_focal_attack.vpcf"
+			"particle"	"particles/huskar_sacred_inferno_hit.vpcf"
+			"particle"	"particles/huskar_sacred_inferno_spark.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chance"				"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"350"
 			}
 		}
 	}
@@ -512,7 +536,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"14 13 12 11 10 9 8"
+		"AbilityCooldown"				"16 14 12 12 12 12"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -521,75 +545,52 @@
 			"01"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"health_cost_percent"				"21"
+				"health_cost_pct"					"21"
 				"CalculateSpellDamageTooltip"		"0"
 			}
 			"02"
 			{
-				"var_type"							"FIELD_INTEGER"
-				"charge_speed"						"1200"
+				"var_type"							"FIELD_FLOAT"
+				"missing_health_dmg"				"42 42 42 50 58 66"
+				"CalculateSpellDamageTooltip"		"0"
 			}
 			"03"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"movespeed"							"-40 -45 -50 -55 -60 -65 -70"
+				"charge_speed"						"1200"
 			}
 			"04"
 			{
-				"var_type"							"FIELD_FLOAT"
-				"slow_duration"						"4.5 5 5.5 6 6.5 7.0 7.5"
+				"var_type"							"FIELD_INTEGER"
+				"movespeed"							"-60"
 			}
 			"05"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"cast_range"						"575 650 725 800 875 950 1025"
+				"slow_duration"						"6"
 			}
 			"06"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"cast_range"						"550"
+			}
+			"07"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"damage_radius"						"425"
 				"CalculateSpellDamageTooltip"		"0"
 			}
-			"07"
+			"08"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"health_damage_scepter"				"35"
+				"health_cost_pct_scepter"			"35"
 				"CalculateSpellDamageTooltip"		"0"
 			}
-		}
-	}
-	"huskar_sacred_inferno"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_huskar/huskar_sacred_inferno"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"MaxLevel"						"1"
-		"InnateAbility"					"1"
-		"AbilityCooldown"				"0.5"
-	
-		"AbilityTextureName"			"custom/huskar_sacred_inferno"
-		
-		"precache"
-		{
-			"particle"	"particles/econ/items/templar_assassin/templar_assassin_focal/templar_assassin_meld_focal_attack.vpcf"
-			"particle"	"particles/huskar_sacred_inferno_hit.vpcf"
-			"particle"	"particles/huskar_sacred_inferno_spark.vpcf"
-		}
-		
-		"AbilitySpecial"
-		{
-			"01"
+			"09"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"chance"				"25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"350"
+				"var_type"							"FIELD_FLOAT"
+				"missing_health_dmg_scepter"		"70 70 70 82 94 106"
+				"CalculateSpellDamageTooltip"		"0"
 			}
 		}
 	}

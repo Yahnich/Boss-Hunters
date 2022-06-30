@@ -48,7 +48,7 @@ local function StartEvent(self)
 			end
 		end
 	end)
-	self.waitTimer = BaseEvent:StartEventTimer( 30, timerFunc )
+	self.waitTimer = BaseEvent:StartEventTimer( 45, timerFunc )
 	LinkLuaModifier("event_buff_cultist_ritual", "events/modifiers/event_buff_cultist_ritual", LUA_MODIFIER_MOTION_NONE)
 	self._playerChoices = {}
 end

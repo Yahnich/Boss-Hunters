@@ -16,8 +16,6 @@ function modifier_elite_tiny:OnRefresh()
 	self.cdr = self:GetSpecialValueFor("cooldown_reduction")
 	self.dmg = self:GetSpecialValueFor("damage_reduction")
 	self.as = self:GetSpecialValueFor("bonus_attack_speed")
-	
-	print( self.size, self.cdr, self.dmg, self.as )
 end
 
 function modifier_elite_tiny:DeclareFunctions()

@@ -18,6 +18,10 @@ require("templates/talent_base_class")
 require("templates/rune_base_class")
 require("templates/talent_base_class")
 
+
+LinkLuaModifier( "modifier_generic_attack_bonus", "libraries/modifiers/modifier_generic_attack_bonus.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_generic_attack_bonus_pct", "libraries/modifiers/modifier_generic_attack_bonus_pct.lua", LUA_MODIFIER_MOTION_NONE )
+
 LinkLuaModifier( "modifier_sleep_generic", "libraries/modifiers/modifier_sleep_generic.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_charm_generic", "libraries/modifiers/modifier_charm_generic.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_stun_immunity", "libraries/modifiers/modifier_stun_immunity.lua", LUA_MODIFIER_MOTION_NONE )
@@ -37,7 +41,7 @@ LinkLuaModifier( "modifier_disarm_generic", "libraries/modifiers/modifier_disarm
 LinkLuaModifier( "modifier_break_generic", "libraries/modifiers/modifier_break_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_daze_generic", "libraries/modifiers/modifier_daze_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_root_generic", "libraries/modifiers/modifier_root_generic.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_generic_barrier", "libraries/modifiers/modifier_generic_barrier.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_talent_barrier", "libraries/modifiers/modifier_talent_barrier.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_taunt_generic", "libraries/modifiers/modifier_taunt_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_fear_generic", "libraries/modifiers/modifier_fear_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_chill_generic", "libraries/modifiers/modifier_chill_generic.lua", LUA_MODIFIER_MOTION_NONE)
@@ -46,8 +50,8 @@ LinkLuaModifier( "modifier_hidden_generic", "libraries/modifiers/modifier_hidden
 LinkLuaModifier( "modifier_boss_attackspeed", "libraries/modifiers/modifier_boss_attackspeed.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_spawn_immunity", "libraries/modifiers/modifier_spawn_immunity.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_tombstone_respawn_immunity", "libraries/modifiers/modifier_tombstone_respawn_immunity.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_generic_attack_bonus", "libraries/modifiers/modifier_generic_attack_bonus.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_generic_attack_bonus_pct", "libraries/modifiers/modifier_generic_attack_bonus_pct.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_talent_attack_bonus", "libraries/modifiers/modifier_talent_attack_bonus.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_talent_attack_bonus_pct", "libraries/modifiers/modifier_talent_attack_bonus_pct.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_power_scaling", "libraries/modifiers/modifier_power_scaling.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_boss_evasion", "libraries/modifiers/modifier_boss_evasion.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_boss_hard_enrage", "libraries/modifiers/modifier_boss_hard_enrage.lua", LUA_MODIFIER_MOTION_NONE)
@@ -56,50 +60,26 @@ LinkLuaModifier( "modifier_stats_system_handler", "libraries/handlers/modifier_s
 LinkLuaModifier( "modifier_lives_handler", "libraries/handlers/modifier_lives_handler.lua", LUA_MODIFIER_MOTION_NONE)
 
 -- PERKS 
-LinkLuaModifier( "modifier_attacker_evasion", "libraries/modifiers/talents/modifier_attacker_evasion.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_attacker_attack_speed", "libraries/modifiers/talents/modifier_attacker_attack_speed.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_attacker_health", "libraries/modifiers/talents/modifier_attacker_health.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_attacker_movespeed", "libraries/modifiers/talents/modifier_attacker_movespeed.lua", LUA_MODIFIER_MOTION_NONE )
-
-LinkLuaModifier( "modifier_nuker_area_damage", "libraries/modifiers/talents/modifier_nuker_area_damage.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_nuker_mana", "libraries/modifiers/talents/modifier_nuker_mana.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_nuker_mana_regen", "libraries/modifiers/talents/modifier_nuker_mana_regen.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_nuker_spell_amp", "libraries/modifiers/talents/modifier_nuker_spell_amp.lua", LUA_MODIFIER_MOTION_NONE )
-
-LinkLuaModifier( "modifier_defender_magic_resist", "libraries/modifiers/talents/modifier_defender_magic_resist.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_defender_armor", "libraries/modifiers/talents/modifier_defender_armor.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_defender_health", "libraries/modifiers/talents/modifier_defender_health.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_defender_threat_amp", "libraries/modifiers/talents/modifier_defender_threat_amp.lua", LUA_MODIFIER_MOTION_NONE )
-
-LinkLuaModifier( "modifier_support_heal_amp", "libraries/modifiers/talents/modifier_support_heal_amp.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_support_mana", "libraries/modifiers/talents/modifier_support_mana.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_support_status_amp", "libraries/modifiers/talents/modifier_support_status_amp.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_support_threat_down", "libraries/modifiers/talents/modifier_support_threat_down.lua", LUA_MODIFIER_MOTION_NONE )
-
-LinkLuaModifier( "modifier_healer_health", "libraries/modifiers/talents/modifier_healer_health.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_healer_mana", "libraries/modifiers/talents/modifier_healer_mana.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_healer_mana_regen", "libraries/modifiers/talents/modifier_healer_mana_regen.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_healer_heal_amp", "libraries/modifiers/talents/modifier_healer_heal_amp.lua", LUA_MODIFIER_MOTION_NONE )
-
-LinkLuaModifier( "modifier_generic_health", "libraries/modifiers/talents/modifier_generic_health.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_generic_attack_damage", "libraries/modifiers/talents/modifier_generic_attack_damage.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_generic_movespeed", "libraries/modifiers/talents/modifier_generic_movespeed.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_generic_spell_amp", "libraries/modifiers/talents/modifier_generic_spell_amp.lua", LUA_MODIFIER_MOTION_NONE )
-
-LinkLuaModifier( "modifier_defensive_armor", "libraries/modifiers/talents/modifier_defensive_armor.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_defensive_magic_resist", "libraries/modifiers/talents/modifier_defensive_magic_resist.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_defensive_health", "libraries/modifiers/talents/modifier_defensive_health.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_defensive_health_regen", "libraries/modifiers/talents/modifier_defensive_health_regen.lua", LUA_MODIFIER_MOTION_NONE )
-
-LinkLuaModifier( "modifier_offensive_attack_damage", "libraries/modifiers/talents/modifier_offensive_attack_damage.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_offensive_attack_speed", "libraries/modifiers/talents/modifier_offensive_attack_speed.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_offensive_spell_amp", "libraries/modifiers/talents/modifier_offensive_spell_amp.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_offensive_status_amp", "libraries/modifiers/talents/modifier_offensive_status_amp.lua", LUA_MODIFIER_MOTION_NONE )
-
-LinkLuaModifier( "modifier_utility_heal_amp", "libraries/modifiers/talents/modifier_utility_heal_amp.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_utility_mana", "libraries/modifiers/talents/modifier_utility_mana.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_utility_mana_regen", "libraries/modifiers/talents/modifier_utility_mana_regen.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_utility_movespeed", "libraries/modifiers/talents/modifier_utility_movespeed.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_evasion", "libraries/modifiers/talents/modifier_talent_evasion.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_area_damage", "libraries/modifiers/talents/modifier_talent_area_damage.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_threat_amp", "libraries/modifiers/talents/modifier_talent_threat_amp.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_threat_down", "libraries/modifiers/talents/modifier_talent_threat_down.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_armor", "libraries/modifiers/talents/modifier_talent_armor.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_magic_resist", "libraries/modifiers/talents/modifier_talent_magic_resist.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_health", "libraries/modifiers/talents/modifier_talent_health.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_health_regen", "libraries/modifiers/talents/modifier_talent_health_regen.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_attack_damage", "libraries/modifiers/talents/modifier_talent_attack_damage.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_attack_speed", "libraries/modifiers/talents/modifier_talent_attack_speed.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_spell_amp", "libraries/modifiers/talents/modifier_talent_spell_amp.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_status_amp", "libraries/modifiers/talents/modifier_talent_status_amp.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_heal_amp", "libraries/modifiers/talents/modifier_talent_heal_amp.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_mana", "libraries/modifiers/talents/modifier_talent_mana.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_mana_regen", "libraries/modifiers/talents/modifier_talent_mana_regen.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_movespeed", "libraries/modifiers/talents/modifier_talent_movespeed.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_strength", "libraries/modifiers/talents/modifier_talent_strength.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_agility", "libraries/modifiers/talents/modifier_talent_agility.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_intelligence", "libraries/modifiers/talents/modifier_talent_intelligence.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_talent_all_stats", "libraries/modifiers/talents/modifier_talent_all_stats.lua", LUA_MODIFIER_MOTION_NONE )
 ----------------------------------------
 ----------------------------------------
 
@@ -110,26 +90,26 @@ if IsClient() then -- Load clientside utility lib
 	print("client-side has been initialized")
 	require("libraries/client_util")
 	require("talentmanager")
-	TalentManager:StartTalentManager()
+	-- TalentManager:StartTalentManager()
 	
-	if GameRules == nil then
-		GameRules = class({})
-	end
-	GameRules.IsDaytime = function()
-		local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
-		return tonumber(timeofday["timeofday"]) == 1
-	end
+	-- if GameRules == nil then
+		-- GameRules = class({})
+	-- end
+	-- GameRules.IsDaytime = function()
+		-- local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
+		-- return tonumber(timeofday["timeofday"]) == 1
+	-- end
 	
-	GameRules.IsTemporaryNight = function()
-		local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
-		return tonumber(timeofday["timeofday"]) == 2
-	end
+	-- GameRules.IsTemporaryNight = function()
+		-- local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
+		-- return tonumber(timeofday["timeofday"]) == 2
+	-- end
 	
-	GameRules.IsNightstalkerNight = function()
-		local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
-		return tonumber(timeofday["timeofday"]) == 3
-	end
-	print( "initialized gamerules", GameRules, GameRules.IsDaytime )
+	-- GameRules.IsNightstalkerNight = function()
+		-- local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
+		-- return tonumber(timeofday["timeofday"]) == 3
+	-- end
+	-- print( "initialized gamerules", GameRules, GameRules.IsDaytime )
 	Convars:RegisterCommand( "cl_deepdebugging", function()
 													if not GameRules.DebugCalls then
 														print("Starting DebugCalls")

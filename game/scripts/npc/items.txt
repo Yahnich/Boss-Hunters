@@ -82,7 +82,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1560"	
+		"ItemCost"						"1800"	
 		"ItemShopTags"					""
 		"ItemRecipe"					"1"
 		
@@ -125,7 +125,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_all_stats"		"15"
+				"bonus_all_stats"		"10"
 			}
 			"02"
 			{

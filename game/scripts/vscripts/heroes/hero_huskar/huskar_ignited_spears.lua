@@ -33,7 +33,8 @@ function huskar_ignited_spears:LaunchSpear(target, bAttack)
 	local caster = self:GetCaster()
 	caster:SetProjectileModel("particles/empty_projectile.vcpf")
 	EmitSoundOn("Hero_Huskar.Burning_Spear.Cast", caster)
-	local cost = self:GetTalentSpecialValueFor("health_cost") * ( 1 + caster:FindTalentValue("special_bonus_unique_huskar_ignited_spears_1", "cost")/100 + caster:FindTalentValue("special_bonus_unique_huskar_ignited_spears_2", "cost")/100 )
+	local costPct = self:GetTalentSpecialValueFor("health_cost")
+	local cost = caster:GetHealth() * costPct / 100
 	if cost > 0 then
 		local newHP = math.max( caster:GetHealth() - cost, 1 )
 		caster:ModifyHealth( newHP, self, false, 0)
@@ -89,18 +90,40 @@ if IsServer() then
 			caster:SetProjectileModel("particles/units/heroes/hero_huskar/huskar_base_attack.vpcf")
 		end
 	end
-	
-	function modifier_huskar_ignited_spears_autocast:DeclareFunctions()
-		return {MODIFIER_EVENT_ON_ATTACK}
-	end
-	
-	function modifier_huskar_ignited_spears_autocast:OnAttack(params)
-		local ability = self:GetAbility()
-		if params.attacker == self:GetParent() and params.target and (ability:GetAutoCastState() or ability.forceCast) and ability:IsOwnersManaEnough() and not self:GetParent():GetAttackTarget():IsMagicImmune() then
-			self:GetAbility():LaunchSpear(params.target)
-			self:GetAbility():SpendMana()
-			self:GetAbility().forceCast = false
+end	
+
+function modifier_huskar_ignited_spears_autocast:DeclareFunctions()
+	return {MODIFIER_EVENT_ON_ATTACK, MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL, MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL_VALUE}
+end
+
+function modifier_huskar_ignited_spears_autocast:GetModifierOverrideAbilitySpecial(params)
+	if params.ability == self:GetAbility() then
+		local caster = params.ability:GetCaster()
+		local specialValue = params.ability_special_value
+		if specialValue == "health_cost" then
+			return 1
 		end
+	end
+end
+
+function modifier_huskar_ignited_spears_autocast:GetModifierOverrideAbilitySpecialValue(params)
+	if params.ability == self:GetAbility() then
+		local caster = params.ability:GetCaster()
+		local specialValue = params.ability_special_value
+		if specialValue == "health_cost"then
+			local flBaseValue = params.ability:GetLevelSpecialValueNoOverride( specialValue, params.ability_special_level )
+			local percentageModifier = 1 + self:GetCaster():FindTalentValue("special_bonus_unique_huskar_ignited_spears_1", "cost") / 100 + self:GetCaster():FindTalentValue("special_bonus_unique_huskar_ignited_spears_2", "cost") / 100
+			return flBaseValue * percentageModifier
+		end
+	end
+end
+
+function modifier_huskar_ignited_spears_autocast:OnAttack(params)
+	local ability = self:GetAbility()
+	if params.attacker == self:GetParent() and params.target and (ability:GetAutoCastState() or ability.forceCast) and ability:IsOwnersManaEnough() and not self:GetParent():GetAttackTarget():IsMagicImmune() then
+		self:GetAbility():LaunchSpear(params.target)
+		self:GetAbility():SpendMana()
+		self:GetAbility().forceCast = false
 	end
 end
 

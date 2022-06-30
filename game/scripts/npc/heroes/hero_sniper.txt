@@ -31,9 +31,9 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"2"
+		"AbilityCooldown"				"0"
 		"AbilityCharges"				"3"
-		"AbilityChargeRestoreTime"		"40"
+		"AbilityChargeRestoreTime"		"35"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -53,40 +53,46 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"20 40 60 80 85 90 95"
-				"LinkedSpecialBonus"	"special_bonus_unique_sniper_shrapnel_bh_1"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"burst_damage"			"0 0 0 0 150 300 450"
-				"LinkedSpecialBonus"	"special_bonus_unique_sniper_shrapnel_bh_1"
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"25 40 55 70 80 90 100"
+				"LinkedSpecialBonus"		"special_bonus_unique_sniper_shrapnel_bh_1"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"1.2"
+				"var_type"					"FIELD_INTEGER"
+				"burst_damage"				"20 40 60 80 160 320 480"
+				"LinkedSpecialBonus"		"special_bonus_unique_sniper_shrapnel_bh_1"
+				"LinkedSpecialBonusField"	"value2"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"7.5 7.5 7.5 7.5 10 12.5 15"
+				"var_type"					"FIELD_FLOAT"
+				"delay"						"1.2"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"450"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"10 10 10 10 12 14 16"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"slow_movement_speed"	"-20 -30 -40 -50 -50 -50 -50"
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"450"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"slow_duration"			"2"
+				"var_type"					"FIELD_FLOAT"
+				"slow_movement_speed"		"-12 -18 -24 -30 -30 -30 -30"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"slow_duration"				"2"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"AbilityCharges"			""
 			}
 		}
 	}
@@ -109,7 +115,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
+				"value"						"50"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"270"
 			}
 		}
 	}
@@ -184,7 +195,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"30 60 90 120 120 120 120"
+				"damage"					"20 50 80 110 115 120 125"
 				"LinkedSpecialBonus"		"special_bonus_unique_sniper_headshot_bh_1"
 			}
 			"03"
@@ -395,39 +406,63 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_sniper/sniper_take_aim_bh"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"			"sniper_take_aim"
-		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"MaxLevel"						"7"
+		
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sniper_take_aim_1"	"1"
+			"special_bonus_unique_sniper_take_aim_2"	"1"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0 0 0 0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20 18 16 14 14 14 14"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
-			{	
+			{
 				"var_type"						"FIELD_INTEGER"
-				"range_damage"					"10"
-				"CalculateSpellDamageTooltip"	"0"
+				"bonus_attack_range"			"100 200 300 400 450 500 550"
 			}
 			"02"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"range_per_lvl"					"10"
-				"LinkedSpecialBonus"			"special_bonus_unique_sniper_take_aim_bh_1"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"3 3 3 3 4 5 6"
 			}
 			"03"
 			{
+				"var_type"						"FIELD_FLOAT"
+				"slow"							"-45 -40 -35 -30 -20 -10 -0"
+				"LinkedSpecialBonus"			"special_bonus_unique_sniper_take_aim_2"
+			}
+			"04"
+			{
 				"var_type"						"FIELD_INTEGER"
-				"base_range"					"100"
+				"bonus_headshot_chance"			"60"
 			}
 		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_3"
 	}
 
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_sniper_take_aim_bh_1"
+	"special_bonus_unique_sniper_take_aim_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -442,7 +477,30 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"5"
+				"value"						"2"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_sniper_take_aim_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"60"
 			}
 		}
 	}
@@ -459,7 +517,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
 		"AbilityTextureName"			"sniper_assassinate"
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"6"
@@ -480,11 +538,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20 20 20 20 15 10"
+		"AbilityCooldown"				"20 20 20 16 12 8"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"175 275 375 475 475 475"
+		"AbilityManaCost"				"175 275 375 400 425 450"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -493,7 +551,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"320 485 650 815 855 895"
+				"damage"					"230 365 500 550 600 650"
 			}
 			"01"
 			{
@@ -503,7 +561,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"range"						"2000 2250 2500 2750 3000 3250"
+				"range"						"3000"
 			}
 			"05"
 			{
@@ -518,7 +576,7 @@
 			"07"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"scepter_cooldown"			"15 15 15 15 11.25 7.5"
+				"scepter_cooldown"			"15 15 15 11 7 3"
 			}
 			"08"
 			{

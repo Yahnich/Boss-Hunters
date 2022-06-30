@@ -827,7 +827,7 @@
 				"Amount"		"3"
 				"CoreHealth"	"2250"
 				"RaidBonus"		"2"
-				"SpawnDelay"	"4"
+				"SpawnDelay"	"15"
 			}
 		}
 	}
@@ -917,6 +917,7 @@
 			"npc_dota_boss5"
 			{
 				"Amount"		"1"
+				"HeroBonus"		"0.25"
 				"SpawnDelay"	"15"
 			}
 			"npc_dota_minion5"
@@ -925,7 +926,7 @@
 				"RaidBonus"		"5"
 				"ToSpawn"		"2"
 				"HeroBonus"		"1.5"
-				"SpawnDelay"	"5"
+				"SpawnDelay"	"3"
 				"IsMinion"		"1"
 			}
 		}
@@ -959,7 +960,7 @@
 			{
 				"Amount"		"3"
 				"RaidBonus"		"1"
-				"HeroBonus"		"0.5"
+				"HeroBonus"		"0.25"
 				"SpawnDelay"	"15"
 			}
 		}

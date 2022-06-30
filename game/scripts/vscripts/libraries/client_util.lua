@@ -38,6 +38,14 @@ function AddTableToTable( t1, t2)
 	end
 end
 
+function ToRadians(degrees)
+	return degrees * math.pi / 180
+end
+
+function ToDegrees(radians)
+	return radians * 180 / math.pi 
+end
+
 function toboolean(thing)
 	if type(thing) == "number" then
 		if thing == 1 then return true
@@ -122,7 +130,6 @@ function PrintAll(t)
 end
 
 AbilityKV = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
-MergeTables(AbilityKV, LoadKeyValues("scripts/npc/npc_abilities_override.txt"))
 MergeTables(AbilityKV, LoadKeyValues("scripts/npc/npc_items_custom.txt"))
 MergeTables(AbilityKV, LoadKeyValues("scripts/npc/items.txt"))
 UnitKV = LoadKeyValues("scripts/npc/npc_heroes.txt")
@@ -182,6 +189,7 @@ function C_DOTABaseAbility:GetTalentLevelSpecialValueFor(value, level)
 	local base = self:GetLevelSpecialValueFor(value, level)
 	local talentName
 	local kv = AbilityKV[self:GetName()]["AbilitySpecial"]
+	local kVal = AbilityKV[self:GetName()]["AbilityValues"]
 	local valname = "value"
 	local multiply = false
 	local subtract = false
@@ -196,6 +204,15 @@ function C_DOTABaseAbility:GetTalentLevelSpecialValueFor(value, level)
 				if v["LinkedSpecialBonusOperation"] and v["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_PERCENTAGE_ADD" then zadd = true end
 				break
 			end
+		end
+	end
+	if kVal then
+		local valueData = kVal[value]
+		if type(valueData) == table then
+			talentName = valueData["LinkedSpecialBonus"]
+			if valueData["LinkedSpecialBonusOperation"] and valueData["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_MULTIPLY" then multiply = true end
+			if valueData["LinkedSpecialBonusOperation"] and valueData["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_SUBTRACT" then subtract = true end
+			if valueData["LinkedSpecialBonusOperation"] and valueData["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_PERCENTAGE_ADD" then zadd = true end
 		end
 	end
 	local unit = self:GetCaster()

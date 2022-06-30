@@ -19,6 +19,7 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Luna.LucentBeam.Target"
 		"MaxLevel"						"7"
+		"HasScepterUpgrade"				"1"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -35,12 +36,12 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"6.0 6.0 6.0 6.0"
+		"AbilityCooldown"				"9.0 8.0 7.0 6.0 6.0 6.0 6.0"
 	
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"90 100 110 120 130 140 150"
+		"AbilityManaCost"				"90 100 110 120 120 120 120"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -60,30 +61,32 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.4"
+				"var_type"					"FIELD_FLOAT"
+				"stun_duration"				"0.8"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_night"			"0.8"
+				"var_type"					"FIELD_FLOAT"
+				"stun_night"				"1.2"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"beam_damage"			"75 150 225 300 375 450 525"
-				"LinkedSpecialBonus"	"special_bonus_unique_luna_lucent_beam_2"
+				"var_type"					"FIELD_INTEGER"
+				"beam_damage"				"75 150 225 300 350 400 450"
+				"LinkedSpecialBonus"		"special_bonus_unique_luna_lucent_beam_2"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"night_beam_damage"		"115 225 335 445 555 665 775"
-				"LinkedSpecialBonus"	"special_bonus_unique_luna_lucent_beam_2"
+				"var_type"					"FIELD_INTEGER"
+				"night_beam_damage"			"100 180 260 340 400 460 520"
+				"LinkedSpecialBonus"		"special_bonus_unique_luna_lucent_beam_2"
+				"LinkedSpecialBonusField"	"value2"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"beam_radius"			"175"
+				"var_type"					"FIELD_INTEGER"
+				"scepter_modifier"			"25"
+				"RequiresScepter"			"1"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
@@ -105,13 +108,13 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"0.1"
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"cd"						"4"
+				"search_radius"				"475"
 			}
 		}
 	}
@@ -138,10 +141,370 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"cd"						"-4"
+				"value2"					"150"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cd"						"-2"
 			}
 		}
 	}
+	//=================================================================================================================
+	// Luna: Moon Glaives
+	//=================================================================================================================
+	"luna_moon_glaive_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_luna/luna_moon_glaive_bh"
+		"AbilityTextureName"			"luna_moon_glaive"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilitySound"					"Hero_Luna.MoonGlaive.Impact"
+		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_luna_moon_glaive_1"	"1"
+			"special_bonus_unique_luna_moon_glaive_2"	"1"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"range"							"500"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bounces"						"3 4 5 6 6 6 6"
+				"LinkedSpecialBonus"			"special_bonus_unique_luna_moon_glaive_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage_reduction_percent"		"56 54 52 50 44 38 32"
+				"LinkedSpecialBonus"			"special_bonus_unique_luna_moon_glaive_2"
+				"LinkedSpecialBonusField"		"dmg"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_luna_moon_glaive_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"2"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_luna_moon_glaive_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_luna_moon_glaive_bh"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"dmg"						"-10"
+			}
+		}
+	}
+	"luna_lunar_blessing_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_luna/luna_lunar_blessing_bh"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"luna_lunar_blessing"
+		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_luna_lunar_blessing_1"	"1"
+			"special_bonus_unique_luna_lunar_blessing_2"	"1"
+		}
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"			"particles/units/heroes/hero_luna/luna_ambient_lunar_blessing.vpcf"
+		}
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"1200"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_primary"				"5 15 25 35 45 55 65"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage_pct"			"10 15 20 25 30 35 40"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_luna_lunar_blessing_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_luna_lunar_blessing_bh_aura"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cd"						"60"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"20"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_luna_lunar_blessing_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_luna_lunar_blessing_bh_aura"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"100"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"2"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"5"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Luna: Eclipse
+	//=================================================================================================================
+	"luna_eclipse_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_luna/luna_eclipse_bh"
+		"AbilityTextureName"			"luna_eclipse"		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"FightRecapLevel"				"2"
+		"AbilitySound"					"Hero_Luna.Eclipse.Cast"
+		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_luna_eclipse_1"	"1"
+			"special_bonus_unique_luna_eclipse_2"	"1"
+		}
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.6 0.6 0.6"
+		"AbilityCastRange"				"0"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"140 120 120 100 100 80"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"150"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"beams"							"6 12 18 24 30 36"
+				"LinkedSpecialBonus"			"special_bonus_unique_luna_eclipse_1"
+				"LinkedSpecialBonusField"		"value2"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"hit_count"						"5 5 7 7 9 9"
+				"LinkedSpecialBonus"			"special_bonus_unique_luna_eclipse_1"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"beam_interval"					"0.6"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"675 675 675"
+				"LinkedSpecialBonus"			"special_bonus_unique_luna_eclipse_1"
+				"LinkedSpecialBonusField"		"mult"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"night_duration"				"10"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_luna_eclipse_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"4"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"mult"						"3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_luna_eclipse_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"-15"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow"						"-50"
+			}
+		}
+	}
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// DEPRECATED /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	"luna_nightsilver_resolve"
 	{
 		// General
@@ -265,292 +628,6 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"						"1"
-			}
-		}
-	}
-	"luna_lunar_blessing_bh"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_luna/luna_lunar_blessing_bh"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"luna_lunar_blessing"
-		"MaxLevel"						"7"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_luna_lunar_blessing_1"	"1"
-			"special_bonus_unique_luna_lunar_blessing_2"	"1"
-		}
-	
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"particle"			"particles/units/heroes/hero_luna/luna_ambient_lunar_blessing.vpcf"
-		}
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"900 900 900 900"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_primary"				"6 12 18 24 30 36 42"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage_pct"			"20"
-				"LinkedSpecialBonus"		"special_bonus_unique_luna_lunar_blessing_2"
-				"LinkedSpecialBonusField"	"dmg"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_luna_lunar_blessing_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"LinkedModifierName"			"modifier_luna_lunar_blessing_bh_aura"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cd"						"60"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"20"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_luna_lunar_blessing_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"LinkedModifierName"			"modifier_luna_lunar_blessing_bh_aura"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"ms"						"15"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"as"						"50"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"dmg"						"20"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Luna: Moon Glaives
-	//=================================================================================================================
-	"luna_moon_glaive_bh"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_luna/luna_moon_glaive_bh"
-		"AbilityTextureName"			"luna_moon_glaive"	
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilitySound"					"Hero_Luna.MoonGlaive.Impact"
-		"InnateAbility"					"1"
-		"MaxLevel"						"1"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"range"						"500"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bounces"					"6"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_reduction_percent"	"20"
-			}
-		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
-	}
-	//=================================================================================================================
-	// Luna: Eclipse
-	//=================================================================================================================
-	"luna_eclipse_bh"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_luna/luna_eclipse_bh"
-		"AbilityTextureName"			"luna_eclipse"		
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"FightRecapLevel"				"2"
-		"AbilitySound"					"Hero_Luna.Eclipse.Cast"
-		"MaxLevel"						"6"
-		"HasScepterUpgrade"				"1"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_luna_eclipse_1"	"1"
-			"special_bonus_unique_luna_eclipse_2"	"1"
-		}
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.6 0.6 0.6"
-		"AbilityCastRange"				"0"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"65.0"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"150 200 250 300 350 400"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"beams"							"20"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"hit_count"						"5 6 7 8 9 10"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"beam_interval"					"0.6 0.6 0.6"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration_tooltip"				"12"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"675 675 675"
-			}	
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"beams_scepter"					"30"
-			}
-			"07"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration_tooltip_scepter"		"12"
-			}
-			"08"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"cast_range_tooltip_scepter"	"2500"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_luna_eclipse_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"1"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_luna_eclipse_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"1"
 			}
 		}
 	}

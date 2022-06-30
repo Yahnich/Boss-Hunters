@@ -7,7 +7,7 @@
   </scripts>
   <Panel class="AddonLoadingRoot">
     <Panel id="CustomBg" >
-		<Image id="gamemode" class="SeqImg" src="file://{images}/custom_game/loading_screen/bosshuntersMain.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/custom_game/loading_screen/bossHuntersLoadingV2.png" />
 		<Image id="text" class="SeqImg" src="file://{images}/custom_game/loading_screen/bosshuntersText.png" />
     </Panel>
   </Panel>

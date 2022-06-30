@@ -26,6 +26,13 @@ function axe_ground_pound:OnSpellStart()
 	local think = CreateModifierThinker(caster, self, "modifier_ground_pound_aura", {Duration = duration}, caster:GetAbsOrigin(), caster:GetTeamNumber(), false)
 	local dunkSuccess = false
 	
+	if caster:HasTalent("special_bonus_unique_axe_ground_pound_2") then
+		local enemies2 = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius, {})
+		for _,enemy2 in pairs(enemies2) do
+			enemy2:AddNewModifier(caster, self, "modifier_blood_hunger", {Duration = caster:FindAbilityByName("axe_blood_hunger"):GetTalentSpecialValueFor("duration")})
+		end
+	end
+	
 	if #enemies > 0 then
 		caster:AddNewModifier(caster, self, "modifier_ground_pound_critical", {duration = 1})
 		caster:RemoveModifierByName("modifier_ground_pound_damage")
@@ -49,20 +56,15 @@ function axe_ground_pound:OnSpellStart()
 	if dunkSuccess then
 		self:EndCooldown()
 		EmitSoundOn("Hero_Axe.Culling_Blade_Success", self:GetCaster())
-		if caster:HasTalent("special_bonus_unique_axe_ground_pound_1") then
-			caster:AddNewModifier(caster, self, "modifier_ground_pound_damage_reduction", {Duration = caster:FindTalentValue("special_bonus_unique_axe_ground_pound_1", "duration")})
-		end
-		if caster:HasTalent("special_bonus_unique_axe_ground_pound_1_2") then
-			local enemies2 = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius, {})
-			for _,enemy2 in pairs(enemies2) do
-				enemy2:AddNewModifier(caster, self, "modifier_blood_hunger", {Duration = caster:FindAbilityByName("axe_blood_hunger"):GetTalentSpecialValueFor("duration")})
-			end
-		end
 	else
 		EmitSoundOn("Hero_Axe.Culling_Blade_Fail", self:GetCaster())
-		if caster:HasTalent("special_bonus_unique_axe_ground_pound_1") then
-			caster:AddNewModifier(caster, self, "modifier_ground_pound_damage_reduction", {Duration = caster:FindTalentValue("special_bonus_unique_axe_ground_pound_1", "duration") / 2})
+	end
+	if caster:HasTalent("special_bonus_unique_axe_ground_pound_1") then
+		local duration = caster:FindTalentValue("special_bonus_unique_axe_ground_pound_1", "duration")
+		if not dunkSuccess then
+			duration = duration / 2
 		end
+		caster:AddNewModifier(caster, self, "modifier_ground_pound_damage_reduction", {Duration = duration})
 	end
 end
 

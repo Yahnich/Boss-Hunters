@@ -14,7 +14,9 @@
     "attributes"
     {
 		"item"		"item_health_stone"
+		"item"		"item_restoration_stone"
 		"item" 		"item_mana_stone"
+		"item"		"item_meditation_stone"
 		"item" 		"item_attack_stone"
 		"item"		"item_quick_stone"
 		"item"		"item_brutality_stone"
@@ -44,6 +46,7 @@
 		"item"		"item_reaping_scythe"
 		"item"		"item_protection_sphere"
 		"item"		"item_battlemaster_staff"
+		"item"		"item_behemoths_heart"
     }
     "misc"
     {
@@ -70,15 +73,15 @@
 	{
 		"item"		"item_berserkers_mask_4"
 		"item"		"item_dark_lord_headdress_4"
-		"item"		"item_cuirass_of_war_3"
+		"item"		"item_cuirass_of_war_2"
 	}
 	"weapons"
 	{
 		"item"		"item_gloaming_glaive_5"
 		"item"		"item_shadow_whisper_5"
 		"item"		"item_twilight_theft_5"
-		"item"		"item_anvil_5"
-		"item"		"item_voltaic_hammer_5"
+		"item"		"item_anvil_4"
+		"item"		"item_voltaic_hammer_2"
 	}
 	"artifacts"
 	{

@@ -36,8 +36,8 @@ function modifier_relic_crimson_gauntlet:DeclareFunctions()
 end
 
 function modifier_relic_crimson_gauntlet:GetModifierPreAttack_CriticalStrike(params)
-	if params.target == self:GetCaster() and self:RollPRNG(25) then
-		return 300
+	if params.target == self:GetCaster() and self:RollPRNG(20) then
+		return 220
 	end
 end
 

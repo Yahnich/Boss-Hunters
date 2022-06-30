@@ -11,10 +11,6 @@ function item_blade_of_storm:GetIntrinsicModifierName()
 	return "modifier_item_blade_of_storm_passive"
 end
 
-function item_blade_of_storm:GetRuneSlots()
-	return self:GetSpecialValueFor("rune_slots")
-end
-
 item_blade_of_storm_2 = class(item_blade_of_storm)
 item_blade_of_storm_3 = class(item_blade_of_storm)
 item_blade_of_storm_4 = class(item_blade_of_storm)

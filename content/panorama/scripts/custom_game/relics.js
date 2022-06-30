@@ -14,6 +14,9 @@ GameEvents.Subscribe("dota_player_update_selected_unit", SendRelicQuery);
 var mainHud = $.GetContextPanel().GetParent().GetParent().GetParent()
 var shopHud = mainHud.FindChildTraverse("HUDElements").FindChildTraverse("shop_launcher_block")
 
+var isHUDFlipped = Game.IsHUDFlipped();
+var hiddenClass = "IsHidden"
+
 var hasQueuedAction = false;
 var firstRelicOfGame = true;
 
@@ -21,6 +24,9 @@ var globalRelicButton
 
 
 (function(){
+	if ( isHUDFlipped ) {
+		hiddenClass = "IsHiddenFlipped"
+	}
 	var goldContainer = shopHud.FindChildTraverse("ShopCourierControls")
 	goldContainer.style.flowChildren = 'right';
 	var courier = goldContainer.FindChildTraverse("courier")
@@ -37,11 +43,21 @@ var globalRelicButton
 		relicInventoryButton.SetHasClass("ButtonHover", false)
 		$.DispatchEvent("DOTAHideTextTooltip", relicInventoryButton)
 	})
-	$("#RelicRoot").SetHasClass("IsHidden", true);
+	$("#RelicRoot").SetHasClass(hiddenClass, true);
 	SendDropQuery();
 	globalRelicButton = relicInventoryButton
 	var inventory = $("#RelicInventoryPanel")
-	inventory.SetHasClass("IsHidden", true )
+	inventory.SetHasClass(hiddenClass, true )
+	if( isHUDFlipped ) {
+		$("#RelicRoot").style.horizontalAlign = 'left';
+		$("#RelicInventoryRoot").style.horizontalAlign = 'left';
+		$("#RelicDropNotification").style.horizontalAlign = 'left';
+		$("#RelicDropNotification").style.marginLeft = '200px';
+		$("#RelicDropNotification").style.marginRight = '0px';
+		$("#RelicInventoryNotifyIdiots").style.horizontalAlign = 'left';
+		$("#RelicInventoryNotifyIdiots").style.marginLeft = '170px';
+		$("#RelicInventoryNotifyIdiots").style.marginRight = '0px';
+	}
 })()
 
 function SelectRelic(relic)
@@ -82,7 +98,7 @@ function HoldRelics()
 	if(hasQueuedAction == false)
 	{
 		Game.EmitSound( "Button.Click" )
-		$("#RelicRoot").SetHasClass("IsHidden", true)
+		$("#RelicRoot").SetHasClass(hiddenClass, true)
 	}
 }
 
@@ -167,12 +183,12 @@ function HandleRelicMenu(relicTable)
 					CreateRelicSelection(lastDrop[id])
 				}
 				Game.EmitSound( "Relics.GainedRelic" )
-				$("#RelicRoot").SetHasClass("IsHidden", false)
+				$("#RelicRoot").SetHasClass(hiddenClass, false)
 			} else {
-				$("#RelicRoot").SetHasClass("IsHidden", true)
+				$("#RelicRoot").SetHasClass(hiddenClass, true)
 			}
 		} else {
-			$("#RelicRoot").SetHasClass("IsHidden", true)
+			$("#RelicRoot").SetHasClass(hiddenClass, true)
 		}
 		hasQueuedAction = false
 	}
@@ -187,10 +203,10 @@ function CreateRelicSelection(relic)
 	relicChoice.SetPanelEvent("onactivate", function(){SelectRelic(relic.name)})
 	relicChoice.SetPanelEvent("onmouseover", function(){
 		relicChoice.SetHasClass("ButtonHover", true)
-		$.DispatchEvent("DOTAShowTextTooltip", relicChoice, $.Localize( relic.name + "_Description" ) )
+		$.DispatchEvent("DOTAShowTextTooltip", relicChoice, $.Localize( '#' + relic.name + "_Description" ) )
 	})
 	relicChoice.SetPanelEvent("onmouseout", function(){
-		relicChoice.SetHasClass("ButtonHover", false)
+		// relicChoice.SetHasClass("ButtonHover", false)
 		$.DispatchEvent("DOTAHideTextTooltip", relicChoice)
 	})
 	var typeLabel = relicChoice.FindChildTraverse("RelicNameSnippet")
@@ -218,7 +234,7 @@ function CreateRelicSelection(relic)
 		relicIcon.style.saturation = 0.6;
 		relicIcon.style.brightness = 0.6;
 	}
-	typeLabel.text = $.Localize( relic.name )
+	typeLabel.text = $.Localize( '#' + relic.name )
 }
 
 var newRelics = {}
@@ -230,11 +246,11 @@ function OpenRelicInventory(forceClose)
 			HoldRelics()
 		}
 		if( forceClose == true ){
-			inventory.SetHasClass("IsHidden", true )
+			inventory.SetHasClass(hiddenClass, true )
 			globalRelicButton.SetHasClass("RelicButtonSelected", false )
 		} else {
 			if(inventory.Children()[0] != null){
-				inventory.SetHasClass("IsHidden", globalRelicButton.BHasClass("RelicButtonSelected") )
+				inventory.SetHasClass(hiddenClass, globalRelicButton.BHasClass("RelicButtonSelected") )
 				if (globalRelicButton.BHasClass("RelicButtonSelected") == true ){
 					for(var relic of inventory.Children()){
 						if( newRelics[relic.relic_entindex] != null ){
@@ -281,8 +297,8 @@ function CreateRelicPanel(relic)
 	const inventory = $("#RelicInventoryPanel")
 	const relicPanel = $.CreatePanel("Panel", inventory, "");
 	relicPanel.BLoadLayoutSnippet("RelicInventoryContainer")
-	let relicName = $.Localize( relic.name, relicPanel )
-	let relicDescr = relic.name + "_Description"
+	let relicName = $.Localize( '#' + relic.name, relicPanel )
+	let relicDescr = '#' + relic.name + "_Description"
 	
 	relicPanel.rarity = relic.rarity
 	relicPanel.cursed = relic.cursed
@@ -330,7 +346,7 @@ function CreateRelicPanel(relic)
 	relicPanel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", relicPanel);});
 	
 	if( Players.GetLocalPlayerPortraitUnit() != Players.GetPlayerHeroEntityIndex( localID ) ){
-		ownerText = $.Localize( Entities.GetUnitName( Players.GetLocalPlayerPortraitUnit() ) ) + " has "
+		ownerText = $.Localize( '#' + Entities.GetUnitName( Players.GetLocalPlayerPortraitUnit() ) ) + " has "
 	}
 	relicPanel.SetPanelEvent("onactivate", function(){ 
 		let relicBaseText = ""
@@ -342,7 +358,7 @@ function CreateRelicPanel(relic)
 		}
 		let relicInfoText = relicBaseText 
 						  + "<font color='" + relicLabel.style.color +"'>"
-						  +"%%#" + relicPanel.name + "%% " + "(%%BOSSHUNTERS_RELIC_" +  relicPanel.rarity + "%%)</font>"
+						  +"%%#" + relicPanel.name + "%% " + "(%%#BOSSHUNTERS_RELIC_" +  relicPanel.rarity + "%%)</font>"
 						  + ' <img src="file://{images}/control_icons/chat_wheel_icon.png" style="width:8px;height:8px" width="8" height="8" > ' 
 						  + "%%#" + relicPanel.name + "_Description%% "
 		GameEvents.SendCustomGameEventToServer( "server_dota_push_to_chat", {PlayerID : localID, textData : relicInfoText, isTeam : true} )

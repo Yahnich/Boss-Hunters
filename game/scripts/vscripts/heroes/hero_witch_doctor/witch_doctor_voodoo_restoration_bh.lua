@@ -230,16 +230,16 @@ function modifier_witch_doctor_voodoo_restoration_bh_curse:OnIntervalThink()
 	local damage = self.damage + self.bonusDamage / self.lastUnitCount
 	local caster = self:GetCaster()
 	local ability = self:GetAbility()
-	if self.talent2 then
-		self.talentBonusDMG = self.talentBonusDMG + self.talentDmg * self.interval
-		damage = damage + self.talentBonusDMG
-		if self.bonusManaCost > 0 then
-			self.bonusManaCost = 0
-			caster:SpendMana(self.bonusManaCost, ability)
-		else
-			self.bonusManaCost = self.bonusManaCost + self.talentManaCost * self.interval
-		end
-	end
+	-- if self.talent2 then
+		-- self.talentBonusDMG = self.talentBonusDMG + self.talentDmg * self.interval
+		-- damage = damage + self.talentBonusDMG
+		-- if self.bonusManaCost > 0 then
+			-- self.bonusManaCost = 0
+			-- caster:SpendMana(self.bonusManaCost, ability)
+		-- else
+			-- self.bonusManaCost = self.bonusManaCost + self.talentManaCost * self.interval
+		-- end
+	-- end
 	if not self.modifier:IsNull() then
 		self.lastUnitCount = math.max(self.modifier:GetStackCount(), 1)
 	elseif caster:FindModifierByName("modifier_witch_doctor_voodoo_restoration_curse_bh_handler") then -- if aura has been retoggled; recreate buff

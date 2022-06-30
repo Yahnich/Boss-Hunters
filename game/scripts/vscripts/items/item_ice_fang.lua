@@ -8,10 +8,6 @@ function item_ice_fang:GetAppliedModifierName()
 	return "modifier_ice_fang_debuff"
 end
 
-function item_ice_fang:GetRuneSlots()
-	return self:GetSpecialValueFor("rune_slots")
-end
-
 item_ice_fang_2 = class(item_ice_fang)
 item_ice_fang_3 = class(item_ice_fang)
 item_ice_fang_4 = class(item_ice_fang)

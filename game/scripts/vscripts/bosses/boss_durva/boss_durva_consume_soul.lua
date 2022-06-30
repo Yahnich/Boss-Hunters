@@ -23,6 +23,6 @@ function boss_durva_consume_soul:OnProjectileHit( target, position )
 		
 		local damage = target:GetHealth() * self:GetSpecialValueFor("sap_damage") / 100
 		local heal = self:DealDamage( caster, target, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
-		caster:HealEvent( heal, self, caster )
+		if target:IsRealHero() then caster:HealEvent( heal, self, caster ) end
 	end
 end

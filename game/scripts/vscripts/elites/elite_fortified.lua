@@ -22,7 +22,9 @@ if IsServer() then
 	function modifier_elite_fortified:OnIntervalThink()
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
-		if not ability:IsFullyCastable() or caster:GetCurrentActiveAbility() then return end
+		
+		if not ability:IsFullyCastable() or caster:IsStunned() or caster:IsSilenced() or caster:GetCurrentActiveAbility() or caster:IsHexed() or caster:IsRooted() then return end
+		
 		if self.hp > self:GetParent():GetHealthPercent() then
 			ability:CastSpell()
 			self.hp = self:GetParent():GetHealthPercent()

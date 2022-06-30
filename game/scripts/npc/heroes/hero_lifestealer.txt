@@ -7,16 +7,16 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_lifestealer/lifestealer_rage_bh.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"MaxLevel"						"7"
 		"AbilityTextureName"			"life_stealer_rage"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"MaxLevel"						"7"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_lifestealer_rage_bh_1"	"1"
-			"special_bonus_unique_lifestealer_rage_bh_2"	"1"
+			"special_bonus_unique_lifestealer_rage_1"	"1"
+			"special_bonus_unique_lifestealer_rage_2"	"1"
 		}
 	
 		// Casting
@@ -27,11 +27,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16"
+		"AbilityCooldown"				"18 18 18 18 17 16 15"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75"
+		"AbilityManaCost"				"75 100 125 150 150 150 15"
 		
 		"precache"
 		{
@@ -46,22 +46,26 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_bonus"			"35"
-				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_rage_bh_2"
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3 4 5 6 6 6 6"
+				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_rage_bh_1"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3 4 5 6 7 8 9"
-				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_rage_bh_1"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movespeed"		"18 18 18 18 21 24 27"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"5 5 5 5 10 15 20"
 			}
 		}
 	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_lifestealer_rage_bh_1"
+	"special_bonus_unique_lifestealer_rage_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -76,20 +80,21 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"2"
+				"value"						"1.5"
 			}
 		}
 	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_lifestealer_rage_bh_2"
+	"special_bonus_unique_lifestealer_rage_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_lifestealer_hunger_handle"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -98,7 +103,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"25"
+				"value"						"1"
 			}
 		}
 	}
@@ -128,29 +133,26 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"max_attack_speed"				"80 120 160 200 240 280 320"
+				"max_attack_damage"				"70 100 130 160 190 210 240"
 				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_hunger_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"max_lifesteal"					"40 50 60 70 80 90 100"
-				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_hunger_1"
-				"LinkedSpecialBonusField"		"value2"
+				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_hunger_2"
+				"LinkedSpecialBonusField"		"value"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"min_attack_speed"				"10 20 30 40 50 60 70"
-				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_hunger_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"min_attack_damage"				"10 20 30 40 50 60 70"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"min_lifesteal"					"1"
-				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_hunger_1"
+				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_hunger_2"
 				"LinkedSpecialBonusField"		"value2"
 			}
 		}
@@ -172,13 +174,8 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1.15"
-			}
-			"01"
-			{
 				"var_type"					"FIELD_INTEGER"
-				"value2"					"15"
+				"value"						"60"
 			}
 		}
 	}
@@ -200,16 +197,312 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"5"
+				"value"						"20"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"cd"						"18"
+				"value2"					"9"
 			}
 		}
 	}
+	//=================================================================================================================
+	// Lifestealer: Ghoul Frenzy
+	//=================================================================================================================
+	"lifestealer_ghoul_frenzy_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_lifestealer/lifestealer_ghoul_frenzy_bh.lua"
+		"AbilityTextureName"			"life_stealer_ghoul_frenzy"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_lifestealer_ghoul_frenzy_1"	"1"
+			"special_bonus_unique_lifestealer_ghoul_frenzy_2"	"1"
+		}
+		
+		"precache"
+		{
+			"particle"			"particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+		}
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction"		"-2 -3 -4 -5 -6 -7 -8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"1.5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attack_speed_bonus"	"20 30 40 50 60 70 80"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_lifestealer_ghoul_frenzy_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"100"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_lifestealer_ghoul_frenzy_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"20"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value2"					"2"
+			}
+		}
+	}
+	"lifestealer_assimilate_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_lifestealer/lifestealer_assimilate_bh.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"life_stealer_assimilate"
+		"MaxLevel"						"1"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"IsGrantedByScepter"			"1"
+		"HasScepterUpgrade"				"1"
 
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastAnimation"			"ACT_DOTA_LIFESTEALER_ASSIMILATE"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"50"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+	
+		"precache"
+		{
+			"particle"                  "particles/units/heroes/hero_life_stealer/life_stealer_infest_emerge_bloody.vpcf"
+			"particle"  				"particles/units/heroes/hero_life_stealer/life_stealer_infested_unit.vpcf"
+			"particle"  				"particles/units/heroes/hero_life_stealer/life_stealer_loadout.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"300"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"700"
+			}
+		}
+	}
+	"lifestealer_assimilate_exit"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_lifestealer/lifestealer_assimilate_exit.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"			"life_stealer_assimilate_eject"
+		"MaxLevel"						"1"
+	}
+	
+	"lifestealer_infest_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_lifestealer/lifestealer_infest_bh.lua"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"life_stealer_infest"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_lifestealer_infest_1"	"1"
+			"special_bonus_unique_lifestealer_infest_2"	"1"
+		}
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastAnimation"			"ACT_DOTA_LIFESTEALER_INFEST"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"100 75 50 50 50 50"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 125 150 200 250 300"
+	
+		"precache"
+		{
+			"particle"                  "particles/units/heroes/hero_life_stealer/life_stealer_infest_emerge_bloody.vpcf"
+			"particle"  				"particles/units/heroes/hero_life_stealer/life_stealer_infested_unit.vpcf"
+			"particle"  				"particles/units/heroes/hero_life_stealer/life_stealer_loadout.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"ally_bonus_hp"					"400 600 800 1600 2400 3200"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"aoe_damage"					"200 300 400 800 1200 1600"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"max_hp_regen"					"3 3.5 4 5 6 7"
+				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_infest_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"700"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"5.0"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_lifestealer_infest_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"100"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_lifestealer_infest_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+	
+	
+	//=================================================================================================================
+	// DEPRECATED
+	//=================================================================================================================
 	"lifestealer_flesh_wounds"
 	{
 		// General
@@ -334,131 +627,6 @@
 			}
 		}
 	}
-
-	"lifestealer_infest_bh"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_lifestealer/lifestealer_infest_bh.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName"			"life_stealer_infest"
-		"MaxLevel"						"1"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"InnateAbility"					"1"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.2"
-		"AbilityCastAnimation"			"ACT_DOTA_LIFESTEALER_INFEST"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"50"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50"
-	
-		"precache"
-		{
-			"particle"                  "particles/units/heroes/hero_life_stealer/life_stealer_infest_emerge_bloody.vpcf"
-			"particle"  				"particles/units/heroes/hero_life_stealer/life_stealer_infested_unit.vpcf"
-			"particle"  				"particles/units/heroes/hero_life_stealer/life_stealer_loadout.vpcf"
-
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
-		}
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"10"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"700"
-			}
-		}
-	}
-
-	"lifestealer_assimilate_bh"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_lifestealer/lifestealer_assimilate_bh.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName"			"life_stealer_assimilate"
-		"MaxLevel"						"1"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"IsGrantedByScepter"			"1"
-
-		"HasScepterUpgrade"				"1"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.2"
-		"AbilityCastAnimation"			"ACT_DOTA_LIFESTEALER_ASSIMILATE"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"50"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50"
-	
-		"precache"
-		{
-			"particle"                  "particles/units/heroes/hero_life_stealer/life_stealer_infest_emerge_bloody.vpcf"
-			"particle"  				"particles/units/heroes/hero_life_stealer/life_stealer_infested_unit.vpcf"
-			"particle"  				"particles/units/heroes/hero_life_stealer/life_stealer_loadout.vpcf"
-
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
-		}
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"300"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"700"
-			}
-		}
-	}
-
-	"lifestealer_assimilate_exit"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_lifestealer/lifestealer_assimilate_exit.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityTextureName"			"life_stealer_assimilate_eject"
-		"MaxLevel"						"1"
-	}
-
 	"lifestealer_rend"
 	{
 		// General

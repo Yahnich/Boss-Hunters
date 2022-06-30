@@ -37,11 +37,13 @@ function modifier_boss_evasion:CheckState()
 end
 
 function modifier_boss_evasion:OnTakeDamage( params )
-	if not self.hasBeenDelayed and not self:GetParent():HasModifier("modifier_boss_hard_enrage") then
+	if not self.hasBeenDelayed then
 		if params.unit:IsRealHero() and not params.attacker:IsSameTeam( params.unit ) then
 			if params.damage > params.unit:GetHealth() then
 				self:StartIntervalThink( 8 )
 				self.hasBeenDelayed = true
+				self.enrageTimer = 310 - GameRules:GetGameDifficulty() * 20 - HeroList:GetActiveHeroCount() * 10
+				self:GetParent():RemoveModifierByName("modifier_boss_hard_enrage") 
 			else
 				self:StartIntervalThink( 1 )
 				self.hasBeenDelayed = true
@@ -64,10 +66,10 @@ function modifier_boss_evasion:GetModifierPreAttack_CriticalStrike( params )
 	if self.ticks >= self.critDelay and self:RollPRNG( 50 ) then	
 		self.ticks = 0
 		local critDamage = 165 + 5 * self:GetStackCount()
-		local critMax = 200
+		local critMax = 200 + 5 * self:GetStackCount()
 		if self:GetParent():HasModifier("modifier_elite_assassin") then
 			critDamage = 220 + 7.5 * self:GetStackCount()
-			critMax = 300
+			critMax = 300 + 5 * self:GetStackCount()
 		end
 		if self:GetParent():IsRangedAttacker() then
 			critDamage = critDamage - 25

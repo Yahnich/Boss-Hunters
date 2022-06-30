@@ -62,11 +62,13 @@ function pl_juxtapose:SpawnIllusion(forceIllusion)
 end
 
 modifier_pl_juxtapose = class({})
-function modifier_pl_juxtapose:OnCreated(table)
-	if IsServer() then
-		self.chance = self:GetTalentSpecialValueFor("chance")
-		self.illusion_chance = self:GetTalentSpecialValueFor("illusion_chance")
-	end
+function modifier_pl_juxtapose:OnCreated()
+	self:OnRefresh()
+end
+
+function modifier_pl_juxtapose:OnRefresh()
+	self.chance = self:GetTalentSpecialValueFor("chance")
+	self.illusion_chance = self:GetTalentSpecialValueFor("illusion_chance")
 end
 
 function modifier_pl_juxtapose:DeclareFunctions()

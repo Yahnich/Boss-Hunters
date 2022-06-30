@@ -106,7 +106,7 @@ if IsServer() then
 			self.hpDmg = math.min(self.hpDmg + (self.maxHPDmg/self.rampup * 0.3), self.maxHPDmg)
 		end
 		local dmg = self:GetAbility():DealDamage(caster,  parent, damage * 0.3, {damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
-		caster:HealEvent(dmg, self:GetAbility(), caster)
+		if not parent:IsIllusion() then caster:HealEvent(dmg, self:GetAbility(), caster ) end
 	end
 	
 	function modifier_boss15_thread_of_life_tether:OnDestroy()

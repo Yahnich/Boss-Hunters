@@ -108,16 +108,16 @@ LinkLuaModifier( "modifier_legion_commander_victorious_advance_buff_stacks", "he
 modifier_legion_commander_victorious_advance_buff_stacks = class({})
 
 function modifier_legion_commander_victorious_advance_buff_stacks:OnCreated(kv)
-	self.movespeed = kv.movespeed
 	if IsServer() then
+		self.movespeed = kv.movespeed
 		EmitSoundOn("Hero_LegionCommander.Overwhelming.Buff",self:GetParent())
 		self:SetHasCustomTransmitterData( true )
 	end
 end
 
 function modifier_legion_commander_victorious_advance_buff_stacks:OnRefresh(kv)
-	self.movespeed = kv.movespeed
 	if IsServer() then
+		self.movespeed = kv.movespeed
 		EmitSoundOn("Hero_LegionCommander.Overwhelming.Buff",self:GetParent())
 		self:SetHasCustomTransmitterData( true )
 	end
@@ -128,10 +128,7 @@ function modifier_legion_commander_victorious_advance_buff_stacks:GetEffectName(
 end
 
 function modifier_legion_commander_victorious_advance_buff_stacks:DeclareFunctions()
-	funcs = {
-				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-			}
-	return funcs
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
 end
 
 function modifier_legion_commander_victorious_advance_buff_stacks:GetModifierMoveSpeedBonus_Percentage()

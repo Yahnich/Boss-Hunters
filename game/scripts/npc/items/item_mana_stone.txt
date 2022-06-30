@@ -39,12 +39,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"mana"					"250 175 125 100"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_regeneration"		"2 1.5 1 0.5"
+				"mana"					"325 275 225 150"
 			}
 		}
 	}

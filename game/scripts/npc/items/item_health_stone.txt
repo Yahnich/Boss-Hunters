@@ -19,7 +19,7 @@
 		"ItemStackable"					"1"
 		"ItemInitialCharges"			"1"
 		"ItemDisplayCharges"			"1"
-		"ItemCost"						"425"
+		"ItemCost"						"500"
 		
 		"MaxUpgradeLevel"				"4"
 		"ItemBaseLevel"					"1"
@@ -39,12 +39,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"health"				"250 175 125 100"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"health_regeneration"	"2 1.5 1 0.5"
+				"health"				"225 175 125 75"
 			}
 		}
 	}

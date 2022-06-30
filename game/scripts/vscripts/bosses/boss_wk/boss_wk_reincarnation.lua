@@ -63,6 +63,7 @@ function modifier_boss_wk_reincarnation_enrage:OnCreated()
 	self.as = self:GetSpecialValueFor("enrage_as") 
 	self.bonus_as = self:GetSpecialValueFor("revive_bonus_as")
 	self.ms = self:GetSpecialValueFor("enrage_ms")
+	
 	self.radius = self:GetSpecialValueFor("enrage_radius")
 	if IsServer() then
 		self:GetParent():SwapAbilities("boss_wk_reincarnation", "boss_wk_hellfire_fury", false, true)

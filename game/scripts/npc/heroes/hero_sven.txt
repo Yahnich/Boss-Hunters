@@ -19,6 +19,7 @@
 		"AbilitySound"					"Hero_Sven.StormBoltImpact"
 		"AbilityTextureName"			"sven_storm_bolt"
 		"MaxLevel"						"7"
+		"HasScepterUpgrade"				"1"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -35,16 +36,15 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"14"
+		"AbilityCooldown"				"18 18 18 18 16 14 12"
 
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"175 250 325 400 475 550 625"
-		"AbilityThreat"					"5"
+		"AbilityDamage"					"95 170 245 320 420 520 620"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"140"
+		"AbilityManaCost"				"110 115 120 125 125 125 125"
 		
 		"precache"
 		{
@@ -63,17 +63,25 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bolt_stun_duration"	"1.4"
+				"bolt_stun_duration"	"1.4 1.6 1.8 2.0 2.0 2.0 2.0"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bolt_aoe"				"255"
+				"LinkedSpecialBonus"	"special_bonus_unique_sven_storm_bolt_2"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"vision_radius"			"225"
+				"LinkedSpecialBonus"	"special_bonus_unique_sven_storm_bolt_2"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_range"			"950"
+				"RequiresScepter"		"1"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
@@ -85,6 +93,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_sven_storm_bolt_passive_handler"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -94,6 +103,11 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"value"					"2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value2"				"100"
 			}
 		}
 	}
@@ -112,12 +126,27 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
+				"value"					"245"
 			}
 			"02"
 			{
+				"var_type"				"FIELD_INTEGER"
+				"minion_str"			"1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"unit_str"				"4"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"boss_str"				"16"
+			}
+			"05"
+			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"14"
+				"duration"				"30"
 			}
 		}
 	}
@@ -155,7 +184,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16"
+		"AbilityCooldown"				"16 16 16 16 14 12 10"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -173,7 +202,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"distance"					"300 450 600 750 900 1050 1200"		
+				"distance"					"600 800 1000 1200 1200 1200 1200"		
 			}
 			"02"
 			{
@@ -184,6 +213,7 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"armor_damage"				"10 10.75 11.5 12.25 13 13.75 14.5"
+				"LinkedSpecialBonus"		"special_bonus_unique_sven_valiant_charge_1"
 			}
 			"04"
 			{
@@ -194,6 +224,11 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"movespeed"					"200"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"max_duration"				"3"
 			}
 		}
 	}
@@ -212,7 +247,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
+				"value"					"1.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"2.0"
 			}
 		}
 	}
@@ -231,7 +271,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"8"
+				"value"					"-4"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8"
 			}
 		}
 	}
@@ -265,16 +310,14 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-		"AbilityCastRange"				"900"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"24.0 22.0 20.0 18.0 16.0 14.0 12.0"
-		"AbilityDuration"				"8.0"
+		"AbilityCooldown"				"32 28 24 20 20 20 20"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 25 25 25"
+		"AbilityManaCost"				"30 30 30 30 45 60 75"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -283,24 +326,22 @@
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"warcry_armor"						"5 10 15 20 25 30 35"
-				"LinkedSpecialBonus"				"special_bonus_unique_sven_warcry_2"
-				"LinkedSpecialBonusOperation"		"SPECIAL_BONUS_MULTIPLY"				
+				"warcry_armor"						"6 9 12 15 20 25 30"			
 			}
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"warcry_movespeed"					"35"
+				"warcry_movespeed"					"10 14 18 22 30 38 46"
 			}
 			"03"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"warcry_radius"						"900"
+				"warcry_radius"						"700"
 			}
 			"04"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"duration_tooltip"					"8"
+				"duration"							"8 8 8 8 9.5 11 12.5"
 			}
 		}
 	}
@@ -319,7 +360,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"80"
+				"value"					"200"
 			}
 		}
 	}
@@ -330,6 +371,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_sven_warcry_bh_talent_aura"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -338,7 +380,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
+				"value"					"50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1200"
 			}
 		}
 	}
@@ -403,7 +450,6 @@
 		"AbilitySound"					"Hero_Sven.GodsStrength"
 		"AbilityTextureName"			"sven_gods_strength"
 		"MaxLevel"						"6"
-		"HasScepterUpgrade"				"1"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -420,11 +466,11 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"80"
+		"AbilityCooldown"				"110 110 110 95 95 80"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 150 200 250 300 350"
+		"AbilityManaCost"				"100 150 200 200 250 250"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -433,27 +479,12 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"gods_strength_damage"			"80 120 160 200 240 280"		
+				"gods_strength_damage"			"120 160 200 210 250 300"		
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"gods_strength_bonus_str"		"10 20 30 40 50 60 70"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius_scepter"				"900"		
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"gods_strength_damage_scepter"	"75 100 125 150 175 200"		
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"duration"						"25"		
+				"duration"						"35"
 			}
 		}
 	}
@@ -464,6 +495,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_sven_gods_strength_talent_handler"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -472,7 +504,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
+				"value"					"5"
 			}
 		}
 	}
@@ -491,12 +523,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
+				"value"					"3"
 			}
-			"01"
+			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1200"
 			}
 		}
 	}

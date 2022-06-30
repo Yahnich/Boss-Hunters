@@ -27,12 +27,7 @@ function huskar_fire_within:OnSpellStart()
 		if not enemy:TriggerSpellAbsorb(self) then
 			self:DealDamage( caster, enemy, damage )
 			enemy:ApplyKnockBack(caster:GetAbsOrigin(), kbDuration, kbDuration, math.max(50, kbDistance - CalculateDistance(enemy, caster)), 0, caster, self, false)
-			local modifier = enemy:Disarm(self, caster, duration)
-			if delay then
-				delay = ( delay + modifier:GetRemainingTime() ) / 2
-			else
-				delay = modifier:GetRemainingTime()
-			end
+			
 			if talent1 then
 				enemy:AddNewModifier( caster, self, "modifier_huskar_fire_within_talent", {duration = duration + tDuration})
 			end
@@ -41,10 +36,9 @@ function huskar_fire_within:OnSpellStart()
 			end
 		end
 	end
-	if stacks > 0 then
-		caster:AddNewModifier( caster, self, "modifier_huskar_fire_within_damage", {duration = duration}):SetStackCount(#enemies)
-	end
-	self:StartDelayedCooldown( delay or 0 )
+	-- if stacks > 0 then
+		-- caster:AddNewModifier( caster, self, "modifier_huskar_fire_within_damage", {duration = duration}):SetStackCount(#enemies)
+	-- end
 	ParticleManager:FireParticle("particles/units/heroes/hero_huskar/huskar_inner_fire.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	caster:EmitSound("Hero_Huskar.Inner_Fire.Cast")
 end

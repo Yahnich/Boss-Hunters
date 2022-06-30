@@ -24,6 +24,9 @@ function modifier_ursa_fury_swipes_bh_handle:OnRefresh()
 	self.duration = self:GetTalentSpecialValueFor("duration")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_ursa_fury_swipes_bh_1")
 	self.talent1Heal = self:GetCaster():FindTalentValue("special_bonus_unique_ursa_fury_swipes_bh_1") / 100
+	
+	self.ultTalent1 = self:GetCaster():HasTalent("special_bonus_unique_ursa_enrage_bh_1")
+	self.ultTalent1Val = self:GetCaster():FindTalentValue("special_bonus_unique_ursa_enrage_bh_1")
 end
 
 function modifier_ursa_fury_swipes_bh_handle:DeclareFunctions()
@@ -34,13 +37,14 @@ function modifier_ursa_fury_swipes_bh_handle:GetModifierProcAttack_BonusDamage_P
 	local caster = self:GetCaster()
 	if caster:PassivesDisabled() then return nil end
 	local damage = self.damage * params.target:GetModifierStackCount( "modifier_ursa_fury_swipes_bh", params.attacker )
-	if caster:HasModifier("modifier_ursa_enrage_bh") then
-		local enrage = caster:FindAbilityByName("ursa_enrage_bh")
-		if enrage then
-			damage = damage * enrage:GetTalentSpecialValueFor("fury_multiplier")
-		end
+	if self.ultTalent1 then
+		damage = self.damage * self.ultTalent1Val
 	end
-	local modifier = params.target:AddNewModifier( params.attacker, self:GetAbility(), "modifier_ursa_fury_swipes_bh", {duration = self.duration} )
+	local duration = self.duration
+	if params.target:IsMinion() then
+		duration = -1
+	end
+	local modifier = params.target:AddNewModifier( params.attacker, self:GetAbility(), "modifier_ursa_fury_swipes_bh", {duration = duration} )
 	if caster:HasModifier("modifier_ursa_fury_swipes_bh_talent") then
 		local stacks = caster:FindModifierByName("modifier_ursa_fury_swipes_bh_talent"):GetStackCount()
 		caster:RemoveModifierByName("modifier_ursa_fury_swipes_bh_talent")

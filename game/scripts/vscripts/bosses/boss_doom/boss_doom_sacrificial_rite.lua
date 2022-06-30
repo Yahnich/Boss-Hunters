@@ -50,7 +50,7 @@ function modifier_boss_doom_sacrificial_rite:OnTakeDamage(params)
 				ParticleManager:ClearParticle(doomFX)
 				EmitSoundOn("hero_bloodseeker.bloodRite", caster)
 				for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, self.radius ) ) do
-					if not enemy:TriggerSpellAbsorb(self) then
+					if not enemy:TriggerSpellAbsorb(ability) then
 						ability:DealDamage( caster, enemy, self.damage )
 						ability:Stun( enemy, self.duration )
 						caster:RefreshAllCooldowns()

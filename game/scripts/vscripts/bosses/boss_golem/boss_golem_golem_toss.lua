@@ -75,7 +75,7 @@ if IsServer() then
 		local radius = math.max( 175, math.min( self:GetSpecialValueFor("base_radius"), self:GetSpecialValueFor("base_radius") * parent:GetModelScale() / 1.8 ) )
 		ParticleManager:FireParticle("particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", PATTACH_ABSORIGIN, parent, {[1] = Vector(radius, 1, 1)})
 		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parentPos, radius ) ) do
-			if not enemy:TriggerSpellAbsorb(self) then
+			if not enemy:TriggerSpellAbsorb(ability) then
 				ability:DealDamage(parent, enemy, damage)
 			end
 		end

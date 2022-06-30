@@ -12,7 +12,7 @@ function modifier_elite_graverobber:DeclareFunctions()
 end
 
 function modifier_elite_graverobber:OnTakeDamage(params)
-	if params.attacker == self:GetParent() and ( params.damage > params.unit:GetHealth() or params.unit:GetHealth() <= 0 ) then
+	if params.attacker == self:GetParent() and ( params.damage > params.unit:GetHealth() or params.unit:GetHealth() <= 0 or not params.unit:IsAlive() ) and not self:GetParent():PassivesDisabled() then
 		params.unit.tombstoneDisabled = true
 	end
 end

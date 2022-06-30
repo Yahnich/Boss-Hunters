@@ -40,7 +40,7 @@ if IsServer() then
 		
 		local startPos = caster:GetAbsOrigin()
 		caster:EmitSound("Hero_Pangolier.Swashbuckle")
-		for _, enemy in ipairs( caster:FindEnemyUnitsInLine( startPos, startPos + direction * caster:GetAttackRange(), self.width ) ) do
+		for _, enemy in ipairs( caster:FindEnemyUnitsInLine( startPos, startPos + direction * caster:GetAttackRange(), self.width, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES} ) ) do
 			caster:PerformGenericAttack(enemy, true)
 		end
 	end

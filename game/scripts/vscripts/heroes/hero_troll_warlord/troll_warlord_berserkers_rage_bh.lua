@@ -91,7 +91,3 @@ end
 function modifier_troll_warlord_berserkers_rage_bh_melee:GetEffectName()
 	return "particles/units/heroes/hero_troll_warlord/troll_warlord_berserk_buff.vpcf"
 end
-
-function modifier_troll_warlord_berserkers_rage_bh_melee:GetModifierAttackRangeOverride()
-	return 150
-end

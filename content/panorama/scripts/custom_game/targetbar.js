@@ -113,10 +113,12 @@ function UpdateHealthBar()
 			if((unitName.match(/_h/g) != null || unitName.match(/_vh/g) != null)){
 				nameMod = ""
 			}
-			if( (nameMod != "") && ($.Localize("#" + unitName + nameMod) == unitName + nameMod) ){
+			$.Msg( $.Localize("#" + unitName + nameMod ), unitName + nameMod )
+			if( (nameMod != "") && ($.Localize("#" + unitName + nameMod) == '#' + unitName + nameMod) ){
 				nameMod = ""
 			}
-			$("#bossNameLabel").text = $.Localize("#" + unitName + nameMod);
+			$.Msg( unitName, nameMod )
+			$("#bossNameLabel").text = $.Localize("#" + unitName + nameMod, $("#bossNameLabel") );
 			var elite = "" 
 			for (var i = 0; i < Entities.GetAbilityCount( sUnit ); i++) {
 				var abilityID = Entities.GetAbility( sUnit, i )

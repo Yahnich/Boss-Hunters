@@ -13,7 +13,7 @@
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"425"
+		"ItemCost"						"625"
 		"ItemShopTags"					"armor;corruption"
 		"ItemQuality"					"component"
 		"ItemAliases"					"desolator;reaping scythe"
@@ -24,7 +24,8 @@
 			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"AvailableRuneSlots"			"0"
+		"AvailableRuneSlots"			"2"
+		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -32,7 +33,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-2 -4 -6 -8 -10 -12 -14 -16 -18"
+				"armor_reduction"		"-3 -5 -8 -10 -13"
 			}
 			"02"
 			{
@@ -42,7 +43,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -61,7 +62,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1050"
+		"ItemCost"						"1650"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -93,13 +94,11 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"2"
 		
-		"UpgradesItems"					"item_reaping_scythe;item_reaping_scythe_2;item_reaping_scythe_3;item_reaping_scythe_4;item_reaping_scythe_5;item_reaping_scythe_6;item_reaping_scythe_7;item_reaping_scythe_8;item_reaping_scythe_9"
-		"UpgradeRecipe"					"item_recipe_reaping_scythe_2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -107,7 +106,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-2 -4 -6 -8 -10 -12 -14 -16 -18"
+				"armor_reduction"		"-3 -5 -8 -10 -13"
 			}
 			"02"
 			{
@@ -117,7 +116,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -168,13 +167,11 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"3"
 		
-		"UpgradesItems"					"item_reaping_scythe;item_reaping_scythe_2;item_reaping_scythe_3;item_reaping_scythe_4;item_reaping_scythe_5;item_reaping_scythe_6;item_reaping_scythe_7;item_reaping_scythe_8;item_reaping_scythe_9"
-		"UpgradeRecipe"					"item_recipe_reaping_scythe_2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -182,7 +179,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-2 -4 -6 -8 -10 -12 -14 -16 -18"
+				"armor_reduction"		"-3 -5 -8 -10 -13"
 			}
 			"02"
 			{
@@ -192,7 +189,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -243,11 +240,9 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"4"
 		
-		"UpgradesItems"					"item_reaping_scythe;item_reaping_scythe_2;item_reaping_scythe_3;item_reaping_scythe_4;item_reaping_scythe_5;item_reaping_scythe_6;item_reaping_scythe_7;item_reaping_scythe_8;item_reaping_scythe_9"
-		"UpgradeRecipe"					"item_recipe_reaping_scythe_2"
 		
 		"AvailableRuneSlots"			"2"
 		// Special	
@@ -257,7 +252,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-2 -4 -6 -8 -10 -12 -14 -16 -18"
+				"armor_reduction"		"-3 -5 -8 -10 -13"
 			}
 			"02"
 			{
@@ -267,7 +262,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -318,11 +313,9 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"5"
 		
-		"UpgradesItems"					"item_reaping_scythe;item_reaping_scythe_2;item_reaping_scythe_3;item_reaping_scythe_4;item_reaping_scythe_5;item_reaping_scythe_6;item_reaping_scythe_7;item_reaping_scythe_8;item_reaping_scythe_9"
-		"UpgradeRecipe"					"item_recipe_reaping_scythe_2"
 		
 		"AvailableRuneSlots"			"2"
 		// Special	
@@ -332,7 +325,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-2 -4 -6 -8 -10 -12 -14 -16 -18"
+				"armor_reduction"		"-3 -5 -8 -10 -13"
 			}
 			"02"
 			{
@@ -342,7 +335,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -361,11 +354,12 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_reaping_scythe_6"
 		"ItemRequirements"
 		{
@@ -385,6 +379,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"armor;corruption"
@@ -393,11 +388,9 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"6"
 		
-		"UpgradesItems"					"item_reaping_scythe;item_reaping_scythe_2;item_reaping_scythe_3;item_reaping_scythe_4;item_reaping_scythe_5;item_reaping_scythe_6;item_reaping_scythe_7;item_reaping_scythe_8;item_reaping_scythe_9"
-		"UpgradeRecipe"					"item_recipe_reaping_scythe_2"
 		
 		"AvailableRuneSlots"			"2"
 		// Special	
@@ -407,7 +400,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-2 -4 -6 -8 -10 -12 -14 -16 -18"
+				"armor_reduction"		"-3 -5 -8 -10 -13"
 			}
 			"02"
 			{
@@ -417,7 +410,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -436,6 +429,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -460,6 +454,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"armor;corruption"
@@ -468,13 +463,11 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"7"
 		
-		"UpgradesItems"					"item_reaping_scythe;item_reaping_scythe_2;item_reaping_scythe_3;item_reaping_scythe_4;item_reaping_scythe_5;item_reaping_scythe_6;item_reaping_scythe_7;item_reaping_scythe_8;item_reaping_scythe_9"
-		"UpgradeRecipe"					"item_recipe_reaping_scythe_2"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -482,7 +475,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-2 -4 -6 -8 -10 -12 -14 -16 -18"
+				"armor_reduction"		"-3 -5 -8 -10 -13"
 			}
 			"02"
 			{
@@ -492,7 +485,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -511,6 +504,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -534,6 +528,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"armor;corruption"
@@ -542,13 +537,11 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"8"
 		
-		"UpgradesItems"					"item_reaping_scythe;item_reaping_scythe_2;item_reaping_scythe_3;item_reaping_scythe_4;item_reaping_scythe_5;item_reaping_scythe_6;item_reaping_scythe_7;item_reaping_scythe_8;item_reaping_scythe_9"
-		"UpgradeRecipe"					"item_recipe_reaping_scythe_2"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -556,7 +549,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-2 -4 -6 -8 -10 -12 -14 -16 -18"
+				"armor_reduction"		"-3 -5 -8 -10 -13"
 			}
 			"02"
 			{
@@ -566,7 +559,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -585,6 +578,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -609,6 +603,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"armor;corruption"
@@ -616,14 +611,10 @@
 		"ItemAliases"					"blade mail;penitent mail"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"9"
 		
-		"UpgradesItems"					"item_reaping_scythe;item_reaping_scythe_2;item_reaping_scythe_3;item_reaping_scythe_4;item_reaping_scythe_5;item_reaping_scythe_6;item_reaping_scythe_7;item_reaping_scythe_8;item_reaping_scythe_9"
-		"UpgradeRecipe"					"item_recipe_reaping_scythe_2"
-		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -631,7 +622,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-2 -4 -6 -8 -10 -12 -14 -16 -18"
+				"armor_reduction"		"-3 -5 -8 -10 -13"
 			}
 			"02"
 			{
@@ -641,7 +632,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}

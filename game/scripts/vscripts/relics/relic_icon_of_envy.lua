@@ -5,21 +5,21 @@ function relic_icon_of_envy:DeclareFunctions()
 end
 
 function relic_icon_of_envy:GetModifierBonusStats_Strength()
-	local baseLoss = -20
+	local baseLoss = -10
 	if self:GetParent():HasModifier("relic_ritual_candle") then baseLoss = 0 end
-	return baseLoss + 10 * self:GetStackCount()
+	return baseLoss + 12 * self:GetStackCount()
 end
 
 function relic_icon_of_envy:GetModifierBonusStats_Agility()
-	local baseLoss = -20
+	local baseLoss = -10
 	if self:GetParent():HasModifier("relic_ritual_candle") then baseLoss = 0 end
-	return baseLoss + 10 * self:GetStackCount()
+	return baseLoss + 12 * self:GetStackCount()
 end
 
 function relic_icon_of_envy:GetModifierBonusStats_Intellect()
-	local baseLoss = -20
+	local baseLoss = -10
 	if self:GetParent():HasModifier("relic_ritual_candle") then baseLoss = 0 end
-	return baseLoss + 10 * self:GetStackCount()
+	return baseLoss + 12 * self:GetStackCount()
 end
 
 function relic_icon_of_envy:IsDebuff()

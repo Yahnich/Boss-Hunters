@@ -6,16 +6,19 @@ require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
 	AITimers:CreateTimer(function()
+		thisEntity.blast = thisEntity:FindAbilityByName("wk_blast")
 		if thisEntity and not thisEntity:IsNull() then
 			return AIThink(thisEntity)
 		end
 	end)
+	
+	
 end
 
 
 function AIThink(thisEntity)
 	if thisEntity and not thisEntity:IsNull() and thisEntity:IsAlive() then
-		if not thisEntity:IsDominated() then
+		if not ( thisEntity:IsDominated() or thisEntity:HasActiveAbility() or thisEntity:IsMoving() ) then
 			local skeletonBlastUnit
 			local nearestUnit
 			if thisEntity:GetOwner() and thisEntity:GetOwner():IsReincarnating() then
@@ -33,6 +36,15 @@ function AIThink(thisEntity)
 				elseif not nearestUnit then
 					nearestUnit = enemy
 				end
+			end
+			if nearestUnit and thisEntity.blast and CalculateDistance( nearestUnit, thisEntity ) <= thisEntity.blast:GetTrueCastRange() and thisEntity.blast:IsCooldownReady() then
+				ExecuteOrderFromTable({
+					UnitIndex = thisEntity:entindex(),
+					OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+					TargetIndex = nearestUnit:entindex(),
+					AbilityIndex = thisEntity.blast:entindex()
+				})
+				return thisEntity.blast:GetCastPoint() + 0.1
 			end
 			if skeletonBlastUnit then
 				thisEntity:MoveToTargetToAttack( skeletonBlastUnit )

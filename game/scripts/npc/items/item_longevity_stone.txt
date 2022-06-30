@@ -19,7 +19,7 @@
 		"ItemStackable"					"1"
 		"ItemInitialCharges"			"1"
 		"ItemDisplayCharges"			"1"
-		"ItemCost"						"950"
+		"ItemCost"						"1050"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -28,7 +28,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"status_amp"			"10 7 5 3"
+				"status_amp"			"8 5 3 2"
 			}
 		}
 	}

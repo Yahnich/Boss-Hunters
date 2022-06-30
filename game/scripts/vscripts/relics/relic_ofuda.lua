@@ -7,7 +7,6 @@ function relic_ofuda:OnCreated()
 			if modifier.IsCurse and modifier:IsCurse() then
 				modifier:Destroy()
 				stacks = stacks - 1
-				print( "ofuda", self:GetStackCount() )
 				if self:GetStackCount() == 0 then
 					break
 				end

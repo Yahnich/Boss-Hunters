@@ -126,10 +126,6 @@ function modifier_rot_lua_effect:OnDeath(params)
 		if self:GetParent():IsMinion() then
 			stacks = self:GetTalentSpecialValueFor("minion_stacks")
 		end
-		local skinHeap = self:GetCaster():FindAbilityByName("pudge_flesh_heap_lua")
-		if skinHeap then
-			skinHeap:AddSkinHeap(stacks)
-		end
 	end
 end
 

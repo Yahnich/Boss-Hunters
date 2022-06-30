@@ -20,10 +20,12 @@ if IsServer() then
 	function modifier_elite_frenzied:OnIntervalThink()
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
-		if not caster:IsAttacking() or not ability:IsFullyCastable() or caster:PassivesDisabled() then return end
+		if not caster:IsAttacking() or not ability:IsFullyCastable() or caster:IsStunned() or caster:IsSilenced() or caster:GetCurrentActiveAbility() or caster:IsHexed() then return end
+		
 		ability:CastSpell()
 	end
 end
+
 
 function modifier_elite_frenzied:GetEffectName()
 	return "particles/units/elite_warning_offense_overhead.vpcf"

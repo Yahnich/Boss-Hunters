@@ -1,9 +1,5 @@
 relic_paupers_finger = class(relicBaseClass)
 
-function relic_paupers_finger:DeclareFunctions()
-	return {MODIFIER_PROPERTY_EXP_RATE_BOOST}
-end
-
 function relic_paupers_finger:GetBonusExp()
 	return 100
 end

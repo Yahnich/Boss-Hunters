@@ -1,5 +1,17 @@
 antimage_blink_bh = class ({})
 
+function antimage_blink_bh:GetIntrinsicModifierName()
+	return "modifier_antimage_blink_handler"
+end
+
+function antimage_blink_bh:GetManaCost( iLvl )
+	if self:GetCaster():HasModifier("modifier_antimage_blink_talent") then
+		return 0
+	else
+		return self.BaseClass.GetManaCost( self, iLvl )
+	end
+end
+
 function antimage_blink_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local tPosition = self:GetCursorPosition()
@@ -9,32 +21,46 @@ function antimage_blink_bh:OnSpellStart()
 	local distance = math.min( math.max( self:GetTalentSpecialValueFor("min_blink_range"), CalculateDistance(tPosition, caster) ), self:GetTalentSpecialValueFor("blink_range") )
 	local endPos = caster:GetAbsOrigin() + direction * distance
 	EmitSoundOn("Hero_Antimage.Blink_out", caster)
-	ParticleManager:FireParticle("particles/units/heroes/hero_antimage/antimage_blink_start.vpcf", PATTACH_ABSORIGIN, caster, {[0] = startPos})
-	if caster:HasTalent("special_bonus_unique_antimage_blink_1") then
-		local illusions = caster:ConjureImage( {outgoing_damage = caster:FindTalentValue("special_bonus_unique_antimage_blink_1", "outgoing"), incoming_damage = caster:FindTalentValue("special_bonus_unique_antimage_blink_1", "incoming"), position = startPos, controllable = false}, caster:FindTalentValue("special_bonus_unique_antimage_blink_1", "duration"), caster, 1 )
-		illusions[1]:MoveToPositionAggressive(startPos)
-	end
+
 	FindClearSpaceForUnit(caster, endPos, true)
 	ProjectileManager:ProjectileDodge( caster )
 	ParticleManager:FireParticle("particles/units/heroes/hero_antimage/antimage_blink_end.vpcf", PATTACH_ABSORIGIN, caster, {[0] = caster:GetAbsOrigin()})
 	EmitSoundOn("Hero_Antimage.Blink_in", caster)
 	
 	if caster:HasTalent("special_bonus_unique_antimage_blink_2") then
-		caster:AddNewModifier(caster, self, "modifier_antimage_blink_talent", {duration = caster:FindTalentValue("special_bonus_unique_antimage_blink_2", "duration")})
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( startPos, caster:FindTalentValue("special_bonus_unique_antimage_blink_2") ) ) do
+			caster:PerformAbilityAttack( enemy, false, self )
+		end
 	end
+	
+	caster:RemoveModifierByName("modifier_antimage_blink_talent")
+end
+
+modifier_antimage_blink_handler = class({})
+LinkLuaModifier( "modifier_antimage_blink_handler", "heroes/hero_antimage/antimage_blink_bh", LUA_MODIFIER_MOTION_NONE )
+
+function modifier_antimage_blink_handler:OnCreated()
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_antimage_blink_1")
+end
+
+function modifier_antimage_blink_handler:OnRefresh()
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_antimage_blink_1")
+end
+
+function modifier_antimage_blink_handler:DeclareFunctions()
+	return { MODIFIER_EVENT_ON_TAKEDAMAGE }
+end
+
+function modifier_antimage_blink_handler:OnTakeDamage(params)
+	if params.unit == self:GetParent() and self.talent1 then
+		params.unit:AddNewModifier( params.unit, self:GetAbility(), "modifier_antimage_blink_talent", {} )
+		self:GetAbility():EndCooldown()
+	end
+end
+
+function modifier_antimage_blink_handler:IsHidden()
+	return true
 end
 
 modifier_antimage_blink_talent = class({})
 LinkLuaModifier( "modifier_antimage_blink_talent", "heroes/hero_antimage/antimage_blink_bh", LUA_MODIFIER_MOTION_NONE )
-
-function modifier_antimage_blink_talent:OnCreated()
-	self.heal = self:GetCaster():FindTalentValue("special_bonus_unique_antimage_blink_2")
-end
-
-function modifier_antimage_blink_talent:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE}
-end
-
-function modifier_antimage_blink_talent:GetModifierHealthRegenPercentage()
-	return self.heal
-end

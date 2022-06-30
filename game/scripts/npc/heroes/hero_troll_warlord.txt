@@ -29,7 +29,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_dmg"				"20 30 40 50 60 70 80"
+				"bonus_dmg"				"15 25 35 45 55 65 75"
 				"LinkedSpecialBonus"	"special_bonus_unique_troll_warlord_inflame_1"
 			}
 			"02"
@@ -68,14 +68,15 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_range"			"50 75 100 125 150 175 200"
-				"LinkedSpecialBonus"	"special_bonus_unique_troll_warlord_focus_1"
+				"var_type"					"FIELD_INTEGER"
+				"bonus_range"				"50 75 100 125 150 175 200"
+				"LinkedSpecialBonus"		"special_bonus_unique_troll_warlord_inflame_1"
+				"LinkedSpecialBonusField"	"value2"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_acc"				"10 15 20 25 30 35 40"
+				"var_type"					"FIELD_INTEGER"
+				"bonus_axe_dmg"				"60 110 160 210 260 310 360"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
@@ -95,7 +96,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"40"
+				"value"					"20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value2"				"100"
 			}
 		}
 	}
@@ -113,8 +119,18 @@
 		{
 			"01"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+			"02"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"200"
+				"slow"					"20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"1"
 			}
 		}
 	}
@@ -135,6 +151,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"HasScepterUpgrade"				"1"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_TrollWarlord.WhirlingAxes.Ranged"
 		"MaxLevel"						"7"
@@ -150,7 +167,6 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1000"
 		"AbilityCastPoint"				"0.2 0.2 0.2 0.2"
   		"AbilityCastAnimation"			"ACT_DOTA_WHIRLING_AXES_RANGED"
 
@@ -186,12 +202,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"axe_range"					"1000.0"
+				"axe_range"					"950.0"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"axe_damage"				"75 100 125 150 175 200 225"
+				"axe_damage"				"90"
 				"LinkedSpecialBonus"		"special_bonus_unique_troll_warlord_whirling_axes_2"
 			}
 			"05"
@@ -203,6 +219,8 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"movement_speed"			"40"
+				"LinkedSpecialBonus"		"special_bonus_unique_troll_warlord_whirling_axes_2"
+				"LinkedSpecialBonusField"	"value2"
 			}
 			"07"
 			{
@@ -213,6 +231,12 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"axe_count"					"5"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"scepter_cdr"				"-5"
+				"RequiresScepter"			"1"
 			}
 		}
 	}
@@ -231,6 +255,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"HasScepterUpgrade"				"1"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_TrollWarlord.WhirlingAxes.Melee"
 		"MaxLevel"						"7"
@@ -265,7 +290,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"100 150 200 250 300 350 400"
+				"damage"					"100 200 300 400 450 500 550"
 				"LinkedSpecialBonus"		"special_bonus_unique_troll_warlord_whirling_axes_2"
 			}
 			"02"
@@ -286,17 +311,25 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"blind_duration"			"5"
+				"blind_duration"			"5 5 5 5 6 7 8"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"blind_pct"					"60"
+				"LinkedSpecialBonus"		"special_bonus_unique_troll_warlord_whirling_axes_2"
+				"LinkedSpecialBonusField"	"value3"
 			}
 			"07"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"whirl_duration"			"3.0"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"scepter_cdr"				"-5"
+				"RequiresScepter"			"1"
 			}
 		}
 	}
@@ -318,6 +351,11 @@
 				"var_type"				"FIELD_FLOAT"
 				"value"					"15"
 			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value2"				"15"
+			}
 		}
 	}
 	"special_bonus_unique_troll_warlord_whirling_axes_2" 
@@ -335,7 +373,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"120"
+				"value"					"100"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value2"				"40"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value3"				"20"
 			}
 		}
 	}
@@ -369,12 +417,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_stacks"			"3 4 6 7 8 9 10"
+				"max_stacks"			"12 12 12 12 11 10 9"
+				"LinkedSpecialBonus"	"special_bonus_unique_troll_warlord_fervor_2"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attack_speed"			"-0.05"
+				"attack_speed"			"15 20 25 30 34 38 42"
 			}
 		}
 	}
@@ -405,7 +454,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"LinkedModifierName"			"modifier_troll_warlord_fervor_bh_handler"
+		"LinkedModifierName"			"modifier_troll_warlord_fervor_bh"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -414,7 +463,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"900"
+				"value"					"3"
 			}
 		}
 	}
@@ -482,7 +531,6 @@
 		"FightRecapLevel"				"2"
 		"AbilitySound"					"Hero_TrollWarlord.BattleTrance.Cast"
 		"MaxLevel"						"6"
-		"HasScepterUpgrade"				"1"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -499,7 +547,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"90 70 70 50 50 30"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -524,27 +572,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"attack_speed"			"140 170 200 230 260 290"
+				"attack_speed"			"140 140 220 220 300 300"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"move_speed"			"30 35 40 45 50 55"
+				"move_speed"			"25 25 40 40 55 55"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"50"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_cleave"		"35"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_attack_range"	"4000"
+				"lifesteal"				"40 40 60 60 80 80"
 			}
 		}
 	}
@@ -563,7 +601,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"100"
+				"value"					"35"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value2"				"35"
 			}
 		}
 	}

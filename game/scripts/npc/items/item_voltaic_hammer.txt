@@ -3,18 +3,275 @@
 	//=================================================================================================================
 	// Recipe: Dark Wand 3
 	//=================================================================================================================
-	"item_recipe_voltaic_hammer_5"
+	"item_recipe_voltaic_hammer_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2565"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"800"	
+		"ItemCost"						"1750"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_voltaic_hammer_2"
+		"ItemRequirements"
+		{
+			"01"						"item_battlemaster_staff"
+		}
+	}
+	"item_voltaic_hammer_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_voltaic_hammer"
+		"AbilityTextureName"			"mjollnir/voltaic_hammer_2"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"lightning"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"mjollnir"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"1"
+		
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"0.2"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"chain_chance"					"30"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"chain_damage"					"140 220 300 380"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"chain_bounces"					"4 6 8 10"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bounce_range"					"650"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"cooldown"						"0.2"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"rune_scaling"					"120 140 160 180"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_voltaic_hammer_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_voltaic_hammer_3"
+		"ItemRequirements"
+		{
+			"01"						"item_voltaic_hammer_2;item_recipe_voltaic_hammer_2"
+		}
+	}
+	"item_voltaic_hammer_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_voltaic_hammer"
+		"AbilityTextureName"			"mjollnir/voltaic_hammer_3"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"lightning"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"mjollnir"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"2"
+		
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"0.2"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"chain_chance"					"30"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"chain_damage"					"140 220 300 380"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"chain_bounces"					"4 6 8 10"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bounce_range"					"650"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"cooldown"						"0.2"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"rune_scaling"					"120 140 160 180"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_voltaic_hammer_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_voltaic_hammer_4"
+		"ItemRequirements"
+		{
+			"01"						"item_voltaic_hammer_3;item_recipe_voltaic_hammer_2"
+		}
+	}
+	"item_voltaic_hammer_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_voltaic_hammer"
+		"AbilityTextureName"			"mjollnir/voltaic_hammer_4"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"lightning"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"mjollnir"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"3"
+		
+		"AvailableRuneSlots"			"2"
+		"AbilityCooldown"				"0.2"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"chain_chance"					"30"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"chain_damage"					"140 220 300 380"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"chain_bounces"					"4 6 8 10"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bounce_range"					"650"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"cooldown"						"0.2"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"rune_scaling"					"120 140 160 180"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_voltaic_hammer_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,14 +280,13 @@
 		"ItemResult"					"item_voltaic_hammer_5"
 		"ItemRequirements"
 		{
-			"01"						"item_battlemaster_staff_4"
+			"01"						"item_voltaic_hammer_4;item_recipe_voltaic_hammer_2"
 		}
 	}
 	"item_voltaic_hammer_5"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2566"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_voltaic_hammer"
@@ -46,8 +302,8 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"5"
-		"ItemBaseLevel"					"1"
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"4"
 		
 		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"0.2"
@@ -59,18 +315,17 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"chain_chance"					"25"
+				"chain_chance"					"30"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"chain_damage"					"100 114 128 142 156"
-				"CalculateSpellDamageTooltip"	"0"
+				"chain_damage"					"140 220 300 380"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"chain_bounces"					"4 5 6 7 8"
+				"chain_bounces"					"4 6 8 10"
 			}
 			"04"
 			{
@@ -85,7 +340,7 @@
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"rune_slots"					"2 2 3 3 3"
+				"rune_scaling"					"120 140 160 180"
 			}
 		}
 	}
@@ -96,10 +351,10 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2567"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
+		"ItemPurchasable"				"0"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -108,11 +363,11 @@
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_voltaic_hammer_6"
 		"ItemRequirements"
 		{
-			"01"						"item_voltaic_hammer_5;item_recipe_voltaic_hammer_5"
+			"01"						"item_voltaic_hammer_5;item_recipe_voltaic_hammer_2"
 		}
 	}
 	
@@ -120,7 +375,6 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2568"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_voltaic_hammer"
@@ -128,6 +382,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"lightning"
@@ -136,8 +391,8 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"5"
-		"ItemBaseLevel"					"2"
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"5"
 		
 		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"0.2"
@@ -149,18 +404,17 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"chain_chance"					"25"
+				"chain_chance"					"30"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"chain_damage"					"100 114 128 142 156"
-				"CalculateSpellDamageTooltip"	"0"
+				"chain_damage"					"140 220 300 380"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"chain_bounces"					"4 5 6 7 8"
+				"chain_bounces"					"4 6 8 10"
 			}
 			"04"
 			{
@@ -175,7 +429,7 @@
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"rune_slots"					"2 2 3 3 3"
+				"rune_scaling"					"120 140 160 180"
 			}
 		}
 	}
@@ -186,7 +440,6 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2569"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -194,6 +447,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -202,7 +456,7 @@
 		"ItemResult"					"item_voltaic_hammer_7"
 		"ItemRequirements"
 		{
-			"01"						"item_voltaic_hammer_6;item_recipe_voltaic_hammer_5"
+			"01"						"item_voltaic_hammer_6;item_recipe_voltaic_hammer_2"
 		}
 	}
 	
@@ -210,7 +464,6 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2570"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_voltaic_hammer"
@@ -218,6 +471,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"lightning"
@@ -226,10 +480,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"5"
-		"ItemBaseLevel"					"3"
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"6"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"0.2"
 		
 		// Special	
@@ -239,18 +493,17 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"chain_chance"					"25"
+				"chain_chance"					"30"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"chain_damage"					"100 114 128 142 156"
-				"CalculateSpellDamageTooltip"	"0"
+				"chain_damage"					"140 220 300 380"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"chain_bounces"					"4 5 6 7 8"
+				"chain_bounces"					"4 6 8 10"
 			}
 			"04"
 			{
@@ -265,7 +518,7 @@
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"rune_slots"					"2 2 3 3 3"
+				"rune_scaling"					"120 140 160 180"
 			}
 		}
 	}
@@ -276,7 +529,6 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2571"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -284,6 +536,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -292,14 +545,13 @@
 		"ItemResult"					"item_voltaic_hammer_8"
 		"ItemRequirements"
 		{
-			"01"						"item_voltaic_hammer_7;item_recipe_voltaic_hammer_5"
+			"01"						"item_voltaic_hammer_7;item_recipe_voltaic_hammer_2"
 		}
 	}
 	"item_voltaic_hammer_8"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2572"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_voltaic_hammer"
@@ -307,6 +559,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"lightning"
@@ -315,10 +568,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"5"
-		"ItemBaseLevel"					"4"
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"7"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"0.2"
 		
 		// Special	
@@ -328,18 +581,17 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"chain_chance"					"25"
+				"chain_chance"					"30"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"chain_damage"					"100 114 128 142 156"
-				"CalculateSpellDamageTooltip"	"0"
+				"chain_damage"					"140 220 300 380"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"chain_bounces"					"4 5 6 7 8"
+				"chain_bounces"					"4 6 8 10"
 			}
 			"04"
 			{
@@ -354,7 +606,7 @@
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"rune_slots"					"2 2 3 3 3"
+				"rune_scaling"					"120 140 160 180"
 			}
 		}
 	}
@@ -365,7 +617,6 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2573"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -373,6 +624,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -381,7 +633,7 @@
 		"ItemResult"					"item_voltaic_hammer_9"
 		"ItemRequirements"
 		{
-			"01"						"item_voltaic_hammer_8;item_recipe_voltaic_hammer_5"
+			"01"						"item_voltaic_hammer_8;item_recipe_voltaic_hammer_2"
 		}
 	}
 	
@@ -389,7 +641,6 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2574"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"BaseClass"						"item_lua"
@@ -398,6 +649,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"bash"
@@ -405,10 +657,10 @@
 		"ItemAliases"					"mjollnir"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"5"
-		"ItemBaseLevel"					"5"
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"8"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"0.2"
 		
 		// Special	
@@ -418,18 +670,17 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"chain_chance"					"25"
+				"chain_chance"					"30"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"chain_damage"					"100 114 128 142 156"
-				"CalculateSpellDamageTooltip"	"0"
+				"chain_damage"					"140 220 300 380"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"chain_bounces"					"4 5 6 7 8"
+				"chain_bounces"					"4 6 8 10"
 			}
 			"04"
 			{
@@ -444,7 +695,7 @@
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"rune_slots"					"2 2 3 3 3"
+				"rune_scaling"					"120 140 160 180"
 			}
 		}
 	}

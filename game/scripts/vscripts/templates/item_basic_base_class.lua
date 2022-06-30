@@ -2,6 +2,7 @@ itemBasicBaseClass = class(persistentModifier)
 
 function itemBasicBaseClass:SetupRuneSystem(slotModifier)
 	-- find old modifier, -1 (slot unassigned) and not current item
+	if self.GetRuneModifier and self:GetRuneModifier() and self:GetRuneModifier() == 0 then return end
 	local parent = self:GetParent()
 	-- local modifiersToLookUp = {}
 	-- modifiersToLookUp[self:GetName()] = true
@@ -16,12 +17,14 @@ function itemBasicBaseClass:SetupRuneSystem(slotModifier)
 			-- modifiersToLookUp[associatedModifierNames] = true
 		-- end
 	-- end
+	local itemSource = self:GetAbility()
 	local hasBeenCopied = false
+	
 	for _,modifier in ipairs( parent:FindAllModifiers( ) ) do
 		local ability = modifier:GetAbility()
-		if ability and ability:IsItem() and ability:GetItemSlot() == -1 and ability ~= self:GetAbility() then
+		if ability and ability:IsItem() and ability:GetItemSlot() == -1 and ability ~= itemSource then
 			if not hasBeenCopied then
-				self:GetAbility().itemData = table.copy( ability.itemData )
+				itemSource.itemData = table.copy( ability.itemData )
 				modifier:Destroy()
 				hasBeenCopied = true
 			elseif ability:GetRuneSlots() > 0 then
@@ -42,22 +45,47 @@ function itemBasicBaseClass:SetupRuneSystem(slotModifier)
 			end
 		end
 	end
-	self:GetAbility().itemData = self:GetAbility().itemData or self.itemData or {}
-	if self:GetAbility():GetRuneSlots() > 0 then
-		for i = 1, self:GetAbility():GetRuneSlots() do
-			self:GetAbility().itemData[i] = self:GetAbility().itemData[i] or {}
+	if not hasBeenCopied and parent.runeSlotSnapShot then
+		print( "check snapShot to be sure" )
+		for id, data in pairs( parent.runeSlotSnapShot ) do
+			local itemInSameSlot = parent:GetItemInSlot( tonumber(id) )
+			print( id, itemInSameSlot )
+			if not itemInSameSlot or itemInSameSlot:entindex() ~= data.entindex then -- item was updated, make sure updated item's runes correspond to these
+				itemSource.itemData = table.copy( data.runes )
+			end
+		end
+	end
+	-- clear snapshot
+	parent.runeSlotSnapShot = nil
+	
+	itemSource.itemData = itemSource.itemData or self.itemData or {}
+	if itemSource:GetRuneSlots() > 0 then
+		for i = 1, itemSource:GetRuneSlots() do
+			itemSource.itemData[i] = itemSource.itemData[i] or {}
 		end
 	end
 	local modFuncs = {}
-	for slot, rune in pairs( self:GetAbility().itemData ) do
-		if  rune.funcs then
-			for func, result in pairs( rune.funcs ) do
-				modFuncs[func] = ( modFuncs[func] or 0 ) + result
+	for slot, rune in pairs( itemSource.itemData ) do
+		if  rune.baseFuncs then
+			rune.funcs = rune.funcs or {}
+			for func, result in pairs( rune.baseFuncs ) do
+				rune.funcs[func] = result * (self.stone_share or 100)/100
+				modFuncs[func] = ( modFuncs[func] or 0 ) + rune.funcs[func]
 			end
 		end
 	end
 	for func, result in pairs( modFuncs ) do
-		self[func] = function() return result * (slotModifier or 100)/100 end
+		local endValue = result
+		if self.GetRuneModifier and self:GetRuneModifier() then
+			local multiplier = self:GetRuneModifier()/100
+			if multiplier > 0 then
+				endValue = math.floor(result * multiplier + 0.5)
+			else
+				endValue = math.floor(result * (1+multiplier) + 0.5)
+			end
+		end
+		print( endValue, func )
+		self[func] = function() return endValue end
 	end
 end
 
@@ -73,11 +101,12 @@ end
 
 function itemBasicBaseClass:OnCreated()
 	self:OnCreatedSpecific()
-	self:SetHasCustomTransmitterData( true )
+	self.stone_share = self:GetSpecialValueFor("rune_scaling")
 	if IsServer() then
 		self:GetCaster():HookInModifier( "GetModifierBaseCriticalChanceBonus", self )
 		self:GetCaster():HookInModifier( "GetModifierBaseCriticalDamageBonus", self )
 		self:SetupRuneSystem( self.stone_share )
+		self:SetHasCustomTransmitterData( true )
 		self:SendBuffRefreshToClients()
 		self:StoreRunesIntoModifier()
 	end
@@ -88,6 +117,7 @@ end
 
 function itemBasicBaseClass:OnRefresh()
 	self:OnRefreshSpecific()
+	self.stone_share = self:GetSpecialValueFor("rune_scaling")
 	if IsServer() then
 		self:GetCaster():HookInModifier( "GetModifierBaseCriticalChanceBonus", self )
 		self:GetCaster():HookInModifier( "GetModifierBaseCriticalDamageBonus", self )
@@ -152,7 +182,7 @@ function itemBasicBaseClass:HandleCustomTransmitterData( data )
 		end
 	end
 	if data.itemData == nil then return end
-	PrintAll(data.itemData )
+	-- PrintAll(data.itemData )
 	-- reset functions
 	-- print('------------------ RESET -------------')
 	
@@ -177,7 +207,9 @@ function itemBasicBaseClass:HandleCustomTransmitterData( data )
 				return output 
 			end
 		else
+			print( func, result, "updated shit" )
 			self[func] = function() return result end
+			print( self[func]() )
 		end
 		
 	end

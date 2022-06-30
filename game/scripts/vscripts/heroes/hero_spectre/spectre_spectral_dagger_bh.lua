@@ -1,69 +1,77 @@
 spectre_spectral_dagger_bh = class({})
 
-function spectre_spectral_dagger_bh:GetIntrinsicModifierName()
-	if self:GetCaster():HasTalent("special_bonus_unique_spectre_spectral_dagger_1") then
-		return "modifier_spectre_spectral_dagger_bh_path"
-	end
-end
-
-function spectre_spectral_dagger_bh:OnTalentLearned(talent)
-	if self:GetCaster():HasTalent("special_bonus_unique_spectre_spectral_dagger_1") then
-		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_spectre_spectral_dagger_bh_path", {})
-	else
-		self:GetCaster():RemoveModifierByName("modifier_spectre_spectral_dagger_bh_path")
-	end
+function spectre_spectral_dagger_bh:GetCooldown( iLvl )
+	return self.BaseClass.GetCooldown( self, iLvl ) + self:GetCaster():FindTalentValue("special_bonus_unique_spectre_spectral_dagger_2", "cd")
 end
 
 function spectre_spectral_dagger_bh:OnSpellStart()
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	local position = self:GetCursorPosition()
 	
-	local direction = CalculateDirection( target or position, caster )
+	self:LaunchSpectralDagger( target or position )
+end
+
+function spectre_spectral_dagger_bh:LaunchSpectralDagger( target, origin )
+	local caster = self:GetCaster()
+
+	
+	local direction = CalculateDirection( target , origin or caster )
 	local damage = self:GetTalentSpecialValueFor("damage")
 	local radius = self:GetTalentSpecialValueFor("dagger_radius")
+	local vision = self:GetTalentSpecialValueFor("vision_radius")
 	local speed = self:GetTalentSpecialValueFor("speed")
 	local distance = self:GetTalentSpecialValueFor("distance")
+	local duration = self:GetTalentSpecialValueFor("dagger_path_duration")
 	
-	local ProjectileHit = function(self, target, position)
-		local caster = self:GetCaster()
-		local ability = self:GetAbility()
-		self.hitUnits = self.hitUnits or {}
-		if not self.hitUnits[target:entindex()] then
-			self.hitUnits[target:entindex()] = true
-			if target:TriggerSpellAbsorb(self) then return false end
-			EmitSoundOn("Hero_Spectre.DaggerImpact", target)
-			ability:DealDamage( caster, target, self.damage )
-			if target == self.target then
-				target:AddNewModifier(caster, ability, "modifier_spectre_spectral_dagger_bh_path", {duration = self.modDur})
+	
+	self.projectiles = self.projectiles or {}
+	local pID
+	if not target.GetAbsOrigin then
+		pID = self:FireLinearProjectile("particles/units/heroes/hero_spectre/spectre_spectral_dagger.vpcf", direction * speed, distance, radius*2, {source = origin}, false, true, vision)
+	else -- unit targeted
+		pID = self:FireTrackingProjectile("particles/units/heroes/hero_spectre/spectre_spectral_dagger_tracking.vpcf", target, speed, {source = origin}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, false, true, vision)
+	end
+	self.projectiles[pID] = {duration = duration, damage = damage, tracking = target.GetAbsOrigin ~= nil, thinkTime = 1 / ( speed/(radius*2) ), currentThink = 0, units = {}, radius = radius }
+end
+
+function spectre_spectral_dagger_bh:OnProjectileHitHandle( target, position, projectile, bNotFinal )
+	local caster = self:GetCaster()
+	local projectileData = self.projectiles[projectile]
+	if target then
+		projectileData.units[target] = true
+		if target:TriggerSpellAbsorb(self) then return false end
+		EmitSoundOn("Hero_Spectre.DaggerImpact", target)
+		self:DealDamage( caster, target, projectileData.damage )
+		if projectileData.tracking and not bNotFinal then
+			target:AddNewModifier(caster, self, "modifier_spectre_spectral_dagger_bh_path", {duration = projectileData.duration})
+			table.remove( self.projectiles, projectile )
+		end
+	else
+		table.remove( self.projectiles, projectile )
+	end
+end
+
+
+
+function spectre_spectral_dagger_bh:OnProjectileThinkHandle( projectile )
+	local caster = self:GetCaster()
+	local projectileData = self.projectiles[projectile]
+	if projectileData then
+		if projectileData.currentThink <= 0 then
+			local position = ProjectileManager:GetProjectileLocation( projectile )
+			CreateModifierThinker(caster, self, "modifier_spectre_spectral_dagger_bh_thinker", {duration = self.projectiles[projectile].duration}, position, caster:GetTeamNumber(), false)
+			projectileData.currentThink = projectileData.thinkTime
+			if projectileData.tracking then
+				for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, projectileData.radius ) ) do
+					if not projectileData.units[enemy] then
+						self:OnProjectileHitHandle( enemy, position, projectile, true )
+					end
+				end
 			end
+		else
+			projectileData.currentThink = projectileData.currentThink - FrameTime()
 		end
-		return true
 	end
-	
-	local ProjectileThink = function(self)
-		local caster = self:GetCaster()
-		local position = self:GetPosition()
-		local velocity = self:GetVelocity()
-		if self.target then
-			velocity = CalculateDirection( target, position ) * self:GetSpeed()
-		end
-		if velocity.z > 0 then velocity.z = 0 end
-		self:SetPosition( position + (velocity*FrameTime()) )
-		CreateModifierThinker(caster, self:GetAbility(), "modifier_spectre_spectral_dagger_bh_thinker", {duration = self.modDur}, position, caster:GetTeamNumber(), false)
-	end
-	caster:EmitSound("Hero_Spectre.DaggerCast")
-	ProjectileHandler:CreateProjectile(ProjectileThink, ProjectileHit, {  FX = "particles/units/heroes/hero_spectre/spectre_spectral_dagger_tracking.vpcf",
-																			position = caster:GetAbsOrigin(),
-																			caster = caster,
-																			ability = self,
-																			speed = speed,
-																			radius = radius,
-																			velocity = speed * direction,
-																			distance = distance,
-																			target = target,
-																			damage = damage,
-																			modDur = self:GetTalentSpecialValueFor("dagger_path_duration")})
 end
 
 modifier_spectre_spectral_dagger_bh_path = class({})
@@ -87,7 +95,7 @@ function modifier_spectre_spectral_dagger_bh_path:OnIntervalThink()
 end
 
 function modifier_spectre_spectral_dagger_bh_path:IsHidden()    
-	return true
+	return false
 end
 
 modifier_spectre_spectral_dagger_bh_thinker = class({})
@@ -137,6 +145,10 @@ function modifier_spectre_spectral_dagger_bh:OnCreated()
 	if not self:GetParent():IsSameTeam( self:GetCaster() ) then
 		self.slow = self.slow * (-1)
 	end
+	if self:GetParent() == self:GetCaster() then
+		self.talent1Mr = self:GetCaster():FindTalentValue("special_bonus_unique_spectre_spectral_dagger_1", "magic_resist")
+		self.talent1Ev = self:GetCaster():FindTalentValue("special_bonus_unique_spectre_spectral_dagger_1", "evasion")
+	end
 end
 
 function modifier_spectre_spectral_dagger_bh:CheckState()
@@ -144,9 +156,21 @@ function modifier_spectre_spectral_dagger_bh:CheckState()
 end
 
 function modifier_spectre_spectral_dagger_bh:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_EVASION_CONSTANT, MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS }
 end
 
 function modifier_spectre_spectral_dagger_bh:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
+end
+
+function modifier_spectre_spectral_dagger_bh:GetModifierMagicalResistanceBonus()
+	return self.talent1Mr
+end
+
+function modifier_spectre_spectral_dagger_bh:GetModifierEvasion_Constant()
+	return self.talent1Ev
+end
+
+function modifier_spectre_spectral_dagger_bh:GetEffectName()
+	if self:GetParent() == self:GetCaster() then return "particles/units/heroes/hero_phantom_assassin/phantom_assassin_blur.vpcf" end
 end

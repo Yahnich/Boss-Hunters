@@ -3,7 +3,7 @@ item_mirror_blade = class({})
 function item_mirror_blade:GetCooldown( iLvl )
 	local cd = self:GetSpecialValueFor("cooldown")
 	if self:GetCaster():IsRangedAttacker() then
-		cd = cd * 2
+		cd = self:GetSpecialValueFor("ranged_cooldown")
 	end
 	return cd
 end

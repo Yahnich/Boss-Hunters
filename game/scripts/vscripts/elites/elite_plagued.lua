@@ -21,7 +21,7 @@ function modifier_elite_plagued:DeclareFunctions()
 end
 
 function modifier_elite_plagued:OnAttackLanded(params)
-	if params.target == self:GetParent() then
+	if params.target == self:GetParent() and not params.attacker:PassivesDisabled() and params.attacker == self:GetParent() then
 		self.duration = self:GetSpecialValueFor("duration")
 		params.attacker:AddNewModifier(params.target, self:GetAbility(), "modifier_elite_plagued_debuff", {duration = self.duration})
 	end

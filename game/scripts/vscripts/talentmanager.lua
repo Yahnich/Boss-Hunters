@@ -24,39 +24,42 @@ function TalentManager:StartTalentManager()
 		CustomGameEventManager:RegisterListener('dota_player_talent_info_request', Context_Wrap( TalentManager, 'ParseInformationRequest'))
 	end
 	
-	if not self.talentKV then
-		self.talentKV = {}
-		local workKV = LoadKeyValues( "scripts/npc/npc_talents.txt" )
-		for roleType, perkValues in pairs( workKV ) do
-			self.talentKV[roleType] = {}
-			for perkName, perkValue in pairs( perkValues ) do
-				self.talentKV[roleType][perkName] = string.split( perkValue, " " )
-			end
-		end
+	if self.talentKV == nil then
+		self:LoadTalentData()
 	end
 	print( "talent manager values initialized", IsServer() )
 end
 
-function TalentManager:ApplyTalentModifier( hero, talentCategory, talentType )
-	local modifier = "modifier_".. string.lower( talentCategory ) .. "_" .. string.lower( talentType )
-	hero:CalculateGenericBonuses( )
-	hero:CalculateStatBonus( )
-	return hero:AddNewModifier( hero, nil, modifier, {} )
-end
-
-function TalentManager:GetTalentDataForType( talentCategory, talentType )
-	print("get data", IsServer() )
-	if self.talentKV == nil then
-		self.talentKV = {}
-		local workKV = LoadKeyValues( "scripts/npc/npc_talents.txt" )
-		for roleType, perkValues in pairs( workKV ) do
-			self.talentKV[roleType] = {}
-			for perkName, perkValue in pairs( perkValues ) do
-				self.talentKV[roleType][perkName] = string.split( perkValue, " " )
-			end
+function TalentManager:LoadTalentData()
+	self.talentKV = {}
+	local workKV = LoadKeyValues( "scripts/npc/npc_talents.txt" )
+	for roleType, perkValues in pairs( workKV ) do
+		self.talentKV[roleType] = {}
+		for perkName, perkValue in pairs( perkValues ) do
+			self.talentKV[roleType][perkName] = string.split( perkValue, " " )
 		end
 	end
-	return self.talentKV[talentCategory][talentType]
+end
+
+function TalentManager:ApplyTalentModifier( hero, talentType )
+	local modifier = "modifier_talent_".. string.lower( talentType )
+	hero:CalculateGenericBonuses( )
+	hero:CalculateStatBonus( )
+	
+	local talents = hero.heroTalentDataContainer.heroMasteries
+	local talent = hero:FindModifierByName( modifier )
+	if talent then
+		talent:SetStackCount( talents[talentType].talentTier * 10 + talents[talentType].talentKeys )
+	end
+	
+	return talent
+end
+
+function TalentManager:GetTalentDataForType( talentType, talentTier )
+	if self.talentKV == nil then
+		self:LoadTalentData()
+	end
+	return self.talentKV [talentType][tostring(talentTier)]
 end
 
 function TalentManager:ParseInformationRequest(userid, request)
@@ -64,7 +67,7 @@ function TalentManager:ParseInformationRequest(userid, request)
 	local hero = EntIndexToHScript( request.entindex )
 	local player = PlayerResource:GetPlayer( playerID )
 	hero.lastInformationRequestTime = hero.lastInformationRequestTime or {}
-	if not hero.masteryPerks or ((hero.lastInformationRequestTime[playerID] or 0) + 0.25) > Time() then
+	if not hero.heroTalentDataContainer or ((hero.lastInformationRequestTime[playerID] or 0) + 0.25) > Time() then
 		if player then
 			CustomGameEventManager:Send_ServerToPlayer(player, "dota_player_talent_update_failure", {PlayerID = pID, hero_entindex = entindex} )
 		end
@@ -73,33 +76,8 @@ function TalentManager:ParseInformationRequest(userid, request)
 	hero.lastInformationRequestTime[playerID] = Time()
 	local player = PlayerResource:GetPlayer( playerID )
 	if player then
-		CustomGameEventManager:Send_ServerToPlayer(player, "dota_player_talent_info_response", {playerID = pID, response = hero.masteryPerks, talentPoints = hero:GetTalentPoints(), entindex = request.entindex} )
+		CustomGameEventManager:Send_ServerToPlayer(player, "dota_player_talent_info_response", {playerID = pID, response = hero.heroTalentDataContainer, talentPoints = hero:GetTalentPoints(), entindex = request.entindex} )
 	end
-end
-
-function TalentManager:ConvertPerkTableToOrderedArray( talentTable ) -- blast you lua
-	local returnTable = {}
-	returnTable[1] = "Attacker"
-	returnTable[2] = "Nuker"
-	returnTable[3] = "Defender"
-	returnTable[4] = "Support"
-	returnTable[5] = "Healer"
-	returnTable[6] = "Generic"
-	returnTable[7] = "Offensive"
-	returnTable[8] = "Defensive"
-	returnTable[9] = "Utility"
-	for id, name in ipairs( returnTable ) do
-		if talentTable.talentProgression[name] then
-			returnTable[id] = {[name] = table.copy( talentTable.talentProgression[name] )}
-		end
-	end
-	for i = #returnTable, 1, -1 do
-		if type( returnTable[i] ) == "string" then
-			table.remove( returnTable, i )
-		else
-		end
-	end
-	return returnTable
 end
 
 function TalentManager:IsPlayerRegistered(hero)
@@ -107,95 +85,32 @@ function TalentManager:IsPlayerRegistered(hero)
 end
 
 function TalentManager:RegisterPlayer(hero, bRespec)
-	local kvRoles = string.split( GameRules.UnitKV[hero:GetUnitName()]["Role"], ",")
-	local kvRoleLevels = string.split( GameRules.UnitKV[hero:GetUnitName()]["Rolelevels"], ",")
+	local masteryTable = GameRules.UnitKV[hero:GetUnitName()]["Masteries"]
+	masteryTable["INF_STATS"] = {["1"] = "1"}
 	
-	local heroRoles = {}
+	local talents = {}
+	talents.heroMasteries = {}
 	
-	for i = 1, #kvRoles do
-		heroRoles[kvRoles[i]] = kvRoleLevels[i]
-	end
-	
-	talents = {}
-	talents.talentProgression = {}
-	talents.talentKeys = {}
-	for role, level in pairs( heroRoles ) do
-		if role == "Carry" then
-			talents.talentProgression["Attacker"] = {}
-			talents.talentKeys["Attacker"] = {}
-			for talentType, talentValues in pairs( self.talentKV.Attacker ) do
-				talents.talentProgression["Attacker"][talentType] = {}
-				talents.talentKeys["Attacker"][talentType] = 0
-				for j = 1, level do
-					talents.talentProgression["Attacker"][talentType][j] = talentValues[j]
-				end
+	-- MASTERIES -------------------
+	for masteryType, masteryData in pairs( masteryTable ) do
+		talents.heroMasteries[masteryType] = {}
+		talents.heroMasteries[masteryType].talentProgression = {}
+		talents.heroMasteries[masteryType].talentKeys = 0
+		for masteryTier, masteryMax in pairs( masteryData ) do
+			talents.heroMasteries[masteryType].talentTier = tonumber(masteryTier)
+			talents.heroMasteries[masteryType].maxTier = tonumber(masteryMax)
+			for j = 1, masteryMax do
+				table.insert( talents.heroMasteries[masteryType].talentProgression, self.talentKV[masteryType][masteryTier][j] )
 			end
-		elseif role == "Nuker" then
-			talents.talentProgression["Nuker"] = {}
-			talents.talentKeys["Nuker"] = {}
-			for talentType, talentValues in pairs( self.talentKV.Nuker ) do
-				talents.talentProgression["Nuker"][talentType] = {}
-				talents.talentKeys["Nuker"][talentType] = 0
-				for j = 1, level do
-					talents.talentProgression["Nuker"][talentType][j] = talentValues[j]
-				end
-			end
-		elseif role == "Durable" then
-			talents.talentProgression["Defender"] = {}
-			talents.talentKeys["Defender"] = {}
-			for talentType, talentValues in pairs( self.talentKV.Defender ) do
-				talents.talentProgression["Defender"][talentType] = {}
-				talents.talentKeys["Defender"][talentType] = 0
-				for j = 1, level do
-					talents.talentProgression["Defender"][talentType][j] = talentValues[j]
-				end
-			end
-		elseif role == "Disabler" then
-			talents.talentProgression["Support"] = {}
-			talents.talentKeys["Support"] = {}
-			for talentType, talentValues in pairs( self.talentKV.Support ) do
-				talents.talentProgression["Support"][talentType] = {}
-				talents.talentKeys["Support"][talentType] = 0
-				for j = 1, level do
-					talents.talentProgression["Support"][talentType][j] = talentValues[j]
-				end
-			end
-		elseif role == "Support" then
-			talents.talentProgression["Healer"] = {}
-			talents.talentKeys["Healer"] = {}
-			for talentType, talentValues in pairs( self.talentKV.Healer ) do
-				talents.talentProgression["Healer"][talentType] = {}
-				talents.talentKeys["Healer"][talentType] = 0
-				for j = 1, level do
-					talents.talentProgression["Healer"][talentType][j] = talentValues[j]
-				end
+			if masteryType ~= "INF_STATS" then
+				local modifierTier = tonumber(masteryTier)
+				local modifierName = "modifier_talent_".. string.lower( masteryType )
+				hero:AddNewModifier( hero, nil, modifierName, {} ):SetStackCount( modifierTier * 10 )
 			end
 		end
 	end
-	talents.talentProgression["Generic"] = table.copy( self.talentKV.Generic )
-	talents.talentKeys["Generic"] = {}
-	for talentType, talentValues in pairs( self.talentKV.Generic ) do
-		talents.talentKeys["Generic"][talentType] = 0
-	end
 	
-	-- talents.talentProgression["Offensive"] = table.copy( self.talentKV.Offensive )
-	-- talents.talentKeys["Offensive"] = {}
-	-- for talentType, talentValues in pairs( self.talentKV.Offensive ) do
-		-- talents.talentKeys["Offensive"][talentType] = 0
-	-- end
-	
-	-- talents.talentProgression["Defensive"] = table.copy( self.talentKV.Defensive )
-	-- talents.talentKeys["Defensive"] = {}
-	-- for talentType, talentValues in pairs( self.talentKV.Defensive ) do
-		-- talents.talentKeys["Defensive"][talentType] = 0
-	-- end
-	
-	-- talents.talentProgression["Utility"] = table.copy( self.talentKV.Utility )
-	-- talents.talentKeys["Utility"] = {}
-	-- for talentType, talentValues in pairs( self.talentKV.Utility ) do
-		-- talents.talentKeys["Utility"][talentType] = 0
-	-- end
-	
+	-- UNIQUE TALENTS -------------------
 	talents.uniqueTalents = {}
 	for i = 0, hero:GetAbilityCount() - 1 do
         local ability = hero:GetAbilityByIndex( i )
@@ -206,7 +121,8 @@ function TalentManager:RegisterPlayer(hero, bRespec)
 			end
         end
     end
-	hero.masteryPerks = talents
+	
+	hero.heroTalentDataContainer = talents
 	hero.respecInfoTalents = hero.respecInfoTalents or {}
 	local player = hero:GetPlayerOwner()
 	if player then
@@ -249,9 +165,8 @@ function TalentManager:ProcessUniqueTalents(userid, event)
 	local mainAbility = hero:FindAbilityByName(abilityName)
 	if not mainAbility then return end
 	if not mainAbility:IsTrained() then return end
-	local talents = hero.masteryPerks.uniqueTalents
+	local talents = hero.heroTalentDataContainer.uniqueTalents
 	local talentEntity = hero:FindAbilityByName(talentName)
-	print( talentEntity, talentName, hero:GetTalentPoints() )
 	if talentEntity and not talentEntity:IsTrained() and hero:GetTalentPoints() > 0 then
 		-- level talent linked to all abilities
 		for ability, talentTable in pairs( talents ) do
@@ -310,36 +225,35 @@ function TalentManager:ProcessHeroMasteries(userid, event)
 	local pID = event.pID
 	local entindex = event.entindex
 	local talent = tostring(event.talent)
-	local talentCategory = tostring(event.talentCategory)
 	local hero = EntIndexToHScript( entindex )
 	if entindex ~= PlayerResource:GetSelectedHeroEntity( pID ):entindex() then return end -- calling
 	-- if hero:FindAbilityByName(talent):GetLevel() > 0 then return end
 	-- hero:UpgradeAbility(hero:FindAbilityByName(talent))
 	-- hero:CalculateStatBonus()
-	local talents = hero.masteryPerks
-	local maxTalentTier = 0
-	for _, talent in pairs( talents.talentProgression[talentCategory][talent] ) do
-		maxTalentTier = maxTalentTier + 1
-	end
+	local talents = hero.heroTalentDataContainer.heroMasteries
 	local price = 1
 	-- for talentCategory, talentTypes in pairs( talents.talentKeys ) do
 		-- for talentType, talentTier in pairs( talentTypes ) do
 			-- price = price + tonumber(talentTier)
 		-- end
 	-- end
-	local maxTier = maxTalentTier <= talents.talentKeys[talentCategory][talent] and not (talentCategory == "Generic" and talent == "ALL_STATS")
+	print( talent, talents[talent], "attempting to level talent" )
+	local maxTier = talents[talent].maxTier <= talents[talent].talentKeys and talent ~= "INF_STATS"
 	local insufficientSkillPoints = hero:GetAbilityPoints() < price
 	if not (maxTier or insufficientSkillPoints) then
-		talents.talentKeys[talentCategory][talent] = talents.talentKeys[talentCategory][talent] + 1
-		if talentCategory == "Generic" and talent == "ALL_STATS" then
-			local stats = tonumber(talents.talentProgression[talentCategory][talent][1])
+		talents[talent].talentKeys = talents[talent].talentKeys + 1
+		if talent == "INF_STATS" then
+			local stats = tonumber(talents[talent].talentProgression[1])
 			hero:ModifyStrength( stats )
 			hero:ModifyAgility( stats )
 			hero:ModifyIntellect( stats )
-			hero.respecInfoTalents["ALL_STATS"] = (hero.respecInfoTalents["ALL_STATS"] or 0) + stats
+			hero.respecInfoTalents["INF_STATS"] = (hero.respecInfoTalents["INF_STATS"] or 0) + stats
 		else
-			hero.respecInfoTalents[talentCategory] = hero.respecInfoTalents[talentCategory] or {}
-			table.insert( hero.respecInfoTalents[talentCategory], self:ApplyTalentModifier( hero, talentCategory, talent ) )
+			hero.respecInfoTalents[talent] = hero.respecInfoTalents[talent] or {}
+			table.insert( hero.respecInfoTalents[talent], self:ApplyTalentModifier( hero, talent ) )
+			
+			hero:CalculateGenericBonuses( )
+			hero:CalculateStatBonus( )
 		end
 		hero:SetAbilityPoints( hero:GetAbilityPoints() - price )
 		CustomGameEventManager:Send_ServerToAllClients("dota_player_talent_update", {PlayerID = pID, hero_entindex = entindex} )
@@ -398,7 +312,9 @@ function TalentManager:RespecAll(userid, event)
 				end
 			end
 		end
-		hero:CalculateStatBonus()
+		hero:CalculateGenericBonuses( )
+		hero:CalculateStatBonus( )
+		
 		hero.uniqueTalentPoints = math.floor( hero:GetLevel() / 10 )
 		hero.bonusSkillPoints = hero.bonusSkillPoints or hero:GetLevel()
 		hero:SetAbilityPoints( hero.bonusSkillPoints + 1 )

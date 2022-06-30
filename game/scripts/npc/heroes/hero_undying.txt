@@ -11,7 +11,6 @@
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"               "2"
 		"AbilityTextureName"			"undying_decay"
-		"AOERadius"                     "600"
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
 		
@@ -27,15 +26,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"650"
 		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_DECAY"
-		"AbilityCastPoint"            	 "0.45 0.45 0.45 0.45"
+		"AbilityCastPoint"            	 "0.45"
 		
 		// Time     
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"               "10 9 8 7 6 5 4"
+		"AbilityCooldown"               "10 8 6 4 4 4 4"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"              	"70 85 100 115 130 145 160"	
+		"AbilityManaCost"              	"85 90 95 100 110 120 130"
 		
 		"precache"
 		{
@@ -51,34 +50,49 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"325"
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"325"
+				"LinkedSpecialBonus"			"special_bonus_unique_undying_decay_1"
+				"LinkedSpecialBonusField"		"value2"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"45"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"45"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"80 140 200 260 320 380 440"
-				"LinkedSpecialBonus"		"special_bonus_unique_undying_decay_1"
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"80 140 200 260 320 380 440"
+				"LinkedSpecialBonus"			"special_bonus_unique_undying_decay_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
 			}
 			"04"
 			{
-				"var_type"              	"FIELD_FLOAT"
-				"str_per_boss"			 	"4"
+				"var_type"              		"FIELD_FLOAT"
+				"str_per_boss"			 		"6"
 			}
 			"05"
 			{
-				"var_type"              	"FIELD_FLOAT"
-				"str_per_mob"				"1"
+				"var_type"              		"FIELD_FLOAT"
+				"str_per_monster"				"3"
 			}
 			"06"
 			{
-				"var_type"              	"FIELD_FLOAT"
-				"scepter_str_per_boss"		"10"
+				"var_type"              		"FIELD_FLOAT"
+				"str_per_mob"					"1"
+			}
+			"07"
+			{
+				"var_type"              		"FIELD_FLOAT"
+				"scepter_str_per_boss"			"10"
+				"RequiresScepter"				"1"
+			}
+			"08"
+			{
+				"var_type"              		"FIELD_FLOAT"
+				"scepter_str_per_monster"		"6"
+				"RequiresScepter"				"1"
 			}
 		}
 		
@@ -108,7 +122,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"220"
+				"value"						"50"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value2"					"75"
 			}
 		}
 	}
@@ -130,7 +149,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"5"
+				"value"						"6"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value2"					"2"
 			}
 		}
 	}
@@ -165,12 +189,12 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"9"
+		"AbilityCooldown"				"18 14 10 6 6 6 6"
 		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_SOUL_RIP"
-		"AbilityManaCost"				"80"		
+		"AbilityManaCost"				"80 80 80 80 90 100 110"		
 		
-		"AbilityCastRange"				"1200"
-		"AbilityCastPoint"				"0.3 0.3 0.3"
+		"AbilityCastRange"				"750"
+		"AbilityCastPoint"				"0.35"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -179,23 +203,29 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"enemy_hp_loss"					"36 44 52 60 68 76 84"
+				"enemy_hp_loss"					"30 50 70 90 120 150 180"
 				"CalculateSpellDamageTooltip"	"1"
-				"LinkedSpecialBonus"			"special_bonus_unique_undying_soul_rip_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"health_per_unit"				"18 22 26 30 34 38 42"
-				"LinkedSpecialBonus"			"special_bonus_unique_undying_soul_rip_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"health_per_unit"				"15 25 35 45 60 75 90"
 				"CalculateSpellDamageTooltip"	"1"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"range"							"1200"
+				"mob_bonus_dmg"					"100"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"range"							"1300"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"unit_maximum"					"10"
 			}
 		}
 	}
@@ -217,7 +247,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"2.5"
+				"value"						"15"
+			}
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"chance"					"20"
 			}
 		}
 	}
@@ -244,10 +279,398 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"10"
+				"value2"					"20"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage"					"100"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"12"
 			}
 		}
 	}
+	"undying_tombstone_bh"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+		"ScriptFile"					"heroes/hero_undying/undying_tombstone_bh"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+	    "AbilityTextureName"			"undying_tombstone"
+		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_TOMBSTONE"
+	    "MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_undying_tombstone_1"	"1"
+			"special_bonus_unique_undying_tombstone_2"	"1"
+		}
+	
+	    // Precache
+	    //-------------------------------------------------------------------------------------------------------------
+	    "precache"
+	    {
+	        "soundfile"     "soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
+			"soundfile"     "soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
+	        "particle"      "particles/zombie_grab.vpcf"
+			"particle"		"particles/units/heroes/hero_lycan/lycan_summon_wolves_cast.vpcf"
+			"particle"		"particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf"
+	    }   
+	    
+	    // Casting
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCastPoint"              "0.45"
+		"AbilityCastRange"				"500"
+	
+	    // Time     
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"               "85 80 75 70 60 50 40"
+	
+	    // Cost
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"               "120 130 140 150 150 150 150"
+	
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                  "FIELD_FLOAT"
+	            "tombstone_duration"		"30"
+	        }
+			"02"
+	        {
+	            "var_type"                  "FIELD_INTEGER"
+	            "tombstone_hp"				"20 24 28 32 32 32 32"
+	        }
+			"03"
+	        {
+	            "var_type"                  "FIELD_INTEGER"
+	            "tombstone_boss_dmg"		"4"
+	        }
+			"04"
+	        {
+	            "var_type"                  "FIELD_INTEGER"
+	            "tombstone_monster_dmg"		"2"
+	        }
+			"05"
+	        {
+	            "var_type"                  "FIELD_INTEGER"
+	            "tombstone_minion_dmg"		"1"
+	        }
+			"06"
+	        {
+	            "var_type"                  "FIELD_INTEGER"
+	            "tombstone_spawn_radius"	"1200"
+	        }
+			"07"
+	        {
+	            "var_type"                  "FIELD_FLOAT"
+	            "tombstone_spawn_interval"	"4 3.6 3.2 2.8 2.8 2.8 2.8"
+	        }
+			"08"
+	        {
+	            "var_type"                  "FIELD_FLOAT"
+	            "zombie_atk_dmg"			"40 50 60 70 70 70 70"
+	        }
+			"09"
+	        {
+	            "var_type"                  "FIELD_INTEGER"
+	            "zombie_hp"					"2"
+	        }
+			"10"
+	        {
+	            "var_type"                  "FIELD_INTEGER"
+	            "zombie_boss_dmg"			"2"
+	        }
+			"11"
+	        {
+	            "var_type"                  "FIELD_INTEGER"
+	            "zombie_dmg"				"1"
+	        }
+	    }
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_undying_tombstone_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"25"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value2"					"50"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_undying_tombstone_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"600"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"slow"						"20"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"blind"						"50"
+			}
+		}
+	}
+	"undying_deathlust"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_undying/undying_deathlust"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"undying_tombstone_zombie_deathstrike"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"slow"					"-7"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"2.5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"health_threshold_pct"	"40"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"linger_duration"		"1.5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_move_speed"		"30"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms_lvlup"		"1"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"50"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_as_lvlup"		"3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Undying: Flesh Golem
+	//=================================================================================================================
+	"undying_flesh_golem_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_undying/undying_flesh_golem_bh"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityTextureName"			"undying_flesh_golem"
+		"FightRecapLevel"				"2"
+		"AbilitySound"					"Hero_Undying.FleshGolem"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"MaxLevel"						"6"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_undying_flesh_golem_1"	"1"
+			"special_bonus_unique_undying_flesh_golem_3"	"1"
+		}
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"125"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 100 100"
+
+		"precache"
+		{
+			"model"						"models/heroes/undying/undying_flesh_golem.vmdl"
+			"particle"					"particles/units/heroes/hero_undying/undying_fg_aura.vpcf"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"40 40 40 40 40 60"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"bonus_strength"			"40 40 50 50 60 60"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"bonus_ms"					"30 40 50 60 70 70"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_amp"				"20 25 25 30 30 30"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"debuff_duration"			"6"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_undying_flesh_golem_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"10"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value2"					"25"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value3"					"300"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_undying_flesh_golem_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"15"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"2"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_undying_flesh_golem_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"5"
+			}
+		}
+	}
+	//=================================================================================================================
+	//=================================================================================================================
+	// DEPRECATED
+	//=================================================================================================================
+	//=================================================================================================================
 	"undying_summon_zombies"
 	{
 	    // General
@@ -445,132 +868,6 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"radius"						"900"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Undying: Flesh Golem
-	//=================================================================================================================
-	"undying_flesh_golem_bh"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_undying/undying_flesh_golem_bh"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"AbilityTextureName"			"undying_flesh_golem"
-		"FightRecapLevel"				"2"
-		"AbilitySound"					"Hero_Undying.FleshGolem"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		"MaxLevel"						"6"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_undying_flesh_golem_1"	"1"
-			"special_bonus_unique_undying_flesh_golem_2"	"1"
-		}
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"125"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 100 100"
-
-		"precache"
-		{
-			"model"						"models/heroes/undying/undying_flesh_golem.vmdl"
-			"particle"					"particles/units/heroes/hero_undying/undying_fg_aura.vpcf"
-		}
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"40 40 40 40 40 60"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"bonus_strength"			"40 40 50 50 60 60"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"bonus_ms"					"35"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"lifesteal"					"20 35 35 50 50 50"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_undying_flesh_golem_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"10"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value2"					"25"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value3"					"300"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_undying_flesh_golem_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"15"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"2"
 			}
 		}
 	}

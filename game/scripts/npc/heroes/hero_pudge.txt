@@ -41,17 +41,17 @@
 			
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1000 1100 1200 1300 1400 1500 1600"
+		"AbilityCastRange"				"1300"
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_1"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"14 13 12 11 10 9 8"
+		"AbilityCooldown"				"18 16 14 12 12 12 12"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"140"
+		"AbilityManaCost"				"110"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -59,40 +59,42 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"150 220 290 360 430 500 570"
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"150 220 290 360 500 640 720"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"distance"				"1000 1100 1200 1300 1400 1500 1600"
+				"var_type"					"FIELD_INTEGER"
+				"distance"					"1300"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"1450"
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"1450"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"width"					"100"
+				"var_type"					"FIELD_INTEGER"
+				"width"						"100"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"heap_stacks"			"1"
+				"var_type"					"FIELD_INTEGER"
+				"minion_damage"				"100"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_damage"		"180 270 360 450 540 630 720"
-				"RequiresScepter"		"1"
+				"var_type"					"FIELD_INTEGER"
+				"scepter_damage"			"180 270 360 450 610 770 930"
+				"RequiresScepter"			"1"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_cooldown"		"4"
-				"RequiresScepter"		"1"
+				"var_type"					"FIELD_INTEGER"
+				"scepter_cooldown"			"14 12 10 8 8 8 8"
+				"LinkedSpecialBonus"		"special_bonus_unique_pudge_hook_lua_2"
+				"LinkedSpecialBonusField"	"cd"
+				"RequiresScepter"			"1"
 			}
 		}
 	}
@@ -120,12 +122,12 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value2"					"25"
+				"value2"					"50"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"3"
+				"duration"					"6"
 			}
 		}
 	}
@@ -153,6 +155,11 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"angle"						"30"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"cd"						"-3"
 			}
 		}
 	}
@@ -193,8 +200,8 @@
 			
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"450 450 450 450 550 650 750"
-		"AbilityCastPoint"				"0.0"
+		"AbilityCastRange"				"375 375 375 375 450 525 600"
+		"AbilityCastPoint"				"0.03"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_ROT"
 		
 		// Time		
@@ -212,7 +219,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"30 60 90 120 120 120 120"
+				"damage"					"30 60 90 120 125 130 135"
 				"LinkedSpecialBonus"		"special_bonus_unique_pudge_rot_lua_2"
 				"LinkedSpecialBonusField"	"value2"
 			}
@@ -224,7 +231,9 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"450 450 450 450 550 650 750"
+				"radius"					"375 375 375 375 450 525 600"
+				"LinkedSpecialBonus"		"special_bonus_unique_pudge_rot_lua_2"
+				"LinkedSpecialBonusField"	"value3"
 			}
 			"04"
 			{
@@ -234,7 +243,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"slow"						"-20 -20 -20 -20 -25 -30 -35"
+				"slow"						"-14 -14 -14 -14 -20 -26 -32"
 				"LinkedSpecialBonus"		"special_bonus_unique_pudge_rot_lua_2"
 			}
 			"06"
@@ -290,38 +299,41 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"-35"
+				"value"						"-38"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value2"					"45"
+				"value2"					"65"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"125"
 			}
 		}
 	}
-
-	"pudge_chain_storm"
+	"pudge_regurgitate"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------														
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_pudge/pudge_chain_storm.lua"
+		"ScriptFile"					"heroes/hero_pudge/pudge_regurgitate.lua"
 
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"custom/pudge_dismember_arcana"
+		"AbilityTextureName"			"pudge_eject"
 		"MaxLevel"						"7"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_pudge_chain_storm_1"	"1"
-			"special_bonus_unique_pudge_chain_storm_2"	"1"
+			"special_bonus_unique_pudge_regurgitate_1"	"1"
+			"special_bonus_unique_pudge_regurgitate_2"	"1"
 		}
 	
 		// Precache
@@ -341,11 +353,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
+		"AbilityCooldown"				"28 28 28 28 24 20 16"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 125 150 175 200 225 250"
+		"AbilityManaCost"				"0"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -354,37 +366,27 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"50 75 100 125 140 155 170"
+				"armor_reduction"			"-3 -4 -5 -6 -6 -6 -6"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"magic_resist"				"1.5 1.5 1.5 1.5 2 2.5 3"
+				"var_type"					"FIELD_INTEGER"
+				"lifesteal"					"40 40 40 40 60 80 100"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"max_resist"				"37.5 45 52.5 60 80 100 120"
+				"var_type"					"FIELD_INTEGER"
+				"mr_reduction"				"-18 -22 -26 -30 -30 -30 -30"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"25 30 35 40 40 40 40"
+				"duration"					"10"
 			}
-			"05"
+			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"heap_stacks"				"1"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"minion_chance"				"10"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"heap_chance"				"25"
+				"var_type"					"FIELD_FLOAT"
+				"health_cost"				"20"
 			}
 		}
 	}
@@ -392,7 +394,7 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_pudge_chain_storm_1"
+	"special_bonus_unique_pudge_regurgitate_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -406,20 +408,15 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"5"
-			}
-			"02"
-			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"600"
+				"value"						"100"
 			}
 		}
 	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_pudge_chain_storm_2"
+	"special_bonus_unique_pudge_regurgitate_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -434,7 +431,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
+				"value"						"1"
 			}
 		}
 	}
@@ -458,19 +455,44 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"str_bonus"				"3"
+				"str_bonus"				"1"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"health_regen"			"2"
+				"health_regen"			"0.75"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"20"
+				"minion_regen"			"10"
 			}
 			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"minion_stacks"			"1"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"death_stacks"			"1"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"temp_stacks"			"2"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"boss_stacks"			"5"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"magic_resist"			"10"
@@ -592,6 +614,148 @@
 	// Ability: Special Bonus
 	//=================================================================================================================
 	"special_bonus_unique_pudge_dismember_lua_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"50"
+			}
+		}
+	}
+	
+	/////////////////////////////////////////
+	// DEPRECATED
+	/////////////////////////////////////////
+	"pudge_chain_storm"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------														
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_pudge/pudge_chain_storm.lua"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"custom/pudge_dismember_arcana"
+		"MaxLevel"						"7"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_pudge_chain_storm_1"	"1"
+			"special_bonus_unique_pudge_chain_storm_2"	"1"
+		}
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_pudge.vsndevts"
+
+			"particle"			"particles/econ/items/pudge/pudge_arcana/pudge_arcana_dismember_default.vpcf"
+		}
+			
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 125 150 175 200 225 250"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"50 75 100 125 140 155 170"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"magic_resist"				"1.5 1.5 1.5 1.5 2 2.5 3"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"max_resist"				"37.5 45 52.5 60 80 100 120"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"25 30 35 40 40 40 40"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"heap_stacks"				"1"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"minion_chance"				"10"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"heap_chance"				"25"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_pudge_chain_storm_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"600"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_pudge_chain_storm_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------

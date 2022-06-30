@@ -17,7 +17,7 @@ if IsServer() then
 		local caster = self:GetCaster()
 		if caster:PassivesDisabled() or not caster:IsAlive() then return end
 		local ability = self:GetAbility()
-		if not ability:IsFullyCastable() then return end
+		if not ability:IsFullyCastable() or caster:IsStunned() or caster:IsSilenced() or caster:GetCurrentActiveAbility() or caster:IsHexed() or caster:IsRooted() then return end
 		if #caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), 800 ) <= 0 then return end
 		
 		local duration = self:GetAbility():GetSpecialValueFor("duration")

@@ -8,25 +8,35 @@ function juggernaut_dance_of_blades:OnSpellStart()
 	
 	caster:AddNewModifier(caster, self, "modifier_juggernaut_dance_of_blades", {duration = duration + 0.1})
 	self:Bounce(target)
+	if caster:HasTalent("special_bonus_unique_juggernaut_dance_of_blades_1") then
+		local radius = self:GetTalentSpecialValueFor("radius") + caster:GetAttackRange()
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius) ) do
+			if enemy ~= target then
+				self:Bounce(enemy)
+				break
+			end
+		end
+	end
 end
 
 function juggernaut_dance_of_blades:Bounce(target)
 	local caster = self:GetCaster()
 	
 	if not target:TriggerSpellAbsorb( self ) then
-		caster:PerformGenericAttack(target, true)
+		caster:PerformAbilityAttack(target, true, self, nil, nil, true)
 	end
 	local direction = CalculateDirection(target, caster)
 	local distance = CalculateDistance(target, caster)
 	local position = target:GetAbsOrigin() + direction * RandomInt(150, caster:GetAttackRange())
 	
 	ParticleManager:FireParticle("particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf", PATTACH_POINT_FOLLOW, target, {[0]="attach_hitloc"})
+	caster:SetAbsOrigin( position )
 	ParticleManager:FireParticle("particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_trail.vpcf", PATTACH_POINT, caster, {[0]="attach_hitloc", [1]=position})
 	EmitSoundOn("Hero_Juggernaut.OmniSlash", caster)
-	EmitSoundOn("Hero_Juggernaut.OmniSlash.Damage", caster)
+	EmitSoundOn("Hero_Juggernaut.OmniSlash.Damage", target)
 	
-	caster:SetAbsOrigin( position )
-	caster:SetForwardVector( CalculateDirection(target, caster) )
+	caster:SetForwardVector( CalculateDirection( target, caster ) )
+	caster:FaceTowards( target:GetAbsOrigin() )
 end
 
 modifier_juggernaut_dance_of_blades = class({})
@@ -38,13 +48,13 @@ function modifier_juggernaut_dance_of_blades:OnCreated()
 	self.bonus_damage = self:GetTalentSpecialValueFor("bonus_damage")
 	self.cleave = caster:FindTalentValue("special_bonus_unique_juggernaut_dance_of_blades_1")
 	self.talent1 = caster:HasTalent("special_bonus_unique_juggernaut_dance_of_blades_1")
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetTalentSpecialValueFor("radius") + caster:GetAttackRange()
 	self:GetParent():HookInModifier( "GetModifierAreaDamage", self )
 	if IsServer() then
 		caster:RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
 		self.rate = self:GetTalentSpecialValueFor("bounce_rate")
 		self.tick = caster:GetSecondsPerAttack() / self.rate
-		caster:StartGestureWithPlaybackRate(ACT_DOTA_OVERRIDE_ABILITY_4, 1/self.tick)
+		caster:StartGestureWithPlaybackRate(ACT_DOTA_OVERRIDE_ABILITY_4, 0.5/self.tick)
 		self:StartIntervalThink( self.tick )
 	end
 end
@@ -61,38 +71,47 @@ function modifier_juggernaut_dance_of_blades:OnDestroy()
 		if caster:HasModifier("modifier_juggernaut_mirror_blades") then
 			caster:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
 		end
+		ResolveNPCPositions( caster:GetAbsOrigin(), caster:GetHullRadius() + caster:GetCollisionPadding() )
 	end
 end
 
-function modifier_juggernaut_dance_of_blades:OnIntervalThink()
+function modifier_juggernaut_dance_of_blades:OnIntervalThink(ignoreTarget)
 	local caster = self:GetCaster()
 	local oldTick = self.tick
 	self.tick = caster:GetSecondsPerAttack() / self.rate
 	local target
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self.radius) ) do
-		target = enemy
-		break
-	end
-	if ( not target or target:IsNull() or not target:IsAlive() ) and not self.talent1 then
-		self:Destroy()
+		if enemy ~= ignoreTarget then
+			target = enemy
+			break
+		end
 	end
 	if target then
 		caster:RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
-		caster:StartGestureWithPlaybackRate(ACT_DOTA_OVERRIDE_ABILITY_4, caster:GetIncreasedAttackSpeed() )
+		caster:StartGestureWithPlaybackRate(ACT_DOTA_OVERRIDE_ABILITY_4, 0.5/self.tick)
 		self:GetAbility():Bounce(target)
-		if self.freezeDuration then
-			self:SetDuration( self.freezeDuration, true )
-			self.freezeDuration = nil
-		end
-		self.disableBlocking = false
-	else
-		dance = caster:FindModifierByName("modifier_juggernaut_dance_of_blades")
-		self.disableBlocking = true
-		self:OnDestroy()
-		self.freezeDuration = self.freezeDuration or self:GetRemainingTime()
-		self:SetDuration( -1, true )
+	elseif ( not target or target:IsNull() or not target:IsAlive() ) and not self.talent1 then
+		self:Destroy()
 	end
-	self:StartIntervalThink(self.tick)
+	if not ignoreTarget then
+		if target then
+			if self.freezeDuration then
+				self:SetDuration( self.freezeDuration, true )
+				self.freezeDuration = nil
+			end
+			if self.talent1 then
+				self:OnIntervalThink(target)
+			end
+			self.disableBlocking = false
+		else
+			dance = caster:FindModifierByName("modifier_juggernaut_dance_of_blades")
+			self.disableBlocking = true
+			self:OnDestroy()
+			self.freezeDuration = self.freezeDuration or self:GetRemainingTime()
+			self:SetDuration( -1, true )
+		end
+		self:StartIntervalThink(self.tick)
+	end
 end
 
 function modifier_juggernaut_dance_of_blades:DeclareFunctions()
@@ -102,10 +121,6 @@ end
 
 function modifier_juggernaut_dance_of_blades:GetModifierPreAttack_BonusDamage()
 	return self.bonus_damage
-end
-
-function modifier_juggernaut_dance_of_blades:GetModifierAreaDamage()
-	return self.cleave
 end
 
 function modifier_juggernaut_dance_of_blades:CheckState()
@@ -120,7 +135,6 @@ function modifier_juggernaut_dance_of_blades:CheckState()
 				[MODIFIER_STATE_IGNORING_MOVE_AND_ATTACK_ORDERS] = true,
 				[MODIFIER_STATE_NOT_ON_MINIMAP] = true,
 				[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-				[MODIFIER_STATE_FLYING] = true,
 				[MODIFIER_STATE_NO_TEAM_MOVE_TO] = true,
 				[MODIFIER_STATE_NO_TEAM_SELECT] = true,
 				[MODIFIER_STATE_DISARMED] = true,}

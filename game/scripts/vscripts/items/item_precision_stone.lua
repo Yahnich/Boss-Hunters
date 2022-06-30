@@ -9,27 +9,26 @@ function item_precision_stone:RuneProcessing( item, itemmodifier, slotIndex )
 	item.itemData = item.itemData or {}
 	local level = ( item.itemData[slotIndex].rune_level or 0 ) + 1
 	item.itemData[slotIndex].rune_level = level
-	item.itemData[slotIndex].funcs["GetModifierBaseCriticalChanceBonus"] = (item.itemData[slotIndex].funcs["GetModifierBaseCriticalChanceBonus"] or 0) + self:GetLevelSpecialValueFor( "critical_chance", level-1 )
+	item.itemData[slotIndex].baseFuncs["GetModifierBaseCriticalChanceBonus"] = (item.itemData[slotIndex].baseFuncs["GetModifierBaseCriticalChanceBonus"] or 0) + self:GetLevelSpecialValueFor( "critical_chance", level-1 )
 end
 
 modifier_item_precision_stone_passive = class(persistentModifier)
 
 function modifier_item_precision_stone_passive:OnCreated()
-	self.criticalChance = self:GetSpecialValueFor("critical_chance")
+	self:OnRefresh()
 	if IsServer() then
 		self:GetCaster():HookInModifier( "GetModifierBaseCriticalChanceBonus", self )
 	end
 end
 
 function modifier_item_precision_stone_passive:OnRefresh()
-	self.criticalChance = self:GetSpecialValueFor("critical_chance")
-	if IsServer() then
-		self:GetCaster():HookInModifier( "GetModifierBaseCriticalChanceBonus", self )
+	self.criticalChance = 0
+	for i = 1, self:GetAbility():GetCurrentCharges() do
+		self.criticalChance = self.criticalChance + self:GetAbility():GetLevelSpecialValueFor( "critical_chance", i-1 )
 	end
 end
 
 function modifier_item_precision_stone_passive:OnDestroy()
-	self.criticalChance = self:GetSpecialValueFor("critical_chance")
 	if IsServer() then
 		self:GetCaster():HookOutModifier( "GetModifierBaseCriticalChanceBonus", self )
 	end

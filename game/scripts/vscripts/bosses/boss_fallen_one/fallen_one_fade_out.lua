@@ -12,9 +12,10 @@ function fallen_one_fade_out:OnSpellStart()
 	if target:TriggerSpellAbsorb( self ) then return end
 	local duration = self:GetSpecialValueFor("illu_duration")
 	
-	local illusions = target:ConjureImage( {outgoing_damage = self:GetSpecialValueFor("illu_out") - 100, incoming_damage = self:GetSpecialValueFor("illu_inc") - 100, position = caster:GetAbsOrigin(), ability = self}, duration, caster, 1 )
+	local illusions = target:ConjureImage( {outgoing_damage = self:GetSpecialValueFor("illu_out") - 100, incoming_damage = self:GetSpecialValueFor("illu_inc") - 100, position = caster:GetAbsOrigin(), ability = self, controllable = true}, duration, caster, 1 )
 	local invuln = caster:AddNewModifier(caster, self, "modifier_fallen_one_fade_out", {duration = duration})
 	illusions[1]:MoveToPositionAggressive( target:GetAbsOrigin() )
+	illusions[1]:SetForceAttackTarget( target )
 	Timers:CreateTimer(function()
 		if not illusions or not illusions[1] or illusions[1]:IsNull() or not illusions[1]:IsAlive() then
 			if invuln and not invuln:IsNull() then

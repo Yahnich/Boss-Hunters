@@ -1,5 +1,4 @@
 lion_death_finger = class({})
-LinkLuaModifier( "modifier_lion_death_finger_root", "heroes/hero_lion/lion_death_finger.lua",LUA_MODIFIER_MOTION_NONE )
 
 function lion_death_finger:IsStealable()
     return true
@@ -7,6 +6,10 @@ end
 
 function lion_death_finger:IsHiddenWhenStolen()
     return false
+end
+
+function lion_death_finger:GetAOERadius()
+    return self:GetTalentSpecialValueFor("radius")
 end
 
 function lion_death_finger:GetIntrinsicModifierName()
@@ -20,31 +23,15 @@ function lion_death_finger:OnSpellStart()
 
     local radius = self:GetTalentSpecialValueFor("radius")
 	local damage = self:GetTalentSpecialValueFor("damage")
-	local growth = caster:FindModifierByName("modifier_lion_death_finger_grow")
-	if growth then
-		damage = damage + growth:GetStackCount() * 5
-	end
-    local startPos = caster:GetAbsOrigin()
-    local endPos = startPos + CalculateDirection(point, caster)*self:GetTrueCastRange()
+	local graceDuration = self:GetTalentSpecialValueFor("kill_grace")
 
     EmitSoundOn("Hero_Lion.FingerOfDeath", caster)
     EmitSoundOnLocationWithCaster(point, "Hero_Lion.FingerOfDeathImpact", caster)
-
-    local enemies = caster:FindEnemyUnitsInLine(startPos, endPos, self:GetTalentSpecialValueFor("radius"), {flag=DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
-	if caster:HasTalent("special_bonus_unique_lion_death_finger_1") then
-		enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self:GetTrueCastRange())
-	end
 	
-	if caster:HasScepter() and caster:HasModifier("modifier_lion_mana_aura_scepter") then
-		local innate = caster:FindAbilityByName("lion_mana_aura")
-		if innate then
-			local manaDamage = caster:GetMana() * innate:GetTalentSpecialValueFor("scepter_curr_mana_dmg") / 100
-			self:SpendMana(manaDamage)
-		end
-	end
-	-- local minion_bonus = self:GetTalentSpecialValueFor("minion_bonus")
-	-- local bonus = self:GetTalentSpecialValueFor("bonus")
-	-- local boss_bonus = self:GetTalentSpecialValueFor("boss_bonus")
+	local talent2 = caster:HasTalent("special_bonus_unique_lion_death_finger_2")
+	local talent2Duration = caster:FindTalentValue("special_bonus_unique_lion_death_finger_2")
+
+    local enemies = caster:FindEnemyUnitsInRadius( point, radius )
     for _,enemy in pairs(enemies) do
         local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_lion/lion_spell_finger_of_death.vpcf", PATTACH_POINT, caster)
         ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT, "attach_attack2", caster:GetAbsOrigin(), true)
@@ -56,25 +43,10 @@ function lion_death_finger:OnSpellStart()
         ParticleManager:SetParticleControl(nfx, 10, position)
         ParticleManager:ReleaseParticleIndex(nfx)
 		if not enemy:TriggerSpellAbsorb( self ) then
-			enemy:AddNewModifier( caster, self, "modifier_lion_death_finger_grace", {} )
+			enemy:AddNewModifier( caster, self, "modifier_lion_death_finger_grace", {duration = graceDuration} )
 			self:DealDamage(caster, enemy, damage, {}, 0)
-			if enemy:IsAlive() then
-				if caster:HasScepter() and caster:HasModifier("modifier_lion_mana_aura_scepter") then
-					self:DealDamage( caster, enemy, manaDamage, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
-					ParticleManager:FireRopeParticle("particles/items2_fx/necronomicon_archer_manaburn.vpcf", PATTACH_POINT_FOLLOW, caster, enemy)
-				end
-
-				if caster:HasTalent("special_bonus_unique_lion_death_finger_2") then
-					enemy:AddNewModifier(caster, self, "modifier_lion_death_finger_root", {Duration = caster:FindTalentValue("special_bonus_unique_lion_death_finger_2")})
-				end
-			-- elseif growth then
-				-- local numbers = bonus
-				-- if enemy:IsMinion() then
-					-- numbers = minion_bonus
-				-- elseif enemy:IsBoss() then
-					-- numbers = boss_bonus
-				-- end
-				-- growth:SetStackCount( growth:GetStackCount() + numbers / 5 )
+			if enemy:IsAlive() and talent2 then
+				self:Stun( enemy, talent2Duration )
 			end
 		end
     end
@@ -84,9 +56,8 @@ modifier_lion_death_finger_grace = class({})
 LinkLuaModifier( "modifier_lion_death_finger_grace", "heroes/hero_lion/lion_death_finger.lua",LUA_MODIFIER_MOTION_NONE )
 
 function modifier_lion_death_finger_grace:OnCreated()
-	self.bonus = self:GetTalentSpecialValueFor("bonus")
-	self.minion_bonus = self:GetTalentSpecialValueFor("minion_bonus")
-	self.boss_bonus = self:GetTalentSpecialValueFor("boss_bonus")
+	self.bonus = self:GetTalentSpecialValueFor("stacks")
+	self.boss_bonus = self:GetTalentSpecialValueFor("boss_stacks")
 end
 
 function modifier_lion_death_finger_grace:DeclareFunctions()
@@ -94,17 +65,12 @@ function modifier_lion_death_finger_grace:DeclareFunctions()
 end
 
 function modifier_lion_death_finger_grace:OnDeath(params)
-	if params.unit == self:GetParent() then
+	if params.unit == self:GetParent() and not params.unit:IsMinion() then
 		local caster = self:GetCaster()
 		local growth = caster:FindModifierByName("modifier_lion_death_finger_grow")
 		if growth then
-			local numbers = self.bonus
-			if params.unit:IsMinion() then
-				numbers = self.minion_bonus
-			elseif params.unit:IsBoss() then
-				numbers = self.boss_bonus
-			end
-			growth:SetStackCount( growth:GetStackCount() + math.floor( numbers / 5 ) )
+			local stacks = TernaryOperator( self.boss_bonus, params.unit:IsBoss(), self.bonus )
+			growth:SetStackCount( growth:GetStackCount() + stacks )
 		end
 	end
 end
@@ -112,11 +78,26 @@ end
 modifier_lion_death_finger_grow = class({})
 LinkLuaModifier( "modifier_lion_death_finger_grow", "heroes/hero_lion/lion_death_finger.lua",LUA_MODIFIER_MOTION_NONE )
 
-function modifier_lion_death_finger_grow:DeclareFunctions()
-	return {MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL, MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL_VALUE}
+function modifier_lion_death_finger_grow:OnCreated()
+	self:OnRefresh()
 end
 
+function modifier_lion_death_finger_grow:OnRefresh()
+	self.stack_bonus = self:GetTalentSpecialValueFor("stack_bonus")
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_lion_death_finger_1")
+	self.talent1HP = self:GetCaster():FindTalentValue("special_bonus_unique_lion_death_finger_1")
+end
 
+function modifier_lion_death_finger_grow:OnStackCountChanged()
+	if IsServer() then
+		self:GetCaster():CalculateStatBonus( true )
+		self:GetCaster():CalculateGenericBonuses( )
+	end
+end
+
+function modifier_lion_death_finger_grow:DeclareFunctions()
+	return {MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL, MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL_VALUE, MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS, MODIFIER_PROPERTY_TOOLTIP }
+end
 
 function modifier_lion_death_finger_grow:GetModifierOverrideAbilitySpecial(params)
 	if params.ability == self:GetAbility() then
@@ -134,13 +115,17 @@ function modifier_lion_death_finger_grow:GetModifierOverrideAbilitySpecialValue(
 		local specialValue = params.ability_special_value
 		if specialValue == "damage"then
 			local flBaseValue = params.ability:GetLevelSpecialValueNoOverride( specialValue, params.ability_special_level )
-			return flBaseValue + self:GetStackCount() * 5
+			return flBaseValue + self:GetStackCount() * self.stack_bonus
 		end
 	end
 end
 
+function modifier_lion_death_finger_grow:GetModifierExtraHealthBonus()
+	return self:GetStackCount() * self.talent1HP
+end
+
 function modifier_lion_death_finger_grow:OnTooltip()
-	return self:GetStackCount() * 5
+	return self:GetStackCount() * self.stack_bonus
 end
 
 function modifier_lion_death_finger_grow:IsPurgable()
@@ -156,16 +141,5 @@ function modifier_lion_death_finger_grow:GetAttributes()
 end
 
 function modifier_lion_death_finger_grow:IsHidden()
-	return true
-end
-
-modifier_lion_death_finger_root = class({})
-function modifier_lion_death_finger_root:CheckState()
-    local state = {	[MODIFIER_STATE_ROOTED] = true,
-					[MODIFIER_STATE_INVISIBLE] = false}
-    return state
-end
-
-function modifier_lion_death_finger_root:GetEffectName()
-    return "particles/econ/items/warlock/warlock_staff_hellborn/warlock_upheaval_hellborn_debuff.vpcf"
+	return self:GetStackCount() == 0
 end

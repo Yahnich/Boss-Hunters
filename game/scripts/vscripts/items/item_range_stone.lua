@@ -9,13 +9,20 @@ function item_range_stone:RuneProcessing( item, itemmodifier, slotIndex )
 	item.itemData = item.itemData or {}
 	local level = ( item.itemData[slotIndex].rune_level or 0 ) + 1
 	item.itemData[slotIndex].rune_level = level
-	item.itemData[slotIndex].funcs["GetModifierAttackRangeBonus"] = (item.itemData[slotIndex].funcs["GetModifierAttackRangeBonus"] or 0) + self:GetLevelSpecialValueFor( "bonus_range", level-1 )
+	item.itemData[slotIndex].baseFuncs["GetModifierAttackRangeBonus"] = (item.itemData[slotIndex].baseFuncs["GetModifierAttackRangeBonus"] or 0) + self:GetLevelSpecialValueFor( "bonus_range", level-1 )
 end
 
 modifier_item_range_stone_passive = class(persistentModifier)
 
 function modifier_item_range_stone_passive:OnCreated()
-	self.bonus_range = self:GetSpecialValueFor("bonus_range")
+	self:OnRefresh()
+end
+
+function modifier_item_range_stone_passive:OnRefresh()
+	self.bonus_range = 0
+	for i = 1, self:GetAbility():GetCurrentCharges() do
+		self.bonus_range = self.bonus_range + self:GetAbility():GetLevelSpecialValueFor( "bonus_range", i-1 )
+	end
 end
 
 function modifier_item_range_stone_passive:DeclareFunctions()

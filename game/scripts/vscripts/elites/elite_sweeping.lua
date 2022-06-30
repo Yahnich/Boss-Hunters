@@ -17,7 +17,7 @@ function modifier_elite_sweeping:DeclareFunctions()
 end
 
 function modifier_elite_sweeping:OnAttackLanded(params)
-	if params.attacker == self:GetParent() then
+	if params.attacker == self:GetParent() and not params.attacker:PassivesDisabled() then
 		self.radius = self:GetSpecialValueFor("radius")
 		self.dmg_pct = self:GetSpecialValueFor("damage_pct") / 100
 		local ability = self:GetAbility()

@@ -55,9 +55,10 @@ end
 
 function modifier_legion_commander_fearless_assault_buff:OnRefresh()
 	self.lifesteal = self:GetTalentSpecialValueFor("hp_leech_percent")
-	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_legion_commander_fearless_assault_2")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_legion_commander_fearless_assault_1")
-	self.radius = self:GetCaster():FindTalentValue("special_bonus_unique_legion_commander_fearless_assault_2", "radius")
+	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_legion_commander_fearless_assault_2")
+	self.talent2Radius = self:GetCaster():FindTalentValue("special_bonus_unique_legion_commander_fearless_assault_2", "radius")
+	self.talent2Mult = self:GetCaster():FindTalentValue("special_bonus_unique_legion_commander_fearless_assault_2", "share_pct") / 100
 	if IsServer() then
 		self:GetParent():HookInModifier( "GetModifierLifestealBonus", self )
 	end
@@ -70,12 +71,7 @@ function modifier_legion_commander_fearless_assault_buff:OnDestroy()
 end
 
 function modifier_legion_commander_fearless_assault_buff:DeclareFunctions()
-	funcs = {
-				MODIFIER_EVENT_ON_TAKEDAMAGE,
-				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, 
-				MODIFIER_EVENT_ON_ATTACK,
-			}
-	return funcs
+	return { MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_EVENT_ON_ATTACK }
 end
 
 function modifier_legion_commander_fearless_assault_buff:OnAttack(params)
@@ -86,9 +82,10 @@ function modifier_legion_commander_fearless_assault_buff:OnAttack(params)
 		ParticleManager:FireParticle("particles/units/heroes/hero_legion_commander/legion_commander_courage_tgt.vpcf", PATTACH_POINT_FOLLOW, parent, {[0] = "attach_attack1"})
 		ParticleManager:FireParticle("particles/units/heroes/hero_legion_commander/legion_commander_courage_hit.vpcf", PATTACH_ABSORIGIN, params.target, {[0] = "attach_hitloc"})
 		if self.talent1 then
+			local ability = self:GetAbility()
 			for _, unit in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), parent:GetAttackRange() ) ) do
 				if unit ~= params.target then
-					parent:PerformGenericAttack(unit, true)
+					parent:PerformAbilityAttack(unit, false, ability )
 					ParticleManager:FireParticle("particles/units/heroes/hero_legion_commander/legion_commander_courage_tgt.vpcf", PATTACH_ABSORIGIN, unit, {[0] = "attach_hitloc"})
 				end
 			end
@@ -97,12 +94,12 @@ function modifier_legion_commander_fearless_assault_buff:OnAttack(params)
 end
 
 function modifier_legion_commander_fearless_assault_buff:GetModifierLifestealBonus(params)
-	if params.attacker == self:GetParent() and ( params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE) ) then
+	if params.attacker == self:GetParent() and ( params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE) ) and not params.attacker:IsInAbilityAttackMode() then
 		local parent = self:GetParent()
 		local ability = self:GetAbility()
 		if self.talent2 then
-			local heal = params.damage * self.lifesteal / 100
-			for _, unit in ipairs( parent:FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), self.radius ) ) do
+			local heal = params.damage * self.lifesteal * self.talent2Mult / 100
+			for _, unit in ipairs( parent:FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), self.talent2Radius ) ) do
 				if unit ~= parent then
 					unit:HealEvent( heal, ability, parent )
 				end

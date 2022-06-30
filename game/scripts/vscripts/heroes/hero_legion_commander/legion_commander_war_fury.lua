@@ -126,7 +126,7 @@ modifier_legion_commander_war_fury_buff = class({})
 function modifier_legion_commander_war_fury_buff:OnCreated()
 	self.bonusDamage = self:GetAbility():GetTalentSpecialValueFor("bonus_damage_aura")
 	self.hp_regen = self:GetAbility():GetTalentSpecialValueFor("hp_regen")
-	self.dmg_reduction = self:GetAbility():GetTalentSpecialValueFor("damage_resist")
+	self.dmg_reduction = -self:GetAbility():GetTalentSpecialValueFor("damage_resist")
 	self.ally_bonus = self:GetAbility():GetTalentSpecialValueFor("ally_bonus") / 100
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_legion_commander_war_fury_1")
 	if self:GetParent() ~= self:GetCaster() then
@@ -160,6 +160,8 @@ function modifier_legion_commander_war_fury_buff:DeclareFunctions()
 				MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 				MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
 				MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
+				MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
+				MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE
 			}
 	return funcs
 end
@@ -178,6 +180,18 @@ end
 
 function modifier_legion_commander_war_fury_buff:GetModifierHealAmplify_Percentage(params)
 	if params.target == self:GetParent() then
+		return self.heal_amp
+	end
+end
+
+function modifier_legion_commander_war_fury_buff:GetModifierHPRegenAmplify_Percentage(params)
+	if self:GetParent() == self:GetCaster() then
+		return self.heal_amp
+	end
+end
+
+function modifier_legion_commander_war_fury_buff:GetModifierLifestealRegenAmplify_Percentage(params)
+	if self:GetParent() == self:GetCaster() then
 		return self.heal_amp
 	end
 end

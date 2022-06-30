@@ -119,7 +119,6 @@ function modifier_dazzle_shallow_grave_talent2:OnCreated()
 	self.damage_reduction = self:GetCaster():FindTalentValue("special_bonus_unique_dazzle_shallow_grave_2")
 	self.health_regen = self:GetCaster():FindTalentValue("special_bonus_unique_dazzle_shallow_grave_2", "regen")
 	self.dispel_hp = self:GetCaster():FindTalentValue("special_bonus_unique_dazzle_shallow_grave_2", "dispel_hp")
-	print( self.damage_reduction, self.health_regen, self.dispel_hp )
 	if IsServer() then
 		self:StartIntervalThink(1)
 	end

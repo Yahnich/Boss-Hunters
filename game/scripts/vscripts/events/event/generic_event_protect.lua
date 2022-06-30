@@ -101,7 +101,7 @@ local function StartEvent(self)
 			end
 		end
 	end)
-	self:StartEventTimer( 30, timerFunc )
+	self:StartEventTimer( 60, timerFunc )
 	
 	self._playerChoices = {}
 	LinkLuaModifier("event_buff_protect", "events/modifiers/event_buff_protect", LUA_MODIFIER_MOTION_NONE)

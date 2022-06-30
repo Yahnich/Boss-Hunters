@@ -15,14 +15,15 @@ end
 
 function modifier_green_dragon_bug_explode_handle:OnIntervalThink()
 	local caster = self:GetCaster()
+	local ability = self:GetAbility()
 	local radius = self:GetSpecialValueFor("radius")
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), 150)
 	if not caster:IsAlive() then return end
 	if #enemies > 0 then 
 		self:StartIntervalThink(-1)
-		self:GetAbility():Stun(caster, 1.5)
+		ability:Stun(caster, 1.5)
 		ParticleManager:FireParticle("particles/bosses/boss_green_dragon/boss_green_dragon_explosion_prep.vpcf", PATTACH_POINT_FOLLOW, caster)
-		Timers:CreateTimer(self:GetAbility():GetCastPoint(), function()
+		Timers:CreateTimer( ability:GetCastPoint(), function()
 			if not caster:IsAlive() then return end
 			EmitSoundOn("Hero_Broodmother.SpawnSpiderlings", caster)
 			local nfx = ParticleManager:CreateParticle("particles/bosses/boss_green_dragon/boss_green_dragon_rot_explosion.vpcf", PATTACH_POINT_FOLLOW, caster)
@@ -32,14 +33,14 @@ function modifier_green_dragon_bug_explode_handle:OnIntervalThink()
 
 			enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
 			for _,enemy in pairs(enemies) do
-				if not enemy:IsMagicImmune() and not enemy:IsInvulnerable() and not enemy:TriggerSpellAbsorb(self) then
-					enemy:ApplyKnockBack(caster:GetAbsOrigin(), 0.1, 0.1, 100, 350, caster, self:GetAbility())
-					self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, 0)
+				if not enemy:IsMagicImmune() and not enemy:IsInvulnerable() and not enemy:TriggerSpellAbsorb(ability) then
+					enemy:ApplyKnockBack(caster:GetAbsOrigin(), 0.1, 0.1, 100, 350, caster, ability )
+					ability:DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, 0)
 				end
 			end
-			local ability = caster:GetOwner():FindAbilityByName("green_dragon_toxic_pool")
+			local pool = caster:GetOwner():FindAbilityByName("green_dragon_toxic_pool")
 
-			ability:CreateToxicPool( caster:GetAbsOrigin() )
+			pool:CreateToxicPool( caster:GetAbsOrigin() )
 			caster:ForceKill(false)
 			self:Destroy()
 		end)

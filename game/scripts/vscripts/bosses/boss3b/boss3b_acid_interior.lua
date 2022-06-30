@@ -41,7 +41,7 @@ function modifier_boss3b_acid_interior_passive:OnDeath(params)
 end
 
 function modifier_boss3b_acid_interior_passive:OnAttackLanded(params)
-	if params.attacker == self:GetParent() and not params.attacker:PassivesDisabled() then
+	if params.attacker == self:GetParent() and not params.attacker:PassivesDisabled() and not params.target:IsMagicImmune() then
 		params.target:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_boss3b_acid_interior_attack", {duration = self.stack_duration})
 	end
 end

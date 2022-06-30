@@ -71,15 +71,25 @@ function modifier_zeus_olympus_calls:OnIntervalThink()
 	local pointRando = point + ActualRandomVector( self.radius )
 
 	local enemies = caster:FindEnemyUnitsInRadius(point, self.radius, {})
+	local bonusTargets = {}
+	
+	EmitSoundOn("Hero_Zuus.GodsWrath.Target", caster)
 	if #enemies > 0 then
-		for _,enemy in pairs(enemies) do
-			EmitSoundOn("Hero_Zuus.GodsWrath.Target", enemy)
-			ParticleManager:FireRopeParticle("particles/units/heroes/hero_zeus/zeus_olympus_calls.vpcf", PATTACH_POINT_FOLLOW, caster, enemy, {})
-			self:GetAbility():DealDamage(caster, enemy, self.damage, {}, 0)
+		for _, primary in pairs(enemies) do
+			bonusTargets[primary] = true
 			break
 		end
 	else
 		ParticleManager:FireRopeParticle("particles/units/heroes/hero_zeus/zeus_olympus_calls.vpcf", PATTACH_POINT_FOLLOW, caster, pointRando, {})
+	end
+	for _, cloud in ipairs( caster._NimbusClouds or {} ) do
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( cloud:GetAbsOrigin(), cloud.radius ) ) do
+			bonusTargets[enemy] = true
+		end
+	end
+	for enemy, state in pairs( bonusTargets ) do
+		ParticleManager:FireRopeParticle("particles/units/heroes/hero_zeus/zeus_olympus_calls.vpcf", PATTACH_POINT_FOLLOW, caster, enemy, {})
+		self:GetAbility():DealDamage(caster, enemy, self.damage, {}, 0)
 	end
 end
 

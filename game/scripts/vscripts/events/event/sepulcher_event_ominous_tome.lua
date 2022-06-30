@@ -125,7 +125,7 @@ local function StartEvent(self)
 			end
 		end
 	end)
-	self.waitTimer = self:StartEventTimer( 30, timerFunc )
+	self.waitTimer = self:StartEventTimer( 45, timerFunc )
 	LinkLuaModifier("event_buff_ominous_tome_blessing", "events/modifiers/event_buff_ominous_tome", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("event_buff_ominous_tome_curse", "events/modifiers/event_buff_ominous_tome", LUA_MODIFIER_MOTION_NONE)
 	self._playerChoices = {}

@@ -182,7 +182,7 @@ function modifier_stats_system_handler:DeclareFunctions()
 		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
 		MODIFIER_PROPERTY_IGNORE_MOVESPEED_LIMIT,
 		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE ,
+		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
 		MODIFIER_PROPERTY_REINCARNATION
 	}
 	return funcs
@@ -190,11 +190,11 @@ end
 
 function modifier_stats_system_handler:GetModifierBaseAttack_BonusDamage()
 	local owner = self:GetCaster() or self:GetParent()
-	local heroBonus = 0
-	if owner:IsRealHero() then
+	if owner:IsRealHero() and self:GetParent():IsHero() then
 		heroBonus = owner:GetLevel()
+		return owner:GetAgility() * 0.5 + heroBonus
 	end
-	return owner:GetAgility() * 0.5 + heroBonus
+	
 end
 
 function modifier_stats_system_handler:ReincarnateTime(params)
@@ -203,35 +203,33 @@ function modifier_stats_system_handler:ReincarnateTime(params)
 		local firstToCheckPriority = MODIFIER_PRIORITY_LOW
 		local checking = true
 		local modifiersToCheck = MergeTables( self.modifierFunctions["GetReincarnationDelay"], {} )
-		print( self:GetParent().tombstoneDisabled )
 		if self:GetParent().tombstoneDisabled then
 			self:GetParent().tombstoneDisabled = false
-			return nil 
-		end
-		while checking do
-			for modifier, priority in pairs( modifiersToCheck ) do
-				print( modifier:GetName(), priority, firstToCheckPriority )
-				if priority >= firstToCheckPriority then
-					firstToCheckPriority = priority
-					firstToCheck = modifier
-				end
-			end
-			if firstToCheck then
-				if firstToCheck.GetReincarnationDelay then
-					modifiersToCheck[firstToCheck] = nil
-					local resurrectionDelay = firstToCheck:GetReincarnationDelay(params)
-					if resurrectionDelay then
-						checking = false
-						print( resurrectionDelay )
-						return resurrectionDelay
+			return
+		else
+			while checking do
+				for modifier, priority in pairs( modifiersToCheck ) do
+					if priority >= firstToCheckPriority then
+						firstToCheckPriority = priority
+						firstToCheck = modifier
 					end
 				end
-				firstToCheckPriority = MODIFIER_PRIORITY_LOW
-				firstToCheck = nil
-			else
-				checking = false
-				return nil
+				if firstToCheck then
+					if firstToCheck.GetReincarnationDelay then
+						modifiersToCheck[firstToCheck] = nil
+						local resurrectionDelay = firstToCheck:GetReincarnationDelay(params)
+						if resurrectionDelay then
+							checking = false
+							return resurrectionDelay
+						end
+					end
+					firstToCheckPriority = MODIFIER_PRIORITY_LOW
+					firstToCheck = nil
+				else
+					checking = false
+				end
 			end
+			return
 		end
 	end
 end
@@ -379,7 +377,9 @@ end
 
 function modifier_stats_system_handler:GetModifierMoveSpeedBonus_Percentage()
 	local owner = self:GetCaster() or self:GetParent()
-	return owner:GetAgility() * 0.125
+	if self:GetParent():IsHero() then
+		return owner:GetAgility() * 0.1
+	end
 end
 
 function modifier_stats_system_handler:GetModifierPercentageManacostStacking()
@@ -387,35 +387,38 @@ function modifier_stats_system_handler:GetModifierPercentageManacostStacking()
 end
 
 function modifier_stats_system_handler:GetModifierManaBonus()
+	local owner = self:GetCaster() or self:GetParent()
 	if self:GetParent():IsHero() then
-		return 500 + (self.statsInfo.mp or 0) + self:GetParent():GetLevel() * 5
+		return (self.statsInfo.mp or 0) + owner:GetLevel() * 5
 	end
 end
 function modifier_stats_system_handler:GetModifierConstantManaRegen() 
 	local owner = self:GetCaster() or self:GetParent()
-	return 1.5 + (self.statsInfo.mpr or 0) - owner:GetIntellect() * 0.05 
+	if self:GetParent():IsHero() then
+		return 1.5 + (self.statsInfo.mpr or 0)
+	end
 end
 	
 function modifier_stats_system_handler:GetModifierSpellAmplify_Percentage()
 	local owner = self:GetCaster() or self:GetParent()
 	local heroBonus = 0
-	if owner:IsRealHero() then
-		heroBonus = owner:GetLevel()
+	if owner:IsRealHero() and self:GetParent():IsHero() then
+		heroBonus = owner:GetLevel() * 0.5
 	end
-	return owner:GetIntellect() * 0.25 + (self.statsInfo.sa or 0) + heroBonus
+	return owner:GetIntellect() * 0.15 + (self.statsInfo.sa or 0) + heroBonus
 end
 	
-function modifier_stats_system_handler:GetModifierHealAmplify_Percentage()
-	local owner = self:GetCaster() or self:GetParent()
-	return owner:GetIntellect() * 0.15
-end
+-- function modifier_stats_system_handler:GetModifierHealAmplify_Percentage()
+	-- local owner = self:GetCaster() or self:GetParent()
+	-- return owner:GetIntellect() * 0.15
+-- end
 
 -- function modifier_stats_system_handler:GetModifierPercentageCooldown() return self.cdr or 0 end
 
-function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage()
-	local owner = self:GetCaster() or self:GetParent()
-	return 0.15 * owner:GetStrength()
-end
+-- function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage()
+	-- local owner = self:GetCaster() or self:GetParent()
+	-- return 0.15 * owner:GetStrength()
+-- end
 
 function modifier_stats_system_handler:GetModifierPhysicalArmorBonus()
 	local bonusarmor = 0
@@ -424,13 +427,15 @@ function modifier_stats_system_handler:GetModifierPhysicalArmorBonus()
 end
 
 function modifier_stats_system_handler:GetModifierExtraHealthBonus() 
+	local owner = self:GetCaster() or self:GetParent()
 	if self:GetParent():IsHero() then
-		return 300 + (self.statsInfo.hp or 0) + self:GetParent():GetLevel() * 5
+		return (self.statsInfo.hp or 0) + owner:GetLevel() * 5
 	end
 end
 function modifier_stats_system_handler:GetModifierConstantHealthRegen() 
 	local owner = self:GetCaster() or self:GetParent()
-	return 1 + (self.statsInfo.hpr or 0) - owner:GetStrength() * 0.1 
+	local base = TernaryOperator( 1, self:GetParent():IsRealHero(), 0 )
+	return base + (self.statsInfo.hpr or 0)
 end
 function modifier_stats_system_handler:GetModifierStatusResistance() return ( 1 - ( (1-(self.statsInfo.sr or 0)/100) ) ) * 100  end
 
@@ -462,7 +467,10 @@ function modifier_stats_system_handler:GetModifierPreAttack_CriticalStrike(param
 	if params.target and params.target:GetEvasion() < 0 then
 		critChance = critChance + math.floor( (params.target:GetEvasion() * (-100)) + 0.5 )
 	end
-	local critAdded = 75 + (self.statsInfo.critDamage or 0) + owner:GetStrength() * 0.5
+	local critAdded = 75 + (self.statsInfo.critDamage or 0)
+	if owner:IsRealHero() and self:GetParent():IsHero() then
+		critAdded = critAdded + owner:GetStrength() * 0.5
+	end
 	local critDamage = 100
 	local crit = false
 	while critChance > 100 do
@@ -540,6 +548,7 @@ function modifier_stats_system_handler:OnTakeDamage( params )
 	if parent:IsIllusion() or params.unit ~= parent or params.attacker == parent or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) then 
 	else
 		local damageTables = {}
+		local spellAmp = 1 + parent:GetSpellAmplification( false )
 		if self.modifierFunctions["GetModifierDamageReflectBonus"] then
 			for modifier, active in pairs( self.modifierFunctions["GetModifierDamageReflectBonus"] ) do
 				if modifier:IsNull() then
@@ -547,7 +556,7 @@ function modifier_stats_system_handler:OnTakeDamage( params )
 				elseif active and modifier.GetModifierDamageReflectBonus and modifier:GetAbility() then
 					local modAb =  modifier:GetAbility()
 					damageTables[modAb] = damageTables[modAb] or {}
-					damageTables[modAb][DAMAGE_TYPE_PHYSICAL] = (damageTables[modAb][DAMAGE_TYPE_PHYSICAL] or 0) + (modifier:GetModifierDamageReflectBonus( params ) or 0)
+					damageTables[modAb][DAMAGE_TYPE_PHYSICAL] = (damageTables[modAb][DAMAGE_TYPE_PHYSICAL] or 0) + (modifier:GetModifierDamageReflectBonus( params ) or 0) * spellAmp
 				end
 			end
 		end
@@ -603,7 +612,7 @@ function modifier_stats_system_handler:OnTakeDamage( params )
 				if modifier:IsNull() then
 					self.modifierFunctions["GetModifierAreaDamage"][modifier] = nil
 				elseif active and modifier.GetModifierAreaDamage then
-					areaDamage = areaDamage + (modifier:GetModifierAreaDamage() or 0)
+					areaDamage = areaDamage + (modifier:GetModifierAreaDamage( params ) or 0)
 				end
 			end
 			if not countsAsAttack or params.attacker:IsRangedAttacker() then
@@ -612,7 +621,7 @@ function modifier_stats_system_handler:OnTakeDamage( params )
 			local damage = params.original_damage * areaDamage / 100
 			if damage > 0 then
 				self.processingAreaDamageIgnore = true
-				for _, enemy in ipairs( params.attacker:FindEnemyUnitsInRadius( params.unit:GetAbsOrigin(), 325 ) ) do
+				for _, enemy in ipairs( params.attacker:FindEnemyUnitsInRadius( params.unit:GetAbsOrigin(), 325, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES} ) ) do
 					if enemy ~= params.unit then
 						ApplyDamage({victim = enemy, attacker = params.attacker, damage_type = params.damage_type, damage = damage, ability = params.inflictor, damage_flags = damage_flags})
 					end

@@ -130,6 +130,12 @@ function Precache( context )
 	PrecacheResource("particle", "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_lone_druid_savage_roar.vpcf", context)
 	
+	
+	local delay = 0.1
+	for unit, info in pairs( LoadKeyValues("scripts/npc/npc_units_custom.txt") ) do
+		PrecacheUnitByNameSync( unit, context )
+	end
+	
 	GameRules._Elites = LoadKeyValues( "scripts/kv/elites.kv" )
 	
 	RoundManager:Initialize(context)
@@ -150,11 +156,10 @@ function CHoldoutGameMode:InitGameMode()
 	
 	GameRules.UnitKV = LoadKeyValues("scripts/npc/npc_heroes.txt")
 	GameRules.UnitKV = MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_heroes_custom.txt"))
-	GameRules.UnitKV = MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_units.txt"))
+	-- GameRules.UnitKV = MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_units.txt"))
 	GameRules.UnitKV = MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_units_custom.txt"))
 	
 	GameRules.AbilityKV = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
-	GameRules.AbilityKV = MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/npc_abilities_override.txt"))
 	GameRules.AbilityKV = MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/npc_items_custom.txt"))
 	GameRules.AbilityKV = MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/items.txt"))
 	
@@ -171,10 +176,11 @@ function CHoldoutGameMode:InitGameMode()
 	else
 		GameRules:SetPreGameTime( 30.0 )
 	end
-	
 	GameRules:SetHeroSelectionTime( HERO_SELECTION_TIME )
 	GameRules:SetShowcaseTime( 0 )
 	GameRules:SetStrategyTime( 0 )
+	GameRules:SetPostGameTime( 30 )
+	GameRules:SetCustomGameEndDelay( 15.0 )
 	GameRules:SetCustomGameSetupAutoLaunchDelay( 0 ) -- fix valve bullshit
 	
 	local mapInfo = LoadKeyValues( "addoninfo.txt" )[GetMapName()]
@@ -199,11 +205,16 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:SetGoldTickTime( 1 )
 	GameRules:SetGoldPerTick( 1 )
 	
+	GameRules:SetEnableAlternateHeroGrids( false )
+	
 	GameRules:GetGameModeEntity():SetTopBarTeamValuesOverride( true )
 	GameRules:GetGameModeEntity():SetTopBarTeamValuesVisible( false )
 	GameRules:GetGameModeEntity():SetCustomBuybackCooldownEnabled(true)
 	GameRules:GetGameModeEntity():SetCustomBuybackCostEnabled(true)
 	GameRules:GetGameModeEntity():SetCameraDistanceOverride(1400)
+	GameRules:GetGameModeEntity():SetDaynightCycleAdvanceRate( 0.00 )
+	GameRules:GetGameModeEntity():SetDaynightCycleDisabled( false )
+	GameRules:SetTimeOfDay( 0.51 )
 	-- GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
 	GameRules.XP_PER_LEVEL = {100,
 					200}
@@ -216,10 +227,14 @@ function CHoldoutGameMode:InitGameMode()
 	
 	GameRules:GetGameModeEntity():SetMaximumAttackSpeed(MAXIMUM_ATTACK_SPEED)
 	GameRules:GetGameModeEntity():SetMinimumAttackSpeed(MINIMUM_ATTACK_SPEED)
+	GameRules:GetGameModeEntity():SetInnateMeleeDamageBlockAmount( 30 )
+	GameRules:GetGameModeEntity():SetInnateMeleeDamageBlockPerLevelAmount( 5 )
+	GameRules:GetGameModeEntity():SetInnateMeleeDamageBlockPercent( 40 )
 	GameRules:GetGameModeEntity():SetTPScrollSlotItemOverride("item_dust_of_stasis")
 	GameRules:GetGameModeEntity():SetDefaultStickyItem("item_potion_of_recovery")
 	GameRules:GetGameModeEntity():SetNeutralStashEnabled(false)
 	GameRules:GetGameModeEntity():SetNeutralStashTeamViewOnlyEnabled(true)
+	GameRules:GetGameModeEntity():SetGiveFreeTPOnDeath(false)
 	
 	-- Custom console commands
 	Convars:RegisterCommand( "bh_test_round", function( command, zone, roundName, roundType )
@@ -378,7 +393,7 @@ function CHoldoutGameMode:InitGameMode()
 	Convars:RegisterCommand( "reload_modifiers", function()
 											if Convars:GetDOTACommandClient() and IsInToolsMode() then
 												local player = Convars:GetDOTACommandClient()
-												local hero = player:GetAssignedHero() 
+												local hero = PlayerResource:GetSelectedHeroEntity( 0 )
 												if hero then
 													local modifierTable = {}
 													for _, modifier in ipairs( hero:FindAllModifiers() ) do
@@ -450,14 +465,18 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetHealingFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterHeal" ), self )
 	GameRules:GetGameModeEntity():SetModifierGainedFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterModifiers" ), self )
 	GameRules:GetGameModeEntity():SetTrackingProjectileFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterTrackingProjectiles" ), self )
+	
+	-- GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterItemAddedToInventory" ), self ) -- fuck off valve
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, 1 )
 	
 	-- Custom stats
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP, 25) 
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP_REGEN, 0) 
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP_REGEN, 0.1) 
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_ARMOR, 0) 
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA, 20)
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN, 0)
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN, 0.05)
+	
+	GameRules:GetGameModeEntity():SetPlayerHeroAvailabilityFiltered( true )
 	
 	TalentManager:StartTalentManager()
 	ItemManager:StartItemManager()
@@ -484,6 +503,10 @@ function CHoldoutGameMode:OnPushToChat( event )
 		player.tellThreatDelayTimer = Time();
 	end
 end
+
+-- function CHoldoutGameMode:FilterItemAddedToInventory( filterTable )
+	-- print( filterTable )
+-- end
 
 function CHoldoutGameMode:FilterTrackingProjectiles( filterTable )
 	local target_index = filterTable["entindex_target_const"]
@@ -620,22 +643,32 @@ function CHoldoutGameMode:FilterOrders( filterTable )
 	if not filterTable or not filterTable.units or not filterTable.units["0"] then return end
 	local hero = EntIndexToHScript( filterTable.units["0"] )
 	if not hero:IsRealHero() then return true end
-	-- if filterTable["order_type"] == DOTA_UNIT_ORDER_PURCHASE_ITEM then 
-		-- for i=0, 5, 1 do
-			-- local item = hero:GetItemInSlot(i)
-			-- if item ~= nil then
-				-- print( item:GetName() )
-			-- end
-		-- end
-		-- Timers:CreateTimer(  function()
-			-- for i=0, 5, 1 do
-				-- local item = hero:GetItemInSlot(i)
-				-- if item ~= nil then
-					-- print( item:GetName() )
-				-- end
-			-- end
-		-- end)
-	-- end
+	if filterTable["order_type"] == DOTA_UNIT_ORDER_PURCHASE_ITEM then
+		hero.runeSlotSnapShot = {}
+		for i=0, 25, 1 do
+			local item = hero:GetItemInSlot(i)
+			if item ~= nil then
+				local itemData = {}
+				itemData.entindex = item:entindex()
+				itemData.runes = table.copy( item.itemData )
+				hero.runeSlotSnapShot[i] = itemData
+			end
+		end
+		PrintAll( hero.runeSlotSnapShot )
+		Timers:CreateTimer(  function()
+			for i=0, 5, 1 do
+				local item = hero:GetItemInSlot(i)
+				if item ~= nil then 
+				end
+				if item ~= nil 
+				and (item.IsRuneStone and item:IsRuneStone()) 
+				and item:GetAbilityName() == filterTable.shop_item_name then
+					local itemModifier = hero:FindModifierByNameAndAbility( item:GetIntrinsicModifierName(), item )
+					if itemModifier then itemModifier:ForceRefresh() end
+				end
+			end
+		end)
+	end
 	if filterTable["order_type"] == DOTA_UNIT_ORDER_MOVE_ITEM then
 		local item = EntIndexToHScript( filterTable.entindex_ability )
 		local targetItem = hero:GetItemInSlot( filterTable["entindex_target"] )
@@ -714,7 +747,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		original_attacker:MakeVisibleDueToAttack( victim:GetTeam(), 128 )
 	end
 	--- DAMAGE MANIPULATION ---
-	if ( victim:IsHero() and victim:HasRelic("relic_unbridled_power") ) or ( attacker:IsHero() and attacker:HasRelic("relic_unbridled_power") ) then
+	if ( victim:IsHero() and victim:HasRelic("relic_unbridled_power") and not victim:HasRelic("relic_ritual_candle") ) or ( attacker:IsHero() and attacker:HasRelic("relic_unbridled_power") ) then
 		if damagetype == DAMAGE_TYPE_MAGICAL then
 			filterTable["damage"] = filterTable["damage"] / ( 1 - victim:GetMagicalArmorValue() )
 		elseif damagetype == DAMAGE_TYPE_PHYSICAL then
@@ -1053,7 +1086,7 @@ function CHoldoutGameMode:OnPlayerDisconnected(keys)
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 	if hero then hero.disconnect = GameRules:GetGameTime() end
 	for pID = 0, 24 do -- check if game has to die
-		if PlayerResource:IsValidPlayerID( pID ) and PlayerResource:GetConnectionState() == DOTA_CONNECTION_STATE_CONNECTED then
+		if PlayerResource:IsValidPlayerID( pID ) and PlayerResource:GetConnectionState( pID ) == DOTA_CONNECTION_STATE_CONNECTED then
 			return
 		end
 	end
@@ -1077,6 +1110,40 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 	elseif nNewState == DOTA_GAMERULES_STATE_HERO_SELECTION then
 		print("pregame")
 		
+		local heroList = {}
+		heroList["DOTA_ATTRIBUTE_STRENGTH"] = {}
+		heroList["DOTA_ATTRIBUTE_AGILITY"] = {}
+		heroList["DOTA_ATTRIBUTE_INTELLECT"] = {}
+		for hero, active in pairs( GameRules.HeroList ) do
+			if tonumber(active) == 0 then
+				-- activeList[hero] = nil
+			else
+				local primaryAttribute = GameRules.UnitKV[hero].AttributePrimary
+				table.insert( heroList[primaryAttribute], hero )
+			end
+		end
+		for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+			local listCpy = MergeTables( heroList, {} )
+			if PlayerResource:IsValidPlayerID( nPlayerID ) then
+				-- if PlayerResource:IsDeveloper( nPlayerID ) then
+					for category, heroes in pairs( listCpy ) do
+						for _, hero in ipairs( heroes ) do
+							GameRules:AddHeroToPlayerAvailability( nPlayerID, DOTAGameManager:GetHeroIDByName( hero ) )
+						end
+					end
+				-- else
+					-- for category, heroes in pairs( listCpy ) do
+						-- for i = 1, 3 do
+							-- local selected = RandomInt( 1, #heroes )
+							-- local randomHero = heroes[selected]
+							-- table.remove( heroes, selected )
+							-- GameRules:AddHeroToPlayerAvailability( nPlayerID, DOTAGameManager:GetHeroIDByName( randomHero ) )
+						-- end
+					-- end
+				-- end
+			end
+		end
+		
 		RoundManager.spawnPositions = {}
 		RoundManager.boundingBox = "grove_raid_1"
 		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
@@ -1099,7 +1166,6 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 			end
 		end)
 	elseif nNewState == DOTA_GAMERULES_STATE_PRE_GAME then
-		
 		-- Voting system handler
 		-- CHoldoutGameMode:InitializeRoundSystem()
 		Timers:CreateTimer(0.1,function()
@@ -1146,7 +1212,7 @@ function CHoldoutGameMode:OnThink()
 	if GameRules:IsTemporaryNight() then timeofday = TEMPORARY_NIGHT end
 	if GameRules:IsNightstalkerNight() then timeofday = NIGHT_STALKER_NIGHT end
 	CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = timeofday} )
-	if GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
+	if GameRules:State_Get() >= 7 and GameRules:State_Get() <= 9 then
 		local OnPThink = function(self)
 			local playerData = {}
 			local currTime = GameRules:GetGameTime()

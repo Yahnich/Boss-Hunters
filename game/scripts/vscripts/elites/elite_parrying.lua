@@ -28,7 +28,7 @@ function modifier_elite_parrying_buff:OnTakeDamage(params)
     local dmg = params.original_damage * self.reflect
 	local dmgtype = params.damage_type
 	local attacker = params.attacker
-	if attacker:GetTeamNumber()  ~= hero:GetTeamNumber() and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ) then
+	if not hero:PassivesDisabled() and attacker:GetTeamNumber()  ~= hero:GetTeamNumber() and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ) then
 		self:GetAbility():DealDamage( hero, attacker, dmg, {damage_type = dmgtype, damage_flags = DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 	end
 end

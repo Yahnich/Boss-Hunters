@@ -190,12 +190,12 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"illu_inc"					"250"
+				"illu_inc"					"100"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"illu_out"					"75"
+				"illu_out"					"100"
 			}
 		}
 	}

@@ -8,10 +8,8 @@ function item_unyielding_totem:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:AddNewModifier( caster, self, "modifier_item_unyielding_totem_active", {duration = self:GetSpecialValueFor("duration")} )
 	EmitSoundOn( "DOTA_Item.BlackKingBar.Activate", caster )
-end
-
-function item_unyielding_totem:GetRuneSlots()
-	return self:GetSpecialValueFor("rune_slots")
+	
+	caster:Dispel( )
 end
 
 item_unyielding_totem_2 = class(item_unyielding_totem)

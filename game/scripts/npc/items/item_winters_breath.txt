@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"925"	
+		"ItemCost"						"1850"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_winters_breath_5"
 		"ItemRequirements"
 		{
-			"01"						"item_ice_fang_4"
+			"01"						"item_ice_fang_3"
 		}
 	}
 	"item_winters_breath_5"
@@ -45,7 +45,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"5"
+		"MaxUpgradeLevel"				"2"
 		"ItemBaseLevel"					"1"
 		"AvailableRuneSlots"			"2"
 		
@@ -66,17 +66,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"3 4 5 6 7"
+				"duration"				"5 7"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"-24 -28 -32 -36 -40"
+				"slow"					"-30 -42"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"2 2 3 3 3"
+				"rune_scaling"			"160 180"
 			}
 		}
 	}
@@ -105,7 +105,6 @@
 		"ItemRequirements"
 		{
 			"01"						"item_winters_breath_5;item_recipe_winters_breath_5"
-			"02"						"item_ice_fang_5;item_recipe_winters_breath_5"
 		}
 	}
 	
@@ -128,8 +127,7 @@
 		"ItemAliases"					"skadi;penitent mail"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		
-		"MaxUpgradeLevel"				"5"
+		"MaxUpgradeLevel"				"2"
 		"ItemBaseLevel"					"2"
 		
 		"AvailableRuneSlots"			"2"
@@ -145,17 +143,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"3 4 5 6 7"
+				"duration"				"5 7"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"-24 -28 -32 -36 -40"
+				"slow"					"-30 -42"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"2 2 3 3 3"
+				"rune_scaling"			"160 180"
 			}
 		}
 	}
@@ -173,12 +171,13 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_winters_breath_7"
 		"ItemRequirements"
 		{
@@ -199,6 +198,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"taunt;aggro;threat"
@@ -207,13 +207,13 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"5"
+		"MaxUpgradeLevel"				"2"
 		"ItemBaseLevel"					"3"
 		
 		"UpgradesItems"					"item_ice_fang;item_winters_breath_2;item_winters_breath_3;item_winters_breath_4;item_winters_breath_5;item_winters_breath_6;item_winters_breath_7;item_winters_breath_8;item_winters_breath_9"
 		"UpgradeRecipe"					"item_recipe_winters_breath_5"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -226,17 +226,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"3 4 5 6 7"
+				"duration"				"5 7"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"-24 -28 -32 -36 -40"
+				"slow"					"-30 -42"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"2 2 3 3 3"
+				"rune_scaling"			"160 180"
 			}
 		}
 	}
@@ -255,6 +255,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -279,6 +280,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"taunt;aggro;threat"
@@ -287,13 +289,13 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"5"
+		"MaxUpgradeLevel"				"2"
 		"ItemBaseLevel"					"4"
 		
 		"UpgradesItems"					"item_ice_fang;item_winters_breath_2;item_winters_breath_3;item_winters_breath_4;item_winters_breath_5;item_winters_breath_6;item_winters_breath_7;item_winters_breath_8;item_winters_breath_9"
 		"UpgradeRecipe"					"item_recipe_winters_breath_5"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -306,17 +308,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"3 4 5 6 7"
+				"duration"				"5 7"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"-24 -28 -32 -36 -40"
+				"slow"					"-30 -42"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"2 2 3 3 3"
+				"rune_scaling"			"160 180"
 			}
 		}
 	}
@@ -335,6 +337,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -360,6 +363,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"taunt;aggro;threat"
@@ -368,10 +372,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"5"
+		"MaxUpgradeLevel"				"2"
 		"ItemBaseLevel"					"5"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -384,17 +388,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"3 4 5 6 7"
+				"duration"				"5 7"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"-24 -28 -32 -36 -40"
+				"slow"					"-30 -42"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"2 2 3 3 3"
+				"rune_scaling"			"160 180"
 			}
 		}
 	}

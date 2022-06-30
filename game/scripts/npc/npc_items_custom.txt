@@ -14,6 +14,8 @@
 #base "items/item_focus_stone.txt"
 #base "items/item_heal_stone.txt"
 #base "items/item_longevity_stone.txt"
+#base "items/item_restoration_stone.txt"
+#base "items/item_meditation_stone.txt"
 
 // consumables
 #base "items/item_potion_of_recovery.txt"
@@ -63,6 +65,7 @@
 #base "items/item_voltaic_hammer.txt"
 #base "items/item_phantom_slippers.txt"
 #base "items/item_steadfast_waders.txt"
+#base "items/item_behemoths_heart.txt"
 
 //Meepo Runes for ult
 #base "items/item_meepo_rune_dd.txt"
@@ -78,7 +81,7 @@
 //Snapfire
 #base "items/item_snapfire_cookie.txt"
 
-// Next ID is 2591
+// Next ID is 2607
 
 "DOTAAbilities"
 {

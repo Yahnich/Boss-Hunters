@@ -21,7 +21,7 @@
 		"ItemAliases"					"ethereal blade;phantomblade"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"AvailableRuneSlots"			"0"
+		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"20"
 		"AbilitySharedCooldown"			"phantomblade"
 		
@@ -32,7 +32,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"restoration_amp"		"50 60 70 80 90 100 100 100 100"
+				"restoration_amp"		"40 55 70 85 100"
 			}
 			"02"
 			{
@@ -47,7 +47,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -65,7 +65,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"975"
+		"ItemCost"						"1950"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -99,10 +99,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"20"
 		"AbilitySharedCooldown"			"phantomblade"
 		
@@ -113,12 +113,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"restoration_amp"		"20 40 60 80 100 100 100 100"
+				"restoration_amp"		"40 55 70 85 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"status_resist"			"40 40 40 40 40 55 70 85 100"
+				"status_resist"			"40 55 70 85 100"
 			}
 			"03"
 			{
@@ -128,7 +128,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -181,10 +181,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"3"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"20"
 		"AbilitySharedCooldown"			"phantomblade"
 		
@@ -195,12 +195,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"restoration_amp"		"20 40 60 80 100 100 100 100"
+				"restoration_amp"		"40 55 70 85 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"status_resist"			"40 40 40 40 40 55 70 85 100"
+				"status_resist"			"40 55 70 85 100"
 			}
 			"03"
 			{
@@ -210,7 +210,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -263,7 +263,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"4"
 		
 		"AvailableRuneSlots"			"2"
@@ -277,12 +277,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"restoration_amp"		"20 40 60 80 100 100 100 100"
+				"restoration_amp"		"40 55 70 85 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"status_resist"			"40 40 40 40 40 55 70 85 100"
+				"status_resist"			"40 55 70 85 100"
 			}
 			"03"
 			{
@@ -292,7 +292,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -345,7 +345,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"5"
 		
 		"AvailableRuneSlots"			"2"
@@ -359,12 +359,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"restoration_amp"		"20 40 60 80 100 100 100 100"
+				"restoration_amp"		"40 55 70 85 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"status_resist"			"40 40 40 40 40 55 70 85 100"
+				"status_resist"			"40 55 70 85 100"
 			}
 			"03"
 			{
@@ -374,7 +374,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -392,12 +392,13 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_phantomblade_6"
 		"ItemRequirements"
 		{
@@ -419,6 +420,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"ghost"
@@ -427,7 +429,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"6"
 		
 		"AvailableRuneSlots"			"2"
@@ -441,12 +443,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"restoration_amp"		"20 40 60 80 100 100 100 100"
+				"restoration_amp"		"40 55 70 85 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"status_resist"			"40 40 40 40 40 55 70 85 100"
+				"status_resist"			"40 55 70 85 100"
 			}
 			"03"
 			{
@@ -456,7 +458,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -475,6 +477,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -501,6 +504,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"ghost"
@@ -509,10 +513,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"7"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"20"
 		"AbilitySharedCooldown"			"phantomblade"
 		
@@ -523,12 +527,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"restoration_amp"		"20 40 60 80 100 100 100 100"
+				"restoration_amp"		"40 55 70 85 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"status_resist"			"40 40 40 40 40 55 70 85 100"
+				"status_resist"			"40 55 70 85 100"
 			}
 			"03"
 			{
@@ -538,7 +542,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -557,6 +561,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -582,6 +587,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"ghost"
@@ -590,10 +596,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"8"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"20"
 		"AbilitySharedCooldown"			"phantomblade"
 		
@@ -604,12 +610,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"restoration_amp"		"20 40 60 80 100 100 100 100"
+				"restoration_amp"		"40 55 70 85 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"status_resist"			"40 40 40 40 40 55 70 85 100"
+				"status_resist"			"40 55 70 85 100"
 			}
 			"03"
 			{
@@ -619,7 +625,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -638,6 +644,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -664,6 +671,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"ghost"
@@ -671,10 +679,10 @@
 		"ItemAliases"					"ethereal"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"9"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"20"
 		"AbilitySharedCooldown"			"phantomblade"
 		
@@ -685,12 +693,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"restoration_amp"		"20 40 60 80 100 100 100 100"
+				"restoration_amp"		"40 55 70 85 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"status_resist"			"40 40 40 40 40 55 70 85 100"
+				"status_resist"			"40 55 70 85 100"
 			}
 			"03"
 			{
@@ -700,7 +708,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}

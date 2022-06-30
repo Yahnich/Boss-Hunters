@@ -16,22 +16,22 @@ modifier_troll_warlord_inflame = class(toggleModifierBaseClass)
 LinkLuaModifier( "modifier_troll_warlord_inflame", "heroes/hero_troll_warlord/troll_warlord_inflame", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_troll_warlord_inflame:OnCreated()
-	self.dmg = self:GetTalentSpecialValueFor("bonus_dmg")
-	self.ms = self:GetTalentSpecialValueFor("bonus_ms")
-	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_inflame_1")
-	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_battle_trance_2")
-	self.talent2Val = self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_battle_trance_2")
+	self:OnRefresh()
 end
 
 function modifier_troll_warlord_inflame:OnRefresh()
 	self.dmg = self:GetTalentSpecialValueFor("bonus_dmg")
 	self.ms = self:GetTalentSpecialValueFor("bonus_ms")
-	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_inflame_1")
+	
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_focus_1")
+	self.talent1Val = self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_focus_1")
+	
+	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_battle_trance_2")
 	self.talent2Val = self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_battle_trance_2")
 end
 
 function modifier_troll_warlord_inflame:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE, MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE}
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE, MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE }
 end
 
 function modifier_troll_warlord_inflame:GetModifierMoveSpeedBonus_Constant()
@@ -50,9 +50,13 @@ function modifier_troll_warlord_inflame:GetModifierBaseAttack_BonusDamage()
 	return value
 end
 
-function modifier_troll_warlord_inflame:GetModifierMoveSpeed_Absolute()
+function modifier_troll_warlord_inflame:GetModifierHealthRegenPercentage()
 	if self.talent1 then
-		return 550
+		local value = self.talent1Val
+		if self:GetCaster():HasModifier("modifier_troll_warlord_battle_trance_bh") and self.talent2 then
+			value = value * self.talent2Val
+		end
+		return value
 	end
 end
 

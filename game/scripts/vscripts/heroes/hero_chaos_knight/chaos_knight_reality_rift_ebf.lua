@@ -113,7 +113,6 @@ function chaos_knight_reality_rift_ebf:OnSpellStart()
 		end
 	end
 	if self.caster:HasTalent("special_bonus_unique_chaos_knight_reality_rift_1") then
-		print( self.caster:FindTalentValue("special_bonus_unique_chaos_knight_reality_rift_1", "duration") )
 		self.caster:AddNewModifier(self.caster, self, "modifier_chaos_knight_reality_rift_talent", {duration = duration})
 	end	
 end

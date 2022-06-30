@@ -260,19 +260,21 @@ function CreateRuneSlot( runeData, runePanelContainer, runeSlot ){
 		runePanelLabel.text = ''
 		var height = 2
 		if ( runeData.funcs["GetModifierBonusStats_Strength"] && runeData.funcs["GetModifierBonusStats_Agility"] && runeData.funcs["GetModifierBonusStats_Intellect"] ){
-			runePanelLabel.SetDialogVariable( "number", runeData.funcs["GetModifierBonusStats_Strength"] );
+			runePanelLabel.SetDialogVariable( "number", runeData.funcs["GetModifierBonusStats_Strength"].toFixed( +isDecimal ) );
 			runePanelLabel.text =  runePanelLabel.text + $.Localize( "#RUNE_GetModifierBonusStats_All", runePanelLabel ) + '\n';
 			var height = 13
 			for(var func in runeData.funcs){
+				let isDecimal = (runeData.funcs[func] % 1 != 0);
 				if( func != "GetModifierBonusStats_Strength" && func != "GetModifierBonusStats_Agility" && func != "GetModifierBonusStats_Intellect"){
-					runePanelLabel.SetDialogVariable( "number", runeData.funcs[func] );
+					runePanelLabel.SetDialogVariable( "number", runeData.funcs[func].toFixed( +isDecimal ) );
 					runePanelLabel.text =  runePanelLabel.text + $.Localize( "#RUNE_"+func, runePanelLabel ) + '\n';
 					height += 13;
 				}
 			}
 		} else {
 			for(var func in runeData.funcs){
-				runePanelLabel.SetDialogVariable( "number", runeData.funcs[func] );
+				let isDecimal = (runeData.funcs[func] % 1 != 0);
+				runePanelLabel.SetDialogVariable( "number", runeData.funcs[func].toFixed( +isDecimal ) );
 				runePanelLabel.text =  runePanelLabel.text + $.Localize( "#RUNE_"+func, runePanelLabel ) + '\n';
 				height += 13;
 			}

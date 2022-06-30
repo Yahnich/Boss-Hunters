@@ -99,7 +99,7 @@ function wk_blast:floatyOrb(pos)
                                                                           duration = orbDuration})
 end
 
-function wk_blast:OnProjectileHit(hTarget, vLocation)
+function wk_blast:OnProjectileHit(hTarget, vLocation, bNoStun)
     local caster = self:GetCaster()
 
     local damage = self:GetTalentSpecialValueFor("damage")
@@ -108,8 +108,12 @@ function wk_blast:OnProjectileHit(hTarget, vLocation)
 
     if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
         self:DealDamage(caster, hTarget, damage, {}, 0)
-        self:Stun(hTarget, stun_duration, true)
-        hTarget:AddNewModifier(caster, self, "modifier_wk_blast", {Duration = dot_duration})
+		local primaryDuration = dot_duration
+        if not bNoStun then 
+			self:Stun(hTarget, stun_duration, true) 
+			primaryDuration = primaryDuration + stun_duration
+		end
+        hTarget:AddNewModifier(caster, self, "modifier_wk_blast", {Duration = primaryDuration})
 		hTarget:EmitSound("Hero_SkeletonKing.Hellfire_BlastImpact")
 		if caster:HasTalent("special_bonus_unique_wk_blast_1") then
 			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( hTarget:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_wk_blast_1") ) ) do

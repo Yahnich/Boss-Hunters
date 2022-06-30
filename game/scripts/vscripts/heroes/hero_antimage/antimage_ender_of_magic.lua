@@ -30,18 +30,15 @@ modifier_antimage_ender_of_magic_buff = class({})
 LinkLuaModifier( "modifier_antimage_ender_of_magic_buff", "heroes/hero_antimage/antimage_ender_of_magic", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_antimage_ender_of_magic_buff:OnCreated()
-	self.as = self:GetTalentSpecialValueFor("bonus_attackspeed")
-	self.ms = self:GetTalentSpecialValueFor("bonus_movespeed")
-	if IsServer() then
-		self:SetStackCount(1)
-	end
+	self:OnRefresh()
 end
 
 function modifier_antimage_ender_of_magic_buff:OnRefresh()
-	self.as = self:GetTalentSpecialValueFor("bonus_attackspeed")
-	self.ms = self:GetTalentSpecialValueFor("bonus_movespeed")
+	self.as = TernaryOperator( self:GetTalentSpecialValueFor("scepter_as"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("bonus_attackspeed") )
+	self.ms = TernaryOperator( self:GetTalentSpecialValueFor("scepter_ms"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("bonus_movespeed") )
+	self.limit = TernaryOperator( self:GetTalentSpecialValueFor("scepter_stacks"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("max_stacks") )
 	if IsServer() then
-		self:AddIndependentStack( self:GetRemainingTime() )
+		self:AddIndependentStack( self:GetRemainingTime(), self.limit )
 	end
 end
 

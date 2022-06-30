@@ -34,8 +34,15 @@ function modifier_item_voltaic_hammer_handle:DeclareFunctions()
 	return funcs
 end
 
+function modifier_item_voltaic_hammer_handle:CheckState()
+	if self.bash then
+		return {[MODIFIER_STATE_CANNOT_MISS ] = true}
+	end
+end
+
 function modifier_item_voltaic_hammer_handle:OnAttackLanded(params)
 	if IsServer() then
+		self.bash = false
 		if params.attacker == self:GetParent() and params.target:IsAlive() and self:GetAbility():IsCooldownReady() and self:RollPRNG( self.chance ) then
 			local caster = params.attacker
 			local ability = self:GetAbility()
@@ -60,6 +67,7 @@ function modifier_item_voltaic_hammer_handle:OnAttackLanded(params)
 			ParticleManager:FireRopeParticle("particles/items_fx/chain_lightning.vpcf", PATTACH_POINT_FOLLOW, params.attacker, params.target, {})
 
 			target:AddNewModifier(caster, ability, "modifier_item_voltaic_hammer_handle_damage", {})
+			self.bash = true
 		end
 	end
 end

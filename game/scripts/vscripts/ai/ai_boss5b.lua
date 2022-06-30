@@ -61,7 +61,7 @@ function AIThink(thisEntity)
 				return thisEntity.strike:GetCastPoint() + 0.25
 			end
 		end
-		if thisEntity.scream:IsFullyCastable() and RollPercentage(25) then
+		if thisEntity.scream:IsFullyCastable() and RollPercentage(35) then
 			local range = thisEntity.blink:GetSpecialValueFor("area_of_effect")
 			local target = AICore:HighestThreatHeroInRange( thisEntity, range, 15, false )
 			if not target then target = AICore:WeakestEnemyHeroInRange( thisEntity,range, false ) end

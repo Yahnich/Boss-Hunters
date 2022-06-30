@@ -1,35 +1,38 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf10:version{b5ef673d-0450-4fb0-a91b-bacae6864827} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf36:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 32
 	m_flConstantRadius = 2.0
-	m_Renderers = 
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 4
+	m_controlPointConfigurations = 
 	[
 		{
-			_class = "C_OP_RenderTrails"
-			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
-			m_flOverbrightFactor = 3.0
-			m_hTexture = resource:"materials/particle/sparks/sparks.vtex"
-			m_flLengthFadeInTime = 0.1
-			m_flMaxLength = 100.0
-			m_bIgnoreDT = true
-			m_flRadiusScale = 0.5
-			m_flFinalTextureScaleV = -1.0
-			m_flFinalTextureOffsetV = 1.0
-			m_vEndTrailTintFactor = [ 1.0, 1.0, 1.0, 0.0 ]
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
 		},
 	]
-	m_Operators = 
+	m_Emitters = 
 	[
 		{
-			_class = "C_OP_InterpolateRadius"
-			m_flStartTime = 0.5
-			m_flEndScale = 0.0
-			m_flBias = 0.25
-		},
-		{
-			_class = "C_OP_Decay"
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 32.0
+			}
 		},
 	]
 	m_Initializers = 
@@ -58,7 +61,7 @@
 		},
 		{
 			_class = "C_INIT_OffsetVectorToVector"
-			m_nFieldOutput = "2"
+			m_nFieldOutput = 2
 			m_vecOutputMin = [ -700.0, -700.0, -700.0 ]
 			m_vecOutputMax = [ 700.0, 700.0, 700.0 ]
 		},
@@ -72,19 +75,67 @@
 			m_ColorMax = [ 139, 0, 0, 255 ]
 		},
 	]
-	m_Emitters = 
+	m_Operators = 
 	[
 		{
-			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 32
+			_class = "C_OP_InterpolateRadius"
+			m_flStartTime = 0.5
+			m_flEndScale = 0.0
+			m_flBias = 0.25
+		},
+		{
+			_class = "C_OP_Decay"
 		},
 	]
 	m_ForceGenerators = 
 	[
 		{
 			_class = "C_OP_AttractToControlPoint"
-			m_fForceAmount = 700.0
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 700.0
+			}
 			m_fFalloffPower = 0.0
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderTrails"
+			m_flOverbrightFactor = 3.0
+			m_flLengthFadeInTime = 0.1
+			m_flMaxLength = 100.0
+			m_bIgnoreDT = true
+			m_flRadiusScale = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.5
+			}
+			m_flTailAlphaScale = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.0
+			}
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/sparks/sparks.vtex"
+					m_TextureControls = 
+					{
+						m_flFinalTextureScaleV = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = -1.0
+						}
+						m_flFinalTextureOffsetV = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = 1.0
+						}
+					}
+				},
+			]
 		},
 	]
 	m_Children = 
@@ -109,30 +160,6 @@
 		},
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_bloodseeker/bloodseeker_devils_blood_projectile_c5.vpcf"
-		},
-	]
-	m_nBehaviorVersion = 6
-	m_nFirstMultipleOverride_BackwardCompat = 4
-	m_controlPointConfigurations = 
-	[
-		{
-			m_name = "preview"
-			m_drivers = 
-			[
-				{
-					m_iAttachType = "PATTACH_WORLDORIGIN"
-					m_vecOffset = [ 0.0, 0.0, 0.0 ]
-					m_angOffset = [ null, null, null ]
-					m_entityName = "self"
-				},
-				{
-					m_iControlPoint = 3
-					m_iAttachType = "PATTACH_WORLDORIGIN"
-					m_vecOffset = [ 0.0, 0.0, 0.0 ]
-					m_angOffset = [ null, null, null ]
-					m_entityName = "self"
-				},
-			]
 		},
 	]
 }

@@ -12,10 +12,8 @@
 				<Button class="GenericTalentsSelector">
 					<Image class="GenericTalentImage" id="GenericTalentImage" src="file://{images}/custom_game/icons/talentMSIcon.png"/>
 				</Button>
-				<Panel class="GenericTalentStarContainer">
-					<Image id="LevelStar1" src="file://{images}/custom_game/icons/unleveledTalentTierIcon.png" class="LevelStar"/>
-					<Image id="LevelStar2" src="file://{images}/custom_game/icons/unleveledTalentTierIcon.png" class="LevelStar"/>
-					<Image id="LevelStar3" src="file://{images}/custom_game/icons/unleveledTalentTierIcon.png" class="LevelStar"/>
+				<Panel id="GenericTalentStars" class="GenericTalentStarContainer">
+					
 				</Panel>
 			</Panel>
 		</snippet>
@@ -28,40 +26,11 @@
 					<Label id="TalentHeaderLabel" text="HERO MASTERIES"/>
 				</Panel>
 				<Panel id="TalentRowContainer" class="GenericTalentsRowContainer">
-					<!-- <Panel class="GenericTalentsRow"> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Attacker_AREA_DAMAGE.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Attacker_ATTACK_SPEED.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Attacker_EVASION.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Attacker_HEALTH.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Defender_ARMOR.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Defender_HEALTH.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Defender_MAGIC_RESIST.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Defender_THREAT_AMP.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Defensive_ARMOR.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Defensive_HEALTH.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Defensive_HEALTH_REGEN.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Defensive_MAGIC_RESIST.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Healer_HEAL_AMP.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Healer_HEALTH.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Healer_MANA.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Healer_MANA_REGEN.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Nuker_AREA_DAMAGE.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Nuker_MANA.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Nuker_MANA_REGEN.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Nuker_SPELL_AMP.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Offensive_ATTACK_DAMAGE.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Offensive_ATTACK_SPEED.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Offensive_SPELL_AMP.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Offensive_STATUS_AMP.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Support_HEAL_AMP.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Support_MANA.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Support_STATUS_AMP.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Support_THREAT_DOWN.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Utility_HEAL_AMP.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Utility_MANA.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Utility_MANA_REGEN.png"/> -->
-						<!-- <Image src="file://{images}/custom_game/icons/MASTERY_Utility_MOVESPEED.png"/>  -->
-					<!-- </Panel> -->
+					<Panel class="GenericTalentsRow">
+						<Image src="file://{images}/custom_game/icons/MASTERY_EVASION_1.png"/>
+						<Image src="file://{images}/custom_game/icons/MASTERY_EVASION_2.png"/>
+						<Image src="file://{images}/custom_game/icons/MASTERY_EVASION_3.png"/>
+					</Panel>
 				</Panel>
 			</Panel>
 		</Panel>

@@ -48,7 +48,8 @@ end
 
 function modifier_item_dust_of_stasis_stasis:CheckState()
 	return {[MODIFIER_STATE_FROZEN] = true,
-			[MODIFIER_STATE_STUNNED] = true,}
+			[MODIFIER_STATE_STUNNED] = true,
+			[MODIFIER_STATE_PASSIVES_DISABLED] = true,}
 end
 
 function modifier_item_dust_of_stasis_stasis:DeclareFunctions()

@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"975"
+		"ItemCost"						"1950"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_phantom_slippers_3"
 		"ItemRequirements"
 		{
-			"01"						"item_boots_of_speed_2"
+			"01"						"item_boots_of_speed"
 		}
 	}
 	"item_phantom_slippers_3"
@@ -44,11 +44,10 @@
 		"ItemAliases"					"phase boots"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		
-		"MaxUpgradeLevel"				"7"
+		"MaxUpgradeLevel"				"4"
 		"ItemBaseLevel"					"1"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"12"
 		
 		// Special	
@@ -63,7 +62,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"phase_speed"			"20 25 30 35 40 40 40"
+				"phase_speed"			"20 30 40 50"
 			}
 			"03"
 			{
@@ -73,7 +72,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"12 12 12 12 12 10 8"
+				"cooldown"				"12 10 10 8"
 			}
 			"05"
 			{
@@ -83,7 +82,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 2 2 2 3 3 3"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}
@@ -133,7 +132,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"7"
+		"MaxUpgradeLevel"				"4"
 		"ItemBaseLevel"					"2"
 		
 		"AvailableRuneSlots"			"2"
@@ -152,7 +151,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"phase_speed"			"20 25 30 35 40 40 40"
+				"phase_speed"			"20 30 40 50"
 			}
 			"03"
 			{
@@ -162,7 +161,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"12 12 12 12 12 10 8"
+				"cooldown"				"12 10 10 8"
 			}
 			"05"
 			{
@@ -172,7 +171,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 2 2 2 3 3 3"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}
@@ -222,7 +221,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"7"
+		"MaxUpgradeLevel"				"4"
 		"ItemBaseLevel"					"3"
 		
 		"AvailableRuneSlots"			"2"
@@ -241,7 +240,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"phase_speed"			"20 25 30 35 40 40 40"
+				"phase_speed"			"20 30 40 50"
 			}
 			"03"
 			{
@@ -251,7 +250,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"12 12 12 12 12 10 8"
+				"cooldown"				"12 10 10 8"
 			}
 			"05"
 			{
@@ -261,7 +260,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 2 2 2 3 3 3"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}
@@ -311,7 +310,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"7"
+		"MaxUpgradeLevel"				"4"
 		"ItemBaseLevel"					"4"
 		
 		"AvailableRuneSlots"			"2"
@@ -330,7 +329,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"phase_speed"			"20 25 30 35 40 40 40"
+				"phase_speed"			"20 30 40 50"
 			}
 			"03"
 			{
@@ -340,7 +339,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"12 12 12 12 12 10 8"
+				"cooldown"				"12 10 10 8"
 			}
 			"05"
 			{
@@ -350,7 +349,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 2 2 2 3 3 3"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}
@@ -368,12 +367,13 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_phantom_slippers_7"
 		"ItemRequirements"
 		{
@@ -393,6 +393,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemShopTags"					"phase"
 		"ItemQuality"					"epic"
@@ -400,10 +401,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"7"
+		"MaxUpgradeLevel"				"4"
 		"ItemBaseLevel"					"5"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		"AbilityCooldown"				"12"
 		
@@ -419,7 +420,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"phase_speed"			"20 25 30 35 40 40 40"
+				"phase_speed"			"20 30 40 50"
 			}
 			"03"
 			{
@@ -429,7 +430,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"12 12 12 12 12 10 8"
+				"cooldown"				"12 10 10 8"
 			}
 			"05"
 			{
@@ -439,7 +440,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 2 2 2 3 3 3"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}
@@ -458,6 +459,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -482,15 +484,16 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemShopTags"					"phase"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"phase boots"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 	
-		"MaxUpgradeLevel"				"7"
+		"MaxUpgradeLevel"				"4"
 		"ItemBaseLevel"					"6"
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"AbilityCooldown"				"10"
 		
 		// Special	
@@ -505,7 +508,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"phase_speed"			"20 25 30 35 40 40 40"
+				"phase_speed"			"20 30 40 50"
 			}
 			"03"
 			{
@@ -515,7 +518,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"12 12 12 12 12 10 8"
+				"cooldown"				"12 10 10 8"
 			}
 			"05"
 			{
@@ -525,7 +528,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 2 2 2 3 3 3"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}
@@ -544,6 +547,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -568,6 +572,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemShopTags"					"phase"
 		"ItemQuality"					"epic"
@@ -575,10 +580,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"7"
+		"MaxUpgradeLevel"				"4"
 		"ItemBaseLevel"					"7"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 	
 		"AbilityCooldown"				"8"
 		
@@ -594,7 +599,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"phase_speed"			"20 25 30 35 40 40 40"
+				"phase_speed"			"20 30 40 50"
 			}
 			"03"
 			{
@@ -604,7 +609,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"12 12 12 12 12 10 8"
+				"cooldown"				"12 10 10 8"
 			}
 			"05"
 			{
@@ -614,7 +619,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"1 2 2 2 3 3 3"
+				"rune_scaling"			"120 140 160 180"
 			}
 		}
 	}

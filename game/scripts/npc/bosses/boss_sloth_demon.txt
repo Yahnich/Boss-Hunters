@@ -172,7 +172,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_radius"			"250 300"
+				"max_radius"			"325 375"
 			}
 			"04"
 			{

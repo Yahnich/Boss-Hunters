@@ -77,12 +77,14 @@ function shadow_fiend_requiem:OnProjectileHit_ExtraData(hTarget, vLocation, extr
 	else
 		secondProj = true
 	end
-
-	if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
+	
+	local duration = self:GetTalentSpecialValueFor("reduction_duration")
+	local fear = self:GetTalentSpecialValueFor("fear_duration")
+	if hTarget and not hTarget:TriggerSpellAbsorb( self ) and not hTarget:HasModifier("modifier_shadow_fiend_requiem") then
 		EmitSoundOn("Hero_Nevermore.RequiemOfSouls.Damage", hTarget)
 
-		hTarget:AddNewModifier(caster, self, "modifier_shadow_fiend_requiem", {Duration = self:GetTalentSpecialValueFor("reduction_duration")})
-		
+		hTarget:AddNewModifier(caster, self, "modifier_shadow_fiend_requiem", {Duration = duration})
+		hTarget:Fear(self, caster, fear)
 		-- if secondProj and caster:HasTalent("special_bonus_unique_shadow_fiend_requiem_1") then
 			-- self:DealDamage(caster, hTarget, self.damage/2, {}, 0)
 		-- elseif caster:HasTalent("special_bonus_unique_shadow_fiend_requiem_2") then

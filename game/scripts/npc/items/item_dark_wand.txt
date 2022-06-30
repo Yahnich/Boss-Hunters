@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"900"	
+		"ItemCost"						"1800"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -118,12 +118,13 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_dark_wand_6"
 		"ItemRequirements"
 		{
@@ -145,6 +146,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -171,6 +173,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -196,7 +199,8 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -224,7 +228,7 @@
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"1"
 		
 		"ItemCost"						"1250"
@@ -236,6 +240,8 @@
 		"ItemAliases"					"dagon;wand"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"2"
 		
 		"precache"
 		{
@@ -243,14 +249,14 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"18 16.5 15 13.5 12 10.5 9 7.5 6"
+		"AbilityCooldown"				"18 15 12 9 6"
 		"AbilitySharedCooldown"			"dagon"
-		"AbilityManaCost"				"300"
+		"AbilityManaCost"				"180"
 
-		"AbilityCastRange"				"600 650 700 750 800 850 900 950 1000"
+		"AbilityCastRange"				"600 700 800 900 1000"
 		"AbilityCastPoint"				"0.03"
 		
-		"AvailableRuneSlots"			"0"
+		"AvailableRuneSlots"			"2"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -259,22 +265,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"600 650 700 750 800 850 900 950 1000"
+				"cast_range"			"600 700 800 900 1000"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"300 400 500 600 700 800 900 1000 1100"
+				"damage"				"250 400 550 700 950"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"18 16.5 15 13.5 12 10.5 9 7.5 6"
+				"cooldown"				"18 15 12 9 6"
 			}
 		}
 	}
@@ -295,11 +301,8 @@
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"2"
-		
-		"UpgradesItems"					"item_dark_wand;item_dark_wand_2;item_dark_wand_3;item_dark_wand_4;item_dark_wand_5;item_dark_wand_6;item_dark_wand_7;item_dark_wand_8;item_dark_wand_9"
-		"UpgradeRecipe"					"item_recipe_dark_wand"
 		
 		"ItemShopTags"					"magic"
 		"ItemQuality"					"epic"
@@ -313,14 +316,14 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"18 16.5 15 13.5 12 10.5 9 7.5 6"
+		"AbilityCooldown"				"18 15 12 9 6"
 		"AbilitySharedCooldown"			"dagon"
-		"AbilityManaCost"				"300"
+		"AbilityManaCost"				"180"
 
-		"AbilityCastRange"				"600 650 700 750 800 850 900 950 1000"
+		"AbilityCastRange"				"600 700 800 900 1000"
 		"AbilityCastPoint"				"0.03"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -329,22 +332,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"600 650 700 750 800 850 900 950 1000"
+				"cast_range"			"600 700 800 900 1000"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"300 400 500 600 700 800 900 1000 1100"
+				"damage"				"250 400 550 700 950"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"18 16.5 15 13.5 12 10.5 9 7.5 6"
+				"cooldown"				"18 15 12 9 6"
 			}
 		}
 	}
@@ -365,11 +368,8 @@
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"3"
-		
-		"UpgradesItems"					"item_dark_wand;item_dark_wand_2;item_dark_wand_3;item_dark_wand_4;item_dark_wand_5;item_dark_wand_6;item_dark_wand_7;item_dark_wand_8;item_dark_wand_9"
-		"UpgradeRecipe"					"item_recipe_dark_wand"
 		
 		"ItemShopTags"					"magic"
 		"ItemQuality"					"epic"
@@ -383,14 +383,14 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"18 16.5 15 13.5 12 10.5 9 7.5 6"
+		"AbilityCooldown"				"18 15 12 9 6"
 		"AbilitySharedCooldown"			"dagon"
-		"AbilityManaCost"				"300"
+		"AbilityManaCost"				"180"
 
-		"AbilityCastRange"				"600 650 700 750 800 850 900 950 1000"
+		"AbilityCastRange"				"600 700 800 900 1000"
 		"AbilityCastPoint"				"0.03"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -399,22 +399,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"600 650 700 750 800 850 900 950 1000"
+				"cast_range"			"600 700 800 900 1000"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"300 400 500 600 700 800 900 1000 1100"
+				"damage"				"250 400 550 700 950"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"18 16.5 15 13.5 12 10.5 9 7.5 6"
+				"cooldown"				"18 15 12 9 6"
 			}
 		}
 	}
@@ -435,11 +435,8 @@
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"4"
-		
-		"UpgradesItems"					"item_dark_wand;item_dark_wand_2;item_dark_wand_3;item_dark_wand_4;item_dark_wand_5;item_dark_wand_6;item_dark_wand_7;item_dark_wand_8;item_dark_wand_9"
-		"UpgradeRecipe"					"item_recipe_dark_wand"
 		
 		"ItemShopTags"					"magic"
 		"ItemQuality"					"epic"
@@ -453,11 +450,11 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"18 16.5 15 13.5 12 10.5 9 7.5 6"
+		"AbilityCooldown"				"18 15 12 9 6"
 		"AbilitySharedCooldown"			"dagon"
-		"AbilityManaCost"				"300"
+		"AbilityManaCost"				"180"
 
-		"AbilityCastRange"				"600 650 700 750 800 850 900 950 1000"
+		"AbilityCastRange"				"600 700 800 900 1000"
 		"AbilityCastPoint"				"0.03"
 		
 		"AvailableRuneSlots"			"2"
@@ -469,22 +466,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"600 650 700 750 800 850 900 950 1000"
+				"cast_range"			"600 700 800 900 1000"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"300 400 500 600 700 800 900 1000 1100"
+				"damage"				"250 400 550 700 950"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"18 16.5 15 13.5 12 10.5 9 7.5 6"
+				"cooldown"				"18 15 12 9 6"
 			}
 		}
 	}
@@ -505,11 +502,8 @@
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"5"
-		
-		"UpgradesItems"					"item_dark_wand;item_dark_wand_2;item_dark_wand_3;item_dark_wand_4;item_dark_wand_5;item_dark_wand_6;item_dark_wand_7;item_dark_wand_8;item_dark_wand_9"
-		"UpgradeRecipe"					"item_recipe_dark_wand"
 		
 		"ItemShopTags"					"magic"
 		"ItemQuality"					"epic"
@@ -523,11 +517,11 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"18 16.5 15 13.5 12 10.5 9 7.5 6"
+		"AbilityCooldown"				"18 15 12 9 6"
 		"AbilitySharedCooldown"			"dagon"
-		"AbilityManaCost"				"300"
+		"AbilityManaCost"				"180"
 
-		"AbilityCastRange"				"600 650 700 750 800 850 900 950 1000"
+		"AbilityCastRange"				"600 700 800 900 1000"
 		"AbilityCastPoint"				"0.03"
 		
 		"AvailableRuneSlots"			"2"
@@ -539,22 +533,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"600 650 700 750 800 850 900 950 1000"
+				"cast_range"			"600 700 800 900 1000"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"300 400 500 600 700 800 900 1000 1100"
+				"damage"				"250 400 550 700 950"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"18 16.5 15 13.5 12 10.5 9 7.5 6"
+				"cooldown"				"18 15 12 9 6"
 			}
 		}
 	}
@@ -574,18 +568,15 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"6"
-		
-		"UpgradesItems"					"item_dark_wand;item_dark_wand_2;item_dark_wand_3;item_dark_wand_4;item_dark_wand_5;item_dark_wand_6;item_dark_wand_7;item_dark_wand_8;item_dark_wand_9"
-		"UpgradeRecipe"					"item_recipe_dark_wand"
 		
 		"ItemShopTags"					"magic"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"dagon;wand"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
 		
 		"precache"
 		{
@@ -593,11 +584,11 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"18 16.5 15 13.5 12 10.5 9 7.5 6"
+		"AbilityCooldown"				"18 15 12 9 6"
 		"AbilitySharedCooldown"			"dagon"
-		"AbilityManaCost"				"300"
+		"AbilityManaCost"				"180"
 
-		"AbilityCastRange"				"600 650 700 750 800 850 900 950 1000"
+		"AbilityCastRange"				"600 700 800 900 1000"
 		"AbilityCastPoint"				"0.03"
 		
 		"AvailableRuneSlots"			"2"
@@ -609,22 +600,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"600 650 700 750 800 850 900 950 1000"
+				"cast_range"			"600 700 800 900 1000"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"300 400 500 600 700 800 900 1000 1100"
+				"damage"				"250 400 550 700 950"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"18 16.5 15 13.5 12 10.5 9 7.5 6"
+				"cooldown"				"18 15 12 9 6"
 			}
 		}
 	}
@@ -645,12 +636,10 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"7"
-		
-		"UpgradesItems"					"item_dark_wand;item_dark_wand_2;item_dark_wand_3;item_dark_wand_4;item_dark_wand_5;item_dark_wand_6;item_dark_wand_7;item_dark_wand_8;item_dark_wand_9"
-		"UpgradeRecipe"					"item_recipe_dark_wand"
 		
 		"ItemShopTags"					"magic"
 		"ItemQuality"					"epic"
@@ -664,14 +653,14 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"18 16.5 15 13.5 12 10.5 9 7.5 6"
+		"AbilityCooldown"				"18 15 12 9 6"
 		"AbilitySharedCooldown"			"dagon"
-		"AbilityManaCost"				"300"
+		"AbilityManaCost"				"180"
 
-		"AbilityCastRange"				"600 650 700 750 800 850 900 950 1000"
+		"AbilityCastRange"				"600 700 800 900 1000"
 		"AbilityCastPoint"				"0.03"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -680,22 +669,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"600 650 700 750 800 850 900 950 1000"
+				"cast_range"			"600 700 800 900 1000"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"300 400 500 600 700 800 900 1000 1100"
+				"damage"				"250 400 550 700 950"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"18 16.5 15 13.5 12 10.5 9 7.5 6"
+				"cooldown"				"18 15 12 9 6"
 			}
 		}
 	}
@@ -716,12 +705,10 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"8"
-		
-		"UpgradesItems"					"item_dark_wand;item_dark_wand_2;item_dark_wand_3;item_dark_wand_4;item_dark_wand_5;item_dark_wand_6;item_dark_wand_7;item_dark_wand_8;item_dark_wand_9"
-		"UpgradeRecipe"					"item_recipe_dark_wand"
 		
 		"ItemShopTags"					"magic"
 		"ItemQuality"					"epic"
@@ -735,14 +722,14 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"18 16.5 15 13.5 12 10.5 9 7.5 6"
+		"AbilityCooldown"				"18 15 12 9 6"
 		"AbilitySharedCooldown"			"dagon"
-		"AbilityManaCost"				"300"
+		"AbilityManaCost"				"180"
 
-		"AbilityCastRange"				"600 650 700 750 800 850 900 950 1000"
+		"AbilityCastRange"				"600 700 800 900 1000"
 		"AbilityCastPoint"				"0.03"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -751,22 +738,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"600 650 700 750 800 850 900 950 1000"
+				"cast_range"			"600 700 800 900 1000"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"300 400 500 600 700 800 900 1000 1100"
+				"damage"				"250 400 550 700 950"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"18 16.5 15 13.5 12 10.5 9 7.5 6"
+				"cooldown"				"18 15 12 9 6"
 			}
 		}
 	}
@@ -787,12 +774,10 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"9"
-		
-		"UpgradesItems"					"item_dark_wand;item_dark_wand_2;item_dark_wand_3;item_dark_wand_4;item_dark_wand_5;item_dark_wand_6;item_dark_wand_7;item_dark_wand_8;item_dark_wand_9"
-		"UpgradeRecipe"					"item_recipe_dark_wand"
 		
 		"ItemShopTags"					"magic"
 		"ItemQuality"					"epic"
@@ -806,14 +791,14 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"18 16.5 15 13.5 12 10.5 9 7.5 6"
+		"AbilityCooldown"				"18 15 12 9 6"
 		"AbilitySharedCooldown"			"dagon"
-		"AbilityManaCost"				"300"
+		"AbilityManaCost"				"180"
 
-		"AbilityCastRange"				"600 650 700 750 800 850 900 950 1000"
+		"AbilityCastRange"				"600 700 800 900 1000"
 		"AbilityCastPoint"				"0.03"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -822,22 +807,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"600 650 700 750 800 850 900 950 1000"
+				"cast_range"			"600 700 800 900 1000"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"300 400 500 600 700 800 900 1000 1100"
+				"damage"				"250 400 550 700 950"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"18 16.5 15 13.5 12 10.5 9 7.5 6"
+				"cooldown"				"18 15 12 9 6"
 			}
 		}
 	}

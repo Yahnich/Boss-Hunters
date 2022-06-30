@@ -15,10 +15,6 @@ function item_penitent_mail:OnSpellStart()
 	EmitSoundOn("DOTA_Item.BladeMail.Activate", caster)
 end
 
-function item_penitent_mail:GetRuneSlots()
-	return self:GetSpecialValueFor("rune_slots")
-end
-
 item_penitent_mail_2 = class(item_penitent_mail)
 item_penitent_mail_3 = class(item_penitent_mail)
 item_penitent_mail_4 = class(item_penitent_mail)

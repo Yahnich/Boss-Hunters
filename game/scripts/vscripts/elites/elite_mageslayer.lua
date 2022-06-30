@@ -24,7 +24,9 @@ function modifier_elite_mageslayer:DeclareFunctions()
 end
 
 function modifier_elite_mageslayer:GetModifierMagicalResistanceBonus()
-	return self.mr
+	if not self:GetParent():PassivesDisabled() then
+		return self.mr
+	end
 end
 
 function relicBaseClass:GetAttributes()

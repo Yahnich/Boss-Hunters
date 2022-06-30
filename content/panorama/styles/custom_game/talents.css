@@ -76,19 +76,19 @@
 {
 	0%
 	{
-		box-shadow: fill #E0C24E44 -1px -1px 2px 2px;
+		box-shadow: fill #E0C24E44 0px 0px 1px 0px;
 		brightness: 0.5;
     }
 
     50% 
 	{
-        box-shadow: fill #E0C24E44 -2px -2px 4px 4px;
+        box-shadow: fill #E0C24E44 0px 0px 6px 2px;
 		brightness: 5.0;
     }
 
     100%
 	{
-		box-shadow: fill #E0C24E44 -1px -1px 2px 2px;
+		box-shadow: fill #E0C24E44 0px 0px 1px 0px;
 		brightness: 0.5;
     }
 }

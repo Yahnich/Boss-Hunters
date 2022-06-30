@@ -23,7 +23,7 @@
 {
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  background-size: 100% 100%;
+  background-size: contain;
 }
 
 #InfoGameDonator
@@ -59,7 +59,8 @@
 {
   background-repeat: no-repeat;
   background-position: 25% 25%;
-  background-size: 150% 150%;
+  height: 100%;
+  width: 100%;
 }
 #VotePanel
 {
@@ -76,7 +77,6 @@
 
 #CustomBg
 {
-
 	margin-top: 0px;
     overflow: clip;
 	width: 100%;

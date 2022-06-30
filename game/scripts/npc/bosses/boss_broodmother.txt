@@ -134,7 +134,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"eggs"						"6 12"
+				"eggs"						"4 6"
 			}
 			"02"
 			{
@@ -184,17 +184,17 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_on_hit"				"125 150"
+				"damage_on_hit"				"150 175"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"spiders_on_hit"			"4 8"
+				"spiders_on_hit"			"2 4"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"spiders_on_miss"			"2 4"
+				"spiders_on_miss"			"1 2"
 			}
 		}
 	}
@@ -284,7 +284,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"hits_to_kill"				"6 8"
+				"hits_to_kill"				"4 5"
 			}
 		}
 	}

@@ -9,25 +9,26 @@ function item_health_stone:RuneProcessing( item, itemmodifier, slotIndex )
 	item.itemData = item.itemData or {}
 	local level = ( item.itemData[slotIndex].rune_level or 0 ) + 1
 	item.itemData[slotIndex].rune_level = level
-	item.itemData[slotIndex].funcs["GetModifierExtraHealthBonus"] = (item.itemData[slotIndex].funcs["GetModifierExtraHealthBonus"] or 0) + self:GetLevelSpecialValueFor( "health", level-1 )
-	item.itemData[slotIndex].funcs["GetModifierConstantHealthRegen"] = (item.itemData[slotIndex].funcs["GetModifierConstantHealthRegen"] or 0) + self:GetLevelSpecialValueFor( "health_regeneration", level-1 )
+	item.itemData[slotIndex].baseFuncs["GetModifierExtraHealthBonus"] = (item.itemData[slotIndex].baseFuncs["GetModifierExtraHealthBonus"] or 0) + self:GetLevelSpecialValueFor( "health", level-1 )
 end
 
 modifier_item_health_stone_passive = class(persistentModifier)
 
 function modifier_item_health_stone_passive:OnCreated()
-	self.hp = self:GetSpecialValueFor("health")
-	self.hp_regen = self:GetSpecialValueFor("health_regeneration")
+	self:OnRefresh()
+end
+
+function modifier_item_health_stone_passive:OnRefresh()
+	self.health = 0
+	for i = 1, self:GetAbility():GetCurrentCharges() do
+		self.health = self.health + self:GetAbility():GetLevelSpecialValueFor( "health", i-1 )
+	end
 end
 
 function modifier_item_health_stone_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS, MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT}
+	return {MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS}
 end
 
 function modifier_item_health_stone_passive:GetModifierExtraHealthBonus()
-	return self.hp
-end
-
-function modifier_item_health_stone_passive:GetModifierConstantHealthRegen()
-	return self.hp_regen
+	return self.health
 end

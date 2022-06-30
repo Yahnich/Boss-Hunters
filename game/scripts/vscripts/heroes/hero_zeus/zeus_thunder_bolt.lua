@@ -26,14 +26,39 @@ function zeus_thunder_bolt:OnSpellStart()
 			point = target:GetAbsOrigin()
 		end
 	end
-	EmitSoundOn("Hero_Zuus.LightningBolt.Cast", caster)
-	
 	if target then
 		point = target:GetAbsOrigin()
 	end
-	ParticleManager:FireRopeParticle("particles/units/heroes/hero_zeus/zeus_thunder_bolt.vpcf", PATTACH_POINT, caster, point, {[0]=point+Vector(0,0,1000)})
+	
+	EmitSoundOn("Hero_Zuus.LightningBolt.Cast", caster)
 	EmitSoundOnLocationWithCaster(point, "Hero_Zuus.LightningBolt", caster)	
-	if not target or  target:TriggerSpellAbsorb( self ) then return end
+	
+	
+	local bonusTargets = {}
+	AddFOWViewer(caster:GetTeam(), point, self:GetTalentSpecialValueFor("vision_radius"), self:GetTalentSpecialValueFor("vision_duration"), false)
+	ParticleManager:FireRopeParticle("particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", PATTACH_POINT, caster, point, {[0]=point+Vector(0,0,1000)})
+	if target then 
+		bonusTargets[target] = true
+	end
+	
+	for _, cloud in ipairs( caster._NimbusClouds or {} ) do
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( cloud:GetAbsOrigin(), cloud.radius ) ) do
+			bonusTargets[enemy] = true
+		end
+	end
+	for enemy, state in pairs( bonusTargets ) do
+		self:ApplyThunderBolt( enemy )
+	end
+end
+
+function zeus_thunder_bolt:ApplyThunderBolt( target )
+	local caster = self:GetCaster()
+	local point = target:GetAbsOrigin()
+	
+	
+	ParticleManager:FireRopeParticle("particles/units/heroes/hero_zuus/zuus_smaller_lightning_bolt.vpcf", PATTACH_POINT, caster, point, {[0]=point+Vector(0,0,1000)})
+	
+	if target:TriggerSpellAbsorb( self ) then return end
 	
 	self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {}, 0)
 	self:Stun(target, self:GetTalentSpecialValueFor("duration"), false)

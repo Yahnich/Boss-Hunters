@@ -19,10 +19,10 @@
 		"ItemAliases"					"butterfly;blade_of_storm"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"1"
 		
-		"AvailableRuneSlots"			"0"
+		"AvailableRuneSlots"			"2"
 		
 		"precache"
 		{
@@ -40,7 +40,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
+				"bonus_evasion"			"20 30 40 50 65"
 			}
 			"02"
 			{
@@ -50,7 +50,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -68,7 +68,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"925"
+		"ItemCost"						"1850"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -94,15 +94,15 @@
 		"ItemDroppable"					"1"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemShopTags"					"evasion"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blade mail;penitent mail"
+		"ItemAliases"					"butterfly;blade_of_storm"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		
 		"AbilityCooldown"				"20"
 		"AbilitySharedCooldown"			"bladeofstorm"
@@ -115,7 +115,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
+				"bonus_evasion"			"20 30 40 50 65"
 			}
 			"02"
 			{
@@ -125,7 +125,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -170,16 +170,16 @@
 		"ItemDroppable"					"1"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemShopTags"					"evasion"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blade mail;penitent mail"
+		"ItemAliases"					"butterfly;blade_of_storm"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"3"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		
 		"AbilityCooldown"				"20"
 		"AbilitySharedCooldown"			"bladeofstorm"
@@ -191,7 +191,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
+				"bonus_evasion"			"20 30 40 50 65"
 			}
 			"02"
 			{
@@ -201,7 +201,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -246,13 +246,13 @@
 		"ItemDroppable"					"1"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemShopTags"					"evasion"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blade mail;penitent mail"
+		"ItemAliases"					"butterfly;blade_of_storm"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"4"
 		
 		"AvailableRuneSlots"			"2"
@@ -268,7 +268,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
+				"bonus_evasion"			"20 30 40 50 65"
 			}
 			"02"
 			{
@@ -278,7 +278,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -323,13 +323,13 @@
 		"ItemDroppable"					"1"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemShopTags"					"evasion"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blade mail;penitent mail"
+		"ItemAliases"					"butterfly;blade_of_storm"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"5"
 		
 		"AvailableRuneSlots"			"2"
@@ -345,7 +345,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
+				"bonus_evasion"			"20 30 40 50 65"
 			}
 			"02"
 			{
@@ -355,7 +355,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -373,12 +373,13 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_blade_of_storm_6"
 		"ItemRequirements"
 		{
@@ -398,15 +399,16 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemShopTags"					"evasion"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blade mail;penitent mail"
+		"ItemAliases"					"butterfly;blade_of_storm"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"6"
 		
 		"AvailableRuneSlots"			"2"
@@ -422,7 +424,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
+				"bonus_evasion"			"20 30 40 50 65"
 			}
 			"02"
 			{
@@ -432,7 +434,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -451,6 +453,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -475,18 +478,19 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemShopTags"					"evasion"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blade mail;penitent mail"
+		"ItemAliases"					"butterfly;blade_of_storm"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"7"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		
 		"AbilityCooldown"				"20"
 		"AbilitySharedCooldown"			"bladeofstorm"
@@ -499,7 +503,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
+				"bonus_evasion"			"20 30 40 50 65"
 			}
 			"02"
 			{
@@ -509,7 +513,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -528,6 +532,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -552,18 +557,19 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemShopTags"					"evasion"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blade mail;penitent mail"
+		"ItemAliases"					"butterfly;blade_of_storm"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"8"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		
 		"AbilityCooldown"				"20"
 		"AbilitySharedCooldown"			"bladeofstorm"
@@ -576,7 +582,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
+				"bonus_evasion"			"20 30 40 50 65"
 			}
 			"02"
 			{
@@ -586,7 +592,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -605,6 +611,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -629,18 +636,19 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
-		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemShopTags"					"evasion"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blade mail;penitent mail"
+		"ItemAliases"					"butterfly;blade_of_storm"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"9"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		
 		"AbilityCooldown"				"20"
 		"AbilitySharedCooldown"			"bladeofstorm"
@@ -653,7 +661,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_evasion"			"20 25 30 35 40 45 50 55 60"
+				"bonus_evasion"			"20 30 40 50 65"
 			}
 			"02"
 			{
@@ -663,7 +671,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}

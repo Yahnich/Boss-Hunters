@@ -21,10 +21,10 @@
 		"ItemAliases"					"diffusal;nullifying_edge"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 				
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"1"
 		
-		"AvailableRuneSlots"			"0"
+		"AvailableRuneSlots"			"2"
 		
 		"precache"
 		{
@@ -42,17 +42,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.5 0.5 0.5 0.5 0.5 0.75 1 1.5 2"
+				"duration"				"0.5 0.75 1.0 1.25 1.5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"25 22 19 16 13 12 11 11 11"
+				"cooldown"				"25 22 19 16 13"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -103,10 +103,10 @@
 		"ItemAliases"					"diffusal blade;nullifier"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"2"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 		
 		"precache"
 		{
@@ -124,17 +124,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.5 0.5 0.5 0.5 0.5 0.75 1 1.5 2"
+				"duration"				"0.5 0.75 1.0 1.25 1.5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"25 22 19 16 13 12 11 11 11"
+				"cooldown"				"25 22 19 16 13"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -187,10 +187,10 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"3"
 		
-		"AvailableRuneSlots"			"1"
+		"AvailableRuneSlots"			"2"
 	
 		"precache"
 		{
@@ -208,17 +208,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.5 0.5 0.5 0.5 0.5 0.75 1 1.5 2"
+				"duration"				"0.5 0.75 1.0 1.25 1.5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"25 22 19 16 13 12 11 11 11"
+				"cooldown"				"25 22 19 16 13"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -271,7 +271,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"4"
 		
 		"AvailableRuneSlots"			"2"
@@ -292,17 +292,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.5 0.5 0.5 0.5 0.5 0.75 1 1.5 2"
+				"duration"				"0.5 0.75 1.0 1.25 1.5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"25 22 19 16 13 12 11 11 11"
+				"cooldown"				"25 22 19 16 13"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -354,7 +354,7 @@
 		"ItemAliases"					"diffusal blade;nullifier"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"5"
 		
 		"AvailableRuneSlots"			"2"
@@ -375,17 +375,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.5 0.5 0.5 0.5 0.5 0.75 1 1.5 2"
+				"duration"				"0.5 0.75 1.0 1.25 1.5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"25 22 19 16 13 12 11 11 11"
+				"cooldown"				"25 22 19 16 13"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -403,12 +403,13 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
+		"ItemRecipe"					"0"
 		"ItemResult"					"item_nullifying_edge_6"
 		"ItemRequirements"
 		{
@@ -430,6 +431,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"purge;dispel"
@@ -437,7 +439,7 @@
 		"ItemAliases"					"diffusal blade;nullifier"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"6"
 		
 		"AvailableRuneSlots"			"2"
@@ -458,17 +460,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.5 0.5 0.5 0.5 0.5 0.75 1 1.5 2"
+				"duration"				"0.5 0.75 1.0 1.25 1.5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"25 22 19 16 13 12 11 11 11"
+				"cooldown"				"25 22 19 16 13"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -487,6 +489,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -513,6 +516,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"purge;dispel"
@@ -520,10 +524,10 @@
 		"ItemAliases"					"diffusal blade;nullifier"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"7"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
@@ -541,17 +545,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.5 0.5 0.5 0.5 0.5 0.75 1 1.5 2"
+				"duration"				"0.5 0.75 1.0 1.25 1.5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"25 22 19 16 13 12 11 11 11"
+				"cooldown"				"25 22 19 16 13"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -570,6 +574,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -596,6 +601,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"purge;dispel"
@@ -603,10 +609,10 @@
 		"ItemAliases"					"diffusal blade;nullifier"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"8"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
@@ -624,17 +630,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.5 0.5 0.5 0.5 0.5 0.75 1 1.5 2"
+				"duration"				"0.5 0.75 1.0 1.25 1.5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"25 22 19 16 13 12 11 11 11"
+				"cooldown"				"25 22 19 16 13"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}
@@ -653,6 +659,7 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"0"	
+		"ItemPurchasable"				"0"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -679,6 +686,7 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
 		
 		"ItemCost"						"400"
 		"ItemShopTags"					"purge;dispel"
@@ -686,10 +694,10 @@
 		"ItemAliases"					"diffusal blade;nullifier"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"MaxUpgradeLevel"				"9"
+		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"9"
 		
-		"AvailableRuneSlots"			"3"
+		"AvailableRuneSlots"			"2"
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
@@ -707,17 +715,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.5 0.5 0.5 0.5 0.5 0.75 1 1.5 2"
+				"duration"				"0.5 0.75 1.0 1.25 1.5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"25 22 19 16 13 12 11 11 11"
+				"cooldown"				"25 22 19 16 13"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rune_slots"			"0 1 1 2 2 2 3 3 3"
+				"rune_scaling"			"100 120 140 160 180"
 			}
 		}
 	}

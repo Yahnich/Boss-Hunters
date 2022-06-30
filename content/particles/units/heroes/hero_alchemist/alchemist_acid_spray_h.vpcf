@@ -1,0 +1,140 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf31:version{593cd181-a1d6-4c6f-9a8c-0534e8d44db0} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 256
+	m_BoundingBoxMin = [ -10.0, -10.0, 512.0 ]
+	m_BoundingBoxMax = [ 10.0, 10.0, 512.0 ]
+	m_flCullRadius = 90.0
+	m_ConstantColor = [ 255, 190, 221, 255 ]
+	m_flMaxDrawDistance = 2000.0
+	m_flNoDrawTimeToGoToSleep = 2.0
+	m_nBehaviorVersion = 10
+	m_nFirstMultipleOverride_BackwardCompat = 5
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ 0.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 15
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 255.0, 255.0, 255.0 ]
+					m_angOffset = [ 0.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 16
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ 0.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 2.0
+			m_fLifetimeMax = 3.0
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 18.0
+			m_flRadiusMax = 30.0
+		},
+		{
+			_class = "C_INIT_CreateFromPlaneCache"
+			m_vecOffsetMax = [ 64.0, 64.0, 2.0 ]
+			m_vecOffsetMin = [ -64.0, -64.0, 2.0 ]
+			m_bUseNormal = true
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 2
+			m_nSequenceMin = 7
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+		{
+			_class = "C_INIT_RemapCPtoVector"
+			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
+			m_nFieldOutput = "6"
+			m_vInputMax = [ 255.0, 255.0, 255.0 ]
+			m_nCPInput = 15
+			m_flOpStrength = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 16
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_FadeOut"
+			m_flFadeOutTimeMin = 0.125
+			m_flFadeOutTimeMax = 0.35
+			m_bEaseInAndOut = false
+			m_flFadeBias = 0.75
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndTime = 0.25
+			m_flStartScale = 0.0
+			m_flBias = 0.45
+		},
+		{
+			_class = "C_OP_LerpEndCapScalar"
+			m_flLerpTime = 0.2
+			m_nFieldOutput = "16"
+			m_flOutput = 0.0
+		},
+		{
+			_class = "C_OP_PositionLock"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_nOrientationType = "PARTICLE_ORIENTATION_ALIGN_TO_PARTICLE_NORMAL"
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/particle_modulate_04.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_MOD2X"
+			m_OutlineColor = [ 255, 255, 255 ]
+		},
+	]
+}

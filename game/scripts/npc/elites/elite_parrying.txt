@@ -9,7 +9,6 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"nyx_assassin_spiked_carapace"
 		"MaxLevel"						"1"
-		"AbilityCooldown"				"15"
 		
 		"precache"
 		{

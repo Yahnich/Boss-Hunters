@@ -23,7 +23,9 @@ function modifier_elite_hasted:DeclareFunctions()
 end
 
 function modifier_elite_hasted:GetModifierMoveSpeed_AbsoluteMin()
-	return self.ms
+	if not self:GetParent():PassivesDisabled() then
+		return self.ms
+	end
 end
 
 function modifier_elite_hasted:GetEffectName()

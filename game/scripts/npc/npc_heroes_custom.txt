@@ -1,6 +1,6 @@
 "DOTAHeroes"
 {
-	"npc_dota_hero_abaddon_ebf"
+	"npc_dota_hero_abaddon"
 	{
 		"override_hero"			"npc_dota_hero_abaddon"
 		"Ability1"				"abaddon_death_coil_ebf"
@@ -22,7 +22,7 @@
 	//=================================================================================================================
 	// HERO: Underlord
 	//=================================================================================================================
-	"npc_dota_hero_abyssal_underlord_ebf"
+	"npc_dota_hero_abyssal_underlord"
 	{
 		"override_hero"				"npc_dota_hero_abyssal_underlord"
 		"AbilityLayout"				"4"
@@ -43,24 +43,43 @@
 	//=================================================================================================================
 	// HERO: Alchemist
 	//=================================================================================================================
-	"npc_dota_hero_alchemist_ebf"
+	"npc_dota_hero_alchemist"
 	{
 		"override_hero"			"npc_dota_hero_alchemist"
-		"Ability1"				"alchemist_acid_spray_ebf"
-		"Ability2"				"alchemist_midas_knuckle"	
-		"Ability3"				"alchemist_alchemists_greed"					// Ability 4
-		"Ability6"				"alchemist_chemical_rage_ebf"
+		"Ability1"				"alchemist_acid_spray_bh"
+		"Ability2"				"alchemist_unstable_concoction_bh"	
+		"Ability3"				"alchemist_berserk_potion_bh"					// Ability 4
+		"Ability4"				"alchemist_alchemists_greed"	
+		"Ability5"				"generic_hidden"	
+		"Ability6"				"alchemist_chemical_rage_bh"
 		
-		"Ability10"				"special_bonus_unique_alchemist_midas_knuckle_1"
-		"Ability11"				"special_bonus_unique_alchemist_midas_knuckle_2"
+		"Ability10"				"special_bonus_unique_alchemist_unstable_concoction_1"
+		"Ability11"				"special_bonus_unique_alchemist_unstable_concoction_2"
 		"Ability12"				"special_bonus_unique_alchemist_acid_spray_1"
 		"Ability13"				"special_bonus_unique_alchemist_acid_spray_2"
-		"Ability14"				"special_bonus_unique_alchemist_alchemists_greed_1"
-		"Ability15"				"special_bonus_unique_alchemist_alchemists_greed_2"
+		"Ability14"				"special_bonus_unique_alchemist_berserk_potion_1"
+		"Ability15"				"special_bonus_unique_alchemist_berserk_potion_2"
 		"Ability16"				"special_bonus_unique_alchemist_chemical_rage_1"
 		"Ability17"				"special_bonus_unique_alchemist_chemical_rage_2"
+		
+		
+		"Masteries"
+		{
+			"HEALTH"{"2" "5"}
+			"MANA"{"3" "4"}
+			"MANA_REGEN"{"3" "3"}
+			"SPELL_AMP"{"3" "1"}
+			"ATTACK_DAMAGE"{"3" "3"}
+			"ARMOR"{"3" "3"}
+			"MAGIC_RESIST"{"3" "3"}
+			"AREA_DAMAGE"{"3" "1"}
+			"MOVESPEED"{"1" "3"}
+			"THREAT_AMP"{"3" "1"}
+			"THREAT_DOWN"{"3" "1"}
+			"ALL_STATS"{"3" "2"}
+		}
 	}
-	"npc_dota_hero_ancient_apparition_ebf"
+	"npc_dota_hero_ancient_apparition"
 	{
 		"override_hero"				"npc_dota_hero_ancient_apparition"
 		"Ability1"					"aa_cold_feet"
@@ -80,7 +99,7 @@
 	//=================================================================================================================
 	// HERO: Anti-Mage
 	//=================================================================================================================
-	"npc_dota_hero_antimage_ebf"
+	"npc_dota_hero_antimage"
 	{
 		"override_hero"					"npc_dota_hero_antimage"
 		"Ability1"						"antimage_magus_breaker"					// Ability 4
@@ -97,6 +116,18 @@
 		"Ability15"						"special_bonus_unique_antimage_hex_guard_2"
 		"Ability16"						"special_bonus_unique_antimage_void_of_hatred_1"
 		"Ability17"						"special_bonus_unique_antimage_void_of_hatred_2"
+		
+		"Masteries"
+		{
+			"HEALTH"{"2" "4"}
+			"MANA"{"3" "2"}
+			"MANA_REGEN"{"3" "2"}
+			"SPELL_AMP"{"3" "2"}
+			"ATTACK_DAMAGE"{"3" "5"}
+			"ATTACK_SPEED"{"3" "5"}
+			"EVASION"{"3" "3"}
+			"AREA_DAMAGE"{"3" "5"}
+		}
 		
 	}
 	//=================================================================================================================
@@ -118,12 +149,8 @@
 	    "Ability15"       "special_bonus_unique_arc_warden_spark_wrath_bh_2"
 	    "Ability16"       "special_bonus_unique_arc_warden_primordial_current_1"
 	    "Ability17"       "special_bonus_unique_arc_warden_primordial_current_2"
-
-	    // Attributes
-		//-------------------------------------------------------------------------------------------------------------
-		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"
 	}
-	"npc_dota_hero_axe_ebf"
+	"npc_dota_hero_axe"
 	{
 	    "override_hero"   "npc_dota_hero_axe"
 	
@@ -137,11 +164,23 @@
 	    "Ability10"       "special_bonus_unique_axe_forced_shout_2"
 	    "Ability11"       "special_bonus_unique_axe_forced_shout_1"
 	    "Ability12"       "special_bonus_unique_axe_blood_hunger_1"
-	    "Ability13"       "special_bonus_unique_axe_blood_hunger_2"
+	    "Ability13"       "special_bonus_unique_axe_blood_hunger_3"
 	    "Ability14"       "special_bonus_unique_axe_cleave_strike_1"
 	    "Ability15"       "special_bonus_unique_axe_cleave_strike_2"
 	    "Ability16"       "special_bonus_unique_axe_ground_pound_1"
 	    "Ability17"       "special_bonus_unique_axe_ground_pound_2"
+		
+		"Masteries"
+		{
+			"ARMOR"{"3" "5"}
+			"HEALTH"{"3" "5"}
+			"THREAT_AMP"{"3" "5"}
+			"MAGIC_RESIST"{"3" "2"}
+			"HEAL_AMP"{"3" "2"}
+			"STATUS_AMP"{"3" "2"}
+			"MANA"{"3" "3"}
+			"MANA_REGEN"{"3" "3"}
+		}
 	}
 	"npc_dota_hero_bane"
 	{
@@ -263,19 +302,11 @@
 		"Ability16"						"special_bonus_unique_brewmaster_primal_avatar_1"
 		"Ability17"						"special_bonus_unique_brewmaster_primal_avatar_2"
 		
-		"ArmorPhysical"					"-3.000000"
-		
-		"AttributeBaseStrength"			"23"
-		"AttributeStrengthGain"			"3.700000"
-		"AttributeBaseAgility"			"22"
-		"AttributeAgilityGain"			"2.0000"
-		"AttributeBaseIntelligence"		"14"
-		"AttributeIntelligenceGain"		"1.60000"
 	}
 	//=================================================================================================================
 	// HERO: Bristleback
 	//=================================================================================================================
-	"npc_dota_hero_bristleback_ebf"
+	"npc_dota_hero_bristleback"
 	{
 		"override_hero"					"npc_dota_hero_bristleback"
 		"Ability1"						"bristleback_snot"
@@ -286,12 +317,26 @@
 	
 		"Ability10"						"special_bonus_unique_bristleback_snot_1"
 	    "Ability11"						"special_bonus_unique_bristleback_snot_2"
-	    "Ability12"						"special_bonus_unique_bristleback_quills_1"
-	    "Ability13"						"special_bonus_unique_bristleback_quills_2"
+	    "Ability12"						"special_bonus_unique_bristleback_quills_2"
+	    "Ability13"						"special_bonus_unique_bristleback_quills_3"
 	    "Ability14"						"special_bonus_unique_bristleback_yer_mum_1"
 	    "Ability15"						"special_bonus_unique_bristleback_yer_mum_2"
 	    "Ability16"						"special_bonus_unique_bristleback_work_up_1"
 	    "Ability17"						"special_bonus_unique_bristleback_work_up_2"
+		
+		"AttributeBaseStrength"			"29"
+		
+		"Masteries"
+		{
+			"MANA"{"3" "4"}
+			"MANA_REGEN"{"3" "3"}
+			"HEALTH"{"2" "5"}
+			"HEALTH_REGEN"{"3" "4"}
+			"ARMOR"{"2" "3"}
+			"MAGIC_RESIST"{"2" "3"}
+			"THREAT_AMP"{"3" "5"}
+			"SPELL_AMP"{"3" "3"}
+		}
 	}
 	"npc_dota_hero_broodmother_ebf"
 	{
@@ -328,14 +373,6 @@
 		"Ability15"						"special_bonus_unique_centaur_hoof_stomp_2"
 		"Ability16"						"special_bonus_unique_centaur_stampede_1"
 		"Ability17"						"special_bonus_unique_centaur_stampede_2"
-		
-		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
-		"AttributeBaseStrength"			"23"
-		"AttributeStrengthGain"			"3.9"
-		"AttributeBaseIntelligence"		"15"
-		"AttributeIntelligenceGain"		"1.6"
-		"AttributeBaseAgility"			"25"
-		"AttributeAgilityGain"			"3.2"
 	}
 	"npc_dota_hero_chaos_knight_ebf"
 	{
@@ -608,7 +645,7 @@
 	//=================================================================================================================
 	// HERO: Darowu Rangeru
 	//=================================================================================================================
-	"npc_dota_hero_drow_ranger_ebf"
+	"npc_dota_hero_drow_ranger"
 	{
 		"override_hero"					"npc_dota_hero_drow_ranger"
 		"AbilityLayout"					"5"
@@ -627,6 +664,52 @@
 		"Ability16"						"special_bonus_unique_drow_ranger_marksmanship_1"
 		"Ability17"						"special_bonus_unique_drow_ranger_marksmanship_2"
 		
+		"Masteries"
+		{
+			"MANA"{"1" "5"}
+			"MANA_REGEN"{"2" "3"}
+			"ATTACK_DAMAGE"{"3" "5"}
+			"ATTACK_SPEED"{"3" "5"}
+			"HEALTH"{"1" "3"}
+			"EVASION"{"3" "5"}
+			"THREAT_DOWN"{"3" "2"}
+			"STATUS_AMP"{"2" "2"}
+		}
+	}
+	//=================================================================================================================
+	// HERO: Darowu Rangeru
+	//=================================================================================================================
+	"npc_dota_hero_hoodwink"
+	{
+		"override_hero"					"npc_dota_hero_hoodwink"
+		
+		"Ability1"						"hoodwink_acorn_shot_bh"
+		"Ability2"						"hoodwink_bushwhack_bh"
+		"Ability3"						"hoodwink_scurry_bh"
+		"Ability4"						"generic_hidden"
+		"Ability5"						"hoodwink_heartland_wanderer"
+		"Ability6"						"hoodwink_sharpshooter_bh"
+		
+		"Ability10"						"special_bonus_unique_hoodwink_acorn_shot_1"
+		"Ability11"						"special_bonus_unique_hoodwink_acorn_shot_2"
+		"Ability12"						"special_bonus_unique_hoodwink_bushwhack_1"
+		"Ability13"						"special_bonus_unique_hoodwink_bushwhack_2"
+		"Ability14"						"special_bonus_unique_hoodwink_scurry_1"
+		"Ability15"						"special_bonus_unique_hoodwink_scurry_2"
+		"Ability16"						"special_bonus_unique_hoodwink_sharpshooter_1"
+		"Ability17"						"special_bonus_unique_hoodwink_sharpshooter_2"
+		
+		"Masteries"
+		{
+			"MANA"{"3" "4"}
+			"MANA_REGEN"{"3" "4"}
+			"SPELL_AMP"{"3" "4"}
+			"ATTACK_DAMAGE"{"1" "5"}
+			"HEALTH"{"1" "4"}
+			"MOVESPEED"{"3" "5"}
+			"THREAT_DOWN"{"3" "2"}
+			"STATUS_AMP"{"3" "2"}
+		}
 	}
 	//=================================================================================================================
 	// HERO: et
@@ -815,6 +898,18 @@
 	    "Ability15"						"special_bonus_unique_huskar_raging_berserker_2"
 	    "Ability16"						"special_bonus_unique_huskar_sunder_life_1"
 	    "Ability17"						"special_bonus_unique_huskar_sunder_life_2"
+		
+		"Masteries"
+		{
+			"ARMOR"{"2" "5"}
+			"HEALTH"{"3" "5"}
+			"STRENGTH"{"3" "5"}
+			"THREAT_DOWN"{"1" "5"}
+			"EVASION"{"3" "2"}
+			"AREA_DAMAGE"{"3" "2"}
+			"ATTACK_DAMAGE"{"3" "2"}
+			"SPELL_AMP"{"1" "4"}
+		}
 	}
 	//=================================================================================================================
 	// HERO: Invoker
@@ -872,13 +967,14 @@
 		"Ability17"		"special_bonus_unique_jakiro_macropyre_bh_3"
 	}
 
-	"npc_dota_hero_juggernaut_ebf"
+	"npc_dota_hero_juggernaut"
 	{
 		"override_hero"			"npc_dota_hero_juggernaut"
 		"Ability1"				"juggernaut_mirror_blades"
 		"Ability2"				"juggernaut_meditative_state"
 		"Ability3"				"juggernaut_quickparry"
 		"Ability4"				"juggernaut_momentum_strike"
+		"Ability5"				"juggernaut_hidden_blade"
 		"Ability6"				"juggernaut_dance_of_blades"
 		
 		"Ability10"				"special_bonus_unique_juggernaut_mirror_blades_1"
@@ -889,6 +985,18 @@
 		"Ability15"				"special_bonus_unique_juggernaut_quickparry_2"
 		"Ability16"				"special_bonus_unique_juggernaut_dance_of_blades_1"
 		"Ability17"				"special_bonus_unique_juggernaut_momentum_strike_1"
+		
+		"Masteries"
+		{
+			"ATTACK_SPEED"{"3" "5"}
+			"ATTACK_DAMAGE"{"3" "5"}
+			"EVASION"{"3" "5"}
+			"HEALTH"{"1" "5"}
+			"MOVESPEED"{"3" "2"}
+			"SPELL_AMP"{"3" "3"}
+			"STATUS_AMP"{"1" "2"}
+			"AREA_DAMAGE"{"2" "3"}
+		}
 	}
 	"npc_dota_hero_keeper_of_the_light_ebf"
 	{
@@ -952,6 +1060,18 @@
 		"Ability15"				   		"special_bonus_unique_legion_commander_fearless_assault_2"
 		"Ability16"				   		"special_bonus_unique_legion_commander_war_fury_1"
 		"Ability17"				   		"special_bonus_unique_legion_commander_war_fury_2"
+		
+		"Masteries"
+		{
+			"ARMOR"{"2" "3"}
+			"MAGIC_RESIST"{"2" "3"}
+			"HEALTH"{"3" "5"}
+			"MANA"{"2" "5"}
+			"MANA_REGEN"{"2" "3"}
+			"ATTACK_DAMAGE"{"3" "5"}
+			"SPELL_AMP"{"1" "3"}
+			"STATUS_AMP"{"1" "3"}
+		}
 	}
 	//=================================================================================================================
 	// HERO: Storm
@@ -996,27 +1116,43 @@
 		"Ability16"						"special_bonus_unique_lich_dark_sacrifice_1"
 		"Ability17"						"special_bonus_unique_lich_dark_sacrifice_2"
 	}
-	"npc_dota_hero_life_stealer_ebf"
+	"npc_dota_hero_life_stealer"
 	{
 		"override_hero"					"npc_dota_hero_life_stealer"
 		"Ability1"						"lifestealer_rage_bh"
 		"Ability2"						"lifestealer_hunger"
-		"Ability3"						"lifestealer_flesh_wounds"
-		"Ability4"						"lifestealer_infest_bh"
-		"Ability5"						"lifestealer_assimilate_bh"
-		"Ability6"						"lifestealer_rend"
+		"Ability3"						"lifestealer_ghoul_frenzy_bh"
+		"Ability4"						"lifestealer_assimilate_bh"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"lifestealer_infest_bh"
 
-		"Ability10"						"special_bonus_unique_lifestealer_rage_bh_1"
-		"Ability11"						"special_bonus_unique_lifestealer_rage_bh_2"
+		"Ability10"						"special_bonus_unique_lifestealer_rage_1"
+		"Ability11"						"special_bonus_unique_lifestealer_rage_2"
 		"Ability12"						"special_bonus_unique_lifestealer_hunger_1"
 		"Ability13"						"special_bonus_unique_lifestealer_hunger_2"
-		"Ability14"						"special_bonus_unique_lifestealer_flesh_wounds_1"
-		"Ability15"						"special_bonus_unique_lifestealer_flesh_wounds_2"
-		"Ability16"						"special_bonus_unique_lifestealer_rend_1"
-		"Ability17"						"special_bonus_unique_lifestealer_rend_2"
+		"Ability14"						"special_bonus_unique_lifestealer_ghoul_frenzy_1"
+		"Ability15"						"special_bonus_unique_lifestealer_ghoul_frenzy_2"
+		"Ability16"						"special_bonus_unique_lifestealer_infest_1"
+		"Ability17"						"special_bonus_unique_lifestealer_infest_2"
+		
+		"Masteries"
+		{
+			"ARMOR"{"2" "3"}
+			"ATTACK_SPEED"{"1" "3"}
+			"ATTACK_DAMAGE"{"1" "5"}
+			"HEALTH"{"2" "5"}
+			"AREA_DAMAGE"{"3" "3"}
+			"MANA"{"3" "2"}
+			"MANA_REGEN"{"3" "3"}
+			"THREAT_AMP"{"3" "2"}
+			"THREAT_DOWN"{"3" "2"}
+			"STATUS_AMP"{"3" "1"}
+			"HEAL_AMP"{"3" "1"}
+			"MOVESPEED"{"2" "2"}
+		}
 		
 	}
-	"npc_dota_hero_lina_ebf" // Ifrit
+	"npc_dota_hero_lina_ebf"
 	{
 		"override_hero"					"npc_dota_hero_lina"
 		"Ability1"						"lina_dragon"
@@ -1034,64 +1170,67 @@
 		"Ability16"						"special_bonus_unique_lina_laguna_1"
 		"Ability17"						"special_bonus_unique_lina_laguna_2"
 	}
-	"npc_dota_hero_lion_ebf"
+	"npc_dota_hero_lion"
 	{
 		"override_hero"					"npc_dota_hero_lion"
 		"Ability1"						"lion_earth_spike"
 		"Ability2"						"lion_frogger"
-		"Ability3"						"lion_meteor"
-		"Ability4"						"lion_mana_aura"
-		// "Ability5"						"lion_refined_fireblast"
+		"Ability3"						"lion_mana_drain_bh"
+		"Ability4"						"generic_hidden" // "lion_mana_aura"
+		"Ability5"						"generic_hidden" // "lion_refined_fireblast"
 		"Ability6"						"lion_death_finger"
 		
 		"Ability10"						"special_bonus_unique_lion_earth_spike_1"
 		"Ability11"						"special_bonus_unique_lion_earth_spike_2"
 		"Ability12"						"special_bonus_unique_lion_frogger_1"
 		"Ability13"						"special_bonus_unique_lion_frogger_2"
-		"Ability14"						"special_bonus_unique_lion_meteor_1"
-		"Ability15"						"special_bonus_unique_lion_meteor_2"
+		"Ability14"						"special_bonus_unique_lion_mana_drain_1"
+		"Ability15"						"special_bonus_unique_lion_mana_drain_2"
 		"Ability16"						"special_bonus_unique_lion_death_finger_1"
 		"Ability17"						"special_bonus_unique_lion_death_finger_2"
+		
+		"Masteries"
+		{
+			"MANA"{"3" "5"}
+			"HEALTH"{"1" "3"}
+			"SPELL_AMP"{"3" "5"}
+			"STATUS_AMP"{"3" "5"}
+			"THREAT_DOWN"{"1" "3"}
+			"MOVESPEED"{"1" "3"}
+			"EVASION"{"1" "3"}
+			"MAGIC_RESIST"{"3" "3"}
+		}
 	}
-	"npc_dota_hero_luna_ebf"
+	"npc_dota_hero_luna"
 	{
 		"override_hero"					"npc_dota_hero_luna"
 		"Ability1"						"luna_lucent_beam_bh"
-		"Ability2"						"luna_nightsilver_resolve"
+		"Ability2"						"luna_moon_glaive_bh"
 		"Ability3"						"luna_lunar_blessing_bh"
-		"Ability4"						"luna_moon_glaive_bh"
 		"Ability6"						"luna_eclipse_bh"
 		"VisionDaytimeRange"			"1800"
 		"VisionNighttimeRange"			"1800"
 		
 		"Ability10"						"special_bonus_unique_luna_lucent_beam_1"
 		"Ability11"						"special_bonus_unique_luna_lucent_beam_2"
-		"Ability12"						"special_bonus_unique_luna_nightsilver_resolve_1"
-		"Ability13"						"special_bonus_unique_luna_nightsilver_resolve_2"
+		"Ability12"						"special_bonus_unique_luna_moon_glaive_1"
+		"Ability13"						"special_bonus_unique_luna_moon_glaive_2"
 		"Ability14"						"special_bonus_unique_luna_lunar_blessing_1"
 		"Ability15"						"special_bonus_unique_luna_lunar_blessing_2"
 		"Ability16"						"special_bonus_unique_luna_eclipse_1"
 		"Ability17"						"special_bonus_unique_luna_eclipse_2"
 		
-		"ArmorPhysical"					"0"
-		"AttackCapabilities"			"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"				"28"
-		"AttackDamageMax"				"32"
-		"AttackRate"					"1.700000"
-		"AttackAnimationPoint"			"0.460000"
-		"AttackAcquisitionRange"		"800"
-		"AttackRange"					"330"
-		"ProjectileModel"				"particles/units/heroes/hero_luna/luna_base_attack.vpcf"
-		"ProjectileSpeed"				"900"
-		"AttributePrimary"				"DOTA_ATTRIBUTE_AGILITY"
-		"AttributeBaseStrength"			"24"
-		"AttributeStrengthGain"			"2.5"
-		"AttributeBaseAgility"			"18"
-		"AttributeAgilityGain"			"3.300000"
-		"AttributeBaseIntelligence"		"16"
-		"AttributeIntelligenceGain"		"1.850000"
-		"MovementSpeed"					"330"
-		"MovementTurnRate"				"0.600000"
+		"Masteries"
+		{
+			"MANA"{"3" "5"}
+			"MANA_REGEN"{"3" "5"}
+			"HEALTH"{"1" "3"}
+			"SPELL_AMP"{"3" "5"}
+			"ATTACK_DAMAGE"{"3" "5"}
+			"EVASION"{"1" "3"}
+			"MOVESPEED"{"1" "3"}
+			"THREAT_DOWN"{"3" "1"}
+		}
 	}
 	//=================================================================================================================
 	// HERO: skywrath
@@ -1290,11 +1429,26 @@
 		"Ability15"						"special_bonus_unique_necrophos_heartstopper_aura_2"
 		"Ability16"						"special_bonus_unique_necrophos_reapers_scythe_1"
 		"Ability17"						"special_bonus_unique_necrophos_reapers_scythe_2"
+		
+		"Masteries"
+		{
+			"ARMOR"{"1" "2"}
+			"MAGIC_RESIST"{"1" "2"}
+			"HEALTH"{"2" "5"}
+			"MANA"{"3" "5"}
+			"MANA_REGEN"{"3" "2"} 
+			"ATTACK_SPEED"{"1" "3"}
+			"ATTACK_DAMAGE"{"1" "4"}
+			"HEAL_AMP"{"1" "3"}
+			"SPELL_AMP"{"1" "3"}
+			"THREAT_AMP"{"1" "4"}
+			"THREAT_DOWN"{"1" "4"}
+		}
 	}
 	//=================================================================================================================
 	// HERO: Shadow Fiend
 	//=================================================================================================================
-	"npc_dota_hero_nevermore_ebf"
+	"npc_dota_hero_nevermore"
 	{
 		"override_hero"					"npc_dota_hero_nevermore"
 		"Ability1"						"shadow_fiend_shadowraze1"
@@ -1308,12 +1462,23 @@
 		"Ability10"						"special_bonus_unique_shadow_fiend_shadowraze_1"
 		"Ability11"						"special_bonus_unique_shadow_fiend_shadowraze_2"
 		"Ability12"						"special_bonus_unique_shadow_fiend_dark_lord_1"
-		"Ability13"						"special_bonus_unique_shadow_fiend_dark_lord_2"
+		"Ability13"						"special_bonus_unique_shadow_fiend_dark_lord_3"
 		"Ability14"						"special_bonus_unique_shadow_fiend_sunder_soul_1"
-		"Ability15"						"special_bonus_unique_shadow_fiend_sunder_soul_2"
+		"Ability15"						"special_bonus_unique_shadow_fiend_sunder_soul_3"
 		"Ability16"						"special_bonus_unique_shadow_fiend_requiem_1"
 		"Ability17"						"special_bonus_unique_shadow_fiend_requiem_2"
 		
+		"Masteries"
+		{
+			"ALL_STATS"{"3" "5"}
+			"AGILITY"{"2" "3"}
+			"MANA"{"3" "4"}
+			"MANA_REGEN"{"3" "4"}
+			"THREAT_DOWN"{"1" "3"}
+			"SPELL_AMP"{"2" "4"} 
+			"ATTACK_SPEED"{"2" "4"}
+			"MOVESPEED"{"3" "3"}
+		}
 	}
 	//=================================================================================================================
 	// HERO: Night Stalker
@@ -1493,6 +1658,8 @@
 		"Ability1"						"pa_kunai_toss"
 		"Ability2"						"pa_flash_step"
 		"Ability3"						"phantom_assassin_blur_ebf"
+		"Ability4"						"generic_hidden"
+		"Ability5"						"generic_hidden"
 		"Ability6"						"phantom_assassin_coup_de_grace_ebf"
 	
 		"Ability10"						"special_bonus_unique_pa_kunai_toss_1"
@@ -1504,13 +1671,17 @@
 	    "Ability16"    		 	  		"special_bonus_unique_phantom_assassin_coup_de_grace_2"
 	    "Ability17"  	     			"special_bonus_unique_phantom_assassin_coup_de_grace_1"
 		
-		"AttackRate"					"2"
-		"AttributeBaseStrength"			"21"
-		"AttributeStrengthGain"			"2.150000"
-		"AttributeBaseAgility"			"35"
-		"AttributeAgilityGain"			"3.8"
-		"AttributeBaseIntelligence"		"15"
-		"AttributeIntelligenceGain"		"1.400000"
+		"Masteries"
+		{
+			"HEALTH"{"2" "5"}
+			"HEALTH_REGEN"{"3" "3"}
+			"ATTACK_DAMAGE"{"3" "5"}
+			"ATTACK_SPEED"{"3" "5"}
+			"AREA_DAMAGE"{"2" "4"}
+			"MOVESPEED"{"3" "4"} 
+			"THREAT_AMP"{"1" "4"}
+			"THREAT_DOWN"{"1" "4"}
+		}
 	}
 	//=================================================================================================================
 	// HERO: Phantom Lancer
@@ -1533,6 +1704,18 @@
 	    "Ability15"  	     			"special_bonus_unique_pl_phantom_rush_1"
 		"Ability16"      	 			"special_bonus_unique_pl_false_edge_1"
 	    "Ability17"      	 			"special_bonus_unique_pl_false_edge_2"
+		
+		"Masteries"
+		{
+			"AGILITY"{"3" "5"}
+			"HEALTH"{"1" "5"}
+			"MANA"{"1" "5"}
+			"MANA_REGEN"{"2" "5"}
+			"AREA_DAMAGE"{"1" "3"}
+			"EVASION"{"1" "3"} 
+			"THREAT_DOWN"{"3" "2"}
+			"STATUS_AMP"{"1" "2"}
+		}
 	}
 	"npc_dota_hero_phoenix" // Justicar
 	{
@@ -1573,12 +1756,12 @@
 	//=================================================================================================================
 	// HERO: Pudge
 	//=================================================================================================================
-	"npc_dota_hero_pudge_ebf"
+	"npc_dota_hero_pudge"
 	{
 		"override_hero"					"npc_dota_hero_pudge"
 		"Ability1"						"pudge_hook_lua"
 		"Ability2"						"pudge_rot_lua"	
-		"Ability3"						"pudge_chain_storm"
+		"Ability3"						"pudge_regurgitate"
 		"Ability4"						"pudge_flesh_heap_lua"
 		"Ability6"						"pudge_dismember_lua"
 	
@@ -1586,10 +1769,22 @@
 		"Ability11"						"special_bonus_unique_pudge_hook_lua_2"
 		"Ability12"						"special_bonus_unique_pudge_rot_lua_1"
 		"Ability13"						"special_bonus_unique_pudge_rot_lua_2"
-		"Ability14"						"special_bonus_unique_pudge_chain_storm_1"
-		"Ability15"						"special_bonus_unique_pudge_chain_storm_2"
+		"Ability14"						"special_bonus_unique_pudge_regurgitate_1"
+		"Ability15"						"special_bonus_unique_pudge_regurgitate_2"
 		"Ability16"						"special_bonus_unique_pudge_dismember_lua_1"
 		"Ability17"						"special_bonus_unique_pudge_dismember_lua_2"
+		
+		"Masteries"
+		{
+			"STRENGTH"{"3" "5"}
+			"HEALTH"{"3" "5"}
+			"MANA"{"3" "5"}
+			"MANA_REGEN"{"3" "3"}
+			"MAGIC_RESIST"{"3" "5"}
+			"SPELL_AMP"{"3" "5"} 
+			"THREAT_DOWN"{"3" "2"}
+			"THREAT_AMP"{"3" "2"}
+		}
 	}
 	"npc_dota_hero_pugna_ebf"
 	{
@@ -1838,12 +2033,24 @@
 		"Ability11"						"special_bonus_unique_wk_blast_2"
 		"Ability12"						"special_bonus_unique_wk_vamp_1"
 		"Ability13"						"special_bonus_unique_wk_vamp_2"
-		"Ability14"						"special_bonus_unique_wk_skeletons_1"
-		"Ability15"						"special_bonus_unique_wk_crit_1"
+		"Ability14"						"special_bonus_unique_wk_crit_1"
+		"Ability15"						"special_bonus_unique_wk_crit_2"
 		"Ability16"						"special_bonus_unique_wk_reincarnation_1"
 		"Ability17"						"special_bonus_unique_wk_reincarnation_3"
+		
+		"Masteries"
+		{
+			"STRENGTH"{"3" "5"}
+			"ATTACK_DAMAGE"{"3" "5"}
+			"HEALTH"{"3" "5"}
+			"MOVESPEED"{"1" "4"}
+			"ARMOR"{"2" "4"}
+			"MAGIC_RESIST"{"2" "4"}
+			"THREAT_AMP"{"2" "3"}
+			"THREAT_DOWN"{"2" "3"}
+		}
 	}
-	"npc_dota_hero_lone_druid_ebf"
+	"npc_dota_hero_lone_druid"
 	{
 		"override_hero"					"npc_dota_hero_lone_druid"
 		"Ability1"						"druid_battle_cry"
@@ -1865,7 +2072,7 @@
 	//=================================================================================================================
 	// HERO: skywrath
 	//=================================================================================================================
-	"npc_dota_hero_skywrath_mage_ebf"
+	"npc_dota_hero_skywrath_mage"
 	{
 		"override_hero"					"npc_dota_hero_skywrath_mage"
 		"Ability1"						"skywrath_arcane"
@@ -1911,94 +2118,139 @@
 	//=================================================================================================================
 	// HERO: slark
 	//=================================================================================================================
-	"npc_dota_hero_slark_ebf"
+	"npc_dota_hero_slark"
 	{
 		"override_hero"					"npc_dota_hero_slark"
-		"Ability1"						"slark_dark_pact_ebf"
-		"Ability2"						"slark_pounce_ebf"
-		"Ability3"						"slark_essence_shift_ebf"
-		"Ability4"						"slark_acrobatics"
+		"Ability1"						"slark_dark_pact_bh"
+		"Ability2"						"slark_pounce_bh"
+		"Ability3"						"slark_depth_shroud_bh"
+		"Ability4"						"slark_essence_shift_bh"
 		"Ability5"						"generic_hidden"
-		"Ability6"						"slark_shadow_dance_ebf"
+		"Ability6"						"slark_shadow_dance_bh"
 		
 		"Ability10"						"special_bonus_unique_slark_dark_pact_1"
 		"Ability11"						"special_bonus_unique_slark_dark_pact_2"
 		"Ability12"						"special_bonus_unique_slark_pounce_1"
 		"Ability13"						"special_bonus_unique_slark_pounce_2"
-		"Ability14"						"special_bonus_unique_slark_essence_shift_1"
-		"Ability15"						"special_bonus_unique_slark_essence_shift_2"
+		"Ability14"						"special_bonus_unique_slark_depth_shroud_1"
+		"Ability15"						"special_bonus_unique_slark_depth_shroud_2"
 		"Ability16"						"special_bonus_unique_slark_shadow_dance_1"
 		"Ability17"						"special_bonus_unique_slark_shadow_dance_2"
+		
+		"Masteries"
+		{
+			"ATTACK_SPEED"{"3" "5"}
+			"HEALTH"{"2" "5"}
+			"ALL_STATS"{"2" "5"}
+			"THREAT_DOWN"{"2" "3"}
+			"EVASION"{"2" "3"}
+			"STATUS_AMP"{"2" "3"}
+			"SPELL_AMP"{"1" "3"}
+			"MOVESPEED"{"3" "3"}
+		}
 	}
 	//=================================================================================================================
 	// HERO: Snapfire
 	//=================================================================================================================
-	"npc_dota_hero_snapfire_ebf"
+	"npc_dota_hero_snapfire"
 	{
-		"override_hero"			"npc_dota_hero_snapfire"
-		"Ability1"				"snapfire_scatterblast_lua"
-		"Ability2"				"snapfire_firesnap_cookie_lua"
-		"Ability3"				"snapfire_lil_shredder_lua"
-		"Ability4"				"generic_hidden"
-		"Ability5"				"generic_hidden"
-		"Ability6"				"snapfire_mortimer_kisses_lua"
+		"override_hero"					"npc_dota_hero_snapfire"
+		"Ability1"						"snapfire_scatterblast_bh"
+		"Ability2"						"snapfire_firesnap_cookie_bh"
+		"Ability3"						"snapfire_lil_shredder_bh"
+		"Ability4"						"generic_hidden"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"snapfire_mortimer_kisses_bh"
 
-		"Ability10"		"special_bonus_unique_snapfire_scatterblast_lua_1"
-		"Ability11"		"special_bonus_unique_snapfire_scatterblast_lua_2"
-		"Ability12"		"special_bonus_unique_snapfire_firesnap_cookie_lua_1"
-		"Ability13"		"special_bonus_unique_snapfire_firesnap_cookie_lua_2"
-		"Ability14"		"special_bonus_unique_snapfire_lil_shredder_lua_1"
-		"Ability15"		"special_bonus_unique_snapfire_lil_shredder_lua_2"
-		"Ability16"		"special_bonus_unique_snapfire_mortimer_kisses_lua_1"
-		"Ability17"		"special_bonus_unique_snapfire_mortimer_kisses_lua_2"
+		"Ability10"						"special_bonus_unique_snapfire_scatterblast_1"
+		"Ability11"						"special_bonus_unique_snapfire_scatterblast_2"
+		"Ability12"						"special_bonus_unique_snapfire_firesnap_cookie_1"
+		"Ability13"						"special_bonus_unique_snapfire_firesnap_cookie_2"
+		"Ability14"						"special_bonus_unique_snapfire_lil_shredder_1"
+		"Ability15"						"special_bonus_unique_snapfire_lil_shredder_2"
+		"Ability16"						"special_bonus_unique_snapfire_mortimer_kisses_1"
+		"Ability17"						"special_bonus_unique_snapfire_mortimer_kisses_2"
 		
+		"Masteries"
+		{
+			"SPELL_AMP"{"2" "3"}
+			"ARMOR"{"2" "4"}
+			"MAGIC_RESIST"{"1" "4"}
+			"HEALTH"{"2" "5"}
+			"MANA"{"2" "5"}
+			"MANA_REGEN"{"1" "3"}
+			"ATTACK_DAMAGE"{"2" "3"}
+			"MOVESPEED"{"2" "3"}
+		}
 	}
 	//=================================================================================================================
 	// HERO: sniper
 	//=================================================================================================================
-	"npc_dota_hero_sniper_ebf"
+	"npc_dota_hero_sniper"
 	{
 		"override_hero"					"npc_dota_hero_sniper"
 		"Ability1"						"sniper_shrapnel_bh"
 		"Ability2"						"sniper_headshot_bh"
-		"Ability3"						"sniper_rapid_fire"
-		"Ability4"						"sniper_take_aim_bh"
+		"Ability3"						"sniper_take_aim_bh"
+		"Ability4"						"generic_hidden"
+		"Ability5"						"generic_hidden"
 		"Ability6"						"sniper_assassinate_bh"
 
 		"Ability10"						"special_bonus_unique_sniper_shrapnel_bh_1"
 		"Ability11"						"special_bonus_unique_sniper_shrapnel_bh_2"
 		"Ability12"						"special_bonus_unique_sniper_headshot_bh_1"
 		"Ability13"						"special_bonus_unique_sniper_headshot_bh_2"
-		"Ability14"						"special_bonus_unique_sniper_rapid_fire_1"
-		"Ability15"						"special_bonus_unique_sniper_rapid_fire_2"
+		"Ability14"						"special_bonus_unique_sniper_take_aim_1"
+		"Ability15"						"special_bonus_unique_sniper_take_aim_2"
 		"Ability16"						"special_bonus_unique_sniper_assassinate_bh_1"
 		"Ability17"						"special_bonus_unique_sniper_assassinate_bh_2"
 		
+		"Masteries"
+		{
+			"ATTACK_DAMAGE"{"3" "5"}
+			"ATTACK_SPEED"{"3" "5"}
+			"AGILITY"{"3" "5"}
+			"MOVESPEED"{"2" "3"}
+			"MANA"{"3" "3"}
+			"MANA_REGEN"{"1" "3"}
+			"SPELL_AMP"{"2" "3"}
+			"AREA_DAMAGE"{"2" "3"}
+		}
 	}
 	//=================================================================================================================
 	// HERO: Spectre
 	//=================================================================================================================
-	"npc_dota_hero_spectre_ebf"
+	"npc_dota_hero_spectre"
 	{
 		"override_hero"					"npc_dota_hero_spectre"
 		"AbilityLayout"					"4"
 		"Ability1"						"spectre_spectral_dagger_bh"					// Ability 1
-		"Ability2"						"spectre_echo_scream"	
-		"Ability3"						"spectre_desolate_bh"		// Ability 2
+		"Ability2"						"spectre_desolate_bh"		// Ability 2
+		"Ability3"						"spectre_dispersion_bh"		
 		"Ability4"						"spectre_dimensional_interjection"
-		"Ability5"						"generic_hidden"
-		"Ability6"						"spectre_dispersion_bh"						// Ability 3
+		"Ability5"						"spectre_reality_bh"
+		"Ability6"						"spectre_haunt_bh"						// Ability 3
 		
 		"Ability10"						"special_bonus_unique_spectre_spectral_dagger_1"
 		"Ability11"						"special_bonus_unique_spectre_spectral_dagger_2"
-		"Ability12"						"special_bonus_unique_spectre_echo_scream_1"
-		"Ability13"						"special_bonus_unique_spectre_echo_scream_2"
-		"Ability14"						"special_bonus_unique_spectre_desolate_1"
-		"Ability15"						"special_bonus_unique_spectre_desolate_2"
-		"Ability16"						"special_bonus_unique_spectre_dispersion_1"
-		"Ability17"						"special_bonus_unique_spectre_dispersion_2"
+		"Ability12"						"special_bonus_unique_spectre_desolate_1"
+		"Ability13"						"special_bonus_unique_spectre_desolate_2"
+		"Ability14"						"special_bonus_unique_spectre_dispersion_1"
+		"Ability15"						"special_bonus_unique_spectre_dispersion_2"
+		"Ability16"						"special_bonus_unique_spectre_haunt_1"
+		"Ability17"						"special_bonus_unique_spectre_haunt_2"
 		
-		
+		"Masteries"
+		{
+			"ALL_STATS"{"2" "5"}
+			"HEALTH"{"2" "5"}
+			"HEALTH_REGEN"{"2" "5"}
+			"MANA"{"2" "3"}
+			"ATTACK_DAMAGE"{"1" "3"}
+			"ATTACK_SPEED"{"1" "3"}
+			"ARMOR"{"1" "3"}
+			"MAGIC_RESIST"{"1" "3"}
+		}
 	}
 	"npc_dota_hero_spirit_breaker"
 	{
@@ -2059,6 +2311,18 @@
 		"Ability15"						"special_bonus_unique_sven_warcry_2"
 		"Ability16"						"special_bonus_unique_sven_gods_strength_1"
 		"Ability17"						"special_bonus_unique_sven_gods_strength_2"
+		
+		"Masteries"
+		{
+			"STRENGTH"{"3" "5"}
+			"ATTACK_SPEED"{"2" "5"}
+			"MANA"{"2" "3"}
+			"MANA_REGEN"{"2" "5"}
+			"MOVESPEED"{"2" "3"}
+			"ARMOR"{"1" "3"}
+			"MAGIC_RESIST"{"1" "3"}
+			"STATUS_AMP"{"1" "3"}
+		}
 	}
 	//=================================================================================================================
 	// HERO: Techies
@@ -2202,7 +2466,7 @@
 	//=================================================================================================================
 	// HERO: Troll Warlord
 	//=================================================================================================================
-	"npc_dota_hero_troll_warlord_ebf"
+	"npc_dota_hero_troll_warlord"
 	{
 		"override_hero"					"npc_dota_hero_troll_warlord"
 		"Ability1"						"troll_warlord_focus"
@@ -2222,6 +2486,18 @@
 		"Ability15"						"special_bonus_unique_troll_warlord_fervor_2"
 		"Ability16"						"special_bonus_unique_troll_warlord_battle_trance_1"
 		"Ability17"						"special_bonus_unique_troll_warlord_battle_trance_2"
+		
+		"Masteries"
+		{
+			"ATTACK_DAMAGE"{"2" "5"}
+			"HEALTH"{"3" "5"}
+			"HEALTH_REGEN"{"3" "5"}
+			"EVASION"{"2" "3"}
+			"MANA_REGEN"{"1" "3"}
+			"AREA_DAMAGE"{"1" "3"}
+			"MAGIC_RESIST"{"1" "3"}
+			"ARMOR"{"1" "3"}
+		}
 	}
 	"npc_dota_hero_tusk_ebf"
 	{
@@ -2244,28 +2520,40 @@
 	//=================================================================================================================
 	// HERO: undying
 	//=================================================================================================================
-	"npc_dota_hero_undying_ebf"
+	"npc_dota_hero_undying"
 	{	
 		"override_hero"					"npc_dota_hero_undying"
 		"Ability1"						"undying_decay_bh"					// Ability 4
 		"Ability2"						"undying_soul_rip_bh"				// Ability 4
-		"Ability3"						"undying_summon_zombies"					// Ability 4
-		"Ability4"						"undying_the_undying"
+		"Ability3"						"undying_tombstone_bh"					// Ability 4
+		"Ability4"						"undying_deathlust"
 		"ability6"						"undying_flesh_golem_bh"
 		
 		"Ability10"						"special_bonus_unique_undying_decay_1"
 		"Ability11"						"special_bonus_unique_undying_decay_2"
 		"Ability12"						"special_bonus_unique_undying_soul_rip_1"
 		"Ability13"						"special_bonus_unique_undying_soul_rip_2"
-		"Ability14"						"special_bonus_unique_undying_summon_zombies_1"
-		"Ability15"						"special_bonus_unique_undying_summon_zombies_2"
+		"Ability14"						"special_bonus_unique_undying_tombstone_1"
+		"Ability15"						"special_bonus_unique_undying_tombstone_2"
 		"Ability16"						"special_bonus_unique_undying_flesh_golem_1"
-		"Ability17"						"special_bonus_unique_undying_flesh_golem_2"
+		"Ability17"						"special_bonus_unique_undying_flesh_golem_3"
+		
+		"Masteries"
+		{
+			"STRENGTH"{"3" "5"}
+			"HEALTH_REGEN"{"3" "5"}
+			"ARMOR"{"2" "3"}
+			"MAGIC_RESIST"{"2" "3"}
+			"HEAL_AMP"{"2" "3"}
+			"SPELL_AMP"{"2" "3"}
+			"STATUS_AMP"{"2" "3"}
+			"MANA_REGEN"{"3" "5"}
+		}
 	}
 	//=================================================================================================================
 	// HERO: ursa
 	//=================================================================================================================
-	"npc_dota_hero_ursa_ebf"
+	"npc_dota_hero_ursa"
 	{
 		"override_hero"					"npc_dota_hero_ursa"
 		"Ability1"						"ursa_earthshock_bh"
@@ -2281,6 +2569,18 @@
 		"Ability15"						"special_bonus_unique_ursa_fury_swipes_bh_2"
 		"Ability16"						"special_bonus_unique_ursa_enrage_bh_1"
 		"Ability17"						"special_bonus_unique_ursa_enrage_bh_2"
+		
+		"Masteries"
+		{
+			"MANA"{"2" "3"}
+			"MANA_REGEN"{"2" "3"}
+			"MOVESPEED"{"3" "5"}
+			"ATTACK_DAMAGE"{"3" "5"}
+			"HEALTH"{"3" "4"}
+			"THREAT_DOWN"{"2" "3"}
+			"STATUS_AMP"{"2" "4"}
+			"AREA_DAMAGE"{"3" "3"}
+		}
 	}
 	"npc_dota_hero_vengefulspirit_ebf"
 	{
@@ -2301,7 +2601,7 @@
 		"Ability14"						"special_bonus_unique_vengefulspirit_haunt_1"
 		"Ability15"						"special_bonus_unique_vengefulspirit_haunt_2"
 	}
-	"npc_dota_hero_venomancer_ebf"
+	"npc_dota_hero_venomancer"
 	{
 		"override_hero"					"npc_dota_hero_venomancer"
 		"Ability1"						"venomancer_venomous_gale_ebf"
@@ -2318,6 +2618,17 @@
 		"Ability16"						"special_bonus_unique_venomancer_poison_nova_1"
 		"Ability17"						"special_bonus_unique_venomancer_poison_nova_2"
 		
+		"Masteries"
+		{
+			"ALL_STATS"{"2" "4"}
+			"MANA_REGEN"{"2" "5"}
+			"STATUS_AMP"{"2" "5"}
+			"SPELL_AMP"{"2" "3"}
+			"ATTACK_DAMAGE"{"2" "3"}
+			"ATTACK_SPEED"{"2" "3"}
+			"ARMOR"{"1" "4"}
+			"MAGIC_RESIST"{"1" "3"}
+		}
 	}
 	"npc_dota_hero_viper_ebf"
 	{
@@ -2373,7 +2684,7 @@
 		"Ability16"						"special_bonus_unique_warlock_demonic_summons_1"
 		"Ability17"						"special_bonus_unique_warlock_demonic_summons_2"
 	}
-	"npc_dota_hero_weaver_ebf"
+	"npc_dota_hero_weaver"
 	{
 		"override_hero"					"npc_dota_hero_weaver"
 		"Ability1"						"weaver_swarm"
@@ -2448,8 +2759,19 @@
 		"Ability16"						"special_bonus_unique_wisp_worm_hole_1"
 		"Ability17" 					"special_bonus_unique_wisp_worm_hole_2"
 		
+		"Masteries"
+		{
+			"HEALTH_REGEN"{"2" "5"}
+			"MANA_REGEN"{"3" "5"}
+			"SPELL_AMP"{"3" "4"}
+			"THREAT_DOWN"{"3" "3"}
+			"MOVESPEED"{"1" "4"}
+			"EVASION"{"3" "1"}
+			"ATTACK_DAMAGE"{"1" "4"}
+			"ATTACK_SPEED"{"1" "4"}
+		}
 	}
-	"npc_dota_hero_witch_doctor_ebf"
+	"npc_dota_hero_witch_doctor"
 	{
 		"override_hero"					"npc_dota_hero_witch_doctor"
 		"Ability1"						"witch_doctor_paralyzing_cask_bh"
@@ -2466,27 +2788,52 @@
 		"Ability15"						"special_bonus_unique_witch_doctor_maledict_2"
 		"Ability16"						"special_bonus_unique_witch_doctor_death_ward_1"
 		"Ability17"						"special_bonus_unique_witch_doctor_death_ward_2"
+		
+		"Masteries"
+		{
+			"MANA"{"2" "5"}
+			"MANA_REGEN"{"3" "2"}
+			"HEALTH"{"1" "5"}
+			"THREAT_DOWN"{"3" "2"}
+			"HEAL_AMP"{"3" "5"}
+			"SPELL_AMP"{"3" "5"}
+			"MOVESPEED"{"3" "2"}
+			"INTELLIGENCE"{"2" "4"}
+		}
 	}
-	"npc_dota_hero_zuus_ebf"
+	"npc_dota_hero_zuus"
 	{
 		"override_hero"					"npc_dota_hero_zuus"
 		"Ability1"						"zeus_chain_lightning"
 		"Ability2"						"zeus_thunder_bolt"
-		"Ability3"						"zeus_nimbus_storm"
+		"Ability3"						"zeus_heavenly_jump"
 		"Ability4"						"zeus_static_field"	
+		"Ability5"						"generic_hidden"
 		"Ability6"						"zeus_olympus_calls"
 		
 		"Ability10"						"special_bonus_unique_zeus_chain_lightning_1"
 		"Ability11"						"special_bonus_unique_zeus_chain_lightning_2"
 		"Ability12"						"special_bonus_unique_zeus_thunder_bolt_1"
 		"Ability13"						"special_bonus_unique_zeus_thunder_bolt_2"
-		"Ability14"						"special_bonus_unique_zeus_nimbus_storm_1"
-		"Ability15"						"special_bonus_unique_zeus_nimbus_storm_2"
+		"Ability14"						"special_bonus_unique_zeus_heavenly_jump_1"
+		"Ability15"						"special_bonus_unique_zeus_heavenly_jump_2"
 		"Ability16"						"special_bonus_unique_zeus_olympus_calls_1"
 		"Ability17"						"special_bonus_unique_zeus_olympus_calls_2"
+		
+		"Masteries"
+		{
+			"SPELL_AMP"{"3" "5"}
+			"ATTACK_DAMAGE"{"3" "3"}
+			"EVASION"{"2" "2"}
+			"MOVESPEED"{"2" "2"}
+			"MANA"{"3" "5"}
+			"MANA_REGEN"{"3" "5"}
+			"THREAT_DOWN"{"2" "3"}
+			"AREA_DAMAGE"{"3" "5"}
+		}
 	}
 	
-	"npc_dota_hero_void_spirit_bh"
+	"npc_dota_hero_void_spirit"
 	{
 		"override_hero"					"npc_dota_hero_void_spirit"
 		"Ability1"						"void_spirit_aether_remnant_bh"

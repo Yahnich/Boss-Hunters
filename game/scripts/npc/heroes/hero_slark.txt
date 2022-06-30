@@ -3,12 +3,12 @@
 	//=================================================================================================================
 	// Slark: Dark Pact
 	//=================================================================================================================
-	"slark_dark_pact_ebf"
+	"slark_dark_pact_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_slark/slark_dark_pact_ebf"
+		"ScriptFile"					"heroes/hero_slark/slark_dark_pact_bh"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
@@ -32,11 +32,11 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"9.0 8.5 8.0 7.5 7.0 6.5 6.0"
+		"AbilityCooldown"				"9.0 8.0 7.0 6.0 6.0 6.0 6.0"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"55 50 45 40 35 30 25"	
+		"AbilityManaCost"				"75 75 75 75 50 25 0"	
 		
 		"precache"
 		{
@@ -72,12 +72,17 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"total_pulses"			"10"
-			}	
+			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"pulse_interval"		"0.1"
-			}			
+			}	
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"self_damage"			"50"
+			}		
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
@@ -100,7 +105,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"0.75"
+				"value"						"1"
 			}
 		}
 	}
@@ -130,12 +135,12 @@
 	//=================================================================================================================
 	// Slark: Pounce
 	//=================================================================================================================
-	"slark_pounce_ebf"
+	"slark_pounce_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_slark/slark_pounce_ebf"
+		"ScriptFile"					"heroes/hero_slark/slark_pounce_bh"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
@@ -155,11 +160,13 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"6.0"
+		"AbilityCooldown"				"0"
+		"AbilityCharges"				"2"
+		"AbilityChargeRestoreTime"		"20 16 12 8 8 8 8"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 95 90 85 80 75 70"
+		"AbilityManaCost"				"75 75 75 75 55 35 15"
 		
 		"precache"
 		{
@@ -173,29 +180,27 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"pounce_distance"		"700"
+				"var_type"						"FIELD_INTEGER"
+				"pounce_distance"				"700"
+				"LinkedSpecialBonus"			"special_bonus_unique_slark_pounce_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"pounce_speed"			"933.33"
+				"var_type"						"FIELD_FLOAT"
+				"pounce_speed"					"933.33"
+				"LinkedSpecialBonus"			"special_bonus_unique_slark_pounce_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"pounce_radius"			"95"
+				"var_type"						"FIELD_INTEGER"
+				"pounce_radius"					"95"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"pounce_damage"			"40 80 120 160 200 240 280"
-				"LinkedSpecialBonus"	"special_bonus_unique_slark_pounce_2"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"leash_duration"		"3.5"
+				"var_type"						"FIELD_FLOAT"
+				"leash_duration"				"2.5 2.5 2.5 2.5 2.75 3.0 3.25"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
@@ -219,7 +224,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"-1.5"
+				"value"						"100"
 			}
 		}
 	}
@@ -241,33 +246,141 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"150"
+				"value"						"2"
 			}
 		}
 	}
-
 	//=================================================================================================================
-	// Slark: Essence Shift
+	// Slark: Depth Shroud
 	//=================================================================================================================
-	"slark_essence_shift_ebf"
+	"slark_depth_shroud_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_slark/slark_essence_shift_ebf"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"ScriptFile"					"heroes/hero_slark/slark_depth_shroud_bh"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"AbilityTextureName"			"slark_essence_shift"
-		"MaxLevel"						"7"	
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Slark.Pounce.Cast"
+		"AbilityTextureName"			"slark_depth_shroud"
+		"MaxLevel"						"7"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_slark_essence_shift_1"	"1"
-			"special_bonus_unique_slark_essence_shift_2"	"1"
+			"special_bonus_unique_slark_depth_shroud_1"	"1"
+			"special_bonus_unique_slark_depth_shroud_2"	"1"
 		}
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30 30 30 30 25 20 15"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"75 100 125 150 150 150 150"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"1.5 2.0 2.5 3.0 3.0 3.0 3.0"
+				"LinkedSpecialBonus"			"special_bonus_unique_slark_depth_shroud_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"300"
+				"LinkedSpecialBonus"			"special_bonus_unique_slark_depth_shroud_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_slark_depth_shroud_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"10"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"150"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_slark_depth_shroud_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"2"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Slark: Essence Shift
+	//=================================================================================================================
+	"slark_essence_shift_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_slark/slark_essence_shift_bh"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityTextureName"			"slark_essence_shift"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		// "LinkedTalents"
+		// {
+			// "special_bonus_unique_slark_essence_shift_1"	"1"
+			// "special_bonus_unique_slark_essence_shift_2"	"1"
+		// }
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -276,12 +389,12 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"agi_gain"						"3"
+				"agi_gain"						"1"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"ad_loss"						"-1"
+				"ad_loss"						"-1.5"
 			}
 			"03"
 			{
@@ -294,15 +407,15 @@
 				"var_type"						"FIELD_INTEGER"
 				"hp_loss"						"-20"
 			}
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"ar_loss"						"-0.16"
-			}
 			"05"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"20 22.5 25 27.5 30 32.5 35"
+				"var_type"						"FIELD_INTEGER"
+				"perma_agi"						"1"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"boss_agi"						"3"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
@@ -378,12 +491,12 @@
 	//=================================================================================================================
 	// Slark Shadow Dance
 	//=================================================================================================================
-	"slark_shadow_dance_ebf"
+	"slark_shadow_dance_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_slark/slark_shadow_dance_ebf"
+		"ScriptFile"					"heroes/hero_slark/slark_shadow_dance_bh"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
@@ -403,11 +516,11 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60.0"
+		"AbilityCooldown"				"75 75 60 60 45 45"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"120 120 120"		
+		"AbilityManaCost"				"120"		
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -417,23 +530,28 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"4.0"
+				"duration"					"4.0 4.0 4.25 4.25 4.5 4.5"
+				"LinkedSpecialBonus"		"special_bonus_unique_slark_shadow_dance_2"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_movement_speed"		"30 35 40 45 50 55"
+				"bonus_movement_speed"		"24 36 36 48 48 60"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_regen_pct"			"3 5 7 9 11 13"
+				"bonus_regen_pct"			"5 6 6 7 7 8"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"search_radius"				"750"
-				"LinkedSpecialBonus"		"special_bonus_unique_slark_shadow_dance_2"
+				"search_radius"				"625"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"disable_time"				"2"
 			}
 		}
 	}
@@ -447,6 +565,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_slark_essence_shift_handler"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -455,7 +574,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"900"
+				"value"						"1"
 			}
 		}
 	}
@@ -478,12 +597,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"-750"
+				"value"						"2"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"1.5"
+				"cd"						"-10"
 			}
 		}
 	}

@@ -42,7 +42,7 @@ function wk_skeletons:OnSpellStart()
     	Timers:CreateTimer(tick_rate, function()
 			i = i + 1
 			local skeletonMan = self.skeletons[i]
-			if skeletonMan and not skeletonMan:IsNull()then
+			if skeletonMan and not skeletonMan:IsNull() then
 				self:UpdateSkeleton( skeletonMan )
 				local pointRando = point + ActualRandomVector(500, 150)
 				FindClearSpaceForUnit(skeletonMan, pointRando, true)
@@ -50,16 +50,29 @@ function wk_skeletons:OnSpellStart()
 				skeletonMan:StartGesture( ACT_DOTA_SPAWN )
 			else
 				local pointRando = point + ActualRandomVector(500, 150)
-				self:SpawnSkeleton(pointRando)
+				self:SpawnSkeleton(pointRando, true)
 			end
 			if i < skellingtonsToSpawn then
 				return tick_rate
 			end
     	end)
+		if caster:HasScepter() then
+			if self.deathKnight then
+				if self.deathKnight:IsAlive() then
+					self.deathKnight:RefreshAllCooldowns( )
+					self.deathKnight:SetHealth( self.deathKnight:GetMaxHealth() )
+					self.deathKnight:SetMana( self.deathKnight:GetMaxMana() )
+				else
+					self:UpdateSkeleton( skeleton )
+				end
+			else
+				Timers:CreateTimer(tick_rate, function() self:SpawnDeathKnight( point - caster:GetForwardVector() * 150, skellingtonsToSpawn ) end)
+			end
+		end
     end
 end
 
-function wk_skeletons:SpawnDeathKnight(position)
+function wk_skeletons:SpawnDeathKnight(position, power)
 	local caster = self:GetCaster()
 	local nfx = ParticleManager:CreateParticle("particles/items2_fx/ward_spawn_generic.vpcf", PATTACH_POINT, caster)
 	ParticleManager:SetParticleControl(nfx, 0, position)
@@ -72,54 +85,55 @@ function wk_skeletons:SpawnDeathKnight(position)
 	skeleton:EmitSound("n_creep_Skeleton.Spawn")
 	skeleton:StartGesture( ACT_DOTA_SPAWN )
 
-	table.insert( self.skeletons, skeleton )
-	
-	local caster = self:GetCaster()
-	local damage = ( self:GetTalentSpecialValueFor("skeleton_base_dmg") + self:GetTalentSpecialValueFor("skeleton_lvl_dmg") * caster:GetLevel() ) * caster:FindTalentValue("special_bonus_unique_wk_reincarnation_1")
-	local health = ( self:GetTalentSpecialValueFor("skeleton_base_hp") + self:GetTalentSpecialValueFor("skeleton_lvl_hp") * caster:GetLevel() ) * caster:FindTalentValue("special_bonus_unique_wk_reincarnation_1")
+	self.deathKnight = skeleton
+	skeleton.isDeathKnight = true
+	skeleton.deathKnightMultiplier = power
 	
 	local sword = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/items/skeleton_king/sk_sns2b/sk_sns2b.vmdl"})
 	sword:FollowEntity(skeleton, true)
 
 	local glove = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/items/skeleton_king/sk_dreadknight_arms/sk_dreadknight_arms.vmdl"})
 	glove:FollowEntity(skeleton, true)
-	skeleton:AddNewModifier(caster, self, "modifier_wk_skeletons_ai", {})
-	
-	skeleton:SetMana( skeleton:GetMaxMana() )
-	skeleton:SetPhysicalArmorBaseValue( caster:GetPhysicalArmorValue(false) )
-	skeleton:SetCoreHealth( health )
-	skeleton:SetAverageBaseDamage( damage, 15 )
-	skeleton:SetBaseMoveSpeed(caster:GetIdealSpeedNoSlows())
-	
-	skeleton:AddAbility("wk_blast"):SetLevel(caster:FindAbilityByName("wk_blast"):GetLevel())
-	skeleton:AddAbility("wk_crit"):SetLevel(caster:FindAbilityByName("wk_crit"):GetLevel())
-	skeleton:AddAbility("wk_reincarnation"):SetLevel(caster:FindAbilityByName("wk_reincarnation"):GetLevel())
+	skeleton:SetUnitCanRespawn( true )
+	self:UpdateSkeleton( skeleton )
 end
 
-function wk_skeletons:SpawnSkeleton(position)
+function wk_skeletons:SpawnSkeleton(position, bCapAmount)
 	local caster = self:GetCaster()
 	local nfx = ParticleManager:CreateParticle("particles/items2_fx/ward_spawn_generic.vpcf", PATTACH_POINT, caster)
 	ParticleManager:SetParticleControl(nfx, 0, position)
 	ParticleManager:ReleaseParticleIndex(nfx)
-	local skeleton = caster:CreateSummon("npc_dota_wraith_king_skeleton_warrior", position, -1, false)
-
+	
+	skeleton = caster:CreateSummon("npc_dota_wraith_king_skeleton_warrior", position, -1, false)
 	FindClearSpaceForUnit(skeleton, position, true)
 	
 	skeleton:SetHullRadius(4)
 	skeleton:EmitSound("n_creep_Skeleton.Spawn")
 	skeleton:StartGesture( ACT_DOTA_SPAWN )
 
-	table.insert( self.skeletons, skeleton )
-	skeleton:SetUnitCanRespawn( true )
+	if bCapAmount then 
+		table.insert( self.skeletons, skeleton )
+		skeleton:SetUnitCanRespawn( true )
+	end
 	self:UpdateSkeleton( skeleton )
 end
 
 function wk_skeletons:UpdateSkeleton( skeleton )
 	local caster = self:GetCaster()
-	local damage = self:GetTalentSpecialValueFor("skeleton_base_dmg") + self:GetTalentSpecialValueFor("skeleton_lvl_dmg") * caster:GetLevel()
+	local damage = (self:GetTalentSpecialValueFor("skeleton_base_dmg") + self:GetTalentSpecialValueFor("skeleton_lvl_dmg") * caster:GetLevel() )
 	local health = self:GetTalentSpecialValueFor("skeleton_base_hp") + self:GetTalentSpecialValueFor("skeleton_lvl_hp") * caster:GetLevel()
+	
 
 	if not skeleton:IsAlive() then skeleton:RespawnUnit() end
+	
+	if skeleton.isDeathKnight then
+		damage = damage * skeleton.deathKnightMultiplier
+		health = health * skeleton.deathKnightMultiplier
+		
+		skeleton:SetMana( skeleton:GetMaxMana() )
+		skeleton:SetPhysicalArmorBaseValue( caster:GetPhysicalArmorValue(false) )
+	end
+	
 	skeleton:SetCoreHealth( health )
 	skeleton:SetAverageBaseDamage( damage, 15 )
 	skeleton:SetBaseMoveSpeed(caster:GetIdealSpeedNoSlows())
@@ -135,6 +149,34 @@ function wk_skeletons:UpdateSkeleton( skeleton )
 		end
 	elseif skeleton:FindAbilityByName("wk_reincarnation") then
 		skeleton:RemoveAbility("wk_reincarnation")
+	end
+	if skeleton.isDeathKnight then
+		-- blast
+		local blast = caster:FindAbilityByName("wk_blast")
+		if blast and blast:IsTrained() then
+			skeletonBlast = skeleton:FindAbilityByName("wk_blast")
+			if not skeletonBlast then
+				skeleton:AddAbility( "wk_blast" ):SetLevel( blast:GetLevel() )
+			else
+				skeletonBlast:SetLevel( blast:GetLevel() )
+				skeletonBlast:EndCooldown()
+			end
+		elseif skeleton:FindAbilityByName("wk_blast") then
+			skeleton:RemoveAbility("wk_blast")
+		end
+		-- crit
+		local crit = caster:FindAbilityByName("wk_crit")
+		if crit and crit:IsTrained() then
+			skeletonCrit = skeleton:FindAbilityByName("wk_crit")
+			if not skeletonCrit then
+				skeleton:AddAbility( "wk_crit" ):SetLevel( crit:GetLevel() )
+			else
+				skeletonCrit:SetLevel( crit:GetLevel() )
+				skeletonCrit:EndCooldown()
+			end
+		elseif skeleton:FindAbilityByName("wk_crit") then
+			skeleton:RemoveAbility("wk_crit")
+		end
 	end
 end
 
@@ -171,17 +213,17 @@ function modifier_wk_skeletons_passive:OnDeath(params)
 		local attacker = params.attacker
 		local unit = params.unit
 
-		if attacker == caster and unit ~= caster then
+		if attacker == caster and unit ~= caster and not unit:IsMinion() then
 			local amount = self.unitCharges
 			if unit:IsBoss() then
 				amount = self.bossCharges
-			elseif unit:IsMinion() then
-				amount = self.minionCharges
+			-- elseif unit:IsMinion() then
+				-- amount = self.minionCharges
 			end
 			self:GetAbility():IncrementCharge(amount)
 			return
 		end
-		if attacker ~= caster and not unit:IsSameTeam( caster ) then
+		if not unit:IsSameTeam( caster ) then
 			local aura = caster:FindAbilityByName("wk_vamp")
 			if aura and aura:IsTrained() and CalculateDistance( unit, caster ) <= aura:GetTrueCastRange() then
 				self.currentKills = self.currentKills + 1
@@ -197,45 +239,3 @@ end
 function modifier_wk_skeletons_passive:IsHidden()
 	return self:GetStackCount() == 0
 end
-
-modifier_wk_skeletons_ai = class({})
-function modifier_wk_skeletons_ai:OnCreated(table)
-	if IsServer() then
-		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_skeletonking/wraith_king_ghosts_ambient.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
-					ParticleManager:SetParticleControlEnt(nfx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
-		self:AttachEffect(nfx)
-
-		--self:StartIntervalThink(0.25)
-	end
-end
-
-function modifier_wk_skeletons_ai:OnIntervalThink()
-	local caster = self:GetCaster()
-	local parent = self:GetParent()
-	local ability = self:GetAbility()
-
-	if not parent:GetAttackTarget() then
-		local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), 1000)
-		if #enemies > 0 then
-			for _,enemy in pairs(enemies) do
-				parent:SetAttacking(enemy)
-				break
-			end
-		else
-			--parent:MoveToNPC(caster)
-		end
-	end
-end
-
-function modifier_wk_skeletons_ai:GetStatusEffectName()
-	return "particles/status_fx/status_effect_wraithking_ghosts.vpcf"
-end
-
-function modifier_wk_skeletons_ai:StatusEffectPriority()
-	return 10
-end
-
-function modifier_wk_skeletons_ai:IsHidden()
-	return true
-end
-

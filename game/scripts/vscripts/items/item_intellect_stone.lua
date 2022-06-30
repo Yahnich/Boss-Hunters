@@ -9,13 +9,20 @@ function item_intellect_stone:RuneProcessing( item, itemmodifier, slotIndex )
 	item.itemData = item.itemData or {}
 	local level = ( item.itemData[slotIndex].rune_level or 0 ) + 1
 	item.itemData[slotIndex].rune_level = level
-	item.itemData[slotIndex].funcs["GetModifierBonusStats_Intellect"] = (item.itemData[slotIndex].funcs["GetModifierBonusStats_Intellect"] or 0) + self:GetLevelSpecialValueFor( "bonus_intellect", level-1 )
+	item.itemData[slotIndex].baseFuncs["GetModifierBonusStats_Intellect"] = (item.itemData[slotIndex].baseFuncs["GetModifierBonusStats_Intellect"] or 0) + self:GetLevelSpecialValueFor( "bonus_intellect", level-1 )
 end
 
 modifier_item_intellect_stone_passive = class(persistentModifier)
 
 function modifier_item_intellect_stone_passive:OnCreated()
-	self.int = self:GetSpecialValueFor("bonus_intellect")
+	self:OnRefresh()
+end
+
+function modifier_item_intellect_stone_passive:OnRefresh()
+	self.int = 0
+	for i = 1, self:GetAbility():GetCurrentCharges() do
+		self.int = self.int + self:GetAbility():GetLevelSpecialValueFor( "bonus_intellect", i-1 )
+	end
 end
 
 function modifier_item_intellect_stone_passive:DeclareFunctions()

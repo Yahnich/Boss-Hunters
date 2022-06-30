@@ -74,7 +74,7 @@ function UpdateScoreBoardZone( info ){
 }
 
 function UpdateStats( info ){
-	for ( var nPlayerID = 0; nPlayerID < 4; ++nPlayerID )
+	for ( var nPlayerID = 0; nPlayerID < 5; ++nPlayerID )
     {
 		playerData = info[nPlayerID];
 		if(playerData != undefined && playerData != null){

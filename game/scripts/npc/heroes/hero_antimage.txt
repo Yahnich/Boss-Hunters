@@ -5,7 +5,7 @@
 		"BaseClass"						"ability_lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"ScriptFile"					"heroes/hero_antimage/antimage_magus_breaker"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 	    "AbilityTextureName"			"custom/antimage_mage_rage"
 	    "MaxLevel"                      "7"
 		
@@ -29,12 +29,12 @@
 	        "01"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
-	            "damage_on_hit"     			"28 40 52 64 76 88 100"
+	            "damage_on_hit"     			"28 40 52 64 80 96 112"
 	        }
 			"02"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
-	            "stack_damage"     				"5 10 15 20 25 30 35"
+	            "spell_amp_red"     			"-15 -25 -35 -45 -50 -55 -60"
 	        }
 	        "03"
 	        {
@@ -68,8 +68,24 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stacks"				"3"
+				"outgoing"				"-75"
 			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"incoming"				"300"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_range"			"900"
+			}
+			
 		}
 	}
 	"special_bonus_unique_antimage_magus_breaker_2" 
@@ -79,6 +95,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_antimage_magus_breaker"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -87,12 +104,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mr"					"-5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"armor"					"-1"
+				"value"					"100"
 			}
 		}
 	}
@@ -123,7 +135,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"15 13.5 12 10.5 9 7.5 6"
+		"AbilityCooldown"				"15 12 9 6 6 6 6"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -138,7 +150,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"925 1000 1075 1150 1225 1300 1375"
+				"blink_range"			"925 925 925 925 1000 1075 1150"
 			}
 			"02"
 			{
@@ -155,6 +167,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_antimage_blink_handler"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -163,17 +176,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"outgoing"				"-75"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"incoming"				"300"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
+				"outgoing"				"1"
 			}
 		}
 	}
@@ -192,12 +195,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6"
+				"value"					"450"
 			}
 		}
 	}
@@ -207,10 +205,9 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_antimage/antimage_hex_guard"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"custom/antimage_hex_shield"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"			"antimage_counterspell"
 		"MaxLevel"                      "7"
-		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -220,6 +217,19 @@
 			"special_bonus_unique_antimage_hex_guard_2"	"1"
 		}
 		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0 0 0 0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"15 15 15 15 11 7 3"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"120 100 80 60 55 50 45"		
+		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -227,14 +237,17 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"magic_resistance"				"15 20 25 30 35 40 45"
+				"magic_resistance"				"15 25 35 45 45 45 45"
+				"LinkedSpecialBonus"			"special_bonus_unique_antimage_hex_guard_2"
 			}
 			"02"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"status_resistance"				"15 20 25 30 35 40 45"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"1.2"
 			}
 		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCastGestureSlot"				"DEFAULT"
 	}
 	"special_bonus_unique_antimage_hex_guard_1" 
 	{
@@ -243,6 +256,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_antimage_hex_guard"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -262,6 +276,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_antimage_hex_guard"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -270,17 +285,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"100"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"35"
+				"value"					"15"
 			}
 		}
 	}
@@ -292,6 +297,7 @@
 		"ScriptFile"					"heroes/hero_antimage/antimage_ender_of_magic"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/antimage_ender_of_magic"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"                      "1"
 		"InnateAbility"					"1"
 		
@@ -302,22 +308,45 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"bonus_attackspeed"				"12"
+				"bonus_attackspeed"				"20"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bonus_movespeed"				"1.5"
+				"bonus_movespeed"				"5"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"11.0"
+				"duration"						"30.0"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"radius"						"900"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"max_stacks"					"5"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"scepter_stacks"				"8"
+				"RequiresScepter"				"1"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"scepter_as"					"25"
+				"RequiresScepter"				"1"
+			}
+			"08"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"scepter_ms"					"10"
+				"RequiresScepter"				"1"
 			}
 		}
 	}
@@ -333,9 +362,8 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"		
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"		
 		"FightRecapLevel"				"2"
-		"HasScepterUpgrade"				"1"
 		"AbilityTextureName"			"custom/antimage_ragevoid"
 		"AOERadius"						"%mana_void_aoe_radius"
 		"MaxLevel"                      "6"
@@ -380,14 +408,14 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"base_damage"					"100 150 200 250 300 350"
+				"damage_cap"					"800 1200 1400 1600 1800 2000"
 				"LinkedSpecialBonus"			"special_bonus_unique_antimage_void_of_hatred_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"stack_damage"					"40 60 80 100 120 140"
+				"damage_storage"				"25"
 			}
 			"03"
 			{
@@ -408,6 +436,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_antimage_void_of_hatred_handler"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -416,7 +445,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
+				"value"					"50"
 			}
 		}
 	}

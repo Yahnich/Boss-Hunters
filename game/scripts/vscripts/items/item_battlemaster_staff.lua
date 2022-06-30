@@ -20,6 +20,7 @@ LinkLuaModifier( "modifier_item_battlemaster_staff_passive", "items/item_battlem
 function modifier_item_battlemaster_staff_passive:OnCreatedSpecific()
 	self.bash_chance = self:GetSpecialValueFor("bash_chance")
 	self.bash_damage = self:GetSpecialValueFor("bash_damage")
+	self.illuPct = self:GetSpecialValueFor("illusion_pct") / 100
 end
 
 function modifier_item_battlemaster_staff_passive:DeclareFunctions()
@@ -28,15 +29,26 @@ function modifier_item_battlemaster_staff_passive:DeclareFunctions()
 	return funcs
 end
 
+function modifier_item_battlemaster_staff_passive:CheckState()
+	if self.bash then
+		return {[MODIFIER_STATE_CANNOT_MISS ] = true}
+	end
+end
+
 function modifier_item_battlemaster_staff_passive:GetModifierProcAttack_BonusDamage_Physical(params)
 	if params.attacker == self:GetParent() and not self:GetParent():IsMuted() and not self:GetParent():PassivesDisabled() then
+		self.bash = false
 		if self:RollPRNG( self.bash_chance ) then
 			local damage = self.bash_damage
+			if params.attacker:IsIllusion() then
+				damage = damage * self.illuPct
+			end
 			if params.attacker:IsRangedAttacker() then
 				EmitSoundOn("DOTA_Item.MKB.ranged", params.target)
 			else
 				EmitSoundOn("DOTA_Item.MKB.melee", params.target)
 			end
+			self.bash = true
 			SendOverheadEventMessage(params.attacker:GetPlayerOwner(),OVERHEAD_ALERT_BONUS_SPELL_DAMAGE,params.target,damage,params.attacker:GetPlayerOwner())
 			return damage
 		end
