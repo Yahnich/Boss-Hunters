@@ -31,26 +31,10 @@ local function StartEvent(self)
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_1', Context_Wrap( self, 'FirstChoice') ),
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'SecondChoice') ),
 	}
-	self._vEventHandles = {
-		ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
-	}
-	self.timeRemaining = 15
-	self.eventEnded = false
-	self.foughtElites = false
-	local timerFunc = (function()
-		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
-		if not self.eventEnded and not self.foughtElites then
-			if self.timeRemaining >= 0 then
-				self.timeRemaining = self.timeRemaining - 1
-				return 1
-			elseif not self.eventEnded then
-				CheckPlayerChoices(self)
-			end
-		end
-	end)
-	self.waitTimer = BaseEvent:StartEventTimer( 45, timerFunc )
-	LinkLuaModifier("event_buff_cultist_ritual", "events/modifiers/event_buff_cultist_ritual", LUA_MODIFIER_MOTION_NONE)
+	
 	self._playerChoices = {}
+	self.waitTimer = BaseEvent:StartEventTimer( )
+	LinkLuaModifier("event_buff_cultist_ritual", "events/modifiers/event_buff_cultist_ritual", LUA_MODIFIER_MOTION_NONE)
 end
 
 local function EndEvent(self, bWon)

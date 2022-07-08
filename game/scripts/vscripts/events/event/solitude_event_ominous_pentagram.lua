@@ -18,7 +18,7 @@
 			end
 		end
 	end
-	
+	self.atLeastOneVote = voted > 0
 	if not self.eventEnded and not self.foughtAsura then
 		if votedYes > votedNo + (players - voted) then -- yes votes exceed non-votes and no votes
 			self:StartCombat(true, votedVeryYes > votedYes/2 )
@@ -33,6 +33,7 @@ end
 
 local function StartCombat(self, bFight, bHard)
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
+	self._playerChoices = nil
 	if bFight then
 		self.foughtAsura = true
 		self.eventType = EVENT_TYPE_COMBAT
@@ -90,14 +91,18 @@ local function StartEvent(self)
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_3', Context_Wrap( self, 'ThirdChoice') ),
 	}
 	self._vEventHandles = {}
-	self.timeRemaining = 30
-	self.eventEnded = false
 	self.foughtAsura = false
 	CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) + self.timeRemaining } )
-	self.waitTimer = Timers:CreateTimer(1, function()
+	
+	local timerFunc = (function()
+		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.eventEnded and not self.foughtAsura then
 			if self.timeRemaining >= 0 then
-				self.timeRemaining = self.timeRemaining - 1
+				if self.atLeastOneVote then
+					self.timeRemaining = self.timeRemaining - 1
+				else
+					CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) + self.timeRemaining } )
+				end
 				return 1
 			else
 				if not CheckPlayerChoices(self) then
@@ -106,6 +111,8 @@ local function StartEvent(self)
 			end
 		end
 	end)
+	self.waitTimer = self:StartEventTimer( 45, timerFunc ) 
+	
 	LinkLuaModifier("event_buff_help_treant", "events/modifiers/event_buff_help_treant", LUA_MODIFIER_MOTION_NONE)
 	self._playerChoices = {}
 end

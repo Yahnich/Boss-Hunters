@@ -43,7 +43,7 @@ function lion_frogger:OnSpellStart()
 	
 	local toHex = TernaryOperator( #notMinions, caster:HasTalent("special_bonus_unique_lion_frogger_2") or maxTargets > #notMinions, maxTargets )
 	for i = 1, toHex do
-		if not enemy:TriggerSpellAbsorb( self ) then self:Hex( notMinions[i], duration ) end
+		if not notMinions[i]:TriggerSpellAbsorb( self ) then self:Hex( notMinions[i], duration ) end
 	end
 	EmitSoundOnLocationWithCaster(point, "Hero_Lion.Voodoo", caster)
 end

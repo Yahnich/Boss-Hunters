@@ -32,18 +32,7 @@ local function StartCombat(self)
 	AddFOWViewer(DOTA_TEAM_BADGUYS, self.totemUnit:GetAbsOrigin(), 312, self.timeRemaining, false)
 	
 	local activeHeroes = HeroList:GetActiveHeroCount()
-	local timerFunc = (function()
-		if self.totemUnit:IsAlive() then self.totemUnit:SetThreat(5000) end
-		if not self.combatEnded then
-			if self.timeRemaining >= 0 then
-				self.timeRemaining = self.timeRemaining - 1
-				return 1
-			else
-				self:EndEvent(true)
-			end
-		end
-	end)
-	self:StartEventTimer( 60, timerFunc )
+	self:StartEventTimer( 60 )
 	Timers:CreateTimer(1, function()
 		if not self.totemUnit or self.totemUnit:IsNull() then return end
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
@@ -69,7 +58,10 @@ end
 local function OnEntityKilled(self, event)
 	local killedTarget = EntIndexToHScript(event.entindex_killed)
 	local ROUND_END_DELAY = 3
-	if killedTarget == self.totemUnit then
+	if self.totemUnit then
+		self.totemUnit:SetThreat(5000)
+	end
+	if killedTarget == self.totemUnit or not self.totemUnit:IsAlive() then
 		self:EndEvent(true)
 	elseif killedTarget:IsRealHero() then
 		if not killedTarget:NotDead() then
@@ -91,17 +83,7 @@ local function StartEvent(self)
 	self._vEventHandles = {
 		ListenToGameEvent( "entity_killed", OnEntityKilled, self ),
 	}
-	local timerFunc = (function()
-		if not self.eventEnded then
-			if self.timeRemaining >= 0 then
-				self.timeRemaining = self.timeRemaining - 1
-				return 1
-			else
-				self:StartCombat(true)
-			end
-		end
-	end)
-	self:StartEventTimer( 60, timerFunc )
+	self:StartEventTimer( 15 )
 	
 	self._playerChoices = {}
 	LinkLuaModifier("event_buff_protect", "events/modifiers/event_buff_protect", LUA_MODIFIER_MOTION_NONE)

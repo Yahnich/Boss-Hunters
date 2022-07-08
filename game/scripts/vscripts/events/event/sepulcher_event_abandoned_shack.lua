@@ -61,8 +61,8 @@ local function StartCombat(self, bFight, bBoss)
 		self._vEventHandles = {
 			ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
 		}
-		self.timeRemaining = 0
 		self.combatStarted = true
+		self:EndEventTimer( )
 		local mobToSpawn = "npc_dota_boss22b"
 		local spawnRate = 4
 		self.eventType = EVENT_TYPE_COMBAT
@@ -123,19 +123,7 @@ local function StartEvent(self)
 	self._vEventHandles = {}
 	self.eventEnded = false
 	self.combatStarted = false
-	local timerFunc = (function()
-		if not self.eventEnded and not self.combatStarted then
-			if self.timeRemaining >= 0 then
-				self.timeRemaining = self.timeRemaining - 1
-				return 1
-			else
-				if not CheckPlayerChoices(self) then
-					self:EndEvent(true)
-				end
-			end
-		end
-	end)
-	self.waitTimer = self:StartEventTimer( 45, timerFunc )
+	self.waitTimer = self:StartEventTimer( )
 	self._playerChoices = {}
 end
 

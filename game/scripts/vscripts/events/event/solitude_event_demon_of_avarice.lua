@@ -15,6 +15,8 @@ local function FirstChoice(self, userid, event)
 end
 
 local function StartCombat(self)
+	self._playerChoices = nil
+	
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	self.combatStarted = true
 	self.combatEnded = false
@@ -46,7 +48,6 @@ local function StartEvent(self)
 	end)
 	
 	self:StartEventTimer( 10, timerFunc )
-	self._playerChoices = {}
 end
 
 local function EndEvent(self, bWon)

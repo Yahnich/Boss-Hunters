@@ -41,6 +41,7 @@ end
 local function StartCombat(self, bFight)
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	if bFight then
+		self:EndEventTimer( )
 		self.foughtElites = true
 		self.eventType = EVENT_TYPE_ELITE
 		self.eventRewardType = EVENT_REWARD_RELIC
@@ -112,20 +113,9 @@ local function StartEvent(self)
 	self._vEventHandles = {}
 	self.eventEnded = false
 	self.foughtElites = false
-	local timerFunc = (function()
-		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
-		if not self.eventEnded and not self.foughtElites then
-			if self.timeRemaining >= 0 then
-				self.timeRemaining = self.timeRemaining - 1
-				return 1
-			else
-				if not CheckPlayerChoices(self) then
-					self:EndEvent(true)
-				end
-			end
-		end
-	end)
-	self.waitTimer = self:StartEventTimer( 45, timerFunc )
+	
+	self.waitTimer = self:StartEventTimer( )
+	
 	LinkLuaModifier("event_buff_ominous_tome_blessing", "events/modifiers/event_buff_ominous_tome", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("event_buff_ominous_tome_curse", "events/modifiers/event_buff_ominous_tome", LUA_MODIFIER_MOTION_NONE)
 	self._playerChoices = {}

@@ -518,6 +518,7 @@ function RoundManager:EndEvent(bWonRound)
 		if event then
 			event.eventEnded = true
 			event.eventHasStarted = false
+			event:EndEventTimer( )
 			if event.eventHandler then Timers:RemoveTimer( event.eventHandler ) end
 			if bWonRound then
 				EventManager:FireEvent("boss_hunters_event_finished", {eventType = event:GetEventType()})

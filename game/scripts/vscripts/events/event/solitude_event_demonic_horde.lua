@@ -17,23 +17,13 @@ end
 local function StartCombat(self)
 	self.eventEnded = true
 	self.combatStarted = true
+	self._playerChoices = nil
 	local START_VECTOR = Vector(949, 130)
 	
-	self.timeRemaining = 60
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	self.eventType = EVENT_TYPE_COMBAT
 	local activeHeroes = HeroList:GetActiveHeroCount()
-	local timerFunc = (function()
-		self.timeRemaining = self.timeRemaining - 1
-		if not self.combatEnded then
-			if self.timeRemaining >= 0 then
-				return 1
-			else
-				self:EndEvent(true)
-			end
-		end
-	end)
-	self:StartEventTimer( 60, timerFunc )
+	self:StartEventTimer( 60 )
 	Timers:CreateTimer(1, function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.combatEnded then
@@ -125,7 +115,7 @@ local function EndEvent(self, bWon)
 			hero:AddBlessing("event_buff_demonic_horde")
 		end
 	end
-	Timers:CreateTimer(3, function() RoundManager:EndEvent(bWon) end)
+	Timers:CreateTimer(0.5, function() RoundManager:EndEvent(bWon) end)
 end
 
 local function PrecacheUnits(self, context)

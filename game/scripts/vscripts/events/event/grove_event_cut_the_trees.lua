@@ -27,7 +27,7 @@ local function CheckPlayerChoices(self)
 				if RollPercentage(25) then
 					self:StartCombat(true)
 				else
-					self:RetryVote()
+					self:RetryVote( 30 )
 				end
 			end)
 			CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
@@ -50,7 +50,7 @@ end
 local function StartCombat(self, bFight)
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	if bFight then
-		self.timeRemaining = 0
+		self:EndEventTimer(  )
 		self.combatStarted = true
 		self.eventType = EVENT_TYPE_COMBAT
 		self.drowsToSpawn = math.ceil( math.log( self.treesCut/2 + 1 ) )
@@ -91,25 +91,11 @@ local function StartCombat(self, bFight)
 	end
 end
 
-local function RetryVote(self)
+local function RetryVote(self, timer)
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = "grove_event_cut_the_trees", choices = 2})
-	self.timeRemaining = 15
-	local timerFunc = (function()
-		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
-		if not self.eventEnded and not self.combatStarted then
-			if self.timeRemaining >= 0 then
-				self.timeRemaining = self.timeRemaining - 1
-				return 1
-			else
-				if not CheckPlayerChoices(self) then
-					self:EndEvent(true)
-				end
-			end
-		end
-	end)
-	self.waitTimer = self:StartEventTimer( 30, timerFunc )
 	
 	self._playerChoices = {}
+	self:StartEventTimer( timer )
 end
 
 local function FirstChoice(self, userid, event)

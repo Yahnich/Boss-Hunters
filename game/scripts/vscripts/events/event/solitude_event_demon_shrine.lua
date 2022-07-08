@@ -19,6 +19,7 @@
 			end
 		end
 	end
+	self.atLeastOneVote = voted > 0
 	local nonVotes = (players - voted)
 	if not self.eventEnded and not self.foughtElites then
 		if votedPray > votedLeave + votedDestroy + nonVotes then
@@ -40,6 +41,7 @@ end
 
 local function StartCombat(self, bFight)
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
+	CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) } )
 	if bFight then
 		self.foughtElites = true
 		self.eventType = EVENT_TYPE_ELITE
@@ -99,21 +101,8 @@ local function StartEvent(self)
 	}
 	self._vEventHandles = {}
 	self.eventEnded = false
-	self.foughtElites = false
-	local timerFunc = (function()
-		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
-		if not self.eventEnded and not self.foughtElites then
-			if self.timeRemaining >= 0 then
-				self.timeRemaining = self.timeRemaining - 1
-				return 1
-			else
-				if not CheckPlayerChoices(self) then
-					self:EndEvent(true)
-				end
-			end
-		end
-	end)
 	self.waitTimer = self:StartEventTimer( 45, timerFunc ) 
+	
 	LinkLuaModifier("event_buff_demon_shrine", "events/modifiers/event_buff_demon_shrine", LUA_MODIFIER_MOTION_NONE)
 	self._playerChoices = {}
 end

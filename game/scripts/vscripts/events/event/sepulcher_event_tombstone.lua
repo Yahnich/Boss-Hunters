@@ -16,7 +16,7 @@ local function CheckPlayerChoices(self)
 			end
 		end
 	end
-	
+	self.atLeastOneVote = voted > 0
 	if not self.eventEnded then
 		if votedYes > votedNo + (players - voted) then -- yes votes exceed non-votes and no votes
 			self:StartCombat(true)
@@ -45,7 +45,7 @@ local function StartCombat(self)
 	self.eventEnded = true
 	self.combatEnded = false
 	self.foughtWave = true
-	
+	self._playerChoices = nil
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	self.eventType = EVENT_TYPE_COMBAT
 	
@@ -53,20 +53,11 @@ local function StartCombat(self)
 	self.totemUnit:SetThreat(5000)
 	self.totemUnit:SetOriginalModel("models/props_structures/dire_tower002.vmdl")
 	self.totemUnit:SetModel("models/props_structures/dire_tower002.vmdl")
-	AddFOWViewer(DOTA_TEAM_BADGUYS, self.totemUnit:GetAbsOrigin(), 312, self.timeRemaining, false)
 	
 	local activeHeroes = HeroList:GetActiveHeroCount()
-	local timerFunc = (function()
-		self.timeRemaining = self.timeRemaining - 1
-		if not self.combatEnded then
-			if self.timeRemaining >= 0 then
-				return 1
-			else
-				self:EndEvent(true)
-			end
-		end
-	end)
-	self:StartEventTimer( 60, timerFunc )
+	self:StartEventTimer( 60 )
+	AddFOWViewer(DOTA_TEAM_BADGUYS, self.totemUnit:GetAbsOrigin(), 312, self.timeRemaining, false)
+	
 	Timers:CreateTimer(1, function()
 		if not self.totemUnit or self.totemUnit:IsNull() then return end
 		if self.totemUnit:IsAlive() then self.totemUnit:SetThreat(5000) end
@@ -149,7 +140,7 @@ local function EndEvent(self, bWon)
 		end
 		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = "sepulcher_event_tombstone", reward = reward})
 	end
-	Timers:CreateTimer(3, function() RoundManager:EndEvent(true) end)
+	Timers:CreateTimer(0.5, function() RoundManager:EndEvent(true) end)
 end
 
 local function PrecacheUnits(self, context)

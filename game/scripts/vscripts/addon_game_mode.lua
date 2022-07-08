@@ -170,12 +170,12 @@ function CHoldoutGameMode:InitGameMode()
 	self._message = false
 	
 	
-	if IsInToolsMode() then
-		GameRules:SetPreGameTime( 9999.0 )
-		HERO_SELECTION_TIME = 9999
-	else
+	-- if IsInToolsMode() then
+		-- GameRules:SetPreGameTime( 9999.0 )
+		-- HERO_SELECTION_TIME = 9999
+	-- else
 		GameRules:SetPreGameTime( 30.0 )
-	end
+	-- end
 	GameRules:SetHeroSelectionTime( HERO_SELECTION_TIME )
 	GameRules:SetShowcaseTime( 0 )
 	GameRules:SetStrategyTime( 0 )
@@ -238,6 +238,7 @@ function CHoldoutGameMode:InitGameMode()
 	
 	-- Custom console commands
 	Convars:RegisterCommand( "bh_test_round", function( command, zone, roundName, roundType )
+											print( zone, roundName, roundType )
 											if Convars:GetDOTACommandClient() and IsInToolsMode() then
 												local event = BaseEvent(zone, roundType, roundName )
 												table.insert( RoundManager.zones[RoundManager.currentZone][1], 1, {event} )
@@ -1170,22 +1171,17 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 		-- CHoldoutGameMode:InitializeRoundSystem()
 		Timers:CreateTimer(0.1,function()
 			CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
+			local say = false
 			CustomGameEventManager:Send_ServerToAllClients("heroLoadIn", {})
-			-- for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-				-- if not PlayerResource:HasSelectedHero( nPlayerID ) and PlayerResource:GetPlayer( nPlayerID ) then
-					-- local player = PlayerResource:GetPlayer( nPlayerID )
-					-- player:MakeRandomHeroSelection()
-					-- CreateHeroForPlayer(PlayerResource:GetSelectedHeroName( nPlayerID ), player)
-					-- local hero = PlayerResource:ReplaceHeroWith(nPlayerID, PlayerResource:GetSelectedHeroName( nPlayerID ), 650, 0)
-					-- hero:SetPlayerID( nPlayerID )
-					-- hero:SetOwner( player )
-					-- hero:SetControllableByPlayer(nPlayerID, true)
-				-- end
-			-- end
+			for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+				if PlayerResource:GetPlayer( nPlayerID ) and not say then
+					say = true
+					Say( PlayerResource:GetPlayer( nPlayerID ), "Alt-clicking event cards will minimize them", true)
+				end
+			end
 		end)
 	elseif nNewState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 		RoundManager:StartGame()
-		Say(nil, "Alt-clicking event cards will minimize them", true)
 		Timers:CreateTimer(1,function()
 			if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 				if RoundManager:GetCurrentEvent() and not RoundManager:GetCurrentEvent():IsEvent() then

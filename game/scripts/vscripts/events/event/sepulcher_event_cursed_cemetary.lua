@@ -31,7 +31,7 @@ end
 local function StartCombat(self, bFight)
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	if bFight then
-		self.timeRemaining = 0
+		self:EndEventTimer( )
 		self.combatStarted = true
 		self.eventType = EVENT_TYPE_ELITE
 		
@@ -106,19 +106,7 @@ local function StartEvent(self)
 	}
 	self.eventEnded = false
 	self.combatStarted = false
-	local timerFunc = (function()
-		if not self.eventEnded and not self.combatStarted then
-			if self.timeRemaining >= 0 then
-				self.timeRemaining = self.timeRemaining - 1
-				return 1
-			else
-				if not CheckPlayerChoices(self) then
-					self:EndEvent(true)
-				end
-			end
-		end
-	end)
-	self.waitTimer = self:StartEventTimer( 45, timerFunc )
+	self.waitTimer = self:StartEventTimer(  )
 	
 	self._playerChoices = {}
 end

@@ -267,6 +267,9 @@ function BaseEvent:HandoutRewards(bWon)
 end
 
 function BaseEvent:StartEventTimer(duration, timerFunc)
+	-- end any active timers
+	self:EndEventTimer( )
+
 	self.timeRemaining = duration or 120
 	self.eventEnded = false
 	CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) + self.timeRemaining } )
@@ -291,9 +294,19 @@ function BaseEvent:StartEventTimer(duration, timerFunc)
 			else
 				self:EndEvent(true)
 			end
+		else
+			CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) } )
 		end
 	end)
-	return Timers:CreateTimer(1, localFunc)
+	self._currentEvendTimer =  Timers:CreateTimer(1, localFunc)
+	return self._currentEvendTimer
+end
+
+function BaseEvent:EndEventTimer( )
+	if self._currentEvendTimer then
+		Timers:RemoveTimer(self._currentEvendTimer)
+	end
+	CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) } )
 end
 
 function BaseEvent:IsEvent()

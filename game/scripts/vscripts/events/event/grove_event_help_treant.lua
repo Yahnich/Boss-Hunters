@@ -36,7 +36,7 @@ local function StartCombat(self, bFight)
 		self._vEventHandles = {
 			ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
 		}
-		self.timeRemaining = 0
+		self:EndEventTimer( )
 		self.eventType = EVENT_TYPE_COMBAT
 		self.bossesToSpawn = math.max( 1, math.floor( math.log( (RoundManager:GetRaidsFinished() + 1) / 2 ) ) )
 		self.mobsToSpawn = math.max( math.floor( math.log( RoundManager:GetEventsFinished() + 1 ) ) )
@@ -102,19 +102,7 @@ local function StartEvent(self)
 	self.eventTargetToBeProtected = CreateUnitByName("npc_dota_event_treant", RoundManager:GetHeroSpawnPosition(), true, nil, nil, DOTA_TEAM_GOODGUYS)
 	self.eventTargetToBeProtected:SetCoreHealth( 2000 );
 	self.eventTargetToBeProtected:SetHealth( 1000 );
-	local timerFunc = (function()
-		if not self.eventEnded and not self.helpedTreant then
-			if self.timeRemaining >= 0 then
-				self.timeRemaining = self.timeRemaining - 1
-				return 1
-			else
-				if not CheckPlayerChoices(self) then
-					self:EndEvent(true)
-				end
-			end
-		end
-	end)
-	self.waitTimer = self:StartEventTimer( 30, timerFunc )
+	self.waitTimer = self:StartEventTimer(  )
 	LinkLuaModifier("event_buff_help_treant", "events/modifiers/event_buff_help_treant", LUA_MODIFIER_MOTION_NONE)
 	self._playerChoices = {}
 end

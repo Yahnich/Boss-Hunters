@@ -37,19 +37,8 @@ local function StartEvent(self)
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'SecondChoice') ),
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_3', Context_Wrap( self, 'ThirdChoice') ),
 	}
-	self.timeRemaining = 30
-	self.eventEnded = false
-	CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) + self.timeRemaining } )
-	Timers:CreateTimer(1, function()
-		if self.timeRemaining >= 0 then
-			self.timeRemaining = self.timeRemaining - 1
-			return 1
-		elseif not self.eventEnded then
-			self:EndEvent(true)
-		end
-	end)
-	
 	self._playerChoices = {}
+	self:StartEventTimer( )
 end
 
 local function EndEvent(self, bWon)

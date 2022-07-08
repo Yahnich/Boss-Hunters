@@ -20,20 +20,9 @@ local function StartCombat(self)
 	self.eventType = EVENT_TYPE_COMBAT
 	local START_VECTOR = Vector(949, 130)
 	
-	self.timeRemaining = 60
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	local activeHeroes = HeroList:GetActiveHeroCount()
-	local timerFunc = (function()
-		self.timeRemaining = self.timeRemaining - 1
-		if not self.combatEnded then
-			if self.timeRemaining >= 0 then
-				return 1
-			else
-				self:EndEvent(true)
-			end
-		end
-	end)
-	self:StartEventTimer( 60, timerFunc )
+	self:StartEventTimer( 60 )
 	Timers:CreateTimer(1, function()
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then

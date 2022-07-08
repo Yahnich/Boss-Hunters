@@ -16,6 +16,7 @@ local function CheckPlayerChoices(self)
 			end
 		end
 	end
+	self.atleastOneVoted = voted > 0
 	if not self.eventEnded and not self.combatStarted then
 		if votedYes > votedNo + (players - voted) then -- yes votes exceed non-votes and no votes
 			self:StartCombat(true)
@@ -31,6 +32,7 @@ end
 local function StartCombat(self, bFight)
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	if bFight then
+		self:EndEventTimer( )
 		self.combatStarted = true
 		self.eventType = EVENT_TYPE_ELITE
 		self.timeRemaining = 0
@@ -101,23 +103,8 @@ local function StartEvent(self)
 	self._vEventHandles = {
 		ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
 	}
-	self.timeRemaining = 15
-	self.eventEnded = false
 	self.combatStarted = false
-	local timerFunc = (function()
-		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
-		if not self.eventEnded and not self.combatStarted then
-			if self.timeRemaining >= 0 then
-				self.timeRemaining = self.timeRemaining - 1
-				return 1
-			else
-				if not CheckPlayerChoices(self) then
-					self:EndEvent(true)
-				end
-			end
-		end
-	end)
-	self.waitTimer = self:StartEventTimer( 45, timerFunc )
+	self:StartEventTimer( )
 	
 	self._playerChoices = {}
 	LinkLuaModifier("event_buff_ruined_cathedral", "events/modifiers/event_buff_ruined_cathedral", LUA_MODIFIER_MOTION_NONE)
