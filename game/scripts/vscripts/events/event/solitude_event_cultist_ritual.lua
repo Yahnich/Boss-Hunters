@@ -27,13 +27,13 @@ end
 
 local function StartEvent(self)	
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = self:GetEventName(), choices = 2})
+	self._vEventHandles = {}
 	self._vListenerHandles = {
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_1', Context_Wrap( self, 'FirstChoice') ),
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'SecondChoice') ),
 	}
-	
 	self._playerChoices = {}
-	self.waitTimer = BaseEvent:StartEventTimer( )
+	self.waitTimer = self:StartEventTimer( )
 	LinkLuaModifier("event_buff_cultist_ritual", "events/modifiers/event_buff_cultist_ritual", LUA_MODIFIER_MOTION_NONE)
 end
 

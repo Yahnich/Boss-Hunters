@@ -192,7 +192,6 @@ function CHoldoutGameMode:InitGameMode()
 	CustomNetTables:SetTableValue( "game_info", "difficulty", {difficulty = GameRules.gameDifficulty} )
 	CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = 0} )
 	
-	
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, mapInfo.MaxPlayers)
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 0)
 	
