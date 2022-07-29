@@ -1,0 +1,8 @@
+"lang"
+{
+	"Language"	"ukrainian"
+	"Tokens"
+	{
+		
+	}
+}
