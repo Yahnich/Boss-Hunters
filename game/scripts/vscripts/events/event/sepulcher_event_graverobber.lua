@@ -38,7 +38,7 @@ end
 
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	self._playerChoices[event.pID] = false
+	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
 
@@ -48,9 +48,9 @@ local function StartEvent(self)
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_1', Context_Wrap( self, 'FirstChoice') ),
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'SecondChoice') ),
 	}
+	self._playerChoices = {}
 	self:StartEventTimer( )
 	LinkLuaModifier("event_buff_graverobber_curse", "events/modifiers/event_buff_graverobber", LUA_MODIFIER_MOTION_NONE)
-	self._playerChoices = {}
 end
 
 local function EndEvent(self, bWon)
