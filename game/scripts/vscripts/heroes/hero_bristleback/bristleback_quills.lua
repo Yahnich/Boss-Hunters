@@ -80,7 +80,7 @@ if IsServer() then
 	function modifier_quills:OnIntervalThink()
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
-		if ability:GetAutoCastState() and caster:IsAlive() and ability:IsFullyCastable() and ability:IsOwnersManaEnough() and not caster:HasActiveAbility() then
+		if ability:GetAutoCastState() and caster:IsRealHero() and caster:IsAlive() and ability:IsFullyCastable() and ability:IsOwnersManaEnough() and not caster:HasActiveAbility() then
 			ability:CastSpell()
 		elseif not ability:IsOwnersManaEnough() and ability:GetAutoCastState() then
 			ability:ToggleAutoCast()

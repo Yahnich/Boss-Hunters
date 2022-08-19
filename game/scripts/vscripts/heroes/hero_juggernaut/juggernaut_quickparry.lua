@@ -82,16 +82,17 @@ function modifier_juggernaut_quickparry:GetModifierTotal_ConstantBlock(params)
 	if params.attacker == self:GetParent() then return end
 	if ( ( params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK and not params.inflictor) or HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE) )
 	and self:GetParent():GetHealth() > 0 
-	and self:GetParent():IsRealHero() 
-	and not self:GetAbility().cooldown then
-		ability:QuickParry(caster, params.attacker)
+	and self:GetParent():IsRealHero() then
+		if not self:GetAbility().cooldown then
+			ability:QuickParry(caster, params.attacker)
+		end
 		return params.damage
 	end
 end
 
 function modifier_juggernaut_quickparry:GetAbsorbSpell(params)
-	if params.ability and params.ability:GetCaster():GetTeam() ~= self:GetParent():GetTeam() and not self:GetAbility().cooldown then
-		self:GetAbility():QuickParry(self:GetParent(), params.ability:GetCaster() )
+	if params.ability and params.ability:GetCaster():GetTeam() ~= self:GetParent():GetTeam() then
+		if not self:GetAbility().cooldown then self:GetAbility():QuickParry(self:GetParent(), params.ability:GetCaster() ) end
 		return 1
 	end
 end

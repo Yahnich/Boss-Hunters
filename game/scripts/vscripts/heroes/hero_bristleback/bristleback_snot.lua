@@ -22,6 +22,22 @@ function bristleback_snot:GetBehavior()
 	end
 end
 
+function bristleback_snot:GetBehavior()
+	if self:GetCaster():HasScepter() then
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_AUTOCAST
+	else
+		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AUTOCAST
+	end
+end
+
+function bristleback_snot:GetCastPoint()
+	if self:GetCaster():HasScepter() then
+		return 0
+	else
+		return 0.3
+	end
+end
+
 function bristleback_snot:OnSpellStart()
 	local caster = self:GetCaster()
 
@@ -89,9 +105,10 @@ if IsServer() then
 	function modifier_bristleback_snot_autocast:OnIntervalThink()
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
-		if ability:IsCooldownReady() 
+		if ability:IsFullyCastable() 
 		and ability:GetAutoCastState() 
 		and caster:IsAlive() 
+		and caster:IsRealHero()
 		and ability:GetManaCost(-1) <= caster:GetMana() 
 		and not caster:HasActiveAbility() then
 			ability:CastSpell()

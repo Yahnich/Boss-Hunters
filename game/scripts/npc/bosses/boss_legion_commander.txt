@@ -78,17 +78,17 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"radius"						"525"
+				"radius"						"475"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"300"
+				"damage"						"275"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_per_unit"				"100 150"
+				"damage_per_unit"				"75 125"
 			}
 		}
 	}
@@ -142,12 +142,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"attack_speed"			"200 300"
+				"attack_speed"			"200 250"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_regen"				"1.5"
+				"hp_regen"				"1"
 			}
 		}
 	}

@@ -134,8 +134,7 @@ end
 
 function modifier_tiny_tree_bh:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
-			MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-			MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE}
+			MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS}
 end
 
 function modifier_tiny_tree_bh:OnAttackLanded(params)
@@ -161,11 +160,6 @@ function modifier_tiny_tree_bh:OnAttackLanded(params)
 	end
 end
 
-
-function modifier_tiny_tree_bh:GetModifierAttackRangeBonus()
-	return self:GetTalentSpecialValueFor("attack_range")
-end
-
-function modifier_tiny_tree_bh:GetModifierBaseDamageOutgoing_Percentage()
-	return self:GetTalentSpecialValueFor("bonus_damage")
+function modifier_tiny_tree_bh:GetActivityTranslationModifiers()
+	return "tree"
 end
