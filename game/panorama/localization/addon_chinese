@@ -1,0 +1,1106 @@
+"lang"
+{
+	"EVENT_TYPE_ELITE_Description"												"一波精英即将到来。精英将给予更多的经验和金币，但是所有怪物将得到一个独特的增强。"
+	"EVENT_TYPE_COMBAT_Description"												"战斗轮即将到来。"
+	"EVENT_TYPE_EVENT_Description"												"事件即将到来。"
+	"EVENT_TYPE_BOSS_Description"												"boss即将袭来。"
+	
+	"EVENT_DAYTIME_Description"												"本轮将会在白天开始。"
+	"EVENT_NIGHTTIME_Description"												"本轮将会在夜晚开始。"
+	
+	"EVENT_REWARD_GOLD_Description"												"本轮完成将奖励金币。"
+	"EVENT_REWARD_LIVES_Description"											"本轮完成将奖励生命。"
+	"EVENT_REWARD_RELIC_Description"											"本轮完成将奖励一个或多个遗物。"
+	
+	
+	"EVENT_TIME_DAY_Description"												"本轮将在白天进行。"
+	"EVENT_TIME_NIGHT_Description"												"本轮将在夜晚进行。"
+	
+	"EVENT_MODIFIERS"															"增强"
+	"EVENT_VOTES"																"投票"
+	
+	"DOTA_ITEM_BUILD_MID_GAME"													"游戏中期"
+	"DOTA_ITEM_BUILD_LATE_GAME"													"游戏后期"
+	
+	"event_interlude"															"幕间"
+	"event_grove_random_event"													"随机事件"
+	"event_sepulcher_random_event"												"随机事件"
+	"event_solitude_random_event"												"随机事件"
+	"event_elysium_random_event"												"随机事件"
+	
+	"event_elysium_boss_apotheosis"												"幕后黑手"
+	"event_elysium_boss_aether"													"空间法则"
+	"event_elysium_boss_aeon"													"时间化身"
+	"event_elysium_boss_genesis"												"生命之源"
+	"event_elysium_boss_asura"													"恶魔尊主"
+	"event_elysium_boss_ifdat"													"火焰创生者"
+	"event_elysium_boss_broodmother"											"命运编织者"
+	"event_generic_boss_golem"													"大地元素"
+	"event_generic_boss_scarab"													"神选幼虫"
+	"event_grove_boss_troll_warlord"											"战争之神"
+	"event_grove_boss_axe"														"红雾死神"
+	"event_grove_boss_bearmaster"												"乌萨主宰"
+	"event_grove_boss_dragon"													"远古巨龙"
+	"event_grove_boss_drowsa"													"森林之魂"
+	"event_sepulcher_boss_prophet"												"先知"
+	"event_sepulcher_boss_undying"												"不死上将"
+	"event_sepulcher_boss_reaper"												"恐怖收割者"
+	"event_sepulcher_boss_wraith_king"											"不死之王"
+	"event_solitude_boss_doom"													"地狱之王"
+	"event_solitude_boss_evil_core"												"暗黑之心"
+	"event_solitude_boss_twin_demons"											"恶魔双子"
+	"event_solitude_boss_warlock"												"恶魔术士"
+	"event_grove_boss_green_dragon"												"瘟疫死神"
+	"event_grove_boss_greymane"													"家门口的狼"
+	"event_sepulcher_boss_vile_archmage"										"死亡大法师"
+	
+	"event_grove_elite_valgraduth"												"野人"
+	"event_sepulcher_elite_arthromos"											"腐朽执政官"
+	"event_solitude_elite_durva"												"魂魄吞噬者"
+	"event_elysium_elite_ammetot"												"银之匙"
+	
+	"event_elysium_combat_spiders"												"蜘蛛侵入"
+	"event_generic_combat_leshrac"												"扭曲独角兽"
+	"event_generic_combat_ogres"												"食人魔大军" 
+	"event_generic_combat_slarks"												"拦路抢劫"
+	"event_grove_combat_bearboys"												"熊之狂暴"
+	"event_grove_combat_roborage"												"破损机器"
+	"event_grove_combat_robots"													"次等机器"
+	"event_grove_combat_roshan"													"老朋友 "
+	"event_grove_combat_slardar"												"大衮"
+	"event_grove_combat_small_dragons"											"森林护卫"
+	"event_grove_combat_techies"												"易爆器械"
+	"event_grove_combat_trees"													"森林守卫"
+	"event_grove_combat_wolves"													"团队猎手"
+	"event_grove_combat_centaurs"												"人马战行者"
+	"event_sepulcher_combat_bone_boys"											"骷髅战士"
+	"event_sepulcher_combat_everything"											"墓园拾荒者"
+	"event_sepulcher_combat_lifestealer"										"爆怒吞食者"
+	"event_sepulcher_combat_zombies"											"行尸走肉"
+	"event_sepulcher_combat_vhouls"												"亡灵刺客"
+	"event_solitude_combat_commander"											"恶魔上将"
+	"event_solitude_combat_golem"												"地狱魔偶"
+	"event_solitude_combat_madness_demon"										"疯狂之潮"
+	"event_solitude_combat_wrath_demon"											"愤怒之潮"
+	"event_solitude_combat_sloth_demon"											"懒惰之罪"
+	"event_solitude_combat_green_dragon"										"腐败之巢"
+	"event_solitude_combat_angry_wraith"										"幽灵之怒"
+	"event_solitude_combat_prophets"											"昔日幽灵"
+	"event_solitude_combat_corrupt_drow"										"腐败的森林之魂"
+	"event_solitude_combat_hellbears"											"地狱徘徊者"
+	"event_elysium_combat_warlock"												"地狱牧师"
+	"event_elysium_combat_reapers"												"摆渡者"
+	"event_sepulcher_combat_phantoms"											"往生神圣"
+	"event_sepulcher_combat_flesh_behemoths"									"肉之山"
+	"event_solitude_combat_satyrs"												"黑暗之兽"
+	"event_elysium_combat_fallen_angels"										"堕落者"
+	"event_elysium_combat_archangels"											"极权领域"
+	"event_elysium_combat_drowsas"												"主场作战"
+	
+	"event_elysium_event_divine_knowledge"										"神圣知识"
+	"event_elysium_event_divine_knowledge_Description"							"你碰到一件奇怪的神器，它显然散发着某种奇怪的力量。拿起它的时候，知识就会在你的大脑中涌动。你更倾向哪方面的知识?"
+	"event_elysium_event_divine_knowledge_option_1"								"战斗。 <font color=\"lawngreen\">[获得 %event_knowledge_of_combat%.]</font>"
+	"event_elysium_event_divine_knowledge_option_2"								"法术。 <font color=\"lawngreen\">[获得 %event_knowledge_of_magic%.]</font>"
+	"event_elysium_event_divine_knowledge_option_3"								"诡计。 <font color=\"lawngreen\">[获得 %event_knowledge_of_trickery%.]</font>"
+	"event_knowledge_of_combat"													"祝福：战争艺术"
+	"event_knowledge_of_combat_Description"										"造成25%额外伤害"
+	"event_knowledge_of_magic"													"祝福:术法之道"
+	"event_knowledge_of_magic_Description"										"获得25%冷却减少"
+	"event_knowledge_of_trickery"												"祝福:狡诈智慧"
+	"event_knowledge_of_trickery_Description"									"获得25%闪避"
+	
+	"event_elysium_event_old_shrine"											"圣地废墟"
+	"event_elysium_event_old_shrine_Description"								"你会遇到一个老旧的圣迹。你打算怎么做?"
+	"event_elysium_event_old_shrine_option_1"									"投入800金币。 <font color=\"yellow\">[33%概率获得随机遗物。]</font>"
+	"event_elysium_event_old_shrine_option_2"									"祈祷。 <font color=\"yellow\">[移除一个普通+遗物，并获得一个更高稀有度的遗物。]</font>"
+	"event_elysium_event_old_shrine_option_3"									"离开。 [无事发生]"
+	"event_elysium_event_old_shrine_Reward1"									"你获得一个随机遗物"
+	
+	"event_generic_event_defense_or_offense"									"哪个最好呢？"
+	"event_generic_event_defense_or_offense_Description"						"一个神秘的声音在对你说话，问了一个简单的问题:‘进攻还是防守?’"
+	"event_generic_event_defense_or_offense_option_1"							"进攻。 <font color=\"lawngreen\">[获得 %event_gift_of_damage%]</font>"
+	"event_generic_event_defense_or_offense_option_2"							"防守。 <font color=\"lawngreen\">[获得 %event_gift_of_defense%]</font>"
+	"event_generic_event_defense_or_offense_option_3"							"平衡。 <font color=\"lawngreen\">[获得 %event_gift_of_balance%]</font>"
+	"event_gift_of_damage"														"祝福：进攻恩赐"
+	"event_gift_of_damage_Description"											"获得40攻击和攻速。"
+	"event_gift_of_defense"														"祝福：防守恩赐"
+	"event_gift_of_defense_Description"											"获得10护甲和20%魔抗。"
+	"event_gift_of_balance"														"祝福：平衡恩赐"
+	"event_gift_of_balance_Description"											"获得10全属性。"
+	
+	"event_generic_event_fight_or_flight"										"战或逃"
+	"event_generic_event_fight_or_flight_Description"							"秘之声在你耳边低语:“一笔丰厚的赏金正等着你，但得到它将付出巨大的代价。”\n\n此事件为团队投票"
+	"event_generic_event_fight_or_flight_option_1"								"战斗 <font color=\"yellow\">[与boss作战]</font>"
+	"event_generic_event_fight_or_flight_option_2"								"回避 [逃离这场战斗]"
+	
+	"event_generic_event_gold_or_relic"											"一份礼物"
+	"event_generic_event_gold_or_relic_Description"								"秘之声在你耳边低语: ‘你追求的是金币还是力量？'"
+	"event_generic_event_gold_or_relic_option_1"								"力量 <font color=\"lawngreen\">[获得随机遗物]</font>"
+	"event_generic_event_gold_or_relic_option_2"								"金币 <font color=\"lawngreen\">[获得1500金币]</font>"
+	"event_generic_event_gold_or_relic_option_3"								"冒险 <font color=\"yellow\">[获得全部，但额外获得诅咒：%event_curse_stolen_fortune%]</font>"
+	"event_curse_stolen_fortune"												"被窃取的命运"
+	"event_curse_stolen_fortune_Description"									"不能买活，并且不会生成墓碑直至游戏结束。"
+	
+	"event_generic_event_four_of_a_kind"										"四同"
+	"event_generic_event_four_of_a_kind_Description"							"秘之声：“打败我的四个勇士，我将给你带来无尽的财富。”"
+	"event_generic_event_four_of_a_kind_option_1"								"来吧。 [与一个随机的boss战斗。召唤增加了四倍，奖励也增加了四倍]"
+	"event_generic_event_four_of_a_kind_option_2"								"拒绝。 [无事发生]"
+	
+	"event_generic_event_protect"												"保护图腾"
+	"event_generic_event_protect_Description"									"你遇到一个奇怪的图腾，这似乎很重要。一碰到它，大地就会剧烈震动，而你看到怪物出现!"
+	"event_generic_event_protect_option_1"										"开始战斗！ [战斗开始]"
+	"event_generic_event_protect_Reward1"										"在击败大军后，你会感到精力充沛!你获得2点技能点!"
+	"event_generic_event_protect_Reward2"										"在打败部落后，你看到图腾被打得粉碎。哦……"
+	
+	"event_generic_event_surge_of_knowledge"									"思如潮涌"
+	"event_generic_event_surge_of_knowledge_Description"						"旅行途中， 你恍然大悟!你想到了什么?"
+	"event_generic_event_surge_of_knowledge_option_1"							"一致是关键！ <font color=\"lawngreen\">[获得 %event_surge_of_knowledge_damage%]</font>"
+	"event_generic_event_surge_of_knowledge_option_2"							"苟才是胜利！ <font color=\"lawngreen\">[获得 %event%_surge_of_knowledge_endurance%]</font>"
+	"event_generic_event_surge_of_knowledge_option_3"							"贪婪是好的！ <font color=\"lawngreen\">[获得 %event_surge_of_knowledge_greed%]</font>"
+	"event_surge_of_knowledge_damage"											"祝福:力量启示"
+	"event_surge_of_knowledge_damage_Description"								"获得50基础攻击力。"
+	"event_surge_of_knowledge_endurance"										"祝福:耐力灵感"
+	"event_surge_of_knowledge_endurance_Description"							"获得500血上限，3护甲和10%魔抗。"
+	"event_surge_of_knowledge_greed"											"祝福:贪婪启迪"
+	"event_surge_of_knowledge_greed_Description"								"获得15%额外金币。"
+	
+	"event_grove_event_cut_the_trees"											"神秘之树"
+	"event_grove_event_cut_the_trees_Description"								"在途中，你碰到一片拥有神秘之树。\n这有可能换取大量的金币，但也有可能激怒森林之灵。\n你会怎么做?[此事件可以重复，重复它会增加战斗的难度]\n\n此事件为团队投票。"
+	"event_grove_event_cut_the_trees_option_1"									"就砍几棵。 <font color=\"red\">[%event_cut_trees%]</font>"
+	"event_grove_event_cut_the_trees_option_2"									"离开。 [无事发生]"
+	"event_cut_trees"															"获得250金币，有概率发生战斗。"
+	"event_cut_trees_Description"												"可以重复选择。反复砍树会增加战斗的难度。机会是25%。一旦战斗开始，你必须活下来。"
+	
+	"event_grove_event_help_treant"												"受伤的树人"
+	"event_grove_event_help_treant_Description"									"在旅行中，你遇到了一个害怕的，受伤的树人，四处躲藏。它请求帮助。\n\n此事件为团队投票。"
+	"event_grove_event_help_treant_option_1"									"帮他一把！ <font color=\"yellow\">[%event_treant_fight%]</font>"
+	"event_grove_event_help_treant_option_2"									"当做没看见。 [无事发生]"
+	"event_grove_event_help_treant_Reward1"										"在击败它的追击者之后，树人祝福你。在接下来的3场战斗中获得25点生命值回复。"
+	"event_treant_fight"														"战斗"
+	"event_treant_fight_Description"											"你将需要面对各种各样的野兽，获胜会给你奖励。"
+	
+	"event_grove_event_the_river"												"河"
+	"event_grove_event_the_river_Description"									"途中，你路过一条清澈的河流，你觉得是一个很好的休息地点。你休息的时候会做些什么?"
+	"event_grove_event_the_river_option_1"										"喝些河水。 <font color=\"lawngreen\">[获得 %event_river_regeneration%.]</font>"
+	"event_grove_event_the_river_option_2"										"洗个澡。 <font color=\"lawngreen\">[获得 %event_river_resistance%.]</font>"
+	"event_grove_event_the_river_option_3"										"游泳。 <font color=\"lawngreen\">[获得 %event_river_speed%.]</font>"
+	"event_river_regeneration"													"祝福:流水之力"
+	"event_river_regeneration_Description"										"获得5生命恢复。"
+	"event_river_resistance"													"祝福:流水之盾"
+	"event_river_resistance_Description"										"获得10%魔抗。"
+	"event_river_speed"															"祝福:不息流水。"
+	"event_river_speed_Description"												"获得15移动速度。"
+	
+	"event_grove_event_well_of_youth"											"不老泉"
+	"event_grove_event_well_of_youth_Description"								"途中，你遇到一口奇怪的井，上面刻着各种各样的符文。你打算?"
+	"event_grove_event_well_of_youth_option_1"									"喝些井水。 <font color=\"yellow\">[重置技能点]</font>"
+	"event_grove_event_well_of_youth_option_2"									"无视。 [无事发生]"
+	
+	"event_sepulcher_event_graverobber"											"掘墓人"
+	"event_sepulcher_event_graverobber_Description"								"途中，你遇到一个掘墓人。他请你帮忙，但挖开他人的坟墓似乎不是个好主意。你打算?"
+	"event_sepulcher_event_graverobber_option_1"								"帮助他。 <font color=\"red\">[受到 %event_graverobbers_sin%的折磨]</font>"
+	"event_sepulcher_event_graverobber_option_2"								"无视， [无事发生]"
+	"event_graverobbers_sin"													"诅咒:盗墓者之罪"
+	"event_graverobbers_sin_Description"										"最大和当前生命变为2，但是会获得两次遗物三选一的机会，有一次必定为诅咒遗物。"
+	
+	"event_sepulcher_event_the_horde"											"大军压境"
+	"event_sepulcher_event_the_horde_Description"								"在旅行中，你被伏击，突然被一大群狂暴的敌人包围。先活下来吧。"
+	"event_sepulcher_event_the_horde_option_1"									"开始战斗！ [准备战斗]"
+	"event_sepulcher_event_the_horde_Reward1"									"打败大军后，你会觉得自己比以前更强大了，基础属性增加了10!"
+	
+	"event_sepulcher_event_tombstone"											"摇摇欲坠的墓碑"
+	"event_sepulcher_event_tombstone_Description"								"途中，你遇到一个幽灵，向你请求帮助。每天都有拾荒者试图攻击它的墓碑，这让它无法获得安宁。你会帮助它吗?\n\n此事件为团队投票事件。"
+	"event_sepulcher_event_tombstone_option_1"									"Help it. <font color=\"yellow\">[%event_tombstone_fight%]</font>"
+	"event_sepulcher_event_tombstone_option_2"									"无视。[无事发生]"
+	"event_sepulcher_event_tombstone_Reward1"									"墓碑完全毫发无损，幽灵极为高兴，祝福你们在接下来的3场战斗获得30%的闪避并获得一条额外生命!"
+	"event_sepulcher_event_tombstone_Reward2"									"幽灵保佑你，因为它的墓碑几乎完好无损。在接下来的3场战斗中获得30%的闪避效果。"
+	"event_sepulcher_event_tombstone_Reward3"									"墓碑被打破了，不幸的是你的努力白费了。"
+	"event_tombstone_fight"														"战斗"
+	"event_tombstone_fight_Description"											"你需要保护墓碑免受僵尸的伤害，它活着你会获得奖励。"
+	
+	"event_solitude_event_demon_of_avarice"										"Demon of Avarice"
+	"event_solitude_event_demon_of_avarice_Description"							"途中，你遇到一个贪魔，他们以身上上携带大量的金子而闻名，你很肯定攻击使它掉落金币，攻击!"
+	"event_solitude_event_demon_of_avarice_option_1"							"来吧！[获得基于伤害的金币]"
+	
+	"event_solitude_event_crossroads"											"十字路口"
+	"event_solitude_event_crossroads_Description"								"旅行时，你会遇到一个十字路口，一个阴沉的人站在中间。他想与你做交易，与他交易会给你力量，尽管是有代价的。"
+	"event_solitude_event_crossroads_option_1"									"接受。 <font color=\"red\">[受到 %event_crossroads_deal%的折磨]</font>"
+	"event_solitude_event_crossroads_option_2"									"无视。[无事发生]"
+	"event_crossroads_deal"														"诅咒:十字路口的交易"
+	"event_crossroads_deal_Description"											"失去20%最大生命值，获得一个随机遗物。"
+	
+	"event_solitude_event_cursed_glove"											"迈达斯的手套"
+	"event_solitude_event_cursed_glove_Description"								"途中，你在一个金色的祭坛上看到一只手套，你觉得这是迈达斯的手套。"
+	"event_solitude_event_cursed_glove_option_1"								"点金。 <font color=\"yellow\">[移除第一个物品栏中的物品。获得与该物品及其所有宝石等价的黄金。]</font>"
+	"event_solitude_event_cursed_glove_option_2"								"无视。[无事发生]"
+	
+	"event_solitude_event_devil_deal"											"被诅咒的交易"
+	"event_solitude_event_devil_deal_Description"								"旅行时，你会遇到一个旅行推销员。他问你在生命中寻求什么。"
+	"event_solitude_event_devil_deal_option_1"									"质朴。 <font color=\"lawngreen\">[获得一个普通遗物</font>"
+	"event_solitude_event_devil_deal_option_2"									"力量。 <font color=\"red\">[受到%event_deal_of_power%的折磨]</font>"
+	"event_solitude_event_devil_deal_option_3"									"特权。 <font color=\"yellow\">[失去一个普通遗物，获得一个稀有遗物。]</font>"
+	"event_deal_of_power"														"诅咒：力量的代价"
+	"event_deal_of_power_Description"											"失去30%最大生命值，获得一个罕见+诅咒遗物。"
+	
+	"event_grove_event_a_stick"													"小树枝"
+	"event_grove_event_a_stick_Description"										"途中，你找到一根小树枝。"
+	"event_grove_event_a_stick_option_1"										"带走。 <font color=\"lawngreen\">[获得 遗物： %relic_stick%.]</font>"
+	"event_grove_event_a_stick_option_2"										"扔向远处。 <font color=\"lawngreen\">[获得 %event_blessing_of_stick%.]</font>"
+	"event_blessing_of_stick"													"祝福:一身轻松"
+	"event_blessing_of_stick_Description"										"获得35攻击力，攻击速度和移速。"
+	
+	"event_grove_event_tree_of_life"											"生命之树"
+	"event_grove_event_tree_of_life_Description"								"在旅行中，你发现一棵结满果实的大树。"
+	"event_grove_event_tree_of_life_option_1"									"吃掉果实。 <font color=\"lawngreen\">[获得 %event_tree_blessing_of_life%.]</font>"
+	"event_grove_event_tree_of_life_option_2"									"冥想。 <font color=\"lawngreen\">[获得 %event_tree_blessing_of_wisdom%.]</font>"
+	"event_grove_event_tree_of_life_option_3"									"照料这棵树。 <font color=\"lawngreen\">[获得 %event_tree_blessing_of_valor%.]</font>"
+	"event_tree_blessing_of_life"												"祝福:树*生命涌动"
+	"event_tree_blessing_of_life_Description"									"获得400生命上限和5生命恢复。"
+	"event_tree_blessing_of_wisdom"												"祝福:树*智慧涌动"
+	"event_tree_blessing_of_wisdom_Description"									"获得15智力和20%技能增强。"
+	"event_tree_blessing_of_valor"												"祝福:树*英勇涌动"
+	"event_tree_blessing_of_valor_Description"									"获得8全属性。"
+	
+	"event_grove_event_bloom_crystal"											"水晶绽放"
+	"event_grove_event_bloom_crystal_Description"								"在旅行中，你遇到一些奇怪的花状水晶。"
+	"event_grove_event_bloom_crystal_option_1"									"吃掉。 <font color=\"lawngreen\">[获得 %event_bloom_harvest%.]</font>"
+	"event_grove_event_bloom_crystal_option_2"									"摘下。 <font color=\"lawngreen\">[获得 800 gold.]</font>"
+	"event_grove_event_bloom_crystal_option_3"									"摧毁。 <font color=\"yellow\">[获得一个随机普通遗物。]</font>"
+	"event_bloom_harvest"														"祝福:绽放的收获"
+	"event_bloom_harvest_Description"											"获得500最大生命和8生命回复."
+	
+	"event_grove_event_berries"													"无名浆果"
+	"event_grove_event_berries_Description"										"旅行时，你遇到一丛紫色的浆果。"
+	"event_grove_event_berries_option_1"										"吃掉。 <font color=\"yellow\">[获得 %event_poison_hangover%]</font>"
+	"event_grove_event_berries_option_2"										"炼金。 <font color=\"red\">[获得 %event_noxious_potion%]</font>"
+	"event_grove_event_berries_option_3"										"无视。[无事发生]"
+	"event_poison_hangover"														"诅咒:有毒宿醉"
+	"event_poison_hangover_Description"											"在接下来三次战斗中，或者死亡之前失去800最大生命值。如果诅咒结束之前没有死亡，额外获得400最大生命值。"
+	"event_noxious_potion"														"诅咒:有毒药水"
+	"event_noxious_potion_Description"											"永久失去400最大生命，并获得2点技能点。"
+	
+	"event_sepulcher_event_unmarked_grave"										"无字碑"
+	"event_sepulcher_event_unmarked_grave_Description"							"途中，你遇到一座无字碑。"
+	"event_sepulcher_event_unmarked_grave_option_1"								"挖掘。 <font color=\"red\">[获得遗物： %relic_rotting_flesh%， 所有治疗减少50%]</font>"
+	"event_sepulcher_event_unmarked_grave_option_2"								"离开。[无事发生]"
+	
+	"event_sepulcher_event_cursed_cemetary"										"被诅咒的坟地"
+	"event_sepulcher_event_cursed_cemetary_Description"							"在途中，你遇到一个古老的墓地。空气沉闷，你感到不安。\n\n此事件为团队投票事件。"
+	"event_sepulcher_event_cursed_cemetary_option_1"							"清理。 <font color=\"yellow\">[%event_cursed_cemetary_fight%.]</font>"
+	"event_sepulcher_event_cursed_cemetary_option_2"							"离开。[无事发生]"	
+	"event_cursed_cemetary_fight"												"战斗。"
+	"event_cursed_cemetary_fight_Description"									"即将于数只不死族boss发生战斗，胜利将获得两个随机遗物。"
+	
+	"event_sepulcher_event_blighted_land"										"被摧残的土地"
+	"event_sepulcher_event_blighted_land_Description"							"旅行时，你会遇到一片生命的禁区。但只要足够努力，你就有可能让它起死回生。"
+	"event_sepulcher_event_blighted_land_option_1"								"清理。 <font color=\"yellow\">[获得 %event_blighted_land_cleanse%]</font>"
+	"event_sepulcher_event_blighted_land_option_2"								"休息。 <font color=\"yellow\">[获得 %event_blighted_land_rest%]</font>"
+	"event_sepulcher_event_blighted_land_option_3"								"离开。[无事发生]"
+	"event_blighted_land_cleanse"												"诅咒:闹鬼的活力"
+	"event_blighted_land_cleanse_Description"									"获得1500最大生命值，但所有恢复减少20%。"
+	"event_blighted_land_rest"													"诅咒:闹鬼的成长"
+	"event_blighted_land_rest_Description"										"获得+18全属性，但所有恢复减少20%。"
+	
+	"event_sepulcher_event_withered_tree"										"枯木朽株"
+	"event_sepulcher_event_withered_tree_Description"							"在途中，你遇到了一棵枯萎的树。你感觉它很强大，但不知怎么的，感觉…不对劲。"
+	"event_sepulcher_event_withered_tree_option_1"								"焚烧。 <font color=\"lawngreen\">[获得 %event_withered_tree_burn%。]</font>"
+	"event_sepulcher_event_withered_tree_option_2"								"砍掉。 <font color=\"lawngreen\">[获得600金币。]</font>"
+	"event_withered_tree_burn"													"祝福：枯萎熏香"
+	"event_withered_tree_burn_Description"										"在接下来三次战斗中获得 25% 额外经验。"
+	
+	"event_sepulcher_event_ominous_tome"										"死者之书"
+	"event_sepulcher_event_ominous_tome_Description"							"在旅行中，你进入了一个废弃的教堂，在里面你看到了一本不祥的书，它的封面看起来像是用人皮做成的。\n\n此事件为团队投票事件。"
+	"event_sepulcher_event_ominous_tome_option_1"								"翻开。 <font color=\"yellow\">[获得 %event_ominous_tome_read%]</font>"
+	"event_sepulcher_event_ominous_tome_option_2"								"摧毁。 <font color=\"red\">[%event_ominous_tome_destroy%]</font>"
+	"event_sepulcher_event_ominous_tome_option_3"								"无视。 [无事发生]"
+	"event_ominous_tome_read"													"诅咒:禁忌学识"
+	"event_ominous_tome_read_Description"										"所有人的当前和最大生命值提高1，并获得80点攻击伤害，但最大生命值降低600点。"
+	"event_ominous_tome_destroy"												"战斗"
+	"event_ominous_tome_destroy_Description"									"与亡灵boss和精英战斗，获胜后可以从3个随机的诅咒遗物中获得一个选择。"
+	"event_sepulcher_event_ominous_tome_Reward1"								"禁忌之书的知识让你充满活力，但是感觉自己的岁月逝去许多。"
+	
+	"event_sepulcher_event_ruined_cathedral"									"教堂遗迹"
+	"event_sepulcher_event_ruined_cathedral_Description"						"在旅行中，你发现了一座被毁坏的大教堂。你能闻到里面亡灵的恶臭。\n\n此事件为团队投票事件。"
+	"event_sepulcher_event_ruined_cathedral_option_1"							"祈祷。 <font color=\"lawngreen\">[获得 %event_ruined_cathedral_pray%]</font>"
+	"event_sepulcher_event_ruined_cathedral_option_2"							"清除。 <font color=\"red\">[%event_ruined_cathedral_purge%]</font>"
+	"event_ruined_cathedral_pray"												"祝福：无用祈祷"
+	"event_ruined_cathedral_pray_Description"									"团队获得 2 生命回复 和5%魔抗。"
+	"event_ruined_cathedral_purge"												"战斗"
+	"event_ruined_cathedral_purge_Description"									"与不死boss和精英战斗，胜利将会获得一个随机的罕见+诅咒遗物。"
+	
+	"event_sepulcher_event_plague_doctor"										"瘟疫医生"
+	"event_sepulcher_event_plague_doctor_Description"							"途中，你遇到一名疫医，他给你提供一种奇怪的混合物。"
+	"event_sepulcher_event_plague_doctor_option_1"								"喝下。 <font color=\"red\">[获得 %event_plague_doctor_drink%]</font>"
+	"event_sepulcher_event_plague_doctor_option_2"								"拒绝。 [无事发生]"
+	"event_plague_doctor_drink"													"诅咒：不洁药剂"
+	"event_plague_doctor_drink_Description"										"获得 +80 攻击力, +32% 技能增强 和 20 移动速度，但是降低10护甲和25%魔抗。"
+	
+	"event_sepulcher_event_abandoned_shack"										"废弃小屋"
+	"event_sepulcher_event_abandoned_shack_Description"							"在途中，你遇到了一座废弃的棚屋。你会怎么做？\n\n此事件为团队投票事件。"
+	"event_sepulcher_event_abandoned_shack_option_1"							"<font color=\"yellow\">%event_abandoned_shack_investigate%.</font>"
+	"event_sepulcher_event_abandoned_shack_option_2"							"无视。"
+	"event_abandoned_shack_investigate"											"调查。"
+	"event_abandoned_shack_investigate_Description"								"有几率与亡灵boss和精英战斗，也有机会找到金币或遗物。"
+	"event_sepulcher_event_abandoned_shack_Reward1"								"获得500金币！"
+	"event_sepulcher_event_abandoned_shack_Reward2"								"获得一个遗物。"
+	"event_sepulcher_event_abandoned_shack_Reward3"								"当你四处翻找的时候，你已经惊醒了几个存在!"
+	"event_sepulcher_event_abandoned_shack_Reward4"								"当你四处翻找的时候，你已经惊动了一个哀嚎的女妖!"
+	
+	"event_elysium_event_silent_guardian"										"沉寂守护者"
+	"event_elysium_event_silent_guardian_Description"							"在旅行中，你会发现一个奇怪的石像。你非常想摸摸它。"
+	"event_elysium_event_silent_guardian_option_1"								"触碰。 <font color=\"red\">[警告：变成 %event_blessing_of_ethereal%]</font>"
+	"event_elysium_event_silent_guardian_option_2"								"离开。[无事发生]"
+	"event_blessing_of_ethereal"												"虚无形态"
+	"event_blessing_of_ethereal_Description"									"虚无形态使你缴械，禁止你攻击，并且获得物理免疫和100%魔法增伤。"
+	
+	"event_elysium_event_angelic_cache"											"天使的宝藏"
+	"event_elysium_event_angelic_cache_Description"								"旅行时，你发现一个隐藏的箱子，里面有奇怪的小饰品。你要哪一种?"
+	"event_elysium_event_angelic_cache_option_1"								"药水。 <font color=\"lawngreen\">[获得 relic: %relic_angelic_water%]</font>"
+	"event_elysium_event_angelic_cache_option_2"								"酒。 <font color=\"lawngreen\">[获得 relic: %relic_breath_of_life%]</font>"
+	"event_elysium_event_angelic_cache_option_3"								"羽毛。 <font color=\"lawngreen\">[获得 relic: %relic_seraphims_feather%]</font>"
+	
+	"event_elysium_event_safe_haven"											"安全港"
+	"event_elysium_event_safe_haven_Description"								"在旅行中，你会发现一片小空地，让你有时间休息。你打算如何度过这段时间?"
+	"event_elysium_event_safe_haven_option_1"									"休息。 <font color=\"lawngreen\">[获得 %event_safe_haven_rest%.]</font>"
+	"event_elysium_event_safe_haven_option_2"									"训练。 <font color=\"lawngreen\">[获得 %event_safe_haven_train%.]</font>"
+	"event_elysium_event_safe_haven_option_3"									"S研究。 <font color=\"lawngreen\">[获得 %event_safe_haven_study%.]</font>"
+	"event_safe_haven_rest"														"祝福：安全港的休息"
+	"event_safe_haven_rest_Description"											"获得500最大生命值。"
+	"event_safe_haven_train"													"祝福:安全港的实践"
+	"event_safe_haven_train_Description"										"获得30基础攻击力和攻速"
+	"event_safe_haven_study"													"祝福:安全港的研究"
+	"event_safe_haven_study_Description"										"获得50最大魔法值和15%技能增强."
+	
+	"event_solitude_event_demon_shrine"											"腐败的圣地"
+	"event_solitude_event_demon_shrine_Description"								"你遇到一个明显被恶魔腐化的圣地。\n\n此事件为团队投票事件。"
+	"event_solitude_event_demon_shrine_option_1"								"祈祷。 <font color=\"yellow\">[获得 %event_demon_shrine_pray%.]</font>"
+	"event_solitude_event_demon_shrine_option_2"								"摧毁。 <font color=\"red\">[%event_demon_shrine_destroy%.]</font>"
+	"event_solitude_event_demon_shrine_option_3"								"离开。[无事发生]"
+	"event_demon_shrine_pray"													"诅咒:被贪婪腐化"
+	"event_demon_shrine_pray_Description"										"获得2000金币，但是失去10护甲和20%魔抗。"
+	"event_demon_shrine_destroy"												"战斗"
+	"event_demon_shrine_destroy_Description"									"与恶魔精英战斗，获胜后获得一件普通遗物和一件罕见+遗物。"
+	"event_solitude_event_demon_shrine_Reward1"									"祈祷之后，你会觉得口袋里装满了金币。"
+	
+	"event_solitude_event_cultist_ritual"										"邪教仪式"
+	"event_solitude_event_cultist_ritual_Description"							"在旅途中，你看到一些教徒在远处念诵咒语。"
+	"event_solitude_event_cultist_ritual_option_1"								"加入他们。 <font color=\"yellow\">[获得 %event_cultist_ritual_join%]</font>"
+	"event_solitude_event_cultist_ritual_option_2"								"拒绝他们。 [无事发生]"
+	"event_cultist_ritual_join"													"诅咒：腐败恩赐"
+	"event_cultist_ritual_join_Description"										"获得2个随机稀有+遗物，但是失去100%治疗增强。"
+	"event_solitude_event_cultist_ritual_Reward1"								"信徒与你分享赏赐，授予你2个诅咒遗物。"
+	
+	"event_solitude_event_lake_of_lava"											"熔岩湖"
+	"event_solitude_event_lake_of_lava_Description"								"在旅行时，你的旅行被巨大的熔岩湖所阻挡。"
+	"event_solitude_event_lake_of_lava_option_1"								"跳过去。 <font color=\"lawngreen\">[获得 %event_lake_of_lava_vault%.]</font>"
+	"event_solitude_event_lake_of_lava_option_2"								"绕路走。 <font color=\"lawngreen\">[获得 %event_lake_of_lava_path%.]</font>"
+	"event_solitude_event_lake_of_lava_option_3"								"游过去。 <font color=\"lawngreen\">[获得 %event_lake_of_lava_swim%.]</font>"
+	"event_lake_of_lava_vault"													"祝福:熔岩的灵巧"
+	"event_lake_of_lava_vault_Description"										"You 获得 10 敏捷."
+	"event_lake_of_lava_path"													"祝福:熔岩的智慧"
+	"event_lake_of_lava_path_Description"										"You 获得 15 智力."
+	"event_lake_of_lava_swim"													"祝福:熔岩的体格"
+	"event_lake_of_lava_swim_Description"										"You 获得 12 力量."
+	
+	"event_solitude_event_ominous_pentagram"									"预言之星"
+	"event_solitude_event_ominous_pentagram_Description"						"旅行时，你在地面上看到五角星型法阵。这些符文散发力量并发出嘶嘶的响声。\n\n此事件为团队投票事件。"
+	"event_solitude_event_ominous_pentagram_option_1"							"触碰。 <font color=\"red\">[%event_ominous_pentagram_touch%.]</font>"
+	"event_solitude_event_ominous_pentagram_option_2"							"驱散。 <font color=\"yellow\">[%event_ominous_pentagram_dispel%.]</font>"
+	"event_solitude_event_ominous_pentagram_option_3"							"逃跑。 [无事发生？]"
+	"event_ominous_pentagram_touch"												"警告：战斗"
+	"event_ominous_pentagram_touch_Description"									"与增强的阿修罗战斗。战斗奖励将会增加。击败它后获得15点全属性。"
+	"event_ominous_pentagram_dispel"											"战斗"
+	"event_ominous_pentagram_dispel_Description"								"与恶魔之神阿修罗战斗。击败他可以给boss奖励。"
+
+	"event_solitude_event_demonic_horde"										"恶魔大军"
+	"event_solitude_event_demonic_horde_Description"							"在旅途中，你遭遇伏击，突然被一大群敌人包围。在混乱中活下来!"
+	"event_solitude_event_demonic_horde_option_1"								"准备战斗！ [战斗开始]"
+	"event_solitude_event_demonic_horde_Reward1"								"击败大军后，你会觉得自己比以前更强大了，你增加了30移动速度和500最大魔法值!"
+	
+	"event_solitude_event_black_ritual"											"暗黑仪式"
+	"event_solitude_event_black_ritual_Description"								"在旅行中，你会遇到一些头骨和骨头，伴随着各种符文和血液。在中间，你看到一根蜡烛。"
+	"event_solitude_event_black_ritual_option_1"								"拿走蜡烛。 <font color=\"yellow\">[获得 %relic_ritual_candle%, afflicted with %event_black_ritual_curse%]</font>"
+	"event_solitude_event_black_ritual_option_2"								"与未知存在交流。 <font color=\"yellow\">[获得 %relic_forbidden_contract%, afflicted with %event_black_ritual_curse%]</font>"
+	"event_solitude_event_black_ritual_option_3"								"摧毁。 <font color=\"yellow\">[获得3普通遗物，受%event_black_ritual_curse%]折磨</font>"
+	"event_solitude_event_black_ritual_option_4"								"离开。 <font color=\"green\">[无事发生]</font>"
+	"event_black_ritual_curse"													"诅咒:仪式疲劳"
+	"event_black_ritual_curse_Description"										"失去当前所有金币，并且减少35%经验和金币获取。"
+	
+	"event_elysium_event_fountain_of_purity"									"纯净之泉"
+	"event_elysium_event_fountain_of_purity_Description"						"旅行时，你发现一个泉水，它散发出一种舒缓的气场。"
+	"event_elysium_event_fountain_of_purity_option_1"							"喝下。 <font color=\"green\">[移除所有诅咒]</font>"
+	"event_elysium_event_fountain_of_purity_option_2"							"祝福。 <font color=\"green\">[获得 %relic_ofuda%]</font>"
+	"event_elysium_event_fountain_of_purity_option_3"							"祈祷。 <font color=\"green\">[获得 %event_fountain_of_purity_pray%]</font>"
+	"event_fountain_of_purity_pray"												"纯洁祝福"
+	"event_fountain_of_purity_pray_Description"									"获得+5全属性。"
+	
+	"ascension_Generic_Description"												"超越（A）将重启游戏，你将会保留你当前的物品，遗物和等级。这是团队投票。\n每次超越将会增加敌人的攻击，攻速，暴击和护甲。"
+	"ascension_1_Description"													"A1: 所有敌人将会是冠军，精英将不会掉落遗物。"
+	"ascension_2_Description"													"A2: boss将不会掉落遗物，并且获得25%状态抗性。"
+	"ascension_3_Description"													"A3: 你的治疗增强降低50%，boss将会获得50状态抗性。"
+	"ascension_4_Description"													"A4: 所有敌人将会获得极速和飞行移动。boss获得75%状态抗性。"
+	"generic_yes"																"是"
+	"generic_no"																"否"
+	"ascension_overhead"														"超越？"
+	
+
+	// PANORAMA
+	"QuestDifficultyText"											"难度： {s:difficulty}"
+	"QuestRoundText"												"{s:roundText} - {s:roundNumber}"
+	"QuestLifeText"													"生命： {d:lives} OUT OF {d:maxLives}"
+	"QuestPrepText"													"剩余准备时间： {d:prepTime}"
+	
+	"SKILL_TREE_OFFENSE"											"进攻"
+	"SKILL_TREE_DEFENSE"											"防守"
+	"SKILL_TREE_OTHER"												"其他"
+	"SKILL_TREE_UNIQUE"												"独特"
+	
+	"STATS_TYPE_MOVE_SPEED"											"移动速度"
+	"STATS_TYPE_MANA"												"最大魔法值"
+	"STATS_TYPE_MANA_REGEN"											"魔法恢复"
+	"STATS_TYPE_HEAL_AMP"											"治疗增强"
+	"STATS_TYPE_ALL_STATS"											"全属性"
+	
+	"STATS_TYPE_MOVE_SPEED_Description"								"增加基础移速。"
+	"STATS_TYPE_MANA_Description"									"增加最大魔法值。"
+	"STATS_TYPE_MANA_REGEN_Description"								"增加基础魔法恢复。"
+	"STATS_TYPE_HEAL_AMP_Description"								"增加施加和受到的治疗量，对自己治疗时只计算一次。"
+	"STATS_TYPE_ALL_STATS_Description"								"获得额外的力量，敏捷和智力。"
+	
+	"STATS_GENERIC_UNCAPPED"										"升级这个天赋会获得额外的奖励"
+	
+	"STATS_TYPE_ATTACK_DAMAGE"										"攻击力"
+	"STATS_TYPE_COOLDOWN_REDUCTION"									"冷却缩减"
+	"STATS_TYPE_SPELL_AMP"											"技能增强"
+	"STATS_TYPE_ATTACK_SPEED"										"攻击速度"
+	"STATS_TYPE_STATUS_AMP"											"状态抗性"
+	"STATS_TYPE_ACCURACY"											"命中率"
+	"STATS_TYPE_AREA_DAMAGE"										"范围伤害"
+	
+	"STATS_TYPE_ATTACK_DAMAGE_Description"							"增加你所造成的自动攻击伤害。"
+	"STATS_TYPE_COOLDOWN_REDUCTION_Description"						"降低你所有技能的冷却时间。冷却缩减独立计算。"
+	"STATS_TYPE_SPELL_AMP_Description"								"增加大部分技能造成的伤害，有些技能无视技能增强."
+	"STATS_TYPE_ATTACK_SPEED_Description"							"增加你的攻击速度，上限为700。"
+	"STATS_TYPE_STATUS_AMP_Description"								"增加减益和加持的持续时间。负的状态增强会降低持续时间。"
+	"STATS_TYPE_ACCURACY_Description"								"增加忽略闪避的几率。"
+	"STATS_TYPE_AREA_DAMAGE_Description"							"当你用攻击或单位技能伤害一个没有效果区域属性的单位时，你会对325单位半径内的所有单位造成相当于你的区域伤害百分比的伤害。此效果内部冷却时间为0.1秒。远程攻击和法术造成的区域伤害减半。"
+	
+	"STATS_TYPE_ARMOR"												"护甲"
+	"STATS_TYPE_MAGIC_RESIST"										"魔抗"
+	"STATS_TYPE_DAMAGE_BLOCK"										"伤害格挡（60%）"
+	"STATS_TYPE_ATTACK_RANGE"										"攻击距离"
+	"STATS_TYPE_HEALTH"												"最大生命值"
+	"STATS_TYPE_HEALTH_REGEN"										"生命恢复"
+	"STATS_TYPE_STATUS_REDUCTION"									"状态抗性"
+	
+	"STATS_TYPE_ARMOR_Description"									"每点护甲提供5%物理抗性，减伤独立计算。"
+	"STATS_TYPE_MAGIC_RESIST_Description"							"按比例降低受到的魔法伤害。"
+	"STATS_TYPE_DAMAGE_BLOCK_Description"							"获得60%几率降低所有类型的伤害，数值为此天赋的数值"
+	"STATS_TYPE_ATTACK_RANGE_Description"							"增加攻击距离，近战单位加成减少。"
+	"STATS_TYPE_HEALTH_Description"									"增加最大生命值。"
+	"STATS_TYPE_HEALTH_REGEN_Description"							"增加基础生命回复。"
+	"STATS_TYPE_STATUS_REDUCTION_Description"						"减少受到的debuff时长。"
+	
+	"MASTERY_ATTACK_DAMAGE"											"攻击力+"
+	"MASTERY_ATTACK_DAMAGE_Description"								"增加基础攻击力： {d:number}"
+	"MASTERY_ATTACK_SPEED"											"攻击速度+"
+	"MASTERY_ATTACK_SPEED_Description"								"增加攻击速度： {d:number}"
+	"MASTERY_SPELL_AMP"												"技能增强+"
+	"MASTERY_SPELL_AMP_Description"									"增加技能增强： {d:number}%"
+	"MASTERY_STATUS_AMP"											"状态增强+"
+	"MASTERY_STATUS_AMP_Description"								"增加你施加的buff和debuff时长： {d:number}%"
+	"MASTERY_HEALTH"												"最大生命+"
+	"MASTERY_HEALTH_Description"									"增加生命上限： {d:number}"
+	"MASTERY_HEALTH_REGEN"											"生命回复+"
+	"MASTERY_HEALTH_REGEN_Description"								"增加基础生命回复： {d:number}"
+	"MASTERY_ARMOR"													"护甲+"
+	"MASTERY_ARMOR_Description"										"增加护甲： {d:number}"
+	"MASTERY_MAGIC_RESIST"											"魔抗+"
+	"MASTERY_MAGIC_RESIST_Description"								"增加魔抗： {d:number}%"
+	"MASTERY_MOVESPEED"												"移速+"
+	"MASTERY_MOVESPEED_Description"									"增加移速： {d:number}%"
+	"MASTERY_HEAL_AMP"												"治疗增强+"
+	"MASTERY_HEAL_AMP_Description"									"增加施加和受到的治疗： {d:number}%"
+	"MASTERY_MANA"													"最大魔法+"
+	"MASTERY_MANA_Description"										"增加魔法上限： {d:number}"
+	"MASTERY_MANA_REGEN"											"魔法回复+"
+	"MASTERY_MANA_REGEN_Description"								"增加基础魔法回复： {d:number}"
+	"MASTERY_EVASION"												"闪避+"
+	"MASTERY_EVASION_Description"									"增加闪避几率： {d:number}%"
+	"MASTERY_AREA_DAMAGE"											"范围伤害+"
+	"MASTERY_AREA_DAMAGE_Description"								"增加造成的范围伤害 {d:number}%"
+	"MASTERY_THREAT_AMP"											"仇恨获取+"
+	"MASTERY_THREAT_AMP_Description"								"增加受到的仇恨值： {d:number}%"
+	"MASTERY_THREAT_DOWN"											"仇恨减少+"
+	"MASTERY_THREAT_DOWN_Description"								"减少受到的仇恨值： {d:number}"
+	"MASTERY_STRENGTH"												"力量+"
+	"MASTERY_STRENGTH_Description"									"增加力量： {d:number}"
+	"MASTERY_AGILITY"												"敏捷+"
+	"MASTERY_AGILITY_Description"									"增加敏捷： {d:number}"
+	"MASTERY_INTELLIGENCE"											"智力+"
+	"MASTERY_INTELLIGENCE_Description"								"增加智力： {d:number}"
+	"MASTERY_ALL_STATS"												"全属性+"
+	"MASTERY_ALL_STATS_Description"									"增加力量，敏捷和智力： {d:number}"
+	
+	
+	"TALENT_ERROR_MAX"												"英雄的天赋已经到达最大。"
+	"TALENT_ERROR_COST"												"英雄精通的技能点不足!还需要： {d:number}"
+	
+	"RespecText"													"个人"
+	
+	"LivesInfoSnippet"																"这就是你们现在的复活次数。死亡后你会在8秒后重生。如果你没有复活次数了，你会掉落一个墓碑，在对墓碑持续施法10秒后可以复活。"
+	"ThreatInfoSnippet"																"这就是你现在的仇恨。仇恨决定了谁是敌人的目标。红色仇恨意味着你在你的团队中有最高的仇恨，橙色意味着你是第二。"
+	
+	// SCOREBOARD
+	"DOTA_HUD_Score"															"GROVE"
+	"DOTA_HUD_Mute"																"静音"
+	"DOTA_HUD_DamageDealt"														"造成的伤害"
+	"DOTA_HUD_DamageTaken"														"受到的伤害"
+	"DOTA_HUD_DamageHealed"														"治疗量"
+	"DOTA_HUD_Deaths"															"死亡数"
+	"relic_info_skip_relic"																					"跳过遗物会给与你基于选择池中稀有度最高遗物的金币，并且被跳过的遗物不会再次出现。跳过一般遗物获得150金币，罕见给300，稀有给450，传奇给600。"
+	// ERRORS
+	"generic_relic_not_found"																				"一般重roll"
+	"generic_relic_not_found_Description"																	"随机一般遗物失败，为了防止崩溃，给你一个另外的，这不是很好么？"
+	
+	"cursed_relic_not_found"																				"诅咒重roll"
+	"cursed_relic_not_found_Description"																	"随机诅咒遗物失败，为了防止崩溃，给你一个另外的，这不是很好么？"
+	
+	"unique_relic_not_found"																				"独特重roll"
+	"unique_relic_not_found_Description"																	"随机独特遗物失败，为了防止崩溃，给你一个另外的，这不是很好么？"
+	7
+	// CURSED
+	"relic_adamantium_ingot"																				"艾德曼合金锭"
+	"relic_adamantium_ingot_Description"																	"+30护甲，但是这个遗物是<font color=\"maroon\">诅咒遗物</font>，减少50%魔抗。"
+	
+	"relic_boiling_blood"																					"沸腾之血"
+	"relic_boiling_blood_Description"																		"当你靠近敌人时，对周围的敌人造成你2%最大生命的伤害，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，激活时也对你造成1.5%最大生命的魔法伤害。\n\n这个伤害不会让你自杀。\n受到和造成的伤害独立计算。"
+	
+	"relic_cursed_dice"																						"被诅咒的骰子"
+	"relic_cursed_dice_Description"																			"这个遗物是This relic is <font color=\"maroon\">诅咒遗物</font>，移除你当前的所有遗物，并且获得同样个数的随机遗物。\n每个失去的遗物有50%几率使你额外获得一个随机遗物。"
+	
+	"relic_glass_flower"																					"Glass Flower"
+	"relic_glass_flower_Description"																		"基础攻击力和技能增强增加75%，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，减少10护甲和50%魔抗。"
+	
+	"relic_loaded_coin"																						"灌铅骰子"
+	"relic_loaded_coin_Description"																			"60%几率不受到伤害，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，受到伤害时受到双倍伤害。"
+	
+	"relic_mysterious_stone"																				"神秘之石"
+	"relic_mysterious_stone_Description"																	"获得技能格挡，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，降低状态抗性50%，（如果状态抗性低于0%，受到的debuff时间会增长）。\n技能格挡有12s cd。"
+	
+	"relic_pale_blood"																						"苍白之血"
+	"relic_pale_blood_Description"																			"获得30%全伤害吸血，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，降低最大生命25%。"
+	
+	"relic_paupers_finger"																					"乞丐之指"
+	"relic_paupers_finger_Description"																		"获得100%额外经验，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，降低35%你获得的所有金币"
+	
+	"relic_red_key"																							"猩红之匙"
+	"relic_red_key_Description"																				"获得一个额外的遗物选项，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，当你跳过遗物时，降低50%最大生命，直到你选择一个遗物。"
+	
+	"relic_symbiote"																						"共生图章"
+	"relic_symbiote_Description"																			"最大生命增加最大魔法的数值，生命恢复增加增强前的魔法恢复，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，每次你释放法术时，会受到魔耗的伤害，你不会因为此效果自杀。"
+	
+	"relic_the_pact"																						"猛攻律令"
+	"relic_the_pact_Description"																			"增加100%基础攻击，并获得35%吸血，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，所有其他恢复包括自然回血将被禁止。"
+	
+	"relic_titans_jawbone"																					"泰坦颚骨"
+	"relic_titans_jawbone_Description"																		"最大生命增加50%，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，降低全伤害33%。"
+	
+	"relic_giants_cudgel"																					"巨人棍棒"
+	"relic_giants_cudgel_Description"																		"获得100%范围伤害和35%全攻击力，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，降低攻速40%。"
+	
+	"relic_unstoppable_force"																				"不止之力"
+	"relic_unstoppable_force_Description"																	"获得急速，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，降低转身速度80%。"
+	
+	"relic_battle_brew"																						"战争仙酿"
+	"relic_battle_brew_Description"																			"增加50%仇恨获取，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，使你致盲20%。"
+	
+	"relic_first_sin"																						"原初之罪"
+	"relic_first_sin_Description"																			"这个遗物是<font color=\"maroon\">诅咒遗物</font>， 你嘲讽所有敌人，并且不能隐身。"
+	
+	"relic_crystal_skull"																					"水晶头骨"
+	"relic_crystal_skull_Description"																		"附近40范围内没有敌人时，永久隐身。"
+	
+	"relic_hushpuppy"																						"油炸玉米饼"
+	"relic_hushpuppy_Description"																			"450范围内的敌人施法时会被沉默6s，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，如果你在冷却完成时施法也会被沉默3s。\n冷却15s。"
+	
+	"relic_unchanging_globe"																				"永恒之球"
+	"relic_unchanging_globe_Description"																	"冷却大于18s将会变成18s。但这个遗物是<font color=\"maroon\">诅咒遗物</font>，冷却低于18s的技能也会变成18s。"
+	
+	"relic_bloody_silk"																						"圣骸布"
+	"relic_bloody_silk_Description"																			"治疗友方时，额外治疗50生命，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，也会对自身造成20纯粹伤害。"
+
+	"relic_hungry_blade"																					"饥渴之刃"
+	"relic_hungry_blade_Description"																		"获得75额外攻击力和攻速，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，如果6s内没有攻击任何单位，你将每秒失去当前5%的生命。\n伤害不致死。"
+	
+	"relic_delirious_cowl"																					"癫狂风帽"
+	"relic_delirious_cowl_Description"																		"冷却随机减少，最低10%，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，额外增加50%冷却时间。"
+	
+	"relic_whale_heart"																						"鲸之心"
+	"relic_whale_heart_Description"																			"在水中增加100%生命回复，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，不在水中时减少50%。"
+	
+	"relic_demon_wings"																						"恶魔之翼"
+	"relic_demon_wings_Description"																			"变成飞行状态，并且对300范围内的敌人造成100%主属性伤害。但这个遗物是<font color=\"maroon\">诅咒遗物</font>，降低移速33%。"
+	
+	"relic_immaculate_staff"																				"无暇法杖"
+	"relic_immaculate_staff_Description"																	"获得40%冷却缩减，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，施法时会受到蓝耗75%的纯粹伤害。\n伤害不致死。"
+	
+	"relic_icon_of_pride"																					"傲慢之像"
+	"relic_icon_of_pride_Description"																		"获得+40全属性，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，随后你将无法获得遗物。"
+	
+	"relic_icon_of_sloth"																					"懒惰之像"
+	"relic_icon_of_sloth_Description"																		"当你的血量大于10%时，你无法被秒杀。但这个遗物是<font color=\"maroon\">诅咒遗物</font>，降低50%移速。"
+	
+	"relic_icon_of_greed"																					"贪婪之像"
+	"relic_icon_of_greed_Description"																		"金币获取+100%，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，随后你将无法获得遗物。"
+	
+	"relic_icon_of_wrath"																					"暴虐之像"
+	"relic_icon_of_wrath_Description"																		"对伤害来源造成80%主属性伤害，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，增加25%受到的伤害。"
+	
+	"relic_icon_of_gluttony"																				"暴食之像"
+	"relic_icon_of_gluttony_Description"																	"击杀boss时恢复15%最大生命和最大魔法，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，降低25%生命和魔法恢复。"
+	
+	"relic_icon_of_lust"																					"色欲之像"
+	"relic_icon_of_lust_Description"																		"350范围内的敌人有15%治疗你而不是对你造成伤害，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，降低最大生命20%。"
+	
+	"relic_icon_of_envy"																					"嫉妒之像"
+	"relic_icon_of_envy_Description"																		"每次跳过遗物时获得+12全属性，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，降低10点全属性。"
+	
+	"relic_mask_of_janus"																					"双面神面具"
+	"relic_mask_of_janus_Description"																		"这个遗物是<font color=\"maroon\">诅咒遗物</font>， 每轮结束时重roll一个随机遗物。\n本遗物不会重roll。"
+	
+	"relic_heavy_tome"																						"沉重巨著"
+	"relic_heavy_tome_Description"																			"智力翻倍，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，每失去1%魔法，降低2%移速。\n至少降低10%移速"
+	
+	"relic_thorned_bandages"																				"蔷薇绷带"
+	"relic_thorned_bandages_Description"																	"获得200%治疗增强，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，无论你被治疗还是治疗友军，都是临时的治疗量，会在后30s内以纯粹伤害平均的结算。"
+	
+	"relic_archmages_reliquary"																				"大法师的魂匣"
+	"relic_archmages_reliquary_Description"																	"获得35%冷却缩减和75%技能增强，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，<font color=\"red\">你将被缴械。</font>, 并且减少35%状态增强和治疗增强。"
+	
+	"relic_crimson_gauntlet"																				"猩红手甲"
+	"relic_crimson_gauntlet_Description"																	"最大生命增加60%，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，受到攻击时有20%几率受到2.40倍暴击。"
+	
+	"relic_ritual_kris"																						"仪式短剑"
+	"relic_ritual_kris_Description"																			"有10%几率造成3.6倍暴击伤害，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，每次暴击时会受到当前生命10%的纯粹伤害。"
+	
+	"relic_tortoise_greatshield"																			"玳瑁巨盾"
+	"relic_tortoise_greatshield_Description"																"获得50%状态抗性，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，降低状态增强35%。"
+	
+	"relic_iron_maiden"																						"铁处女"
+	"relic_iron_maiden_Description"																			"你受到的伤害会治疗所有你以外的友方单位，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，增加50%你受到的所有伤害。"
+	
+	"relic_grey_fox_tunic"																					"灰狐长袍"
+	"relic_grey_fox_tunic_Description"																		"每次攻击时获得2金币，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，降低10护甲和15%闪避。"
+	
+	"relic_false_idol"																						"虚伪之像"
+	"relic_false_idol_Description"																			"获得900施法范围，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，移动时受到10%移动距离的魔法伤害。"
+	
+	"relic_torn_prayer_card"																				"破碎的祈祷卡"
+	"relic_torn_prayer_card_Description"																	"受到伤害时，使用魔法抵挡伤害减免前的伤害，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，如果你的魔法不足以抵挡全部伤害，未抵挡的伤害增加30%。"
+	
+	"relic_apple_of_eden"																					"金苹果"
+	"relic_apple_of_eden_Description"																		"获得100%治疗增强，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，降低全伤害33%。"
+	
+	"relic_olive_branch"																					"橄榄枝"
+	"relic_olive_branch_Description"																		"每轮结束前未死亡，结束时将获得300金币，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，假如结束前死过，失去150金币。"
+	
+	"relic_eye_of_the_oligarch"																				"金钱之眼"
+	"relic_eye_of_the_oligarch_Description"																	"获得当前金币数范围的高空视野，但是每次使用金币时额外失去50金币。"
+	
+	"relic_forbidden_contract"																				"禁忌契约"
+	"relic_forbidden_contract_Description"																	"这个遗物是<font color=\"maroon\">诅咒遗物</font>，获得此遗物后，所有获得的遗物都会是诅咒遗物。"
+	
+	"relic_unbridled_power"																					"限制解除"
+	"relic_unbridled_power_Description"																		"所有你造成的伤害类型都转化为纯粹伤害，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，所有你受到的伤害也变成纯粹伤害。"
+	
+	"relic_evil_eye_amulet"																					"邪眼护符"
+	"relic_evil_eye_amulet_Description"																		"获得所有敌人的视野，但这个遗物是<font color=\"maroon\">诅咒遗物</font>，所有敌人也获得你的视野。"
+	
+	"relic_mimic_chest"																						"模仿者"
+	"relic_mimic_chest_Description"																			"获得此遗物时，额外获得一个完全随机的遗物。\n这包括通常不能像普通方式获得的遗物，比如事件遗物。完全忽视稀有权重。但这个遗物是<font color=\"maroon\">诅咒遗物</font>，你无法跳过以此方式获得的遗物。"
+	
+	// UNIQUE
+	"relic_aghanims_amulet"																					"阿哈利姆护符"
+	"relic_aghanims_amulet_Description"																		"获得阿哈利姆神杖的效果。"
+	
+	"relic_frozen_crystal"																					"寒冰水晶"
+	"relic_frozen_crystal_Description"																		"每次施法时对周围450范围内的敌方施加15层冷冻效果。"
+	
+	"relic_limit_breaker"																					"限制突破"
+	"relic_limit_breaker_Description"																		"增加600攻速上限，并且战斗轮轴每秒获得1额外攻速，结束时重置。"
+	
+	"relic_molten_crystal"																					"熔岩水晶"
+	"relic_molten_crystal_Description"																		"每次施法时在目标处产生一片熔岩。\n熔岩会对250范围内的敌人造成你100%主属性伤害。\n熔岩每8s触发一次。"
+	
+	"relic_mysterious_hourglass"																			"神秘沙漏"
+	"relic_mysterious_hourglass_Description"																"每次跳过遗物后会获得一次遗物三选一的机会，只会生效3次。"
+	
+	"relic_perpetuum_mobile"																				"永动护符"
+	"relic_perpetuum_mobile_Description"																	"消耗魔法时获得10魔法。"
+	
+	"relic_rage_enhancer"																					"力量护符"
+	"relic_rage_enhancer_Description"																		"每次受到任意来源的伤害时获得1力量。\ncd0.2s"
+	
+	"relic_rapid_totem"																						"急速图腾"
+	"relic_rapid_totem_Description"																			"获得50%冷却缩减，但是减少50%状态增强和40%技能伤害。"
+	
+	"relic_rolling_boulder"																					"滚动巨石"
+	"relic_rolling_boulder_Description"																		"每次攻击命中后增加1敏捷."
+	
+	"relic_rotting_flesh"																					"腐烂之肉"
+	"relic_rotting_flesh_Description"																		"死亡7s后你将在墓碑处复活，生命和魔法将被回满，所有cd被重置，每一轮只会触发一次。"
+	
+	"relic_rusty_dumbbell"																					"生锈哑铃"
+	"relic_rusty_dumbbell_Description"																		"获得该遗物时获得2技能点。"
+			
+	"relic_sacrificial_dagger"																				"献祭之匕"
+	"relic_sacrificial_dagger_Description"																	"获得该遗物后，死亡时，所有友方英雄满血复活。每一轮只会触发一次。"
+	
+	"relic_ornate_timepiece"																				"月时计"
+	"relic_ornate_timepiece_Description"																	"移除施法前摇。"
+	
+	"relic_silent_cloak"																					"无声兜帽"
+	"relic_silent_cloak_Description"																		"降低100%仇恨获取。"
+	
+	"relic_oath_of_purity"																					"纯洁誓言"
+	"relic_oath_of_purity_Description"																		"你每有一个debuff获得+10全属性。"
+	
+	"relic_vampire_eye"																						"吸血鬼眼"
+	"relic_vampire_eye_Description"																			"获得夜晚高空视野。"
+	
+	"relic_hawks_eye"																						"鹰睛石"
+	"relic_hawks_eye_Description"																			"获得日间高空视野。"
+	
+	"relic_grain_of_sand"																					"沙粒"
+	"relic_grain_of_sand_Description"																		"每15s有一个随机技能会被刷新。"
+	
+	"relic_memory_alloy"																					"记忆合金"
+	"relic_memory_alloy_Description"																		"受到的伤害会在未来40s内恢复回来。"
+	
+	"relic_a_nickel"																						"硬币"
+	"relic_a_nickel_Description"																			"获得时，得到1500金币。"
+	
+	"relic_galactic_synapse"																				"银河突触"
+	"relic_galactic_synapse_Description"																	"施法后会获得30s可叠加的+10智力。"
+	
+	"relic_champions_belt"																					"冠军腰带"
+	"relic_champions_belt_Description"																		"增加20%的力量和敏捷。"
+	
+	"relic_soldiers_banner"																					"战旗"
+	"relic_soldiers_banner_Description"																		"将你变为近战英雄，+6护甲，15%移速。基础攻击距离降低到150。"
+	
+	"relic_longbow"																							"长弓"
+	"relic_longbow_Description"																				"将你变为远程英雄，获得+200攻击距离。"
+	
+	"relic_pocket_sand"																						"盒中沙"
+	"relic_pocket_sand_Description"																			"受到伤害时，会传送到远离伤害来源300码的位置。\n伤害来源会受到250%主属性的伤害。\n每12s触发一次。"
+	
+	"relic_eldritch_rune"																					"埃尔德奇秘文"
+	"relic_eldritch_rune_Description"																		"你造成的物理伤害会变为魔法伤害。\n造成的魔法伤害会变为物理伤害。"
+	
+	"relic_eagles_beak"																						"鹰喙"
+	"relic_eagles_beak_Description"																			"获得克敌机先。"
+	
+	"relic_deathrow"																						"死亡印记"
+	"relic_deathrow_Description"																			"15%几率造成200%倍暴击伤害。每击杀一个boss，增加 10%暴击伤害。每击杀10个boss，要多击杀一个boss才能提升暴击伤害。"
+	
+	"relic_hylophage"																						"树食者"
+	"relic_hylophage_Description"																			"每12s会消耗周围600范围内的树增加生命回复，每消耗一棵树会增加5生命回复，持续12s。"
+	
+	"relic_chlorophyl_cloak"																				"叶绿斗篷"
+	"relic_chlorophyl_cloak_Description"																	"日间获得15%额外移速，10护甲和15%魔抗。"
+	
+	"relic_anaerobic_ring"																					"夜裔指环"
+	"relic_anaerobic_ring_Description"																		"夜间获得2%生命回复。"
+	
+	"relic_hestias_hearth"																					"赫斯提的壁炉"
+	"relic_hestias_hearth_Description"																		"获得+10hp/s的光环。"
+	
+	"relic_spirit_painting"																					"灵魂速写"
+	"relic_spirit_painting_Description"																		"每10s对一个随机敌人造成主属性250%的纯粹伤害；如果该敌人受到该伤害时正在施法，它将会被沉默，在下次触发之前，你将获得25%技能增强。"
+	
+	"relic_charons_obol"																					"渡者的硬币"
+	"relic_charons_obol_Description"																		"受到致死伤害时，无敌5s。35s触发一次。"
+	
+	"relic_kashas_wheelbarrow"																				"卡莎的手推车"
+	"relic_kashas_wheelbarrow_Description"																	"获得后，每轮结束时，获得5移速和攻速。"
+	
+	"relic_inversion_stone"																					"反转之石"
+	"relic_inversion_stone_Description"																		"基础攻击增加非主属性的平均值。"
+		
+	"relic_lunar_needle"																					"月之针"
+	"relic_lunar_needle_Description"																		"治疗攻击目标900范围内的友方,数值为攻击伤害的15%"
+	
+	"relic_ritual_candle"																					"仪式蜡烛"
+	"relic_ritual_candle_Description"																		"移除诅咒遗物的负面效果。"
+	
+	"relic_cold_heart"																						"冰冷之心"
+	"relic_cold_heart_Description"																			"获得减少附近敌方单位20%移速和50攻速的光环。"
+	
+	"relic_shopkeepers_heart"																				"店主之心"
+	"relic_shopkeepers_heart_Description"																	"每轮结束后获得150金币和经验。"
+	
+	"relic_rex_dominatur"																					"雷克斯统治者"
+	"relic_rex_dominatur_Description"																		"对翼族单位造成25%额外伤害。"
+	
+	"relic_sharp_machete"																					"锋利弯刀"
+	"relic_sharp_machete_Description"																		"对野兽单位造成25%额外伤害。"
+	
+	"relic_gazaer_tirdh"																					"提尔塔的凝视"
+	"relic_gazaer_tirdh_Description"																		"对恶魔单位造成25%额外伤害。"
+		
+	"relic_chainsword"																						"链锯"
+	"relic_chainsword_Description"																			"对不死单位造成25%额外伤害。"
+			
+	"relic_antique_pouch"																					"古董荷包"
+	"relic_antique_pouch_Description"																		"每有一个遗物获得+3全属性。\n不计算它本身。"
+	
+	"relic_ofuda"																							"护身符"
+	"relic_ofuda_Description"																				"获得时将净化3个事件诅咒。如果净化数少于3，机会将会保留。"
+	"relic_ofuda_spent"																						"护身符（失效）"
+	"relic_ofuda_spent_Description"																			"这个护身符失去效果了。"
+	
+	"relic_plasma_ball"																						"等离子球"
+	"relic_plasma_ball_Description"																			"获得后，每2s会对周围的敌人造成225点伤害，范围是触发间隔内你移动的距离。"
+	
+	"relic_silver_knife"																					"白银之刃"
+	"relic_silver_knife_Description"																		"每个增加攻击力的buff会额外给你增加+15攻击力。"
+	
+	"relic_reinforced_bar"																					"增强条纹"
+	"relic_reinforced_bar_Description"																		"每个增加防御的buff会额外给你增加+2防御。"
+	
+	"relic_drycicle"																						"寒冷之触"
+	"relic_drycicle_Description"																			"攻击将叠加10层寒冷状态，降低敌人的移速，叠加到100层时将冰冻敌人。"
+	
+	"relic_nautical_scale"																					"海图网格"
+	"relic_nautical_scale_Description"																		"在水中获得+8护甲，20%魔抗和10%闪避。"
+		
+	"relic_mystical_coral"																					"神秘珊瑚"
+	"relic_mystical_coral_Description"																		"在水中获得25%技能增强和15%蓝耗降低。"
+	
+	"relic_prismarine_blade"																				"海晶石刃"
+	"relic_prismarine_blade_Description"																	"在水中获得80攻击和攻速。"
+	
+	"relic_slayers_skinner"																					"斯金纳猎手"
+	"relic_slayers_skinner_Description"																		"对所有敌人造成10%额外伤害。"
+	
+	"relic_greased_wheel"																					"回转之轮"
+	"relic_greased_wheel_Description"																		"释放法术时无需转身。"
+	
+	"relic_red_pill"																						"真理觉醒"
+	"relic_red_pill_Description"																			"获得状态免疫，无法被眩晕，缴械，缠绕，沉默，破坏，变羊和减速。"
+	
+	"relic_phoenix_down"																					"不死鸟之尾"
+	"relic_phoenix_down_Description"																		"获得1复活次数上限和1复活次数。"
+	// GENERIC
+	"relic_angelic_water"																					"圣洁之水"
+	"relic_angelic_water_Description"																		"+10回蓝。"
+	
+	"relic_banshee_tear"																					"报丧女妖之泪"
+	"relic_banshee_tear_Description"																		"+500魔法上限和1回蓝。"
+	
+	"relic_beast_fang"																						"野兽利齿"
+	"relic_beast_fang_Description"																			"获得+40攻击和+25攻速。"
+	
+	"relic_blood_crystal"																					"猩红水晶"
+	"relic_blood_crystal_Description"																		"+10生命回复."
+	
+	"relic_dead_mans_blood"																					"死者之血"
+	"relic_dead_mans_blood_Description"																		"获得+400生命上限"
+	
+	"relic_giants_toenail"																					"巨人的趾甲"
+	"relic_giants_toenail_Description"																		"获得+25%状态抗性。"
+	
+	"relic_hammerhead"																						"锤子头"
+	"relic_hammerhead_Description"																			"获得+80攻击力。"
+	
+	"relic_pure_heart"																						"纯洁之心"
+	"relic_pure_heart_Description"																			"获得+10全属性。"
+	
+	"relic_seraphims_feather"																				"炽天使之心"
+	"relic_seraphims_feather_Description"																	"获得+60移速。"
+	
+	"relic_silver_arrow"																					"银质箭头"
+	"relic_silver_arrow_Description"																		"获得+100攻击距离（近战只有+50）和35攻击力。"
+	
+	"relic_time_shard"																						"时之沙"
+	"relic_time_shard_Description"																			"获得15%冷却减免。"
+	
+	"relic_unicorn_horn"																					"独角兽之角"
+	"relic_unicorn_horn_Description"																		"获得+20移速和25%技能增强。"
+	
+	"relic_breath_of_life"																					"生命之息"
+	"relic_breath_of_life_Description"																		"获得+200最大生命，+3生命回复，200最大魔法和+3魔法回复。"
+	
+	"relic_horn_of_bannermen"																				"旗手号角"
+	"relic_horn_of_bannermen_Description"																	"+25敏捷."
+
+	"relic_helm_of_justice"																					"正义之盔"
+	"relic_helm_of_justice_Description"																		"+25力量."
+	
+	"relic_crown_of_power"																					"桂冠之力"
+	"relic_crown_of_power_Description"																		"+25智力."
+	
+	"relic_haste_stone"																						"急速之石"
+	"relic_haste_stone_Description"																			"+50攻速。"
+	
+	"relic_tanned_hide"																						"鞣制皮革"
+	"relic_tanned_hide_Description"																			"+5护甲"
+	
+	"relic_arcane_threads"																					"奥术之网"
+	"relic_arcane_threads_Description"																		"+15%魔抗。"
+	
+	"relic_fog_lace"																						"雾之系带"
+	"relic_fog_lace_Description"																			"+15%闪避。"
+	
+	"relic_draculine_tooth"																					"德古拉尖牙"
+	"relic_draculine_tooth_Description"																		"每次命中的攻击回复你+20生命。"
+	
+	"relic_worn_spear"																						"破损之矛"
+	"relic_worn_spear_Description"																			"给近战英雄+100攻击距离。"
+	
+	"relic_old_sickle"																						"废旧镰刀"
+	"relic_old_sickle_Description"																			"+25%范围伤害。"
+	
+	"relic_broken_mirror"																					"碎裂之镜"
+	"relic_broken_mirror_Description"																		"+150施法距离。"
+	
+	"relic_champions_spearhead"																				"冠军矛头"
+	"relic_champions_spearhead_Description"																	"+1000弹道速度。"
+	
+	"relic_katana"																							"太刀"
+	"relic_katana_Description"																				"+20%几率造成150%倍暴击。"
+	
+	"relic_stick"																							"树枝"
+	"relic_stick_Description"																				"+1攻击。"
+	
+	"relic_stick2"																							"萌芽嫩枝"
+	"relic_stick2_Description"																				"+75攻击"
+	
+	"relic_stick3"																							"旺盛分支"
+	"relic_stick3_Description"																				"+150攻击"
+	
+	"relic_stick4"																							"稠密枝干"
+	"relic_stick4_Description"																				"+300攻击"
+	
+	"relic_stick5"																							"橡木巨棒"
+	"relic_stick5_Description"																				"+600攻击"
+	
+	"relic_mystic_gauntlet"																					"神秘护手"
+	"relic_mystic_gauntlet_Description"																		"+3护甲和9%魔抗。"
+	
+	"relic_power_glove"																						"力量手套"
+	"relic_power_glove_Description"																			"+3护甲和20攻击力。"
+	
+	"relic_dragon_scales"																					"龙鳞"
+	"relic_dragon_scales_Description"																		"+15%技能增强和40攻击力。"
+	
+	"relic_ifrit_tear"																						"伊芙利特之泪"
+	"relic_ifrit_tear_Description"																			"+15%技能增强和+4生命回复。"
+	
+	"relic_scythegeist"																						"收割者"
+	"relic_scythegeist_Description"																			"+8%冷却缩减和+35攻击力。"
+	
+	"relic_barbedbell"																						"带刺杠铃"
+	"relic_barbedbell_Description"																			"+10力量并且受伤时会对伤害来源造成35物理伤害。"
+	
+	"relic_stone_fist"																						"石之拳"
+	"relic_stone_fist_Description"																			"+20%仇恨获取。"
+	
+	"relic_spinning_top"																					"旋转陀螺"
+	"relic_spinning_top_Description"																		"降低0.15基础攻击间隔。"
+	
+	"relic_tiger_blood"																						"虎之血"
+	"relic_tiger_blood_Description"																			"+20%治疗增强。"
+	
+	"relic_heavy_rock"																						"重摇滚乐"
+	"relic_heavy_rock_Description"																			"+15%状态增强。"
+	
+	"relic_amplifier"																						"增幅挂件"
+	"relic_amplifier_Description"																			"+10%状态增强和+20%技能增强。"
+	
+	"relic_rich_essence"																					"丰富源质"
+	"relic_rich_essence_Description"																		"+10%治疗增强和+10%技能增强。"
+	
+	"relic_ethereal_gown"																					"缥渺长袍"
+	"relic_ethereal_gown_Description"																		"+8%闪避，+8%魔抗和+2护甲。"
+	
+	"relic_ectoplasm"																						"灵质"
+	"relic_ectoplasm_Description"																			"+6回血和+6回蓝。"
+	
+	"relic_bowl_of_chi"																						"太极气团"
+	"relic_bowl_of_chi_Description"																			"+10%状态抗性和+10%状态增强。"
+	
+	"relic_stone_calendar"																					"石之历"
+	"relic_stone_calendar_Description"																		"+4护甲和15%状态抗性。"
+	
+	"relic_dull_razor"																						"钝刀片"
+	"relic_dull_razor_Description"																			"+25攻击力和+15敏捷."
+	
+	"relic_torn_muscle"																						"爆裂肌肉"
+	"relic_torn_muscle_Description"																			"+200血上限和+15力量."
+	
+	"relic_pickled_brain"																					"大脑标本"
+	"relic_pickled_brain_Description"																		"+200蓝上限和+15智力."
+	
+	"relic_drop_of_all"																						"万物精华"
+	"relic_drop_of_all_Description"																			"+5全属性，+10移速，攻速和攻击力，+100血蓝上限，+1血蓝恢复。"
+	
+	"relic_scrap_of_paper"																					"咒文纸甲"
+	"relic_scrap_of_paper_Description"																		"+3护甲和+12%冷却缩减。"
+	
+	"relic_dry_quill"																						"干羽毛笔"
+	"relic_dry_quill_Description"																			"+12攻速，+15攻击力和+8%冷却缩减."
+	
+	"relic_leather_buckler"																					"皮革盾牌"
+	"relic_leather_buckler_Description"																		"60%几率格挡减伤后的20伤害。"
+	
+	"relic_weighted_gloves"																					"加权手套"
+	"relic_weighted_gloves_Description"																		"+100攻速上限和+20攻速。"
+	
+	"relic_feathered_boots"																					"羽靴"
+	"relic_feathered_boots_Description"																		"+100移速上限和+35移速。"
+	
+	// RUNE SLOT MODIFIERS
+	
+	"RUNE_GetModifierExtraHealthBonus"																		"+{s:number} 血上限"
+	"RUNE_GetModifierConstantHealthRegen"																	"+{s:number} 回血"
+	
+	"RUNE_GetModifierManaBonus"																				"+{s:number} 蓝上限"
+	"RUNE_GetModifierConstantManaRegen"																		"+{s:number} 回蓝"
+	
+	"RUNE_GetModifierPreAttack_BonusDamage"																	"+{s:number} 攻击力"
+	"RUNE_GetModifierAttackSpeedBonus_Constant"																"+{s:number} 攻速
+	
+	
+	"RUNE_GetModifierSpellAmplify_Percentage"																"+{s:number}% 技能增强"
+	"RUNE_GetModifierStatusAmplify_Percentage"																"+{s:number}% 状态增强"
+	"RUNE_GetModifierHealAmplify_Percentage"																"+{s:number}% 治疗增强"
+	
+	"RUNE_GetModifierBaseCriticalChanceBonus"																"+{s:number}% 基础暴击率"
+	"RUNE_GetModifierBaseCriticalDamageBonus"																"+{s:number}% 基础暴击伤害"
+	
+	"RUNE_GetModifierBonusStats_Strength"																	"+{s:number} 力量"
+	"RUNE_GetModifierBonusStats_Agility"																	"+{s:number} 敏捷"
+	"RUNE_GetModifierBonusStats_Intellect"																	"+{s:number} 智力"
+	"RUNE_GetModifierBonusStats_All"																		"+{s:number} 全属性"
+
+	"RUNE_GetModifierAttackRangeBonus"																		"+{s:number} 攻击距离 (近战减半)"
+	"RUNE_GetModifierCastRangeBonusStacking"																"+{s:number} 施法距离"
+	
+	// UI Tokens
+	"DOTA_Talent_CannotBeLearned"																			"现在不可用"
+	"DOTA_Talent_CanBeLearned"																				"可用"
+	"DOTA_Talent_HasLearned"																				"已学习"
+	"BOSSHUNTERS_SkippingRelics"																			"我跳过了我的遗物"
+	"BOSSHUNTERS_TakingRelic"																				"带走"
+	"BOSSHUNTERS_TookRelic"																					"已经携带"
+	"BOSSHUNTERS_CurrentLives"																				"复活次数"
+	"BOSSHUNTERS_CurrentThreat"																				"仇恨"
+	
+	"BOSSHUNTERS_RELIC_RARITY_LEGENDARY"																	"史诗"
+	"BOSSHUNTERS_RELIC_RARITY_RARE"																			"稀有"
+	"BOSSHUNTERS_RELIC_RARITY_UNCOMMON"																		"罕见"
+	"BOSSHUNTERS_RELIC_RARITY_COMMON"																		"普通"
+}
