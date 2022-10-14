@@ -12,6 +12,7 @@ modifier_shadow_fiend_necro_handle = class({})
 
 function modifier_shadow_fiend_necro_handle:OnCreated()
 	self:OnRefresh()
+	self:GetCaster():HookInModifier("GetReincarnationDelay", self)
 	if IsServer() then
 		self.funcID = EventManager:SubscribeListener("boss_hunters_event_finished", function(args) self:OnEventFinished(args) end)
 	end
@@ -22,6 +23,7 @@ function modifier_shadow_fiend_necro_handle:OnEventFinished(args)
 end
 
 function modifier_shadow_fiend_necro_handle:OnDestroy()
+	self:GetCaster():HookOutModifier("GetReincarnationDelay", self)
 	if IsServer() then
 		EventManager:UnsubscribeListener("boss_hunters_event_finished", self.funcID)
 	end
@@ -37,7 +39,7 @@ function modifier_shadow_fiend_necro_handle:OnRefresh()
 	self.deathLoss = self:GetTalentSpecialValueFor("death_soul_loss") / 100
 end
 function modifier_shadow_fiend_necro_handle:DeclareFunctions()
-    funcs = {MODIFIER_EVENT_ON_DEATH, MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE, MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_REINCARNATION }
+    funcs = {MODIFIER_EVENT_ON_DEATH, MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE, MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE }
     return funcs
 end
 
@@ -85,7 +87,7 @@ function modifier_shadow_fiend_necro_handle:OnDeath(params)
     end
 end
 
-function modifier_shadow_fiend_necro_handle:ReincarnateTime()
+function modifier_shadow_fiend_necro_handle:GetReincarnationDelay()
 	if IsServer() and self:GetCaster():HasTalent("special_bonus_unique_shadow_fiend_requiem_1") then
 		local requiem = self:GetCaster():FindAbilityByName("shadow_fiend_requiem")
 		if requiem:IsCooldownReady() then
@@ -111,4 +113,8 @@ end
 
 function modifier_shadow_fiend_necro_handle:IsPurgable()
 	return false
+end
+
+function modifier_shadow_fiend_necro_handle:GetPriority()
+	return MODIFIER_PRIORITY_HIGH
 end

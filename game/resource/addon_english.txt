@@ -2079,7 +2079,7 @@
 		"DOTA_Tooltip_modifier_forced_shout_description"														"+%dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS% bonus armor."
 		"DOTA_Tooltip_ability_special_bonus_unique_axe_forced_shout_1"											"Bulwark Of Fangs"
 		"DOTA_Tooltip_ability_special_bonus_unique_axe_forced_shout_1_Description"								"Berserker's Call grants Axe %value% Thorns while active.'"
-		"DOTA_Tooltip_ability_special_bonus_unique_axe_forced_shout_2"											"Indominable Will"
+		"DOTA_Tooltip_ability_special_bonus_unique_axe_forced_shout_2"											"Indomitable Will"
 		"DOTA_Tooltip_ability_special_bonus_unique_axe_forced_shout_2_Description"								"Berserker's Call restores %value%%% of your maximum health every second while active."
 	 
 		"DOTA_Tooltip_ability_axe_blood_hunger"																	"Blood Hunger"
@@ -4336,7 +4336,7 @@
 		"DOTA_Tooltip_ability_venomancer_plague_ward_ebf_ward_hp"												"WARD HITS TO DESTROY:"
 		"DOTA_Tooltip_ability_venomancer_plague_ward_ebf_ward_damage"											"WARD DAMAGE:"
 		"DOTA_Tooltip_ability_special_bonus_unique_venomancer_plague_ward_1"									"The Scourge"
-		"DOTA_Tooltip_ability_special_bonus_unique_venomancer_plague_ward_1_Description"						"Casting Contagion Ward summons %value% more ward and enemies killed while affected by Venomous Gale, Toxic Sting or Poison Nova spawn %value2% Contagion Ward."
+		"DOTA_Tooltip_ability_special_bonus_unique_venomancer_plague_ward_1_Description"						"Casting Contagion Ward summons %value% more ward and enemies killed while affected by Venomancer's Venomous Gale or Poison Nova spawn %value2% Contagion Ward."
 		"DOTA_Tooltip_ability_special_bonus_unique_venomancer_plague_ward_2"									"Bastions of Contagion"
 		"DOTA_Tooltip_ability_special_bonus_unique_venomancer_plague_ward_2_Description"						"Contagion Ward damage and hits to destroy are multiplied by %value% and Contagion Wards gain a Lesser Venomous Gale that deals %value2%%% damage."
 		
@@ -5593,7 +5593,7 @@
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// Shadow Fiend
 		"DOTA_Tooltip_ability_shadow_fiend_shadowraze1"															"Shadowraze (Near)"
-		"DOTA_Tooltip_ability_shadow_fiend_shadowraze1_Description"												"Raze the ground directly in front of Shadow Fiend, dealing damage to enemies within the area.\nDealing damage with Shadowraze reduces the enemy's armor for %duration%, up to %max_stacks% times\nThe maximum stack count goes past this limit, but the armor reduction is reduced. Applying the debuff refreshes the duration of all stacks."
+		"DOTA_Tooltip_ability_shadow_fiend_shadowraze1_Description"												"Raze the ground directly in front of Shadow Fiend, dealing damage to enemies within the area.\nDealing damage with Shadowraze reduces the enemy's armor for %duration%, up to %stack_max% times\nThe maximum stack count goes past this limit, but the armor reduction is reduced. Applying the debuff refreshes the duration of all stacks."
 		"DOTA_Tooltip_ability_shadow_fiend_shadowraze1_scepter_description"										"Shadowraze (Near) becomes a circle around Shadow Fiend with a radius equal to its range."
 		"DOTA_Tooltip_ability_shadow_fiend_shadowraze1_Lore"													"Nevermore's trademark for harvesting souls."
 		"DOTA_Tooltip_ability_shadow_fiend_shadowraze1_damage"													"DAMAGE:"
@@ -5612,7 +5612,7 @@
 		"DOTA_Tooltip_Ability_special_bonus_unique_shadow_fiend_shadowraze_2_Description"						"Shadowraze cooldown reduced by %cdr% seconds and damage increased by %value%."
 
 		"DOTA_Tooltip_ability_shadow_fiend_shadowraze2"															"Shadowraze (Medium)"
-		"DOTA_Tooltip_ability_shadow_fiend_shadowraze2_Description"												"Raze the ground directly in front of Shadow Fiend, dealing damage to enemies within the area.\nDealing damage with Shadowraze reduces the enemy's armor for %duration%, up to %max_stacks% times. Applying the debuff refreshes the duration of all stacks."
+		"DOTA_Tooltip_ability_shadow_fiend_shadowraze2_Description"												"Raze the ground directly in front of Shadow Fiend, dealing damage to enemies within the area.\nDealing damage with Shadowraze reduces the enemy's armor for %duration%, up to %stack_max% times. Applying the debuff refreshes the duration of all stacks."
 		"DOTA_Tooltip_ability_shadow_fiend_shadowraze2_scepter_description"										"Shadowraze (Medium) becomes a circle around Shadow Fiend with a radius equal to its range."
 		"DOTA_Tooltip_ability_shadow_fiend_shadowraze2_damage"													"DAMAGE:"
 		"DOTA_Tooltip_ability_shadow_fiend_shadowraze2_stack_damage"											"BONUS DAMAGE PER STACK:"
@@ -5624,7 +5624,7 @@
 		"DOTA_Tooltip_ability_shadow_fiend_shadowraze2_duration"												"DURATION:"
 
 		"DOTA_Tooltip_ability_shadow_fiend_shadowraze3"															"Shadowraze (Far)"
-		"DOTA_Tooltip_ability_shadow_fiend_shadowraze3_Description"												"Raze the ground directly in front of Shadow Fiend, dealing damage to enemies within the area.\nDealing damage with Shadowraze reduces the enemy's armor for %duration%, up to %max_stacks% times. Applying the debuff refreshes the duration of all stacks."
+		"DOTA_Tooltip_ability_shadow_fiend_shadowraze3_Description"												"Raze the ground directly in front of Shadow Fiend, dealing damage to enemies within the area.\nDealing damage with Shadowraze reduces the enemy's armor for %duration%, up to %stack_max% times. Applying the debuff refreshes the duration of all stacks."
 		"DOTA_Tooltip_ability_shadow_fiend_shadowraze3_scepter_description"										"Shadowraze (Far) becomes a circle around Shadow Fiend with a radius equal to its range."
 		"DOTA_Tooltip_ability_shadow_fiend_shadowraze3_Lore"													"Nevermore's trademark for harvesting souls."
 		"DOTA_Tooltip_ability_shadow_fiend_shadowraze3_damage"													"DAMAGE:"
@@ -7876,7 +7876,7 @@
 		"DOTA_Tooltip_ability_troll_warlord_fervor_bh_Description"												"With each continuous blow on the same target, Troll lowers his base attack time.  If Troll changes targets, the stacks drop to zero."
 		"DOTA_Tooltip_ability_troll_warlord_fervor_bh_Lore"														"If at first you don't succeed, strike, strike again."
 		"DOTA_Tooltip_ability_troll_warlord_fervor_bh_max_stacks"												"MAX STACKS:"
-		"DOTA_Tooltip_ability_troll_warlord_fervor_bh_attack_speed"												"BAT REDUCTION PER STACK:"
+		"DOTA_Tooltip_ability_troll_warlord_fervor_bh_attack_speed"												"ATTACK SPEED/STACK:"
 		"DOTA_Tooltip_modifier_troll_warlord_fervor_bh"															"Fervor"
 		"DOTA_Tooltip_modifier_troll_warlord_fervor_bh_Description"												"Reducing your base attack time by %dMODIFIER_PROPERTY_TOOLTIP%."
 		"DOTA_Tooltip_Ability_special_bonus_unique_troll_warlord_fervor_1"										"Defiance And Violence"
@@ -11220,6 +11220,8 @@
 		"DOTA_Tooltip_modifier_hoodwink_sharpshooter_bh_debuff_Description"										"Passives disabled, movement slowed by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
 
 
+		"DOTA_Tooltip_ability_item_aghanims_shard_Description"													"<h1>Passive: Bonus Talent</h1>You gain a random, extra talent. This talent does not cost a talent point, ignores all requirements and does not increase the level required for your next talent.<br>The bonus talent allows you to take its twin talent."
+		"DOTA_Tooltip_ability_item_aghanims_shard_Lore"															"With origins known only to a single wizard, fragments of this impossible crystal are nearly as coveted as the renowned scepter itself."
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// ITEMS: EQUIPMENT (Berserker's Mask)
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

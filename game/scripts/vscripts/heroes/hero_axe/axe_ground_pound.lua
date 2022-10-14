@@ -27,9 +27,10 @@ function axe_ground_pound:OnSpellStart()
 	local dunkSuccess = false
 	
 	if caster:HasTalent("special_bonus_unique_axe_ground_pound_2") then
+		local bloodhunger = caster:FindAbilityByName("axe_blood_hunger")
 		local enemies2 = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius, {})
 		for _,enemy2 in pairs(enemies2) do
-			enemy2:AddNewModifier(caster, self, "modifier_blood_hunger", {Duration = caster:FindAbilityByName("axe_blood_hunger"):GetTalentSpecialValueFor("duration")})
+			enemy2:AddNewModifier(caster, bloodhunger, "modifier_blood_hunger", {Duration = bloodhunger:GetTalentSpecialValueFor("duration")})
 		end
 	end
 	
@@ -100,7 +101,10 @@ function modifier_ground_pound_damage:OnCreated()
 end
 
 function modifier_ground_pound_damage:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("armor_damage") * self:GetParent():GetPhysicalArmorValue(false)
+	self.damage = math.max( 0, self:GetTalentSpecialValueFor("armor_damage") * self:GetParent():GetPhysicalArmorValue(false) )
+	if self.damage == 0 then
+		self:Destroy()
+	end
 end
 
 function modifier_ground_pound_damage:DeclareFunctions()

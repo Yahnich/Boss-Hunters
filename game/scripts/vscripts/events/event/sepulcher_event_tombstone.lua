@@ -45,7 +45,7 @@ local function StartCombat(self)
 	self.eventEnded = true
 	self.combatEnded = false
 	self.foughtWave = true
-	self._playerChoices = nil
+	
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 	self.eventType = EVENT_TYPE_COMBAT
 	

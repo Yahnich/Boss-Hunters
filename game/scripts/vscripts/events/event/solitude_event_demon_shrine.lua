@@ -49,7 +49,7 @@ local function StartCombat(self, bFight)
 		self._vEventHandles = {
 			ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
 		}
-		self.timeRemaining = 0
+		self:EndEventTimer( )
 		self.enemiesToSpawn = math.min( 7, 3 + RoundManager:GetAscensions() )
 		Timers:CreateTimer(5, function()
 			local enemyType = "npc_dota_boss_warlock_demon"
@@ -101,7 +101,7 @@ local function StartEvent(self)
 	}
 	self._vEventHandles = {}
 	self.eventEnded = false
-	self.waitTimer = self:StartEventTimer( 45, timerFunc ) 
+	self.waitTimer = self:StartEventTimer( 45 ) 
 	
 	LinkLuaModifier("event_buff_demon_shrine", "events/modifiers/event_buff_demon_shrine", LUA_MODIFIER_MOTION_NONE)
 	self._playerChoices = {}

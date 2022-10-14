@@ -3,6 +3,7 @@
     "consumables"
     {
         "item"		"item_ward_observer"
+        "item"		"item_aghanims_shard"
 		"item"		"item_potion_of_recovery"
 		"item"		"item_potion_of_essence"
 		"item"		"item_dust_of_stasis"

@@ -73,12 +73,10 @@ function modifier_troll_warlord_fervor_bh:OnAttackLanded(params)
 	local parent = self:GetParent()
 	local caster = self:GetCaster()
 	if params.attacker == parent then
-		if params.target == self.attackTarget then
-			if self.talent then
-				self:AddIndependentStack( self.duration, self.max )
-			else
-				self:SetStackCount( math.min( self:GetStackCount() + 1, self.max ) )
-			end
+		if self.talent then
+			self:AddIndependentStack( self.duration, self.max )
+		elseif params.target == self.attackTarget then
+			self:SetStackCount( math.min( self:GetStackCount() + 1, self.max ) )
 		else
 			self:SetStackCount( 1 )
 		end

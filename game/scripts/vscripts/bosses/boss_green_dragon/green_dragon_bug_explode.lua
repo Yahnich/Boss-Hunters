@@ -38,9 +38,11 @@ function modifier_green_dragon_bug_explode_handle:OnIntervalThink()
 					ability:DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, 0)
 				end
 			end
-			local pool = caster:GetOwner():FindAbilityByName("green_dragon_toxic_pool")
+			if caster.toxic_pool then
+				caster.toxic_pool:CreateToxicPool( caster:GetAbsOrigin() )
+			end
 
-			pool:CreateToxicPool( caster:GetAbsOrigin() )
+			
 			caster:ForceKill(false)
 			self:Destroy()
 		end)

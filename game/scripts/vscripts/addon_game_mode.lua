@@ -170,12 +170,12 @@ function CHoldoutGameMode:InitGameMode()
 	self._message = false
 	
 	
-	-- if IsInToolsMode() then
-		-- GameRules:SetPreGameTime( 9999.0 )
-		-- HERO_SELECTION_TIME = 9999
-	-- else
+	if IsInToolsMode() then
+		GameRules:SetPreGameTime( 9999.0 )
+		HERO_SELECTION_TIME = 9999
+	else
 		GameRules:SetPreGameTime( 30.0 )
-	-- end
+	end
 	GameRules:SetHeroSelectionTime( HERO_SELECTION_TIME )
 	GameRules:SetShowcaseTime( 0 )
 	GameRules:SetStrategyTime( 0 )
@@ -244,23 +244,31 @@ function CHoldoutGameMode:InitGameMode()
 												RoundManager:StartPrepTime(30, true)
 											end
 										end, "adding relics",0)
-	Convars:RegisterCommand( "bh_unit_stress_test", function( command, units )
+	Convars:RegisterCommand( "bh_test_stat_register", function( command )
 											if Convars:GetDOTACommandClient() and IsInToolsMode() then
-												local hero = Convars:GetDOTACommandClient():GetAssignedHero()
-												units = units or 10
-												for i = 1, units do 
-													CreateUnitByNameAsync(
-														"npc_dota_creature_spiderling",
-														hero:GetAbsOrigin() + RandomVector(600),
-														false,
-														nil,
-														nil,
-														DOTA_TEAM_BADGUYS,
-														function(unit)
-															
-														end
-													)
+												local itemData = {}
+												for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+													if PlayerResource:GetConnectionState( hero:GetPlayerID() ) ~= DOTA_CONNECTION_STATE_ABANDONED then
+														RoundManager:RegisterStatsForHero( hero, bWon )
+														for i=0, 5, 1 do
+															local item = hero:GetItemInSlot(i)
+															if item ~= nil then
+																local itemName = string.sub(item:GetName(), 1, -3)
+																local itemLevel = tonumber( string.sub(item:GetName(), -1, -1) )
+																if not itemLevel then
+																	itemName = item:GetName()
+																	itemLevel = 1
+																end
+																itemData[itemName] = itemData[itemName] or {}
+																itemData[itemName].plays = ( itemData[itemName].plays or 0 ) + 1
+																itemData[itemName].levels = itemData[itemName].levels or {}
+																itemData[itemName].levels[itemLevel] = itemData[itemName].levels[itemLevel] or {}
+																itemData[itemName].levels[itemLevel].plays = ( itemData[itemName].levels[itemLevel].plays or 0 ) + 1
+															end
+														end 
+													end
 												end
+												RoundManager:RegisterStatsForItems( itemData, bWon )
 											end
 										end, "adding relics",0)
 	Convars:RegisterCommand( "clear_relics", function()
@@ -439,7 +447,7 @@ function CHoldoutGameMode:InitGameMode()
 												ListenToGameEvent( "entity_killed", require("events/base_combat"), self )
 											end
 										end, "fixing bug",0)													
-	Convars:RegisterCommand( "spawn_elite", function(...) if IsInToolsMode() then return self.SpawnTestElites( ... ) end end, "look like someone try to steal my map :D",0)
+	Convars:RegisterCommand( "spawn_elite", function(...) if IsInToolsMode() then return self.SpawnTestElites( ... ) end end, "",0)
 	
 	-- Hook into game events allowing reload of functions at run time
 	
@@ -795,6 +803,66 @@ function CHoldoutGameMode:OnInventoryChanged( event )
 	local hero = EntIndexToHScript( event.hero_entindex )
 	local item = EntIndexToHScript( event.item_entindex )
 	local vector_data = {}
+	if item and item:GetName() == "item_aghanims_shard" then
+		local talents = hero.heroTalentDataContainer.uniqueTalents
+		
+		local talentsToChoose = {}
+		for ability, talentTable in pairs( talents ) do
+			for talentName, levelRequirement in pairs( talentTable ) do
+				if levelRequirement ~= -1 then
+					table.insert( talentsToChoose, talentName )
+				end
+			end
+		end
+		
+		local randomTalent = talentsToChoose[RandomInt(1, #talentsToChoose)]
+		local talentEntity = hero:FindAbilityByName(randomTalent)
+		if talentEntity then
+			talentEntity:SetLevel(1)
+			for ability, talentTable in pairs( talents ) do
+				if talentTable[randomTalent] then
+					for talentID, levelRequirement in pairs(talentTable) do
+						if talentID == randomTalent then
+							talentTable[talentID] = -1
+						end
+					end
+				end
+			end
+			local talentData = CustomNetTables:GetTableValue("talents", tostring(hero:entindex())) or {}
+			if GameRules.AbilityKV[randomTalent] then
+				if GameRules.AbilityKV[randomTalent]["LinkedModifierName"] then
+					local modifierName = GameRules.AbilityKV[randomTalent]["LinkedModifierName"] 
+					for _, unit in ipairs( FindAllUnits() ) do
+						if unit:HasModifier(modifierName) then
+							local mList = unit:FindAllModifiersByName(modifierName)
+							for _, modifier in ipairs( mList ) do
+								if modifier:HasAuraOrigin() then
+									modifier:Destroy()
+								else
+									local remainingDur = modifier:GetRemainingTime()
+									modifier:ForceRefresh()
+									if remainingDur > 0 then modifier:SetDuration(remainingDur, true) end
+								end
+							end
+						end
+					end
+				end
+				if GameRules.AbilityKV[randomTalent]["LinkedAbilityName"] then
+					local randomTalent = GameRules.AbilityKV[randomTalent]["LinkedAbilityName"] or ""
+					local ability = hero:FindAbilityByName(randomTalent)
+					if ability and ability.OnTalentLearned then
+						ability:OnTalentLearned(randomTalent)
+					end
+				end
+				talentData[randomTalent] = true
+				CustomNetTables:SetTableValue( "talents", tostring(hero:entindex()), talentData )
+				hero.talentsSkilled = hero.talentsSkilled + 1
+				
+				GameRules.bossHuntersEntity:OnAbilityLearned( {PlayerID = hero:GetPlayerID(), abilityname = randomTalent} )
+				CustomGameEventManager:Send_ServerToAllClients("dota_player_talent_update", {PlayerID = pID, hero_entindex = entindex} )
+			end
+		end
+	end
 	if item and HasBit( item:GetBehavior(), DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING ) then
 		if not event.removed then
 			vector_data.startWidth = item:GetVectorTargetStartRadius()

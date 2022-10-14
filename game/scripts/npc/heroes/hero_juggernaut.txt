@@ -50,7 +50,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"radius"						"250"
+				"radius"						"260"
 				"LinkedSpecialBonus"			"special_bonus_unique_juggernaut_mirror_blades_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}

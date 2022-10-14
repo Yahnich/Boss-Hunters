@@ -1320,6 +1320,7 @@ function CDOTA_BaseNPC:GetManaCostReduction( )
 end
 
 function CDOTA_BaseNPC:GetStatusAmplification( tParams )
+	if not self or self:IsNull() then return end
 	local params = tParams or {}
 	local amp = 0
 	for _, modifier in ipairs( self:FindAllModifiers() ) do
@@ -1812,6 +1813,15 @@ function CDOTA_BaseNPC:HasPurgableDebuffs()
 end
 
 function CDOTA_Modifier_Lua:HasAuraOrigin()
+	for _, modifier in ipairs( self:GetCaster():FindAllModifiers() ) do
+		if modifier.GetModifierAura and modifier:GetModifierAura() == self:GetName() then
+			return true
+		end
+	end
+	return false
+end
+
+function CDOTA_Buff:HasAuraOrigin()
 	for _, modifier in ipairs( self:GetCaster():FindAllModifiers() ) do
 		if modifier.GetModifierAura and modifier:GetModifierAura() == self:GetName() then
 			return true
@@ -2675,6 +2685,7 @@ function CDOTA_BaseNPC_Hero:ModifyLives(val)
 	if not livesHandler then
 		livesHandler = self:AddNewModifier( self, nil, "modifier_lives_handler", {} )
 	end
+	if not livesHandler then return end
 	livesHandler:SetStackCount( livesHandler:GetStackCount() + (val or 0))
 	livesHandler:ForceRefresh()
 end

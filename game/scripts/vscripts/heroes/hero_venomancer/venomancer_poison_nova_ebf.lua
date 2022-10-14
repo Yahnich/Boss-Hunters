@@ -83,7 +83,6 @@ function modifier_venomancer_poison_nova_cancer_lesser:OnRefresh()
 	local multiplier = self:GetCaster():FindTalentValue("special_bonus_unique_venomancer_poison_nova_2") / 100
 	self.damage = multiplier * self:GetAbility():GetSpecialValueFor("damage")
 	self.maxHPDmg = multiplier * self:GetAbility():GetSpecialValueFor("max_hp_dmg") / 100
-	
 end
 
 LinkLuaModifier( "modifier_venomancer_poison_nova_talent","heroes/hero_venomancer/venomancer_poison_nova_ebf", LUA_MODIFIER_MOTION_NONE)
@@ -119,7 +118,9 @@ function modifier_venomancer_poison_nova_talent:OnRefresh()
 end
 
 function modifier_venomancer_poison_nova_talent:OnEventFinished(args)
-	self:SetStackCount(0)
+	if self and not self:IsNull() then
+		self:SetStackCount(0)
+	end
 end
 
 function modifier_venomancer_poison_nova_talent:OnDestroy()
@@ -142,9 +143,7 @@ function modifier_venomancer_poison_nova_talent:OnDeath( params )
 		self:GetAbility():OnSpellStart(true)
 	elseif self.wTalent1 
 	and ( params.unit:HasModifier("modifier_venomancer_venomous_gale_cancer") 
-	or params.unit:HasModifier("modifier_venomancer_poison_sting_cancer") 
-	or params.unit:HasModifier("modifier_venomancer_poison_nova_cancer") 
-	or params.unit:HasModifier("modifier_venomancer_poison_nova_cancer_lesser") ) then
+	or params.unit:HasModifier("modifier_venomancer_poison_nova_cancer") ) then
 		local ward = self:GetCaster():FindAbilityByName("venomancer_plague_ward_ebf")
 		if ward then
 			for i = 1, self.wTalent1Val do
@@ -164,5 +163,13 @@ function modifier_venomancer_poison_nova_talent:IsHidden()
 end
 
 function modifier_venomancer_poison_nova_talent:RemoveOnDeath()
+	return false
+end
+
+function modifier_venomancer_poison_nova_talent:IsPermanent()
+	return true
+end
+
+function modifier_venomancer_poison_nova_talent:IsPurgable()
 	return false
 end

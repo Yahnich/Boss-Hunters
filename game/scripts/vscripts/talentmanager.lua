@@ -214,7 +214,7 @@ function TalentManager:ProcessUniqueTalents(userid, event)
 		CustomNetTables:SetTableValue( "talents", tostring(hero:entindex()), talentData )
 		hero.talentsSkilled = hero.talentsSkilled + 1
 		
-		GameRules.bossHuntersEntity:OnAbilityLearned( {PlayerID = pID, abilityname = abilityName} )
+		GameRules.bossHuntersEntity:OnAbilityLearned( {PlayerID = pID, abilityname = talentName} )
 		CustomGameEventManager:Send_ServerToAllClients("dota_player_talent_update", {PlayerID = pID, hero_entindex = entindex} )
 	else
 		CustomGameEventManager:Send_ServerToPlayer(player, "dota_player_talent_update_failure", {PlayerID = pID, hero_entindex = entindex} )

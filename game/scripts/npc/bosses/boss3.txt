@@ -153,7 +153,7 @@
 	
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8.0"
+		"AbilityCooldown"				"16"
 		"AbilityCastRange"				"800"
 		"AbilityCastPoint"				"1.5 1"
 	
@@ -176,17 +176,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"armor_reduction"		"-15 -17.5"
+				"armor_reduction"		"-3 -5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"dot"					"50 75"
+				"dot"					"25 35"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"225 275"
+				"radius"				"225"
 			}
 			"04"
 			{

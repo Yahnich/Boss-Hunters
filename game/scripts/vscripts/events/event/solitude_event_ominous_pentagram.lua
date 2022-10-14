@@ -92,7 +92,6 @@ local function StartEvent(self)
 	}
 	self._vEventHandles = {}
 	self.foughtAsura = false
-	CustomGameEventManager:Send_ServerToAllClients( "boss_hunters_update_timer", { game_time = GameRules:GetDOTATime( false, true ) + self.timeRemaining } )
 	
 	local timerFunc = (function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})

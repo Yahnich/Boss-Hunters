@@ -387,7 +387,7 @@
 	"event_solitude_event_cultist_ritual_option_1"								"Join them. <font color=\"yellow\">[Gain %event_cultist_ritual_join%]</font>"
 	"event_solitude_event_cultist_ritual_option_2"								"Avoid them. [Nothing happens.]"
 	"event_cultist_ritual_join"													"Curse: Corrupt Gift"
-	"event_cultist_ritual_join_Description"										"You gain 2 random Rare+ relics, but you lose 100% healing amplification."
+	"event_cultist_ritual_join_Description"										"You gain 2 random Rare+ relics, but all XP and gold gain is halved until the end of the next combat round."
 	"event_solitude_event_cultist_ritual_Reward1"								"The cultists share the spoils with you, granting you 2 Corrupt relics."
 	
 	"event_solitude_event_lake_of_lava"											"Lake of Lava"

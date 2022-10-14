@@ -79,7 +79,7 @@ function modifier_item_mirror_blade_debuff:OnCreated()
 end
 
 function modifier_item_mirror_blade_debuff:OnRefresh()
-	self.evasion = math.min(self.evasion, self:GetSpecialValueFor("evasion_loss") )
+	self.evasion = math.min(self.evasion or 0, self:GetSpecialValueFor("evasion_loss") )
 end
 
 function modifier_item_mirror_blade_debuff:DeclareFunctions()

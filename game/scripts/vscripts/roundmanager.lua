@@ -692,9 +692,29 @@ function RoundManager:GameIsFinished(bWon)
 		EventManager:FireEvent("boss_hunters_game_finished")
 		-- Register Statistics for all heroes for ascension 0, who cares about that other shit
 		if RoundManager:GetAscensions() == 0 and not IsInToolsMode() then
-			for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
-				RoundManager:RegisterStatsForHero( hero, bWon )
+			local itemData = {}
+			for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+				if PlayerResource:GetConnectionState( hero:GetPlayerID() ) ~= DOTA_CONNECTION_STATE_ABANDONED then
+					RoundManager:RegisterStatsForHero( hero, bWon )
+					for i=0, 5, 1 do
+						local item = hero:GetItemInSlot(i)
+						if item then
+							local itemName = string.sub(item:GetName(), 1, -3)
+							local itemLevel = tonumber( string.sub(item:GetName(), -1, -1) )
+							if not itemLevel then
+								itemName = item:GetName()
+								itemLevel = 1
+							end
+							itemData[itemName] = itemData[itemName] or {}
+							itemData[itemName].plays = ( itemData[itemName].plays or 0 ) + 1
+							itemData[itemName].levels = itemData[itemName].levels or {}
+							itemData[itemName].levels[itemLevel] = itemData[itemName].levels[itemLevel] or {}
+							itemData[itemName].levels[itemLevel].plays = ( itemData[itemName].levels[itemLevel].plays or 0 ) + 1
+						end
+					end 
+				end
 			end
+			RoundManager:RegisterStatsForItems( itemData, bWon )
 		end
 		-- end registering
 		if bWon then
@@ -742,6 +762,45 @@ function RoundManager:GameIsFinished(bWon)
 	end
 end
 
+function RoundManager:RegisterStatsForItems( itemStats, bWon )
+	local statSettings = LoadKeyValues("scripts/vscripts/statcollection/settings.kv")
+	local AUTH_KEY = statSettings.modID
+	local SERVER_LOCATION = statSettings.serverLocation
+	
+	local packageLocation = SERVER_LOCATION..AUTH_KEY..'/items'
+	local getRequest = CreateHTTPRequestScriptVM( "GET", packageLocation..'.json')
+	
+	getRequest:Send( function( result )
+		local decoded = {}
+		if tostring(result.Body) ~= 'null' then
+			decoded = json.decode(result.Body)
+		end
+		for itemName, itemData in pairs( itemStats ) do
+			local itemLocation = packageLocation..'/'..itemName..'.json'
+			local putData = decoded[itemName] or {}
+			
+			putData.plays = (putData.plays or 0) + itemData.plays
+			if bWon then
+				putData.wins = (putData.wins or 0) + itemData.plays
+			end
+			putData.levels = putData.levels or {}
+			for level, levelData in pairs( itemData.levels ) do
+				putData.levels[level] = putData.levels[level] or {}
+				putData.levels[level].plays = (putData.levels[level].plays or 0) + levelData.plays
+				if bWon then
+					putData.levels[level].plays = (putData.levels[level].plays or 0) + levelData.plays
+				end
+			end
+			
+			local encoded = json.encode(putData)
+			local putRequest = CreateHTTPRequestScriptVM( "PUT", itemLocation)
+			putRequest:SetHTTPRequestRawPostBody("application/json", encoded)
+			putRequest:Send( function( result ) end )
+		end
+		
+	end )
+end
+
 function RoundManager:RegisterStatsForHero( hero, bWon )
 	-----------------------------------------------------------------------
 	-----------------------------------------------------------------------
@@ -752,20 +811,12 @@ function RoundManager:RegisterStatsForHero( hero, bWon )
 	local AUTH_KEY = statSettings.modID
 	local SERVER_LOCATION = statSettings.serverLocation
 	local heroName = hero:GetUnitName()
-	local matchId = GameRules:GetMatchID()
-	if tostring(matchId) == '0' then
-		matchId = RandomInt(1, 99999999)
-	end
-	
-	if PlayerResource:GetConnectionState( hero:GetPlayerID() ) == DOTA_CONNECTION_STATE_ABANDONED then return end -- disregard abandons
-	
 
 	local packageLocation = SERVER_LOCATION..AUTH_KEY.."/heroes/"..heroName..'.json'
 	local getRequest = CreateHTTPRequestScriptVM( "GET", packageLocation)
 
 	getRequest:Send( function( result )
 		local putData = {}
-		putData.heroes = {}
 		local wins = 0
 		putData.wins = wins
 		putData.plays = 1
@@ -779,7 +830,16 @@ function RoundManager:RegisterStatsForHero( hero, bWon )
 		if bWon then
 			wins = wins + 1
 		end
-		
+		putData.scepter = {}
+		decoded.scepter = decoded.scepter or {}
+		putData.scepter.plays = (decoded.scepter.plays or 0)
+		putData.scepter.wins = (decoded.scepter.wins or 0)
+		if hero:HasScepter() then
+			putData.scepter.plays = putData.scepter.plays + 1
+			if bWon then
+				putData.scepter.wins = putData.scepter.wins + 1
+			end
+		end
 		putData.talents = {}
 		for i = 0, hero:GetAbilityCount() - 1 do
 			local ability = hero:GetAbilityByIndex( i )
@@ -881,7 +941,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 		bonusArmor = math.floor( bonusArmor * 0.75 )
 	end
 	
-	local SAMultiplierFunc = function( events, raids, zones ) return 2 * math.floor( (events) * (1 + (raids * 0.2 ) * ( zones * 0.2 ) ) ) end
+	local SAMultiplierFunc = function( events, raids, zones ) return 1.8 * math.floor( (events) * (1 + (raids * 0.12 ) * ( zones * 0.18 ) ) ) end
 	local maxSpellAmpScale = SAMultiplierFunc( (EVENTS_PER_RAID + 1) * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
 	local spellAmpScale = SAMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
 	

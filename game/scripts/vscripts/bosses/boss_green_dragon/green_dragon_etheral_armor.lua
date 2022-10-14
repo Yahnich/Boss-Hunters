@@ -40,7 +40,7 @@ function modifier_green_dragon_etheral_armor:OnCreated(table)
 					ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
 					ParticleManager:SetParticleControlEnt(nfx, 2, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
 		self:AttachEffect(nfx)
-		self:StartIntervalThink(0.1)
+		self:StartIntervalThink(0.25)
 	end
 end
 
@@ -56,6 +56,7 @@ function modifier_green_dragon_etheral_armor:OnIntervalThink()
 			local pos = RoundManager:PickRandomSpawn()
 			local bug = CreateUnitByName("npc_dota_green_dragon_bug", pos, true, caster, caster, caster:GetTeam())
 			bug:FindAbilityByName("green_dragon_bug_explode"):SetLevel( self:GetAbility():GetLevel() )
+			bug.toxic_pool = caster:FindAbilityByName("green_dragon_toxic_pool")
 			
 		end
 	end
@@ -67,6 +68,10 @@ function modifier_green_dragon_etheral_armor:CheckState()
                 	[MODIFIER_STATE_STUNNED] = true,
                 	[MODIFIER_STATE_SILENCED] = true}
     return state
+end
+
+function modifier_green_dragon_etheral_armor:GetPriority()
+	return MODIFIER_PRIORITY_SUPER_ULTRA 
 end
 
 function modifier_green_dragon_etheral_armor:GetEffectName()
@@ -82,10 +87,14 @@ function modifier_green_dragon_etheral_armor:StatusEffectPriority()
 end
 
 function modifier_green_dragon_etheral_armor:DeclareFunctions()
-	return {MODIFIER_PROPERTY_INVISIBILITY_LEVEL}
+	return {MODIFIER_PROPERTY_INVISIBILITY_LEVEL, MODIFIER_PROPERTY_DISABLE_HEALING }
 end
 
 function modifier_green_dragon_etheral_armor:GetModifierInvisibilityLevel()
+	return 1
+end
+
+function modifier_green_dragon_etheral_armor:GetDisableHealing()
 	return 1
 end
 

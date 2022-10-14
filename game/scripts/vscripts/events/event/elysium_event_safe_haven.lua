@@ -11,21 +11,21 @@ end
 
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddBlessing("event_buff_safe_haven_1")
+	if hero then hero:AddBlessing("event_buff_safe_haven_1") end
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
 
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddBlessing("event_buff_safe_haven_2")
+	if hero then hero:AddBlessing("event_buff_safe_haven_2") end
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
 
 local function ThirdChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddBlessing("event_buff_safe_haven_3")
+	if hero then hero:AddBlessing("event_buff_safe_haven_3") end
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end

@@ -605,7 +605,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityTextureName"			"drow_ranger_trueshot"
+		"AbilityTextureName"			"custom/drow_ranger_huntress_mark"
 		"MaxLevel"						"7"
 		
 		// Talents		
