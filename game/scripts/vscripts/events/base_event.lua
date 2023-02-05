@@ -222,6 +222,10 @@ function BaseEvent:HandoutRewards(bWon)
 	if not self:IsEvent() then
 		local baseXP = self:GetStandardXPReward()
 		local baseGold = self:GetStandardGoldReward()
+		if self:IsEvent() then
+			baseGold = 0
+			baseXP = 0
+		end
 		if self:IsCombat() and self:GetEventRewardType() ~= EVENT_REWARD_GOLD then
 			baseGold = baseGold / 3
 		end
@@ -232,11 +236,11 @@ function BaseEvent:HandoutRewards(bWon)
 			if self:IsElite() then
 				baseXP = baseXP * 1.2
 				if self:GetEventRewardType() == EVENT_REWARD_GOLD then
-					baseGold = baseGold * 2
+					baseGold = baseGold * 1.5
 				end
 			elseif self:IsBoss() then
 				baseXP = baseXP * 1.5
-				baseGold = baseGold * 1.5
+				baseGold = baseGold * 2
 			end
 		end
 		

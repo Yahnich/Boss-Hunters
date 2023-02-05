@@ -2429,26 +2429,43 @@ function CDOTA_BaseNPC:RemoveBlind()
 	end
 end
 
-function CDOTA_BaseNPC:AddGold(val, bSound)
+function CDOTA_BaseNPC:AddGold(val, bSound, bShowOnlyBonusGold)
 	if self:GetPlayerID() >= 0 then
 		local hero = PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() )
 		if hero then
 			local baseGold = val or 0
+			local bonusGold = 0
 			local gold = baseGold
+			
+			-- bonus gold handling
 			if gold >= 0 then
 				for _, modifier in pairs(hero:FindAllModifiers()) do
 					if modifier.GetBonusGold then
-						gold = gold + baseGold * (modifier:GetBonusGold() or 0) / 100
+						bonusGold = bonusGold + baseGold * (modifier:GetBonusGold() or 0) / 100
 					end
 				end
 			end
+			gold = baseGold + bonusGold
+			
+			-- gold handling
 			local newGold = hero:GetGold() + gold
 			hero:SetGold(0, false)
 			newGold = newGold + (hero.bonusGoldExcessValue or 0)
 			hero.bonusGoldExcessValue = newGold % 1
 			hero:SetGold(math.floor(newGold), true)
-			if ( val > 0 and bSound ~= false ) or bSound == true then
-				SendOverheadEventMessage(self:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, self, val, self:GetPlayerOwner())
+			
+			-- notification handling
+			if (( gold > 0 and bSound ~= false ) or bSound == true) and not bShowOnlyBonusGold then
+				local showGold = baseGold
+				if bonusGold < 0 then
+					showGold = gold
+				end
+				SendOverheadEventMessage(self:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, self, showGold, self:GetPlayerOwner())
+			end
+			if bonusGold > 0 then
+				Timers:CreateTimer( 0.15, function()
+					SendOverheadEventMessage(self:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, self, bonusGold, self:GetPlayerOwner())
+				end)
 			end
 			return gold
 		end

@@ -439,6 +439,19 @@ function modifier_stats_system_handler:GetModifierConstantHealthRegen()
 end
 function modifier_stats_system_handler:GetModifierStatusResistance() return ( 1 - ( (1-(self.statsInfo.sr or 0)/100) ) ) * 100  end
 
+if IsServer() then
+	GOLD_BONUS_BASE = 50 / (GameRules.BasePlayers - 1)
+	function modifier_stats_system_handler:GetBonusGold()
+		local playerMult = (GameRules.BasePlayers - HeroList:GetActiveHeroCount())
+		return GOLD_BONUS_BASE * playerMult
+	end
+
+	function modifier_stats_system_handler:GetBonusExp()
+		local playerMult = (GameRules.BasePlayers - HeroList:GetActiveHeroCount())
+		return GOLD_BONUS_BASE * playerMult
+	end
+end
+
 function modifier_stats_system_handler:GetModifierEvasion_Constant()
 	local owner = self:GetCaster() or self:GetParent()
 	if self.requestingEvasionData then return end

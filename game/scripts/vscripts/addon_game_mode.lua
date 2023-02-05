@@ -608,6 +608,12 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	return true
 end
 
+-- function CHoldoutGameMode:FilterGold( filterTable )
+	-- PrintAll( filterTable )
+	-- print("gold sold")
+	-- return true
+-- end
+
 function CHoldoutGameMode:FilterHeal( filterTable )
 	local healer_index = filterTable["entindex_healer_const"]
 	local target_index = filterTable["entindex_target_const"]
@@ -651,6 +657,15 @@ function CHoldoutGameMode:FilterOrders( filterTable )
 	if not filterTable or not filterTable.units or not filterTable.units["0"] then return end
 	local hero = EntIndexToHScript( filterTable.units["0"] )
 	if not hero:IsRealHero() then return true end
+	if filterTable["order_type"] == DOTA_UNIT_ORDER_SELL_ITEM then
+		PrintAll(filterTable)
+		local item = EntIndexToHScript( filterTable.entindex_ability )
+		if item:GetPurchaseTime( ) + 10 <= GameRules:GetGameTime() or not item:IsCooldownReady() then
+			local sellGold = item:GetCost() / 2
+			hero:AddGold( -sellGold, false )
+			hero:AddGold( sellGold, true, true )
+		end
+	end
 	if filterTable["order_type"] == DOTA_UNIT_ORDER_PURCHASE_ITEM then
 		hero.runeSlotSnapShot = {}
 		for i=0, 25, 1 do

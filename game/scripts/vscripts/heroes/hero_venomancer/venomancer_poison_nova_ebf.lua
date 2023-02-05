@@ -72,6 +72,10 @@ function modifier_venomancer_poison_nova_cancer:OnIntervalThink()
 	self:GetAbility():DealDamage( caster, parent, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, OVERHEAD_ALERT_BONUS_POISON_DAMAGE )
 end
 
+function modifier_venomancer_poison_nova_cancer:IsPurgable()
+	return false
+end
+
 function modifier_venomancer_poison_nova_cancer:GetEffectName()
 	return "particles/units/heroes/hero_venomancer/venomancer_poison_debuff_nova.vpcf"
 end
@@ -108,6 +112,7 @@ function modifier_venomancer_poison_nova_talent:OnRefresh()
 	
 	self.wTalent1 = self:GetParent():HasTalent("special_bonus_unique_venomancer_plague_ward_1")
 	self.wTalent1Val = self:GetParent():FindTalentValue("special_bonus_unique_venomancer_plague_ward_1", "value2")
+	self.wTalent1Dur = self:GetParent():FindTalentValue("special_bonus_unique_venomancer_plague_ward_1", "minion_duration")
 	
 	if self:GetParent():IsRealHero() then 
 		self:GetParent():HookInModifier( "GetReincarnationDelay", self )
@@ -146,9 +151,10 @@ function modifier_venomancer_poison_nova_talent:OnDeath( params )
 	or params.unit:HasModifier("modifier_venomancer_poison_nova_cancer") ) then
 		local ward = self:GetCaster():FindAbilityByName("venomancer_plague_ward_ebf")
 		if ward then
+			local duration = TernaryOperator( self.wTalent1Dur, params.unit:IsMinion(), nil )
 			for i = 1, self.wTalent1Val do
-				local position  = params.unit:GetAbsOrigin() + RandomVector(250)
-				ward:CreateWard( position )
+				local position  = params.unit:GetAbsOrigin()
+				ward:CreateWard( position, duration )
 			end
 		end
 	end

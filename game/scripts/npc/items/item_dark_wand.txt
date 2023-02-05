@@ -249,7 +249,7 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"18 15 12 9 6"
+		"AbilityCooldown"				"9"
 		"AbilitySharedCooldown"			"dagon"
 		"AbilityManaCost"				"180"
 
@@ -275,12 +275,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"250 400 550 700 950"
+				"damage"				"225 400 650 1000 1500"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"18 15 12 9 6"
+				"cooldown"				"9"
 			}
 		}
 	}
@@ -316,7 +316,7 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"18 15 12 9 6"
+		"AbilityCooldown"				"9"
 		"AbilitySharedCooldown"			"dagon"
 		"AbilityManaCost"				"180"
 
@@ -342,12 +342,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"250 400 550 700 950"
+				"damage"				"225 400 650 1000 1500"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"18 15 12 9 6"
+				"cooldown"				"9"
 			}
 		}
 	}
@@ -383,7 +383,7 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"18 15 12 9 6"
+		"AbilityCooldown"				"9"
 		"AbilitySharedCooldown"			"dagon"
 		"AbilityManaCost"				"180"
 
@@ -409,12 +409,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"250 400 550 700 950"
+				"damage"				"225 400 650 1000 1500"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"18 15 12 9 6"
+				"cooldown"				"9"
 			}
 		}
 	}
@@ -450,7 +450,7 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"18 15 12 9 6"
+		"AbilityCooldown"				"9"
 		"AbilitySharedCooldown"			"dagon"
 		"AbilityManaCost"				"180"
 
@@ -476,12 +476,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"250 400 550 700 950"
+				"damage"				"225 400 650 1000 1500"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"18 15 12 9 6"
+				"cooldown"				"9"
 			}
 		}
 	}
@@ -517,7 +517,7 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"18 15 12 9 6"
+		"AbilityCooldown"				"9"
 		"AbilitySharedCooldown"			"dagon"
 		"AbilityManaCost"				"180"
 
@@ -543,12 +543,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"250 400 550 700 950"
+				"damage"				"225 400 650 1000 1500"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"18 15 12 9 6"
+				"cooldown"				"9"
 			}
 		}
 	}
@@ -584,7 +584,7 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"18 15 12 9 6"
+		"AbilityCooldown"				"9"
 		"AbilitySharedCooldown"			"dagon"
 		"AbilityManaCost"				"180"
 
@@ -610,12 +610,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"250 400 550 700 950"
+				"damage"				"225 400 650 1000 1500"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"18 15 12 9 6"
+				"cooldown"				"9"
 			}
 		}
 	}
@@ -653,7 +653,7 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"18 15 12 9 6"
+		"AbilityCooldown"				"9"
 		"AbilitySharedCooldown"			"dagon"
 		"AbilityManaCost"				"180"
 
@@ -679,12 +679,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"250 400 550 700 950"
+				"damage"				"225 400 650 1000 1500"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"18 15 12 9 6"
+				"cooldown"				"9"
 			}
 		}
 	}
@@ -722,7 +722,7 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"18 15 12 9 6"
+		"AbilityCooldown"				"9"
 		"AbilitySharedCooldown"			"dagon"
 		"AbilityManaCost"				"180"
 
@@ -748,12 +748,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"250 400 550 700 950"
+				"damage"				"225 400 650 1000 1500"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"18 15 12 9 6"
+				"cooldown"				"9"
 			}
 		}
 	}
@@ -791,7 +791,7 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"18 15 12 9 6"
+		"AbilityCooldown"				"9"
 		"AbilitySharedCooldown"			"dagon"
 		"AbilityManaCost"				"180"
 
@@ -817,12 +817,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"250 400 550 700 950"
+				"damage"				"225 400 650 1000 1500"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"18 15 12 9 6"
+				"cooldown"				"9"
 			}
 		}
 	}

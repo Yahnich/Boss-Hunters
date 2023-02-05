@@ -356,43 +356,15 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"500"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed"						"1200"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"70 130 190 250 310 370 430"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"buff_duration"				"10.0"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"base_absorb_amount"		"100 150 200 250 350 400 450"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"absorb_per_hero_hit"		"30 45 60 75 90 105 120"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"return_projectile_speed"	"900"
-			}
+			"radius"					"500"
+			"speed"						"1200"
+			"damage"					"70 130 190 250 310 370 430"
+			"buff_duration"				"10.0"
+			"base_absorb_amount"		"100 150 200 250 350 400 450"
+			"absorb_per_hero_hit"		"30 45 60 75 90 105 120"
+			"return_projectile_speed"	"900"
 		}
 	}
 	//=================================================================================================================

@@ -314,6 +314,12 @@
 				"var_type"				"FIELD_INTEGER"
 				"value2"				"1"
 			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"minion_duration"		"5"
+			}
+			
 		}
 	}
 	"special_bonus_unique_venomancer_plague_ward_2" 
@@ -337,6 +343,11 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"value2"				"50"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value3"				"175"
 			}
 		}
 	}

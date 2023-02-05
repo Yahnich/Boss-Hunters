@@ -1140,7 +1140,7 @@ function RoundManager:GetStandardGoldReward()
 	local raidScaling = 1 + math.min( RoundManager:GetRaidsFinished(), RAID_MAX ) * 50
 	local playerScaling = 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) / 10
 	local baseGold = 425 + eventScaling + raidScaling
-	return baseGold * playerScaling
+	return baseGold
 end
 
 function RoundManager:GetStandardXPReward()
@@ -1150,5 +1150,5 @@ function RoundManager:GetStandardXPReward()
 	local raidScaling = 1 + math.min( RoundManager:GetRaidsFinished(), RAID_MAX ) * 0.15
 	local playerScaling = 1 + ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) / 10
 	local baseXP = ( ( 150 + ( (40) * eventScaling ) ) + (275 * raidScaling) )
-	return baseXP * playerScaling
+	return baseXP
 end

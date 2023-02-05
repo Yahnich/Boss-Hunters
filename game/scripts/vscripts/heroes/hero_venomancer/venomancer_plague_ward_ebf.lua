@@ -13,12 +13,12 @@ function venomancer_plague_ward_ebf:OnSpellStart()
 	end
 end
 
-function venomancer_plague_ward_ebf:CreateWard(position)
+function venomancer_plague_ward_ebf:CreateWard(position, duration)
 	local caster = self:GetCaster()
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local fDur = duration or self:GetTalentSpecialValueFor("duration")
 	local hp = self:GetTalentSpecialValueFor("ward_hp")
 	local damage = self:GetTalentSpecialValueFor("ward_damage")
-	local ward = caster:CreateSummon("npc_dota_venomancer_plague_ward_1", position, duration)
+	local ward = caster:CreateSummon("npc_dota_venomancer_plague_ward_1", position or caster:GetAbsOrigin(), fDur)
 	ward:SetCoreHealth(hp)
 	ward:SetBaseHealthRegen(0)
 	ward:SetModelScale(0.6 + self:GetLevel()/20)
@@ -51,6 +51,10 @@ end
 modifier_venomancer_plague_ward_handler = class({})
 LinkLuaModifier("modifier_venomancer_plague_ward_handler", "heroes/hero_venomancer/venomancer_plague_ward_ebf", LUA_MODIFIER_MOTION_NONE)
 
+function modifier_venomancer_plague_ward_handler:OnCreated()
+	self.talent2Val3 = self:GetCaster():FindTalentValue("special_bonus_unique_venomancer_plague_ward_2", "value3")
+end
+
 function modifier_venomancer_plague_ward_handler:IsHidden()
 	return true
 end
@@ -60,7 +64,11 @@ function modifier_venomancer_plague_ward_handler:CheckState()
 end
 
 function modifier_venomancer_plague_ward_handler:DeclareFunctions()
-	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE, MODIFIER_PROPERTY_ATTACK_RANGE_BONUS }
+end
+
+function modifier_venomancer_plague_ward_handler:GetModifierAttackRangeBonus(params)
+	return self.talent2Val3
 end
 
 function modifier_venomancer_plague_ward_handler:GetModifierIncomingDamage_Percentage(params)

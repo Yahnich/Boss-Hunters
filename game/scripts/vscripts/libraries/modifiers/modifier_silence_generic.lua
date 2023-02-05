@@ -1,18 +1,5 @@
 modifier_silence_generic = class({})
 
-if IsServer() then
-	function modifier_silence_generic:OnCreated(kv)
-		if toboolean(kv.delay) == true then
-			self.delay = true
-			self:GetAbility():StartDelayedCooldown()
-		end
-	end
-	
-	function modifier_silence_generic:OnDestroy()
-		if self.delay then self:GetAbility():EndDelayedCooldown() end
-	end
-end
-
 function modifier_silence_generic:GetEffectName()
 	return "particles/generic_gameplay/generic_silence.vpcf"
 end
