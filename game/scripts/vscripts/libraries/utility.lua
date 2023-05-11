@@ -1285,7 +1285,7 @@ function CDOTABaseAbility:SetCooldown(fCD)
 	elseif fCD then
 		self:StartCooldown(fCD)
 	else
-		self:UseResources(false, false, true)
+		self:UseResources(false, false, false, true)
 	end
 end
 

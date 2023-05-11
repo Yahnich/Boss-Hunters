@@ -159,6 +159,8 @@ function CHoldoutGameMode:InitGameMode()
 	-- GameRules.UnitKV = MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_units.txt"))
 	GameRules.UnitKV = MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_units_custom.txt"))
 	
+	print( GameRules.UnitKV )
+	
 	GameRules.AbilityKV = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
 	GameRules.AbilityKV = MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/npc_items_custom.txt"))
 	GameRules.AbilityKV = MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/items.txt"))
@@ -1197,6 +1199,7 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 		heroList["DOTA_ATTRIBUTE_STRENGTH"] = {}
 		heroList["DOTA_ATTRIBUTE_AGILITY"] = {}
 		heroList["DOTA_ATTRIBUTE_INTELLECT"] = {}
+		heroList["DOTA_ATTRIBUTE_ALL"] = {}
 		for hero, active in pairs( GameRules.HeroList ) do
 			if tonumber(active) == 0 then
 				-- activeList[hero] = nil

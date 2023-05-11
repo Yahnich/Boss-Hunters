@@ -248,22 +248,22 @@ function C_DOTA_BaseNPC:HealDisabled()
 	else return false end
 end
 
-function C_DOTA_Modifier_Lua:GetSpecialValueFor(specVal)
+function CDOTA_Modifier_Lua:GetSpecialValueFor(specVal)
 	if self:GetAbility() then
 		return self:GetAbility():GetSpecialValueFor(specVal)
 	end
 	return 0
 end
 
-function C_DOTA_Modifier_Lua:GetTalentSpecialValueFor(specVal)
+function CDOTA_Modifier_Lua:GetTalentSpecialValueFor(specVal)
 	return self:GetAbility():GetTalentSpecialValueFor(specVal)
 end
 
-function C_DOTA_Modifier_Lua:GetTalentLevelSpecialValueFor(specVal, level)
+function CDOTA_Modifier_Lua:GetTalentLevelSpecialValueFor(specVal, level)
 	return self:GetAbility():GetTalentLevelSpecialValueFor(specVal, level)
 end
 
-function C_DOTA_Modifier_Lua:AddIndependentStack()
+function CDOTA_Modifier_Lua:AddIndependentStack()
 	if self:GetStackCount() == 0 then self:GetStackCount(1)
 	else self:IncrementStackCount() end
 end
@@ -380,7 +380,7 @@ function RollPercentage( percentage )
 	return RandomInt(1, 100) <= percentage
 end
 
-function C_DOTA_Modifier_Lua:RollPRNG( percentage )
+function CDOTA_Modifier_Lua:RollPRNG( percentage )
 	local internalInt = (100/percentage)
 	local startingRoll = internalInt^2
 	self.internalPRNGCounter = self.internalPRNGCounter or (1/internalInt)^2

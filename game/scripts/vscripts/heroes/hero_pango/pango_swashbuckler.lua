@@ -83,7 +83,7 @@ function pango_swashbuckler:Strike(vDir)
 				ParticleManager:SetParticleControl(nfx, 0, startPos)
 				ParticleManager:SetParticleControl(nfx, 1, direction * range)
 
-	self:FireLinearProjectile("", direction * 1750, range, width, {}, false, true, width)
+	self:FireLinearProjectile("", direction * 3000, range, width, {}, false, true, width)
 
 	Timers:CreateTimer(0.45, function()
 		ParticleManager:ClearParticle(nfx)

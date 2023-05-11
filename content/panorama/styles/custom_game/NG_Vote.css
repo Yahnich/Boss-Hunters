@@ -54,7 +54,8 @@ horizontal-align:right;
   horizontal-align: center;
   vertical-align: center;
   width: 500px;
-    height: 180px;
+  height: 180px;
+  flow-children: down;
  }
  #BG_Image
 {
@@ -65,12 +66,13 @@ horizontal-align:right;
  #Vote_Yes
 {
 	horizontal-align: right;
-  vertical-align: top;
- margin-right: 40px;
- margin-top: 100px;
-  width: 180px;
-    height: 45px;
- }
+	vertical-align: top;
+	margin-right: 40px;
+	margin-top: 100px;
+	width: 180px;
+	height: 45px;
+}
+ 
   #Vote_No
 {
 	horizontal-align: right;
@@ -111,5 +113,9 @@ horizontal-align:right;
 	color: #FFEA00;
  }
  
+.VoteCountContainer
+{
+	flow-children: right;
+}
 
  
