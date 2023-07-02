@@ -31,7 +31,6 @@ function modifier_lifestealer_ghoul_frenzy_bh_handle:OnAttackLanded(params)
 		if self.talent1 then
 			params.attacker:AddNewModifier( params.attacker, self:GetAbility(), "modifier_lifestealer_ghoul_frenzy_bh_buff", {duration = self.duration} )
 		end
-		print( self.talent2, self.talent2Chance )
 		if self.talent2 and self:RollPRNG( self.talent2Chance ) then
 			self:GetAbility():DealDamage( params.attacker, params.target, params.target:GetHealth() * self.talent2Damage, {damage_type = DAMAGE_TYPE_PURE}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE )
 			local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf", PATTACH_CUSTOMORIGIN, params.attacker )

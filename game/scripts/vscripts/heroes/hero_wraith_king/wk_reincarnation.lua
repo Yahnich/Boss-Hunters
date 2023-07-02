@@ -91,7 +91,7 @@ function modifier_wk_reincarnation:GetReincarnationDelay()
 	if IsServer() then
 		if self.ability:IsOwnersManaEnough() and self.ability:IsCooldownReady() and not self.caster:IsIllusion() then
 			self.unitWillResurrect = true
-			self.ability:UseResources(true, false, true)
+			self.ability:UseResources(true, false, false, true)
 			if self.caster:IsRealHero() then
 				self:GetCaster():EmitSound("Hero_SkeletonKing.Reincarnate")
 			end

@@ -97,7 +97,6 @@ if IsServer() then
 	
 	function modifier_boss_clockwerk_meteor_hook_hook:OnDestroy()
 		local caster = self:GetCaster()
-		ResolveNPCPositions(caster:GetAbsOrigin(), caster:GetHullRadius() + caster:GetCollisionPadding())
 		self:StopMotionController()
 		caster:RemoveGesture( ACT_DOTA_RATTLETRAP_HOOKSHOT_LOOP )
 		caster:StartGesture( ACT_DOTA_RATTLETRAP_HOOKSHOT_END )
@@ -109,6 +108,9 @@ if IsServer() then
 		if caster:GetName() == "npc_dota_hero_rattletrap" and caster:GetTogglableWearable( DOTA_LOADOUT_TYPE_WEAPON ) then
 			caster:GetTogglableWearable( DOTA_LOADOUT_TYPE_WEAPON ):RemoveEffects(EF_NODRAW)
 		end
+		
+		
+		ResolveNPCPositions(caster:GetAbsOrigin(), 128 + caster:GetHullRadius() + caster:GetCollisionPadding())
 	end
 	
 	function modifier_boss_clockwerk_meteor_hook_hook:DoControlledMotion()

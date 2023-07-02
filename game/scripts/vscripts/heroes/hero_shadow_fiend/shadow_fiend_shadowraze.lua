@@ -22,18 +22,6 @@ function shadow_fiend_shadowraze1:GetCastRange(vLocation, hTarget)
 	end
 end
 
-function shadow_fiend_shadowraze1:GetCooldown(iLvl)
-    local cooldown = self.BaseClass.GetCooldown(self, iLvl)
-    if self:GetCaster():HasTalent("special_bonus_unique_shadow_fiend_shadowraze_2") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_shadow_fiend_shadowraze_2", "cdr") end
-    return cooldown
-end
-
-function shadow_fiend_shadowraze1:GetManaCost( iLvl )
-	local cost = self.BaseClass.GetManaCost(self, iLvl)
-	if self:GetCaster():HasTalent("special_bonus_unique_shadow_fiend_shadowraze_1") then return self:GetCaster():FindTalentValue("special_bonus_unique_shadow_fiend_shadowraze_1", "cost") end
-	return cost
-end
-
 function shadow_fiend_shadowraze1:OnSpellStart()
 	EmitSoundOn("Hero_Nevermore.Shadowraze", self:GetCaster())
 	if self:GetCaster():HasScepter() then

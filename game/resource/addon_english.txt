@@ -4018,7 +4018,7 @@
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//Lion
 		"DOTA_Tooltip_ability_lion_earth_spike"																	"Earth Spike"
-		"DOTA_Tooltip_ability_lion_earth_spike_Description"														"Sent out a wave of rocky spikes in the target direction, knocking up, stunning, and damaging enemies hit.\nThe wave will explode at the end knocking up, stunning, and damaging enemies nearby."
+		"DOTA_Tooltip_ability_lion_earth_spike_Description"														"Sent out a wave of rocky spikes in the target direction, knocking up, stunning, and damaging enemies hit."
 		"DOTA_Tooltip_ability_lion_earth_spike_Lore"															"The Demon Witch exercises his demonic covenant, opening a fissure from hell."
 		"DOTA_Tooltip_ability_lion_earth_spike_damage"					 										"DAMAGE:"
 		"DOTA_Tooltip_ability_lion_earth_spike_duration"													 	"DURATION:"
@@ -5609,7 +5609,7 @@
 		"DOTA_Tooltip_Ability_special_bonus_unique_shadow_fiend_shadowraze_1"									"Sustenance Given"
 		"DOTA_Tooltip_Ability_special_bonus_unique_shadow_fiend_shadowraze_1_Description"						"Shadowraze's mana cost is reduced to %cost% and heals Shadow Fiend for %value%%% of the damage dealt. Lifesteal reduced to %value2%%% against minions."
 		"DOTA_Tooltip_Ability_special_bonus_unique_shadow_fiend_shadowraze_2"									"Collector's Fervor"
-		"DOTA_Tooltip_Ability_special_bonus_unique_shadow_fiend_shadowraze_2_Description"						"Shadowraze cooldown reduced by %cdr% seconds and damage increased by %value%."
+		"DOTA_Tooltip_Ability_special_bonus_unique_shadow_fiend_shadowraze_2_Description"						"Shadowraze cooldown reduced by %cdr% seconds and stack damage increased by %value%."
 
 		"DOTA_Tooltip_ability_shadow_fiend_shadowraze2"															"Shadowraze (Medium)"
 		"DOTA_Tooltip_ability_shadow_fiend_shadowraze2_Description"												"Raze the ground directly in front of Shadow Fiend, dealing damage to enemies within the area.\nDealing damage with Shadowraze reduces the enemy's armor for %duration%, up to %stack_max% times. Applying the debuff refreshes the duration of all stacks."
@@ -6093,7 +6093,7 @@
 		"DOTA_Tooltip_Ability_special_bonus_unique_sniper_shrapnel_bh_1"										"Armour Piercing Rounds"
 		"DOTA_Tooltip_Ability_special_bonus_unique_sniper_shrapnel_bh_1_Description"							"Death From Above deals an additional %value% damage per second and an additional %value2% burst damage. Damage type changed to Pure."
 		"DOTA_Tooltip_Ability_special_bonus_unique_sniper_shrapnel_bh_2"										"Belt-Fed Chamber"
-		"DOTA_Tooltip_Ability_special_bonus_unique_sniper_shrapnel_bh_2_Description"							"Casting Death From Above grants a 100 attack speed bonus for 7 seconds."
+		"DOTA_Tooltip_Ability_special_bonus_unique_sniper_shrapnel_bh_2_Description"							"Casting Death From Above grants a %value% attack speed bonus for %duration% seconds."
 
 		"DOTA_Tooltip_ability_sniper_headshot_bh"																"Headshot"
 		"DOTA_Tooltip_ability_sniper_headshot_bh_Description"													"Shoot to incapacitate larger foes, slowing and blinding them to make the eventual takedown easier.\nHeadshot's damage is considered attack damage and can deal critical damage, splash and lifesteal."
@@ -6107,9 +6107,9 @@
 		"DOTA_Tooltip_modifier_sniper_headshot_bh_slow"															"Headshot"
 		"DOTA_Tooltip_modifier_sniper_headshot_bh_slow_Description"												"-%dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%% move speed, -%dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT% attack speed, %dMODIFIER_PROPERTY_MISS_PERCENTAGE%%% miss chance."
 		"DOTA_Tooltip_Ability_special_bonus_unique_sniper_headshot_bh_1"										"Mach-Speed Bullets"
-		"DOTA_Tooltip_Ability_special_bonus_unique_sniper_headshot_bh_1_Description"							"Headshot damage increased by 45 and procs deal 50% of the damage to units in a 250 radius cone behind the target."
+		"DOTA_Tooltip_Ability_special_bonus_unique_sniper_headshot_bh_1_Description"							"Headshot damage increased by %value% and procs deal %damage%%%% of the damage to units in a %radius% radius cone behind the target."
 		"DOTA_Tooltip_Ability_special_bonus_unique_sniper_headshot_bh_2"										"Powder Shrapnel"
-		"DOTA_Tooltip_Ability_special_bonus_unique_sniper_headshot_bh_2_Description"							"Headshot's slow and blind last for an additional 3 seconds."
+		"DOTA_Tooltip_Ability_special_bonus_unique_sniper_headshot_bh_2_Description"							"Headshot's slow and blind last for an additional %value% seconds."
 
 		"DOTA_Tooltip_ability_sniper_rapid_fire"																"Rapid Fire"
 		"DOTA_Tooltip_ability_sniper_rapid_fire_Description"													"After a brief duration, rapidly fire in the target direction over the duration in a cone, with reduced damage per attack.\nApplies on-hit effects.\nDestroys Trees."
@@ -6149,9 +6149,9 @@
 		"DOTA_Tooltip_ability_sniper_assassinate_bh_scepter_cooldown"											"SCEPTER COOLDOWN:"
 		"DOTA_Tooltip_ability_sniper_assassinate_bh_scepter_stun_duration"										"SCEPTER STUN DURATION:"
 		"DOTA_Tooltip_Ability_special_bonus_unique_sniper_assassinate_bh_1"										"Rubbersteel Bullets"
-		"DOTA_Tooltip_Ability_special_bonus_unique_sniper_assassinate_bh_1_Description"							"Assassinate bounces to an additional enemy unit within 1000 radius of the target upon impact"
+		"DOTA_Tooltip_Ability_special_bonus_unique_sniper_assassinate_bh_1_Description"							"Assassinate bounces to an additional enemy unit within %value% radius of the target upon impact"
 		"DOTA_Tooltip_Ability_special_bonus_unique_sniper_assassinate_bh_2"										"Disarming Keen Eyes"
-		"DOTA_Tooltip_Ability_special_bonus_unique_sniper_assassinate_bh_2_Description"							"Assassinate now disarms the target for 5 seconds upon impact."
+		"DOTA_Tooltip_Ability_special_bonus_unique_sniper_assassinate_bh_2_Description"							"Assassinate now disarms the target for %value% seconds upon impact."
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// Faceless Void
@@ -7181,7 +7181,7 @@
 		// Luna
 		
 		"DOTA_Tooltip_ability_luna_lucent_beam_bh"																"Lucent Beam"
-		"DOTA_Tooltip_ability_luna_lucent_beam_bh_Description"													"Calls a beam of lunar energy down upon an enemy, damaging and briefly stunning them and all their allies around them. Deals more damage and stuns longer at night."
+		"DOTA_Tooltip_ability_luna_lucent_beam_bh_Description"													"Calls a beam of lunar energy down upon an enemy, damaging and briefly stunning them. Deals more damage and stuns longer at night."
 		"DOTA_Tooltip_ability_luna_lucent_beam_bh_scepter_description"											"Casting Lucent Beam creates a minor Eclipse centered around the primary target. This minor Eclipse has a shorter duration, beam count and max beams per unit of Eclipse. The initial Lucent Beam counts as a beam created by this Eclipse. Additionally, Eclipse's beams fully act as Lucent Beams."
 		"DOTA_Tooltip_ability_luna_lucent_beam_bh_Lore"															"Selemene smites those who encroach upon the Nightsilver Woods."
 		"DOTA_Tooltip_ability_luna_lucent_beam_bh_stun_duration"												"STUN DURATION (DAY):"
@@ -8449,26 +8449,25 @@
 		"DOTA_Tooltip_modifier_ursa_fury_swipes_bh_Description"													"Taking an extra %dMODIFIER_PROPERTY_TOOLTIP% damage from Ursa's attacks."
 		"DOTA_Tooltip_modifier_ursa_fury_swipes_bh_talent"														"Forged with Misintent"
 		"DOTA_Tooltip_modifier_ursa_fury_swipes_bh_talent_Description"											"Applying bonus Fury Swipes stacks with your next attack."
-		"DOTA_Tooltip_Ability_special_bonus_unique_ursa_fury_swipes_bh_1"										"The Predator's Hunger"
-		"DOTA_Tooltip_Ability_special_bonus_unique_ursa_fury_swipes_bh_1_Description"							"The damage applied by Fury Swipes heals Ursa for %value%%% of the damage dealt."
-		"DOTA_Tooltip_Ability_special_bonus_unique_ursa_fury_swipes_bh_2"										"Forged with Misintent"
-		"DOTA_Tooltip_Ability_special_bonus_unique_ursa_fury_swipes_bh_2_Description"							"When a unit dies with stacks of Fury Swipes applied to them, Ursa gains a buff that lets him immediately apply %value%%% of the lost Fury Swipes to a new unit upon attack.\nIf an enemy dies while Ursa already has a buff, the buff with the highest amount of stacks will be kept."
+		"DOTA_Tooltip_Ability_special_bonus_unique_ursa_fury_swipes_1"											"The Predator's Hunger"
+		"DOTA_Tooltip_Ability_special_bonus_unique_ursa_fury_swipes_1_Description"								"The damage applied by Fury Swipes heals Ursa for %value%%% of the damage dealt."
+		"DOTA_Tooltip_Ability_special_bonus_unique_ursa_fury_swipes_2"											"Forged with Misintent"
+		"DOTA_Tooltip_Ability_special_bonus_unique_ursa_fury_swipes_2_Description"								"When a unit dies with stacks of Fury Swipes applied to them, Ursa gains a buff that lets him immediately apply %value%%% of the lost Fury Swipes to a new unit upon attack.\nIf an enemy dies while Ursa already has a buff, the buff with the highest amount of stacks will be kept."
 
 		"DOTA_Tooltip_ability_ursa_enrage_bh"																	"Enrage"
-		"DOTA_Tooltip_ability_ursa_enrage_bh_Description"														"Enter a frenzy, multiplying Fury Swipe damage, taking reduced damage and gaining status resistance.\nRemoves any existing debuffs.\nUpgradeable by Aghanim's Scepter."
+		"DOTA_Tooltip_ability_ursa_enrage_bh_Description"														"Enter a frenzy, taking reduced damage and gaining status resistance.\nRemoves any existing debuffs.\nUpgradeable by Aghanim's Scepter."
 		"DOTA_Tooltip_ability_ursa_enrage_bh_Lore"																"Ulfsaar succumbs to his ancient spirit, becoming the most ferocious creature on the battlefield."
 		"DOTA_Tooltip_ability_ursa_enrage_bh_scepter_description"												"Reduces Enrage's cooldown and allows usage while disabled."
-		"DOTA_Tooltip_ability_ursa_enrage_bh_fury_multiplier"													"FURY SWIPES MULTIPLIER:"
 		"DOTA_Tooltip_ability_ursa_enrage_bh_duration"															"DURATION:"
 		"DOTA_Tooltip_ability_ursa_enrage_bh_reduction"															"%DAMAGE REDUCTION:"
 		"DOTA_Tooltip_ability_ursa_enrage_bh_status_resist"														"%STATUS RESISTANCE:"
-		"DOTA_Tooltip_ability_ursa_enrage_bh_cooldown_scepter"													"SCEPTER COOLDOWN:"
+		"DOTA_Tooltip_ability_ursa_enrage_bh_AbilityCooldown"													"COOLDOWN:"
 		"DOTA_Tooltip_modifier_ursa_enrage_bh"																	"Enrage"
 		"DOTA_Tooltip_modifier_ursa_enrage_bh_Description"														"Taking %dMODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE%%% less damage, and multiplying Fury Swipes damage."
-		"DOTA_Tooltip_Ability_special_bonus_unique_ursa_enrage_bh_1"											"Decayed Discipline"
-		"DOTA_Tooltip_Ability_special_bonus_unique_ursa_enrage_bh_1_Description"								"While Enraged, Fury Swipes' bonus damage is multiplied by %value%."
-		"DOTA_Tooltip_Ability_special_bonus_unique_ursa_enrage_bh_2"											"Dog-Eared Belligerence"
-		"DOTA_Tooltip_Ability_special_bonus_unique_ursa_enrage_bh_2_Description"								"Enrage's damage resistance and status resistance is increased by %value%%% and duration increased by %value% seconds"
+		"DOTA_Tooltip_Ability_special_bonus_unique_ursa_enrage_1"												"Decayed Discipline"
+		"DOTA_Tooltip_Ability_special_bonus_unique_ursa_enrage_1_Description"									"While Enraged, Fury Swipes' bonus damage is multiplied by %value%."
+		"DOTA_Tooltip_Ability_special_bonus_unique_ursa_enrage_2"												"Dog-Eared Belligerence"
+		"DOTA_Tooltip_Ability_special_bonus_unique_ursa_enrage_2_Description"									"Enrage's damage resistance and status resistance is increased by %value%%% and duration increased by %value2% seconds"
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// Queen of Pain
@@ -11136,17 +11135,13 @@
 
 		"DOTA_Tooltip_ability_hoodwink_acorn_shot_bh"															"Acorn Shot"
 		"DOTA_Tooltip_ability_hoodwink_acorn_shot_bh_Description"												"Fires Hoodwink's attack with an acorn at the target unit.  The acorn bounces to nearby targets, slowing them and dealing bonus damage.\nIf point targeted, a tree is created at the target position and the acorn will bounce to nearby targets."
-		"DOTA_Tooltip_ability_hoodwink_acorn_shot_bh_scepter_description"										"Acorn Shot's charges increased and charge restore time reduced."
+		"DOTA_Tooltip_ability_hoodwink_acorn_shot_bh_scepter_description"										"Acorn Shot's charge restore time halved."
 		"DOTA_Tooltip_ability_hoodwink_acorn_shot_bh_Lore"														"Though she'll make do with almost anything, Oak and Ironwood acorns make the most effective projectiles -- and the bulk of Hoodwink's stash."
 		"DOTA_Tooltip_ability_hoodwink_acorn_shot_bh_bonus_range"												"BONUS ATTACK RANGE:"
 		"DOTA_Tooltip_ability_hoodwink_acorn_shot_bh_bounce_count"												"BOUNCE COUNT:"
 		"DOTA_Tooltip_ability_hoodwink_acorn_shot_bh_debuff_duration"											"SLOW DURATION:"
 		"DOTA_Tooltip_ability_hoodwink_acorn_shot_bh_slow"														"%MOVEMENT SLOW:"
 		"DOTA_Tooltip_ability_hoodwink_acorn_shot_bh_bonus_damage"												"BONUS DAMAGE:"
-		"DOTA_Tooltip_ability_hoodwink_acorn_shot_bh_charge_restore_time"										"CHARGE RESTORE TIME:"
-		"DOTA_Tooltip_ability_hoodwink_acorn_shot_bh_ability_charges"											"CHARGES:"
-		"DOTA_Tooltip_ability_hoodwink_acorn_shot_bh_scepter_charge_restore_time"								"SCEPTER RESTORE TIME:"
-		"DOTA_Tooltip_ability_hoodwink_acorn_shot_bh_scepter_ability_charges"									"SCEPTER CHARGES:"
 		"DOTA_Tooltip_ability_hoodwink_acorn_shot_bh_Note0"														"The same target can be hit more than once."
 		"DOTA_Tooltip_ability_hoodwink_acorn_shot_bh_Note1"														"Bounces will seek units in the fog of war in a 525 radius, but not invisible units."
 		"DOTA_Tooltip_ability_hoodwink_acorn_shot_bh_Note2"														"The planted tree lasts for 20 seconds."

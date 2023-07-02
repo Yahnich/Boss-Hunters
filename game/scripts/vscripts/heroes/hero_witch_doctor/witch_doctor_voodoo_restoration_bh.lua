@@ -20,6 +20,24 @@ function witch_doctor_voodoo_restoration_bh:GetManaCost(iLvl)
 	return manaCost
 end
 
+function witch_doctor_voodoo_restoration_bh:OnTalentLearned( talent )
+	local caster = self:GetCaster()
+	for _, unit in ipairs( caster:FindAllUnitsInRadius( caster:GetAbsOrigin(), -1 ) ) do
+		unit:RemoveModifierByName("modifier_witch_doctor_voodoo_restoration_bh_curse")
+		unit:RemoveModifierByName("modifier_witch_doctor_voodoo_restoration_bh_heal")
+	end
+	local curseHandler = caster:FindModifierByName("modifier_witch_doctor_voodoo_restoration_curse_bh_handler")
+	if curseHandler then
+		curseHandler:Destroy()
+		caster:AddNewModifier(caster, self, "modifier_witch_doctor_voodoo_restoration_curse_bh_handler", {})
+	end
+	local healHandler = caster:FindModifierByName("modifier_witch_doctor_voodoo_restoration_bh_handler")
+	if healHandler then 
+		healHandler:Destroy()
+		caster:AddNewModifier(caster, self, "modifier_witch_doctor_voodoo_restoration_bh_handler", {})
+	end
+end
+
 function witch_doctor_voodoo_restoration_bh:OnToggle()
 	local caster = self:GetCaster()
 	if self:GetToggleState() then

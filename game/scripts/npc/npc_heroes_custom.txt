@@ -2607,6 +2607,8 @@
 		"Ability1"						"venomancer_venomous_gale_ebf"
 		"Ability2"						"venomancer_poison_sting_ebf"
 		"Ability3"						"venomancer_plague_ward_ebf"
+		"Ability4"						"venomancer_generic_hidden"
+		"Ability5"						"venomancer_generic_hidden"
 		"Ability6"						"venomancer_poison_nova_ebf"
 		
 		"Ability10"						"special_bonus_unique_venomancer_venomous_gale_1"

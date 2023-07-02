@@ -130,7 +130,7 @@ function modifier_snot:OnRefresh()
 	self.slow_per_stack = self:GetTalentSpecialValueFor("move_slow_per_stack")
 	self.base_armor = self:GetTalentSpecialValueFor("base_armor")
 	self.armor_per_stack = self:GetTalentSpecialValueFor("armor_per_stack")
-	self.as = self:GetTalentSpecialValueFor("attackspeed_loss")
+	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_bristleback_snot_2")
 	if IsServer() then self:SetStackCount( math.min( self:GetStackCount() + 1, self:GetTalentSpecialValueFor("stack_limit")) ) end
 end
 

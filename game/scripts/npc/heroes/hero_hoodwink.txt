@@ -29,77 +29,38 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16 14 12 10 10 10 10"
 		"AbilityCastRange"				"575"
 		"AbilityCastPoint"				"0.2"
 		"AbilityManaCost"				"75 85 95 105 110 115 120"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{		
-			"01"
-			{	
-				"var_type"						"FIELD_INTEGER"
-				"bonus_range"					"125 200 275 350 350 350 350"
-			}
-			"02"
-			{	
-				"var_type"						"FIELD_INTEGER"
-				"bonus_damage"					"20 40 60 80 120 160 200"
-			}
-			"03"
+			"bonus_range"										"125 200 275 350 350 350 350"
+			"bonus_damage"										"20 40 60 80 120 160 200"
+			"projectile_speed"									"2000"
+			"bounce_count"										"2 3 4 5 5 5 6"
+			"bounce_range"										"525"
+			"debuff_duration"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"projectile_speed"				"2000"
+				"value"											"0.35 0.35 0.35 0.35 0.6 0.85 1.1"
+				"special_bonus_unique_hoodwink_acorn_shot_2"	"+4.65"
 			}
-			"04"
-			{	
-				"var_type"						"FIELD_INTEGER"
-				"bounce_count"					"2 3 4 5 5 5 6"
-			}
-			"05"
-			{	
-				"var_type"						"FIELD_INTEGER"
-				"bounce_range"					"525"
-			}
-			"06"
+			"slow"							"-100"
+			"bounce_delay"					"0.1"
+			"AbilityCharges"				"2"
+			
+			"AbilityCooldown"				"0"
+			"AbilityCharges"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"debuff_duration"				"0.35 0.35 0.35 0.35 0.6 0.85 1.1"
-				"LinkedSpecialBonus"			"special_bonus_unique_hoodwink_acorn_shot_2"
+				"value"											"2"
+				"special_bonus_scepter"							"+2"
 			}
-			"07"
-			{	
-				"var_type"						"FIELD_INTEGER"
-				"slow"							"-100"
-			}
-			"08"
+			"AbilityChargeRestoreTime"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"bounce_delay"					"0.1"
-			}
-			"07"
-			{	
-				"var_type"						"FIELD_INTEGER"
-				"ability_charges"				"2"
-			}
-			"08"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"charge_restore_time"			"16 14 12 10 10 10 10"
-			}
-			"07"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"scepter_ability_charges"		"4"
-				"RequiresScepter"				"1"
-			}
-			"08"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"scepter_charge_restore_time"	"14 12 10 8 8 8 8"
-				"RequiresScepter"				"1"
+				"value"											"16 14 12 10 10 10 10"
+				"special_bonus_scepter"							"-50%"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"

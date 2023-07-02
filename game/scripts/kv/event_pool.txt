@@ -33,7 +33,6 @@
 	"Elysium"
 	{
 		"elysium_event_divine_knowledge"		"1"
-		"grove_event_well_of_youth"				"1"
 		"elysium_event_old_shrine"				"1"
 		// "elysium_event_silent_guardian"			"1"
 		"elysium_event_angelic_cache"			"1"

@@ -1,6 +1,5 @@
 <root>
 	<styles>
-		<include src="file://{resources}/styles/dotastyles.vcss" />
 		<include src="file://{resources}/styles/custom_game/hero_information_top.css" />
 	</styles>
 
@@ -32,21 +31,7 @@
 		</snippet>
 	</snippets>
 	<Panel hittest="false" class="HeroInformationTopBar">
-		<!-- <Panel class="HeroInformationContainer"> -->
-			<!-- <DOTAHeroImage class="HeroInformationHeroImage" heroname="npc_dota_hero_bristleback" scaling="stretch-to-cover-preserve-aspect"/> -->
-			<!-- <ProgressBar hittest="false" id="HealthBar" class="HeroInformationHealthBar" min="0" max="100" value="100"/> -->
-			<!-- <ProgressBar hittest="false" id="ManaBar" class="HeroInformationManaBar" min="0" max="100" value="100"/> -->
-		<!-- </Panel> -->
-		<!-- <Panel id="HeroIconContainer" > -->
-			<!-- <DOTAHeroImage hittest="false" id="HeroImage" class="PartyPortraitImage" scaling="stretch-to-cover-preserve-aspect" /> -->
-			<!-- <Panel id="DisconnectIcon" hittest="false"/> -->
-			<!-- <Panel id="RespawnTimer" hittest="false"> -->
-				<!-- <Label text="{d:respawn_seconds}"/>  -->
-			<!-- </Panel> -->
-		<!-- </Panel> -->
-		<!-- <ProgressBar hittest="false" id="HealthBar" class="PartyPortraitHealthBar" min="0" max="100" value="100"/> -->
-		<!-- <ProgressBar hittest="false" id="ManaBar" class="PartyPortraitManaBar" min="0" max="100" value="100"/> -->
-		
+	
 	</Panel>
 </root>
 

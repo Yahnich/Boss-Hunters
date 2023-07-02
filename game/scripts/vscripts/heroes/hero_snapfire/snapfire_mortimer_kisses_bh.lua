@@ -61,30 +61,7 @@ end
 modifier_snapfire_mortimer_kisses_bh_buff = class({})
 
 function modifier_snapfire_mortimer_kisses_bh_buff:OnCreated(table)
-    if IsServer() then 
-        local parent = self:GetParent()
-
-        self.projectile_count = self:GetTalentSpecialValueFor("projectile_count")
-        self.duration_tooltip = self:GetTalentSpecialValueFor("duration_tooltip")
-
-        self.projectile_speed = self:GetTalentSpecialValueFor("projectile_speed")
-		self.impact_radius = self:GetTalentSpecialValueFor("impact_radius")
-		self.projectile_vision = self:GetTalentSpecialValueFor("projectile_vision")
-
-		self.min_range = self:GetTalentSpecialValueFor("min_range")
-
-		self.turn_rate = self:GetTalentSpecialValueFor("turn_rate")
-
-		self.mousePos = parent:GetCursorPosition()
-
-		self.animationTranslator = ""
-
-		if parent:HasTalent("special_bonus_unique_snapfire_mortimer_kisses_bh_1") then
-			self.animationTranslator = "fast_launches"
-		end
-
-        self:StartIntervalThink(0)
-    end
+   self:OnRefresh()
 end
 
 function modifier_snapfire_mortimer_kisses_bh_buff:OnRefresh(table)
@@ -97,10 +74,17 @@ function modifier_snapfire_mortimer_kisses_bh_buff:OnRefresh(table)
         self.projectile_speed = self:GetTalentSpecialValueFor("projectile_speed")
 		self.impact_radius = self:GetTalentSpecialValueFor("impact_radius")
 		self.projectile_vision = self:GetTalentSpecialValueFor("projectile_vision")
+		
+		self.talent2DmgRed = -self:GetCaster():FindTalentValue("special_bonus_unique_snapfire_mortimer_kisses_2")
 
 		self.min_range = self:GetTalentSpecialValueFor("min_range")
 
 		self.mousePos = parent:GetCursorPosition()
+		self.animationTranslator = ""
+
+		if parent:HasTalent("special_bonus_unique_snapfire_mortimer_kisses_bh_1") then
+			self.animationTranslator = "fast_launches"
+		end
 
         self:StartIntervalThink(0)
     end
@@ -114,7 +98,7 @@ function modifier_snapfire_mortimer_kisses_bh_buff:OnIntervalThink()
 		local minimumDistance = self.min_range
 		if not parent:IsRooted() then minimumDistance = self.impact_radius end
 		local distance = math.min( self:GetAbility():GetTrueCastRange(), math.max( CalculateDistance( self.mousePos, parent ), minimumDistance ) )
-		print( distance )
+		
 		self.mousePos = parent:GetAbsOrigin() + CalculateDirection( self.mousePos, parent ) * distance
 		
 		local duration = distance/self.projectile_speed
@@ -154,12 +138,17 @@ function modifier_snapfire_mortimer_kisses_bh_buff:DeclareFunctions()
 					MODIFIER_EVENT_ON_ORDER,
 					MODIFIER_EVENT_ON_ATTACK_RECORD,
 					MODIFIER_EVENT_ON_ABILITY_EXECUTED,
+					MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 					MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS}
     return funcs
 end
 
 function modifier_snapfire_mortimer_kisses_bh_buff:GetActivityTranslationModifiers()
 	return self.animationTranslator
+end
+
+function modifier_snapfire_mortimer_kisses_bh_buff:GetModifierIncomingDamage_Percentage()
+	return self.talent2DmgRed
 end
 
 function modifier_snapfire_mortimer_kisses_bh_buff:OnAbilityExecuted(params)

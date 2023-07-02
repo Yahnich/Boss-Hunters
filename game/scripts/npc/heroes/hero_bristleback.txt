@@ -44,54 +44,19 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"goo_speed"				"1000"
+			"goo_duration"			"5.0"
+			"minion_duration"		"10.0"
+			"base_armor"			"-2 -2 -2 -2 -3 -4 -5"
+			"armor_per_stack"		"-1.5 -2.0 -2.5 -3.0 -3.0 -3.0 -3.0"
+			"base_move_slow"		"-15 -15 -15 -15 -20 -25 -30"
+			"move_slow_per_stack"	"-3 -6 -9 -12 -12 -12 -12"
+			"stack_limit"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"goo_speed"				"1000"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"goo_duration"			"5.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"minion_duration"		"10.0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_armor"			"-2 -2 -2 -2 -3 -4 -5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"armor_per_stack"		"-1.5 -2.0 -2.5 -3.0 -3.0 -3.0 -3.0"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_move_slow"		"-15 -15 -15 -15 -20 -25 -30"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"move_slow_per_stack"	"-3 -6 -9 -12 -12 -12 -12"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"stack_limit"			"4"
-				"LinkedSpecialBonus"	"special_bonus_unique_bristleback_snot_1"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_radius"		"800"
-				"RequiresScepter"		"1"
+				"value"					"4"
+				"special_bonus_unique_bristleback_snot_1"	"-4"
 			}
 		}
 	
@@ -110,17 +75,6 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"4"
-			}
-		}
 	}
 	"special_bonus_unique_bristleback_snot_2" 
 	{

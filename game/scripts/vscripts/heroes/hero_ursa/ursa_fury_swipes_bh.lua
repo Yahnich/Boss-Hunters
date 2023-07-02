@@ -22,11 +22,11 @@ end
 function modifier_ursa_fury_swipes_bh_handle:OnRefresh()
 	self.damage = self:GetTalentSpecialValueFor("bonus_ad")
 	self.duration = self:GetTalentSpecialValueFor("duration")
-	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_ursa_fury_swipes_bh_1")
-	self.talent1Heal = self:GetCaster():FindTalentValue("special_bonus_unique_ursa_fury_swipes_bh_1") / 100
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_ursa_fury_swipes_1")
+	self.talent1Heal = self:GetCaster():FindTalentValue("special_bonus_unique_ursa_fury_swipes_1") / 100
 	
-	self.ultTalent1 = self:GetCaster():HasTalent("special_bonus_unique_ursa_enrage_bh_1")
-	self.ultTalent1Val = self:GetCaster():FindTalentValue("special_bonus_unique_ursa_enrage_bh_1")
+	self.ultTalent1 = self:GetCaster():HasTalent("special_bonus_unique_ursa_enrage_1")
+	self.ultTalent1Val = self:GetCaster():FindTalentValue("special_bonus_unique_ursa_enrage_1")
 end
 
 function modifier_ursa_fury_swipes_bh_handle:DeclareFunctions()
@@ -37,8 +37,8 @@ function modifier_ursa_fury_swipes_bh_handle:GetModifierProcAttack_BonusDamage_P
 	local caster = self:GetCaster()
 	if caster:PassivesDisabled() then return nil end
 	local damage = self.damage * params.target:GetModifierStackCount( "modifier_ursa_fury_swipes_bh", params.attacker )
-	if self.ultTalent1 then
-		damage = self.damage * self.ultTalent1Val
+	if self.ultTalent1 and caster:HasModifier("modifier_ursa_enrage_bh") then
+		damage = damage * self.ultTalent1Val
 	end
 	local duration = self.duration
 	if params.target:IsMinion() then
@@ -69,8 +69,8 @@ end
 function modifier_ursa_fury_swipes_bh:OnRefresh(table)
 	local caster = self:GetCaster()
 	self.damage = self:GetTalentSpecialValueFor("bonus_ad") * self:GetStackCount()
-	self.talent2 = caster:HasTalent("special_bonus_unique_ursa_fury_swipes_bh_2")
-	self.talent2Percent = caster:FindTalentValue("special_bonus_unique_ursa_fury_swipes_bh_2") / 100
+	self.talent2 = caster:HasTalent("special_bonus_unique_ursa_fury_swipes_2")
+	self.talent2Percent = caster:FindTalentValue("special_bonus_unique_ursa_fury_swipes_2") / 100
 	if IsServer() then
 		self:IncrementStackCount()
 	end

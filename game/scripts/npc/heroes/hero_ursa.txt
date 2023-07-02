@@ -376,8 +376,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_ursa_fury_swipes_bh_1"	"1"
-			"special_bonus_unique_ursa_fury_swipes_bh_2"	"1"
+			"special_bonus_unique_ursa_fury_swipes_1"	"1"
+			"special_bonus_unique_ursa_fury_swipes_2"	"1"
 		}
 	
 		"precache"
@@ -407,7 +407,7 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_ursa_fury_swipes_bh_1"
+	"special_bonus_unique_ursa_fury_swipes_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -430,7 +430,7 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_ursa_fury_swipes_bh_2"
+	"special_bonus_unique_ursa_fury_swipes_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -469,8 +469,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_ursa_enrage_bh_1"	"1"
-			"special_bonus_unique_ursa_enrage_bh_2"	"1"
+			"special_bonus_unique_ursa_enrage_1"	"1"
+			"special_bonus_unique_ursa_enrage_2"	"1"
 		}
 	
 		// Casting
@@ -481,7 +481,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"70 70 50 50 30 30"
+		
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -498,30 +498,27 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"02"
+			"duration"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4 4.5 4.5 5 5 5.5"
-				"LinkedSpecialBonus"	"special_bonus_unique_ursa_enrage_bh_1"
+				"value"					"4 4.5 4.5 5 5 5.5"
+				"special_bonus_unique_ursa_enrage_2"	"+1.5"
 			}
-			"03"
+			"reduction"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"reduction"				"80"
-				"LinkedSpecialBonus"	"special_bonus_unique_ursa_enrage_bh_2"
+				"value"					"80"
+				"special_bonus_unique_ursa_enrage_2"	"+5"
 			}
-			"04"
+			"status_resist"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"status_resist"			"80"
-				"LinkedSpecialBonus"	"special_bonus_unique_ursa_enrage_bh_2"
+				"value"					"80"
+				"special_bonus_unique_ursa_enrage_2"	"+5"
 			}
-			"05"
+			"AbilityCooldown"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown_scepter"		"30 30 24 24 18 18"
+				"value"					"70 70 50 50 30 30"
+				"special_bonus_scepter"	"-40 -40 -26 -26 -12 -12"
 				"RequiresScepter"		"1"
 			}
 		}
@@ -530,7 +527,7 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_ursa_enrage_bh_1"
+	"special_bonus_unique_ursa_enrage_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -553,7 +550,7 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_ursa_enrage_bh_2"
+	"special_bonus_unique_ursa_enrage_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -570,10 +567,10 @@
 				"var_type"					"FIELD_INTEGER"
 				"value"						"5"
 			}
-			"01"
+			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"1.5"
+				"value2"						"1.5"
 			}
 		}
 	}

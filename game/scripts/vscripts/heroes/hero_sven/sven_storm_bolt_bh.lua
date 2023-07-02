@@ -51,7 +51,7 @@ function sven_storm_bolt_bh:OnProjectileHitHandle( target, position, projID )
 	if target and not target:TriggerSpellAbsorb( self ) then
 		if caster:HasScepter() then
 			target:Dispel( caster )
-			caster:PerformGenericAttack(target, true)
+			if target ~= caster then caster:PerformGenericAttack(target, true) end
 		end
 		self:StormBolt( target, radius )
 	end

@@ -29,58 +29,32 @@
 		"AbilityCastPoint"				"0.55"
 		"AbilityCastAnimation"			"ACT_DOTA_RAZE_1"
 
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"90"
-	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"damage"						"90 160 230 300 400 500 600"
+			"stack_damage"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"90 160 230 300 400 500 600"
+				"value"						"50 60 70 80 85 90 95"
+				"special_bonus_unique_shadow_fiend_shadowraze_2"	"+25"				
 			}
-			"02"
+			"radius"						"250"
+			"range"							"200"
+			"armor_debuff"					"-2 -2 -2 -2 -3 -4 -5"
+			"armor_cap"						"-1"
+			"stack_max"						"3"
+			"duration"						"8"
+			
+			"AbilityCooldown"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"stack_damage"					"50 60 70 80 85 90 95"
-				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_shadowraze_2"		
+				"value"												"10"
+				"special_bonus_unique_shadow_fiend_shadowraze_2"	"-4"
 			}
-			"03"
+			"AbilityManaCost"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"250"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"range"							"200"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"armor_debuff"					"-2 -2 -2 -2 -3 -4 -5"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"armor_cap"						"-1"
-			}
-			"07"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"stack_max"						"3"
-			}
-			"08"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"duration"						"8"
+				"value"												"90"
+				"special_bonus_unique_shadow_fiend_shadowraze_1"	"=0"
 			}
 		}
 	
@@ -183,48 +157,30 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"damage"						"90 160 230 300 400 500 600"
+			"stack_damage"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"90 160 230 300 400 500 600"
+				"value"						"50 60 70 80 85 90 95"
+				"special_bonus_unique_shadow_fiend_shadowraze_2"	"+25"				
 			}
-			"02"
+			"radius"						"250"
+			"range"							"450"
+			"armor_debuff"					"-2 -2 -2 -2 -3 -4 -5"
+			"armor_cap"						"-1"
+			"stack_max"						"3"
+			"duration"						"8"
+			
+			"AbilityCooldown"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"stack_damage"					"50 60 70 80 85 90 95"
-				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_shadowraze_2"		
+				"value"												"10"
+				"special_bonus_unique_shadow_fiend_shadowraze_2"	"-4"
 			}
-			"03"
+			"AbilityManaCost"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"250"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"range"							"450"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"armor_debuff"					"-2 -2 -2 -2 -3 -4 -5"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"armor_cap"						"-1"
-			}
-			"07"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"stack_max"						"3"
-			}
-			"08"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"duration"						"8"
+				"value"												"90"
+				"special_bonus_unique_shadow_fiend_shadowraze_1"	"=0"
 			}
 		}
 	
@@ -267,48 +223,30 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"damage"						"90 160 230 300 400 500 600"
+			"stack_damage"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"90 160 230 300 400 500 600"
+				"value"						"50 60 70 80 85 90 95"
+				"special_bonus_unique_shadow_fiend_shadowraze_2"	"+25"				
 			}
-			"02"
+			"radius"						"250"
+			"range"							"700"
+			"armor_debuff"					"-2 -2 -2 -2 -3 -4 -5"
+			"armor_cap"						"-1"
+			"stack_max"						"3"
+			"duration"						"8"
+			
+			"AbilityCooldown"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"stack_damage"					"50 60 70 80 85 90 95"
-				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_shadowraze_2"		
+				"value"												"10"
+				"special_bonus_unique_shadow_fiend_shadowraze_2"	"-4"
 			}
-			"03"
+			"AbilityManaCost"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"250"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"range"							"700"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"armor_debuff"					"-2 -2 -2 -2 -3 -4 -5"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"armor_cap"						"-1"
-			}
-			"07"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"stack_max"						"3"
-			}
-			"08"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"duration"						"8"
+				"value"												"90"
+				"special_bonus_unique_shadow_fiend_shadowraze_1"	"=0"
 			}
 		}
 	

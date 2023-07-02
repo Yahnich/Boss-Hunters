@@ -17,9 +17,9 @@ function modifier_sniper_headshot_bh:OnRefresh()
 	self.damage = self:GetTalentSpecialValueFor("damage")
 	
 	local caster = self:GetCaster()
-	self.talent1 = caster:HasTalent("special_bonus_unique_sniper_headshot_bh_1")
-	self.talent1Dmg = self.damage * caster:FindTalentValue("special_bonus_unique_sniper_headshot_bh_1", "damage") / 100
-	self.talent1Radius = caster:FindTalentValue("special_bonus_unique_sniper_headshot_bh_1", "radius")
+	self.talent1 = caster:HasTalent("special_bonus_unique_sniper_headshot_1")
+	self.talent1Dmg = self.damage * caster:FindTalentValue("special_bonus_unique_sniper_headshot_1", "damage") / 100
+	self.talent1Radius = caster:FindTalentValue("special_bonus_unique_sniper_headshot_1", "radius")
 	
 	self.recordsProc = {}
 end

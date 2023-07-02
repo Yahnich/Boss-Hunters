@@ -98,8 +98,8 @@ function modifier_spectre_dispersion_buff:OnRefresh( kv )
 	self.min_range = self:GetAbility():GetSpecialValueFor( "min_radius" )
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_spectre_dispersion_1")
-	self.talent1DmgThreshold = self:GetCaster():FindTalentValue("special_bonus_unique_spectre_dispersion_2")
-	self.talent1CDR = self:GetCaster():FindTalentValue("special_bonus_unique_spectre_dispersion_2", "value2")
+	self.talent1DmgThreshold = self:GetCaster():FindTalentValue("special_bonus_unique_spectre_dispersion_1")
+	self.talent1CDR = self:GetCaster():FindTalentValue("special_bonus_unique_spectre_dispersion_1", "value2")
 	
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_spectre_dispersion_2")
 	self.talent2DmgThreshold = self:GetCaster():FindTalentValue("special_bonus_unique_spectre_dispersion_2")
@@ -131,7 +131,7 @@ function modifier_spectre_dispersion_buff:GetModifierIncomingDamage_Percentage(p
 						local ability = hero:GetAbilityByIndex( i )
 						
 						if ability and not ability:IsToggle() and not ability:IsCooldownReady() then
-							ability:ModifyCooldown(cdr)
+							ability:ModifyCooldown(-cdr)
 						end
 					end
 				end

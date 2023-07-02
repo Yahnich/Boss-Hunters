@@ -8,9 +8,7 @@ LinkLuaModifier( "modifier_venomancer_poison_sting_handler", "heroes/hero_venoma
 modifier_venomancer_poison_sting_handler = class({})
 
 function modifier_venomancer_poison_sting_handler:OnCreated()
-	self.duration = self:GetAbility():GetSpecialValueFor("duration")
-	self.initial = self:GetAbility():GetSpecialValueFor("initial_stacks")
-	self.ward = self:GetAbility():GetSpecialValueFor("ward_power")
+	self:OnRefresh()
 end
 
 function modifier_venomancer_poison_sting_handler:OnRefresh()
@@ -92,8 +90,8 @@ function modifier_venomancer_poison_sting_cancer:OnRefresh()
 	self.damage = self:GetAbility():GetSpecialValueFor("damage_stack")
 	self.slow = self:GetAbility():GetSpecialValueFor("ms_stack")
 	
-	self.talent2 = self:GetParent():HasTalent("special_bonus_unique_venomancer_poison_sting_2")
-	self.talent2Val = self:GetParent():FindTalentValue("special_bonus_unique_venomancer_poison_sting_2")
+	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_venomancer_poison_sting_2")
+	self.talent2Val = self:GetCaster():FindTalentValue("special_bonus_unique_venomancer_poison_sting_2")
 end
 
 function modifier_venomancer_poison_sting_cancer:OnIntervalThink()

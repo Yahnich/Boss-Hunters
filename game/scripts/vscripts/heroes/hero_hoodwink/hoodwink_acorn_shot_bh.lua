@@ -28,27 +28,6 @@ function hoodwink_acorn_shot_bh:GetManaCost( iLvl )
 	end
 end
 
-function hoodwink_acorn_shot_bh:GetIntrinsicModifierName()
-	return "modifier_hoodwink_acorn_shot_charges"
-end
-
-function hoodwink_acorn_shot_bh:OnInventoryContentsChanged()
-	local caster = self:GetCaster()
-	local modifier = caster:FindModifierByName( self:GetIntrinsicModifierName() )
-	if not modifier then return end
-	if caster:HasScepter() and not self.hasScepter then
-		if not self.firstScepter and modifier then
-			self.firstScepter = true
-			modifier:SetStackCount( modifier:GetStackCount() + ( self:GetTalentSpecialValueFor("scepter_ability_charges") - self:GetTalentSpecialValueFor("ability_charges") ) )
-		end
-		modifier:Update( false )
-		self.hasScepter = true
-	elseif not caster:HasScepter() and self.hasScepter then
-		modifier:Update( false )
-		self.hasScepter = false
-	end
-end
-
 function hoodwink_acorn_shot_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget() or self:GetCursorPosition()
@@ -165,7 +144,7 @@ function modifier_hoodwink_acorn_shot_bh_slow:GetModifierMoveSpeedBonus_Percenta
 end
 
 function modifier_hoodwink_acorn_shot_bh_slow:GetModifierAttackSpeedBonus_Constant()
-	return self.attackslow
+	return -self.attackslow
 end
 
 hoodwink_acorn_shot_bh_dummy = class({})
@@ -174,116 +153,3 @@ LinkLuaModifier("hoodwink_acorn_shot_bh_dummy", "heroes/hero_hoodwink/hoodwink_a
 function hoodwink_acorn_shot_bh_dummy:GetEffectName()
 	return "particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_tree.vpcf"
 end
-
-
-modifier_hoodwink_acorn_shot_charges = class({})
-LinkLuaModifier("modifier_hoodwink_acorn_shot_charges", "heroes/hero_hoodwink/hoodwink_acorn_shot_bh", LUA_MODIFIER_MOTION_NONE )
-if IsServer() then
-    function modifier_hoodwink_acorn_shot_charges:Update(bResetTimer)
-		self:RefreshModifierData()
-		if self:GetStackCount() >= self.kv.max_count then
-			self:SetDuration(-1, true)
-			if self:GetStackCount() > self.kv.max_count then self:SetStackCount( self.kv.max_count) end
-		elseif bResetTimer then
-			local duration = self.kv.replenish_time
-            self:SetDuration(duration, true)
-            self:StartIntervalThink(duration)
-		end
-
-        if self:GetStackCount() == 0 and not self:IsHidden() then
-            self:GetAbility():StartCooldown(self:GetRemainingTime())
-		elseif self:GetStackCount() > 0 and not self:GetAbility():IsCooldownReady() then
-			self:GetAbility():EndCooldown()
-        end
-    end
-
-    function modifier_hoodwink_acorn_shot_charges:OnCreated()
-		kv = {
-			max_count = TernaryOperator( self:GetTalentSpecialValueFor("scepter_ability_charges"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("ability_charges") ),
-			replenish_time = TernaryOperator( self:GetTalentSpecialValueFor("scepter_charge_restore_time"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("charge_restore_time") )
-		}
-        self:SetStackCount(kv.start_count or kv.max_count)
-        self.kv = kv
-
-        if kv.start_count and kv.start_count ~= kv.max_count then
-            self:Update()
-        end
-        self:StartIntervalThink(0.25)
-    end
-	
-	function modifier_hoodwink_acorn_shot_charges:OnRefresh()
-		self:RefreshModifierData()
-        if self:GetStackCount() ~= kv.max_count then
-            self:Update()
-        end
-    end
-	
-    function modifier_hoodwink_acorn_shot_charges:DeclareFunctions()
-        local funcs = {
-            MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
-        }
-
-        return funcs
-    end
-
-    function modifier_hoodwink_acorn_shot_charges:OnAbilityFullyCast(params)
-        if params.unit == self:GetParent() then
-			self:RefreshModifierData()
-			
-            local ability = params.ability
-            if ability == self:GetAbility() and not self:IsHidden() then
-				if self:GetStackCount() == self.kv.max_count then
-					local duration = self.kv.replenish_time
-					self:SetDuration(duration, true)
-					self:StartIntervalThink(duration)
-				end
-                self:DecrementStackCount()
-				ability:EndCooldown()
-                self:Update()
-			elseif string.find( params.ability:GetName(), "orb_of_renewal" ) and self:GetStackCount() < self.kv.max_count then
-                self:IncrementStackCount()
-                self:Update()
-            end
-        end
-
-        return 0
-    end
-
-    function modifier_hoodwink_acorn_shot_charges:OnIntervalThink()
-        local stacks = self:GetStackCount()
-		local caster = self:GetCaster()
-		local octarine = caster:GetCooldownReduction()
-		
-		self:RefreshModifierData()
-		
-        if stacks < self.kv.max_count then
-            self:IncrementStackCount()
-			self:Update(true)
-        end
-    end
-	
-	function modifier_hoodwink_acorn_shot_charges:RefreshModifierData()
-		self.kv.replenish_time = TernaryOperator( self:GetTalentSpecialValueFor("scepter_charge_restore_time"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("charge_restore_time") )
-		self.kv.max_count = TernaryOperator( self:GetTalentSpecialValueFor("scepter_ability_charges"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("ability_charges") )
-	end
-end
-
-function modifier_hoodwink_acorn_shot_charges:DestroyOnExpire()
-    return false
-end
-
-function modifier_hoodwink_acorn_shot_charges:IsPurgable()
-    return false
-end
-
-function modifier_hoodwink_acorn_shot_charges:RemoveOnDeath()
-    return false
-end
-
--- function modifier_hoodwink_acorn_shot_charges:IsHidden()
-	-- if self:GetCaster():HasTalent("special_bonus_unique_hoodwink_acorn_shot_1") then
-    	-- return false
-    -- else
-    	-- return true
-    -- end
--- end

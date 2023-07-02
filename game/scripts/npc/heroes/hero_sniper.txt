@@ -171,8 +171,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_sniper_headshot_bh_1"	"1"
-			"special_bonus_unique_sniper_headshot_bh_2"	"1"
+			"special_bonus_unique_sniper_headshot_1"	"1"
+			"special_bonus_unique_sniper_headshot_2"	"1"
 		}
 		
 		// Special
@@ -196,13 +196,13 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"damage"					"20 50 80 110 115 120 125"
-				"LinkedSpecialBonus"		"special_bonus_unique_sniper_headshot_bh_1"
+				"LinkedSpecialBonus"		"special_bonus_unique_sniper_headshot_1"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"0.5"
-				"LinkedSpecialBonus"		"special_bonus_unique_sniper_headshot_bh_2"
+				"LinkedSpecialBonus"		"special_bonus_unique_sniper_headshot_2"
 			}
 			"04"
 			{
@@ -225,7 +225,7 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_sniper_headshot_bh_1"
+	"special_bonus_unique_sniper_headshot_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -258,13 +258,14 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_sniper_headshot_bh_2"
+	"special_bonus_unique_sniper_headshot_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_sniper_headshot_bh"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

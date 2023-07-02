@@ -246,7 +246,7 @@ function modifier_snapfire_lil_shredder_bh_debuff:DeclareFunctions()
 end
 
 function modifier_snapfire_lil_shredder_bh_debuff:GetModifierPhysicalArmorBonus()
-    return self.bonus_as
+    return self.armor
 end
 
 function modifier_snapfire_lil_shredder_bh_debuff:IsPurgable()

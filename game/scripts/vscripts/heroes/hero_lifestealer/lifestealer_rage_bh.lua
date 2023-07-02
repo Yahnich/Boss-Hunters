@@ -1,5 +1,4 @@
 lifestealer_rage_bh = class({})
-LinkLuaModifier( "modifier_lifestealer_rage_bh", "heroes/hero_lifestealer/lifestealer_rage_bh.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function lifestealer_rage_bh:GetCastRange( target, position )
 	return self:GetTalentSpecialValueFor("cast_range")
@@ -26,7 +25,7 @@ function lifestealer_rage_bh:OnSpellStart()
 end
 
 modifier_lifestealer_rage_bh = class({})
-
+LinkLuaModifier( "modifier_lifestealer_rage_bh", "heroes/hero_lifestealer/lifestealer_rage_bh.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_lifestealer_rage_bh:OnCreated(table)
 	self:OnRefresh()
@@ -53,12 +52,12 @@ function modifier_lifestealer_rage_bh:DeclareFunctions()
 end
 
 function modifier_lifestealer_rage_bh:CheckState()
-    local state = { [MODIFIER_STATE_MAGIC_IMMUNE] = true}
+    local state = { [MODIFIER_STATE_DEBUFF_IMMUNE] = true}
     return state
 end
 
 function modifier_lifestealer_rage_bh:GetModifierMagicalResistanceBonus()
-    return 100
+    return 80
 end
 
 function modifier_lifestealer_rage_bh:GetModifierMoveSpeedBonus_Percentage()

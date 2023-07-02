@@ -328,55 +328,25 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"damage"		
 			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"42 44 46 48 48 48 48"
+				"value"							"42 44 46 48 48 48 48"
 				"CalculateSpellDamageTooltip"	"0"
 			}
-			"02"
+			"buffed_attacks"					"6 6 6 6 7 8 9"
+			"attack_speed_bonus"				"300"
+			"attack_range_bonus"				"75 150 225 300 300 300 300"
+			"buff_duration_tooltip"				"8"
+			"base_attack_time"					"-50"
+			"armor_reduction_stack"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"buffed_attacks"				"6 6 6 6 7 8 9"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"attack_speed_bonus"			"300"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"attack_range_bonus"			"75 150 225 300 300 300 300"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"buff_duration_tooltip"			"8"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"base_attack_time"				"-50"
-			}
-			"07"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"armor_reduction_stack"			"0.75"
+				"value"							"0.75"
 				"LinkedSpecialBonus"			"special_bonus_unique_snapfire_lil_shredder_2"
 			}
-			"08"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"5"
-			}
-			"09"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"shots_scepter"					"3"
-			}
+			"duration"							"5"
+			"shots_scepter"						"3"
 		}
 	}
 	//=================================================================================================================

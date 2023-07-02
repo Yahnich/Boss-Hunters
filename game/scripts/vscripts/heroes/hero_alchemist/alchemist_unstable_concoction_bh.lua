@@ -65,14 +65,14 @@ function alchemist_unstable_concoction_bh:UnstableConcoctionEffect( target, stre
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius") ) ) do
 		if enemy ~= target then
+			enemy:AddNewModifier( caster, self, "modifier_alchemist_unstable_concoction_gold", {duration = stun} ):SetStackCount( math.ceil(strength * 100) )
 			self:DealDamage( caster, enemy, damage )
 			self:Stun( enemy, stun )
-			enemy:AddNewModifier( caster, self, "modifier_alchemist_unstable_concoction_gold", {duration = stun} ):SetStackCount( math.ceil(strength * 100) )
 		end
 	end
+	target:AddNewModifier( caster, self, "modifier_alchemist_unstable_concoction_gold", {duration = stun} ):SetStackCount( math.ceil(strength * 100) )
 	self:DealDamage( caster, target, damage )
 	self:Stun( target, stun )
-	target:AddNewModifier( caster, self, "modifier_alchemist_unstable_concoction_gold", {duration = stun} ):SetStackCount( math.ceil(strength * 100) )
 	
 	ParticleManager:FireParticle( "particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_explosion.vpcf", PATTACH_POINT_FOLLOW, target )
 	EmitSoundOn( "Hero_Alchemist.UnstableConcoction.Stun", target )

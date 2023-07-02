@@ -135,10 +135,10 @@ function modifier_venomancer_poison_nova_talent:OnDestroy()
 end
 
 function modifier_venomancer_poison_nova_talent:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_DEATH}
+	return {MODIFIER_EVENT_ON_DEATH_COMPLETED}
 end
 
-function modifier_venomancer_poison_nova_talent:OnDeath( params )
+function modifier_venomancer_poison_nova_talent:OnDeathCompleted( params )
 	if self.talent1 and params.unit == self:GetParent() and params.unit:IsRealHero() then
 		self:GetCaster():SetCursorCastTarget(params.unit)
 		self:GetAbility():OnSpellStart(false)

@@ -22,7 +22,6 @@
 		GameUI.CustomUIConfig().team_colors = {}
 		GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_GOODGUYS] = "#ffc821;";
 		GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_BADGUYS ] = "#ff1010;";
-		$.Msg( "hello??")
 	</script>
 
 	<Panel>
@@ -33,10 +32,12 @@
 		<CustomUIElement type="Hud" 				layoutfile="file://{resources}/layout/custom_game/relics.xml" />
 		<CustomUIElement type="Hud" 				layoutfile="file://{resources}/layout/custom_game/shop.xml" />
 		<CustomUIElement type="Hud" 				layoutfile="file://{resources}/layout/custom_game/quests.xml" />
+		<CustomUIElement type="EndScreen" 			layoutfile="file://{resources}/layout/custom_game/multiteam_end_screen.xml" />
+		<CustomUIElement type="FlyoutScoreboard"	layoutfile="file://{resources}/layout/custom_game/scoreboard.xml" />
+		
 		<CustomUIElement type="HudTopBar"			layoutfile="file://{resources}/layout/custom_game/hero_information_top.xml" />
 		<CustomUIElement type="HudTopBar"			layoutfile="file://{resources}/layout/custom_game/general_top.xml" />
 		<CustomUIElement type="HeroSelection" 		layoutfile="file://{resources}/layout/custom_game/hero_selection_modifications.xml" />
-		<CustomUIElement type="EndScreen" 			layoutfile="file://{resources}/layout/custom_game/multiteam_end_screen.xml" />
-		<CustomUIElement type="FlyoutScoreboard"	layoutfile="file://{resources}/layout/custom_game/scoreboard.xml" />
 	</Panel>
 </root>
+

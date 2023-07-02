@@ -1289,12 +1289,16 @@ function CDOTABaseAbility:SetCooldown(fCD)
 	end
 end
 
+function CDOTA_BaseNPC:ReduceMana( value, ability )
+	return self:Script_ReduceMana( value, ability )
+end
+
 function CDOTABaseAbility:SpendMana( flValue )
 	local value = flValue or self:GetManaCost( -1 )
 	local caster = self:GetCaster()
 	local spentMana = true
 	local mana = caster:GetMana()
-	self:GetCaster():ReduceMana( value )
+	self:GetCaster():ReduceMana( value, self )
 	local realValue = math.max( 1, mana - caster:GetMana() )
 	caster:SetMana( mana )
 	self:GetCaster():SpendMana( realValue, self )
