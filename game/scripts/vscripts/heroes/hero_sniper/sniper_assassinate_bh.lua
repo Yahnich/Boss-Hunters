@@ -48,8 +48,8 @@ function sniper_assassinate_bh:OnProjectileHit_ExtraData(target, vLocation, extr
 		EmitSoundOn("Hero_Sniper.AssassinateDamage", caster)
 		self:Stun(target, TernaryOperator( self:GetTalentSpecialValueFor("scepter_stun_duration"), caster:HasScepter(), self:GetTalentSpecialValueFor("ministun_duration"), false) )
 		caster:PerformGenericAttack(target, true, self:GetTalentSpecialValueFor("damage"), nil, true)
-		if caster:HasTalent("special_bonus_unique_sniper_assassinate_bh_1") and extraTable and extraTable.initial then
-			local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_sniper_assassinate_bh_1"))
+		if caster:HasTalent("special_bonus_unique_sniper_assassinate_1") and extraTable and extraTable.initial then
+			local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_sniper_assassinate_1"))
 			for _,enemy in pairs(enemies) do
 				if enemy ~= target then
 					EmitSoundOn("Hero_Sniper.AssassinateProjectile", self:GetCaster())
@@ -58,8 +58,8 @@ function sniper_assassinate_bh:OnProjectileHit_ExtraData(target, vLocation, extr
 				end
 			end
 		end
-		if caster:HasTalent("special_bonus_unique_sniper_assassinate_bh_2") then
-			target:Disarm( self, caster, caster:FindTalentValue("special_bonus_unique_sniper_assassinate_bh_2") )
+		if caster:HasTalent("special_bonus_unique_sniper_assassinate_2") then
+			target:Disarm( self, caster, caster:FindTalentValue("special_bonus_unique_sniper_assassinate_2") )
 		end
 	end
 end

@@ -2196,14 +2196,14 @@
 		"Ability5"						"generic_hidden"
 		"Ability6"						"sniper_assassinate_bh"
 
-		"Ability10"						"special_bonus_unique_sniper_shrapnel_bh_1"
-		"Ability11"						"special_bonus_unique_sniper_shrapnel_bh_2"
-		"Ability12"						"special_bonus_unique_sniper_headshot_bh_1"
-		"Ability13"						"special_bonus_unique_sniper_headshot_bh_2"
+		"Ability10"						"special_bonus_unique_sniper_shrapnel_1"
+		"Ability11"						"special_bonus_unique_sniper_shrapnel_2"
+		"Ability12"						"special_bonus_unique_sniper_headshot_1"
+		"Ability13"						"special_bonus_unique_sniper_headshot_2"
 		"Ability14"						"special_bonus_unique_sniper_take_aim_1"
 		"Ability15"						"special_bonus_unique_sniper_take_aim_2"
-		"Ability16"						"special_bonus_unique_sniper_assassinate_bh_1"
-		"Ability17"						"special_bonus_unique_sniper_assassinate_bh_2"
+		"Ability16"						"special_bonus_unique_sniper_assassinate_1"
+		"Ability17"						"special_bonus_unique_sniper_assassinate_2"
 		
 		"Masteries"
 		{
@@ -2561,14 +2561,14 @@
 		"Ability3"						"ursa_fury_swipes_bh"
 		"Ability6"						"ursa_enrage_bh"
 		
-		"Ability10"						"special_bonus_unique_ursa_earthshock_bh_1"
-		"Ability11"						"special_bonus_unique_ursa_earthshock_bh_2"  
-		"Ability12"						"special_bonus_unique_ursa_overpower_bh_1"
-		"Ability13"						"special_bonus_unique_ursa_overpower_bh_2"
-		"Ability14"						"special_bonus_unique_ursa_fury_swipes_bh_1"
-		"Ability15"						"special_bonus_unique_ursa_fury_swipes_bh_2"
-		"Ability16"						"special_bonus_unique_ursa_enrage_bh_1"
-		"Ability17"						"special_bonus_unique_ursa_enrage_bh_2"
+		"Ability10"						"special_bonus_unique_ursa_earthshock_1"
+		"Ability11"						"special_bonus_unique_ursa_earthshock_2"  
+		"Ability12"						"special_bonus_unique_ursa_overpower_1"
+		"Ability13"						"special_bonus_unique_ursa_overpower_2"
+		"Ability14"						"special_bonus_unique_ursa_fury_swipes_1"
+		"Ability15"						"special_bonus_unique_ursa_fury_swipes_2"
+		"Ability16"						"special_bonus_unique_ursa_enrage_1"
+		"Ability17"						"special_bonus_unique_ursa_enrage_2"
 		
 		"Masteries"
 		{

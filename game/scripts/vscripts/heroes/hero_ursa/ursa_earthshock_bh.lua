@@ -72,8 +72,8 @@ function ursa_earthshock_bh:EarthShock()
 	local furySwipes = caster:FindAbilityByName("ursa_fury_swipes_bh")
 	local furySwipesDamage = 0 
 	local furySwipesDuration = 0 
-	local hasFurySwipesTalent1 = caster:HasTalent("special_bonus_unique_ursa_fury_swipes_bh_1")
-	local furySwipesTalent1Heal = caster:FindTalentValue("special_bonus_unique_ursa_fury_swipes_bh_1")
+	local hasFurySwipesTalent1 = caster:HasTalent("special_bonus_unique_ursa_fury_swipes_1")
+	local furySwipesTalent1Heal = caster:FindTalentValue("special_bonus_unique_ursa_fury_swipes_1")
 	if furySwipes then
 		furySwipesDamage = furySwipes:GetTalentSpecialValueFor("bonus_ad")
 		furySwipesDuration = furySwipes:GetTalentSpecialValueFor("duration")

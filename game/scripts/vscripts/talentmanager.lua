@@ -161,12 +161,14 @@ function TalentManager:ProcessUniqueTalents(userid, event)
 	local talentName = tostring(event.talent)
 	local abilityName = tostring(event.abilityName)
 	local hero = EntIndexToHScript( entindex )
+	
 	if entindex ~= PlayerResource:GetSelectedHeroEntity( pID ):entindex() then return end -- calling
 	local mainAbility = hero:FindAbilityByName(abilityName)
 	if not mainAbility then return end
 	if not mainAbility:IsTrained() then return end
 	local talents = hero.heroTalentDataContainer.uniqueTalents
 	local talentEntity = hero:FindAbilityByName(talentName)
+	
 	if talentEntity and not talentEntity:IsTrained() and hero:GetTalentPoints() > 0 then
 		-- level talent linked to all abilities
 		for ability, talentTable in pairs( talents ) do

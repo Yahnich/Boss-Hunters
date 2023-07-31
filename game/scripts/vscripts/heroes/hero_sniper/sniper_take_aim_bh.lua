@@ -73,8 +73,10 @@ function modifier_sniper_take_aim_active_bh:DeclareFunctions()
 	return {MODIFIER_PROPERTY_ATTACK_RANGE_BONUS, MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL, MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL_VALUE, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_INVISIBILITY_LEVEL }
 end
 
-function modifier_sniper_take_aim_active_bh:CheckStatue()
-	return {[MODIFIER_STATE_INVISIBLE] = self.talent2}
+function modifier_sniper_take_aim_active_bh:CheckState()
+	if self.talent2 then
+		return {[MODIFIER_STATE_INVISIBLE] = true}
+	end
 end
 
 function modifier_sniper_take_aim_active_bh:GetModifierOverrideAbilitySpecial(params)

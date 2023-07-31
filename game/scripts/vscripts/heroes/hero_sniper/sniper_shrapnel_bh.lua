@@ -6,7 +6,7 @@ end
 
 function sniper_shrapnel_bh:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
-    -- if self:GetCaster():HasTalent("special_bonus_unique_sniper_shrapnel_bh_2") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_sniper_shrapnel_bh_2") end
+    -- if self:GetCaster():HasTalent("special_bonus_unique_sniper_shrapnel_2") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_sniper_shrapnel_2") end
     return cooldown
 end
 
@@ -29,8 +29,8 @@ function sniper_shrapnel_bh:OnSpellStart()
 		AddFOWViewer(caster:GetTeam(), point, radius, duration, false)
 		CreateModifierThinker(caster, self, "modifier_sniper_shrapnel_bh", {Duration = duration}, point, caster:GetTeam(), false)
 	end)
-	if caster:HasTalent("special_bonus_unique_sniper_shrapnel_bh_2") then
-		caster:AddNewModifier(caster, self, "modifier_sniper_shrapnel_bh_talent", { duration = caster:FindTalentValue("special_bonus_unique_sniper_shrapnel_bh_2", "duration") } )
+	if caster:HasTalent("special_bonus_unique_sniper_shrapnel_2") then
+		caster:AddNewModifier(caster, self, "modifier_sniper_shrapnel_bh_talent", { duration = caster:FindTalentValue("special_bonus_unique_sniper_shrapnel_2", "duration") } )
 	end
 end
 
@@ -115,7 +115,7 @@ function modifier_sniper_shrapnel_bh_talent:OnCreated()
 end
 
 function modifier_sniper_shrapnel_bh_talent:OnRefresh()
-	self.attackspeed = self:GetCaster():FindTalentValue("special_bonus_unique_sniper_shrapnel_bh_2")
+	self.attackspeed = self:GetCaster():FindTalentValue("special_bonus_unique_sniper_shrapnel_2")
 end
 
 function modifier_sniper_shrapnel_bh_talent:DeclareFunctions()

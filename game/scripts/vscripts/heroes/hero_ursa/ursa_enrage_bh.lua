@@ -16,12 +16,6 @@ function ursa_enrage_bh:GetBehavior()
 	end
 end
 
-function ursa_enrage_bh:GetCooldown(iLvl)
-    local cooldown = self.BaseClass.GetCooldown(self, iLvl)
-    if self:GetCaster():HasScepter() then cooldown = self:GetLevelSpecialValueFor("cooldown_scepter", iLvl) end
-    return cooldown
-end
-
 function ursa_enrage_bh:OnSpellStart()
 	local caster = self:GetCaster()
 

@@ -83,8 +83,8 @@ function modifier_ursa_overpower_bh:OnAttack(params)
 
 		if caster == attacker then
 
-			if caster:HasTalent("special_bonus_unique_ursa_overpower_bh_1") then
-				local damage = caster:GetAttackDamage() * caster:FindTalentValue("special_bonus_unique_ursa_overpower_bh_1")/100
+			if caster:HasTalent("special_bonus_unique_ursa_overpower_1") then
+				local damage = caster:GetAttackDamage() * caster:FindTalentValue("special_bonus_unique_ursa_overpower_1")/100
 				ability:Cleave(target, damage, 150, 330, caster:GetAttackRange()*3, "particles/units/heroes/hero_sven/sven_spell_great_cleave_gods_strength.vpcf" )
 				local enemies = caster:FindEnemyUnitsInCone(caster:GetForwardVector(), caster:GetAbsOrigin(), 330, caster:GetAttackRange()*3, {})
 				for _,enemy in pairs(enemies) do
@@ -95,8 +95,8 @@ function modifier_ursa_overpower_bh:OnAttack(params)
 				end
 			end
 
-			if caster:HasTalent("special_bonus_unique_ursa_overpower_bh_2") then
-				target:Paralyze(ability, caster, caster:FindTalentValue("special_bonus_unique_ursa_overpower_bh_2"))
+			if caster:HasTalent("special_bonus_unique_ursa_overpower_2") then
+				target:Paralyze(ability, caster, caster:FindTalentValue("special_bonus_unique_ursa_overpower_2"))
 			end
 
 			if self:GetStackCount() > 1 then

@@ -75,7 +75,7 @@ function modifier_sniper_headshot_bh:GetModifierPreAttack_BonusDamage(params)
 		
 		if caster == self:GetCaster() and power > 0 then
 			self.recordsProc[params.record] = power
-			return self.damage
+			return damage
 
 			-- if caster:RollPRNG( self:GetTalentSpecialValueFor("assassinate_chance")) and not caster:HasModifier("modifier_sniper_rapid_fire") then
 				-- local assassinate = caster:FindAbilityByName("sniper_assassinate_bh")
