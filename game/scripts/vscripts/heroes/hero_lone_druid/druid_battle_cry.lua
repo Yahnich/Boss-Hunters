@@ -84,7 +84,7 @@ function modifier_druid_battle_cry:OnRefresh(table)
 	self.damage_reduction = self:GetCaster():FindTalentValue("special_bonus_unique_druid_battle_cry_1", "reduction")
 
 	if self:GetCaster():HasTalent("special_bonus_unique_druid_battle_cry_2") then
-		self.bonus_int = self:GetParent():GetIntellect()
+		self.bonus_int = self:GetParent():GetIntellect( false)
 	end
 	
 	if self:GetCaster():HasTalent("special_bonus_unique_druid_battle_cry_1") then
@@ -148,7 +148,7 @@ function modifier_druid_lesser_battle_cry:OnRefresh(table)
 	self.damage_reduction = math.floor( self:GetCaster():FindTalentValue("special_bonus_unique_druid_battle_cry_1", "reduction") * mult + 0.5 )
 
 	if self:GetCaster():HasTalent("special_bonus_unique_druid_battle_cry_2") then
-		self.bonus_int = self:GetParent():GetIntellect()
+		self.bonus_int = self:GetParent():GetIntellect( false)
 	end
 
 	if IsServer() then

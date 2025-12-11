@@ -19,7 +19,7 @@ end
 
 function treant_leech_seed_bh:OnProjectileHit(target, position)
 	local caster = self:GetCaster()
-	local heal = caster:GetIntellect() * self:GetTalentSpecialValueFor("leech_heal") / 100
+	local heal = caster:GetIntellect( false) * self:GetTalentSpecialValueFor("leech_heal") / 100
 	
 	target:HealEvent( heal, self, caster )
 end

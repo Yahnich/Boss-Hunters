@@ -46,38 +46,14 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_int"				"12"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_str"				"15"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"			"500"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"reflect"				"20"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
-			}
+			"bonus_int"				"12"
+			"bonus_str"				"15"
+			"bonus_armor"			"5"
+			"bonus_mana"			"500"
+			"reflect"				"20"
+			"radius"				"900"
 		}
 	}
 }

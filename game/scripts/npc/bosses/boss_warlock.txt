@@ -42,23 +42,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"100"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"chance"				"25"
-			}
+			"duration"				"5"
+			"damage"				"100"
+			"chance"				"25"
 		}
 	}
 
@@ -104,18 +92,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"16"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"				"4 6"
-			}
+			"duration"				"16"
+			"damage"				"4 6"
 		}
 	}
 
@@ -162,28 +142,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"16"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"700"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_targets"			"3"
-			}
+			"duration"				"16"
+			"damage"				"25"
+			"radius"				"700"
+			"max_targets"			"3"
 		}
 	}	
 
@@ -230,23 +194,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_targets"			"2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"600"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"350 500"
-			}
+			"max_targets"			"2"
+			"radius"				"600"
+			"damage"				"350 500"
 		}
 	}
 
@@ -297,23 +249,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_as"				"600"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_at"				"0.2"
-			}
+			"duration"				"10"
+			"bonus_as"				"600"
+			"bonus_at"				"0.2"
 		}
 	}
 
@@ -357,33 +297,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"wave_number"			"6"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"wave_interval"			"1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"300"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"0.25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"350 375"
-			}
+			"wave_number"			"6"
+			"wave_interval"			"1"
+			"damage"				"300"
+			"delay"					"0.25"
+			"radius"				"350 375"
 		}
 	}
 
@@ -429,33 +349,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"100 150"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"dot"					"80 100"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"250"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"width"					"125"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
-			}
+			"damage"				"100 150"
+			"dot"					"80 100"
+			"speed"					"250"
+			"width"					"125"
+			"duration"				"5"
 		}
 	}
 }

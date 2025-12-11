@@ -30,23 +30,11 @@
 			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"800"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"amp_loss"				"-60 -80"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"dmg_loss"				"-80 -120"
-			}
+			"radius"				"800"
+			"amp_loss"				"-60 -80"
+			"dmg_loss"				"-80 -120"
 		}
 	}
 	"boss_ammetot_unbound"
@@ -80,13 +68,9 @@
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"death_timer"			"240 180"
-			}
+			"death_timer"			"240 180"
 		}
 	}
 	
@@ -110,23 +94,11 @@
 			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "reduction"     				"-35"
-            }
-    		"02"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "as"     						"200"
-            }
-    		"03"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "duration"     					"8"
-            }
+			 "reduction"     				"-35"
+    		 "as"     						"200"
+    		"duration"     					"8"
 		}
 	}
 	"boss_ammetot_illusion_of_inevitability"
@@ -152,23 +124,11 @@
 			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "damage"     					"8"
-            }
-    		"02"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "slow"     						"-25 -40"
-            }
-    		"03"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "duration"     					"8 10"
-            }
+			 "damage"     					"8"
+    		 "slow"     						"-25 -40"
+    		"duration"     					"8 10"
 		}
 	}
 	"boss_ammetot_willing_prisoner"
@@ -193,23 +153,11 @@
 			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_winter_wyvern.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "radius"     					"400 600"
-            }
-    		"02"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "duration"     					"12"
-            }
-			"02"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "damage_amp"     				"10 15"
-            }
+			 "radius"     					"400 600"
+    		 "duration"     					"12"
+			 "damage_amp"     				"10 15"
 		}
 	}
 	"boss_ammetot_death_is_lonely"
@@ -235,23 +183,11 @@
 			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "death_timer"     				"4 6"
-            }
-			"02"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "search_radius"     			"500"
-            }
-			"03"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "hp_damage"     				"20"
-            }
+			"death_timer"     				"4 6"
+			"search_radius"     			"500"
+			"hp_damage"     				"20"
 		}
 	}
 }

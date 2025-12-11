@@ -59,48 +59,16 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"armor_shred"			"-6"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"shred_duration"		"7"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"35"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_range"			"350"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_agi"				"15"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_shred"			"-8"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"active_duration"		"6"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"active_distance"		"1000"
-			}
+			"armor_shred"			"-6"
+			"shred_duration"		"7"
+			"bonus_damage"			"35"
+			"bonus_range"			"350"
+			"bonus_agi"				"15"
+			"active_shred"			"-8"
+			"active_duration"		"6"
+			"active_distance"		"1000"
 		}
 	}
 }

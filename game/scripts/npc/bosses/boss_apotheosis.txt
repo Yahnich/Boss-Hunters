@@ -15,23 +15,11 @@
 			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_hp_dmg"			"8 5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"break_hp_dmg"			"24 15"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"min_block"				"40 60"
-			}
+			"max_hp_dmg"			"8 5"
+			"break_hp_dmg"			"24 15"
+			"min_block"				"40 60"
 		}
 	}
 	"boss_apotheosis_blessed_being"
@@ -49,18 +37,10 @@
 			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"debuff_limit"			"9.5 8.0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"buff_duration"			"2 3"
-			}
+			"debuff_limit"			"9.5 8.0"
+			"buff_duration"			"2 3"
 		}
 	}
 	"boss_apotheosis_purifier"
@@ -79,13 +59,9 @@
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"purge_interval"		"20.0 15.0"
-			}
+			"purge_interval"		"20.0 15.0"
 		}
 	}
 	"boss_apotheosis_latent_potential"
@@ -103,18 +79,10 @@
 			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"double_timer"			"24 17.5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_amp"			"1"
-			}
+			"double_timer"			"24 17.5"
+			"damage_amp"			"1"
 		}
 	}
 
@@ -139,38 +107,14 @@
 			"particle"					"particles/units/heroes/hero_phoenix/phoenix_sunray.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"width"						"75"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"80 100"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tick_interval"				"0.25"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"14"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"turn_slow"					"-95 -90"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"no_target_timer"			"6 3"
-			}
+			"width"						"75"
+			"damage"					"80 100"
+			"tick_interval"				"0.25"
+			"duration"					"14"
+			"turn_slow"					"-95 -90"
+			"no_target_timer"			"6 3"
 		}
 	}
 
@@ -195,33 +139,13 @@
 			"particle"					"particles/units/bosses/boss_apotheosis/boss_apotheosis_rampage.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_obsidian_destroyer.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"175"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"220 280"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"5"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"orb_interval"				"0.25 0.2"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"orb_duration"				"1.5 1"
-			}
+			"radius"					"175"
+			"damage"					"220 280"
+			"duration"					"5"
+			"orb_interval"				"0.25 0.2"
+			"orb_duration"				"1.5 1"
 		}
 	}
 	"boss_apotheosis_decimate"
@@ -245,38 +169,14 @@
 			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"channel_time"				"1.5 1"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"125"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"350 500"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"min_sunstrikes"			"10 15"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"sunstrikes_per_hero"		"1 2"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"delay"						"2 1.5"
-			}
+			"channel_time"				"1.5 1"
+			"radius"					"125"
+			"damage"					"350 500"
+			"min_sunstrikes"			"10 15"
+			"sunstrikes_per_hero"		"1 2"
+			"delay"						"2 1.5"
 		}
 	}
 
@@ -301,33 +201,13 @@
 			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_spirit_breaker.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"distance"					"750 900"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed"						"500 600"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"knockback"					"300"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"300"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"2 3"
-			}
+			"distance"					"750 900"
+			"speed"						"500 600"
+			"knockback"					"300"
+			"damage"					"300"
+			"duration"					"2 3"
 		}
 	}
 	"boss_apotheosis_shield_of_valhalla"
@@ -352,18 +232,10 @@
 			"particle"					"particles/status_fx/status_effect_avatar.vpcf"
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"curr_hp_limit"				"95 98"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"5 6"
-			}
+			"curr_hp_limit"				"95 98"
+			"duration"					"5 6"
 		}
 	}
 
@@ -387,28 +259,12 @@
 			"particle"					"particles/units/bosses/boss_apotheosis/boss_apotheosis_judge_the_cowards.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"900 1200"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed"						"300 450"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"slow"						"-25 -33"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"10 15"
-			}
+			"radius"					"900 1200"
+			"speed"						"300 450"
+			"slow"						"-25 -33"
+			"duration"					"10 15"
 		}
 	}
 
@@ -435,13 +291,9 @@
 			"particle"					"particles/units/bosses/boss_apotheosis/boss_apotheosis_the_end_debufftrack_scroll.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"death_timer"				"10 8"
-			}
+			"death_timer"				"10 8"
 		}
 	}
 }

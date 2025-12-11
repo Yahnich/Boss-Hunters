@@ -51,38 +51,14 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"80"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_agility"			"15"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"50"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_move_speed"		"10"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"pierce_chance"			"80"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"pierce_damage"			"100"
-			}
+			"bonus_damage"			"80"
+			"bonus_agility"			"15"
+			"bonus_attack_speed"	"50"
+			"bonus_move_speed"		"10"
+			"pierce_chance"			"80"
+			"pierce_damage"			"100"
 		}
 
 		"precache"

@@ -53,53 +53,17 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_agi"				"3"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_int"				"6"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_str"				"7"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_mregen"			"3"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_as"				"35"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms_aura"			"20" //flat
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms_buff"			"13" //percent
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
-			}
+			"bonus_agi"				"3"
+			"bonus_int"				"6"
+			"bonus_str"				"7"
+			"bonus_mregen"			"3"
+			"bonus_as"				"35"
+			"bonus_ms_aura"			"20" //flat
+			"bonus_ms_buff"			"13" //percent
+			"duration"				"6"
+			"radius"				"900"
 		}
 
 		"precache"

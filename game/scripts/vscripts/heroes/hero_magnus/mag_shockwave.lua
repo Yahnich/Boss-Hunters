@@ -46,7 +46,7 @@ function mag_shockwave:OnProjectileHitHandle(hTarget, vLocation, iProjectileHand
 
             if self:GetCaster():HasTalent("special_bonus_unique_mag_shockwave_1") and not hTarget:IsKnockedBack() then
                 hTarget:ApplyKnockBack(vLocation, 0.25, 0.25, 0, 100, caster, self)
-				self:DealDamage(caster, hTarget, caster:GetIntellect() * caster:FindTalentValue("special_bonus_unique_mag_shockwave_1") / 100)
+				self:DealDamage(caster, hTarget, caster:GetIntellect( false) * caster:FindTalentValue("special_bonus_unique_mag_shockwave_1") / 100)
             end
         else
         	if hTarget:HasModifier("modifier_mag_magnet") and hTarget ~= self:GetCaster() then

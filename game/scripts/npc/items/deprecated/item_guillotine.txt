@@ -53,23 +53,11 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"critical_chance"		"27"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"critical_damage"		"285"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"70"
-			}
+			"critical_chance"		"27"
+			"critical_damage"		"285"
+			"bonus_damage"			"70"
 		}
 	}
 }

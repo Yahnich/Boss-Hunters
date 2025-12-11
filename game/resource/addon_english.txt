@@ -6395,9 +6395,9 @@
 		"DOTA_Tooltip_modifier_kunkka_torrent_bh"																"Torrent"
 		"DOTA_Tooltip_modifier_kunkka_torrent_bh_Description"													"Slowed."
 		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_torrent_bh_1"											"Shipbreaker"
-		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_torrent_bh_1_Description"								"Torrent deals 120 more damage."
+		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_torrent_bh_1_Description"								"Torrent deals {s:bonus_damage} more damage."
 		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_torrent_bh_2"											"Charybdis's Rage"
-		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_torrent_bh_2_Description"								"Torrent gains 175 bonus AoE."
+		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_torrent_bh_2_Description"								"Torrent gains {s:bonus_radius} bonus AoE."
 		
 		"DOTA_Tooltip_ability_kunkka_tidebringer_bh"															"Tidebringer"
 		"DOTA_Tooltip_ability_kunkka_tidebringer_bh_Description"												"When off cooldown, the next basic attack cleaves enemy units with bonus damage."
@@ -6410,7 +6410,7 @@
 		"DOTA_Tooltip_modifier_kunkka_tidebringer_bh_talent"													"Riptide"
 		"DOTA_Tooltip_modifier_kunkka_tidebringer_bh_talent_Description"										"Armor reduced."
 		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_tidebringer_bh_1"										"Riptide"
-		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_tidebringer_bh_1_Description"							"Tidebringer reduces cleaved enemies armor by 6 for 5 seconds."
+		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_tidebringer_bh_1_Description"							"Tidebringer reduces cleaved enemies armor by {s:bonus_armor_reduction} for {s:bonus_armor_reduction_duration} seconds."
 		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_tidebringer_bh_2"										"Tsunami's Edge"
 		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_tidebringer_bh_2_Description"							"Tidebringer radius is global."
 
@@ -6424,7 +6424,7 @@
 		"DOTA_Tooltip_modifier_kunkka_captains_rum"																"Drunk"
 		"DOTA_Tooltip_modifier_kunkka_captains_rum_Description"													"+%dMODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE% bonus damage, +%dMODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE%%% bonus base damage, +%dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%% movespeed, and +%dMODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE%%% damage reduction."
 		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_captains_rum_1"										"Punch Drunk"
-		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_captains_rum_1_Description"							"Rum provides 25% more damage reduction."
+		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_captains_rum_1_Description"							"Rum provides {s:bonus_damage_reduction}% more damage reduction."
 		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_captains_rum_2"										"99 Bottles"
 		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_captains_rum_2_Description"							"Rum may be cast on allies."
 
@@ -6453,7 +6453,7 @@
 		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_ghost_ship_bh_1"										"Captains, My Captains"
 		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_ghost_ship_bh_1_Description"							"Ghostship summons 2 additional ships. These additional ships are spawn at both sides of the original ship."
 		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_ghost_ship_bh_2"										"Waxing Tides"
-		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_ghost_ship_bh_2_Description"							"Ghostship drags enemies along while traveling and stun duration increased by 1 second."
+		"DOTA_Tooltip_Ability_special_bonus_unique_kunkka_ghost_ship_bh_2_Description"							"Ghostship drags enemies along while traveling and stun duration increased by {s:bonus_stun_duration} second."
 
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// Lifestealer
@@ -13255,5 +13255,1110 @@
 		
 		"DOTA_Tooltip_event_buff_offering_curse"																"Stolen Fortune"
 		"DOTA_Tooltip_event_buff_offering_curse_Description"													"You cannot buyback and don't drop a tombstone on death until the end of the raid."
+		
+		// PANORAMA STUFF	
+		"EVENT_TYPE_ELITE_Description"												"This round is an elite round. Elite rounds provide increased gold and experience as a reward, but every enemy will have a special modifier."
+	"EVENT_TYPE_COMBAT_Description"												"This round is a combat round."
+	"EVENT_TYPE_EVENT_Description"												"This round is an event."
+	"EVENT_TYPE_BOSS_Description"												"This round is a boss round."
+	
+	"EVENT_DAYTIME_Description"													"This round will happen at day."
+	"EVENT_NIGHTTIME_Description"												"This round will happen at night."
+	
+	"EVENT_REWARD_GOLD_Description"												"This round will give gold upon completion."
+	"EVENT_REWARD_LIVES_Description"											"This round will give lives upon completion."
+	"EVENT_REWARD_RELIC_Description"											"This round will give one or more relics upon completion."
+	
+	
+	"EVENT_TIME_DAY_Description"												"This round will happen in daytime."
+	"EVENT_TIME_NIGHT_Description"												"This round will happen in night time."
+	
+	"EVENT_MODIFIERS"															"Modifiers"
+	"EVENT_VOTES"																"Votes"
+	
+	"DOTA_ITEM_BUILD_MID_GAME"													"MID GAME"
+	"DOTA_ITEM_BUILD_LATE_GAME"													"LATE GAME"
+	
+	"event_interlude"															"Interlude"
+	"event_grove_random_event"													"Random Event"
+	"event_sepulcher_random_event"												"Random Event"
+	"event_solitude_random_event"												"Random Event"
+	"event_elysium_random_event"												"Random Event"
+	
+	"event_elysium_boss_apotheosis"												"The Final One"
+	"event_elysium_boss_aether"													"The Manifestation of Space"
+	"event_elysium_boss_aeon"													"The Embodiment of Time"
+	"event_elysium_boss_genesis"												"The Origin of Life"
+	"event_elysium_boss_asura"													"The God of Demons"
+	"event_elysium_boss_ifdat"													"The Creator of Fire"
+	"event_elysium_boss_broodmother"											"The Fate Weavers"
+	"event_generic_boss_golem"													"The Earth Elementals"
+	"event_generic_boss_scarab"													"The Psionic Beetle"
+	"event_grove_boss_troll_warlord"											"The God of War"
+	"event_grove_boss_axe"														"The Red Menace"
+	"event_grove_boss_bearmaster"												"The Ursine Master"
+	"event_grove_boss_dragon"													"The Ancient Dragons"
+	"event_grove_boss_drowsa"													"The Spirit of the Forest"
+	"event_sepulcher_boss_prophet"												"The Prophet"
+	"event_sepulcher_boss_undying"												"The Zombie General"
+	"event_sepulcher_boss_reaper"												"The Grim Reaper"
+	"event_sepulcher_boss_wraith_king"											"The Lord of the Dead"
+	"event_solitude_boss_doom"													"The Lord of Hell"
+	"event_solitude_boss_evil_core"												"The Heart of Darkness"
+	"event_solitude_boss_twin_demons"											"The Twin Demons"
+	"event_solitude_boss_warlock"												"The Summoner"
+	"event_grove_boss_green_dragon"												"The Plaguespreader"
+	"event_grove_boss_greymane"													"The Wolf at your Door"
+	"event_sepulcher_boss_vile_archmage"										"The Archmage of Death"
+	
+	"event_grove_elite_valgraduth"												"The Kin of the Wild"
+	"event_sepulcher_elite_arthromos"											"The Consul of Rot"
+	"event_solitude_elite_durva"												"The Eater of Souls"
+	"event_elysium_elite_ammetot"												"The Holder of Keys"
+	
+	"event_elysium_combat_spiders"												"Spider Infestation"
+	"event_generic_combat_leshrac"												"Twisted Unicorns"
+	"event_generic_combat_ogres"												"The Ogre Horde" 
+	"event_generic_combat_slarks"												"Highway Robbery"
+	"event_grove_combat_bearboys"												"Ursine Rampage"
+	"event_grove_combat_roborage"												"Broken Machines"
+	"event_grove_combat_robots"													"Defect Automatons"
+	"event_grove_combat_roshan"													"Old Friends "
+	"event_grove_combat_slardar"												"Slithereen Queen"
+	"event_grove_combat_small_dragons"											"Forest Protectors"
+	"event_grove_combat_techies"												"Explosive Machinery"
+	"event_grove_combat_trees"													"Guardians of the Forest"
+	"event_grove_combat_wolves"													"Pack Hunters"
+	"event_grove_combat_centaurs"												"Equestrian Warriors"
+	"event_sepulcher_combat_bone_boys"											"Skeletal Warriors"
+	"event_sepulcher_combat_everything"											"Cemetary Scavengers"
+	"event_sepulcher_combat_lifestealer"										"Enraged Devourers"
+	"event_sepulcher_combat_zombies"											"The Living Dead"
+	"event_sepulcher_combat_vhouls"												"Undead Assassins"
+	"event_solitude_combat_commander"											"Demonic Generals"
+	"event_solitude_combat_golem"												"Hell Golems"
+	"event_solitude_combat_madness_demon"										"Surge of Madness"
+	"event_solitude_combat_wrath_demon"											"Surge of Wrath"
+	"event_solitude_combat_sloth_demon"											"The Sin of Lethargy"
+	"event_solitude_combat_green_dragon"										"The Home of Rot"
+	"event_solitude_combat_angry_wraith"										"Wraith Wrath"
+	"event_solitude_combat_prophets"											"Ghosts from the Past"
+	"event_solitude_combat_corrupt_drow"										"Corrupted Forest Spirits"
+	"event_solitude_combat_hellbears"											"Hellborne Prowlers"
+	"event_elysium_combat_warlock"												"Priests from Below"
+	"event_elysium_combat_reapers"												"The Ferrymen"
+	"event_sepulcher_combat_phantoms"											"Deadly Hallows"
+	"event_sepulcher_combat_flesh_behemoths"									"Mountain of Flesh"
+	"event_solitude_combat_satyrs"												"Beasts of Darkness"
+	"event_elysium_combat_fallen_angels"										"The Fallen Ones"
+	"event_elysium_combat_archangels"											"Dominio Imperium"
+	"event_elysium_combat_drowsas"												"Fighting on Home Turf"
+	
+	"event_elysium_event_divine_knowledge"										"Divine Knowledge"
+	"event_elysium_event_divine_knowledge_Description"							"You encounter a strange artifact, it clearly emanates some strange sort of power. Upon picking it up, knowledge rushes in your brain.\nWhich knowledge do you focus on?"
+	"event_elysium_event_divine_knowledge_option_1"								"Combat. <font color=\"lawngreen\">[Gain %event_knowledge_of_combat%.]</font>"
+	"event_elysium_event_divine_knowledge_option_2"								"Spells. <font color=\"lawngreen\">[Gain %event_knowledge_of_magic%.]</font>"
+	"event_elysium_event_divine_knowledge_option_3"								"Trickery. <font color=\"lawngreen\">[Gain %event_knowledge_of_trickery%.]</font>"
+	"event_knowledge_of_combat"													"Blessing: The Art of War"
+	"event_knowledge_of_combat_Description"										"You gain 25% bonus damage."
+	"event_knowledge_of_magic"													"Blessing: The Ways of Magic"
+	"event_knowledge_of_magic_Description"										"You gain 25% cooldown reduction."
+	"event_knowledge_of_trickery"												"Blessing: The Tricks of the Trade"
+	"event_knowledge_of_trickery_Description"									"You gain 25% evasion."
+	
+	"event_elysium_event_old_shrine"											"Abandoned Shrine"
+	"event_elysium_event_old_shrine_Description"								"You encounter an old, decrepit shrine. What do you decide to do with it?"
+	"event_elysium_event_old_shrine_option_1"									"Throw in 800 gold. <font color=\"yellow\">[33% chance of gaining a random relic.]</font>"
+	"event_elysium_event_old_shrine_option_2"									"Pray. <font color=\"yellow\">[Replace a random Common+ relic with one of a higher rarity.]</font>"
+	"event_elysium_event_old_shrine_option_3"									"Leave. [Nothing happens.]"
+	"event_elysium_event_old_shrine_Reward1"									"You've been blessed with a random relic!"
+	
+	"event_generic_event_defense_or_offense"									"Which is the Best?"
+	"event_generic_event_defense_or_offense_Description"						"A mysterious voice speaks to you, asking a simple question: 'Offense or defense?'"
+	"event_generic_event_defense_or_offense_option_1"							"Offense. <font color=\"lawngreen\">[Gain %event_gift_of_damage%]</font>"
+	"event_generic_event_defense_or_offense_option_2"							"Defense. <font color=\"lawngreen\">[Gain %event_gift_of_defense%]</font>"
+	"event_generic_event_defense_or_offense_option_3"							"Balance. <font color=\"lawngreen\">[Gain %event_gift_of_balance%]</font>"
+	"event_gift_of_damage"														"Blessing: Gift of Offense"
+	"event_gift_of_damage_Description"											"You gain 40 bonus damage and 40 attack speed."
+	"event_gift_of_defense"														"Blessing: Gift of Defense"
+	"event_gift_of_defense_Description"											"You gain 10 armor and 20% magic resistance."
+	"event_gift_of_balance"														"Blessing: Gift of Balance"
+	"event_gift_of_balance_Description"											"You gain 10 all stats."
+	
+	"event_generic_event_fight_or_flight"										"Fight or Flight"
+	"event_generic_event_fight_or_flight_Description"							"A mysterious voice speaks to you, informing you of something: 'A great bounty waits ahead, at great cost.'\n\nThis event is a team vote."
+	"event_generic_event_fight_or_flight_option_1"								"Seek out. <font color=\"yellow\">[Fight a boss.]</font>"
+	"event_generic_event_fight_or_flight_option_2"								"Avoid. [Dodge the fight.]"
+	
+	"event_generic_event_gold_or_relic"											"An Offering"
+	"event_generic_event_gold_or_relic_Description"								"A mysterious voice speaks to you, offering you bounties: 'Do you seek gold or power?'"
+	"event_generic_event_gold_or_relic_option_1"								"Power. <font color=\"lawngreen\">[Gain a random relic]</font>"
+	"event_generic_event_gold_or_relic_option_2"								"Gold. <font color=\"lawngreen\">[Gain 1500 gold.]</font>"
+	"event_generic_event_gold_or_relic_option_3"								"Risks. <font color=\"yellow\">[Get both, be Cursed with: %event_curse_stolen_fortune%]</font>"
+	"event_curse_stolen_fortune"												"Stolen Fortune"
+	"event_curse_stolen_fortune_Description"									"You cannot buyback and don't drop a tombstone on death until the end of the raid."
+	
+	"event_generic_event_four_of_a_kind"										"Four of a Kind"
+	"event_generic_event_four_of_a_kind_Description"							"A mysterious voice speaks to you, offering you a deal: 'Best my four champions and I will shower you in riches.'"
+	"event_generic_event_four_of_a_kind_option_1"								"Fight. [Fight a random boss. Spawns are quadrupled, rewards are quadrupled]"
+	"event_generic_event_four_of_a_kind_option_2"								"Decline. [Nothing happens]"
+	
+	"event_generic_event_protect"												"Protect the Totem"
+	"event_generic_event_protect_Description"									"You encounter a strange totem, it seems important. Upon touching it, the earth shudders heavily and you see monsters appearing!"
+	"event_generic_event_protect_option_1"										"To battle! [Start combat.]"
+	"event_generic_event_protect_Reward1"										"After defeating the horde, you feel reinvigorated! You have gained 2 skill points!."
+	"event_generic_event_protect_Reward2"										"After defeating the horde, you look over to see the totem smashed to bits. Oh well..."
+	
+	"event_generic_event_surge_of_knowledge"									"Surge of Knowledge"
+	"event_generic_event_surge_of_knowledge_Description"						"While traveling, you suddenly come to a brilliant realization! What did you come up with?"
+	"event_generic_event_surge_of_knowledge_option_1"							"Consistency is key! <font color=\"lawngreen\">[Gain %event_surge_of_knowledge_damage%]</font>"
+	"event_generic_event_surge_of_knowledge_option_2"							"Outlast and adapt! <font color=\"lawngreen\">[Gain %event_surge_of_knowledge_endurance%]</font>"
+	"event_generic_event_surge_of_knowledge_option_3"							"Greed is good! <font color=\"lawngreen\">[Gain %event_surge_of_knowledge_greed%]</font>"
+	"event_surge_of_knowledge_damage"											"Blessing: Inspiration of Power"
+	"event_surge_of_knowledge_damage_Description"								"You gain 50 base damage."
+	"event_surge_of_knowledge_endurance"										"Blessing: Inspiration of Endurance"
+	"event_surge_of_knowledge_endurance_Description"							"You gain 350 health, 3 armor and 10% magic resistance."
+	"event_surge_of_knowledge_greed"											"Blessing: Inspiration of Greed"
+	"event_surge_of_knowledge_greed_Description"								"You gain 15% bonus gold whenever you receive gold."
+	
+	"event_grove_event_cut_the_trees"											"Mystical Trees"
+	"event_grove_event_cut_the_trees_Description"								"While traveling, you come across a patch of trees with mystical powers. These would give a nice amount of gold to your party, but comes with the risk of angering the forest spirits.\nWhat do you do?\n[This event can be repeated, repeating it increases the difficulty of the fight]\n\nThis event is a team vote."
+	"event_grove_event_cut_the_trees_option_1"									"Cut a few trees! <font color=\"red\">[%event_cut_trees%]</font>"
+	"event_grove_event_cut_the_trees_option_2"									"Leave. [Nothing happens]"
+	"event_cut_trees"															"Gain 250 gold, chance of a fight"
+	"event_cut_trees_Description"												"This event is recurring. Cutting the trees will increase the fight's difficulty should it happen. Chance is 25%. Once the fight starts, you must win it."
+	
+	"event_grove_event_help_treant"												"Injured Treant"
+	"event_grove_event_help_treant_Description"									"While traveling, you come across a scared, injured treant, running for his life. It pleads for help.\n\nThis event is a team vote."
+	"event_grove_event_help_treant_option_1"									"Help it! <font color=\"yellow\">[%event_treant_fight%]</font>"
+	"event_grove_event_help_treant_option_2"									"Ignore it. [Nothing happens]"
+	"event_grove_event_help_treant_Reward1"										"After defeating its pursuers, the treant blesses you. You gain 25 health regeneration for the next 3 fights."
+	"event_treant_fight"														"Fight"
+	"event_treant_fight_Description"											"You will need to face various Wild enemies, winning will grant you rewards."
+	
+	"event_grove_event_the_river"												"The River"
+	"event_grove_event_the_river_Description"									"While traveling, you come across a clear river, this would be a nice resting spot. What do you do while resting?"
+	"event_grove_event_the_river_option_1"										"Drink. <font color=\"lawngreen\">[Gain %event_river_regeneration%.]</font>"
+	"event_grove_event_the_river_option_2"										"Bathe. <font color=\"lawngreen\">[Gain %event_river_resistance%.]</font>"
+	"event_grove_event_the_river_option_3"										"Swim. <font color=\"lawngreen\">[Gain %event_river_speed%.]</font>"
+	"event_river_regeneration"													"Blessing: River's Vitality"
+	"event_river_regeneration_Description"										"You gain 5 health regeneration."
+	"event_river_resistance"													"Blessing: River's Shield"
+	"event_river_resistance_Description"										"You gain 10% magic resistance."
+	"event_river_speed"															"Blessing: River's Flow"
+	"event_river_speed_Description"												"You gain 15 movement speed."
+	
+	"event_grove_event_well_of_youth"											"Well of Youth"
+	"event_grove_event_well_of_youth_Description"								"While traveling, you come across a strange well, it has various runes carved into it. What do you do?"
+	"event_grove_event_well_of_youth_option_1"									"Drink. <font color=\"yellow\">[Reset your ability points.]</font>"
+	"event_grove_event_well_of_youth_option_2"									"Ignore. [Nothing happens]"
+	
+	"event_sepulcher_event_graverobber"											"The Graverobber"
+	"event_sepulcher_event_graverobber_Description"								"While traveling, you come across a graverobber. He asks you for help, but digging graves in this place doesn't seem like a good idea. What do you do?"
+	"event_sepulcher_event_graverobber_option_1"								"Help him. <font color=\"red\">[Afflicted with %event_graverobbers_sin%]</font>"
+	"event_sepulcher_event_graverobber_option_2"								"Ignore. [Nothing happens]"
+	"event_graverobbers_sin"													"Curse: Graverobber's Sins"
+	"event_graverobbers_sin_Description"										"Your maximum and current lives are reduced by two, but you receive two choices from 3 relics. One choice is always Corrupt."
+	
+	"event_sepulcher_event_the_horde"											"The Horde"
+	"event_sepulcher_event_the_horde_Description"								"While traveling, you are ambushed and are suddenly surrounded by a massive horde of rabid enemies. Survive the Horde!"
+	"event_sepulcher_event_the_horde_option_1"									"To battle! [Start combat.]"
+	"event_sepulcher_event_the_horde_Reward1"									"After defeating the Horde, you feel stronger than before, your base attributes increased by 10!"
+	
+	"event_sepulcher_event_tombstone"											"Endangered Tombstone"
+	"event_sepulcher_event_tombstone_Description"								"While traveling, you encounter a spirit, asking you for assistance with its assailants. Every day scavengers try to attack its tombstone, which makes it unable to find peace. Will you help the spirit?\n\nThis event is a team vote."
+	"event_sepulcher_event_tombstone_option_1"									"Help it. <font color=\"yellow\">[%event_tombstone_fight%]</font>"
+	"event_sepulcher_event_tombstone_option_2"									"Ignore. [Nothing happens]"
+	"event_sepulcher_event_tombstone_Reward1"									"The tombstone being completely unscathed pleases the spirit greatly, you gain one additional life and 30% evasion for the next 3 fights!"
+	"event_sepulcher_event_tombstone_Reward2"									"The spirit blesses you, as its tombstone is mostly intact. You gain 30% evasion for the next 3 fights."
+	"event_sepulcher_event_tombstone_Reward3"									"The Tombstone was broken, unfortunately your struggle has been for naught."
+	"event_tombstone_fight"														"Fight"
+	"event_tombstone_fight_Description"											"You will need to protect the tombstone from zombies, keeping it alive will grant you rewards."
+	
+	"event_solitude_event_demon_of_avarice"										"Demon of Avarice"
+	"event_solitude_event_demon_of_avarice_Description"							"While traveling, you encounter a demon of avarice, they are known for carrying massive amounts of gold in their cheeks, you are sure beating it up will cause it to drop some, ATTACK!"
+	"event_solitude_event_demon_of_avarice_option_1"							"Jump it! [Gain gold based on damage dealt.]"
+	
+	"event_solitude_event_crossroads"											"The Crossroads"
+	"event_solitude_event_crossroads_Description"								"While traveling, you encounter a crossroads, with a gloomy figure standing in the middle of it. He offers you a deal, he will grant you power, albeit at a cost."
+	"event_solitude_event_crossroads_option_1"									"Accept. <font color=\"red\">[Afflicted with %event_crossroads_deal%]</font>"
+	"event_solitude_event_crossroads_option_2"									"Ignore. [Nothing happens]"
+	"event_crossroads_deal"														"Curse: Crossroads Deal"
+	"event_crossroads_deal_Description"											"You lose 20% of your maximum health, but gain a random relic."
+	
+	"event_solitude_event_cursed_glove"											"Glove of Midas"
+	"event_solitude_event_cursed_glove_Description"								"While traveling, you encounter a glove on a golden altar, you believe this to be the Glove of Midas."
+	"event_solitude_event_cursed_glove_option_1"								"Aurify. <font color=\"yellow\">[Removes the item in your first item slot. Gain gold equal to the worth of the item and all its stones.]</font>"
+	"event_solitude_event_cursed_glove_option_2"								"Ignore. [Nothing happens]"
+	
+	"event_solitude_event_devil_deal"											"Cursed Deal"
+	"event_solitude_event_devil_deal_Description"								"While traveling, you encounter a travelling salesman. He asks you what you seek in life."
+	"event_solitude_event_devil_deal_option_1"									"Simplicity. <font color=\"lawngreen\">[Gain a Common relic]</font>"
+	"event_solitude_event_devil_deal_option_2"									"Power. <font color=\"red\">[Afflicted with %event_deal_of_power%]</font>"
+	"event_solitude_event_devil_deal_option_3"									"Specialization. <font color=\"yellow\">[Lose a random relic, gain a new Rare relic.]</font>"
+	"event_deal_of_power"														"Curse: Deal for Power"
+	"event_deal_of_power_Description"											"You lose 30% of your maximum health, but gain a random Uncommon+ Corrupt relic."
+	
+	"event_grove_event_a_stick"													"A Stick"
+	"event_grove_event_a_stick_Description"										"While traveling, you find a stick."
+	"event_grove_event_a_stick_option_1"										"Take it. <font color=\"lawngreen\">[Gain relic: %relic_stick%.]</font>"
+	"event_grove_event_a_stick_option_2"										"Toss it. <font color=\"lawngreen\">[Gain %event_blessing_of_stick%.]</font>"
+	"event_blessing_of_stick"													"Blessing: Threw Stick"
+	"event_blessing_of_stick_Description"										"This blessing grants you 35 damage, attack speed and movement speed."
+	
+	"event_grove_event_tree_of_life"											"Tree of Life"
+	"event_grove_event_tree_of_life_Description"								"While traveling, you find an enormous tree with fruit."
+	"event_grove_event_tree_of_life_option_1"									"Eat fruit. <font color=\"lawngreen\">[Gain %event_tree_blessing_of_life%.]</font>"
+	"event_grove_event_tree_of_life_option_2"									"Meditate. <font color=\"lawngreen\">[Gain %event_tree_blessing_of_wisdom%.]</font>"
+	"event_grove_event_tree_of_life_option_3"									"Tend to the tree. <font color=\"lawngreen\">[Gain %event_tree_blessing_of_valor%.]</font>"
+	"event_tree_blessing_of_life"												"Blessing: Tree's Surge of Life"
+	"event_tree_blessing_of_life_Description"									"This blessing grants 400 health and 5 health regeneration."
+	"event_tree_blessing_of_wisdom"												"Blessing: Tree's Surge of Wisdom"
+	"event_tree_blessing_of_wisdom_Description"									"This blessing grants you 15 intelligence and 20% spell amplification."
+	"event_tree_blessing_of_valor"												"Blessing: Tree's Surge of Valor"
+	"event_tree_blessing_of_valor_Description"									"This blessing grants you 8 all stats."
+	
+	"event_grove_event_bloom_crystal"											"Bloom Crystal"
+	"event_grove_event_bloom_crystal_Description"								"While traveling, you encounter some strange, flower-like crystals."
+	"event_grove_event_bloom_crystal_option_1"									"Eat. <font color=\"lawngreen\">[Gain %event_bloom_harvest%.]</font>"
+	"event_grove_event_bloom_crystal_option_2"									"Gather. <font color=\"lawngreen\">[Gain 800 gold.]</font>"
+	"event_grove_event_bloom_crystal_option_3"									"Destroy. <font color=\"yellow\">[Gain a random Common relic.]</font>"
+	"event_bloom_harvest"														"Blessing: Bloom's Harvest"
+	"event_bloom_harvest_Description"											"This blessing grants 500 health and 8 health regeneration."
+	
+	"event_grove_event_berries"													"Unknown Berries"
+	"event_grove_event_berries_Description"										"While traveling, you encounter a bush with purple berries."
+	"event_grove_event_berries_option_1"										"Eat. <font color=\"yellow\">[Gain %event_poison_hangover%]</font>"
+	"event_grove_event_berries_option_2"										"Brew. <font color=\"red\">[Gain %event_noxious_potion%]</font>"
+	"event_grove_event_berries_option_3"										"Ignore. [Nothing happens]"
+	"event_poison_hangover"														"Curse: Poisonous Hangover"
+	"event_poison_hangover_Description"											"You lose 800 maximum health for 3 battles or until death, but if you do not die while under this curse, you gain 400 maximum health when it expires."
+	"event_noxious_potion"														"Curse: Noxious Potion"
+	"event_noxious_potion_Description"											"You permanently lose 400 maximum health, but gain 2 skill points"
+	
+	"event_sepulcher_event_unmarked_grave"										"Unmarked Grave"
+	"event_sepulcher_event_unmarked_grave_Description"							"While traveling, you encounter a shallow grave."
+	"event_sepulcher_event_unmarked_grave_option_1"								"Dig. <font color=\"red\">[Gain relic: %relic_rotting_flesh%, all healing reduced by 50%]</font>"
+	"event_sepulcher_event_unmarked_grave_option_2"								"Leave. [Nothing happens.]"
+	
+	"event_sepulcher_event_cursed_cemetary"										"Cursed Cemetary"
+	"event_sepulcher_event_cursed_cemetary_Description"							"While traveling, you encounter an old cemetary. The air hangs heavy and you feel uneasy.\n\nThis event is a team vote."
+	"event_sepulcher_event_cursed_cemetary_option_1"							"Cleanse. <font color=\"yellow\">[%event_cursed_cemetary_fight%.]</font>"
+	"event_sepulcher_event_cursed_cemetary_option_2"							"Leave. [Nothing happens.]"	
+	"event_cursed_cemetary_fight"												"Fight"
+	"event_cursed_cemetary_fight_Description"									"You will fight Undead bosses, receive 2 random relics upon winning."
+	
+	"event_sepulcher_event_blighted_land"										"Blighted Land"
+	"event_sepulcher_event_blighted_land_Description"							"While traveling, you encounter a barren patch of life. With enough effort, you could possibly bring it back to life."
+	"event_sepulcher_event_blighted_land_option_1"								"Cleanse. <font color=\"yellow\">[Gain %event_blighted_land_cleanse%]</font>"
+	"event_sepulcher_event_blighted_land_option_2"								"Rest. <font color=\"yellow\">[Gain %event_blighted_land_rest%]</font>"
+	"event_sepulcher_event_blighted_land_option_3"								"Leave. [Nothing happens.]"
+	"event_blighted_land_cleanse"												"Curse: Haunted Vitality"
+	"event_blighted_land_cleanse_Description"									"You gain 1500 health, but all healing is reduced by 20%"
+	"event_blighted_land_rest"													"Curse: Haunted Growth"
+	"event_blighted_land_rest_Description"										"You gain +18 all stats, but all healing is reduced by 20%"
+	
+	"event_sepulcher_event_withered_tree"										"Withered Tree"
+	"event_sepulcher_event_withered_tree_Description"							"While traveling, you find encounter a withered tree. It feels powerful, but somehow it feels... Wrong."
+	"event_sepulcher_event_withered_tree_option_1"								"Burn. <font color=\"lawngreen\">[Gain %event_withered_tree_burn%.]</font>"
+	"event_sepulcher_event_withered_tree_option_2"								"Cut. <font color=\"lawngreen\">[Gain 600 gold.]</font>"
+	"event_withered_tree_burn"													"Blessing: Withered Incense"
+	"event_withered_tree_burn_Description"										"You gain 25% bonus experience for 3 battles."
+	
+	"event_sepulcher_event_ominous_tome"										"Ominous Tome"
+	"event_sepulcher_event_ominous_tome_Description"							"While traveling, you enter an abandoned chapel, within it you encounter an ominous looking book with bindings that appear to be fashioned out of skin.\n\nThis event is a team vote."
+	"event_sepulcher_event_ominous_tome_option_1"								"Read. <font color=\"yellow\">[Gain %event_ominous_tome_read%]</font>"
+	"event_sepulcher_event_ominous_tome_option_2"								"Destroy. <font color=\"red\">[%event_ominous_tome_destroy%]</font>"
+	"event_sepulcher_event_ominous_tome_option_3"								"Ignore. [Nothing happens.]"
+	"event_ominous_tome_read"													"Curse: Eldritch Knowledge"
+	"event_ominous_tome_read_Description"										"Every team member's current and maximum health is increased by 1 and gains 80 attack damage, but their maximum health is lowered by 600."
+	"event_ominous_tome_destroy"												"Fight"
+	"event_ominous_tome_destroy_Description"									"Fight Undead bosses and elites, upon winning receive a choice from 3 random Corrupt relics."
+	"event_sepulcher_event_ominous_tome_Reward1"								"The knowledge within the tome simultaneously makes you brim with vitality and feel aged beyond comprehension."
+	
+	"event_sepulcher_event_ruined_cathedral"									"Ruined Cathedral"
+	"event_sepulcher_event_ruined_cathedral_Description"						"While traveling, you find a ruined cathedral. You smell the stench of the undead inside.\n\nThis event is a team vote."
+	"event_sepulcher_event_ruined_cathedral_option_1"							"Pray. <font color=\"lawngreen\">[Gain %event_ruined_cathedral_pray%]</font>"
+	"event_sepulcher_event_ruined_cathedral_option_2"							"Purge. <font color=\"red\">[%event_ruined_cathedral_purge%]</font>"
+	"event_ruined_cathedral_pray"												"Blessing: Hollow Prayer"
+	"event_ruined_cathedral_pray_Description"									"The entire team gains gain 2 health regeneration and 5% magic resistance."
+	"event_ruined_cathedral_purge"												"Fight"
+	"event_ruined_cathedral_purge_Description"									"Fight Undead bosses and elites, upon winning receive a random Corrupt and Uncommon+ relic."
+	
+	"event_sepulcher_event_plague_doctor"										"Plague Doctor"
+	"event_sepulcher_event_plague_doctor_Description"							"While traveling, you meet a plague doctor. They offer you a strange concoction."
+	"event_sepulcher_event_plague_doctor_option_1"								"Drink. <font color=\"red\">[Gain %event_plague_doctor_drink%]</font>"
+	"event_sepulcher_event_plague_doctor_option_2"								"Decline. [Nothing happens.]"
+	"event_plague_doctor_drink"													"Curse: Unholy Concoction"
+	"event_plague_doctor_drink_Description"										"You gain +80 damage, +32% spell amplification and 20 movement speed, but lose 10 armor and 25% magic resistance."
+	
+	"event_sepulcher_event_abandoned_shack"										"Abandoned Shack"
+	"event_sepulcher_event_abandoned_shack_Description"							"While traveling, you encounter an abandoned shack. What do you do?\n\nThis event is a team vote."
+	"event_sepulcher_event_abandoned_shack_option_1"							"<font color=\"yellow\">%event_abandoned_shack_investigate%.</font>"
+	"event_sepulcher_event_abandoned_shack_option_2"							"Ignore."
+	"event_abandoned_shack_investigate"											"Investigate"
+	"event_abandoned_shack_investigate_Description"								"There is a chance to fight Undead bosses and elites and a seperate chance to find gold or relics."
+	"event_sepulcher_event_abandoned_shack_Reward1"								"You found 500 gold!"
+	"event_sepulcher_event_abandoned_shack_Reward2"								"You found a relic!"
+	"event_sepulcher_event_abandoned_shack_Reward3"								"While rummaging around, you have alerted several entities to your presence!"
+	"event_sepulcher_event_abandoned_shack_Reward4"								"While rummaging around, you have alerted a wailing banshee to your presence!"
+	
+	"event_elysium_event_silent_guardian"										"Silent Guardian"
+	"event_elysium_event_silent_guardian_Description"							"While traveling, you find a strange, stone statue. You feel like touching it."
+	"event_elysium_event_silent_guardian_option_1"								"Touch. <font color=\"red\">[WARNING: Become %event_blessing_of_ethereal%]</font>"
+	"event_elysium_event_silent_guardian_option_2"								"Ignore. [Nothing happens.]"
+	"event_blessing_of_ethereal"												"Ethereal"
+	"event_blessing_of_ethereal_Description"									"Ethereal DISARMS YOU, PREVENTING YOU FROM ATTACKING, while granting immunity to physical damage and increasing magic damage taken by 100%."
+	
+	"event_elysium_event_angelic_cache"											"Angelic Cache"
+	"event_elysium_event_angelic_cache_Description"								"While traveling, you find a hidden chest, there are strange trinkets in it. Which will you take?"
+	"event_elysium_event_angelic_cache_option_1"								"Vial. <font color=\"lawngreen\">[Gain relic: %relic_angelic_water%]</font>"
+	"event_elysium_event_angelic_cache_option_2"								"Bottle. <font color=\"lawngreen\">[Gain relic: %relic_breath_of_life%]</font>"
+	"event_elysium_event_angelic_cache_option_3"								"Feather. <font color=\"lawngreen\">[Gain relic: %relic_seraphims_feather%]</font>"
+	
+	"event_elysium_event_safe_haven"											"Safe Haven"
+	"event_elysium_event_safe_haven_Description"								"While traveling, you find a little clearing, giving you time for resting. How do you spend your time?"
+	"event_elysium_event_safe_haven_option_1"									"Rest. <font color=\"lawngreen\">[Gain %event_safe_haven_rest%.]</font>"
+	"event_elysium_event_safe_haven_option_2"									"Train. <font color=\"lawngreen\">[Gain %event_safe_haven_train%.]</font>"
+	"event_elysium_event_safe_haven_option_3"									"Study. <font color=\"lawngreen\">[Gain %event_safe_haven_study%.]</font>"
+	"event_safe_haven_rest"														"Blessing: Haven's Rest"
+	"event_safe_haven_rest_Description"											"You gain 500 maximum health."
+	"event_safe_haven_train"													"Blessing: Haven's Practice"
+	"event_safe_haven_train_Description"										"You gain 30 base damage and attack speed."
+	"event_safe_haven_study"													"Blessing: Haven's Study"
+	"event_safe_haven_study_Description"										"You gain 350 maximum mana and 15% spell amplification."
+	
+	"event_solitude_event_demon_shrine"											"Corrupt Shrine"
+	"event_solitude_event_demon_shrine_Description"								"While traveling, you come across a shrine, clearly corrupted by demonic powers.\n\nThis event is a team vote."
+	"event_solitude_event_demon_shrine_option_1"								"Pray. <font color=\"yellow\">[Gain %event_demon_shrine_pray%.]</font>"
+	"event_solitude_event_demon_shrine_option_2"								"Destroy. <font color=\"red\">[%event_demon_shrine_destroy%.]</font>"
+	"event_solitude_event_demon_shrine_option_3"								"Leave. [Nothing happens.]"
+	"event_demon_shrine_pray"													"Curse: Corrupted by Greed"
+	"event_demon_shrine_pray_Description"										"You gain 2000 gold, but lose 10 armor and 20% magic resistance."
+	"event_demon_shrine_destroy"												"Fight"
+	"event_demon_shrine_destroy_Description"									"Fight Demonic elites, upon winning receive one Common and one Uncommon+ relic."
+	"event_solitude_event_demon_shrine_Reward1"									"After praying, you feel your pockets line up with gold."
+	
+	"event_solitude_event_cultist_ritual"										"Cultist Ritual"
+	"event_solitude_event_cultist_ritual_Description"							"While traveling, you see a few cultists chanting incantations in the distance."
+	"event_solitude_event_cultist_ritual_option_1"								"Join them. <font color=\"yellow\">[Gain %event_cultist_ritual_join%]</font>"
+	"event_solitude_event_cultist_ritual_option_2"								"Avoid them. [Nothing happens.]"
+	"event_cultist_ritual_join"													"Curse: Corrupt Gift"
+	"event_cultist_ritual_join_Description"										"You gain 2 random Rare+ relics, but all XP and gold gain is halved until the end of the next combat round."
+	"event_solitude_event_cultist_ritual_Reward1"								"The cultists share the spoils with you, granting you 2 Corrupt relics."
+	
+	"event_solitude_event_lake_of_lava"											"Lake of Lava"
+	"event_solitude_event_lake_of_lava_Description"								"While traveling, your travels are barred by a massive lake of lava."
+	"event_solitude_event_lake_of_lava_option_1"								"Vault over. <font color=\"lawngreen\">[Gain %event_lake_of_lava_vault%.]</font>"
+	"event_solitude_event_lake_of_lava_option_2"								"Path around. <font color=\"lawngreen\">[Gain %event_lake_of_lava_path%.]</font>"
+	"event_solitude_event_lake_of_lava_option_3"								"Swim across. <font color=\"lawngreen\">[Gain %event_lake_of_lava_swim%.]</font>"
+	"event_lake_of_lava_vault"													"Blessing: Lava's Dexterity"
+	"event_lake_of_lava_vault_Description"										"You gain 10 agility."
+	"event_lake_of_lava_path"													"Blessing: Lava's Intellect"
+	"event_lake_of_lava_path_Description"										"You gain 15 intelligence."
+	"event_lake_of_lava_swim"													"Blessing: Lava's Constitution"
+	"event_lake_of_lava_swim_Description"										"You gain 12 strength."
+	
+	"event_solitude_event_ominous_pentagram"									"Foreboding Pentagram"
+	"event_solitude_event_ominous_pentagram_Description"						"While traveling, you encounter a pentagram on the ground. The glyphs sizzle with power.\n\nThis event is a team vote."
+	"event_solitude_event_ominous_pentagram_option_1"							"Touch. <font color=\"red\">[%event_ominous_pentagram_touch%.]</font>"
+	"event_solitude_event_ominous_pentagram_option_2"							"Dispel. <font color=\"yellow\">[%event_ominous_pentagram_dispel%.]</font>"
+	"event_solitude_event_ominous_pentagram_option_3"							"Escape. [Nothing happens?]"
+	"event_ominous_pentagram_touch"												"WARNING: Fight"
+	"event_ominous_pentagram_touch_Description"									"Fight an empowered Asura. Grants increased benefits when beaten. You gain 15 all stats upon beating it."
+	"event_ominous_pentagram_dispel"											"Fight"
+	"event_ominous_pentagram_dispel_Description"								"Fight Asura, the God of Demons. Beating him grants boss rewards."
+
+	"event_solitude_event_demonic_horde"										"Demonic Horde"
+	"event_solitude_event_demonic_horde_Description"							"While traveling, you are ambushed and are suddenly surrounded by a massive horde of enemies. Survive the Horde!"
+	"event_solitude_event_demonic_horde_option_1"								"To battle! [Start combat.]"
+	"event_solitude_event_demonic_horde_Reward1"								"After defeating the Horde, you feel stronger than before, you gained 30 movement speed and 500 mana!"
+	
+	"event_solitude_event_black_ritual"											"A Black Ritual"
+	"event_solitude_event_black_ritual_Description"								"While traveling, you encounter some skull and bones, accompanied by various glyphs and blood. In the middle, you see a candle."
+	"event_solitude_event_black_ritual_option_1"								"Take the candle. <font color=\"yellow\">[Receive %relic_ritual_candle%, afflicted with %event_black_ritual_curse%]</font>"
+	"event_solitude_event_black_ritual_option_2"								"Commune. <font color=\"yellow\">[Receive %relic_forbidden_contract%, afflicted with %event_black_ritual_curse%]</font>"
+	"event_solitude_event_black_ritual_option_3"								"Destroy. <font color=\"yellow\">[Receive 3 Common relics, afflicted with %event_black_ritual_curse%]</font>"
+	"event_solitude_event_black_ritual_option_4"								"Leave. <font color=\"green\">[Nothing happens.]</font>"
+	"event_black_ritual_curse"													"Curse: Ritual Fatigue"
+	"event_black_ritual_curse_Description"										"Upon being afflicted with this curse, you lose all your current gold. While cursed, you receive 35% less experience and gold."
+	
+	"event_elysium_event_fountain_of_purity"									"Fountain of Purity"
+	"event_elysium_event_fountain_of_purity_Description"						"While traveling, you find a drinking fountain, it emanates a soothing aura."
+	"event_elysium_event_fountain_of_purity_option_1"							"Drink. <font color=\"green\">[Remove all Curses]</font>"
+	"event_elysium_event_fountain_of_purity_option_2"							"Bless. <font color=\"green\">[Receive %relic_ofuda%]</font>"
+	"event_elysium_event_fountain_of_purity_option_3"							"Pray. <font color=\"green\">[Receive %event_fountain_of_purity_pray%]</font>"
+	"event_fountain_of_purity_pray"												"Blessing of Purity"
+	"event_fountain_of_purity_pray_Description"									"Gain +5 of every attribute."
+	
+	"ascension_Generic_Description"												"Ascending restarts the game with your current items, relics and levels based on a majority vote.\nEvery ascension increases enemy attack speed, crit chance, armor and damage."
+	"ascension_1_Description"													"A1: All enemies will be Champions. Elites will no longer drop relics."
+	"ascension_2_Description"													"A2: Bosses no longer drop relics. Bosses gain 25% status resistance."
+	"ascension_3_Description"													"A3: Your heal amplification will be reduced by 50%. Bosses gain 50% status resistance."
+	"ascension_4_Description"													"A4: All enemies will have hasted and flying movement. Bosses gain 75% status resistance."
+	"generic_yes"																"Yes"
+	"generic_no"																"No"
+	"ascension_overhead"														"Ascend?"
+	
+
+	// PANORAMA
+	"QuestDifficultyText"											"DIFFICULTY: {s:difficulty}"
+	"QuestRoundText"												"{s:roundText} - {s:roundNumber}"
+	"QuestLifeText"													"LIVES: {d:lives} OUT OF {d:maxLives}"
+	"QuestPrepText"													"PREPARATION TIME LEFT: {d:prepTime}"
+	
+	"SKILL_TREE_OFFENSE"											"Offense"
+	"SKILL_TREE_DEFENSE"											"Defense"
+	"SKILL_TREE_OTHER"												"Other"
+	"SKILL_TREE_UNIQUE"												"Unique"
+	
+	"STATS_TYPE_MOVE_SPEED"											"Movement Speed"
+	"STATS_TYPE_MANA"												"Mana"
+	"STATS_TYPE_MANA_REGEN"											"Mana Regeneration"
+	"STATS_TYPE_HEAL_AMP"											"Heal Amplification"
+	"STATS_TYPE_ALL_STATS"											"All Stats"
+	
+	"STATS_TYPE_MOVE_SPEED_Description"								"Increases your base movement speed."
+	"STATS_TYPE_MANA_Description"									"Increases your maximum mana."
+	"STATS_TYPE_MANA_REGEN_Description"								"Increases your base mana regeneration."
+	"STATS_TYPE_HEAL_AMP_Description"								"Increases all the heals applied to you and all the heals you apply. When self-healing, only applies once."
+	"STATS_TYPE_ALL_STATS_Description"								"Grants you bonus strength, agility and intelligence."
+	
+	"STATS_GENERIC_UNCAPPED"										"Leveling this talent grants an additional"
+	
+	"STATS_TYPE_ATTACK_DAMAGE"										"Attack Damage"
+	"STATS_TYPE_COOLDOWN_REDUCTION"									"Cooldown Reduction"
+	"STATS_TYPE_SPELL_AMP"											"Spell Amplification"
+	"STATS_TYPE_ATTACK_SPEED"										"Attack Speed"
+	"STATS_TYPE_STATUS_AMP"											"Status Amplification"
+	"STATS_TYPE_ACCURACY"											"Accuracy"
+	"STATS_TYPE_AREA_DAMAGE"										"Area Damage"
+	
+	"STATS_TYPE_ATTACK_DAMAGE_Description"							"Increases the amount of damage your auto-attacks deal."
+	"STATS_TYPE_COOLDOWN_REDUCTION_Description"						"Lowers the cooldowns of all your abilities. Cooldown reduction stacks diminishly."
+	"STATS_TYPE_SPELL_AMP_Description"								"Increases the amount of damage most spells deal. Some spells ignore spell amplification."
+	"STATS_TYPE_ATTACK_SPEED_Description"							"Increases the rate at which you attack, is hard-capped at 700."
+	"STATS_TYPE_STATUS_AMP_Description"								"Increases the durations of debuffs and buffs you apply. Negative status amplification lowers the durations."
+	"STATS_TYPE_ACCURACY_Description"								"Grants you a chance to ignore evasion."
+	"STATS_TYPE_AREA_DAMAGE_Description"							"Whenever you damage a unit with an attack or unit-target ability without the area of effect property, you deal a percentage of the original equal to your area damage to all other units within a 325 unit radius. This effect has an internal cooldown of 0.1 seconds. Area damage is halved for ranged attacks and spells."
+	
+	"STATS_TYPE_ARMOR"												"Armor"
+	"STATS_TYPE_MAGIC_RESIST"										"Magic Resistance"
+	"STATS_TYPE_DAMAGE_BLOCK"										"Damage Block (60%)"
+	"STATS_TYPE_ATTACK_RANGE"										"Attack Range"
+	"STATS_TYPE_HEALTH"												"Health"
+	"STATS_TYPE_HEALTH_REGEN"										"Health Regen"
+	"STATS_TYPE_STATUS_REDUCTION"									"Status Resistance"
+	
+	"STATS_TYPE_ARMOR_Description"									"Every point of armor reduces the physical damage by 5% per point. Stacks diminishly."
+	"STATS_TYPE_MAGIC_RESIST_Description"							"Reduces the magic damage you take by this percentage."
+	"STATS_TYPE_DAMAGE_BLOCK_Description"							"Grants a 60% chance to block all sources of damage for the talent value."
+	"STATS_TYPE_ATTACK_RANGE_Description"							"Increases your range of attack, values lowered for melee."
+	"STATS_TYPE_HEALTH_Description"									"Increases your maximum health."
+	"STATS_TYPE_HEALTH_REGEN_Description"							"Increases your base health regeneration."
+	"STATS_TYPE_STATUS_REDUCTION_Description"						"Lowers the durations of debuffs applied to you."
+	
+	"MASTERY_ATTACK_DAMAGE"											"Damage Up"
+	"MASTERY_ATTACK_DAMAGE_Description"								"Increases your base attack damage by: {d:number}"
+	"MASTERY_ATTACK_SPEED"											"Attack Speed Up"
+	"MASTERY_ATTACK_SPEED_Description"								"Increases your attack speed by: {d:number}"
+	"MASTERY_SPELL_AMP"												"Spell Damage Up"
+	"MASTERY_SPELL_AMP_Description"									"Increases the damage your spells deal by: {d:number}%"
+	"MASTERY_STATUS_AMP"											"Status Duration Up"
+	"MASTERY_STATUS_AMP_Description"								"Increases the duration of your buffs and debuffs by: {d:number}%"
+	"MASTERY_HEALTH"												"Health Up"
+	"MASTERY_HEALTH_Description"									"Increases your health by: {d:number}"
+	"MASTERY_HEALTH_REGEN"											"Health Regen Up"
+	"MASTERY_HEALTH_REGEN_Description"								"Increases your health regeneration by: {d:number}"
+	"MASTERY_ARMOR"													"Armor Up"
+	"MASTERY_ARMOR_Description"										"Increases your armor by: {d:number}"
+	"MASTERY_MAGIC_RESIST"											"Magic Resistance Up"
+	"MASTERY_MAGIC_RESIST_Description"								"Increases your magical resistance by: {d:number}%"
+	"MASTERY_MOVESPEED"												"Movement Speed Up"
+	"MASTERY_MOVESPEED_Description"									"Increases your movement speed by: {d:number}%"
+	"MASTERY_HEAL_AMP"												"Healing Up"
+	"MASTERY_HEAL_AMP_Description"									"Increases your healing dealt and received by: {d:number}%"
+	"MASTERY_MANA"													"Mana Up"
+	"MASTERY_MANA_Description"										"Increases your mana by: {d:number}"
+	"MASTERY_MANA_REGEN"											"Mana Regen Up"
+	"MASTERY_MANA_REGEN_Description"								"Increases your mana regeneration by: {d:number}"
+	"MASTERY_EVASION"												"Evasion Up"
+	"MASTERY_EVASION_Description"									"Increases your chance to dodge attacks by: {d:number}%"
+	"MASTERY_AREA_DAMAGE"											"Splash Damage Up"
+	"MASTERY_AREA_DAMAGE_Description"								"Increases the amount of damage you deal in an area of effect by attacks and single-target spells by: {d:number}%"
+	"MASTERY_THREAT_AMP"											"Hostility Up"
+	"MASTERY_THREAT_AMP_Description"								"Increases the amount of threat you gain by: {d:number}%"
+	"MASTERY_THREAT_DOWN"											"Hostility Down"
+	"MASTERY_THREAT_DOWN_Description"								"Reduces the threat you generate by: {d:number}"
+	"MASTERY_STRENGTH"												"Strength Up"
+	"MASTERY_STRENGTH_Description"									"Increases your strength by: {d:number}"
+	"MASTERY_AGILITY"												"Agility Up"
+	"MASTERY_AGILITY_Description"									"Increases your agility by: {d:number}"
+	"MASTERY_INTELLIGENCE"											"Intelligence Up"
+	"MASTERY_INTELLIGENCE_Description"								"Increases your intelligence by: {d:number}"
+	"MASTERY_ALL_STATS"												"All Stats Up"
+	"MASTERY_ALL_STATS_Description"									"Increases your strength, agility and intelligence by: {d:number}"
+	
+	
+	"TALENT_ERROR_MAX"												"Hero mastery already at max level!"
+	"TALENT_ERROR_COST"												"Insufficient skill points to level hero mastery! Needed: {d:number}"
+	
+	"RespecText"													"Respec"
+	
+	"LivesInfoSnippet"																"These are your current lives. Upon dying you will respawn after 8 seconds. If you have no lives left, you will drop a tombstone that allows resurrection after channeling it for 10 seconds."
+	"ThreatInfoSnippet"																"This is your current threat. Threat dictates who is targeted by the enemy.\n\nRed threat means you have the highest amount of threat in your team, orange means you are second."
+	
+	// SCOREBOARD
+	"DOTA_HUD_Score"															"GROVE"
+	"DOTA_HUD_Mute"																"MUTE"
+	"DOTA_HUD_DamageDealt"														"DAMAGE DEALT"
+	"DOTA_HUD_DamageTaken"														"DAMAGE TAKEN"
+	"DOTA_HUD_DamageHealed"														"DAMAGE HEALED"
+	"DOTA_HUD_Deaths"															"DEATHS"
+	"relic_info_skip_relic"																					"Skipping a relic grants gold based on the highest rarity of your selection and removes the skipped relics from your pool, preventing them from showing up again. Gold given is 150 for Common, 300 for Uncommon, 450 for Rare and 600 for Legendary."
+	// ERRORS
+	"generic_relic_not_found"																				"Generic Circlet"
+	"generic_relic_not_found_Description"																	"The game failed to roll a generic relic and has given you this instead of crashing. Isn't that nice?"
+	
+	"cursed_relic_not_found"																				"Corrupt Circlet"
+	"cursed_relic_not_found_Description"																	"The game failed to roll a corrupt relic and has given you this instead of crashing. Isn't that nice?"
+	
+	"unique_relic_not_found"																				"Unique Circlet"
+	"unique_relic_not_found_Description"																	"The game failed to roll a unique relic and has given you this instead of crashing. Isn't that nice?"
+	
+	// CURSED
+	"relic_adamantium_ingot"																				"Adamantium Ingot"
+	"relic_adamantium_ingot_Description"																	"Grants you 30 armor, but this relic is <font color=\"maroon\">corrupted</font>, decreasing magic resistance by 50%."
+	
+	"relic_boiling_blood"																					"Boiling Blood"
+	"relic_boiling_blood_Description"																		"As long as you are near enemies, You deal 2% of your maximum health as damage to all nearby enemies, however this relic is <font color=\"maroon\">corrupted</font>, dealing magic damage equal to 1.5% of your current health per second while active.\n\nSelf-damage is not lethal.\nDamage dealt is not based on damage taken."
+	
+	"relic_cursed_dice"																						"Cursed Dice"
+	"relic_cursed_dice_Description"																			"This relic is <font color=\"maroon\">corrupted</font>, removing all your current relics and gaining random relics equal to the amount lost.\nEvery lost relic has a 50% chance to give an additional relic on top of the replacement."
+	
+	"relic_glass_flower"																					"Glass Flower"
+	"relic_glass_flower_Description"																		"Your base and bonus attack damage is increased by 75% and you gain 75% spell amplification, however this relic is <font color=\"maroon\">corrupted</font>, making you lose 10 armor and 50% magic resistance."
+	
+	"relic_loaded_coin"																						"Loaded Coin"
+	"relic_loaded_coin_Description"																			"You have a 60% chance to receive no damage, but this relic is <font color=\"maroon\">corrupted</font>, forcing you to take double damage if this does not activate."
+	
+	"relic_mysterious_stone"																				"Mysterious Stone"
+	"relic_mysterious_stone_Description"																	"You gain spell block, but this relic is <font color=\"maroon\">corrupted</font>, reducing your status resistance by 50% (if you drop below 0%, debuff durations are increased).\nSpell block has a 12s cooldown."
+	
+	"relic_pale_blood"																						"Pale Blood"
+	"relic_pale_blood_Description"																			"You gain 30% lifesteal from all sources, but this relic is <font color=\"maroon\">corrupted</font>, reducing your maximum health by 25%."
+	
+	"relic_paupers_finger"																					"Pauper's Finger"
+	"relic_paupers_finger_Description"																		"You gain 100% more experience, but this relic is <font color=\"maroon\">corrupted</font>, reducing the gold you gain from all sources by 35%."
+	
+	"relic_red_key"																							"Red Key"
+	"relic_red_key_Description"																				"Grants you an additional relic choice, but this relic is <font color=\"maroon\">corrupted</font> and whenever you skip a relic, you lose 50% of your maximum health until you pick up a relic."
+	
+	"relic_symbiote"																						"Symbiote"
+	"relic_symbiote_Description"																			"You gain your maximum mana as maximum health and you gain your mana regeneration before amplifcations as health regeneration, but this relic is <font color=\"maroon\">corrupted</font> and every time you cast an ability, you lose health equal to the mana cost. This effect can be lethal."
+	
+	"relic_the_pact"																						"The Pact"
+	"relic_the_pact_Description"																			"Increases your base attack damage by 100% and grants 35% lifesteal. However, this relic is <font color=\"maroon\">corrupted</font> and all other sources of healing besides natural regeneration are disabled."
+	
+	"relic_titans_jawbone"																					"Titan's Jawbone"
+	"relic_titans_jawbone_Description"																		"Your maximum health is increased by 50%, but this relic is <font color=\"maroon\">corrupted</font> reducing your damage dealt from all sources by 33%."
+	
+	"relic_giants_cudgel"																					"Giant's Cudgel"
+	"relic_giants_cudgel_Description"																		"You gain 100% area damage and 35% bonus attack damage from all sources, but this relic is <font color=\"maroon\">corrupted</font>, lowering your increased attack speed by 40%."
+	
+	"relic_unstoppable_force"																				"Unstoppable Force"
+	"relic_unstoppable_force_Description"																	"Grants you haste, but this relic is <font color=\"maroon\">corrupted</font> reducing your turnrate by 80%."
+	
+	"relic_battle_brew"																						"Battle Brew"
+	"relic_battle_brew_Description"																			"Increases threat generation by 50%, grants you 30 strength and 80 attack speed, but this relic is <font color=\"maroon\">corrupted</font> blinding you for 20%."
+	
+	"relic_first_sin"																						"First Sin"
+	"relic_first_sin_Description"																			"This relic is <font color=\"maroon\">corrupted</font>, taunting all enemies to you and preventing you from going invisible."
+	
+	"relic_crystal_skull"																					"Crystal Skull"
+	"relic_crystal_skull_Description"																		"You are permanently invisible as long as there are no enemies within 450 radius."
+	
+	"relic_hushpuppy"																						"Hushpuppy"
+	"relic_hushpuppy_Description"																			"If an enemy within 450 units casts a spell, they are silenced for 6 seconds, however this relic is <font color=\"maroon\">corrupted</font>, and if you finish casting an ability while the effect is active, you are silenced for 3 seconds.\nThis effect can only happen every 15 seconds."
+	
+	"relic_unchanging_globe"																				"Unchanging Globe"
+	"relic_unchanging_globe_Description"																	"Upon finishing an ability cast, its remaining cooldown will be set to 18. This relic is <font color=\"maroon\">corrupted</font>, meaning even abilities with a cooldown below 18 seconds are set to 18."
+	
+	"relic_bloody_silk"																						"Bloody Silk"
+	"relic_bloody_silk_Description"																			"Whenever you heal an ally, you heal them for an additional 50 health, however this relic is <font color=\"maroon\">corrupted</font> and damages you for 20 pure damage."
+
+	"relic_hungry_blade"																					"Hungry Blade"
+	"relic_hungry_blade_Description"																		"Grants 75 bonus damage and 75 attack speed, but this relic is <font color=\"maroon\">corrupted</font> causing you to lose 5% of your current health every second if you haven't attacked any unit in the past 6 seconds.\nDamage is non-lethal."
+	
+	"relic_delirious_cowl"																					"Delirious Cowl"
+	"relic_delirious_cowl_Description"																		"Upon casting an ability, its remaining cooldown will be set to a random value between 10% and its cooldown. This relic is <font color=\"maroon\">corrupted</font>, reducing your cooldown reduction by 50%."
+	
+	"relic_whale_heart"																						"Whale Heart"
+	"relic_whale_heart_Description"																			"Increases health regeneration by 100% while in water, but this relic is <font color=\"maroon\">corrupted</font> decreasing your health regeneration by 50% on land."
+	
+	"relic_demon_wings"																						"Demon Wings"
+	"relic_demon_wings_Description"																			"You gain flying movement and a 300 radius aura that deals 100% primary attribute as damage, but this relic is <font color=\"maroon\">corrupted</font> reducing your movement speed by 33%."
+	
+	"relic_immaculate_staff"																				"Immaculate Staff"
+	"relic_immaculate_staff_Description"																	"You gain 40% cooldown reduction, but this relic is <font color=\"maroon\">corrupted</font> and upon spending mana you take 75% of the mana cost as pure damage.\nThis damage is non-lethal."
+	
+	"relic_icon_of_pride"																					"Icon of Pride"
+	"relic_icon_of_pride_Description"																		"You gain +40 of every attribute, but this relic is <font color=\"maroon\">corrupted</font>, preventing you from receiving relic drops in the future."
+	
+	"relic_icon_of_sloth"																					"Icon of Sloth"
+	"relic_icon_of_sloth_Description"																		"You cannot be killed by damage as long as your current health is more than 10% of your maximum health, but this relic is <font color=\"maroon\">corrupted</font>, reducing your movement speed by 50%."
+	
+	"relic_icon_of_greed"																					"Icon of Greed"
+	"relic_icon_of_greed_Description"																		"The gold you gain from all sources is increased by 100%, but this relic is <font color=\"maroon\">corrupted</font>, preventing you from receiving relic drops in the future."
+	
+	"relic_icon_of_wrath"																					"Icon of Wrath"
+	"relic_icon_of_wrath_Description"																		"Every time you are damaged, you deal 80% primary attribute to the attacker; but this relic is <font color=\"maroon\">corrupted</font>, increasing the damage you take from all sources by 25%."
+	
+	"relic_icon_of_gluttony"																				"Icon of Gluttony"
+	"relic_icon_of_gluttony_Description"																	"You restore 15% of your maximum health and maximum mana upon killing a boss and 1% upon killing a minion, but this relic is <font color=\"maroon\">corrupted</font>, reducing your health and mana regeneration by 25%."
+	
+	"relic_icon_of_lust"																					"Icon of Lust"
+	"relic_icon_of_lust_Description"																		"Enemies within 350 radius have a 15% chance of healing you instead of damaging you for the damage dealt, but this relic is <font color=\"maroon\">corrupted</font> reducing your maximum health by 20%."
+	
+	"relic_icon_of_envy"																					"Icon of Envy"
+	"relic_icon_of_envy_Description"																		"You gain +12 all stats every time you skip a relic, but this relic is <font color=\"maroon\">corrupted</font>, reducing your attributes by 10."
+	
+	"relic_mask_of_janus"																					"Mask of Janus"
+	"relic_mask_of_janus_Description"																		"This relic is <font color=\"maroon\">corrupted</font>, removing a relic at random and adding a random new one at the end of every round.\nCannot remove itself."
+	
+	"relic_heavy_tome"																						"Heavy Tome"
+	"relic_heavy_tome_Description"																			"Doubles the user's intelligence, but this relic is <font color=\"maroon\">corrupted</font>, slowing them down by 2% per 1% mana missing.\nAlways slows for at least 10%."
+	
+	"relic_thorned_bandages"																				"Thorned Bandages"
+	"relic_thorned_bandages_Description"																	"Grants you 200% healing amplification, but this relic is <font color=\"maroon\">corrupted</font> and whenever you heal someone or are healed, you take 100% of the original healing provided as pure damage over 30 seconds."
+	
+	"relic_archmages_reliquary"																				"Archmage's Reliquary"
+	"relic_archmages_reliquary_Description"																	"You gain 35% cooldown reduction and 75% spell amplification but this relic is <font color=\"maroon\">corrupted</font>, <font color=\"red\">DISARMING YOU, PREVENTING YOU FROM ATTACKING ENTIRELY</font>, additionallly reducing healing and status amplification by 35%."
+	
+	"relic_crimson_gauntlet"																				"Crimson Gauntlet"
+	"relic_crimson_gauntlet_Description"																	"Your maximum health is increased by 60%, but this relic is <font color=\"maroon\">corrupted</font> and enemies attacking you have a 20% chance of dealing 240% critical damage."
+	
+	"relic_ritual_kris"																						"Ritual Kris"
+	"relic_ritual_kris_Description"																			"Grants you a 10% chance to deal 360% critical damage, but this relic is <font color=\"maroon\">corrupted</font> and every time the critical hit activates, you take 10% of your current health as pure damage."
+	
+	"relic_tortoise_greatshield"																			"Tortoise's Greatshield"
+	"relic_tortoise_greatshield_Description"																"Grants 50% status resistance, but this relic is <font color=\"maroon\">corrupted</font> reducing your status amplification by 35%."
+	
+	"relic_iron_maiden"																						"Iron Maiden"
+	"relic_iron_maiden_Description"																			"The damage you take heals all your allies, except yourself, but this relic is <font color=\"maroon\">corrupted</font> increasing the damage you take from all sources by 50%."
+	
+	"relic_grey_fox_tunic"																					"Grey Fox's Tunic"
+	"relic_grey_fox_tunic_Description"																		"You gain 2 gold every time you land an attack, but this relic is <font color=\"maroon\">corrupted</font> reducing your armor by 10 and your evasion by 15%."
+	
+	"relic_false_idol"																						"False Idol"
+	"relic_false_idol_Description"																			"You gain 900 cast range, but this relic is <font color=\"maroon\">corrupted</font>, dealing magical damage to you equal to 10% of the distance you travel."
+	
+	"relic_torn_prayer_card"																				"Torn Prayer Card"
+	"relic_torn_prayer_card_Description"																	"Whenever you take damage, your mana is reduced by the amount of damage before reductions. This relic is <font color=\"maroon\">corrupted</font>, if you have less mana than required to block the damage entirely, the damage you take is instead increased by 30%."
+	
+	"relic_apple_of_eden"																					"Apple of Eden"
+	"relic_apple_of_eden_Description"																		"You gain 100% heal amplification, but this relic is <font color=\"maroon\">corrupted</font>, reducing the damage you deal from all sources by 33%."
+	
+	"relic_olive_branch"																					"Olive Branch"
+	"relic_olive_branch_Description"																		"You gain 300 gold upon beating a round without dying, but this relic is <font color=\"maroon\">corrupted</font>, removing 150 gold if you died during the round."
+	
+	"relic_eye_of_the_oligarch"																				"Eye of the Oligarch"
+	"relic_eye_of_the_oligarch_Description"																	"You have flying vision in a radius around you equal to your current gold, but whenever you spend gold, you lose an additional 50 gold."
+	
+	"relic_forbidden_contract"																				"Forbidden Contract"
+	"relic_forbidden_contract_Description"																	"This relic is <font color=\"maroon\">corrupted</font>, forcing every relic you find after picking up this relic to be Corrupt."
+	
+	"relic_unbridled_power"																					"Unbridled Power"
+	"relic_unbridled_power_Description"																		"All damage you deal has its damage type set to Pure damage, but this relic is <font color=\"maroon\">corrupted</font>, setting the damage type of all the damage dealt to you to Pure damage."
+	
+	"relic_evil_eye_amulet"																					"Evil Eye Amulet"
+	"relic_evil_eye_amulet_Description"																		"You gain vision of all enemies, but this relic is <font color=\"maroon\">corrupted</font>, granting all enemies vision of you."
+	
+	"relic_mimic_chest"																						"Mimic Chest"
+	"relic_mimic_chest_Description"																			"Upon pickup, grants you a completely random relic.\nThis includes relics normally not acquirable like event relics. Disregards rarity weights. This relic is <font color=\"maroon\">corrupted</font>, preventing your from skipping the relic."
+	
+	// UNIQUE
+	"relic_aghanims_amulet"																					"Aghanim's Amulet"
+	"relic_aghanims_amulet_Description"																		"Grants you the Aghanim's Scepter effect."
+	
+	"relic_frozen_crystal"																					"Frozen Crystal"
+	"relic_frozen_crystal_Description"																		"Every time you cast an ability, you Chill all enemies within 425 radius of you for 15% for 15 seconds."
+	
+	"relic_limit_breaker"																					"Limit Breaker"
+	"relic_limit_breaker_Description"																		"Increases the attack speed limit by 600 and you gain 1 bonus attack speed every second while you are in a combat round. The attack speed bonus resets when the round ends."
+	
+	"relic_molten_crystal"																					"Molten Crystal"
+	"relic_molten_crystal_Description"																		"Every time you cast an ability you create a pool of lava on the target.\nPools of lava deals 100% of your primary attribute as damage every second for 8 seconds in 250 radius.\nPools can only be created once every 8 seconds."
+	
+	"relic_mysterious_hourglass"																			"Mysterious Hourglass"
+	"relic_mysterious_hourglass_Description"																"Whenever you get a new relic and choose to skip the relics, you instead get 3 new relics. This relic is rendered inactive after being activated 3 times."
+	
+	"relic_perpetuum_mobile"																				"Perpetuum Mobile"
+	"relic_perpetuum_mobile_Description"																	"Upon spending mana, you gain 10 mana."
+	
+	"relic_rage_enhancer"																					"Rage Enhancer"
+	"relic_rage_enhancer_Description"																		"Getting damaged by any source increases your strength by 1 for 25 seconds for every tick of damage you take.\nHas a 0.2s internal cooldown."
+	
+	"relic_rapid_totem"																						"Rapid Totem"
+	"relic_rapid_totem_Description"																			"You gain 50% cooldown reduction, but lose 50% status amplification and your spells deal 40% less damage."
+	
+	"relic_rolling_boulder"																					"Rolling Boulder"
+	"relic_rolling_boulder_Description"																		"Launching an attack increases your agility by 1 for 15 seconds for every attack launched."
+	
+	"relic_rotting_flesh"																					"Rotting Flesh"
+	"relic_rotting_flesh_Description"																		"Upon dying, you resurrect at your tombstone after 7 seconds, your health, mana are restored and all cooldown are refreshed. Once activated, this relic is deactivated until the next round."
+	
+	"relic_rusty_dumbbell"																					"Rusty Dumbbell"
+	"relic_rusty_dumbbell_Description"																		"Upon picking this relic up, you gain 2 skill points."
+			
+	"relic_sacrificial_dagger"																				"Sacrificial Dagger"
+	"relic_sacrificial_dagger_Description"																	"Upon dying with this relic, you revive dead allies and heal living allies to full. Can only be used once per raid."
+	
+	"relic_ornate_timepiece"																				"Ornate Timepiece"
+	"relic_ornate_timepiece_Description"																	"Removes the cast point of all abilities."
+	
+	"relic_silent_cloak"																					"Silent Cloak"
+	"relic_silent_cloak_Description"																		"Reduces threat gain by 100%"
+	
+	"relic_oath_of_purity"																					"Oath of Purity"
+	"relic_oath_of_purity_Description"																		"You gain +10 all stats for every debuff currently applied to you."
+	
+	"relic_vampire_eye"																						"Vampire Eye"
+	"relic_vampire_eye_Description"																			"Grants you global flying night time vision."
+	
+	"relic_hawks_eye"																						"Hawk's Eye"
+	"relic_hawks_eye_Description"																			"Grants you global flying daytime vision."
+	
+	"relic_grain_of_sand"																					"Grain of Sand"
+	"relic_grain_of_sand_Description"																		"Every 15 seconds, a random ability will be refreshed."
+	
+	"relic_memory_alloy"																					"Memory Alloy"
+	"relic_memory_alloy_Description"																		"Upon taking damage, you heal 100% of the damage taken over 40 seconds."
+	
+	"relic_a_nickel"																						"A Nickel"
+	"relic_a_nickel_Description"																			"Grants you 1500 gold upon receiving this relic."
+	
+	"relic_galactic_synapse"																				"Galactic Synapse"
+	"relic_galactic_synapse_Description"																	"You gain 10 intelligence for 30 seconds whenever you cast an ability."
+	
+	"relic_champions_belt"																					"Champion's Belt"
+	"relic_champions_belt_Description"																		"Increases strength and agility by 20%"
+	
+	"relic_soldiers_banner"																					"Soldier's Banner"
+	"relic_soldiers_banner_Description"																		"Turns you into a melee hero, grants you 6 bonus armor and 15% bonus movement speed. Your base attack range will be reduced to 150."
+	
+	"relic_longbow"																							"Longbow"
+	"relic_longbow_Description"																				"Turns you into a ranged hero and grants you +200 attack range."
+	
+	"relic_pocket_sand"																						"Pocket Sand"
+	"relic_pocket_sand_Description"																			"Upon taking damage, you are teleported 300 units away from the damage source.\nYour attacker takes 250% of your primary attribute as damage.\nThis effect can only happen every 12 seconds."
+	
+	"relic_eldritch_rune"																					"Eldritch Rune"
+	"relic_eldritch_rune_Description"																		"Physical damage dealt by you will become magical damage.\nMagical damage dealt by you will become physical damage."
+	
+	"relic_eagles_beak"																						"Eagle's Beak"
+	"relic_eagles_beak_Description"																			"Grants true-strike."
+	
+	"relic_deathrow"																						"Deathrow"
+	"relic_deathrow_Description"																			"Grants a 15% chance to deal 200% critical damage. Critical damage increases by 10% per boss killed. Every 10 boss kills, this relic will require one additional boss kill to increase its power."
+	
+	"relic_hylophage"																						"Hylophage"
+	"relic_hylophage_Description"																			"Every 12 seconds consumes all trees within 600 radius, if a tree was successfully consumed grants 5 health regen per second for every tree consumed."
+	
+	"relic_chlorophyl_cloak"																				"Chlorophyl Cloak"
+	"relic_chlorophyl_cloak_Description"																	"You gain 15% movement speed, 10 armor and 15% magic resistance during daytime."
+	
+	"relic_anaerobic_ring"																					"Anaerobic Ring"
+	"relic_anaerobic_ring_Description"																		"You gain 2% health regeneration at night"
+	
+	"relic_hestias_hearth"																					"Hestia's Hearth"
+	"relic_hestias_hearth_Description"																		"You gain an aura that heals all allies for 10 hp/s"
+	
+	"relic_spirit_painting"																					"Spirit Painting"
+	"relic_spirit_painting_Description"																		"Every 10 seconds a random enemy unit takes 250% primary attribute as damage; if the enemy unit was casting a spell it will be silenced and you gain 25% spell amplification until the next cycle."
+	
+	"relic_charons_obol"																					"Charon's Obol"
+	"relic_charons_obol_Description"																		"Upon taking lethal damage, you become invulnerable for 5 seconds. This effect has an internal cooldown of 35 seconds."
+	
+	"relic_kashas_wheelbarrow"																				"Kasha's Wheelbarrow"
+	"relic_kashas_wheelbarrow_Description"																	"Every round completed with this relic grants 5 movement and 5 attack speed."
+	
+	"relic_inversion_stone"																					"Inversion Stone"
+	"relic_inversion_stone_Description"																		"Your base damage is increased by the average of your non-primary attributes."
+		
+	"relic_lunar_needle"																					"Lunar Needle"
+	"relic_lunar_needle_Description"																		"Heals all allies within 900 radius of the attack target for 15% of your attack damage."
+	
+	"relic_ritual_candle"																					"Ritual Candle"
+	"relic_ritual_candle_Description"																		"Removes the negative effects of Corrupt relics."
+	
+	"relic_cold_heart"																						"Cold Heart"
+	"relic_cold_heart_Description"																			"Grants an aura that slows down all nearby enemies' movement speed by 20% and their attack speed by 50."
+	
+	"relic_shopkeepers_heart"																				"Shopkeeper's Heart"
+	"relic_shopkeepers_heart_Description"																	"You gain 150 gold and experience every round completed."
+	
+	"relic_rex_dominatur"																					"Rex Dominatur"
+	"relic_rex_dominatur_Description"																		"You deal 25% additional damage from all sources against Celestial enemies."
+	
+	"relic_sharp_machete"																					"Sharp Machete"
+	"relic_sharp_machete_Description"																		"You deal 25% additional damage from all sources against Wild enemies."
+	
+	"relic_gazaer_tirdh"																					"Gazaer Tirdh"
+	"relic_gazaer_tirdh_Description"																		"You deal 25% additional damage from all sources against Demonic enemies."
+		
+	"relic_chainsword"																						"Chainsword"
+	"relic_chainsword_Description"																			"You deal 25% additional damage from all sources against Undead enemies."
+			
+	"relic_antique_pouch"																					"Antique Pouch"
+	"relic_antique_pouch_Description"																		"You gain +3 all stats for every relic owned.\nDoes not count itself."
+	
+	"relic_ofuda"																							"Ofuda"
+	"relic_ofuda_Description"																				"Upon pickup, will purge up to 3 Event Curses. If less than 3 were removed, the remaining charges will be kept to remove future Curses."
+	"relic_ofuda_spent"																						"Ofuda (Spent)"
+	"relic_ofuda_spent_Description"																			"This Ofuda has spent all of its charges."
+	
+	"relic_plasma_ball"																						"Plasma Ball"
+	"relic_plasma_ball_Description"																			"The owner sends out an electric zaps that deals 225 damage every 2 seconds. The search radius for the zaps depends on the amount of distance the user has walked since the last zap."
+	
+	"relic_silver_knife"																					"Silver Knife"
+	"relic_silver_knife_Description"																		"Grants an additional +15 damage for every buff that grants you damage."
+	
+	"relic_reinforced_bar"																					"Reinforced Bar"
+	"relic_reinforced_bar_Description"																		"Grants +2 armor for every buff that grants physical armor."
+	
+	"relic_drycicle"																						"Drycicle"
+	"relic_drycicle_Description"																			"Every attack applies 10 Chill, slowing enemy movement speed and Freezing them if they gain 100 stacks of Chill."
+	
+	"relic_nautical_scale"																					"Nautical Scale"
+	"relic_nautical_scale_Description"																		"Grants +8 armor, 20% magic resistance and 10% evasion while in water."
+		
+	"relic_mystical_coral"																					"Mystical Coral"
+	"relic_mystical_coral_Description"																		"Grants 25% spell amplification and 15% reduced mana costs while in water."
+	
+	"relic_prismarine_blade"																				"Prismarine Blade"
+	"relic_prismarine_blade_Description"																	"Grants 80 damage and 80 attack speed while in water"
+	
+	"relic_slayers_skinner"																					"Slayer's Skinner"
+	"relic_slayers_skinner_Description"																		"Grants +10% bonus damage from all sources against all enemy types."
+	
+	"relic_greased_wheel"																					"Greased Wheel"
+	"relic_greased_wheel_Description"																		"You no longer need to turn when casting abilities."
+	
+	"relic_red_pill"																						"Red Pill"
+	"relic_red_pill_Description"																			"Grants status immunity, meaning stuns, disarms, roots, silences, break, hex and slows no longer affect you."
+	
+	"relic_phoenix_down"																					"Phoenix Down"
+	"relic_phoenix_down_Description"																		"You gain 1 life and your maximum lives are increased by 1."
+	// GENERIC
+	"relic_angelic_water"																					"Angelic Water"
+	"relic_angelic_water_Description"																		"Provides 10 mana regeneration."
+	
+	"relic_banshee_tear"																					"Banshee Tear"
+	"relic_banshee_tear_Description"																		"Provides 500 mana and 1 mana regeneration."
+	
+	"relic_beast_fang"																						"Beast Fang"
+	"relic_beast_fang_Description"																			"Provides 40 attack damage and 25 attack speed."
+	
+	"relic_blood_crystal"																					"Blood Crystal"
+	"relic_blood_crystal_Description"																		"Provides 10 health regeneration."
+	
+	"relic_dead_mans_blood"																					"Dead Mans Blood"
+	"relic_dead_mans_blood_Description"																		"Provides 400 bonus health."
+	
+	"relic_giants_toenail"																					"Giant's Toenail"
+	"relic_giants_toenail_Description"																		"Provides 25% status resistance."
+	
+	"relic_hammerhead"																						"Hammerhead"
+	"relic_hammerhead_Description"																			"Provides 80 attack damage."
+	
+	"relic_pure_heart"																						"Pure Heart"
+	"relic_pure_heart_Description"																			"Provides 10 of every attribute."
+	
+	"relic_seraphims_feather"																				"Seraphim's Heart"
+	"relic_seraphims_feather_Description"																	"Provides 60 bonus movement speed."
+	
+	"relic_silver_arrow"																					"Silver Arrow"
+	"relic_silver_arrow_Description"																		"Provides 100 attack range (50 for melee heroes) and 35 attack damage."
+	
+	"relic_time_shard"																						"Time Shard"
+	"relic_time_shard_Description"																			"Provides 15% cooldown reduction."
+	
+	"relic_unicorn_horn"																					"Unicorn Horn"
+	"relic_unicorn_horn_Description"																		"Provides 20 movement speed and 25% spell amplification."
+	
+	"relic_breath_of_life"																					"Breath of Life"
+	"relic_breath_of_life_Description"																		"Provides 200 health, 3 health regeneration, 200 mana and 3 mana regeneration."
+	
+	"relic_horn_of_bannermen"																				"Horn of Bannermen"
+	"relic_horn_of_bannermen_Description"																	"Provides 25 bonus agility."
+
+	"relic_helm_of_justice"																					"Helm of Justice"
+	"relic_helm_of_justice_Description"																		"Provides 25 bonus strength."
+	
+	"relic_crown_of_power"																					"Crown of Power"
+	"relic_crown_of_power_Description"																		"Provides 25 bonus intelligence."
+	
+	"relic_haste_stone"																						"Haste Stone"
+	"relic_haste_stone_Description"																			"Provides 50 attack speed."
+	
+	"relic_tanned_hide"																						"Tanned Hide"
+	"relic_tanned_hide_Description"																			"Provides 5 bonus armor."
+	
+	"relic_arcane_threads"																					"Arcane Threads"
+	"relic_arcane_threads_Description"																		"Provides 15% magic resistance"
+	
+	"relic_fog_lace"																						"Fog Lace"
+	"relic_fog_lace_Description"																			"Provides 15% evasion"
+	
+	"relic_draculine_tooth"																					"Draculine Tooth"
+	"relic_draculine_tooth_Description"																		"Every time you land an attack you recover 20 health."
+	
+	"relic_worn_spear"																						"Worn Spear"
+	"relic_worn_spear_Description"																			"Grants 100 bonus attack range, works for melee heroes."
+	
+	"relic_old_sickle"																						"Old Sickle"
+	"relic_old_sickle_Description"																			"Grants 25% area damage."
+	
+	"relic_broken_mirror"																					"Broken Mirror"
+	"relic_broken_mirror_Description"																		"Increases your cast ranges by 150."
+	
+	"relic_champions_spearhead"																				"Champion's Spearhead"
+	"relic_champions_spearhead_Description"																	"Increases your attack projectile speed by 1000."
+	
+	"relic_katana"																							"Katana"
+	"relic_katana_Description"																				"Grants you a 20% chance to deal 150% critical damage"
+	
+	"relic_stick"																							"A Stick"
+	"relic_stick_Description"																				"Grants you +1 damage."
+	
+	"relic_stick2"																							"Budding Twig"
+	"relic_stick2_Description"																				"Grants you +75 damage."
+	
+	"relic_stick3"																							"Blooming Branch"
+	"relic_stick3_Description"																				"Grants you +150 damage."
+	
+	"relic_stick4"																							"Dense Cudgel"
+	"relic_stick4_Description"																				"Grants you +300 damage."
+	
+	"relic_stick5"																							"Oaken Greatclub"
+	"relic_stick5_Description"																				"Grants you +600 damage."
+	
+	"relic_mystic_gauntlet"																					"Mystic Gauntlet"
+	"relic_mystic_gauntlet_Description"																		"Grants 3 armor and 9% magic resistance"
+	
+	"relic_power_glove"																						"Power Glove"
+	"relic_power_glove_Description"																			"Grants 3 armor and 20 damage."
+	
+	"relic_dragon_scales"																					"Dragon Scales"
+	"relic_dragon_scales_Description"																		"Grants you 15% spell amplification and 40 damage."
+	
+	"relic_ifrit_tear"																						"Ifrit Tear"
+	"relic_ifrit_tear_Description"																			"Grants you 15% spell amplification and 4 health regeneration."
+	
+	"relic_scythegeist"																						"Scythegeist"
+	"relic_scythegeist_Description"																			"Grants 8% cooldown reduction and 35 damage."
+	
+	"relic_barbedbell"																						"Barbedbell"
+	"relic_barbedbell_Description"																			"Grants 10 strength and upon taking damage you deal 35 physical damage to the attacker."
+	
+	"relic_stone_fist"																						"Stone Fist"
+	"relic_stone_fist_Description"																			"Grants +20% threat amplification."
+	
+	"relic_spinning_top"																					"Spinning Top"
+	"relic_spinning_top_Description"																		"Reduces your base attack time by 0.15."
+	
+	"relic_tiger_blood"																						"Tiger Blood"
+	"relic_tiger_blood_Description"																			"Grants +20% healing amplification"
+	
+	"relic_heavy_rock"																						"Heavy Rock"
+	"relic_heavy_rock_Description"																			"Grants 15% status amplification"
+	
+	"relic_amplifier"																						"Amplifier"
+	"relic_amplifier_Description"																			"Grants 10% status amplifcation and 20% spell amplification"
+	
+	"relic_rich_essence"																					"Rich Essence"
+	"relic_rich_essence_Description"																		"Grants you 10% heal amplification and 10% spell amplification."
+	
+	"relic_ethereal_gown"																					"Ethereal Gown"
+	"relic_ethereal_gown_Description"																		"Grants you 8% evasion, 8% magic resistance and 2 armor."
+	
+	"relic_ectoplasm"																						"Ectoplasm"
+	"relic_ectoplasm_Description"																			"Grants 6 health regeneration and 6 mana regeneration."
+	
+	"relic_bowl_of_chi"																						"Bowl of Chi"
+	"relic_bowl_of_chi_Description"																			"Grants 10% status resistance and 10% status amplification."
+	
+	"relic_stone_calendar"																					"Stone Calendar"
+	"relic_stone_calendar_Description"																		"Grants 4 armor and 15% status resistance."
+	
+	"relic_dull_razor"																						"Dull Razor"
+	"relic_dull_razor_Description"																			"Grants 25 attack damage and 15 agility."
+	
+	"relic_torn_muscle"																						"Torn Muscle"
+	"relic_torn_muscle_Description"																			"Grants 200 health and 15 strength."
+	
+	"relic_pickled_brain"																					"Pickled Brain"
+	"relic_pickled_brain_Description"																		"Grants 200 mana and 15 intelligence."
+	
+	"relic_drop_of_all"																						"Drop of All"
+	"relic_drop_of_all_Description"																			"Grants 5 all stats, 10 movement speed, attack speed and attack damage, 100 health and mana and 1 health and mana regeneration."
+	
+	"relic_scrap_of_paper"																					"Scrap of Paper"
+	"relic_scrap_of_paper_Description"																		"Grants 3 armor and 12% cooldown reduction."
+	
+	"relic_dry_quill"																						"Dry Quill"
+	"relic_dry_quill_Description"																			"Grants 12 attack speed, 15 attack damage and 8% cooldown reduction."
+	
+	"relic_leather_buckler"																					"Leather Buckler"
+	"relic_leather_buckler_Description"																		"Grants 60% chance to block 20 damage. Damage blocks all forms of damage after reductions."
+	
+	"relic_weighted_gloves"																					"Weighted Gloves"
+	"relic_weighted_gloves_Description"																		"Increases the attack speed limit by 100 and grants 20 attack speed."
+	
+	"relic_feathered_boots"																					"Feathered Boots"
+	"relic_feathered_boots_Description"																		"Increases the movement speed limit by 100 and grants 35 movement speed."
+	
+	// RUNE SLOT MODIFIERS
+	
+	"RUNE_GetModifierExtraHealthBonus"																		"+{s:number} Health"
+	"RUNE_GetModifierConstantHealthRegen"																	"+{s:number} Health Regeneration"
+	
+	"RUNE_GetModifierManaBonus"																				"+{s:number} Mana"
+	"RUNE_GetModifierConstantManaRegen"																		"+{s:number} Mana Regeneration"
+	
+	"RUNE_GetModifierPreAttack_BonusDamage"																	"+{s:number} Attack Damage"
+	"RUNE_GetModifierAttackSpeedBonus_Constant"																"+{s:number} Attack Speed"
+	
+	
+	"RUNE_GetModifierSpellAmplify_Percentage"																"+{s:number}% Spell Damage"
+	"RUNE_GetModifierStatusAmplify_Percentage"																"+{s:number}% Status Amplification"
+	"RUNE_GetModifierHealAmplify_Percentage"																"+{s:number}% Heal Amplification"
+	
+	"RUNE_GetModifierBaseCriticalChanceBonus"																"+{s:number}% Base Critical Chance"
+	"RUNE_GetModifierBaseCriticalDamageBonus"																"+{s:number}% Base Critical Damage"
+	
+	"RUNE_GetModifierBonusStats_Strength"																	"+{s:number} Strength"
+	"RUNE_GetModifierBonusStats_Agility"																	"+{s:number} Agility"
+	"RUNE_GetModifierBonusStats_Intellect"																	"+{s:number} Intelligence"
+	"RUNE_GetModifierBonusStats_All"																		"+{s:number} All Attributes"
+
+	"RUNE_GetModifierAttackRangeBonus"																		"+{s:number} Attack Range (50% Melee)"
+	"RUNE_GetModifierCastRangeBonusStacking"																"+{s:number} Cast Range"
+	
+	// UI Tokens
+	"DOTA_Talent_CannotBeLearned"																			"Not Available"
+	"DOTA_Talent_CanBeLearned"																				"Available"
+	"DOTA_Talent_HasLearned"																				"Learned"
+	"BOSSHUNTERS_SkippingRelics"																			"I am skipping my relics."
+	"BOSSHUNTERS_TakingRelic"																				"Taking"
+	"BOSSHUNTERS_TookRelic"																					"Taken"
+	"BOSSHUNTERS_CurrentLives"																				"Lives"
+	"BOSSHUNTERS_CurrentThreat"																				"Threat"
+	
+	"BOSSHUNTERS_RELIC_RARITY_LEGENDARY"																	"Legendary"
+	"BOSSHUNTERS_RELIC_RARITY_RARE"																			"Rare"
+	"BOSSHUNTERS_RELIC_RARITY_UNCOMMON"																		"Uncommon"
+	"BOSSHUNTERS_RELIC_RARITY_COMMON"																		"Common"
 	}
 }

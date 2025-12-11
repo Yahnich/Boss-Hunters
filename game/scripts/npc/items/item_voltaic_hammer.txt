@@ -52,38 +52,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"chain_chance"					"30"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"chain_damage"					"140 220 300 380"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"chain_bounces"					"4 6 8 10"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bounce_range"					"650"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"cooldown"						"0.2"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"rune_scaling"					"120 140 160 180"
-			}
+			"chain_chance"					"30"
+			"chain_damage"					"140 220 300 380"
+			"chain_bounces"					"4 6 8 10"
+			"bounce_range"					"650"
+			"cooldown"						"0.2"
+			"rune_scaling"					"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -138,38 +114,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"chain_chance"					"30"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"chain_damage"					"140 220 300 380"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"chain_bounces"					"4 6 8 10"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bounce_range"					"650"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"cooldown"						"0.2"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"rune_scaling"					"120 140 160 180"
-			}
+			"chain_chance"					"30"
+			"chain_damage"					"140 220 300 380"
+			"chain_bounces"					"4 6 8 10"
+			"bounce_range"					"650"
+			"cooldown"						"0.2"
+			"rune_scaling"					"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -224,38 +176,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"chain_chance"					"30"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"chain_damage"					"140 220 300 380"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"chain_bounces"					"4 6 8 10"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bounce_range"					"650"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"cooldown"						"0.2"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"rune_scaling"					"120 140 160 180"
-			}
+			"chain_chance"					"30"
+			"chain_damage"					"140 220 300 380"
+			"chain_bounces"					"4 6 8 10"
+			"bounce_range"					"650"
+			"cooldown"						"0.2"
+			"rune_scaling"					"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -310,38 +238,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"chain_chance"					"30"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"chain_damage"					"140 220 300 380"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"chain_bounces"					"4 6 8 10"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bounce_range"					"650"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"cooldown"						"0.2"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"rune_scaling"					"120 140 160 180"
-			}
+			"chain_chance"					"30"
+			"chain_damage"					"140 220 300 380"
+			"chain_bounces"					"4 6 8 10"
+			"bounce_range"					"650"
+			"cooldown"						"0.2"
+			"rune_scaling"					"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -399,38 +303,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"chain_chance"					"30"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"chain_damage"					"140 220 300 380"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"chain_bounces"					"4 6 8 10"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bounce_range"					"650"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"cooldown"						"0.2"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"rune_scaling"					"120 140 160 180"
-			}
+			"chain_chance"					"30"
+			"chain_damage"					"140 220 300 380"
+			"chain_bounces"					"4 6 8 10"
+			"bounce_range"					"650"
+			"cooldown"						"0.2"
+			"rune_scaling"					"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -488,38 +368,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"chain_chance"					"30"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"chain_damage"					"140 220 300 380"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"chain_bounces"					"4 6 8 10"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bounce_range"					"650"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"cooldown"						"0.2"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"rune_scaling"					"120 140 160 180"
-			}
+			"chain_chance"					"30"
+			"chain_damage"					"140 220 300 380"
+			"chain_bounces"					"4 6 8 10"
+			"bounce_range"					"650"
+			"cooldown"						"0.2"
+			"rune_scaling"					"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -576,38 +432,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"chain_chance"					"30"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"chain_damage"					"140 220 300 380"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"chain_bounces"					"4 6 8 10"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bounce_range"					"650"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"cooldown"						"0.2"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"rune_scaling"					"120 140 160 180"
-			}
+			"chain_chance"					"30"
+			"chain_damage"					"140 220 300 380"
+			"chain_bounces"					"4 6 8 10"
+			"bounce_range"					"650"
+			"cooldown"						"0.2"
+			"rune_scaling"					"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -665,38 +497,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"chain_chance"					"30"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"chain_damage"					"140 220 300 380"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"chain_bounces"					"4 6 8 10"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bounce_range"					"650"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"cooldown"						"0.2"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"rune_scaling"					"120 140 160 180"
-			}
+			"chain_chance"					"30"
+			"chain_damage"					"140 220 300 380"
+			"chain_bounces"					"4 6 8 10"
+			"bounce_range"					"650"
+			"cooldown"						"0.2"
+			"rune_scaling"					"120 140 160 180"
 		}
 	}
 }

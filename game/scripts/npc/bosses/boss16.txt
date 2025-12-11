@@ -15,13 +15,9 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_amount"			"0.1 0.15"
-			}			
+			"heal_amount"			"0.1 0.15"			
 		}
 	}
 	"boss16_conflagration"
@@ -50,33 +46,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"240"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"length"				"0 0 500 800"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cone_spread"			"0 0 60 90"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_over_time"		"50 75 100 150"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"15"
-			}
+			"radius"				"240"
+			"length"				"0 0 500 800"
+			"cone_spread"			"0 0 60 90"
+			"damage_over_time"		"50 75 100 150"
+			"duration"				"15"
 		}
 		"precache"
 		{
@@ -110,48 +86,16 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"start_radius"			"150 150 150 150"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"end_radius"			"250 250 250 250"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"650 650 650 650"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"1050"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-2 -3 -10 -12"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"initial_damage"		"100 150 225 275"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_over_time"		"0 0 15 25"
-			}
+			"start_radius"			"150 150 150 150"
+			"end_radius"			"250 250 250 250"
+			"range"					"650 650 650 650"
+			"speed"					"1050"
+			"armor_reduction"		"-2 -3 -10 -12"
+			"duration"				"8"
+			"initial_damage"		"100 150 225 275"
+			"damage_over_time"		"0 0 15 25"
 		}
 		"precache"
 		{
@@ -183,23 +127,11 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"drake_damage"			"40 45"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"drake_health"			"25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"drake_count"			"4"
-			}
+			"drake_damage"			"40 45"
+			"drake_health"			"25"
+			"drake_count"			"4"
 		}
 		"precache"
 		{

@@ -36,7 +36,7 @@ function tinker_turret:OnProjectileHit(hTarget, vLocation)
 	if hTarget ~= nil and not hTarget:TriggerSpellAbsorb( self ) then
 		EmitSoundOn("Hero_Tinker.Heat-Seeking_Missile.Impact", hTarget)
 		ParticleManager:FireParticle("particles/units/heroes/hero_tinker/tinker_missle_explosion.vpcf", PATTACH_POINT, hTarget, {})
-		local damage = caster:GetIntellect()*300/100
+		local damage = caster:GetIntellect( false)*300/100
 		self:DealDamage(caster, hTarget, damage, {}, 0)
 	end
 end

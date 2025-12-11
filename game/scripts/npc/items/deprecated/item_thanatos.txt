@@ -59,33 +59,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_armor_reduction"	"-8"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_duration"			"15.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"stack_armor_reduction"	"-1"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stack_duration"		"3.5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"65"
-			}
+			"base_armor_reduction"	"-8"
+			"base_duration"			"15.0"
+			"stack_armor_reduction"	"-1"
+			"stack_duration"		"3.5"
+			"bonus_damage"			"65"
 		}
 	}
 }

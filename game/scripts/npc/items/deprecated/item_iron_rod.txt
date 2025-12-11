@@ -25,18 +25,10 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"pierce_chance"			"25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"pierce_damage"			"80"
-			}
+			"pierce_chance"			"25"
+			"pierce_damage"			"80"
 		}
 
 		"precache"

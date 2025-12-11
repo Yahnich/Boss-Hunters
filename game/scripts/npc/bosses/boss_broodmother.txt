@@ -19,23 +19,11 @@
 		{
 			"particle"					"particles/units/heroes/hero_broodmother/broodmother_incapacitatingbite_debuff.vpcf"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal_reduction"		"-33 -50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"evasion_reduction"		"-33 -50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"2.5 4"
-			}
+			"heal_reduction"		"-33 -50"
+			"evasion_reduction"		"-33 -50"
+			"duration"				"2.5 4"
 		}
 	}
 	//=================================================================================================================
@@ -56,23 +44,11 @@
 			"particle"					"particles/units/heroes/hero_broodmother/broodmother_spiderlings_debuff.vpcf"
 		}
 	
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow"					"-25 -33"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"spiders_on_death"		"4 8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"4 6"
-			}
+			"slow"					"-25 -33"
+			"spiders_on_death"		"4 8"
+			"duration"				"4 6"
 		}
 	}
 	//=================================================================================================================
@@ -92,18 +68,10 @@
 		{
 			"particle"					"particles/bosses/boss_broodmother/boss_broodmother_gravity_well.vpcf"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aura_radius"			"900"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"str_per_unit"			"2 3"
-			}
+			"aura_radius"			"900"
+			"str_per_unit"			"2 3"
 		}
 	}
 	//=================================================================================================================
@@ -129,18 +97,10 @@
 			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"eggs"						"4 6"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"destroy_threat"			"3 5"
-			}
+			"eggs"						"4 6"
+			"destroy_threat"			"3 5"
 		}
 	}
 	"boss_broodmother_infest"
@@ -164,38 +124,14 @@
 			"particle"					"particles/units/heroes/hero_broodmother/broodmother_web_cast.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"width"						"125"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"distance"					"900"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed"						"700 900"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_on_hit"				"150 175"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"spiders_on_hit"			"2 4"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"spiders_on_miss"			"1 2"
-			}
+			"width"						"125"
+			"distance"					"900"
+			"speed"						"700 900"
+			"damage_on_hit"				"150 175"
+			"spiders_on_hit"			"2 4"
+			"spiders_on_miss"			"1 2"
 		}
 	}
 	"boss_broodmother_arachnids_hunger"
@@ -219,28 +155,12 @@
 			"particle"					"particles/units/heroes/hero_broodmother/broodmother_hunger_hero_effect.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"attack_speed"				"300 500"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"lifesteal"					"50"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"8 10"
-			}
+			"damage"					"100"
+			"attack_speed"				"300 500"
+			"lifesteal"					"50"
+			"duration"					"8 10"
 		}
 	}
 	"boss_broodmother_fates_web"
@@ -264,28 +184,12 @@
 			"particle"					"particles/units/heroes/hero_broodmother/broodmother_web.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_ms"					"24 32"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow"						"-12 -14"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"radius"					"600"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"hits_to_kill"				"4 5"
-			}
+			"bonus_ms"					"24 32"
+			"slow"						"-12 -14"
+			"radius"					"600"
+			"hits_to_kill"				"4 5"
 		}
 	}
 	"boss_broodmother_web_shot"
@@ -308,23 +212,11 @@
 			"particle"					"particles/bosses/boss_broodmother/boss_broodmother_web_shot.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed"						"1500"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"width"						"125"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"taunt_duration"			"5"
-			}
+			"speed"						"1500"
+			"width"						"125"
+			"taunt_duration"			"5"
 		}
 	}
 	// Broodling
@@ -349,13 +241,9 @@
 			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"spiders_spawned"			"2"
-			}
+			"spiders_spawned"			"2"
 		}
 	}
 	// Spiderling
@@ -375,23 +263,11 @@
 			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"slow"						"-1 -1.5"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"10 15"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"2"
-			}
+			"slow"						"-1 -1.5"
+			"damage"					"10 15"
+			"duration"					"2"
 		}
 	}
 	// Egg
@@ -410,13 +286,9 @@
 			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"hatch_delay"				"10"
-			}
+			"hatch_delay"				"10"
 		}
 	}
 }

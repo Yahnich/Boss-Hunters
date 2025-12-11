@@ -16,7 +16,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"kunkka_torrent"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -34,12 +34,12 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16 14 12 10 10 10 10"
+		"AbilityCooldown"				"16 14 12 10"
 
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 100 100 100 80 60 40"
+		"AbilityManaCost"				"100"
 	
 		"precache"
 		{
@@ -52,84 +52,23 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"damage"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"80 155 230 305 380 455 530"
-				"LinkedSpecialBonus"		"special_bonus_unique_kunkka_torrent_bh_1"
+				"value"										"80 155 230 305"
+				"special_bonus_unique_kunkka_torrent_bh_1"	"+120"
 			}
-			"02"
+			"delay"						"1.6"
+			"radius"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"delay"						"1.6"
+				"value"										"225"
+				"special_bonus_unique_kunkka_torrent_bh_2"	"+175"
+				"affected_by_aoe_increase"					"1"
 			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"225"
-				"LinkedSpecialBonus"		"special_bonus_unique_kunkka_torrent_bh_2"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"movespeed_bonus"			"-20 -30 -40 -50 -50 -50 -50"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"slow_duration"				"2.5 2.5 2.5 2.5 3 3.5 4"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"1.6"
-			}			
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_kunkka_torrent_bh_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"120"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_kunkka_torrent_bh_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"175"
-			}
+			"movespeed_bonus"								"-20 -30 -40 -50"
+			"slow_duration"									"2.5 3 3.5 4"
+			"stun_duration"									"1.6"
 		}
 	}
 
@@ -149,7 +88,7 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"kunkka_tidebringer"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -161,8 +100,8 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"13 10 7 4 4 4 4"
-		"AbilityCastRange"				"650 650 650 650 800 950 1100"
+		"AbilityCooldown"				"13 10 7 4"
+		"AbilityCastRange"				"650 800 950 1100"
 	
 		"precache"
 		{
@@ -176,87 +115,38 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"damage_bonus"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_bonus"					"25 50 75 100 125 150 175"
+				"value"							"25 50 75 100"
 				"CalculateSpellDamageTooltip"	"0"
 			}
-			"02"
+			"damage"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"100"
+				"value"							"100"
 				"CalculateSpellDamageTooltip"	"0"
-			}	
-			"03"
+			}
+			"start_width"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"start_width"					"150"
-			}			
-			"04"
+				"value"											"150"
+				"special_bonus_unique_kunkka_tidebringer_bh_1"	"=-1"
+			}
+			"end_width"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"end_width"						"500 500 500 500 550 600 650"
-			}			
-			"05"
+				"value"											"500 550 600 650"
+				"special_bonus_unique_kunkka_tidebringer_bh_1"	"=-1"
+			}
+			"distance"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"distance"						"650 650 650 650 800 950 1100"
-			}		
+				"value"											"650 800 950 1100"
+				"special_bonus_unique_kunkka_tidebringer_bh_1"	"=-1"
+			}
+			
+			"armor_reduction"					{"special_bonus_unique_kunkka_tidebringer_bh_1"	"-6"}
+			"armor_reduction_duration"			{"special_bonus_unique_kunkka_tidebringer_bh_1"	"5"}
 		}
 	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_kunkka_tidebringer_bh_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-6"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"5"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_kunkka_tidebringer_bh_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
-		}
-	}
-
 	//=================================================================================================================
 	// Rum
 	//=================================================================================================================
@@ -288,11 +178,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"50 40 30 20 20 20 20"
+		"AbilityCooldown"				"50 40 30 20"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"90 90 90 90 100 110 120"
+		"AbilityManaCost"				"90 100 110 120"
 
 		"precache"
 		{
@@ -304,78 +194,19 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"03"
+			"duration"											"8"
+			"damage_reduction"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"duration"						"8"
+				"values"										"-35"
+				"special_bonus_unique_kunkka_captains_rum_1"	"-25"
 			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_reduction"				"-35"
-				"LinkedSpecialBonus"			"special_bonus_unique_kunkka_captains_rum_1"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"movespeed_bonus"				"35 40 45 50 55 60 65"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_basedamage_perc"			"75"
-			}
-			"07"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_damage"					"40 40 40 40 70 130 170"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_kunkka_captains_rum_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-25"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_kunkka_captains_rum_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"movespeed_bonus"									"35 40 45 50"
+			"bonus_basedamage_perc"								"75"
+			"bonus_damage"										"40 70 130 170"
+			
+			"cast_on_allies"									{"special_bonus_unique_kunkka_captains_rum_2" "1"}
 		}
 	}
 
@@ -395,7 +226,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"kunkka_x_marks_the_spot"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"						"1"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -420,28 +251,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"4"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"daze_duration"				"4"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"self_duration"				"8"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"range"						"700"
-			}					
+			"duration"					"4"
+			"daze_duration"				"4"
+			"self_duration"				"8"
+			"range"						"700"
 		}
 	}
 
@@ -463,7 +278,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"kunkka_ghostship"
 		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -482,11 +297,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"40 35 30 25 20 15"
+		"AbilityCooldown"				"40 35 30"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"125 175 225 275 325 375"
+		"AbilityManaCost"				"125 175 225"
 		
 		"precache"
 		{
@@ -500,105 +315,22 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"damage"											"400 500 600"
+			"distance"											"2000"
+			"width"												"425"
+			"movespeed_bonus"									"10"
+			"duration"											"10"
+			"stun_duration"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"400 500 600 700 800 900"
+				"value"											"1.4"
+				"special_bonus_unique_kunkka_ghost_ship_bh_2"	"+1"
 			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"distance"					"2000"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"width"						"425"
-			}			
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"movespeed_bonus"			"10"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"10"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"1.4"
-				"LinkedSpecialBonus"		"special_bonus_unique_kunkka_ghost_ship_bh_2"
-				"LinkedSpecialBonusField"	"duration"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed"						"650"
-			}
-			"10"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"absorb"					"40 45 50 55 60 65"
-			}
-			"10"
-			{
-				"var_type"								"FIELD_FLOAT"
-				"torrent_travel_distance_scepter"		"500"
-			}
-			
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_kunkka_ghost_ship_bh_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_kunkka_ghost_ship_bh_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"1"
-			}
+			"speed"												"650"
+			"absorb"											"40 45 50"
+			"torrent_travel_distance_scepter"					{"special_bonus_scepter"	"500"}
+			"bonus_ships"										{"special_bonus_unique_kunkka_ghost_ship_bh_1"	"2"}
 		}
 	}
 }

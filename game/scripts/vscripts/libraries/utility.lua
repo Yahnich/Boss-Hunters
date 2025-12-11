@@ -934,9 +934,9 @@ function CDOTA_BaseNPC:GetStrength()
 	end
 end
 
-function CDOTA_BaseNPC:GetIntellect()
+function CDOTA_BaseNPC:GetIntellect( )
 	if self:GetPlayerID() >= 0 and PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() ) then
-		return PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() ):GetIntellect()
+		return PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() ):GetIntellect( false)
 	else
 		return 0
 	end

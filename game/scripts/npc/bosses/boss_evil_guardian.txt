@@ -21,28 +21,12 @@
 	        "particle"          "particles/demon_shield.vpcf"
 	    }
 		
-		"AbilitySpecial"
+		"AbilityValues"
 	    {
-	        "01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "recharge_time"         "20"
-	        }
-			"02"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "max_mana"				"2000"
-	        }
-	        "02"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "time_to_lose_shield"   "20"
-	        }
-			"03"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "damage_to_mana_loss"   "0.8 0.6"
-	        }
+	        "recharge_time"         "20"
+			"max_mana"				"2000"
+	        "time_to_lose_shield"   "20"
+			"damage_to_mana_loss"   "0.8 0.6"
 	    }
 	}
 	"boss_evil_guardian_hell_on_earth"
@@ -66,28 +50,12 @@
 	        "particle"          "particles/units/bosses/boss_evil_guardian/boss_evil_guardian_hell_on_earth.vpcf"
 	    }
 		
-		"AbilitySpecial"
+		"AbilityValues"
 	    {
-	        "01"
-	        {
-	            "var_type"              	"FIELD_INTEGER"
-	            "pool_creation_delay"       "16"
-	        }
-			"02"
-	        {
-	            "var_type"              	"FIELD_INTEGER"
-	            "hp_pct_damage"				"6 8"
-	        }
-	        "03"
-	        {
-	            "var_type"              	"FIELD_INTEGER"
-	            "duration"   				"8"
-	        }
-			"04"
-	        {
-	            "var_type"              	"FIELD_INTEGER"
-	            "radius"   					"250"
-	        }
+			"pool_creation_delay"       "16"
+			"hp_pct_damage"				"6 8"
+	        "duration"   				"8"
+			"radius"   					"250"
 	    }
 	}
 	"boss_evil_guardian_purge_their_sin"
@@ -112,18 +80,10 @@
 			"particle"					"particles/econ/items/warlock/warlock_hellsworn_construct/golem_hellsworn_ambient.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 	    {
-	        "01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "duration"         		"3"
-	        }
-			"02"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "damage_amp"			"1.25 1.5"
-	        }
+	        "duration"         		"3"
+			"damage_amp"			"1.25 1.5"
 	    }
 	}
 	"boss_evil_guardian_annihilation"
@@ -150,23 +110,11 @@
 			"particle"					"particles/doom_ring.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 	    {
-	        "01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"300 500"
-	        }
-			"02"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "raze_delay"			"2.5 2"
-	        }
-			"02"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "raze_radius"			"125"
-	        }
+	        "raze_damage"         	"300 500"
+			"raze_delay"			"2.5 2"
+			"raze_radius"			"125"
 	    }
 	}
 	"boss_evil_guardian_destruction"
@@ -192,33 +140,13 @@
 			"particle"					"particles/doom_ring.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 	    {
-	        "01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"250 300"
-	        }
-			"02"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "raze_delay"			"1.2 0.8"
-	        }
-			"03"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "raze_radius"			"125"
-	        }
-			"04"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "duration"				"10"
-	        }
-			"04"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "lines"					"4 6"
-	        }
+	        "raze_damage"         	"250 300"
+			"raze_delay"			"1.2 0.8"
+			"raze_radius"			"125"
+			"duration"				"10"
+			"lines"					"4 6"
 	    }
 	}
 	"boss_evil_guardian_apocalypse"
@@ -245,23 +173,11 @@
 			"particle"					"particles/doom_ring.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 	    {
-	        "01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"260 340"
-	        }
-			"02"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "raze_delay"			"1.5 1"
-	        }
-			"02"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "raze_radius"			"125"
-	        }
+	        "raze_damage"         	"260 340"
+			"raze_delay"			"1.5 1"
+			"raze_radius"			"125"
 	    }
 	}
 	"boss_evil_guardian_end_of_days"
@@ -289,23 +205,11 @@
 			"particle"					"particles/units/heroes/hero_doom_bringer/doom_bringer_doom_ring.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 	    {
-			"01"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "raze_delay"			"5 3.5"
-	        }
-			"02"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "raze_radius"			"500"
-	        }
-			"03"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "stun_duration"			"3.5"
-	        }
+			"raze_delay"			"5 3.5"
+			"raze_radius"			"500"
+			"stun_duration"			"3.5"
 	    }
 	}
 	"boss_evil_guardian_rise_of_hell"
@@ -328,18 +232,10 @@
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
 		
-		"AbilitySpecial"
+		"AbilityValues"
 	    {
-			"01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "crit"					"150 175"
-	        }
-			"02"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "radius"				"300 325"
-	        }
+			"crit"					"150 175"
+			"radius"				"300 325"
 	    }
 	}
 }

@@ -28,18 +28,10 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"30"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"regen"					"6"
-			}
+			"duration"				"30"
+			"regen"					"6"
 		}
 	}
 }

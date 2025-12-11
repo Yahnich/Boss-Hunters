@@ -55,33 +55,13 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ranged_lifesteal"		"20"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"melee_lifesteal"		"30"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_lifesteal"		"100"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3.5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"70"
-			}
+			"ranged_lifesteal"		"20"
+			"melee_lifesteal"		"30"
+			"active_lifesteal"		"100"
+			"duration"				"3.5"
+			"bonus_damage"			"70"
 		}
 	}
 }

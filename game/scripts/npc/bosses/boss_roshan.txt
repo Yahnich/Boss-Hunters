@@ -20,23 +20,11 @@
 			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_heroes_tiny.vsndevts"
 	    }
 		
-		"AbilitySpecial"
+		"AbilityValues"
 	    {
-	        "01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "dmg_amp"         		"15"
-	        }
-	        "02"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "dmg_red"       		"-10"
-	        }
-			"02"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "radius"      		 	"600"
-	        }
+	        "dmg_amp"         		"15"
+	        "dmg_red"       		"-10"
+			"radius"      		 	"600"
 	    }
 	}
 	"boss_roshan_heavy_blows"
@@ -72,33 +60,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_chance"			"10 15"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"chance_increase_atk"	"1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"chance_increase_spell"	"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_damage"			"15 17.5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_duration"			"1 1.5"
-			}
+			"bash_chance"			"10 15"
+			"chance_increase_atk"	"1"
+			"chance_increase_spell"	"10"
+			"bonus_damage"			"15 17.5"
+			"bash_duration"			"1 1.5"
 		}
 	}
 	"boss_roshan_flamethrower"
@@ -139,38 +107,14 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"breath_damage"			"125 175"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"projectiles"			"15"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"angle"					"90"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"400"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"width"					"100"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"distance"				"700 1050"
-			}
+			"breath_damage"			"125 175"
+			"projectiles"			"15"
+			"angle"					"90"
+			"speed"					"400"
+			"width"					"100"
+			"distance"				"700 1050"
 		}
 	}
 	"boss_roshan_crushing_clap"
@@ -209,28 +153,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"80 140"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-6 -9"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"mr_reduction"			"-25 -33"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"5"
-			}
+			"damage"				"80 140"
+			"armor_reduction"		"-6 -9"
+			"mr_reduction"			"-25 -33"
+			"duration"				"5"
 		}
 	}
 	"boss_roshan_sonic_boom"
@@ -268,34 +196,14 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"150 180"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4 6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"distance"				"1000 2000"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"500"
-			}
+			"damage"				"150 180"
+			"duration"				"4 6"
+			"distance"				"1000 2000"
+			"speed"					"500"
 			
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"width"					"325"
-			}
+			"width"					"325"
 		}
 	}
 }

@@ -121,7 +121,7 @@ function modifier_rubick_lift:OnRemoved()
 		GridNav:DestroyTreesAroundPoint(point, radius, false)
 
 		if caster:HasTalent("special_bonus_unique_rubick_lift_2") then
-			damage = caster:GetIntellect()
+			damage = caster:GetIntellect( false)
 		end
 
 		local enemies = caster:FindEnemyUnitsInRadius(point, radius)

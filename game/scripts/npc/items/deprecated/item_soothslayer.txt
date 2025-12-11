@@ -60,38 +60,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attack_delay"			"0.3"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"dodge_chance"			"17"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"3"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"30"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"40"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_duration"			"1"
-			}
+			"attack_delay"			"0.3"
+			"dodge_chance"			"17"
+			"bonus_health_regen"	"3"
+			"bonus_strength"		"30"
+			"bonus_damage"			"40"
+			"bash_duration"			"1"
 		}
 	}
 }

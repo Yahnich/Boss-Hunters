@@ -34,13 +34,9 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"10 6 4 3"
-			}
+			"bonus_intellect"		"10 6 4 3"
 		}
 	}
 }

@@ -30,31 +30,15 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"30 40"
-			}
+			"duration"				"30 40"
 	
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"modelscale"			"20"
-			}	
+			"modelscale"			"20"	
 	
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_movement_speed"	"25"
-			}
+			"bonus_movement_speed"	"25"
 	
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"200"
-			}
+			"bonus_attack_speed"	"200"
 		}
 	}
 	"boss_ogre_smash"
@@ -93,23 +77,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"325"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"400"
-			}
+			"radius"				"325"
+			"duration"				"1.0"
+			"damage"				"400"
 		}
 	}
 
@@ -148,23 +120,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"450"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"600"
-			}
+			"radius"				"450"
+			"duration"				"3.0"
+			"damage"				"600"
 		}
 	}
 
@@ -202,13 +162,11 @@
 			{
 				"Target"				"CASTER"
 				"ModifierName"			"channel_started"
-			}
 			
 			"FireSound"
 			{
 				"EffectName"			"Ability.SummonUndead"
 				"Target"				"CASTER"
-			}
 		}
 		
 		"OnChannelSucceeded"
@@ -245,7 +203,6 @@
 						"Target"			"CASTER"
 					}
 				}
-			}
 		}
 		
 		"OnChannelFinish"
@@ -254,7 +211,6 @@
 			{
 				"Target"				"CASTER"
 				"ModifierName"			"channel_started"
-			}
 		}
 		
 		// Modifiers
@@ -272,7 +228,6 @@
 						"Target"			"CASTER"
 					}
 				}
-			}
 			
 			"summoned_units"
 			{				
@@ -289,18 +244,13 @@
 						"02"		"0 0 0"
 					}
 				}
-			}
 		}
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"number_of_zombies"		"4"
-			}
+			"number_of_zombies"		"4"
 		}
 	}
 }

@@ -46,23 +46,11 @@
 		}
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"800 1200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"interval"				"1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"				"20 35"
-			}
+			"radius"				"800 1200"
+			"interval"				"1"
+			"damage"				"20 35"
 		}
 	}
 	"boss_leshrac_lightning_storm"
@@ -96,33 +84,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hit_radius"			"175"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bounces"				"7"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"125 150"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"splits"				"1 2"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"search_radius"			"650 750"
-			}
+			"hit_radius"			"175"
+			"bounces"				"7"
+			"damage"				"125 150"
+			"splits"				"1 2"
+			"search_radius"			"650 750"
 		}
 	}
 	"boss_leshrac_earthshatter"
@@ -156,33 +124,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"impact_radius"			"100"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius_growth"			"50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration_stun"			"0.5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"375"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"eruptions"				"2 3"
-			}
+			"impact_radius"			"100"
+			"radius_growth"			"50"
+			"duration_stun"			"0.5"
+			"damage"				"375"
+			"eruptions"				"2 3"
 		}
 	}
 	"boss_leshrac_cataclysm"
@@ -217,18 +165,10 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hit_radius"			"225"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"150"
-			}
+			"hit_radius"			"225"
+			"damage"				"150"
 		}
 	}
 }

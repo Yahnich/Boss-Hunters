@@ -34,18 +34,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"distance"				"350 500"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"speed"					"1200"
-			}
+			"distance"				"350 500"
+			"speed"					"1200"
 		}
 	}
 	
@@ -72,38 +64,14 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"chance"				"20 30"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"crit"					"125 150"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ms"					"-12"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"as"					"-34"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bleed"					"10 25"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3"
-			}
+			"chance"				"20 30"
+			"crit"					"125 150"
+			"ms"					"-12"
+			"as"					"-34"
+			"bleed"					"10 25"
+			"duration"				"3"
 		}
 	}
 
@@ -131,23 +99,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"900"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"30 40"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor"					"2 5"
-			}
+			"radius"				"900"
+			"damage"				"30 40"
+			"armor"					"2 5"
 		}
 	}
 
@@ -185,23 +141,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"12"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"15"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attack_speed"			"100 200"
-			}
+			"duration"				"12"
+			"damage"				"15"
+			"attack_speed"			"100 200"
 		}
 	}
 }

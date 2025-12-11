@@ -15,19 +15,10 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"movespeed"				"2 3"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_amp"			"2 3"
-			}	
+			"movespeed"				"2 3"
+			"damage_amp"			"2 3"
 		}
 	}
 	"boss_axe_big_impact"
@@ -44,19 +35,10 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.5 0.75"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"knockback"				"25"
-			}	
+			"duration"				"0.5 0.75"
+			"knockback"				"25"
 		}
 	}
 	"boss_axe_slam_dunk"
@@ -86,28 +68,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"critical_damage"		"225 275"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.75"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"land_damage"			"200 300"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"land_radius"			"325"
-			}
+			"critical_damage"		"225 275"
+			"duration"				"0.75"
+			"land_damage"			"200 300"
+			"land_radius"			"325"
 		}
 		"precache"
 		{
@@ -149,43 +115,15 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"knockback"				"350"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"900"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"daze_duration"			"3.5 5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"225 325"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"taunt_duration"		"15"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"search_radius"			"375"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"effect_width"			"200"
-			}
+			"knockback"				"350"
+			"speed"					"900"
+			"daze_duration"			"3.5 5"
+			"damage"				"225 325"
+			"taunt_duration"		"15"
+			"search_radius"			"375"
+			"effect_width"			"200"
 		}
 	}
 	"boss_axe_feral_leap"
@@ -221,28 +159,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"threat"				"35 50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"				"325 500"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"200"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.75"
-			}
+			"threat"				"35 50"
+			"damage"				"325 500"
+			"radius"				"200"
+			"duration"				"0.75"
 		}
 	}
 	
@@ -278,13 +200,9 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"execution_damage"		"25 33"
-			}
+			"execution_damage"		"25 33"
 		}
 		"precache"
 		{
@@ -320,19 +238,10 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"250"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.5 2"
-			}
+			"radius"				"250"
+			"duration"				"1.5 2"
 		}
 		"precache"
 		{
@@ -368,29 +277,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"suck_power"			"10 15"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"spin_damage"			"25 30"
-			}		
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"300"
-			}
+			"duration"				"4"
+			"suck_power"			"10 15"
+			"spin_damage"			"25 30"
+			"radius"				"300"
 		}
 		"precache"
 		{

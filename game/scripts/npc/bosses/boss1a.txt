@@ -25,14 +25,9 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"strike_radius"			"200 235"
-			}
+			"strike_radius"			"200 235"
 		}
 		
 		// Data driven
@@ -69,14 +64,9 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"rush_speed"			"900 1200"
-			}
+			"rush_speed"			"900 1200"
 		}
 		
 		// Data driven
@@ -111,24 +101,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"fade_time"				"1.5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"100 150"
-			}
+			"duration"				"10"
+			"fade_time"				"1.5"
+			"bonus_damage"			"100 150"
 		}
 		
 		// Data driven

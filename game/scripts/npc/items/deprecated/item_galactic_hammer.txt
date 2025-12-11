@@ -175,58 +175,24 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_int"				"12 14 16 18 20"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_str"				"12 14 16 18 20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hp_regen"				"3 4.5 6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"m_regen"				"6"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 250 300 350 400"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_per_sec"		"100"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6 7 8 9 10"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.25"
-			}
+			"bonus_int"				"12 14 16 18 20"
+			"bonus_str"				"12 14 16 18 20"
+			"hp_regen"				"3 4.5 6"
+			"m_regen"				"6"
+			"damage"				"200 250 300 350 400"
+			"damage_per_sec"		"100"
+			"duration"				"6 7 8 9 10"
+			"stun_duration"			"0.25"
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"channel"				"1.25"
-			}
 			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"300 350 400 450 500"
-			}
 		}
 	}
 	"item_galactic_hammer_2"
@@ -274,58 +240,24 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_int"				"12 14 16 18 20"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_str"				"12 14 16 18 20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hp_regen"				"3 4.5 6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"m_regen"				"6"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 250 300 350 400"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_per_sec"		"100"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6 7 8 9 10"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.25"
-			}
+			"bonus_int"				"12 14 16 18 20"
+			"bonus_str"				"12 14 16 18 20"
+			"hp_regen"				"3 4.5 6"
+			"m_regen"				"6"
+			"damage"				"200 250 300 350 400"
+			"damage_per_sec"		"100"
+			"duration"				"6 7 8 9 10"
+			"stun_duration"			"0.25"
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"channel"				"1.25"
-			}
 			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"300 350 400 450 500"
-			}
 		}
 	}
 	"item_galactic_hammer_3"
@@ -373,58 +305,24 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_int"				"12 14 16 18 20"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_str"				"12 14 16 18 20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hp_regen"				"3 4.5 6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"m_regen"				"6"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 250 300 350 400"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_per_sec"		"100"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6 7 8 9 10"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.25"
-			}
+			"bonus_int"				"12 14 16 18 20"
+			"bonus_str"				"12 14 16 18 20"
+			"hp_regen"				"3 4.5 6"
+			"m_regen"				"6"
+			"damage"				"200 250 300 350 400"
+			"damage_per_sec"		"100"
+			"duration"				"6 7 8 9 10"
+			"stun_duration"			"0.25"
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"channel"				"1.25"
-			}
 			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"300 350 400 450 500"
-			}
 		}
 	}
 	"item_galactic_hammer_4"
@@ -472,58 +370,24 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_int"				"12 14 16 18 20"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_str"				"12 14 16 18 20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hp_regen"				"3 4.5 6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"m_regen"				"6"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 250 300 350 400"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_per_sec"		"100"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6 7 8 9 10"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.25"
-			}
+			"bonus_int"				"12 14 16 18 20"
+			"bonus_str"				"12 14 16 18 20"
+			"hp_regen"				"3 4.5 6"
+			"m_regen"				"6"
+			"damage"				"200 250 300 350 400"
+			"damage_per_sec"		"100"
+			"duration"				"6 7 8 9 10"
+			"stun_duration"			"0.25"
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"channel"				"1.25"
-			}
 			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"300 350 400 450 500"
-			}
 		}
 	}
 	"item_galactic_hammer_5"
@@ -571,58 +435,24 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_int"				"12 14 16 18 20"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_str"				"12 14 16 18 20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hp_regen"				"3 4.5 6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"m_regen"				"6"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 250 300 350 400"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_per_sec"		"100"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6 7 8 9 10"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.25"
-			}
+			"bonus_int"				"12 14 16 18 20"
+			"bonus_str"				"12 14 16 18 20"
+			"hp_regen"				"3 4.5 6"
+			"m_regen"				"6"
+			"damage"				"200 250 300 350 400"
+			"damage_per_sec"		"100"
+			"duration"				"6 7 8 9 10"
+			"stun_duration"			"0.25"
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"channel"				"1.25"
-			}
 			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"300 350 400 450 500"
-			}
 		}
 	}
 }

@@ -62,88 +62,48 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"primary_to_damage"		"200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"35"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_regen"			"2.5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"625"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"strike_chance"			"15"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"strike_damage"			"125"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"strike_bounces"		"4"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_restore"			"30" //percent
-			}
+			"primary_to_damage"		"200"
+			"bonus_damage"			"35"
+			"bonus_regen"			"2.5"
+			"radius"				"625"
+			"strike_chance"			"15"
+			"strike_damage"			"125"
+			"strike_bounces"		"4"
+			"heal_restore"			"30" //percent
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"mana_restore"			"10" //percent
-			}
 			"10"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"heal_restore_lightning""10" //percent
-			}
 			"11"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"mana_restore_lightning""5" //percent
-			}
 			"12"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"heal_restore_shield"	"15" //percent
-			}
 			"13"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"mana_restore_shield"	"8" //percent
-			}
 			"14"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"15"
-			}
 			"15"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"status_amp"			"15"
-			}
 			"16"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"paralyze_duration"		"0.25"
-			}
 		}
 	}
 }

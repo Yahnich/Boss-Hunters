@@ -139,7 +139,7 @@ function modifier_medusa_split_talent:OnCreated()
 end
 
 function modifier_medusa_split_talent:OnRefresh()
-	self.dot = self:GetCaster():GetIntellect() * self:GetCaster():FindTalentValue("special_bonus_unique_medusa_split_1") / 100
+	self.dot = self:GetCaster():GetIntellect( false) * self:GetCaster():FindTalentValue("special_bonus_unique_medusa_split_1") / 100
 end
 
 function modifier_medusa_split_talent:OnIntervalThink()

@@ -57,9 +57,9 @@ end
 function modifier_entangle_enemy:OnIntervalThink()
 	local damage = self:GetCaster():GetAttackDamage()/2
 	if self:GetCaster():IsHero() then
-		damage = self:GetCaster():GetIntellect() * (self:GetTalentSpecialValueFor("damage")/100)
+		damage = self:GetCaster():GetIntellect( false) * (self:GetTalentSpecialValueFor("damage")/100)
 	elseif self:GetCaster():GetOwnerEntity() then
-		damage = self:GetCaster():GetOwnerEntity():GetIntellect() * (self:GetTalentSpecialValueFor("damage")/100)
+		damage = self:GetCaster():GetOwnerEntity():GetIntellect( false) * (self:GetTalentSpecialValueFor("damage")/100)
 	end
 	local caster = self:GetCaster()
 	if not caster:IsHero() and self:GetCaster():GetOwnerEntity() then caster = self:GetCaster():GetOwnerEntity() end

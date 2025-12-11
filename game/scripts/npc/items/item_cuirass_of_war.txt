@@ -51,28 +51,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-3 -4 -5 -6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"60"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"450 600 750 900"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"armor_debuff"			"-3 -4 -5 -6"
+			"stone_share"			"60"
+			"aura_radius"			"450 600 750 900"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -127,28 +111,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-3 -4 -5 -6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"60"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"450 600 750 900"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"armor_debuff"			"-3 -4 -5 -6"
+			"stone_share"			"60"
+			"aura_radius"			"450 600 750 900"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -204,28 +172,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-3 -4 -5 -6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"60"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"450 600 750 900"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"armor_debuff"			"-3 -4 -5 -6"
+			"stone_share"			"60"
+			"aura_radius"			"450 600 750 900"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -282,28 +234,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-3 -4 -5 -6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"60"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"450 600 750 900"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"armor_debuff"			"-3 -4 -5 -6"
+			"stone_share"			"60"
+			"aura_radius"			"450 600 750 900"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -361,28 +297,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-3 -4 -5 -6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"60"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"450 600 750 900"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"armor_debuff"			"-3 -4 -5 -6"
+			"stone_share"			"60"
+			"aura_radius"			"450 600 750 900"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -441,28 +361,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-3 -4 -5 -6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"60"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"450 600 750 900"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"armor_debuff"			"-3 -4 -5 -6"
+			"stone_share"			"60"
+			"aura_radius"			"450 600 750 900"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -520,28 +424,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-3 -4 -5 -6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"60"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"450 600 750 900"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"armor_debuff"			"-3 -4 -5 -6"
+			"stone_share"			"60"
+			"aura_radius"			"450 600 750 900"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -599,28 +487,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_debuff"			"-3 -4 -5 -6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"60"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"450 600 750 900"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"armor_debuff"			"-3 -4 -5 -6"
+			"stone_share"			"60"
+			"aura_radius"			"450 600 750 900"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 }

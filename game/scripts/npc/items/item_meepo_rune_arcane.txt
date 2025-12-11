@@ -28,23 +28,11 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cdr"					"30"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_reduc"			"30"
-			}
+			"duration"				"50"
+			"cdr"					"30"
+			"mana_reduc"			"30"
 		}
 	}
 }

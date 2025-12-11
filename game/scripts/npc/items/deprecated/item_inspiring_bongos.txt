@@ -53,73 +53,33 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_agi"				"20"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_int"				"6"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_str"				"20"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_mregen"			"3"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_as"				"70"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_hp_aura"			"500" //flat
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_regen_aura"		"3" //flat
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_as_aura"			"30" //flat
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms_aura"			"40" //flat
-			}
+			"bonus_agi"				"20"
+			"bonus_int"				"6"
+			"bonus_str"				"20"
+			"bonus_mregen"			"3"
+			"bonus_as"				"70"
+			"bonus_hp_aura"			"500" //flat
+			"bonus_regen_aura"		"3" //flat
+			"bonus_as_aura"			"30" //flat
+			"bonus_ms_aura"			"40" //flat
 			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_ms_buff"			"16" //percent
-			}
 			"11"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_health"			"500" //percent
-			}
 			"12"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"6"
-			}
 			"13"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"900"
-			}
 		}
 
 		"precache"

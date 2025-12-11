@@ -52,33 +52,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"15 16 17 18"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"35"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"600 700 800 900"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"lifesteal"				"15 16 17 18"
+			"mob_divider"			"25"
+			"stone_share"			"35"
+			"radius"				"600 700 800 900"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -132,33 +112,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"15 16 17 18"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"35"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"600 700 800 900"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"lifesteal"				"15 16 17 18"
+			"mob_divider"			"25"
+			"stone_share"			"35"
+			"radius"				"600 700 800 900"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -213,33 +173,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"15 16 17 18"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"35"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"600 700 800 900"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"lifesteal"				"15 16 17 18"
+			"mob_divider"			"25"
+			"stone_share"			"35"
+			"radius"				"600 700 800 900"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -295,33 +235,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"15 16 17 18"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"35"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"600 700 800 900"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"lifesteal"				"15 16 17 18"
+			"mob_divider"			"25"
+			"stone_share"			"35"
+			"radius"				"600 700 800 900"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -378,33 +298,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"15 16 17 18"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"35"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"600 700 800 900"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"lifesteal"				"15 16 17 18"
+			"mob_divider"			"25"
+			"stone_share"			"35"
+			"radius"				"600 700 800 900"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -462,33 +362,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"15 16 17 18"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stone_share"			"35"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"600 700 800 900"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"lifesteal"				"15 16 17 18"
+			"mob_divider"			"25"
+			"stone_share"			"35"
+			"radius"				"600 700 800 900"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 }

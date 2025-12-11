@@ -69,9 +69,9 @@ function modifier_druid_bear_entangle_enemy:OnIntervalThink()
     local damage = 0
 
     if caster:IsHero() then
-        damage = caster:GetIntellect() * self.damage
+        damage = caster:GetIntellect( false) * self.damage
     elseif caster:GetOwnerEntity() then
-        damage = caster:GetOwnerEntity():GetIntellect() * self.damage
+        damage = caster:GetOwnerEntity():GetIntellect( false) * self.damage
     end
 
     self:GetAbility():DealDamage(caster, parent, damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)

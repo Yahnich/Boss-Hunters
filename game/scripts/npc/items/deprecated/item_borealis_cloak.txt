@@ -55,58 +55,21 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"12"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_mana_regen"		"3.5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_damage"			"225"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_radius"			"1200"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_speed"			"350"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"debuff_ms"				"-35"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"debuff_as"				"-80"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"debuff_damage"			"50"
-			}
+			"bonus_armor"			"12"
+			"bonus_intellect"		"20"
+			"bonus_mana_regen"		"3.5"
+			"active_damage"			"225"
+			"active_radius"			"1200"
+			"active_speed"			"350"
+			"debuff_ms"				"-35"
+			"debuff_as"				"-80"
+			"debuff_damage"			"50"
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"debuff_duration"		"5.0"
-			}
 		}
 	}
 }

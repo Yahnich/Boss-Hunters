@@ -63,56 +63,32 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_str"				"15"
-			}
 			"02"
 			
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_agi"				"15"
-			}
 			"03"
 			
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_int"				"30"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_evasion"			"20"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_mana_cost"			"65"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_hp_damage"			"15"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"exhaust_duration"		"10"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_damage"			"20"
-			}
+			"bonus_evasion"			"20"
+			"max_mana_cost"			"65"
+			"max_hp_damage"			"15"
+			"exhaust_duration"		"10"
+			"base_damage"			"20"
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"int_damage"			"60"
-			}
 		}
 	}
 }

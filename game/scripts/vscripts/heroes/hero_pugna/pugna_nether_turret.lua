@@ -55,7 +55,7 @@ function modifier_pugna_nether_turret_thinker:OnAbilityStart(params)
 				
 				params.unit:EmitSound("Hero_Pugna.NetherWard.Target")
 				ward:EmitSound("Hero_Pugna.NetherWard.Attack")
-				ApplyDamage({ victim = params.unit, attacker = self:GetCaster(), damage = self:GetCaster():GetIntellect()*self.dmg_mult, damage_type = DAMAGE_TYPE_MAGICAL, ability = self:GetAbility() })
+				ApplyDamage({ victim = params.unit, attacker = self:GetCaster(), damage = self:GetCaster():GetIntellect( false)*self.dmg_mult, damage_type = DAMAGE_TYPE_MAGICAL, ability = self:GetAbility() })
 			end
 		end
 	end
@@ -71,7 +71,7 @@ function modifier_pugna_nether_turret_thinker:OnAttackStart(params)
 				params.attacker:EmitSound("Hero_Pugna.NetherWard.Target")
 				ward:EmitSound("Hero_Pugna.NetherWard.Attack")
 				
-				ApplyDamage({ victim = params.attacker, attacker = self:GetCaster(), damage = self:GetCaster():GetIntellect()*self.dmg_mult*self.attackTalentValue, damage_type = DAMAGE_TYPE_MAGICAL, ability = self:GetAbility() })
+				ApplyDamage({ victim = params.attacker, attacker = self:GetCaster(), damage = self:GetCaster():GetIntellect( false)*self.dmg_mult*self.attackTalentValue, damage_type = DAMAGE_TYPE_MAGICAL, ability = self:GetAbility() })
 			end
 		end
 	end

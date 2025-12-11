@@ -28,23 +28,11 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-3 -5 -8 -10 -13"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"15.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"armor_reduction"		"-3 -5 -8 -10 -13"
+			"duration"				"15.0"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	
@@ -101,23 +89,11 @@
 		"AvailableRuneSlots"			"2"
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-3 -5 -8 -10 -13"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"15.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"armor_reduction"		"-3 -5 -8 -10 -13"
+			"duration"				"15.0"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -174,23 +150,11 @@
 		"AvailableRuneSlots"			"2"
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-3 -5 -8 -10 -13"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"15.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"armor_reduction"		"-3 -5 -8 -10 -13"
+			"duration"				"15.0"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -247,23 +211,11 @@
 		"AvailableRuneSlots"			"2"
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-3 -5 -8 -10 -13"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"15.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"armor_reduction"		"-3 -5 -8 -10 -13"
+			"duration"				"15.0"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -320,23 +272,11 @@
 		"AvailableRuneSlots"			"2"
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-3 -5 -8 -10 -13"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"15.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"armor_reduction"		"-3 -5 -8 -10 -13"
+			"duration"				"15.0"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -395,23 +335,11 @@
 		"AvailableRuneSlots"			"2"
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-3 -5 -8 -10 -13"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"15.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"armor_reduction"		"-3 -5 -8 -10 -13"
+			"duration"				"15.0"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -470,23 +398,11 @@
 		"AvailableRuneSlots"			"2"
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-3 -5 -8 -10 -13"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"15.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"armor_reduction"		"-3 -5 -8 -10 -13"
+			"duration"				"15.0"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -544,23 +460,11 @@
 		"AvailableRuneSlots"			"2"
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-3 -5 -8 -10 -13"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"15.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"armor_reduction"		"-3 -5 -8 -10 -13"
+			"duration"				"15.0"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -617,23 +521,11 @@
 		"AvailableRuneSlots"			"2"
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-3 -5 -8 -10 -13"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"15.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"armor_reduction"		"-3 -5 -8 -10 -13"
+			"duration"				"15.0"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 }

@@ -54,48 +54,16 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"active_regen"			"5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stack_regen"			"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_stacks"			"15"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stack_delay"			"1.5"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hp_per_str"			"0"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"25"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"1200"
-			}
+			"active_regen"			"5"
+			"duration"				"5"
+			"stack_regen"			"10"
+			"max_stacks"			"15"
+			"stack_delay"			"1.5"
+			"hp_per_str"			"0"
+			"bonus_strength"		"25"
+			"bonus_health"			"1200"
 		}
 	}
 }

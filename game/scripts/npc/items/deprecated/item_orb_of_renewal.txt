@@ -27,18 +27,10 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_restore"			"30" //percent
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_restore"			"10" //percent
-			}
+			"heal_restore"			"30" //percent
+			"mana_restore"			"10" //percent
 		}
 	}
 }

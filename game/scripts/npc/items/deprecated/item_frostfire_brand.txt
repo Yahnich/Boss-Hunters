@@ -52,53 +52,20 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"100"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"slow"					"-16"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"blind"					"33"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_damage"			"55"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"min_radius"			"300"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"900"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius_change"			"75"
-			}
+			"damage"				"0"
+			"base_damage"			"100"
+			"slow"					"-16"
+			"blind"					"33"
+			"bonus_damage"			"55"
+			"min_radius"			"300"
+			"radius"				"900"
+			"radius_change"			"75"
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"bonus_all"				"12"
-			}
 		}
 	}
 }

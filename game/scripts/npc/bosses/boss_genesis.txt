@@ -12,18 +12,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"regen"					"0.3 0.6"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"regen_buff"			"0.75 1"
-			}
+			"regen"					"0.3 0.6"
+			"regen_buff"			"0.75 1"
 		}
 	}
 	"boss_genesis_deconstruction"
@@ -38,23 +30,11 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"-1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"regen"					"-0.5 -0.75"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"regen_buff"			"-2 -2.5"
-			}
+			"radius"				"-1"
+			"regen"					"-0.5 -0.75"
+			"regen_buff"			"-2 -2.5"
 		}
 	}
 	"boss_genesis_pacifism"
@@ -78,13 +58,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4"
-			}
+			"duration"				"4"
 		}
 	}
 	"boss_genesis_crumple"
@@ -115,23 +91,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"175"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"				"400 600"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun"					"1"
-			}
+			"radius"				"175"
+			"damage"				"400 600"
+			"stun"					"1"
 		}
 	}
 	"boss_genesis_purify"
@@ -163,18 +127,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"distance"				"350 500"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"speed"					"1200"
-			}
+			"distance"				"350 500"
+			"speed"					"1200"
 		}
 	}
 	"boss_genesis_strengthen_resolve"
@@ -207,13 +163,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"12"
-			}
+			"duration"				"12"
 		}
 	}
 	"boss_genesis_return_to_life"
@@ -246,18 +198,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"outgoing"				"20 25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"incoming"				"500 350"
-			}
+			"outgoing"				"20 25"
+			"incoming"				"500 350"
 		}
 	}
 	"boss_genesis_sanctuary"
@@ -286,13 +230,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5 7"
-			}
+			"duration"				"5 7"
 		}
 	}
 	"boss_genesis_dominion"
@@ -321,13 +261,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5 7"
-			}
+			"duration"				"5 7"
 		}
 	}
 }

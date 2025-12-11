@@ -26,29 +26,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_chance"					"30 45 60 75 90"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bash_damage"					"60 80 100 120 160"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"illusion_pct"					"25"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"rune_scaling"					"100 120 140 160 180"
-			}
+			"bash_chance"					"30 45 60 75 90"
+			"bash_damage"					"60 80 100 120 160"
+				
+			"illusion_pct"					"25"
+			"rune_scaling"					"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -104,29 +88,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_chance"					"30 50 75 85 95"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bash_damage"					"60 80 100 140 180"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"illusion_pct"					"25"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"rune_scaling"					"100 120 140 160 180"
-			}
+			"bash_chance"					"30 50 75 85 95"
+			"bash_damage"					"60 80 100 140 180"
+				
+			"illusion_pct"					"25"
+			"rune_scaling"					"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -184,29 +152,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_chance"					"30 50 75 85 95"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bash_damage"					"60 80 100 140 180"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"illusion_pct"					"25"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"rune_scaling"					"100 120 140 160 180"
-			}
+			"bash_chance"					"30 50 75 85 95"
+			"bash_damage"					"60 80 100 140 180"
+				
+			"illusion_pct"					"25"
+			"rune_scaling"					"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -263,29 +215,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_chance"					"30 50 75 85 95"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bash_damage"					"60 80 100 140 180"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"illusion_pct"					"25"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"rune_scaling"					"100 120 140 160 180"
-			}
+			"bash_chance"					"30 50 75 85 95"
+			"bash_damage"					"60 80 100 140 180"
+				
+			"illusion_pct"					"25"
+			"rune_scaling"					"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -342,29 +278,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_chance"					"30 50 75 85 95"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bash_damage"					"60 80 100 140 180"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"illusion_pct"					"25"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"rune_scaling"					"100 120 140 160 180"
-			}
+			"bash_chance"					"30 50 75 85 95"
+			"bash_damage"					"60 80 100 140 180"
+				
+			"illusion_pct"					"25"
+			"rune_scaling"					"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -423,29 +343,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_chance"					"30 50 75 85 95"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bash_damage"					"60 80 100 140 180"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"illusion_pct"					"25"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"rune_scaling"					"100 120 140 160 180"
-			}
+			"bash_chance"					"30 50 75 85 95"
+			"bash_damage"					"60 80 100 140 180"
+				
+			"illusion_pct"					"25"
+			"rune_scaling"					"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -504,29 +408,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_chance"					"30 50 75 85 95"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bash_damage"					"60 80 100 140 180"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"illusion_pct"					"25"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"rune_scaling"					"100 120 140 160 180"
-			}
+			"bash_chance"					"30 50 75 85 95"
+			"bash_damage"					"60 80 100 140 180"
+				
+			"illusion_pct"					"25"
+			"rune_scaling"					"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -584,29 +472,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_chance"					"30 50 75 85 95"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bash_damage"					"60 80 100 140 180"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"illusion_pct"					"25"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"rune_scaling"					"100 120 140 160 180"
-			}
+			"bash_chance"					"30 50 75 85 95"
+			"bash_damage"					"60 80 100 140 180"
+				
+			"illusion_pct"					"25"
+			"rune_scaling"					"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -665,29 +537,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bash_chance"					"30 50 75 85 95"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bash_damage"					"60 80 100 140 180"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"illusion_pct"					"25"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"rune_scaling"					"100 120 140 160 180"
-			}
+			"bash_chance"					"30 50 75 85 95"
+			"bash_damage"					"60 80 100 140 180"
+				
+			"illusion_pct"					"25"
+			"rune_scaling"					"100 120 140 160 180"
 		}
 	}
 }

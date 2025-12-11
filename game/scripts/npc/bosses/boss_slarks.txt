@@ -23,33 +23,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"delay"						"3"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"fade_time"					"0.0 0.0 0.0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_movement_speed"		"35 50"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_regen_pct"			"3 5"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"break_critical"			"300 400"
-			}
+			"delay"						"3"
+			"fade_time"					"0.0 0.0 0.0"
+			"bonus_movement_speed"		"35 50"
+			"bonus_regen_pct"			"3 5"
+			"break_critical"			"300 400"
 		}
 	}
 	"boss_slark_leap"
@@ -83,43 +63,15 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"pounce_distance"		"450"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"pounce_speed"			"933.33"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"pounce_acceleration"	"7000.0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"pounce_radius"			"95"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"pounce_damage"			"75 125"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"leash_duration"		"4 6"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"leash_radius"			"325"
-			}
+			"pounce_distance"		"450"
+			"pounce_speed"			"933.33"
+			"pounce_acceleration"	"7000.0"
+			"pounce_radius"			"95"
+			"pounce_damage"			"75 125"
+			"leash_duration"		"4 6"
+			"leash_radius"			"325"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -149,28 +101,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hp_loss"				"2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"375"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"dispel_delay"			"1.5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_multiplier"		"50 66"
-			}
+			"hp_loss"				"2"
+			"radius"				"375"
+			"dispel_delay"			"1.5"
+			"damage_multiplier"		"50 66"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -211,29 +147,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"delay"								"3 2"
-			}
-			"02"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"damage_amp"						"35 50"
-			}
-			"03"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"duration"							"5"
-			}
+			"delay"								"3 2"
+			"damage_amp"						"35 50"
+			"duration"							"5"
 			
-			"04"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"radius"							"375"
-			}
+			"radius"							"375"
 		}
 	}
 	//=================================================================================================================
@@ -275,33 +195,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"duration"							"12.0"
-			}
-			"02"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"movement_damage_pct"				"20 40"
-			}
-			"03"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"move_limit"						"600"
-			}
-			"05"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"distance"							"600"
-			}
-			"06"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"end_width"							"600"
-			}
+			"duration"							"12.0"
+			"movement_damage_pct"				"20 40"
+			"move_limit"						"600"
+			"distance"							"600"
+			"end_width"							"600"
 		}
 	}
 }

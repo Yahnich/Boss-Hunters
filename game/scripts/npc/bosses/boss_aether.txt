@@ -45,28 +45,12 @@
 			"particle"					"particles/units/heroes/hero_dark_seer/dark_seer_vacuum.vpcf"
 			"particle"					"particles/units/heroes/hero_puck/puck_illusory_orb.vpcf"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"1.0"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"magic_damage"			"100 150"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"orb_radius"			"150"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"orb_speed"				"300"
-			}
+			"stun_duration"			"1.0"
+			"magic_damage"			"100 150"
+			"orb_radius"			"150"
+			"orb_speed"				"300"
 		}
 	}
 	//=================================================================================================================
@@ -87,23 +71,11 @@
 		{
 			"particle"					"particles/bosses/boss_aether/boss_aether_gravity_well.vpcf"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aura_radius"			"900"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_pull"				"0"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_damage"			"1.2 1.5"
-			}
+			"aura_radius"			"900"
+			"max_pull"				"0"
+			"max_damage"			"1.2 1.5"
 		}
 	}
 	//=================================================================================================================
@@ -130,28 +102,12 @@
 			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"pull_radius"				"450 600"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"impact_radius"				"300"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"impact_curr_hp_damage"		"30 50"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"suck_duration"				"0.75"
-			}
+			"pull_radius"				"450 600"
+			"impact_radius"				"300"
+			"impact_curr_hp_damage"		"30 50"
+			"suck_duration"				"0.75"
 		}
 	}
 	//=================================================================================================================
@@ -177,38 +133,14 @@
 			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_firestorm_wave.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"meteor_count"				"12 15"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"impact_radius"				"200"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"impact_delay"				"1.5 1.25"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"impact_damage"				"75 90"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"impact_slow"				"-30 -40"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"slow_duration"				"5"
-			}
+			"meteor_count"				"12 15"
+			"impact_radius"				"200"
+			"impact_delay"				"1.5 1.25"
+			"impact_damage"				"75 90"
+			"impact_slow"				"-30 -40"
+			"slow_duration"				"5"
 		}
 	}
 	//=================================================================================================================
@@ -261,33 +193,13 @@
 			"particle"					"particles/bosses/boss_aether/boss_aether_entropy_pool.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"pool_creation_time"		"2 1.5"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius_growth"				"3"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"damage_per_second"			"150 200"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"initial_radius"			"150"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"pool_spawn_range"			"2000"
-			}
+			"pool_creation_time"		"2 1.5"
+			"radius_growth"				"3"
+			"damage_per_second"			"150 200"
+			"initial_radius"			"150"
+			"pool_spawn_range"			"2000"
 		}
 	}
 	//=================================================================================================================
@@ -315,28 +227,12 @@
 			"particle"					"particles/bosses/boss_aether/boss_aether_mass_effect.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "damage_amp"     				"35 60"
-            }
-    		"03"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "orb_speed"     				"250 300"
-            }
-    		"04"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "orb_lifetime"     				"5 6"
-            }
-    		"05"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "orb_radius"     				"325"
-            }
+			"damage_amp"     				"35 60"
+			"orb_speed"     				"250 300"
+    		"orb_lifetime"     				"5 6"
+    		"orb_radius"     				"325"
 		}
 	}
 	//=================================================================================================================
@@ -364,23 +260,11 @@
 			"particle"					"particles/units/heroes/hero_enigma/enigma_blackhole.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"500 600"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_per_second"			"15 20"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"pull"						"2 3"
-			}
+			"radius"					"500 600"
+			"damage_per_second"			"15 20"
+			"pull"						"2 3"
 		}
 	}
 }

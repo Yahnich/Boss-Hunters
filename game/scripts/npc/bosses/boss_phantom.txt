@@ -23,18 +23,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"slow"					"-12 -15"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
-			}
+			"slow"					"-12 -15"
+			"duration"				"5"
 		}
 	}
 	"boss_phantom_banshee_wail"
@@ -72,28 +64,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"blind"					"20 25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"				"40 70"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"325"
-			}
+			"blind"					"20 25"
+			"damage"				"40 70"
+			"duration"				"8"
+			"radius"				"325"
 		}
 	}
 }

@@ -58,23 +58,11 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_ms"				"750"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4.5"
-			}
+			"bonus_ms"				"50"
+			"active_ms"				"750"
+			"duration"				"4.5"
 		}
 	}
 }

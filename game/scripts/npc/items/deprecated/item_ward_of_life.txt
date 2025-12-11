@@ -60,73 +60,33 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"3"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_hp"				"600"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_str"				"25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_int"				"10"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_agi"				"10"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal"					"20"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"block_chance"			"50"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_block"			"50"
-			}
+			"bonus_health_regen"	"3"
+			"bonus_hp"				"600"
+			"bonus_str"				"25"
+			"bonus_int"				"10"
+			"bonus_agi"				"10"
+			"heal"					"20"
+			"radius"				"900"
+			"block_chance"			"50"
+			"damage_block"			"50"
 			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"min_heal"				"350"
-			}
 			"11"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"max_hp_trigger"		"20"
-			}
 			"12"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"buff_duration"			"3.5"
-			}
 			"13"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"internal_cooldown"		"20"
-			}
 		}
 	}
 }

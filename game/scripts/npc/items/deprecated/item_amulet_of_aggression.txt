@@ -26,23 +26,11 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_threat"			"30"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"threat_gain"			"5"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"threat_gain_ult"		"20"
-			}
+			"bonus_threat"			"30"
+			"threat_gain"			"5"
+			"threat_gain_ult"		"20"
 		}
 	}
 }

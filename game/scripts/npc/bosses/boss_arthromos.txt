@@ -15,18 +15,10 @@
 			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hp_pct"				"-0.5 -0.6"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"debuff_duration"		"2"
-			}
+			"hp_pct"				"-0.5 -0.6"
+			"debuff_duration"		"2"
 		}
 	}
 	"boss_arthromos_hellraiser"
@@ -44,18 +36,10 @@
 			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"incoming"				"350 275"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"outgoing"				"50 60"
-			}
+			"incoming"				"350 275"
+			"outgoing"				"50 60"
 		}
 	}
 	"boss_arthromos_plague_aura"
@@ -73,18 +57,10 @@
 			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"200 300"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_amp_loss"			"-75"
-			}
+			"radius"				"200 300"
+			"heal_amp_loss"			"-75"
 		}
 	}
 	
@@ -110,33 +86,13 @@
 			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "width"     					"150"
-            }
-    		"02"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "speed"     					"900"
-            }
-    		"03"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "duration"     					"18"
-            }
-			"04"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "damage"     					"140 180"
-            }
-			"05"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "spread_radius"     			"350"
-            }
+			 "width"     					"150"
+    		 "speed"     					"900"
+    		"duration"     					"18"
+			"damage"     					"140 180"
+			"spread_radius"     			"350"
 		}
 	}
 	"boss_arthromos_pestilence"
@@ -160,18 +116,10 @@
 			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "radius"  					   	"1200"
-            }
-    		"02"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "damage"     					"18 22"
-            }
+			 "radius"  					   	"1200"
+    		 "damage"     					"18 22"
 		}
 	}
 	"boss_arthromos_dessicate"
@@ -195,28 +143,12 @@
 			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "channel_time"     				"5.3"
-            }
-    		"02"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "tick_time"     				"0.75"
-            }
-    		"03"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "end_damage"     				"200 250"
-            }
-			"04"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "channel_damage"     			"40 60"
-            }
+			"channel_time"     				"5.3"
+    		"tick_time"     				"0.75"
+    		"end_damage"     				"200 250"
+			"channel_damage"     			"40 60"
 		}
 	}
 }

@@ -52,18 +52,10 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"10"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_lifesteal"			"2.5"
-			}
+			"lifesteal"				"10"
+			"mob_lifesteal"			"2.5"
 		}
 	}
 }

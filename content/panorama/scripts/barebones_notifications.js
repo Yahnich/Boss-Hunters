@@ -112,11 +112,29 @@ function AddNotification(msg, panel) {
 
 
 (function () {
-  GameEvents.Subscribe( "top_notification", TopNotification );
-  GameEvents.Subscribe( "bottom_notification", BottomNotification );
-  GameEvents.Subscribe( "top_remove_notification", TopRemoveNotification );
-  GameEvents.Subscribe( "bottom_remove_notification", BottomRemoveNotification );
-  GameEvents.Subscribe( "dota_push_to_chat", CreateChatMessageInLine );
+	GameEvents.Subscribe( "top_notification", TopNotification );
+	GameEvents.Subscribe( "bottom_notification", BottomNotification );
+	GameEvents.Subscribe( "top_remove_notification", TopRemoveNotification );
+	GameEvents.Subscribe( "bottom_remove_notification", BottomRemoveNotification );
+	GameEvents.Subscribe( "dota_push_to_chat", CreateChatMessageInLine );
+
+	var ID = Players.GetLocalPlayer()
+	var PlayerEntityIndex = Players.GetPlayerHeroEntityIndex(ID)
+	var team = Entities.GetTeamNumber( PlayerEntityIndex )
+	if (team > 2)
+		{
+			GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_INVENTORY_SHOP, false );     //Shop portion of the Inventory.
+			GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_INVENTORY_PANEL, false );      //Entire Inventory UI
+		}
+	GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_BAR, false );
+	GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_TIMEOFDAY, false );
+	GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_HEROES, false );
+	GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_QUICK_STATS, false );
+	GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_FLYOUT_SCOREBOARD, false );
+	GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_GAME_NAME, false );
+	GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_SHOP_SUGGESTEDITEMS, true ); 
+	GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_INVENTORY_PROTECT, false );
+	GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ENDGAME, false );
 })();
 
 const NON_BREAKING_SPACE = "\u00A0";

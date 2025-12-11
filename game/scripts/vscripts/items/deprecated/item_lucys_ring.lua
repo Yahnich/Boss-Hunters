@@ -62,7 +62,7 @@ function modifier_item_lucys_ring_passive:GetModifierEvasion_Constant(params)
 	if IsClient() then return self.evasion end
 	if self:RollPRNG(self.evasion) then
 		ParticleManager:FireRopeParticle("particles/dagon_mystic.vpcf", PATTACH_POINT, self:GetParent(), params.attacker, {[2] = Vector(400,0,0)}, "attach_hitloc")
-		self:GetAbility():DealDamage(self:GetParent(), params.attacker, self.base + self.scale * self:GetParent():GetIntellect(), {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+		self:GetAbility():DealDamage(self:GetParent(), params.attacker, self.base + self.scale * self:GetParent():GetIntellect( false), {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		return 100
 	end
 end

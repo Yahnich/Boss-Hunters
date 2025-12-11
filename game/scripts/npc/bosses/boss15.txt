@@ -25,50 +25,16 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"speed"					"400"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"width_initial"			"100"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"width_end"				"150"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"distance"				"700 1200"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"300 400"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"debuff_duration"		"3"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"stun_duration"			"1.5 2"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"-50"
-			}
-			
+			"speed"					"400"
+			"width_initial"			"100"
+			"width_end"				"150"
+			"distance"				"700 1200"
+			"damage"				"300 400"
+			"debuff_duration"		"3"
+			"stun_duration"			"1.5 2"
+			"damage_reduction"		"-50"
 		}
 		"precache"
 		{
@@ -104,24 +70,11 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ghost_damage"			"20 25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ghost_health"			"6 9"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ghost_count"			"15"
-			}
+			"ghost_damage"			"20 25"
+			"ghost_health"			"6 9"
+			"ghost_count"			"15"
 		}
 		"precache"
 		{
@@ -157,44 +110,15 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"hp_damage"					"2.5 2.75 3.0"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"35 50 60"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"max_hp_damage"				"30"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"max_damage_rampup"			"1 2"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"tether_damage_reduction"	"-20"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"aoe_cooldown_increase"		"8 6"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius_buffer"				"250 300"
-			}
+			"hp_damage"					"2.5 2.75 3.0"
+			"damage"					"35 50 60"
+			"max_hp_damage"				"30"
+			"max_damage_rampup"			"1 2"
+			"tether_damage_reduction"	"-20"
+			"aoe_cooldown_increase"		"8 6"
+			"radius_buffer"				"250 300"
 		}
 		"precache"
 		{

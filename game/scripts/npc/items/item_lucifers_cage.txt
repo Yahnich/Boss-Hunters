@@ -38,33 +38,13 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			// "01"
-			// {
-				// "var_type"				"FIELD_FLOAT"
-				// "heal_amp"				"10 15 20 25 30 35 40 45 50"
-			// }
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"20 60 100 160 200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			
+			"healdamage"			"20 60 100 160 200"
+			"duration"				"8"
+			"cooldown"				"16"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -127,33 +107,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			// "01"
-			// {
-				// "var_type"				"FIELD_FLOAT"
-				// "heal_amp"				"10 15 20 25 30 35 40 45 50"
-			// }
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"20 60 100 160 200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			
+			"healdamage"			"20 60 100 160 200"
+			"duration"				"8"
+			"cooldown"				"16"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -218,33 +178,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			// "01"
-			// {
-				// "var_type"				"FIELD_FLOAT"
-				// "heal_amp"				"10 15 20 25 30 35 40 45 50"
-			// }
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"20 60 100 160 200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			
+			"healdamage"			"20 60 100 160 200"
+			"duration"				"8"
+			"cooldown"				"16"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -308,33 +248,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			// "01"
-			// {
-				// "var_type"				"FIELD_FLOAT"
-				// "heal_amp"				"10 15 20 25 30 35 40 45 50"
-			// }
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"20 60 100 160 200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			
+			"healdamage"			"20 60 100 160 200"
+			"duration"				"8"
+			"cooldown"				"16"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -397,33 +317,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			// "01"
-			// {
-				// "var_type"				"FIELD_FLOAT"
-				// "heal_amp"				"10 15 20 25 30 35 40 45 50"
-			// }
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"20 60 100 160 200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			
+			"healdamage"			"20 60 100 160 200"
+			"duration"				"8"
+			"cooldown"				"16"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -488,33 +388,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			// "01"
-			// {
-				// "var_type"				"FIELD_FLOAT"
-				// "heal_amp"				"10 15 20 25 30 35 40 45 50"
-			// }
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"20 60 100 160 200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			
+			"healdamage"			"20 60 100 160 200"
+			"duration"				"8"
+			"cooldown"				"16"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -579,33 +459,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			// "01"
-			// {
-				// "var_type"				"FIELD_FLOAT"
-				// "heal_amp"				"10 15 20 25 30 35 40 45 50"
-			// }
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"20 60 100 160 200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			
+			"healdamage"			"20 60 100 160 200"
+			"duration"				"8"
+			"cooldown"				"16"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -670,33 +530,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			// "01"
-			// {
-				// "var_type"				"FIELD_FLOAT"
-				// "heal_amp"				"10 15 20 25 30 35 40 45 50"
-			// }
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"20 60 100 160 200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			
+			"healdamage"			"20 60 100 160 200"
+			"duration"				"8"
+			"cooldown"				"16"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -761,33 +601,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			// "01"
-			// {
-				// "var_type"				"FIELD_FLOAT"
-				// "heal_amp"				"10 15 20 25 30 35 40 45 50"
-			// }
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"20 60 100 160 200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"16"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			
+			"healdamage"			"20 60 100 160 200"
+			"duration"				"8"
+			"cooldown"				"16"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 }

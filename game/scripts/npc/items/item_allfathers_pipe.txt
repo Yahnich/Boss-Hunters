@@ -38,44 +38,16 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"magic_resist"			"10 15 20 25 30"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_resist"			"6 9 12 15 18"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"900"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"barrier"				"150 275 400 550 700"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"barrier_radius"		"1200"
-			}
+			"magic_resist"			"10 15 20 25 30"
+			"aura_resist"			"6 9 12 15 18"
+			"aura_radius"			"900"
+			"barrier"				"150 275 400 550 700"
+			"barrier_radius"		"1200"
 			
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"12"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"duration"				"12"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -137,44 +109,16 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"magic_resist"			"10 15 20 25 30"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_resist"			"6 9 12 15 18"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"900"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"barrier"				"150 275 400 550 700"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"barrier_radius"		"1200"
-			}
+			"magic_resist"			"10 15 20 25 30"
+			"aura_resist"			"6 9 12 15 18"
+			"aura_radius"			"900"
+			"barrier"				"150 275 400 550 700"
+			"barrier_radius"		"1200"
 			
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"12"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"duration"				"12"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -238,44 +182,16 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"magic_resist"			"10 15 20 25 30"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_resist"		"6 9 12 15 18"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"900"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"barrier"				"150 275 400 550 700"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"barrier_radius"		"1200"
-			}
+			"magic_resist"			"10 15 20 25 30"
+			"aura_resist"		"6 9 12 15 18"
+			"aura_radius"			"900"
+			"barrier"				"150 275 400 550 700"
+			"barrier_radius"		"1200"
 			
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"12"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"duration"				"12"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -339,44 +255,16 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"magic_resist"			"10 15 20 25 30"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_resist"		"6 9 12 15 18"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"900"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"barrier"				"150 275 400 550 700"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"barrier_radius"		"1200"
-			}
+			"magic_resist"			"10 15 20 25 30"
+			"aura_resist"		"6 9 12 15 18"
+			"aura_radius"			"900"
+			"barrier"				"150 275 400 550 700"
+			"barrier_radius"		"1200"
 			
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"12"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"duration"				"12"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -439,44 +327,16 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"magic_resist"			"10 15 20 25 30"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_resist"		"6 9 12 15 18"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"900"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"barrier"				"150 275 400 550 700"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"barrier_radius"		"1200"
-			}
+			"magic_resist"			"10 15 20 25 30"
+			"aura_resist"		"6 9 12 15 18"
+			"aura_radius"			"900"
+			"barrier"				"150 275 400 550 700"
+			"barrier_radius"		"1200"
 			
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"12"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"duration"				"12"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -541,44 +401,16 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"magic_resist"			"10 15 20 25 30"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_resist"		"6 9 12 15 18"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"900"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"barrier"				"150 275 400 550 700"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"barrier_radius"		"1200"
-			}
+			"magic_resist"			"10 15 20 25 30"
+			"aura_resist"		"6 9 12 15 18"
+			"aura_radius"			"900"
+			"barrier"				"150 275 400 550 700"
+			"barrier_radius"		"1200"
 			
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"12"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"duration"				"12"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -643,44 +475,16 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"magic_resist"			"10 15 20 25 30"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_resist"		"6 9 12 15 18"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"900"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"barrier"				"150 275 400 550 700"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"barrier_radius"		"1200"
-			}
+			"magic_resist"			"10 15 20 25 30"
+			"aura_resist"		"6 9 12 15 18"
+			"aura_radius"			"900"
+			"barrier"				"150 275 400 550 700"
+			"barrier_radius"		"1200"
 			
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"12"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"duration"				"12"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -745,44 +549,16 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"magic_resist"			"10 15 20 25 30"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_resist"			"6 9 12 15 18"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"900"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"barrier"				"150 275 400 550 700"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"barrier_radius"		"1200"
-			}
+			"magic_resist"			"10 15 20 25 30"
+			"aura_resist"			"6 9 12 15 18"
+			"aura_radius"			"900"
+			"barrier"				"150 275 400 550 700"
+			"barrier_radius"		"1200"
 			
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"12"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"duration"				"12"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -847,44 +623,16 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"magic_resist"			"10 15 20 25 30"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_resist"			"6 9 12 15 18"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"900"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"barrier"				"150 275 400 550 700"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"barrier_radius"		"1200"
-			}
+			"magic_resist"			"10 15 20 25 30"
+			"aura_resist"			"6 9 12 15 18"
+			"aura_radius"			"900"
+			"barrier"				"150 275 400 550 700"
+			"barrier_radius"		"1200"
 			
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"12"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"duration"				"12"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 }

@@ -29,18 +29,10 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attack_delay"			"0.3"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"paralyze_duration"		"0.5"
-			}
+			"attack_delay"			"0.3"
+			"paralyze_duration"		"0.5"
 		}
 	}
 }

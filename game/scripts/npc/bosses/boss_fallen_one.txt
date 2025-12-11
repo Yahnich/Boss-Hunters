@@ -20,18 +20,10 @@
 			"particle"					"particles/units/heroes/hero_dark_seer/dark_seer_vacuum.vpcf"
 			"particle"					"particles/units/heroes/hero_puck/puck_illusory_orb.vpcf"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_damage"			"20 25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
-			}
+			"bonus_damage"			"20 25"
+			"radius"				"900"
 		}
 	}
 	//=================================================================================================================
@@ -59,38 +51,14 @@
 			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_vengefulspirit.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"explosion_radius"			"325"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"300 400"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"1.5"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed"						"600"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"63 75"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"distance"					"600 900"
-			}
+			"explosion_radius"			"325"
+			"damage"					"300 400"
+			"stun_duration"				"1.5"
+			"speed"						"600"
+			"radius"					"63 75"
+			"distance"					"600 900"
 		}
 	}
 	//=================================================================================================================
@@ -118,38 +86,14 @@
 			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_firestorm_wave.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"60 90"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"minus_armor"				"-9 -12"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"15 20"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed"						"900"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"150"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"distance"					"1200 1500"
-			}
+			"damage"					"60 90"
+			"minus_armor"				"-9 -12"
+			"duration"					"15 20"
+			"speed"						"900"
+			"radius"					"150"
+			"distance"					"1200 1500"
 		}
 	}
 	//=================================================================================================================
@@ -180,23 +124,11 @@
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"illu_duration"				"10"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"illu_inc"					"100"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"illu_out"					"100"
-			}
+			"illu_duration"				"10"
+			"illu_inc"					"100"
+			"illu_out"					"100"
 		}
 	}
 }

@@ -17,13 +17,9 @@
 		{
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"max_cdr"					"33 50"
-			}
+			"max_cdr"					"33 50"
 		}
 	}
 	//=================================================================================================================
@@ -49,28 +45,12 @@
 			"particle"					"particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"10"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"75"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_attackspeed"			"200 400"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_reduction"			"75"
-			}
+			"duration"					"10"
+			"bonus_damage"				"75"
+			"bonus_attackspeed"			"200 400"
+			"damage_reduction"			"75"
 		}
 	}
 	//=================================================================================================================
@@ -91,33 +71,13 @@
 			"particle"					"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_ring.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"600"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"delay"						"2.0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"350 500"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"3.0"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"hp_threshold"				"33 25"
-			}
+			"radius"					"600"
+			"delay"						"2.0"
+			"damage"					"350 500"
+			"duration"					"3.0"
+			"hp_threshold"				"33 25"
 		}
 	}
 	//=================================================================================================================
@@ -148,18 +108,10 @@
 			"particle"					"particles/status_fx/status_effect_doom.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"curr_hp_damage"			"7 10"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"5 7"
-			}
+			"curr_hp_damage"			"7 10"
+			"duration"					"5 7"
 		}
 	}
 	//=================================================================================================================
@@ -186,43 +138,15 @@
 			"particle"					"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"waves"						"9 10"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"200 300"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"200"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"raze_spacing"				"175"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"razes_per_line"			"7 9"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"wave_spacing"				"250"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"wave_delay"				"1 0.75"
-			}
+			"waves"						"9 10"
+			"damage"					"200 300"
+			"radius"					"200"
+			"raze_spacing"				"175"
+			"razes_per_line"			"7 9"
+			"wave_spacing"				"250"
+			"wave_delay"				"1 0.75"
 		}
 	}
 	//=================================================================================================================
@@ -249,28 +173,12 @@
 			"particle"					"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"range"						"2000"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"200"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"120 175"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"raze_delay"				"0.2"
-			}
+			"range"						"2000"
+			"radius"					"200"
+			"damage"					"120 175"
+			"raze_delay"				"0.2"
 		}
 	}
 	//=================================================================================================================
@@ -298,28 +206,12 @@
 			"particle"					"particles/bosses/boss_doom/hell_tempest_tornado.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"tornadoes_per_second"		"4 5"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"tornado_speed"				"150 180"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"tornado_damage"			"800 1200"
-			}
+			"radius"					"100"
+			"tornadoes_per_second"		"4 5"
+			"tornado_speed"				"150 180"
+			"tornado_damage"			"800 1200"
 		}
 	}
 	//=================================================================================================================
@@ -348,28 +240,12 @@
 			"particle"					"particles/bosses/boss_doom/boss_doom_demonic_servants_link.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"servants"					"3 5"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"max_damage_reduction"		"50"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"max_bonus_damage"			"160"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"break_radius"				"900"
-			}
+			"servants"					"3 5"
+			"max_damage_reduction"		"50"
+			"max_bonus_damage"			"160"
+			"break_radius"				"900"
 		}
 	}
 }

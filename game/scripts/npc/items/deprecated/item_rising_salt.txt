@@ -52,38 +52,14 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"250"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"2"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"			"400"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_all"				"10"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_amp"		"25"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"25"
-			}
+			"bonus_damage"			"250"
+			"cooldown"				"2"
+			"bonus_mana"			"400"
+			"bonus_all"				"10"
+			"bonus_spell_amp"		"25"
+			"mana_cost_reduction"	"25"
 		}
 	}
 }

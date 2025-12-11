@@ -25,28 +25,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"zombie_chance"			"25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"zombie_health"			"1000"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"zombie_count"			"4 6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"min_dmg"				"100"
-			}
+			"zombie_chance"			"25"
+			"zombie_health"			"1000"
+			"zombie_count"			"4 6"
+			"min_dmg"				"100"
 		}
 	}
 	"boss_flesh_behemoth_decay"
@@ -79,33 +63,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"225 250"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"				"40 60"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"str_loss"				"4 6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"325"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"20"
-			}
+			"radius"				"225 250"
+			"damage"				"40 60"
+			"str_loss"				"4 6"
+			"radius"				"325"
+			"duration"				"20"
 		}
 	}
 }

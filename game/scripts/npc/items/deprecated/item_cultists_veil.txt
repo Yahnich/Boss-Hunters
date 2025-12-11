@@ -56,38 +56,14 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_magic_damage"	"25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"15"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"625"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_intellect"		"15"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_armor"			"5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"20"
-			}
+			"bonus_magic_damage"	"25"
+			"duration"				"15"
+			"radius"				"625"
+			"bonus_intellect"		"15"
+			"bonus_armor"			"5"
+			"mana_cost_reduction"	"20"
 		}
 	}
 }

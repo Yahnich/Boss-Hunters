@@ -60,63 +60,25 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_agility"			"32"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed"		"50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_movespeed"		"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"15"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"600"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_hp_regen"		"3"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hp_per_str"			"0"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"illusion_count"		"2"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"illu_outgoing_damage"	"33"
-			}
+			"bonus_agility"			"32"
+			"bonus_attackspeed"		"50"
+			"bonus_movespeed"		"10"
+			"bonus_strength"		"15"
+			"bonus_health"			"600"
+			"bonus_hp_regen"		"3"
+			"hp_per_str"			"0"
+			"illusion_count"		"2"
+			"illu_outgoing_damage"	"33"
 			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"illu_incoming_damage"	"200"
-			}
 			"11"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration"				"16"
-			}
 		}
 	}
 }

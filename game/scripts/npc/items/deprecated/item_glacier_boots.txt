@@ -57,43 +57,15 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"20"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_ms"				"-175"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_armor"			"10"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_as"				"-100"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aura_slow"				"-35"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
-			}
+			"bonus_ms"				"20"
+			"bonus_armor"			"5"
+			"active_ms"				"-175"
+			"active_armor"			"10"
+			"active_as"				"-100"
+			"aura_slow"				"-35"
+			"radius"				"900"
 		}
 	}
 }

@@ -60,53 +60,20 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"pierce_chance"			"80"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_range"			"500"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_movement_speed"  "18"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_str"				"20"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_agi"				"20"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_int"				"20"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"30"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"push_distance"			"-900"
-			}
+			"pierce_chance"			"80"
+			"bonus_range"			"500"
+			"bonus_movement_speed"  "18"
+			"bonus_str"				"20"
+			"bonus_agi"				"20"
+			"bonus_int"				"20"
+			"bonus_attack_speed"	"30"
+			"push_distance"			"-900"
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"active_duration"		"3"
-			}
 		}
 	}
 }

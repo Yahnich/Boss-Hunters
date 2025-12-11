@@ -3,13 +3,13 @@ relic_inversion_stone = class(relicBaseClass)
 if IsServer() then
 	function relic_inversion_stone:OnCreated()
 		local parent = self:GetParent()
-		self:SetStackCount( (parent:GetStrength() + parent:GetIntellect() + parent:GetAgility() - parent:GetPrimaryStatValue() ) / 2 )
+		self:SetStackCount( (parent:GetStrength() + parent:GetIntellect( false) + parent:GetAgility() - parent:GetPrimaryStatValue() ) / 2 )
 		self:StartIntervalThink(0.33)
 	end
 
 	function relic_inversion_stone:OnIntervalThink()
 		local parent = self:GetParent()
-		self:SetStackCount( (parent:GetStrength() + parent:GetIntellect() + parent:GetAgility() - parent:GetPrimaryStatValue() ) / 2 )
+		self:SetStackCount( (parent:GetStrength() + parent:GetIntellect( false) + parent:GetAgility() - parent:GetPrimaryStatValue() ) / 2 )
 	end
 end
 

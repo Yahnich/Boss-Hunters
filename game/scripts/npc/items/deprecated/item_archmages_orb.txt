@@ -60,43 +60,15 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_regen"			"2.5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"spell_amp"				"20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"			"400"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_restore"			"15"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"15"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"min_restore"			"250"
-			}
+			"mana_regen"			"2.5"
+			"spell_amp"				"20"
+			"bonus_mana"			"400"
+			"mana_restore"			"15"
+			"bonus_ms"				"15"
+			"radius"				"900"
+			"min_restore"			"250"
 		}
 	}
 }

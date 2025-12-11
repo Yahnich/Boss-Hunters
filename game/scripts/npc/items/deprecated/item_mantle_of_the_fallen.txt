@@ -52,33 +52,13 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ranged_lifesteal"		"10"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"melee_lifesteal"		"15"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"3"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"2"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
-			}
+			"ranged_lifesteal"		"10"
+			"melee_lifesteal"		"15"
+			"bonus_armor"			"3"
+			"bonus_mana_regen"		"2"
+			"radius"				"900"
 		}
 	}
 }

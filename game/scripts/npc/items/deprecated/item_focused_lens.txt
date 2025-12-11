@@ -59,28 +59,12 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_cast_range"		"350"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_int"				"10"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"target_amp"			"20"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"target_cast_range"		"225"
-			}
+			"bonus_cast_range"		"350"
+			"bonus_int"				"10"
+			"target_amp"			"20"
+			"target_cast_range"		"225"
 		}
 	}
 }

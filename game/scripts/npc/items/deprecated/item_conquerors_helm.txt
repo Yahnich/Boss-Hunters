@@ -62,58 +62,24 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"15"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"750"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_hp_regen"		"5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hp_per_str"			"0"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"5"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"15"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_lifesteal"			"3.75"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"active_channel"		"1.5"
-			}
+			"bonus_strength"		"15"
+			"bonus_health"			"750"
+			"bonus_hp_regen"		"5"
+			"hp_per_str"			"0"
+			"bonus_armor"			"5"
+			"lifesteal"				"15"
+			"mob_lifesteal"			"3.75"
+			"active_channel"		"1.5"
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"active_duration"		"6.0"
-			}
 			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"active_radius"			"600"
-			}
 		}
 	}
 }

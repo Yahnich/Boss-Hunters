@@ -57,53 +57,20 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_agility"			"25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed"		"40"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_movespeed"		"16"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_spell_amp"		"33"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"33"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"attack_slow"			"-64"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"disable_duration"		"3.5"
-			}
+			"bonus_agility"			"25"
+			"bonus_attackspeed"		"40"
+			"bonus_strength"		"25"
+			"bonus_movespeed"		"16"
+			"bonus_spell_amp"		"33"
+			"mana_cost_reduction"	"33"
+			"attack_slow"			"-64"
+			"disable_duration"		"3.5"
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"disable_chance"		"50"
-			}
 
 		}
 	}

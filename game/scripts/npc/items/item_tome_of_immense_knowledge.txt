@@ -30,23 +30,11 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_xp"				"5000"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"xp_gain"				"1000"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_xp"				"45000"
-			}
+			"bonus_xp"				"5000"
+			"xp_gain"				"1000"
+			"max_xp"				"45000"
 		}
 	}
 }

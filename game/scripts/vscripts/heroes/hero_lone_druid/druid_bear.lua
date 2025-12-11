@@ -153,7 +153,7 @@ function modifier_druid_bear_stats:OnCreated()
 	
 	local strength = caster:GetStrength() * percent
 	local agility = caster:GetAgility() * percent
-	local intelligence = caster:GetIntellect() * percent
+	local intelligence = caster:GetIntellect( false) * percent
 	self.bonusHP = HP_PER_STR * strength
 	self.attackSpeed = AS_PER_AGI * agility
 	self.bonusMana = MP_PER_INT * intelligence

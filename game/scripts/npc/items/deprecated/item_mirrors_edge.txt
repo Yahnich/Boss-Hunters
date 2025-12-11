@@ -60,38 +60,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_agility"			"16"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed"		"25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"illusion_count"		"1"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"illu_outgoing_damage"	"20"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"illu_incoming_damage"	"200"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"16"
-			}
+			"bonus_agility"			"16"
+			"bonus_attackspeed"		"25"
+			"illusion_count"		"1"
+			"illu_outgoing_damage"	"20"
+			"illu_incoming_damage"	"200"
+			"duration"				"16"
 		}
 	}
 }

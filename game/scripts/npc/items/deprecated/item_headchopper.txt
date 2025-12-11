@@ -57,43 +57,15 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"15"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"45"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"critical_chance"		"20"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"critical_damage"		"225"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"curse_duration"		"3"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"curse_duration"		"3"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"effect_bonus_damage"	"25"
-			}
+			"bonus_strength"		"15"
+			"bonus_damage"			"45"
+			"critical_chance"		"20"
+			"critical_damage"		"225"
+			"curse_duration"		"3"
+			"curse_duration"		"3"
+			"effect_bonus_damage"	"25"
 		}
 	}
 }

@@ -59,28 +59,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor"					"5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal"					"275"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_aura"			"5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
-			}
+			"armor"					"5"
+			"heal"					"275"
+			"armor_aura"			"5"
+			"radius"				"900"
 		}
 	}
 }

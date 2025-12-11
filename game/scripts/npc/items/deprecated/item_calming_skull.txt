@@ -24,13 +24,9 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_cost_reduction"	"20"
-			}
+			"mana_cost_reduction"	"20"
 		}
 	}
 }

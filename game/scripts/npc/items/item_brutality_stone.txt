@@ -34,13 +34,9 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"critical_damage"		"50 35 25 15"
-			}
+			"critical_damage"		"50 35 25 15"
 		}
 	}
 }

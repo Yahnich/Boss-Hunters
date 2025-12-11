@@ -26,28 +26,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"melee_lifesteal"		"14 16 18 20 25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ranged_lifesteal"		"10 12 14 16 20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"melee_lifesteal"		"14 16 18 20 25"
+			"ranged_lifesteal"		"10 12 14 16 20"
+			"mob_divider"			"25"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -102,28 +86,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"melee_lifesteal"		"14 16 18 20 25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ranged_lifesteal"		"10 12 14 16 20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"melee_lifesteal"		"14 16 18 20 25"
+			"ranged_lifesteal"		"10 12 14 16 20"
+			"mob_divider"			"25"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -180,28 +148,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"melee_lifesteal"		"14 16 18 20 25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ranged_lifesteal"		"10 12 14 16 20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"melee_lifesteal"		"14 16 18 20 25"
+			"ranged_lifesteal"		"10 12 14 16 20"
+			"mob_divider"			"25"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -258,28 +210,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"melee_lifesteal"		"14 16 18 20 25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ranged_lifesteal"		"10 12 14 16 20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"melee_lifesteal"		"14 16 18 20 25"
+			"ranged_lifesteal"		"10 12 14 16 20"
+			"mob_divider"			"25"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -336,28 +272,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"melee_lifesteal"		"14 16 18 20 25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ranged_lifesteal"		"10 12 14 16 20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"melee_lifesteal"		"14 16 18 20 25"
+			"ranged_lifesteal"		"10 12 14 16 20"
+			"mob_divider"			"25"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -416,28 +336,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"melee_lifesteal"		"14 16 18 20 25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ranged_lifesteal"		"10 12 14 16 20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"melee_lifesteal"		"14 16 18 20 25"
+			"ranged_lifesteal"		"10 12 14 16 20"
+			"mob_divider"			"25"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -496,28 +400,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"melee_lifesteal"		"14 16 18 20 25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ranged_lifesteal"		"10 12 14 16 20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"melee_lifesteal"		"14 16 18 20 25"
+			"ranged_lifesteal"		"10 12 14 16 20"
+			"mob_divider"			"25"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -575,28 +463,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"melee_lifesteal"		"14 16 18 20 25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ranged_lifesteal"		"10 12 14 16 20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"melee_lifesteal"		"14 16 18 20 25"
+			"ranged_lifesteal"		"10 12 14 16 20"
+			"mob_divider"			"25"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -654,28 +526,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"melee_lifesteal"		"14 16 18 20 25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ranged_lifesteal"		"10 12 14 16 20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"melee_lifesteal"		"14 16 18 20 25"
+			"ranged_lifesteal"		"10 12 14 16 20"
+			"mob_divider"			"25"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 }

@@ -59,33 +59,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bash_chance"			"25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bash_chance_ranged"	"15"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_duration"			"1"
-			}
+			"bonus_strength"		"25"
+			"bonus_damage"			"25"
+			"bash_chance"			"25"
+			"bash_chance_ranged"	"15"
+			"bash_duration"			"1"
 		}
 	}
 }

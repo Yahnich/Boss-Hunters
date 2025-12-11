@@ -20,28 +20,12 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"75"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_images"			"2"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"incoming"				"200"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"outgoing"				"35"
-			}
+			"duration"				"75"
+			"max_images"			"2"
+			"incoming"				"200"
+			"outgoing"				"35"
 		}
 	}
 }

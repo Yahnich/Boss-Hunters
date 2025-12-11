@@ -52,28 +52,12 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"10"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"500"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_hp_regen"		"1.75"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hp_per_str"			"0"
-			}
+			"bonus_strength"		"10"
+			"bonus_health"			"500"
+			"bonus_hp_regen"		"1.75"
+			"hp_per_str"			"0"
 		}
 	}
 }

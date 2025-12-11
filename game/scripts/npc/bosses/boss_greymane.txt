@@ -23,18 +23,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"wolf_interval"			"20 15"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"alpha_interval"		"60 45"
-			}
+			"wolf_interval"			"20 15"
+			"alpha_interval"		"60 45"
 		}
 	}
 
@@ -62,23 +54,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"greymane_as_per_hp"	"7.5 10"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"as_per_hp"				"4 6"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"900"
-			}
+			"greymane_as_per_hp"	"7.5 10"
+			"as_per_hp"				"4 6"
+			"radius"				"900"
 		}
 	}
 	"boss_greymane_furious_swipe"
@@ -108,33 +88,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cone_angle"			"180 360"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"as_slow"				"-80 -120"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ms_slow"				"-20 -33"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bleed"					"40 60"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
-			}
+			"cone_angle"			"180 360"
+			"as_slow"				"-80 -120"
+			"ms_slow"				"-20 -33"
+			"bleed"					"40 60"
+			"duration"				"5"
 		}
 	}
 	"boss_greymane_battle_cry"
@@ -167,18 +127,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_damage"			"25 35"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"dispel_pct"			"15 20"
-			}
+			"bonus_damage"			"25 35"
+			"dispel_pct"			"15 20"
 		}
 	}
 	"boss_greymane_pounce"
@@ -212,23 +164,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"jump_duration"			"1.5 1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_interval"		"1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_per_second"		"120 180"
-			}
+			"jump_duration"			"1.5 1"
+			"damage_interval"		"1"
+			"damage_per_second"		"120 180"
 		}
 	}
 	"boss_greymane_frenzied_blows"
@@ -261,23 +201,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"width"					"125"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"900"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attack_interval"		"0.15 0.1"
-			}
+			"width"					"125"
+			"speed"					"900"
+			"attack_interval"		"0.15 0.1"
 		}
 	}
 }

@@ -24,18 +24,10 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hp_per_str"			"0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"400"
-			}
+			"hp_per_str"			"0"
+			"bonus_health"			"400"
 		}
 	}
 }

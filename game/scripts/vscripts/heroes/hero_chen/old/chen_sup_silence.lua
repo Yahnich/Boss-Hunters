@@ -24,9 +24,9 @@ function chen_sup_silence:OnSpellStart()
 	for _,enemy in pairs(enemies) do
 		local intellect = 0
 		if caster:GetOwner() then
-			intellect = caster:GetOwner():GetIntellect()
+			intellect = caster:GetOwner():GetIntellect( false)
 		else
-			intellect = caster:GetIntellect()
+			intellect = caster:GetIntellect( false)
 		end
 		local damage = intellect * self:GetTalentSpecialValueFor("damage") / 100
 		self:DealDamage(caster, enemy, damage)

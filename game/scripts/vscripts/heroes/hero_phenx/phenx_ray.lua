@@ -124,7 +124,7 @@ function modifier_phenx_ray:OnIntervalThink()
     self:GetParent():SetHealth( math.max(1, self:GetParent():GetHealth() * ( 100 - self:GetTalentSpecialValueFor("hp_cost_perc_per_second") ) / 100 ) )
 
     if self:GetParent():HasTalent("special_bonus_unique_phenx_ray_2") then
-        local damage = self:GetParent():GetIntellect() * self:GetParent():FindTalentValue("special_bonus_unique_phenx_ray_2")/100
+        local damage = self:GetParent():GetIntellect( false) * self:GetParent():FindTalentValue("special_bonus_unique_phenx_ray_2")/100
         local enemies = self:GetParent():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetAbility():GetTrueCastRange())
         for _,enemy in pairs(enemies) do
             ParticleManager:FireRopeParticle("particles/units/heroes/hero_phoenix/phoenix_solar_flare.vpcf", PATTACH_POINT, self:GetParent(), enemy, {})

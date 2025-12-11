@@ -35,33 +35,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"10 20 30 40 50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"600"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"16"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_dmg"		"12 18 24 30 36"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"mana_cost_reduction"	"10 20 30 40 50"
+			"radius"				"600"
+			"duration"				"16"
+			"bonus_spell_dmg"		"12 18 24 30 36"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -125,33 +105,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"10 20 30 40 50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"600"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"16"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_dmg"		"12 18 24 30 36"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"mana_cost_reduction"	"10 20 30 40 50"
+			"radius"				"600"
+			"duration"				"16"
+			"bonus_spell_dmg"		"12 18 24 30 36"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -217,33 +177,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"10 20 30 40 50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"600"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"16"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_dmg"		"12 18 24 30 36"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"mana_cost_reduction"	"10 20 30 40 50"
+			"radius"				"600"
+			"duration"				"16"
+			"bonus_spell_dmg"		"12 18 24 30 36"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -308,33 +248,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"10 20 30 40 50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"600"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"16"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_dmg"		"12 18 24 30 36"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"mana_cost_reduction"	"10 20 30 40 50"
+			"radius"				"600"
+			"duration"				"16"
+			"bonus_spell_dmg"		"12 18 24 30 36"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -399,33 +319,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"10 20 30 40 50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"600"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"16"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_dmg"		"12 18 24 30 36"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"mana_cost_reduction"	"10 20 30 40 50"
+			"radius"				"600"
+			"duration"				"16"
+			"bonus_spell_dmg"		"12 18 24 30 36"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -492,33 +392,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"10 20 30 40 50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"600"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"16"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_dmg"		"12 18 24 30 36"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"mana_cost_reduction"	"10 20 30 40 50"
+			"radius"				"600"
+			"duration"				"16"
+			"bonus_spell_dmg"		"12 18 24 30 36"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -584,33 +464,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"10 20 30 40 50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"600"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"16"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_dmg"		"12 18 24 30 36"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"mana_cost_reduction"	"10 20 30 40 50"
+			"radius"				"600"
+			"duration"				"16"
+			"bonus_spell_dmg"		"12 18 24 30 36"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -676,33 +536,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"10 20 30 40 50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"600"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"16"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_dmg"		"12 18 24 30 36"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"mana_cost_reduction"	"10 20 30 40 50"
+			"radius"				"600"
+			"duration"				"16"
+			"bonus_spell_dmg"		"12 18 24 30 36"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -768,33 +608,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"10 20 30 40 50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"600"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"16"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_dmg"		"12 18 24 30 36"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"mana_cost_reduction"	"10 20 30 40 50"
+			"radius"				"600"
+			"duration"				"16"
+			"bonus_spell_dmg"		"12 18 24 30 36"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 }

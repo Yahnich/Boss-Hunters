@@ -54,48 +54,16 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_cast_range"		"300"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_magic_resist"	"20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_magic_resist"	"100"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_status_resist"	"50"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_block"			"30"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"block_chance"			"50"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"5"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3"
-			}
+			"bonus_cast_range"		"300"
+			"bonus_magic_resist"	"20"
+			"active_magic_resist"	"100"
+			"active_status_resist"	"50"
+			"damage_block"			"30"
+			"block_chance"			"50"
+			"bonus_armor"			"5"
+			"duration"				"3"
 		}
 	}
 }

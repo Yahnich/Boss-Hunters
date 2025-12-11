@@ -57,33 +57,13 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"15"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_agility"			"25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"active_healdamage"		"200"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"onhit_damage"			"20"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"onhit_damage_illu"		"10"
-			}
+			"bonus_intellect"		"15"
+			"bonus_agility"			"25"
+			"active_healdamage"		"200"
+			"onhit_damage"			"20"
+			"onhit_damage_illu"		"10"
 		}
 	}
 }

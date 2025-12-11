@@ -168,48 +168,16 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ranged_lifesteal"		"12 13 14 15 16"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"melee_lifesteal"		"18 19 20 21 22"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"400 500 600 700 800"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_attack_speed"	"125 150 175 200 225"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_bonus_damage"	"20 25 30 35 40"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_movement_speed"	"20 25 30 35 40"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_damage_taken"	"20 25 30 35 40"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6.0"
-			}
+			"ranged_lifesteal"		"12 13 14 15 16"
+			"melee_lifesteal"		"18 19 20 21 22"
+			"bonus_health"			"400 500 600 700 800"
+			"active_attack_speed"	"125 150 175 200 225"
+			"active_bonus_damage"	"20 25 30 35 40"
+			"active_movement_speed"	"20 25 30 35 40"
+			"active_damage_taken"	"20 25 30 35 40"
+			"duration"				"6.0"
 		}
 	}
 	"item_blood_gods_mask_2"
@@ -250,48 +218,16 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ranged_lifesteal"		"12 13 14 15 16"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"melee_lifesteal"		"18 19 20 21 22"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"400 500 600 700 800"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_attack_speed"	"125 150 175 200 225"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_bonus_damage"	"20 25 30 35 40"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_movement_speed"	"20 25 30 35 40"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_damage_taken"	"20 25 30 35 40"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6.0"
-			}
+			"ranged_lifesteal"		"12 13 14 15 16"
+			"melee_lifesteal"		"18 19 20 21 22"
+			"bonus_health"			"400 500 600 700 800"
+			"active_attack_speed"	"125 150 175 200 225"
+			"active_bonus_damage"	"20 25 30 35 40"
+			"active_movement_speed"	"20 25 30 35 40"
+			"active_damage_taken"	"20 25 30 35 40"
+			"duration"				"6.0"
 		}
 	}
 	"item_blood_gods_mask_3"
@@ -332,48 +268,16 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ranged_lifesteal"		"12 13 14 15 16"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"melee_lifesteal"		"18 19 20 21 22"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"400 500 600 700 800"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_attack_speed"	"125 150 175 200 225"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_bonus_damage"	"20 25 30 35 40"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_movement_speed"	"20 25 30 35 40"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_damage_taken"	"20 25 30 35 40"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6.0"
-			}
+			"ranged_lifesteal"		"12 13 14 15 16"
+			"melee_lifesteal"		"18 19 20 21 22"
+			"bonus_health"			"400 500 600 700 800"
+			"active_attack_speed"	"125 150 175 200 225"
+			"active_bonus_damage"	"20 25 30 35 40"
+			"active_movement_speed"	"20 25 30 35 40"
+			"active_damage_taken"	"20 25 30 35 40"
+			"duration"				"6.0"
 		}
 	}
 	"item_blood_gods_mask_4"
@@ -414,48 +318,16 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ranged_lifesteal"		"12 13 14 15 16"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"melee_lifesteal"		"18 19 20 21 22"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"400 500 600 700 800"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_attack_speed"	"125 150 175 200 225"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_bonus_damage"	"20 25 30 35 40"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_movement_speed"	"20 25 30 35 40"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_damage_taken"	"20 25 30 35 40"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6.0"
-			}
+			"ranged_lifesteal"		"12 13 14 15 16"
+			"melee_lifesteal"		"18 19 20 21 22"
+			"bonus_health"			"400 500 600 700 800"
+			"active_attack_speed"	"125 150 175 200 225"
+			"active_bonus_damage"	"20 25 30 35 40"
+			"active_movement_speed"	"20 25 30 35 40"
+			"active_damage_taken"	"20 25 30 35 40"
+			"duration"				"6.0"
 		}
 	}
 	"item_blood_gods_mask_5"
@@ -496,48 +368,16 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ranged_lifesteal"		"12 13 14 15 16"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"melee_lifesteal"		"18 19 20 21 22"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"400 500 600 700 800"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_attack_speed"	"125 150 175 200 225"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_bonus_damage"	"20 25 30 35 40"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_movement_speed"	"20 25 30 35 40"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_damage_taken"	"20 25 30 35 40"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6.0"
-			}
+			"ranged_lifesteal"		"12 13 14 15 16"
+			"melee_lifesteal"		"18 19 20 21 22"
+			"bonus_health"			"400 500 600 700 800"
+			"active_attack_speed"	"125 150 175 200 225"
+			"active_bonus_damage"	"20 25 30 35 40"
+			"active_movement_speed"	"20 25 30 35 40"
+			"active_damage_taken"	"20 25 30 35 40"
+			"duration"				"6.0"
 		}
 	}
 }

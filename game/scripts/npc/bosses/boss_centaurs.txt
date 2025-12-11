@@ -29,43 +29,15 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"100"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"150 200"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"4 6"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"speed"							"800"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"ms_boost"						"100"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"buff_duration"					"10"
-			}
-			"07"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"stun_duration"					"5 3"
-			}
+			"radius"						"100"
+			"damage"						"150 200"
+			"duration"						"4 6"
+			"speed"							"800"
+			"ms_boost"						"100"
+			"buff_duration"					"10"
+			"stun_duration"					"5 3"
 		}
 	}
 	"boss_centaur_stomp"
@@ -102,23 +74,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.8"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 275"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"315"
-			}
+			"duration"				"1.8"
+			"damage"				"200 275"
+			"radius"				"315"
 		}
 	}
 	"boss_centaur_bash"
@@ -140,18 +100,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"chance"					"20 25"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"1"
-			}
+			"chance"					"20 25"
+			"duration"					"1"
 		}
 	}
 	"boss_centaur_protection_aura"
@@ -173,18 +125,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"dmg_red"					"20 30"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"900"
-			}
+			"dmg_red"					"20 30"
+			"radius"					"900"
 		}
 	}
 }

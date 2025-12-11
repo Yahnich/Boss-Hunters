@@ -59,18 +59,10 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed"		"100"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"consumed_attackspeed"	"30"
-			}
+			"bonus_attackspeed"		"100"
+			"consumed_attackspeed"	"30"
 		}
 	}
 }

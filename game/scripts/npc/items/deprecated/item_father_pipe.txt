@@ -53,38 +53,14 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"block"					"500"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hp_regen"				"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_all"				"15"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_magic_resist"		"15"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
-			}
+			"block"					"500"
+			"duration"				"5"
+			"hp_regen"				"10"
+			"bonus_all"				"15"
+			"aura_magic_resist"		"15"
+			"radius"				"900"
 		}
 
 		"precache"

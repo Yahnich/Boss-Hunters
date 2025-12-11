@@ -1020,7 +1020,7 @@
 	//=================================================================================================================
 	// HERO: Kunkka
 	//=================================================================================================================
-	"npc_dota_hero_kunkka_ebf"
+	"npc_dota_hero_kunkka"
 	{
 		"override_hero"					"npc_dota_hero_kunkka"
 		"AbilityLayout"					"5"
@@ -1028,6 +1028,7 @@
 		"Ability2"						"kunkka_tidebringer_bh"
 		"Ability3"						"kunkka_captains_rum"
 		"Ability4"						"kunkka_xmarks_bh"
+		"Ability5"						"generic_hidden"
 		"Ability6"						"kunkka_ghost_ship_bh"
 
 		"Ability10"				   		"special_bonus_unique_kunkka_torrent_bh_1"
@@ -1037,7 +1038,19 @@
 		"Ability14"				   		"special_bonus_unique_kunkka_captains_rum_1"
 		"Ability15"				   		"special_bonus_unique_kunkka_captains_rum_2"
 		"Ability16"				   		"special_bonus_unique_kunkka_ghost_ship_bh_1"
-		"Ability17"				   		"special_bonus_unique_kunkka_ghost_ship_bh_2"		
+		"Ability17"				   		"special_bonus_unique_kunkka_ghost_ship_bh_2"	
+
+		"Masteries"
+		{
+			"ARMOR"{"2" "3"}
+			"MAGIC_RESIST"{"2" "3"}
+			"HEALTH"{"3" "5"}
+			"MANA"{"2" "5"}
+			"MANA_REGEN"{"2" "3"}
+			"ATTACK_DAMAGE"{"3" "5"}
+			"SPELL_AMP"{"1" "3"}
+			"STATUS_AMP"{"1" "3"}
+		}		
 	}
 	//=================================================================================================================
 	// HERO: Legion comander

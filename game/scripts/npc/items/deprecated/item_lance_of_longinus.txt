@@ -53,28 +53,12 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"pierce_chance"			"40"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"pierce_damage"			"80"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_attack_range"	"150"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"all_stats"				"10"
-			}
+			"pierce_chance"			"40"
+			"pierce_damage"			"80"
+			"bonus_attack_range"	"150"
+			"all_stats"				"10"
 		}
 	}
 }

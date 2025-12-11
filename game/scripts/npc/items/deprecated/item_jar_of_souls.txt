@@ -55,33 +55,13 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_heal"			"25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"disables_healing"		"0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_all"				"8"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_mana_regen"		"3"
-			}
+			"damage_heal"			"25"
+			"duration"				"8"
+			"disables_healing"		"0"
+			"bonus_all"				"8"
+			"bonus_mana_regen"		"3"
 		}
 	}
 }

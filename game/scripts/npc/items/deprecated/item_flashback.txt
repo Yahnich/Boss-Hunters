@@ -54,28 +54,12 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"basic_chance"			"20"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ult_chance"			"10"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"40"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_mana_regen"		"5"
-			}
+			"basic_chance"			"20"
+			"ult_chance"			"10"
+			"bonus_intellect"		"40"
+			"bonus_mana_regen"		"5"
 		}
 	}
 }

@@ -812,7 +812,7 @@
 	//	"Rarity"			"RARITY_LEGENDARY"
 	//	"Cursed"			"0"
 	//}
-	//"relic_crystallized_though"
+	//"relic_crystallized_thought"
 	//{
 	//	"Rarity"			"RARITY_LEGENDARY"
 	//	"Cursed"			"0"

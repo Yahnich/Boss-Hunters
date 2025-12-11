@@ -29,9 +29,9 @@ function chen_dps_strike:OnSpellStart()
 		local enemies = caster:FindEnemyUnitsInRadius(point, radius)
 		for _,enemy in pairs(enemies) do
 			if caster:GetOwner() then
-				damage = caster:GetOwner():GetIntellect()*self:GetTalentSpecialValueFor("damage")/100
+				damage = caster:GetOwner():GetIntellect( false)*self:GetTalentSpecialValueFor("damage")/100
 			else
-				damage = caster:GetIntellect()*self:GetTalentSpecialValueFor("damage")/100
+				damage = caster:GetIntellect( false)*self:GetTalentSpecialValueFor("damage")/100
 			end
 
 			self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_DAMAGE)

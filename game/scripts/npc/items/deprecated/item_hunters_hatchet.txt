@@ -28,18 +28,10 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"splash_damage"			"20"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"350"
-			}
+			"splash_damage"			"20"
+			"radius"				"350"
 		}
 	}
 }

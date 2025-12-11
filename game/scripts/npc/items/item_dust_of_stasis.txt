@@ -40,18 +40,10 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"stasis_duration"		"30"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hp_pct_break"			"20"
-			}
+			"stasis_duration"		"30"
+			"hp_pct_break"			"20"
 		}
 	}
 }

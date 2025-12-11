@@ -84,7 +84,7 @@ function modifier_skywrath_arcane:GetModifierOverrideAbilitySpecialValue(params)
 		local specialValue = params.ability_special_value
 		if specialValue == "damage" then
 			local flBaseValue = params.ability:GetLevelSpecialValueNoOverride( specialValue, params.ability_special_level )
-			return flBaseValue + math.floor( caster:GetIntellect() * self.int_modifier + 0.5 )
+			return flBaseValue + math.floor( caster:GetIntellect( false) * self.int_modifier + 0.5 )
 		end
 	end
 end

@@ -18,23 +18,11 @@
 			"particle"					"particles/status_fx/status_effect_necrolyte_spirit.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cooldown_reduction"		"50"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"interval"					"40 30"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"20"
-			}
+			"cooldown_reduction"		"50"
+			"interval"					"40 30"
+			"duration"					"20"
 		}
 	}
 	//=================================================================================================================
@@ -55,13 +43,9 @@
 			"particle"					"particles/status_fx/status_effect_necrolyte_spirit.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_pct"				"35 50"
-			}
+			"damage_pct"				"35 50"
 		}
 	}
 	//=================================================================================================================
@@ -88,23 +72,11 @@
 		{
 			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"325"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"300 360"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"delay"						"1 0.75"
-			}
+			"radius"					"325"
+			"damage"					"300 360"
+			"delay"						"1 0.75"
 		}
 	}
 	//=================================================================================================================
@@ -133,23 +105,11 @@
 			"particle"					"particles/status_fx/status_effect_ghost.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"	
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow"						"-35 -50"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"mr_loss"					"-25 -33"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"5"
-			}
+			"slow"						"-35 -50"
+			"mr_loss"					"-25 -33"
+			"duration"					"5"
 		}
 	}
 	//=================================================================================================================
@@ -176,28 +136,12 @@
 			"particle"					"particles/status_fx/status_effect_necrolyte_spirit.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"	
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"1200 1600"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"hits"						"4"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"20"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"dmg_mult"					"2 3"
-			}
+			"radius"					"1200 1600"
+			"hits"						"4"
+			"duration"					"20"
+			"dmg_mult"					"2 3"
 		}
 	}
 }

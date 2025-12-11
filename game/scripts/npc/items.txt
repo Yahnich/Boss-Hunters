@@ -1,15 +1,14 @@
 // Dota Heroes File
 "DOTAAbilities"
 {
-	//=================================================================================================================
+//=================================================================================================================
 	// Observer Wards
 	//=================================================================================================================
 	"item_ward_observer"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"42"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_SUPPRESS_ASSOCIATED_CONSUMABLE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
@@ -24,51 +23,160 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"10"
-		"ItemShopTags"					"consumable"
+		"ItemCost"						"0"
+		"ItemShopTags"					"consumable;laning"
 		"ItemQuality"					"consumable"
-		"ItemAliases"					"observer ward"
 		"ItemStackable"					"1"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemPermanent"					"0"
 		"ItemInitialCharges"			"1"
 		"ItemStockMax"					"4"
 		"ItemStockInitial"				"2"
-		"ItemStockTime"					"150.0"
+		"ItemStockTime"					"135.0"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES"
 		"ItemSupport"					"1"
 		"IsTempestDoubleClonable"		"0"
-		"ShouldBeInitiallySuggested"	"1"
+		"SuggestPregame"				"1"
+		"ShouldNotSuggestMainGame"		"1"
+		"SpeciallyBannedFromNeutralSlot"		"1"
+
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifetime"				"360"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"vision_range"			"1600"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"health"				"200"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration_minutes_tooltip"				"6"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"tooltip_range"			"500"
-			}
+			"lifetime"				"360"
+			"vision_range_tooltip"	"1600"
+			"health"				"200"
+			"duration_minutes_tooltip"				"6"
+		}
+	}
+	
+	//=================================================================================================================
+	// Sentry Ward
+	//=================================================================================================================
+	"item_ward_sentry"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_SUPPRESS_ASSOCIATED_CONSUMABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"Model"							"models/props_gameplay/sentry_ward_bundle.vmdl"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"1.0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"50"
+		"ItemShopTags"					"consumable;see_invis;laning"
+		"ItemQuality"					"consumable"
+		"ItemStackable"					"1"
+		"ItemPurchasable"				"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"ItemStockMax"					"8"
+		"ItemStockInitial"				"3"
+		"ItemStockTime"					"70"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES"
+		"ItemSupport"					"1"
+		"IsTempestDoubleClonable"		"0"
+		"SuggestPregame"				"1"
+		"ShouldNotSuggestMainGame"		"1"
+		"SpeciallyBannedFromNeutralSlot"		"1"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"lifetime"								"420"
+			"vision_range"							"0"
+			"true_sight_range"						"1050"
+			"health"								"200"
+			"duration_minutes_tooltip"				"7"
+		}
+	}
+	
+	//=================================================================================================================
+	// Recipe: Ward Dispenser
+	//=================================================================================================================
+	"item_recipe_ward_dispenser"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"Model"							"models/props_gameplay/recipe.vmdl"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemPurchasable"				"0"
+		"ItemResult"					"item_ward_dispenser"
+		"ShouldNotSuggestMainGame"		"1"
+		"ItemRequirements"
+		{
+			"01"						"item_ward_sentry;item_ward_observer"
+			"02"						"item_ward_sentry;item_ward_dispenser"
+			"03"						"item_ward_dispenser*;item_ward_observer"
+			"04"						"item_ward_dispenser*;item_ward_dispenser"
+		}
+	}
+	
+	//=================================================================================================================
+	// Ward Dispenser
+	//=================================================================================================================
+	"item_ward_dispenser"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_SUPPRESS_ASSOCIATED_CONSUMABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"50"
+		"ItemQuality"					"consumable;laning"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemPurchasable"				"0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"IsTempestDoubleClonable"		"0"
+		"SpeciallyBannedFromNeutralSlot"		"1"
+
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCooldown"				"0"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+				"bonus_health"			"75"
+				"observer_cost"			"75"
+				"sentry_cost"			"100"
+				"lifetime_observer"				"360"
+				"lifetime_sentry"				"420"
+				"observer_vision_range_tooltip"		"1600"
+				"observer_duration_minutes_tooltip"		"6"
+				"sentry_duration_minutes_tooltip"		"8"
+				"true_sight_range"		"1050"
+				"cast_range_observer"			"500"
+				"cast_range_sentry"				"500"
+				
 		}
 	}
 	//=================================================================================================================
@@ -99,13 +207,11 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"108"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
-		"ItemCost"						"2400"
-		"AbilityCastRange"				"600"
+
+		// "AbilityCastRange"				"600"
 		
 
 		// Item Info
@@ -113,37 +219,67 @@
 		"ItemCost"						"4200"
 		"ItemShopTags"					"int;str;agi;mana_pool;health_pool;hard_to_tag"
 		"ItemQuality"					"rare"
-		"ItemAliases"					"ags;ultimate;aghanim's scepter;ags"
+
 		//"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"		// heroes for whom this is a problem solve it in their code - ogre magi, meepo
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ShouldBeSuggested"				"1"
+		"SuggestLategame"				"1"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
 				"bonus_all_stats"		"10"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
 				"bonus_health"			"175"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
 				"bonus_mana"			"175"
-			}
 		}
+	}
+	//=================================================================================================================
+	// Recipe: Scepter 2
+	//=================================================================================================================
+	"item_recipe_ultimate_scepter_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1600"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_ultimate_scepter_2"
+		"ItemRequirements"
+		{
+			"01"						"item_ultimate_scepter"
+		}
+	}
+	
+	//=================================================================================================================
+	// Scepter
+	//=================================================================================================================
+	"item_ultimate_scepter_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"Model"							"models/props_gameplay/aghanim_scepter.vmdl"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"5800"
+		"ItemShopTags"					"int;str;agi;mana_pool;health_pool;hard_to_tag"
+		"ItemQuality"					"rare"
+
+		"SuggestLategame"				"1"
+	
+		//"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"		// heroes for whom this is a problem solve it in their code - ogre magi, meepo
 	}
 	"item_aghanims_shard"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"609"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
 		// Item Info
@@ -151,489 +287,14 @@
 		"ItemCost"						"1400"
 		"ItemShopTags"					"int;str;agi;mana_pool;health_pool;hard_to_tag"
 		"ItemQuality"					"rare"
-		"ItemAliases"					"ags;shard;aghanim's shard;aghs"
 		
 		"ItemPermanent"					"0"
 		"ItemStockTime"					"1"			  
 		"ItemStockInitial"				"0"
 		"ItemStockMax"					"1"
-		"ItemInitialStockTime"			"660.0"
-		"ItemInitialStockTimeTurbo"		"645.0"
+		"ItemInitialStockTime"			"990.0"
+		"ItemInitialStockTimeTurbo"		"510.0"
 
-		"ShouldBeSuggested"				"1"
-	}
-	
-	
-	// NEUTRAL BULLSHIT
-	"item_tier1_token"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"2091"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"Model"							"models/props_gameplay/neutral_box.vmdl"
-
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemIsNeutralDrop"				"1"
-		"ItemPurchasable"				"0"
-		"ItemSellable"				"0"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"TokenTier"						"1"
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			
-		}
-	}
-	"item_tier2_token"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"2092"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"Model"							"models/props_gameplay/neutral_box.vmdl"
-
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemIsNeutralDrop"				"1"
-		"ItemPurchasable"				"0"
-		"ItemSellable"				"0"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"TokenTier"						"2"
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			
-		}
-	}
-	"item_tier3_token"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"2093"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"Model"							"models/props_gameplay/neutral_box.vmdl"
-
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemIsNeutralDrop"				"1"
-		"ItemPurchasable"				"0"
-		"ItemSellable"				"0"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"TokenTier"						"3"
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			
-		}
-	}
-	"item_tier4_token"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"2094"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"Model"							"models/props_gameplay/neutral_box.vmdl"
-
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemIsNeutralDrop"				"1"
-		"ItemPurchasable"				"0"
-		"ItemSellable"				"0"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"TokenTier"						"4"
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			
-		}
-	}
-	"item_tier5_token"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"2095"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"Model"							"models/props_gameplay/neutral_box.vmdl"
-
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemIsNeutralDrop"				"1"
-		"ItemPurchasable"				"0"
-		"ItemSellable"				"0"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"TokenTier"						"5"
-
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			
-		}
-	}
-	"item_trusty_shovel"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"356"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
-		
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"250"
-		"AbilityCooldown"				"50.0"
-		"AbilityCastPoint"				"0.1"
-		"AbilityChannelTime"			"1"
-					
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"
-		"ItemIsNeutralDrop"				"1"
-		"ItemPurchasable"				"0"
-
-		"Model"							"models/props_gameplay/neutral_box.vmdl"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"bonus_health"			"1150"
-			"chance_bounty_rune"	"16"
-			"chance_other_item"		"28"
-		}
-	}
-	"item_arcane_ring"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"349"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"45.0"
-
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"
-		"ItemIsNeutralDrop"				"1"
-		"ItemPurchasable"				"0"
-
-		"Model"							"models/props_gameplay/neutral_box.vmdl"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"bonus_intelligence"	"35"
-			"bonus_armor"			"6"
-			"mana_restore"			"200"
-			"radius"				"1200"
-		}
-	}
-	"item_possessed_mask"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"577"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"
-		"ItemIsNeutralDrop"				"1"
-		"ItemPurchasable"				"0"
-
-		"Model"							"models/props_gameplay/neutral_box.vmdl"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"primary_attribute"		"40"
-			"lifesteal"				"80"
-		}
-	}
-	"item_mysterious_hat"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"589"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"
-		"ItemIsNeutralDrop"				"1"
-		"ItemPurchasable"				"0"
-
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8.0"
-
-		"Model"							"models/props_gameplay/neutral_box.vmdl"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"bonus_health"			"1150"
-			"spell_amp"				"12"
-			"manacost_reduction"	"15"
-		}
-	}
-	"item_unstable_wand"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"838"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityCooldown"				"25.0"
-		"AbilityManaCost"				"50"
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"
-		"ItemIsNeutralDrop"				"1"
-		"ItemPurchasable"				"0"
-
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-
-		"Model"							"models/props_gameplay/neutral_box.vmdl"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"duration"			"4"
-			"all_stats"			"25"
-		}
-	}
-	"item_ring_of_aquila"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"212"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
-		"AbilityCastRange" 				"1200"
-
-		"Model"							"models/props_gameplay/neutral_box.vmdl"
-
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"
-		"ItemShopTags"					""
-		"ItemAliases"					"roa;ring of aquila"
-		"ItemShareability"				""		
-		"ActiveDescriptionLine"			"2"
-		"ItemPurchasable"				"0"
-		"ShouldBeSuggested"				"0"
-		"ItemSellable"					"0"
-		"ItemIsNeutralDrop"				"1"
-		"DisplayOverheadAlertOnReceived" "0"
-
-		// Sound
-		//-------------------------------------------------------------------------------------------------------------			
-		"UIPickupSound"					"Item.PickUpRingShop"
-		"UIDropSound"					"Item.DropRingShop"
-		"WorldDropSound"				"Item.DropRingWorld"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"bonus_damage"			"110"
-			"bonus_strength"		"35"
-			"bonus_agility"			"100"
-			"bonus_intellect"		"35"
-			"aura_radius"			"1200"
-			"aura_mana_regen"		"5.75"
-			"aura_bonus_armor"		"10"
-		}		
-	}
-	"item_imp_claw"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"334"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-			
-		// Stats		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"7.0"
-
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"
-		"ItemIsNeutralDrop"				"1"
-		"ItemPurchasable"				"0"
-
-		"Model"							"models/props_gameplay/neutral_box.vmdl"
-
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"crit_multiplier"			"420"
-			"bonus_damage"				"300"
-		}
-	}
-	"item_nether_shawl"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"357"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"
-		"ItemIsNeutralDrop"				"1"
-		"ItemPurchasable"				"0"
-
-		"Model"							"models/props_gameplay/neutral_box.vmdl"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"bonus_magic_resistance"	"20"
-			"bonus_spell_amp"			"15"
-			"bonus_armor"				"-3"
-		}
-	}
-	"item_pupils_gift"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"306"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-			
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"
-		"ItemIsNeutralDrop"				"1"
-		"ItemPurchasable"				"0"
-
-		"Model"							"models/props_gameplay/neutral_box.vmdl"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"secondary_stats"			"105"
-		}
-	}
-	"item_quickening_charm"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"289"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-			
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"
-		"ItemIsNeutralDrop"				"1"
-		"DisplayOverheadAlertOnReceived" "0"
-		"ItemPurchasable"				"0"
-
-		"Model"							"models/props_gameplay/neutral_box.vmdl"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"bonus_cooldown"			"10"
-			"bonus_health_regen"		"500"
-		}
-	}
-	"item_defiant_shell"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"950"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-			
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemIsNeutralDrop"				"1"
-		"ItemPurchasable"				"0"
-		"ItemCost"						"0"
-		"Model"							"models/props_gameplay/neutral_box.vmdl"
-		"ItemSellable"				"0"
-		
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"bonus_armor"				"24"
-			"all_stats"					"215"
-			"counter_cooldown"			"5"
-		}
-	}
-	"item_black_powder_bag"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"834"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-			
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"
-		"ItemIsNeutralDrop"				"1"
-		"ItemPurchasable"				"0"
-
-		"AbilityCooldown"				"20"
-
-
-		"Model"							"models/props_gameplay/neutral_box.vmdl"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"bonus_armor"			"24"
-			"radius"				"400"
-			"damage"				"30000"
-			"blind_duration"		"2"
-			"blind_pct"				"100"
-		}
-	}
-	"item_vindicators_axe"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2096"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"
-		"ItemIsNeutralDrop"				"1"
-		"ItemPurchasable"				"0"
-		"ItemSellable"				"0"
-
-
-		"Model"							"models/props_gameplay/neutral_box.vmdl"
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"bonus_attack_speed"	"75"
-			"bonus_damage"			"1200"
-			"bonus_armor"			"50"
-		}
+		"SuggestLategame"				"1"
 	}
 }

@@ -60,38 +60,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal"					"15"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"block_chance"			"50"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_block"			"30"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"3"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"min_heal"				"250"
-			}
+			"heal"					"15"
+			"radius"				"900"
+			"block_chance"			"50"
+			"damage_block"			"30"
+			"bonus_health_regen"	"3"
+			"min_heal"				"250"
 		}
 	}
 }

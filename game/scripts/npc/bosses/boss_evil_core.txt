@@ -24,18 +24,10 @@
 	        "particle"          "particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
 	    }
 		
-		"AbilitySpecial"
+		"AbilityValues"
 	    {
-	        "01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "recharge_time"         "20"
-	        }
-	        "02"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "damage_per_hit"        "-90 -95"
-	        }
+	        "recharge_time"         "20"
+	        "damage_per_hit"        "-90 -95"
 	    }
 	}
 }

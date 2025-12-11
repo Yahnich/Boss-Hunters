@@ -59,33 +59,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_charges"			"3"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"charge_restore_time"	"15"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"15"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"5"
-			}
+			"blink_range"			"1200"
+			"blink_charges"			"3"
+			"charge_restore_time"	"15"
+			"bonus_intellect"		"15"
+			"bonus_mana_regen"		"5"
 		}
 	}
 }

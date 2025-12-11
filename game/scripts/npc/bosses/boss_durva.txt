@@ -15,43 +15,15 @@
 			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stack_dmg"				"2 3"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"stack_as"				"10 12"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"stack_ms"				"3 4"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hero_stacks"			"5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hero_dmg"				"10 15"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hero_as"				"50 60"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hero_ms"				"15 20"
-			}
+			"stack_dmg"				"2 3"
+			"stack_as"				"10 12"
+			"stack_ms"				"3 4"
+			"hero_stacks"			"5"
+			"hero_dmg"				"10 15"
+			"hero_as"				"50 60"
+			"hero_ms"				"15 20"
 		}
 	}
 	"boss_durva_soul_barrier"
@@ -69,23 +41,11 @@
 			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"dmg_reduction"			"60"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_reduction"			"100"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"min_reduction"			"15 1"
-			}
+			"dmg_reduction"			"60"
+			"max_reduction"			"100"
+			"min_reduction"			"15 1"
 		}
 	}
 	"boss_durva_all_is_linked"
@@ -103,18 +63,10 @@
 			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"600"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_spread"			"8 12"
-			}
+			"radius"				"600"
+			"damage_spread"			"8 12"
 		}
 	}
 	"boss_durva_consume_soul"
@@ -138,23 +90,11 @@
 			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-            {
-                "var_type"				"FIELD_FLOAT"
-                "sap_damage"			"20 24"
-            }
-			"02"
-            {
-                "var_type"				"FIELD_FLOAT"
-                "width"					"100"
-            }
-			"03"
-            {
-                "var_type"				"FIELD_FLOAT"
-                "speed"					"600"
-            }
+			"sap_damage"			"20 24"
+			"width"					"100"
+			"speed"					"600"
 		}
 	}
 	"boss_durva_feast_on_their_eyes"
@@ -177,28 +117,12 @@
 			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "miss"    					 	"40 60"
-            }
-    		"02"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "vision"     					"40 60"
-            }
-    		"03"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "duration"     					"10"
-            }
-			"03"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "radius"     					"900 1200"
-            }
+			"miss"    					 	"40 60"
+    		"vision"     					"40 60"
+    		"duration"     					"10"
+			"radius"     					"900 1200"
 		}
 	}
 	"boss_durva_purgatory"
@@ -224,13 +148,12 @@
 			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
     		"01"
             {
                 "var_type"                      "FIELD_INTEGER"
                 "duration"     					"3 4"
-            }
 		}
 	}
 	"boss_durva_filled_to_burst"
@@ -255,38 +178,14 @@
 			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "projectile_damage"     		"300 400"
-            }
-    		"02"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "speed"     					"600"
-            }
-    		"03"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "radius"     					"75"
-            }
-			"04"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "projectile_count"     			"16"
-            }
-			"05"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "slow"     						"20 25"
-            }
-			"06"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "duration"     					"12"
-            }
+			"projectile_damage"     		"300 400"
+    		"speed"     					"600"
+    		"radius"     					"75"
+			"projectile_count"     			"16"
+			"slow"     						"20 25"
+			"duration"     					"12"
 		}
 	}
 }

@@ -80,7 +80,7 @@ function modifier_dw_crown:OnRemoved()
 		EmitSoundOn("Hero_DarkWillow.Ley.Stun", self:GetParent())
 
 		if caster:HasTalent("special_bonus_unique_dw_crown_1") then
-			damage = caster:GetIntellect()
+			damage = caster:GetIntellect( false)
 		end
 
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_dark_willow/dark_willow_leyconduit_marker.vpcf", PATTACH_POINT, caster)

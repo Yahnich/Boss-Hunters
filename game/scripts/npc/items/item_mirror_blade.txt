@@ -35,33 +35,13 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"evasion_loss"			"-15 -20 -25 -30 -35"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"12 10 8 6 4"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ranged_cooldown"		"18 15 12 9 6"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"evasion_loss"			"-15 -20 -25 -30 -35"
+			"duration"				"0.8"
+			"cooldown"				"12 10 8 6 4"
+			"ranged_cooldown"		"18 15 12 9 6"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -119,33 +99,13 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"evasion_loss"			"-15 -20 -25 -30 -35"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"12 10 8 6 4"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ranged_cooldown"		"18 15 12 9 6"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"evasion_loss"			"-15 -20 -25 -30 -35"
+			"duration"				"0.8"
+			"cooldown"				"12 10 8 6 4"
+			"ranged_cooldown"		"18 15 12 9 6"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -205,33 +165,13 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"evasion_loss"			"-15 -20 -25 -30 -35"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"12 10 8 6 4"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ranged_cooldown"		"18 15 12 9 6"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"evasion_loss"			"-15 -20 -25 -30 -35"
+			"duration"				"0.8"
+			"cooldown"				"12 10 8 6 4"
+			"ranged_cooldown"		"18 15 12 9 6"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -291,33 +231,13 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"evasion_loss"			"-15 -20 -25 -30 -35"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"12 10 8 6 4"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ranged_cooldown"		"18 15 12 9 6"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"evasion_loss"			"-15 -20 -25 -30 -35"
+			"duration"				"0.8"
+			"cooldown"				"12 10 8 6 4"
+			"ranged_cooldown"		"18 15 12 9 6"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -376,33 +296,13 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"evasion_loss"			"-15 -20 -25 -30 -35"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"12 10 8 6 4"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ranged_cooldown"		"18 15 12 9 6"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"evasion_loss"			"-15 -20 -25 -30 -35"
+			"duration"				"0.8"
+			"cooldown"				"12 10 8 6 4"
+			"ranged_cooldown"		"18 15 12 9 6"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -463,33 +363,13 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"evasion_loss"			"-15 -20 -25 -30 -35"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"12 10 8 6 4"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ranged_cooldown"		"18 15 12 9 6"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"evasion_loss"			"-15 -20 -25 -30 -35"
+			"duration"				"0.8"
+			"cooldown"				"12 10 8 6 4"
+			"ranged_cooldown"		"18 15 12 9 6"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -550,33 +430,13 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"evasion_loss"			"-15 -20 -25 -30 -35"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"12 10 8 6 4"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ranged_cooldown"		"18 15 12 9 6"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"evasion_loss"			"-15 -20 -25 -30 -35"
+			"duration"				"0.8"
+			"cooldown"				"12 10 8 6 4"
+			"ranged_cooldown"		"18 15 12 9 6"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -637,33 +497,13 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"evasion_loss"			"-15 -20 -25 -30 -35"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"12 10 8 6 4"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ranged_cooldown"		"18 15 12 9 6"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"evasion_loss"			"-15 -20 -25 -30 -35"
+			"duration"				"0.8"
+			"cooldown"				"12 10 8 6 4"
+			"ranged_cooldown"		"18 15 12 9 6"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -724,33 +564,13 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"evasion_loss"			"-15 -20 -25 -30 -35"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"12 10 8 6 4"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ranged_cooldown"		"18 15 12 9 6"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"evasion_loss"			"-15 -20 -25 -30 -35"
+			"duration"				"0.8"
+			"cooldown"				"12 10 8 6 4"
+			"ranged_cooldown"		"18 15 12 9 6"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 }

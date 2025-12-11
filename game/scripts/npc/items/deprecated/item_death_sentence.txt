@@ -57,43 +57,15 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_cast_range"		"400"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"50"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_int"				"10"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_agi"				"20"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"target_amp"			"30"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"target_cast_range"		"250"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"target_accuracy"		"-40"
-			}
+			"bonus_cast_range"		"400"
+			"bonus_damage"			"50"
+			"bonus_int"				"10"
+			"bonus_agi"				"20"
+			"target_amp"			"30"
+			"target_cast_range"		"250"
+			"target_accuracy"		"-40"
 		}
 	}
 }

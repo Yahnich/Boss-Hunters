@@ -19,9 +19,9 @@ function modifier_chen_sup_mr_handle:OnAttackLanded(params)
 	if IsServer() and params.attacker == self:GetParent() and RollPercentage(self:GetTalentSpecialValueFor("chance")) then
 		local intellect = 0
 		if params.attacker:GetOwner() then
-			intellect = params.attacker:GetOwner():GetIntellect()
+			intellect = params.attacker:GetOwner():GetIntellect( false)
 		else
-			intellect = params.attacker:GetIntellect()
+			intellect = params.attacker:GetIntellect( false)
 		end
 		local damage = intellect * self:GetTalentSpecialValueFor("damage") / 100
 		self:GetAbility():DealDamage(params.attacker, params.target, damage)

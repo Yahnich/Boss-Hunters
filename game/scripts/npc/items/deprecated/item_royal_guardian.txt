@@ -55,63 +55,25 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_block"			"90"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"block_chance"			"50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"500"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"			"500"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blind"					"40"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slam_radius"			"250"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slam_distance"			"400"
-			}
+			"damage_block"			"90"
+			"block_chance"			"50"
+			"bonus_health_regen"	"5"
+			"bonus_armor"			"5"
+			"bonus_health"			"500"
+			"bonus_mana"			"500"
+			"blind"					"40"
+			"slam_radius"			"250"
+			"slam_distance"			"400"
 			"10"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"slam_duration"			"5"
-			}
 			"11"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"armor_damage"			"10"
-			}
 		}
 	}
 }

@@ -20,28 +20,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"evasion"				"15 25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hits_to_stun"			"9 8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.15 0.2"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"critical_damage"		"175"
-			}
+			"evasion"				"15 25"
+			"hits_to_stun"			"9 8"
+			"stun_duration"			"0.15 0.2"
+			"critical_damage"		"175"
 		}
 	}
 	"boss18b_frenzy"
@@ -71,23 +55,11 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"3"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movespeed_bonus"		"35 50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attackspeed_bonus"		"150 200"
-			}
+			"duration"				"3"
+			"movespeed_bonus"		"35 50"
+			"attackspeed_bonus"		"150 200"
 		}
 	}
 	"boss18b_swipe"
@@ -116,23 +88,11 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"moveslow"				"-125 -150"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"attackslow"			"-150 -200"
-			}
+			"duration"				"2"
+			"moveslow"				"-125 -150"
+			"attackslow"			"-150 -200"
 		}
 	}
 	"boss18b_trample"
@@ -160,38 +120,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"jump_distance"			"300"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"starting_radius"		"175"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius_growth"			"35 50"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"jumps"					"1 2"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"300 350"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"1.5"
-			}
+			"jump_distance"			"300"
+			"starting_radius"		"175"
+			"radius_growth"			"35 50"
+			"jumps"					"1 2"
+			"damage"				"300 350"
+			"stun_duration"			"1.5"
 		}
 	}
 	"boss18b_corrupted_huntress"
@@ -214,23 +150,11 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aura_radius"			"750"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-5 -7"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_per_sec"		"35 50"
-			}
+			"aura_radius"			"750"
+			"armor_reduction"		"-5 -7"
+			"damage_per_sec"		"35 50"
 		}
 	}
 }

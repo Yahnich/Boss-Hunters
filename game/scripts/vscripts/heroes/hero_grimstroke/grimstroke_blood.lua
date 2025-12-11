@@ -43,9 +43,9 @@ function grimstroke_blood:CreateInkSpot(vLocation, bMinion)
 	local caster = self:GetCaster()
 
 	local duration = self:GetTalentSpecialValueFor("duration")
-	local heal = caster:GetIntellect() * self:GetTalentSpecialValueFor("heal_creep")
+	local heal = caster:GetIntellect( false) * self:GetTalentSpecialValueFor("heal_creep")
 	if not bMinion then
-		heal = caster:GetIntellect() * self:GetTalentSpecialValueFor("heal")
+		heal = caster:GetIntellect( false) * self:GetTalentSpecialValueFor("heal")
 	end
 	CreateModifierThinker(caster, self, "modifier_grimstroke_blood_thing", {Duration = duration, Heal = heal}, vLocation, caster:GetTeam(), false)
 end

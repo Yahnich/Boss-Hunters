@@ -21,23 +21,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"trigger_chance"			"35 50"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"lifesteal"					"80 100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cleave"					"50"
-			}
+			"trigger_chance"			"35 50"
+			"lifesteal"					"80 100"
+			"cleave"					"50"
 		}
 	}
 	"boss_legion_commander_hail_of_arrows"
@@ -73,23 +61,11 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"475"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"275"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_per_unit"				"75 125"
-			}
+			"radius"						"475"
+			"damage"						"275"
+			"damage_per_unit"				"75 125"
 		}
 	}
 	//=================================================================================================================
@@ -132,23 +108,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10.0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"attack_speed"			"200 250"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hp_regen"				"1"
-			}
+			"duration"				"10.0"
+			"attack_speed"			"200 250"
+			"hp_regen"				"1"
 		}
 	}
 	"boss_legion_commander_infernal_rage"
@@ -186,28 +150,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"15.0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"dmg_reduction"			"-35 -50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"35 50"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_dmg"				"100 150"
-			}
+			"duration"				"15.0"
+			"dmg_reduction"			"-35 -50"
+			"bonus_ms"				"35 50"
+			"bonus_dmg"				"100 150"
 		}
 	}
 }

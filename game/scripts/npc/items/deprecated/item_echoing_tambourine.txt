@@ -53,83 +53,44 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_agi"				"10"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_int"				"25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_str"				"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_mregen"			"5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_as"				"35"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms_aura"			"20" //flat
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms_buff"			"15" //percent
-			}
+			"bonus_agi"				"10"
+			"bonus_int"				"25"
+			"bonus_str"				"10"
+			"bonus_mregen"			"5"
+			"bonus_as"				"35"
+			"bonus_ms_aura"			"20" //flat
+			"bonus_ms_buff"			"15" //percent
 			"08"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"cooldown_reduction_buff"			"20" //percent
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"status_amp_buff"			"15" //percent
-			}
+			"status_amp_buff"			"15" //percent
 			"10"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"heal_restore"			"30" //percent
-			}
 			"11"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"mana_restore"			"10" //percent
-			}
 			"12"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"daze_radius"			"500" //percent
-			}
 			"13"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"daze_duration"			"2.5" //percent
-			}
 			"14"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"6"
-			}
 			"15"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"900"
-			}
 		}
 
 		"precache"

@@ -300,7 +300,7 @@ end
 function modifier_stats_system_handler:GetModifierAttackSpeedBonus_Constant()
 	if self.requestingAttackSpeedData then return end
 	self.requestingAttackSpeedData = true
-	local attackspeed = self:GetParent():GetAttackSpeed() * 100
+	local attackspeed = self:GetParent():GetAttackSpeed( false ) * 100
 	local bonusAttackspeed = 0
 	self.requestingAttackSpeedData = false
 	local ATTACK_SPEED_MAX = 700
@@ -346,7 +346,7 @@ end
 function modifier_stats_system_handler:GetModifierBonusStats_Intellect()
 	if self.requestingIntellectData then return end
 	self.requestingIntellectData = true
-	local intellect = self:GetParent():GetIntellect()
+	local intellect = self:GetParent():GetIntellect( false)
 	local bonusInt = 0
 	self.requestingIntellectData = false
 	for modifier, active in pairs( self.modifierFunctions["GetModifierIntellectBonusPercentage"]  ) do
@@ -405,12 +405,12 @@ function modifier_stats_system_handler:GetModifierSpellAmplify_Percentage()
 	if owner:IsRealHero() and self:GetParent():IsHero() then
 		heroBonus = owner:GetLevel() * 0.5
 	end
-	return owner:GetIntellect() * 0.15 + (self.statsInfo.sa or 0) + heroBonus
+	return owner:GetIntellect( false) * 0.15 + (self.statsInfo.sa or 0) + heroBonus
 end
 	
 -- function modifier_stats_system_handler:GetModifierHealAmplify_Percentage()
 	-- local owner = self:GetCaster() or self:GetParent()
-	-- return owner:GetIntellect() * 0.15
+	-- return owner:GetIntellect( false) * 0.15
 -- end
 
 -- function modifier_stats_system_handler:GetModifierPercentageCooldown() return self.cdr or 0 end
@@ -520,9 +520,9 @@ function modifier_stats_system_handler:OnTakeDamage( params )
 	--- LIFESTEAL
 	-------------------------------
 	if params.attacker == parent and params.unit ~= parent and parent:GetHealth() > 0 and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL) ) then
-		-- if caster.statsSystemLastIntCheck ~= caster:GetIntellect() then
-			-- caster.statsSystemLastIntCheck = caster:GetIntellect()
-			-- caster.statsSystemLifestealInnate = (1-(1-0.00125)^caster:GetIntellect())
+		-- if caster.statsSystemLastIntCheck ~= caster:GetIntellect( false) then
+			-- caster.statsSystemLastIntCheck = caster:GetIntellect( false)
+			-- caster.statsSystemLifestealInnate = (1-(1-0.00125)^caster:GetIntellect( false))
 		-- end
 		-- local innateLifesteal = caster.statsSystemLifestealInnate
 		-- if params.inflictor and params.unit:IsMinion() then

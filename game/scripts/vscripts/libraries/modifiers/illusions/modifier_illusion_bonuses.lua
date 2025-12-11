@@ -5,7 +5,7 @@ function modifier_illusion_bonuses:OnCreated()
 	if not self:GetCaster() then return end
 	local agility = self:GetCaster():GetAgility()
 	local strength = self:GetCaster():GetStrength()
-	local intellect = self:GetCaster():GetIntellect()
+	local intellect = self:GetCaster():GetIntellect( false)
 	self.as = agility * 1
 	self.ms = agility * 0.075
 	self.hp = strength * 25

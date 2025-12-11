@@ -30,28 +30,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"distance"				"500 800"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"1200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"width"					"125 150"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 250"
-			}
+			"distance"				"500 800"
+			"speed"					"1200"
+			"width"					"125 150"
+			"damage"				"200 250"
 		}
 	}
 	"satyr_champion_mana_combustion"
@@ -80,28 +64,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"2 1.5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_burn"				"300 450"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"burn_damage"			"33 50"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"450"
-			}
+			"delay"					"2 1.5"
+			"mana_burn"				"300 450"
+			"burn_damage"			"33 50"
+			"radius"				"450"
 		}
 	}
 
@@ -124,18 +92,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hp_regen"				"30 50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
-			}
+			"hp_regen"				"30 50"
+			"radius"				"900"
 		}
 	}
 
@@ -170,23 +130,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"35"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bounces"				"3"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"search_radius"			"350 500"
-			}
+			"damage"				"35"
+			"bounces"				"3"
+			"search_radius"			"350 500"
 		}
 	}
 	"satyr_mage_revitalize"
@@ -225,13 +173,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_pct"				"30 45"
-			}
+			"heal_pct"				"30 45"
 		}
 	}
 }

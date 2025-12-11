@@ -1,15 +1,30 @@
-"AddonInfo"
 {
-	maps			"bh_raid_hardcore"
-	"IsPlayable"	"1"
-	"ShouldForceDefaultGuide"	"1"
-
-	"bh_raid_hardcore"
-	{
-		"MaxPlayers"                    "5"
-		"MaxLives"						"3"
-		"StartingLives"					"2"
-		"Difficulty"					"4"
-	}
+	maps = 
+	[
+		"bh_raid_hardcore",
+	]
+	IsPlayable = 1
+	map_options = 
+	[
+		{
+			MaxPlayers = 5
+			map = "bh_raid_hardcore"
+		},
+	]
+	HideInTools = false
+	IsTemplate = false
+	CheckAFKPlayers = true
+	DefaultMap = ""
+	Default_Keys = null
+	DisableIK = false
+	EnablePickRules = false
+	EventGame = false
+	hero_picker = null
+	HeroGuidesSupported = true
+	ForceDefaultGuide = true
+	MinimalPrecache = false
+	MinPlayers = 1
+	MaxPlayers = 5
+	PenaltiesEnabled = false
+	TeamCount = -1
 }
-

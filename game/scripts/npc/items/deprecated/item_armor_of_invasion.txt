@@ -52,38 +52,14 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"10"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_damage"			"50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_attack_speed"	"20"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_armor"			"6"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_attack_speed"		"20"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"900"
-			}
+			"bonus_armor"			"10"
+			"bonus_damage"			"50"
+			"bonus_attack_speed"	"20"
+			"aura_armor"			"6"
+			"aura_attack_speed"		"20"
+			"aura_radius"			"900"
 		}
 	}
 }

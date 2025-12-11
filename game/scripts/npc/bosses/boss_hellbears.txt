@@ -32,28 +32,12 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"knockback"						"1000 1200"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"stun_duration"					"2"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"damage"						"400 600"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"speed"							"550"
-			}
+			"knockback"						"1000 1200"
+			"stun_duration"					"2"
+			"damage"						"400 600"
+			"speed"							"550"
 		}
 	}
 	"boss_hellbear_clap"
@@ -90,33 +74,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"275 350"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"325"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ms_slow"				"-35"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"as_slow"				"-200 -300"
-			}
+			"duration"				"6"
+			"damage"				"275 350"
+			"radius"				"325"
+			"ms_slow"				"-35"
+			"as_slow"				"-200 -300"
 		}
 	}
 	"boss_hellbear_battle_hymn"
@@ -138,18 +102,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"bonus_as"					"20 25"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"900"
-			}
+			"bonus_as"					"20 25"
+			"radius"					"900"
 		}
 	}
 }

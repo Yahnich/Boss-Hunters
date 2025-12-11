@@ -25,39 +25,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"leap_speed"			"600"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"leap_height"			"900"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"leap_radius"			"175"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"leap_damage"			"250 300"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"leap_slow"				"-20 -35"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow_duration"			"5"
-			}
+			"leap_speed"			"600"
+			"leap_height"			"900"
+			"leap_radius"			"175"
+			"leap_damage"			"250 300"
+			"leap_slow"				"-20 -35"
+			"slow_duration"			"5"
 		}
 		"precache"
 		{
@@ -90,29 +65,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spear_speed"			"900"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spear_distance"		"2000"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"spear_width"			"125"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"spear_damage"			"100 150"
-			}
+			"spear_speed"			"900"
+			"spear_distance"		"2000"
+			"spear_width"			"125"
+			"spear_damage"			"100 150"
 		}
 		"precache"
 		{
@@ -149,34 +107,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spear_speed"			"600"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spear_distance"		"2000"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"spear_width"			"125"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"spear_damage"			"250 400"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"stun_duration"			"2"
-			}
+			"spear_speed"			"600"
+			"spear_distance"		"2000"
+			"spear_width"			"125"
+			"spear_damage"			"250 400"
+			"stun_duration"			"2"
 		}
 		"precache"
 		{

@@ -27,18 +27,10 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"break_distance"		"450 500"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"2"
-			}
+			"break_distance"		"450 500"
+			"duration"				"2"
 		}
 	}
 	"boss26b_wound"
@@ -61,18 +53,10 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"stack_damage"			"5 8"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"10"
-			}
+			"stack_damage"			"5 8"
+			"duration"				"10"
 		}
 	}
 	"boss26_ravage"
@@ -105,23 +89,11 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"impact_damage"			"300 400"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"jump_distance"			"500"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.75 1"
-			}
+			"impact_damage"			"300 400"
+			"jump_distance"			"500"
+			"stun_duration"			"0.75 1"
 		}
 	}
 	"boss26_rend"
@@ -153,23 +125,11 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"200 250"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage_per_stack"	"100 150"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"10"
-			}
+			"damage"					"200 250"
+			"bonus_damage_per_stack"	"100 150"
+			"duration"					"10"
 		}
 	}
 	"boss26_smash"
@@ -198,28 +158,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"325"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow"						"-35 -55"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"3.5 4"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"300 350"
-			}
+			"radius"					"325"
+			"slow"						"-35 -55"
+			"duration"					"3.5 4"
+			"damage"					"300 350"
 		}
 	}
 	"boss27_destroy"
@@ -247,23 +191,11 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"30 35"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_cdr"				"40 50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
-			}
+			"bonus_ms"				"30 35"
+			"bonus_cdr"				"40 50"
+			"duration"				"10"
 		}
 	}
 	"boss27_kill_them"
@@ -294,18 +226,10 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_amp"			"45 60"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"10"
-			}
+			"damage_amp"			"45 60"
+			"duration"				"10"
 		}
 	}
 	"boss27_protect_me"
@@ -332,18 +256,10 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"-50 -65"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"10"
-			}
+			"damage_reduction"		"-50 -65"
+			"duration"				"10"
 		}
 	}
 	"boss27_ursa_giant"
@@ -371,23 +287,11 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"spawn_count"			"1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"players_per_bonus"		"3 2"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"spawn_radius"			"500"
-			}
+			"spawn_count"			"1"
+			"players_per_bonus"		"3 2"
+			"spawn_radius"			"500"
 		}
 	}
 	"boss27_ursa_warrior"
@@ -417,23 +321,11 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"spawn_count"			"1 2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"players_per_bonus"		"1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"spawn_radius"			"600"
-			}
+			"spawn_count"			"1 2"
+			"players_per_bonus"		"1"
+			"spawn_radius"			"600"
 		}
 	}
 }

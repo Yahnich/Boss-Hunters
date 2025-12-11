@@ -33,28 +33,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"20 30 50 125 200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow"					"-12 -16 -18 -18 -18"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"base_damage"			"20 30 50 125 200"
+			"duration"				"3"
+			"slow"					"-12 -16 -18 -18 -18"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	
@@ -109,28 +93,12 @@
 		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"20 30 50 125 200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow"					"-12 -16 -18 -18 -18"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"base_damage"			"20 30 50 125 200"
+			"duration"				"3"
+			"slow"					"-12 -16 -18 -18 -18"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -186,28 +154,12 @@
 		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"20 30 50 125 200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow"					"-12 -16 -18 -18 -18"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"base_damage"			"20 30 50 125 200"
+			"duration"				"3"
+			"slow"					"-12 -16 -18 -18 -18"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -262,28 +214,12 @@
 		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"20 30 50 125 200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow"					"-12 -16 -18 -18 -18"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"base_damage"			"20 30 50 125 200"
+			"duration"				"3"
+			"slow"					"-12 -16 -18 -18 -18"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -338,28 +274,12 @@
 		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"20 30 50 125 200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow"					"-12 -16 -18 -18 -18"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"base_damage"			"20 30 50 125 200"
+			"duration"				"3"
+			"slow"					"-12 -16 -18 -18 -18"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -418,28 +338,12 @@
 		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"20 30 50 125 200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow"					"-12 -16 -18 -18 -18"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"base_damage"			"20 30 50 125 200"
+			"duration"				"3"
+			"slow"					"-12 -16 -18 -18 -18"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -498,28 +402,12 @@
 		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"20 30 50 125 200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow"					"-12 -16 -18 -18 -18"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"base_damage"			"20 30 50 125 200"
+			"duration"				"3"
+			"slow"					"-12 -16 -18 -18 -18"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -577,28 +465,12 @@
 		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"20 30 50 125 200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow"					"-12 -16 -18 -18 -18"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"base_damage"			"20 30 50 125 200"
+			"duration"				"3"
+			"slow"					"-12 -16 -18 -18 -18"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -656,28 +528,12 @@
 		"AvailableRuneSlots"			"2"
 	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"20 30 50 125 200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow"					"-12 -16 -18 -18 -18"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"base_damage"			"20 30 50 125 200"
+			"duration"				"3"
+			"slow"					"-12 -16 -18 -18 -18"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 }

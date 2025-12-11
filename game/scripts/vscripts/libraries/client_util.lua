@@ -292,13 +292,13 @@ function C_DOTA_BaseNPC:GetStrength()
 	end
 end
 
-function C_DOTA_BaseNPC:GetIntellect()
+function C_DOTA_BaseNPC:GetIntellect( )
 	local unit = self
 	if self:GetParentUnit() then
 		unit = self:GetParentUnit()
 	end
 	if unit:IsRealHero() then
-		return unit:GetIntellect()
+		return unit:GetIntellect( false)
 	else
 		return 0
 	end
@@ -335,7 +335,7 @@ function C_DOTA_BaseNPC:GetPrimaryStatValue()
 	elseif nPrim == DOTA_ATTRIBUTE_AGILITY then
 		return unit:GetAgility()
 	elseif nPrim == DOTA_ATTRIBUTE_INTELLECT then
-		return unit:GetIntellect()
+		return unit:GetIntellect( false)
 	end
 	return 0
 end

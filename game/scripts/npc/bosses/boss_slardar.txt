@@ -29,23 +29,11 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"0 0 0 0"
 
-	    "AbilitySpecial"
+	    "AbilityValues"
 		{
-			"01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "spawns_sec"            "1 2"
-	        }
-			"02"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "max_slithereen"        "5" 
-	        }
-			"02"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "duration"       		"10"
-	        }
+			"spawns_sec"            "1 2"
+			"max_slithereen"        "5" 
+			"duration"       		"10"
 		}
 	}
 	"boss_slardar_splash_zone"
@@ -78,53 +66,17 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"0 0 0 0"
 
-	    "AbilitySpecial"
+	    "AbilityValues"
 		{
-			"01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "initial_damage"         "125 150"
-	        }
-			"02"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "initial_stun"        	"1"
-	        }
-			"03"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "delay"       			"2.1"
-	        }
-			"04"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "second_damage"         "200 300"
-	        }
-			"05"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "second_stun"        	"1.6"
-	        }
-			"06"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "radius"        		"325 350"
-	        }
-			"07"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "knockup"        		"350"
-	        }
-			"08"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "pool_duration"        	"10"
-	        }
-			"09"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "pool_radius"        	"600"
-	        }
+			"initial_damage"			"125 150"
+			"initial_stun"				"1"
+			"delay"						"2.1"
+			"second_damage"				"200 300"
+			"second_stun"				"1.6"
+			"radius"					"325 350"
+			"knockup"					"350"
+			"pool_duration"				"10"
+			"pool_radius"				"600"
 		}
 	}
 	"boss_slardar_blessing_of_the_tides"
@@ -140,18 +92,10 @@
 		{
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
 		}
-	    "AbilitySpecial"
+	    "AbilityValues"
 		{
-			"01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "bonus_as"            	"50 75"  //The meteor lands on the ground this many seconds after it was cast.
-	        }
-			"02"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "bonus_regen"       	 "5 10"  //The meteor lands on the ground this many seconds after it was cast.
-	        }
+			 "bonus_as"            	"50 75"  //The meteor lands on the ground this many seconds after it was cast.
+			"bonus_regen"       	 "5 10"  //The meteor lands on the ground this many seconds after it was cast.
 		}
 	}
 	"boss_slardar_shin_shatter"
@@ -168,23 +112,11 @@
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
 		}
 
-	    "AbilitySpecial"
+	    "AbilityValues"
 		{
-			"01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "chance"            	"15 20"
-	        }
-			"02"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "slow"       			"-20"
-	        }
-			"03"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "duration"       		"2"
-	        }
+			"chance"            	"15 20"
+			"slow"       			"-20"
+			"duration"       		"2"
 		}
 	}
 }

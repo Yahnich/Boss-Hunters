@@ -24,18 +24,10 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ranged_lifesteal"		"10"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"melee_lifesteal"		"15"
-			}
+			"ranged_lifesteal"		"10"
+			"melee_lifesteal"		"15"
 		}
 	}
 }

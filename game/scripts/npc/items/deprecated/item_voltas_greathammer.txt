@@ -57,58 +57,24 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"primary_to_damage"		"350"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_range"	"150"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"melee_attack_range"	"75"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_regen"			"4"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_damage"			"90"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"625"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"strike_chance"			"25"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"strike_damage"			"175"
-			}
+			"primary_to_damage"		"350"
+			"bonus_attack_range"	"150"
+			"melee_attack_range"	"75"
+			"bonus_regen"			"4"
+			"bonus_damage"			"90"
+			"radius"				"625"
+			"strike_chance"			"25"
+			"strike_damage"			"175"
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"strike_bounces"		"8"
-			}
 			"10"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"paralyze_duration"		"1"
-			}
 		}
 	}
 }

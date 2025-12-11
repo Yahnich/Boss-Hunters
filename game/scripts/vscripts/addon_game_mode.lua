@@ -185,16 +185,14 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:SetCustomGameEndDelay( 15.0 )
 	GameRules:SetCustomGameSetupAutoLaunchDelay( 0 ) -- fix valve bullshit
 	
-	local mapInfo = LoadKeyValues( "addoninfo.txt" )[GetMapName()]
-	
-	GameRules.BasePlayers = mapInfo.MaxPlayers
-	GameRules._maxLives =  mapInfo.MaxLives
-	GameRules._startingLives =  mapInfo.StartingLives
-	GameRules.gameDifficulty =  mapInfo.Difficulty
+	GameRules.BasePlayers = 5
+	GameRules._maxLives =  3
+	GameRules._startingLives =  3
+	GameRules.gameDifficulty =  4
 	CustomNetTables:SetTableValue( "game_info", "difficulty", {difficulty = GameRules.gameDifficulty} )
 	CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = 0} )
 	
-	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, mapInfo.MaxPlayers)
+	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, GameRules.BasePlayers)
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 0)
 	
 	GameRules:SetHeroRespawnEnabled( false )

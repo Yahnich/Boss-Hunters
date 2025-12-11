@@ -61,48 +61,16 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_block"			"30"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"block_chance"			"60"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"20"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_evasion"			"25"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"5"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_hp_regen"		"5"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_heal_amp"		"25"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"disarm_duration"		"5.0"
-			}
+			"damage_block"			"30"
+			"block_chance"			"60"
+			"bonus_strength"		"20"
+			"bonus_evasion"			"25"
+			"bonus_armor"			"5"
+			"bonus_hp_regen"		"5"
+			"bonus_heal_amp"		"25"
+			"disarm_duration"		"5.0"
 		}
 	}
 }

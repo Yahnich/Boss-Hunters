@@ -15,23 +15,11 @@
 			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spawn_rate"			"25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_health"			"1000 1500"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"50 75"
-			}
+			"spawn_rate"			"25"
+			"base_health"			"1000 1500"
+			"base_damage"			"50 75"
 		}
 	}
 	"boss_valgraduth_entangling_grip"
@@ -51,18 +39,10 @@
 		
 		"AbilityCooldown"				"4"
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"entangle_chance"		"20"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"entangle_duration"		"2 3"
-			}
+			"entangle_chance"		"20"
+			"entangle_duration"		"2 3"
 		}
 	}
 	
@@ -86,18 +66,10 @@
 			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "block_count"   			  	"4 6"
-            }
-    		"02"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "block_amount"     				"60"
-            }
+			 "block_count"   			  	"4 6"
+    		 "block_amount"					"60"
 		}
 	}
 	"boss_valgraduth_roots_grip"
@@ -121,23 +93,11 @@
 			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "root_duration"     			"6 8"
-            }
-			"02"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "root_damage"     				"60 80"
-            }
-			"04"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "root_pull"     				"75 100"
-            }
+			 "root_duration"     			"6 8"
+			"root_damage"     				"60 80"
+			"root_pull"     				"75 100"
 		}
 	}
 	"boss_valgraduth_bomb_spores"
@@ -161,53 +121,17 @@
 			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "damage"     					"250 350"
-            }
-    		"02"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "explosion_radius"     			"350"
-            }
-    		"03"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "trigger_radius"     			"150"
-            }
-			"04"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "linger_duration"     			"30"
-            }
-			"05"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "spores_per_second"     		"4 5"
-            }
-			"06"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "spore_speed"     				"100"
-            }
-			"07"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "spore_max_distance"     		"1200"
-            }
-			"08"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "spore_min_distance"     		"150"
-            }
-			"08"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "spore_duration"     			"10"
-            }
+			"damage"     					"250 350"
+    		"explosion_radius"     			"350"
+    		"trigger_radius"     			"150"
+			"linger_duration"     			"30"
+			"spores_per_second"     		"4 5"
+			"spore_speed"     				"100"
+			"spore_max_distance"     		"1200"
+			"spore_min_distance"     		"150"
+			"spore_duration"     			"10"
 		}
 	}
 }  

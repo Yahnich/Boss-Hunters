@@ -25,7 +25,7 @@ function nyx_int_burn:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
-	local damage = caster:GetIntellect() * self:GetTalentSpecialValueFor("damage")
+	local damage = caster:GetIntellect( false) * self:GetTalentSpecialValueFor("damage")
 
 	EmitSoundOn("Hero_NyxAssassin.ManaBurn.Cast", caster)
 	EmitSoundOn("Hero_NyxAssassin.ManaBurn.Cast", target)
@@ -72,7 +72,7 @@ end
 
 function modifier_nyx_int_burn:OnIntervalThink()
 	if IsServer() then
-		local damage = self:GetCaster():GetIntellect() * self:GetCaster():FindTalentValue("special_bonus_unique_nyx_int_burn_2", "damage")/100
+		local damage = self:GetCaster():GetIntellect( false) * self:GetCaster():FindTalentValue("special_bonus_unique_nyx_int_burn_2", "damage")/100
 		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), damage, {}, 0)
 	end
 end

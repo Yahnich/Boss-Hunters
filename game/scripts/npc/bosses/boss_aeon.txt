@@ -18,23 +18,11 @@
 			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"growth_rate"			"1.0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"0.75 1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"1 2"
-			}
+			"growth_rate"			"1.0"
+			"bonus_damage"			"0.75 1"
+			"bonus_ms"				"1 2"
 		}
 	}
 	//=================================================================================================================
@@ -57,23 +45,11 @@
 			"particle"					"particles/units/heroes/hero_dark_seer/dark_seer_vacuum.vpcf"
 			"particle"					"particles/units/heroes/hero_puck/puck_illusory_orb.vpcf"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"as_slow"				"-90 -120"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cdr_slow"				"-15 -25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"		 		"550"
-			}
+			"as_slow"				"-90 -120"
+			"cdr_slow"				"-15 -25"
+			"radius"		 		"550"
 		}
 	}
 	//=================================================================================================================
@@ -95,13 +71,9 @@
 		{
 			"particle"					"particles/bosses/boss_aeon/boss_aeon_flashback.vpcf"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"curr_hp_evade"			"5"
-			}
+			"curr_hp_evade"			"5"
 		}
 	}
 	//=================================================================================================================
@@ -127,18 +99,10 @@
 			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"max_radius"				"450"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"3"
-			}
+			"max_radius"				"450"
+			"duration"					"3"
 		}
 	}
 	//=================================================================================================================
@@ -168,23 +132,11 @@
 			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_firestorm_wave.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"dmg_red"					"-50 -75"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"illusion_inc"				"200 100"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"illusion_out"				"50 100"
-			}
+			"dmg_red"					"-50 -75"
+			"illusion_inc"				"200 100"
+			"illusion_out"				"50 100"
 		}
 	}
 	//=================================================================================================================
@@ -211,18 +163,10 @@
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"spawns"					"2 3"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"curr_hp_mult"				"33"
-			}
+			"spawns"					"2 3"
+			"curr_hp_mult"				"33"
 		}
 	}
 	//=================================================================================================================
@@ -250,18 +194,10 @@
 			"particle"					"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"dmg_reduction"				"-75"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"12 15"
-			}
+			"dmg_reduction"				"-75"
+			"duration"					"12 15"
 		}
 	}
 	//=================================================================================================================
@@ -287,23 +223,11 @@
 			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "total_armor_reduction"     	"60 80"
-            }
-    		"02"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "duration"     					"60 80"
-            }
-    		"03"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "radius"     					"350 500"
-            }
+			"total_armor_reduction"     	"60 80"
+			"duration"     					"60 80"
+    		"radius"     					"350 500"
 		}
 	}
 }

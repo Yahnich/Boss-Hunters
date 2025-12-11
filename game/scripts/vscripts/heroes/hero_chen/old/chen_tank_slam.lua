@@ -22,9 +22,9 @@ function modifier_chen_tank_slam_handle:OnAttackLanded(params)
 		for _,enemy in pairs(enemies) do
 			local intellect = 0
 			if params.attacker:GetOwner() then
-				intellect = params.attacker:GetOwner():GetIntellect()
+				intellect = params.attacker:GetOwner():GetIntellect( false)
 			else
-				intellect = params.attacker:GetIntellect()
+				intellect = params.attacker:GetIntellect( false)
 			end
 			local damage = intellect * self:GetTalentSpecialValueFor("damage") / 100
 			self:GetAbility():DealDamage(params.attacker, params.target, damage)

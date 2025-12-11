@@ -59,33 +59,13 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_cast_range"		"500"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"target_amp"			"20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_amp"		"25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_attack_speed"	"25"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_intellect"		"25"
-			}
+			"bonus_cast_range"		"500"
+			"target_amp"			"20"
+			"bonus_spell_amp"		"25"
+			"bonus_attack_speed"	"25"
+			"bonus_intellect"		"25"
 		}
 	}
 }

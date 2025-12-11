@@ -28,28 +28,12 @@
 		}
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"20"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"min_radius"			"150"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"350"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius_change"			"50"
-			}
+			"damage"				"20"
+			"min_radius"			"150"
+			"radius"				"350"
+			"radius_change"			"50"
 		}
 	}
 }

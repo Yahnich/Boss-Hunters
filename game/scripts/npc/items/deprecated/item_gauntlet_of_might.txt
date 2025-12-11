@@ -59,43 +59,15 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor"					"0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_aura"			"10"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hp_per_str"			"0"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"750"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_hp_heal"			"20"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"750"
-			}
+			"armor"					"0"
+			"armor_aura"			"10"
+			"radius"				"900"
+			"hp_per_str"			"0"
+			"bonus_health"			"750"
+			"max_hp_heal"			"20"
+			"radius"				"750"
 		}
 	}
 }

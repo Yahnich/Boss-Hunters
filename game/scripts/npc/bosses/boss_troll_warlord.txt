@@ -39,33 +39,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"03"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "damage"     					"35 50"
-	        }
-	        "02"
-	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "duration"     					"6"
-	        }
-			"03"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "spread_rad"     				"165"
-	        }
-	        "04"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "range"     					"2000"
-	        }
-	        "05"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "width"     					"50"
-	        }
+			"damage"     					"35 50"
+	        "duration"     					"6"
+			"spread_rad"     				"165"
+	        "range"     					"2000"
+	        "width"     					"50"
 		}
 	}
 
@@ -109,28 +89,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-	        "02"
-	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "duration"     					"3"
-	        }
-	        "04"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "range"     					"1000"
-	        }
-	        "05"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "radius"     					"250 300"
-	        }
-	         "02"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "max_targets"     				"2"
-	        }
+	        "duration"     					"3"
+	        "range"     					"1000"
+	        "radius"     					"250 300"
+	        "max_targets"     				"2"
 		}
 	}
 
@@ -174,33 +138,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-	        "01"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "spin_radius"     				"350"
-	        }
-	        "02"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "axe_radius"     				"100"
-	        }
-	        "03"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "damage"     					"300 400"
-	        }
-	        "04"
-	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "duration"     					"80"
-	        }
-	        "05"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "axe_number"     				"2"
-	        }
+	        "spin_radius"     				"350"
+	        "axe_radius"     				"100"
+	        "damage"     					"300 400"
+	        "duration"     					"80"
+	        "axe_number"     				"2"
 		}
 	}
 
@@ -235,28 +179,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-	        "01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"100"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"1500"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"1500 2000"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"100 150"
-			}
+	        "radius"				"100"
+			"range"					"1500"
+			"speed"					"1500 2000"
+			"damage"				"100 150"
 		}
 	}
 
@@ -279,23 +207,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-	        "01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_as"				"200 350"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bouns_at"				"0.1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"150 250"
-			}
+	        "bonus_as"				"200 350"
+			"bouns_at"				"0.1"
+			"bonus_ms"				"150 250"
 		}
 	}
 
@@ -338,28 +254,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-	        "02"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "radius"     					"325"
-	        }
-	        "05"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "damage"     					"200"
-	        }
-	        "02"
-	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "leap_duration"     			"1"
-	        }
-	        "02"
-	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "duration"     					"5"
-	        }
+	        "radius"     					"325"
+	        "damage"     					"200"
+	        "leap_duration"     			"1"
+	        "duration"     					"5"
 		}
 	}
 

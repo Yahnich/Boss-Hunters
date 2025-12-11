@@ -71,7 +71,7 @@ modifier_bane_brain_feast_debuff = class({})
 LinkLuaModifier("modifier_bane_brain_feast_debuff", "heroes/hero_bane/bane_brain_feast", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_bane_brain_feast_debuff:OnCreated()
-	self.slow = -self:GetCaster():GetIntellect()
+	self.slow = -self:GetCaster():GetIntellect( false)
 end
 
 function modifier_bane_brain_feast_debuff:OnRefresh()

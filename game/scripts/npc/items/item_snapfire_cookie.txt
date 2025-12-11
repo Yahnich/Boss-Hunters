@@ -35,38 +35,14 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"jump_duration"			"0.484" //"0.431 0.484 0.538 0.592" // proportional to horizontal distance
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"jump_height"			"257" //"228 257 285 314" // proportional to horizontal distance
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"jump_horizontal_distance"	"450" //"400 450 500 550"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"impact_radius"			"300"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"impact_damage"			"90 160 230 300 370 440 510"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"impact_stun_duration"	"1.4 1.6 1.8 2.0 2.2 2.4 2.6"
-			}
+			"jump_duration"			"0.484" //"0.431 0.484 0.538 0.592" // proportional to horizontal distance
+			"jump_height"			"257" //"228 257 285 314" // proportional to horizontal distance
+			"jump_horizontal_distance"	"450" //"400 450 500 550"
+			"impact_radius"			"300"
+			"impact_damage"			"90 160 230 300 370 440 510"
+			"impact_stun_duration"	"1.4 1.6 1.8 2.0 2.2 2.4 2.6"
 		}
 	}
 }

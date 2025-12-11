@@ -56,28 +56,12 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attack_delay"			"0.3"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"paralyze_duration"		"1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"dodge_chance"			"17"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"1"
-			}
+			"attack_delay"			"0.3"
+			"paralyze_duration"		"1"
+			"dodge_chance"			"17"
+			"bonus_health_regen"	"1"
 		}
 	}
 }

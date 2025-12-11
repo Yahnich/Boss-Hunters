@@ -28,23 +28,11 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"22"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"100"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_as"				"100"
-			}
+			"duration"				"22"
+			"bonus_ms"				"100"
+			"bonus_as"				"100"
 		}
 	}
 }

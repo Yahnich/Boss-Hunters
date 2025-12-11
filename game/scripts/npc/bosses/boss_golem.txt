@@ -22,23 +22,11 @@
 			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_heroes_tiny.vsndevts"
 	    }
 		
-		"AbilitySpecial"
+		"AbilityValues"
 	    {
-	        "01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "split_count"         	"2"
-	        }
-	        "02"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "golem_hp"       		"50"
-	        }
-			"02"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "minimum_scale"       	"0.8 0.6"
-	        }
+	        "split_count"         	"2"
+	        "golem_hp"       		"50"
+			"minimum_scale"       	"0.8 0.6"
 	    }
 	}
 	"boss_golem_cracked_mass"
@@ -63,23 +51,11 @@
 			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_heroes_tiny.vsndevts"
 	    }
 		
-		"AbilitySpecial"
+		"AbilityValues"
 	    {
-	        "01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "shard_chance"			"12 15"
-	        }
-	        "02"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "shard_min_hp"			"200 300"
-	        }
-			"03"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "shard_damage_mult"		"1.5"
-	        }
+	        "shard_chance"			"12 15"
+	        "shard_min_hp"			"200 300"
+			"shard_damage_mult"		"1.5"
 	    }
 	}
 	"boss_golem_golem_toss"
@@ -116,43 +92,15 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"toss_duration"			"1.5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_health_cost"		"20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_radius"			"475"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"200 300"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow"					"-25 -33"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"5"
-			}
-			"02"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "minimum_scale"       	"0.8 0.6"
-	        }
+			"toss_duration"			"1.5"
+			"max_health_cost"		"20"
+			"base_radius"			"475"
+			"base_damage"			"200 300"
+			"slow"					"-25 -33"
+			"duration"				"5"
+			"minimum_scale"       	"0.8 0.6"
 		}
 	}
 	"boss_golem_golem_leap"
@@ -191,33 +139,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"leap_duration"			"1.5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_radius"			"475"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"350 500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow"					"-25 -33"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"5"
-			}
+			"leap_duration"			"1.5"
+			"base_radius"			"475"
+			"base_damage"			"350 500"
+			"slow"					"-25 -33"
+			"duration"				"5"
 		}
 	}
 	"boss_golem_golem_smash"
@@ -255,28 +183,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_radius"			"475"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"350 500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow"					"-25 -33"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"5"
-			}
+			"base_radius"			"475"
+			"base_damage"			"350 500"
+			"slow"					"-25 -33"
+			"duration"				"5"
 		}
 	}
 }

@@ -136,28 +136,12 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"5 6 7 8"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"40 45 50 55"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_hp_drain"			"1.25 2.5 3.75 5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_hp_damage"			"1.5 3 4.5 6"
-			}
+			"bonus_armor"			"5 6 7 8"
+			"bonus_attack_speed"	"40 45 50 55"
+			"max_hp_drain"			"1.25 2.5 3.75 5"
+			"max_hp_damage"			"1.5 3 4.5 6"
 		}
 	}
 	"item_berserkers_cape_2"
@@ -192,28 +176,12 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"5 6 7 8"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"40 45 50 55"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_hp_drain"			"1.25 2.5 3.75 5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_hp_damage"			"2 4 6 8"
-			}
+			"bonus_armor"			"5 6 7 8"
+			"bonus_attack_speed"	"40 45 50 55"
+			"max_hp_drain"			"1.25 2.5 3.75 5"
+			"max_hp_damage"			"2 4 6 8"
 		}
 	}
 	"item_berserkers_cape_3"
@@ -248,28 +216,12 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"5 6 7 8"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"40 45 50 55"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_hp_drain"			"1.25 2.5 3.75 5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_hp_damage"			"2 4 6 8"
-			}
+			"bonus_armor"			"5 6 7 8"
+			"bonus_attack_speed"	"40 45 50 55"
+			"max_hp_drain"			"1.25 2.5 3.75 5"
+			"max_hp_damage"			"2 4 6 8"
 		}
 	}
 	"item_berserkers_cape_4"
@@ -304,28 +256,12 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"5 6 7 8"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"40 45 50 55"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_hp_drain"			"1.25 2.5 3.75 5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_hp_damage"			"2 4 6 8"
-			}
+			"bonus_armor"			"5 6 7 8"
+			"bonus_attack_speed"	"40 45 50 55"
+			"max_hp_drain"			"1.25 2.5 3.75 5"
+			"max_hp_damage"			"2 4 6 8"
 		}
 	}
 }

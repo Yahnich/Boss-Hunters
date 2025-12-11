@@ -31,28 +31,12 @@
 		
 		"AbilityCooldown"				"24"
 		"AbilitySharedCooldown"			"daggerofescape"
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"20 16 14 10 8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"3.0 3.0 1.5 1.5 0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"blink_range"			"1200"
+			"cooldown"				"20 16 14 10 8"
+			"delay"					"3.0 3.0 1.5 1.5 0"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -111,28 +95,12 @@
 		"AbilityCooldown"				"22"
 		"AbilitySharedCooldown"			"daggerofescape"
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"20 16 14 10 8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"3.0 3.0 1.5 1.5 0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"blink_range"			"1200"
+			"cooldown"				"20 16 14 10 8"
+			"delay"					"3.0 3.0 1.5 1.5 0"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -192,28 +160,12 @@
 		"AbilityCooldown"				"20"
 		"AbilitySharedCooldown"			"daggerofescape"
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"20 16 14 10 8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"3.0 3.0 1.5 1.5 0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"blink_range"			"1200"
+			"cooldown"				"20 16 14 10 8"
+			"delay"					"3.0 3.0 1.5 1.5 0"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	
@@ -274,28 +226,12 @@
 		"AbilityCooldown"				"18"
 		"AbilitySharedCooldown"			"daggerofescape"
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"20 16 14 10 8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"3.0 3.0 1.5 1.5 0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"blink_range"			"1200"
+			"cooldown"				"20 16 14 10 8"
+			"delay"					"3.0 3.0 1.5 1.5 0"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	
@@ -356,28 +292,12 @@
 		"AbilityCooldown"				"16"
 		"AbilitySharedCooldown"			"daggerofescape"
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"20 16 14 10 8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"3.0 3.0 1.5 1.5 0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"blink_range"			"1200"
+			"cooldown"				"20 16 14 10 8"
+			"delay"					"3.0 3.0 1.5 1.5 0"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	
@@ -440,28 +360,12 @@
 		"AbilityCooldown"				"14"
 		"AbilitySharedCooldown"			"daggerofescape"
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"20 16 14 10 8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"3.0 3.0 1.5 1.5 0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"blink_range"			"1200"
+			"cooldown"				"20 16 14 10 8"
+			"delay"					"3.0 3.0 1.5 1.5 0"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	
@@ -524,28 +428,12 @@
 		"AbilityCooldown"				"12"
 		"AbilitySharedCooldown"			"daggerofescape"
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"20 16 14 10 8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"3.0 3.0 1.5 1.5 0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"blink_range"			"1200"
+			"cooldown"				"20 16 14 10 8"
+			"delay"					"3.0 3.0 1.5 1.5 0"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	
@@ -608,28 +496,12 @@
 		"AbilityCooldown"				"10"
 		"AbilitySharedCooldown"			"daggerofescape"
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"20 16 14 10 8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"3.0 3.0 1.5 1.5 0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"blink_range"			"1200"
+			"cooldown"				"20 16 14 10 8"
+			"delay"					"3.0 3.0 1.5 1.5 0"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 	
@@ -692,28 +564,12 @@
 		"AbilityCooldown"				"10"
 		"AbilitySharedCooldown"			"daggerofescape"
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"20 16 14 10 8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"3.0 3.0 1.5 1.5 0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
+			"blink_range"			"1200"
+			"cooldown"				"20 16 14 10 8"
+			"delay"					"3.0 3.0 1.5 1.5 0"
+			"rune_scaling"			"100 120 140 160 180"
 		}
 	}
 }

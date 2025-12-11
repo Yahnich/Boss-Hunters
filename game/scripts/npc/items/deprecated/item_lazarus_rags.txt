@@ -55,63 +55,25 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_restore"			"16"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal"					"16"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_regen"			"3.5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spell_amp"				"30"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"			"800"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"18"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"block_chance"			"65"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_block"			"40"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"5"
-			}
+			"mana_restore"			"16"
+			"heal"					"16"
+			"mana_regen"			"3.5"
+			"spell_amp"				"30"
+			"bonus_mana"			"800"
+			"bonus_ms"				"18"
+			"block_chance"			"65"
+			"damage_block"			"40"
+			"bonus_health_regen"	"5"
 			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"900"
-			}
 			"11"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"min_restore"			"275"
-			}
 		}
 	}
 }

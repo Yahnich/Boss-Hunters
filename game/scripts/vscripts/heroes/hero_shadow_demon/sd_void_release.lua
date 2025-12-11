@@ -19,7 +19,7 @@ function sd_void_release:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 	if hTarget then
 		EmitSoundOn("Hero_ShadowDemon.ShadowPoison.Release", hTarget)
-		self:DealDamage(caster, hTarget, caster:GetIntellect() * self:GetSpecialValueFor("damage")/100, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+		self:DealDamage(caster, hTarget, caster:GetIntellect( false) * self:GetSpecialValueFor("damage")/100, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
 	end
 end
 

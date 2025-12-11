@@ -26,23 +26,11 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"200 300"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_movement_speed"	"215 250"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3.0"
-			}
+			"bonus_attack_speed"	"200 300"
+			"bonus_movement_speed"	"215 250"
+			"duration"				"3.0"
 		}
 	}
 	"boss3a_tombstone"
@@ -73,18 +61,10 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"regen_amount"			"100"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"overkill_threshold"	"10"
-			}
+			"regen_amount"			"100"
+			"overkill_threshold"	"10"
 		}
 	}
 	"boss3b_acid_interior"
@@ -107,38 +87,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stack_armor_reduction"	"-1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"stack_dot"				"15 20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stack_duration"		"3.0 3.5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aoe_armor_reduction"	"-20 -25"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aoe_damage"			"600 750"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aoe_radius"			"300 350"
-			}
+			"stack_armor_reduction"	"-1"
+			"stack_dot"				"15 20"
+			"stack_duration"		"3.0 3.5"
+			"aoe_armor_reduction"	"-20 -25"
+			"aoe_damage"			"600 750"
+			"aoe_radius"			"300 350"
 		}
 	}
 	"boss3b_acid_spit"
@@ -171,28 +127,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"armor_reduction"		"-3 -5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"dot"					"25 35"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"225"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"16"
-			}
+			"armor_reduction"		"-3 -5"
+			"dot"					"25 35"
+			"radius"				"225"
+			"duration"				"16"
 		}
 	}
 }

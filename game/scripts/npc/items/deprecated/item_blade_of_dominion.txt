@@ -52,73 +52,33 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"100"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blind"					"33"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal_per_second"		"75"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"pct_heal_per_second"	"0.5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_mana_cost"		"20"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_amp"		"15"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"5"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"block_chance"			"50"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_block"			"45"
-			}
+			"damage"				"100"
+			"blind"					"33"
+			"heal_per_second"		"75"
+			"pct_heal_per_second"	"0.5"
+			"heal_mana_cost"		"20"
+			"bonus_spell_amp"		"15"
+			"bonus_health_regen"	"5"
+			"block_chance"			"50"
+			"damage_block"			"45"
 			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"min_radius"			"300"
-			}
 			"11"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"1200"
-			}
 			"12"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius_change"			"90"
-			}
 			"13"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"ticks_to_dispel"		"6"
-			}
 		}
 	}
 }

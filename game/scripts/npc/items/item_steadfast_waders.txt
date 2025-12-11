@@ -53,28 +53,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"min_movespeed"			"250"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"restore_amount"		"100 200 300 400"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"movespeed"				"50"
+			"min_movespeed"			"250"
+			"restore_amount"		"100 200 300 400"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -132,28 +116,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{	
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"min_movespeed"			"250"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"restore_amount"		"100 200 300 400"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"movespeed"				"50"
+			"min_movespeed"			"250"
+			"restore_amount"		"100 200 300 400"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -211,28 +179,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"min_movespeed"			"250"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"restore_amount"		"100 200 300 400"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"movespeed"				"50"
+			"min_movespeed"			"250"
+			"restore_amount"		"100 200 300 400"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -290,28 +242,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"min_movespeed"			"250"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"restore_amount"		"100 200 300 400"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"movespeed"				"50"
+			"min_movespeed"			"250"
+			"restore_amount"		"100 200 300 400"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -370,28 +306,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"min_movespeed"			"250"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"restore_amount"		"100 200 300 400"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"movespeed"				"50"
+			"min_movespeed"			"250"
+			"restore_amount"		"100 200 300 400"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -448,28 +368,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"min_movespeed"			"250"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"restore_amount"		"100 200 300 400"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"movespeed"				"50"
+			"min_movespeed"			"250"
+			"restore_amount"		"100 200 300 400"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -528,28 +432,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"min_movespeed"			"250"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"restore_amount"		"100 200 300 400"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"movespeed"				"50"
+			"min_movespeed"			"250"
+			"restore_amount"		"100 200 300 400"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 }

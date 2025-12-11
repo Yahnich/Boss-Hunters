@@ -52,38 +52,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"phase_speed"			"20 30 40 50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"turnrate"				"1"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"12 10 10 8"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"3"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"movespeed"				"50"
+			"phase_speed"			"20 30 40 50"
+			"turnrate"				"1"
+			"cooldown"				"12 10 10 8"
+			"duration"				"3"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -141,38 +117,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"phase_speed"			"20 30 40 50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"turnrate"				"1"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"12 10 10 8"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"3"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"movespeed"				"50"
+			"phase_speed"			"20 30 40 50"
+			"turnrate"				"1"
+			"cooldown"				"12 10 10 8"
+			"duration"				"3"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -230,38 +182,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"phase_speed"			"20 30 40 50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"turnrate"				"1"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"12 10 10 8"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"3"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"movespeed"				"50"
+			"phase_speed"			"20 30 40 50"
+			"turnrate"				"1"
+			"cooldown"				"12 10 10 8"
+			"duration"				"3"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -319,38 +247,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"phase_speed"			"20 30 40 50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"turnrate"				"1"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"12 10 10 8"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"3"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"movespeed"				"50"
+			"phase_speed"			"20 30 40 50"
+			"turnrate"				"1"
+			"cooldown"				"12 10 10 8"
+			"duration"				"3"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -410,38 +314,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"phase_speed"			"20 30 40 50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"turnrate"				"1"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"12 10 10 8"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"3"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"movespeed"				"50"
+			"phase_speed"			"20 30 40 50"
+			"turnrate"				"1"
+			"cooldown"				"12 10 10 8"
+			"duration"				"3"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -498,38 +378,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"phase_speed"			"20 30 40 50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"turnrate"				"1"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"12 10 10 8"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"3"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"movespeed"				"50"
+			"phase_speed"			"20 30 40 50"
+			"turnrate"				"1"
+			"cooldown"				"12 10 10 8"
+			"duration"				"3"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 	//=================================================================================================================
@@ -589,38 +445,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"phase_speed"			"20 30 40 50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"turnrate"				"1"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"12 10 10 8"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"3"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"120 140 160 180"
-			}
+			"movespeed"				"50"
+			"phase_speed"			"20 30 40 50"
+			"turnrate"				"1"
+			"cooldown"				"12 10 10 8"
+			"duration"				"3"
+			"rune_scaling"			"120 140 160 180"
 		}
 	}
 }

@@ -34,13 +34,9 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"critical_chance"		"9 7 5 3"
-			}
+			"critical_chance"		"9 7 5 3"
 		}
 	}
 }

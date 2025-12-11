@@ -51,53 +51,17 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"minus_damage"			"-100"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_pct"			"100"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_on_hit"			"35"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"magic_resistance"		"-25"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"debuff_duration"		"5"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"20"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"5"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"20"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_lifesteal"			"5"
-			}
+			"minus_damage"			"-100"
+			"damage_pct"			"100"
+			"mana_on_hit"			"35"
+			"magic_resistance"		"-25"
+			"debuff_duration"		"5"
+			"bonus_intellect"		"20"
+			"bonus_mana_regen"		"5"
+			"lifesteal"				"20"
+			"mob_lifesteal"			"5"
 		}
 	}
 }

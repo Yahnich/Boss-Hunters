@@ -29,7 +29,7 @@ function obsidian_destroyer_celestial_obliteration:OnSpellStart()
 		end
 		caster:AddNewModifier(caster, self, "modifier_obsidian_destroyer_celestial_obliteration_talent", {duration = tDur})
 	end
-	local intDamage = self:GetTalentSpecialValueFor("damage_multiplier") * caster:GetIntellect()
+	local intDamage = self:GetTalentSpecialValueFor("damage_multiplier") * caster:GetIntellect( false)
 	for _,enemy in pairs(enemies) do
 		if not enemy:TriggerSpellAbsorb( self ) then
 			self:DealDamage( caster, enemy, intDamage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )

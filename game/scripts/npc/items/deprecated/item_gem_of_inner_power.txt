@@ -59,28 +59,12 @@
 		}
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hp_per_str"			"0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"650"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_hp_heal"			"15"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"600"
-			}
+			"hp_per_str"			"0"
+			"bonus_health"			"650"
+			"max_hp_heal"			"15"
+			"radius"				"600"
 		}
 	}
 }

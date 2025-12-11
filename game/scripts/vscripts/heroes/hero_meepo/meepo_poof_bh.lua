@@ -35,7 +35,7 @@ function meepo_poof_bh:OnSpellStart()
 	local radius = self:GetSpecialValueFor("radius")
 
 	if caster:HasTalent("special_bonus_unique_meepo_poof_bh_2") then
-		damage = damage + caster:GetIntellect() * caster:FindTalentValue("special_bonus_unique_meepo_poof_bh_2")/100
+		damage = damage + caster:GetIntellect( false) * caster:FindTalentValue("special_bonus_unique_meepo_poof_bh_2")/100
 	end
 
 	StopSoundOn("Hero_Meepo.Poof.Channel", caster)

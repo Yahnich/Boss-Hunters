@@ -235,9 +235,21 @@
 		"AbilityTextureName"	"modifier_magicimmune"
 		"MaxLevel"				"1"
 	}
-	//=================================================================================================================
-	// Queen of Pain: Blink
-	//=================================================================================================================
+	"special_bonus_reincarnation_120"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_reincarnation_200"										
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"value"				"120"
+		}
+	}
 	"boss_blink"
 	{
 		// General
@@ -262,19 +274,10 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1000"
-			}
-			
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"min_blink_range"		"200"
-			}
+			"blink_range"			"1000"
+			"min_blink_range"		"200"
 		}
 	}
 	"boss_march"
@@ -305,53 +308,17 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"1200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"collision_radius"		"50 50 50 50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"splash_radius"			"150 150 150 150"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"20"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"300"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"machines_per_sec"		"10"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"distance"				"1800"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"distance_scepter"		"1800"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"25	35"
-			}
+			"radius"				"1200"
+			"collision_radius"		"50 50 50 50"
+			"splash_radius"			"150 150 150 150"
+			"duration"				"20"
+			"speed"					"300"
+			"machines_per_sec"		"10"
+			"distance"				"1800"
+			"distance_scepter"		"1800"
+			"damage"				"25	35"
 		}
 	}
 	"boss_proximity"
@@ -380,54 +347,16 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"325"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"proximity_threshold"		"1.6 1.4"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"500 750"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"burn_duration"				"5"
-			}	
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"building_damage_pct"		"25"
-			}	
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"activation_delay"			"1.5 1"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"max_charges"				"3"
-			}
-			"08"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"charge_restore_time"		"23"
-			}
-			"09"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cast_range_scepter_bonus"	"300"
-				"RequiresScepter"			"1"
-			}	
+			"radius"					"325"
+			"proximity_threshold"		"1.6 1.4"
+			"damage"					"500 750"
+			"burn_duration"				"5"
+			"building_damage_pct"		"25"
+			"activation_delay"			"1.5 1"
+			"max_charges"				"3"
+			"charge_restore_time"		"23"
 		}
 	}
 	"boss_rearm"
@@ -453,13 +382,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"channel_tooltip"		"4.0 3.0"
-			}
+			"channel_tooltip"			"4.0 3.0"
 		}
 	}
 	"boss_rockets"
@@ -489,33 +414,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{ 
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"damage"			"110 170"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"1200"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"targets"			"2"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"speed"				"450"
-			}
-			"05"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"targets_scepter"	"4 4 4 4"
-			}
+			"damage"			"110 170"
+			"radius"			"1200"
+			"targets"			"2"
+			"speed"				"450"
+			"targets_scepter"	"4 4 4 4"
 		}
 	}
 	//=================================================================================================================
@@ -549,23 +454,11 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"area_of_effect"		"450"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"projectile_speed"		"900"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"70 80 90 120"
-			}
+			"area_of_effect"		"450"
+			"projectile_speed"		"900"
+			"damage"				"70 80 90 120"
 		}
 	}
 	//=================================================================================================================
@@ -575,7 +468,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"					"queenofpain_shadow_strike"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"queenofpain_shadow_strike"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
@@ -601,33 +494,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"strike_damage"			"50 80"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration_damage"		"20 30"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movement_slow"			"-35"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"projectile_speed"		"900"
-			}			
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_interval"		"3.0"
-			}			
+			"strike_damage"			"50 80"
+			"duration_damage"		"20 30"
+			"movement_slow"			"-35"
+			"projectile_speed"		"900"
+			"damage_interval"		"3.0"
 		}
 	}
 	"boss_spawn_techies"
@@ -693,16 +566,8 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"techies_suicide"
-		"MaxLevel"						"7"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_tech_blasting_off_1"	"1"
-			"special_bonus_unique_tech_blasting_off_2"	"1"
-		}
-		
+		"MaxLevel"						"2"
+
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
@@ -719,33 +584,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"400 600"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"0.75"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"400"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"silence_duration"			"5 6"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"jump_duration"				"0.85 0.75"
-			} 			
+			"damage"					"400 600"
+			"duration"					"0.75"
+			"radius"					"400"
+			"silence_duration"			"5 6"
+			"jump_duration"				"0.85 0.75"
 		}
 	}
 	//-------------------
@@ -795,27 +640,5 @@
 				}
 			}
 		}		
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_reincarnation_120"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_reincarnation_200"										// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"120"
-			}
-		}
 	}
 }

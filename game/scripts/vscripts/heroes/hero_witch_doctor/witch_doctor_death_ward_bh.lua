@@ -20,7 +20,7 @@ function witch_doctor_death_ward_bh:OnSpellStart()
 	if IsServer() then
 		local caster = self:GetCaster()
 		local vPosition = self:GetCursorPosition()
-		self.wardDamage = self:GetTalentSpecialValueFor("damage") + caster:GetIntellect()*self:GetTalentSpecialValueFor("int_to_damage")/100
+		self.wardDamage = self:GetTalentSpecialValueFor("damage") + caster:GetIntellect( false)*self:GetTalentSpecialValueFor("int_to_damage")/100
 		self.death_ward = CreateUnitByName("witch_doctor_death_ward_ebf", vPosition, true, caster, nil, caster:GetTeam())
 		self.death_ward:SetControllableByPlayer(caster:GetPlayerID(), true)
 		self.death_ward:SetOwner(caster)

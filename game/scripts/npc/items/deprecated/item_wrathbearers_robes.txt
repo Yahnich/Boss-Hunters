@@ -59,78 +59,37 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"reflect"				"35"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_reflect"		"100"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_threat"			"100"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"threat_gain"			"5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"threat_gain_ult"		"20"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"8"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"5"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_magic_resist"	"20"
-			}
+			"reflect"				"35"
+			"active_reflect"		"100"
+			"bonus_threat"			"100"
+			"threat_gain"			"5"
+			"threat_gain_ult"		"20"
+			"radius"				"900"
+			"duration"				"8"
+			"bonus_armor"			"5"
+			"bonus_magic_resist"	"20"
 			"10"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"damage"				"100"
-			}
 			"11"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"blind"					"25"
-			}
 			"12"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"min_radius"			"150"
-			}
 			"13"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"radius"				"500"
-			}
 			"14"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"radius_change"			"70"
-			}
 		}
 	}
 }

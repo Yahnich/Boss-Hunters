@@ -27,38 +27,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"400 500"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3.5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"orb_speed"				"300"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"orb_radius"			"150"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"phase2_angle_velocity"	"15"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"phase2_duration"		"1.5"
-			}
+			"damage"				"400 500"
+			"duration"				"3.5"
+			"orb_speed"				"300"
+			"orb_radius"			"150"
+			"phase2_angle_velocity"	"15"
+			"phase2_duration"		"1.5"
 		}
 	}
 	"boss33a_devitalize"
@@ -88,23 +64,11 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"2"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"600 700"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"190"
-			}
+			"duration"				"2"
+			"speed"					"600 700"
+			"radius"				"190"
 		}
 	}
 	"boss33a_protective_ward"
@@ -127,13 +91,9 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"sf_death_reduction"	"-50"
-			}
+			"sf_death_reduction"	"-50"
 		}
 	}
 	"boss33b_protective_shield"
@@ -156,13 +116,9 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"sd_death_reduction"	"-50"
-			}
+			"sd_death_reduction"	"-50"
 		}
 	}
 	"boss33b_shadowrazeF"
@@ -190,38 +146,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"150 175"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"distance"				"700"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"350 450"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"sd_death_bonus_radius"	"50 75"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"phase2_raze_count"		"6"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"sd_death_duration"		"3"
-			}
+			"radius"				"150 175"
+			"distance"				"700"
+			"damage"				"350 450"
+			"sd_death_bonus_radius"	"50 75"
+			"phase2_raze_count"		"6"
+			"sd_death_duration"		"3"
 		}
 	}
 	"boss33b_shadowrazeM"
@@ -250,38 +182,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"150 175"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"distance"				"450"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"350 450"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"sd_death_bonus_radius"	"50 75"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"phase2_raze_count"		"12"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"sd_death_duration"		"3"
-			}
+			"radius"				"150 175"
+			"distance"				"450"
+			"damage"				"350 450"
+			"sd_death_bonus_radius"	"50 75"
+			"phase2_raze_count"		"12"
+			"sd_death_duration"		"3"
 			
 		}
 	}
@@ -311,38 +219,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"200 225"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"distance"				"200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"350 450"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"sd_death_bonus_radius"	"50 75"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"sd_death_duration"		"5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"phase2_cross_count"	"4"
-			}
+			"radius"				"200 225"
+			"distance"				"200"
+			"damage"				"350 450"
+			"sd_death_bonus_radius"	"50 75"
+			"sd_death_duration"		"5"
+			"phase2_cross_count"	"4"
 		}
 	}
 	"boss33_eidolon_amp"
@@ -354,18 +238,10 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName" 			"enigma_demonic_conversion"
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"spawn_count"			"4 6"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"spawn_radius"			"600"
-			}
+			"spawn_count"			"4 6"
+			"spawn_radius"			"600"
 		}
 	}
 }

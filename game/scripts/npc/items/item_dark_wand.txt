@@ -260,28 +260,12 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"600 700 800 900 1000"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"225 400 650 1000 1500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"9"
-			}
+			"rune_scaling"			"100 120 140 160 180"
+			"cast_range"			"600 700 800 900 1000"
+			"damage"				"225 400 650 1000 1500"
+			"cooldown"				"9"
 		}
 	}
 	"item_dark_wand_2"
@@ -327,28 +311,12 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"600 700 800 900 1000"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"225 400 650 1000 1500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"9"
-			}
+			"rune_scaling"			"100 120 140 160 180"
+			"cast_range"			"600 700 800 900 1000"
+			"damage"				"225 400 650 1000 1500"
+			"cooldown"				"9"
 		}
 	}
 	"item_dark_wand_3"
@@ -394,28 +362,12 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"600 700 800 900 1000"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"225 400 650 1000 1500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"9"
-			}
+			"rune_scaling"			"100 120 140 160 180"
+			"cast_range"			"600 700 800 900 1000"
+			"damage"				"225 400 650 1000 1500"
+			"cooldown"				"9"
 		}
 	}
 	"item_dark_wand_4"
@@ -461,28 +413,12 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"600 700 800 900 1000"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"225 400 650 1000 1500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"9"
-			}
+			"rune_scaling"			"100 120 140 160 180"
+			"cast_range"			"600 700 800 900 1000"
+			"damage"				"225 400 650 1000 1500"
+			"cooldown"				"9"
 		}
 	}
 	"item_dark_wand_5"
@@ -528,28 +464,12 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"600 700 800 900 1000"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"225 400 650 1000 1500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"9"
-			}
+			"rune_scaling"			"100 120 140 160 180"
+			"cast_range"			"600 700 800 900 1000"
+			"damage"				"225 400 650 1000 1500"
+			"cooldown"				"9"
 		}
 	}
 	"item_dark_wand_6"
@@ -595,28 +515,12 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"600 700 800 900 1000"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"225 400 650 1000 1500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"9"
-			}
+			"rune_scaling"			"100 120 140 160 180"
+			"cast_range"			"600 700 800 900 1000"
+			"damage"				"225 400 650 1000 1500"
+			"cooldown"				"9"
 		}
 	}
 	
@@ -664,28 +568,12 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"600 700 800 900 1000"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"225 400 650 1000 1500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"9"
-			}
+			"rune_scaling"			"100 120 140 160 180"
+			"cast_range"			"600 700 800 900 1000"
+			"damage"				"225 400 650 1000 1500"
+			"cooldown"				"9"
 		}
 	}
 	
@@ -733,28 +621,12 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"600 700 800 900 1000"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"225 400 650 1000 1500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"9"
-			}
+			"rune_scaling"			"100 120 140 160 180"
+			"cast_range"			"600 700 800 900 1000"
+			"damage"				"225 400 650 1000 1500"
+			"cooldown"				"9"
 		}
 	}
 	
@@ -802,28 +674,12 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"100 120 140 160 180"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"600 700 800 900 1000"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"225 400 650 1000 1500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"9"
-			}
+			"rune_scaling"			"100 120 140 160 180"
+			"cast_range"			"600 700 800 900 1000"
+			"damage"				"225 400 650 1000 1500"
+			"cooldown"				"9"
 		}
 	}
 }

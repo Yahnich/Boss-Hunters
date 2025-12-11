@@ -9,7 +9,7 @@ function earthshaker_aftershock_ebf:Aftershock(position, fRadius)
 	local vPos = position or caster:GetAbsOrigin()
 	
 	local radius = fRadius or self:GetTalentSpecialValueFor("aftershock_range")
-	local damage = self:GetTalentSpecialValueFor("stat_damage") / 100 * ( caster:GetStrength() + caster:GetAgility() + caster:GetIntellect() )
+	local damage = self:GetTalentSpecialValueFor("stat_damage") / 100 * ( caster:GetStrength() + caster:GetAgility() + caster:GetIntellect( false) )
 	local duration = self:GetTalentSpecialValueFor("max_duration")
 	
 	if caster:HasScepter() then

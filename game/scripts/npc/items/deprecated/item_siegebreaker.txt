@@ -52,18 +52,10 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"pierce_chance"			"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_range"			"350"
-			}
+			"pierce_chance"			"50"
+			"bonus_range"			"350"
 		}
 	}
 }

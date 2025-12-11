@@ -137,7 +137,7 @@ LinkLuaModifier("modifier_item_trinity_debuff", "items/item_trinity", LUA_MODIFI
 function modifier_item_trinity_debuff:OnCreated()
 	self.mr = self:GetSpecialValueFor("debuff_mr")
 	self.tick = self:GetSpecialValueFor("debuff_tick_rate")
-	self.damage = (self:GetCaster():GetIntellect() * self:GetSpecialValueFor("debuff_int_dmg") / 100) * self.tick / self:GetRemainingTime()
+	self.damage = (self:GetCaster():GetIntellect( false) * self:GetSpecialValueFor("debuff_int_dmg") / 100) * self.tick / self:GetRemainingTime()
 	if IsServer() then
 		self:StartIntervalThink( self.tick )
 	end
@@ -146,7 +146,7 @@ end
 function modifier_item_trinity_debuff:OnRefresh()
 	self.mr = self:GetSpecialValueFor("debuff_mr")
 	self.tick = self:GetSpecialValueFor("debuff_tick_rate")
-	self.damage = (self:GetCaster():GetIntellect() * self:GetSpecialValueFor("debuff_int_dmg") / 100) * self.tick / self:GetRemainingTime()
+	self.damage = (self:GetCaster():GetIntellect( false) * self:GetSpecialValueFor("debuff_int_dmg") / 100) * self.tick / self:GetRemainingTime()
 end
 
 function modifier_item_trinity_debuff:OnIntervalThink()

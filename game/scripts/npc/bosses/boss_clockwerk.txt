@@ -30,33 +30,13 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"0 0 0 0"
 
-	    "AbilitySpecial"
+	    "AbilityValues"
 		{
-			"01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "damage"             	"250 350"
-	        }
-	        "02"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "stun_duration"         "2 2.5"
-	        }
-			"03"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "speed"              	"6000"
-	        }
-			"03"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "latch_radius"          "125"
-	        }
-			"03"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "stun_radius"           "175"
-	        }
+			"damage"             	"250 350"
+	        "stun_duration"         "2 2.5"
+			"speed"              	"6000"
+			"latch_radius"          "125"
+			"stun_radius"           "175"
 		}
 	}
 	"boss_clockwerk_mark_for_destruction"
@@ -92,33 +72,13 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"0 0 0 0"
 
-	    "AbilitySpecial"
+	    "AbilityValues"
 		{
-			"01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "damage"             	"35 50"  //The meteor lands on the ground this many seconds after it was cast.
-	        }
-	        "02"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "duration"              "5"  //The meteor lands on the ground this many seconds after it was cast.
-	        }
-			"03"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "radius"             	"325"  //The meteor lands on the ground this many seconds after it was cast.
-	        }
-			"04"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "blind"             	"25 33"  //The meteor lands on the ground this many seconds after it was cast.
-	        }
-			"05"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "bonus_damage"          "20 25"  //The meteor lands on the ground this many seconds after it was cast.
-	        }
+			"damage"             	"35 50"  
+	        "duration"              "5"  
+			"radius"             	"325"  
+			"blind"             	"25 33"  
+			"bonus_damage"          "20 25"  
 		}
 	}
 }

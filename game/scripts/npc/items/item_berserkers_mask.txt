@@ -56,48 +56,16 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"15"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attackspeed"			"110"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"movespeed"				"30"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"active_lifesteal"		"50 100 150 200"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"armor_reduction"		"-8 -7 -6 -5"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"130 140 150 160 170 180"
-			}
+			"lifesteal"				"15"
+			"attackspeed"			"110"
+			"movespeed"				"30"
+			"active_lifesteal"		"50 100 150 200"
+			"duration"				"6"
+			"armor_reduction"		"-8 -7 -6 -5"
+			"mob_divider"			"25"
+			"rune_scaling"			"130 140 150 160 170 180"
 		}
 	}
 	//=================================================================================================================
@@ -156,48 +124,16 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"15"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attackspeed"			"110"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"movespeed"				"30"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"active_lifesteal"		"50 100 150 200"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"armor_reduction"		"-8 -7 -6 -5"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"130 140 150 160 170 180"
-			}
+			"lifesteal"				"15"
+			"attackspeed"			"110"
+			"movespeed"				"30"
+			"active_lifesteal"		"50 100 150 200"
+			"duration"				"6"
+			"armor_reduction"		"-8 -7 -6 -5"
+			"mob_divider"			"25"
+			"rune_scaling"			"130 140 150 160 170 180"
 		}
 	}
 	//=================================================================================================================
@@ -256,48 +192,16 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"15"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attackspeed"			"110"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"movespeed"				"30"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"active_lifesteal"		"50 100 150 200"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"armor_reduction"		"-8 -7 -6 -5"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"130 140 150 160 170 180"
-			}
+			"lifesteal"				"15"
+			"attackspeed"			"110"
+			"movespeed"				"30"
+			"active_lifesteal"		"50 100 150 200"
+			"duration"				"6"
+			"armor_reduction"		"-8 -7 -6 -5"
+			"mob_divider"			"25"
+			"rune_scaling"			"130 140 150 160 170 180"
 		}
 	}
 	//=================================================================================================================
@@ -357,48 +261,16 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"15"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attackspeed"			"110"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"movespeed"				"30"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"active_lifesteal"		"50 100 150 200"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"armor_reduction"		"-8 -7 -6 -5"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"130 140 150 160 170 180"
-			}
+			"lifesteal"				"15"
+			"attackspeed"			"110"
+			"movespeed"				"30"
+			"active_lifesteal"		"50 100 150 200"
+			"duration"				"6"
+			"armor_reduction"		"-8 -7 -6 -5"
+			"mob_divider"			"25"
+			"rune_scaling"			"130 140 150 160 170 180"
 		}
 	}
 	//=================================================================================================================
@@ -459,48 +331,16 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"15"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attackspeed"			"110"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"movespeed"				"30"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"active_lifesteal"		"50 100 150 200"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"armor_reduction"		"-8 -7 -6 -5"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"130 140 150 160 170 180"
-			}
+			"lifesteal"				"15"
+			"attackspeed"			"110"
+			"movespeed"				"30"
+			"active_lifesteal"		"50 100 150 200"
+			"duration"				"6"
+			"armor_reduction"		"-8 -7 -6 -5"
+			"mob_divider"			"25"
+			"rune_scaling"			"130 140 150 160 170 180"
 		}
 	}
 	//=================================================================================================================
@@ -562,48 +402,16 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"15"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attackspeed"			"110"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"movespeed"				"30"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"active_lifesteal"		"50 100 150 200"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"armor_reduction"		"-8 -7 -6 -5"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_divider"			"25"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rune_scaling"			"130 140 150 160 170 180"
-			}
+			"lifesteal"				"15"
+			"attackspeed"			"110"
+			"movespeed"				"30"
+			"active_lifesteal"		"50 100 150 200"
+			"duration"				"6"
+			"armor_reduction"		"-8 -7 -6 -5"
+			"mob_divider"			"25"
+			"rune_scaling"			"130 140 150 160 170 180"
 		}
 	}
 }

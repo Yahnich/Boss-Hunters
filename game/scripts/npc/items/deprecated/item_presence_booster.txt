@@ -60,53 +60,17 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bash_duration"			"1"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_threat"			"50"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_threat"			"50"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"threat_consume"		"5"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"threat_consume_ult"	"20"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_radius"			"600"
-			}
+			"blink_range"			"1200"
+			"bonus_strength"		"25"
+			"bonus_damage"			"25"
+			"bash_duration"			"1"
+			"bonus_threat"			"50"
+			"active_threat"			"50"
+			"threat_consume"		"5"
+			"threat_consume_ult"	"20"
+			"active_radius"			"600"
 		}
 	}
 }

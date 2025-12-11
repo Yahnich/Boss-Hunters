@@ -52,38 +52,14 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"status_amp"			"20"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_amp"		"20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"20"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"			"650"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"lifesteal"				"12"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mob_lifesteal"			"3"
-			}
+			"status_amp"			"20"
+			"bonus_spell_amp"		"20"
+			"bonus_intellect"		"20"
+			"bonus_mana"			"650"
+			"lifesteal"				"12"
+			"mob_lifesteal"			"3"
 		}
 	}
 }
