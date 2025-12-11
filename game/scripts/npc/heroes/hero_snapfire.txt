@@ -414,7 +414,7 @@
 		"AbilityTextureName"			"snapfire_mortimer_kisses"
 		"MaxLevel"						"6"
 		"AbilitySound"					"Hero_Snapfire.MortimerBlob.Launch"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------

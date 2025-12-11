@@ -462,7 +462,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityTextureName"			"chen_hand_of_god"
 		"MaxLevel"						"6"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------

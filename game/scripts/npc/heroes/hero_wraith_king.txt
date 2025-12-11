@@ -539,7 +539,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_wraith_king/wk_reincarnation"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"skeleton_king_reincarnation"
 		"MaxLevel"						"6"
 		

@@ -459,7 +459,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_alchemist/alchemist_chemical_rage_bh"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"alchemist_chemical_rage"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"6"

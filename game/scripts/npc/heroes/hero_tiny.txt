@@ -477,7 +477,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_tiny/tiny_grow_bh.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"tiny_grow"
 		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"	

@@ -374,7 +374,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_omniknight/omniknight_guardian_angel_bh"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"omniknight_guardian_angel"

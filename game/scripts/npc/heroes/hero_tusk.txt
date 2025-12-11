@@ -440,7 +440,7 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"  
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"tusk_walrus_punch"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE" 
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE" 
 		"MaxLevel"						"6"
 		"IsOrb"							"1"
 		

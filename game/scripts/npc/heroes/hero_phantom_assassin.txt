@@ -368,7 +368,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_pa/phantom_assassin_coup_de_grace_ebf.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"phantom_assassin_coup_de_grace"
 		"MaxLevel"						"6"

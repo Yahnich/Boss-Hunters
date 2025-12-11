@@ -531,7 +531,7 @@
 		"ScriptFile"					"heroes/hero_phantom_lancer/pl_false_edge"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"custom/phantom_lancer_false_edge"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
 		

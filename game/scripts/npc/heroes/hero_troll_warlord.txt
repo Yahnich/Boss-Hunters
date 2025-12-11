@@ -524,7 +524,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_troll_warlord/troll_warlord_battle_trance_bh"
 		"AbilityTextureName"			"troll_warlord_battle_trance"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"MaxLevel"						"3"

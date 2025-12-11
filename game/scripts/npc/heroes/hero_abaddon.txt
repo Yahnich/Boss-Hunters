@@ -463,7 +463,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_abaddon/abaddon_borrowed_time_ebf"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"abaddon_borrowed_time"
 		"HasScepterUpgrade"				"1"
 		"FightRecapLevel"				"2"

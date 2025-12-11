@@ -343,7 +343,7 @@
 		"AbilityCastAnimation"          "ACT_DOTA_SPAWN"
 		"MaxLevel"						"6"
 		"AbilityTextureName"			"sandking_epicenter"
-		"AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"                   "ABILITY_TYPE_ULTIMATE"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------

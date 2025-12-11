@@ -664,7 +664,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"nevermore_requiem"
 		"MaxLevel"						"6"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------

@@ -320,7 +320,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_outworld_devourer/obsidian_destroyer_celestial_obliteration"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityCastRange"				"700"
 		"AbilityCastPoint"				"0.25 0.25 0.25"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"

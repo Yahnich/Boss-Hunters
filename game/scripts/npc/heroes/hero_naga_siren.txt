@@ -424,7 +424,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_naga_siren/naga_siren_song_of_the_siren_bh"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"naga_siren_song_of_the_siren"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"6"

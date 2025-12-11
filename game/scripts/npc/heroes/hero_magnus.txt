@@ -385,7 +385,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"magnataur_reverse_polarity"
 		"MaxLevel"						"6"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------

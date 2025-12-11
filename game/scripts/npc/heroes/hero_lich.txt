@@ -497,7 +497,7 @@
 		"ScriptFile"							"heroes/hero_lich/lich_dark_sacrifice"
 		"AbilityTextureName"					"custom/lich_dark_sacrifice"
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-		"AbilityType"							"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"					"DAMAGE_TYPE_PHYSICAL"
 		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
