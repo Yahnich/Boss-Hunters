@@ -23,10 +23,10 @@ end
 modifier_rot_lua = class(toggleModifierBaseClass)
 function modifier_rot_lua:OnCreated(table)
     if IsServer() then
-    	local radius = self:GetTalentSpecialValueFor("radius")
-		self.damage = self:GetTalentSpecialValueFor("damage")
-		self.damage_increase = self:GetTalentSpecialValueFor("damage_increase")
-		self.tick = self:GetTalentSpecialValueFor("tick_rate")
+    	local radius = self:GetSpecialValueFor("radius")
+		self.damage = self:GetSpecialValueFor("damage")
+		self.damage_increase = self:GetSpecialValueFor("damage_increase")
+		self.tick = self:GetSpecialValueFor("tick_rate")
     	self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_rot.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
     	ParticleManager:SetParticleControlEnt(self.nfx, 0, self:GetParent(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
     	ParticleManager:SetParticleControl(self.nfx, 1, Vector(radius,radius,radius))
@@ -58,7 +58,7 @@ function modifier_rot_lua:GetAuraDuration()
 end
 
 function modifier_rot_lua:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function modifier_rot_lua:GetAuraSearchFlags()
@@ -80,9 +80,9 @@ end
 modifier_rot_lua_effect = class({})
 function modifier_rot_lua_effect:OnCreated(table)
     if IsServer() then
-		self.tick = self:GetTalentSpecialValueFor("tick_rate")
-		self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_pudge_rot_lua_1")
-		self.talent1Trigger = self:GetCaster():FindTalentValue("special_bonus_unique_pudge_rot_lua_1")
+		self.tick = self:GetSpecialValueFor("tick_rate")
+		self.fear_delay = self:GetSpecialValueFor("fear_delay")
+		self.talent1Trigger = 0
     	self:StartIntervalThink(self.tick)
     end
 end
@@ -97,8 +97,8 @@ function modifier_rot_lua_effect:OnIntervalThink()
 end
 
 function modifier_rot_lua_effect:CheckState()
-	if self.talent1 and not self.talent1Triggered then
-		if GameRules:GetGameTime() - self:GetLastAppliedTime( ) > self.talent1Trigger then
+	if self.fear_delay and not self.talent1Triggered then
+		if GameRules:GetGameTime() - self:GetLastAppliedTime( ) > self.fear_delay then
 			local pID = ParticleManager:CreateParticle( "particles/units/heroes/hero_elder_titan/elder_titan_scepter_disarm.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() )
 			self:AddOverHeadEffect(pID) 
 			self.talent1Triggered = true
@@ -117,14 +117,14 @@ function modifier_rot_lua_effect:DeclareFunctions()
 end
 
 function modifier_rot_lua_effect:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("slow")
+    return self:GetSpecialValueFor("slow")
 end
 
 function modifier_rot_lua_effect:OnDeath(params)
     if params.unit == self:GetParent() then
-		local stacks = self:GetTalentSpecialValueFor("heap_stacks")
+		local stacks = self:GetSpecialValueFor("heap_stacks")
 		if self:GetParent():IsMinion() then
-			stacks = self:GetTalentSpecialValueFor("minion_stacks")
+			stacks = self:GetSpecialValueFor("minion_stacks")
 		end
 	end
 end

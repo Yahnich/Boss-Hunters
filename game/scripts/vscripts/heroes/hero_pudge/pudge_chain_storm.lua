@@ -7,7 +7,7 @@ function pudge_chain_storm:OnSpellStart()
 	local target = self:GetCursorTarget()
 	EmitSoundOn("Hero_Pudge.Dismember.Cast.Arcana", caster)
 	if target:TriggerSpellAbsorb( self ) then return end
-	target:AddNewModifier(caster, self, "modifier_pudge_chain_storm", {Duration = self:GetTalentSpecialValueFor("duration")})
+	target:AddNewModifier(caster, self, "modifier_pudge_chain_storm", {Duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_pudge_chain_storm = class({})
@@ -24,13 +24,13 @@ function modifier_pudge_chain_storm:OnCreated(table)
 end
 
 function modifier_pudge_chain_storm:OnRefresh()
-	self.mr = self:GetTalentSpecialValueFor("magic_resist")
+	self.mr = self:GetSpecialValueFor("magic_resist")
 	if IsServer() then
-		self.damage = self:GetTalentSpecialValueFor("damage")
-		self.stacks = self:GetTalentSpecialValueFor("heap_stacks")
-		self.heap_chance = self:GetTalentSpecialValueFor("heap_chance")
-		self.minion_chance = self:GetTalentSpecialValueFor("minion_chance")
-		self.max = self:GetTalentSpecialValueFor("max_resist") / self.mr
+		self.damage = self:GetSpecialValueFor("damage")
+		self.stacks = self:GetSpecialValueFor("heap_stacks")
+		self.heap_chance = self:GetSpecialValueFor("heap_chance")
+		self.minion_chance = self:GetSpecialValueFor("minion_chance")
+		self.max = self:GetSpecialValueFor("max_resist") / self.mr
 		self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_pudge_chain_storm_1")
 		self.talent1Timer = self:GetCaster():FindTalentValue("special_bonus_unique_pudge_chain_storm_1")
 		self.talent1Radius = self:GetCaster():FindTalentValue("special_bonus_unique_pudge_chain_storm_1", "radius")

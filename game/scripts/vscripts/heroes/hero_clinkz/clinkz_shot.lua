@@ -32,7 +32,7 @@ function modifier_clinkz_shot_caster:OnCreated(table)
 end
 
 function modifier_clinkz_shot_caster:OnRefresh()
-	self.targets = self:GetTalentSpecialValueFor("targets")
+	self.targets = self:GetSpecialValueFor("targets")
 end
 
 function modifier_clinkz_shot_caster:OnIntervalThink()

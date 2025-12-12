@@ -17,7 +17,7 @@ function modifier_warlock_golem_gloves:OnAttackLanded(params)
 	if IsServer() then
 		local parent = self:GetParent()
 		if params.attacker == parent then
-			local radius = self:GetTalentSpecialValueFor("radius")
+			local radius = self:GetSpecialValueFor("radius")
 			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", PATTACH_POINT, parent)
 						ParticleManager:SetParticleControl(nfx, 0, params.target:GetAbsOrigin())
 						ParticleManager:SetParticleControl(nfx, 1, Vector(radius,radius,radius))
@@ -27,7 +27,7 @@ function modifier_warlock_golem_gloves:OnAttackLanded(params)
 						
 			local enemies = parent:FindEnemyUnitsInRadius(params.target:GetAbsOrigin(), radius, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
 			for _,enemy in pairs(enemies) do
-				self:GetAbility():DealDamage(parent, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+				self:GetAbility():DealDamage(parent, enemy, self:GetSpecialValueFor("damage"), {}, 0)
 			end
 		end
 	end

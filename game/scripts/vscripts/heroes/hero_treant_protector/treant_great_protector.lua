@@ -15,7 +15,7 @@ function treant_great_protector:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	EmitSoundOn( "Hero_Treant.NaturesGuise.On", self:GetCaster() )
-	caster:AddNewModifier( caster, self, "modifier_treant_great_protector", { duration = self:GetTalentSpecialValueFor( "duration" ) } )
+	caster:AddNewModifier( caster, self, "modifier_treant_great_protector", { duration = self:GetSpecialValueFor( "duration" ) } )
 	
 	EmitSoundOn( "Hero_Treant.Overgrowth.Cast", self:GetCaster() )
 	ParticleManager:FireParticle("particles/units/heroes/hero_treant/treant_overgrowth_cast.vpcf", PATTACH_POINT_FOLLOW, caster)
@@ -45,11 +45,11 @@ modifier_treant_great_protector = class({})
 --------------------------------------------------------------------------------
 
 function modifier_treant_great_protector:OnCreated( kv )
-	self.move_speed = self:GetAbility():GetTalentSpecialValueFor( "move_speed" )
-	self.model_scale = self:GetAbility():GetTalentSpecialValueFor( "model_scale" )
-	self.bonus_strength = self:GetAbility():GetTalentSpecialValueFor( "bonus_strength" )
-	self.rootDur = self:GetTalentSpecialValueFor("root_duration")
-	self.chance = self:GetTalentSpecialValueFor("root_chance")
+	self.move_speed = self:GetAbility():GetSpecialValueFor( "move_speed" )
+	self.model_scale = self:GetAbility():GetSpecialValueFor( "model_scale" )
+	self.bonus_strength = self:GetAbility():GetSpecialValueFor( "bonus_strength" )
+	self.rootDur = self:GetSpecialValueFor("root_duration")
+	self.chance = self:GetSpecialValueFor("root_chance")
 	
 	self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_treant_great_protector_1", "armor")
 	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )

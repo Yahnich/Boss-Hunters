@@ -17,7 +17,7 @@ function clinkz_burning_army_bh:IsVectorTargeting()
 end
 
 function clinkz_burning_army_bh:GetVectorTargetRange()
-	return self:GetTalentSpecialValueFor("range")
+	return self:GetSpecialValueFor("range")
 end 
 
 function clinkz_burning_army_bh:GetVectorTargetStartRadius()
@@ -38,14 +38,14 @@ function clinkz_burning_army_bh:OnVectorCastStart()
 	local position = self:GetCursorPosition() 
 
 	caster:EmitSound("Hero_Clinkz.BurningArmy.SpellStart")
-	local ogSkeletons = self:GetTalentSpecialValueFor("count")
+	local ogSkeletons = self:GetSpecialValueFor("count")
 	local skeletons = ogSkeletons
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local attackRate = self:GetTalentSpecialValueFor("attack_rate")
-	local spawnRate = self:GetTalentSpecialValueFor("spawn_interval")
+	local duration = self:GetSpecialValueFor("duration")
+	local attackRate = self:GetSpecialValueFor("attack_rate")
+	local spawnRate = self:GetSpecialValueFor("spawn_interval")
 	if caster:HasTalent("special_bonus_unique_clinkz_burning_army_1") then
 		local angle = 0
-		local radius = self:GetTalentSpecialValueFor("range") / (2 * math.pi)
+		local radius = self:GetSpecialValueFor("range") / (2 * math.pi)
 		Timers:CreateTimer(spawnRate, function()
 			local spawnPosition = Vector(position.x+radius*math.sin(angle), position.y+radius*math.cos(angle), position.z)
 			self:CreateSkeletonArcher( spawnPosition, duration, attackRate )
@@ -56,7 +56,7 @@ function clinkz_burning_army_bh:OnVectorCastStart()
 			end
 		end)
 	else
-		local spawnDistance = self:GetTalentSpecialValueFor("range") / (skeletons - 1)
+		local spawnDistance = self:GetSpecialValueFor("range") / (skeletons - 1)
 		local spawnDirection = self:GetVectorDirection()
 		local spawnPosition = self:GetVectorPosition()
 		Timers:CreateTimer(spawnRate, function()
@@ -72,7 +72,7 @@ end
 
 function clinkz_burning_army_bh:CreateSkeletonArcher( position, duration, attackRate )
 	local caster = self:GetCaster()
-	local skeleton, duration = caster:CreateSummon("npc_dota_clinkz_skeleton_archer", position, duration or self:GetTalentSpecialValueFor("duration"), false )
+	local skeleton, duration = caster:CreateSummon("npc_dota_clinkz_skeleton_archer", position, duration or self:GetSpecialValueFor("duration"), false )
 	skeleton:RemoveAbility("clinkz_searing_arrows")
 	-- self:StartDelayedCooldown(duration)
 	skeleton:AddAbility("generic_hp_limiter"):UpgradeAbility(true)
@@ -139,7 +139,7 @@ modifier_clinkz_burning_army_bh_passive = class({})
 LinkLuaModifier( "modifier_clinkz_burning_army_bh_passive", "heroes/hero_clinkz/clinkz_burning_army_bh.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_clinkz_burning_army_bh_passive:OnCreated()
 	self.attack_range = self:GetCaster():GetAttackRange()
-	self.attack_speed = ( 1.7 / self:GetTalentSpecialValueFor("attack_rate") ) * 100 - 100
+	self.attack_speed = ( 1.7 / self:GetSpecialValueFor("attack_rate") ) * 100 - 100
 	if IsServer() then
 		self:SetStackCount( self:GetCaster():GetAverageBaseDamage() )
 	end

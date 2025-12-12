@@ -1,7 +1,7 @@
 lich_chain_frost_bh = class({})
 
 function lich_chain_frost_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("jump_range")
+	return self:GetSpecialValueFor("jump_range")
 end
 
 function lich_chain_frost_bh:OnSpellStart()
@@ -14,28 +14,28 @@ end
 function lich_chain_frost_bh:FireChainFrost(target, source, bounces)
 	self:FireTrackingProjectile("particles/units/heroes/hero_lich/lich_chain_frost.vpcf", 
 								target, 
-								self:GetTalentSpecialValueFor("projectile_speed"), 
+								self:GetSpecialValueFor("projectile_speed"), 
 								{source = source or self:GetCaster(),
 								 origin = (source or self:GetCaster()):GetAbsOrigin(),
-								 extraData = {bounces = bounces or self:GetTalentSpecialValueFor("jumps")}}, 
+								 extraData = {bounces = bounces or self:GetSpecialValueFor("jumps")}}, 
 								TernaryOperator( DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, self:GetCaster() == source, DOTA_PROJECTILE_ATTACHMENT_HITLOCATION ), 
 								true, 
 								true, 
-								self:GetTalentSpecialValueFor("vision_radius") )
+								self:GetSpecialValueFor("vision_radius") )
 end
 
 function lich_chain_frost_bh:OnProjectileHit_ExtraData( target, position, extraData )
 	if target and not target:TriggerSpellAbsorb( self ) then
 		local caster = self:GetCaster()
 		
-		local damage = self:GetTalentSpecialValueFor("damage")
-		local duration = self:GetTalentSpecialValueFor("slow_duration")
-		local jumpRadius = self:GetTalentSpecialValueFor("jump_range")
+		local damage = self:GetSpecialValueFor("damage")
+		local duration = self:GetSpecialValueFor("slow_duration")
+		local jumpRadius = self:GetSpecialValueFor("jump_range")
 		local bounces = ( tonumber(extraData.bounces) or 0 )
 		
 		self:DealDamage( caster, target, damage )
 		if caster:HasTalent("special_bonus_unique_lich_chain_frost_2") then
-			target:AddChill(self, caster, duration, math.abs( self:GetTalentSpecialValueFor("slow_movement_speed") ) )
+			target:AddChill(self, caster, duration, math.abs( self:GetSpecialValueFor("slow_movement_speed") ) )
 		else
 			target:AddNewModifier( caster, self, "modifier_lich_chain_frost_bh", {duration = duration})
 		end
@@ -58,7 +58,7 @@ function lich_chain_frost_bh:OnProjectileHit_ExtraData( target, position, extraD
 						self:DealDamage( caster, target, damage )
 						bouncesDamage = bouncesDamage - 1
 						if caster:HasTalent("special_bonus_unique_lich_chain_frost_2") then
-							target:AddChill(self, caster, duration, math.abs( self:GetTalentSpecialValueFor("slow_movement_speed") ) )
+							target:AddChill(self, caster, duration, math.abs( self:GetSpecialValueFor("slow_movement_speed") ) )
 						else
 							target:AddNewModifier( caster, self, "modifier_lich_chain_frost_bh", {duration = duration})
 						end
@@ -76,13 +76,13 @@ modifier_lich_chain_frost_bh = class({})
 LinkLuaModifier( "modifier_lich_chain_frost_bh", "heroes/hero_lich/lich_chain_frost_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_lich_chain_frost_bh:OnCreated()
-	self.ms = self:GetTalentSpecialValueFor("slow_movement_speed")
-	self.as = self:GetTalentSpecialValueFor("slow_attack_speed")
+	self.ms = self:GetSpecialValueFor("slow_movement_speed")
+	self.as = self:GetSpecialValueFor("slow_attack_speed")
 end
 
 function modifier_lich_chain_frost_bh:OnRefresh()
-	self.ms = self:GetTalentSpecialValueFor("slow_movement_speed")
-	self.as = self:GetTalentSpecialValueFor("slow_attack_speed")
+	self.ms = self:GetSpecialValueFor("slow_movement_speed")
+	self.as = self:GetSpecialValueFor("slow_attack_speed")
 end
 
 function modifier_lich_chain_frost_bh:DeclareFunctions()

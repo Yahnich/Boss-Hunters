@@ -29,12 +29,12 @@ function pa_kunai_toss:OnProjectileHit(hTarget, vLocation)
 		if not hTarget:TriggerSpellAbsorb( self ) then
 			EmitSoundOn("Hero_PhantomAssassin.Dagger.Target", caster)
 
-			caster:PerformAbilityAttack( hTarget, true, self, self:GetTalentSpecialValueFor("damage") )
-			hTarget:AddNewModifier(caster, self, "modifier_kunai_toss_slow", {Duration = self:GetTalentSpecialValueFor("slow_duration")})
+			caster:PerformAbilityAttack( hTarget, true, self, self:GetSpecialValueFor("damage") )
+			hTarget:AddNewModifier(caster, self, "modifier_kunai_toss_slow", {Duration = self:GetSpecialValueFor("slow_duration")})
         end
 		return true
         -- if caster:HasTalent("special_bonus_unique_pa_kunai_toss_1") then
-            -- local enemies = caster:FindEnemyUnitsInRadius(vLocation or hTarget:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
+            -- local enemies = caster:FindEnemyUnitsInRadius(vLocation or hTarget:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
             -- for _,enemy in pairs(enemies) do
                 -- if enemy ~= hTarget and self.CurrentBounces < self.TotesBounces then
                     -- self:FireTrackingProjectile("particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf", hTarget, 1200, {}, 0, true, true, 100)
@@ -63,8 +63,8 @@ if IsServer() then
 	function modifier_kunai_toss_thinker:OnCreated()
 		self.target = self:GetAbility():GetCursorTarget()
 		self.point = self:GetAbility():GetCursorPosition()
-		self.daggers = self:GetTalentSpecialValueFor("daggers") - 1
-		self.angle = math.atan( self:GetTalentSpecialValueFor("spread_radius") / self:GetAbility():GetTrueCastRange() )
+		self.daggers = self:GetSpecialValueFor("daggers") - 1
+		self.angle = math.atan( self:GetSpecialValueFor("spread_radius") / self:GetAbility():GetTrueCastRange() )
 		self:GetAbility():TossKunai( self.target or self.point )
 		self:StartIntervalThink( 0.1 )
 	end
@@ -96,7 +96,7 @@ function modifier_kunai_toss_slow:OnCreated()
 end
 
 function modifier_kunai_toss_slow:OnRefresh()	
-	self.slow = self:GetTalentSpecialValueFor("slow")
+	self.slow = self:GetSpecialValueFor("slow")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_pa_kunai_toss_1")
 end
 

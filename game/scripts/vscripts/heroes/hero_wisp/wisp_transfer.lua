@@ -51,7 +51,7 @@ function wisp_transfer:OnSpellStart()
 		if target:TriggerSpellAbsorb( self ) then return end
 		caster:AddNewModifier(caster, self, "modifier_wisp_transfer", {})
 		target:AddNewModifier(caster, self, "modifier_wisp_transfer_target", {})
-		local pullDistance = self:GetTalentSpecialValueFor("pull_distance")
+		local pullDistance = self:GetSpecialValueFor("pull_distance")
 		if CalculateDistance( caster, target ) > pullDistance * 2 then
 			caster:AddNewModifier(caster, self, "modifier_wisp_tether_bh_motion", {Duration = 5})
 		end
@@ -66,8 +66,8 @@ function modifier_wisp_transfer:OnCreated(table)
 		local parent = self:GetCaster()
 		self.target = self:GetAbility():GetCursorTarget()
 		
-		self.range = self:GetTalentSpecialValueFor("break_distance") + parent:GetBonusCastRange()
-		self.restoreMultiplier = self:GetTalentSpecialValueFor("restore_amp")/100
+		self.range = self:GetSpecialValueFor("break_distance") + parent:GetBonusCastRange()
+		self.restoreMultiplier = self:GetSpecialValueFor("restore_amp")/100
 
 		EmitSoundOn("Hero_Wisp.Tether", parent)
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_wisp/wisp_evil_tether.vpcf", PATTACH_POINT, parent)
@@ -76,7 +76,7 @@ function modifier_wisp_transfer:OnCreated(table)
 
 		self:AttachEffect(nfx)
 
-		self.drain = self.target:GetMaxHealth() * self:GetTalentSpecialValueFor("health_drain")/100 * 0.1
+		self.drain = self.target:GetMaxHealth() * self:GetSpecialValueFor("health_drain")/100 * 0.1
 
 		self:StartIntervalThink(0.1)
 	end

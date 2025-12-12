@@ -17,7 +17,7 @@ end
 function modifier_broodmother_bite:OnAttackLanded(params)
     if IsServer() then
         if params.attacker == self:GetParent() then
-            params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_broodmother_bite_poison", {Duration = self:GetTalentSpecialValueFor("duration")})
+            params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_broodmother_bite_poison", {Duration = self:GetSpecialValueFor("duration")})
         end
     end
 end
@@ -33,9 +33,9 @@ end
 
 function modifier_broodmother_bite_poison:OnIntervalThink()
     if self:GetCaster():IsHero() then
-        self.damage = self:GetCaster():GetAgility() * (self:GetTalentSpecialValueFor("damage")/100)
+        self.damage = self:GetCaster():GetAgility() * (self:GetSpecialValueFor("damage")/100)
     elseif self:GetCaster():GetOwnerEntity() then
-        self.damage = self:GetCaster():GetOwnerEntity():GetAgility() * (self:GetTalentSpecialValueFor("damage")/100)
+        self.damage = self:GetCaster():GetOwnerEntity():GetAgility() * (self:GetSpecialValueFor("damage")/100)
     end
     self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
 end
@@ -46,11 +46,11 @@ function modifier_broodmother_bite_poison:DeclareFunctions()
 end
 
 function modifier_broodmother_bite_poison:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("bonus_movespeed")
+    return self:GetSpecialValueFor("bonus_movespeed")
 end
 
 function modifier_broodmother_bite_poison:GetModifierMiss_Percentage()
-    return self:GetTalentSpecialValueFor("miss_chance")
+    return self:GetSpecialValueFor("miss_chance")
 end
 
 function modifier_broodmother_bite_poison:GetEffectName()

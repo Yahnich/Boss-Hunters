@@ -41,9 +41,9 @@ modifier_troll_warlord_berserkers_rage_bh_melee = class(toggleModifierBaseClass)
 LinkLuaModifier("modifier_troll_warlord_berserkers_rage_bh_melee", "heroes/hero_troll_warlord/troll_warlord_berserkers_rage_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_troll_warlord_berserkers_rage_bh_melee:OnCreated()
-	self.hp = self:GetTalentSpecialValueFor("bonus_hp")
-	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
-	self.bat = self:GetTalentSpecialValueFor("base_attack_time") - 1.7
+	self.hp = self:GetSpecialValueFor("bonus_hp")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
+	self.bat = self:GetSpecialValueFor("base_attack_time") - 1.7
 	self:GetParent():HookInModifier("GetBaseAttackTime_Bonus", self)
 	self:GetParent():HookInModifier("GetModifierExtraHealthBonusPercentage", self)
 	if IsServer() then

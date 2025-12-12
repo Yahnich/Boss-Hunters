@@ -16,17 +16,17 @@ function tinker_march:OnSpellStart()
 	local startPos = caster:GetAbsOrigin()
 	local dir = CalculateDirection(point, startPos)	
 
-	local max_robots = self:GetTalentSpecialValueFor("max_robots")
+	local max_robots = self:GetSpecialValueFor("max_robots")
 	local current_robots = 0
 
 	EmitSoundOnLocationWithCaster(startPos, "Hero_Tinker.March_of_the_Machines", caster)
 	Timers:CreateTimer(function()
-		local randoVect = ActualRandomVector(self:GetTalentSpecialValueFor("spawn_radius"),-self:GetTalentSpecialValueFor("spawn_radius"))
+		local randoVect = ActualRandomVector(self:GetSpecialValueFor("spawn_radius"),-self:GetSpecialValueFor("spawn_radius"))
         pointRando = startPos + randoVect
 		if current_robots < max_robots then
-			self:FireLinearProjectile("particles/units/heroes/hero_tinker/tinker_machine.vpcf", dir*self:GetTalentSpecialValueFor("speed"), self:GetTrueCastRange(), self:GetTalentSpecialValueFor("collision_radius"), {origin=pointRando}, false, true, self:GetTalentSpecialValueFor("collision_radius"))
+			self:FireLinearProjectile("particles/units/heroes/hero_tinker/tinker_machine.vpcf", dir*self:GetSpecialValueFor("speed"), self:GetTrueCastRange(), self:GetSpecialValueFor("collision_radius"), {origin=pointRando}, false, true, self:GetSpecialValueFor("collision_radius"))
 			current_robots = current_robots + 1
-			return self:GetTalentSpecialValueFor("spawn_rate")
+			return self:GetSpecialValueFor("spawn_rate")
 		else
 			return nil
 		end
@@ -37,12 +37,12 @@ function tinker_march:OnProjectileHitHandle(hTarget, vLocation, iProjectileHandl
 	local caster = self:GetCaster()
 
 	if hTarget ~= nil then
-		local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("splash_radius"))
+		local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetSpecialValueFor("splash_radius"))
 		for _,enemy in pairs(enemies) do
 			if caster:HasTalent("special_bonus_unique_tinker_march_1") then
 				enemy:Paralyze(self, caster)
 			end
-			self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+			self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, 0)
 		end
 		if not caster:HasTalent("special_bonus_unique_tinker_march_2") then
 			ProjectileManager:DestroyLinearProjectile(iProjectileHandle)

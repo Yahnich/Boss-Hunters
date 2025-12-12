@@ -16,7 +16,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"broodmother_spawn_spiderlings"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -42,55 +42,31 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"80 160 240 320 400 480 560"
+			"damage"					"80 160 240 320 400 480 560"
 				"LinkedSpecialBonus"		"special_bonus_unique_broodmother_spawn_spiderlings_bh_2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"3"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"count"						"4"
+			"duration"					"3"
+			"count"						"4"
 				"LinkedSpecialBonus"		"special_bonus_unique_broodmother_spawn_spiderlings_bh_1"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"spider_duration"			"60"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"spider_damage"				"45 65 85 105 125 145 165"
-			}
+"spider_duration"			"60"
+			"spider_damage"				"45 65 85 105 125 145 165"
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"spider_health"				"1000"
-			}
 			"07"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"spider_evasion"			"35"
-			}
 			"08"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"spider_mr"					"80"
-			}			
+				"spider_mr"					"80"			
 			"09"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"speed"						"1200"
-			}
 		}
 	
 		"precache"
@@ -116,13 +92,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -138,13 +110,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"200"
-			}
+			"value"						"200"
 		}
 	}
 
@@ -159,7 +127,7 @@
 		"ScriptFile"					"heroes/hero_broodmother/broodmother_web.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityTextureName"			"broodmother_spin_web"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -185,23 +153,14 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"600 700 800 900 1000 1100 1200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heath_regen"			"1.5 1.75 2 2.25 2.5 2.75 3"
-			}
+			"radius"				"600 700 800 900 1000 1100 1200"
+			"heath_regen"			"1.5 1.75 2 2.25 2.5 2.75 3"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_movespeed"		"50"
-			}
 		}
 	
 		"precache"
@@ -225,13 +184,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-5"
-			}
+			"value"						"-5"
 		}
 	}
 	//=================================================================================================================
@@ -247,13 +202,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-100"
-			}
+			"value"						"-100"
 		}
 	}
 
@@ -268,7 +219,7 @@
 		"ScriptFile"					"heroes/hero_broodmother/broodmother_spiderite.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"broodmother_spawn_spiderite"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -294,50 +245,30 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1 2 3 4 5 6 7"
+			"duration"				"1 2 3 4 5 6 7"
 				"LinkedSpecialBonus"	"special_bonus_unique_broodmother_spiderite_1"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"count"					"1 2 3 4 5 6 7"
 				"LinkedSpecialBonus"	"special_bonus_unique_broodmother_spiderite_1"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spider_duration"		"15"
-			}
+			"spider_duration"		"15"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"spider_damage"			"45 55 65 75 85 95 105"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spider_health"			"550"
-			}
+			"spider_health"			"550"
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"spider_evasion"		"50"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spider_mr"				"80"
-			}
+			"spider_mr"				"80"
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"squish_radius"			"150"
-			}
 		}
 	
 		"precache"
@@ -360,13 +291,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"3"
-			}
+			"value"						"3"
 		}
 	}
 	//=================================================================================================================
@@ -382,13 +309,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"15"
-			}
+			"value"						"15"
 		}
 	}
 
@@ -413,28 +336,15 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"miss_chance"			"25"
-			}
+			"miss_chance"			"25"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_movespeed"		"-25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"2"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"				"50"
-			}
+			"duration"				"2"
+			"damage"				"50"
 		}
 	
 		"precache"
@@ -457,7 +367,7 @@
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"broodmother_insatiable_hunger"
 		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -477,25 +387,16 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"60 100 140 180 220 260"
+			"bonus_damage"			"60 100 140 180 220 260"
 				"LinkedSpecialBonus"	"special_bonus_unique_broodmother_hunger_1"
-			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"lifesteal_pct"			"60 80 100 120 140 160"
 				"LinkedSpecialBonus"	"special_bonus_unique_broodmother_hunger_1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"14"
-			}
+			"duration"				"14"
 		}
 	
 		"precache"
@@ -519,13 +420,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"60"
-			}
+			"value"						"60"
 		}
 	}
 	//=================================================================================================================
@@ -541,13 +438,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"75"
-			}
+			"value"						"75"
 		}
 	}
 }

@@ -13,7 +13,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"mirana_starfall"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -38,28 +38,12 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"75 150 225 300 375 450 525"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"950"		
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"wave_delay"				"0.8"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"wave_damage"				"75"
-			}
+			"damage"					"75 150 225 300 375 450 525"
+			"radius"					"950"		
+			"wave_delay"				"0.8"
+"wave_damage"				"75"
 			
 		}
 	
@@ -83,13 +67,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"6"
-			}
+			"value"					"6"
 		}
 	}
 	"special_bonus_unique_mirana_starcall_2" 
@@ -102,13 +82,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"3"
-			}
+			"value"					"3"
 		}
 	}
 	"mirana_astral_arrow"
@@ -124,7 +100,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"mirana_arrow"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -151,21 +127,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"160 250 340 430 445 460 475"
+			"damage"					"160 250 340 430 445 460 475"
 				"LinkedSpecialBonus"		"special_bonus_unique_mirana_astral_arrow_2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"1.5"		
+			"duration"					"1.5"		
 				"LinkedSpecialBonus"		"special_bonus_unique_mirana_astral_arrow_2"
 				"LinkedSpecialBonusField"	"value2"
-			}
 		}
 	
 		// Precache
@@ -186,13 +154,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"special_bonus_unique_mirana_astral_arrow_2" 
@@ -205,18 +169,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"120"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value2"				"1.5"
-			}
+			"value"					"120"
+			"value2"				"1.5"
 		}
 	}
 	"special_bonus_unique_mirana_astral_arrow_3" 
@@ -229,13 +185,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"100"
-			}
+			"value"					"100"
 		}
 	}
 	"mirana_celestial_jump"
@@ -247,7 +199,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"mirana_leap"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -273,48 +225,19 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_attackspeed"			"25 50 75 100 100 100 100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_movespeed"			"8 16 24 32 32 32 32"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"2.5 2.5 2.5 2.5 3.0 3.5 4.0"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"jump_duration"				"0.75"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"jump_distance"				"575"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"max_height"				"250"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"325"
-			}
+			"bonus_attackspeed"			"25 50 75 100 100 100 100"
+			"bonus_movespeed"			"8 16 24 32 32 32 32"
+			"duration"					"2.5 2.5 2.5 2.5 3.0 3.5 4.0"
+"jump_duration"				"0.75"
+			"jump_distance"				"575"
+			"max_height"				"250"
+			"radius"					"325"
 			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"charges"					"3"
-			}
 		}
 	
 		// Precache
@@ -336,13 +259,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-10"
-			}
+			"value"					"-10"
 		}
 	}
 	"special_bonus_unique_mirana_celestial_jump_2" 
@@ -355,13 +274,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"100"
-			}
+			"value"					"100"
 		}
 	}
 	//=================================================================================================================
@@ -380,13 +295,9 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"agi_spellamp"			"0.15"
-			}
+			"agi_spellamp"			"0.15"
 		}
 	
 		// Precache
@@ -408,7 +319,7 @@
 		"ScriptFile"					"heroes/hero_mirana/mirana_stardust_reflection.lua"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"AbilityTextureName"			"custom/mirana_stardust_reflection"
 		
 		// Talents		
@@ -445,23 +356,11 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"18"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"fade_delay"			"2 1.4 0.8 0.8 0.8 0.8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"movespeed"				"9 12 15 18 21 24"
-			}
+			"duration"				"18"
+			"fade_delay"			"2 1.4 0.8 0.8 0.8 0.8"
+			"movespeed"				"9 12 15 18 21 24"
 		}
 	}
 	"special_bonus_unique_mirana_stardust_reflection_1" 
@@ -474,18 +373,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"amp"					"50"
-			}
+			"value"					"25"
+			"amp"					"50"
 		}
 	}
 	"special_bonus_unique_mirana_stardust_reflection_2" 
@@ -498,18 +389,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"50"
-			}
+			"value"					"50"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"dmg"					"300"
-			}
 		}
 	}
 }

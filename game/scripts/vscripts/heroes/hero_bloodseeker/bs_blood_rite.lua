@@ -20,16 +20,16 @@ function bs_blood_rite:OnSpellStart()
 
 	EmitSoundOn("Hero_Bloodseeker.BloodRite.Cast", caster)
 	EmitSoundOnLocationWithCaster(point, "hero_bloodseeker.bloodRite", caster)
-	CreateModifierThinker(caster, self, "modifier_bs_blood_rite", {Duration = self:GetTalentSpecialValueFor("delay")}, point, caster:GetTeam(), false)
+	CreateModifierThinker(caster, self, "modifier_bs_blood_rite", {Duration = self:GetSpecialValueFor("delay")}, point, caster:GetTeam(), false)
 end
 
 modifier_bs_blood_rite = class({})
 LinkLuaModifier("modifier_bs_blood_rite", "heroes/hero_bloodseeker/bs_blood_rite", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_bs_blood_rite:OnCreated(table)
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.duration = self:GetTalentSpecialValueFor("duration")
-	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.damage = self:GetSpecialValueFor("damage")
 	if IsServer() then
 
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_spell_bloodbath_bubbles.vpcf", PATTACH_POINT, self:GetCaster())

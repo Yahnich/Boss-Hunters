@@ -3,7 +3,7 @@ queenofpain_sonic_wave_bh = class({})
 function queenofpain_sonic_wave_bh:GetCooldown( iLvl )
 	local caster = self:GetCaster()
 	local cd = self.BaseClass.GetCooldown( self, iLvl ) + caster:FindTalentValue("special_bonus_unique_queenofpain_sonic_wave_2")
-	if caster:HasScepter() then cd = cd * (100 - self:GetTalentSpecialValueFor("scepter_cd_reduction")) / 100 end
+	if caster:HasScepter() then cd = cd * (100 - self:GetSpecialValueFor("scepter_cd_reduction")) / 100 end
 	return cd
 end
 
@@ -12,10 +12,10 @@ function queenofpain_sonic_wave_bh:OnSpellStart()
 	local position = self:GetCursorPosition()
 	local direction = CalculateDirection( position, caster )
 	
-	local width = self:GetTalentSpecialValueFor("starting_aoe")
-	local width_end = self:GetTalentSpecialValueFor("final_aoe")
-	local distance = self:GetTalentSpecialValueFor("distance")
-	local speed = self:GetTalentSpecialValueFor("speed")
+	local width = self:GetSpecialValueFor("starting_aoe")
+	local width_end = self:GetSpecialValueFor("final_aoe")
+	local distance = self:GetSpecialValueFor("distance")
+	local speed = self:GetSpecialValueFor("speed")
 	
 	caster:EmitSound("Hero_QueenOfPain.SonicWave")
 	self:FireLinearProjectile("particles/units/heroes/hero_queenofpain/queen_sonic_wave.vpcf", speed * direction, distance, width, {width_end = width_end} )
@@ -24,9 +24,9 @@ end
 function queenofpain_sonic_wave_bh:OnProjectileHit( target, position )
 	if target and not target:TriggerSpellAbsorb( self ) then
 		local caster = self:GetCaster()
-		local damage = TernaryOperator( self:GetTalentSpecialValueFor("damage_scepter"), caster:HasScepter(), self:GetTalentSpecialValueFor("damage") )
-		local kbDistance = self:GetTalentSpecialValueFor("knockback_distance")
-		local kbDuration = self:GetTalentSpecialValueFor("knockback_duration")
+		local damage = TernaryOperator( self:GetSpecialValueFor("damage_scepter"), caster:HasScepter(), self:GetSpecialValueFor("damage") )
+		local kbDistance = self:GetSpecialValueFor("knockback_distance")
+		local kbDuration = self:GetSpecialValueFor("knockback_duration")
 		self:DealDamage( caster, target, damage )
 		target:ApplyKnockBack( caster:GetAbsOrigin(), kbDuration, kbDuration, kbDistance, 0, caster, self, false)
 		if caster:HasTalent("special_bonus_unique_queenofpain_sonic_wave_1") then

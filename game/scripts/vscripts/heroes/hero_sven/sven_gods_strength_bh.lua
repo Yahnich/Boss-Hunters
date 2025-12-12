@@ -7,7 +7,7 @@ end
 function sven_gods_strength_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	caster:AddNewModifier(caster, self, "modifier_sven_gods_strength_bonus_damage", {duration = duration})
 	ParticleManager:FireParticle("particles/units/heroes/hero_sven/sven_spell_gods_strength.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	
@@ -67,8 +67,8 @@ modifier_sven_gods_strength_bonus_damage = class({})
 LinkLuaModifier("modifier_sven_gods_strength_bonus_damage", "heroes/hero_sven/sven_gods_strength_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_sven_gods_strength_bonus_damage:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("radius_scepter")
-	self.damage = self:GetTalentSpecialValueFor("gods_strength_damage")
+	self.radius = self:GetSpecialValueFor("radius_scepter")
+	self.damage = self:GetSpecialValueFor("gods_strength_damage")
 	
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_sven_gods_strength_2")
 	if IsServer() then

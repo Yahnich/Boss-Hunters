@@ -14,7 +14,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"IsOrb"							"1"
 		
 		// Talents		
@@ -39,14 +39,13 @@
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_obsidian_destroyer.vsndevts"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"mana_pool_damage_pct"			"6 6.5 7 7.5 8 8.5 9"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 		}
 	}
 	"special_bonus_unique_obsidian_destroyer_arcane_missile_1" 
@@ -59,13 +58,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"15"
-			}
+			"value"					"15"
 		}
 	}
 	"special_bonus_unique_obsidian_destroyer_arcane_missile_2" 
@@ -78,18 +73,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"325"
-			}
+			"value"					"25"
+			"radius"				"325"
 		}
 	}
 	"obsidian_destroyer_astral_isolation"
@@ -105,7 +92,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"obsidian_destroyer_astral_imprisonment"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -144,35 +131,24 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"steal_duration"		"60.0 60.0 60.0 60.0"
-				"LinkedSpecialBonus"	"special_bonus_unique_obsidian_destroyer_astral_isolation_1"
-			}		
+			"steal_duration"		"60.0 60.0 60.0 60.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_obsidian_destroyer_astral_isolation_1"		
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"int_gain"				"2 4 6 8 10 12 14"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"100 175 250 325 400 475 550"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"400"
-			}
+			"radius"				"400"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"prison_duration"		"4.0"
 				"LinkedSpecialBonus"	"special_bonus_unique_obsidian_destroyer_astral_isolation_2"
-			}
 		}
 	}
 	"special_bonus_unique_obsidian_destroyer_astral_isolation_1" 
@@ -185,13 +161,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"60"
-			}
+			"value"					"60"
 		}
 	}
 	"special_bonus_unique_obsidian_destroyer_astral_isolation_2" 
@@ -204,13 +176,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"4"
-			}
+			"value"					"4"
 		}
 	}
 	//=================================================================================================================
@@ -226,7 +194,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityTextureName"			"obsidian_destroyer_essence_aura"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		"AbilityCooldown"				"5"
 		"AbilityCastPoint"				"0.3"
@@ -249,29 +217,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"	    	"150 300 450 600 750 900 1050"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_restore_pct"		"4 5 6 7 8 9 10"
+			"bonus_mana"	    	"150 300 450 600 750 900 1050"
+			"mana_restore_pct"		"4 5 6 7 8 9 10"
 				"LinkedSpecialBonus"	"special_bonus_unique_obsidian_destroyer_avatar_of_power_2"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_restore_chance"	"40"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_amp"		"9 10 11 12 13 14 15"
-			}
+			"mana_restore_chance"	"40"
+			"bonus_spell_amp"		"9 10 11 12 13 14 15"
 		}
 	}
 	"special_bonus_unique_obsidian_destroyer_avatar_of_power_1" 
@@ -284,13 +236,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"3"
-			}
+			"value"					"3"
 		}
 	}
 	"special_bonus_unique_obsidian_destroyer_avatar_of_power_2" 
@@ -304,13 +252,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"5"
-			}
+			"value"					"5"
 		}
 	}
 	"obsidian_destroyer_celestial_obliteration"
@@ -328,7 +272,7 @@
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"obsidian_destroyer_sanity_eclipse"
 		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -368,32 +312,16 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_multiplier"				"14 16 18 20 22 24"
+			"damage_multiplier"				"14 16 18 20 22 24"
 				"LinkedSpecialBonus"			"special_bonus_unique_obsidian_destroyer_celestial_obliteration_1"
 				"LinkedSpecialBonusField"		"damage"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"debuff_duration"				"8"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"600"
+			"debuff_duration"				"8"
+			"radius"						"600"
 				"LinkedSpecialBonus"			"special_bonus_unique_obsidian_destroyer_celestial_obliteration_1"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"cast_range"					"700 700 700"
-			}
+			"cast_range"					"700 700 700"
 		}
 	}
 	"special_bonus_unique_obsidian_destroyer_celestial_obliteration_1" 
@@ -406,18 +334,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1400"
-			}
+			"value"					"1400"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"4"
-			}
 		}
 	}
 	"special_bonus_unique_obsidian_destroyer_celestial_obliteration_2" 
@@ -430,18 +353,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"60"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
-			}
+			"value"					"60"
+			"duration"				"10"
 		}
 	}
 }

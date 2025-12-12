@@ -26,22 +26,22 @@ function lina_fireball:OnProjectileHit(hTarget, vLocation)
     if hTarget ~= nil and not hTarget:TriggerSpellAbsorb( self ) then
         EmitSoundOn("Hero_Jakiro.LiquidFire", hTarget)
 
-        ParticleManager:FireParticle("particles/units/heroes/hero_jakiro/jakiro_liquid_fire_explosion.vpcf", PATTACH_POINT, caster, {[0]=hTarget:GetAbsOrigin(), [1]=Vector(self:GetTalentSpecialValueFor("radius"),self:GetTalentSpecialValueFor("radius"),self:GetTalentSpecialValueFor("radius"))})
+        ParticleManager:FireParticle("particles/units/heroes/hero_jakiro/jakiro_liquid_fire_explosion.vpcf", PATTACH_POINT, caster, {[0]=hTarget:GetAbsOrigin(), [1]=Vector(self:GetSpecialValueFor("radius"),self:GetSpecialValueFor("radius"),self:GetSpecialValueFor("radius"))})
 
-        local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"))
+        local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetSpecialValueFor("radius"))
         for _,enemy in pairs(enemies) do
 			if not enemy:TriggerSpellAbsorb( self ) then
 				if caster:HasTalent("special_bonus_unique_lina_fireball_2") then
 					self:Stun(enemy, caster:FindTalentValue("special_bonus_unique_lina_fireball_2"), false)
 				end
 
-				self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
-				enemy:AddNewModifier(caster, self, "modifier_lina_fireball", {Duration = self:GetTalentSpecialValueFor("duration")})
+				self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, 0)
+				enemy:AddNewModifier(caster, self, "modifier_lina_fireball", {Duration = self:GetSpecialValueFor("duration")})
 			end
         end
 
         if caster:HasTalent("special_bonus_unique_lina_fireball_1") then
-            CreateModifierThinker(caster, self, "modifier_lina_fireball_fire", {Duration = self:GetTalentSpecialValueFor("duration")}, vLocation, caster:GetTeam(), false)
+            CreateModifierThinker(caster, self, "modifier_lina_fireball_fire", {Duration = self:GetSpecialValueFor("duration")}, vLocation, caster:GetTeam(), false)
         end
     end
 end
@@ -54,7 +54,7 @@ function modifier_lina_fireball:OnCreated(table)
 end
 
 function modifier_lina_fireball:OnIntervalThink()
-    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("damage_time"), {}, 0)
+    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetSpecialValueFor("damage_time"), {}, 0)
 end
 
 function modifier_lina_fireball:GetEffectName()
@@ -75,15 +75,15 @@ function modifier_lina_fireball_fire:OnCreated(table)
         self.fireFX = ParticleManager:CreateParticle("particles/units/heroes/hero_lina/lina_lsa_fire.vpcf", PATTACH_CUSTOMORIGIN, self:GetCaster())
         --self.fireFX = ParticleManager:CreateParticle("particles/units/heroes/hero_lina/lina_lsa_aoe.vpcf", PATTACH_CUSTOMORIGIN, self:GetCaster())
         ParticleManager:SetParticleControl(self.fireFX, 0, self:GetParent():GetAbsOrigin())
-        ParticleManager:SetParticleControl(self.fireFX, 1, Vector(self:GetTalentSpecialValueFor("radius"),1,1))
+        ParticleManager:SetParticleControl(self.fireFX, 1, Vector(self:GetSpecialValueFor("radius"),1,1))
         self:StartIntervalThink(0.5)
     end
 end
 
 function modifier_lina_fireball_fire:OnIntervalThink()
-    local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+    local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius"))
     for _,enemy in pairs(enemies) do
-        self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage_time"), {}, 0)
+        self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetSpecialValueFor("damage_time"), {}, 0)
     end
 end
 

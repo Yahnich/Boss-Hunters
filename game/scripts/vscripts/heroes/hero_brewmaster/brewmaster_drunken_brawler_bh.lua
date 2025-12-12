@@ -34,10 +34,10 @@ function modifier_brewmaster_drunken_brawler_bh_handler:OnCreated()
 end
 
 function modifier_brewmaster_drunken_brawler_bh_handler:OnRefresh()
-	self.crit_chance = self:GetTalentSpecialValueFor("crit_chance")
-	self.crit_damage = self:GetTalentSpecialValueFor("crit_multiplier")
-	self.evasion = self:GetTalentSpecialValueFor("dodge_chance")
-	self.delay = self:GetTalentSpecialValueFor("last_proc")
+	self.crit_chance = self:GetSpecialValueFor("crit_chance")
+	self.crit_damage = self:GetSpecialValueFor("crit_multiplier")
+	self.evasion = self:GetSpecialValueFor("dodge_chance")
+	self.delay = self:GetSpecialValueFor("last_proc")
 	if IsServer() then 
 		self.lastCrit = self.delay
 		self.lastDodge = self.delay

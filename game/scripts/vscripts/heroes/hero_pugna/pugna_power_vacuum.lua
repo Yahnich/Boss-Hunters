@@ -8,13 +8,13 @@ modifier_pugna_power_vacuum = class({})
 LinkLuaModifier("modifier_pugna_power_vacuum", "heroes/hero_pugna/pugna_power_vacuum", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_pugna_power_vacuum:OnCreated()
-	self.boss = self:GetTalentSpecialValueFor("boss_lifesteal") / 100
-	self.mob = self:GetTalentSpecialValueFor("mob_lifesteal") / 100
+	self.boss = self:GetSpecialValueFor("boss_lifesteal") / 100
+	self.mob = self:GetSpecialValueFor("mob_lifesteal") / 100
 end
 
 function modifier_pugna_power_vacuum:OnRefresh()
-	self.boss = self:GetTalentSpecialValueFor("boss_lifesteal") / 100
-	self.mob = self:GetTalentSpecialValueFor("mob_lifesteal") / 100
+	self.boss = self:GetSpecialValueFor("boss_lifesteal") / 100
+	self.mob = self:GetSpecialValueFor("mob_lifesteal") / 100
 end
 
 function modifier_pugna_power_vacuum:DeclareFunctions()

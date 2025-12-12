@@ -4,7 +4,7 @@ function disruptor_static_storm_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorPosition()
 	
-	local duration = TernaryOperator( self:GetTalentSpecialValueFor("duration_scepter"), caster:HasScepter(), self:GetTalentSpecialValueFor("duration") )
+	local duration = TernaryOperator( self:GetSpecialValueFor("duration_scepter"), caster:HasScepter(), self:GetSpecialValueFor("duration") )
 	CreateModifierThinker(caster, self, "modifier_disruptor_static_storm_bh", {duration = duration}, target, caster:GetTeam(), false)
 	caster:EmitSound("Hero_Disruptor.StaticStorm.Cast")
 end
@@ -13,11 +13,11 @@ modifier_disruptor_static_storm_bh = class({})
 LinkLuaModifier("modifier_disruptor_static_storm_bh", "heroes/hero_disruptor/disruptor_static_storm_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_disruptor_static_storm_bh:OnCreated()
-	self.max_damage = self:GetTalentSpecialValueFor("damage_max")
-	self.pulses = TernaryOperator( self:GetTalentSpecialValueFor("damage_max"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("pulses_scepter") )
+	self.max_damage = self:GetSpecialValueFor("damage_max")
+	self.pulses = TernaryOperator( self:GetSpecialValueFor("damage_max"), self:GetCaster():HasScepter(), self:GetSpecialValueFor("pulses_scepter") )
 	self.growth = self.max_damage / self.pulses
 	self.damage = TernaryOperator( self.max_damage, self:GetCaster():HasTalent("special_bonus_unique_disruptor_static_storm_2"), self.growth )
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 	
 	self.tick = self:GetRemainingTime( ) / self.pulses
 	

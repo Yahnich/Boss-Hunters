@@ -26,9 +26,9 @@ function warlock_sacrifice:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	if target:GetUnitName() == "npc_dota_warlock_imp" then
-		caster:AddNewModifier(caster, self, "modifier_warlock_sacrifice_imp", {Duration = self:GetTalentSpecialValueFor("duration")})
+		caster:AddNewModifier(caster, self, "modifier_warlock_sacrifice_imp", {Duration = self:GetSpecialValueFor("duration")})
 	elseif target:GetUnitName() == "npc_dota_warlock_golem_1" then
-		caster:AddNewModifier(caster, self, "modifier_warlock_sacrifice_golem", {Duration = self:GetTalentSpecialValueFor("duration")})
+		caster:AddNewModifier(caster, self, "modifier_warlock_sacrifice_golem", {Duration = self:GetSpecialValueFor("duration")})
 	end
 	
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_warlock/warlock_sacrifice.vpcf", PATTACH_POINT, caster)
@@ -67,11 +67,11 @@ function modifier_warlock_sacrifice_imp:DeclareFunctions()
 end
 
 function modifier_warlock_sacrifice_imp:GetModifierSpellAmplify_Percentage()
-    return self:GetTalentSpecialValueFor("spell_amp")
+    return self:GetSpecialValueFor("spell_amp")
 end
 
 function modifier_warlock_sacrifice_imp:GetModifierConstantHealthRegen()
-    return self:GetTalentSpecialValueFor("health_regen")
+    return self:GetSpecialValueFor("health_regen")
 end
 
 function modifier_warlock_sacrifice_imp:GetEffectName()
@@ -91,15 +91,15 @@ function modifier_warlock_sacrifice_golem:DeclareFunctions()
 end
 
 function modifier_warlock_sacrifice_golem:GetModifierSpellAmplify_Percentage()
-    return self:GetTalentSpecialValueFor("spell_amp")
+    return self:GetSpecialValueFor("spell_amp")
 end
 
 function modifier_warlock_sacrifice_golem:GetModifierConstantHealthRegen()
-    return self:GetTalentSpecialValueFor("golem_health_regen")
+    return self:GetSpecialValueFor("golem_health_regen")
 end
 
 function modifier_warlock_sacrifice_golem:GetModifierBaseDamageOutgoing_Percentage()
-    return self:GetTalentSpecialValueFor("golem_bonus_damage")
+    return self:GetSpecialValueFor("golem_bonus_damage")
 end
 
 function modifier_warlock_sacrifice_golem:GetEffectName()

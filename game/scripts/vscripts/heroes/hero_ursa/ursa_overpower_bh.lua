@@ -21,7 +21,7 @@ function ursa_overpower_bh:OnSpellStart()
 	local caster = self:GetCaster()
 
 	EmitSoundOn("Hero_Ursa.Overpower", caster)
-	caster:AddNewModifier(caster, self, "modifier_ursa_overpower_bh", {Duration = self:GetTalentSpecialValueFor("duration")}):SetStackCount(self:GetTalentSpecialValueFor("max_attacks"))
+	caster:AddNewModifier(caster, self, "modifier_ursa_overpower_bh", {Duration = self:GetSpecialValueFor("duration")}):SetStackCount(self:GetSpecialValueFor("max_attacks"))
 end
 
 modifier_ursa_overpower_autocast = class({})
@@ -47,7 +47,7 @@ modifier_ursa_overpower_bh = class({})
 LinkLuaModifier("modifier_ursa_overpower_bh", "heroes/hero_ursa/ursa_overpower_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_ursa_overpower_bh:OnCreated(table)
-	self.attack_speed = self:GetTalentSpecialValueFor("attack_speed_bonus_pct")
+	self.attack_speed = self:GetSpecialValueFor("attack_speed_bonus_pct")
 	if IsServer() then
 		local caster = self:GetCaster()
 
@@ -90,7 +90,7 @@ function modifier_ursa_overpower_bh:OnAttack(params)
 				for _,enemy in pairs(enemies) do
 					if enemy ~= target then
 						local ability = caster:FindAbilityByName("ursa_fury_swipes_bh")
-						enemy:AddNewModifier(caster, ability, "modifier_ursa_fury_swipes_bh", {duration = ability:GetTalentSpecialValueFor("duration")}):IncrementStackCount()
+						enemy:AddNewModifier(caster, ability, "modifier_ursa_fury_swipes_bh", {duration = ability:GetSpecialValueFor("duration")}):IncrementStackCount()
 					end
 				end
 			end

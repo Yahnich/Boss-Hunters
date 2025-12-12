@@ -13,7 +13,7 @@ function oracle_fates:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	
 	EmitSoundOn("Hero_Oracle.FatesEdict.Cast", caster)
 	EmitSoundOn("Hero_Oracle.FatesEdict", target)

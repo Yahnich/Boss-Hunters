@@ -12,9 +12,9 @@ function modifier_spectre_desolate_bh:OnCreated()
 end
 
 function modifier_spectre_desolate_bh:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("bonus_damage")
-	self.solo_damage = self:GetTalentSpecialValueFor("bonus_damage_solo")
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
+	self.solo_damage = self:GetSpecialValueFor("bonus_damage_solo")
+	self.radius = self:GetSpecialValueFor("radius")
 	
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_spectre_desolate_2")
 end

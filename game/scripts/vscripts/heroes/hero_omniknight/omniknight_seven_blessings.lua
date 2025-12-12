@@ -1,7 +1,7 @@
 omniknight_seven_blessings = class({})
 
 function omniknight_seven_blessings:GetCastRange( target, position )
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function omniknight_seven_blessings:GetIntrinsicModifierName()
@@ -19,7 +19,7 @@ function modifier_omniknight_seven_blessings_handler:OnCreated()
 end
 
 function modifier_omniknight_seven_blessings_handler:OnRefresh()
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 	local caster = self:GetCaster()
 	local ability = self:GetAbility()
 	if IsServer() then
@@ -84,13 +84,13 @@ function modifier_omniknight_seven_blessings:OnCreated()
 end
 
 function modifier_omniknight_seven_blessings:OnRefresh()
-	self.ad = self:GetTalentSpecialValueFor("bonus_damage")
-	self.as = self:GetTalentSpecialValueFor("bonus_attack_speed")
-	self.ar = self:GetTalentSpecialValueFor("bonus_armor")
-	self.mr = self:GetTalentSpecialValueFor("bonus_magic_resist")
-	self.hp = self:GetTalentSpecialValueFor("bonus_health")
-	self.mp = self:GetTalentSpecialValueFor("bonus_mana")
-	self.ms = self:GetTalentSpecialValueFor("bonus_movespeed")
+	self.ad = self:GetSpecialValueFor("bonus_damage")
+	self.as = self:GetSpecialValueFor("bonus_attack_speed")
+	self.ar = self:GetSpecialValueFor("bonus_armor")
+	self.mr = self:GetSpecialValueFor("bonus_magic_resist")
+	self.hp = self:GetSpecialValueFor("bonus_health")
+	self.mp = self:GetSpecialValueFor("bonus_mana")
+	self.ms = self:GetSpecialValueFor("bonus_movespeed")
 end
 
 function modifier_omniknight_seven_blessings:DeclareFunctions()

@@ -10,7 +10,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityCastRange"				"300"
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
@@ -38,7 +38,7 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
@@ -46,33 +46,27 @@
 				"total_gold"						"50 100 150 200 220 240 260"
 				"LinkedSpecialBonus"				"special_bonus_unique_doom_demons_bargain_1"
 				"LinkedSpecialBonusOperation"		"SPECIAL_BONUS_MULTIPLY"
-			}
 			"02"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"regen"								"10 12.5 15 17.5 20 25 30 35"
 				"LinkedSpecialBonus"				"special_bonus_unique_doom_demons_bargain_2"
-			}
 			"03"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"duration"							"40"
-			}
 			"04"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"dmg_mult"							"3"
-			}
 			"05"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"dmg_mult_minion"					"12"
-			}
 			"05"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"hp_regen_mult"						"2"
-			}
 		}
 	}
 	"special_bonus_unique_doom_demons_bargain_1" 
@@ -85,13 +79,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-1"
-			}
+			"value"					"-1"
 		}
 	}
 	"special_bonus_unique_doom_demons_bargain_2" 
@@ -104,13 +94,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"special_bonus_unique_doom_demons_bargain_3" 
@@ -123,13 +109,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
-			}
+			"value"					"2"
 		}
 	}
 	"special_bonus_unique_doom_demons_bargain_4" 
@@ -142,18 +124,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"50"
-			}
+			"value"					"50"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value2"				"1"
-			}
 		}
 	}
 	"doom_scorched_earth_ebf"
@@ -167,7 +144,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"doom_bringer_scorched_earth"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -202,39 +179,18 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_per_second"			"15 30 45 60 75 90 105"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"600"
+			"damage_per_second"			"15 30 45 60 75 90 105"
+			"radius"					"600"
 				"LinkedSpecialBonus"		"special_bonus_unique_doom_scorched_earth_ebf_2"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_movement_speed_pct"	"9 11 13 15 16 17 18"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_attack_speed"		"15 30 45 60 70 80 90"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"15 15 15 15 16 17 18"
-			}
+			"bonus_movement_speed_pct"	"9 11 13 15 16 17 18"
+			"bonus_attack_speed"		"15 30 45 60 70 80 90"
+			"duration"					"15 15 15 15 16 17 18"
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"ally_pct"					"50"
-			}
 		}
 	}
 	"special_bonus_unique_doom_scorched_earth_ebf_1" 
@@ -248,18 +204,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"50"
-			}
+			"value"					"50"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value2"				"25"
-			}
 		}
 	}
 	"special_bonus_unique_doom_scorched_earth_ebf_2" 
@@ -273,18 +224,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"600"
-			}
+			"value"					"600"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"33"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -319,7 +265,7 @@
 		"AbilityCooldown"				"16 12 8 4 4 4 4"
 		"AbilityManaCost"				"40"
 		"AbilityCastRange"				"175"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		"precache"
 		{
@@ -332,46 +278,31 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"burn_damage"					"16 20 24 28 56 84 112"
+			"burn_damage"					"16 20 24 28 56 84 112"
 				"LinkedSpecialBonus"			"special_bonus_unique_doom_infernal_blade_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 				"LinkedSpecialBonusField"		"value2"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"burn_damage_pct"				"1.6 1.6 1.6 1.6 1.9 2.2 2.5"
+			"burn_damage_pct"				"1.6 1.6 1.6 1.6 1.9 2.2 2.5"
 				"LinkedSpecialBonus"			"special_bonus_unique_doom_infernal_blade_1"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"burn_duration"					"4"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"ministun_duration"				"0.4"
 				"LinkedSpecialBonus"			"special_bonus_unique_doom_infernal_blade_2"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"scepter_length"				"650"
+			"scepter_length"				"650"
 				"RequiresScepter"				"1"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"scepter_width"					"125"
 				"RequiresScepter"				"1"
-			}
 		}
 	}
 	"special_bonus_unique_doom_infernal_blade_1" 
@@ -384,18 +315,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"0.5"
-			}
+			"value"					"0.5"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value2"				"2"
-			}
 		}
 	}
 	"special_bonus_unique_doom_infernal_blade_2" 
@@ -408,13 +334,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"0.6"
-			}
+			"value"					"0.6"
 		}
 	}
 	"doom_apocalypse"
@@ -431,7 +353,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"custom/doom_bringer_apocalypse"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"ScriptFile"					"heroes/hero_doom/doom_apocalypse"
 		
 		// Talents		
@@ -468,18 +390,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"12 12 12 13 14 15"
-			}
+			"duration"				"12 12 12 13 14 15"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"25 40 55 65 75 85"
-			}
 		}
 	}
 	"special_bonus_unique_doom_apocalypse_1" 
@@ -492,13 +409,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"special_bonus_unique_doom_apocalypse_2" 
@@ -511,13 +424,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"special_bonus_unique_doom_apocalypse_3" 
@@ -530,13 +439,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 }

@@ -12,13 +12,13 @@ function bs_devils_blood:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	EmitSoundOn("Hero_Bloodseeker.BloodRite.Cast", caster)
-	caster:AddNewModifier(caster, self, "modifier_bs_devils_blood", {Duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_bs_devils_blood", {Duration = self:GetSpecialValueFor("duration")})
 end
 
 function bs_devils_blood:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 	if hTarget then
-		self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
+		self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, 0)
 	end
 end
 
@@ -26,9 +26,9 @@ modifier_bs_devils_blood = class({})
 LinkLuaModifier("modifier_bs_devils_blood", "heroes/hero_bloodseeker/bs_devils_blood", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_bs_devils_blood:OnCreated(table)
-	self.tick = self:GetTalentSpecialValueFor("tick_rate")
-	self.damage = self:GetTalentSpecialValueFor("damage")
-	self.duration = self:GetTalentSpecialValueFor("debuff_duration")
+	self.tick = self:GetSpecialValueFor("tick_rate")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.duration = self:GetSpecialValueFor("debuff_duration")
 	if IsServer() then
 		local caster = self:GetParent()
 
@@ -84,13 +84,13 @@ modifier_bs_devils_blood_debuff = class({})
 LinkLuaModifier("modifier_bs_devils_blood_debuff", "heroes/hero_bloodseeker/bs_devils_blood", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_bs_devils_blood_debuff:OnCreated()
-	self.slow = self:GetTalentSpecialValueFor("debuff_slow")
-	self.sr = self:GetTalentSpecialValueFor("debuff_sr")
+	self.slow = self:GetSpecialValueFor("debuff_slow")
+	self.sr = self:GetSpecialValueFor("debuff_sr")
 end
 
 function modifier_bs_devils_blood_debuff:OnRefresh()
-	self.slow = self:GetTalentSpecialValueFor("debuff_slow")
-	self.sr = self:GetTalentSpecialValueFor("debuff_sr")
+	self.slow = self:GetSpecialValueFor("debuff_slow")
+	self.sr = self:GetSpecialValueFor("debuff_sr")
 end
 
 function modifier_bs_devils_blood_debuff:DeclareFunctions()

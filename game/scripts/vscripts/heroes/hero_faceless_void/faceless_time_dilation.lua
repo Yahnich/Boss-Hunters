@@ -12,8 +12,8 @@ function faceless_time_dilation:OnSpellStart()
 	local caster = self:GetCaster()
 
 	EmitSoundOn("Hero_FacelessVoid.TimeDilation.Cast", caster)
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("duration")
+	local radius = self:GetSpecialValueFor("radius")
 	
 	caster:AddNewModifier( caster, self, "modifier_faceless_time_dilation_handle", {duration = duration} )
 	if caster:HasScepter() then
@@ -34,7 +34,7 @@ modifier_faceless_time_dilation_handle_ally = class({})
 LinkLuaModifier( "modifier_faceless_time_dilation_handle_ally", "heroes/hero_faceless_void/faceless_time_dilation.lua",LUA_MODIFIER_MOTION_NONE )
 
 function modifier_faceless_time_dilation_handle_ally:OnCreated(kv)
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_faceless_time_dilation_handle_ally:IsAura()
@@ -69,8 +69,8 @@ modifier_faceless_time_dilation_buff = class({})
 LinkLuaModifier( "modifier_faceless_time_dilation_buff", "heroes/hero_faceless_void/faceless_time_dilation.lua",LUA_MODIFIER_MOTION_NONE )
 
 function modifier_faceless_time_dilation_buff:OnCreated()
-	self.attackspeed = self:GetTalentSpecialValueFor("attack_speed_buff")
-	self.cdr = (self:GetTalentSpecialValueFor("cdr_buff")/100) * 0.1
+	self.attackspeed = self:GetSpecialValueFor("attack_speed_buff")
+	self.cdr = (self:GetSpecialValueFor("cdr_buff")/100) * 0.1
 	if IsServer() then
 		self:StartIntervalThink(0.1)
 	end
@@ -101,7 +101,7 @@ modifier_faceless_time_dilation_handle = class({})
 LinkLuaModifier( "modifier_faceless_time_dilation_handle", "heroes/hero_faceless_void/faceless_time_dilation.lua",LUA_MODIFIER_MOTION_NONE )
 
 function modifier_faceless_time_dilation_handle:OnCreated(kv)
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_faceless_time_dilation_handle:IsAura()
@@ -140,8 +140,8 @@ modifier_faceless_time_dilation_debuff = class({})
 LinkLuaModifier( "modifier_faceless_time_dilation_debuff", "heroes/hero_faceless_void/faceless_time_dilation.lua",LUA_MODIFIER_MOTION_NONE )
 
 function modifier_faceless_time_dilation_debuff:OnCreated()
-	self.attackspeed = self:GetTalentSpecialValueFor("attack_speed_debuff")
-	self.cdr = (self:GetTalentSpecialValueFor("cdr_debuff")/100) * 0.1
+	self.attackspeed = self:GetSpecialValueFor("attack_speed_debuff")
+	self.cdr = (self:GetSpecialValueFor("cdr_debuff")/100) * 0.1
 	if IsServer() then
 		self:StartIntervalThink(0.1)
 	end

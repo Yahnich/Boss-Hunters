@@ -16,7 +16,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"pangolier_swashbuckle"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -49,48 +49,20 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"range"						"1000 1000 1000 1000 1150 1300 1450"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"24 42 60 78 78 78 78"
+			"range"						"1000 1000 1000 1000 1150 1300 1450"
+			"damage"					"24 42 60 78 78 78 78"
 				"LinkedSpecialBonus"		"special_bonus_unique_pango_swashbuckler_1"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"attack_interval"			"0.1"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"width"						"125 125 125 125 175 225 275"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"strikes"					"4"
+			"attack_interval"			"0.1"
+			"width"						"125 125 125 125 175 225 275"
+			"strikes"					"4"
 				"LinkedSpecialBonus"		"special_bonus_unique_pango_swashbuckler_1"
 				"LinkedSpecialBonusField"	"strikes"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"dash_range"				"900"
+			"dash_range"				"900"
 				"LinkedSpecialBonus"		"special_bonus_unique_pango_swashbuckler_2"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed"						"2000"
-			}
+			"speed"						"2000"
 		}
 	}
 
@@ -107,18 +79,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"40"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"strikes"					"2"
-			}
+			"value"						"40"
+			"strikes"					"2"
 		}
 	}
 	//=================================================================================================================
@@ -134,13 +98,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"500"
-			}
+			"value"						"500"
 		}
 	}
 
@@ -157,7 +117,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"pangolier_shield_crash"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -187,65 +147,39 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"75 150 225 300 375 450 525"
-			}
+			"damage"				"75 150 225 300 375 450 525"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"reduction"				"14 20 26 32 32 32 32"
 				"LinkedSpecialBonus"	"special_bonus_unique_pango_shield_1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"500"
-			}
+			"duration"				"5"
+			"radius"				"500"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"jump_duration"			"0.4"
-			}
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"jump_duration_gyroshell"	"0.75"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"height"				"250"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"height_gyroshell"		"350"
-			}
+			"height"				"250"
+			"height_gyroshell"		"350"
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"distance"				"225"
 				"LinkedSpecialBonus"	"special_bonus_unique_pango_shield_2"
-			}
 			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"scepter_strikes"		"2"
-			}
 			"11"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"scepter_count"			"4"
-			}
 		}
 	}
 
@@ -262,13 +196,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"20"
-			}
+			"value"						"20"
 		}
 	}
 	//=================================================================================================================
@@ -284,13 +214,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"200"
-			}
+			"value"						"200"
 		}
 	}
 
@@ -305,7 +231,7 @@
 		"ScriptFile"					"heroes/hero_pango/pango_heart"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"pangolier_lucky_shot"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -327,35 +253,18 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"chance"				"25"
+			"chance"				"25"
 				"LinkedSpecialBonus"	"special_bonus_unique_pango_heart_2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"armor_reduc"			"-2 -3 -4 -5 -6 -7 -8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"slow_pct"				"-15 -20 -25 -30 -35 -40 -45"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attack_slow"			"-40 -60 -80 -100 -120 -140 -160"
-			}
+			"armor_reduc"			"-2 -3 -4 -5 -6 -7 -8"
+			"slow_pct"				"-15 -20 -25 -30 -35 -40 -45"
+			"attack_slow"			"-40 -60 -80 -100 -120 -140 -160"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"5"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -371,13 +280,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -393,13 +298,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-8"
-			}
+			"value"						"-8"
 		}
 	}
 	//=================================================================================================================
@@ -418,7 +319,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"pangolier_gyroshell"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -452,44 +353,22 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{	
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 275 350 425 500 575"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
+			"damage"				"200 275 350 425 500 575"
+			"duration"				"8"
 				"LinkedSpecialBonus"	"special_bonus_unique_pango_ball_1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"1.0 1.25 1.5 1.75 2.0 2.25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"600"
-			}
+			"stun_duration"			"1.0 1.25 1.5 1.75 2.0 2.25"
+			"speed"					"600"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"turn_rate"				"-120"
-			}			
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"150"
-			}			
+				"turn_rate"				"-120"			
+			"radius"				"150"			
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bounce_duration"		"0.4"
-			}								
+				"bounce_duration"		"0.4"								
 		}
 	}
 
@@ -506,13 +385,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"5"
-			}
+			"value"						"5"
 		}
 	}
 	//=================================================================================================================
@@ -528,13 +403,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-35"
-			}
+			"value"						"-35"
 		}
 	}
 	
@@ -556,7 +427,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"pangolier_gyroshell_stop"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -580,18 +451,16 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"range"					"400 500 600 700 800 900 1000"
-			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"speed"					"2000"
-			}
 		}
 	}
 
@@ -608,13 +477,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -630,13 +495,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"400"
-			}
+			"value"						"400"
 		}
 	}
 }

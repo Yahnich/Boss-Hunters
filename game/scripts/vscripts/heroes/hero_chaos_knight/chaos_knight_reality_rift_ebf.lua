@@ -78,7 +78,7 @@ function chaos_knight_reality_rift_ebf:OnSpellStart()
 		ParticleManager:ReleaseParticleIndex(fx)
 	end
 	
-	local duration = self:GetTalentSpecialValueFor("armor_duration") 
+	local duration = self:GetSpecialValueFor("armor_duration") 
 	if self.target:TriggerSpellAbsorb( self ) then return end
 	FindClearSpaceForUnit(self.caster, self.endPos, true)
 	FindClearSpaceForUnit(self.target, self.endPos, true)
@@ -121,12 +121,12 @@ modifier_chaos_knight_reality_rift_ebf = class({})
 LinkLuaModifier("modifier_chaos_knight_reality_rift_ebf", "heroes/hero_chaos_knight/chaos_knight_reality_rift_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_chaos_knight_reality_rift_ebf:OnCreated()
-	self.armor = self:GetTalentSpecialValueFor("armor_reduction")
+	self.armor = self:GetSpecialValueFor("armor_reduction")
 	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_chaos_knight_reality_rift_2", "as")
 end
 
 function modifier_chaos_knight_reality_rift_ebf:OnRefresh()
-	self.armor = self:GetTalentSpecialValueFor("armor_reduction")
+	self.armor = self:GetSpecialValueFor("armor_reduction")
 	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_chaos_knight_reality_rift_2", "as")
 end
 

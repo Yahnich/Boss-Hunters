@@ -3,7 +3,7 @@ troll_warlord_whirling_axes = class({})
 function troll_warlord_whirling_axes:GetCooldown( iLvl )
 	local cd = self.BaseClass.GetCooldown( self, iLvl )
 	if self:GetCaster():HasScepter() then
-		cd = cd + self:GetTalentSpecialValueFor("scepter_cdr")
+		cd = cd + self:GetSpecialValueFor("scepter_cdr")
 	end
 	return cd
 end
@@ -11,7 +11,7 @@ end
 function troll_warlord_whirling_axes:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local duration = self:GetTalentSpecialValueFor("whirl_duration")
+	local duration = self:GetSpecialValueFor("whirl_duration")
 	self:SummonWhirlingAxe( duration, caster:GetForwardVector() )
 	self:SummonWhirlingAxe( duration, -caster:GetForwardVector() )
 	caster:EmitSound("Hero_TrollWarlord.WhirlingAxes.Melee")
@@ -24,11 +24,11 @@ function troll_warlord_whirling_axes:SummonWhirlingAxe( duration, direction )
 	local caster = self:GetCaster()
 	local vDir = direction or caster:GetForwardVector()
 	
-	local radius = self:GetTalentSpecialValueFor("hit_radius")
-	local speed = self:GetTalentSpecialValueFor("axe_movement_speed") 
-	local maxRange = self:GetTalentSpecialValueFor("max_range")
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local blind = self:GetTalentSpecialValueFor("blind_duration")
+	local radius = self:GetSpecialValueFor("hit_radius")
+	local speed = self:GetSpecialValueFor("axe_movement_speed") 
+	local maxRange = self:GetSpecialValueFor("max_range")
+	local damage = self:GetSpecialValueFor("damage")
+	local blind = self:GetSpecialValueFor("blind_duration")
 	
 	local ProjectileHit = 	function(self, target, position)
 								if not target then return end
@@ -81,11 +81,11 @@ modifier_troll_warlord_whirling_axes = class({})
 LinkLuaModifier("modifier_troll_warlord_whirling_axes", "heroes/hero_troll_warlord/troll_warlord_whirling_axes", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_troll_warlord_whirling_axes:OnCreated()
-	self.blind = self:GetTalentSpecialValueFor("blind_pct")
+	self.blind = self:GetSpecialValueFor("blind_pct")
 end
 
 function modifier_troll_warlord_whirling_axes:OnRefresh()
-	self.blind = self:GetTalentSpecialValueFor("blind_pct")
+	self.blind = self:GetSpecialValueFor("blind_pct")
 end
 
 function modifier_troll_warlord_whirling_axes:DeclareFunctions()

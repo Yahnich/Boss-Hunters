@@ -13,7 +13,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"brewmaster_thunder_clap"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -44,7 +44,7 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
@@ -52,30 +52,22 @@
 				"radius"						"400"
 				"LinkedSpecialBonus"			"special_bonus_unique_brewmaster_thunder_clap_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"damage"						"100 150 200 250 300 350 400"
+			"damage"						"100 150 200 250 300 350 400"
 				"LinkedSpecialBonus"			"special_bonus_unique_brewmaster_thunder_clap_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"movement_slow"					"30 40 50 60 60 60 60"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"damage_reduction"				"10 15 20 25 25 25 25"
-				"CalculateSpellDamageTooltip"	"0"
-			}			
+				"CalculateSpellDamageTooltip"	"0"			
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"3 3 3 3 4 5 6"
-			}			
+				"duration"						"3 3 3 3 4 5 6"			
 		}
 	}
 	//=================================================================================================================
@@ -91,13 +83,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -113,13 +101,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1.5"
-			}
+			"value"						"1.5"
 		}
 	}
 	"brewmaster_drunken_haze_bh"
@@ -136,7 +120,7 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"brewmaster_drunken_haze"
 		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -170,28 +154,12 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"7 7 7 7 8 9 10"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"miss_chance"				"20 30 40 50 50 50 50"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"200 200 200 200 300 350 400"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"scepter_evasion"			"20 25 30 35 40 45 50"
-			}		
+			"duration"					"7 7 7 7 8 9 10"
+			"miss_chance"				"20 30 40 50 50 50 50"
+			"radius"					"200 200 200 200 300 350 400"
+"scepter_evasion"			"20 25 30 35 40 45 50"		
 		}
 	}
 	//=================================================================================================================
@@ -207,13 +175,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -229,13 +193,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -249,7 +209,7 @@
 		"ScriptFile"					"heroes/hero_brewmaster/brewmaster_tipsy_sway"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"custom/brewmaster_tipsy_sway"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -265,25 +225,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"5 6 7 8 8 8 8"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"ms_slow"					"-20"
+			"duration"					"5 6 7 8 8 8 8"
+			"ms_slow"					"-20"
 				"LinkedSpecialBonus"		"special_bonus_unique_brewmaster_tipsy_sway_2"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"ms_buff"					"40"
+			"ms_buff"					"40"
 				"LinkedSpecialBonus"		"special_bonus_unique_brewmaster_tipsy_sway_2"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -299,13 +247,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -321,13 +265,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"40"
-			}
+			"value"						"40"
 		}
 	}
 	//=================================================================================================================
@@ -346,28 +286,12 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"dodge_chance"				"25"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"crit_chance"				"25"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"crit_multiplier"			"200"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"last_proc"					"12"
-			}
+			"dodge_chance"				"25"
+			"crit_chance"				"25"
+			"crit_multiplier"			"200"
+"last_proc"					"12"
 		}
 	}
 	//=================================================================================================================
@@ -383,13 +307,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"7.5"
-			}
+			"value"						"7.5"
 		}
 	}
 	//=================================================================================================================
@@ -405,13 +325,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -428,7 +344,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"custom/brewmaster_primal_avatar"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"FightRecapLevel"				"1"
 		
 		// Talents		
@@ -466,45 +382,29 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"area_damage"					"35 40 45 50 55 60"
+			"area_damage"					"35 40 45 50 55 60"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_armor"					"7 9 11 13 15 17"
+			"bonus_armor"					"7 9 11 13 15 17"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"15.0"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"aoe_damage_tooltip"			"30 50 70 90 110 130"
-			}
+			"aoe_damage_tooltip"			"30 50 70 90 110 130"
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"tick_interval"					"0.5"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"aoe_blind"						"35"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"aoe_radius"					"700"
-			}
 			
 		}
 	}
@@ -521,13 +421,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -543,18 +439,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"spell_amp"					"50"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"status_amp"				"50"
-			}
+			"spell_amp"					"50"
+			"status_amp"				"50"
 		}
 	}
 }

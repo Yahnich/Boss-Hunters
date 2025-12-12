@@ -15,7 +15,7 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Puck.Illusory_Orb"
 		"AbilityTextureName"			"puck_illusory_orb"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -49,40 +49,19 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"225"		
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"max_distance"				"1950"
+			"radius"					"225"		
+			"max_distance"				"1950"
 				"LinkedSpecialBonus"		"special_bonus_unique_puck"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"orb_speed"					"651"
+			"orb_speed"					"651"
 				"LinkedSpecialBonus"		"special_bonus_unique_puck"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"orb_vision"				"900"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"vision_duration"			"3.34 3.34 3.34 3.34"
-			}
+			"orb_vision"				"900"
+			"vision_duration"			"3.34 3.34 3.34 3.34"
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"damage"					"70 140 210 280 350 420 490"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
@@ -97,13 +76,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"special_bonus_unique_puck_illusory_orb_2" 
@@ -116,18 +91,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"75"
-			}
+			"value"					"2"
+			"value"					"75"
 		}
 	}
 	
@@ -168,7 +135,7 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Puck.Waning_Rift"
 		"AbilityTextureName"			"puck_waning_rift"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -200,23 +167,11 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"550"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"silence_duration"			"1.0 1.25 1.5 1.75 2 2.25 2.5"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"100 160 220 280 340 400 460"
-			}
+			"radius"					"550"
+			"silence_duration"			"1.0 1.25 1.5 1.75 2 2.25 2.5"
+			"damage"					"100 160 220 280 340 400 460"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -230,13 +185,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"special_bonus_unique_puck_waning_rift_2" 
@@ -249,23 +200,17 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"20"
-			}
+			"value"					"20"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"slow"					"-20"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration"				"6"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -280,7 +225,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilitySound"					"Hero_Puck.Phase_Shift"
 		"AbilityTextureName"			"puck_phase_shift"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -313,13 +258,9 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"0.5 1.0 1.50 2.0 2.5 3.0 3.5"
-			}
+			"duration"					"0.5 1.0 1.50 2.0 2.5 3.0 3.5"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -334,13 +275,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"15"
-			}
+			"value"					"15"
 		}
 	}
 	"special_bonus_unique_puck_phase_shift_2" 
@@ -353,13 +290,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	//=================================================================================================================
@@ -380,7 +313,7 @@
 		"HasScepterUpgrade"				"1"
 		"AbilitySound"					"Hero_Puck.Dream_Coil"
 		"AbilityTextureName"			"puck_dream_coil"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -418,58 +351,30 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"coil_duration"				"6.0 6.0 6.0"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"coil_init_damage_tooltip"	"150 200 250 300 350 400"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"coil_break_radius"			"750"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"1.5"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"coil_break_damage"			"150 200 250 300 350 400"
-			}
+			"coil_duration"				"6.0 6.0 6.0"
+			"coil_init_damage_tooltip"	"150 200 250 300 350 400"
+			"coil_break_radius"			"750"
+"stun_duration"				"1.5"
+			"coil_break_damage"			"150 200 250 300 350 400"
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"coil_stun_duration"		"1.75 2.0 2.25 2.50 2.75 3.0 3.25"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"coil_radius"				"600"
-			}						
+			"coil_radius"				"600"						
 			"08"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"suck_duration"				"1.0"
-			}
 			"09"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"suck_radius"				"4000"
-			}
 			"10"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"scepter_orbs"				"6"
-			}
 		}
 	}
 	"special_bonus_unique_puck_reverie_snap_1" 
@@ -482,13 +387,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"0.75"
-			}
+			"value"					"0.75"
 		}
 	}
 	"special_bonus_unique_puck_reverie_snap_2" 
@@ -501,13 +402,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 }

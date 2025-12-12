@@ -18,14 +18,14 @@ end
 
 function mars_gods_rebuke_lua:GetCooldown( iLvl )
 	if self:GetCaster():HasScepter() then
-		return self:GetTalentSpecialValueFor("scepter_cd")
+		return self:GetSpecialValueFor("scepter_cd")
 	else
 		return self.BaseClass.GetCooldown( self, iLvl )
 	end
 end
 
 function mars_gods_rebuke_lua:GetCastRange(vLocation, hTarget)
-	return self:GetTalentSpecialValueFor("distance")
+	return self:GetSpecialValueFor("distance")
 end
 
 function mars_gods_rebuke_lua:OnSpellStart()
@@ -55,10 +55,10 @@ function mars_gods_rebuke_lua:Rebuke(source, position)
 
 	local direction = CalculateDirection(pos, origin:GetAbsOrigin())
 
-	local angle = self:GetTalentSpecialValueFor("angle")	
-	local distance = self:GetTalentSpecialValueFor("distance")	
-	local knockback_duration = self:GetTalentSpecialValueFor("knockback_duration")	
-	local knockback_distance = self:GetTalentSpecialValueFor("knockback_distance")
+	local angle = self:GetSpecialValueFor("angle")	
+	local distance = self:GetSpecialValueFor("distance")	
+	local knockback_duration = self:GetSpecialValueFor("knockback_duration")	
+	local knockback_distance = self:GetSpecialValueFor("knockback_distance")
 
 	local circleRadius = math.tan(angle/2) * distance
 
@@ -71,7 +71,7 @@ function mars_gods_rebuke_lua:Rebuke(source, position)
 
 	local enemies = caster:FindEnemyUnitsInCone(direction, origin:GetAbsOrigin(), circleRadius, distance)
 	
-	local slow_duration = self:GetTalentSpecialValueFor("slow_duration")
+	local slow_duration = self:GetSpecialValueFor("slow_duration")
 	local talentBigStacks = caster:FindTalentValue("special_bonus_unique_mars_gods_rebuke_lua_2")
 	local talentSmallStacks = caster:FindTalentValue("special_bonus_unique_mars_gods_rebuke_lua_2", "minion")
 	local talentStacks = 0
@@ -113,7 +113,7 @@ function modifier_mars_gods_rebuke_lua_slow:OnCreated()
 end
 
 function modifier_mars_gods_rebuke_lua_slow:OnRefresh()
-	self.slow = self:GetTalentSpecialValueFor("slow")
+	self.slow = self:GetSpecialValueFor("slow")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_mars_gods_rebuke_lua_1")
 	if self.talent1 then
 		local talent1Val = self:GetCaster():FindTalentValue("special_bonus_unique_mars_gods_rebuke_lua_1") / 100
@@ -149,8 +149,8 @@ function modifier_mars_gods_rebuke_lua_crit:OnCreated()
 end
 
 function modifier_mars_gods_rebuke_lua_crit:OnRefresh()
-	self.crit = self:GetTalentSpecialValueFor("crit_mult")
-	self.bonus_dmg = self:GetTalentSpecialValueFor("bonus_damage_vs_bosses")
+	self.crit = self:GetSpecialValueFor("crit_mult")
+	self.bonus_dmg = self:GetSpecialValueFor("bonus_damage_vs_bosses")
 	self:GetParent():HookInModifier("GetModifierCriticalDamage", self)
 end
 

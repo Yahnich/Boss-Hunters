@@ -79,14 +79,14 @@ function morph_morph:OnSpellStart()
 		end
 		caster:RemoveModifierByName("modifier_morph_morph")
 	else
-		local duration = self:GetTalentSpecialValueFor("duration")
-		local outgoing = self:GetTalentSpecialValueFor("outgoing") - 100
-		local incoming = self:GetTalentSpecialValueFor("incoming") - 100
+		local duration = self:GetSpecialValueFor("duration")
+		local outgoing = self:GetSpecialValueFor("outgoing") - 100
+		local incoming = self:GetSpecialValueFor("incoming") - 100
 
 		EmitSoundOn("Hero_Morphling.Replicate", caster)
 		local illusions = target:ConjureImage( {outgoing_damage = outgoing, incoming_damage = incoming}, duration, caster, 1 )
 		FindClearSpaceForUnit(illusions[1], illusions[1]:GetAbsOrigin(), true)
-		local duration = self:GetTalentSpecialValueFor("duration")
+		local duration = self:GetSpecialValueFor("duration")
 		caster:AddNewModifier(caster, self, "modifier_morph_morph", {Duration = duration})
 		illusions[1]:AddNewModifier(caster, self, "modifier_morph_morph", {Duration = duration})
 
@@ -104,7 +104,7 @@ end
 
 function morph_morph:Torrent(vLocation)
 	local caster = self:GetCaster()
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local radius = self:GetSpecialValueFor("radius")
 
 	local damage = caster:GetStrength() + caster:GetAgility()
 
@@ -206,10 +206,10 @@ end
 
 modifier_morph_morph_scepter = class({})
 function modifier_morph_morph_scepter:OnCreated()
-	self.evasion = self:GetTalentSpecialValueFor("scepter_evasion")
-	self.radius = self:GetTalentSpecialValueFor("scepter_radius")
-	self.duration = self:GetTalentSpecialValueFor("scepter_duration")
-	self.damage = (self:GetTalentSpecialValueFor("scepter_damage") / 100) * 0.25
+	self.evasion = self:GetSpecialValueFor("scepter_evasion")
+	self.radius = self:GetSpecialValueFor("scepter_radius")
+	self.duration = self:GetSpecialValueFor("scepter_duration")
+	self.damage = (self:GetSpecialValueFor("scepter_damage") / 100) * 0.25
 	if IsServer() then
 		self:StartIntervalThink(0.25)
 	end

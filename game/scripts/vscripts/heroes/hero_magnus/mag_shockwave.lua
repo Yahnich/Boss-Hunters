@@ -20,14 +20,14 @@ function mag_shockwave:OnSpellStart()
 	EmitSoundOn("Hero_Magnataur.ShockWave.Particle", caster)
 
     local dir = CalculateDirection(self:GetCursorPosition(), self.startPos)
-    self.vel = dir * self:GetTalentSpecialValueFor("speed")
+    self.vel = dir * self:GetSpecialValueFor("speed")
 
-	self.proj = self:FireLinearProjectile("particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf", self.vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("width"), {team=DOTA_UNIT_TARGET_TEAM_BOTH})
+	self.proj = self:FireLinearProjectile("particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf", self.vel, self:GetTrueCastRange(), self:GetSpecialValueFor("width"), {team=DOTA_UNIT_TARGET_TEAM_BOTH})
 
 	if caster:HasTalent("special_bonus_unique_mag_shockwave_2") then
         local delay = caster:FindTalentValue("special_bonus_unique_mag_shockwave_2")
         Timers:CreateTimer(delay, function()
-            self:FireLinearProjectile("particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf", self.vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("width"), {origin=self.startPos, team=DOTA_UNIT_TARGET_TEAM_BOTH})
+            self:FireLinearProjectile("particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf", self.vel, self:GetTrueCastRange(), self:GetSpecialValueFor("width"), {origin=self.startPos, team=DOTA_UNIT_TARGET_TEAM_BOTH})
         end)
     end
 end
@@ -39,9 +39,9 @@ function mag_shockwave:OnProjectileHitHandle(hTarget, vLocation, iProjectileHand
     		EmitSoundOn("Hero_Magnataur.ShockWave.Target", hTarget)
         	ParticleManager:FireParticle("particles/units/heroes/hero_magnataur/magnataur_shockwave_hit.vpcf", PATTACH_POINT, hTarget, {})
             if iProjectileHandle ~= self.proj then
-                self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage")/2, {}, 0)
+                self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage")/2, {}, 0)
             else
-                self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
+                self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, 0)
             end
 
             if self:GetCaster():HasTalent("special_bonus_unique_mag_shockwave_1") and not hTarget:IsKnockedBack() then
@@ -55,13 +55,13 @@ function mag_shockwave:OnProjectileHitHandle(hTarget, vLocation, iProjectileHand
         		ParticleManager:FireParticle("particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start.vpcf", PATTACH_POINT, hTarget, {})
 
         		local distance = CalculateDistance(hTarget:GetAbsOrigin(), self.startPos)
-        		self:FireLinearProjectile("particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf", -2*self.vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("width"), {source=hTarget, origin=hTarget:GetAbsOrigin()})
+        		self:FireLinearProjectile("particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf", -2*self.vel, self:GetTrueCastRange(), self:GetSpecialValueFor("width"), {source=hTarget, origin=hTarget:GetAbsOrigin()})
         		
         		local enemies = self:GetCaster():FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetSpecialValueFor("magnet_radius"))
         		for _,enemy in pairs(enemies) do
 					if not enemy:TriggerSpellAbsorb( self ) then
 						enemy:ApplyKnockBack(hTarget:GetAbsOrigin(), 1.0, 1.0, self:GetSpecialValueFor("magnet_radius")/2, 200, self:GetCaster(), self)
-						self:DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage_magnet"), {}, 0)
+						self:DealDamage(self:GetCaster(), enemy, self:GetSpecialValueFor("damage_magnet"), {}, 0)
 					end
         		end
         		ProjectileManager:DestroyLinearProjectile(iProjectileHandle)

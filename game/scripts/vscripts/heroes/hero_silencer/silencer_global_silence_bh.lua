@@ -3,7 +3,7 @@ silencer_global_silence_bh = class({})
 function silencer_global_silence_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local duration = TernaryOperator( self:GetTalentSpecialValueFor("scepter_duration"), caster:HasScepter(), self:GetTalentSpecialValueFor("duration")	)
+	local duration = TernaryOperator( self:GetSpecialValueFor("scepter_duration"), caster:HasScepter(), self:GetSpecialValueFor("duration")	)
 	local talent1 = caster:HasTalent("special_bonus_unique_silencer_global_silence_1")
 	local curse = caster:FindAbilityByName("silencer_arcane_curse_bh")
 	

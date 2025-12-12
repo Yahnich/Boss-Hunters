@@ -43,7 +43,7 @@ function sand_sandstorm:OnSpellStart()
     local caster = self:GetCaster()
 
     EmitSoundOn("Ability.SandKing_SandStorm.start", caster)
-	CreateModifierThinker(caster, self, "modifier_sand_king_sandstorm_thinker", {duration = self:GetTalentSpecialValueFor("sandstorm_duration")}, caster:GetAbsOrigin(), caster:GetTeamNumber(), false)
+	CreateModifierThinker(caster, self, "modifier_sand_king_sandstorm_thinker", {duration = self:GetSpecialValueFor("sandstorm_duration")}, caster:GetAbsOrigin(), caster:GetTeamNumber(), false)
 	
 	ParticleManager:FireParticle( "particles/units/heroes/hero_sandking/sandking_sandstorm_start.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster )
 end
@@ -52,7 +52,7 @@ modifier_sand_king_sandstorm_thinker = class({})
 LinkLuaModifier("modifier_sand_king_sandstorm_thinker", "heroes/hero_sand/sand_sandstorm.lua", 0)
 
 function modifier_sand_king_sandstorm_thinker:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("sandstorm_radius")
+	self.radius = self:GetSpecialValueFor("sandstorm_radius")
 	if IsServer() then
 		EmitSoundOn("Ability.SandKing_SandStorm.loop", self:GetParent())
 		self.storm = ParticleManager:CreateParticle("particles/units/heroes/hero_sandking/sandking_sandstorm.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
@@ -64,7 +64,7 @@ function modifier_sand_king_sandstorm_thinker:OnCreated()
 end
 
 function modifier_sand_king_sandstorm_thinker:OnRefresh()
-	self.radius = self:GetTalentSpecialValueFor("sandstorm_radius")
+	self.radius = self:GetSpecialValueFor("sandstorm_radius")
 	if IsServer() then
 		ParticleManager:ClearParticle(self.storm)
 		
@@ -125,8 +125,8 @@ modifier_sand_king_sandstorm_debuff = class({})
 LinkLuaModifier("modifier_sand_king_sandstorm_debuff", "heroes/hero_sand/sand_sandstorm.lua", 0)
 function modifier_sand_king_sandstorm_debuff:OnCreated()
 	self.talent1Value = self:GetCaster():FindTalentValue("special_bonus_unique_sand_sandstorm_1")
-	self.tick = self:GetTalentSpecialValueFor("sandstorm_think")
-	self.damage = self:GetTalentSpecialValueFor("sandstorm_damage")
+	self.tick = self:GetSpecialValueFor("sandstorm_think")
+	self.damage = self:GetSpecialValueFor("sandstorm_damage")
     if IsServer() then
         self:StartIntervalThink(self.tick)
     end

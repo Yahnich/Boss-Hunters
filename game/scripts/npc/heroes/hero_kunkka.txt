@@ -119,13 +119,13 @@
 		{
 			"damage_bonus"
 			{
-				"value"							"25 50 75 100"
-				"CalculateSpellDamageTooltip"	"0"
+				"value"											"25 50 75 100"
+				"CalculateSpellDamageTooltip"					"0"
 			}
 			"damage"
 			{
-				"value"							"100"
-				"CalculateSpellDamageTooltip"	"0"
+				"value"											"100"
+				"CalculateSpellDamageTooltip"					"0"
 			}
 			"start_width"
 			{
@@ -143,8 +143,8 @@
 				"special_bonus_unique_kunkka_tidebringer_bh_1"	"=-1"
 			}
 			
-			"armor_reduction"					{"special_bonus_unique_kunkka_tidebringer_bh_1"	"-6"}
-			"armor_reduction_duration"			{"special_bonus_unique_kunkka_tidebringer_bh_1"	"5"}
+			"armor_reduction"									{"special_bonus_unique_kunkka_tidebringer_bh_1"	"-6"}
+			"armor_reduction_duration"							{"special_bonus_unique_kunkka_tidebringer_bh_1"	"5"}
 		}
 	}
 	//=================================================================================================================
@@ -199,8 +199,8 @@
 			"duration"											"8"
 			"damage_reduction"
 			{
-				"values"										"-35"
-				"special_bonus_unique_kunkka_captains_rum_1"	"-25"
+				"values"										"35"
+				"special_bonus_unique_kunkka_captains_rum_1"	"25"
 			}
 			"movespeed_bonus"									"35 40 45 50"
 			"bonus_basedamage_perc"								"75"
@@ -331,6 +331,7 @@
 			"absorb"											"40 45 50"
 			"torrent_travel_distance_scepter"					{"special_bonus_scepter"	"500"}
 			"bonus_ships"										{"special_bonus_unique_kunkka_ghost_ship_bh_1"	"2"}
+			"drag_enemies"										{"special_bonus_unique_kunkka_ghost_ship_bh2"	"1"}
 		}
 	}
 }

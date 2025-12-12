@@ -32,7 +32,7 @@ function modifier_slark_essence_shift_handler:OnAttackLanded(params)
 	if params.attacker == self:GetParent() and not params.target:IsMinion() then
 		ability:SetCooldown()
 		local caster = self:GetCaster()
-		local duration = self:GetTalentSpecialValueFor("duration")
+		local duration = self:GetSpecialValueFor("duration")
 
 		local debuff = params.target:AddNewModifier(caster, ability, "modifier_slark_essence_shift_attr_debuff", {})
 		local buff = caster:AddNewModifier(caster, ability, "modifier_slark_essence_shift_agi_buff", {})
@@ -61,13 +61,13 @@ function modifier_slark_essence_shift_attr_debuff:OnCreated()
 end
 
 function modifier_slark_essence_shift_attr_debuff:OnRefresh()
-	self.ad = self:GetTalentSpecialValueFor("ad_loss")
-	self.as = self:GetTalentSpecialValueFor("as_loss")
-	self.hp = self:GetTalentSpecialValueFor("hp_loss")
-	self.ar = self:GetTalentSpecialValueFor("ar_loss")
+	self.ad = self:GetSpecialValueFor("ad_loss")
+	self.as = self:GetSpecialValueFor("as_loss")
+	self.hp = self:GetSpecialValueFor("hp_loss")
+	self.ar = self:GetSpecialValueFor("ar_loss")
 	
-	self.perma_agi = self:GetTalentSpecialValueFor("perma_agi")
-	self.boss_agi = self:GetTalentSpecialValueFor("boss_agi")
+	self.perma_agi = self:GetSpecialValueFor("perma_agi")
+	self.boss_agi = self:GetSpecialValueFor("boss_agi")
 	if IsServer() then
 		self:IncrementStackCount()
 	end
@@ -116,7 +116,7 @@ function modifier_slark_essence_shift_agi_buff:OnCreated()
 end
 
 function modifier_slark_essence_shift_agi_buff:OnRefresh()
-	self.agi = self:GetTalentSpecialValueFor("agi_gain")
+	self.agi = self:GetSpecialValueFor("agi_gain")
 	if IsServer() then
 		self:IncrementStackCount()
 	end
@@ -149,7 +149,7 @@ function modifier_slark_essence_shift_perma_buff:OnCreated()
 end
 
 function modifier_slark_essence_shift_perma_buff:OnRefresh()
-	self.agi = self:GetTalentSpecialValueFor("agi_gain")
+	self.agi = self:GetSpecialValueFor("agi_gain")
 end
 
 function modifier_slark_essence_shift_perma_buff:DeclareFunctions()

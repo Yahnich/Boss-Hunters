@@ -12,7 +12,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityTextureName"			"razor_plasma_field"
 		
 		// Talents		
@@ -45,45 +45,17 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"120 200 280 360 440 520 600"
+			"damage"					"120 200 280 360 440 520 600"
 				"LinkedSpecialBonus"		"special_bonus_unique_razor_plasma_field_bh_2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"700"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed"						"636"  // 1.2 second to reach radius
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"attack_speed"				"80 120 160 200 200 200 200"  // 1.2 second to reach radius
+			"radius"					"700"
+			"speed"						"636"  // 1.2 second to reach radius
+			"attack_speed"				"80 120 160 200 200 200 200"  // 1.2 second to reach radius
 				"LinkedSpecialBonus"		"special_bonus_unique_razor_plasma_field_bh_1"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"1.5 1.5 1.5 1.5 2 2.5 3"  // 1.2 second to reach radius
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration_increase"			"0.5 0.5 0.5 0.5 1 1.5 2"  // 1.2 second to reach radius
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration_minion"			"0.1"  // 1.2 second to reach radius
-			}
+			"duration"					"1.5 1.5 1.5 1.5 2 2.5 3"  // 1.2 second to reach radius
+			"duration_increase"			"0.5 0.5 0.5 0.5 1 1.5 2"  // 1.2 second to reach radius
+			"duration_minion"			"0.1"  // 1.2 second to reach radius
 		}
 	}
 	//=================================================================================================================
@@ -99,18 +71,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"40"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value2"					"50"
-			}
+			"value"						"40"
+			"value2"					"50"
 		}
 	}
 	//=================================================================================================================
@@ -126,13 +90,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
+			"value"						"100"
 		}
 	}
 
@@ -147,7 +107,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityTextureName"			"razor_static_link"
 		
 		// Talents		
@@ -182,44 +142,19 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"link_duration"			"5 5 5 5 6 7 8"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"buff_duration"			"18"
-			}
+			"link_duration"			"5 5 5 5 6 7 8"
+			"buff_duration"			"18"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"drain_rate"			"7 12 17 22 24 26 28"
 				"LinkedSpecialBonus"	"special_bonus_unique_razor_static_link_bh_1"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"link_radius"			"325"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"link_damage"			"33"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"link_damage"			"33"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"buffer_range"			"250"
-			}
+			"link_radius"			"325"
+			"link_damage"			"33"
+			"link_damage"			"33"
+			"buffer_range"			"250"
 		}
 	}
 	//=================================================================================================================
@@ -235,13 +170,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"7"
-			}
+			"value"						"7"
 		}
 	}
 	//=================================================================================================================
@@ -257,13 +188,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"100"
-			}
+			"value"						"100"
 		}
 	}
 
@@ -279,7 +206,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityTextureName"			"razor_unstable_current"
 		
 		// Talents		
@@ -302,18 +229,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"120 200 280 360 500 640 780"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"slow_duration"			"0.8 0.8 0.8 0.8 1.2 1.6 2"
-			}
+			"damage"				"120 200 280 360 500 640 780"
+			"slow_duration"			"0.8 0.8 0.8 0.8 1.2 1.6 2"
 		}
 	}
 	//=================================================================================================================
@@ -330,13 +249,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-5"
-			}
+			"value"						"-5"
 		}
 	}
 	//=================================================================================================================
@@ -352,13 +267,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-6"
-			}
+			"value"						"-6"
 		}
 	}
 
@@ -386,18 +297,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movespeed_bonus"		"8"
-			}
+			"movespeed_bonus"		"8"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration"				"30"
-			}
 		}
 	}
 
@@ -414,7 +320,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"AbilityTextureName"			"razor_eye_of_the_storm"
 		"HasScepterUpgrade"				"1"
 		
@@ -448,34 +354,23 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"60 80 95 115 130 150"		
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"30"		
-			}
+			"damage"						"60 80 95 115 130 150"		
+			"duration"						"30"		
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"strike_interval"				"0.7 0.7 0.6 0.6 0.5 0.5"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"armor_reduction"				"1"
 				"LinkedSpecialBonus"			"special_bonus_unique_razor_eye_of_the_storm_bh_2"	
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"scepter_target"				"2"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -491,13 +386,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-2"
-			}
+			"value"						"-2"
 		}
 	}
 	//=================================================================================================================
@@ -513,13 +404,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"0.5"
-			}
+			"value"						"0.5"
 		}
 	}
 	////////////////////////////////////////////////////
@@ -549,18 +436,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"500"
-			}
+			"radius"				"500"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"jump_count"			"3"
-			}
 		}
 	}
 }

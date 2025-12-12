@@ -30,8 +30,8 @@ function beast_boar_spirit:OnSpellStart()
     	EffectName = "particles/units/heroes/hero_beast/beast_boar_spirit/beast_boar_spirit.vpcf",
     	vSpawnOrigin = caster:GetAbsOrigin(),
     	fDistance = distance,
-    	fStartRadius = self:GetTalentSpecialValueFor("width"),
-    	fEndRadius = self:GetTalentSpecialValueFor("width"),
+    	fStartRadius = self:GetSpecialValueFor("width"),
+    	fEndRadius = self:GetSpecialValueFor("width"),
     	Source = caster,
     	bHasFrontalCone = false,
     	bReplaceExisting = false,
@@ -40,7 +40,7 @@ function beast_boar_spirit:OnSpellStart()
     	iUnitTargetType = DOTA_UNIT_TARGET_ALL,
     	fExpireTime = GameRules:GetGameTime() + 10.0,
 		bDeleteOnHit = false,
-		vVelocity = caster:GetForwardVector() * self:GetTalentSpecialValueFor("speed"),
+		vVelocity = caster:GetForwardVector() * self:GetSpecialValueFor("speed"),
 		bProvidesVision = true,
 		iVisionRadius = 200,
 		iVisionTeamNumber = caster:GetTeamNumber(),
@@ -55,9 +55,9 @@ function beast_boar_spirit:OnProjectileHit_ExtraData(hTarget, vLocation, table)
 	StopSoundOn("Hero_Beastmaster.Call.Boar", caster)
 
 	if hTarget and hTarget:IsAlive() and hTarget:GetTeam() ~= caster:GetTeam() then
-		self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
+		self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, 0)
 		if caster:HasTalent("special_bonus_unique_beast_boar_spirit_1") then
-			hTarget:ApplyKnockBack(vLocation, 0.5, 0.5, self:GetTalentSpecialValueFor("width")/2, self:GetTalentSpecialValueFor("width"), caster, self)
+			hTarget:ApplyKnockBack(vLocation, 0.5, 0.5, self:GetSpecialValueFor("width")/2, self:GetSpecialValueFor("width"), caster, self)
 		end
 	end
 
@@ -69,8 +69,8 @@ function beast_boar_spirit:OnProjectileHit_ExtraData(hTarget, vLocation, table)
 		    	EffectName = "particles/units/heroes/hero_beast/beast_boar_spirit/beast_boar_spirit.vpcf",
 		    	vSpawnOrigin = vLocation,
 		    	fDistance = CalculateDistance(caster:GetAbsOrigin(), vLocation),
-		    	fStartRadius = self:GetTalentSpecialValueFor("width"),
-		    	fEndRadius = self:GetTalentSpecialValueFor("width"),
+		    	fStartRadius = self:GetSpecialValueFor("width"),
+		    	fEndRadius = self:GetSpecialValueFor("width"),
 		    	Source = caster,
 		    	bHasFrontalCone = false,
 		    	bReplaceExisting = false,
@@ -79,7 +79,7 @@ function beast_boar_spirit:OnProjectileHit_ExtraData(hTarget, vLocation, table)
 		    	iUnitTargetType = DOTA_UNIT_TARGET_ALL,
 		    	fExpireTime = GameRules:GetGameTime() + 10.0,
 				bDeleteOnHit = false,
-				vVelocity = CalculateDirection(vLocation, caster:GetAbsOrigin()) * -self:GetTalentSpecialValueFor("speed"),
+				vVelocity = CalculateDirection(vLocation, caster:GetAbsOrigin()) * -self:GetSpecialValueFor("speed"),
 				bProvidesVision = true,
 				iVisionRadius = 200,
 				iVisionTeamNumber = caster:GetTeamNumber(),

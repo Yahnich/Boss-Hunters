@@ -14,7 +14,7 @@ end
 
 function wk_vamp:OnSpellStart()
     local caster = self:GetCaster()
-	caster:AddNewModifier( caster, self, "modifier_wk_vamp_active", {duration = self:GetTalentSpecialValueFor("active_duration")} )
+	caster:AddNewModifier( caster, self, "modifier_wk_vamp_active", {duration = self:GetSpecialValueFor("active_duration")} )
 end
 
 modifier_wk_vamp_active = class({})
@@ -31,7 +31,7 @@ function modifier_wk_vamp:GetAuraDuration()
 end
 
 function modifier_wk_vamp:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function modifier_wk_vamp:GetAuraSearchFlags()
@@ -66,11 +66,11 @@ function modifier_wk_vamp_effect:OnCreated()
 end
 
 function modifier_wk_vamp_effect:OnRefresh()
-	self.lifesteal = self:GetTalentSpecialValueFor("lifesteal")
-	self.attack_damage = self:GetTalentSpecialValueFor("attack_damage")
-	self.ranged_percentage = self:GetTalentSpecialValueFor("ranged_percentage") / 100
-	self.wk_percentage = 1 + self:GetTalentSpecialValueFor("wk_percentage") / 100
-	self.active_multiplier = self:GetTalentSpecialValueFor("active_multiplier")
+	self.lifesteal = self:GetSpecialValueFor("lifesteal")
+	self.attack_damage = self:GetSpecialValueFor("attack_damage")
+	self.ranged_percentage = self:GetSpecialValueFor("ranged_percentage") / 100
+	self.wk_percentage = 1 + self:GetSpecialValueFor("wk_percentage") / 100
+	self.active_multiplier = self:GetSpecialValueFor("active_multiplier")
 	if self:GetCaster():HasTalent("special_bonus_unique_wk_vamp_1") then
 		self.talent1 = true
 		self.talent1Dur = self:GetCaster():FindTalentValue("special_bonus_unique_wk_vamp_1", "duration")

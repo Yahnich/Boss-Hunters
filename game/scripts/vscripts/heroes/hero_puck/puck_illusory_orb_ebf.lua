@@ -12,7 +12,7 @@ function puck_illusory_orb_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorPosition()
 	
-	local speed = self:GetTalentSpecialValueFor("orb_speed")
+	local speed = self:GetSpecialValueFor("orb_speed")
 	local velocity =  CalculateDirection( target, caster ) * speed
 	
 	self.orbProjectiles = self.orbProjectiles or {}
@@ -27,9 +27,9 @@ end
 
 function puck_illusory_orb_ebf:CreateOrb(velocity, position)
 	local caster = self:GetCaster()
-	local distance = self:GetTalentSpecialValueFor("max_distance")
-	local width = self:GetTalentSpecialValueFor("radius")
-	local vision = self:GetTalentSpecialValueFor("orb_vision")
+	local distance = self:GetSpecialValueFor("max_distance")
+	local width = self:GetSpecialValueFor("radius")
+	local vision = self:GetSpecialValueFor("orb_vision")
 	local projID = self:FireLinearProjectile("particles/units/heroes/hero_puck/puck_illusory_orb.vpcf", velocity, distance, width, {origin = position or caster:GetAbsOrigin()}, false, true, vision)
 	self.orbProjectiles[projID] = true
 	
@@ -39,7 +39,7 @@ end
 
 function puck_illusory_orb_ebf:OnProjectileHitHandle( target, position, projID )	
 	local caster = self:GetCaster()
-	local orbDamage = self:GetTalentSpecialValueFor("damage")
+	local orbDamage = self:GetSpecialValueFor("damage")
 	if target and not target:TriggerSpellAbsorb( self ) then
 		self:DealDamage( caster, target, orbDamage )
 		EmitSoundOn("Hero_Puck.IIllusory_Orb_Damage", target)
@@ -51,13 +51,13 @@ end
 function puck_illusory_orb_ebf:OnOrbDestroyed(projID, position)
 	local caster = self:GetCaster()
 	
-	local pRadius = self:GetTalentSpecialValueFor("radius")
-	local vRadius = self:GetTalentSpecialValueFor("orb_vision")
-	local vDuration = self:GetTalentSpecialValueFor("vision_duration")
+	local pRadius = self:GetSpecialValueFor("radius")
+	local vRadius = self:GetSpecialValueFor("orb_vision")
+	local vDuration = self:GetSpecialValueFor("vision_duration")
 	
 	AddFOWViewer ( caster:GetTeam(), position, vRadius, vDuration, false)
 	if caster:HasTalent("special_bonus_unique_puck_illusory_orb_2") then
-		local orbDamage = self:GetTalentSpecialValueFor("damage")
+		local orbDamage = self:GetSpecialValueFor("damage")
 		local radInc = caster:FindTalentValue("special_bonus_unique_puck_illusory_orb_2")
 		local dmgPct = caster:FindTalentValue("special_bonus_unique_puck_illusory_orb_2", "damage") / 100
 		ParticleManager:FireParticle("particles/heroes/hero_puck/puck_illusory_orb_talentalliance_explosion.vpcf", PATTACH_WORLDORIGIN, nil, {[1] = position + Vector(0,0, 24)})

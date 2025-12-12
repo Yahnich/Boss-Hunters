@@ -20,8 +20,8 @@ LinkLuaModifier( "modifier_pugna_nether_turret_thinker", "heroes/hero_pugna/pugn
 modifier_pugna_nether_turret_thinker = class({})
 
 function modifier_pugna_nether_turret_thinker:OnCreated( kv )
-	self.radius = self:GetAbility():GetTalentSpecialValueFor( "radius" )
-	self.dmg_mult = self:GetAbility():GetTalentSpecialValueFor( "dmg_mult" )
+	self.radius = self:GetAbility():GetSpecialValueFor( "radius" )
+	self.dmg_mult = self:GetAbility():GetSpecialValueFor( "dmg_mult" )
 	
 	self.attackTalent = self:GetCaster():HasTalent("special_bonus_unique_pugna_nether_turret_2")
 	if self.attackTalent then

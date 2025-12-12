@@ -5,15 +5,15 @@ LinkLuaModifier( "modifier_ta_trap_spring", "heroes/hero_ta/ta_trap.lua" ,LUA_MO
 function ta_trap:GetCooldown( iLvl )
 	local cd = self.BaseClass.GetCooldown( self, iLvl )
 	if self:GetCaster():HasScepter() then
-		cd = cd + self:GetTalentSpecialValueFor("scepter_cooldown_reduction")
+		cd = cd + self:GetSpecialValueFor("scepter_cooldown_reduction")
 	end
 	return cd
 end
 
 function ta_trap:GetAOERadius()
-	local radius = self:GetTalentSpecialValueFor("trap_radius")
+	local radius = self:GetSpecialValueFor("trap_radius")
 	if self:GetCaster():HasScepter() then
-		radius = radius + self:GetTalentSpecialValueFor("scepter_bonus_radius")
+		radius = radius + self:GetSpecialValueFor("scepter_bonus_radius")
 	end
 	return radius
 end
@@ -42,7 +42,7 @@ end
 function ta_trap:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
-	local max_traps = self:GetTalentSpecialValueFor("max_traps")
+	local max_traps = self:GetSpecialValueFor("max_traps")
 	
 	self.traps = self.traps or {}
 	
@@ -78,15 +78,15 @@ end
 modifier_ta_trap = class({})
 
 function modifier_ta_trap:OnCreated()
-	self.minDmg = self:GetAbility():GetTalentSpecialValueFor("damage_min_tooltip")
-	self.minSlow = self:GetAbility():GetTalentSpecialValueFor("movement_speed_min_tooltip")
-	self.maxDmg = self:GetAbility():GetTalentSpecialValueFor("damage_max_tooltip")
-	self.maxSlow = self:GetAbility():GetTalentSpecialValueFor("movement_speed_max_tooltip")
+	self.minDmg = self:GetAbility():GetSpecialValueFor("damage_min_tooltip")
+	self.minSlow = self:GetAbility():GetSpecialValueFor("movement_speed_min_tooltip")
+	self.maxDmg = self:GetAbility():GetSpecialValueFor("damage_max_tooltip")
+	self.maxSlow = self:GetAbility():GetSpecialValueFor("movement_speed_max_tooltip")
 
 	if IsServer() then	
 		self.timer = 0
-		self.maxTimer = self:GetAbility():GetTalentSpecialValueFor("total_tick_time")
-		self.tick = self:GetAbility():GetTalentSpecialValueFor("tick_rate")
+		self.maxTimer = self:GetAbility():GetSpecialValueFor("total_tick_time")
+		self.tick = self:GetAbility():GetSpecialValueFor("tick_rate")
 		self.dmgPerTick = ( (self.maxDmg - self.minDmg) * self.tick ) / self.maxTimer
 		self.slowPerTick = ( (self.maxSlow - self.minSlow) * self.tick ) / self.maxTimer
 		if self:GetCaster():HasScepter() then

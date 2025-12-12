@@ -15,9 +15,9 @@ function earth_spirit_magnetize_bh:OnSpellStart()
 
     EmitSoundOn("Hero_EarthSpirit.Magnetize.Cast", caster)
 	
-	local remnantRadius = self:GetTalentSpecialValueFor("refresh_radius")
-	local enemyRadius = self:GetTalentSpecialValueFor("search_radius")
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local remnantRadius = self:GetSpecialValueFor("refresh_radius")
+	local enemyRadius = self:GetSpecialValueFor("search_radius")
+	local duration = self:GetSpecialValueFor("duration")
 	
     local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_earth_spirit/espirit_magnetize.vpcf", PATTACH_POINT, caster)
     ParticleManager:SetParticleControl(nfx, 0, caster:GetAbsOrigin())
@@ -36,7 +36,7 @@ function earth_spirit_magnetize_bh:OnSpellStart()
 		   	 	ParticleManager:ReleaseParticleIndex(nfx2)
 				EmitSoundOn( "Hero_EarthSpirit.Magnetize.StoneBolt", enemy )
 				
-				stone:AddNewModifier(caster, self, "modifier_magnetize_stone", {Duration = self:GetTalentSpecialValueFor("rock_explosion_delay")})
+				stone:AddNewModifier(caster, self, "modifier_magnetize_stone", {Duration = self:GetSpecialValueFor("rock_explosion_delay")})
 			end
     	end
     end
@@ -65,12 +65,12 @@ function modifier_magnetize:OnCreated(table)
 end
 
 function modifier_magnetize:OnRefresh(table)
-	self.remnantRadius = self:GetTalentSpecialValueFor("refresh_radius")
-	self.enemyRadius = self:GetTalentSpecialValueFor("search_radius")
-	self.tick = self:GetTalentSpecialValueFor("tick_rate")
-	self.damage = self:GetTalentSpecialValueFor("damage") * self.tick
-	self.duration = self:GetTalentSpecialValueFor("duration")
-	self.explodeDelay = self:GetTalentSpecialValueFor("rock_explosion_delay")
+	self.remnantRadius = self:GetSpecialValueFor("refresh_radius")
+	self.enemyRadius = self:GetSpecialValueFor("search_radius")
+	self.tick = self:GetSpecialValueFor("tick_rate")
+	self.damage = self:GetSpecialValueFor("damage") * self.tick
+	self.duration = self:GetSpecialValueFor("duration")
+	self.explodeDelay = self:GetSpecialValueFor("rock_explosion_delay")
 	if IsServer() then
 		self:StartIntervalThink(self.tick)
 		ParticleManager:SetParticleControl(self.counterFX, 1, Vector( math.ceil( self:GetRemainingTime() ), 1, 1 ) )
@@ -133,12 +133,12 @@ end
 
 modifier_magnetize_stone = class(modifier_magnetize)
 function modifier_magnetize_stone:OnRefresh(table)
-	self.remnantRadius = self:GetTalentSpecialValueFor("refresh_radius")
-	self.enemyRadius = self:GetTalentSpecialValueFor("refresh_radius")
-	self.damage = self:GetTalentSpecialValueFor("damage")
-	self.explodeDelay = self:GetTalentSpecialValueFor("rock_explosion_delay")
+	self.remnantRadius = self:GetSpecialValueFor("refresh_radius")
+	self.enemyRadius = self:GetSpecialValueFor("refresh_radius")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.explodeDelay = self:GetSpecialValueFor("rock_explosion_delay")
 	if IsServer() then
-		self:StartIntervalThink(self:GetTalentSpecialValueFor("tick_rate"))
+		self:StartIntervalThink(self:GetSpecialValueFor("tick_rate"))
 	end
 end
 

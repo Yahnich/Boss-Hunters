@@ -1,7 +1,7 @@
 necrophos_heartstopper_aura_bh = class({})
 
 function necrophos_heartstopper_aura_bh:GetCastRange( target, position )
-	return self:GetTalentSpecialValueFor("aura_radius")
+	return self:GetSpecialValueFor("aura_radius")
 end
 
 function necrophos_heartstopper_aura_bh:GetIntrinsicModifierName()
@@ -12,11 +12,11 @@ modifier_necrophos_heart_stopper_bh = class({})
 LinkLuaModifier( "modifier_necrophos_heart_stopper_bh", "heroes/hero_necrophos/necrophos_heartstopper_aura_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_necrophos_heart_stopper_bh:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("aura_radius")
+	self.radius = self:GetSpecialValueFor("aura_radius")
 end
 
 function modifier_necrophos_heart_stopper_bh:OnRefresh()
-	self.radius = self:GetTalentSpecialValueFor("aura_radius")
+	self.radius = self:GetSpecialValueFor("aura_radius")
 end
 
 function modifier_necrophos_heart_stopper_bh:IsAura()
@@ -58,8 +58,8 @@ function modifier_necrophos_heart_stopper_bh_degen:OnCreated()
 end
 
 function modifier_necrophos_heart_stopper_bh_degen:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("aura_damage")
-	self.minion_damage = self:GetTalentSpecialValueFor("minion_damage")
+	self.damage = self:GetSpecialValueFor("aura_damage")
+	self.minion_damage = self:GetSpecialValueFor("minion_damage")
 	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_necrophos_heartstopper_aura_1")
 	self.max_as = self:GetCaster():FindTalentValue("special_bonus_unique_necrophos_heartstopper_aura_1", "maximum")
 	self.threshold = self:GetCaster():FindTalentValue("special_bonus_unique_necrophos_heartstopper_aura_1", "threshold")

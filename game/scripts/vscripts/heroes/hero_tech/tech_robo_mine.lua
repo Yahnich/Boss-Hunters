@@ -11,14 +11,14 @@ function tech_robo_mine:IsHiddenWhenStolen()
 end
 
 function tech_robo_mine:GetAOERadius()
-	return TernaryOperator( self:GetTalentSpecialValueFor("scepter_radius"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("radius") )
+	return TernaryOperator( self:GetSpecialValueFor("scepter_radius"), self:GetCaster():HasScepter(), self:GetSpecialValueFor("radius") )
 end
 
 function tech_robo_mine:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
-	local radius = TernaryOperator( self:GetTalentSpecialValueFor("scepter_radius"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("radius") )
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local radius = TernaryOperator( self:GetSpecialValueFor("scepter_radius"), self:GetCaster():HasScepter(), self:GetSpecialValueFor("radius") )
+	local duration = self:GetSpecialValueFor("duration")
 	local scepter = caster:HasScepter()
 	for _, mine in ipairs( caster:FindFriendlyUnitsInRadius( position, radius, {flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE} ) ) do
 		if mine:GetUnitName() == "npc_dota_techies_stasis_trap"
@@ -75,5 +75,5 @@ function modifier_robo_mine:DeclareFunctions()
 end
 
 function modifier_robo_mine:GetModifierMoveSpeedBonus_Constant()
-	return self:GetTalentSpecialValueFor("movespeed")	
+	return self:GetSpecialValueFor("movespeed")	
 end

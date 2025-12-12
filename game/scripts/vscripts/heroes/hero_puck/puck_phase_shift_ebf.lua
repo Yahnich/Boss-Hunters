@@ -1,7 +1,7 @@
 puck_phase_shift_ebf = class({})
 
 function puck_phase_shift_ebf:GetChannelTime()
-	self.duration = self:GetTalentSpecialValueFor( "duration" )
+	self.duration = self:GetSpecialValueFor( "duration" )
 
 	if self:GetCaster():HasTalent("special_bonus_unique_puck_phase_shift_2") then
 		return nil
@@ -12,7 +12,7 @@ end
 
 function puck_phase_shift_ebf:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_puck_phase_shift_immune", {duration = self:GetTalentSpecialValueFor( "duration") })
+	caster:AddNewModifier(caster, self, "modifier_puck_phase_shift_immune", {duration = self:GetSpecialValueFor( "duration") })
 	EmitSoundOn("Hero_Puck.Phase_Shift", caster)
 end
 

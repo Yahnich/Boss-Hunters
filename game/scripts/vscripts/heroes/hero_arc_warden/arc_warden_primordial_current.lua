@@ -14,7 +14,7 @@ function arc_warden_primordial_current:GetChannelAnimation()
 end
 
 function arc_warden_primordial_current:GetChannelTime()
-	return self:GetTalentSpecialValueFor( "channel_time" )
+	return self:GetSpecialValueFor( "channel_time" )
 end
 
 function arc_warden_primordial_current:OnSpellStart()
@@ -30,7 +30,7 @@ function arc_warden_primordial_current:OnSpellStart()
 		self:EndCooldown()
 	else
 		EmitSoundOn("Hero_Leshrac.Lightning_Storm", hTarget)
-		local duration = self:GetTalentSpecialValueFor("channel_time")
+		local duration = self:GetSpecialValueFor("channel_time")
 		hTarget:Daze(self, hCaster, duration)
 		hTarget:Paralyze(self, hCaster, duration)
 		hTarget:AddNewModifier(hCaster, self, "modifier_arc_warden_primordial_current", {duration = duration})
@@ -50,7 +50,7 @@ function arc_warden_primordial_current:OnSpellStart()
 				if enemy ~= hTarget then
 					enemy:Daze(self, hCaster, duration)
 					enemy:Paralyze(self, hCaster, duration)
-					enemy:AddNewModifier(hCaster, self, "modifier_arc_warden_primordial_current", {duration = self:GetTalentSpecialValueFor("channel_time")})
+					enemy:AddNewModifier(hCaster, self, "modifier_arc_warden_primordial_current", {duration = self:GetSpecialValueFor("channel_time")})
 					break
 				end
 			end
@@ -62,8 +62,8 @@ modifier_arc_warden_primordial_current = class({})
 
 function modifier_arc_warden_primordial_current:OnCreated(kv)
 	self.duration = self:GetRemainingTime()
-	self.damage = self:GetAbility():GetTalentSpecialValueFor("total_damage")
-	self.tick = self:GetAbility():GetTalentSpecialValueFor("tick_interval")
+	self.damage = self:GetAbility():GetSpecialValueFor("total_damage")
+	self.tick = self:GetAbility():GetSpecialValueFor("tick_interval")
 
 	EmitSoundOn("Ability.static.loop", self:GetParent())
 

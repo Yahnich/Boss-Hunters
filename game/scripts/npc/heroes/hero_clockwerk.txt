@@ -14,7 +14,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"rattletrap_battery_assault"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -49,29 +49,22 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"275"
-			}
+			"radius"					"275"
 			"02"
 			{	
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"10.5"
-			}
 			"03"
 			{	
 				"var_type"					"FIELD_FLOAT"
 				"interval"					"0.7"
 				"LinkedSpecialBonus"		"special_bonus_unique_rattletrap_battery_assault_2"
-			}
 			"04"
 			{	
 				"var_type"					"FIELD_FLOAT"
 				"damage"					"20 45 70 95 120 145 170"
-			}
 		}
 	}
 	"special_bonus_unique_rattletrap_battery_assault_1" 
@@ -84,13 +77,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"300"
-			}
+			"value"					"300"
 		}
 	}
 	"special_bonus_unique_rattletrap_battery_assault_2" 
@@ -103,13 +92,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-0.3"
-			}
+			"value"					"-0.3"
 		}
 	}
 	"rattletrap_aegis_deflector"	
@@ -121,7 +106,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"custom/rattletrap_aegis_deflector"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -140,54 +125,45 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"bonus_armor"						"3 4 5 6 7 8 9"
-			}
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"armor_buff"						"4 10 16 22 28 34 40"
-			}
 			"03"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"buff_duration"						"2"
-			}
 			"04"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"heal_pct"							"2"
 				"LinkedSpecialBonus"				"special_bonus_unique_rattletrap_aegis_deflector_2"
-			}
 			"05"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"proc_chance"						"17"
-			}
 			"06"
 			{	
 				"var_type"							"FIELD_FLOAT"
 				"mana_damage"						"80 120 160 200 240 280 320"
-			}
 			"07"
 			{	
 				"var_type"							"FIELD_FLOAT"
 				"mana_restore"						"50"
-			}
 			"08"
 			{	
 				"var_type"							"FIELD_INTEGER"
 				"push_length"						"250"
-			}
 			"09"
 			{	
 				"var_type"							"FIELD_FLOAT"
 				"push_duration"						"0.85"
-			}
 		}
 	}
 	"special_bonus_unique_rattletrap_aegis_deflector_1" 
@@ -200,13 +176,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"20"
-			}
+			"value"					"20"
 		}
 	}
 	"special_bonus_unique_rattletrap_aegis_deflector_2" 
@@ -219,13 +191,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"rattletrap_rocket_flare_ebf"
@@ -239,7 +207,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"rattletrap_rocket_flare"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -274,36 +242,28 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"600"
-			}
+			"radius"				"600"
 			"02"
 			{	
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"10.0"
-			}
 			"03"
 			{	
 				"var_type"				"FIELD_INTEGER"
 				"speed"					"1750"
-			}
 			"04"
 			{	
 				"var_type"				"FIELD_INTEGER"
 				"blind"					"20 22 24 26 28 30 32"
 				"LinkedSpecialBonus"	"special_bonus_unique_rattletrap_rocket_flare_ebf_2"
 				
-			}
 			"04"
 			{	
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"120 170 220 270 320 370 420"
 				
-			}
 		}
 	}
 	//=================================================================================================================
@@ -341,39 +301,33 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"latch_radius"		"125"
-			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"stun_radius"		"175"
-			}
 			"03"
 			{	
 				"var_type"			"FIELD_FLOAT"
 				"duration"			"2.0"
-			}
 			
 			"04"
 			{	
 				"var_type"			"FIELD_INTEGER"
 				"speed"				"6000"
-			}
 			"05"
 			{	
 				"var_type"			"FIELD_INTEGER"
 				"tooltip_range"		"3000"
-			}
 			"06"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"damage"			"275"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -390,7 +344,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/rattletrap_reactive_shielding"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -420,26 +374,23 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"3"
-			}
 			"03"
 			{	
 				"var_type"						"FIELD_FLOAT"
 				"damage_reduction"				"-80"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 			"04"
 			{	
 				"var_type"						"FIELD_FLOAT"
 				"slow"							"-100"
 				"LinkedSpecialBonus"			"special_bonus_unique_rattletrap_reactive_shielding_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -457,7 +408,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/rattletrap_automated_artillery"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -486,28 +437,21 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"2000"
-			}
+			"radius"					"2000"
 			"02"
 			{	
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"8"
-			}
 			"03"
 			{	
 				"var_type"					"FIELD_FLOAT"
 				"rockets_per_second"		"10"
-			}
 			"03"
 			{	
 				"var_type"					"FIELD_FLOAT"
 				"damage_per_rocket"			"12 17 22 27 32 37"
-			}
 		}
 	}
 	"special_bonus_unique_rattletrap_rocket_flare_ebf_1" 
@@ -520,13 +464,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"16"
-			}
+			"value"					"16"
 		}
 	}
 	"special_bonus_unique_rattletrap_rocket_flare_ebf_2" 
@@ -539,13 +479,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"25"
-			}
+			"value"					"25"
 		}
 	}
 	"special_bonus_unique_rattletrap_reactive_shielding_1" 
@@ -558,13 +494,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-1"
-			}
+			"value"					"-1"
 		}
 	}
 	"special_bonus_unique_rattletrap_automated_artillery_1" 
@@ -577,13 +509,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 }

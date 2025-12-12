@@ -20,7 +20,7 @@ function puck_reverie_snap:OnSpellStart()
 		end
 	end
 	if caster:HasTalent("special_bonus_unique_puck_reverie_snap_2") then
-		caster:AddNewModifier(caster, self, "modifier_puck_reverie_snap_talent", {duration = self:GetTalentSpecialValueFor("coil_duration") + self:GetTalentSpecialValueFor("suck_duration")})
+		caster:AddNewModifier(caster, self, "modifier_puck_reverie_snap_talent", {duration = self:GetSpecialValueFor("coil_duration") + self:GetSpecialValueFor("suck_duration")})
 	end
 	self:ReverieSnap(target)
 end
@@ -34,8 +34,8 @@ end
 function puck_reverie_snap:ReverieSnap(position)
 	local caster = self:GetCaster()
 	
-	local radius = self:GetTalentSpecialValueFor("suck_radius")
-	local suckDur = self:GetTalentSpecialValueFor("suck_duration")
+	local radius = self:GetSpecialValueFor("suck_radius")
+	local suckDur = self:GetSpecialValueFor("suck_duration")
 
 	local vPos = GetGroundPosition(position, caster)
 	EmitSoundOnLocationWithCaster(vPos, "Hero_Dark_Seer.Vacuum", caster)
@@ -49,8 +49,8 @@ function puck_reverie_snap:ReverieSnap(position)
 	if caster:HasScepter() then
 		local illusoryOrb = caster:FindAbilityByName( "puck_illusory_orb_ebf" )
 		if illusoryOrb then
-			local orbs = self:GetTalentSpecialValueFor("scepter_orbs")
-			local speed = illusoryOrb:GetTalentSpecialValueFor("orb_speed")
+			local orbs = self:GetSpecialValueFor("scepter_orbs")
+			local speed = illusoryOrb:GetSpecialValueFor("orb_speed")
 			local direction =  caster:GetForwardVector()
 			local angle = 360 / orbs
 			for i = 1, orbs do
@@ -62,7 +62,7 @@ function puck_reverie_snap:ReverieSnap(position)
 	
 	Timers:CreateTimer(suckDur, function()
 		EmitSoundOnLocationWithCaster(vPos, "Hero_Puck.Dream_Coil", caster)
-		CreateModifierThinker(caster, self, "modifier_puck_reverie_snap_coil", {duration = self:GetTalentSpecialValueFor("coil_duration")}, vPos, caster:GetTeam(), false)
+		CreateModifierThinker(caster, self, "modifier_puck_reverie_snap_coil", {duration = self:GetSpecialValueFor("coil_duration")}, vPos, caster:GetTeam(), false)
 	end)
 end
 
@@ -97,14 +97,14 @@ LinkLuaModifier("modifier_puck_reverie_snap_coil", "heroes/hero_puck/puck_reveri
 
 if IsServer() then
 	function modifier_puck_reverie_snap_coil:OnCreated()
-		self.radius = self:GetTalentSpecialValueFor("coil_break_radius")
-		self.damage = self:GetTalentSpecialValueFor("coil_break_damage")
-		self.duration = self:GetTalentSpecialValueFor("coil_stun_duration")
+		self.radius = self:GetSpecialValueFor("coil_break_radius")
+		self.damage = self:GetSpecialValueFor("coil_break_damage")
+		self.duration = self:GetSpecialValueFor("coil_stun_duration")
 		self.radiusDecrease = self.radius / self:GetRemainingTime() * 0.1
-		self.initRadius = self:GetTalentSpecialValueFor("coil_radius")
+		self.initRadius = self:GetSpecialValueFor("coil_radius")
 		
-		local initDamage = self:GetTalentSpecialValueFor("coil_init_damage_tooltip")
-		local initStun =  self:GetTalentSpecialValueFor("stun_duration")
+		local initDamage = self:GetSpecialValueFor("coil_init_damage_tooltip")
+		local initStun =  self:GetSpecialValueFor("stun_duration")
 		local ability = self:GetAbility()
 		local parent = self:GetParent()
 		local caster = self:GetCaster()
@@ -118,7 +118,7 @@ if IsServer() then
 			if not enemy:TriggerSpellAbsorb( self ) then
 				ability:Stun(enemy, initStun)
 				ability:DealDamage(caster, enemy, initDamage)
-				enemy:AddNewModifier(caster, ability, "modifier_puck_reverie_snap_tether", {duration = self:GetTalentSpecialValueFor("coil_duration"), entindex = parent:entindex()})
+				enemy:AddNewModifier(caster, ability, "modifier_puck_reverie_snap_tether", {duration = self:GetSpecialValueFor("coil_duration"), entindex = parent:entindex()})
 			end
 		end
 		self:StartIntervalThink(0.1)

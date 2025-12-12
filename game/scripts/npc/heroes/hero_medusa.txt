@@ -13,7 +13,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"medusa_split_shot"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -47,35 +47,21 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"damage_mod"					"30 30 45 45 60 60 75"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 			"02"
 			{	
 				"var_type"						"FIELD_INTEGER"
 				"arrow_count"					"2 3 3 4 4 5 5"
 				"LinkedSpecialBonus"			"special_bonus_unique_medusa_split_2"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"split_shot_bonus_range"		"150"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"cone_spread"					"60 90 90 120 120 150 150"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"width"							"100"
-			}		
+			"split_shot_bonus_range"		"150"
+			"cone_spread"					"60 90 90 120 120 150 150"
+			"width"							"100"		
 		}
 	}
 	
@@ -92,13 +78,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
+			"value"						"100"
 		}
 	}
 	//=================================================================================================================
@@ -114,18 +96,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"7"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value2"					"0.9"
-			}
+			"value"						"7"
+			"value2"					"0.9"
 		}
 	}
 
@@ -142,7 +116,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"medusa_mystic_snake"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -179,54 +153,45 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"damage"							"80 120 160 200 220 240 260"
-			}
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"snake_scale"						"35"
-			}
 			"03"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"mana_steal"						"25"
-			}
 			"04"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"radius"							"475"
-			}
 			"05"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"jumps"								"3 4 5 6 7 8 9"
 				"LinkedSpecialBonus"				"special_bonus_unique_medusa_snake_1"
-			}
 			"06"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"jump_delay"						"0.25"
-			}
 			"07"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"move_slow"							"-30 -30 -30 -30 -45 -60 -75"
-			}
 			"08"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"turn_slow"							"-50 -50 -50 -50 -65 -80 -95"
-			}
 			"09"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"slow_duration"						"3"
-			}
 		}
 	}
 	
@@ -243,18 +208,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1.0"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value2"					"0.3"
-			}
+			"value"						"1.0"
+			"value2"					"0.3"
 		}
 	}
 
@@ -271,13 +228,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	"medusa_slither"
@@ -293,7 +246,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/medusa_slither"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -328,28 +281,15 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"dash_range"				"450 450 450 450 600 750 900"
-			}
+			"dash_range"				"450 450 450 450 600 750 900"
 			"02"
 			{	
 				"var_type"					"FIELD_INTEGER"
 				"evasion"					"25 35 45 55 55 55 55"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"3 3 3 3 3.5 4 4.5"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"speed"						"900"
-			}
+			"duration"					"3 3 3 3 3.5 4 4.5"
+"speed"						"900"
 		}
 	}
 	
@@ -366,13 +306,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -388,13 +324,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-9"
-			}
+			"value"						"-9"
 		}
 	}
 	
@@ -431,7 +363,7 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			
 			"01"
@@ -441,12 +373,7 @@
 				"LinkedSpecialBonus"			"special_bonus_unique_medusa_split_2"
 				"LinkedSpecialBonusField"		"value2"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"absorb"						"70"
-			}
+			"absorb"						"70"
 		}
 	}
 
@@ -464,7 +391,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"medusa_stone_gaze"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -501,43 +428,18 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"5 5 5.5 5.5 6 6"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"face_duration"				"2.0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stone_duration"			"3.0"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_physical"			"40 45 45 50 50 50"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"1000"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"length"					"1000"
-			}
+			"duration"					"5 5 5.5 5.5 6 6"
+			"face_duration"				"2.0"
+			"stone_duration"			"3.0"
+			"bonus_physical"			"40 45 45 50 50 50"
+			"radius"					"1000"
+			"length"					"1000"
 			"07"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"mr_reduc"					"-50"
-			}			
+				"mr_reduc"					"-50"			
 		}
 	}
 
@@ -554,13 +456,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
-			}
+			"value"						"50"
 		}
 	}
 
@@ -577,13 +475,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -604,7 +498,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/medusa_mana_shield_daughters"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -639,38 +533,17 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"arrow_count"				"3"
-			}
+			"arrow_count"				"3"
 			"02"
 			{	
 				"var_type"					"FIELD_INTEGER"
 				"damage"					"30 60 90 120 150 150 150"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"5"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"move_slow"					"-11 -12 -13 -14 -15 -16 -17"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cone_spread"				"45"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"width"						"25"
-			}		
+			"duration"					"5"
+"move_slow"					"-11 -12 -13 -14 -15 -16 -17"
+			"cone_spread"				"45"
+			"width"						"25"		
 		}
 	}
 	
@@ -687,13 +560,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"5"
-			}
+			"value"						"5"
 		}
 	}
 	//=================================================================================================================
@@ -709,13 +578,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 }

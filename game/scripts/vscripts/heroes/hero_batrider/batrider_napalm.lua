@@ -11,16 +11,16 @@ function batrider_napalm:IsHiddenWhenStolen()
 end
 
 function batrider_napalm:GetAOERadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function batrider_napalm:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local limit = self:GetTalentSpecialValueFor("max_stacks")
+	local radius = self:GetSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("duration")
+	local limit = self:GetSpecialValueFor("max_stacks")
 	
 	EmitSoundOn("Hero_Batrider.StickyNapalm.Cast", caster)
 	EmitSoundOnLocationWithCaster(point, "Hero_Batrider.StickyNapalm.Impact", caster)
@@ -53,9 +53,9 @@ end
 
 modifier_batrider_napalm_debuff = class({})
 function modifier_batrider_napalm_debuff:OnCreated(table)
-	self.slow = self:GetTalentSpecialValueFor("slow_ms") * self:GetStackCount()
-	self.turnRate = self:GetTalentSpecialValueFor("turn_rate_pct")
-	self.amp = self:GetTalentSpecialValueFor("damage_amp") * self:GetStackCount()
+	self.slow = self:GetSpecialValueFor("slow_ms") * self:GetStackCount()
+	self.turnRate = self:GetSpecialValueFor("turn_rate_pct")
+	self.amp = self:GetSpecialValueFor("damage_amp") * self:GetStackCount()
 
 	if self:GetCaster():HasTalent("special_bonus_unique_batrider_napalm_1") then
 		self.slow_as = self.slow
@@ -72,14 +72,14 @@ function modifier_batrider_napalm_debuff:OnCreated(table)
 					ParticleManager:SetParticleControl(self.nfx, 1, Vector(0, self:GetStackCount(), 0))
 		self:AttachEffect(self.nfx)
 
-		self.damage = self:GetTalentSpecialValueFor("damage") * self:GetStackCount()
+		self.damage = self:GetSpecialValueFor("damage") * self:GetStackCount()
 	end
 end
 
 function modifier_batrider_napalm_debuff:OnRefresh(table)
-	self.slow = self:GetTalentSpecialValueFor("slow_ms") * self:GetStackCount()
-	self.turnRate = self:GetTalentSpecialValueFor("turn_rate_pct")
-	self.amp = self:GetTalentSpecialValueFor("damage_amp") * self:GetStackCount()
+	self.slow = self:GetSpecialValueFor("slow_ms") * self:GetStackCount()
+	self.turnRate = self:GetSpecialValueFor("turn_rate_pct")
+	self.amp = self:GetSpecialValueFor("damage_amp") * self:GetStackCount()
 
 	if self:GetCaster():HasTalent("special_bonus_unique_batrider_napalm_1") then
 		self.slow_as = self.slow
@@ -94,14 +94,14 @@ function modifier_batrider_napalm_debuff:OnRefresh(table)
 			ParticleManager:SetParticleControl(self.nfx, 1, Vector(1, 0, 0))
 		end
 
-		self.damage = self:GetTalentSpecialValueFor("damage") * self:GetStackCount()
+		self.damage = self:GetSpecialValueFor("damage") * self:GetStackCount()
 	end
 end
 
 function modifier_batrider_napalm_debuff:OnStackCountChanged(iStackCount)
-	self.slow = self:GetTalentSpecialValueFor("slow_ms") * self:GetStackCount()
-	self.turnRate = self:GetTalentSpecialValueFor("turn_rate_pct")
-	self.amp = self:GetTalentSpecialValueFor("damage_amp") * self:GetStackCount()
+	self.slow = self:GetSpecialValueFor("slow_ms") * self:GetStackCount()
+	self.turnRate = self:GetSpecialValueFor("turn_rate_pct")
+	self.amp = self:GetSpecialValueFor("damage_amp") * self:GetStackCount()
 	if self:GetCaster():HasTalent("special_bonus_unique_batrider_napalm_1") then
 		self.slow_as = self.slow
 	else
@@ -115,7 +115,7 @@ function modifier_batrider_napalm_debuff:OnStackCountChanged(iStackCount)
 			ParticleManager:SetParticleControl(self.nfx, 1, Vector(1, 0, 0))
 		end
 
-		self.damage = self:GetTalentSpecialValueFor("damage") * self:GetStackCount()
+		self.damage = self:GetSpecialValueFor("damage") * self:GetStackCount()
 	end
 end
 
@@ -153,7 +153,7 @@ end
 
         	-- if caster:HasTalent("special_bonus_unique_batrider_napalm_2") then
         		-- local radius = caster:FindTalentValue("special_bonus_unique_batrider_napalm_2")
-        		-- local damage = self:GetTalentSpecialValueFor("damage") * self:GetTalentSpecialValueFor("max_stacks")
+        		-- local damage = self:GetSpecialValueFor("damage") * self:GetSpecialValueFor("max_stacks")
 
         		-- ParticleManager:FireParticle("particles/units/heroes/hero_jakiro/jakiro_liquid_fire_explosion.vpcf", PATTACH_POINT, unit, {[0]="attach_hitloc", [1]=Vector(radius, radius, radius)})
 
@@ -165,7 +165,7 @@ end
         		-- end
         	-- end
 
-        	-- local modifier = parent:AddNewModifier(caster, self:GetAbility(), "modifier_batrider_napalm_fire", {Duration = self:GetTalentSpecialValueFor("duration")})
+        	-- local modifier = parent:AddNewModifier(caster, self:GetAbility(), "modifier_batrider_napalm_fire", {Duration = self:GetSpecialValueFor("duration")})
 			-- if modifier then 
 				-- modifier:SetStackCount(self:GetStackCount())
 			-- end
@@ -201,7 +201,7 @@ end
 modifier_batrider_napalm_fire = class({})
 function modifier_batrider_napalm_fire:OnCreated(table)
 	if IsServer() then
-		self.damage = self:GetTalentSpecialValueFor("damage") * self:GetStackCount()
+		self.damage = self:GetSpecialValueFor("damage") * self:GetStackCount()
 
 		self:StartIntervalThink(1)
 	end
@@ -209,13 +209,13 @@ end
 
 function modifier_batrider_napalm_fire:OnRefresh(table)
 	if IsServer() then
-		self.damage = self:GetTalentSpecialValueFor("damage") * self:GetStackCount()
+		self.damage = self:GetSpecialValueFor("damage") * self:GetStackCount()
 	end
 end
 
 function modifier_batrider_napalm_fire:OnIntervalThink()
 	if IsServer() then
-		self.damage = self:GetTalentSpecialValueFor("damage") * self:GetStackCount()
+		self.damage = self:GetSpecialValueFor("damage") * self:GetStackCount()
 		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 	end
 end

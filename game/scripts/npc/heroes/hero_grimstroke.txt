@@ -17,7 +17,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"grimstroke_dark_artistry"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -54,28 +54,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"120 180 240 300 360 420 480"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage_per_target"	"16 24 32 40 48 56 64"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"movement_slow_pct"			"-45"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"slow_duration"				"1.5 1.6 1.7 1.8 1.9 2.0 2.1"
-			}			
+			"damage"					"120 180 240 300 360 420 480"
+			"bonus_damage_per_target"	"16 24 32 40 48 56 64"
+			"movement_slow_pct"			"-45"
+"slow_duration"				"1.5 1.6 1.7 1.8 1.9 2.0 2.1"			
 		}
 	}
 
@@ -92,13 +76,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
-			}
+			"value"						"50"
 		}
 	}
 	//=================================================================================================================
@@ -114,13 +94,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -141,7 +117,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilityTextureName"			"grimstroke_ink_creature"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -177,63 +153,31 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"attack_rate"				"0.5"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_per_second"			"14 22 30 38 46 54 62"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_burst"				"80 170 260 350 440 530 620"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"hits_to_kill"				"15 15 15 15 18 21 24"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"boss_damage"				"4"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"base_damage"				"3"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"minion_damage"				"1"
-			}
+			"attack_rate"				"0.5"
+			"damage_per_second"			"14 22 30 38 46 54 62"
+			"damage_burst"				"80 170 260 350 440 530 620"
+			"hits_to_kill"				"15 15 15 15 18 21 24"
+			"boss_damage"				"4"
+			"base_damage"				"3"
+			"minion_damage"				"1"
 			"08"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"threat_start"				"50"
-			}
 			"09"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"threat_atk"				"15"
-			}
 			"10"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"5"
-			}
 			"11"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"radius"					"350"
-			}
 		}
 	}
 
@@ -250,13 +194,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
+			"value"						"100"
 		}
 	}
 	//=================================================================================================================
@@ -272,13 +212,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -299,7 +235,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"grimstroke_spirit_walk"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -337,48 +273,28 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"400 500 600 700 800 900 1000"
-			}
+			"cast_range"			"400 500 600 700 800 900 1000"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"100 200 300 400 500 600 700"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_per_second"		"25 35 45 55 65 75 85"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"18"
-			}
+			"bonus_ms"				"18"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"3"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"400"
-			}
+			"radius"				"400"
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"stun_duration"			"2"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"tick_rate"				"0.2"
-			}	
+			"tick_rate"				"0.2"	
 		}
 	}
 
@@ -395,13 +311,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -418,13 +330,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -459,33 +367,22 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal"					"5"
-			}
+			"heal"					"5"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"heal_creep"			"1"
-			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"1200"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"search_radius"			"200"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
-			}
+			"duration"				"10"
 		}
 	}
 
@@ -507,7 +404,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilityTextureName"			"grimstroke_soul_chain"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -543,33 +440,19 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{	
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3 4 5 6 7 8"
-			}
+			"duration"				"3 4 5 6 7 8"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"550"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"break_distance"		"700"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow_ms"				"45 45 45 60 75 90"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"700 800 900 1000 1100 1200"
-			}		
+			"slow_ms"				"45 45 45 60 75 90"
+			"cast_range"			"700 800 900 1000 1100 1200"		
 		}
 	}
 
@@ -586,13 +469,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -608,13 +487,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 }

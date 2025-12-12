@@ -9,12 +9,12 @@ function earthshaker_crater_impact:IsHiddenWhenStolen()
 end
 
 function earthshaker_crater_impact:GetCastRange(target, position)
-	return self:GetTalentSpecialValueFor("jump_distance")
+	return self:GetSpecialValueFor("jump_distance")
 end
 
 function earthshaker_crater_impact:OnSpellStart()
 	local caster = self:GetCaster()
-	local duration =  self:GetTalentSpecialValueFor("jump_duration") + 0.01
+	local duration =  self:GetSpecialValueFor("jump_duration") + 0.01
 	caster:AddNewModifier(caster, self, "modifier_earthshaker_crater_impact_movement", {duration = duration})
 	if caster:HasTalent("special_bonus_unique_earthshaker_crater_impact_2") then
 		caster:AddNewModifier(caster, self, "modifier_earthshaker_crater_impact_talent", {duration = duration + caster:FindTalentValue("special_bonus_unique_earthshaker_crater_impact_2", "duration")})
@@ -27,7 +27,7 @@ function earthshaker_crater_impact:CreateQuake(position, radius, damage)
 	ParticleManager:FireParticle("particles/units/heroes/hero_earthshaker/earthshaker_crater_impact.vpcf", PATTACH_ABSORIGIN, caster, {[1] = Vector(radius, radius, radius)})
 	
 	local talent2 = caster:HasTalent("special_bonus_unique_earthshaker_crater_impact_2")
-	local stunDuration = self:GetTalentSpecialValueFor("duration")
+	local stunDuration = self:GetSpecialValueFor("duration")
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
 		if not enemy:TriggerSpellAbsorb(self) then
 			self:DealDamage(caster, enemy, damage)
@@ -48,7 +48,7 @@ if IsServer() then
 		self.endPos = self:GetAbility():GetCursorPosition()
 		self.distance = CalculateDistance( self.endPos, parent )
 		self.direction = CalculateDirection( self.endPos, parent )
-		self.speed = self.distance / self:GetTalentSpecialValueFor("jump_duration") * FrameTime()
+		self.speed = self.distance / self:GetSpecialValueFor("jump_duration") * FrameTime()
 		self.initHeight = GetGroundHeight(parent:GetAbsOrigin(), parent)
 		self.height = self.initHeight
 		self.maxHeight = 650
@@ -59,11 +59,11 @@ if IsServer() then
 	function modifier_earthshaker_crater_impact_movement:OnDestroy()
 		local parent = self:GetParent()
 		local parentPos = parent:GetAbsOrigin()
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local radius = self:GetSpecialValueFor("radius")
 		FindClearSpaceForUnit(parent, parentPos, true)
 		local ability = self:GetAbility()
-		local damage = self:GetTalentSpecialValueFor("damage")
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local damage = self:GetSpecialValueFor("damage")
+		local radius = self:GetSpecialValueFor("radius")
 		ability:CreateQuake(parentPos, radius, damage)
 		if parent:HasTalent("special_bonus_unique_earthshaker_crater_impact_1") then
 			local delay = parent:FindTalentValue("special_bonus_unique_earthshaker_crater_impact_1", "duration")
@@ -107,7 +107,7 @@ function modifier_earthshaker_crater_impact_movement:DeclareFunctions()
 end
 
 function modifier_earthshaker_crater_impact_movement:GetModifierIncomingDamage_Percentage()
-	return self:GetTalentSpecialValueFor("reduction")
+	return self:GetSpecialValueFor("reduction")
 end
 
 function modifier_earthshaker_crater_impact_movement:GetOverrideAnimation()

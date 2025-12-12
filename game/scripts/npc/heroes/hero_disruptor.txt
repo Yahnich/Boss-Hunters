@@ -18,7 +18,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Disruptor.ThunderStrike.Target"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -47,29 +47,13 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"240 240 240 240"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"strikes"					"4 4 4 4"
+			"radius"					"240 240 240 240"
+			"strikes"					"4 4 4 4"
 				"LinkedSpecialBonus"		"special_bonus_unique_disruptor_thunder_strike_1"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"strike_interval"			"1.0"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"strike_damage"				"40 60 80 100 120 140 160"
-			}
+			"strike_interval"			"1.0"
+			"strike_damage"				"40 60 80 100 120 140 160"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
@@ -86,13 +70,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"8"
-			}
+			"value"						"8"
 		}
 	}
 	//=================================================================================================================
@@ -108,13 +88,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"0.5"
-			}
+			"value"						"0.5"
 		}
 	}
 	//=================================================================================================================
@@ -131,7 +107,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityTextureName"			"custom/disruptor_kinetic_charge"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -164,37 +140,26 @@
 		}
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"pull_slow"						"-100"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"pull_speed"					"100 150 200 250 300 350 400"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"pull_radius"					"1500"
-			}
+			"pull_speed"					"100 150 200 250 300 350 400"
+			"pull_radius"					"1500"
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"pull_duration"					"2 2.66 3.33 4 4.66 5.33 6"
 				"LinkedSpecialBonus"			"special_bonus_unique_disruptor_kinetic_charge_1"
 				"LinkedSpecialBonusField"		"duration"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"damage"						"70"
 				"LinkedSpecialBonus"			"special_bonus_unique_disruptor_kinetic_charge_1"
 				"LinkedSpecialBonusField"		"damage"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -210,18 +175,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"damage"					"30"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"3"
-			}
+			"damage"					"30"
+			"duration"					"3"
 		}
 	}
 	//=================================================================================================================
@@ -237,13 +194,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -260,7 +213,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -283,34 +236,17 @@
 		}
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"chance"				"25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"silence_duration"		"0.75"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"900"
+			"chance"				"25"
+			"silence_duration"		"0.75"
+			"radius"				"900"
 				"LinkedSpecialBonus"	"special_bonus_unique_disruptor_tesla_field_1"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"				"25 50 75 100 125 150 175"
-			}
+			"damage"				"25 50 75 100 125 150 175"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"cooldown"				"1.5"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -326,13 +262,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-901"
-			}
+			"value"						"-901"
 		}
 	}
 	//=================================================================================================================
@@ -348,18 +280,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"mana"						"50"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cd"						"7"
-			}
+			"mana"						"50"
+			"cd"						"7"
 		}
 	}
 	//=================================================================================================================
@@ -379,7 +303,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"FightRecapLevel"				"2"
 		"AbilitySound"					"Hero_Disruptor.StaticStorm.Cast"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -410,38 +334,14 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"450 475 500 525 550 575"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"pulses"					"10"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_max"				"100 150 200 250 300 350"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"5.0"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration_scepter"			"7.0"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"pulses_scepter"			"14"
-			}
+			"radius"					"450 475 500 525 550 575"
+			"pulses"					"10"
+			"damage_max"				"100 150 200 250 300 350"
+"duration"					"5.0"
+			"duration_scepter"			"7.0"
+			"pulses_scepter"			"14"
 		}
 	}
 	//=================================================================================================================
@@ -457,13 +357,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -479,13 +375,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"25"
-			}
+			"value"						"25"
 		}
 	}
 }

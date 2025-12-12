@@ -12,8 +12,8 @@ modifier_death_prophet_occultism = class({})
 LinkLuaModifier("modifier_death_prophet_occultism", "heroes/hero_death_prophet/death_prophet_occultism", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_death_prophet_occultism:OnCreated()
-	self.ms = self:GetTalentSpecialValueFor("bonus_movespeed")
-	self.as = self:GetTalentSpecialValueFor("bonus_attackspeed")
+	self.ms = self:GetSpecialValueFor("bonus_movespeed")
+	self.as = self:GetSpecialValueFor("bonus_attackspeed")
 	self:GetCaster().passiveModifier = self
 	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )
 	if IsServer() then

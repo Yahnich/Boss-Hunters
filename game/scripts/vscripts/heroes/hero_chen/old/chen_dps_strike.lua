@@ -8,14 +8,14 @@ function chen_dps_strike:IsHiddenWhenStolen()
 end
 
 function chen_dps_strike:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function chen_dps_strike:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 	local damage = 0
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local radius = self:GetSpecialValueFor("radius")
 
 	EmitSoundOn("Hero_Invoker.SunStrike.Charge.Apex", caster)
 
@@ -29,13 +29,13 @@ function chen_dps_strike:OnSpellStart()
 		local enemies = caster:FindEnemyUnitsInRadius(point, radius)
 		for _,enemy in pairs(enemies) do
 			if caster:GetOwner() then
-				damage = caster:GetOwner():GetIntellect( false)*self:GetTalentSpecialValueFor("damage")/100
+				damage = caster:GetOwner():GetIntellect( false)*self:GetSpecialValueFor("damage")/100
 			else
-				damage = caster:GetIntellect( false)*self:GetTalentSpecialValueFor("damage")/100
+				damage = caster:GetIntellect( false)*self:GetSpecialValueFor("damage")/100
 			end
 
 			self:DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_DAMAGE)
-			self:Stun(enemy, self:GetTalentSpecialValueFor("duration"), false)
+			self:Stun(enemy, self:GetSpecialValueFor("duration"), false)
 		end
 	end)
 end

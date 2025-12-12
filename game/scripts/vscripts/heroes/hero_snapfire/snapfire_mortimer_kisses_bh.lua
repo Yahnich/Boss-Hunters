@@ -17,7 +17,7 @@ function snapfire_mortimer_kisses_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 
-	local duration = self:GetTalentSpecialValueFor("duration_tooltip")
+	local duration = self:GetSpecialValueFor("duration_tooltip")
 
 	caster:AddNewModifier(caster, self, "modifier_snapfire_mortimer_kisses_bh_buff", {Duration = duration})
 
@@ -37,9 +37,9 @@ end
 function snapfire_mortimer_kisses_bh:CreateFirePit(vLocation)
 	local caster = self:GetCaster()
 
-	local duration = self:GetTalentSpecialValueFor("burn_ground_duration")
-	local radius = self:GetTalentSpecialValueFor("impact_radius")
-	local damage = self:GetTalentSpecialValueFor("damage_per_impact")
+	local duration = self:GetSpecialValueFor("burn_ground_duration")
+	local radius = self:GetSpecialValueFor("impact_radius")
+	local damage = self:GetSpecialValueFor("damage_per_impact")
 
 	EmitSoundOnLocationWithCaster(vLocation, "Hero_Snapfire.MortimerBlob.Impact", caster)
 
@@ -68,16 +68,16 @@ function modifier_snapfire_mortimer_kisses_bh_buff:OnRefresh(table)
     if IsServer() then 
         local parent = self:GetParent()
 
-        self.projectile_count = self:GetTalentSpecialValueFor("projectile_count")
-        self.duration_tooltip = self:GetTalentSpecialValueFor("duration_tooltip")
+        self.projectile_count = self:GetSpecialValueFor("projectile_count")
+        self.duration_tooltip = self:GetSpecialValueFor("duration_tooltip")
 
-        self.projectile_speed = self:GetTalentSpecialValueFor("projectile_speed")
-		self.impact_radius = self:GetTalentSpecialValueFor("impact_radius")
-		self.projectile_vision = self:GetTalentSpecialValueFor("projectile_vision")
+        self.projectile_speed = self:GetSpecialValueFor("projectile_speed")
+		self.impact_radius = self:GetSpecialValueFor("impact_radius")
+		self.projectile_vision = self:GetSpecialValueFor("projectile_vision")
 		
 		self.talent2DmgRed = -self:GetCaster():FindTalentValue("special_bonus_unique_snapfire_mortimer_kisses_2")
 
-		self.min_range = self:GetTalentSpecialValueFor("min_range")
+		self.min_range = self:GetSpecialValueFor("min_range")
 
 		self.mousePos = parent:GetCursorPosition()
 		self.animationTranslator = ""
@@ -223,7 +223,7 @@ function modifier_snapfire_mortimer_kisses_bh_targeting:OnCreated(table)
         local parent = self:GetParent()
         local caster = self:GetCaster()
 
-        local radius = self:GetTalentSpecialValueFor("impact_radius")
+        local radius = self:GetSpecialValueFor("impact_radius")
 
         local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_snapfire/hero_snapfire_ultimate_calldown.vpcf", PATTACH_POINT, caster)
         			ParticleManager:SetParticleControl(nfx, 0, parent:GetAbsOrigin())
@@ -240,8 +240,8 @@ function modifier_snapfire_mortimer_kisses_bh_fire:OnCreated(table)
         local parent = self:GetParent()
         local caster = self:GetCaster()
 
-        self.radius = self:GetTalentSpecialValueFor("impact_radius")
-        self.burn_linger_duration = self:GetTalentSpecialValueFor("burn_linger_duration")
+        self.radius = self:GetSpecialValueFor("impact_radius")
+        self.burn_linger_duration = self:GetSpecialValueFor("burn_linger_duration")
 
         EmitSoundOn("Hero_Snapfire.MortimerBlob.Magma", parent)
 
@@ -289,14 +289,14 @@ end
 modifier_snapfire_mortimer_kisses_bh_fire_damage = class({})
 
 function modifier_snapfire_mortimer_kisses_bh_fire_damage:OnCreated(table)
-	self.slow_ms = -self:GetTalentSpecialValueFor("move_slow_pct")
+	self.slow_ms = -self:GetSpecialValueFor("move_slow_pct")
 
     if IsServer() then 
         local parent = self:GetParent()
         local caster = self:GetCaster()
 
-        self.burn_rate = self:GetTalentSpecialValueFor("burn_interval")
-        self.damage = self:GetTalentSpecialValueFor("burn_damage") * self.burn_rate
+        self.burn_rate = self:GetSpecialValueFor("burn_interval")
+        self.damage = self:GetSpecialValueFor("burn_damage") * self.burn_rate
 
         EmitSoundOn("Hero_Snapfire.MortimerBlob.Target", parent)
 

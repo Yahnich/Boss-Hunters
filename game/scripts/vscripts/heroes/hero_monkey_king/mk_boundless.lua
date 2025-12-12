@@ -29,9 +29,9 @@ function mk_boundless:OnSpellStart()
 	local point = self:GetCursorPosition()
 	local casterPos = caster:GetAbsOrigin()
 
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local width = self:GetTalentSpecialValueFor("width")
-	local range = self:GetTalentSpecialValueFor("range") - 75 --blame Valve
+	local duration = self:GetSpecialValueFor("duration")
+	local width = self:GetSpecialValueFor("width")
+	local range = self:GetSpecialValueFor("range") - 75 --blame Valve
 
 	local direction = CalculateDirection(point, casterPos)
 
@@ -78,7 +78,7 @@ function modifier_mk_boundless_crit:OnCreated(table)
 end
 
 function modifier_mk_boundless_crit:OnRefresh()
-	self.crit = self:GetTalentSpecialValueFor("crit_mult")
+	self.crit = self:GetSpecialValueFor("crit_mult")
 	if IsServer() then
 		self:GetParent():HookInModifier("GetModifierCriticalDamage", self)
 	end

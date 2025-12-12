@@ -10,7 +10,7 @@ end
 function chen_tank_shockwave:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = caster:GetAbsOrigin()
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local radius = self:GetSpecialValueFor("radius")
 
 	EmitSoundOn("Hero_Leshrac.Split_Earth", caster)
 	EmitSoundOn("Hero_Omniknight.Purification", caster)
@@ -26,7 +26,7 @@ function chen_tank_shockwave:OnSpellStart()
 		else
 			intellect = caster:GetIntellect( false)
 		end
-		local damage = intellect * self:GetTalentSpecialValueFor("damage") / 100
+		local damage = intellect * self:GetSpecialValueFor("damage") / 100
 		self:DealDamage(caster, enemy, damage)
 		enemy:ApplyKnockBack(enemy:GetAbsOrigin(), self:GetSpecialValueFor("duration"), self:GetSpecialValueFor("duration"), 0, 350, caster, self)
 	end

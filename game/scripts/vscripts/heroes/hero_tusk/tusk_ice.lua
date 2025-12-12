@@ -22,12 +22,12 @@ function tusk_ice:OnSpellStart()
     end
 
     local direction = CalculateDirection(point, caster:GetAbsOrigin())
-    local speed = self:GetTalentSpecialValueFor("speed")
+    local speed = self:GetSpecialValueFor("speed")
     local vel = direction * speed
     local distance = CalculateDistance(point, caster:GetAbsOrigin())
 
     EmitSoundOn("Hero_Tusk.IceShards.Cast", caster)
-    self:FireLinearProjectile("particles/units/heroes/hero_tusk/tusk_ice_shards_projectile.vpcf", vel, distance, self:GetTalentSpecialValueFor("width"), {}, false, true, self:GetTalentSpecialValueFor("width"))
+    self:FireLinearProjectile("particles/units/heroes/hero_tusk/tusk_ice_shards_projectile.vpcf", vel, distance, self:GetSpecialValueFor("width"), {}, false, true, self:GetSpecialValueFor("width"))
 
     self.dummy = caster:CreateDummy(caster:GetAbsOrigin())
     EmitSoundOn("Hero_Tusk.IceShards.Projectile", self.dummy)
@@ -42,15 +42,15 @@ function tusk_ice:OnProjectileHit(hTarget, vLocation)
     local hitEnemy = {}
 
     if hTarget ~= nil and not hTarget:TriggerSpellAbsorb( self ) then
-        self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
+        self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, 0)
         table.insert(hitEnemy, hTarget)
     else
         local deleteTable = {}
         local direction = CalculateDirection(vLocation, caster:GetAbsOrigin())
-        local duration = self:GetTalentSpecialValueFor("duration")
-        local vision_range = self:GetTalentSpecialValueFor("radius")
+        local duration = self:GetSpecialValueFor("duration")
+        local vision_range = self:GetSpecialValueFor("radius")
         local shard = 7
-        local radius = self:GetTalentSpecialValueFor("radius")
+        local radius = self:GetSpecialValueFor("radius")
         local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_tusk/tusk_shards.vpcf", PATTACH_POINT, self:GetCaster())
 
         ParticleManager:SetParticleControl(nfx, 0, Vector(duration, 0, 0))
@@ -68,7 +68,7 @@ function tusk_ice:OnProjectileHit(hTarget, vLocation)
         local pso = SpawnEntityFromTableSynchronous('point_simple_obstruction', {origin = position})
         table.insert(deleteTable, pso)
 
-        local angle = self:GetTalentSpecialValueFor("angle")
+        local angle = self:GetSpecialValueFor("angle")
         --left
         local left_QAngle = QAngle(0, angle, 0)
         for i=2,4 do
@@ -89,17 +89,17 @@ function tusk_ice:OnProjectileHit(hTarget, vLocation)
             right_QAngle = right_QAngle + QAngle(0, -angle, 0)
         end
 
-        Timers:CreateTimer(self:GetTalentSpecialValueFor("duration"), function()
+        Timers:CreateTimer(self:GetSpecialValueFor("duration"), function()
             for _,entity in pairs(deleteTable) do
                 if not entity:IsNull() then UTIL_Remove(entity) end
             end
         end)
 
-        local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"))
+        local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetSpecialValueFor("radius"))
         for _,enemy in pairs(enemies) do
             for _,hTarget in pairs(hitEnemy) do
                 if enemy ~= hTarget and not enemy:TriggerSpellAbsorb( self ) then
-                    self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+                    self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, 0)
                 end
             end
         end

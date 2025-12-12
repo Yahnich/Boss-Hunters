@@ -390,6 +390,19 @@
 		"Ability15"						"special_bonus_unique_chaos_knight_chaos_bolt_2"
 		"Ability16"						"special_bonus_unique_chaos_knight_phantasm_1"
 		"Ability17"						"special_bonus_unique_chaos_knight_phantasm_2"
+		
+		
+		"Masteries"
+		{
+			"STRENGTH"{"3" "5"}
+			"ATTACK_DAMAGE"{"1" "5"}
+			"ATTACK_SPEED"{"1" "5"}
+			"ARMOR"{"2" "3"}
+			"MAGIC_RESIST"{"2" "3"}
+			"AGILITY"{"3" "5"} 
+			"AREA_DAMAGE"{"3" "2"}
+			"THREAT_DOWN"{"3" "2"}
+		}
 	}
 	//=================================================================================================================
 	// HERO: Chen
@@ -2540,6 +2553,7 @@
 		"Ability2"						"undying_soul_rip_bh"				// Ability 4
 		"Ability3"						"undying_tombstone_bh"					// Ability 4
 		"Ability4"						"undying_deathlust"
+		"Ability5"						"generic_hidden"
 		"ability6"						"undying_flesh_golem_bh"
 		
 		"Ability10"						"special_bonus_unique_undying_decay_1"

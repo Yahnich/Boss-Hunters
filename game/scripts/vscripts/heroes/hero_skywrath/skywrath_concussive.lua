@@ -4,7 +4,7 @@ function skywrath_concussive:GetCastRange(vLocation, hTarget)
 	if self:GetCaster():HasTalent("special_bonus_unique_skywrath_concussive_1") then
 		return -1
 	end
-	return self:GetTalentSpecialValueFor("search_range")
+	return self:GetSpecialValueFor("search_range")
 end
 
 function skywrath_concussive:OnSpellStart()
@@ -14,12 +14,12 @@ function skywrath_concussive:OnSpellStart()
 
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTrueCastRange(), {order=FIND_CLOSEST})
 	for _,enemy in pairs(enemies) do
-		self:FireTrackingProjectile("particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot.vpcf", enemy, self:GetTalentSpecialValueFor("speed"), {}, DOTA_PROJECTILE_ATTACHMENT_HITLOCATION, false, true, self:GetTalentSpecialValueFor("vision"))
+		self:FireTrackingProjectile("particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot.vpcf", enemy, self:GetSpecialValueFor("speed"), {}, DOTA_PROJECTILE_ATTACHMENT_HITLOCATION, false, true, self:GetSpecialValueFor("vision"))
 		if caster:HasScepter() then
 	        local enemies2 = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTrueCastRange(), {order=FIND_CLOSEST})
 	        for _,enemy2 in pairs(enemies2) do
 	            if enemy2 ~= enemy then
-	                self:FireTrackingProjectile("particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot.vpcf", enemy2, self:GetTalentSpecialValueFor("speed"), {}, DOTA_PROJECTILE_ATTACHMENT_HITLOCATION, false, true, self:GetTalentSpecialValueFor("vision"))
+	                self:FireTrackingProjectile("particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot.vpcf", enemy2, self:GetSpecialValueFor("speed"), {}, DOTA_PROJECTILE_ATTACHMENT_HITLOCATION, false, true, self:GetSpecialValueFor("vision"))
 	                break
 	            end
 	        end
@@ -33,12 +33,12 @@ function skywrath_concussive:OnProjectileHit(hTarget, vLocation)
 
     if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
     	EmitSoundOn("Hero_SkywrathMage.ConcussiveShot.Target", hTarget)
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local radius = self:GetSpecialValueFor("radius")
         local enemies = caster:FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), radius)
-		local damage = self:GetTalentSpecialValueFor("damage")
-		local minion_mult = self:GetTalentSpecialValueFor("minion_damage") / 100
+		local damage = self:GetSpecialValueFor("damage")
+		local minion_mult = self:GetSpecialValueFor("minion_damage") / 100
         for _,enemy in pairs(enemies) do
-        	enemy:AddNewModifier(caster, self, "modifier_skywrath_concussive", {Duration = self:GetTalentSpecialValueFor("slow_duration")})
+        	enemy:AddNewModifier(caster, self, "modifier_skywrath_concussive", {Duration = self:GetSpecialValueFor("slow_duration")})
 			local endDamage = damage
 			if enemy:IsMinion() then
 				endDamage = damage * (1 + minion_mult)
@@ -64,9 +64,9 @@ function modifier_skywrath_concussive:OnCreated()
 end
 
 function modifier_skywrath_concussive:OnRefresh()
-	self.slow = self:GetTalentSpecialValueFor("slow")
+	self.slow = self:GetSpecialValueFor("slow")
 	if self:GetParent():IsMinion() then
-		self.slow = self.slow + self:GetTalentSpecialValueFor("minion_slow")
+		self.slow = self.slow + self:GetSpecialValueFor("minion_slow")
 	end
 end
 

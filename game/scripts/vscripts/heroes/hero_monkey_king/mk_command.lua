@@ -22,7 +22,7 @@ function mk_command:OnSpellStart()
 
 	local radius = caster:GetModelRadius()
 
-	local maxWaves = self:GetTalentSpecialValueFor("number_of_monkeys")
+	local maxWaves = self:GetSpecialValueFor("number_of_monkeys")
 	local monkeysPerWave = 4
 	local current = 0
 
@@ -52,7 +52,7 @@ end
 
 function mk_command:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
-	local bonusDamage = self:GetTalentSpecialValueFor("bonus_damage")
+	local bonusDamage = self:GetSpecialValueFor("bonus_damage")
 	local bCantMiss = false
 
 	EmitSoundOnLocationWithCaster(vLocation, "Hero_MonkeyKing.FurArmy.End", caster)

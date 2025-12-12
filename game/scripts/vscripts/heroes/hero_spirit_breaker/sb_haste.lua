@@ -19,7 +19,7 @@ function sb_haste:OnSpellStart()
 	local caster = self:GetCaster()
 
 	EmitSoundOn("Hero_Spirit_Breaker.EmpoweringHaste.Cast", caster)
-    caster:AddNewModifier(caster, self, "modifier_sb_haste_self", {Duration = self:GetTalentSpecialValueFor("duration")})
+    caster:AddNewModifier(caster, self, "modifier_sb_haste_self", {Duration = self:GetSpecialValueFor("duration")})
 
     if caster:HasTalent("special_bonus_unique_sb_haste_2") then
     	local point = caster:GetAbsOrigin() + caster:GetForwardVector() * 54
@@ -55,7 +55,7 @@ function modifier_sb_haste_aura:DeclareFunctions()
 end
 
 function modifier_sb_haste_aura:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("bonus_ms_self")
+    return self:GetSpecialValueFor("bonus_ms_self")
 end
 
 function modifier_sb_haste_aura:GetMoveSpeedLimitBonus()
@@ -71,7 +71,7 @@ function modifier_sb_haste_aura:GetAuraDuration()
 end
 
 function modifier_sb_haste_aura:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function modifier_sb_haste_aura:GetAuraEntityReject(handle)
@@ -122,7 +122,7 @@ function modifier_sb_haste_aura_buff:DeclareFunctions()
 end
 
 function modifier_sb_haste_aura_buff:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("bonus_ms_allies")
+    return self:GetSpecialValueFor("bonus_ms_allies")
 end
 
 function modifier_sb_haste_aura_buff:IsHidden()
@@ -139,12 +139,12 @@ function modifier_sb_haste_self:DeclareFunctions()
 end
 
 function modifier_sb_haste_self:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("bonus_ms_extra")
+    return self:GetSpecialValueFor("bonus_ms_extra")
 end
 
 function modifier_sb_haste_self:GetModifierAttackSpeedBonus_Constant()
 	if self:GetCaster():HasTalent("special_bonus_unique_sb_haste_1") then
-    	return self:GetTalentSpecialValueFor("bonus_ms_extra")
+    	return self:GetSpecialValueFor("bonus_ms_extra")
     end
     return 0
 end

@@ -11,7 +11,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"chen_penitence"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -47,30 +47,23 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"8"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_movement_speed"			"-14 -18 -22 -26 -30 -34 -38"
-			}
+			"bonus_movement_speed"			"-14 -18 -22 -26 -30 -34 -38"
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"bonus_as"						"30 45 60 75 90 105 120"
 				"LinkedSpecialBonus"			"special_bonus_unique_chen_penitence_bh_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"buff_duration"					"2"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -86,13 +79,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1.5"
-			}
+			"value"						"1.5"
 		}
 	}
 	//=================================================================================================================
@@ -108,13 +97,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"200"
-			}
+			"value"						"200"
 		}
 	}
 	"chen_holy_persuasion_bh"
@@ -127,7 +112,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityTextureName"			"chen_holy_persuasion"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -161,29 +146,19 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.5 1.75 2 2.25 2.5 2.75 3"
-			}
+			"duration"				"1.5 1.75 2 2.25 2.5 2.75 3"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_health"			"200 400 600 800 1000 1200 1400"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"minion_limit"			"2"
 				"LinkedSpecialBonus"	"special_bonus_unique_chen_holy_persuasion_1"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"teleport_delay"		"2"
-			}
+			"teleport_delay"		"2"
 		}
 	}
 	//=================================================================================================================
@@ -199,18 +174,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"dur"						"2"
-			}
+			"value"						"2"
+			"dur"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -226,13 +193,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"60"
-			}
+			"value"						"60"
 		}
 	}
 	"chen_divine_favor_bh"
@@ -245,7 +208,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityTextureName"			"chen_divine_favor"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -278,33 +241,16 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"health_regeneration"	"2 4 6 8 10 12 14"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_dmg"				"12 16 20 24 28 32 36"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_amp"				"4 8 12 16 20 24 28"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"12"
-			}
+			"health_regeneration"	"2 4 6 8 10 12 14"
+			"bonus_dmg"				"12 16 20 24 28 32 36"
+			"heal_amp"				"4 8 12 16 20 24 28"
+			"duration"				"12"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"aura_radius"			"900"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -321,13 +267,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -344,13 +286,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"33"
-			}
+			"value"						"33"
 		}
 	}
 	"chen_test_of_faith_bh"
@@ -393,18 +331,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_min"			"5"
-			}
+			"damage_min"			"5"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_max"			"25"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -420,13 +353,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"250"
-			}
+			"value"						"250"
 		}
 	}
 	//=================================================================================================================
@@ -442,13 +371,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-4"
-			}
+			"value"						"-4"
 		}
 	}
 	"chen_god_hand"
@@ -461,7 +386,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityTextureName"			"chen_hand_of_god"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		
 		// Talents		
@@ -488,23 +413,11 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cdr"					"10 15 20 25 30 35"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"dmg"					"10 15 20 25 30 35"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"15.0"
-			}
+			"cdr"					"10 15 20 25 30 35"
+			"dmg"					"10 15 20 25 30 35"
+			"duration"				"15.0"
 		}
 
 		"precache"
@@ -527,13 +440,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -549,18 +458,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"300"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"250"
-			}
+			"value"						"300"
+			"radius"					"250"
 		}
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -576,7 +477,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityTextureName"			"chen_test_of_faith_teleport"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -601,19 +502,11 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"min_heal"				"10"
+			"min_heal"				"10"
 				"LinkedSpecialBonus"	"special_bonus_unique_chen_test_of_faith_heal_bh_1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_heal"				"35 37.5 40 42.5 45 47.5 50"
-			}
+			"max_heal"				"35 37.5 40 42.5 45 47.5 50"
 		}
 	}
 	//=================================================================================================================
@@ -629,13 +522,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"25"
-			}
+			"value"						"25"
 		}
 	}
 	//=================================================================================================================
@@ -651,18 +540,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"35"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"3"
-			}
+			"value"						"35"
+			"duration"					"3"
 		}
 	}
 	"chen_angel_persuasion"
@@ -703,48 +584,22 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"40"
-			}
+			"duration"				"40"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"tank_health"			"175"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"tank_damage"			"33"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"dps_health"			"100"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"dps_damage"			"175"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"support_health"		"75"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"support_damage"		"50"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"scepter_duration"		"100"
-			}
+			"dps_health"			"100"
+			"dps_damage"			"175"
+			"support_health"		"75"
+			"support_damage"		"50"
+			"scepter_duration"		"100"
 		}
 	}
 	// SPAWNED UNITS
@@ -763,28 +618,15 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"chance"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5.0"
-			}
+			"chance"				"50"
+			"duration"				"5.0"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"reduc"					"-25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"25"
-			}
+			"damage"				"25"
 		}
 	
 		"precache"
@@ -830,23 +672,17 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
-			}
+			"duration"				"5"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"500"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"140"
-			}
 		}
 	
 		"precache"
@@ -884,28 +720,18 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"2.0"
-			}
+			"duration"				"2.0"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"500"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"threat_gain"			"75"
-			}
+			"threat_gain"			"75"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"60"
-			}
 		}
 	
 		"precache"
@@ -931,28 +757,15 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"chance"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1"
-			}
+			"chance"				"50"
+			"duration"				"1"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"400"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"10"
-			}
+			"damage"				"10"
 		}
 	
 		"precache"
@@ -978,23 +791,17 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"crit_chance"			"50"
-			}
+			"crit_chance"			"50"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"crit_strike"			"300"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"300"
-			}
 		}
 	
 		"precache"
@@ -1043,23 +850,14 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.0"
-			}
+			"duration"				"1.0"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"250"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"500"
-			}
+			"radius"				"500"
 		}
 	
 		"precache"

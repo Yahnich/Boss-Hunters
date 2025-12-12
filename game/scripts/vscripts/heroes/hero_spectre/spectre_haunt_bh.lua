@@ -17,7 +17,7 @@ end
 function spectre_haunt_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), -1 ) ) do
 		if not enemy:IsMinion() then
 			self:SpawnHauntIllusion( enemy, duration )
@@ -32,9 +32,9 @@ end
 
 function spectre_haunt_bh:SpawnHauntIllusion( target, fDur )
 	local caster = self:GetCaster()
-	local duration = fDur or self:GetTalentSpecialValueFor("duration")
-	local outgoing = self:GetTalentSpecialValueFor("illusion_damage_outgoing") - 100
-	local incoming = self:GetTalentSpecialValueFor("illusion_total_damage_incoming") - 100
+	local duration = fDur or self:GetSpecialValueFor("duration")
+	local outgoing = self:GetSpecialValueFor("illusion_damage_outgoing") - 100
+	local incoming = self:GetSpecialValueFor("illusion_total_damage_incoming") - 100
 	local position = target
 	if target.GetAbsOrigin then -- entity
 		position = target:GetAbsOrigin()
@@ -95,7 +95,7 @@ modifier_spectre_haunt_darkness = class({})
 LinkLuaModifier( "modifier_spectre_haunt_darkness", "heroes/hero_spectre/spectre_haunt_bh.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_spectre_haunt_darkness:OnCreated()
-	self.vision = self:GetTalentSpecialValueFor("vision")
+	self.vision = self:GetSpecialValueFor("vision")
 end
 
 function modifier_spectre_haunt_darkness:OnCreated()

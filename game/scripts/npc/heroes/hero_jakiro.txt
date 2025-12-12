@@ -13,7 +13,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"jakiro_dual_breath"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -48,41 +48,20 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"start_radius"				"225"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"end_radius"				"275"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"distance"					"750"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"chill_amount"				"18 26 34 42 42 42 42"
+			"start_radius"				"225"
+			"end_radius"				"275"
+			"distance"					"750"
+"chill_amount"				"18 26 34 42 42 42 42"
 				"LinkedSpecialBonus"		"special_bonus_unique_jakiro_dual_breath_bh_1"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"20 40 60 80 80 80 80"
+			"damage"					"20 40 60 80 80 80 80"
 				"LinkedSpecialBonus"		"special_bonus_unique_jakiro_dual_breath_bh_1"
 				"LinkedSpecialBonusField"	"value2"
-			}
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"5"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -98,18 +77,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"18"
-			}
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value2"					"40"
-			}
+			"value"						"18"
+			"value2"					"40"
 		}
 	}
 	//=================================================================================================================
@@ -125,13 +96,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"40"
-			}
+			"value"						"40"
 		}
 	}
 
@@ -148,7 +115,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"jakiro_ice_path"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -183,36 +150,22 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"length"						"1200"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"width"							"150"
-			}
+			"length"						"1200"
+			"width"							"150"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"delay"							"0.5"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"100 150 200 250 300 350 400"
+			"damage"						"100 150 200 250 300 350 400"
 				"LinkedSpecialBonus"			"special_bonus_unique_jakiro_ice_path_bh_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"1 1.5 2 2.5"
 				"LinkedSpecialBonus"			"special_bonus_unique_jakiro_ice_path_bh_1"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -228,13 +181,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1.25"
-			}
+			"value"						"1.25"
 		}
 	}
 	//=================================================================================================================
@@ -250,13 +199,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"3"
-			}
+			"value"						"3"
 		}
 	}
 	//=================================================================================================================
@@ -272,13 +217,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
-			}
+			"value"						"50"
 		}
 	}
 	"jakiro_liquid_fire_bh"
@@ -294,7 +235,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"jakiro_liquid_fire"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -330,31 +271,15 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"damage"					"10 14 18 22 34 46 58"
+			"damage"					"10 14 18 22 34 46 58"
 				"LinkedSpecialBonus"		"special_bonus_unique_jakiro_liquid_fire_bh_1"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"5"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"slow_as"					"-30 -30 -30 -30 -40 -50 -60"
+			"duration"					"5"
+			"slow_as"					"-30 -30 -30 -30 -40 -50 -60"
 				"LinkedSpecialBonus"		"special_bonus_unique_jakiro_liquid_fire_bh_1"
 				"LinkedSpecialBonusField"	"value2"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"300"
-			}
+			"radius"					"300"
 		}
 	}
 
@@ -371,18 +296,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"80"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value2"					"-15"
-			}
+			"value"						"80"
+			"value2"					"-15"
 		}
 	}
 	//=================================================================================================================
@@ -398,23 +315,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"30"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"armor"						"-1"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow"						"50"
-			}
+			"value"						"30"
+			"armor"						"-1"
+			"slow"						"50"
 		}
 	}
 	"jakiro_elemental_convergence"
@@ -447,24 +352,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"damage_increase"			"6"
+			"damage_increase"			"6"
 				"LinkedSpecialBonus"		"special_bonus_unique_jakiro_liquid_fire_bh_1"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration_increase"			"4"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"max_stacks"				"4"
-			}
+			"duration_increase"			"4"
+			"max_stacks"				"4"
 		}
 	}
 	//=================================================================================================================
@@ -480,18 +373,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-10"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value2"					"300"
-			}
+			"value"						"-10"
+			"value2"					"300"
 		}
 	}
 	"jakiro_macropyre_bh"
@@ -509,7 +394,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"jakiro_macropyre"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -545,53 +430,24 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"100 140 180 220 260 300"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
-			}
+			"damage"				"100 140 180 220 260 300"
+			"duration"				"10"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"length"				"1400"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"width"					"260"
+			"width"					"260"
 				"LinkedSpecialBonus"	"special_bonus_unique_jakiro_macropyre_bh_1"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_scepter"		"125 175 225 275 325 375"
+			"damage_scepter"		"125 175 225 275 325 375"
 				"RequiresScepter"		"1"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration_scepter"		"15"
+			"duration_scepter"		"15"
 				"RequiresScepter"		"1"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"length_scepter"		"1800"
+			"length_scepter"		"1800"
 				"RequiresScepter"		"1"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cd_scepter"			"45"
+			"cd_scepter"			"45"
 				"RequiresScepter"		"1"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -607,18 +463,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"140"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cdr"						"25"
-			}
+			"value"						"140"
+			"cdr"						"25"
 		}
 	}
 	//=================================================================================================================
@@ -634,13 +482,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"10"
-			}
+			"value"						"10"
 		}
 	}
 	
@@ -657,13 +501,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"10"
-			}
+			"value"						"10"
 		}
 	}
 }

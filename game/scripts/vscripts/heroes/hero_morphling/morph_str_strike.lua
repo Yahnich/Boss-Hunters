@@ -51,14 +51,14 @@ function morph_str_strike:OnProjectileHit(hTarget, vLocation)
 
 		local percent = math.abs((str-agi)/(str+agi))
 
-		local duration = self:GetTalentSpecialValueFor("stun_max") * percent
-		if duration <= self:GetTalentSpecialValueFor("stun_min") then
-			duration = self:GetTalentSpecialValueFor("stun_min")
+		local duration = self:GetSpecialValueFor("stun_max") * percent
+		if duration <= self:GetSpecialValueFor("stun_min") then
+			duration = self:GetSpecialValueFor("stun_min")
 		end
 
-		local distance = self:GetTalentSpecialValueFor("knockback_max") * percent
-		if distance <= self:GetTalentSpecialValueFor("knockback_min") then
-			distance = self:GetTalentSpecialValueFor("knockback_min")
+		local distance = self:GetSpecialValueFor("knockback_max") * percent
+		if distance <= self:GetSpecialValueFor("knockback_min") then
+			distance = self:GetSpecialValueFor("knockback_min")
 		end
 
 		if caster:HasTalent("special_bonus_unique_morph_str_strike_2") and hTarget:InWater() then
@@ -70,9 +70,9 @@ function morph_str_strike:OnProjectileHit(hTarget, vLocation)
 		self:Stun(hTarget, duration, false)
 		hTarget:ApplyKnockBack(vLocation, knockBackDuration, knockBackDuration, distance, 0, caster, self, false)
 
-		local damage = self:GetTalentSpecialValueFor("damage") + caster:GetStrength() * self:GetTalentSpecialValueFor("str_mult")
+		local damage = self:GetSpecialValueFor("damage") + caster:GetStrength() * self:GetSpecialValueFor("str_mult")
 
-		self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+		self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 	else
 		ParticleManager:ClearParticle(self.nfx)
 	end

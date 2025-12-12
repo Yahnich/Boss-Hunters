@@ -13,7 +13,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -39,28 +39,12 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"140 200 260 320 380 440 500"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"3 3.5 4 4.5 5 5.5 6"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"min_duration"					"1"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"500"
-			}
+			"damage"						"140 200 260 320 380 440 500"
+			"duration"						"3 3.5 4 4.5 5 5.5 6"
+			"min_duration"					"1"
+			"radius"						"500"
 		}
 	
 		"precache"
@@ -85,13 +69,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"50"
-			}
+			"value"					"50"
 		}
 	}
 	"special_bonus_unique_et_echo_stomp_2" 
@@ -104,13 +84,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"11"
-			}
+			"value"					"11"
 		}
 	}
 	"et_elder_spirit"
@@ -126,7 +102,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -152,37 +128,20 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_damage"					"20 25 30 35 40 45 50"
+			"bonus_damage"					"20 25 30 35 40 45 50"
 				"LinkedSpecialBonus"			"special_bonus_unique_et_elder_spirit_1"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"60 90 120 150 180 210 240"
-				"CalculateSpellDamageTooltip"	"1"
-			}	
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"dot"							"20 40 60 80 100 120 140"
-				"CalculateSpellDamageTooltip"	"1"
-			}			
+			"damage"						"60 90 120 150 180 210 240"
+				"CalculateSpellDamageTooltip"	"1"	
+			"dot"							"20 40 60 80 100 120 140"
+				"CalculateSpellDamageTooltip"	"1"			
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"20.0"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"275"
-			}
+			"radius"						"275"
 		}
 	
 		"precache"
@@ -204,13 +163,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"15"
-			}
+			"value"					"15"
 		}
 	}
 	"special_bonus_unique_et_elder_spirit_2" 
@@ -223,13 +178,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"et_earthbreaker"
@@ -245,7 +196,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -271,18 +222,10 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"120 200 280 360 440 520 600"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"250"
-			}
+			"damage"					"120 200 280 360 440 520 600"
+			"radius"					"250"
 		}
 	
 		"precache"
@@ -304,13 +247,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"80"
-			}
+			"value"					"80"
 		}
 	}
 	"special_bonus_unique_et_earthbreaker_2" 
@@ -323,13 +262,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"5"
-			}
+			"value"					"5"
 		}
 	}
 	"et_natural_order"
@@ -350,18 +285,10 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"reduc"							"-40"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"500"
-			}
+			"reduc"							"-40"
+			"radius"						"500"
 		}
 
 		"precache"
@@ -384,7 +311,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -410,34 +337,17 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"crack_time"					"3.14"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"12 14 16 18 20 22"
+			"damage"						"12 14 16 18 20 22"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"wave_damage"					"150 200 250 300 350 400"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"distance"						"2400"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"width"							"300"
-			}
+			"wave_damage"					"150 200 250 300 350 400"
+			"distance"						"2400"
+			"width"							"300"
 		}
 	
 		"precache"
@@ -457,13 +367,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"5"
-			}
+			"value"					"5"
 		}
 	}
 	"special_bonus_unique_et_earth_splitter_2" 
@@ -476,18 +382,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
-			}
+			"value"					"-50"
+			"duration"				"5"
 		}
 	}
 }

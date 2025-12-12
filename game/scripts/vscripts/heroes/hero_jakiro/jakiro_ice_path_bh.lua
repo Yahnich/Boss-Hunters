@@ -21,7 +21,7 @@ function jakiro_ice_path_bh:OnSpellStart()
 
 	EmitSoundOn("Hero_Jakiro.IcePath.Cast", caster)
 
-	CreateModifierThinker(caster, self, "modifier_jakiro_ice_path_bh", {Duration = self:GetTalentSpecialValueFor("duration") + self:GetTalentSpecialValueFor("delay")}, caster:GetAbsOrigin() + direction * 12, caster:GetTeam(), false)
+	CreateModifierThinker(caster, self, "modifier_jakiro_ice_path_bh", {Duration = self:GetSpecialValueFor("duration") + self:GetSpecialValueFor("delay")}, caster:GetAbsOrigin() + direction * 12, caster:GetTeam(), false)
 end
 
 
@@ -32,11 +32,11 @@ function modifier_jakiro_ice_path_bh:OnCreated(table)
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
 
-		local length = self:GetTalentSpecialValueFor("length")
-		local width = self:GetTalentSpecialValueFor("width")
-		local delay = self:GetTalentSpecialValueFor("delay")
-		local duration = self:GetTalentSpecialValueFor("duration")
-		self.damage = self:GetTalentSpecialValueFor("damage")
+		local length = self:GetSpecialValueFor("length")
+		local width = self:GetSpecialValueFor("width")
+		local delay = self:GetSpecialValueFor("delay")
+		local duration = self:GetSpecialValueFor("duration")
+		self.damage = self:GetSpecialValueFor("damage")
 		self.talent3 = caster:HasTalent("special_bonus_unique_jakiro_ice_path_bh_3")
 
 		local point = ability:GetCursorPosition()
@@ -100,7 +100,7 @@ end
 
 function modifier_jakiro_ice_path_bh:OnIntervalThink()
 	local caster = self:GetCaster()
-	local width = self:GetTalentSpecialValueFor("width")
+	local width = self:GetSpecialValueFor("width")
 	local enemies = caster:FindEnemyUnitsInLine(self.start_pos, self.end_pos, width, {})
 	for _,enemy in pairs(enemies) do
 		if not self.hitUnits[enemy] then

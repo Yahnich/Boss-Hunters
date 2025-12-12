@@ -19,7 +19,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Spectre.DaggerCast"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -48,60 +48,41 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"75 130 185 240 320 400 480"
+			"damage"						"75 130 185 240 320 400 480"
 				"LinkedSpecialBonus"			"special_bonus_unique_spectre_spectral_dagger_2"
 				
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_movespeed"				"10 14 18 22 22 22 22"
-			}
+			"bonus_movespeed"				"10 14 18 22 22 22 22"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"dagger_path_duration"			"12.0 12.0 12.0 12.0"
-			}
 			"04"	
 			{
 				"var_type"						"FIELD_FLOAT"
 				"buff_persistence"				"4.0 4.0 4.0 4.0"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"dagger_radius"					"125"
-			}
+			"dagger_radius"					"125"
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"path_radius"					"125"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"vision_radius"					"200"
-			}
 			"08"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"speed"							"800"
-			}
 			"09"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"distance"						"2000"
-			}
 			"10"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"dagger_grace_period"			"1.0"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
@@ -119,18 +100,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"magic_resist"				"50"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"evasion"					"50"
-			}
+			"magic_resist"				"50"
+			"evasion"					"50"
 		}
 	}
 	//=================================================================================================================
@@ -146,18 +119,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"200"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cd"						"-4"
-			}
+			"value"						"200"
+			"cd"						"-4"
 		}
 	}
 	//=================================================================================================================
@@ -174,7 +139,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilitySound"					"Hero_Spectre.Desolate"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -186,23 +151,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"20 30 40 50 60 70 80"
-			}
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage_solo"			"60 90 120 150 180 210 240"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"325"
-			}
+			"bonus_damage"				"20 30 40 50 60 70 80"
+			"bonus_damage_solo"			"60 90 120 150 180 210 240"
+			"radius"					"325"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -219,13 +172,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"0.5"
-			}
+			"value"						"0.5"
 		}
 	}
 	//=================================================================================================================
@@ -242,13 +191,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	"spectre_dispersion_bh"
@@ -266,7 +211,7 @@
 		
 		"AbilityTextureName"			"spectre_dispersion"
 		"AbilityCastRange"				"700 700 700 700 875 1050 1225"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -285,25 +230,22 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"min_radius"						"300 300 300 300 400 500 600"
-			}
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"max_radius"						"700 700 700 700 875 1050 1225"
-			}
 			"03"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"damage_reflection_pct"				"8 12 16 20 22 24 26"
 				"LinkedSpecialBonus"				"special_bonus_unique_spectre_dispersion_1"
 				"CalculateSpellDamageTooltip"		"0"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -320,18 +262,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value2"					"0.5"
-			}
+			"value"						"100"
+			"value2"					"0.5"
 		}
 	}
 	//=================================================================================================================
@@ -348,18 +282,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"300"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"cd"						"7"
-			}
+			"value"						"300"
+			"cd"						"7"
 		}
 	}
 	//=================================================================================================================
@@ -382,18 +308,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"teleport_distance"			"450"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"scepter_duration"			"4"
-			}
+			"teleport_distance"			"450"
+			"scepter_duration"			"4"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -436,7 +354,7 @@
 		
 		"AbilityTextureName"			"spectre_haunt"
 		"AbilityCastRange"				"1000"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -461,29 +379,25 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"									"FIELD_FLOAT"
 				"duration"									"7.0"
 				"LinkedSpecialBonus"						"special_bonus_unique_spectre_haunt_2"
-			}
 			"02"
 			{
 				"var_type"									"FIELD_INTEGER"
 				"illusion_damage_outgoing"					"40 60 60 80 80 100"
-			}
 			"03"
 			{
 				"var_type"									"FIELD_INTEGER"
-				"illusion_total_damage_incoming"			"200 200 150 150 100 100"
-			}			
+				"illusion_total_damage_incoming"			"200 200 150 150 100 100"			
 			"04"
 			{
 				"var_type"									"FIELD_FLOAT"
-				"vision"									"300"
-			}			
+				"vision"									"300"			
 		}
 	}
 	//=================================================================================================================
@@ -499,13 +413,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -522,18 +432,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"3"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"cd"						"-45"
-			}
+			"value"						"3"
+			"cd"						"-45"
 		}
 	}
 	
@@ -562,7 +464,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityTextureName"			"custom/spectre_echo_scream"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -585,40 +487,19 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"scream_radius"					"475"
+			"scream_radius"					"475"
 				"LinkedSpecialBonus"			"special_bonus_unique_spectre_echo_scream_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"scream_slow"					"-20 -25 -30 -35 -40 -45 -50"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"scream_miss"					"20 25 30 35 40 45 50"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"scream_duration"				"5"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"scream_damage"					"65 110 155 200 245 290 335"
-			}
+			"scream_slow"					"-20 -25 -30 -35 -40 -45 -50"
+			"scream_miss"					"20 25 30 35 40 45 50"
+			"scream_duration"				"5"
+			"scream_damage"					"65 110 155 200 245 290 335"
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"scepter_scream_attacks"		"4"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -634,13 +515,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -656,13 +533,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 }

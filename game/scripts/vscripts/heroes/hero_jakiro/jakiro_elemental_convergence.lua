@@ -16,7 +16,7 @@ function jakiro_elemental_convergence:AddIceAttunement()
 	if fire then
 		fireStacks = fire:GetStackCount()
 	end
-	local maxStacks = self:GetTalentSpecialValueFor("max_stacks")
+	local maxStacks = self:GetSpecialValueFor("max_stacks")
 	ice:IncrementStackCount()
 	local iceStacks = ice:GetStackCount()
 	if iceStacks >= maxStacks then -- check whether to trigger convergence
@@ -42,7 +42,7 @@ function jakiro_elemental_convergence:AddFireAttunement()
 	if ice then
 		iceStacks = ice:GetStackCount()
 	end
-	local maxStacks = self:GetTalentSpecialValueFor("max_stacks")
+	local maxStacks = self:GetSpecialValueFor("max_stacks")
 	fire:IncrementStackCount()
 	local fireStacks = fire:GetStackCount()
 	if fireStacks >= maxStacks then -- check whether to trigger convergence
@@ -59,9 +59,9 @@ end
 modifier_jakiro_elemental_convergence = class({})
 LinkLuaModifier("modifier_jakiro_elemental_convergence", "heroes/hero_jakiro/jakiro_elemental_convergence", LUA_MODIFIER_MOTION_NONE)
 function modifier_jakiro_elemental_convergence:OnCreated(table)
-	self.max_stacks = self:GetTalentSpecialValueFor("max_stacks")
-	self.damage_increase = self:GetTalentSpecialValueFor("damage_increase") / 100
-	self.duration_increase = self:GetTalentSpecialValueFor("duration_increase") / 100
+	self.max_stacks = self:GetSpecialValueFor("max_stacks")
+	self.damage_increase = self:GetSpecialValueFor("damage_increase") / 100
+	self.duration_increase = self:GetSpecialValueFor("duration_increase") / 100
 end
 
 function modifier_jakiro_elemental_convergence:DeclareFunctions()

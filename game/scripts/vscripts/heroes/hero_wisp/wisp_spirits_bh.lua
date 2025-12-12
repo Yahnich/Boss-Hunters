@@ -46,7 +46,7 @@ function wisp_spirits_bh:CreateSpiritWisp()
 	local wisp = caster:CreateSummon("npc_dota_wisp_spirit", point)
  	wisp:SetAbsOrigin(point)
 	wisp:AddNewModifier(caster, self, "modifier_wisp_spirits_bh_wisp", {})
-	caster:SpendMana( self:GetTalentSpecialValueFor("wisp_regen_cost"), self )
+	caster:SpendMana( self:GetSpecialValueFor("wisp_regen_cost"), self )
 	table.insert(self.spirits, wisp)
 end
 
@@ -55,9 +55,9 @@ function modifier_wisp_spirits_bh:OnCreated(table)
 	if IsServer() then
 		EmitSoundOn("Hero_Wisp.Spirits.Loop", self:GetCaster())
 
-		self.wispCount = self:GetTalentSpecialValueFor("max_wisps")
-		self.max_wisps = self:GetTalentSpecialValueFor("max_wisps")
-		self.speed = self:GetTalentSpecialValueFor("spirit_movement_rate")
+		self.wispCount = self:GetSpecialValueFor("max_wisps")
+		self.max_wisps = self:GetSpecialValueFor("max_wisps")
+		self.speed = self:GetSpecialValueFor("spirit_movement_rate")
 
 		if self:GetCaster():HasTalent("special_bonus_unique_wisp_spirits_bh_2") then
 			self.talent = true
@@ -65,7 +65,7 @@ function modifier_wisp_spirits_bh:OnCreated(table)
 
 		self.maxDistance = self:GetAbility():GetTrueCastRange()
 
-		self.minDistance = self:GetTalentSpecialValueFor("min_radius")
+		self.minDistance = self:GetSpecialValueFor("min_radius")
 
 		self.currentDistance = self.minDistance
 
@@ -74,7 +74,7 @@ function modifier_wisp_spirits_bh:OnCreated(table)
 		self.time = (360/self.speed)/(self.max_wisps + 1)
 
 		self.elaspedTime = 0
-		self.cost = self:GetTalentSpecialValueFor("wisp_regen_cost") * self:GetCaster():GetManaCostReduction()
+		self.cost = self:GetSpecialValueFor("wisp_regen_cost") * self:GetCaster():GetManaCostReduction()
 		self:StartIntervalThink(FrameTime())
 	end
 end
@@ -88,7 +88,7 @@ function modifier_wisp_spirits_bh:OnIntervalThink()
 			self:GetAbility():CreateSpiritWisp()
 			self.wispCount = self.wispCount - 1
 		else
-			self.time = self:GetTalentSpecialValueFor("wisp_regen_rate")
+			self.time = self:GetSpecialValueFor("wisp_regen_rate")
 		end
 		self.elaspedTime = 0
 	end
@@ -171,19 +171,19 @@ function modifier_wisp_spirits_bh_wisp:OnCreated(table)
 
 		self.maxDistance = self:GetAbility():GetTrueCastRange()
 
-		self.minDistance = self:GetTalentSpecialValueFor("min_radius")
+		self.minDistance = self:GetSpecialValueFor("min_radius")
 
 		self.currentDistance = self.minDistance
 
 		self.direction = self:GetAbility().direction
 		
-		self.speed = self:GetTalentSpecialValueFor("spirit_movement_rate")
+		self.speed = self:GetSpecialValueFor("spirit_movement_rate")
 
-		self.angle = 360 / self:GetTalentSpecialValueFor("max_wisps")
+		self.angle = 360 / self:GetSpecialValueFor("max_wisps")
 
 		self.point = caster:GetAbsOrigin() + self.direction * self.currentDistance --+ Vector(0, 0, 100)
 
-		self.time = 360/self.speed/self:GetTalentSpecialValueFor("max_wisps")
+		self.time = 360/self.speed/self:GetSpecialValueFor("max_wisps")
 
 		self.distanceTick = self.speed/3 * FrameTime()
 
@@ -191,13 +191,13 @@ function modifier_wisp_spirits_bh_wisp:OnCreated(table)
 
 		self.elaspedTime = 0
 
-		self.collisionDamage = self:GetTalentSpecialValueFor("damage_collide")
+		self.collisionDamage = self:GetSpecialValueFor("damage_collide")
 
-		self.endDamage = self:GetTalentSpecialValueFor("damage_end")
+		self.endDamage = self:GetSpecialValueFor("damage_end")
 
-		self.collisionRadius = self:GetTalentSpecialValueFor("hit_radius")
+		self.collisionRadius = self:GetSpecialValueFor("hit_radius")
 
-		self.endRadius = self:GetTalentSpecialValueFor("explode_radius")
+		self.endRadius = self:GetSpecialValueFor("explode_radius")
 
 		if caster:HasTalent("special_bonus_unique_wisp_spirits_bh_1") then
 			self.talentTime = caster:FindTalentValue("special_bonus_unique_wisp_spirits_bh_1", "tick_rate")
@@ -305,7 +305,7 @@ function modifier_wisp_spirits_bh_wisp:OnRemoved()
 					 	 ParticleManager:ReleaseParticleIndex(nfx2)
 		end
 
-		local slow = self:GetTalentSpecialValueFor("slow_duration")
+		local slow = self:GetSpecialValueFor("slow_duration")
 		local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.endRadius)
 		for _,enemy in pairs(enemies) do
 			if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then

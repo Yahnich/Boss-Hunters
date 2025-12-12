@@ -16,22 +16,22 @@ modifier_abyssal_underlord_atrophy_aura_bh = class({})
 LinkLuaModifier( "modifier_abyssal_underlord_atrophy_aura_bh", "heroes/hero_abyssal_underlord/abyssal_underlord_atrophy_aura_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_abyssal_underlord_atrophy_aura_bh:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.duration = self:GetTalentSpecialValueFor("bonus_damage_duration")
-	self.scepterDuration = self:GetTalentSpecialValueFor("bonus_damage_duration_scepter")
-	self.minionStacks = self:GetTalentSpecialValueFor("bonus_damage_from_creep")
-	self.bossStacks = self:GetTalentSpecialValueFor("bonus_damage_from_hero")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.duration = self:GetSpecialValueFor("bonus_damage_duration")
+	self.scepterDuration = self:GetSpecialValueFor("bonus_damage_duration_scepter")
+	self.minionStacks = self:GetSpecialValueFor("bonus_damage_from_creep")
+	self.bossStacks = self:GetSpecialValueFor("bonus_damage_from_hero")
 	if IsServer() then
 		self.wFX = ParticleManager:CreateParticle( "particles/units/heroes/heroes_underlord/underlord_atrophy_weapon.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 	end
 end
 
 function modifier_abyssal_underlord_atrophy_aura_bh:OnRefresh()
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.duration = self:GetTalentSpecialValueFor("bonus_damage_duration")
-	self.scepterDuration = self:GetTalentSpecialValueFor("bonus_damage_duration_scepter")
-	self.minionStacks = self:GetTalentSpecialValueFor("bonus_damage_from_creep")
-	self.bossStacks = self:GetTalentSpecialValueFor("bonus_damage_from_hero")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.duration = self:GetSpecialValueFor("bonus_damage_duration")
+	self.scepterDuration = self:GetSpecialValueFor("bonus_damage_duration_scepter")
+	self.minionStacks = self:GetSpecialValueFor("bonus_damage_from_creep")
+	self.bossStacks = self:GetSpecialValueFor("bonus_damage_from_hero")
 end
 
 function modifier_abyssal_underlord_atrophy_aura_bh:OnStackCountChanged(stacks)
@@ -127,7 +127,7 @@ function modifier_abyssal_underlord_atrophy_aura_bh_debuff:OnCreated()
 	if self:GetCaster():IsSameTeam( self:GetParent() ) then
 		if IsServer() then self:GetParent():AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_abyssal_underlord_atrophy_aura_bh_ally", {} ) end
 	else
-		self.red = self:GetTalentSpecialValueFor("damage_reduction_pct") * (-1)
+		self.red = self:GetSpecialValueFor("damage_reduction_pct") * (-1)
 		self.talent = self:GetCaster():HasTalent("special_bonus_unique_abyssal_underlord_atrophy_aura_2")
 	end
 end
@@ -136,7 +136,7 @@ function modifier_abyssal_underlord_atrophy_aura_bh_debuff:OnRefresh()
 	if self:GetCaster():IsSameTeam( self:GetParent() ) then
 		if IsServer() then self:GetParent():AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_abyssal_underlord_atrophy_aura_bh_ally", {} ) end
 	else
-		self.red = self:GetTalentSpecialValueFor("damage_reduction_pct") * (-1)
+		self.red = self:GetSpecialValueFor("damage_reduction_pct") * (-1)
 		self.talent = self:GetCaster():HasTalent("special_bonus_unique_abyssal_underlord_atrophy_aura_2")
 	end
 end

@@ -26,8 +26,8 @@ end
 function snapfire_lil_shredder_bh:OnSpellStart()
     local caster = self:GetCaster()
 
-    local duration = self:GetTalentSpecialValueFor("buff_duration_tooltip")
-    local buffed_attacks = self:GetTalentSpecialValueFor("buffed_attacks")
+    local duration = self:GetSpecialValueFor("buff_duration_tooltip")
+    local buffed_attacks = self:GetSpecialValueFor("buffed_attacks")
     
     EmitSoundOn("Hero_Snapfire.ExplosiveShells.Cast", caster)
 
@@ -52,12 +52,12 @@ function modifier_snapfire_lil_shredder_bh_buff:OnCreated(table)
 end
 
 function modifier_snapfire_lil_shredder_bh_buff:OnRefresh(table)
-    self.bonus_as = self:GetTalentSpecialValueFor("attack_speed_bonus")
-    self.bonus_ar = self:GetTalentSpecialValueFor("attack_range_bonus")
-    self.bonus_bat = self:GetTalentSpecialValueFor("base_attack_time")
-	self.damage = self:GetTalentSpecialValueFor("damage") - 100
-	self.debuffStackCount = self:GetTalentSpecialValueFor("buffed_attacks")
-	self.debuffDuration = self:GetTalentSpecialValueFor("duration")
+    self.bonus_as = self:GetSpecialValueFor("attack_speed_bonus")
+    self.bonus_ar = self:GetSpecialValueFor("attack_range_bonus")
+    self.bonus_bat = self:GetSpecialValueFor("base_attack_time")
+	self.damage = self:GetSpecialValueFor("damage") - 100
+	self.debuffStackCount = self:GetSpecialValueFor("buffed_attacks")
+	self.debuffDuration = self:GetSpecialValueFor("duration")
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_snapfire_lil_shredder_1")
 	self.talent1Val = self:GetCaster():FindTalentValue("special_bonus_unique_snapfire_lil_shredder_1", "duration")
@@ -233,8 +233,8 @@ function modifier_snapfire_lil_shredder_bh_debuff:OnCreated(table)
 end
 
 function modifier_snapfire_lil_shredder_bh_debuff:OnRefresh(table)
-    self.armor = -self:GetTalentSpecialValueFor("armor_reduction_stack") * self:GetStackCount()
-	self.debuffStackCount = self:GetTalentSpecialValueFor("buffed_attacks")
+    self.armor = -self:GetSpecialValueFor("armor_reduction_stack") * self:GetStackCount()
+	self.debuffStackCount = self:GetSpecialValueFor("buffed_attacks")
 	if IsServer() then
 		self:SetStackCount( math.min( self.debuffStackCount, self:GetStackCount() + 1 ) )
 	end

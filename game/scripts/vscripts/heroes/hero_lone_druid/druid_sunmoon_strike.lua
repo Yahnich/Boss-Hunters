@@ -36,8 +36,8 @@ function druid_sunmoon_strike:SunStrike(hTarget)
 	local caster = self:GetCaster()
 	local targetPos = hTarget:GetAbsOrigin()
 
-	local duration = self:GetTalentSpecialValueFor("sun_duration")
-	local radius = self:GetTalentSpecialValueFor("sun_radius")
+	local duration = self:GetSpecialValueFor("sun_duration")
+	local radius = self:GetSpecialValueFor("sun_radius")
 	
 	local nfx = ParticleManager:CreateParticle("particles/econ/items/luna/luna_lucent_ti5_gold/luna_lucent_beam_moonfall_gold.vpcf", PATTACH_POINT, caster)
 				ParticleManager:SetParticleControlEnt(nfx, 0, hTarget, PATTACH_POINT, "attach_hitloc", targetPos, true)
@@ -47,8 +47,8 @@ function druid_sunmoon_strike:SunStrike(hTarget)
 				ParticleManager:SetParticleControlEnt(nfx, 6, hTarget, PATTACH_POINT, "attach_hitloc", targetPos, true)
 				ParticleManager:ReleaseParticleIndex(nfx)
 	
-	local damage = self:DealDamage( caster, hTarget, self:GetTalentSpecialValueFor("damage") )
-	local heal = damage * self:GetTalentSpecialValueFor("sun_heal") / 100
+	local damage = self:DealDamage( caster, hTarget, self:GetSpecialValueFor("damage") )
+	local heal = damage * self:GetSpecialValueFor("sun_heal") / 100
 	local allies = caster:FindFriendlyUnitsInRadius(targetPos, radius)
 	for _,ally in pairs(allies) do
 		ally:HealEvent(heal, self, caster, false)
@@ -60,8 +60,8 @@ function druid_sunmoon_strike:MoonStrike(hTarget)
 	local caster = self:GetCaster()
 	local targetPos = hTarget:GetAbsOrigin()
 
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local duration = self:GetTalentSpecialValueFor("moon_duration")
+	local damage = self:GetSpecialValueFor("damage")
+	local duration = self:GetSpecialValueFor("moon_duration")
 	
 	local nfx = ParticleManager:CreateParticle("particles/econ/items/luna/luna_lucent_ti5/luna_lucent_beam_moonfall.vpcf", PATTACH_POINT, caster)
 				ParticleManager:SetParticleControlEnt(nfx, 0, hTarget, PATTACH_POINT, "attach_hitloc", targetPos, true)

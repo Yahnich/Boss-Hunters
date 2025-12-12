@@ -42,10 +42,10 @@ function modifier_wk_reincarnation:OnCreated()
 	self.modifier_wraith = "modifier_wk_reincarnation_wraith_form"
 
 	-- Ability specials
-	self.reincarnate_delay = self.ability:GetTalentSpecialValueFor("reincarnate_time")        
-	self.slow_radius = self.ability:GetTalentSpecialValueFor("radius")
-	self.slow_duration = self.ability:GetTalentSpecialValueFor("duration")
-	self.scepter_wraith_form_radius = self.ability:GetTalentSpecialValueFor("aura_radius")        
+	self.reincarnate_delay = self.ability:GetSpecialValueFor("reincarnate_time")        
+	self.slow_radius = self.ability:GetSpecialValueFor("radius")
+	self.slow_duration = self.ability:GetSpecialValueFor("duration")
+	self.scepter_wraith_form_radius = self.ability:GetSpecialValueFor("aura_radius")        
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_wk_reincarnation_1")
 	self.talent1Skeletons = self:GetCaster():FindTalentValue("special_bonus_unique_wk_reincarnation_1")
@@ -95,9 +95,9 @@ function modifier_wk_reincarnation:GetReincarnationDelay()
 			if self.caster:IsRealHero() then
 				self:GetCaster():EmitSound("Hero_SkeletonKing.Reincarnate")
 			end
-			local enemies = self.caster:FindEnemyUnitsInRadius(self.caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+			local enemies = self.caster:FindEnemyUnitsInRadius(self.caster:GetAbsOrigin(), self:GetSpecialValueFor("radius"))
 			for _,enemy in pairs(enemies) do
-				enemy:AddNewModifier(self.caster, self.ability, "modifier_wk_reincarnation_slow", {Duration = self:GetTalentSpecialValueFor("duration")})
+				enemy:AddNewModifier(self.caster, self.ability, "modifier_wk_reincarnation_slow", {Duration = self:GetSpecialValueFor("duration")})
 				
 				if self.caster:IsRealHero() and self.talent1 and self.caster:FindAbilityByName("wk_blast") then
 					self.caster:FindAbilityByName("wk_blast"):FireBlast(enemy)
@@ -206,7 +206,7 @@ function modifier_wk_reincarnation_wraith_form_buff:OnCreated()
 	self.modifier_wraith_form = "modifier_wk_reincarnation_wraith_form"
 
 	-- Ability specials    
-	self.scepter_wraith_form_duration = self.ability:GetTalentSpecialValueFor("scepter_duration")
+	self.scepter_wraith_form_duration = self.ability:GetSpecialValueFor("scepter_duration")
 end
 
 function modifier_wk_reincarnation_wraith_form_buff:DeclareFunctions()
@@ -348,11 +348,11 @@ function modifier_wk_reincarnation_slow:DeclareFunctions()
 end
 
 function modifier_wk_reincarnation_slow:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("slow_ms")
+    return self:GetSpecialValueFor("slow_ms")
 end
 
 function modifier_wk_reincarnation_slow:GetModifierAttackSpeedBonus_Constant()
-    return self:GetTalentSpecialValueFor("slow_as")
+    return self:GetSpecialValueFor("slow_as")
 end
 
 modifier_wk_reincarnation_buff = class({})
@@ -367,9 +367,9 @@ function modifier_wk_reincarnation_buff:DeclareFunctions()
 end
 
 function modifier_wk_reincarnation_buff:GetModifierMoveSpeedBonus_Percentage()
-    return -self:GetTalentSpecialValueFor("slow_ms")
+    return -self:GetSpecialValueFor("slow_ms")
 end
 
 function modifier_wk_reincarnation_buff:GetModifierAttackSpeedBonus_Constant()
-    return -self:GetTalentSpecialValueFor("slow_as")
+    return -self:GetSpecialValueFor("slow_as")
 end

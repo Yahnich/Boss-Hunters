@@ -60,7 +60,7 @@ if IsServer() then
 			vDirection.z = 0.0
 			vDirection = vDirection:Normalized()
 			
-			local damage = self:GetTalentSpecialValueFor("strike_damage")
+			local damage = self:GetSpecialValueFor("strike_damage")
 			if not caster:IsRealHero() then
 				local owner = caster:GetOwnerEntity()
 				if owner:HasTalent("special_bonus_unique_venomancer_plague_ward_2") then
@@ -87,7 +87,7 @@ function modifier_venomancer_venomous_gale_cancer:OnCreated()
 end
 
 function modifier_venomancer_venomous_gale_cancer:OnRefresh()
-	self.tick = self:GetTalentSpecialValueFor("tick_interval")
+	self.tick = self:GetSpecialValueFor("tick_interval")
 	self.movespeed = self:GetAbility():GetSpecialValueFor("movement_slow")
 	self.msReduction = self.tick * self.movespeed / self:GetRemainingTime()
 	self.tick_damage = self:GetAbility():GetSpecialValueFor("tick_damage")
@@ -103,7 +103,7 @@ function modifier_venomancer_venomous_gale_cancer:OnDestroy()
 		if caster:IsRealHero( ) and caster:HasScepter( ) and not parent:IsMinion() then
 			local ward = caster:FindAbilityByName("venomancer_plague_ward_ebf")
 			if ward then
-				for i = 1, self:GetTalentSpecialValueFor("scepter_wards_spawned") do
+				for i = 1, self:GetSpecialValueFor("scepter_wards_spawned") do
 					local position  = parent:GetAbsOrigin() + RandomVector(250)
 					caster:SetCursorPosition( position )
 					ward:OnSpellStart( )

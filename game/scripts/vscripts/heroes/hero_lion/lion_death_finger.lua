@@ -9,7 +9,7 @@ function lion_death_finger:IsHiddenWhenStolen()
 end
 
 function lion_death_finger:GetAOERadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function lion_death_finger:GetIntrinsicModifierName()
@@ -21,9 +21,9 @@ function lion_death_finger:OnSpellStart()
 
     local point = self:GetCursorPosition()
 
-    local radius = self:GetTalentSpecialValueFor("radius")
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local graceDuration = self:GetTalentSpecialValueFor("kill_grace")
+    local radius = self:GetSpecialValueFor("radius")
+	local damage = self:GetSpecialValueFor("damage")
+	local graceDuration = self:GetSpecialValueFor("kill_grace")
 
     EmitSoundOn("Hero_Lion.FingerOfDeath", caster)
     EmitSoundOnLocationWithCaster(point, "Hero_Lion.FingerOfDeathImpact", caster)
@@ -56,8 +56,8 @@ modifier_lion_death_finger_grace = class({})
 LinkLuaModifier( "modifier_lion_death_finger_grace", "heroes/hero_lion/lion_death_finger.lua",LUA_MODIFIER_MOTION_NONE )
 
 function modifier_lion_death_finger_grace:OnCreated()
-	self.bonus = self:GetTalentSpecialValueFor("stacks")
-	self.boss_bonus = self:GetTalentSpecialValueFor("boss_stacks")
+	self.bonus = self:GetSpecialValueFor("stacks")
+	self.boss_bonus = self:GetSpecialValueFor("boss_stacks")
 end
 
 function modifier_lion_death_finger_grace:DeclareFunctions()
@@ -83,7 +83,7 @@ function modifier_lion_death_finger_grow:OnCreated()
 end
 
 function modifier_lion_death_finger_grow:OnRefresh()
-	self.stack_bonus = self:GetTalentSpecialValueFor("stack_bonus")
+	self.stack_bonus = self:GetSpecialValueFor("stack_bonus")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_lion_death_finger_1")
 	self.talent1HP = self:GetCaster():FindTalentValue("special_bonus_unique_lion_death_finger_1")
 end

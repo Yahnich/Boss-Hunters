@@ -6,8 +6,8 @@ end
 
 function sven_warcry_bh:OnSpellStart()
 	local caster = self:GetCaster()
-	local radius = self:GetTalentSpecialValueFor("warcry_radius")
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local radius = self:GetSpecialValueFor("warcry_radius")
+	local duration = self:GetSpecialValueFor("duration")
 	local units = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 	for _,unit in pairs(units) do
 		unit:AddNewModifier(caster, self, "modifier_sven_warcry_bh_buff", {duration = duration})
@@ -83,7 +83,7 @@ function modifier_sven_warcry_bh_talent_buff:OnCreated()
 end
 
 function modifier_sven_warcry_bh_talent_buff:OnRefresh()
-	self.armor = self:GetAbility():GetTalentSpecialValueFor("warcry_armor") * self:GetCaster():FindTalentValue("special_bonus_unique_sven_warcry_2") / 100
+	self.armor = self:GetAbility():GetSpecialValueFor("warcry_armor") * self:GetCaster():FindTalentValue("special_bonus_unique_sven_warcry_2") / 100
 end
 
 function modifier_sven_warcry_bh_talent_buff:GetEffectName()
@@ -103,14 +103,14 @@ LinkLuaModifier( "modifier_sven_warcry_bh_buff", "heroes/hero_sven/sven_warcry_b
 modifier_sven_warcry_bh_buff = class({})
 
 function modifier_sven_warcry_bh_buff:OnCreated()
-	self.ms = self:GetAbility():GetTalentSpecialValueFor("warcry_movespeed")
-	self.armor = self:GetAbility():GetTalentSpecialValueFor("warcry_armor")
+	self.ms = self:GetAbility():GetSpecialValueFor("warcry_movespeed")
+	self.armor = self:GetAbility():GetSpecialValueFor("warcry_armor")
 	self.as = self.ms * self:GetCaster():FindTalentValue("special_bonus_unique_sven_warcry_1") / 100
 end
 
 function modifier_sven_warcry_bh_buff:OnRefresh()
-	self.ms = self:GetAbility():GetTalentSpecialValueFor("warcry_movespeed")
-	self.armor = self:GetAbility():GetTalentSpecialValueFor("warcry_armor")
+	self.ms = self:GetAbility():GetSpecialValueFor("warcry_movespeed")
+	self.armor = self:GetAbility():GetSpecialValueFor("warcry_armor")
 	self.as = self.ms * self:GetCaster():FindTalentValue("special_bonus_unique_sven_warcry_1") / 100
 end
 

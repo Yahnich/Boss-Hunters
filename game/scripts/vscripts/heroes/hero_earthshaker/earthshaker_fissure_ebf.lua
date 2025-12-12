@@ -13,11 +13,11 @@ function earthshaker_fissure_ebf:IsVectorTargeting()
 end
 
 function earthshaker_fissure_ebf:GetVectorTargetRange()
-	return self:GetTalentSpecialValueFor("fissure_range")
+	return self:GetSpecialValueFor("fissure_range")
 end
 
 function earthshaker_fissure_ebf:GetVectorTargetStartRadius()
-	return self:GetTalentSpecialValueFor("fissure_radius")
+	return self:GetSpecialValueFor("fissure_radius")
 end
 
 function earthshaker_fissure_ebf:OnAbilityPhaseStart()
@@ -33,9 +33,9 @@ function earthshaker_fissure_ebf:OnVectorCastStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorPosition()
 	
-	local fissureDuration = self:GetTalentSpecialValueFor("fissure_duration")
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local stunDuration = self:GetTalentSpecialValueFor("stun_duration")
+	local fissureDuration = self:GetSpecialValueFor("fissure_duration")
+	local damage = self:GetSpecialValueFor("damage")
+	local stunDuration = self:GetSpecialValueFor("stun_duration")
 	
 	EmitSoundOn( "Hero_EarthShaker.Fissure", caster )
 	
@@ -81,7 +81,7 @@ function earthshaker_fissure_ebf:LaunchFissure(position, direction, fissureDurat
 	end
 	local aftershock = caster:FindAbilityByName("earthshaker_aftershock_ebf")
 	local echo = caster:FindAbilityByName("earthshaker_echo_slam_ebf")
-	local radius = self:GetTalentSpecialValueFor("fissure_radius")
+	local radius = self:GetSpecialValueFor("fissure_radius")
 	for _, enemy in ipairs( caster:FindEnemyUnitsInLine(position, psoPos, radius ) ) do
 		if not enemy:TriggerSpellAbsorb(self) then
 			FindClearSpaceForUnit(caster, caster:GetAbsOrigin(), true)

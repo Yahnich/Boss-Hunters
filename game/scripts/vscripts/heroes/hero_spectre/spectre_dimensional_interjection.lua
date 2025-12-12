@@ -17,7 +17,7 @@ function spectre_dimensional_interjection:Blink(position)
 		if caster:HasScepter() then
 			local haunt = caster:FindAbilityByName("spectre_haunt_bh")
 			if haunt and haunt:GetLevel() > 0 then
-				local duration = self:GetTalentSpecialValueFor("scepter_duration")
+				local duration = self:GetSpecialValueFor("scepter_duration")
 				haunt:SpawnHauntIllusion( caster:GetAbsOrigin( ), duration )
 			end
 		end
@@ -34,11 +34,11 @@ modifier_spectre_dimensional_interjection = class({})
 LinkLuaModifier("modifier_spectre_dimensional_interjection", "heroes/hero_spectre/spectre_dimensional_interjection", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_spectre_dimensional_interjection:OnCreated()
-	self.search_range = self:GetTalentSpecialValueFor("teleport_distance")
+	self.search_range = self:GetSpecialValueFor("teleport_distance")
 end
 
 function modifier_spectre_dimensional_interjection:OnRefresh()
-	self.search_range = self:GetTalentSpecialValueFor("teleport_distance")
+	self.search_range = self:GetSpecialValueFor("teleport_distance")
 end
 
 function modifier_spectre_dimensional_interjection:DeclareFunctions()

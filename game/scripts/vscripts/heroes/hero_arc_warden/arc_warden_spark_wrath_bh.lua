@@ -54,10 +54,10 @@ function arc_warden_spark_wrath_bh:OnProjectileHit( target, location )
 	if target then
 		if target:TriggerSpellAbsorb(self) then return end
 		EmitSoundOn("Hero_ArcWarden.SparkWraith.Damage", target)
-		--self:Stun(target, self:GetTalentSpecialValueFor("ministun_duration"))
-		target:Paralyze(self, caster, self:GetTalentSpecialValueFor("ministun_duration"))
-		self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"))
-		AddFOWViewer(caster:GetTeamNumber(), target:GetAbsOrigin(), self:GetTalentSpecialValueFor("wraith_vision_radius"), self:GetTalentSpecialValueFor("wraith_vision_duration"), true)
+		--self:Stun(target, self:GetSpecialValueFor("ministun_duration"))
+		target:Paralyze(self, caster, self:GetSpecialValueFor("ministun_duration"))
+		self:DealDamage(caster, target, self:GetSpecialValueFor("damage"))
+		AddFOWViewer(caster:GetTeamNumber(), target:GetAbsOrigin(), self:GetSpecialValueFor("wraith_vision_radius"), self:GetSpecialValueFor("wraith_vision_duration"), true)
 	end
 end
 
@@ -67,11 +67,11 @@ function arc_warden_spark_wrath_bh_thinker:OnCreated(event)
 	if IsServer() then
 		EmitSoundOn("Hero_ArcWarden.SparkWraith.Loop", self:GetParent())
 		local thinker = self:GetParent()
-		self.startup_time = self:GetTalentSpecialValueFor("activation_delay")
-		self.duration = self:GetTalentSpecialValueFor("duration")
-		self.speed = self:GetTalentSpecialValueFor("speed")
-		self.search_radius = self:GetTalentSpecialValueFor("radius")
-		self.vision_radius = self:GetTalentSpecialValueFor("wraith_vision_radius")
+		self.startup_time = self:GetSpecialValueFor("activation_delay")
+		self.duration = self:GetSpecialValueFor("duration")
+		self.speed = self:GetSpecialValueFor("speed")
+		self.search_radius = self:GetSpecialValueFor("radius")
+		self.vision_radius = self:GetSpecialValueFor("wraith_vision_radius")
 
 		local thinker_pos = thinker:GetAbsOrigin()
 		local startup_particle = ParticleManager:CreateParticle("particles/units/heroes/hero_arc_warden/arc_warden_wraith.vpcf", PATTACH_WORLDORIGIN, thinker)
@@ -96,7 +96,7 @@ function arc_warden_spark_wrath_bh_thinker:OnIntervalThink()
 	if self.startup_time ~= nil then
 		self.startup_time = nil
 		self.expire = GameRules:GetGameTime() + self.duration
-		self:StartIntervalThink(self:GetTalentSpecialValueFor("think_interval"))
+		self:StartIntervalThink(self:GetSpecialValueFor("think_interval"))
 	elseif self.duration ~= nil then
 		if GameRules:GetGameTime() > self.expire then
 			self:Destroy()

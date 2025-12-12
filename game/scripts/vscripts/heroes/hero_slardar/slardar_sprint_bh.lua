@@ -3,7 +3,7 @@ slardar_sprint_bh = class({})
 function slardar_sprint_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	caster:AddNewModifier( caster, self, "modifier_slardar_sprint_bh", {duration = duration} )
 	caster:EmitSound("Hero_Slardar.Sprint")
 end
@@ -12,7 +12,7 @@ modifier_slardar_sprint_bh = class({})
 LinkLuaModifier( "modifier_slardar_sprint_bh", "heroes/hero_slardar/slardar_sprint_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_slardar_sprint_bh:OnCreated()
-	self.movespeed = self:GetTalentSpecialValueFor("bonus_speed")
+	self.movespeed = self:GetSpecialValueFor("bonus_speed")
 	self.red = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_1")
 	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_2")
 	self.dmg = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_2", "value2")
@@ -20,7 +20,7 @@ function modifier_slardar_sprint_bh:OnCreated()
 end
 
 function modifier_slardar_sprint_bh:OnRefresh()
-	self.movespeed = self:GetTalentSpecialValueFor("bonus_speed")
+	self.movespeed = self:GetSpecialValueFor("bonus_speed")
 	self.red = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_1")
 	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_2")
 	self.dmg = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_2", "value2")

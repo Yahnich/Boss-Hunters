@@ -9,7 +9,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"			"life_stealer_rage"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -48,7 +48,6 @@
 			{
 				"value"											"3 4 5 6 6 6 6"
 				"special_bonus_unique_lifestealer_rage_1"		"+1.5"
-			}
 			"bonus_movespeed"									"18 18 18 18 21 24 27"
 			"bonus_armor"										"5 5 5 5 10 15 20"
 		}
@@ -66,13 +65,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1.5"
-			}
+			"value"						"1.5"
 		}
 	}
 	//=================================================================================================================
@@ -89,13 +84,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -107,7 +98,7 @@
 		"ScriptFile"					"heroes/hero_lifestealer/lifestealer_hunger.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"life_stealer_feast"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -119,33 +110,26 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"max_attack_damage"				"70 100 130 160 190 210 240"
 				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_hunger_1"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"max_lifesteal"					"40 50 60 70 80 90 100"
+			"max_lifesteal"					"40 50 60 70 80 90 100"
 				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_hunger_2"
 				"LinkedSpecialBonusField"		"value"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"min_attack_damage"				"10 20 30 40 50 60 70"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"min_lifesteal"					"1"
 				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_hunger_2"
 				"LinkedSpecialBonusField"		"value2"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -162,13 +146,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"60"
-			}
+			"value"						"60"
 		}
 	}
 	//=================================================================================================================
@@ -185,18 +165,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"20"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value2"					"9"
-			}
+			"value"						"20"
+			"value2"					"9"
 		}
 	}
 	//=================================================================================================================
@@ -214,7 +186,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -234,23 +206,14 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-2 -3 -4 -5 -6 -7 -8"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.5"
-			}
+			"armor_reduction"		"-2 -3 -4 -5 -6 -7 -8"
+			"duration"				"1.5"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"attack_speed_bonus"	"20 30 40 50 60 70 80"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -267,13 +230,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
+			"value"						"100"
 		}
 	}
 	//=================================================================================================================
@@ -290,18 +249,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"20"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value2"					"2"
-			}
+			"value"						"20"
+			"value2"					"2"
 		}
 	}
 	"lifestealer_assimilate_bh"
@@ -345,18 +296,13 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"300"
-			}
+			"damage"				"300"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"700"
-			}
 		}
 	}
 	"lifestealer_assimilate_exit"
@@ -384,7 +330,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"life_stealer_infest"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -418,35 +364,21 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"ally_bonus_hp"					"400 600 800 1600 2400 3200"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"aoe_damage"					"200 300 400 800 1200 1600"
-			}
+			"ally_bonus_hp"					"400 600 800 1600 2400 3200"
+			"aoe_damage"					"200 300 400 800 1200 1600"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"max_hp_regen"					"3 3.5 4 5 6 7"
 				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_infest_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"700"
-			}
+			"radius"						"700"
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"5.0"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -462,13 +394,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"100"
-			}
+			"value"						"100"
 		}
 	}
 	//=================================================================================================================
@@ -484,13 +412,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	
@@ -512,7 +436,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"life_stealer_open_wounds"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -546,36 +470,19 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"damage"						"1 1.25 1.5 1.75 2 2.25 2.5"
+			"damage"						"1 1.25 1.5 1.75 2 2.25 2.5"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"heal_percent"					"35"
+			"heal_percent"					"35"
 				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_flesh_wounds_1"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"slow"							"-70"
 				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_flesh_wounds_2"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"duration"						"5 6 7 8 9 10 11"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"cast_range"					"200 300 400 500 600 700 800"
-			}
+			"duration"						"5 6 7 8 9 10 11"
+			"cast_range"					"200 300 400 500 600 700 800"
 		}
 	}
 	//=================================================================================================================
@@ -591,13 +498,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
-			}
+			"value"						"50"
 		}
 	}
 	//=================================================================================================================
@@ -613,13 +516,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-50"
-			}
+			"value"						"-50"
 		}
 	}
 	"lifestealer_rend"
@@ -636,7 +535,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"custom/life_stealer_devour"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -656,24 +555,15 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"5 10 15 20 25 30"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal"					"100"
-			}
+			"damage"				"5 10 15 20 25 30"
+			"heal"					"100"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration"				"5"
 				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_rend_2"
-			}
 		}
 	
 		// Precache
@@ -698,13 +588,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"0"
-			}
+			"value"						"0"
 		}
 	}
 	//=================================================================================================================
@@ -720,13 +606,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"3"
-			}
+			"value"						"3"
 		}
 	}
 }

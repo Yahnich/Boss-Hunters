@@ -24,10 +24,10 @@ function warlock_demonic_summons:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 
-	local radius = self:GetTalentSpecialValueFor("stun_radius")
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local duration = self:GetTalentSpecialValueFor("stun_duration")
-	local golemDuration = self:GetTalentSpecialValueFor("golem_duration")
+	local radius = self:GetSpecialValueFor("stun_radius")
+	local damage = self:GetSpecialValueFor("damage")
+	local duration = self:GetSpecialValueFor("stun_duration")
+	local golemDuration = self:GetSpecialValueFor("golem_duration")
 	local secondGolem
 	EmitSoundOn("Hero_Warlock.RainOfChaos", caster)
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_warlock/warlock_rain_of_chaos_start.vpcf", PATTACH_POINT, caster)
@@ -36,7 +36,7 @@ function warlock_demonic_summons:OnSpellStart()
 				ParticleManager:SetParticleControl(nfx, 2, point)
 				ParticleManager:ReleaseParticleIndex(nfx)
 
-	Timers:CreateTimer(self:GetTalentSpecialValueFor("delay"), function()
+	Timers:CreateTimer(self:GetSpecialValueFor("delay"), function()
 		local nfx2 = ParticleManager:CreateParticle("particles/units/heroes/hero_warlock/warlock_rain_of_chaos.vpcf", PATTACH_POINT, caster)
 					 ParticleManager:SetParticleControl(nfx2, 0, point)
 					 ParticleManager:SetParticleControl(nfx2, 1, Vector(2,2,2))
@@ -63,7 +63,7 @@ end
 
 function warlock_demonic_summons:CreateGolem(position, duration, golemPct)
 	local caster = self:GetCaster()
-	local golem = caster:CreateSummon("npc_dota_warlock_golem_1", position, ( duration or self:GetTalentSpecialValueFor("golem_duration") ) )
+	local golem = caster:CreateSummon("npc_dota_warlock_golem_1", position, ( duration or self:GetSpecialValueFor("golem_duration") ) )
 	local golem_pct = golemPct or 1
 	golem:RemoveAbility("warlock_golem_flaming_fists")
 	golem:AddAbility("warlock_golem_gloves"):SetLevel(self:GetLevel())

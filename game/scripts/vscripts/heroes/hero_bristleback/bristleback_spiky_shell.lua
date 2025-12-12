@@ -11,10 +11,10 @@ function modifier_spiky_shell:OnCreated()
 end
 
 function modifier_spiky_shell:OnCreated()
-	self.backDmgRed = -math.abs(self:GetTalentSpecialValueFor("back_damage_reduction"))
-	self.sidesDmgRed = -math.abs(self:GetTalentSpecialValueFor("side_damage_reduction"))
-	self.backChance = self:GetTalentSpecialValueFor("back_chance")
-	self.sidesChance = self:GetTalentSpecialValueFor("side_chance")
+	self.backDmgRed = -math.abs(self:GetSpecialValueFor("back_damage_reduction"))
+	self.sidesDmgRed = -math.abs(self:GetSpecialValueFor("side_damage_reduction"))
+	self.backChance = self:GetSpecialValueFor("back_chance")
+	self.sidesChance = self:GetSpecialValueFor("side_chance")
 end
 
 function modifier_spiky_shell:DeclareFunctions()
@@ -30,7 +30,7 @@ function modifier_spiky_shell:OnTakeDamage(params)
 	if IsServer() then
 		if params.unit == self:GetCaster() then
 			local ability = self:GetCaster():FindAbilityByName("bristleback_quills")
-			if RollPercentage(self:GetTalentSpecialValueFor("chance")) and ability:IsTrained() then
+			if RollPercentage(self:GetSpecialValueFor("chance")) and ability:IsTrained() then
 				ability.procDamage = 100
 				ability:CastSpell()
 				ability.procDamage = nil

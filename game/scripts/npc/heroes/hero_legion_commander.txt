@@ -10,7 +10,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityTextureName"			"legion_commander_overwhelming_odds"
 		
 		// Talents		
@@ -45,49 +45,30 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"600 600 600 600 800 1000 1200"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"damage"						"100 180 260 340 360 380 400"
+			"radius"						"600 600 600 600 800 1000 1200"
+			"damage"						"100 180 260 340 360 380 400"
 				"LinkedSpecialBonus"			"special_bonus_unique_legion_commander_victorious_advance_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_per_unit"				"30 60 90 120 125 130 135"
+			"damage_per_unit"				"30 60 90 120 125 130 135"
 				"LinkedSpecialBonus"			"special_bonus_unique_legion_commander_victorious_advance_1"
 				"LinkedSpecialBonusField"		"value2"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_per_minion"				"10 15 20 25 26 27 28"
+			"damage_per_minion"				"10 15 20 25 26 27 28"
 				"LinkedSpecialBonus"			"special_bonus_unique_legion_commander_victorious_advance_1"
 				"LinkedSpecialBonusField"		"value3"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"bonus_speed"					"9 9 9 9 12 15 18"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"bonus_speed_minion"			"3.0 3.0 3.0 3.0 3.5 4.0 4.5"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"7.0"
-			}
 		}
 	}
 	"special_bonus_unique_legion_commander_victorious_advance_1" 
@@ -100,23 +81,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"100"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value2"				"30"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value3"				"5"
-			}
+			"value"					"100"
+			"value2"				"30"
+			"value3"				"5"
 		}
 	}
 	"special_bonus_unique_legion_commander_victorious_advance_2" 
@@ -129,18 +98,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-80"
-			}
+			"value"					"-80"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value2"				"-40"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -157,7 +121,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityTextureName"			"legion_commander_press_the_attack"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -195,34 +159,14 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"5.0"
+			"duration"					"5.0"
 				"LinkedSpecialBonus"		"special_bonus_unique_legion_commander_unbreakable_morale_2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"attack_speed"				"65 90 115 140 150 160 170"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"attack_speed_increase"		"10"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"hp_regen"					"30 40 50 60 65 70 75"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"hp_regen_increase"			"5"
-			}
+			"attack_speed"				"65 90 115 140 150 160 170"
+			"attack_speed_increase"		"10"
+			"hp_regen"					"30 40 50 60 65 70 75"
+			"hp_regen_increase"			"5"
 		}
 	}
 	"special_bonus_unique_legion_commander_unbreakable_morale_1" 
@@ -235,28 +179,18 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"60"
-			}
+			"value"					"60"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value2"				"15"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value_increase"		"5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value2_increase"		"1"
-			}
+			"value2_increase"		"1"
 		}
 	}
 	"special_bonus_unique_legion_commander_unbreakable_morale_2" 
@@ -269,18 +203,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"5"
-			}
+			"value"					"5"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"1200"
-			}
 		}
 	}
 	"legion_commander_fearless_assault"
@@ -291,7 +220,7 @@
 		"ScriptFile"					"heroes/hero_legion_commander/legion_commander_fearless_assault"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"legion_commander_moment_of_courage"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -314,24 +243,12 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"trigger_chance"			"25 25 25 25 28 32 36"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"buff_duration"				"1.0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"hp_leech_percent"			"55 65 75 85 90 95 100"
+			"trigger_chance"			"25 25 25 25 28 32 36"
+			"buff_duration"				"1.0"
+			"hp_leech_percent"			"55 65 75 85 90 95 100"
 				"LinkedSpecialBonus"		"special_bonus_unique_legion_commander_fearless_assault_2"
-			}
 		}
 	}
 	"special_bonus_unique_legion_commander_fearless_assault_1" 
@@ -345,18 +262,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"15"
-			}
+			"value"					"15"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value2"				"50"
-			}
 		}
 	}
 	"special_bonus_unique_legion_commander_fearless_assault_2" 
@@ -369,23 +281,17 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"50"
-			}
+			"value"					"50"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"share_pct"				"50"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"600"
-			}
 		}
 	}
 	"legion_commander_war_fury"
@@ -396,7 +302,7 @@
 		"ScriptFile"					"heroes/hero_legion_commander/legion_commander_war_fury"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -426,38 +332,20 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_damage_aura"				"50 100 100 150 150 200"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"hp_regen"						"3.5"
-			}
+			"bonus_damage_aura"				"50 100 100 150 150 200"
+			"hp_regen"						"3.5"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"damage_resist"					"25 25 37.5 37.5 50 50"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"ally_bonus"					"50"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"600"
-			}
+			"ally_bonus"					"50"
+			"radius"						"600"
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"duration"						"13 14 15 16 17 18"
-			}
 		}
 	}
 	"special_bonus_unique_legion_commander_war_fury_1" 
@@ -471,18 +359,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"20"
-			}
+			"value"					"20"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value2"				"50"
-			}
 		}
 	}
 	"special_bonus_unique_legion_commander_war_fury_2" 
@@ -495,13 +378,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-10"
-			}
+			"value"					"-10"
 		}
 	}
 }

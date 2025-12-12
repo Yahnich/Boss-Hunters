@@ -13,7 +13,7 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"techies_land_mines"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -38,7 +38,7 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
@@ -46,24 +46,11 @@
 				"active_delay"					"1.75"
 				"LinkedSpecialBonus"			"special_bonus_unique_tech_mine_1"
 				"LinkedSpecialBonusField"		"value2"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"100 200 300 400 400 400"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"400"
+			"damage"						"100 200 300 400 400 400"
+			"radius"						"400"
 				"LinkedSpecialBonus"			"special_bonus_unique_tech_mine_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"lifetime"						"120"
-			}
+			"lifetime"						"120"
 		}
 	
 		"precache"
@@ -83,18 +70,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
-			}
+			"value"					"2"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value2"				"-1"
-			}
 		}
 	}
 	"special_bonus_unique_tech_mine_2" 
@@ -107,13 +89,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"tech_stasis_mine"
@@ -128,7 +106,7 @@
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"  
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"techies_stasis_trap"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -154,24 +132,12 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"active_delay"				"1.75"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"2 3 4 5 5 5 5"
+			"active_delay"				"1.75"
+			"stun_duration"				"2 3 4 5 5 5 5"
 				"LinkedSpecialBonus"		"special_bonus_unique_tech_stasis_mine_2"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"stun_radius"				"400 400 400 400 500 600 700"
-			}
+			"stun_radius"				"400 400 400 400 500 600 700"
 		}
 		
 		"precache"
@@ -190,23 +156,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"150"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"tick"					"1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.5"
-			}
+			"value"					"150"
+			"tick"					"1"
+			"duration"				"0.5"
 		}
 	}
 	"special_bonus_unique_tech_stasis_mine_2" 
@@ -219,13 +173,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"5.0"
-			}
+			"value"					"5.0"
 		}
 	}
 	"tech_blasting_off"
@@ -240,7 +190,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"techies_suicide"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -266,38 +216,17 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"300 400 500 600 700 800 900"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"0.75"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"hp_cost"					"50 50 50 50 40 30 20"
-			} 
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"400"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"silence_duration"			"2 3 4 5 5.5 6 6.5"
-			}
+			"damage"					"300 400 500 600 700 800 900"
+			"duration"					"0.75"
+			"hp_cost"					"50 50 50 50 40 30 20" 
+			"radius"					"400"
+			"silence_duration"			"2 3 4 5 5.5 6 6.5"
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"jump_duration"				"0.75"
-			} 			
+				"jump_duration"				"0.75" 			
 		}
 	}
 	"special_bonus_unique_tech_blasting_off_1" 
@@ -310,13 +239,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"special_bonus_unique_tech_blasting_off_2" 
@@ -329,13 +254,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"35"
-			}
+			"value"					"35"
 		}
 	}
 	"tech_robo_mine"
@@ -368,28 +289,12 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"3"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"movespeed"					"500"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"radius"					"150"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"scepter_radius"			"350"
-			}
+			"duration"					"3"
+			"movespeed"					"500"
+			"radius"					"150"
+"scepter_radius"			"350"
 		}
 	
 		"precache"
@@ -409,13 +314,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"500"
-			}
+			"value"					"500"
 		}
 	}
 	"special_bonus_unique_tech_robo_mine_2" 
@@ -428,13 +329,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"250"
-			}
+			"value"					"250"
 		}
 	}
 	"tech_drastic"
@@ -451,7 +348,7 @@
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"techies_focused_detonate"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -469,32 +366,28 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"                  	"FIELD_INTEGER"
 				"damage"            			"350 575 800 900 1000 1100"
 				"LinkedSpecialBonus"			"special_bonus_unique_tech_drastic_1"
-			}
 			"02"
 			{
 				"var_type"                  	"FIELD_FLOAT"
-				"delay_time" 					"2.5"
-			}		
+				"delay_time" 					"2.5"		
 			"03"
 			{
 				"var_type"                  	"FIELD_FLOAT"
 				"fallout_duration"  			"20"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"max_health_damage"				"1"
 				"LinkedSpecialBonus"			"special_bonus_unique_tech_drastic_1"
 				"LinkedSpecialBonusField"		"value2"
-				"CalculateSpellDamageTooltip"  	"0"
-			}	
+				"CalculateSpellDamageTooltip"  	"0"	
 		}
 		
 		"precache"
@@ -518,18 +411,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"300"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value2"				"0.5"
-			}
+			"value"					"300"
+			"value2"				"0.5"
 		}
 	}
 	"special_bonus_unique_tech_drastic_2" 
@@ -542,18 +427,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-40"
-			}
+			"value"					"-40"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"as"					"-80"
-			}
 		}
 	}
 	
@@ -580,19 +460,17 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"                  	"FIELD_INTEGER"
 				"damage"            			"17"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 			"02"
 			{
 				"var_type"                  "FIELD_INTEGER"
 				"radius"           			"1000"
-			}
 		}
 	
 		"precache"

@@ -16,12 +16,12 @@ end
 function axe_ground_pound:OnSpellStart()
 	local caster = self:GetCaster()
 
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local radius = self:GetSpecialValueFor("radius")
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius, {})
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local buffDur = self:GetTalentSpecialValueFor("buff_duration")
-	local tauntDuration = self:GetTalentSpecialValueFor("taunt_duration")
-	local damage = caster:GetStrength() * self:GetTalentSpecialValueFor("damage")
+	local duration = self:GetSpecialValueFor("duration")
+	local buffDur = self:GetSpecialValueFor("buff_duration")
+	local tauntDuration = self:GetSpecialValueFor("taunt_duration")
+	local damage = caster:GetStrength() * self:GetSpecialValueFor("damage")
 	
 	local think = CreateModifierThinker(caster, self, "modifier_ground_pound_aura", {Duration = duration}, caster:GetAbsOrigin(), caster:GetTeamNumber(), false)
 	local dunkSuccess = false
@@ -30,7 +30,7 @@ function axe_ground_pound:OnSpellStart()
 		local bloodhunger = caster:FindAbilityByName("axe_blood_hunger")
 		local enemies2 = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius, {})
 		for _,enemy2 in pairs(enemies2) do
-			enemy2:AddNewModifier(caster, bloodhunger, "modifier_blood_hunger", {Duration = bloodhunger:GetTalentSpecialValueFor("duration")})
+			enemy2:AddNewModifier(caster, bloodhunger, "modifier_blood_hunger", {Duration = bloodhunger:GetSpecialValueFor("duration")})
 		end
 	end
 	
@@ -73,7 +73,7 @@ end
 modifier_ground_pound_critical = class({})
 LinkLuaModifier( "modifier_ground_pound_critical", "heroes/hero_axe/axe_ground_pound.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_ground_pound_critical:OnCreated()
-	self.crit = self:GetTalentSpecialValueFor("critical_damage")
+	self.crit = self:GetSpecialValueFor("critical_damage")
 	if IsServer() then
 		self:GetParent():HookInModifier("GetModifierCriticalDamage", self)
 	end
@@ -101,7 +101,7 @@ function modifier_ground_pound_damage:OnCreated()
 end
 
 function modifier_ground_pound_damage:OnRefresh()
-	self.damage = math.max( 0, self:GetTalentSpecialValueFor("armor_damage") * self:GetParent():GetPhysicalArmorValue(false) )
+	self.damage = math.max( 0, self:GetSpecialValueFor("armor_damage") * self:GetParent():GetPhysicalArmorValue(false) )
 	if self.damage == 0 then
 		self:Destroy()
 	end
@@ -126,7 +126,7 @@ modifier_ground_pound_aura = class({})
 LinkLuaModifier( "modifier_ground_pound_aura", "heroes/hero_axe/axe_ground_pound.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_ground_pound_aura:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_ground_pound_aura:IsAura()
@@ -171,7 +171,7 @@ function modifier_ground_pound:DeclareFunctions()
 end
 
 function modifier_ground_pound:GetModifierMoveSpeedBonus_Constant()
-	return self:GetTalentSpecialValueFor("move_slow")
+	return self:GetSpecialValueFor("move_slow")
 end
 
 function modifier_ground_pound:IsDebuff()

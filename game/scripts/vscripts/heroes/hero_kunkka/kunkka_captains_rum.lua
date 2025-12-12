@@ -1,5 +1,4 @@
 kunkka_captains_rum = class({})
-LinkLuaModifier("modifier_kunkka_captains_rum", "heroes/hero_kunkka/kunkka_captains_rum.lua", LUA_MODIFIER_MOTION_NONE)
 
 function kunkka_captains_rum:IsStealable()
     return true
@@ -10,7 +9,7 @@ function kunkka_captains_rum:IsHiddenWhenStolen()
 end
 
 function kunkka_captains_rum:GetBehavior()
-    if self:GetCaster():HasTalent("special_bonus_unique_kunkka_captains_rum_2") then
+    if self:GetSpecialValueFor("cast_on_allies") == 1 then
         return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
     else
         return DOTA_ABILITY_BEHAVIOR_NO_TARGET
@@ -18,17 +17,15 @@ function kunkka_captains_rum:GetBehavior()
 end
 
 function kunkka_captains_rum:OnSpellStart()
-    if self:GetCaster():HasTalent("special_bonus_unique_kunkka_captains_rum_2") then
-        local target = self:GetCursorTarget()
-        EmitSoundOn("Hero_Kunkka.TauntJig", target)
-        target:AddNewModifier(self:GetCaster(), self, "modifier_kunkka_captains_rum", {duration = self:GetTalentSpecialValueFor("duration")})
-    else
-        EmitSoundOn("Hero_Kunkka.TauntJig", self:GetCaster())
-        self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_kunkka_captains_rum", {duration = self:GetTalentSpecialValueFor("duration")})
-    end
+	local caster = self:GetCaster()
+	local target = self:GetCursorTarget() or caster
+   
+	EmitSoundOn("Hero_Kunkka.TauntJig", target)
+	target:AddNewModifier( caster, self, "modifier_kunkka_captains_rum", {duration = self:GetSpecialValueFor("duration")} )
 end
 
 modifier_kunkka_captains_rum = class({})
+LinkLuaModifier("modifier_kunkka_captains_rum", "heroes/hero_kunkka/kunkka_captains_rum.lua", LUA_MODIFIER_MOTION_NONE)
 function modifier_kunkka_captains_rum:OnIntervalThink()
     if IsServer() and self:RollPRNG(25) then
         self:GetParent():SetInitialGoalEntity(nil)
@@ -49,19 +46,19 @@ function modifier_kunkka_captains_rum:DeclareFunctions()
 end
 
 function modifier_kunkka_captains_rum:OnCreated()
-    self.damagereduction = self:GetAbility():GetTalentSpecialValueFor("damage_reduction")
-    self.movespeedbonus = self:GetAbility():GetTalentSpecialValueFor("movespeed_bonus")
-    self.damageamp = self:GetAbility():GetTalentSpecialValueFor("bonus_basedamage_perc")
-    self.bonusdamage = self:GetAbility():GetTalentSpecialValueFor("bonus_damage")
+    self.damage_reduction = -self:GetSpecialValueFor("damage_reduction")
+    self.movespeed_bonus = self:GetSpecialValueFor("movespeed_bonus")
+    self.damageamp = self:GetSpecialValueFor("bonus_basedamage_perc")
+    self.bonusdamage = self:GetSpecialValueFor("bonus_damage")
     self:StartIntervalThink(0.35)
 end
 
 function modifier_kunkka_captains_rum:GetModifierIncomingDamage_Percentage()
-    return -math.abs(self.damagereduction)
+    return self.damage_reduction
 end
 
 function modifier_kunkka_captains_rum:GetModifierMoveSpeedBonus_Percentage()
-    return self.movespeedbonus
+    return self.movespeed_bonus
 end
 
 function modifier_kunkka_captains_rum:GetModifierBaseDamageOutgoing_Percentage()

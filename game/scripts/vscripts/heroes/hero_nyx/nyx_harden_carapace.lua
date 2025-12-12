@@ -28,7 +28,7 @@ function nyx_harden_carapace:OnSpellStart()
 		caster:ModifyThreat(caster:FindTalentValue("special_bonus_unique_nyx_harden_carapace_2"))
 	end
 
-	caster:AddNewModifier(caster, self, "modifier_nyx_harden_carapace", {Duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_nyx_harden_carapace", {Duration = self:GetSpecialValueFor("duration")})
 
 	if caster:HasModifier("modifier_nyx_burrow") then
 		EmitSoundOn("Hero_NyxAssassin.Impale.Target", caster)
@@ -37,8 +37,8 @@ function nyx_harden_carapace:OnSpellStart()
 		for _,enemy in pairs(enemies) do
 			if not target:TriggerSpellAbsorb(self) then
 				ParticleManager:FireParticle("particles/units/heroes/hero_nyx/nyx_harden_carapace_hit/nyx_harden_carapace_hit.vpcf", PATTACH_POINT, caster, {[0]=enemy:GetAbsOrigin()})
-				self:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
-				local damage = caster:GetMaxHealth() * self:GetTalentSpecialValueFor("carapace_health")/100
+				self:Stun(enemy, self:GetSpecialValueFor("stun_duration"), false)
+				local damage = caster:GetMaxHealth() * self:GetSpecialValueFor("carapace_health")/100
 				self:DealDamage(caster, enemy, damage, {damage_type=DAMAGE_TYPE_PURE, damage_flags=DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, 0)
 			end
 		end
@@ -81,9 +81,9 @@ function modifier_nyx_harden_carapace:OnTakeDamage(params)
 	if IsServer() then
 		local caster = params.unit
 		local attacker = params.attacker
-		local damageTaken = params.damage * self:GetTalentSpecialValueFor("damage")/100
+		local damageTaken = params.damage * self:GetSpecialValueFor("damage")/100
 		local damageType = params.damage_type
-		local stunDuration = self:GetTalentSpecialValueFor("stun_duration")
+		local stunDuration = self:GetSpecialValueFor("stun_duration")
 
 		if caster == self:GetParent() and not attacker:IsMagicImmune() and attacker ~= caster then
 			EmitSoundOn("Hero_NyxAssassin.SpikedCarapace.Stun", caster)

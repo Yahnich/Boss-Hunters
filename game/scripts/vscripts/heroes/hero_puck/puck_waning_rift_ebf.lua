@@ -1,7 +1,7 @@
 puck_waning_rift_ebf = class({})
 
 function puck_waning_rift_ebf:GetCastRange(target, position)
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function puck_waning_rift_ebf:OnSpellStart()
@@ -21,9 +21,9 @@ function puck_waning_rift_ebf:WaningRift(position)
 	local caster = self:GetCaster()
 	local vPos = position or caster:GetAbsOrigin()
 	
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local duration = self:GetTalentSpecialValueFor("silence_duration")
+	local radius = self:GetSpecialValueFor("radius")
+	local damage = self:GetSpecialValueFor("damage")
+	local duration = self:GetSpecialValueFor("silence_duration")
 	
 	ParticleManager:FireParticle("particles/units/heroes/hero_puck/puck_waning_rift.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = vPos + Vector(0,0,64), [1] = Vector(radius, 0, 0)})
 	
@@ -46,7 +46,7 @@ LinkLuaModifier("modifier_puck_waning_rift_talent", "heroes/hero_puck/puck_wanin
 
 function modifier_puck_waning_rift_talent:OnCreated(kv)
 	self.slow = self:GetCaster():FindTalentValue("special_bonus_unique_puck_waning_rift_2", "slow")
-	self.damage = self:GetTalentSpecialValueFor("damage") * self:GetCaster():FindTalentValue("special_bonus_unique_puck_waning_rift_2") / 100
+	self.damage = self:GetSpecialValueFor("damage") * self:GetCaster():FindTalentValue("special_bonus_unique_puck_waning_rift_2") / 100
 	if IsServer() then self:StartIntervalThink(1) end
 end
 

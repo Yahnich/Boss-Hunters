@@ -50,11 +50,11 @@ end
 function drow_ranger_glacier_arrows:OnProjectileHit(target, position)
 	if target then
 		local caster = self:GetCaster()
-		if target:GetChillCount() < self:GetTalentSpecialValueFor("base_chill") then
-			target:AddChill( self, caster, self:GetTalentSpecialValueFor("duration") )
-			target:SetChillCount( self:GetTalentSpecialValueFor("base_chill"), self:GetTalentSpecialValueFor("duration") )
+		if target:GetChillCount() < self:GetSpecialValueFor("base_chill") then
+			target:AddChill( self, caster, self:GetSpecialValueFor("duration") )
+			target:SetChillCount( self:GetSpecialValueFor("base_chill"), self:GetSpecialValueFor("duration") )
 		else
-			target:AddChill( self, caster, self:GetTalentSpecialValueFor("duration"), self:GetTalentSpecialValueFor("stack_chill") )
+			target:AddChill( self, caster, self:GetSpecialValueFor("duration"), self:GetSpecialValueFor("stack_chill") )
 		end
 		self:DealDamage( caster, target, caster:GetLevel(), {damage_type = DAMAGE_TYPE_MAGICAL} )
 	end

@@ -58,17 +58,17 @@ modifier_viper_corrosive_skin_bh = class({})
 LinkLuaModifier("modifier_viper_corrosive_skin_bh", "heroes/hero_viper/viper_corrosive_skin_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_viper_corrosive_skin_bh:OnCreated()
-	self.duration = self:GetTalentSpecialValueFor("duration")
-	self.maxRange = self:GetTalentSpecialValueFor("max_range_tooltip")
-	self.mr = self:GetTalentSpecialValueFor("bonus_magic_resistance")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.maxRange = self:GetSpecialValueFor("max_range_tooltip")
+	self.mr = self:GetSpecialValueFor("bonus_magic_resistance")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_viper_corrosive_skin_1")
 	self.talentRadius = self:GetCaster():FindTalentValue("special_bonus_unique_viper_corrosive_skin_1")
 end
 
 function modifier_viper_corrosive_skin_bh:OnRefresh()
-	self.duration = self:GetTalentSpecialValueFor("duration")
-	self.maxRange = self:GetTalentSpecialValueFor("max_range_tooltip")
-	self.mr = self:GetTalentSpecialValueFor("bonus_magic_resistance")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.maxRange = self:GetSpecialValueFor("max_range_tooltip")
+	self.mr = self:GetSpecialValueFor("bonus_magic_resistance")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_viper_corrosive_skin_1")
 	self.talentRadius = self:GetCaster():FindTalentValue("special_bonus_unique_viper_corrosive_skin_1")
 end
@@ -124,20 +124,20 @@ modifier_viper_corrosive_skin_bh_debuff = class({})
 LinkLuaModifier("modifier_viper_corrosive_skin_bh_debuff", "heroes/hero_viper/viper_corrosive_skin_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_viper_corrosive_skin_bh_debuff:OnCreated()
-	self.as = self:GetTalentSpecialValueFor("bonus_attack_speed") * (-1)
-	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.as = self:GetSpecialValueFor("bonus_attack_speed") * (-1)
+	self.damage = self:GetSpecialValueFor("damage")
 	self.talent1Damage = self:GetCaster():FindTalentValue("special_bonus_unique_viper_corrosive_skin_1", "damage")
 	if IsServer() then
-		self.tick = ( self:GetDuration() / self:GetTalentSpecialValueFor("duration") ) * 1
+		self.tick = ( self:GetDuration() / self:GetSpecialValueFor("duration") ) * 1
 		self:StartIntervalThink( self.tick )
 	end
 end
 
 function modifier_viper_corrosive_skin_bh_debuff:OnRefresh()
-	self.as = self:GetTalentSpecialValueFor("bonus_attack_speed") * (-1)
-	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.as = self:GetSpecialValueFor("bonus_attack_speed") * (-1)
+	self.damage = self:GetSpecialValueFor("damage")
 	if IsServer() then
-		local tick = ( self:GetDuration() / self:GetTalentSpecialValueFor("duration") ) * 1
+		local tick = ( self:GetDuration() / self:GetSpecialValueFor("duration") ) * 1
 		if tick > self.tick then
 			self.tick = tick
 			self:StartIntervalThink( self.tick )

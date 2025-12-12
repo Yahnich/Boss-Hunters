@@ -12,7 +12,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityTextureName"			"ogre_magi_fireblast"
 		
 		// Talents		
@@ -46,20 +46,15 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.0"
+			"duration"				"1.0"
 				"LinkedSpecialBonus"	"special_bonus_unique_ogre_magi_fireblast_bh_2"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"55 110 165 220 275 330 385"
 				"LinkedSpecialBonus"	"special_bonus_unique_ogre_magi_fireblast_bh_1"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -75,13 +70,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"275"
-			}
+			"value"						"275"
 		}
 	}
 	//=================================================================================================================
@@ -97,13 +88,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"0.5"
-			}
+			"value"						"0.5"
 		}
 	}
 
@@ -119,7 +106,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityTextureName"			"ogre_magi_ignite"
 		
 		// Talents		
@@ -154,35 +141,30 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"duration"			"5 6 7 8 9 10 11"
-			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"damage"			"26 34 42 50 58 66 74"
-				"LinkedSpecialBonus"	"special_bonus_unique_ogre_magi_ignite_bh_1"
-			}	
+				"LinkedSpecialBonus"	"special_bonus_unique_ogre_magi_ignite_bh_1"	
 			"05"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"ignite_aoe"		"150 225 300 375 450 525"
-			}	
+				"ignite_aoe"		"150 225 300 375 450 525"	
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"slow_pct"			"-20 -22 -24 -26 -28 -30 -32"
 				"LinkedSpecialBonus"	"special_bonus_unique_ogre_magi_ignite_bh_2"
-			}
 			"06"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"chance"			"33"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -198,13 +180,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"90"
-			}
+			"value"						"90"
 		}
 	}
 	//=================================================================================================================
@@ -220,13 +198,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-100"
-			}
+			"value"						"-100"
 		}
 	}
 
@@ -240,7 +214,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityTextureName"			"ogre_magi_bloodlust"
 		
 		// Talents		
@@ -274,29 +248,22 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"modelscale"			"25"
-			}	
+			"modelscale"			"25"	
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_movement_speed"	"10 12 14 16 18 20 22"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_attack_speed"	"30 40 50 60 70 80 90"
 				"LinkedSpecialBonus"	"special_bonus_unique_ogre_magi_bloodlust_bh_1"
-			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"30"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -312,13 +279,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"40"
-			}
+			"value"						"40"
 		}
 	}
 	//=================================================================================================================
@@ -334,13 +297,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"40"
-			}
+			"value"						"40"
 		}
 	}
 
@@ -356,7 +315,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"AbilityTextureName"			"ogre_magi_unrefined_fireblast"
 		"LinkedAbility"					"ogre_magi_immolate"
 		"IsGrantedByScepter"			"1"
@@ -385,25 +344,16 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.0"
+			"duration"				"1.0"
 				"LinkedSpecialBonus"	"special_bonus_unique_ogre_magi_fireblast_bh_2"
-			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"225 275 325 375 425 475"
 				"LinkedSpecialBonus"	"special_bonus_unique_ogre_magi_fireblast_bh_1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_cost"				"60"
-			}
+			"mana_cost"				"60"
 		}
 	}
 
@@ -427,60 +377,26 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"multicast_2_times"		"60"
-			}
+			"multicast_2_times"		"60"
 
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"multicast_3_times"		"30"
-			}
+			"multicast_3_times"		"30"
 
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"multicast_4_times"		"15"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"fireblast_cooldown"	"6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"fireblast_range"		"100"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ignite_cast_range"		"450"
-			}
+			"multicast_4_times"		"15"
+			"fireblast_cooldown"	"6"
+			"fireblast_range"		"100"
+			"ignite_cast_range"		"450"
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"bloodlust_aoe"			"575"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bloodlust_cooldown"	"15"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"unrefined_fireblast_cooldown"	"6"
-			}
+			"bloodlust_cooldown"	"15"
+			"unrefined_fireblast_cooldown"	"6"
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"immolate_aoe"			"575"
-			}
 		}
 	}
 
@@ -497,7 +413,7 @@
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"AbilityTextureName"			"custom/ogre_magi_ignite_antipodean"
 		"LinkedAbility"					"ogre_magi_unrefined_fireblast_bh"
 		
@@ -534,24 +450,15 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"60 100 140 180 220 260 320"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"500"
-			}
+			"damage"				"60 100 140 180 220 260 320"
+			"radius"				"500"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"10"
 				"LinkedSpecialBonus"	"special_bonus_unique_ogre_magi_immolate_1"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -567,13 +474,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"15"
-			}
+			"value"						"15"
 		}
 	}
 	//=================================================================================================================
@@ -589,13 +492,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"25"
-			}
+			"value"						"25"
 		}
 	}
 }

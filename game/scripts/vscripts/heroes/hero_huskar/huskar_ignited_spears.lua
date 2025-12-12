@@ -33,7 +33,7 @@ function huskar_ignited_spears:LaunchSpear(target, bAttack)
 	local caster = self:GetCaster()
 	caster:SetProjectileModel("particles/empty_projectile.vcpf")
 	EmitSoundOn("Hero_Huskar.Burning_Spear.Cast", caster)
-	local costPct = self:GetTalentSpecialValueFor("health_cost")
+	local costPct = self:GetSpecialValueFor("health_cost")
 	local cost = caster:GetHealth() * costPct / 100
 	if cost > 0 then
 		local newHP = math.max( caster:GetHealth() - cost, 1 )
@@ -65,7 +65,7 @@ function huskar_ignited_spears:OnProjectileHit(target, position)
 end
 
 function huskar_ignited_spears:BurnTarget( target )
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	local burn = target:AddNewModifier(self:GetCaster(), self, "modifier_huskar_ignited_spears_debuff", {duration = duration})
 	burn:AddIndependentStack(duration)
 end
@@ -132,12 +132,12 @@ LinkLuaModifier("modifier_huskar_ignited_spears_debuff", "heroes/hero_huskar/hus
 
 if IsServer() then
 	function modifier_huskar_ignited_spears_debuff:OnCreated()
-		self.damage = self:GetTalentSpecialValueFor("burn_damage")
+		self.damage = self:GetSpecialValueFor("burn_damage")
 		self:StartIntervalThink(1)
 	end
 	
 	function modifier_huskar_ignited_spears_debuff:OnRefresh()
-		self.damage = self:GetTalentSpecialValueFor("burn_damage")
+		self.damage = self:GetSpecialValueFor("burn_damage")
 	end
 	
 	function modifier_huskar_ignited_spears_debuff:OnIntervalThink()

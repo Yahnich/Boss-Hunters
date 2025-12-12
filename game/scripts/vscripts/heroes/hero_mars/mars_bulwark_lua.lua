@@ -25,9 +25,9 @@ modifier_mars_bulwark_toggle = class(toggleModifierBaseClass)
 LinkLuaModifier( "modifier_mars_bulwark_toggle", "heroes/hero_mars/mars_bulwark_lua.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_mars_bulwark_toggle:OnCreated()
-	self.slow = self:GetTalentSpecialValueFor("slow")
-	self.threat = self:GetTalentSpecialValueFor("threat_amp")
-	self.projectile_chance = self:GetTalentSpecialValueFor("projectile_redirect")
+	self.slow = self:GetSpecialValueFor("slow")
+	self.threat = self:GetSpecialValueFor("threat_amp")
+	self.projectile_chance = self:GetSpecialValueFor("projectile_redirect")
 end
 
 function modifier_mars_bulwark_toggle:CheckState()
@@ -97,7 +97,7 @@ end
 
 function modifier_mars_bulwark_lua:GetModifierPhysical_ConstantBlock( params )
 	if params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
-		local damageBlock = self:GetTalentSpecialValueFor("physical_damage_reduction")
+		local damageBlock = self:GetSpecialValueFor("physical_damage_reduction")
 		local blocked = false
 		if params.attacker:IsAtAngleWithEntity(params.target, self.forward_angle, true) then
 			ParticleManager:FireParticle("particles/units/heroes/hero_mars/mars_shield_of_mars.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.target, {[0] = "attach_hitloc"})
@@ -132,7 +132,7 @@ function modifier_mars_bulwark_lua:GetModifierOverrideAbilitySpecialValue(params
 		local specialValue = params.ability_special_value
 		if specialValue == "physical_damage_reduction" then
 			local flBaseValue = params.ability:GetLevelSpecialValueNoOverride( specialValue, params.ability_special_level )
-			local totalValue = flBaseValue + params.ability:GetTalentSpecialValueFor("dmg_reduction_lvl") * (caster:GetLevel() - 1)
+			local totalValue = flBaseValue + params.ability:GetSpecialValueFor("dmg_reduction_lvl") * (caster:GetLevel() - 1)
 			return totalValue
 		end
 	end

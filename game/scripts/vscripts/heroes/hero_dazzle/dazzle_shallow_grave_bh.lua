@@ -5,15 +5,15 @@ function dazzle_shallow_grave_bh:GetManaCost( iLvl )
 end
 
 function dazzle_shallow_grave_bh:GetCastRange( target, position )
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function dazzle_shallow_grave_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local scepterDuration = duration + self:GetTalentSpecialValueFor("scepter_duration_extension")
+	local radius = self:GetSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("duration")
+	local scepterDuration = duration + self:GetSpecialValueFor("scepter_duration_extension")
 	
 	caster:EmitSound("Hero_Dazzle.Shallow_Grave")
 	for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do

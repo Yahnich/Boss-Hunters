@@ -17,7 +17,7 @@ function death_prophet_spirit_siphon_bh:GetBehavior()
 end
 
 function death_prophet_spirit_siphon_bh:AbilityCharges()
-	return self:GetTalentSpecialValueFor("max_charges")
+	return self:GetSpecialValueFor("max_charges")
 end
 
 function death_prophet_spirit_siphon_bh:GetIntrinsicModifierName()
@@ -32,12 +32,12 @@ function death_prophet_spirit_siphon_bh:OnSpellStart()
 	if self:GetCaster():HasTalent("special_bonus_unique_death_prophet_spirit_siphon_2") then
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self:GetTrueCastRange() ) ) do
 			if not enemy:TriggerSpellAbsorb(self) then 
-				enemy:AddNewModifier(caster, self, "modifier_death_prophet_spirit_siphon_bh_debuff", {duration = self:GetTalentSpecialValueFor("haunt_duration")})
+				enemy:AddNewModifier(caster, self, "modifier_death_prophet_spirit_siphon_bh_debuff", {duration = self:GetSpecialValueFor("haunt_duration")})
 			end
 		end
 	else
 		if target:TriggerSpellAbsorb(self) then return end
-		target:AddNewModifier(caster, self, "modifier_death_prophet_spirit_siphon_bh_debuff", {duration = self:GetTalentSpecialValueFor("haunt_duration")})
+		target:AddNewModifier(caster, self, "modifier_death_prophet_spirit_siphon_bh_debuff", {duration = self:GetSpecialValueFor("haunt_duration")})
 	end
 end
 
@@ -45,14 +45,14 @@ modifier_death_prophet_spirit_siphon_bh_debuff = class({})
 LinkLuaModifier( "modifier_death_prophet_spirit_siphon_bh_debuff", "heroes/hero_death_prophet/death_prophet_spirit_siphon_bh.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_death_prophet_spirit_siphon_bh_debuff:OnCreated()
-	self.slow = math.abs( self:GetTalentSpecialValueFor("movement_slow") ) * (-1)
+	self.slow = math.abs( self:GetSpecialValueFor("movement_slow") ) * (-1)
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_death_prophet_spirit_siphon_1")
 	if IsServer() then
-		self.damage = self:GetTalentSpecialValueFor("base_damage") * ( 1 + self:GetCaster():GetSpellAmplification(false) ) + self:GetParent():GetMaxHealth() * self:GetTalentSpecialValueFor("damage_pct") / 100
+		self.damage = self:GetSpecialValueFor("base_damage") * ( 1 + self:GetCaster():GetSpellAmplification(false) ) + self:GetParent():GetMaxHealth() * self:GetSpecialValueFor("damage_pct") / 100
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
 		local ability = self:GetAbility()
-		self.range = self:GetAbility():GetTrueCastRange() + self:GetTalentSpecialValueFor("siphon_buffer")
+		self.range = self:GetAbility():GetTrueCastRange() + self:GetSpecialValueFor("siphon_buffer")
 		self.nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_death_prophet/death_prophet_spiritsiphon.vpcf", PATTACH_CUSTOMORIGIN, self:GetCaster() )
 		ParticleManager:SetParticleControlEnt(self.nFX, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true)
 		ParticleManager:SetParticleControlEnt(self.nFX, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
@@ -70,14 +70,14 @@ function modifier_death_prophet_spirit_siphon_bh_debuff:OnCreated()
 end
 
 function modifier_death_prophet_spirit_siphon_bh_debuff:OnRefresh()
-	self.slow = math.abs( self:GetTalentSpecialValueFor("movement_slow") ) * (-1)
+	self.slow = math.abs( self:GetSpecialValueFor("movement_slow") ) * (-1)
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_death_prophet_spirit_siphon_1")
 	if IsServer() then
-		self.damage = self:GetTalentSpecialValueFor("base_damage") * ( 1 + self:GetCaster():GetSpellAmplification(false) ) + self:GetParent():GetMaxHealth() * self:GetTalentSpecialValueFor("damage_pct") / 100
+		self.damage = self:GetSpecialValueFor("base_damage") * ( 1 + self:GetCaster():GetSpellAmplification(false) ) + self:GetParent():GetMaxHealth() * self:GetSpecialValueFor("damage_pct") / 100
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
 		local ability = self:GetAbility()
-		self.range = self:GetAbility():GetTrueCastRange() + self:GetTalentSpecialValueFor("siphon_buffer")
+		self.range = self:GetAbility():GetTrueCastRange() + self:GetSpecialValueFor("siphon_buffer")
 		if self.talent1 then
 			local damage = self.damage * self:GetRemainingTime()
 			local heal = ability:DealDamage( caster, parent, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
@@ -126,8 +126,8 @@ LinkLuaModifier( "modifier_death_prophet_spirit_siphon_bh_charges", "heroes/hero
 if IsServer() then
     function modifier_death_prophet_spirit_siphon_bh_charges:Update()
 		local caster = self:GetCaster()
-		self.kv.replenish_time = self:GetTalentSpecialValueFor("charge_restore_time")
-		self.kv.max_count = math.floor( self:GetTalentSpecialValueFor("max_charges") )
+		self.kv.replenish_time = self:GetSpecialValueFor("charge_restore_time")
+		self.kv.max_count = math.floor( self:GetSpecialValueFor("max_charges") )
 		if self:GetStackCount() == self.kv.max_count then
 			self:SetDuration(-1, true)
 		elseif self:GetStackCount() > self.kv.max_count then
@@ -147,9 +147,9 @@ if IsServer() then
 
     function modifier_death_prophet_spirit_siphon_bh_charges:OnCreated()
 		kv = {
-			max_count = math.floor( self:GetTalentSpecialValueFor("max_charges") ),
-			replenish_time = self:GetTalentSpecialValueFor("charge_restore_time"),
-			start_count = math.floor( self:GetTalentSpecialValueFor("max_charges") )
+			max_count = math.floor( self:GetSpecialValueFor("max_charges") ),
+			replenish_time = self:GetSpecialValueFor("charge_restore_time"),
+			start_count = math.floor( self:GetSpecialValueFor("max_charges") )
 		}
         self:SetStackCount(kv.start_count or kv.max_count)
         self.kv = kv
@@ -162,8 +162,8 @@ if IsServer() then
     end
 	
 	function modifier_death_prophet_spirit_siphon_bh_charges:OnRefresh()
-		self.kv.max_count = math.floor( self:GetTalentSpecialValueFor("max_charges") )
-		self.kv.replenish_time = self:GetTalentSpecialValueFor("charge_restore_time")
+		self.kv.max_count = math.floor( self:GetSpecialValueFor("max_charges") )
+		self.kv.replenish_time = self:GetSpecialValueFor("charge_restore_time")
         if self:GetStackCount() ~= self.kv.max_count then
 			self:IncrementStackCount()
             self:Update()
@@ -180,8 +180,8 @@ if IsServer() then
 
     function modifier_death_prophet_spirit_siphon_bh_charges:OnAbilityFullyCast(params)
         if params.unit == self:GetParent() then
-			self.kv.replenish_time = self:GetTalentSpecialValueFor("charge_restore_time")
-			self.kv.max_count = math.floor( self:GetTalentSpecialValueFor("max_charges") )
+			self.kv.replenish_time = self:GetSpecialValueFor("charge_restore_time")
+			self.kv.max_count = math.floor( self:GetSpecialValueFor("max_charges") )
 			
             local ability = params.ability
             if params.ability == self:GetAbility() then

@@ -41,6 +41,6 @@ function ogre_magi_fireblast_bh:Fireblast(target)
 				ParticleManager:SetParticleControl(nfx, 1, target:GetAbsOrigin())
 				ParticleManager:ReleaseParticleIndex(nfx)
 	if target:TriggerSpellAbsorb(self) then return end
-	self:Stun(target, self:GetTalentSpecialValueFor("duration"), false)
-	self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {}, 0)
+	self:Stun(target, self:GetSpecialValueFor("duration"), false)
+	self:DealDamage(caster, target, self:GetSpecialValueFor("damage"), {}, 0)
 end

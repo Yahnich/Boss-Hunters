@@ -52,8 +52,8 @@ function modifier_antimage_magus_breaker:OnCreated()
 end
 
 function modifier_antimage_magus_breaker:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("damage_on_hit")
-	self.duration = self:GetTalentSpecialValueFor("duration")
+	self.damage = self:GetSpecialValueFor("damage_on_hit")
+	self.duration = self:GetSpecialValueFor("duration")
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_antimage_magus_breaker_2")
 	self.talent1Val = self:GetCaster():FindTalentValue("special_bonus_unique_antimage_magus_breaker_2") / 100
@@ -89,7 +89,7 @@ modifier_antimage_magus_breaker_debuff = class({})
 LinkLuaModifier( "modifier_antimage_magus_breaker_debuff", "heroes/hero_antimage/antimage_magus_breaker", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_antimage_magus_breaker_debuff:OnCreated()
-	self.spell_amp = self:GetTalentSpecialValueFor("spell_amp_red")
+	self.spell_amp = self:GetSpecialValueFor("spell_amp_red")
 end
 
 function modifier_antimage_magus_breaker_debuff:OnRefresh()

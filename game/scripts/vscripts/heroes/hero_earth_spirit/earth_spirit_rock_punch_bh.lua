@@ -41,7 +41,7 @@ function earth_spirit_rock_punch_bh:IsHiddenWhenStolen()
 end
 
 function earth_spirit_rock_punch_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function earth_spirit_rock_punch_bh:OnAbilityPhaseStart()
@@ -81,12 +81,12 @@ function earth_spirit_rock_punch_bh:OnSpellStart()
 		end
 	end
 	
-	local distance = self:GetTalentSpecialValueFor("distance")
+	local distance = self:GetSpecialValueFor("distance")
 	if target:GetName() == "npc_dota_earth_spirit_stone" then
-		distance = self:GetTalentSpecialValueFor("remnant_distance")
+		distance = self:GetSpecialValueFor("remnant_distance")
 	end
-	local duration = distance / self:GetTalentSpecialValueFor("speed")
-	local damage = self:GetTalentSpecialValueFor("rock_damage")
+	local duration = distance / self:GetSpecialValueFor("speed")
+	local damage = self:GetSpecialValueFor("rock_damage")
 	
 	target:ApplyKnockBack(caster:GetAbsOrigin(), duration, duration, distance, 0, caster, self, not caster:IsSameTeam(target) )
 	
@@ -121,9 +121,9 @@ modifier_rock_push = class({})
 LinkLuaModifier( "modifier_rock_push", "heroes/hero_earth_spirit/earth_spirit_rock_punch_bh", LUA_MODIFIER_MOTION_NONE )
 function modifier_rock_push:OnCreated(table)
 	if IsServer() then
-		self.radius = self:GetTalentSpecialValueFor("radius")
-		self.damage = self:GetTalentSpecialValueFor("rock_damage")
-		self.duration = self:GetTalentSpecialValueFor("slow_duration")
+		self.radius = self:GetSpecialValueFor("radius")
+		self.damage = self:GetSpecialValueFor("rock_damage")
+		self.duration = self:GetSpecialValueFor("slow_duration")
 		
 		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_earth_spirit/espirit_geomagentic_target_sphere.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControlForward( self.nfx, 3, CalculateDirection(self:GetParent(), self:GetCaster() ) )
@@ -175,7 +175,7 @@ function modifier_rock_punch_slow:OnCreated()
 end
 
 function modifier_rock_punch_slow:OnRefresh()
-	self.slow = self:GetTalentSpecialValueFor("slow") * (-1)
+	self.slow = self:GetSpecialValueFor("slow") * (-1)
 end
 
 function modifier_rock_punch_slow:DeclareFunctions()

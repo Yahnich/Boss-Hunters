@@ -16,11 +16,11 @@ end
 
 modifier_pango_heart_handle = class({})
 function modifier_pango_heart_handle:OnCreated()
-	self.duration = self:GetTalentSpecialValueFor("duration")
+	self.duration = self:GetSpecialValueFor("duration")
 end
 
 function modifier_pango_heart_handle:OnRefresh()
-	self.duration = self:GetTalentSpecialValueFor("duration")
+	self.duration = self:GetSpecialValueFor("duration")
 end
 
 function modifier_pango_heart_handle:DeclareFunctions()
@@ -33,7 +33,7 @@ function modifier_pango_heart_handle:OnAttackLanded(params)
 		local attacker = params.attacker
 		local target = params.target
 
-		self.chance = self:GetTalentSpecialValueFor("chance")
+		self.chance = self:GetSpecialValueFor("chance")
 		if attacker == caster and self:RollPRNG(self.chance) then
 			local procType = RandomInt( 1, 3 )
 			EmitSoundOn("Hero_Pangolier.LuckyShot.Proc", target)
@@ -83,11 +83,11 @@ modifier_pango_lucky_shot_armor = class({})
 LinkLuaModifier("modifier_pango_lucky_shot_armor", "heroes/hero_pango/pango_heart", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_pango_lucky_shot_armor:OnCreated()
-	self.reduction = self:GetTalentSpecialValueFor("armor_reduc")
+	self.reduction = self:GetSpecialValueFor("armor_reduc")
 end
 
 function modifier_pango_lucky_shot_armor:OnRefresh(table)
-	self.reduction = self:GetTalentSpecialValueFor("armor_reduc")
+	self.reduction = self:GetSpecialValueFor("armor_reduc")
 end
 
 function modifier_pango_lucky_shot_armor:DeclareFunctions()
@@ -114,11 +114,11 @@ modifier_pango_lucky_shot_moveslow = class({})
 LinkLuaModifier("modifier_pango_lucky_shot_moveslow", "heroes/hero_pango/pango_heart", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_pango_lucky_shot_moveslow:OnCreated()
-	self.slow = self:GetTalentSpecialValueFor("slow_pct")
+	self.slow = self:GetSpecialValueFor("slow_pct")
 end
 
 function modifier_pango_lucky_shot_moveslow:OnRefresh(table)
-	self.slow = self:GetTalentSpecialValueFor("slow_pct")
+	self.slow = self:GetSpecialValueFor("slow_pct")
 end
 
 function modifier_pango_lucky_shot_moveslow:DeclareFunctions()
@@ -145,11 +145,11 @@ modifier_pango_lucky_shot_attackslow = class({})
 LinkLuaModifier("modifier_pango_lucky_shot_attackslow", "heroes/hero_pango/pango_heart", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_pango_lucky_shot_attackslow:OnCreated()
-	self.as = self:GetTalentSpecialValueFor("attack_slow")
+	self.as = self:GetSpecialValueFor("attack_slow")
 end
 
 function modifier_pango_lucky_shot_attackslow:OnRefresh(table)
-	self.as = self:GetTalentSpecialValueFor("attack_slow")
+	self.as = self:GetSpecialValueFor("attack_slow")
 end
 
 function modifier_pango_lucky_shot_attackslow:DeclareFunctions()

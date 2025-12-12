@@ -5,16 +5,16 @@ function pugna_nether_blast_bh:IsHiddenWhenStolen()
 end
 
 function pugna_nether_blast_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function pugna_nether_blast_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
 	
-	local delay = self:GetTalentSpecialValueFor("delay")
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local damage = self:GetTalentSpecialValueFor("blast_damage")
+	local delay = self:GetSpecialValueFor("delay")
+	local radius = self:GetSpecialValueFor("radius")
+	local damage = self:GetSpecialValueFor("blast_damage")
 	
 	local hasTalent = caster:HasTalent("special_bonus_unique_pugna_nether_blast_2")
 	local stunDur = caster:FindTalentValue("special_bonus_unique_pugna_nether_blast_2", "stun")

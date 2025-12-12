@@ -38,7 +38,7 @@ function kotl_illuminate:GetChannelTime()
     if self:GetCaster():HasScepter() or self:GetCaster():HasModifier("modifier_kotl_illuminate") then
         return 0
     end
-    return self:GetTalentSpecialValueFor("max_channel")
+    return self:GetSpecialValueFor("max_channel")
 end
 
 function kotl_illuminate:GetChannelAnimation()
@@ -50,7 +50,7 @@ function kotl_illuminate:OnSpellStart()
     
     EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Charge", caster)
 
-	local thinker = self:GetTalentSpecialValueFor("max_channel") / self:GetTalentSpecialValueFor("max_horse")
+	local thinker = self:GetSpecialValueFor("max_channel") / self:GetSpecialValueFor("max_horse")
 	self.hitUnits = {}
     if caster:HasModifier("modifier_kotl_illuminate") then
         EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Discharge", caster)
@@ -66,8 +66,8 @@ function kotl_illuminate:OnSpellStart()
             self.castPoint = caster:GetAbsOrigin()
 
             self:EndCooldown()
-            caster:AddNewModifier(caster, self, "modifier_kotl_illuminate", {Duration = self:GetTalentSpecialValueFor("max_channel")})
-            self.spirit = caster:CreateSummon("npc_kotl_spirit", caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("max_channel"))
+            caster:AddNewModifier(caster, self, "modifier_kotl_illuminate", {Duration = self:GetSpecialValueFor("max_channel")})
+            self.spirit = caster:CreateSummon("npc_kotl_spirit", caster:GetAbsOrigin(), self:GetSpecialValueFor("max_channel"))
             self.spirit:AddNewModifier(caster, self, "modifier_kotl_illuminate_spirit", {})
             self.spirit:StartGesture(ACT_DOTA_CAST_ABILITY_1)
             self.spirit:SetForwardVector(self.dir)
@@ -149,7 +149,7 @@ function kotl_illuminate:OnProjectileHit(hTarget, vLocation)
     if hTarget and not self.hitUnits[hTarget] then
         if hTarget:GetTeam() == caster:GetTeam() then
 			EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Target.Secondary", hTarget)
-			hTarget:HealEvent(self:GetTalentSpecialValueFor("heal_per_horse"), self, caster)
+			hTarget:HealEvent(self:GetSpecialValueFor("heal_per_horse"), self, caster)
         elseif hTarget:GetTeam() ~= caster:GetTeam() and not hTarget:TriggerSpellAbsorb( self ) then
 			EmitSoundOn("Hero_KeeperOfTheLight.Illuminate.Target", hTarget)
             ParticleManager:FireParticle("particles/units/heroes/hero_keeper_of_the_light/kotl_illuminate_impact_hero.vpcf", PATTACH_POINT, hTarget, {})
@@ -159,7 +159,7 @@ function kotl_illuminate:OnProjectileHit(hTarget, vLocation)
                 hTarget:Daze(self, caster, duration)
             end
 
-            self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage_per_horse"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+            self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage_per_horse"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
         end
 		self.hitUnits[hTarget] = true
     end
@@ -170,8 +170,8 @@ function kotl_illuminate:LaunchHorses(hCaster, vLocation, direction)
 
     local spawn_point = vLocation
 
-    local speed = self:GetTalentSpecialValueFor("speed")
-    local radius = self:GetTalentSpecialValueFor("radius")
+    local speed = self:GetSpecialValueFor("speed")
+    local radius = self:GetSpecialValueFor("radius")
     local distance = self:GetTrueCastRange()
 	
 	local rightDir = RotateVector2D( direction, ToRadians( -90 ) )
@@ -180,7 +180,7 @@ function kotl_illuminate:LaunchHorses(hCaster, vLocation, direction)
 
 	self.count = math.max( 1, math.floor( self.count + 0.5 ) )
 	if self.count % 2 == 1 then
-		self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, distance, radius, {origin=firstHorse, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
+		self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", vel, distance, radius, {origin=firstHorse, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetSpecialValueFor("vision_radius"))
 	end
 	if self.count / 2 > 0 then
 		local prevLeft = spawn_point
@@ -194,8 +194,8 @@ function kotl_illuminate:LaunchHorses(hCaster, vLocation, direction)
 			local right_vel = RotateVector2D(vel, ToRadians( -5 ) * i ) * speed
 			prevRight = right_Point
 			
-			self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", left_vel, distance, radius, {origin=left_Point, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
-			self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", right_vel, distance, radius, {origin=right_Point, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
+			self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", left_vel, distance, radius, {origin=left_Point, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetSpecialValueFor("vision_radius"))
+			self:FireLinearProjectile("particles/units/heroes/hero_kotl/kotl_illuminate_horsey.vpcf", right_vel, distance, radius, {origin=right_Point, team = DOTA_UNIT_TARGET_TEAM_BOTH}, false, true, self:GetSpecialValueFor("vision_radius"))
 		end
 	end
 end

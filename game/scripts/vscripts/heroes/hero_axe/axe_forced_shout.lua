@@ -19,18 +19,18 @@ function axe_forced_shout:OnSpellStart()
 
 	EmitSoundOn("Hero_Axe.Berserkers_Call", self:GetCaster())
 
-	local nfx = ParticleManager:FireParticle("particles/units/heroes/hero_axe/axe_beserkers_call_owner.vpcf", PATTACH_POINT_FOLLOW, caster, {[0] = caster:GetAbsOrigin(), [1] = "attach_mouth", [2] = Vector(self:GetTalentSpecialValueFor("radius"),0,0)})
+	local nfx = ParticleManager:FireParticle("particles/units/heroes/hero_axe/axe_beserkers_call_owner.vpcf", PATTACH_POINT_FOLLOW, caster, {[0] = caster:GetAbsOrigin(), [1] = "attach_mouth", [2] = Vector(self:GetSpecialValueFor("radius"),0,0)})
 	
-	caster:AddNewModifier(caster,self,"modifier_forced_shout",{Duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster,self,"modifier_forced_shout",{Duration = self:GetSpecialValueFor("duration")})
 end
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 modifier_forced_shout = class({})
 function modifier_forced_shout:OnCreated(table)
-	-- self.armor = self:GetCaster():GetPhysicalArmorValue(false) + self:GetCaster():GetPhysicalArmorValue(false) * self:GetTalentSpecialValueFor("armor_bonus")/100
-	self.armor = self:GetTalentSpecialValueFor("armor_bonus_base")
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	-- self.armor = self:GetCaster():GetPhysicalArmorValue(false) + self:GetCaster():GetPhysicalArmorValue(false) * self:GetSpecialValueFor("armor_bonus")/100
+	self.armor = self:GetSpecialValueFor("armor_bonus_base")
+	self.radius = self:GetSpecialValueFor("radius")
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_axe_forced_shout_1")
 	self.talent1Val = self:GetCaster():FindTalentValue("special_bonus_unique_axe_forced_shout_1")

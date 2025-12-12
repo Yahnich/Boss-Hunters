@@ -47,7 +47,7 @@ function tech_drastic:OnChannelFinish(bInterrupted)
 			EmitSoundOn("NukeExplosion", caster)
 
 			if enemy:IsAlive() and not enemy:TriggerSpellAbsorb( self ) then
-				self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+				self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, 0)
 			end
 		end
 		CreateModifierThinker(caster, self, "modifier_drastic_fallout", {Duration = self:GetSpecialValueFor("fallout_duration")}, caster:GetAbsOrigin(), caster:GetTeam(), false)
@@ -108,7 +108,7 @@ function modifier_drastic_fallout_poison:OnCreated(table)
 	self.mSlow = self:GetCaster():FindTalentValue("special_bonus_unique_tech_drastic_2")
 	self.aSlow = self:GetCaster():FindTalentValue("special_bonus_unique_tech_drastic_2", "as")
 	if IsServer() then
-		self.damage = self:GetTalentSpecialValueFor("max_health_damage")/100
+		self.damage = self:GetSpecialValueFor("max_health_damage")/100
 		self:StartIntervalThink(1.0)
 	end
 end

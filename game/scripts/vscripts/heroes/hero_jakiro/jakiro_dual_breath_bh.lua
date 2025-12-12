@@ -21,7 +21,7 @@ function jakiro_dual_breath_bh:OnSpellStart()
 
 	local direction = CalculateDirection(point, caster:GetAbsOrigin())
 	local speed = 1050
-	local range = self:GetTrueCastRange() + self:GetTalentSpecialValueFor("extra_travel_distance")
+	local range = self:GetTrueCastRange() + self:GetSpecialValueFor("extra_travel_distance")
 
 	--Frost Breath
 	--/////////////////////////////////////////////////
@@ -35,7 +35,7 @@ function jakiro_dual_breath_bh:OnSpellStart()
 		ParticleManager:ClearParticle(nfx)
 	end)
 	
-	self.frost = self:FireLinearProjectile("", direction*speed, range, self:GetTalentSpecialValueFor("start_radius"), {width_end = self:GetTalentSpecialValueFor("end_radius")}, false, true, 300)
+	self.frost = self:FireLinearProjectile("", direction*speed, range, self:GetSpecialValueFor("start_radius"), {width_end = self:GetSpecialValueFor("end_radius")}, false, true, 300)
 
 	--Fire Breath
 	--/////////////////////////////////////////////////
@@ -51,7 +51,7 @@ function jakiro_dual_breath_bh:OnSpellStart()
 			ParticleManager:ClearParticle(nfx)
 		end)
 
-		self.fire = self:FireLinearProjectile("", direction*speed, range, self:GetTalentSpecialValueFor("start_radius"), {width_end = self:GetTalentSpecialValueFor("end_radius")}, false, true, 300)
+		self.fire = self:FireLinearProjectile("", direction*speed, range, self:GetSpecialValueFor("start_radius"), {width_end = self:GetSpecialValueFor("end_radius")}, false, true, 300)
 	end)
 end
 
@@ -59,9 +59,9 @@ function jakiro_dual_breath_bh:OnProjectileHitHandle(hTarget, vLocation, iProjec
 	local caster = self:GetCaster()
 	if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
 		if iProjectileHandle == self.frost then
-			hTarget:AddChill(self, caster, self:GetTalentSpecialValueFor("duration"), self:GetTalentSpecialValueFor("chill_amount"))
+			hTarget:AddChill(self, caster, self:GetSpecialValueFor("duration"), self:GetSpecialValueFor("chill_amount"))
 		elseif iProjectileHandle == self.fire then
-			hTarget:AddNewModifier(caster, self, "modifier_jakiro_dual_breath_bh_burn", {Duration = self:GetTalentSpecialValueFor("duration")})
+			hTarget:AddNewModifier(caster, self, "modifier_jakiro_dual_breath_bh_burn", {Duration = self:GetSpecialValueFor("duration")})
 		end
 	end
 	local convergence = caster:FindAbilityByName("jakiro_elemental_convergence")
@@ -79,7 +79,7 @@ end
 
 modifier_jakiro_dual_breath_bh_burn = class({})
 function modifier_jakiro_dual_breath_bh_burn:OnCreated(table)
-	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.damage = self:GetSpecialValueFor("damage")
 	if IsServer() then
 		EmitSoundOn("Hero_Jakiro.DualBreath.Burn", self:GetParent())
 		self:StartIntervalThink(0.5)

@@ -17,13 +17,13 @@ end
 
 function aa_chilling_touch:OnProjectileHit( target, position )
 	local caster = self:GetCaster()
-	local damage = self:GetTalentSpecialValueFor("bonus_damage")
+	local damage = self:GetSpecialValueFor("bonus_damage")
 	if caster:HasTalent("special_bonus_unique_aa_chilling_touch_1") and target:IsFrozenGeneric() then
 		damage = damage * caster:FindTalentValue("special_bonus_unique_aa_chilling_touch_1")
 	end
 	self:DealDamage(caster, target, damage, {damage_type=DAMAGE_TYPE_MAGICAL, damage_flags=DOTA_DAMAGE_FLAG_PROPERTY_FIRE}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-	local chill = self:GetTalentSpecialValueFor("chill")
-	target:AddChill(self, caster, self:GetTalentSpecialValueFor("chill_duration"), chill )
+	local chill = self:GetSpecialValueFor("chill")
+	target:AddChill(self, caster, self:GetSpecialValueFor("chill_duration"), chill )
 end
 
 modifier_aa_chilling_touch_passive = class({})

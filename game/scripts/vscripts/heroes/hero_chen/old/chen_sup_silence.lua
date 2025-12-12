@@ -8,13 +8,13 @@ function chen_sup_silence:IsHiddenWhenStolen()
 end
 
 function chen_sup_silence:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function chen_sup_silence:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local radius = self:GetSpecialValueFor("radius")
 
 	EmitSoundOn("Brewmaster_Storm.DispelMagic", caster)
 
@@ -28,7 +28,7 @@ function chen_sup_silence:OnSpellStart()
 		else
 			intellect = caster:GetIntellect( false)
 		end
-		local damage = intellect * self:GetTalentSpecialValueFor("damage") / 100
+		local damage = intellect * self:GetSpecialValueFor("damage") / 100
 		self:DealDamage(caster, enemy, damage)
 		enemy:Silence(self, caster, self:GetSpecialValueFor("duration"))
 	end

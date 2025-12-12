@@ -19,7 +19,7 @@ function grimstroke_phantom:OnSpellStart()
 	self:FireTrackingProjectile("", self:GetCursorTarget(), 750, {}, DOTA_PROJECTILE_ATTACHMENT_HITLOCATION, false, false, 0)
 
 	local ghost = caster:CreateSummon("npc_dota_grimstroke_ink_creature", caster:GetAbsOrigin())
-	ghost:SetCoreHealth( self:GetTalentSpecialValueFor("hits_to_kill") )
+	ghost:SetCoreHealth( self:GetSpecialValueFor("hits_to_kill") )
 	ghost:AddNewModifier(caster, self, "modifier_grimstroke_phantom_one", {})
 end
 
@@ -46,7 +46,7 @@ function modifier_grimstroke_phantom_one:OnCreated(table)
 		local parent = self:GetParent()
 		self.target = self:GetAbility():GetCursorTarget()
 		
-		parent:SetThreat( self:GetTalentSpecialValueFor("threat_start") )
+		parent:SetThreat( self:GetSpecialValueFor("threat_start") )
 		parent:StartGesture(ACT_DOTA_RUN)
 
 		self.direction = CalculateDirection(self.target, parent)
@@ -54,18 +54,18 @@ function modifier_grimstroke_phantom_one:OnCreated(table)
 
 		self.contact = false
 
-		self.duration = self:GetTalentSpecialValueFor("duration")
+		self.duration = self:GetSpecialValueFor("duration")
 
 		self.speed = 750 * FrameTime()
 
-		self.attackRate = self:GetTalentSpecialValueFor("attack_rate")
-		self.dps = self:GetTalentSpecialValueFor("damage_per_second") * self.attackRate
-		self.burstDamage = self:GetTalentSpecialValueFor("damage_burst")
-		self.radius = self:GetTalentSpecialValueFor("radius")
-		self.threatGain = self:GetTalentSpecialValueFor("threat_atk")
-		self.bossDamage = self:GetTalentSpecialValueFor("boss_damage")
-		self.regDamage = self:GetTalentSpecialValueFor("base_damage")
-		self.minionDamage = self:GetTalentSpecialValueFor("minion_damage")
+		self.attackRate = self:GetSpecialValueFor("attack_rate")
+		self.dps = self:GetSpecialValueFor("damage_per_second") * self.attackRate
+		self.burstDamage = self:GetSpecialValueFor("damage_burst")
+		self.radius = self:GetSpecialValueFor("radius")
+		self.threatGain = self:GetSpecialValueFor("threat_atk")
+		self.bossDamage = self:GetSpecialValueFor("boss_damage")
+		self.regDamage = self:GetSpecialValueFor("base_damage")
+		self.minionDamage = self:GetSpecialValueFor("minion_damage")
 
 		self.totalDamage = 0
 
@@ -93,10 +93,10 @@ function modifier_grimstroke_phantom_one:OnIntervalThink()
 				parent:SetAbsOrigin(GetGroundPosition(parent:GetAbsOrigin(), parent) + self.direction * self.speed)
 			elseif not self.target:TriggerSpellAbsorb( self:GetAbility() ) then
 				self.contact = true
-				self.silenceModifier = self.target:Silence(self, caster, self:GetTalentSpecialValueFor("duration"), false)
+				self.silenceModifier = self.target:Silence(self, caster, self:GetSpecialValueFor("duration"), false)
 
 				if caster:HasTalent("special_bonus_unique_grimstroke_phantom_2") then
-					self.fearModifier = self.target:Fear(self, caster, self:GetTalentSpecialValueFor("duration"))
+					self.fearModifier = self.target:Fear(self, caster, self:GetSpecialValueFor("duration"))
 				end
 			else
 				self.spellBlocked = true

@@ -1,19 +1,11 @@
 kunkka_tidebringer_bh = class({})
-LinkLuaModifier("modifier_kunkka_tidebringer_bh_handle", "heroes/hero_kunkka/kunkka_tidebringer_bh", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_kunkka_tidebringer_bh", "heroes/hero_kunkka/kunkka_tidebringer_bh", LUA_MODIFIER_MOTION_NONE)
 
 function kunkka_tidebringer_bh:IsStealable()
     return false
 end
 
-function kunkka_tidebringer_bh:GetCooldown(iLvl)
-    local cooldown = self.BaseClass.GetCooldown(self, iLvl)
-    -- if self:GetCaster():HasTalent("special_bonus_unique_kunkka_tidebringer_bh_1") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_kunkka_tidebringer_bh_1") end
-    return cooldown
-end
-
 function kunkka_tidebringer_bh:GetCastRange(vLocation, hTarget)
-    return self:GetTalentSpecialValueFor("distance")
+    return self:GetSpecialValueFor("distance")
 end
 
 function kunkka_tidebringer_bh:GetIntrinsicModifierName()
@@ -21,6 +13,7 @@ function kunkka_tidebringer_bh:GetIntrinsicModifierName()
 end
 
 modifier_kunkka_tidebringer_bh_handle = class({})
+LinkLuaModifier("modifier_kunkka_tidebringer_bh_handle", "heroes/hero_kunkka/kunkka_tidebringer_bh", LUA_MODIFIER_MOTION_NONE)
 function modifier_kunkka_tidebringer_bh_handle:IsHidden() return true end
 function modifier_kunkka_tidebringer_bh_handle:IsDebuff() return false end
 
@@ -31,7 +24,7 @@ end
 function modifier_kunkka_tidebringer_bh_handle:OnIntervalThink()
     if IsServer() then
         if self:GetAbility():IsCooldownReady() and (not self:GetParent():HasModifier("modifier_kunkka_tidebringer_bh")) then
-			self.damage = self:GetTalentSpecialValueFor("damage_bonus")
+			self.damage = self:GetSpecialValueFor("damage_bonus")
             self:GetCaster():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_kunkka_tidebringer_bh", {})
 		elseif not self:GetAbility():IsCooldownReady() then
 			self.damage = 0
@@ -72,10 +65,10 @@ function modifier_kunkka_tidebringer_bh:OnAttackLanded(params)
         if params.attacker == self:GetCaster() and self:GetAbility():IsCooldownReady() then
             EmitSoundOn("Hero_Kunkka.Tidebringer.Attack", caster)
             ParticleManager:FireParticle("particles/units/heroes/hero_kunkka/kunkka_spell_tidebringer_b.vpcf", PATTACH_POINT, self:GetCaster(), {})
-            local damage = params.original_damage * self:GetTalentSpecialValueFor("damage")/100
-			talent1 = caster:HasTalent("special_bonus_unique_kunkka_tidebringer_bh_1")
-			t1Dur = caster:FindTalentValue("special_bonus_unique_kunkka_tidebringer_bh_1", "duration")
-			if caster:HasTalent("special_bonus_unique_kunkka_tidebringer_bh_2") then
+            local damage = params.original_damage * self:GetSpecialValueFor("damage")/100
+			local debuffDuration = caster:GetSpecialValueFor("armor_reduction_duration")
+			local globalRadius = self:GetSpecialValueFor("end_width") == -1
+			if globalRadius then
 				local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), -1)
 				for _,enemy in pairs(enemies) do
 					if enemy ~= params.target then
@@ -89,11 +82,11 @@ function modifier_kunkka_tidebringer_bh:OnAttackLanded(params)
 						self:GetAbility():DealDamage(caster, enemy, damage, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 					end
 					if talent1 and not enemy:IsNull() then
-						enemy:AddNewModifier(caster, self, "modifier_kunkka_tidebringer_bh_talent", {duration = t1Dur})
+						enemy:AddNewModifier(caster, self, "modifier_kunkka_tidebringer_bh_talent", {duration = debuffDuration})
 					end
 				end
 			else
-				local enemies = caster:FindEnemyUnitsInCone(caster:GetForwardVector(), caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("end_width"), self:GetTalentSpecialValueFor("distance"), {})
+				local enemies = caster:FindEnemyUnitsInCone(caster:GetForwardVector(), caster:GetAbsOrigin(), self:GetSpecialValueFor("end_width"), self:GetSpecialValueFor("distance"), {})
 				for _,enemy in pairs(enemies) do
 					if enemy ~= params.target then
 						EmitSoundOn("Hero_Kunkka.TidebringerDamage", caster)
@@ -106,7 +99,7 @@ function modifier_kunkka_tidebringer_bh:OnAttackLanded(params)
 						self:GetAbility():DealDamage(caster, enemy, damage, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, 0)
 					end
 					if talent1 and not enemy:IsNull() then
-						enemy:AddNewModifier(caster, self, "modifier_kunkka_tidebringer_bh_talent", {duration = t1Dur})
+						enemy:AddNewModifier(caster, self, "modifier_kunkka_tidebringer_bh_talent", {duration = debuffDuration})
 					end
 				end
 			end
@@ -118,10 +111,11 @@ function modifier_kunkka_tidebringer_bh:OnAttackLanded(params)
 end
 
 modifier_kunkka_tidebringer_bh_talent = class({})
+LinkLuaModifier("modifier_kunkka_tidebringer_bh", "heroes/hero_kunkka/kunkka_tidebringer_bh", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_kunkka_tidebringer_bh_talent", "heroes/hero_kunkka/kunkka_tidebringer_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_kunkka_tidebringer_bh_talent:OnCreated()
-	self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_kunkka_tidebringer_bh_1")
+	self.armor = self:GetSpecialValueFor("armor_reduction")
 end
 
 function modifier_kunkka_tidebringer_bh_talent:DeclareFunctions()

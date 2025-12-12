@@ -20,8 +20,8 @@ function modifier_troll_warlord_focus:OnCreated()
 end
 
 function modifier_troll_warlord_focus:OnRefresh()
-	self.ar = self:GetTalentSpecialValueFor("bonus_range")
-	self.axe_dmg = self:GetTalentSpecialValueFor("bonus_axe_dmg")
+	self.ar = self:GetSpecialValueFor("bonus_range")
+	self.axe_dmg = self:GetSpecialValueFor("bonus_axe_dmg")
 	self.axe_throw = self:GetCaster():FindAbilityByName("troll_warlord_axe_throw")
 	
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_focus_1")

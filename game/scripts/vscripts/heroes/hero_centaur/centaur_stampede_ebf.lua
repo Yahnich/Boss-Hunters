@@ -22,7 +22,7 @@ function centaur_stampede_ebf:OnSpellStart()
 	
 	EmitSoundOn("Hero_Centaur.Stampede.Cast", caster)
 	for _, ally in ipairs(allies) do
-		ally:AddNewModifier(caster, self, "modifier_centaur_stampede_ebf", {duration = self:GetTalentSpecialValueFor("duration")})
+		ally:AddNewModifier(caster, self, "modifier_centaur_stampede_ebf", {duration = self:GetSpecialValueFor("duration")})
 		ParticleManager:FireParticle("particles/units/heroes/hero_centaur/centaur_stampede_cast.vpcf", PATTACH_POINT_FOLLOW, ally)
 	end
 end
@@ -33,9 +33,9 @@ LinkLuaModifier("modifier_centaur_stampede_ebf", "heroes/hero_centaur/centaur_st
 if IsServer() then
 	function modifier_centaur_stampede_ebf:OnCreated()
 		self.hitTable = {}
-		self.radius = self:GetTalentSpecialValueFor("radius")
-		self.damage = self:GetTalentSpecialValueFor("base_damage") + self:GetCaster():GetStrength() * self:GetTalentSpecialValueFor("strength_damage") 
-		self.slowDuration = self:GetTalentSpecialValueFor("slow_duration")
+		self.radius = self:GetSpecialValueFor("radius")
+		self.damage = self:GetSpecialValueFor("base_damage") + self:GetCaster():GetStrength() * self:GetSpecialValueFor("strength_damage") 
+		self.slowDuration = self:GetSpecialValueFor("slow_duration")
 		self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_centaur_stampede_2")
 		self.talent1Dur = self:GetCaster():FindTalentValue("special_bonus_unique_centaur_stampede_1", "duration")
 		local oFX = ParticleManager:CreateParticle("particles/units/heroes/hero_centaur/centaur_stampede_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent())
@@ -50,9 +50,9 @@ if IsServer() then
 	
 	function modifier_centaur_stampede_ebf:OnRefresh()
 		self.hitTable = {}
-		self.radius = self:GetTalentSpecialValueFor("radius")
-		self.damage = self:GetTalentSpecialValueFor("base_damage") + self:GetCaster():GetStrength() * self:GetTalentSpecialValueFor("strength_damage") 
-		self.slowDuration = self:GetTalentSpecialValueFor("slow_duration")
+		self.radius = self:GetSpecialValueFor("radius")
+		self.damage = self:GetSpecialValueFor("base_damage") + self:GetCaster():GetStrength() * self:GetSpecialValueFor("strength_damage") 
+		self.slowDuration = self:GetSpecialValueFor("slow_duration")
 	end
 	
 	function modifier_centaur_stampede_ebf:OnIntervalThink()
@@ -113,7 +113,7 @@ function modifier_centaur_stampede_ebf_slow:OnCreated()
 end
 
 function modifier_centaur_stampede_ebf_slow:OnRefresh()
-	self.ms = self:GetTalentSpecialValueFor("slow_movement_speed") * (-1)
+	self.ms = self:GetSpecialValueFor("slow_movement_speed") * (-1)
 	self:GetParent():HookInModifier("GetModifierAttackSpeedBonusPercentage", self)
 end
 

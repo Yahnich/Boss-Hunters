@@ -13,7 +13,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -39,44 +39,16 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rock_damage"			"105 170 235 300 365 430 495"
+			"rock_damage"			"105 170 235 300 365 430 495"
 				"LinkedSpecialBonus"	"special_bonus_unique_earth_spirit_rock_punch_1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"slow"					"60 60 60 60 70 80 90"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"slow_duration"			"1.25 2.5 3.25 4 4 4 4"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"180"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"distance"				"500 600 700 800 800 800 800"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"remnant_distance"		"2000"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"900"
-			}
+			"slow"					"60 60 60 60 70 80 90"
+			"slow_duration"			"1.25 2.5 3.25 4 4 4 4"
+			"radius"				"180"
+			"distance"				"500 600 700 800 800 800 800"
+			"remnant_distance"		"2000"
+			"speed"					"900"
 		}
 	
 		"precache"
@@ -101,13 +73,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"175"
-			}
+			"value"					"175"
 		}
 	}
 	"special_bonus_unique_earth_spirit_rock_punch_2" 
@@ -120,23 +88,17 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"20"
-			}
+			"value"					"20"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration"				"10"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"375"
-			}
 		}
 	}
 	"earth_spirit_boulder_bh"
@@ -152,7 +114,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -178,53 +140,20 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"70 80 90 100 110 120 130"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.4 0.6 0.8 1 1 1 1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"remnant_stun"			"1.4 1.6 1.8 2 2 2 2"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"0.6"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"800"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"remnant_speed"			"1600"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"distance"				"800"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"remnant_distance"		"1600"
-			}
+			"damage"				"70 80 90 100 110 120 130"
+			"stun_duration"			"0.4 0.6 0.8 1 1 1 1"
+			"remnant_stun"			"1.4 1.6 1.8 2 2 2 2"
+			"delay"					"0.6"
+			"speed"					"800"
+			"remnant_speed"			"1600"
+			"distance"				"800"
+			"remnant_distance"		"1600"
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"collision_radius"		"150"
-			}
 		}
 	
 		"precache"
@@ -246,18 +175,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value2"				"3.5"
-			}
+			"value"					"2"
+			"value2"				"3.5"
 		}
 	}
 	"special_bonus_unique_earth_spirit_boulder_2" 
@@ -270,13 +191,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"earth_spirit_rock_pull_bh"
@@ -292,7 +209,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -317,28 +234,18 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"50 100 150 200 250 300 350"
-			}
+			"damage"				"50 100 150 200 250 300 350"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"target_damage"			"120 200 280 360 440 520 600"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"180"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"2 2.5 3 3.5 3.5 3.5 3.5"
-			}				
+			"duration"				"2 2.5 3 3.5 3.5 3.5 3.5"				
 		}
 	
 		"precache"
@@ -358,13 +265,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"special_bonus_unique_earth_spirit_rock_pull_2" 
@@ -377,13 +280,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"earth_spirit_rock_bh"
@@ -418,29 +317,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"325"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"rock_duration"			"120"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"charge_time"			"25"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"charges"				"7"
+			"radius"				"325"
+			"rock_duration"			"120"
+			"charge_time"			"25"
+			"charges"				"7"
 				"LinkedSpecialBonus"	"special_bonus_unique_earth_spirit_rock_3"
-			}
 		}
 	
 		"precache"
@@ -460,18 +343,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"75"
-			}
+			"value"					"75"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"500"
-			}
 		}
 	}
 	"special_bonus_unique_earth_spirit_rock_2" 
@@ -484,18 +362,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"0.5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"350"
-			}
+			"value"					"0.5"
+			"radius"				"350"
 		}
 	}
 	"special_bonus_unique_earth_spirit_rock_3" 
@@ -509,13 +379,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"3"
-			}
+			"value"					"3"
 		}
 	}
 	"earth_spirit_stone_rip_bh"
@@ -551,18 +417,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"225"
-			}
+			"damage"				"225"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"1000"
-			}
 		}
 	
 		"precache"
@@ -586,7 +447,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -610,38 +471,23 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"50 100 100 150 150 200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6 6 7 7 8 8"
-			}
+			"damage"				"50 100 100 150 150 200"
+			"duration"				"6 6 7 7 8 8"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"search_radius"			"400"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"refresh_radius"		"600"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"rock_explosion_delay"	"8.0"
-			}			
+			"rock_explosion_delay"	"8.0"			
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"tick_rate"				"0.5"
-			}							
+				"tick_rate"				"0.5"							
 		}
 	
 		"precache"
@@ -662,13 +508,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 }

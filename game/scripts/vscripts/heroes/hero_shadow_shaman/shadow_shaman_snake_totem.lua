@@ -3,10 +3,10 @@ shadow_shaman_snake_totem = class({})
 function shadow_shaman_snake_totem:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
-	for i = 1, self:GetTalentSpecialValueFor("ward_count") do
-		local ward = caster:CreateSummon("npc_dota_shadow_shaman_ward_1", position, self:GetTalentSpecialValueFor("duration"))
+	for i = 1, self:GetSpecialValueFor("ward_count") do
+		local ward = caster:CreateSummon("npc_dota_shadow_shaman_ward_1", position, self:GetSpecialValueFor("duration"))
 		ward:AddNewModifier(caster, self, "modifier_shadow_shaman_snake_totem_damage_aura", {})
-		local health = self:GetTalentSpecialValueFor("health")
+		local health = self:GetSpecialValueFor("health")
 		ward:SetBaseMaxHealth( health )
 		ward:SetMaxHealth( health )
 		ward:SetHealth( health )
@@ -33,7 +33,7 @@ LinkLuaModifier("modifier_shadow_shaman_snake_totem_damage_aura", "heroes/hero_s
 function modifier_shadow_shaman_snake_totem_damage_aura:OnCreated()
 	self.radius = self:GetCaster():FindTalentValue("special_bonus_unique_shadow_shaman_snake_totem_1")
 	self.scepter = self:GetCaster():HasScepter()
-	self.scepter_radius = self:GetTalentSpecialValueFor("scepter_range")
+	self.scepter_radius = self:GetSpecialValueFor("scepter_range")
 end
 
 function modifier_shadow_shaman_snake_totem_damage_aura:IsAura()
@@ -109,11 +109,11 @@ modifier_shadow_shaman_snake_totem_damage_buff = class({})
 LinkLuaModifier("modifier_shadow_shaman_snake_totem_damage_buff", "heroes/hero_shadow_shaman/shadow_shaman_snake_totem", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_shadow_shaman_snake_totem_damage_buff:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.damage = self:GetSpecialValueFor("damage")
 end
 
 function modifier_shadow_shaman_snake_totem_damage_buff:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.damage = self:GetSpecialValueFor("damage")
 end
 
 function modifier_shadow_shaman_snake_totem_damage_buff:DeclareFunctions()

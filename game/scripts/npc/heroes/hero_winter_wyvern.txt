@@ -16,7 +16,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"winter_wyvern_arctic_burn"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -42,59 +42,43 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"attack_range_bonus"			"175 275 375 475 475 475 475"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"burn_curr_hp"					"2"
+			"attack_range_bonus"			"175 275 375 475 475 475 475"
+			"burn_curr_hp"					"2"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"burn_damage"					"15 30 45 60 90 120 150"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"burn_duration"					"4.0"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"5 6 7 8 8 8 8"
-			}			
+				"duration"						"5 6 7 8 8 8 8"			
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"mana_cost_scepter"				"40"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"move_slow"						"-20 -25 -30 -35 -40 -45 -50"
-			}
 			"08"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"night_vision_bonus"			"400"
-			}
 			"09"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"projectile_speed_bonus"		"500"
-			}
 			"10"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"tree_destruction_radius"		"250"
-			}
 		}
 	
 		"precache"
@@ -120,13 +104,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"100"
-			}
+			"value"					"100"
 		}
 	}
 	"special_bonus_unique_winterw_arctic_sting_2" 
@@ -139,13 +119,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"33"
-			}
+			"value"					"33"
 		}
 	}
 	//=================================================================================================================
@@ -164,7 +140,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"winter_wyvern_splinter_blast"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 	
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -190,33 +166,16 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"100 180 260 340 420 500 580"
-			}
+			"damage"				"100 180 260 340 420 500 580"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"move_slow"				"-25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"slow_duration"			"4.0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"search_radius"			"500"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"1200"
-			}
+			"slow_duration"			"4.0"
+			"search_radius"			"500"
+			"range"					"1200"
 		}
 	
 		"precache"
@@ -238,13 +197,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"2.0"
-			}
+			"value"					"2.0"
 		}
 	}
 	"special_bonus_unique_winterw_frozen_splinter_2" 
@@ -257,13 +212,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"4"
-			}
+			"value"					"4"
 		}
 	}
 	//=================================================================================================================
@@ -280,7 +231,7 @@
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityTextureName"			"winter_wyvern_cold_embrace"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 	
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -307,23 +258,11 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_pct"				"1 2 3 4 4 4 4"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_base"				"12 24 36 48 50 52 54"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4.0"
-			}
+			"heal_pct"				"1 2 3 4 4 4 4"
+			"heal_base"				"12 24 36 48 50 52 54"
+			"duration"				"4.0"
 		}
 	
 		"precache"
@@ -344,23 +283,14 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"50"
-			}
+			"value"					"50"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"armor"					"50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4"
-			}
+			"duration"				"4"
 		}
 	}
 	"special_bonus_unique_winterw_frozen_ice_shell_2" 
@@ -373,13 +303,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	//=================================================================================================================
@@ -397,7 +323,7 @@
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityTextureName"			"winter_wyvern_winters_curse"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -427,24 +353,15 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_as"				"60 90 120 120 120 120"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3 3.5 4 4 4 4"
+			"bonus_as"				"60 90 120 120 120 120"
+			"duration"				"3 3.5 4 4 4 4"
 				"LinkedSpecialBonus"	"special_bonus_unique_winterw_winters_kiss_1"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"500 500 500 600 700 800"
-			}
 		}
 	
 		"precache"
@@ -469,13 +386,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1.5"
-			}
+			"value"					"1.5"
 		}
 	}
 	"special_bonus_unique_winterw_winters_kiss_2" 
@@ -488,13 +401,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"35"
-			}
+			"value"					"35"
 		}
 	}
 }

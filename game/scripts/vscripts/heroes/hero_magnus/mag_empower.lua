@@ -16,7 +16,7 @@ function modifier_mag_empower:GetAuraDuration()
 end
 
 function modifier_mag_empower:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("aura_radius")
+    return self:GetSpecialValueFor("aura_radius")
 end
 
 function modifier_mag_empower:GetAuraSearchFlags()
@@ -53,16 +53,16 @@ function modifier_mag_empower_effect:DeclareFunctions()
 end
 
 function modifier_mag_empower_effect:GetModifierBaseDamageOutgoing_Percentage()
-    return self:GetTalentSpecialValueFor("bonus_damage")
+    return self:GetSpecialValueFor("bonus_damage")
 end
 
 function modifier_mag_empower_effect:OnAttackLanded(params)
     if params.attacker == self:GetParent() and params.target:IsAlive() then
     	ParticleManager:FireParticle("particles/units/heroes/hero_magnataur/magnataur_empower_cleave_effect.vpcf", PATTACH_POINT, params.target, {[0]=params.target:GetAbsOrigin()})
-    	local enemies = params.attacker:FindEnemyUnitsInRadius(params.target:GetAbsOrigin(), self:GetTalentSpecialValueFor("cleave_radius"))
+    	local enemies = params.attacker:FindEnemyUnitsInRadius(params.target:GetAbsOrigin(), self:GetSpecialValueFor("cleave_radius"))
     	for _,enemy in pairs(enemies) do
     		if enemy ~= params.target then
-    			local damage = params.damage*self:GetTalentSpecialValueFor("cleave_damage")/100
+    			local damage = params.damage*self:GetSpecialValueFor("cleave_damage")/100
     			self:GetAbility():DealDamage(params.attacker, enemy, damage, {damage_type = DAMAGE_TYPE_PURE}, 0)
     		end
     	end

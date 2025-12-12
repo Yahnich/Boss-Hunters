@@ -1,7 +1,7 @@
 slardar_slithereen_crush_bh = class({})
 
 function slardar_slithereen_crush_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("crush_radius")
+	return self:GetSpecialValueFor("crush_radius")
 end
 
 function slardar_slithereen_crush_bh:GetBehavior()
@@ -16,7 +16,7 @@ function slardar_slithereen_crush_bh:GetCastRange( target, position )
 	if self:GetCaster():HasTalent("special_bonus_unique_slardar_slithereen_crush_1") then
 		return self:GetCaster():FindTalentValue("special_bonus_unique_slardar_slithereen_crush_1")
 	else
-		return self:GetTalentSpecialValueFor("crush_radius")
+		return self:GetSpecialValueFor("crush_radius")
 	end
 end
 
@@ -24,11 +24,11 @@ function slardar_slithereen_crush_bh:OnSpellStart(bForced)
 	local caster = self:GetCaster()
 
 	if not caster:HasTalent("special_bonus_unique_slardar_slithereen_crush_1") or bForced or ( caster:HasTalent("special_bonus_unique_slardar_slithereen_crush_1") and CalculateDistance( caster, self:GetCursorPosition() ) < 300 ) then
-		local radius = self:GetTalentSpecialValueFor("crush_radius")
-		local damage = self:GetTalentSpecialValueFor("damage")
-		local stunDur = self:GetTalentSpecialValueFor("stun_duration")
-		local scepter_duration = self:GetTalentSpecialValueFor("scepter_duration")
-		local slowDur = self:GetTalentSpecialValueFor("crush_extra_slow_duration")
+		local radius = self:GetSpecialValueFor("crush_radius")
+		local damage = self:GetSpecialValueFor("damage")
+		local stunDur = self:GetSpecialValueFor("stun_duration")
+		local scepter_duration = self:GetSpecialValueFor("scepter_duration")
+		local slowDur = self:GetSpecialValueFor("crush_extra_slow_duration")
 		
 		local haze = caster:FindAbilityByName("slardar_amplify_damage_bh")
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
@@ -54,8 +54,8 @@ modifier_slardar_slithereen_crush_bh = class({})
 LinkLuaModifier( "modifier_slardar_slithereen_crush_bh", "heroes/hero_slardar/slardar_slithereen_crush_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_slardar_slithereen_crush_bh:OnCreated()
-	self.ms = self:GetTalentSpecialValueFor("crush_extra_slow")
-	self.as = self:GetTalentSpecialValueFor("crush_attack_slow_tooltip")
+	self.ms = self:GetSpecialValueFor("crush_extra_slow")
+	self.as = self:GetSpecialValueFor("crush_attack_slow_tooltip")
 end
 
 

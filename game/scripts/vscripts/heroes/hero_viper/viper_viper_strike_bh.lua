@@ -2,7 +2,7 @@ viper_viper_strike_bh = class({})
 
 function viper_viper_strike_bh:GetCastRange( target, position )
 	if self:GetCaster():HasScepter() then
-		return self:GetTalentSpecialValueFor("cast_range_scepter")
+		return self:GetSpecialValueFor("cast_range_scepter")
 	else
 		return self.BaseClass.GetCastRange( self, target, position )
 	end
@@ -10,7 +10,7 @@ end
 
 function viper_viper_strike_bh:GetCooldown( iLvl )
 	if self:GetCaster():HasScepter() then
-		return self:GetTalentSpecialValueFor("cooldown_scepter")
+		return self:GetSpecialValueFor("cooldown_scepter")
 	else
 		return self.BaseClass.GetCooldown( self, iLvl )
 	end
@@ -56,14 +56,14 @@ function viper_viper_strike_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	local speed = self:GetTalentSpecialValueFor("projectile_speed")
+	local speed = self:GetSpecialValueFor("projectile_speed")
 	
 	if self.warmUp then
 		ParticleManager:DestroyParticle( self.warmUp, false )
 		ParticleManager:ReleaseParticleIndex( self.warmUp )
 	end
 	if caster:HasTalent("special_bonus_unique_viper_viper_strike_1") then
-		caster:AddNewModifier( caster, self, "modifier_viper_viper_strike_bh_talent", {duration = self:GetTalentSpecialValueFor("duration")})
+		caster:AddNewModifier( caster, self, "modifier_viper_viper_strike_bh_talent", {duration = self:GetSpecialValueFor("duration")})
 	else
 		self:FireViperStrike( target )
 	end
@@ -73,7 +73,7 @@ end
 function viper_viper_strike_bh:FireViperStrike( target )
 	local caster = self:GetCaster()
 	local barbs = ParticleManager:CreateParticle("particles/units/heroes/hero_viper/viper_viper_strike_beam.vpcf", PATTACH_CUSTOMORIGIN, caster)
-	local speed = self:GetTalentSpecialValueFor("projectile_speed")
+	local speed = self:GetSpecialValueFor("projectile_speed")
 	ParticleManager:SetParticleControlEnt(barbs, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
 	ParticleManager:SetParticleControlEnt(barbs, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 	ParticleManager:SetParticleControlEnt(barbs, 2, caster, PATTACH_POINT_FOLLOW, "attach_wing_barb_1", caster:GetAbsOrigin(), true)
@@ -89,14 +89,14 @@ function viper_viper_strike_bh:OnProjectileHit_ExtraData( target, position, extr
 	if target and not target:TriggerSpellAbsorb( self ) then
 		local caster = self:GetCaster()
 		
-		local damage = self:GetTalentSpecialValueFor("damage")
+		local damage = self:GetSpecialValueFor("damage")
 		if target:IsSameTeam( caster) then
 			target:HealEvent( damage, self, caster )
 		else
 			self:DealDamage( caster, target, damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE )
 		end
 		target:EmitSound("hero_viper.viperStrikeImpact")
-		target:AddNewModifier( caster, self, "modifier_viper_viper_strike_bh", { duration = self:GetTalentSpecialValueFor("duration") } )
+		target:AddNewModifier( caster, self, "modifier_viper_viper_strike_bh", { duration = self:GetSpecialValueFor("duration") } )
 	end
 	ParticleManager:ClearParticle( tonumber( extraData.particle ) )
 end
@@ -149,11 +149,11 @@ function modifier_viper_viper_strike_bh:OnCreated()
 end
 
 function modifier_viper_viper_strike_bh:OnRefresh()
-	self.as = self:GetTalentSpecialValueFor("bonus_attack_speed")
-	self.evasion = self:GetTalentSpecialValueFor("evasion_loss")
-	self.ms = self:GetTalentSpecialValueFor("bonus_movement_speed")
-	self.cdr = self:GetTalentSpecialValueFor("cdr_loss")
-	self.dmg = self:GetTalentSpecialValueFor("damage")
+	self.as = self:GetSpecialValueFor("bonus_attack_speed")
+	self.evasion = self:GetSpecialValueFor("evasion_loss")
+	self.ms = self:GetSpecialValueFor("bonus_movement_speed")
+	self.cdr = self:GetSpecialValueFor("cdr_loss")
+	self.dmg = self:GetSpecialValueFor("damage")
 	if self:GetParent():IsSameTeam( self:GetCaster() ) then
 		self.as = self.as * (-1)
 		self.evasion = self.evasion * (-1)
@@ -164,7 +164,7 @@ function modifier_viper_viper_strike_bh:OnRefresh()
 	self.msDegrade = self.ms / self:GetDuration()
 	self.evasionDegrade = self.evasion / self:GetDuration()
 	self.cdrDegrade = self.cdr / self:GetDuration()
-	self.tick = self:GetDuration() / self:GetTalentSpecialValueFor("duration") * 1
+	self.tick = self:GetDuration() / self:GetSpecialValueFor("duration") * 1
 	self.internal = 0
 	self:StartIntervalThink( 0 )
 end

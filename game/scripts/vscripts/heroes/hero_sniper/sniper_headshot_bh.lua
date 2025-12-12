@@ -12,9 +12,9 @@ function modifier_sniper_headshot_bh:OnCreated()
 end
 
 function modifier_sniper_headshot_bh:OnRefresh()
-	self.duration = self:GetTalentSpecialValueFor("duration")
-	self.chance = self:GetTalentSpecialValueFor("chance")
-	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.chance = self:GetSpecialValueFor("chance")
+	self.damage = self:GetSpecialValueFor("damage")
 	
 	local caster = self:GetCaster()
 	self.talent1 = caster:HasTalent("special_bonus_unique_sniper_headshot_1")
@@ -57,7 +57,7 @@ function modifier_sniper_headshot_bh:GetModifierPreAttack_BonusDamage(params)
 		local caster = params.attacker
 		local target = params.target
 		
-		local chance = self:GetTalentSpecialValueFor("chance")
+		local chance = self:GetSpecialValueFor("chance")
 		local damage = self.damage
 		local duration = self.duration
 		local power = 0
@@ -77,13 +77,13 @@ function modifier_sniper_headshot_bh:GetModifierPreAttack_BonusDamage(params)
 			self.recordsProc[params.record] = power
 			return damage
 
-			-- if caster:RollPRNG( self:GetTalentSpecialValueFor("assassinate_chance")) and not caster:HasModifier("modifier_sniper_rapid_fire") then
+			-- if caster:RollPRNG( self:GetSpecialValueFor("assassinate_chance")) and not caster:HasModifier("modifier_sniper_rapid_fire") then
 				-- local assassinate = caster:FindAbilityByName("sniper_assassinate_bh")
 				-- if assassinate and assassinate:IsTrained() and assassinate:IsCooldownReady() then
 					-- caster:SetCursorCastTarget(target)
 
 					-- caster:CastAbilityImmediately( assassinate, caster:GetPlayerOwnerID() )
-					-- local cooldown = assassinate:GetCooldownTimeRemaining() * self:GetTalentSpecialValueFor("assassinate_cooldown")/100
+					-- local cooldown = assassinate:GetCooldownTimeRemaining() * self:GetSpecialValueFor("assassinate_cooldown")/100
 					-- assassinate:EndCooldown()
 					-- assassinate:StartCooldown(cooldown)
 					-- assassinate:RefundManaCost()
@@ -116,15 +116,15 @@ function modifier_sniper_headshot_bh_slow:DeclareFunctions()
 end
 
 function modifier_sniper_headshot_bh_slow:GetModifierMoveSpeedBonus_Percentage()
-	return self:GetTalentSpecialValueFor("movespeed_slow")
+	return self:GetSpecialValueFor("movespeed_slow")
 end
 
 function modifier_sniper_headshot_bh_slow:GetModifierAttackSpeedBonus_Constant()
-	return self:GetTalentSpecialValueFor("attackspeed_slow")
+	return self:GetSpecialValueFor("attackspeed_slow")
 end
 
 function modifier_sniper_headshot_bh_slow:GetModifierMiss_Percentage()
-	return self:GetTalentSpecialValueFor("blind")
+	return self:GetSpecialValueFor("blind")
 end
 
 function modifier_sniper_headshot_bh_slow:GetEffectName()

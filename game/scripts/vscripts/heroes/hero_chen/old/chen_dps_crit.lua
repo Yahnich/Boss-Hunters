@@ -16,7 +16,7 @@ function modifier_chen_dps_crit_handle:DeclareFunctions()
 end
 
 function modifier_chen_dps_crit_handle:OnAttackStart(params)
-	if IsServer() and params.attacker == self:GetParent() and RollPercentage(self:GetTalentSpecialValueFor("crit_chance")) then
+	if IsServer() and params.attacker == self:GetParent() and RollPercentage(self:GetSpecialValueFor("crit_chance")) then
 		self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_chen_dps_crit", {Duration = 10})
 	end
 end
@@ -45,12 +45,12 @@ function modifier_chen_dps_crit:DeclareFunctions()
 end
 
 function modifier_chen_dps_crit:GetModifierPreAttack_CriticalStrike()
-	return self:GetTalentSpecialValueFor("crit_strike")
+	return self:GetSpecialValueFor("crit_strike")
 end
 
 function modifier_chen_dps_crit:OnAttackLanded(params)
 	if IsServer() and params.attacker == self:GetParent() then
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local radius = self:GetSpecialValueFor("radius")
 		ParticleManager:FireParticle("particles/units/heroes/hero_jakiro/jakiro_liquid_fire_explosion.vpcf", PATTACH_POINT, params.target, {[0]="attach_hitloc",[1]=Vector(radius,radius,radius)})
 
 		params.attacker:RemoveModifierByName("modifier_chen_dps_crit")

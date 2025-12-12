@@ -15,7 +15,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"alchemist_acid_spray"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -47,41 +47,20 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"475 525 575 625 625 625 625"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"16.0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"20 25 30 35 70 105 140"
+			"radius"					"475 525 575 625 625 625 625"
+			"duration"					"16.0"
+			"damage"					"20 25 30 35 70 105 140"
 				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_acid_spray_2"
 				"LinkedSpecialBonusField"	"value2"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"armor_reduction"			"-4 -5 -6 -7 -7 -7 -7"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tick_rate"					"1.0"
-			}
+			"armor_reduction"			"-4 -5 -6 -7 -7 -7 -7"
+			"tick_rate"					"1.0"
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"aura_linger"				"0.5"
 				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_acid_spray_2"
-			}
 		}
 	}
 	"special_bonus_unique_alchemist_acid_spray_1" 
@@ -94,13 +73,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-1"
-			}
+			"value"					"-1"
 		}
 	}
 	"special_bonus_unique_alchemist_acid_spray_2" 
@@ -113,18 +88,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value2"				"40"
-			}
+			"value"					"2"
+			"value2"				"40"
 		}
 	}
 	"alchemist_unstable_concoction_bh"
@@ -141,7 +108,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK_STATUE"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -166,33 +133,22 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"brew_time"						"5.0 5.0 5.0 5.0 4.0 3.0 2.0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"brew_explosion"				"6.0"
-			}
+			"brew_explosion"				"6.0"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"min_stun"						"0.25"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"max_stun"						"1.75 2.5 3.25 4.0 4.0 4.0 4.0"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"min_damage"					"50"
-			}
+			"min_damage"					"50"
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
@@ -200,13 +156,11 @@
 				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_unstable_concoction_2"
 				"LinkedSpecialBonusField"		"value2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"radius"						"250"
 				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_unstable_concoction_2"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 		"precache"
@@ -226,13 +180,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"5"
-			}
+			"value"					"5"
 		}
 	}
 	"special_bonus_unique_alchemist_unstable_concoction_2" 
@@ -245,18 +195,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value2"				"2"
-			}
+			"value"					"50"
+			"value2"				"2"
 		}
 	}
 	"alchemist_berserk_potion_bh"
@@ -272,7 +214,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"FightRecapLevel"				"1"
 		
 		// Talents		
@@ -300,32 +242,19 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"10"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"primary_bonus"					"12 24 36 48 52 56 60"
+			"primary_bonus"					"12 24 36 48 52 56 60"
 				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_berserk_potion_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"max_hp_heal"					"35 35 35 35 40 45 50"
+			"max_hp_heal"					"35 35 35 35 40 45 50"
 				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_berserk_potion_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"projectile_speed"				"900"
-			}
+			"projectile_speed"				"900"
 		}
 	}
 	"special_bonus_unique_alchemist_berserk_potion_1" 
@@ -338,13 +267,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"special_bonus_unique_alchemist_berserk_potion_2" 
@@ -357,13 +282,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
-			}
+			"value"					"2"
 		}
 	}
 	"alchemist_alchemists_greed"
@@ -386,28 +307,24 @@
 			// "special_bonus_unique_alchemist_alchemists_greed_2"	"1"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 	    {
 			"01"
 	        {
 	            "var_type"              		"FIELD_INTEGER"
 	            "minion_gold"          			"2"
-	        }
 			"02"
 	        {
 	            "var_type"            	  		"FIELD_INTEGER"
 	            "monster_gold"					"25"
-	        }
 			"03"
 	        {
 	            "var_type"						"FIELD_INTEGER"
 	            "boss_gold"						"350"
-	        }
 			"04"
 	        {
 	            "var_type"              		"FIELD_INTEGER"
 	            "radius"	          			"600"
-	        }
 	    }
 	}
 	"special_bonus_unique_alchemist_alchemists_greed_1" 
@@ -420,13 +337,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"3"
-			}
+			"value"					"3"
 		}
 	}
 	"special_bonus_unique_alchemist_alchemists_greed_2" 
@@ -439,13 +352,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"0.5"
-			}
+			"value"					"0.5"
 		}
 	}
 	
@@ -462,7 +371,7 @@
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"alchemist_chemical_rage"
 		"FightRecapLevel"				"2"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -493,43 +402,31 @@
 	
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"25.0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"base_attack_time"				"-0.15 -0.3 -0.45 -0.6 -0.75 -0.9"
+			"base_attack_time"				"-0.15 -0.3 -0.45 -0.6 -0.75 -0.9"
 				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_chemical_rage_2"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_hp"						"400 800 1200 1600 2000 2400"
-			}
+			"bonus_hp"						"400 800 1200 1600 2000 2400"
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"bonus_health_regen"			"16 32 48 64 80 96"
 				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_chemical_rage_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"bonus_mana_regen"				"2 4 6 8 10 12"
 				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_chemical_rage_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"bonus_movespeed"				"100"
-			}
 		}
 	}
 	"special_bonus_unique_alchemist_chemical_rage_1" 
@@ -542,13 +439,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
-			}
+			"value"					"2"
 		}
 	}
 	"special_bonus_unique_alchemist_chemical_rage_2" 
@@ -561,13 +454,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-0.3"
-			}
+			"value"					"-0.3"
 		}
 	}
 	
@@ -588,7 +477,7 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/alchemist_midas_knuckle"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK_STATUE"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -613,31 +502,18 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"base_dmg"						"100 150 200 250 350 400 450"
+			"base_dmg"						"100 150 200 250 350 400 450"
 				"CalculateSpellDamageTooltip"	"1"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"net_worth_bonus_dmg"			"1"
+			"net_worth_bonus_dmg"			"1"
 				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_midas_knuckle_2"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"gold_cost"						"10 20 30 40 40 40 40"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"ministun"					"0.5"
+"ministun"					"0.5"
 				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_midas_knuckle_1"
-			}
 		}
 		"precache"
 		{
@@ -656,13 +532,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
-			}
+			"value"					"2"
 		}
 	}
 	"special_bonus_unique_alchemist_midas_knuckle_2" 
@@ -675,13 +547,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"0.31"
-			}
+			"value"					"0.31"
 		}
 	}
 }

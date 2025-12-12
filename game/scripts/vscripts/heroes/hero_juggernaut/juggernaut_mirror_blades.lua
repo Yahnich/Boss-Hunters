@@ -3,7 +3,7 @@ juggernaut_mirror_blades = class({})
 function juggernaut_mirror_blades:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:Dispel( caster, true )
-	caster:AddNewModifier(caster, self, "modifier_juggernaut_mirror_blades", {duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_juggernaut_mirror_blades", {duration = self:GetSpecialValueFor("duration")})
 end
 
 function juggernaut_mirror_blades:ShouldUseResources()
@@ -26,10 +26,10 @@ end
 
 function modifier_juggernaut_mirror_blades:OnRefresh()
 	local caster = self:GetCaster()
-	self.damage = self:GetTalentSpecialValueFor("damage")
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.tick = self:GetTalentSpecialValueFor("damage_tick")
-	self.dmg = self:GetTalentSpecialValueFor("damage_reduction")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.tick = self:GetSpecialValueFor("damage_tick")
+	self.dmg = self:GetSpecialValueFor("damage_reduction")
 	
 	self.ms = caster:FindTalentValue("special_bonus_unique_juggernaut_mirror_blades_2", "value2")
 	

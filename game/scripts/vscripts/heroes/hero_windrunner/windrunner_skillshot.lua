@@ -47,8 +47,8 @@ end
 
 function windrunner_skillshot:OnProjectileHit(hTarget, vLocation)
 	if hTarget then
-		local damage = self:GetCaster():GetAttackDamage() * self:GetTalentSpecialValueFor("pierce_pct")/100 + self:GetTalentSpecialValueFor("base_damage")
-		self:Stun(hTarget, self:GetTalentSpecialValueFor("duration"))
+		local damage = self:GetCaster():GetAttackDamage() * self:GetSpecialValueFor("pierce_pct")/100 + self:GetSpecialValueFor("base_damage")
+		self:Stun(hTarget, self:GetSpecialValueFor("duration"))
 		self:DealDamage(self:GetCaster(), hTarget, damage, {}, OVERHEAD_ALERT_DAMAGE)
 	end
 end
@@ -58,8 +58,8 @@ modifier_windrunner_skillshot_handle = class({})
 function modifier_windrunner_skillshot_handle:OnCreated()
 	if IsServer() then
 		self.lastAttack = 0
-		self.cd = self:GetTalentSpecialValueFor("passive_cooldown")
-		self.chance = self:GetTalentSpecialValueFor("chance")
+		self.cd = self:GetSpecialValueFor("passive_cooldown")
+		self.chance = self:GetSpecialValueFor("chance")
 	end
 end
 

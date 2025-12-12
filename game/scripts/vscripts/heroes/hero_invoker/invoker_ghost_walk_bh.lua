@@ -22,7 +22,7 @@ end
 function invoker_ghost_walk_bh:OnSpellStart()
     local caster = self:GetCaster()
 
-    local duration = self:GetTalentSpecialValueFor("duration")
+    local duration = self:GetSpecialValueFor("duration")
 
     caster:AddNewModifier(caster, self, "modifier_invoker_ghost_walk_bh", {Duration = duration})
 end
@@ -31,11 +31,11 @@ modifier_invoker_ghost_walk_bh = class({})
 function modifier_invoker_ghost_walk_bh:OnCreated(table)
     local caster = self:GetCaster()
 
-    self.self_slow = self:GetTalentSpecialValueFor("self_slow")
+    self.self_slow = self:GetSpecialValueFor("self_slow")
 
-    self.enemy_slow_duration = self:GetTalentSpecialValueFor("aura_fade_time")
+    self.enemy_slow_duration = self:GetSpecialValueFor("aura_fade_time")
 
-    self.radius = self:GetTalentSpecialValueFor("radius")
+    self.radius = self:GetSpecialValueFor("radius")
 
     ParticleManager:FireParticle("particles/units/heroes/hero_invoker/invoker_ghost_walk.vpcf", PATTACH_POINT, caster, {})
 end
@@ -43,11 +43,11 @@ end
 function modifier_invoker_ghost_walk_bh:OnRefresh(table)
     local caster = self:GetCaster()
 
-    self.self_slow = self:GetTalentSpecialValueFor("self_slow")
+    self.self_slow = self:GetSpecialValueFor("self_slow")
 
-    self.enemy_slow_duration = self:GetTalentSpecialValueFor("aura_fade_time")
+    self.enemy_slow_duration = self:GetSpecialValueFor("aura_fade_time")
 
-    self.radius = self:GetTalentSpecialValueFor("radius")
+    self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_invoker_ghost_walk_bh:IsAura()
@@ -127,13 +127,13 @@ modifier_invoker_ghost_walk_bh_enemy = class({})
 function modifier_invoker_ghost_walk_bh_enemy:OnCreated(table)
     local caster = self:GetCaster()
 
-    self.enemy_slow = self:GetTalentSpecialValueFor("enemy_slow")
+    self.enemy_slow = self:GetSpecialValueFor("enemy_slow")
 end
 
 function modifier_invoker_ghost_walk_bh_enemy:OnRefresh(table)
     local caster = self:GetCaster()
 
-    self.enemy_slow = self:GetTalentSpecialValueFor("enemy_slow")
+    self.enemy_slow = self:GetSpecialValueFor("enemy_slow")
 end
 
 function modifier_invoker_ghost_walk_bh_enemy:DeclareFunctions()

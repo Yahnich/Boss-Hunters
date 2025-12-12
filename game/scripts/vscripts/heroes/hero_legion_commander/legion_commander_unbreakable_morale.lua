@@ -22,7 +22,7 @@ end
 
 function legion_commander_unbreakable_morale:UnbreakableMorale(target)
 	local caster = self:GetCaster()
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	target:Dispel( caster, true )
 	target:AddNewModifier( caster, self, "modifier_legion_commander_unbreakable_morale_buff", {duration = duration})
 	target:AddNewModifier( caster, self, "modifier_legion_commander_unbreakable_morale_health_regen", {duration = duration})
@@ -48,8 +48,8 @@ function modifier_legion_commander_unbreakable_morale_buff:OnCreated()
 end
 
 function modifier_legion_commander_unbreakable_morale_buff:OnRefresh()
-	self.attackSpeed = self:GetAbility():GetTalentSpecialValueFor("attack_speed")
-	self.attackSpeedIncrease = self:GetAbility():GetTalentSpecialValueFor("attack_speed_increase")
+	self.attackSpeed = self:GetAbility():GetSpecialValueFor("attack_speed")
+	self.attackSpeedIncrease = self:GetAbility():GetSpecialValueFor("attack_speed_increase")
 	
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_legion_commander_unbreakable_morale_2")
 	self.talent2Radius = self:GetCaster():FindTalentValue("special_bonus_unique_legion_commander_unbreakable_morale_2", "radius")
@@ -97,8 +97,8 @@ function modifier_legion_commander_unbreakable_morale_health_regen:OnCreated()
 end
 
 function modifier_legion_commander_unbreakable_morale_health_regen:OnRefresh()
-	self.hpRegen = self:GetAbility():GetTalentSpecialValueFor("hp_regen")
-	self.hpRegenIncrease = self:GetAbility():GetTalentSpecialValueFor("hp_regen_increase")
+	self.hpRegen = self:GetAbility():GetSpecialValueFor("hp_regen")
+	self.hpRegenIncrease = self:GetAbility():GetSpecialValueFor("hp_regen_increase")
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_legion_commander_unbreakable_morale_1")
 	if self.talent1 then
@@ -181,7 +181,7 @@ modifier_legion_commander_unbreakable_morale_passive = class({})
 LinkLuaModifier( "modifier_legion_commander_unbreakable_morale_passive", "heroes/hero_legion_commander/legion_commander_unbreakable_morale" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_legion_commander_unbreakable_morale_passive:OnCreated()
-	self.procChance = self:GetAbility():GetTalentSpecialValueFor("passive_chance")
+	self.procChance = self:GetAbility():GetSpecialValueFor("passive_chance")
 end
 
 function modifier_legion_commander_unbreakable_morale_passive:IsHidden()

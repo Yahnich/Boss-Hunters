@@ -12,7 +12,7 @@ end
 function pl_false_edge:OnSpellStart()
     local caster = self:GetCaster()
 
-    local duration = self:GetTalentSpecialValueFor("duration")
+    local duration = self:GetSpecialValueFor("duration")
 
     EmitSoundOn("Hero_EarthShaker.Totem.Immortal", caster)
 
@@ -60,9 +60,9 @@ function modifier_pl_false_edge:OnCreated(table)
 end
 
 function modifier_pl_false_edge:OnRefresh(table)
-    self.bonus_as = self:GetTalentSpecialValueFor("bonus_as")
-    self.bonus_accuracy = self:GetTalentSpecialValueFor("bonus_accuracy")
-    self.juxtapose_chance = self:GetTalentSpecialValueFor("bonus_juxtapose")
+    self.bonus_as = self:GetSpecialValueFor("bonus_as")
+    self.bonus_accuracy = self:GetSpecialValueFor("bonus_accuracy")
+    self.juxtapose_chance = self:GetSpecialValueFor("bonus_juxtapose")
 	
 	self.juxtapose = self:GetParent():FindAbilityByName("pl_juxtapose")
 

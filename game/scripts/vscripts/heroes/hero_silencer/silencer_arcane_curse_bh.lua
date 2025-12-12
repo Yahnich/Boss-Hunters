@@ -1,15 +1,15 @@
 silencer_arcane_curse_bh = class({})
 
 function silencer_arcane_curse_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function silencer_arcane_curse_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
 	
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local radius = self:GetSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("duration")
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
 		self:ApplyArcaneCurse( enemy, duration )
 	end
@@ -23,7 +23,7 @@ end
 function silencer_arcane_curse_bh:ApplyArcaneCurse( target, duration )
 	local caster = self:GetCaster()
 	if target:TriggerSpellAbsorb( self ) then return end
-	target:AddNewModifier( caster, self, "modifier_silencer_arcane_curse_bh", {duration = duration or self:GetTalentSpecialValueFor("duration")})
+	target:AddNewModifier( caster, self, "modifier_silencer_arcane_curse_bh", {duration = duration or self:GetSpecialValueFor("duration")})
 	target:EmitSound("Hero_Silencer.Curse.Impact")
 	if caster:HasTalent("special_bonus_unique_silencer_arcane_curse_2") then
 		target:Dispel(caster, false)
@@ -34,11 +34,11 @@ modifier_silencer_arcane_curse_bh = class({})
 LinkLuaModifier( "modifier_silencer_arcane_curse_bh", "heroes/hero_silencer/silencer_arcane_curse_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_silencer_arcane_curse_bh:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("damage")
-	self.penaltyDur = self:GetTalentSpecialValueFor("penalty_duration")
-	self.slow = self:GetTalentSpecialValueFor("movespeed")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.penaltyDur = self:GetSpecialValueFor("penalty_duration")
+	self.slow = self:GetSpecialValueFor("movespeed")
 	if IsServer() then
-		self:StartIntervalThink( self:GetRemainingTime() / self:GetTalentSpecialValueFor("duration") )
+		self:StartIntervalThink( self:GetRemainingTime() / self:GetSpecialValueFor("duration") )
 		if self:GetCaster():HasTalent("special_bonus_unique_silencer_arcane_curse_1") then
 			local feed = self:GetCaster():FindModifierByName("modifier_silencer_feed_the_mind")
 			if feed then

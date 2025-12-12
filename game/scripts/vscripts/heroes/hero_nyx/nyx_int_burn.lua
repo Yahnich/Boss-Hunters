@@ -7,9 +7,9 @@ end
 
 function nyx_int_burn:GetCastRange(vLocation, hTarget)
 	if self:GetCaster():HasModifier("modifier_nyx_burrow") then
-		return self:GetTalentSpecialValueFor("range") + self:GetTalentSpecialValueFor("burn_range")
+		return self:GetSpecialValueFor("range") + self:GetSpecialValueFor("burn_range")
 	end
-	return self:GetTalentSpecialValueFor("range")
+	return self:GetSpecialValueFor("range")
 end
 
 function nyx_int_burn:GetBehavior()
@@ -25,7 +25,7 @@ function nyx_int_burn:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
-	local damage = caster:GetIntellect( false) * self:GetTalentSpecialValueFor("damage")
+	local damage = caster:GetIntellect( false) * self:GetSpecialValueFor("damage")
 
 	EmitSoundOn("Hero_NyxAssassin.ManaBurn.Cast", caster)
 	EmitSoundOn("Hero_NyxAssassin.ManaBurn.Cast", target)

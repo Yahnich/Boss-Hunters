@@ -8,7 +8,7 @@ function omniknight_repel_bh:OnSpellStart()
 	if caster:HasTalent("special_bonus_unique_omniknight_repel_2") then
 		modifierName = "modifier_omniknight_repel_talent"
 	end
-	target:AddNewModifier(caster, self, modifierName, {duration = self:GetTalentSpecialValueFor("duration")})
+	target:AddNewModifier(caster, self, modifierName, {duration = self:GetSpecialValueFor("duration")})
 	
 	EmitSoundOn("Hero_Omniknight.Repel", target)
 	ParticleManager:FireParticle("particles/units/heroes/hero_omniknight/omniknight_repel_cast.vpcf", PATTACH_POINT_FOLLOW, caster)

@@ -4,9 +4,9 @@ function tinker_missile_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 
     local particleName = "particles/units/heroes/hero_tinker/tinker_missile.vpcf"
-    local projectileSpeed = self:GetTalentSpecialValueFor( "speed")
-    local radius = self:GetTalentSpecialValueFor( "radius")
-    local max_targets = self:GetTalentSpecialValueFor( "targets")
+    local projectileSpeed = self:GetSpecialValueFor( "speed")
+    local radius = self:GetSpecialValueFor( "radius")
+    local max_targets = self:GetSpecialValueFor( "targets")
 
     local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius, {order = FIND_CLOSEST}) 
     if #enemies > 0 then

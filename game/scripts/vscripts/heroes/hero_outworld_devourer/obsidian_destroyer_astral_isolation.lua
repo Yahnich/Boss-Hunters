@@ -14,19 +14,19 @@ function obsidian_destroyer_astral_isolation:OnSpellStart()
 		ParticleManager:SetParticleControl(flash, 1, hTarget:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(flash)
 	if hTarget:GetTeam() == caster:GetTeam() then
-		hTarget:AddNewModifier(caster, self, "modifier_obsidian_destroyer_astral_isolation_prison", {duration = self:GetTalentSpecialValueFor("prison_duration")})
+		hTarget:AddNewModifier(caster, self, "modifier_obsidian_destroyer_astral_isolation_prison", {duration = self:GetSpecialValueFor("prison_duration")})
 	elseif not hTarget:TriggerSpellAbsorb( self ) then
-		local modifier = caster:AddNewModifier(caster, self,"modifier_obsidian_destroyer_astral_isolation_int_gain", {duration = self:GetTalentSpecialValueFor("steal_duration")})
+		local modifier = caster:AddNewModifier(caster, self,"modifier_obsidian_destroyer_astral_isolation_int_gain", {duration = self:GetSpecialValueFor("steal_duration")})
 		modifier:IncrementStackCount()
 		local endFlash = ParticleManager:CreateParticle("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_prison_end.vpcf", PATTACH_ABSORIGIN , hTarget)
 			ParticleManager:SetParticleControl(endFlash, 0, hTarget:GetAbsOrigin())
 		ParticleManager:ReleaseParticleIndex(endFlash)
 		EmitSoundOn("Hero_ObsidianDestroyer.AstralImprisonment.End", hTarget)
-		self:Stun(hTarget, self:GetTalentSpecialValueFor("prison_duration") / 2, true)
-		local enemies = FindUnitsInRadius(caster:GetTeamNumber(), hTarget:GetAbsOrigin(), nil, self:GetTalentSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+		self:Stun(hTarget, self:GetSpecialValueFor("prison_duration") / 2, true)
+		local enemies = FindUnitsInRadius(caster:GetTeamNumber(), hTarget:GetAbsOrigin(), nil, self:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 		for _,enemy in pairs(enemies) do
 			if not enemy:TriggerSpellAbsorb( self ) then
-				ApplyDamage({victim = enemy, attacker = caster, damage = self:GetTalentSpecialValueFor("damage"), damage_type = self:GetAbilityDamageType(), ability = self})
+				ApplyDamage({victim = enemy, attacker = caster, damage = self:GetSpecialValueFor("damage"), damage_type = self:GetAbilityDamageType(), ability = self})
 			end
 		end
 	end
@@ -36,12 +36,12 @@ LinkLuaModifier( "modifier_obsidian_destroyer_astral_isolation_int_gain", "heroe
 modifier_obsidian_destroyer_astral_isolation_int_gain = class({})
 
 function modifier_obsidian_destroyer_astral_isolation_int_gain:OnCreated()
-	self.intgain = self:GetAbility():GetTalentSpecialValueFor("int_gain")
+	self.intgain = self:GetAbility():GetSpecialValueFor("int_gain")
 	if IsServer() then
 		self.buff = ParticleManager:CreateParticle("particles/obsidian_imprisonment_buff.vpcf", PATTACH_ABSORIGIN_FOLLOW , self:GetParent())
 			ParticleManager:SetParticleControl(self.buff, 0, self:GetParent():GetAbsOrigin())
 			ParticleManager:SetParticleControlEnt(self.buff, 12, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetParent():GetAbsOrigin(), true)
-		self.expireTime = self:GetAbility():GetTalentSpecialValueFor("steal_duration")
+		self.expireTime = self:GetAbility():GetSpecialValueFor("steal_duration")
 		self.intTable = {}
 		table.insert(self.intTable, GameRules:GetGameTime())
 		self:StartIntervalThink(0.1)
@@ -49,7 +49,7 @@ function modifier_obsidian_destroyer_astral_isolation_int_gain:OnCreated()
 end
 
 function modifier_obsidian_destroyer_astral_isolation_int_gain:OnRefresh()
-	self.intgain = self:GetAbility():GetTalentSpecialValueFor("int_gain")
+	self.intgain = self:GetAbility():GetSpecialValueFor("int_gain")
 	if IsServer() then
 		table.insert(self.intTable, GameRules:GetGameTime())
 	end
@@ -106,9 +106,9 @@ function modifier_obsidian_destroyer_astral_isolation_prison:OnDestroy()
 				ParticleManager:SetParticleControl(endFlash, 0, self:GetParent():GetAbsOrigin())
 		ParticleManager:ReleaseParticleIndex(endFlash)
 		EmitSoundOn("Hero_ObsidianDestroyer.AstralImprisonment.End", self:GetParent())
-		local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self:GetTalentSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+		local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 		for _,enemy in pairs(enemies) do
-			ApplyDamage({victim = enemy, attacker = self:GetCaster(), damage = self:GetTalentSpecialValueFor("damage"), damage_type = self:GetAbility():GetAbilityDamageType(), ability = self})
+			ApplyDamage({victim = enemy, attacker = self:GetCaster(), damage = self:GetSpecialValueFor("damage"), damage_type = self:GetAbility():GetAbilityDamageType(), ability = self})
 		end
 		self:GetAbility():EndDelayedCooldown()
 	end

@@ -10,7 +10,7 @@ function ursa_lunge:IsHiddenWhenStolen()
 end
 
 function ursa_lunge:GetCastRange(target, position)
-	return self:GetTalentSpecialValueFor("jump_distance")
+	return self:GetSpecialValueFor("jump_distance")
 end
 
 function ursa_lunge:OnSpellStart()
@@ -18,7 +18,7 @@ function ursa_lunge:OnSpellStart()
 
 	EmitSoundOn("Hero_LoneDruid.BattleCry.Bear", caster)
 
-	caster:AddNewModifier(caster, self, "modifier_ursa_lunge_movement", {duration = self:GetTalentSpecialValueFor("jump_duration") + FrameTime()})
+	caster:AddNewModifier(caster, self, "modifier_ursa_lunge_movement", {duration = self:GetSpecialValueFor("jump_duration") + FrameTime()})
 end
 
 modifier_ursa_lunge_movement = class({})
@@ -28,7 +28,7 @@ if IsServer() then
 		self.endPos = self:GetAbility():GetCursorPosition()
 		self.distance = CalculateDistance( self.endPos, parent )
 		self.direction = CalculateDirection( self.endPos, parent )
-		self.speed = self.distance / self:GetTalentSpecialValueFor("jump_duration") * FrameTime()
+		self.speed = self.distance / self:GetSpecialValueFor("jump_duration") * FrameTime()
 		self.maxHeight = 100
 		self:StartMotionController()
 
@@ -88,7 +88,7 @@ function modifier_ursa_lunge_movement:DeclareFunctions()
 end
 
 function modifier_ursa_lunge_movement:GetModifierIncomingDamage_Percentage()
-	return self:GetTalentSpecialValueFor("reduction")
+	return self:GetSpecialValueFor("reduction")
 end
 
 function modifier_ursa_lunge_movement:GetOverrideAnimation()

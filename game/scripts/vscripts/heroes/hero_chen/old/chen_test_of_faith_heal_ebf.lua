@@ -24,8 +24,8 @@ function chen_test_of_faith_heal_ebf:OnSpellStart()
 	EmitSoundOn("Hero_Chen.TeleportIn", caster)
 	EmitSoundOn("Hero_Chen.TeleportOut", target)
 
-	local min = self:GetTalentSpecialValueFor("min_heal")
-	local max = self:GetTalentSpecialValueFor("max_heal")
+	local min = self:GetSpecialValueFor("min_heal")
+	local max = self:GetSpecialValueFor("max_heal")
 	local heal = target:GetMaxHealth() * math.random(min,max)/100
 
 	if caster:HasTalent("special_bonus_unique_chen_test_of_faith_heal_ebf_2") then

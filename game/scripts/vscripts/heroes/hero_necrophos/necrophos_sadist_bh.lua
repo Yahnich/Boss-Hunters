@@ -12,10 +12,10 @@ function modifier_necrophos_sadist_bh:OnCreated()
 end
 
 function modifier_necrophos_sadist_bh:OnRefresh()
-	self.duration = self:GetTalentSpecialValueFor("regen_duration")
-	self.big_mult = self:GetTalentSpecialValueFor("big_multiplier")
-	self.kill_mult = self:GetTalentSpecialValueFor("kill_multiplier")
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.duration = self:GetSpecialValueFor("regen_duration")
+	self.big_mult = self:GetSpecialValueFor("big_multiplier")
+	self.kill_mult = self:GetSpecialValueFor("kill_multiplier")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_necrophos_sadist_bh:DeclareFunctions()
@@ -53,8 +53,8 @@ function modifier_necrophos_sadist_bh_buff:OnCreated()
 end
 
 function modifier_necrophos_sadist_bh_buff:OnRefresh()
-	self.hp_regen = self:GetTalentSpecialValueFor("base_regen") + self:GetTalentSpecialValueFor("bonus_regen") * self:GetParent():GetLevel()
-	self.mp_regen = self:GetTalentSpecialValueFor("base_regen") + self:GetTalentSpecialValueFor("bonus_regen") * self:GetParent():GetLevel()
+	self.hp_regen = self:GetSpecialValueFor("base_regen") + self:GetSpecialValueFor("bonus_regen") * self:GetParent():GetLevel()
+	self.mp_regen = self:GetSpecialValueFor("base_regen") + self:GetSpecialValueFor("bonus_regen") * self:GetParent():GetLevel()
 	if IsServer() then
 		self:AddIndependentStack()
 	end

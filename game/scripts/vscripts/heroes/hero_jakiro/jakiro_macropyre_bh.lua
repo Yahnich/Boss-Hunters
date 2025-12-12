@@ -12,9 +12,9 @@ end
 
 function jakiro_macropyre_bh:GetCastRange(vLocation, hTarget)
 	if self:GetCaster():HasScepter() then
-		return self:GetTalentSpecialValueFor("length_scepter")
+		return self:GetSpecialValueFor("length_scepter")
 	end
-	return self:GetTalentSpecialValueFor("length")
+	return self:GetSpecialValueFor("length")
 end
 
 function jakiro_macropyre_bh:GetAbilityDamageType()
@@ -29,7 +29,7 @@ function jakiro_macropyre_bh:OnSpellStart()
 	local point = self:GetCursorPosition()
 
 	local direction = CalculateDirection(point, caster:GetAbsOrigin())
-	local duration = TernaryOperator(self:GetTalentSpecialValueFor("duration_scepter"), caster:HasScepter(), self:GetTalentSpecialValueFor("duration"))
+	local duration = TernaryOperator(self:GetSpecialValueFor("duration_scepter"), caster:HasScepter(), self:GetSpecialValueFor("duration"))
 	EmitSoundOn("Hero_Jakiro.Macropyre.Cast", caster)
 	--234 is from dota
 	local spawn_point = caster:GetAbsOrigin() + direction * 234
@@ -55,10 +55,10 @@ function modifier_jakiro_macropyre_bh:OnCreated(table)
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
 
-		self.length = TernaryOperator(self:GetTalentSpecialValueFor("length_scepter"), caster:HasScepter(), self:GetTalentSpecialValueFor("length"))
-		self.damage = TernaryOperator( self:GetTalentSpecialValueFor("damage_scepter"), caster:HasScepter(), self:GetTalentSpecialValueFor("damage") )
-		self.width = self:GetTalentSpecialValueFor("width")
-		self.delay = self:GetTalentSpecialValueFor("delay")
+		self.length = TernaryOperator(self:GetSpecialValueFor("length_scepter"), caster:HasScepter(), self:GetSpecialValueFor("length"))
+		self.damage = TernaryOperator( self:GetSpecialValueFor("damage_scepter"), caster:HasScepter(), self:GetSpecialValueFor("damage") )
+		self.width = self:GetSpecialValueFor("width")
+		self.delay = self:GetSpecialValueFor("delay")
 		local duration = self:GetDuration()
 		
 		self.talent1 = caster:HasTalent("special_bonus_unique_jakiro_macropyre_bh_1")
@@ -156,14 +156,14 @@ function modifier_jakiro_macropyre_bh_talent:OnCreated(table)
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
 
-		local length = self:GetTalentSpecialValueFor("length")
-		local duration = self:GetTalentSpecialValueFor("duration")
+		local length = self:GetSpecialValueFor("length")
+		local duration = self:GetSpecialValueFor("duration")
 
 		local sound = "hero_jakiro.macropyre"
 
 		if caster:HasScepter() then
-			length = self:GetTalentSpecialValueFor("length_scepter")
-			duration = self:GetTalentSpecialValueFor("duration_scepter")
+			length = self:GetSpecialValueFor("length_scepter")
+			duration = self:GetSpecialValueFor("duration_scepter")
 			sound = "hero_jakiro.macropyre.scepter"
 		end
 
@@ -213,11 +213,11 @@ end
 function modifier_jakiro_macropyre_bh_talent:OnIntervalThink()
 	local caster = self:GetCaster()
 	local ability = self:GetAbility()
-	local width = self:GetTalentSpecialValueFor("width")
-	local damage = self:GetTalentSpecialValueFor("damage")
+	local width = self:GetSpecialValueFor("width")
+	local damage = self:GetSpecialValueFor("damage")
 
 	if caster:HasScepter() then
-		damage = self:GetTalentSpecialValueFor("damage_scepter")
+		damage = self:GetSpecialValueFor("damage_scepter")
 	end
 
 	local enemies = caster:FindEnemyUnitsInLine(self.start_pos, self.end_pos, width, {})
@@ -236,7 +236,7 @@ modifier_jakiro_macropyre_bh_talent_slow = class({})
 LinkLuaModifier("modifier_jakiro_macropyre_bh_talent_slow", "heroes/hero_jakiro/jakiro_macropyre_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_jakiro_macropyre_bh_talent_slow:OnCreated()
-	self.slow = self:GetTalentSpecialValueFor("special_bonus_unique_jakiro_macropyre_bh_2")
+	self.slow = self:GetSpecialValueFor("special_bonus_unique_jakiro_macropyre_bh_2")
 end
 
 function modifier_jakiro_macropyre_bh_talent_slow:DeclareFunctions()

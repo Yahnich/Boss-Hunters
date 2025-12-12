@@ -14,7 +14,7 @@ function visage_chill:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 
 	EmitSoundOn("Hero_Visage.GraveChill.Cast", caster)
 	EmitSoundOn("Hero_Visage.GraveChill.Target", target)
@@ -43,8 +43,8 @@ modifier_visage_chill_buff = class({})
 function modifier_visage_chill_buff:OnCreated(table)
 	local caster = self:GetCaster()
 
-	self.bous_as = self:GetTalentSpecialValueFor("bonus_as")
-	self.bonus_ms = self:GetTalentSpecialValueFor("bonus_ms")
+	self.bous_as = self:GetSpecialValueFor("bonus_as")
+	self.bonus_ms = self:GetSpecialValueFor("bonus_ms")
 
 	if IsServer() then
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_visage/visage_grave_chill_caster.vpcf", PATTACH_POINT_FOLLOW, caster)
@@ -61,8 +61,8 @@ end
 function modifier_visage_chill_buff:OnRefresh(table)
 	local caster = self:GetCaster()
 
-	self.bous_as = self:GetTalentSpecialValueFor("bonus_as")
-	self.bonus_ms = self:GetTalentSpecialValueFor("bonus_ms")
+	self.bous_as = self:GetSpecialValueFor("bonus_as")
+	self.bonus_ms = self:GetSpecialValueFor("bonus_ms")
 end
 
 function modifier_visage_chill_buff:DeclareFunctions()
@@ -86,8 +86,8 @@ modifier_visage_chill_debuff = class({})
 function modifier_visage_chill_debuff:OnCreated(table)
 	local caster = self:GetCaster()
 
-	self.bous_as = self:GetTalentSpecialValueFor("bonus_as")
-	self.bonus_ms = self:GetTalentSpecialValueFor("bonus_ms")
+	self.bous_as = self:GetSpecialValueFor("bonus_as")
+	self.bonus_ms = self:GetSpecialValueFor("bonus_ms")
 	if caster:HasTalent("special_bonus_unique_visage_chill_1") then
 		self.damage = caster:GetLevel() * caster:FindTalentValue("special_bonus_unique_visage_chill_1", "damage")
 		self.evasion_growth = caster:FindTalentValue("special_bonus_unique_visage_chill_1", "evasion")
@@ -109,8 +109,8 @@ end
 function modifier_visage_chill_debuff:OnRefresh(table)
 	local caster = self:GetCaster()
 
-	self.bous_as = -self:GetTalentSpecialValueFor("bonus_as")
-	self.bonus_ms = -self:GetTalentSpecialValueFor("bonus_ms")
+	self.bous_as = -self:GetSpecialValueFor("bonus_as")
+	self.bonus_ms = -self:GetSpecialValueFor("bonus_ms")
 
 	if caster:HasTalent("special_bonus_unique_visage_chill_1") then
 		self.damage = caster:GetLevel() * caster:FindTalentValue("special_bonus_unique_visage_chill_1", "damage")

@@ -1,17 +1,17 @@
 omniknight_purification_bh = class({})
 
 function omniknight_purification_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("search_radius")
+	return self:GetSpecialValueFor("search_radius")
 end
 
 function omniknight_purification_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local heal = self:GetTalentSpecialValueFor("heal")
-	local search = self:GetTalentSpecialValueFor("search_radius")
-	local radius = self:GetTalentSpecialValueFor("area_of_effect")
+	local damage = self:GetSpecialValueFor("damage")
+	local heal = self:GetSpecialValueFor("heal")
+	local search = self:GetSpecialValueFor("search_radius")
+	local radius = self:GetSpecialValueFor("area_of_effect")
 	
 	if caster:IsSameTeam( target ) then
 		target:HealEvent( heal, self, caster )

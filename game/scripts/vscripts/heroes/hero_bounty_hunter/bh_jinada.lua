@@ -22,11 +22,11 @@ function bh_jinada:TriggerJinada(target, bShuriken)
 				ParticleManager:SetParticleControl(nfx, 0, target:GetAbsOrigin())
 				ParticleManager:ReleaseParticleIndex(nfx)
 	if bShuriken then
-		target:AddNewModifier(caster, self, "modifier_bh_jinada_maim_shuriken", {Duration = self:GetTalentSpecialValueFor("duration")})
-		caster:AddGold( self:GetTalentSpecialValueFor("gold_steal") * 2)
+		target:AddNewModifier(caster, self, "modifier_bh_jinada_maim_shuriken", {Duration = self:GetSpecialValueFor("duration")})
+		caster:AddGold( self:GetSpecialValueFor("gold_steal") * 2)
 	else
-		target:AddNewModifier(caster, self, "modifier_bh_jinada_maim", {Duration = self:GetTalentSpecialValueFor("duration")})
-		caster:AddGold( self:GetTalentSpecialValueFor("gold_steal") )
+		target:AddNewModifier(caster, self, "modifier_bh_jinada_maim", {Duration = self:GetSpecialValueFor("duration")})
+		caster:AddGold( self:GetSpecialValueFor("gold_steal") )
 	end
 	
 	self:SetCooldown()
@@ -60,11 +60,11 @@ function modifier_bh_jinada_maim:DeclareFunctions()
 end
 
 function modifier_bh_jinada_maim:GetModifierStatusResistanceStacking()
-	return self:GetTalentSpecialValueFor("sr_red")
+	return self:GetSpecialValueFor("sr_red")
 end
 
 function modifier_bh_jinada_maim:GetModifierAttackSpeedBonus_Constant()
-	return self:GetTalentSpecialValueFor("slow_as")
+	return self:GetSpecialValueFor("slow_as")
 end
 
 function modifier_bh_jinada_maim:GetEffectName()
@@ -91,11 +91,11 @@ function modifier_bh_jinada_maim_shuriken:DeclareFunctions()
 end
 
 function modifier_bh_jinada_maim_shuriken:GetModifierStatusResistanceStacking()
-	return self:GetTalentSpecialValueFor("sr_red") * 2
+	return self:GetSpecialValueFor("sr_red") * 2
 end
 
 function modifier_bh_jinada_maim_shuriken:GetModifierAttackSpeedBonus_Constant()
-	return self:GetTalentSpecialValueFor("slow_as") * 2
+	return self:GetSpecialValueFor("slow_as") * 2
 end
 
 function modifier_bh_jinada_maim_shuriken:GetEffectName()

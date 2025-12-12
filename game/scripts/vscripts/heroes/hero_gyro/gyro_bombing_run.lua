@@ -13,7 +13,7 @@ function gyro_bombing_run:IsHiddenWhenStolen()
 end
 
 function gyro_bombing_run:GetCastRange( target, position )
-	return self:GetTalentSpecialValueFor("max_distance")
+	return self:GetSpecialValueFor("max_distance")
 end
 
 function gyro_bombing_run:OnSpellStart()
@@ -21,7 +21,7 @@ function gyro_bombing_run:OnSpellStart()
 
 	EmitSoundOn("Hero_Techies.Attack", caster)
 
-	local speed = self:GetTalentSpecialValueFor("speed")/100
+	local speed = self:GetSpecialValueFor("speed")/100
 	local casterSpeed = caster:GetBaseMoveSpeed() + caster:GetBaseMoveSpeed()*speed
 	local distance = (caster:GetAbsOrigin() - self:GetCursorPosition()):Length2D()
 
@@ -57,7 +57,7 @@ function modifier_valkyrie:DeclareFunctions()
 end
 
 function modifier_valkyrie:GetModifierMoveSpeedBonus_Percentage()
-	return self:GetTalentSpecialValueFor("speed")
+	return self:GetSpecialValueFor("speed")
 end
 
 function modifier_valkyrie:OnIntervalThink()
@@ -85,12 +85,12 @@ function modifier_valkyrie_aoe:OnCreated(table)
 		self:StartIntervalThink(FrameTime())
 
 		nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_ac/ac_valkyrie_explosion.vpcf", PATTACH_POINT, self:GetCaster())
-		ParticleManager:SetParticleControl(nfx, 1, Vector(self:GetTalentSpecialValueFor("radius"),self:GetTalentSpecialValueFor("radius"),self:GetTalentSpecialValueFor("radius")))
+		ParticleManager:SetParticleControl(nfx, 1, Vector(self:GetSpecialValueFor("radius"),self:GetSpecialValueFor("radius"),self:GetSpecialValueFor("radius")))
 
-		local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+		local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius"))
 		for _,enemy in pairs(enemies) do
-			enemy:ApplyKnockBack(self:GetParent():GetAbsOrigin(), 0.5, 0.5, self:GetTalentSpecialValueFor("radius"), 0, self:GetCaster(), self:GetAbility())
-			self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			enemy:ApplyKnockBack(self:GetParent():GetAbsOrigin(), 0.5, 0.5, self:GetSpecialValueFor("radius"), 0, self:GetCaster(), self:GetAbility())
+			self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		end
 	end
 end
@@ -102,7 +102,7 @@ function modifier_valkyrie_aoe:OnDestroy()
 end
 
 function modifier_valkyrie_aoe:OnIntervalThink()
-	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius"))
 	for _,enemy in pairs(enemies) do
 		enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_valkyrie_slow", {Duration = 0.5})
 	end

@@ -4,7 +4,7 @@ function bristleback_yer_mum:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	if target:TriggerSpellAbsorb( self ) then return end
-	target:AddNewModifier(caster, self, "modifier_bristleback_yer_mum", {duration = self:GetTalentSpecialValueFor("duration")})
+	target:AddNewModifier(caster, self, "modifier_bristleback_yer_mum", {duration = self:GetSpecialValueFor("duration")})
 end
 
 function bristleback_yer_mum:IsStealable()
@@ -23,8 +23,8 @@ function modifier_bristleback_yer_mum:OnCreated()
 end
 
 function modifier_bristleback_yer_mum:OnRefresh()
-	self.attackspeed = self:GetTalentSpecialValueFor("attackspeed_increase")
-	self.reduction = self:GetTalentSpecialValueFor("damage_reduction")
+	self.attackspeed = self:GetSpecialValueFor("attackspeed_increase")
+	self.reduction = self:GetSpecialValueFor("damage_reduction")
 	self.amp = self:GetCaster():FindTalentValue("special_bonus_unique_bristleback_yer_mum_2")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_bristleback_yer_mum_1")
 	if self.talent1 then

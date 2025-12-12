@@ -1,6 +1,4 @@
 kunkka_ghost_ship_bh = class({})
-LinkLuaModifier("modifier_kunkka_ghostship_rum", "heroes/hero_kunkka/kunkka_ghost_ship_bh.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_kunkka_ghostship_rum_damage", "heroes/hero_kunkka/kunkka_ghost_ship_bh.lua", LUA_MODIFIER_MOTION_NONE)
 
 function kunkka_ghost_ship_bh:IsStealable()
     return true
@@ -14,10 +12,10 @@ function kunkka_ghost_ship_bh:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorPosition()
 
-    local speed = self:GetTalentSpecialValueFor("speed")
-    local radius = self:GetTalentSpecialValueFor("width")
-    local start_distance = self:GetTalentSpecialValueFor("distance")/2
-    local crash_distance = self:GetTalentSpecialValueFor("distance")/2 --CalculateDistance(target, caster:GetAbsOrigin())
+    local speed = self:GetSpecialValueFor("speed")
+    local radius = self:GetSpecialValueFor("width")
+    local start_distance = self:GetSpecialValueFor("distance")/2
+    local crash_distance = self:GetSpecialValueFor("distance")/2 --CalculateDistance(target, caster:GetAbsOrigin())
     local caster_pos = caster:GetAbsOrigin()
     local totalDistance = start_distance + crash_distance
 
@@ -42,22 +40,20 @@ function kunkka_ghost_ship_bh:OnSpellStart()
 
     self:SendShip(spawn_pos, totalDistance, radius, boat_direction, crash_pos, travel_time)
 
-    if caster:HasTalent("special_bonus_unique_kunkka_ghost_ship_bh_1") then
-        spawn_pos = caster:GetAbsOrigin() + caster:GetRightVector() * 250
-        spawn_pos = spawn_pos + -boat_direction * totalDistance/2
-        crash_pos = spawn_pos + boat_direction * totalDistance
-        self:SendShip(spawn_pos, totalDistance, radius, boat_direction, crash_pos, travel_time)
-
-        spawn_pos = caster:GetAbsOrigin() + -caster:GetRightVector() * 250
-        spawn_pos = spawn_pos + -boat_direction * totalDistance/2
-        crash_pos = spawn_pos + boat_direction * totalDistance
-        self:SendShip(spawn_pos, totalDistance, radius, boat_direction, crash_pos, travel_time)
-    end
+	if self:GetSpecialValueFor("bonus_ships") then
+		local baseOffset = -boat_direction * totalDistance/2 
+		local crashOffset = boat_direction * totalDistance
+		for i = 1, self:GetSpecialValueFor("bonus_ships") do
+			spawn_pos = caster:GetAbsOrigin() + math.ceil(i/2) * (-1)^i * caster:GetRightVector() * 250 + baseOffset
+			crash_pos = spawn_pos + crashOffset
+			self:SendShip(spawn_pos, totalDistance, radius, boat_direction, crash_pos, travel_time)
+		end
+	end
 end
 
 function kunkka_ghost_ship_bh:SendShip(spawn_pos, totalDistance, radius, direction, crash_pos, travel_time)
     local caster = self:GetCaster()
-    local speed = self:GetTalentSpecialValueFor("speed")
+    local speed = self:GetSpecialValueFor("speed")
 
     self:CreateVisibilityNode(crash_pos, radius, travel_time + 2 )
 
@@ -89,7 +85,7 @@ function kunkka_ghost_ship_bh:SendShip(spawn_pos, totalDistance, radius, directi
 	if caster:HasScepter() then
 		local travelDistance = 0
 		local position = spawn_pos
-		local torrentDistance = self:GetTalentSpecialValueFor("torrent_travel_distance_scepter")
+		local torrentDistance = self:GetSpecialValueFor("torrent_travel_distance_scepter")
 		local torrent = caster:FindAbilityByName("kunkka_torrent_bh")
 		if torrent then
 			Timers:CreateTimer(0.1, function()
@@ -122,8 +118,8 @@ function kunkka_ghost_ship_bh:SendShip(spawn_pos, totalDistance, radius, directi
 		inMotion = false
         for _, enemy in ipairs(enemies) do
 			if not enemy:TriggerSpellAbsorb( self ) then
-				self:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
-				self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+				self:Stun(enemy, self:GetSpecialValueFor("stun_duration"), false)
+				self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, 0)
 			end
         end
     end)
@@ -131,7 +127,7 @@ end
 
 function kunkka_ghost_ship_bh:OnProjectileThink(vLocation)
     local caster = self:GetCaster()
-    if caster:HasTalent("special_bonus_unique_kunkka_ghost_ship_bh_2") then
+    if self:GetSpecialValueFor("drag_enemies") == 1 then
         local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetSpecialValueFor("width"))
         for _,enemy in ipairs(enemies) do
             enemy:SetAbsOrigin(vLocation)
@@ -142,10 +138,10 @@ end
 function kunkka_ghost_ship_bh:OnProjectileHit(target, location)
     if target then
         if self:GetCaster():GetTeam() == target:GetTeam() then
-            target:AddNewModifier(self:GetCaster(), self, "modifier_kunkka_ghostship_rum", { duration = self:GetTalentSpecialValueFor("duration") })
+            target:AddNewModifier(self:GetCaster(), self, "modifier_kunkka_ghostship_rum", { duration = self:GetSpecialValueFor("duration") })
         end
     else
-        if self:GetCaster():HasTalent("special_bonus_unique_kunkka_ghost_ship_bh_2") then
+        if self:GetSpecialValueFor("drag_enemies") == 1 then
             local enemies = self:GetCaster():FindEnemyUnitsInRadius(location, self:GetSpecialValueFor("width"))
             for _,enemy in pairs(enemies) do
                 FindClearSpaceForUnit(enemy, location, true)
@@ -156,9 +152,10 @@ function kunkka_ghost_ship_bh:OnProjectileHit(target, location)
 end
 
 modifier_kunkka_ghostship_rum = class({})
+LinkLuaModifier("modifier_kunkka_ghostship_rum", "heroes/hero_kunkka/kunkka_ghost_ship_bh.lua", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_kunkka_ghostship_rum:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("movespeed_bonus")
+    return self:GetSpecialValueFor("movespeed_bonus")
 end
 
 -- Setting up the damage counter
@@ -169,7 +166,7 @@ function modifier_kunkka_ghostship_rum:OnCreated()
 end
 
 function modifier_kunkka_ghostship_rum:GetModifierIncomingDamage_Percentage()
-    return -math.abs(self:GetTalentSpecialValueFor("absorb"))
+    return -math.abs(self:GetSpecialValueFor("absorb"))
 end
 
 function modifier_kunkka_ghostship_rum:DeclareFunctions()
@@ -185,7 +182,7 @@ end
 function modifier_kunkka_ghostship_rum:OnTakeDamage( params )
     if IsServer() then
         if params.unit == self:GetParent() then
-            local rum_reduction = (100 - self:GetTalentSpecialValueFor("absorb"))/100
+            local rum_reduction = (100 - self:GetSpecialValueFor("absorb"))/100
             local prevented_damage = params.damage / rum_reduction - params.damage
 
             self.damage_counter = self.damage_counter + prevented_damage
@@ -197,7 +194,7 @@ function modifier_kunkka_ghostship_rum:OnDestroy()
     if IsServer() then
         local caster = self:GetCaster()
         local ability = self:GetAbility()
-        self:GetParent():AddNewModifier(caster, ability, "modifier_kunkka_ghostship_rum_damage", { duration = self:GetTalentSpecialValueFor("duration"), stored_damage = self.damage_counter })
+        self:GetParent():AddNewModifier(caster, ability, "modifier_kunkka_ghostship_rum_damage", { duration = self:GetSpecialValueFor("duration"), stored_damage = self.damage_counter })
         self.damage_counter = 0
     end
 end
@@ -227,6 +224,7 @@ function modifier_kunkka_ghostship_rum:IsDebuff( )
 end
 
 modifier_kunkka_ghostship_rum_damage = class({})
+LinkLuaModifier("modifier_kunkka_ghostship_rum_damage", "heroes/hero_kunkka/kunkka_ghost_ship_bh.lua", LUA_MODIFIER_MOTION_NONE)
 function modifier_kunkka_ghostship_rum_damage:IsHidden()
     return false
 end
@@ -252,7 +250,7 @@ function modifier_kunkka_ghostship_rum_damage:OnCreated( params )
         local ability = self:GetAbility()
         local parent = self:GetParent()
 
-        local damage_duration = self:GetTalentSpecialValueFor("duration")
+        local damage_duration = self:GetSpecialValueFor("duration")
         local damage_interval = 1
         local ticks = damage_duration / damage_interval
         local damage_amount = params.stored_damage / ticks

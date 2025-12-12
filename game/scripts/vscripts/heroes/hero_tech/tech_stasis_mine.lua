@@ -21,7 +21,7 @@ function tech_stasis_mine:OnSpellStart()
 	local mine = CreateUnitByName("npc_dota_techies_stasis_trap", self:GetCursorPosition(), true, caster, caster, caster:GetTeam())
 	if caster:HasTalent("special_bonus_unique_tech_stasis_mine_1") then
 		mine:AddNewModifier(caster, self, "modifier_stasis_emp", {})
-		mine:AddNewModifier(caster, self, "modifier_kill", {duration = self:GetTalentSpecialValueFor("active_delay") + self:GetTalentSpecialValueFor("stun_duration")+0.2})
+		mine:AddNewModifier(caster, self, "modifier_kill", {duration = self:GetSpecialValueFor("active_delay") + self:GetSpecialValueFor("stun_duration")+0.2})
 	else
 		mine:AddNewModifier(caster, self, "modifier_stasis_mine", {})
 		mine:AddNewModifier(caster, self, "modifier_kill", {duration = 120})
@@ -37,8 +37,8 @@ function modifier_stasis_emp:OnCreated(table)
 		self.damage = caster:FindTalentValue("special_bonus_unique_tech_stasis_mine_1")
 		self.duration = caster:FindTalentValue("special_bonus_unique_tech_stasis_mine_1", "duration")
 		self.tick = caster:FindTalentValue("special_bonus_unique_tech_stasis_mine_1", "tick")
-		self.radius = self:GetTalentSpecialValueFor("stun_radius")
-		self.delay = self:GetTalentSpecialValueFor("active_delay")
+		self.radius = self:GetSpecialValueFor("stun_radius")
+		self.delay = self:GetSpecialValueFor("active_delay")
 		Timers:CreateTimer(self.delay, function()
 			self:StartIntervalThink(self.tick)
 		end)
@@ -83,14 +83,14 @@ modifier_stasis_mine = ({})
 LinkLuaModifier( "modifier_stasis_mine", "heroes/hero_tech/tech_stasis_mine.lua", LUA_MODIFIER_MOTION_NONE )
 function modifier_stasis_mine:OnCreated(table)
 	if IsServer() then
-		Timers:CreateTimer(self:GetTalentSpecialValueFor("active_delay"), function()
+		Timers:CreateTimer(self:GetSpecialValueFor("active_delay"), function()
 			self:StartIntervalThink(FrameTime())
 		end)
 	end
 end
 
 function modifier_stasis_mine:OnIntervalThink()
-	local radius = self:GetTalentSpecialValueFor("stun_radius")
+	local radius = self:GetSpecialValueFor("stun_radius")
 	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), radius, {flag = self:GetAbility():GetAbilityTargetFlags()})
 	if #enemies > 0 then
 		Timers:CreateTimer( 0.3, function()
@@ -99,10 +99,10 @@ function modifier_stasis_mine:OnIntervalThink()
 					StopSoundOn("Hero_Techies.StasisTrap.Plant", self:GetCaster())
 					EmitSoundOn("Hero_Techies.StasisTrap.Stun", self:GetParent())
 
-					enemy:Paralyze(self:GetAbility(),self:GetCaster(), self:GetTalentSpecialValueFor("stun_duration") )
+					enemy:Paralyze(self:GetAbility(),self:GetCaster(), self:GetSpecialValueFor("stun_duration") )
 					
 					-- if self:GetCaster():HasTalent("special_bonus_unique_tech_stasis_mine_1") then
-						-- enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_stasis_mine_mr", {Duration = self:GetTalentSpecialValueFor("stun_duration")})
+						-- enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_stasis_mine_mr", {Duration = self:GetSpecialValueFor("stun_duration")})
 					-- end
 				end
 				triggered = true

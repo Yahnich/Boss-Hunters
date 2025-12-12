@@ -20,7 +20,7 @@ function rubick_arcane:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	
 	EmitSoundOn("Hero_Rubick.NullField.Offense", caster)
 	EmitSoundOn("Hero_Rubick.NullField.Defense", caster)
@@ -48,7 +48,7 @@ end
 
 function modifier_rubick_arcane_handle:OnIntervalThink()
 	if self:GetCaster():HasTalent("special_bonus_unique_rubick_arcane_1") then
-		self.spell_amp = self:GetTalentSpecialValueFor("spell_amp")/2
+		self.spell_amp = self:GetSpecialValueFor("spell_amp")/2
 	end
 end
 
@@ -79,11 +79,11 @@ end
 
 modifier_rubick_arcane_buff = class({})
 function modifier_rubick_arcane_buff:OnCreated(table)
-	self.spell_amp = self:GetTalentSpecialValueFor("spell_amp")
+	self.spell_amp = self:GetSpecialValueFor("spell_amp")
 end
 
 function modifier_rubick_arcane_buff:OnRefresh(table)
-	self.spell_amp = self:GetTalentSpecialValueFor("spell_amp")
+	self.spell_amp = self:GetSpecialValueFor("spell_amp")
 end
 
 function modifier_rubick_arcane_buff:DeclareFunctions()
@@ -109,13 +109,13 @@ end
 
 modifier_rubick_arcane_debuff = class({})
 function modifier_rubick_arcane_debuff:OnCreated(table)
-	self.status_resist = self:GetTalentSpecialValueFor("status_resist")
-	self.magic_resist_reduc = self:GetTalentSpecialValueFor("magic_resist_reduc")
+	self.status_resist = self:GetSpecialValueFor("status_resist")
+	self.magic_resist_reduc = self:GetSpecialValueFor("magic_resist_reduc")
 end
 
 function modifier_rubick_arcane_debuff:OnRefresh(table)
-	self.status_resist = self:GetTalentSpecialValueFor("status_resist")
-	self.magic_resist_reduc = self:GetTalentSpecialValueFor("magic_resist_reduc")
+	self.status_resist = self:GetSpecialValueFor("status_resist")
+	self.magic_resist_reduc = self:GetSpecialValueFor("magic_resist_reduc")
 end
 
 function modifier_rubick_arcane_debuff:DeclareFunctions()
@@ -146,11 +146,11 @@ end
 
 modifier_rubick_arcane_mr = class({})
 function modifier_rubick_arcane_mr:OnCreated(table)
-	self.magic_resist_reduc = self:GetTalentSpecialValueFor("magic_resist_reduc")/2
+	self.magic_resist_reduc = self:GetSpecialValueFor("magic_resist_reduc")/2
 end
 
 function modifier_rubick_arcane_mr:OnRefresh(table)
-	self.magic_resist_reduc = self:GetTalentSpecialValueFor("magic_resist_reduc")/2
+	self.magic_resist_reduc = self:GetSpecialValueFor("magic_resist_reduc")/2
 end
 
 function modifier_rubick_arcane_mr:DeclareFunctions()

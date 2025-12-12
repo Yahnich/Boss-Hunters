@@ -43,7 +43,7 @@ function ogre_magi_bloodlust_bh:Bloodlust()
 				ParticleManager:SetParticleControl(nfx, 3, target:GetAbsOrigin())
 				ParticleManager:ReleaseParticleIndex(nfx)
 	
-	target:AddNewModifier(caster, self, "modifier_ogre_magi_bloodlust_bh_buff", {Duration = self:GetTalentSpecialValueFor("duration")})
+	target:AddNewModifier(caster, self, "modifier_ogre_magi_bloodlust_bh_buff", {Duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_ogre_magi_bloodlust_bh = class({})
@@ -95,15 +95,15 @@ function modifier_ogre_magi_bloodlust_bh_buff:DeclareFunctions()
 end
 
 function modifier_ogre_magi_bloodlust_bh_buff:GetModifierMoveSpeedBonus_Percentage()
-	return self:GetTalentSpecialValueFor("bonus_movement_speed")
+	return self:GetSpecialValueFor("bonus_movement_speed")
 end
 
 function modifier_ogre_magi_bloodlust_bh_buff:GetModifierAttackSpeedBonus_Constant()
-	return self:GetTalentSpecialValueFor("bonus_attack_speed")
+	return self:GetSpecialValueFor("bonus_attack_speed")
 end
 
 function modifier_ogre_magi_bloodlust_bh_buff:GetModifierModelScale()
-	return self:GetTalentSpecialValueFor("modelscale")
+	return self:GetSpecialValueFor("modelscale")
 end
 
 function modifier_ogre_magi_bloodlust_bh_buff:GetModifierBonusStats_Strength()

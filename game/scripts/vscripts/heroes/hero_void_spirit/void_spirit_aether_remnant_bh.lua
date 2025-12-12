@@ -5,18 +5,18 @@ function void_spirit_aether_remnant_bh:IsVectorTargeting()
 end
 
 function void_spirit_aether_remnant_bh:GetVectorTargetRange()
-	return self:GetTalentSpecialValueFor("remnant_watch_distance")
+	return self:GetSpecialValueFor("remnant_watch_distance")
 end
 
 function void_spirit_aether_remnant_bh:GetVectorTargetStartRadius()
-	return self:GetTalentSpecialValueFor("remnant_watch_radius") / 2
+	return self:GetSpecialValueFor("remnant_watch_radius") / 2
 end
 
 function void_spirit_aether_remnant_bh:OnVectorCastStart()
 	local caster = self:GetCaster()
 	
-	local velocity = self:GetTalentSpecialValueFor("projectile_speed") * CalculateDirection( self:GetVectorPosition(), caster )
-	local vision = self:GetTalentSpecialValueFor("watch_path_vision_radius")
+	local velocity = self:GetSpecialValueFor("projectile_speed") * CalculateDirection( self:GetVectorPosition(), caster )
+	local vision = self:GetSpecialValueFor("watch_path_vision_radius")
 	local distance = CalculateDistance( self:GetVectorPosition(), caster )
 	local width = 125
 	EmitSoundOn( "Hero_VoidSpirit.AetherRemnant.Cast", caster )
@@ -27,7 +27,7 @@ function void_spirit_aether_remnant_bh:OnProjectileHit( target, position )
 	if not target then
 		local caster = self:GetCaster()
 		
-		local duration = self:GetTalentSpecialValueFor("duration")
+		local duration = self:GetSpecialValueFor("duration")
 		CreateModifierThinker( caster, self, "modifier_void_spirit_aether_remnant_watch", {duration = duration}, GetGroundPosition( position, caster ), caster:GetTeam(), true )
 	end
 end
@@ -41,9 +41,9 @@ function modifier_void_spirit_aether_remnant_watch:OnCreated()
 		local position = self:GetParent():GetAbsOrigin()
 		local caster = self:GetCaster()
 		
-		self.duration = self:GetTalentSpecialValueFor("pull_duration")
-		self.damage = self:GetTalentSpecialValueFor("impact_damage")
-		self.vision = self:GetTalentSpecialValueFor("watch_path_vision_radius")
+		self.duration = self:GetSpecialValueFor("pull_duration")
+		self.damage = self:GetSpecialValueFor("impact_damage")
+		self.vision = self:GetSpecialValueFor("watch_path_vision_radius")
 		self.direction = ability:GetVectorDirection()
 		self.range = ability:GetVectorTargetRange()
 		self.width = ability:GetVectorTargetStartRadius()

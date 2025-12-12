@@ -48,8 +48,8 @@ function morph_agi_strike:OnProjectileHit_ExtraData(hTarget, vLocation, table)
 
 			self:FireTrackingProjectile("particles/units/heroes/hero_morphling/morphling_adaptive_strike.vpcf", hTarget, 1150, {origin = self.point}, DOTA_PROJECTILE_ATTACHMENT_HITLOCATION, false, false, 0)
 
-			local damage = self:GetTalentSpecialValueFor("damage")
-			damage = damage + caster:GetAgility() * self:GetTalentSpecialValueFor("agi_max")
+			local damage = self:GetSpecialValueFor("damage")
+			damage = damage + caster:GetAgility() * self:GetSpecialValueFor("agi_max")
 
 			self:DealDamage(caster, hTarget, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		end

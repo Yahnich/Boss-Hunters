@@ -10,7 +10,7 @@ function lion_meteor:IsHiddenWhenStolen()
 end
 
 function lion_meteor:GetAOERadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function lion_meteor:OnSpellStart()
@@ -31,9 +31,9 @@ function lion_meteor:OnSpellStart()
 	if caster:HasScepter() and caster:HasModifier("modifier_lion_mana_aura_scepter") then
 		local innate = caster:FindAbilityByName("lion_mana_aura")
 		if innate then
-			local manaDamage = caster:GetMana() * innate:GetTalentSpecialValueFor("scepter_curr_mana_dmg") / 100
+			local manaDamage = caster:GetMana() * innate:GetSpecialValueFor("scepter_curr_mana_dmg") / 100
 			self:SpendMana(manaDamage)
-			for _,enemy in pairs( caster:FindEnemyUnitsInRadius( point, self:GetTalentSpecialValueFor("radius") ) ) do
+			for _,enemy in pairs( caster:FindEnemyUnitsInRadius( point, self:GetSpecialValueFor("radius") ) ) do
 				self:DealDamage( caster, enemy, manaDamage, {damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 				ParticleManager:FireRopeParticle("particles/items2_fx/necronomicon_archer_manaburn.vpcf", PATTACH_POINT_FOLLOW, caster, enemy)
 			end
@@ -60,7 +60,7 @@ function lion_meteor:FireMeteor(point, radius)
         for _,enemy in pairs(enemies) do
 			if not enemy:TriggerSpellAbsorb( self ) then
 				enemy:AddNewModifier(caster, self, "modifier_lion_meteor", {Duration = self:GetSpecialValueFor("burn_duration")})
-				self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+				self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, 0)
 
 				if caster:HasTalent("special_bonus_unique_lion_meteor_1") then
 					self:Stun(enemy, caster:FindTalentValue("special_bonus_unique_lion_meteor_1"), false)
@@ -68,7 +68,7 @@ function lion_meteor:FireMeteor(point, radius)
 			end
         end
 
-        local distance = self:GetTalentSpecialValueFor("distance")
+        local distance = self:GetSpecialValueFor("distance")
         local direction = CalculateDirection(caster:GetAbsOrigin(), point)
 		
         local projID = self:FireLinearProjectile("particles/units/heroes/hero_invoker/invoker_chaos_meteor.vpcf", direction*self:GetSpecialValueFor("speed"), distance, self:GetSpecialValueFor("radius"), {origin = point}, false, true, self:GetSpecialValueFor("vision_distance"))
@@ -110,7 +110,7 @@ if IsServer() then
 end
 
 function modifier_lion_meteor:OnIntervalThink()
-    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("burn_damage") * self:GetStackCount(), {}, 0)
+    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetSpecialValueFor("burn_damage") * self:GetStackCount(), {}, 0)
 end
 
 function modifier_lion_meteor:GetEffectName()

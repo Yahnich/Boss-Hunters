@@ -11,11 +11,11 @@ end
 function huskar_fire_within:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local duration = self:GetTalentSpecialValueFor("disarm_duration")
-	local kbDistance = self:GetTalentSpecialValueFor("knockback_distance")
-	local kbDuration = self:GetTalentSpecialValueFor("knockback_duration")
+	local damage = self:GetSpecialValueFor("damage")
+	local radius = self:GetSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("disarm_duration")
+	local kbDistance = self:GetSpecialValueFor("knockback_distance")
+	local kbDuration = self:GetSpecialValueFor("knockback_duration")
 	
 	local talent1 = caster:HasTalent("special_bonus_unique_huskar_fire_within_1")
 	local tDuration = caster:FindTalentValue("special_bonus_unique_huskar_fire_within_1", "duration")
@@ -65,7 +65,7 @@ end
 modifier_huskar_fire_within_damage = class({})
 LinkLuaModifier("modifier_huskar_fire_within_damage", "heroes/hero_huskar/huskar_fire_within", LUA_MODIFIER_MOTION_NONE)
 function modifier_huskar_fire_within_damage:OnCreated(kv)
-	self.damage = self:GetTalentSpecialValueFor("bonus_damage")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
 end
 
 function modifier_huskar_fire_within_damage:DeclareFunctions()

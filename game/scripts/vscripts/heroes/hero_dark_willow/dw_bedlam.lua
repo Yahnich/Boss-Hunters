@@ -19,7 +19,7 @@ end
 
 function dw_bedlam:GetManaCost(iLevel)
     if self:GetCaster():HasScepter() then
-    	return self:GetTalentSpecialValueFor("scepter_mana_cost")
+    	return self:GetSpecialValueFor("scepter_mana_cost")
     end
     return self.BaseClass.GetManaCost( self, iLevel )
 end
@@ -28,7 +28,7 @@ function dw_bedlam:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	if not caster:HasScepter() then
-		caster:AddNewModifier(caster, self, "modifier_dw_bedlam", {Duration = self:GetTalentSpecialValueFor("duration")})
+		caster:AddNewModifier(caster, self, "modifier_dw_bedlam", {Duration = self:GetSpecialValueFor("duration")})
 	end
 end
 
@@ -60,8 +60,8 @@ function modifier_dw_bedlam:OnCreated(table)
 		local parent = self:GetParent()
 
 		self.direction = caster:GetForwardVector()
-		self.distance = self:GetTalentSpecialValueFor("radius")
-		self.scepter_cost = self:GetTalentSpecialValueFor("scepter_mana_cost")
+		self.distance = self:GetSpecialValueFor("radius")
+		self.scepter_cost = self:GetSpecialValueFor("scepter_mana_cost")
 		self.i = 0
 
 		self.point = caster:GetAbsOrigin() + self.direction * self.distance + Vector(0, 0, 100)
@@ -118,8 +118,8 @@ function modifier_dw_bedlam_bug:OnCreated(table)
 		self:AttachEffect(nfx)
 
 		self.radius = caster:GetAttackRange()
-		self.attackRate = self:GetTalentSpecialValueFor("attack_rate")
-		self.scepter_cost = self:GetTalentSpecialValueFor("scepter_mana_cost") * self.attackRate
+		self.attackRate = self:GetSpecialValueFor("attack_rate")
+		self.scepter_cost = self:GetSpecialValueFor("scepter_mana_cost") * self.attackRate
 		self:StartIntervalThink(self.attackRate)
 	end
 end

@@ -16,7 +16,7 @@ function pango_swashbuckler:GetCooldown(iLvl)
 end
 
 function pango_swashbuckler:GetCastRange(target, position)
-	return self:GetTalentSpecialValueFor("dash_range")
+	return self:GetSpecialValueFor("dash_range")
 end
 
 function pango_swashbuckler:GetIntrinsicModifierName()
@@ -28,11 +28,11 @@ function pango_swashbuckler:IsVectorTargeting()
 end
 
 function pango_swashbuckler:GetVectorTargetRange()
-	return self:GetTalentSpecialValueFor("range")
+	return self:GetSpecialValueFor("range")
 end
 
 function pango_swashbuckler:GetVectorTargetStartRadius()
-	return self:GetTalentSpecialValueFor("width")
+	return self:GetSpecialValueFor("width")
 end
 
 function pango_swashbuckler:OnVectorCastStart()
@@ -42,7 +42,7 @@ function pango_swashbuckler:OnVectorCastStart()
 	EmitSoundOn("Hero_Pangolier.Swashbuckle.Layer", self:GetCaster())
 	
 	local distance = CalculateDistance(self:GetVectorPosition(), caster)
-	local speed = self:GetTalentSpecialValueFor("speed")
+	local speed = self:GetSpecialValueFor("speed")
 	local duration = distance / speed
     self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_pango_swift_dash", {duration = duration+0.5})
 	if caster:HasTalent("special_bonus_unique_pango_swashbuckler_2") then
@@ -57,7 +57,7 @@ function pango_swashbuckler:OnProjectileHit(hTarget, vLocation)
 		if not hTarget:IsAttackImmune() and not hTarget:IsMagicImmune() then
 			EmitSoundOn("Hero_Pangolier.Swashbuckle.Damage", hTarget)
 			--caster:PerformGenericAttack(hTarget, true, 0, false, true)
-			caster:PerformAbilityAttack(hTarget, true, self, self:GetTalentSpecialValueFor("damage"), false, true)
+			caster:PerformAbilityAttack(hTarget, true, self, self:GetSpecialValueFor("damage"), false, true)
 		end
 	end
 end
@@ -66,8 +66,8 @@ function pango_swashbuckler:Strike(vDir)
 	local caster = self:GetCaster()
 
 	--Ability specials
-	local range = self:GetTalentSpecialValueFor("range")
-	local width = self:GetTalentSpecialValueFor("width")
+	local range = self:GetSpecialValueFor("range")
+	local width = self:GetSpecialValueFor("width")
 
 	local direction = vDir or caster:GetForwardVector()
 	
@@ -101,10 +101,10 @@ function modifier_pango_swashbuckler:OnCreated()
 		local ability = self:GetAbility()
 
 		--Ability specials
-		self.range = self:GetTalentSpecialValueFor("range")
-		self.attack_interval = self:GetTalentSpecialValueFor("attack_interval")
-		self.width = self:GetTalentSpecialValueFor("width")
-		self.strikes = self:GetTalentSpecialValueFor("strikes")
+		self.range = self:GetSpecialValueFor("range")
+		self.attack_interval = self:GetSpecialValueFor("attack_interval")
+		self.width = self:GetSpecialValueFor("width")
+		self.strikes = self:GetSpecialValueFor("strikes")
 
 		self.direction = ability:GetVectorDirection()
 
@@ -221,7 +221,7 @@ function modifier_pango_swift_dash:OnCreated(table)
 		self.endPos = self:GetAbility():GetVectorPosition()
 		self.dir = CalculateDirection(self:GetAbility():GetVectorPosition(), self:GetParent():GetAbsOrigin())
 		self.distance = CalculateDistance(self:GetAbility():GetVectorPosition(), parent:GetAbsOrigin())
-		self.speed = self:GetTalentSpecialValueFor("speed")
+		self.speed = self:GetSpecialValueFor("speed")
 		self.hitUnits = {}
 		if self.distance <= self.speed * 0.04 then
 			self:Destroy()

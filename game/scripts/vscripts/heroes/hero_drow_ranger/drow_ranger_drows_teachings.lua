@@ -6,7 +6,7 @@ end
 
 function drow_ranger_drows_teachings:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_ranged_drows_teachings_active", {duration = self:GetTalentSpecialValueFor("active_duration")})
+	caster:AddNewModifier(caster, self, "modifier_ranged_drows_teachings_active", {duration = self:GetSpecialValueFor("active_duration")})
 end
 
 modifier_ranged_drows_teachings_handler = class({})
@@ -46,14 +46,14 @@ modifier_ranged_drows_teachings_aura = class({})
 LinkLuaModifier("modifier_ranged_drows_teachings_aura", "heroes/hero_drow_ranger/drow_ranger_drows_teachings", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_ranged_drows_teachings_aura:OnCreated()
-	local damage = self:GetTalentSpecialValueFor("trueshot_melee_damage")
-	if self:GetParent():IsRangedAttacker() then damage = self:GetTalentSpecialValueFor("trueshot_ranged_damage") end
+	local damage = self:GetSpecialValueFor("trueshot_melee_damage")
+	if self:GetParent():IsRangedAttacker() then damage = self:GetSpecialValueFor("trueshot_ranged_damage") end
 	self.damage = self:GetCaster():GetAgility() * damage / 100
 	self:StartIntervalThink(0.33)
 end
 function modifier_ranged_drows_teachings_aura:OnIntervalThink()
-	local damage = self:GetTalentSpecialValueFor("trueshot_melee_damage")
-	if self:GetParent():IsRangedAttacker() then damage = self:GetTalentSpecialValueFor("trueshot_ranged_damage") end
+	local damage = self:GetSpecialValueFor("trueshot_melee_damage")
+	if self:GetParent():IsRangedAttacker() then damage = self:GetSpecialValueFor("trueshot_ranged_damage") end
 	self.damage = self:GetCaster():GetAgility() * damage / 100
 end
 

@@ -9,7 +9,7 @@ function necrophos_reapers_scythe_bh:GetCastRange( target, position )
 end
 
 function necrophos_reapers_scythe_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function necrophos_reapers_scythe_bh:OnSpellStart()
@@ -20,10 +20,10 @@ function necrophos_reapers_scythe_bh:OnSpellStart()
 	local sFX = ParticleManager:CreateParticle("particles/units/heroes/hero_necrolyte/necrolyte_scythe_start.vpcf", PATTACH_WORLDORIGIN, caster)
 	ParticleManager:SetParticleControl(sFX, 1, position)
 	
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local duration = self:GetTalentSpecialValueFor("delay")
-	local baseDamage = self:GetTalentSpecialValueFor("base_damage") * (1 + caster:GetSpellAmplification( false ))
-	local bonusDamage = self:GetTalentSpecialValueFor("hp_damage")
+	local radius = self:GetSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("delay")
+	local baseDamage = self:GetSpecialValueFor("base_damage") * (1 + caster:GetSpellAmplification( false ))
+	local bonusDamage = self:GetSpecialValueFor("hp_damage")
 	local damage_type = TernaryOperator( DAMAGE_TYPE_PURE, caster:HasScepter() and self:GetCaster():HasModifier("modifier_necrophos_ghost_shroud_bh"), DAMAGE_TYPE_MAGICAL )
 	
 	local talent1 = caster:HasTalent("special_bonus_unique_necrophos_reapers_scythe_1")

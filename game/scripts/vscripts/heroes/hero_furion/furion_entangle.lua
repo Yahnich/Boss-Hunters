@@ -20,13 +20,13 @@ end
 
 function modifier_entangle:OnAttackLanded(params)
 	if IsServer() then
-		if params.attacker == self:GetParent() and RollPercentage(self:GetTalentSpecialValueFor("chance")) and params.target:IsAlive() and not params.target:IsMagicImmune() and self:GetAbility():IsCooldownReady() then
+		if params.attacker == self:GetParent() and RollPercentage(self:GetSpecialValueFor("chance")) and params.target:IsAlive() and not params.target:IsMagicImmune() and self:GetAbility():IsCooldownReady() then
 			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_treant/treant_leech_seed.vpcf", PATTACH_POINT, params.attacker) 
         	ParticleManager:SetParticleControl(nfx, 0, params.attacker:GetAbsOrigin())
         	ParticleManager:SetParticleControlEnt(nfx, 1, params.target, PATTACH_POINT, "attach_hitloc", params.target:GetAbsOrigin(), true)
         	ParticleManager:ReleaseParticleIndex(nfx)
 			self:GetAbility():SetCooldown()
-			params.target:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_entangle_enemy", {Duration = self:GetTalentSpecialValueFor("duration")})
+			params.target:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_entangle_enemy", {Duration = self:GetSpecialValueFor("duration")})
 		end
 	end
 end
@@ -57,15 +57,15 @@ end
 function modifier_entangle_enemy:OnIntervalThink()
 	local damage = self:GetCaster():GetAttackDamage()/2
 	if self:GetCaster():IsHero() then
-		damage = self:GetCaster():GetIntellect( false) * (self:GetTalentSpecialValueFor("damage")/100)
+		damage = self:GetCaster():GetIntellect( false) * (self:GetSpecialValueFor("damage")/100)
 	elseif self:GetCaster():GetOwnerEntity() then
-		damage = self:GetCaster():GetOwnerEntity():GetIntellect( false) * (self:GetTalentSpecialValueFor("damage")/100)
+		damage = self:GetCaster():GetOwnerEntity():GetIntellect( false) * (self:GetSpecialValueFor("damage")/100)
 	end
 	local caster = self:GetCaster()
 	if not caster:IsHero() and self:GetCaster():GetOwnerEntity() then caster = self:GetCaster():GetOwnerEntity() end
 	local damage = self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
 	
-	local heal = damage * self:GetTalentSpecialValueFor("heal_pct") / 100
+	local heal = damage * self:GetSpecialValueFor("heal_pct") / 100
 	caster:HealEvent(heal, self:GetAbility(), caster)
 	if caster:HasTalent("special_bonus_unique_furion_entangle_1") then
 		for _, ally in ipairs( caster:FindFriendlyUnitsInRadius(self:GetParent(), caster:FindTalentValue("special_bonus_unique_furion_entangle_1")) ) do
@@ -76,8 +76,8 @@ function modifier_entangle_enemy:OnIntervalThink()
 	end
 
 	
-	if self:GetCaster():HasScepter() and RollPercentage(self:GetTalentSpecialValueFor("chance")) then
-		local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("scepter_radius"), {})
+	if self:GetCaster():HasScepter() and RollPercentage(self:GetSpecialValueFor("chance")) then
+		local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("scepter_radius"), {})
 		for _,enemy in pairs(enemies) do
 			if enemy ~= self:GetParent() and not enemy:HasModifier("modifier_entangle_enemy") then
 				local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_treant/treant_leech_seed.vpcf", PATTACH_POINT, self:GetCaster()) 
@@ -85,7 +85,7 @@ function modifier_entangle_enemy:OnIntervalThink()
 	        	ParticleManager:SetParticleControlEnt(nfx, 1, enemy, PATTACH_POINT, "attach_hitloc", enemy:GetAbsOrigin(), true)
 	        	ParticleManager:ReleaseParticleIndex(nfx)
 
-				enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_entangle_enemy", {Duration = self:GetTalentSpecialValueFor("duration")})
+				enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_entangle_enemy", {Duration = self:GetSpecialValueFor("duration")})
 				break
 			end
 		end

@@ -6,24 +6,24 @@ end
 
 function night_stalker_crippling_fear_bh:GetCooldown(nLvl)
 	if GameRules:IsDaytime() then
-		return self:GetTalentSpecialValueFor("cooldown_day")
+		return self:GetSpecialValueFor("cooldown_day")
 	else
-		return self:GetTalentSpecialValueFor("cooldown_night")
+		return self:GetSpecialValueFor("cooldown_night")
 	end
 end
 
 function night_stalker_crippling_fear_bh:GetCastRange( position, target )
 	if GameRules:IsDaytime() then
-		return self:GetTalentSpecialValueFor("radius_day")
+		return self:GetSpecialValueFor("radius_day")
 	else
-		return self:GetTalentSpecialValueFor("radius_night")
+		return self:GetSpecialValueFor("radius_night")
 	end
 end
 
 function night_stalker_crippling_fear_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	
 	EmitSoundOn("Hero_Nightstalker.Trickling_Fear", caster)
 	caster:AddNewModifier(caster, self, "modifier_night_stalker_crippling_fear_bh", {duration = duration})
@@ -33,7 +33,7 @@ modifier_night_stalker_crippling_fear_bh = class({})
 LinkLuaModifier("modifier_night_stalker_crippling_fear_bh", "heroes/hero_night_stalker/night_stalker_crippling_fear_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_night_stalker_crippling_fear_bh:OnCreated()
-	self.radius = TernaryOperator( self:GetTalentSpecialValueFor("radius_day"), GameRules:IsDaytime(), self:GetTalentSpecialValueFor("radius_night") )
+	self.radius = TernaryOperator( self:GetSpecialValueFor("radius_day"), GameRules:IsDaytime(), self:GetSpecialValueFor("radius_night") )
 	if IsServer() then
 		self:GetAbility():StartDelayedCooldown()
 		local sFX = ParticleManager:CreateParticle( "particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear_aura.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
@@ -43,7 +43,7 @@ function modifier_night_stalker_crippling_fear_bh:OnCreated()
 end
 
 function modifier_night_stalker_crippling_fear_bh:OnRefresh()
-	self.radius = TernaryOperator( self:GetTalentSpecialValueFor("radius_day"), GameRules:IsDaytime(), self:GetTalentSpecialValueFor("radius_night") )
+	self.radius = TernaryOperator( self:GetSpecialValueFor("radius_day"), GameRules:IsDaytime(), self:GetSpecialValueFor("radius_night") )
 	if IsServer() then
 		self:GetAbility():StartDelayedCooldown()
 	end

@@ -26,7 +26,7 @@ function kotl_recall:OnSpellStart()
         for _,ally in pairs(allies) do
             if ally ~= caster then
                 EmitSoundOn("Hero_KeeperOfTheLight.Recall.Target", ally)
-                ally:AddNewModifier(caster, self, "modifier_kotl_recall", {Duration = self:GetTalentSpecialValueFor("teleport_delay")})
+                ally:AddNewModifier(caster, self, "modifier_kotl_recall", {Duration = self:GetSpecialValueFor("teleport_delay")})
             end
         end
     end
@@ -36,13 +36,13 @@ function kotl_recall:OnSpellStart()
         for _,ally in pairs(allies) do
             if ally ~= caster then
                 EmitSoundOn("Hero_KeeperOfTheLight.Recall.Target", ally)
-                ally:AddNewModifier(caster, self, "modifier_kotl_recall", {Duration = self:GetTalentSpecialValueFor("teleport_delay")})
+                ally:AddNewModifier(caster, self, "modifier_kotl_recall", {Duration = self:GetSpecialValueFor("teleport_delay")})
                 break
             end
         end
     else
         EmitSoundOn("Hero_KeeperOfTheLight.Recall.Target", target)
-        target:AddNewModifier(caster, self, "modifier_kotl_recall", {Duration = self:GetTalentSpecialValueFor("teleport_delay")})
+        target:AddNewModifier(caster, self, "modifier_kotl_recall", {Duration = self:GetSpecialValueFor("teleport_delay")})
     end
 end
 

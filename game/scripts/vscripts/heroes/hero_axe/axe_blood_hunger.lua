@@ -17,15 +17,15 @@ function axe_blood_hunger:OnSpellStart()
 	local target = self:GetCursorTarget()
 	
 	EmitSoundOn("Hero_Axe.Battle_Hunger", target)
-	target:AddNewModifier(caster, self, "modifier_blood_hunger", {Duration = self:GetTalentSpecialValueFor("duration")})
+	target:AddNewModifier(caster, self, "modifier_blood_hunger", {Duration = self:GetSpecialValueFor("duration")})
 
 	-- if caster:HasTalent("special_bonus_unique_axe_blood_hunger_2") then
-		-- local allies = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
+		-- local allies = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
 		-- for _,ally in pairs(allies) do
 			-- if ally ~= caster then
 				-- EmitSoundOn("Hero_Axe.Battle_Hunger", ally)
-				-- ally:AddNewModifier(caster, self, "modifier_blood_hunger", {Duration = self:GetTalentSpecialValueFor("duration")})
-				-- caster:AddNewModifier(caster, self, "modifier_blood_hunger_strength", {Duration = self:GetTalentSpecialValueFor("duration")}):AddIndependentStack()
+				-- ally:AddNewModifier(caster, self, "modifier_blood_hunger", {Duration = self:GetSpecialValueFor("duration")})
+				-- caster:AddNewModifier(caster, self, "modifier_blood_hunger_strength", {Duration = self:GetSpecialValueFor("duration")}):AddIndependentStack()
 			-- end
 			-- break
 		-- end
@@ -44,9 +44,9 @@ function modifier_blood_hunger_handler:OnCreated()
 end
 
 function modifier_blood_hunger_handler:OnRefresh()
-	local multiplier = self:GetTalentSpecialValueFor("minion_multiplier")
-	self.movespeed = self:GetTalentSpecialValueFor("move_slow") * multiplier
-	self.armor = self:GetTalentSpecialValueFor("armor") * multiplier
+	local multiplier = self:GetSpecialValueFor("minion_multiplier")
+	self.movespeed = self:GetSpecialValueFor("move_slow") * multiplier
+	self.armor = self:GetSpecialValueFor("armor") * multiplier
 	
 	self.talent1Val = self:GetCaster():FindTalentValue("special_bonus_unique_axe_blood_hunger_1") * multiplier
 	self.talent2Val = self:GetCaster():FindTalentValue("special_bonus_unique_axe_blood_hunger_3") * multiplier
@@ -112,7 +112,7 @@ function modifier_blood_hunger:OnCreated()
 		self:StartIntervalThink(1)
 		self.stacks = 1
 		if not self:GetParent():IsMinion() then
-			self.stacks = math.floor( self.stacks / self:GetTalentSpecialValueFor("minion_multiplier") + 0.5 )
+			self.stacks = math.floor( self.stacks / self:GetSpecialValueFor("minion_multiplier") + 0.5 )
 		end
 		local modifier = self:GetCaster():FindModifierByName("modifier_blood_hunger_handler")
 		modifier:SetStackCount( math.max( modifier:GetStackCount() + self.stacks, 0 ) )
@@ -121,11 +121,11 @@ function modifier_blood_hunger:OnCreated()
 end
 
 function modifier_blood_hunger:OnRefresh()
-	self.movespeed = -self:GetTalentSpecialValueFor("move_slow")
-	self.armor = -self:GetTalentSpecialValueFor("armor")
-	self.chance = self:GetTalentSpecialValueFor("chance")
-	self.damage = self:GetTalentSpecialValueFor("damage")
-	self.duration = self:GetTalentSpecialValueFor("duration")
+	self.movespeed = -self:GetSpecialValueFor("move_slow")
+	self.armor = -self:GetSpecialValueFor("armor")
+	self.chance = self:GetSpecialValueFor("chance")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.duration = self:GetSpecialValueFor("duration")
 	
 	self.talent1Val = -self:GetCaster():FindTalentValue("special_bonus_unique_axe_blood_hunger_1")
 	self.talent2Val = -self:GetCaster():FindTalentValue("special_bonus_unique_axe_blood_hunger_3")

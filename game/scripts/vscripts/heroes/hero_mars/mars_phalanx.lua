@@ -9,11 +9,11 @@ function mars_phalanx:IsHiddenWhenStolen()
 end
 
 function mars_phalanx:GetVectorTargetRange()
-	return self:GetTalentSpecialValueFor("unit_speed") * self:GetTalentSpecialValueFor("duration")
+	return self:GetSpecialValueFor("unit_speed") * self:GetSpecialValueFor("duration")
 end
 
 function mars_phalanx:GetVectorTargetStartRadius()
-	return self:GetTalentSpecialValueFor("unit_spacing") * self:GetTalentSpecialValueFor("max_units")
+	return self:GetSpecialValueFor("unit_spacing") * self:GetSpecialValueFor("max_units")
 end
 
 function mars_phalanx:OnVectorCastStart()
@@ -24,8 +24,8 @@ function mars_phalanx:OnVectorCastStart()
 
 	local rightVector = GetPerpendicularVector(dir)
 
-	local radius = self:GetTalentSpecialValueFor("unit_spacing")
-	local maxUnits = self:GetTalentSpecialValueFor("max_units")
+	local radius = self:GetSpecialValueFor("unit_spacing")
+	local maxUnits = self:GetSpecialValueFor("max_units")
 
 	if maxUnits % 2 ~= 0 then
 		self:SpawnSpearGuy(startPos)
@@ -54,8 +54,8 @@ function mars_phalanx:SpawnSpearGuy(vLocation)
     local caster = self:GetCaster()
     local location = vLocation
 
-    local duration = self:GetTalentSpecialValueFor("duration")
-    local damage = self:GetTalentSpecialValueFor("outgoing")/100
+    local duration = self:GetSpecialValueFor("duration")
+    local damage = self:GetSpecialValueFor("outgoing")/100
 	
 	
 	local spearGuy = caster:CreateSummon("npc_mars_warrior", location, duration + 0.01, false)
@@ -75,11 +75,11 @@ LinkLuaModifier("modifier_mars_phalanx_warrior", "heroes/hero_mars/mars_phalanx"
 function modifier_mars_phalanx_warrior:OnCreated(table)
 	if IsServer() then
 		local parent = self:GetParent()
-		self.knockback = self:GetTalentSpecialValueFor("knockback_distance")
-		self.damage = self:GetTalentSpecialValueFor("damage")
-		self.interval = self:GetTalentSpecialValueFor("attack_interval")
-		self.range = self:GetTalentSpecialValueFor("attack_range")
-		self.width = self:GetTalentSpecialValueFor("unit_spacing")
+		self.knockback = self:GetSpecialValueFor("knockback_distance")
+		self.damage = self:GetSpecialValueFor("damage")
+		self.interval = self:GetSpecialValueFor("attack_interval")
+		self.range = self:GetSpecialValueFor("attack_range")
+		self.width = self:GetSpecialValueFor("unit_spacing")
 		self.ogDirection = parent:GetForwardVector()
 		self:StartIntervalThink(0)
 		

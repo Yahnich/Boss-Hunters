@@ -17,7 +17,7 @@ end
 
 function modifier_naga_siren_ebb_and_flow_handler:GetAuraRadius()
 	local radius = 0
-	if self:GetCaster():HasScepter() then radius = self:GetTalentSpecialValueFor("scepter_radius") end
+	if self:GetCaster():HasScepter() then radius = self:GetSpecialValueFor("scepter_radius") end
 	return radius
 end
 
@@ -45,21 +45,21 @@ modifier_naga_siren_ebb_and_flow_buff = class({})
 LinkLuaModifier("modifier_naga_siren_ebb_and_flow_buff", "heroes/hero_naga_siren/naga_siren_ebb_and_flow", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_naga_siren_ebb_and_flow_buff:OnCreated()
-	self.chance = TernaryOperator( self:GetTalentSpecialValueFor("scepter_proc_chance"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("proc_chance") )
-	self.value = self:GetTalentSpecialValueFor("proc_value")
+	self.chance = TernaryOperator( self:GetSpecialValueFor("scepter_proc_chance"), self:GetCaster():HasScepter(), self:GetSpecialValueFor("proc_chance") )
+	self.value = self:GetSpecialValueFor("proc_value")
 	if IsServer() then
 		self:StartIntervalThink(0.33)
 	end
 end
 
 function modifier_naga_siren_ebb_and_flow_buff:OnRefresh()
-	self.chance = TernaryOperator( self:GetTalentSpecialValueFor("scepter_proc_chance"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("proc_chance") )
-	self.value = self:GetTalentSpecialValueFor("proc_value")
+	self.chance = TernaryOperator( self:GetSpecialValueFor("scepter_proc_chance"), self:GetCaster():HasScepter(), self:GetSpecialValueFor("proc_chance") )
+	self.value = self:GetSpecialValueFor("proc_value")
 end
 
 function modifier_naga_siren_ebb_and_flow_buff:OnIntervalThink()
-	self.chance = TernaryOperator( self:GetTalentSpecialValueFor("scepter_proc_chance"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("proc_chance") )
-	self.value = self:GetTalentSpecialValueFor("proc_value")
+	self.chance = TernaryOperator( self:GetSpecialValueFor("scepter_proc_chance"), self:GetCaster():HasScepter(), self:GetSpecialValueFor("proc_chance") )
+	self.value = self:GetSpecialValueFor("proc_value")
 end
 
 function modifier_naga_siren_ebb_and_flow_buff:DeclareFunctions()

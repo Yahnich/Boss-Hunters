@@ -20,10 +20,10 @@ function lion_mana_drain_bh:OnSpellStart()
 	self.drainTargets = {}
 	self.tickInterval = 0
 	
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	
-	self.tick = self:GetTalentSpecialValueFor("tick_interval")
-	self.mana = self:GetTalentSpecialValueFor("mana_per_second") * self.tick
+	self.tick = self:GetSpecialValueFor("tick_interval")
+	self.mana = self:GetSpecialValueFor("mana_per_second") * self.tick
 	self.talent2 = caster:HasTalent("special_bonus_unique_lion_mana_drain_2")
 	self.talent2Delay = caster:FindTalentValue("special_bonus_unique_lion_mana_drain_2", "delay")
 	
@@ -76,8 +76,8 @@ modifier_mana_drain_scepter = class({})
 LinkLuaModifier("modifier_mana_drain_scepter", "heroes/hero_lion/lion_mana_drain_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_mana_drain_scepter:OnCreated()
-	self.cdr = self:GetTalentSpecialValueFor("scepter_cdr") / 100
-	self.tick = self:GetTalentSpecialValueFor("tick_interval")
+	self.cdr = self:GetSpecialValueFor("scepter_cdr") / 100
+	self.tick = self:GetSpecialValueFor("tick_interval")
 	self:StartIntervalThink( self.tick )
 end
 
@@ -109,10 +109,10 @@ end
 function modifier_lion_mana_drain_bh:OnRefresh()
 	local ability = self:GetAbility()
 	ability.drain = self
-	self.damage = self:GetTalentSpecialValueFor("damage") / 100
-	self.breakBuffer = self:GetTalentSpecialValueFor("break_distance")
-	self.tick = self:GetTalentSpecialValueFor("tick_interval")
-	self.slow = -self:GetTalentSpecialValueFor("movespeed")
+	self.damage = self:GetSpecialValueFor("damage") / 100
+	self.breakBuffer = self:GetSpecialValueFor("break_distance")
+	self.tick = self:GetSpecialValueFor("tick_interval")
+	self.slow = -self:GetSpecialValueFor("movespeed")
 end
 
 function modifier_lion_mana_drain_bh:OnIntervalThink()

@@ -15,7 +15,7 @@ function modifier_mirana_mooneye:OnCreated()
 end
 
 function modifier_mirana_mooneye:OnRefresh()
-	self.spell_amp = self:GetTalentSpecialValueFor("agi_spellamp")
+	self.spell_amp = self:GetSpecialValueFor("agi_spellamp")
 end
 
 function modifier_mirana_mooneye:DeclareFunctions()

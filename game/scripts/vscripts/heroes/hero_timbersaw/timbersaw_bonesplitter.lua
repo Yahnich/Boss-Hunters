@@ -28,15 +28,15 @@ end
 function timbersaw_bonesplitter:Spray()
 	local caster = self:GetCaster()
 	EmitSoundOn("Hero_Shredder.WhirlingDeath.Cast", self:GetCaster())
-	ParticleManager:FireParticle("particles/units/heroes/hero_shredder/shredder_whirling_death.vpcf", PATTACH_POINT_FOLLOW, caster, {[0]="attach_hitloc",[1]=caster:GetAbsOrigin(), [2]=Vector(self:GetTalentSpecialValueFor("radius"),self:GetTalentSpecialValueFor("radius"),self:GetTalentSpecialValueFor("radius")), [3]=caster:GetAbsOrigin()})
+	ParticleManager:FireParticle("particles/units/heroes/hero_shredder/shredder_whirling_death.vpcf", PATTACH_POINT_FOLLOW, caster, {[0]="attach_hitloc",[1]=caster:GetAbsOrigin(), [2]=Vector(self:GetSpecialValueFor("radius"),self:GetSpecialValueFor("radius"),self:GetSpecialValueFor("radius")), [3]=caster:GetAbsOrigin()})
 	
-	local treesCut = CutTreesInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {ability = self})
+	local treesCut = CutTreesInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {ability = self})
 
-	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), self:GetSpecialValueFor("radius"))
 	for _,enemy in pairs(enemies) do
 		if not enemy:TriggerSpellAbsorb( self ) then
-			enemy:AddNewModifier(caster, self, "modifier_timbersaw_bonesplitter_enemy", {Duration = self:GetTalentSpecialValueFor("debuff_duration")})
-			local damage = self:GetTalentSpecialValueFor("damage")
+			enemy:AddNewModifier(caster, self, "modifier_timbersaw_bonesplitter_enemy", {Duration = self:GetSpecialValueFor("debuff_duration")})
+			local damage = self:GetSpecialValueFor("damage")
 			self:DealDamage(caster, enemy, damage, {damage_type=damageType}, 0)
 		end
 	end
@@ -68,11 +68,11 @@ function modifier_timbersaw_bonesplitter:IsHidden() return true end
 
 modifier_timbersaw_bonesplitter_enemy = class({})
 function modifier_timbersaw_bonesplitter_enemy:OnCreated(table)
-	self.armor = self:GetParent():GetPhysicalArmorValue(false)*self:GetTalentSpecialValueFor("debuff")/100
+	self.armor = self:GetParent():GetPhysicalArmorValue(false)*self:GetSpecialValueFor("debuff")/100
 end
 
 function modifier_timbersaw_bonesplitter_enemy:OnRefresh(table)
-	self.armor = self:GetParent():GetPhysicalArmorValue(false)*self:GetTalentSpecialValueFor("debuff")/100
+	self.armor = self:GetParent():GetPhysicalArmorValue(false)*self:GetSpecialValueFor("debuff")/100
 end
 
 function modifier_timbersaw_bonesplitter_enemy:IsDebuff()
@@ -90,7 +90,7 @@ function modifier_timbersaw_bonesplitter_enemy:DeclareFunctions()
 end
 
 function modifier_timbersaw_bonesplitter_enemy:GetModifierDamageOutgoing_Percentage()
-    return self:GetTalentSpecialValueFor("debuff")
+    return self:GetSpecialValueFor("debuff")
 end
 
 function modifier_timbersaw_bonesplitter_enemy:GetModifierPhysicalArmorBonus()

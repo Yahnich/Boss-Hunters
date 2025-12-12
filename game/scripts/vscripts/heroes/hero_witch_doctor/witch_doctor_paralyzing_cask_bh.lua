@@ -30,7 +30,7 @@ function witch_doctor_paralyzing_cask_bh:OnSpellStart()
 		effectFX = "particles/units/heroes/hero_witchdoctor/witchdoctor_cask_heal.vpcf"
 	end
 	local extraData = {bounces = self:GetSpecialValueFor("bounces"), mirror = mirror}
-	self:FireTrackingProjectile(effectFX, target, self:GetTalentSpecialValueFor("speed"), {extraData = extraData})
+	self:FireTrackingProjectile(effectFX, target, self:GetSpecialValueFor("speed"), {extraData = extraData})
 	if caster:HasScepter() then
 		if target:IsSameTeam(caster) then
 			local newTarget
@@ -40,7 +40,7 @@ function witch_doctor_paralyzing_cask_bh:OnSpellStart()
 			end
 			if newTarget then
 				local extraDataNew = {bounces = self:GetSpecialValueFor("bounces"), mirror = "0"}
-				self:FireTrackingProjectile("particles/units/heroes/hero_witchdoctor/witchdoctor_cask.vpcf", newTarget, self:GetTalentSpecialValueFor("speed"), {extraData = extraDataNew})
+				self:FireTrackingProjectile("particles/units/heroes/hero_witchdoctor/witchdoctor_cask.vpcf", newTarget, self:GetSpecialValueFor("speed"), {extraData = extraDataNew})
 			end
 		else
 			local newTarget
@@ -50,7 +50,7 @@ function witch_doctor_paralyzing_cask_bh:OnSpellStart()
 			end
 			if newTarget then
 				local extraDataNew = {bounces = self:GetSpecialValueFor("bounces"), mirror = "1"}
-				self:FireTrackingProjectile("particles/units/heroes/hero_witchdoctor/witchdoctor_cask_heal.vpcf", newTarget, self:GetTalentSpecialValueFor("speed"), {extraData = extraDataNew})
+				self:FireTrackingProjectile("particles/units/heroes/hero_witchdoctor/witchdoctor_cask_heal.vpcf", newTarget, self:GetSpecialValueFor("speed"), {extraData = extraDataNew})
 			end
 		end
 	end
@@ -60,23 +60,23 @@ end
 -- this hero's code is a fucking disaster
 function witch_doctor_paralyzing_cask_bh:OnProjectileHit_ExtraData(target, vLocation, extraData)
 	EmitSoundOn("Hero_WitchDoctor.Paralyzing_Cask_Bounce", target)
-	local bounce_delay  = self:GetTalentSpecialValueFor("bounce_delay")
-	local bounce_range = self:GetTalentSpecialValueFor("bounce_range")
+	local bounce_delay  = self:GetSpecialValueFor("bounce_delay")
+	local bounce_range = self:GetSpecialValueFor("bounce_range")
 	
 	local caster = self:GetCaster()
 	if not target then return end
 	
-	local stunDuration = self:GetTalentSpecialValueFor("creep_duration")
+	local stunDuration = self:GetSpecialValueFor("creep_duration")
 	
 	if target:IsRealHero() or target:IsRoundNecessary() then
-		stunDuration = self:GetTalentSpecialValueFor("hero_duration")
+		stunDuration = self:GetSpecialValueFor("hero_duration")
 	end
 	extraData.bounces = extraData.bounces - 1
 	if target:GetTeamNumber() ~= caster:GetTeamNumber() and not target:TriggerSpellAbsorb( self ) and not extraData.mirror then
 		self:Stun(target, stunDuration)
-		self:DealDamage( caster, target, self:GetTalentSpecialValueFor("damage") )
+		self:DealDamage( caster, target, self:GetSpecialValueFor("damage") )
 	elseif target:IsSameTeam(caster) and extraData.mirror == "1" then
-		target:HealEvent(self:GetTalentSpecialValueFor("heal"), self, caster)
+		target:HealEvent(self:GetSpecialValueFor("heal"), self, caster)
 		target:Dispel( caster, false )
 	end
 	local effectFX = "particles/units/heroes/hero_witchdoctor/witchdoctor_cask.vpcf"
@@ -94,26 +94,26 @@ function witch_doctor_paralyzing_cask_bh:OnProjectileHit_ExtraData(target, vLoca
 				-- Go through the target_enties table, checking for the first one that isn't the same as the target
 				for _,unit in pairs(allies) do
 					if unit ~= target then
-						self:FireTrackingProjectile(effectFX, unit, self:GetTalentSpecialValueFor("speed"), {extraData = extraData, source = target})
+						self:FireTrackingProjectile(effectFX, unit, self:GetSpecialValueFor("speed"), {extraData = extraData, source = target})
 						return
 					end
 				end
 				for _,unit in pairs(enemies) do
 					if unit ~= target then
-						self:FireTrackingProjectile(effectFX, unit, self:GetTalentSpecialValueFor("speed"), {extraData = extraData, source = target})
+						self:FireTrackingProjectile(effectFX, unit, self:GetSpecialValueFor("speed"), {extraData = extraData, source = target})
 						return
 					end
 				end
 			else
 				for _,unit in pairs(enemies) do
 					if unit ~= target then
-						self:FireTrackingProjectile(effectFX, unit, self:GetTalentSpecialValueFor("speed"), {extraData = extraData, source = target})
+						self:FireTrackingProjectile(effectFX, unit, self:GetSpecialValueFor("speed"), {extraData = extraData, source = target})
 						return
 					end
 				end
 				for _,unit in pairs(allies) do
 					if unit ~= target then
-						self:FireTrackingProjectile(effectFX, unit, self:GetTalentSpecialValueFor("speed"), {extraData = extraData, source = target})
+						self:FireTrackingProjectile(effectFX, unit, self:GetSpecialValueFor("speed"), {extraData = extraData, source = target})
 						return
 					end
 				end

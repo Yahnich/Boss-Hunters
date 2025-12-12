@@ -8,10 +8,10 @@ modifier_dazzle_weave_bh_handler = class({})
 LinkLuaModifier("modifier_dazzle_weave_bh_handler", "heroes/hero_dazzle/dazzle_weave_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_dazzle_weave_bh_handler:OnCreated()
-	self.cdr = self:GetTalentSpecialValueFor("cdr")
-	self.mana_cost = self:GetTalentSpecialValueFor("mana_cost")
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.duration = self:GetTalentSpecialValueFor("duration")
+	self.cdr = self:GetSpecialValueFor("cdr")
+	self.mana_cost = self:GetSpecialValueFor("mana_cost")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.duration = self:GetSpecialValueFor("duration")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_dazzle_weave_1")
 	if IsServer() then
 		self:SetStackCount( self.mana_cost )
@@ -60,7 +60,7 @@ modifier_dazzle_weave_bh = class({})
 LinkLuaModifier("modifier_dazzle_weave_bh", "heroes/hero_dazzle/dazzle_weave_bh", 0)
 
 function modifier_dazzle_weave_bh:OnCreated()
-	self.armor = self:GetTalentSpecialValueFor("armor_per_second")
+	self.armor = self:GetSpecialValueFor("armor_per_second")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_dazzle_weave_2")
 	self.hAmp = self:GetCaster():FindTalentValue("special_bonus_unique_dazzle_weave_2")
 	if IsServer() then

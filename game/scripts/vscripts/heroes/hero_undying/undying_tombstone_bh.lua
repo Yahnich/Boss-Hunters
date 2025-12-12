@@ -11,15 +11,15 @@ function undying_tombstone_bh:OnSpellStart()
 		end
 	end
 	
-	local duration = self:GetTalentSpecialValueFor("tombstone_duration")
+	local duration = self:GetSpecialValueFor("tombstone_duration")
 	local tombstone = self:GetCaster():CreateSummon("npc_dota_unit_tombstone4", position, duration, false)
 	tombstone:AddNewModifier(caster, self, "undying_tombstone_bh_tombstone", {duration = duration})
-	tombstone:SetCoreHealth( self:GetTalentSpecialValueFor("tombstone_hp") )
+	tombstone:SetCoreHealth( self:GetSpecialValueFor("tombstone_hp") )
 end
 
 function undying_tombstone_bh:SummonZombie( unit, duration )
 	local caster = self:GetCaster()
-	local fDur = duration or self:GetTalentSpecialValueFor("tombstone_duration")
+	local fDur = duration or self:GetSpecialValueFor("tombstone_duration")
 	local zombie = caster:CreateSummon("npc_dota_unit_undying_tombstone_zombie", unit:GetAbsOrigin(), duration, false)
 	if RandomInt( 1, 100 ) < 50 then
 		zombie:SetOriginalModel( "models/heroes/undying/undying_minion_torso.vmdl" )
@@ -27,8 +27,8 @@ function undying_tombstone_bh:SummonZombie( unit, duration )
 	end
 	zombie:CreatureLevelUp( caster:GetLevel() - 1 )
 	zombie:AddNewModifier(caster, self, "undying_tombstone_bh_zombie", {unit = unit:entindex()})
-	zombie:SetCoreHealth( self:GetTalentSpecialValueFor("zombie_hp") )
-	zombie:SetAverageBaseDamage( caster:GetStrength() * self:GetTalentSpecialValueFor("zombie_atk_dmg") / 100 )
+	zombie:SetCoreHealth( self:GetSpecialValueFor("zombie_hp") )
+	zombie:SetAverageBaseDamage( caster:GetStrength() * self:GetSpecialValueFor("zombie_atk_dmg") / 100 )
 	return zombie
 end
 
@@ -37,12 +37,12 @@ LinkLuaModifier( "undying_tombstone_bh_tombstone", "heroes/hero_undying/undying_
 
 if IsServer() then
 	function undying_tombstone_bh_tombstone:OnCreated( )
-		self.spawnInterval = self:GetTalentSpecialValueFor("tombstone_spawn_interval")
-		self.spawnRadius = self:GetTalentSpecialValueFor("tombstone_spawn_radius")
+		self.spawnInterval = self:GetSpecialValueFor("tombstone_spawn_interval")
+		self.spawnRadius = self:GetSpecialValueFor("tombstone_spawn_radius")
 		
-		self.dmgBoss = self:GetTalentSpecialValueFor("zombie_boss_dmg")
-		self.dmgMonster = self:GetTalentSpecialValueFor("zombie_boss_dmg")
-		self.dmgMinion = self:GetTalentSpecialValueFor("zombie_dmg")
+		self.dmgBoss = self:GetSpecialValueFor("zombie_boss_dmg")
+		self.dmgMonster = self:GetSpecialValueFor("zombie_boss_dmg")
+		self.dmgMinion = self:GetSpecialValueFor("zombie_dmg")
 		
 		self.tombstoneZombies = {}
 		
@@ -186,8 +186,8 @@ if IsServer() then
 		
 		self.unit = EntIndexToHScript( kv.unit )
 		
-		self.dmgBoss = self:GetTalentSpecialValueFor("zombie_boss_dmg")
-		self.dmgOther = self:GetTalentSpecialValueFor("zombie_dmg")
+		self.dmgBoss = self:GetSpecialValueFor("zombie_boss_dmg")
+		self.dmgOther = self:GetSpecialValueFor("zombie_dmg")
 		
 		self:StartIntervalThink(0.5)
 		self:OnIntervalThink( )

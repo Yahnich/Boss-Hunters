@@ -12,7 +12,7 @@ function faceless_time_walk:IsHiddenWhenStolen()
 end
 
 function faceless_time_walk:GetCastRange()
-    return self:GetTalentSpecialValueFor("range")
+    return self:GetSpecialValueFor("range")
 end
 
 function faceless_time_walk:GetIntrinsicModifierName()
@@ -31,15 +31,15 @@ function faceless_time_walk:OnSpellStart()
 
     EmitSoundOn("Hero_FacelessVoid.TimeWalk", caster)
 
-    ParticleManager:FireParticle("particles/units/heroes/hero_faceless_void/faceless_void_time_walk_slow.vpcf", PATTACH_WORLDORIGIN, caster, {[1]=Vector(self:GetTalentSpecialValueFor("radius"), 0, 0)})
+    ParticleManager:FireParticle("particles/units/heroes/hero_faceless_void/faceless_void_time_walk_slow.vpcf", PATTACH_WORLDORIGIN, caster, {[1]=Vector(self:GetSpecialValueFor("radius"), 0, 0)})
 
-    caster:AddNewModifier(caster, self, "modifier_faceless_time_walk", {Duration = self:GetTalentSpecialValueFor("range")/self:GetTalentSpecialValueFor("speed")})
+    caster:AddNewModifier(caster, self, "modifier_faceless_time_walk", {Duration = self:GetSpecialValueFor("range")/self:GetSpecialValueFor("speed")})
 
     local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_faceless_void/faceless_void_time_walk_preimage.vpcf", PATTACH_WORLDORIGIN, caster)
                 ParticleManager:SetParticleControl(nfx, 0, caster:GetAbsOrigin())
-                if CalculateDistance(point, caster:GetAbsOrigin()) > self:GetTalentSpecialValueFor("range") then
-                    ParticleManager:SetParticleControl(nfx, 1, caster:GetAbsOrigin() + caster:GetForwardVector() * self:GetTalentSpecialValueFor("range"))
-                    ParticleManager:SetParticleControl(nfx, 2, caster:GetAbsOrigin() + caster:GetForwardVector() * self:GetTalentSpecialValueFor("range"))
+                if CalculateDistance(point, caster:GetAbsOrigin()) > self:GetSpecialValueFor("range") then
+                    ParticleManager:SetParticleControl(nfx, 1, caster:GetAbsOrigin() + caster:GetForwardVector() * self:GetSpecialValueFor("range"))
+                    ParticleManager:SetParticleControl(nfx, 2, caster:GetAbsOrigin() + caster:GetForwardVector() * self:GetSpecialValueFor("range"))
                 else
                     ParticleManager:SetParticleControl(nfx, 1, point)
                     ParticleManager:SetParticleControl(nfx, 2, point)
@@ -55,7 +55,7 @@ function modifier_faceless_time_walk:OnCreated(table)
         local caster = self:GetParent()
         self.direction = CalculateDirection(self:GetAbility():GetCursorPosition(), caster:GetAbsOrigin())
         self.currentDistance = CalculateDistance(self:GetAbility():GetCursorPosition(), caster:GetAbsOrigin())
-		self.damage = self:GetTalentSpecialValueFor("damage")
+		self.damage = self:GetSpecialValueFor("damage")
         local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_faceless_void/faceless_void_chrono_speed.vpcf", PATTACH_POINT_FOLLOW, caster)
         self:AttachEffect(nfx)
 		self.hitUnits = {}
@@ -97,8 +97,8 @@ function modifier_faceless_time_walk:DoControlledMotion()
 
     if self.currentDistance > 0 then
         local pos = GetGroundPosition(caster:GetAbsOrigin(), caster)
-        caster:SetAbsOrigin(pos + self.direction * self:GetTalentSpecialValueFor("speed")*FrameTime())
-        self.currentDistance = self.currentDistance - self:GetTalentSpecialValueFor("speed")*FrameTime()
+        caster:SetAbsOrigin(pos + self.direction * self:GetSpecialValueFor("speed")*FrameTime())
+        self.currentDistance = self.currentDistance - self:GetSpecialValueFor("speed")*FrameTime()
     else
         FindClearSpaceForUnit(caster, caster:GetAbsOrigin(), true)
         self:StopMotionController(true)
@@ -147,7 +147,7 @@ function modifier_faceless_time_walk_counter:OnCreated()
     self.ability = self:GetAbility()
 
     -- Ability specials
-    self.damage_time = self.ability:GetTalentSpecialValueFor("backtrack_duration")
+    self.damage_time = self.ability:GetSpecialValueFor("backtrack_duration")
 
     if IsServer() then
         if not self.caster.time_walk_damage_taken then

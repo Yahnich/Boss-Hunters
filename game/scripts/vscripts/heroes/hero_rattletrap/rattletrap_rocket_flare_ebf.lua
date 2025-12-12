@@ -41,15 +41,15 @@ if IsServer() then
 
 	function rattletrap_rocket_flare_ebf:OnProjectileHit(target, position)
 		local caster = self:GetCaster()
-		local radius = self:GetTalentSpecialValueFor("radius")
-		local duration = self:GetTalentSpecialValueFor("duration")
+		local radius = self:GetSpecialValueFor("radius")
+		local duration = self:GetSpecialValueFor("duration")
 		local enemies = FindUnitsInRadius(caster:GetTeamNumber(), target:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 		EmitSoundOn("Hero_Rattletrap.Rocket_Flare.Explode", self:GetCaster())
 		UTIL_Remove(target)
 		for _, enemy in pairs(enemies) do
 			if not enemy:TriggerSpellAbsorb( self ) then
 				enemy:AddNewModifier(caster, self, "modifier_rattletrap_rocket_flare_blind", {duration = duration})
-				ApplyDamage({victim = enemy, attacker = caster, damage = self:GetTalentSpecialValueFor("damage"), damage_type = self:GetAbilityDamageType(), ability = self})
+				ApplyDamage({victim = enemy, attacker = caster, damage = self:GetSpecialValueFor("damage"), damage_type = self:GetAbilityDamageType(), ability = self})
 			end
 		end
 		AddFOWViewer( caster:GetTeamNumber(), position, radius, 10, false ) 
@@ -60,7 +60,7 @@ modifier_rattletrap_rocket_flare_blind = class({})
 LinkLuaModifier( "modifier_rattletrap_rocket_flare_blind", "heroes/hero_rattletrap/rattletrap_rocket_flare_ebf" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_rattletrap_rocket_flare_blind:OnCreated()
-	self.miss = self:GetAbility():GetTalentSpecialValueFor("blind")
+	self.miss = self:GetAbility():GetSpecialValueFor("blind")
 end
 
 function modifier_rattletrap_rocket_flare_blind:DeclareFunctions()

@@ -3,7 +3,7 @@ troll_warlord_battle_trance_bh = class({})
 function troll_warlord_battle_trance_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local duration = self:GetTalentSpecialValueFor("trance_duration")
+	local duration = self:GetSpecialValueFor("trance_duration")
 	caster:AddNewModifier( caster, self, "modifier_troll_warlord_battle_trance_bh", {duration = duration})
 	caster:StartGesture(ACT_DOTA_CAST_ABILITY_4)
 	caster:EmitSound("Hero_TrollWarlord.BattleTrance.Cast")
@@ -20,9 +20,9 @@ function modifier_troll_warlord_battle_trance_bh:OnCreated()
 end
 
 function modifier_troll_warlord_battle_trance_bh:OnRefresh()
-	self.attackspeed = self:GetTalentSpecialValueFor("attack_speed")
-	self.movespeed = self:GetTalentSpecialValueFor("move_speed")
-	self.lifesteal = self:GetTalentSpecialValueFor("lifesteal")
+	self.attackspeed = self:GetSpecialValueFor("attack_speed")
+	self.movespeed = self:GetSpecialValueFor("move_speed")
+	self.lifesteal = self:GetSpecialValueFor("lifesteal")
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_battle_trance_1")
 	self.sr = self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_battle_trance_1")

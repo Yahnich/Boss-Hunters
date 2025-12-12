@@ -14,7 +14,7 @@
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityTextureName"			"phantom_assassin_stifling_dagger"
 		
 		// Talents		
@@ -41,40 +41,19 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"65"
+			"damage"						"65"
 				"LinkedSpecialBonus"			"special_bonus_unique_pa_kunai_toss_2"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_pct"					"25 40 55 70 80 90 100"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"daggers"						"3 3 3 3 4 5 6"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"spread_radius"					"200"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"range"							"550 750 950 1150 1150 1150 1150"
-			}
+			"damage_pct"					"25 40 55 70 80 90 100"
+			"daggers"						"3 3 3 3 4 5 6"
+			"spread_radius"					"200"
+			"range"							"550 750 950 1150 1150 1150 1150"
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"slow"							"-50"
 				"LinkedSpecialBonus"			"special_bonus_unique_pa_kunai_toss_1"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_FLOAT"
@@ -82,7 +61,6 @@
 				"LinkedSpecialBonus"			"special_bonus_unique_pa_kunai_toss_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 				"LinkedSpecialBonusField"		"value2"
-			}
 		}
 	
 		"precache"
@@ -103,18 +81,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-50"
-			}
+			"value"					"-50"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value2"				"2"
-			}
 		}
 	}
 	"special_bonus_unique_pa_kunai_toss_2" 
@@ -127,18 +100,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"35"
-			}
+			"value"					"35"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value2"				"-2"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -155,7 +123,7 @@
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityTextureName"			"phantom_assassin_phantom_strike"
 		
 		// Talents		
@@ -182,29 +150,19 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"5.0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_as"						"75 100 125 150 150 150"
+			"bonus_as"						"75 100 125 150 150 150"
 				"LinkedSpecialBonus"			"special_bonus_unique_pa_flash_step_1"
-			}
 			"30"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"range"							"1000"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"speed"							"5000"
-			}
+			"speed"							"5000"
 		}
 	
 		"precache"
@@ -226,13 +184,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"50"
-			}
+			"value"					"50"
 		}
 	}
 	"special_bonus_unique_pa_flash_step_2" 
@@ -245,13 +199,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"6"
-			}
+			"value"					"6"
 		}
 	}
 	"phantom_assassin_blur_ebf"
@@ -263,7 +213,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"phantom_assassin_blur"
 		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -294,23 +244,11 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_evasion"				"20 30 40 50 55 60 65"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"25.0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"break_delay"				"5.0"
-			}
+			"bonus_evasion"				"20 30 40 50 55 60 65"
+			"duration"					"25.0"
+			"break_delay"				"5.0"
 		}
 	}
 	"special_bonus_unique_pa_blur_1" 
@@ -324,18 +262,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"650"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"0.75"
-			}
+			"value"					"650"
+			"delay"					"0.75"
 		}
 	}
 	"special_bonus_unique_pa_blur_2" 
@@ -349,13 +279,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"20"
-			}
+			"value"					"20"
 		}
 	}
 	//=================================================================================================================
@@ -371,7 +297,7 @@
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"phantom_assassin_coup_de_grace"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -383,19 +309,11 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"crit_chance"				"15 15 15 18 21 24"
+			"crit_chance"				"15 15 15 18 21 24"
 				"LinkedSpecialBonus"		"special_bonus_unique_phantom_assassin_coup_de_grace_1"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"crit_bonus"				"200 325 450 500 550 600"
-			}
+			"crit_bonus"				"200 325 450 500 550 600"
 		}
 
 		"precache"
@@ -415,13 +333,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"6"
-			}
+			"value"					"6"
 		}
 	}
 	"special_bonus_unique_phantom_assassin_coup_de_grace_2" 
@@ -435,13 +349,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"50"
-			}
+			"value"					"50"
 		}
 	}
 }

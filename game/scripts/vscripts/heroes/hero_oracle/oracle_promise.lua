@@ -13,7 +13,7 @@ function oracle_promise:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	
 	EmitSoundOn("Hero_Oracle.FalsePromise.Cast", caster)
 	EmitSoundOn("Hero_Oracle.FalsePromise.Target", target)
@@ -24,7 +24,7 @@ function oracle_promise:OnSpellStart()
 				ParticleManager:SetParticleControlEnt(nfx, 2, caster, PATTACH_ABSORIGIN, "attach_attack1", caster:GetAbsOrigin(), true)
 				ParticleManager:ReleaseParticleIndex(nfx)
 
-	target:AddNewModifier(caster, self, "modifier_oracle_promise", {Duration = self:GetTalentSpecialValueFor("duration")})
+	target:AddNewModifier(caster, self, "modifier_oracle_promise", {Duration = self:GetSpecialValueFor("duration")})
 	if target:GetTeam() == caster:GetTeam() then
 		target:Purge(false, true, false, true, false)
 	else
@@ -54,8 +54,8 @@ end
 function modifier_oracle_promise:OnRefresh(table)
 	local caster = self:GetCaster()
 	self.invs = 0 
-	self.heal_amp = 1 + (self:GetTalentSpecialValueFor("heal_amp"))/100
-	self.damage_amp = 1 + (self:GetTalentSpecialValueFor("damage_amp"))/100
+	self.heal_amp = 1 + (self:GetSpecialValueFor("heal_amp"))/100
+	self.damage_amp = 1 + (self:GetSpecialValueFor("damage_amp"))/100
 	self.state = {}
 
 	if caster:IsSameTeam( self:GetParent() ) then

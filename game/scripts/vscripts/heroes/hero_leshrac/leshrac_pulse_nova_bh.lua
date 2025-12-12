@@ -30,8 +30,8 @@ modifier_leshrac_pulse_nova_bh = class(toggleModifierBaseClass)
 LinkLuaModifier( "modifier_leshrac_pulse_nova_bh", "heroes/hero_leshrac/leshrac_pulse_nova_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_leshrac_pulse_nova_bh:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.damage = self:GetSpecialValueFor("damage")
 	
 	if IsServer() then
 		self:GetCaster():EmitSound("Hero_Leshrac.Pulse_Nova")
@@ -48,7 +48,7 @@ function modifier_leshrac_pulse_nova_bh:OnIntervalThink()
 		enemy:EmitSound("Hero_Leshrac.Pulse_Nova_Strike")
 		ParticleManager:FireParticle("particles/units/heroes/hero_leshrac/leshrac_pulse_nova.vpcf", PATTACH_POINT_FOLLOW, enemy)
 	end
-	caster:SpendMana( self:GetTalentSpecialValueFor("mana_cost_per_second"), ability )
+	caster:SpendMana( self:GetSpecialValueFor("mana_cost_per_second"), ability )
 	if caster:GetMana() == 0 then
 		self:GetAbility():ToggleAbility()
 	end

@@ -13,7 +13,7 @@ function ds_shell:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 
 	EmitSoundOn("Hero_Dark_Seer.Ion_Shield_Start", target)
 	target:RemoveModifierByName("modifier_ds_shell")
@@ -55,8 +55,8 @@ function modifier_ds_shell:OnRefresh(table)
 	if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
-		self.damage = self:GetTalentSpecialValueFor("damage") * 0.25
-		self.radius = self:GetTalentSpecialValueFor("radius")
+		self.damage = self:GetSpecialValueFor("damage") * 0.25
+		self.radius = self:GetSpecialValueFor("radius")
 		self.talent2 = caster:HasTalent("special_bonus_unique_ds_shell_2")
 		self.talent3 = caster:HasTalent("special_bonus_unique_ds_shell_3")
 		self.talent3Heal = caster:FindTalentValue("special_bonus_unique_ds_shell_3") / 100
@@ -114,7 +114,7 @@ end
 			-- local ability = self:GetAbility()
 			-- local unit = params.unit
 
-			-- local duration = self:GetTalentSpecialValueFor("duration")
+			-- local duration = self:GetSpecialValueFor("duration")
 
 			-- if unit == parent then
 				-- local units = caster:FindAllUnitsInRadius(caster:GetAbsOrigin(), 350, {order = FIND_CLOSEST})

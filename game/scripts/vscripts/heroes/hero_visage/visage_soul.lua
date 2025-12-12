@@ -61,8 +61,8 @@ end
 function visage_soul:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 
-	local baseDamage = self:GetTalentSpecialValueFor("base_damage")
-	local stackDamage = self:GetTalentSpecialValueFor("charge_damage") * self.currentStacks
+	local baseDamage = self:GetSpecialValueFor("base_damage")
+	local stackDamage = self:GetSpecialValueFor("charge_damage") * self.currentStacks
 
 	local totalDamage = baseDamage + stackDamage
 
@@ -76,7 +76,7 @@ end
 function visage_soul:IncrementStacks()
 	local caster = self:GetCaster()
 
-	local maxStacks = self:GetTalentSpecialValueFor("stack_limit")
+	local maxStacks = self:GetSpecialValueFor("stack_limit")
 	
 	if caster:HasModifier("modifier_visage_soul_stacks") then
 		if caster:FindModifierByName("modifier_visage_soul_stacks"):GetStackCount() < maxStacks then
@@ -92,7 +92,7 @@ function modifier_visage_soul_handle:OnCreated(table)
 	if IsServer() then
 		local caster = self:GetCaster()
 
-		self.health_check = self:GetTalentSpecialValueFor("health_check")/100
+		self.health_check = self:GetSpecialValueFor("health_check")/100
 
 		self.nfx =  ParticleManager:CreateParticle("particles/units/heroes/hero_visage/visage_soul_counter.vpcf", PATTACH_ABSORIGIN, caster)
 					ParticleManager:SetParticleAlwaysSimulate(self.nfx)
@@ -114,14 +114,14 @@ end
 
 function modifier_visage_soul_handle:OnRefresh(table)
 	if IsServer() then
-		self.health_check = self:GetTalentSpecialValueFor("health_check")/100
+		self.health_check = self:GetSpecialValueFor("health_check")/100
 	end
 end
 
 function modifier_visage_soul_handle:OnIntervalThink()
 	if IsServer() then
 		local caster = self:GetCaster()
-		self.health_check = self:GetTalentSpecialValueFor("health_check")/100
+		self.health_check = self:GetSpecialValueFor("health_check")/100
 
 		local modifier = caster:FindModifierByName("modifier_visage_soul_stacks")
 		if modifier then

@@ -25,12 +25,12 @@ function juggernaut_hidden_blade:OnSpellStart()
 	local target = self:GetCursorTarget()
 	local omnislash = caster:FindAbilityByName("juggernaut_dance_of_blades")
 	
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	
 	caster:AddNewModifier(caster, omnislash, "modifier_juggernaut_dance_of_blades", {duration = duration + 0.1})
 	omnislash:Bounce(target)
 	if caster:HasTalent("special_bonus_unique_juggernaut_dance_of_blades_1") then
-		local radius = omnislash:GetTalentSpecialValueFor("radius") + caster:GetAttackRange()
+		local radius = omnislash:GetSpecialValueFor("radius") + caster:GetAttackRange()
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius) ) do
 			if enemy ~= target then
 				omnislash:Bounce(enemy)

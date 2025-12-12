@@ -41,8 +41,8 @@ function modifier_wisp_overcharge_bh:OnCreated(table)
 end
 
 function modifier_wisp_overcharge_bh:OnRefresh(table)
-	self.bonus_as = self:GetTalentSpecialValueFor("bonus_as")
-	self.bonus_reduc = self:GetTalentSpecialValueFor("bonus_reduc")
+	self.bonus_as = self:GetSpecialValueFor("bonus_as")
+	self.bonus_reduc = self:GetSpecialValueFor("bonus_reduc")
 
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
@@ -59,8 +59,8 @@ function modifier_wisp_overcharge_bh:OnRefresh(table)
 
 	if IsServer() then
 		if self:GetParent() == self:GetCaster() then
-			local drain_interval = self:GetTalentSpecialValueFor("drain_interval")
-			self.drain_pct = self:GetTalentSpecialValueFor("drain_pct")/100 * drain_interval
+			local drain_interval = self:GetSpecialValueFor("drain_interval")
+			self.drain_pct = self:GetSpecialValueFor("drain_pct")/100 * drain_interval
 
 			self:StartIntervalThink(drain_interval)
 		end

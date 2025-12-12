@@ -16,7 +16,7 @@ modifier_obsidian_destroyer_avatar_of_power_active = class(toggleModifierBaseCla
 LinkLuaModifier("modifier_obsidian_destroyer_avatar_of_power_active", "heroes/hero_outworld_devourer/obsidian_destroyer_avatar_of_power", 0)
 
 function modifier_obsidian_destroyer_avatar_of_power_active:OnCreated()
-	self.spell_amp = self:GetTalentSpecialValueFor("bonus_spell_amp") * self:GetParent():FindTalentValue("special_bonus_unique_obsidian_destroyer_avatar_of_power_1")
+	self.spell_amp = self:GetSpecialValueFor("bonus_spell_amp") * self:GetParent():FindTalentValue("special_bonus_unique_obsidian_destroyer_avatar_of_power_1")
 	if IsServer() then
 		ParticleManager:FireParticle("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 	end
@@ -61,19 +61,19 @@ LinkLuaModifier("modifier_obsidian_destroyer_avatar_of_power_passive", "heroes/h
 
 
 function modifier_obsidian_destroyer_avatar_of_power_passive:OnCreated()
-	self.mana = self:GetTalentSpecialValueFor("bonus_mana")
-	self.spellamp = self:GetTalentSpecialValueFor("bonus_spell_amp")
+	self.mana = self:GetSpecialValueFor("bonus_mana")
+	self.spellamp = self:GetSpecialValueFor("bonus_spell_amp")
 	
-	self.chance = self:GetTalentSpecialValueFor("mana_restore_chance")
-	self.essence = self:GetTalentSpecialValueFor("mana_restore_pct") / 100
+	self.chance = self:GetSpecialValueFor("mana_restore_chance")
+	self.essence = self:GetSpecialValueFor("mana_restore_pct") / 100
 end
 
 function modifier_obsidian_destroyer_avatar_of_power_passive:OnRefresh()
-	self.mana = self:GetTalentSpecialValueFor("bonus_mana")
-	self.spellamp = self:GetTalentSpecialValueFor("bonus_spell_amp")
+	self.mana = self:GetSpecialValueFor("bonus_mana")
+	self.spellamp = self:GetSpecialValueFor("bonus_spell_amp")
 
-	self.chance = self:GetTalentSpecialValueFor("mana_restore_chance")
-	self.essence = self:GetTalentSpecialValueFor("mana_restore_pct") / 100
+	self.chance = self:GetSpecialValueFor("mana_restore_chance")
+	self.essence = self:GetSpecialValueFor("mana_restore_pct") / 100
 end
 	
 function modifier_obsidian_destroyer_avatar_of_power_passive:IsHidden()

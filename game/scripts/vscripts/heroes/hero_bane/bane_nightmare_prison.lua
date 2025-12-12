@@ -4,7 +4,7 @@ function bane_nightmare_prison:OnSpellStart()
 	local modifierName = "modifier_bane_nightmare_prison_sleep"
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	if caster:HasTalent("special_bonus_unique_bane_nightmare_prison_2") then
 		modifierName = "modifier_bane_nightmare_prison_fear"
 	end
@@ -19,8 +19,8 @@ modifier_bane_nightmare_prison_sleep = class({})
 LinkLuaModifier("modifier_bane_nightmare_prison_sleep", "heroes/hero_bane/bane_nightmare_prison", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_bane_nightmare_prison_sleep:OnCreated()
-	self.minDuration = self:GetTalentSpecialValueFor("min_duration")
-	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.minDuration = self:GetSpecialValueFor("min_duration")
+	self.damage = self:GetSpecialValueFor("damage")
 	if IsServer() then 
 		self:StartIntervalThink(1)
 		EmitSoundOn("Hero_Bane.Nightmare.Loop", self:GetParent())
@@ -34,7 +34,7 @@ function modifier_bane_nightmare_prison_sleep:OnDestroy()
 		StopSoundOn("Hero_Bane.Nightmare.Loop", parent)
 		EmitSoundOn("Hero_Bane.Nightmare.End", parent)
 		
-		self:GetAbility():DealDamage( caster, parent, self:GetTalentSpecialValueFor("burst_damage") )
+		self:GetAbility():DealDamage( caster, parent, self:GetSpecialValueFor("burst_damage") )
 		if caster:HasTalent("special_bonus_unique_bane_nightmare_prison_2") then
 			parent:AddNewModifier(caster, self:GetAbility(), "modifier_bane_nightmare_prison_fear", {duration = caster:FindTalentValue("special_bonus_unique_bane_nightmare_prison_2", "duration")} )
 		end

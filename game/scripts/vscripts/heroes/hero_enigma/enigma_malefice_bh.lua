@@ -10,16 +10,16 @@ function enigma_malefice_bh:OnSpellStart()
 	
 	caster:EmitSound( "Hero_Enigma.Malefice" )
 	if target:TriggerSpellAbsorb(self) then return end
-	target:AddNewModifier(caster, self, "modifier_enigma_malefice_bh", {duration = self:GetTalentSpecialValueFor("duration")})
+	target:AddNewModifier(caster, self, "modifier_enigma_malefice_bh", {duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_enigma_malefice_bh = class({})
 LinkLuaModifier("modifier_enigma_malefice_bh", "heroes/hero_enigma/enigma_malefice_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_enigma_malefice_bh:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("damage")
-	self.tick = self:GetTalentSpecialValueFor("tick_rate") * (self:GetRemainingTime() / self:GetTalentSpecialValueFor("duration"))
-	self.stun = self:GetTalentSpecialValueFor("stun_duration")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.tick = self:GetSpecialValueFor("tick_rate") * (self:GetRemainingTime() / self:GetSpecialValueFor("duration"))
+	self.stun = self:GetSpecialValueFor("stun_duration")
 	if IsServer() then
 		self.tRadius = self:GetCaster():FindTalentValue("special_bonus_unique_enigma_malefice_1")
 		self:Malefice()
@@ -28,9 +28,9 @@ function modifier_enigma_malefice_bh:OnCreated()
 end
 
 function modifier_enigma_malefice_bh:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("damage")
-	self.tick = self:GetTalentSpecialValueFor("tick_rate") * (self:GetRemainingTime() / self:GetTalentSpecialValueFor("duration"))
-	self.stun = self:GetTalentSpecialValueFor("stun_duration")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.tick = self:GetSpecialValueFor("tick_rate") * (self:GetRemainingTime() / self:GetSpecialValueFor("duration"))
+	self.stun = self:GetSpecialValueFor("stun_duration")
 	if IsServer() then
 		self.tRadius = self:GetCaster():FindTalentValue("special_bonus_unique_enigma_malefice_1")
 		self:Malefice()

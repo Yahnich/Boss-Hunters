@@ -19,8 +19,8 @@ function faceless_chrono:CreateChronosphere( position, duration, radius )
     local caster = self:GetCaster()
 	EmitSoundOn("Hero_FacelessVoid.Chronosphere", caster)
 	
-	local fDur = duration or self:GetTalentSpecialValueFor("duration")
-	local fRadius = radius or self:GetTalentSpecialValueFor("radius")
+	local fDur = duration or self:GetSpecialValueFor("duration")
+	local fRadius = radius or self:GetSpecialValueFor("radius")
     CreateModifierThinker(caster, self, "modifier_faceless_chrono", {duration = fDur, radius = fRadius}, position, caster:GetTeam(), false)
     AddFOWViewer(caster:GetTeam(), position, fRadius, fDur, true)
 end
@@ -30,7 +30,7 @@ function modifier_faceless_chrono:OnCreated(kv)
     if IsServer() then
         local caster = self:GetCaster()
         local point = self:GetParent():GetAbsOrigin()
-        local radius = kv.radius or self:GetTalentSpecialValueFor("radius")
+        local radius = kv.radius or self:GetSpecialValueFor("radius")
 
         local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_faceless_void/faceless_void_chronosphere_surface.vpcf", PATTACH_POINT, caster)
                     ParticleManager:SetParticleControl(nfx, 0, point)
@@ -63,7 +63,7 @@ function modifier_faceless_chrono:OnIntervalThink()
     local caster = self:GetCaster()
     local point = self:GetParent():GetAbsOrigin()
 
-    local friends = caster:FindFriendlyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius"))
+    local friends = caster:FindFriendlyUnitsInRadius(point, self:GetSpecialValueFor("radius"))
     for _,friend in pairs(friends) do
         if friend == caster then
             caster:AddNewModifier(caster, self:GetAbility(), "modifier_faceless_chrono_buff", {Duration = 0.1})
@@ -80,7 +80,7 @@ function modifier_faceless_chrono:GetAuraDuration()
 end
 
 function modifier_faceless_chrono:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function modifier_faceless_chrono:GetAuraSearchFlags()

@@ -8,7 +8,7 @@ function slardar_amplify_damage_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	if caster:HasTalent("special_bonus_unique_slardar_amplify_damage_1") then
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_slardar_amplify_damage_1") ) ) do
 			if not enemy:TriggerSpellAbsorb( self ) then
@@ -23,14 +23,14 @@ end
 
 function slardar_amplify_damage_bh:ApplyHaze( target, duration )
 	local caster = self:GetCaster()
-	target:AddNewModifier( caster, self, "modifier_slardar_amplify_damage_bh", { duration = duration or self:GetTalentSpecialValueFor("duration") } )
+	target:AddNewModifier( caster, self, "modifier_slardar_amplify_damage_bh", { duration = duration or self:GetSpecialValueFor("duration") } )
 end
 
 modifier_slardar_amplify_damage_bh = class({})
 LinkLuaModifier( "modifier_slardar_amplify_damage_bh", "heroes/hero_slardar/slardar_amplify_damage_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_slardar_amplify_damage_bh:OnCreated()
-	self.armor = self:GetTalentSpecialValueFor("armor_reduction")
+	self.armor = self:GetSpecialValueFor("armor_reduction")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_slardar_amplify_damage_2")
 	self.talent2Dmg = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_amplify_damage_2")
 	self.talent3 = self:GetCaster():HasTalent("special_bonus_unique_slardar_amplify_damage_3")
@@ -45,7 +45,7 @@ function modifier_slardar_amplify_damage_bh:OnCreated()
 end
 
 function modifier_slardar_amplify_damage_bh:OnRefresh()
-	self.armor = self:GetTalentSpecialValueFor("armor_reduction")
+	self.armor = self:GetSpecialValueFor("armor_reduction")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_slardar_amplify_damage_2")
 	self.talent2Dmg = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_amplify_damage_2")
 	self.talent3 = self:GetCaster():HasTalent("special_bonus_unique_slardar_amplify_damage_3")

@@ -8,15 +8,15 @@ modifier_undying_deathlust = class({})
 LinkLuaModifier("modifier_undying_deathlust", "heroes/hero_undying/undying_deathlust", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_undying_deathlust:OnCreated()
-	self.hpThreshold = self:GetTalentSpecialValueFor("health_threshold_pct")
-	self.attackSpeed = self:GetTalentSpecialValueFor("bonus_attack_speed")
-	self.moveSpeed = self:GetTalentSpecialValueFor("bonus_move_speed")
+	self.hpThreshold = self:GetSpecialValueFor("health_threshold_pct")
+	self.attackSpeed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.moveSpeed = self:GetSpecialValueFor("bonus_move_speed")
 	
-	self.attackSpeedLvlup = self:GetTalentSpecialValueFor("bonus_as_lvlup")
-	self.moveSpeedLvlup = self:GetTalentSpecialValueFor("bonus_ms_lvlup")
+	self.attackSpeedLvlup = self:GetSpecialValueFor("bonus_as_lvlup")
+	self.moveSpeedLvlup = self:GetSpecialValueFor("bonus_ms_lvlup")
 	
-	self.delay = self:GetTalentSpecialValueFor("linger_duration")
-	self.duration = self:GetTalentSpecialValueFor("duration")
+	self.delay = self:GetSpecialValueFor("linger_duration")
+	self.duration = self:GetSpecialValueFor("duration")
 end
 
 function modifier_undying_deathlust:OnIntervalThink()
@@ -78,7 +78,7 @@ modifier_undying_deathlust_debuff = class({})
 LinkLuaModifier("modifier_undying_deathlust_debuff", "heroes/hero_undying/undying_deathlust", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_undying_deathlust_debuff:OnCreated()
-	self.slow = self:GetTalentSpecialValueFor("slow")
+	self.slow = self:GetSpecialValueFor("slow")
 end
 
 function modifier_undying_deathlust_debuff:DeclareFunctions()

@@ -19,11 +19,11 @@ function enchantress_untouchable_bh:GetCastRange(vLocation, hTarget)
     if self:GetCaster():HasTalent("special_bonus_unique_enchantress_untouchable_bh_2") then
     	return self:GetCaster():FindTalentValue("special_bonus_unique_enchantress_untouchable_bh_2", "cast_range")
     end
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function enchantress_untouchable_bh:GetAOERadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function enchantress_untouchable_bh:GetIntrinsicModifierName()
@@ -34,8 +34,8 @@ function enchantress_untouchable_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = caster:GetAbsOrigin()
 
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local radius = self:GetSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("duration")
 	if caster:HasTalent("special_bonus_unique_enchantress_untouchable_bh_2") then
 		point = self:GetCursorPosition()
 	end
@@ -60,11 +60,11 @@ modifier_enchantress_untouchable_bh = class({})
 LinkLuaModifier("modifier_enchantress_untouchable_bh", "heroes/hero_enchantress/enchantress_untouchable_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_enchantress_untouchable_bh:OnCreated()
-	self.duration = self:GetTalentSpecialValueFor("duration") / 2
+	self.duration = self:GetSpecialValueFor("duration") / 2
 end
 
 function modifier_enchantress_untouchable_bh:OnRefresh()
-	self.duration = self:GetTalentSpecialValueFor("duration") / 2
+	self.duration = self:GetSpecialValueFor("duration") / 2
 end
 
 function modifier_enchantress_untouchable_bh:DeclareFunctions()
@@ -94,7 +94,7 @@ end
 modifier_enchantress_untouchable_bh_slow = class({})
 LinkLuaModifier("modifier_enchantress_untouchable_bh_slow", "heroes/hero_enchantress/enchantress_untouchable_bh", LUA_MODIFIER_MOTION_NONE)
 function modifier_enchantress_untouchable_bh_slow:OnCreated(table)
-	self.slow_as = self:GetTalentSpecialValueFor("slow_as")
+	self.slow_as = self:GetSpecialValueFor("slow_as")
 	self.slow_ms = self:GetCaster():FindTalentValue("special_bonus_unique_enchantress_untouchable_bh_1", "ms")
 	if IsServer() then
 		EmitSoundOn("Hero_Enchantress.Untouchable", self:GetParent())
@@ -102,7 +102,7 @@ function modifier_enchantress_untouchable_bh_slow:OnCreated(table)
 end
 
 function modifier_enchantress_untouchable_bh_slow:OnRefresh(table)
-	self.slow_as = self:GetTalentSpecialValueFor("slow_as")
+	self.slow_as = self:GetSpecialValueFor("slow_as")
 	self.slow_ms = self:GetCaster():FindTalentValue("special_bonus_unique_enchantress_untouchable_bh_1", "ms")
 end
 
@@ -144,7 +144,7 @@ end
 modifier_enchantress_untouchable_bh_passive_slow = class({})
 LinkLuaModifier("modifier_enchantress_untouchable_bh_passive_slow", "heroes/hero_enchantress/enchantress_untouchable_bh", LUA_MODIFIER_MOTION_NONE)
 function modifier_enchantress_untouchable_bh_passive_slow:OnCreated(table)
-	self.slow_as = self:GetTalentSpecialValueFor("passive_as")
+	self.slow_as = self:GetSpecialValueFor("passive_as")
 	self.slow_ms = self:GetCaster():FindTalentValue("special_bonus_unique_enchantress_untouchable_bh_1", "passive_ms")
 	if IsServer() then
 		EmitSoundOn("Hero_Enchantress.Untouchable", self:GetParent())
@@ -152,7 +152,7 @@ function modifier_enchantress_untouchable_bh_passive_slow:OnCreated(table)
 end
 
 function modifier_enchantress_untouchable_bh_passive_slow:OnRefresh(table)
-	self.slow_as = self:GetTalentSpecialValueFor("passive_as")
+	self.slow_as = self:GetSpecialValueFor("passive_as")
 	self.slow_ms = self:GetCaster():FindTalentValue("special_bonus_unique_enchantress_untouchable_bh_1", "passive_ms")
 end
 

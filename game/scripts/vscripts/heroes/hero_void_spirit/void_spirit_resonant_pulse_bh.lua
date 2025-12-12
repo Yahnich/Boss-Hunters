@@ -1,7 +1,7 @@
 void_spirit_resonant_pulse_bh = class({})
 
 function void_spirit_resonant_pulse_bh:GetCastRange( target, position )
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function void_spirit_resonant_pulse_bh:OnAbilityPhaseStart()
@@ -16,10 +16,10 @@ end
 function void_spirit_resonant_pulse_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local duration = self:GetTalentSpecialValueFor("buff_duration")
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local speed = self:GetTalentSpecialValueFor("speed")
+	local radius = self:GetSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("buff_duration")
+	local damage = self:GetSpecialValueFor("damage")
+	local speed = self:GetSpecialValueFor("speed")
 	local enemies = 0
 	local talent = caster:HasTalent("special_bonus_unique_void_spirit_resonant_pulse_1")
 	local talentDuration = caster:FindTalentValue("special_bonus_unique_void_spirit_resonant_pulse_1")
@@ -72,7 +72,7 @@ modifier_void_spirit_resonant_pulse_shield = class({})
 LinkLuaModifier( "modifier_void_spirit_resonant_pulse_shield", "heroes/hero_void_spirit/void_spirit_resonant_pulse_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_void_spirit_resonant_pulse_shield:OnCreated()
-	self.damageBlock = self:GetTalentSpecialValueFor("base_absorb_amount")
+	self.damageBlock = self:GetSpecialValueFor("base_absorb_amount")
 	if IsServer() then
 		local FX = ParticleManager:CreateParticle( "particles/units/heroes/hero_void_spirit/pulse/void_spirit_pulse_shield.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster() )
 		ParticleManager:SetParticleControlEnt( FX, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true)
@@ -83,7 +83,7 @@ function modifier_void_spirit_resonant_pulse_shield:OnCreated()
 end
 
 function modifier_void_spirit_resonant_pulse_shield:OnRefresh()
-	self.damageBlock = self:GetTalentSpecialValueFor("base_absorb_amount") + self:GetStackCount() * self:GetTalentSpecialValueFor("absorb_per_hero_hit")
+	self.damageBlock = self:GetSpecialValueFor("base_absorb_amount") + self:GetStackCount() * self:GetSpecialValueFor("absorb_per_hero_hit")
 end
 
 function modifier_void_spirit_resonant_pulse_shield:OnDestroy()

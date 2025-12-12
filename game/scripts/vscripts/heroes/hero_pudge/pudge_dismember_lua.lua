@@ -11,7 +11,7 @@ function pudge_dismember_lua:SpeakTrigger()
 end
 
 function pudge_dismember_lua:GetChannelTime()
-	return self:GetTalentSpecialValueFor( "duration" )
+	return self:GetSpecialValueFor( "duration" )
 end
 
 function pudge_dismember_lua:GetChannelAnimation()
@@ -19,20 +19,14 @@ function pudge_dismember_lua:GetChannelAnimation()
 end
 
 function pudge_dismember_lua:GetAOERadius()
-	return self:GetTalentSpecialValueFor("width")
-end
-
-function pudge_dismember_lua:GetCooldown(iLvl)
-    local cooldown = self.BaseClass.GetCooldown(self, iLvl)
-    if self:GetCaster():HasTalent("special_bonus_unique_pudge_dismember_lua_1") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_pudge_dismember_lua_1", "cdr") end
-    return cooldown
+	return self:GetSpecialValueFor("width")
 end
 
 function pudge_dismember_lua:OnSpellStart()
 	local caster = self:GetCaster()
 
-	if caster:HasTalent("special_bonus_unique_pudge_dismember_lua_2") then
-		caster:AddNewModifier(caster, self, "modifier_pudge_dismember_lua_armor", {Duration = self:GetTalentSpecialValueFor("duration")})
+	if self:GetSpecialValueFor("bonus_armor") > 0 then
+		caster:AddNewModifier(caster, self, "modifier_pudge_dismember_lua_armor", {Duration = self:GetSpecialValueFor("duration")})
 	end
 
 	ParticleManager:FireParticle("particles/units/heroes/hero_pudge/pudge_dismember.vpcf", PATTACH_POINT_FOLLOW, caster, {[0]="attach_attack1"})
@@ -44,9 +38,9 @@ end
 function pudge_dismember_lua:OnChannelThink(flInterval)
 	local caster = self:GetCaster()
 	local endPoint = caster:GetAbsOrigin() + caster:GetForwardVector() * self:GetTrueCastRange()
-	local speed = self:GetTalentSpecialValueFor("speed")*flInterval
+	local speed = self:GetSpecialValueFor("speed")*flInterval
 	self.counter = self.counter + flInterval
-	local enemies = caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), endPoint, self:GetTalentSpecialValueFor("width"), {})
+	local enemies = caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), endPoint, self:GetSpecialValueFor("width"), {})
 	for _,enemy in pairs(enemies) do
 		if CalculateDistance(enemy, caster) > caster:GetAttackRange() then
 			enemy:SetAbsOrigin(enemy:GetAbsOrigin() - CalculateDirection(enemy, caster) * speed)
@@ -59,15 +53,15 @@ function pudge_dismember_lua:OnChannelThink(flInterval)
 		ParticleManager:FireParticle("particles/units/heroes/hero_pudge/pudge_dismember.vpcf", PATTACH_POINT_FOLLOW, caster, {[0]="attach_attack1"})
 		ParticleManager:FireParticle("particles/units/heroes/hero_pudge/pudge_dismember.vpcf", PATTACH_POINT_FOLLOW, caster, {[0]="attach_attack2"})
 			
-		local enemies = caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), endPoint, self:GetTalentSpecialValueFor("width"), {})
+		local enemies = caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), endPoint, self:GetSpecialValueFor("width"), {})
 		for _,enemy in pairs(enemies) do
 			if not enemy:TriggerSpellAbsorb( self ) then
 				if not enemy:HasModifier("modifier_pudge_dismember_lua") then
-					enemy:AddNewModifier(caster, self, "modifier_pudge_dismember_lua", {duration = self:GetTalentSpecialValueFor("duration")})
+					enemy:AddNewModifier(caster, self, "modifier_pudge_dismember_lua", {duration = self:GetSpecialValueFor("duration")})
 				end
-				local damage = self:GetTalentSpecialValueFor("damage") + self:GetTalentSpecialValueFor("str_damage")/100 * caster:GetStrength()
+				local damage = self:GetSpecialValueFor("damage") + self:GetSpecialValueFor("str_damage")/100 * caster:GetStrength()
 				damage = damage * 0.25
-				caster:Lifesteal(self, self:GetTalentSpecialValueFor("heal_pct"), damage, enemy, self:GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY, false)
+				caster:Lifesteal(self, self:GetSpecialValueFor("heal_pct"), damage, enemy, self:GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY, false)
 				self.enemyCheck = true
 			end
 		end
@@ -137,6 +131,7 @@ modifier_pudge_dismember_lua_armor = class({})
 
 
 function modifier_pudge_dismember_lua:OnCreated(table)
+	self.armor = self:GetSpecialValueFor("bonus_armor")
 	if IsServer() then
 		self:StartIntervalThink( 0.33 )
 	end
@@ -161,7 +156,7 @@ function modifier_pudge_dismember_lua_armor:DeclareFunctions()
 end
 
 function modifier_pudge_dismember_lua_armor:GetModifierPhysicalArmorBonus()
-	return self:GetCaster():FindTalentValue("special_bonus_unique_pudge_dismember_lua_2")
+	return self.armor
 end
 
 function modifier_pudge_dismember_lua_armor:GetEffectName()

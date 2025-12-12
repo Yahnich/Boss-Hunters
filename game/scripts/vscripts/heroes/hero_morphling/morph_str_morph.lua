@@ -39,8 +39,8 @@ function modifier_morph_str_morph:OnCreated(table)
 		self.casterAgi = caster:GetBaseAgility()
 		self.casterStr = caster:GetBaseStrength()
 
-		self.bonusAgi = self:GetTalentSpecialValueFor("morph_rate")
-		self.negativeStr = self:GetTalentSpecialValueFor("morph_rate")
+		self.bonusAgi = self:GetSpecialValueFor("morph_rate")
+		self.negativeStr = self:GetSpecialValueFor("morph_rate")
 		
 		self:StartIntervalThink(FrameTime())
 	end
@@ -68,7 +68,7 @@ function modifier_morph_str_bonus:DeclareFunctions()
 end
 
 function modifier_morph_str_bonus:GetModifierBonusStats_Strength()
-	return self:GetTalentSpecialValueFor("bonus_str") * self:GetCaster():GetLevel()
+	return self:GetSpecialValueFor("bonus_str") * self:GetCaster():GetLevel()
 end
 
 function modifier_morph_str_bonus:IsHidden()

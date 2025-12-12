@@ -13,7 +13,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"skeleton_king_hellfire_blast"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -48,38 +48,23 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"60 80 100 120 200 280 360"
-			}
+			"damage"				"60 80 100 120 200 280 360"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"dot_damage"			"25 45 65 85 90 95 100"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"speed"					"1000"
-			}			
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"1.1 1.1 1.1 1.1 1.4 1.7 2.0"
-			}			
+				"speed"					"1000"			
+			"stun_duration"			"1.1 1.1 1.1 1.1 1.4 1.7 2.0"			
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"dot_duration"			"2 2 2 2 2.6 3.2 3.8"
-			}			
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow"					"-40"
-			}			
+				"dot_duration"			"2 2 2 2 2.6 3.2 3.8"			
+			"slow"					"-40"			
 		}
 	}
 	
@@ -96,13 +81,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"450"
-			}
+			"value"						"450"
 		}
 	}
 	//=================================================================================================================
@@ -118,18 +99,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"2"
-			}
+			"value"						"100"
+			"duration"					"2"
 		}
 	}
 
@@ -146,7 +119,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"skeleton_king_vampiric_aura"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -180,46 +153,27 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"1200"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"lifesteal"					"8 16 16 24 24 32 32"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"attack_damage"				"16 16 32 32 48 48 64"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"ranged_percentage"			"50"
-			}
+			"radius"					"1200"
+			"lifesteal"					"8 16 16 24 24 32 32"
+			"attack_damage"				"16 16 32 32 48 48 64"
+			"ranged_percentage"			"50"
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"wk_percentage"				"50"
-			}
 			"07"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"active_duration"			"5"
 				"LinkedSpecialBonus"		"special_bonus_unique_wk_vamp_2"
 				"LinkedSpecialBonusField"	"value2"
-			}
 			"08"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"active_multiplier"			"2"
 				"LinkedSpecialBonus"		"special_bonus_unique_wk_vamp_2"
-			}
 		}
 	}
 	
@@ -237,18 +191,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"5"
-			}
+			"value"						"2"
+			"duration"					"5"
 		}
 	}
 
@@ -266,18 +212,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value2"					"3"
-			}
+			"value"						"1"
+			"value2"					"3"
 		}
 	}
 	"wk_crit"
@@ -293,7 +231,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"skeleton_king_mortal_strike"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -317,18 +255,10 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"crit_mult"					"150 190 230 270 330 390 450"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_str"					"4 4 4 4 5 6 7"
-			}
+			"crit_mult"					"150 190 230 270 330 390 450"
+			"bonus_str"					"4 4 4 4 5 6 7"
 		}
 	}
 	//=================================================================================================================
@@ -345,13 +275,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
+			"value"						"100"
 		}
 	}
 	//=================================================================================================================
@@ -368,23 +294,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"10"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"5"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"stacks"					"5"
-			}
+			"value"						"10"
+			"duration"					"5"
+			"stacks"					"5"
 		}
 	}
 	"wk_skeletons"
@@ -433,58 +347,27 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"max_skeletons"				"8"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"max_skeleton_charges"		"8"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"spawn_interval"			"0.25"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"skeleton_base_dmg"			"18"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"skeleton_base_hp"			"170"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"skeleton_lvl_dmg"			"2"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"skeleton_lvl_hp"			"5"
-			}
+			"max_skeletons"				"8"
+			"max_skeleton_charges"		"8"
+			"spawn_interval"			"0.25"
+			"skeleton_base_dmg"			"18"
+			"skeleton_base_hp"			"170"
+			"skeleton_lvl_dmg"			"2"
+			"skeleton_lvl_hp"			"5"
 			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"boss_charges"				"2"
-			}
 			"09"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"unit_charges"				"1"
-			}
 			"10"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"aura_kills"				"2"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -500,13 +383,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -523,13 +402,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	"wk_reincarnation"
@@ -541,7 +416,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"skeleton_king_reincarnation"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -570,38 +445,23 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"reincarnate_time"		"3"
-			}
+			"reincarnate_time"		"3"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"900"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"slow_ms"				"-75"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow_as"				"-75"
-			}
+			"slow_as"				"-75"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"5"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aura_radius"			"1200"
-			}
+			"aura_radius"			"1200"
 		}
 	}
 	
@@ -619,13 +479,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"3"
-			}
+			"value"						"3"
 		}
 	}
 	//=================================================================================================================
@@ -641,13 +497,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-10"
-			}
+			"value"						"-10"
 		}
 	}
 	//=================================================================================================================
@@ -664,13 +516,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"10"
-			}
+			"value"						"10"
 		}
 	}
 }

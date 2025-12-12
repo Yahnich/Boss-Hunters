@@ -35,7 +35,7 @@ function windrunner_windrun_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
     EmitSoundOn("Ability.Windrun", caster)
-	caster:AddNewModifier(caster, self, "modifier_windrunner_windrun_bh_handle", {Duration = self:GetTalentSpecialValueFor("buff_duration")})
+	caster:AddNewModifier(caster, self, "modifier_windrunner_windrun_bh_handle", {Duration = self:GetSpecialValueFor("buff_duration")})
 	
 	if caster:HasTalent("special_bonus_unique_windrunner_windrun_bh_1") then
 		local knockback = caster:FindTalentValue("special_bonus_unique_windrunner_windrun_bh_1")
@@ -98,11 +98,11 @@ function modifier_windrunner_windrun_bh_handle:OnCreated(table)
 end
 
 function modifier_windrunner_windrun_bh_handle:OnRefresh()
-	self.movespeed = TernaryOperator( self:GetTalentSpecialValueFor("scepter_ms"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("movespeed_bonus_pct") )
-	self.evasion = self:GetTalentSpecialValueFor("evasion")
+	self.movespeed = TernaryOperator( self:GetSpecialValueFor("scepter_ms"), self:GetCaster():HasScepter(), self:GetSpecialValueFor("movespeed_bonus_pct") )
+	self.evasion = self:GetSpecialValueFor("evasion")
 	
-	self.aura_linger = self:GetTalentSpecialValueFor("debuff_duration")
-	self.aura_radius = self:GetTalentSpecialValueFor("radius")
+	self.aura_linger = self:GetSpecialValueFor("debuff_duration")
+	self.aura_radius = self:GetSpecialValueFor("radius")
 	
 	if self:GetCaster():HasScepter() then
 		self.limit = 9999
@@ -111,7 +111,7 @@ function modifier_windrunner_windrun_bh_handle:OnRefresh()
 	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )
     
 	if IsServer() and self:GetCaster():HasTalent("special_bonus_unique_windrunner_windrun_bh_2") then
-		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_windrunner_windrun_talent", {Duration =  self:GetTalentSpecialValueFor("buff_duration")})
+		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_windrunner_windrun_talent", {Duration =  self:GetSpecialValueFor("buff_duration")})
 	end
 end
 
@@ -185,11 +185,11 @@ LinkLuaModifier("modifier_windrunner_windrun_bh_lesser", "heroes/hero_windrunner
 
 function modifier_windrunner_windrun_bh_lesser:OnRefresh()
 	local mult = self:GetCaster():FindTalentValue("special_bonus_unique_windrunner_powershot_bh_2") / 100
-	self.movespeed = TernaryOperator( self:GetTalentSpecialValueFor("scepter_ms"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("movespeed_bonus_pct") ) * mult
-	self.evasion = self:GetTalentSpecialValueFor("evasion") * mult
+	self.movespeed = TernaryOperator( self:GetSpecialValueFor("scepter_ms"), self:GetCaster():HasScepter(), self:GetSpecialValueFor("movespeed_bonus_pct") ) * mult
+	self.evasion = self:GetSpecialValueFor("evasion") * mult
 	
-	self.aura_linger = self:GetTalentSpecialValueFor("debuff_duration") * mult
-	self.aura_radius = self:GetTalentSpecialValueFor("radius")
+	self.aura_linger = self:GetSpecialValueFor("debuff_duration") * mult
+	self.aura_radius = self:GetSpecialValueFor("radius")
 	
 	if self:GetCaster():HasScepter() then
 		self.limit = 9999
@@ -198,7 +198,7 @@ function modifier_windrunner_windrun_bh_lesser:OnRefresh()
 	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )
     
 	if IsServer() and self:GetCaster():HasTalent("special_bonus_unique_windrunner_windrun_bh_2") then
-		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_windrunner_windrun_talent_lesser", {Duration =  self:GetTalentSpecialValueFor("buff_duration")})
+		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_windrunner_windrun_talent_lesser", {Duration =  self:GetSpecialValueFor("buff_duration")})
 	end
 end
 
@@ -209,16 +209,16 @@ function modifier_windrunner_windrun_bh_debuff:OnCreated()
 	if self.talent1 then
 		if IsServer() then
 			self.talent1Chill = self:GetCaster():FindTalentValue("special_bonus_unique_windrunner_windrun_bh_1",  "bonus_chill")
-			self:GetParent():AddChill(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("debuff_duration"), -self:GetTalentSpecialValueFor("enemy_movespeed_bonus_pct"))
+			self:GetParent():AddChill(self:GetAbility(), self:GetCaster(), self:GetSpecialValueFor("debuff_duration"), -self:GetSpecialValueFor("enemy_movespeed_bonus_pct"))
 			self:StartIntervalThink(1)
 		end
 	else
-		self.movespeed = self:GetTalentSpecialValueFor("enemy_movespeed_bonus_pct")
+		self.movespeed = self:GetSpecialValueFor("enemy_movespeed_bonus_pct")
 	end
 end
 
 function modifier_windrunner_windrun_bh_debuff:OnIntervalThink()
-	self:GetParent():AddChill(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("debuff_duration"), self.talent1Chill)
+	self:GetParent():AddChill(self:GetAbility(), self:GetCaster(), self:GetSpecialValueFor("debuff_duration"), self.talent1Chill)
 end
 
 function modifier_windrunner_windrun_bh_debuff:DeclareFunctions()
@@ -245,7 +245,7 @@ LinkLuaModifier("modifier_windrunner_windrun_bh_charges", "heroes/hero_windrunne
 if IsServer() then
     function modifier_windrunner_windrun_bh_charges:Update()
 		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-		self.kv.max_count = self:GetTalentSpecialValueFor("scepter_charges")
+		self.kv.max_count = self:GetSpecialValueFor("scepter_charges")
 
 		if self:GetStackCount() == self.kv.max_count then
 			self:SetDuration(-1, true)
@@ -265,7 +265,7 @@ if IsServer() then
 
     function modifier_windrunner_windrun_bh_charges:OnCreated()
 		kv = {
-			max_count = self:GetTalentSpecialValueFor("scepter_charges"),
+			max_count = self:GetSpecialValueFor("scepter_charges"),
 			replenish_time = self:GetAbility():GetTrueCooldown()
 		}
         self:SetStackCount(kv.start_count or kv.max_count)
@@ -277,7 +277,7 @@ if IsServer() then
     end
 	
 	function modifier_windrunner_windrun_bh_charges:OnRefresh()
-		self.kv.max_count = self:GetTalentSpecialValueFor("scepter_charges")
+		self.kv.max_count = self:GetSpecialValueFor("scepter_charges")
 		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
         if self:GetStackCount() ~= kv.max_count then
             self:Update()
@@ -295,7 +295,7 @@ if IsServer() then
     function modifier_windrunner_windrun_bh_charges:OnAbilityFullyCast(params)
         if params.unit == self:GetParent() and params.unit:HasScepter() then
 			self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-			self.kv.max_count = self:GetTalentSpecialValueFor("scepter_charges")
+			self.kv.max_count = self:GetSpecialValueFor("scepter_charges")
 			
             local ability = params.ability
             if params.ability == self:GetAbility() then
@@ -316,8 +316,8 @@ if IsServer() then
 		local caster = self:GetCaster()
 		local octarine = caster:GetCooldownReduction()
 		
-		self.kv.replenish_time = self:GetTalentSpecialValueFor("scepter_charge_restore_time") * octarine
-		self.kv.max_count = self:GetTalentSpecialValueFor("scepter_charges")
+		self.kv.replenish_time = self:GetSpecialValueFor("scepter_charge_restore_time") * octarine
+		self.kv.max_count = self:GetSpecialValueFor("scepter_charges")
 		
         if stacks < self.kv.max_count then
             self:IncrementStackCount()

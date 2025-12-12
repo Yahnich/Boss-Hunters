@@ -3,7 +3,7 @@ juggernaut_meditative_state = class({})
 function juggernaut_meditative_state:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local duration = self:GetTalentSpecialValueFor("buff_duration")
+	local duration = self:GetSpecialValueFor("buff_duration")
 	caster:AddNewModifier( caster, self, "modifier_juggernaut_meditative_state", {duration = duration} )
 end
 
@@ -17,8 +17,8 @@ function modifier_juggernaut_meditative_state:OnCreated()
 	self.radius = parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_2")
 	self.talent2 = parent:HasTalent("special_bonus_unique_juggernaut_meditative_state_2")
 	self.auraLinger = parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_2", "linger")
-	self.linger = self:GetTalentSpecialValueFor("linger_duration")
-	self.regen = self:GetTalentSpecialValueFor("regeneration") * ( parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_1") / 100 )
+	self.linger = self:GetSpecialValueFor("linger_duration")
+	self.regen = self:GetSpecialValueFor("regeneration") * ( parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_1") / 100 )
 	if IsServer() then
 		parent:AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_juggernaut_meditative_state_aura", {} )
 		local fire = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf", PATTACH_POINT_FOLLOW, parent )
@@ -35,8 +35,8 @@ function modifier_juggernaut_meditative_state:OnRefresh()
 	self.radius = parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_2")
 	self.talent2 = parent:HasTalent("special_bonus_unique_juggernaut_meditative_state_2")
 	self.auraLinger = parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_2", "linger")
-	self.linger = self:GetTalentSpecialValueFor("linger_duration")
-	self.regen = self:GetTalentSpecialValueFor("regeneration") * ( parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_1") / 100 )
+	self.linger = self:GetSpecialValueFor("linger_duration")
+	self.regen = self:GetSpecialValueFor("regeneration") * ( parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_1") / 100 )
 end
 
 function modifier_juggernaut_meditative_state:OnDestroy()
@@ -107,11 +107,11 @@ modifier_juggernaut_meditative_state_aura = class({})
 LinkLuaModifier("modifier_juggernaut_meditative_state_aura", "heroes/hero_juggernaut/juggernaut_meditative_state", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_juggernaut_meditative_state_aura:OnCreated()
-	self.regen = self:GetTalentSpecialValueFor("regeneration")
+	self.regen = self:GetSpecialValueFor("regeneration")
 end
 
 function modifier_juggernaut_meditative_state_aura:OnRefresh()
-	self.regen = self:GetTalentSpecialValueFor("regeneration")
+	self.regen = self:GetSpecialValueFor("regeneration")
 end
 
 function modifier_juggernaut_meditative_state_aura:DeclareFunctions()

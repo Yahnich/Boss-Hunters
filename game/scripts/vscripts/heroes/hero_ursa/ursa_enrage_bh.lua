@@ -24,7 +24,7 @@ function ursa_enrage_bh:OnSpellStart()
 	caster:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_4)
 	caster:Purge(false, true, false, true, true)
 
-	caster:AddNewModifier(caster, self, "modifier_ursa_enrage_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_ursa_enrage_bh", {Duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_ursa_enrage_bh = class({})
@@ -32,8 +32,8 @@ LinkLuaModifier("modifier_ursa_enrage_bh", "heroes/hero_ursa/ursa_enrage_bh", LU
 
 function modifier_ursa_enrage_bh:OnCreated()
 	local caster = self:GetCaster()
-	self.damage_resist = self:GetTalentSpecialValueFor("reduction") * (-1)
-	self.status_resist = self:GetTalentSpecialValueFor("status_resist")
+	self.damage_resist = self:GetSpecialValueFor("reduction") * (-1)
+	self.status_resist = self:GetSpecialValueFor("status_resist")
 	if IsServer() then
 		caster:SetRenderColor(255,0,0)
 	end

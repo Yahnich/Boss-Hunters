@@ -13,13 +13,13 @@ LinkLuaModifier( "modifier_lifesteal_generic", "lua_abilities/heroes/modifiers/m
 modifier_legion_commander_fearless_assault_passive = class({})
 
 function modifier_legion_commander_fearless_assault_passive:OnCreated()
-	self.procChance = self:GetAbility():GetTalentSpecialValueFor("trigger_chance")
-	self.duration = self:GetAbility():GetTalentSpecialValueFor("buff_duration")
+	self.procChance = self:GetAbility():GetSpecialValueFor("trigger_chance")
+	self.duration = self:GetAbility():GetSpecialValueFor("buff_duration")
 end
 
 function modifier_legion_commander_fearless_assault_passive:OnRefresh()
-	self.procChance = self:GetAbility():GetTalentSpecialValueFor("trigger_chance")
-	self.duration = self:GetAbility():GetTalentSpecialValueFor("buff_duration")
+	self.procChance = self:GetAbility():GetSpecialValueFor("trigger_chance")
+	self.duration = self:GetAbility():GetSpecialValueFor("buff_duration")
 end
 
 function modifier_legion_commander_fearless_assault_passive:IsHidden()
@@ -54,7 +54,7 @@ function modifier_legion_commander_fearless_assault_buff:OnCreated()
 end
 
 function modifier_legion_commander_fearless_assault_buff:OnRefresh()
-	self.lifesteal = self:GetTalentSpecialValueFor("hp_leech_percent")
+	self.lifesteal = self:GetSpecialValueFor("hp_leech_percent")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_legion_commander_fearless_assault_1")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_legion_commander_fearless_assault_2")
 	self.talent2Radius = self:GetCaster():FindTalentValue("special_bonus_unique_legion_commander_fearless_assault_2", "radius")

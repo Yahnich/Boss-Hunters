@@ -12,7 +12,7 @@ function centaur_champions_presence:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	EmitSoundOn( "Hero_Centaur.Gore", caster )
-	caster:AddNewModifier(caster, self, "modifier_centaur_champions_presence_buff", {duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_centaur_champions_presence_buff", {duration = self:GetSpecialValueFor("duration")})
 	ParticleManager:FireParticle( "particles/units/heroes/hero_centaur/centaur_champions_presence_start.vpcf", PATTACH_POINT_FOLLOW, caster )
 end
 
@@ -24,10 +24,10 @@ function modifier_centaur_champions_presence_buff:OnCreated()
 end
 
 function modifier_centaur_champions_presence_buff:OnRefresh()
-	self.bonus_dmg = self:GetTalentSpecialValueFor("bonus_damage")
-	self.spell_amp = self:GetTalentSpecialValueFor("bonus_spell_amp")
-	self.health_regen = self:GetTalentSpecialValueFor("health_regen")
-	self.threat_amp = self:GetTalentSpecialValueFor("bonus_threat_amp")
+	self.bonus_dmg = self:GetSpecialValueFor("bonus_damage")
+	self.spell_amp = self:GetSpecialValueFor("bonus_spell_amp")
+	self.health_regen = self:GetSpecialValueFor("health_regen")
+	self.threat_amp = self:GetSpecialValueFor("bonus_threat_amp")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_centaur_champions_presence_1")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_centaur_champions_presence_2")
 	if self.talent2 then

@@ -11,12 +11,12 @@ function modifier_skywrath_int:OnCreated(table)
 end
 
 function modifier_skywrath_int:OnRefresh()
-    self.int = self:GetTalentSpecialValueFor("bonus_int")
+    self.int = self:GetSpecialValueFor("bonus_int")
 	self:GetParent():HookInModifier("GetModifierIntellectBonusPercentage", self)
 end
 
 function modifier_skywrath_int:OnDestroy()
-    self.int = self:GetTalentSpecialValueFor("bonus_int")
+    self.int = self:GetSpecialValueFor("bonus_int")
 	self:GetParent():HookOutModifier("GetModifierIntellectBonusPercentage", self)
 end
 

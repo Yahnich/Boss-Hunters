@@ -30,10 +30,10 @@ function abaddon_aphotic_barrier:OnSpellStart()
 	if caster:HasTalent("special_bonus_unique_abaddon_aphotic_barrier_1") then
 		local targets = caster:FindFriendlyUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_abaddon_aphotic_barrier_1") )
 		for _, hitTarget in ipairs( targets ) do
-			hitTarget:AddNewModifier(caster, self, "modifier_abaddon_aphotic_barrier", {duration = self:GetTalentSpecialValueFor("duration")})
+			hitTarget:AddNewModifier(caster, self, "modifier_abaddon_aphotic_barrier", {duration = self:GetSpecialValueFor("duration")})
 		end
 	else
-		target:AddNewModifier(caster, self, "modifier_abaddon_aphotic_barrier", {duration = self:GetTalentSpecialValueFor("duration")})
+		target:AddNewModifier(caster, self, "modifier_abaddon_aphotic_barrier", {duration = self:GetSpecialValueFor("duration")})
 	end
 end
 
@@ -42,8 +42,8 @@ modifier_abaddon_aphotic_barrier = class({})
 LinkLuaModifier("modifier_abaddon_aphotic_barrier", "heroes/hero_abaddon/abaddon_aphotic_barrier", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_abaddon_aphotic_barrier:OnCreated()
-	self.absorb = self:GetTalentSpecialValueFor("damage_absorb")
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.absorb = self:GetSpecialValueFor("damage_absorb")
+	self.radius = self:GetSpecialValueFor("radius")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_abaddon_aphotic_barrier_2")
 	if IsServer() then
 		local nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_abaddon/abaddon_aphotic_shield.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
@@ -65,7 +65,7 @@ function modifier_abaddon_aphotic_barrier:OnDestroy()
 		
 		EmitSoundOn("Hero_Abaddon.AphoticShield.Destroy", parent)
 		local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.radius)
-		local damage =  self:GetTalentSpecialValueFor("damage_absorb")
+		local damage =  self:GetSpecialValueFor("damage_absorb")
 		for _, enemy in ipairs( enemies ) do
 			if not enemy:TriggerSpellAbsorb(self:GetAbility()) then
 				self:GetAbility():DealDamage(caster, enemy, damage)

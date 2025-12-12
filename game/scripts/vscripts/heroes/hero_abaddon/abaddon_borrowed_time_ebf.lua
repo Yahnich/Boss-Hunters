@@ -13,9 +13,9 @@ function abaddon_borrowed_time_ebf:GetIntrinsicModifierName()
 end
 
 function abaddon_borrowed_time_ebf:Activate()
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	local caster = self:GetCaster()
-	if caster:HasScepter() then duration = self:GetTalentSpecialValueFor("duration_scepter") end
+	if caster:HasScepter() then duration = self:GetSpecialValueFor("duration_scepter") end
 	caster:Dispel(caster, true)
 	EmitSoundOn("Hero_Abaddon.BorrowedTime", caster)
 	caster:AddNewModifier(caster, self, "modifier_abaddon_borrowed_time_active", {duration = duration})
@@ -77,7 +77,7 @@ modifier_abaddon_borrowed_time_active = class({})
 LinkLuaModifier("modifier_abaddon_borrowed_time_active", "heroes/hero_abaddon/abaddon_borrowed_time_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_abaddon_borrowed_time_active:OnCreated()
-	self.aura_radius = self:GetTalentSpecialValueFor("redirect_range_scepter")
+	self.aura_radius = self:GetSpecialValueFor("redirect_range_scepter")
 	self.ms = self:GetCaster():FindTalentValue("special_bonus_unique_abaddon_borrowed_time_2")
 	if IsServer() then
 		self:GetAbility():StartDelayedCooldown()
@@ -85,7 +85,7 @@ function modifier_abaddon_borrowed_time_active:OnCreated()
 end
 
 function modifier_abaddon_borrowed_time_active:OnRefresh()
-	self.aura_radius = self:GetTalentSpecialValueFor("redirect_range_scepter")
+	self.aura_radius = self:GetSpecialValueFor("redirect_range_scepter")
 	if IsServer() then
 		self:GetAbility():StartDelayedCooldown()
 	end
@@ -159,11 +159,11 @@ modifier_abaddon_borrowed_time_ebf_scepter = class({})
 LinkLuaModifier("modifier_abaddon_borrowed_time_ebf_scepter", "heroes/hero_abaddon/abaddon_borrowed_time_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_abaddon_borrowed_time_ebf_scepter:OnCreated()
-	self.redirect = self:GetTalentSpecialValueFor("redirect")
+	self.redirect = self:GetSpecialValueFor("redirect")
 end
 
 function modifier_abaddon_borrowed_time_ebf_scepter:OnRefresh()
-	self.redirect = self:GetTalentSpecialValueFor("redirect")
+	self.redirect = self:GetSpecialValueFor("redirect")
 end
 
 function modifier_abaddon_borrowed_time_ebf_scepter:GetEffectName()

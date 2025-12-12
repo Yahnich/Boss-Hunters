@@ -12,7 +12,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"spirit_breaker_charge_of_darkness"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -46,33 +46,22 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movement_speed"		"600 650 700 750 800 850 900"
-			}
+			"movement_speed"		"600 650 700 750 800 850 900"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"status_resistance"		"50"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bash_radius"			"350"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"vision_radius"			"400"
-			}
+			"vision_radius"			"400"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"vision_duration"		"0.94"
-			}
 		}
 	}
 	
@@ -89,13 +78,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -111,13 +96,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -132,7 +113,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 		"AbilityTextureName"			"spirit_breaker_empowering_haste"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -168,33 +149,22 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms_self"			"12 16 20 24 28 32 36"
-			}
+			"bonus_ms_self"			"12 16 20 24 28 32 36"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_ms_allies"		"6 8 10 12 14 16 18"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"900"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms_extra"		"30 40 50 60 70 80 90"
-			}
+			"bonus_ms_extra"		"30 40 50 60 70 80 90"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"6"
-			}
 		}
 	}
 	
@@ -211,13 +181,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -234,13 +200,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	
@@ -257,7 +219,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"spirit_breaker_greater_bash"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -281,51 +243,19 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"chance"				"17"
+			"chance"				"17"
 				"LinkedSpecialBonus"	"special_bonus_unique_spirit_breaker_1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"				"12 24 36 48 60 72 84"
+			"damage"				"12 24 36 48 60 72 84"
 				"CalculateSpellDamageTooltip"	"1"
 				"LinkedSpecialBonus"	"special_bonus_unique_spirit_breaker_3"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.4"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"knockback_duration"	"0.5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"knockback_distance"	"125"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"knockback_height"		"50"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"17"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ms_duration"			"3"
-			}
+			"duration"				"1.4"
+			"knockback_duration"	"0.5"
+			"knockback_distance"	"125"
+			"knockback_height"		"50"
+			"bonus_ms"				"17"
+			"ms_duration"			"3"
 		}
 	}
 
@@ -342,13 +272,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -365,13 +291,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -396,13 +318,9 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ms_to_armor"			"4"
-			}
+			"ms_to_armor"			"4"
 		}
 	}
 
@@ -420,7 +338,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"spirit_breaker_nether_strike"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -458,36 +376,25 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"150 200 250 300 350 400"
-			}
+			"damage"				"150 200 250 300 350 400"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"range"					"700"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"range_scepter"			"850"
 				"RequiresScepter"		"1"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bash_radius_scepter"	"250"
+			"bash_radius_scepter"	"250"
 				"RequiresScepter"		"1"
-			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"cooldown_scepter"		"20"
 				"RequiresScepter"		"1"
-			}
 		}
 	}
 	
@@ -504,13 +411,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
+			"value"						"100"
 		}
 	}
 	//=================================================================================================================
@@ -526,13 +429,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"10"
-			}
+			"value"						"10"
 		}
 	}
 }

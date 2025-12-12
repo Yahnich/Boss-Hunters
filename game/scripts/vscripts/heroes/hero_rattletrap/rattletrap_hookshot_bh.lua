@@ -29,9 +29,9 @@ function rattletrap_hookshot_bh:OnSpellStart()
 	
 	local direction = CalculateDirection( self:GetCursorPosition(), caster )
 	
-	local speed = self:GetTalentSpecialValueFor("speed")
+	local speed = self:GetSpecialValueFor("speed")
 	local distance = self:GetTrueCastRange() - 32
-	local width = self:GetTalentSpecialValueFor("latch_radius")
+	local width = self:GetSpecialValueFor("latch_radius")
 	local duration = (distance/speed) * 2
 	local endPos = caster:GetAbsOrigin() + direction * distance
 	
@@ -52,7 +52,7 @@ function rattletrap_hookshot_bh:OnProjectileHit( target, position )
 	local caster = self:GetCaster()
 	if target and not target:TriggerSpellAbsorb( self ) then
 		local distance = CalculateDistance( caster, target )
-		local speed = self:GetTalentSpecialValueFor("speed")
+		local speed = self:GetSpecialValueFor("speed")
 		ParticleManager:SetParticleControlEnt( self.hookFX, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 		target:AddNewModifier( caster, self, "modifier_rattletrap_hookshot_bh_hook", { duration = distance / speed } )
 		self:Stun( target, distance / speed )
@@ -61,7 +61,7 @@ function rattletrap_hookshot_bh:OnProjectileHit( target, position )
 	end
 	StopSoundOn( "Hero_Rattletrap.Hookshot.Fire", caster )
 	EmitSoundOn( "Hero_Rattletrap.Hookshot.Retract", caster )
-	Timers:CreateTimer( self:GetTrueCastRange() / self:GetTalentSpecialValueFor("speed"), function()
+	Timers:CreateTimer( self:GetTrueCastRange() / self:GetSpecialValueFor("speed"), function()
 		ParticleManager:ClearParticle( self.hookFX )
 		StopSoundOn( "Hero_Rattletrap.Hookshot.Retract", caster )
 	end)
@@ -75,12 +75,12 @@ if IsServer() then
 	function modifier_rattletrap_hookshot_bh_hook:OnCreated()
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
-		self.speed = self:GetTalentSpecialValueFor("speed") * FrameTime()
+		self.speed = self:GetSpecialValueFor("speed") * FrameTime()
 		self.direction = CalculateDirection( parent, caster )
 		self.distance = CalculateDistance( self:GetParent(), caster ) - ( caster:GetHullRadius() + parent:GetHullRadius() + caster:GetCollisionPadding() + parent:GetCollisionPadding() + 64 )
-		self.radius = self:GetTalentSpecialValueFor("stun_radius")
-		self.damage = self:GetTalentSpecialValueFor("damage")
-		self.duration = self:GetTalentSpecialValueFor("duration")
+		self.radius = self:GetSpecialValueFor("stun_radius")
+		self.damage = self:GetSpecialValueFor("damage")
+		self.duration = self:GetSpecialValueFor("duration")
 		
 		self.enemiesHit = {}
 		caster:StartGesture( ACT_DOTA_RATTLETRAP_HOOKSHOT_LOOP )

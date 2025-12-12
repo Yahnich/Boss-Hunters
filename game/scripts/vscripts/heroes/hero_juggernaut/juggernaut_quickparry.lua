@@ -10,7 +10,7 @@ end
 
 function juggernaut_quickparry:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier( caster, self, "modifier_juggernaut_quickparry", {duration = self:GetTalentSpecialValueFor("duration")} )
+	caster:AddNewModifier( caster, self, "modifier_juggernaut_quickparry", {duration = self:GetSpecialValueFor("duration")} )
 end
 
 function juggernaut_quickparry:QuickParry(caster, target)
@@ -52,13 +52,13 @@ modifier_juggernaut_quickparry = class({})
 LinkLuaModifier("modifier_juggernaut_quickparry", "heroes/hero_juggernaut/juggernaut_quickparry", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_juggernaut_quickparry:OnCreated()
-	self.chance = self:GetAbility():GetTalentSpecialValueFor("parry_chance")
-	self.cost = self:GetAbility():GetTalentSpecialValueFor("active_momentum_cost")
+	self.chance = self:GetAbility():GetSpecialValueFor("parry_chance")
+	self.cost = self:GetAbility():GetSpecialValueFor("active_momentum_cost")
 end
 
 function modifier_juggernaut_quickparry:OnRefresh()
-	self.chance = self:GetAbility():GetTalentSpecialValueFor("parry_chance")
-	self.cost = self:GetAbility():GetTalentSpecialValueFor("active_momentum_cost")
+	self.chance = self:GetAbility():GetSpecialValueFor("parry_chance")
+	self.cost = self:GetAbility():GetSpecialValueFor("active_momentum_cost")
 end
 
 function modifier_juggernaut_quickparry:DeclareFunctions()

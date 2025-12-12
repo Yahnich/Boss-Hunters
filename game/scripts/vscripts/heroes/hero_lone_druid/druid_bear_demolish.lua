@@ -8,7 +8,7 @@ end
 modifier_druid_bear_demolish = class({})
 
 function modifier_druid_bear_demolish:OnCreated()
-	self.bonus_mr = self:GetTalentSpecialValueFor("bonus_mr")
+	self.bonus_mr = self:GetSpecialValueFor("bonus_mr")
 end
 
 function modifier_druid_bear_demolish:DeclareFunctions()
@@ -22,12 +22,12 @@ end
 function modifier_druid_bear_demolish:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() then
-			local distance = self:GetTalentSpecialValueFor("cleave_distance")
-			local startRadius = self:GetTalentSpecialValueFor("cleave_start")
-			local endRadius = self:GetTalentSpecialValueFor("cleave_end")
+			local distance = self:GetSpecialValueFor("cleave_distance")
+			local startRadius = self:GetSpecialValueFor("cleave_start")
+			local endRadius = self:GetSpecialValueFor("cleave_end")
 
-			local cleave = self:GetTalentSpecialValueFor("cleave_damage")
-			local damage = params.original_damage*self:GetTalentSpecialValueFor("cleave_damage")/100
+			local cleave = self:GetSpecialValueFor("cleave_damage")
+			local damage = params.original_damage*self:GetSpecialValueFor("cleave_damage")/100
 			self:GetAbility():Cleave(params.target, damage, startRadius, endRadius, distance, "particles/units/heroes/hero_sven/sven_spell_great_cleave_gods_strength_crit.vpcf" )
 		end
 	end

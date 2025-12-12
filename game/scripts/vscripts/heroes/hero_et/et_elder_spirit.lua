@@ -24,7 +24,7 @@ function et_elder_spirit:GetBehavior()
 end
 
 function et_elder_spirit:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function et_elder_spirit:GetIntrinsicModifierName()
@@ -57,7 +57,7 @@ function et_elder_spirit:OnSpellStart()
 		if caster:HasTalent("special_bonus_unique_et_elder_spirit_2") then
 			caster:AddNewModifier(caster, self, "modifier_elder_spirit_check_out", {})
 		else
-			caster:AddNewModifier(caster, self, "modifier_elder_spirit_check_out", {Duration = self:GetTalentSpecialValueFor("duration")})
+			caster:AddNewModifier(caster, self, "modifier_elder_spirit_check_out", {Duration = self:GetSpecialValueFor("duration")})
 		end
 
 		ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_ancestral_spirit_cast.vpcf", PATTACH_POINT, caster, {[2] = point})
@@ -98,7 +98,7 @@ function modifier_elder_spirit_check:DeclareFunctions()
 end
 
 function modifier_elder_spirit_check:GetModifierDamageOutgoing_Percentage()
-    return self:GetTalentSpecialValueFor("bonus_damage")
+    return self:GetSpecialValueFor("bonus_damage")
 end
 
 function modifier_elder_spirit_check:GetEffectName()
@@ -121,7 +121,7 @@ function modifier_elder_spirit_check_out:DeclareFunctions()
 end
 
 function modifier_elder_spirit_check_out:GetModifierSpellAmplify_Percentage()
-    return self:GetTalentSpecialValueFor("bonus_damage")
+    return self:GetSpecialValueFor("bonus_damage")
 end
 
 function modifier_elder_spirit_check_out:IsDebuff()
@@ -272,13 +272,13 @@ end
 modifier_elder_spirit_enemy = class({})
 function modifier_elder_spirit_enemy:OnCreated(table)
 	if IsServer() then
-		self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("damage") )
+		self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self:GetSpecialValueFor("damage") )
 		self:StartIntervalThink(1.0)
 	end
 end
 
 function modifier_elder_spirit_enemy:OnIntervalThink()
-	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("dot") )
+	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self:GetSpecialValueFor("dot") )
 end
 
 function modifier_elder_spirit_enemy:IsHidden()

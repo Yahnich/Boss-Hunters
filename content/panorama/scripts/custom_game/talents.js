@@ -1,5 +1,6 @@
 // DEFAULT HUD INITIALIZATION
-const DOTAHud = $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse("HUDElements")
+const mainHud = $.GetContextPanel().GetParent().GetParent().GetParent()
+const DOTAHud = mainHud.FindChildTraverse("HUDElements")
 const lowerHud = DOTAHud.FindChildTraverse("lower_hud")
 var talentHud = lowerHud.FindChildTraverse("center_with_stats").FindChildTraverse("center_block");
 var levelUp = lowerHud.FindChildTraverse("level_stats_frame")
@@ -303,14 +304,14 @@ function AddTalentToAbilityButton( talentContainer, talentName, talentIndex, tal
 	let baseText = ""
 	if( notLocalHero ) {
 		baseText = "%%#" + Entities.GetUnitName( lastRememberedHero ) + '%%'
-				   + ' <img src="file://{images}/control_icons/chat_wheel_icon.png" style="width:8px;height:8px" width="8" height="8" > ' 
+				   + ' > '
 	}
 	if( talentPhase == 1 ){
 		talent.AddClass("Learned")
 		talent.SetPanelEvent("onactivate", function(){
 			if(GameUI.IsAltDown()){
 				let talentText = baseText + "%%" + "#DOTA_Tooltip_Ability_" + talentName + "%%" + " (%%#DOTA_Talent_HasLearned%%)"
-							   + ' <img src="file://{images}/control_icons/chat_wheel_icon.png" style="width:8px;height:8px" width="8" height="8" > '
+							   + ' > '
 							   + "%%" + ("#DOTA_Tooltip_Ability_" + talentName+"_Description") + "%%"
 				GameEvents.SendCustomGameEventToServer( "server_dota_push_to_chat", {PlayerID : localID, textData : talentText, isTeam : true, abilityID : Entities.GetAbilityByName( lastRememberedHero, talentName )} )
 			}
@@ -325,7 +326,7 @@ function AddTalentToAbilityButton( talentContainer, talentName, talentIndex, tal
 				AttemptPurchaseTalent(talentName, abilityName)
 			} else {
 				let talentText = baseText + "%%" + "#DOTA_Tooltip_Ability_" + talentName + "%%" + " (%%#DOTA_Talent_CanBeLearned%%)"
-							   + ' <img src="file://{images}/control_icons/chat_wheel_icon.png" style="width:8px;height:8px" width="8" height="8" > '
+							   + ' > '
 							   + "%%" + ("#DOTA_Tooltip_Ability_" + talentName+"_Description") + "%%"
 				GameEvents.SendCustomGameEventToServer( "server_dota_push_to_chat", {PlayerID : localID, textData : talentText, isTeam : true, abilityID : Entities.GetAbilityByName( lastRememberedHero, talentName )} )
 			}} );
@@ -334,7 +335,7 @@ function AddTalentToAbilityButton( talentContainer, talentName, talentIndex, tal
 		talent.SetPanelEvent("onactivate", function(){
 			if(GameUI.IsAltDown()){
 				let talentText = baseText + "%%" + "#DOTA_Tooltip_Ability_" + talentName + "%%" + " (%%#DOTA_Talent_CannotBeLearned%%)" 
-							   + ' <img src="file://{images}/control_icons/chat_wheel_icon.png" style="width:8px;height:8px" width="8" height="8" > '
+							   + ' > '
 							   + "%%" + ("#DOTA_Tooltip_Ability_" + talentName+"_Description") + "%%"
 				GameEvents.SendCustomGameEventToServer( "server_dota_push_to_chat", {PlayerID : localID, textData : talentText, isTeam : true, abilityID : Entities.GetAbilityByName( lastRememberedHero, talentName )} )
 			}
@@ -342,7 +343,11 @@ function AddTalentToAbilityButton( talentContainer, talentName, talentIndex, tal
 	}
 	talent.SetPanelEvent("onmouseover", function(){
 			talent.AddClass("Highlighted")
-			$.DispatchEvent("DOTAShowAbilityTooltip", talent, talentName)});
+			let abilityTooltip = mainHud.FindChildTraverse("DOTAAbilityTooltip");
+			let talentHeaderLabel = abilityTooltip.FindChildTraverse("AbilityName");
+			let talentText = abilityTooltip.FindChildTraverse("AbilityDescriptionContainer");
+			GameUI.SetupDOTATalentNameLabel( talentHeaderLabel, talentName );
+			$.DispatchEvent("DOTAShowAbilityTooltipForEntityIndex", talent, talentName, lastRememberedHero )});
 	talent.SetPanelEvent("onmouseout", function(){
 			talent.RemoveClass("Highlighted")
 			$.DispatchEvent("DOTAHideAbilityTooltip", talent);});

@@ -12,8 +12,8 @@ function modifier_phantom_assassin_coup_de_grace_ebf:OnCreated()
 end
 
 function modifier_phantom_assassin_coup_de_grace_ebf:OnRefresh()
-	self.chance = self:GetTalentSpecialValueFor("crit_chance")
-	self.dmg = self:GetTalentSpecialValueFor("crit_bonus")
+	self.chance = self:GetSpecialValueFor("crit_chance")
+	self.dmg = self:GetSpecialValueFor("crit_bonus")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_phantom_assassin_coup_de_grace_2")
 	self.talent2Val = self:GetCaster():FindTalentValue("special_bonus_unique_phantom_assassin_coup_de_grace_2")
 	if IsServer() then

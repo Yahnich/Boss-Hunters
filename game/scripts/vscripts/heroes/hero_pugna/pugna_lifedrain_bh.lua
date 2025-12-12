@@ -23,7 +23,7 @@ function pugna_lifedrain_bh:GetChannelTime()
 	if self:GetCaster():HasTalent("special_bonus_unique_pugna_lifedrain_1") then
 		return 0
 	else
-		return self:GetTalentSpecialValueFor("duration_tooltip")
+		return self:GetSpecialValueFor("duration_tooltip")
 	end
 end
 
@@ -56,9 +56,9 @@ LinkLuaModifier("modifier_pugna_life_drain_bh", "heroes/hero_pugna/pugna_lifedra
 function modifier_pugna_life_drain_bh:OnCreated()
 	local ability = self:GetAbility()
 	ability.drain = self
-	self.drain = self:GetTalentSpecialValueFor("health_drain")
-	self.breakBuffer = self:GetTalentSpecialValueFor("break_buffer")
-	self.tick = self:GetTalentSpecialValueFor("tick_rate")
+	self.drain = self:GetSpecialValueFor("health_drain")
+	self.breakBuffer = self:GetSpecialValueFor("break_buffer")
+	self.tick = self:GetSpecialValueFor("tick_rate")
 	
 	self.slow = self:GetCaster():FindTalentValue("special_bonus_unique_pugna_lifedrain_2")
 	if self:GetCaster():IsSameTeam( self:GetParent() ) then self.slow = 0 end
@@ -86,9 +86,9 @@ end
 function modifier_pugna_life_drain_bh:OnRefresh()
 	local ability = self:GetAbility()
 	ability.drain = self
-	self.drain = self:GetTalentSpecialValueFor("health_drain")
-	self.breakBuffer = self:GetTalentSpecialValueFor("break_buffer")
-	self.tick = self:GetTalentSpecialValueFor("tick_rate")
+	self.drain = self:GetSpecialValueFor("health_drain")
+	self.breakBuffer = self:GetSpecialValueFor("break_buffer")
+	self.tick = self:GetSpecialValueFor("tick_rate")
 	
 	self.slow = self:GetCaster():FindTalentValue("special_bonus_unique_pugna_lifedrain_2")
 	if self:GetCaster():IsSameTeam( self:GetParent() ) then self.slow = 0 end

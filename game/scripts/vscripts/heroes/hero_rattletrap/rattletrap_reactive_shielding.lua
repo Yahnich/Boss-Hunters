@@ -10,7 +10,7 @@ end
 
 function rattletrap_reactive_shielding:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_rattletrap_reactive_shielding", {duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_rattletrap_reactive_shielding", {duration = self:GetSpecialValueFor("duration")})
 	ParticleManager:FireParticle("particles/units/heroes/hero_rattletrap/rattletrap_cog_deploy.vpcf", PATTACH_POINT_FOLLOW, caster)
 	EmitSoundOn("Hero_Rattletrap.Hookshot.Impact", caster)
 	EmitSoundOn("Hero_Rattletrap.Hookshot.Damage", caster)
@@ -25,8 +25,8 @@ modifier_rattletrap_reactive_shielding = class({})
 LinkLuaModifier("modifier_rattletrap_reactive_shielding", "heroes/hero_rattletrap/rattletrap_reactive_shielding", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_rattletrap_reactive_shielding:OnCreated()
-	self.reduction = self:GetTalentSpecialValueFor("damage_reduction")
-	self.slow = self:GetTalentSpecialValueFor("slow")
+	self.reduction = self:GetSpecialValueFor("damage_reduction")
+	self.slow = self:GetSpecialValueFor("slow")
 	-- if self:GetParent():HasTalent("special_bonus_unique_rattletrap_reactive_shielding_1") then self.slow = 0 end
 	if IsServer() then 
 		self.sisterAb = self:GetCaster():FindAbilityByName("rattletrap_automated_artillery")
@@ -41,8 +41,8 @@ function modifier_rattletrap_reactive_shielding:OnCreated()
 end
 
 function modifier_rattletrap_reactive_shielding:OnRefresh()
-	self.reduction = self:GetTalentSpecialValueFor("damage_reduction")
-	self.slow = self:GetTalentSpecialValueFor("slow")
+	self.reduction = self:GetSpecialValueFor("damage_reduction")
+	self.slow = self:GetSpecialValueFor("slow")
 	-- if self:GetParent():HasTalent("special_bonus_unique_rattletrap_reactive_shielding_1") then self.slow = 0 end
 	if IsServer() then 
 		self:GetAbility():StartDelayedCooldown() 

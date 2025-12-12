@@ -13,7 +13,7 @@
 	    "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"  
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"lina_dragon_slave"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -39,43 +39,18 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"80 120 160 200 240 280 320"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_flame"				"30 55 80 105 130 155 180"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"4"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"200"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed"						"1200"
-			}
+			"damage"					"80 120 160 200 240 280 320"
+			"damage_flame"				"30 55 80 105 130 155 180"
+			"duration"					"4"
+			"radius"					"200"
+			"speed"						"1200"
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"tick_rate"					"0.5"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"width"						"275"
-			}
+			"width"						"275"
 		}
 	
 		"precache"
@@ -97,13 +72,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-4"
-			}
+			"value"					"-4"
 		}
 	}
 
@@ -117,13 +88,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-180"
-			}
+			"value"					"-180"
 		}
 	}
 
@@ -140,7 +107,7 @@
 	    "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"  
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"lina_light_strike_array"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -166,35 +133,21 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"40 80 120 160 200 240 280"
+			"damage"						"40 80 120 160 200 240 280"
 				"LinkedSpecialBonus"			"special_bonus_unique_lina_lsa_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_flame"					"10 20 30 40 50 60 70"
-			}
+			"damage_flame"					"10 20 30 40 50 60 70"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"4"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"225"
-			}		
+			"radius"						"225"		
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"stun_duration"					"1.25 1.5 1.75 2 2.25 2.5 2.75"
-			}
 		}
 	
 		"precache"
@@ -217,13 +170,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
-			}
+			"value"					"2"
 		}
 	}
 
@@ -237,13 +186,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-65"
-			}
+			"value"					"-65"
 		}
 	}
 
@@ -260,7 +205,7 @@
 	    "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"  
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"black_dragon_fireball"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -286,28 +231,12 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"50 100 150 200 250 300 350"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_time"				"15 30 45 60 75 90 105"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"4"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"375"
-			}
+			"damage"					"50 100 150 200 250 300 350"
+			"damage_time"				"15 30 45 60 75 90 105"
+			"duration"					"4"
+			"radius"					"375"
 		}
 	
 		"precache"
@@ -332,13 +261,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 
@@ -352,13 +277,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1.5"
-			}
+			"value"					"1.5"
 		}
 	}
 
@@ -376,38 +297,26 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"attack_speed_bonus"			"25"	
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"move_speed_bonus"				"8"
-			}
+			"attack_speed_bonus"			"25"	
+			"move_speed_bonus"				"8"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"stack_duration"				"12"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"max_stacks"					"6"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"scepter_bonus_damage"			"5"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"scepter_spell_amp"				"5"
-			}
 		}
 	}
 
@@ -425,7 +334,7 @@
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"lina_laguna_blade"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -451,18 +360,10 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"450 650 850 1050 1250 1450"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"hp"						"5"
-			}
+			"damage"					"450 650 850 1050 1250 1450"
+			"hp"						"5"
 		}
 	
 		"precache"
@@ -483,13 +384,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 
@@ -503,13 +400,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"10"
-			}
+			"value"					"10"
 		}
 	}
 }

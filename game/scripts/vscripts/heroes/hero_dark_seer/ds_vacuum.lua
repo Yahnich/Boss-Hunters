@@ -12,14 +12,14 @@ function ds_vacuum:GetAOERadius()
 	if self:GetCaster():HasTalent("special_bonus_unique_ds_vacuum_1") then
 		return 100
 	end
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function ds_vacuum:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local radius = self:GetSpecialValueFor("radius")
 
 	self.hitUnits = {}
 
@@ -47,8 +47,8 @@ end
 
 function ds_vacuum:Vacuum(vlocation, iRadius)
 	local caster = self:GetCaster()
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local damage = self:GetSpecialValueFor("damage")
+	local duration = self:GetSpecialValueFor("duration")
 
 	local radius = iRadius
 

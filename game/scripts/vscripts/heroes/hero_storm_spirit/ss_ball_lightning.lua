@@ -10,7 +10,7 @@ function ss_ball_lightning:IsHiddenWhenStolen()
 end
 
 function ss_ball_lightning:GetManaCost(iLevel)
-	local manaCost = self:GetTalentSpecialValueFor("mana_cost_base") + self:GetTalentSpecialValueFor("mana_cost_pct")/100 * self:GetCaster():GetMaxMana()
+	local manaCost = self:GetSpecialValueFor("mana_cost_base") + self:GetSpecialValueFor("mana_cost_pct")/100 * self:GetCaster():GetMaxMana()
     return manaCost
 end
 
@@ -30,16 +30,16 @@ function modifier_ss_ball_lightning:OnCreated(table)
 		self.dir = CalculateDirection(self:GetAbility():GetCursorPosition(), parent:GetAbsOrigin())
 		self.distance = CalculateDistance(self:GetAbility():GetCursorPosition(), parent:GetAbsOrigin())
 
-		self.speed = self:GetTalentSpecialValueFor("speed") * FrameTime()
-		self.radius = self:GetTalentSpecialValueFor("radius")
-		local travel_cost_base = self:GetTalentSpecialValueFor("travel_cost_base")
-		local travel_cost_percent = self:GetTalentSpecialValueFor("travel_cost_percent")/100 * caster:GetMaxMana()
+		self.speed = self:GetSpecialValueFor("speed") * FrameTime()
+		self.radius = self:GetSpecialValueFor("radius")
+		local travel_cost_base = self:GetSpecialValueFor("travel_cost_base")
+		local travel_cost_percent = self:GetSpecialValueFor("travel_cost_percent")/100 * caster:GetMaxMana()
 
 		self.manaCost = travel_cost_base + travel_cost_percent
 
 		self.hitUnits = {}
 
-		self.damageGain = self:GetTalentSpecialValueFor("damage")
+		self.damageGain = self:GetSpecialValueFor("damage")
 		self.damage = 0
 
 		self.previousPoint = parent:GetAbsOrigin()

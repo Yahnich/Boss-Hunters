@@ -19,7 +19,7 @@ function modifier_faceless_erase_timeline_handle:OnCreated()
 end
 
 function modifier_faceless_erase_timeline_handle:OnRefresh()
-    self.chance = self:GetTalentSpecialValueFor("chance")
+    self.chance = self:GetSpecialValueFor("chance")
 	print( self.chance )
 end
 function modifier_faceless_erase_timeline_handle:DeclareFunctions()

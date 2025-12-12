@@ -31,8 +31,8 @@ end
 function medusa_snake:FireMysticSnake( target, source )
 	local caster = self:GetCaster()
 	
-	local snake_damage = self:GetTalentSpecialValueFor( "damage" )
-	local snake_jumps = self:GetTalentSpecialValueFor( "jumps" )
+	local snake_damage = self:GetSpecialValueFor( "damage" )
+	local snake_jumps = self:GetSpecialValueFor( "jumps" )
 	
 	local FX = "particles/units/heroes/hero_medusa/medusa_mystic_snake_projectile_initial.vpcf"
 	if target == caster then
@@ -69,13 +69,13 @@ function medusa_snake:OnProjectileHitHandle( target, position, projectile )
 				end
 			end
 			local damage = self:DealDamage( caster, target, self.projectiles[projectile].damage )
-			target:AddNewModifier( caster, self, "modifier_medusa_snake_slow", {duration = self:GetTalentSpecialValueFor("slow_duration")} )
-			self.projectiles[projectile].mana = (self.projectiles[projectile].mana or 0) + damage * self:GetTalentSpecialValueFor("mana_steal") / 100
+			target:AddNewModifier( caster, self, "modifier_medusa_snake_slow", {duration = self:GetSpecialValueFor("slow_duration")} )
+			self.projectiles[projectile].mana = (self.projectiles[projectile].mana or 0) + damage * self:GetSpecialValueFor("mana_steal") / 100
 			self.projectiles[projectile].units[target] = true
 			
-			local delay = self:GetTalentSpecialValueFor("jump_delay")
+			local delay = self:GetSpecialValueFor("jump_delay")
 			if self.projectiles[projectile].bounces > 0 then
-				local radius = self:GetTalentSpecialValueFor("radius")
+				local radius = self:GetSpecialValueFor("radius")
 				
 				local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), radius, {order = FIND_CLOSEST})
 				for _,enemy in pairs(enemies) do
@@ -83,7 +83,7 @@ function medusa_snake:OnProjectileHitHandle( target, position, projectile )
 						Timers:CreateTimer( delay, function()
 							local newProj = self:FireMysticSnake( enemy, target ) 
 							self.projectiles[newProj] = {}
-							self.projectiles[newProj].damage = self.projectiles[projectile].damage + self:GetTalentSpecialValueFor( "damage" ) * self:GetTalentSpecialValueFor( "snake_scale" )/100
+							self.projectiles[newProj].damage = self.projectiles[projectile].damage + self:GetSpecialValueFor( "damage" ) * self:GetSpecialValueFor( "snake_scale" )/100
 							self.projectiles[newProj].mana = self.projectiles[projectile].mana
 							self.projectiles[newProj].units = self.projectiles[projectile].units
 							self.projectiles[newProj].bounces = self.projectiles[projectile].bounces - 1
@@ -124,8 +124,8 @@ function modifier_medusa_snake_slow:OnCreated()
 end
 
 function modifier_medusa_snake_slow:OnRefresh()
-	self.movespeed = self:GetTalentSpecialValueFor("move_slow")
-	self.turn = self:GetTalentSpecialValueFor("turn_slow")
+	self.movespeed = self:GetSpecialValueFor("move_slow")
+	self.turn = self:GetSpecialValueFor("turn_slow")
 end
 
 function modifier_medusa_snake_slow:DeclareFunctions()

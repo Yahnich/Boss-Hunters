@@ -40,7 +40,7 @@ function tide_hydro_cannon:OnSpellStart()
         bDeleteOnHit = true,
         vVelocity = caster:GetForwardVector() * 1500,
         bProvidesVision = true,
-        iVisionRadius = self:GetTalentSpecialValueFor("width"),
+        iVisionRadius = self:GetSpecialValueFor("width"),
         iVisionTeamNumber = caster:GetTeamNumber()
     }
     projectile = ProjectileManager:CreateLinearProjectile(info)
@@ -58,8 +58,8 @@ function tide_hydro_cannon:OnProjectileHit(hTarget, vLocation)
         ParticleManager:SetParticleControl(nfx, 3, hTarget:GetAbsOrigin())
         ParticleManager:ReleaseParticleIndex(nfx)
 
-        self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
-        hTarget:AddNewModifier(caster, self, "modifier_hydro_cannon", {Duration = self:GetTalentSpecialValueFor("duration")})
+        self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, 0)
+        hTarget:AddNewModifier(caster, self, "modifier_hydro_cannon", {Duration = self:GetSpecialValueFor("duration")})
     end
 end
 
@@ -73,11 +73,11 @@ function modifier_hydro_cannon:DeclareFunctions()
 end
 
 function modifier_hydro_cannon:GetModifierPhysicalArmorBonus()
-    return self:GetTalentSpecialValueFor("reduc_armor")
+    return self:GetSpecialValueFor("reduc_armor")
 end
 
 function modifier_hydro_cannon:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("move_speed")
+    return self:GetSpecialValueFor("move_speed")
 end
 
 function modifier_hydro_cannon:GetEffectName()

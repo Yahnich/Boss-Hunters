@@ -13,7 +13,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"dark_seer_vacuum"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -45,28 +45,15 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"100 200 300 400 450 500 550"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.3 0.4 0.5 0.6 0.7 0.8 0.9"
-			}
+			"damage"				"100 200 300 400 450 500 550"
+			"duration"				"0.3 0.4 0.5 0.6 0.7 0.8 0.9"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"400 425 450 475 500 525 550"
-			}		
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"450 500 550 600 650 700 750"
-			}		
+				"radius"				"400 425 450 475 500 525 550"		
+			"cast_range"			"450 500 550 600 650 700 750"		
 		}
 	}
 	
@@ -83,13 +70,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -105,13 +88,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -128,7 +107,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityTextureName"			"dark_seer_ion_shell"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -162,24 +141,15 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"24 46 68 90 90 90 90"
+			"damage"				"24 46 68 90 90 90 90"
 				"LinkedSpecialBonus"	"special_bonus_unique_ds_shell_2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"25"
-			}
+			"duration"				"25"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"250 250 250 250 350 450 550"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -195,13 +165,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -217,13 +183,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"15"
-			}
+			"value"						"15"
 		}
 	}
 	//=================================================================================================================
@@ -239,13 +201,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"25"
-			}
+			"value"						"25"
 		}
 	}
 	"ds_surge"
@@ -260,7 +218,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityTextureName"			"dark_seer_surge"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -293,18 +251,16 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"bonus_ms"							"25 40 55 70 85 100 115"
-			}
 			"02"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"duration"							"6"
-			}
 		}
 	}
 	
@@ -321,13 +277,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -343,13 +295,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"200"
-			}
+			"value"						"200"
 		}
 	}
 
@@ -373,23 +321,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_accuracy"			"18"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_armor"				"8"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"900"
-			}
+			"bonus_accuracy"			"18"
+			"bonus_armor"				"8"
+			"radius"					"900"
 		}
 	}
 
@@ -405,7 +341,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"dark_seer_wall_of_replica"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -442,23 +378,17 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{		
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"45.0"
-			}			
+			"duration"				"45.0"			
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"outgoing"				"70 85 100 100 100 100"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"incoming"				"200 200 200 200 150 100"
-			}		
+				"incoming"				"200 200 200 200 150 100"		
 		}
 	}
 	
@@ -475,13 +405,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -497,13 +423,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 }

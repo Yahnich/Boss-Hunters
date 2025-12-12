@@ -11,9 +11,9 @@ end
 
 function sand_burrow:GetCastRange(vLocation, hTarget)
 	if self:GetCaster():HasScepter() then
-		return self:GetTalentSpecialValueFor("scepter_cast_range")
+		return self:GetSpecialValueFor("scepter_cast_range")
 	else
-		return self:GetTalentSpecialValueFor("range")
+		return self:GetSpecialValueFor("range")
 	end
 end
 
@@ -34,9 +34,9 @@ function sand_burrow:OnSpellStart()
     ParticleManager:SetParticleControl(particle, 1, point)
     ParticleManager:ReleaseParticleIndex(particle)
 	
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local width = self:GetTalentSpecialValueFor("width")
+	local duration = self:GetSpecialValueFor("duration")
+	local damage = self:GetSpecialValueFor("damage")
+	local width = self:GetSpecialValueFor("width")
 	
 	local talent1 = caster:HasTalent("special_bonus_unique_sand_burrow_1")
 	local talent2 = caster:HasTalent("special_bonus_unique_sand_burrow_2")
@@ -60,7 +60,7 @@ function sand_burrow:OnSpellStart()
                 if caster:HasScepter() then
                     local ability = caster:FindAbilityByName("sand_caustics")
 					if ability then
-						enemy:AddNewModifier(caster, ability, "modifier_caustics_enemy", {Duration = ability:GetTalentSpecialValueFor("duration")})
+						enemy:AddNewModifier(caster, ability, "modifier_caustics_enemy", {Duration = ability:GetSpecialValueFor("duration")})
 					end
                 end
             end)

@@ -36,7 +36,7 @@ function modifier_mk_tree_jump:OnCreated(table)
 					ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
 		self:AttachEffect(nfx)
 
-		self.speed = self:GetTalentSpecialValueFor("leap_speed") * FrameTime()
+		self.speed = self:GetSpecialValueFor("leap_speed") * FrameTime()
 
 		self.distance = CalculateDistance(self:GetAbility():GetCursorPosition(), caster:GetAbsOrigin())
 		self.direction = CalculateDirection(self:GetAbility():GetCursorPosition(), caster:GetAbsOrigin())
@@ -50,7 +50,7 @@ end
 
 function modifier_mk_tree_jump:OnRefresh(table)
 	if IsServer() then
-		self.speed = self:GetTalentSpecialValueFor("leap_speed") * FrameTime()
+		self.speed = self:GetSpecialValueFor("leap_speed") * FrameTime()
 	end
 end
 

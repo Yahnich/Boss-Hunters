@@ -11,7 +11,7 @@ function riki_dance:IsHiddenWhenStolen()
 end
 
 function riki_dance:GetCastRange(Location, Target)
-    return self:GetTalentSpecialValueFor("range")
+    return self:GetSpecialValueFor("range")
 end
 
 function riki_dance:OnSpellStart()
@@ -47,7 +47,7 @@ function riki_dance:OnSpellStart()
             FindClearSpaceForUnit( caster, target:GetAbsOrigin() - target:GetForwardVector() * 50, false )
 			if not target:TriggerSpellAbsorb( self ) then
 				caster:PerformAttack(target, true, true, true, true, false, false, true)
-				self:DealDamage(caster, target, caster:GetAttackDamage()*(self:GetTalentSpecialValueFor("damage")-100)/100, {}, 0)
+				self:DealDamage(caster, target, caster:GetAttackDamage()*(self:GetSpecialValueFor("damage")-100)/100, {}, 0)
 
 				if caster:HasTalent("special_bonus_unique_riki_dance_2") then
 					self:Stun(target, 0.35, false)

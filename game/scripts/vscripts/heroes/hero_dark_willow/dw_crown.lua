@@ -17,7 +17,7 @@ function dw_crown:OnSpellStart()
 	EmitSoundOn("Hero_DarkWillow.Ley.Cast", caster)
 	EmitSoundOn("Hero_DarkWillow.Ley.Target", caster)
 	if target:TriggerSpellAbsorb(self) then return end
-	local delay = self:GetTalentSpecialValueFor("delay")
+	local delay = self:GetSpecialValueFor("delay")
 
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_dark_willow/dark_willow_ley_cast.vpcf", PATTACH_POINT, caster)
 				ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack1", caster:GetAbsOrigin(), true)
@@ -26,16 +26,16 @@ function dw_crown:OnSpellStart()
 
 	target:AddNewModifier(caster, self, "modifier_dw_crown", {Duration = delay})
 
-	self:StartDelayedCooldown(delay + self:GetTalentSpecialValueFor("duration"))
+	self:StartDelayedCooldown(delay + self:GetSpecialValueFor("duration"))
 end
 
 modifier_dw_crown = class({})
 function modifier_dw_crown:OnCreated(table)
 	if IsServer() then
-		self:SetDuration(self:GetTalentSpecialValueFor("delay"), true)
+		self:SetDuration(self:GetSpecialValueFor("delay"), true)
 
-		self.radius = self:GetTalentSpecialValueFor("radius")
-		self.duration = self:GetTalentSpecialValueFor("duration")
+		self.radius = self:GetSpecialValueFor("radius")
+		self.duration = self:GetSpecialValueFor("duration")
 
 		self:StartIntervalThink(1)
 	end

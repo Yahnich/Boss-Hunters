@@ -47,7 +47,7 @@ end
 function modifier_flash_step:OnRemoved()
     if IsServer() then
 		local caster = self:GetCaster()
-        caster:AddNewModifier(caster, self:GetAbility(), "modifier_flash_step_as", {Duration = self:GetTalentSpecialValueFor("duration")})
+        caster:AddNewModifier(caster, self:GetAbility(), "modifier_flash_step_as", {Duration = self:GetSpecialValueFor("duration")})
 		caster:MoveToPositionAggressive( caster:GetAbsOrigin() )
 		if self.talent2 then
 			local angle = 20
@@ -109,7 +109,7 @@ function modifier_flash_step_as:OnCreated()
 end
 
 function modifier_flash_step_as:OnRefresh()
-	self.attack_speed = self:GetTalentSpecialValueFor("bonus_as")
+	self.attack_speed = self:GetSpecialValueFor("bonus_as")
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_pa_flash_step_1")
 end
@@ -146,7 +146,7 @@ function modifier_flash_step_enemy:DeclareFunctions()
 end
 
 function modifier_flash_step_enemy:GetModifierAttackSpeedBonus_Constant()
-    return -self:GetTalentSpecialValueFor("bonus_as")
+    return -self:GetSpecialValueFor("bonus_as")
 end
 
 function modifier_flash_step_enemy:IsDebuff()

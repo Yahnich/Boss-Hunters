@@ -19,7 +19,7 @@ function pango_shield:GetCooldown(iLvl)
 end
 
 function pango_shield:GetCastRange(target, position)
-	return self:GetTalentSpecialValueFor("distance")
+	return self:GetSpecialValueFor("distance")
 end
 
 function pango_shield:OnSpellStart()
@@ -27,28 +27,28 @@ function pango_shield:OnSpellStart()
 
 	EmitSoundOn("Hero_Pangolier.TailThump.Cast", caster)
 
-	caster:AddNewModifier(caster, self, "modifier_pango_shield_movement", {Duration = self:GetTalentSpecialValueFor("jump_duration")})
+	caster:AddNewModifier(caster, self, "modifier_pango_shield_movement", {Duration = self:GetSpecialValueFor("jump_duration")})
 end
 
 modifier_pango_shield_movement = class({})
 
 function modifier_pango_shield_movement:OnCreated()
-	self.reduction = self:GetTalentSpecialValueFor("reduction")
+	self.reduction = self:GetSpecialValueFor("reduction")
 	if IsServer() then
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
 
 		self.startPos = caster:GetAbsOrigin()
 		
-		self.distance = self:GetTalentSpecialValueFor("distance")
+		self.distance = self:GetSpecialValueFor("distance")
 		if caster:HasScepter() then
 			self.swashbuckler = caster:FindAbilityByName("pango_swashbuckler")
 		end
 		self.direction = caster:GetForwardVector()
 
 		self.height = GetGroundHeight(self.startPos, caster)
-		self.maxHeight = self:GetTalentSpecialValueFor("height")
-		self.jump_duration = self:GetTalentSpecialValueFor("jump_duration")
+		self.maxHeight = self:GetSpecialValueFor("height")
+		self.jump_duration = self:GetSpecialValueFor("jump_duration")
 
 		self.speed = self.distance / self.jump_duration * FrameTime() 
 
@@ -63,9 +63,9 @@ end
 function modifier_pango_shield_movement:OnDestroy()
 	if IsServer() then
 		local caster = self:GetCaster()
-		local damage = self:GetTalentSpecialValueFor("damage")
-		local radius = self:GetTalentSpecialValueFor("radius")
-		local duration = self:GetTalentSpecialValueFor("duration")
+		local damage = self:GetSpecialValueFor("damage")
+		local radius = self:GetSpecialValueFor("radius")
+		local duration = self:GetSpecialValueFor("duration")
 
 		if self:GetCaster():HasScepter() and self:GetCaster():HasModifier("modifier_pango_ball_movement") then
     		damage = damage * 2
@@ -89,8 +89,8 @@ function modifier_pango_shield_movement:OnDestroy()
 		end
 		if self.swashbuckler then
 			local angle = 0
-			local attacks = self:GetTalentSpecialValueFor("scepter_count")
-			local strikes = self:GetTalentSpecialValueFor("scepter_strikes")
+			local attacks = self:GetSpecialValueFor("scepter_count")
+			local strikes = self:GetSpecialValueFor("scepter_strikes")
 			local direction = caster:GetForwardVector()
 			for i = 1, attacks do
 				local vDir =  RotateVector2D( direction, ToRadians(angle) )
@@ -153,7 +153,7 @@ end
 modifier_pango_shield = class({})
 
 function modifier_pango_shield:OnCreated()
-	self.reduction = self:GetTalentSpecialValueFor("reduction")
+	self.reduction = self:GetSpecialValueFor("reduction")
 	if IsServer() then
 		local caster = self:GetCaster()
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_pangolier/pangolier_tailthump_buff.vpcf", PATTACH_POINT_FOLLOW, caster)
@@ -169,11 +169,11 @@ function modifier_pango_shield:OnCreated()
 end
 
 function modifier_pango_shield:OnRefresh(table)
-	self.reduction = self:GetTalentSpecialValueFor("reduction")
+	self.reduction = self:GetSpecialValueFor("reduction")
 end
 
 function modifier_pango_shield:OnRemoved()
-	self.reduction = self:GetTalentSpecialValueFor("reduction")
+	self.reduction = self:GetSpecialValueFor("reduction")
 end
 
 function modifier_pango_shield:DeclareFunctions()

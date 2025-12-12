@@ -13,7 +13,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"keeper_of_the_light_illuminate"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -51,48 +51,22 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_per_horse"		"150 300 450 600 650 700 750"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal_per_horse"		"75 150 225 300 325 350 375"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_channel"			"2.5 2.5 2.5 2.5 2.0 1.5 1.0"
-			}
+			"damage_per_horse"		"150 300 450 600 650 700 750"
+			"heal_per_horse"		"75 150 225 300 325 350 375"
+			"max_channel"			"2.5 2.5 2.5 2.5 2.0 1.5 1.0"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"max_horse"				"5"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"150"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"1550"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"1050"
-			}			
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"vision_radius"			"800"
-			}
+			"range"					"1550"
+			"speed"					"1050"			
+			"vision_radius"			"800"
 		}
 	}
 
@@ -106,13 +80,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"3"
-			}
+			"value"					"3"
 		}
 	}
 
@@ -126,13 +96,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
-			}
+			"value"					"2"
 		}
 	}
 
@@ -150,7 +116,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"keeper_of_the_light_blinding_light"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -184,44 +150,22 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"miss_rate"				"70"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3 3 3 3 4 5 6"
-			}
+			"miss_rate"				"70"
+			"duration"				"3 3 3 3 4 5 6"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"600"
 				"LinkedSpecialBonus"	"special_bonus_unique_kotl_blind_1"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"knockback_duration"	"0.4"
-			}
+			"knockback_duration"	"0.4"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"knockback_distance"	"350"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"50 100 150 200 250 300 350"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"475 475 475 475 550 625 700"
-			}
+			"damage"				"50 100 150 200 250 300 350"
+			"cast_range"			"475 475 475 475 550 625 700"
 		}
 	}
 
@@ -235,13 +179,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"600"
-			}
+			"value"					"600"
 		}
 	}
 
@@ -255,18 +195,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"		"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3"
-			}
+			"value"		"50"
+			"duration"				"3"
 		}
 	}
 
@@ -282,7 +214,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityTextureName"			"keeper_of_the_light_chakra_magic"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -315,18 +247,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_restore"			"80 160 240 320 340 360 380"
-			}			 
+			"mana_restore"			"80 160 240 320 340 360 380"			 
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"cooldown_reduction"	"6 6 6 6 7 8 9"
-			}
 		}
 	}
 
@@ -340,18 +267,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
-			}
+			"value"					"50"
+			"duration"				"5"
 		}
 	}
 
@@ -365,13 +284,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-6"
-			}
+			"value"					"-6"
 		}
 	}
 
@@ -404,33 +319,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"heal_amp"					"1"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"spell_amp"					"1"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"day_multiplier"			"2"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"day_cdr"					"25"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"day_cost_reduction"		"50"
-			}
+			"heal_amp"					"1"
+			"spell_amp"					"1"
+			"day_multiplier"			"2"
+			"day_cdr"					"25"
+			"day_cost_reduction"		"50"
 		}
 	}
 
@@ -448,7 +343,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"keeper_of_the_light_will_o_wisp"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -485,43 +380,18 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"on_count"					"3 4 4 5 5 6"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"675"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"hit_count"					"4 5 5 6 6 7"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"off_duration"				"1.85"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"on_duration"				"1.3"
-			}
+			"on_count"					"3 4 4 5 5 6"
+			"radius"					"675"
+			"hit_count"					"4 5 5 6 6 7"
+"off_duration"				"1.85"
+			"on_duration"				"1.3"
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"off_duration_initial"		"1"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"fixed_movement_speed"		"35"
-			}
+			"fixed_movement_speed"		"35"
 		}
 	}
 
@@ -535,13 +405,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"20"
-			}
+			"value"					"20"
 		}
 	}
 
@@ -555,13 +421,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"5"
-			}
+			"value"					"5"
 		}
 	}
 
@@ -578,7 +440,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"keeper_of_the_light_mana_leak"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		"precache"
 		{
@@ -608,29 +470,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"10"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"damage_reduction"			"5.0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"1.0"
+			"duration"					"10"
+			"damage_reduction"			"5.0"
+			"stun_duration"				"1.0"
 				"LinkedSpecialBonus"		"special_bonus_unique_kotl_power_leak_1"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cast_range_tooltip"		"550 625 700 775 850 925 1000"
-			}
+			"cast_range_tooltip"		"550 625 700 775 850 925 1000"
 		}
 	}
 
@@ -644,13 +490,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1.5"
-			}
+			"value"					"1.5"
 		}
 	}
 
@@ -664,13 +506,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"250"
-			}
+			"value"					"250"
 		}
 	}
 
@@ -686,7 +524,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityTextureName"			"keeper_of_the_light_recall"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		"precache"
 		{
@@ -712,13 +550,9 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"teleport_delay"		"3.0 2.5 2.0 1.5 1.0 0.5"
-			}
+			"teleport_delay"		"3.0 2.5 2.0 1.5 1.0 0.5"
 		}
 	}
 }

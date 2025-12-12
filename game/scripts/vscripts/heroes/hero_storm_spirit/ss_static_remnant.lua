@@ -16,7 +16,7 @@ function ss_static_remnant:GetBehavior()
 end
 
 function ss_static_remnant:GetCastRange(vLocation, hTarget)
-    return self:GetTalentSpecialValueFor("search_radius")
+    return self:GetSpecialValueFor("search_radius")
 end
 
 function ss_static_remnant:OnSpellStart()
@@ -35,7 +35,7 @@ function ss_static_remnant:CreateRemnant(vLocation)
 
 	EmitSoundOn("Hero_StormSpirit.StaticRemnantPlant", caster)
 
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 
 	local pos = GetGroundPosition(vLocation or caster:GetAbsOrigin(), caster)
 
@@ -49,9 +49,9 @@ function modifier_ss_static_remnant:OnCreated(table)
 		self.caster = self:GetCaster()
 		self.point = self:GetParent():GetAbsOrigin()
 
-		self.damage = self:GetTalentSpecialValueFor("damage")
-		self.damage_radius = self:GetTalentSpecialValueFor("damage_radius")
-		self.search_radius = self:GetTalentSpecialValueFor("search_radius")
+		self.damage = self:GetSpecialValueFor("damage")
+		self.damage_radius = self:GetSpecialValueFor("damage_radius")
+		self.search_radius = self:GetSpecialValueFor("search_radius")
 		self.talent2 = self.caster:HasTalent("special_bonus_unique_ss_static_remnant_2") 
 		--sequence numbers, look them up in the model viewer for dota 2
 		--local animationSet1 = math.random(46, 52) 
@@ -67,7 +67,7 @@ function modifier_ss_static_remnant:OnCreated(table)
 
 		self.current = 0
 
-		local delay = self:GetTalentSpecialValueFor("delay")
+		local delay = self:GetSpecialValueFor("delay")
 
 		if self.caster:HasTalent("special_bonus_unique_ss_static_remnant_1") then
 			delay = 0.5

@@ -8,8 +8,8 @@ function aa_ice_blast:OnSpellStart()
 	local vDir = CalculateDirection(targetPos, caster:GetAbsOrigin())
 	local vDistance = CalculateDistance(targetPos, caster:GetAbsOrigin())
 	local speed = 1500
-	local initWidth = self:GetTalentSpecialValueFor("radius_min")
-	local endWidth = math.min( initWidth + (vDistance / speed) * self:GetTalentSpecialValueFor("radius_grow"), self:GetTalentSpecialValueFor("radius_max" ) )
+	local initWidth = self:GetSpecialValueFor("radius_min")
+	local endWidth = math.min( initWidth + (vDistance / speed) * self:GetSpecialValueFor("radius_grow"), self:GetSpecialValueFor("radius_max" ) )
 	extraData = {}
 	extraData["endWidth"] = endWidth
 	
@@ -20,7 +20,7 @@ end
 	
 function aa_ice_blast:OnProjectileHit_ExtraData(target, position, extraData)
 	local caster = self:GetCaster()
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	local coldFeet = caster:FindAbilityByName("aa_cold_feet")
 	if target then
 		if not target:TriggerSpellAbsorb(self) then
@@ -43,7 +43,7 @@ function aa_ice_blast:OnProjectileHit_ExtraData(target, position, extraData)
 		for _, enemy in ipairs(targets) do
 			if not enemy:TriggerSpellAbsorb(self) then
 				enemy:AddNewModifier(caster, self, "modifier_aa_ice_blast", {duration = duration})
-				self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"))
+				self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage"))
 				if caster:HasScepter() and coldFeet then
 					enemy:AddNewModifier(caster, coldFeet, "modifier_aa_cold_feet", {Duration = coldFeet:GetSpecialValueFor("duration")})
 				end
@@ -54,14 +54,14 @@ end
 
 modifier_aa_ice_blast = class({})
 function modifier_aa_ice_blast:OnCreated(table)
-	self.damage = self:GetTalentSpecialValueFor("dot_damage")
-	self.shatter = self:GetTalentSpecialValueFor("kill_pct")
+	self.damage = self:GetSpecialValueFor("dot_damage")
+	self.shatter = self:GetSpecialValueFor("kill_pct")
 	if IsServer() then self:StartIntervalThink(1) end
 end
 
 function modifier_aa_ice_blast:OnRefresh(table)
-	self.damage = self:GetTalentSpecialValueFor("dot_damage")
-	self.shatter = self:GetTalentSpecialValueFor("kill_pct")
+	self.damage = self:GetSpecialValueFor("dot_damage")
+	self.shatter = self:GetSpecialValueFor("kill_pct")
 end
 
 function modifier_aa_ice_blast:OnIntervalThink()

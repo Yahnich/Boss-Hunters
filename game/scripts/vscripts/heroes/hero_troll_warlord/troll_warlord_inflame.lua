@@ -20,8 +20,8 @@ function modifier_troll_warlord_inflame:OnCreated()
 end
 
 function modifier_troll_warlord_inflame:OnRefresh()
-	self.dmg = self:GetTalentSpecialValueFor("bonus_dmg")
-	self.ms = self:GetTalentSpecialValueFor("bonus_ms")
+	self.dmg = self:GetSpecialValueFor("bonus_dmg")
+	self.ms = self:GetSpecialValueFor("bonus_ms")
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_focus_1")
 	self.talent1Val = self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_focus_1")

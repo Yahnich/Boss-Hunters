@@ -27,7 +27,7 @@ function modifier_druid_spirit_link:OnCreated()
 end
 
 function modifier_druid_spirit_link:OnRefresh()
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_druid_spirit_link:IsDebuff()
@@ -80,14 +80,14 @@ LinkLuaModifier( "modifier_druid_spirit_link_buff", "heroes/hero_lone_druid/drui
 function modifier_druid_spirit_link_buff:OnCreated(table)
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
-	self.bouns_as = self:GetTalentSpecialValueFor("bonus_as")
+	self.bouns_as = self:GetSpecialValueFor("bonus_as")
 	if caster:HasTalent("special_bonus_unique_druid_spirit_link_1") then
 		self.regen = caster:FindTalentValue("special_bonus_unique_druid_spirit_link_1")
 	end
 		
 	if IsServer() then
 
-		self.heal = self:GetTalentSpecialValueFor("health_gain")/100
+		self.heal = self:GetSpecialValueFor("health_gain")/100
 
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_lone_druid/lone_druid_spiritlink_buff_afterlink.vpcf", PATTACH_POINT, caster)
 					ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)

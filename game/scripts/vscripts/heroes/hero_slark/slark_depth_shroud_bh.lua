@@ -1,15 +1,15 @@
 slark_depth_shroud_bh = class({})
 
 function slark_depth_shroud_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function slark_depth_shroud_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorPosition()
 	
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("duration")
+	local radius = self:GetSpecialValueFor("radius")
 	
 	
 	print( duration )
@@ -28,8 +28,8 @@ function modifier_slark_depth_shroud_dummy:OnCreated()
 end
 
 function modifier_slark_depth_shroud_dummy:OnRefresh()
-	self.duration = self:GetTalentSpecialValueFor("duration")
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_slark_depth_shroud_dummy:IsAura()

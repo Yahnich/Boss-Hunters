@@ -41,10 +41,10 @@ function modifier_mag_charge:DoControlledMotion()
 	local ability = self:GetAbility()
 	if self.distance > 0 then
 		self.distance = self.distance - 50
-		GridNav:DestroyTreesAroundPoint(parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), true)
+		GridNav:DestroyTreesAroundPoint(parent:GetAbsOrigin(), self:GetSpecialValueFor("radius"), true)
 		parent:SetAbsOrigin(GetGroundPosition(parent:GetAbsOrigin(), parent) + self.dir*50)
 
-		local magnets = parent:FindFriendlyUnitsInRadius(parent:GetAbsOrigin(),self:GetTalentSpecialValueFor("radius"))
+		local magnets = parent:FindFriendlyUnitsInRadius(parent:GetAbsOrigin(),self:GetSpecialValueFor("radius"))
 		for _,magnet in pairs(magnets) do
 			if magnet:HasModifier("modifier_mag_magnet") then
 				magnet:AddNewModifier(parent, ability, "modifier_mag_charge_enemy", {Duration = 0.1})
@@ -52,7 +52,7 @@ function modifier_mag_charge:DoControlledMotion()
 			end
 		end
 
-		local enemies = parent:FindEnemyUnitsInRadius(parent:GetAbsOrigin(),self:GetTalentSpecialValueFor("radius"))
+		local enemies = parent:FindEnemyUnitsInRadius(parent:GetAbsOrigin(),self:GetSpecialValueFor("radius"))
 		for _,enemy in pairs(enemies) do
 			
 			enemy:AddNewModifier(parent, ability, "modifier_mag_charge_enemy", {Duration = 0.1})
@@ -60,7 +60,7 @@ function modifier_mag_charge:DoControlledMotion()
 		end
 	else
 		FindClearSpaceForUnit(parent, parent:GetAbsOrigin(), true)
-		local enemies = parent:FindEnemyUnitsInRadius(parent:GetAbsOrigin(),self:GetTalentSpecialValueFor("radius")+200)
+		local enemies = parent:FindEnemyUnitsInRadius(parent:GetAbsOrigin(),self:GetSpecialValueFor("radius")+200)
 		for _,enemy in pairs(enemies) do
 			FindClearSpaceForUnit(enemy, enemy:GetAbsOrigin(), true)
 			if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
@@ -76,7 +76,7 @@ function modifier_mag_charge:DoControlledMotion()
 			end
 		end
 
-		local magnets = parent:FindFriendlyUnitsInRadius(parent:GetAbsOrigin(),self:GetTalentSpecialValueFor("radius")+200)
+		local magnets = parent:FindFriendlyUnitsInRadius(parent:GetAbsOrigin(),self:GetSpecialValueFor("radius")+200)
 		for _,magnet in pairs(magnets) do
 			if magnet:HasModifier("modifier_mag_magnet") then
 				FindClearSpaceForUnit(magnet, magnet:GetAbsOrigin(), true)
@@ -146,7 +146,7 @@ end
 
 function modifier_mag_charge_enemy:OnIntervalThink()
 	local parent = self:GetParent()
-	self:GetAbility():DealDamage(self:GetCaster(), parent, self:GetTalentSpecialValueFor("damage"), {}, 0)
+	self:GetAbility():DealDamage(self:GetCaster(), parent, self:GetSpecialValueFor("damage"), {}, 0)
 	self:StartIntervalThink(0.5)
 end
 

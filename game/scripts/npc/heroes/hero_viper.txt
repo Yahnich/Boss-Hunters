@@ -17,7 +17,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilitySound"					"hero_viper.poisonAttack.Cast"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -46,33 +46,16 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"4"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"damage"						"4 8 12 16 16 16 16"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_movement_speed"			"-6 -8 -10 -12 -12 -12 -12"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"mr_reduction"					"-3 -5 -7 -9 -9 -9 -9"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"max_stacks"					"5"
-			}
+			"damage"						"4 8 12 16 16 16 16"
+			"bonus_movement_speed"			"-6 -8 -10 -12 -12 -12 -12"
+			"mr_reduction"					"-3 -5 -7 -9 -9 -9 -9"
+			"max_stacks"					"5"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
@@ -89,13 +72,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"3"
-			}
+			"value"						"3"
 		}
 	}
 	//=================================================================================================================
@@ -111,13 +90,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"300"
-			}
+			"value"						"300"
 		}
 	}
 	//=================================================================================================================
@@ -133,7 +108,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -159,7 +134,7 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
@@ -167,34 +142,16 @@
 				"min_damage"					"15 20 25 30 40 50 60"
 				"LinkedSpecialBonus"			"special_bonus_unique_viper_nethertoxin_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"max_damage"					"80 100 120 140 150 160 170"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"400"
+			"max_damage"					"80 100 120 140 150 160 170"
+			"radius"						"400"
 				"LinkedSpecialBonus"			"special_bonus_unique_viper_nethertoxin_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"8"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"projectile_speed"				"2000"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"max_delay"						"4"
-			}
+			"projectile_speed"				"2000"
+			"max_delay"						"4"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -211,13 +168,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -233,13 +186,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -257,7 +206,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilitySound"					"hero_viper.CorrosiveSkin"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -273,7 +222,7 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
@@ -282,30 +231,22 @@
 				"LinkedSpecialBonus"				"special_bonus_unique_viper_corrosive_skin_2"
 				"LinkedSpecialBonusField"			"value2"
 				"LinkedSpecialBonusOperation"		"SPECIAL_BONUS_MULTIPLY"
-			}
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"bonus_attack_speed"				"8 16 24 32 40 48 56"
 				"LinkedSpecialBonus"				"special_bonus_unique_viper_corrosive_skin_2"
-			}
 			"03"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"bonus_magic_resistance"			"10 15 20 25 30 35 40"
 				"LinkedSpecialBonus"				"special_bonus_unique_viper_corrosive_skin_2"
-			}
 			"04"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"damage"							"8 16 24 32 40 48 56"
 				"LinkedSpecialBonus"				"special_bonus_unique_viper_corrosive_skin_2"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"max_range_tooltip"					"1400"
-			}
+			"max_range_tooltip"					"1400"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -323,28 +264,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"450"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"2"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"8"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"cd"						"20"
-			}
+			"value"						"450"
+			"damage"					"2"
+			"duration"					"8"
+"cd"						"20"
 		}
 	}
 	//=================================================================================================================
@@ -361,18 +286,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"25"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value2"					"2"
-			}
+			"value"						"25"
+			"value2"					"2"
 		}
 	}
 	"viper_venombringer"
@@ -388,13 +305,9 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_damage"			"15"
-			}
+			"bonus_damage"			"15"
 		}
 	}
 	"viper_viper_strike_bh"
@@ -412,7 +325,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"FightRecapLevel"				"2"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -450,55 +363,31 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5.1 5.1 5.1"
-			}
+			"duration"				"5.1 5.1 5.1"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"80 120 160 200 240 280"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_movement_speed"	"-40 -60 -80 -80 -80 -80"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"evasion_loss"			"0 0 0 -15 -30 -45"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"-80 -120 -160 -160 -160 -160"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cdr_loss"				"0 0 0 -15 -30 -45"
-			}
+			"evasion_loss"			"0 0 0 -15 -30 -45"
+			"bonus_attack_speed"	"-80 -120 -160 -160 -160 -160"
+			"cdr_loss"				"0 0 0 -15 -30 -45"
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"cooldown_scepter"		"10.0"
 				"RequiresScepter"		"1"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range_scepter"	"900"
+			"cast_range_scepter"	"900"
 				"RequiresScepter"		"1"
-			}
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"projectile_speed"		"1200"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -514,13 +403,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"0.4"
-			}
+			"value"						"0.4"
 		}
 	}
 	//=================================================================================================================
@@ -536,13 +421,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 }

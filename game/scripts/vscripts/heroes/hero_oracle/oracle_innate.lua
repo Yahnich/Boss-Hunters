@@ -49,15 +49,15 @@ end
 
 modifier_oracle_innate_offense = class({})
 function modifier_oracle_innate_offense:OnCreated(table)
-	self.damage = self:GetTalentSpecialValueFor("bonus_damage")
-	self.heal = -self:GetTalentSpecialValueFor("bonus_healing")
-	self.mana = self:GetTalentSpecialValueFor("mana_cost")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
+	self.heal = -self:GetSpecialValueFor("bonus_healing")
+	self.mana = self:GetSpecialValueFor("mana_cost")
 end
 
 function modifier_oracle_innate_offense:OnRefresh(table)
-	self.damage = self:GetTalentSpecialValueFor("bonus_damage")
-	self.heal = -self:GetTalentSpecialValueFor("bonus_healing")
-	self.mana = self:GetTalentSpecialValueFor("mana_cost")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
+	self.heal = -self:GetSpecialValueFor("bonus_healing")
+	self.mana = self:GetSpecialValueFor("mana_cost")
 end
 
 function modifier_oracle_innate_offense:DeclareFunctions()
@@ -96,15 +96,15 @@ end
 
 modifier_oracle_innate_defense = class({})
 function modifier_oracle_innate_defense:OnCreated(table)
-	self.damage = -self:GetTalentSpecialValueFor("bonus_damage")
-	self.heal = self:GetTalentSpecialValueFor("bonus_healing")
-	self.mana = self:GetTalentSpecialValueFor("mana_cost")
+	self.damage = -self:GetSpecialValueFor("bonus_damage")
+	self.heal = self:GetSpecialValueFor("bonus_healing")
+	self.mana = self:GetSpecialValueFor("mana_cost")
 end
 
 function modifier_oracle_innate_defense:OnRefresh(table)
-	self.damage = -self:GetTalentSpecialValueFor("bonus_damage")
-	self.heal = self:GetTalentSpecialValueFor("bonus_healing")
-	self.mana = self:GetTalentSpecialValueFor("mana_cost")
+	self.damage = -self:GetSpecialValueFor("bonus_damage")
+	self.heal = self:GetSpecialValueFor("bonus_healing")
+	self.mana = self:GetSpecialValueFor("mana_cost")
 end
 
 function modifier_oracle_innate_defense:DeclareFunctions()

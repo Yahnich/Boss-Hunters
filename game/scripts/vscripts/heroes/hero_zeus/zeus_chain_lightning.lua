@@ -13,7 +13,7 @@ function zeus_chain_lightning:GetCastPoint()
 end
 
 function zeus_chain_lightning:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function zeus_chain_lightning:GetCooldown(iLvl)
@@ -68,15 +68,15 @@ end
 
 function zeus_chain_lightning:CreateLightningInstance( target )
 	local caster = self:GetCaster()
-	local jump_delay = self:GetTalentSpecialValueFor("jump_delay")
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local bounces = self:GetTalentSpecialValueFor("jump_count")
+	local jump_delay = self:GetSpecialValueFor("jump_delay")
+	local radius = self:GetSpecialValueFor("radius")
+	local bounces = self:GetSpecialValueFor("jump_count")
 	local targets = {}
 	local prev_target = caster
 	
 	local talent1 = caster:HasTalent("special_bonus_unique_zeus_chain_lightning_1")
 	Timers:CreateTimer(function()
-		local strike_damage = caster:GetTrueAttackDamage( target ) + self:GetTalentSpecialValueFor("damage")
+		local strike_damage = caster:GetTrueAttackDamage( target ) + self:GetSpecialValueFor("damage")
 		self:CreateChainLightningParticle( prev_target, target )
 		if target:TriggerSpellAbsorb( self ) then return end
 		targets[target] = true
@@ -116,7 +116,7 @@ function zeus_chain_lightning:OnProjectileHit(hTarget, vLocation)
 
 	if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
 		EmitSoundOn("Hero_Zuus.ArcLightning.Target", hTarget)
-		self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
+		self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, 0)
 	end
 end
 

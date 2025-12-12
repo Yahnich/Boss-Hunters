@@ -38,7 +38,7 @@ function luna_lucent_beam_bh:OnSpellStart( target )
 	if caster:HasScepter() then
 		local eclipse = caster:FindAbilityByName("luna_eclipse_bh")
 		if eclipse and eclipse:GetLevel() > 0 then
-			eclipse:CreateEclipse( target or position, self:GetTalentSpecialValueFor("scepter_modifier") / 100 )
+			eclipse:CreateEclipse( target or position, self:GetSpecialValueFor("scepter_modifier") / 100 )
 		end
 	end
 	
@@ -63,8 +63,8 @@ function luna_lucent_beam_bh:LucentBeam(target, bFull)
 		position = target:GetAbsOrigin()
 	end
 	
-	local sDur = TernaryOperator( self:GetTalentSpecialValueFor("stun_duration"), GameRules:IsDaytime(), self:GetTalentSpecialValueFor("stun_night") )
-	local damage = TernaryOperator( self:GetTalentSpecialValueFor("beam_damage"), GameRules:IsDaytime(), self:GetTalentSpecialValueFor("night_beam_damage") )
+	local sDur = TernaryOperator( self:GetSpecialValueFor("stun_duration"), GameRules:IsDaytime(), self:GetSpecialValueFor("stun_night") )
+	local damage = TernaryOperator( self:GetSpecialValueFor("beam_damage"), GameRules:IsDaytime(), self:GetSpecialValueFor("night_beam_damage") )
 	
 	if hasTarget then
 		if not target:TriggerSpellAbsorb( self ) then

@@ -36,7 +36,7 @@ end
 
 function earth_spirit_rock_bh:CreateStoneRemnant(position)
 	local caster = self:GetCaster()	
-	local rock = caster:CreateSummon("npc_dota_earth_spirit_stone", position, self:GetTalentSpecialValueFor("rock_duration"))
+	local rock = caster:CreateSummon("npc_dota_earth_spirit_stone", position, self:GetSpecialValueFor("rock_duration"))
 	rock:SetForwardVector(caster:GetForwardVector())
 
 	rock:AddNewModifier(caster, self, "modifier_earth_spirit_rock_remnant", {})   
@@ -58,8 +58,8 @@ LinkLuaModifier( "modifier_earth_spirit_rock_remnant", "heroes/hero_earth_spirit
 
 function modifier_earth_spirit_rock_remnant:OnCreated(table)
 	if IsServer() then
-		self.damage = self:GetTalentSpecialValueFor("remnant_damage")
-		self.radius = self:GetTalentSpecialValueFor("radius")
+		self.damage = self:GetSpecialValueFor("remnant_damage")
+		self.radius = self:GetSpecialValueFor("radius")
 		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_earth_spirit/espirit_stoneremnant.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControl(self.nfx, 0, self:GetParent():GetAbsOrigin())
 		ParticleManager:SetParticleControl(self.nfx, 1, self:GetParent():GetAbsOrigin())
@@ -118,8 +118,8 @@ LinkLuaModifier( "modifier_earth_spirit_rock_charges", "heroes/hero_earth_spirit
 
 if IsServer() then
     function modifier_earth_spirit_rock_charges:Update()
-		self.kv.replenish_time = self:GetTalentSpecialValueFor("charge_time")
-		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+		self.kv.replenish_time = self:GetSpecialValueFor("charge_time")
+		self.kv.max_count = self:GetSpecialValueFor("charges")
 
 		if self:GetStackCount() == self.kv.max_count then
 			self:SetDuration(-1, true)
@@ -139,8 +139,8 @@ if IsServer() then
 
     function modifier_earth_spirit_rock_charges:OnCreated()
 		kv = {
-			max_count = self:GetTalentSpecialValueFor("charges"),
-			replenish_time = self:GetTalentSpecialValueFor("charge_time")
+			max_count = self:GetSpecialValueFor("charges"),
+			replenish_time = self:GetSpecialValueFor("charge_time")
 		}
         self:SetStackCount(kv.start_count or kv.max_count)
         self.kv = kv
@@ -151,8 +151,8 @@ if IsServer() then
     end
 	
 	function modifier_earth_spirit_rock_charges:OnRefresh()
-		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
-		self.kv.replenish_time = self:GetTalentSpecialValueFor("charge_time")
+		self.kv.max_count = self:GetSpecialValueFor("charges")
+		self.kv.replenish_time = self:GetSpecialValueFor("charge_time")
         if self:GetStackCount() ~= kv.max_count then
             self:Update()
         end
@@ -168,8 +168,8 @@ if IsServer() then
 
     function modifier_earth_spirit_rock_charges:OnAbilityFullyCast(params)
         if params.unit == self:GetParent() then
-			self.kv.replenish_time = self:GetTalentSpecialValueFor("charge_time")
-			self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+			self.kv.replenish_time = self:GetSpecialValueFor("charge_time")
+			self.kv.max_count = self:GetSpecialValueFor("charges")
 			
             local ability = params.ability
             if params.ability == self:GetAbility() then
@@ -189,8 +189,8 @@ if IsServer() then
         local stacks = self:GetStackCount()
 		local caster = self:GetCaster()
 		
-		self.kv.replenish_time = self:GetTalentSpecialValueFor("charge_time")
-		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+		self.kv.replenish_time = self:GetSpecialValueFor("charge_time")
+		self.kv.max_count = self:GetSpecialValueFor("charges")
 		
         if stacks < self.kv.max_count then
             self:IncrementStackCount()

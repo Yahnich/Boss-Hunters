@@ -10,7 +10,7 @@ function snapfire_firesnap_cookie_bh:IsHiddenWhenStolen()
 end
 
 function snapfire_firesnap_cookie_bh:GetCastRange(target, position)
-	return self:GetTalentSpecialValueFor("jump_horizontal_distance")
+	return self:GetSpecialValueFor("jump_horizontal_distance")
 end
 
 function snapfire_firesnap_cookie_bh:OnSpellStart()
@@ -23,7 +23,7 @@ function snapfire_firesnap_cookie_bh:OnSpellStart()
 		self:OnProjectileHit( caster, caster:GetAbsOrigin() )
 	else
 		EmitSoundOn("Hero_Snapfire.FeedCookie.Projectile", caster)
-		local speed = self:GetTalentSpecialValueFor("projectile_speed")
+		local speed = self:GetSpecialValueFor("projectile_speed")
 		self:FireTrackingProjectile("particles/units/heroes/hero_snapfire/hero_snapfire_cookie_projectile.vpcf", target, speed, {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, false, false, 0)
 	end
 end
@@ -55,15 +55,15 @@ modifier_snapfire_firesnap_cookie_bh_movement = class({})
 if IsServer() then
 	function modifier_snapfire_firesnap_cookie_bh_movement:OnCreated()
 		local parent = self:GetParent()
-		self.distance = self:GetTalentSpecialValueFor("jump_horizontal_distance")
+		self.distance = self:GetSpecialValueFor("jump_horizontal_distance")
 		self.direction = parent:GetForwardVector()
-		self.speed = self.distance / self:GetTalentSpecialValueFor("jump_duration") * FrameTime()
+		self.speed = self.distance / self:GetSpecialValueFor("jump_duration") * FrameTime()
 		self.initHeight = GetGroundHeight(parent:GetAbsOrigin(), parent)
 		self.height = self.initHeight
-		self.maxHeight = self:GetTalentSpecialValueFor("jump_height")
+		self.maxHeight = self:GetSpecialValueFor("jump_height")
 
-		self.impact_damage = self:GetTalentSpecialValueFor("impact_damage")
-		self.impact_stun_duration = self:GetTalentSpecialValueFor("impact_stun_duration")
+		self.impact_damage = self:GetSpecialValueFor("impact_damage")
+		self.impact_stun_duration = self:GetSpecialValueFor("impact_stun_duration")
 
 		self:StartMotionController()
 
@@ -78,7 +78,7 @@ if IsServer() then
 		local parentPos = parent:GetAbsOrigin()
 		FindClearSpaceForUnit(parent, parentPos, true)
 		local ability = self:GetAbility()
-		local radius = self:GetTalentSpecialValueFor("impact_radius")
+		local radius = self:GetSpecialValueFor("impact_radius")
 		self:StopMotionController()
 
 		EmitSoundOn("Hero_Snapfire.FeedCookie.Impact", parent)

@@ -1,12 +1,12 @@
 undying_flesh_golem_bh = class({})
 
 function undying_flesh_golem_bh:GetCastRange(target, position)
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function undying_flesh_golem_bh:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_undying_flesh_golem_bh", {duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_undying_flesh_golem_bh", {duration = self:GetSpecialValueFor("duration")})
 	caster:StartGesture( ACT_DOTA_SPAWN )
 	EmitSoundOn("Hero_Undying.FleshGolem.Cast", caster )
 end
@@ -20,21 +20,16 @@ end
 
 function modifier_undying_flesh_golem_bh:OnRefresh()
 	local caster = self:GetCaster()
-	self.bonus_strength = self:GetTalentSpecialValueFor("bonus_strength")
-	self.bonus_ms = self:GetTalentSpecialValueFor("bonus_ms")
-	self.damage_amp = self:GetTalentSpecialValueFor("damage_amp")
-	self.duration = self:GetTalentSpecialValueFor("debuff_duration")
+	self.bonus_strength = self:GetSpecialValueFor("bonus_strength")
+	self.bonus_ms = self:GetSpecialValueFor("bonus_ms")
+	self.damage_amp = self:GetSpecialValueFor("damage_amp")
+	self.duration = self:GetSpecialValueFor("debuff_duration")
 	
-	self.talent1 = caster:HasTalent("special_bonus_unique_undying_flesh_golem_1")
-	self.talent1Armor = caster:FindTalentValue("special_bonus_unique_undying_flesh_golem_1")
-	self.talent1MR = caster:FindTalentValue("special_bonus_unique_undying_flesh_golem_1", "value2")
-	self.talent1Threat = caster:FindTalentValue("special_bonus_unique_undying_flesh_golem_1", "value3")
+	self.talent1Armor = caster:GetSpecialValueFor("bonus_armor")
+	self.talent1MR = caster:GetSpecialValueFor("bonus_magic_resist")
+	self.talent1Threat = caster:GetSpecialValueFor("bonus_threat")
 	
-	self.talent2 = caster:HasTalent("special_bonus_unique_undying_flesh_golem_2")
-	self.talent2Chance = caster:FindTalentValue("special_bonus_unique_undying_flesh_golem_2")
-	
-	self.talent3 = caster:HasTalent("special_bonus_unique_undying_flesh_golem_3")
-	self.talent3Duration = caster:FindTalentValue("special_bonus_unique_undying_flesh_golem_3")
+	self.talent3Duration = caster:GetSpecialValueFor("zombie_duration")
 	if self.talent3 then
 		self.tombstone = caster:FindAbilityByName("undying_tombstone_bh")
 		if not self.tombstone or self.tombstone:GetLevel() == 0 then -- disable talent if tombstone isn't leveled
@@ -70,11 +65,8 @@ function modifier_undying_flesh_golem_bh:OnTakeDamage(params)
 	local countsAsAttack = ( params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK ) or HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE )
 	if params.attacker == self:GetParent() and ( countsAsAttack or params.inflictor == self.decay ) then
 		if countsAsAttack then
-			if self.talent3 then
+			if self.talent3Duration > 0 then
 				self.tombstone:SummonZombie( params.unit, self.talent3Duration )
-			end
-			if self.talent3 and self:RollPRNG( self.talent2Chance ) then
-				params.target:Fear(self:GetAbility(), self:GetCaster(), self:GetCaster():FindTalentValue("special_bonus_unique_undying_flesh_golem_2", "duration") )
 			end
 		end
 		params.unit:AddNewModifier( params.attacker, self:GetAbility(), "modifier_undying_flesh_golem_bh_debuff", {duration = self.duration} )
@@ -118,7 +110,7 @@ function modifier_undying_flesh_golem_bh_debuff:OnCreated()
 end
 
 function modifier_undying_flesh_golem_bh_debuff:OnRefresh()
-	self.damage_amp = self:GetTalentSpecialValueFor("damage_amp")
+	self.damage_amp = self:GetSpecialValueFor("damage_amp")
 end
 
 

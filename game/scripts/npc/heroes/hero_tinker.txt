@@ -16,7 +16,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"tinker_laser"
 		"AbilitySound"					"Hero_Tinker.Laser"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -50,7 +50,7 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{	
 			"03"	
 			{
@@ -58,7 +58,6 @@
 				"laser_damage"					"60 120 180 240 300 360 420"
 				"LinkedSpecialBonus"			"special_bonus_unique_tinker_laser_ebf_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 		}
 	}
 
@@ -72,13 +71,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1.25"
-			}
+			"value"					"1.25"
 		}
 	}
 
@@ -92,18 +87,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"3"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blind"					"100"
-			}
+			"value"					"3"
+			"blind"					"100"
 		}
 	}
 
@@ -119,7 +106,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 	    "AbilityTextureName"			"tinker_heat_seeking_missile"
-	    "MaxLevel"						"7"
+	    "MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -145,29 +132,25 @@
 	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilitySpecial"
+	    "AbilityValues"
 	    {
 	    	"01"
 	        {
 	            "var_type"          "FIELD_INTEGER"
 	            "damage"    		"75 125 175 225 275 325 375"
-	        }
 	        "02"
 	        {
 	            "var_type"          "FIELD_INTEGER"
 	            "radius"            "4000"
-	        }
 	        "03"
 	        {
 	            "var_type"          "FIELD_INTEGER"
 	            "speed"             "500 600 700 800 900 1000 1500"
-	        }
 	        "04"
 	        {
 	            "var_type"          "FIELD_INTEGER"
 	            "targets"           "2 2 3 3 4 4 5"
 	            "LinkedSpecialBonus" "special_bonus_unique_tinker_missile_ebf_1"
-	        }
 	        
 	    }
 	    
@@ -191,13 +174,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"3"
-			}
+			"value"					"3"
 		}
 	}
 
@@ -211,13 +190,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"0.25"
-			}
+			"value"					"0.25"
 		}
 	}
 
@@ -259,48 +234,22 @@
 	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilitySpecial"
+	    "AbilityValues"
 	    {
-	    	"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_robots"			"24"
-			}
+	    	"max_robots"			"24"
 	    	"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"16 24 32 40 48 56 64"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"range"					"1800"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"collision_radius"		"100"
-			}			
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"spawn_radius"			"250"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spawn_rate"			"0.25"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"400"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"splash_radius"			"250"
-			}    
+			"collision_radius"		"100"			
+			"spawn_radius"			"250"
+			"spawn_rate"			"0.25"
+			"speed"					"400"
+			"splash_radius"			"250"    
 	    }
 	    
 	    // Datadriven
@@ -322,13 +271,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 
@@ -342,13 +287,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 
@@ -384,13 +325,9 @@
 	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilitySpecial"
+	    "AbilityValues"
 	    {
-	    	"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10.0"
-			}   
+	    	"duration"				"10.0"   
 	    }
 	    
 	    // Datadriven
@@ -416,7 +353,7 @@
 	    "AbilityType"                   "ABILITY_TYPE_ULTIMATE"
 	    "AbilityTextureName"			"tinker_rearm"
 	    "AbilityCastAnimation"          "ACT_DOTA_CHANNEL_ABILITY_4"
-	    "MaxLevel"						"6"
+	    "MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -435,13 +372,12 @@
 	    
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilitySpecial"
+	    "AbilityValues"
 	    {
 	        "01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
 	            "channel_tooltip"       "4 3.5 3 2.5 2 1.5 1"
-	        }
 	    }
 	    
 	    // Data Driven
@@ -463,13 +399,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"0.5"
-			}
+			"value"					"0.5"
 		}
 	}
 
@@ -483,18 +415,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"amount"				"30"
-			}
+			"value"					"5"
+			"amount"				"30"
 		}
 	}
 }

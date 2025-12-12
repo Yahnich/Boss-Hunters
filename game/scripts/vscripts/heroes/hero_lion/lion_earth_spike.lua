@@ -9,7 +9,7 @@ function lion_earth_spike:IsHiddenWhenStolen()
 end
 
 function lion_earth_spike:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function lion_earth_spike:OnAbilityPhaseStart()
@@ -31,9 +31,9 @@ function lion_earth_spike:OnSpellStart()
 	EmitSoundOn("Hero_Lion.Impale", caster)
 
 	local distance = self:GetTrueCastRange()
-	local width = self:GetTalentSpecialValueFor("radius") 
+	local width = self:GetSpecialValueFor("radius") 
 	local direction = CalculateDirection(point,caster:GetAbsOrigin())
-	local speed = self:GetTalentSpecialValueFor("speed")
+	local speed = self:GetSpecialValueFor("speed")
 	local velocity = direction * speed
 	self.direction = direction
 	
@@ -64,12 +64,12 @@ function lion_earth_spike:OnProjectileHit_ExtraData(hTarget, vLocation)
 		ParticleManager:FireParticle("particles/units/heroes/hero_lion/lion_spell_impale_hit_spikes.vpcf", PATTACH_POINT, hTarget, {[0]=hTarget:GetAbsOrigin(),[1]=hTarget:GetAbsOrigin(),[2]=hTarget:GetAbsOrigin()})
 
 		hTarget:ApplyKnockBack(vLocation, 0.5, 0.5, 0, 350, caster, self)
-		local stun = self:Stun(hTarget, self:GetTalentSpecialValueFor("duration"), false)
+		local stun = self:Stun(hTarget, self:GetSpecialValueFor("duration"), false)
 		if caster:HasTalent("special_bonus_unique_lion_earth_spike_2") then
 			stun.OnRemoved = function()
-				stun:GetParent():Root( stun:GetAbility(), stun:GetCaster(), stun:GetTalentSpecialValueFor("duration") )
+				stun:GetParent():Root( stun:GetAbility(), stun:GetCaster(), stun:GetSpecialValueFor("duration") )
 			end
 		end
-		self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
+		self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, 0)
 	end
 end

@@ -27,8 +27,8 @@ end
 function enchantress_attendants:OnSpellStart()
 	local caster = self:GetCaster()
 
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local count = self:GetTalentSpecialValueFor("count")
+	local duration = self:GetSpecialValueFor("duration")
+	local count = self:GetSpecialValueFor("count")
 
 	caster:AddNewModifier(caster, self, "modifier_enchantress_attendants_fake", {Duration = duration})
 
@@ -42,8 +42,8 @@ end
 function enchantress_attendants:OnToggle()
 	local caster = self:GetCaster()
 
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local count = self:GetTalentSpecialValueFor("count")
+	local duration = self:GetSpecialValueFor("duration")
+	local count = self:GetSpecialValueFor("count")
 
 	if caster:HasModifier("modifier_enchantress_attendants_fake") or caster:HasModifier("modifier_enchantress_attendants") then
 		caster:RemoveModifierByName("modifier_enchantress_attendants_fake")
@@ -70,8 +70,8 @@ end
 
 function modifier_enchantress_attendants_fake:OnIntervalThink()
 	local caster = self:GetCaster()
-	if caster:GetMana() >= caster:GetMaxMana() * (self:GetTalentSpecialValueFor("scepter_mana_cost")/100) * 0.03 then
-		caster:SpendMana(caster:GetMaxMana() * (self:GetTalentSpecialValueFor("scepter_mana_cost")/100) * 0.03, self:GetAbility())
+	if caster:GetMana() >= caster:GetMaxMana() * (self:GetSpecialValueFor("scepter_mana_cost")/100) * 0.03 then
+		caster:SpendMana(caster:GetMaxMana() * (self:GetSpecialValueFor("scepter_mana_cost")/100) * 0.03, self:GetAbility())
 	else
 		self:ToggleAbility()
 	end
@@ -92,8 +92,8 @@ function modifier_enchantress_attendants:OnCreated(table)
 	if IsServer() then
 		local parent = self:GetParent()
 
-		self.radius = self:GetTalentSpecialValueFor("radius")
-		self.heal = self:GetTalentSpecialValueFor("heal")
+		self.radius = self:GetSpecialValueFor("radius")
+		self.heal = self:GetSpecialValueFor("heal")
 
 		self.pWispy =   ParticleManager:CreateParticle("particles/units/heroes/hero_enchantress/enchantress_natures_attendants_heal_wispc.vpcf", PATTACH_POINT, parent)
 						ParticleManager:SetParticleControlEnt(self.pWispy, 0, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)

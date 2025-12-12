@@ -32,12 +32,12 @@ function weaver_swarm:OnSpellStart()
 
 	EmitSoundOn("Hero_Weaver.Swarm.Cast", caster)
 
-	local max_bugs = self:GetTalentSpecialValueFor("count")
+	local max_bugs = self:GetSpecialValueFor("count")
 	self.hitUnits = {}
 	for i=1,max_bugs do
-		local randoVect = ActualRandomVector(self:GetTalentSpecialValueFor("spawn_radius"),-self:GetTalentSpecialValueFor("spawn_radius"))
+		local randoVect = ActualRandomVector(self:GetSpecialValueFor("spawn_radius"),-self:GetSpecialValueFor("spawn_radius"))
         local pointRando = startPos + randoVect
-		self:FireLinearProjectile("particles/units/heroes/hero_weaver/weaver_swarm_projectile.vpcf", dir*self:GetTalentSpecialValueFor("speed"), self:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius"), {origin=pointRando}, false, true, self:GetTalentSpecialValueFor("radius"))
+		self:FireLinearProjectile("particles/units/heroes/hero_weaver/weaver_swarm_projectile.vpcf", dir*self:GetSpecialValueFor("speed"), self:GetTrueCastRange(), self:GetSpecialValueFor("radius"), {origin=pointRando}, false, true, self:GetSpecialValueFor("radius"))
 	end
 end
 
@@ -47,7 +47,7 @@ function weaver_swarm:OnProjectileHit(hTarget, vLocation)
 	if hTarget and not self.hitUnits[hTarget] then
 		if not hTarget:TriggerSpellAbsorb( self ) then
 			EmitSoundOn("Hero_Weaver.SwarmAttach", hTarget)
-			hTarget:AddNewModifier(caster, self, "modifier_weaver_swarm_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
+			hTarget:AddNewModifier(caster, self, "modifier_weaver_swarm_bh", {Duration = self:GetSpecialValueFor("duration")})
 		end
 		self.hitUnits[hTarget] = true
 		return true
@@ -56,7 +56,7 @@ end
 
 modifier_weaver_swarm_bh = class({})
 function modifier_weaver_swarm_bh:OnCreated(table)
-	self.armor = self:GetTalentSpecialValueFor("armor_reduction")
+	self.armor = self:GetSpecialValueFor("armor_reduction")
 	if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
@@ -64,22 +64,22 @@ function modifier_weaver_swarm_bh:OnCreated(table)
 		local parentForward = parent:GetForwardVector()
 		local distance = 64
 
-		local duration = self:GetTalentSpecialValueFor("duration")
+		local duration = self:GetSpecialValueFor("duration")
 		self.bug = caster:CreateSummon("npc_dota_weaver_swarm", parentPoint, duration)
 		self.bug:AddNewModifier(caster, ability, "modifier_weaver_swarm_bug", {Duration = duration})
 		self.bug:FollowEntity(parent, false)
 		self.bug:SetAbsOrigin( parentPoint + parentForward * 64 )
 		self.bug:SetForwardVector(-parentForward)
-		self.bug:SetCoreHealth( self:GetTalentSpecialValueFor("destroy_attacks") )
-		self.bug:SetThreat( self:GetTalentSpecialValueFor("start_threat") )
-		self.damage = self:GetTalentSpecialValueFor("damage")
+		self.bug:SetCoreHealth( self:GetSpecialValueFor("destroy_attacks") )
+		self.bug:SetThreat( self:GetSpecialValueFor("start_threat") )
+		self.damage = self:GetSpecialValueFor("damage")
 		
 		self.talent1 = caster:HasTalent("special_bonus_unique_weaver_swarm_1")
 		self.talent1Val = caster:FindTalentValue("special_bonus_unique_weaver_swarm_1") / 100
 		self.talent1Radius = caster:FindTalentValue("special_bonus_unique_weaver_swarm_1", "radius")
 
 		self.counter = 0
-		self.attackRate = self:GetTalentSpecialValueFor("attack_rate")
+		self.attackRate = self:GetSpecialValueFor("attack_rate")
 		self:StartIntervalThink(self.attackRate)
 		
 	end
@@ -192,7 +192,7 @@ function modifier_weaver_swarm_passive:OnAttack(params)
             local target = params.target
             local ability = self:GetAbility()
 
-            ability:FireLinearProjectile("particles/units/heroes/hero_weaver/weaver_swarm_projectile.vpcf", caster:GetForwardVector()*ability:GetTalentSpecialValueFor("speed"), ability:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius"), {}, false, true, self:GetTalentSpecialValueFor("radius"))
+            ability:FireLinearProjectile("particles/units/heroes/hero_weaver/weaver_swarm_projectile.vpcf", caster:GetForwardVector()*ability:GetSpecialValueFor("speed"), ability:GetTrueCastRange(), self:GetSpecialValueFor("radius"), {}, false, true, self:GetSpecialValueFor("radius"))
         end
     end
 end

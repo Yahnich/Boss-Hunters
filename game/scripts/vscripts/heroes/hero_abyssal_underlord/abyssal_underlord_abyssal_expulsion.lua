@@ -11,8 +11,8 @@ end
 function abyssal_underlord_abyssal_expulsion:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local radius = self:GetTalentSpecialValueFor("search_radius")
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local radius = self:GetSpecialValueFor("search_radius")
+	local duration = self:GetSpecialValueFor("duration")
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
 		if not enemy:TriggerSpellAbsorb(self) then
@@ -33,13 +33,13 @@ modifier_abyssal_underlord_abyssal_expulsion = class({})
 LinkLuaModifier( "modifier_abyssal_underlord_abyssal_expulsion", "heroes/hero_abyssal_underlord/abyssal_underlord_abyssal_expulsion", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_abyssal_underlord_abyssal_expulsion:OnCreated(kv)
-	self.dps = self:GetTalentSpecialValueFor("damage_per_sec") * self:GetTalentSpecialValueFor("explosion_interval")
-	self.hps = self:GetTalentSpecialValueFor("heal_per_sec") * self:GetTalentSpecialValueFor("explosion_interval")
-	self.hRadius = self:GetTalentSpecialValueFor("heal_radius")
-	self.dDamage = self:GetTalentSpecialValueFor("death_damage")
-	self.dRadius = self:GetTalentSpecialValueFor("death_radius")
-	self.duration = self:GetTalentSpecialValueFor("duration")
-	self.tick = (self:GetDuration() / self.duration ) * self:GetTalentSpecialValueFor("explosion_interval")
+	self.dps = self:GetSpecialValueFor("damage_per_sec") * self:GetSpecialValueFor("explosion_interval")
+	self.hps = self:GetSpecialValueFor("heal_per_sec") * self:GetSpecialValueFor("explosion_interval")
+	self.hRadius = self:GetSpecialValueFor("heal_radius")
+	self.dDamage = self:GetSpecialValueFor("death_damage")
+	self.dRadius = self:GetSpecialValueFor("death_radius")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.tick = (self:GetDuration() / self.duration ) * self:GetSpecialValueFor("explosion_interval")
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_abyssal_underlord_abyssal_expulsion_1")
 	if IsServer() then
@@ -48,13 +48,13 @@ function modifier_abyssal_underlord_abyssal_expulsion:OnCreated(kv)
 end
 
 function modifier_abyssal_underlord_abyssal_expulsion:OnRefresh()
-	self.dps = self:GetTalentSpecialValueFor("damage_per_sec") * self:GetTalentSpecialValueFor("explosion_interval")
-	self.hps = self:GetTalentSpecialValueFor("heal_per_sec") * self:GetTalentSpecialValueFor("explosion_interval")
-	self.hRadius = self:GetTalentSpecialValueFor("heal_radius")
-	self.dDamage = self:GetTalentSpecialValueFor("death_damage")
-	self.dRadius = self:GetTalentSpecialValueFor("death_radius")
-	self.duration = self:GetTalentSpecialValueFor("duration")
-	self.tick = (self:GetDuration() / self.duration ) * self:GetTalentSpecialValueFor("explosion_interval")
+	self.dps = self:GetSpecialValueFor("damage_per_sec") * self:GetSpecialValueFor("explosion_interval")
+	self.hps = self:GetSpecialValueFor("heal_per_sec") * self:GetSpecialValueFor("explosion_interval")
+	self.hRadius = self:GetSpecialValueFor("heal_radius")
+	self.dDamage = self:GetSpecialValueFor("death_damage")
+	self.dRadius = self:GetSpecialValueFor("death_radius")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.tick = (self:GetDuration() / self.duration ) * self:GetSpecialValueFor("explosion_interval")
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_abyssal_underlord_abyssal_expulsion_1")
 	if IsServer() then
@@ -110,20 +110,20 @@ modifier_abyssal_underlord_abyssal_expulsion_talent = class({})
 LinkLuaModifier( "modifier_abyssal_underlord_abyssal_expulsion_talent", "heroes/hero_abyssal_underlord/abyssal_underlord_abyssal_expulsion", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_abyssal_underlord_abyssal_expulsion_talent:OnCreated(kv)
-	self.dps = self:GetCaster():FindTalentValue("special_bonus_unique_abyssal_underlord_abyssal_expulsion_2") * self:GetTalentSpecialValueFor("explosion_interval") / 100
-	self.radius = self:GetTalentSpecialValueFor("search_radius")
-	self.duration = self:GetTalentSpecialValueFor("duration")
-	self.tick = (self:GetDuration() / self.duration ) * self:GetTalentSpecialValueFor("explosion_interval")
+	self.dps = self:GetCaster():FindTalentValue("special_bonus_unique_abyssal_underlord_abyssal_expulsion_2") * self:GetSpecialValueFor("explosion_interval") / 100
+	self.radius = self:GetSpecialValueFor("search_radius")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.tick = (self:GetDuration() / self.duration ) * self:GetSpecialValueFor("explosion_interval")
 	if IsServer() then
 		self:StartIntervalThink( self.tick )
 	end
 end
 
 function modifier_abyssal_underlord_abyssal_expulsion_talent:OnRefresh()
-	self.dps = self:GetCaster():FindTalentValue("special_bonus_unique_abyssal_underlord_abyssal_expulsion_2") * self:GetTalentSpecialValueFor("explosion_interval")
-	self.radius = self:GetTalentSpecialValueFor("search_radius")
-	self.duration = self:GetTalentSpecialValueFor("duration")
-	self.tick = (self:GetDuration() / self.duration ) * self:GetTalentSpecialValueFor("explosion_interval")
+	self.dps = self:GetCaster():FindTalentValue("special_bonus_unique_abyssal_underlord_abyssal_expulsion_2") * self:GetSpecialValueFor("explosion_interval")
+	self.radius = self:GetSpecialValueFor("search_radius")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.tick = (self:GetDuration() / self.duration ) * self:GetSpecialValueFor("explosion_interval")
 	if IsServer() then
 		self:StartIntervalThink( self.tick )
 	end

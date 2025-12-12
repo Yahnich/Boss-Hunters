@@ -20,14 +20,14 @@ LinkLuaModifier("modifier_shadow_shaman_ignited_voodoo", "heroes/hero_shadow_sha
 modifier_shadow_shaman_ignited_voodoo = class({})
 
 function modifier_shadow_shaman_ignited_voodoo:OnCreated()
-	self.ms = self:GetTalentSpecialValueFor("movespeed")
+	self.ms = self:GetSpecialValueFor("movespeed")
 	if IsServer() then
 		self:GetAbility():StartDelayedCooldown()
 	end
 end
 
 function modifier_shadow_shaman_ignited_voodoo:OnRefresh()
-	self.ms = self:GetTalentSpecialValueFor("movespeed")
+	self.ms = self:GetSpecialValueFor("movespeed")
 	if IsServer() then
 		self:GetAbility():StartDelayedCooldown()
 	end
@@ -96,12 +96,12 @@ modifier_shadow_shaman_ignited_voodoo_dot = class({})
 
 if IsServer() then
 	function modifier_shadow_shaman_ignited_voodoo_dot:OnCreated()
-		self.damage = self:GetTalentSpecialValueFor("damage") * self:GetCaster():FindTalentValue("special_bonus_unique_shadow_shaman_ignited_voodoo_1") / 100
+		self.damage = self:GetSpecialValueFor("damage") * self:GetCaster():FindTalentValue("special_bonus_unique_shadow_shaman_ignited_voodoo_1") / 100
 		self:StartIntervalThink(1)
 	end
 
 	function modifier_shadow_shaman_ignited_voodoo_dot:OnRefresh()
-		self.damage = self:GetTalentSpecialValueFor("damage") * self:GetCaster():FindTalentValue("special_bonus_unique_shadow_shaman_ignited_voodoo_1") / 100
+		self.damage = self:GetSpecialValueFor("damage") * self:GetCaster():FindTalentValue("special_bonus_unique_shadow_shaman_ignited_voodoo_1") / 100
 	end
 
 	function modifier_shadow_shaman_ignited_voodoo_dot:OnIntervalThink()

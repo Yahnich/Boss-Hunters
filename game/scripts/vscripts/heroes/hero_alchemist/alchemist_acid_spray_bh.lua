@@ -9,7 +9,7 @@ function alchemist_acid_spray_bh:IsHiddenWhenStolen()
 end
 
 function alchemist_acid_spray_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function alchemist_acid_spray_bh:OnSpellStart()
@@ -18,9 +18,9 @@ function alchemist_acid_spray_bh:OnSpellStart()
 	local targetPos = self:GetCursorPosition()
 
 	if target and target == caster then
-		caster:AddNewModifier(caster, self, "modifier_alchemist_acid_spray_bh_thinker", {duration = self:GetTalentSpecialValueFor("duration")})
+		caster:AddNewModifier(caster, self, "modifier_alchemist_acid_spray_bh_thinker", {duration = self:GetSpecialValueFor("duration")})
 	else
-		CreateModifierThinker(caster, self, "modifier_alchemist_acid_spray_bh_thinker", {duration = self:GetTalentSpecialValueFor("duration")}, targetPos, caster:GetTeamNumber(), false)
+		CreateModifierThinker(caster, self, "modifier_alchemist_acid_spray_bh_thinker", {duration = self:GetSpecialValueFor("duration")}, targetPos, caster:GetTeamNumber(), false)
 	end
 	ParticleManager:FireRopeParticle("particles/units/heroes/hero_alchemist/alchemist_acid_spray_cast.vpcf", PATTACH_POINT_FOLLOW, caster, target or targetPos, {[15] = Vector(56, 128, 56)})
 end
@@ -29,8 +29,8 @@ modifier_alchemist_acid_spray_bh_thinker = class({})
 LinkLuaModifier("modifier_alchemist_acid_spray_bh_thinker", "heroes/hero_alchemist/alchemist_acid_spray_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_alchemist_acid_spray_bh_thinker:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.linger = self:GetTalentSpecialValueFor("aura_linger")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.linger = self:GetSpecialValueFor("aura_linger")
 	if IsServer() then
 		EmitSoundOn("Hero_Alchemist.AcidSpray", self:GetParent())
 		nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_alchemist/alchemist_acid_spray.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
@@ -85,8 +85,8 @@ function modifier_alchemist_acid_spray_bh_debuff:IsDebuff()
 end
 
 function modifier_alchemist_acid_spray_bh_debuff:OnCreated()
-	self.armor = self:GetTalentSpecialValueFor("armor_reduction")
-	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.armor = self:GetSpecialValueFor("armor_reduction")
+	self.damage = self:GetSpecialValueFor("damage")
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_alchemist_acid_spray_1")
 	self.talent1Val = self:GetCaster():FindTalentValue("special_bonus_unique_alchemist_acid_spray_1")
@@ -94,8 +94,8 @@ function modifier_alchemist_acid_spray_bh_debuff:OnCreated()
 end
 
 function modifier_alchemist_acid_spray_bh_debuff:OnRefresh()
-	self.armor = self:GetTalentSpecialValueFor("armor_reduction")
-	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.armor = self:GetSpecialValueFor("armor_reduction")
+	self.damage = self:GetSpecialValueFor("damage")
 end
 
 function modifier_alchemist_acid_spray_bh_debuff:OnIntervalThink()

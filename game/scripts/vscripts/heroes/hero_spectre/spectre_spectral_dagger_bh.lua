@@ -16,12 +16,12 @@ function spectre_spectral_dagger_bh:LaunchSpectralDagger( target, origin )
 
 	
 	local direction = CalculateDirection( target , origin or caster )
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local radius = self:GetTalentSpecialValueFor("dagger_radius")
-	local vision = self:GetTalentSpecialValueFor("vision_radius")
-	local speed = self:GetTalentSpecialValueFor("speed")
-	local distance = self:GetTalentSpecialValueFor("distance")
-	local duration = self:GetTalentSpecialValueFor("dagger_path_duration")
+	local damage = self:GetSpecialValueFor("damage")
+	local radius = self:GetSpecialValueFor("dagger_radius")
+	local vision = self:GetSpecialValueFor("vision_radius")
+	local speed = self:GetSpecialValueFor("speed")
+	local distance = self:GetSpecialValueFor("distance")
+	local duration = self:GetSpecialValueFor("dagger_path_duration")
 	
 	
 	self.projectiles = self.projectiles or {}
@@ -78,7 +78,7 @@ modifier_spectre_spectral_dagger_bh_path = class({})
 LinkLuaModifier("modifier_spectre_spectral_dagger_bh_path", "heroes/hero_spectre/spectre_spectral_dagger_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_spectre_spectral_dagger_bh_path:OnCreated()
-	self.pathDuration = self:GetTalentSpecialValueFor("dagger_path_duration")
+	self.pathDuration = self:GetSpecialValueFor("dagger_path_duration")
 	if IsServer() then
 		self:StartIntervalThink(0.15)
 		local pathFX = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_shadow_path.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
@@ -102,10 +102,10 @@ modifier_spectre_spectral_dagger_bh_thinker = class({})
 LinkLuaModifier("modifier_spectre_spectral_dagger_bh_thinker", "heroes/hero_spectre/spectre_spectral_dagger_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_spectre_spectral_dagger_bh_thinker:OnCreated()
-	self.stick = self:GetTalentSpecialValueFor("dagger_grace_period")
-	self.radius = self:GetTalentSpecialValueFor("path_radius")
+	self.stick = self:GetSpecialValueFor("dagger_grace_period")
+	self.radius = self:GetSpecialValueFor("path_radius")
 	if IsServer() then
-		AddFOWViewer( self:GetCaster():GetTeam(), self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("vision_radius"), self:GetRemainingTime(), true )
+		AddFOWViewer( self:GetCaster():GetTeam(), self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("vision_radius"), self:GetRemainingTime(), true )
 	end
 end
 
@@ -141,7 +141,7 @@ modifier_spectre_spectral_dagger_bh = class({})
 LinkLuaModifier("modifier_spectre_spectral_dagger_bh", "heroes/hero_spectre/spectre_spectral_dagger_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_spectre_spectral_dagger_bh:OnCreated()
-	self.slow = self:GetTalentSpecialValueFor("bonus_movespeed")
+	self.slow = self:GetSpecialValueFor("bonus_movespeed")
 	if not self:GetParent():IsSameTeam( self:GetCaster() ) then
 		self.slow = self.slow * (-1)
 	end

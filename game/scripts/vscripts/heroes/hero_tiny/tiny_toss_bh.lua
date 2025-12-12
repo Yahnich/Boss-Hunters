@@ -26,7 +26,7 @@ end
 function tiny_toss_bh:OnSpellStart()
     local caster = self:GetCaster()
     local target = nil
-    local duration = CalculateDistance(self:GetCursorPosition(), caster:GetAbsOrigin()) / self:GetTalentSpecialValueFor("duration") * FrameTime()
+    local duration = CalculateDistance(self:GetCursorPosition(), caster:GetAbsOrigin()) / self:GetSpecialValueFor("duration") * FrameTime()
 
     EmitSoundOn("Ability.TossThrow", caster)
 
@@ -63,7 +63,7 @@ function modifier_tiny_toss_bh:OnCreated()
 		self.endPos = self:GetAbility():GetCursorPosition()
 		self.distance = CalculateDistance( self.endPos, parent )
 		self.direction = CalculateDirection( self.endPos, parent )
-		self.speed = self.distance / self:GetTalentSpecialValueFor("duration") * FrameTime()
+		self.speed = self.distance / self:GetSpecialValueFor("duration") * FrameTime()
 		self.initHeight = GetGroundHeight(parent:GetAbsOrigin(), parent)
 		self.height = self.initHeight
 		self.maxHeight = 650
@@ -77,12 +77,12 @@ function modifier_tiny_toss_bh:OnRemoved()
 		EmitSoundOn("Ability.TossImpact", self:GetParent())
 		local parent = self:GetParent()
 		local parentPos = parent:GetAbsOrigin()
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local radius = self:GetSpecialValueFor("radius")
 		GridNav:DestroyTreesAroundPoint(parentPos, radius, false)
 		FindClearSpaceForUnit(parent, parentPos, true)
 		local ability = self:GetAbility()
-		local damage = self:GetTalentSpecialValueFor("damage")
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local damage = self:GetSpecialValueFor("damage")
+		local radius = self:GetSpecialValueFor("radius")
 		local enemies = self:GetCaster():FindEnemyUnitsInRadius(parentPos, radius)
 		for _,enemy in pairs(enemies) do
 			if not enemy:TriggerSpellAbsorb( self ) then
@@ -145,7 +145,7 @@ function modifier_tiny_toss_bh_rock:OnCreated()
 		self.endPos = self:GetAbility():GetCursorPosition()
 		self.distance = CalculateDistance( self.endPos, parent )
 		self.direction = CalculateDirection( self.endPos, parent )
-		self.speed = self.distance / self:GetTalentSpecialValueFor("duration") * FrameTime()
+		self.speed = self.distance / self:GetSpecialValueFor("duration") * FrameTime()
 		self.initHeight = GetGroundHeight(parent:GetAbsOrigin(), parent)
 		self.height = self.initHeight
 		self.maxHeight = 650
@@ -170,12 +170,12 @@ function modifier_tiny_toss_bh_rock:OnRemoved()
 		EmitSoundOn("Ability.TossImpact", self:GetParent())
 		local parent = self:GetParent()
 		local parentPos = parent:GetAbsOrigin()
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local radius = self:GetSpecialValueFor("radius")
 		GridNav:DestroyTreesAroundPoint(parentPos, radius, false)
 		FindClearSpaceForUnit(parent, parentPos, true)
 		local ability = self:GetAbility()
-		local damage = self:GetTalentSpecialValueFor("damage")
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local damage = self:GetSpecialValueFor("damage")
+		local radius = self:GetSpecialValueFor("radius")
 		local enemies = self:GetCaster():FindEnemyUnitsInRadius(parentPos, radius)
 		for _,enemy in pairs(enemies) do
 			if not enemy:TriggerSpellAbsorb( self ) then

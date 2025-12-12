@@ -20,15 +20,15 @@ end
 modifier_razor_unstable_current_bh = class({})
 LinkLuaModifier("modifier_razor_unstable_current_bh", "heroes/hero_razor/razor_unstable_current_bh", LUA_MODIFIER_MOTION_NONE)
 function modifier_razor_unstable_current_bh:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("damage")
-	self.duration = self:GetTalentSpecialValueFor("slow_duration")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.duration = self:GetSpecialValueFor("slow_duration")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_razor_unstable_current_bh_1")
 	self.talent1CD = self:GetCaster():FindTalentValue("special_bonus_unique_razor_unstable_current_bh_1")
 end
 
 function modifier_razor_unstable_current_bh:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("damage")
-	self.duration = self:GetTalentSpecialValueFor("slow_duration")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.duration = self:GetSpecialValueFor("slow_duration")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_razor_unstable_current_bh_1")
 	self.talent1CD = self:GetCaster():FindTalentValue("special_bonus_unique_razor_unstable_current_bh_1")
 end

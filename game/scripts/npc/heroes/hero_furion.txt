@@ -8,7 +8,7 @@
 		"ScriptFile"					"heroes/hero_furion/furion_tree_jail.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityTextureName"			"custom/furion_sprout_ebf"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -35,49 +35,23 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"35 50 65 80 105 120 135"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3.0 3.5 4.0 4.5 5.0 5.5 6.0"
+			"damage"				"35 50 65 80 105 120 135"
+			"duration"				"3.0 3.5 4.0 4.5 5.0 5.5 6.0"
 				"LinkedSpecialBonus"	"special_bonus_unique_furion_tree_jail_2"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"tree_count"			"16"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"tree_radius"			"300"
-			}	
+			"tree_radius"			"300"	
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"sleep_delay"			"1.5"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"sleep_duration"		"3.0 3.5 4.0 4.5 5.0 5.5 6.0"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"sleep_radius"			"450"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"vision_range"			"1000"
-			}
+			"sleep_duration"		"3.0 3.5 4.0 4.5 5.0 5.5 6.0"
+			"sleep_radius"			"450"
+			"vision_range"			"1000"
 		}
 	
 		"precache"
@@ -98,13 +72,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"special_bonus_unique_furion_tree_jail_2" 
@@ -117,13 +87,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"3"
-			}
+			"value"					"3"
 		}
 	}
 	"furion_sprout_tp"
@@ -134,7 +100,7 @@
 		"ScriptFile"					"heroes/hero_furion/furion_sprout_tp.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName"			"furion_teleportation"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -153,13 +119,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cast_point_tooltip"	"4.5 4.0 3.5 3.0 2.5 2.0 1.5"
-			}
+			"cast_point_tooltip"	"4.5 4.0 3.5 3.0 2.5 2.0 1.5"
 		}
 	
 		"precache"
@@ -180,13 +142,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-15.0"
-			}
+			"value"					"-15.0"
 		}
 	}
 	"special_bonus_unique_furion_sprout_tp_2" 
@@ -199,13 +157,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"4"
-			}
+			"value"					"4"
 		}
 	}
 	"furion_tree_ant"
@@ -216,7 +170,7 @@
 		"ScriptFile"					"heroes/hero_furion/furion_tree_ant.lua"
 		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityTextureName"			"furion_force_of_nature"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -242,39 +196,18 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_treants"			"2"
+			"max_treants"			"2"
 				"LinkedSpecialBonus"	"special_bonus_unique_furion_tree_ant_2"
-			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"500"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"treant_duration"		"30"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"treant_health"			"100 300 500 700 900 1100 1300"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"treant_health_pct"		"35"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"treant_damage"			"24 25 26 27 28 29 30"
-			}
+			"treant_duration"		"30"
+			"treant_health"			"100 300 500 700 900 1100 1300"
+			"treant_health_pct"		"35"
+			"treant_damage"			"24 25 26 27 28 29 30"
 		}
 	
 		"precache"
@@ -296,13 +229,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"450"
-			}
+			"value"					"450"
 		}
 	}
 	"special_bonus_unique_furion_tree_ant_2" 
@@ -315,13 +244,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
-			}
+			"value"					"2"
 		}
 	}
 	"furion_entangle"
@@ -353,33 +278,28 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"                  "FIELD_INTEGER"
 				"chance"            		"20"
-			}
 			"02"
 			{
 				"var_type"                  "FIELD_INTEGER"
 				"damage"           			"200"
-			}
 			"02"
 			{
 				"var_type"                  "FIELD_INTEGER"
 				"heal_pct"           		"50"
-			}
 			"03"
 			{
 				"var_type"                  "FIELD_FLOAT"
 				"duration"           		"3.0"
-			}
 			"05"
 			{
 				"var_type"                  "FIELD_INTEGER"
 				"scepter_radius"           	"500"
-			}
 		}
 	
 		"precache"
@@ -401,13 +321,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"650"
-			}
+			"value"					"650"
 		}
 	}
 	"furion_natures_wrath"
@@ -424,7 +340,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"furion_wrath_of_nature"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -449,29 +365,19 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"120 170 220 270 320 370"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_add"					"10"
+			"damage"						"120 170 220 270 320 370"
+			"damage_add"					"10"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"jump_delay"					"0.25"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"revive_duration"				"4.0"
-			}
 			
 		}
 	
@@ -493,13 +399,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"4"
-			}
+			"value"					"4"
 		}
 	}
 	"special_bonus_unique_furion_natures_wrath_2" 
@@ -512,18 +414,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"100"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.5"
-			}
+			"value"					"100"
+			"duration"				"1.5"
 		}
 	}
 }

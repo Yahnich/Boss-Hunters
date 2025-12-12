@@ -13,11 +13,11 @@ function crystal_maiden_crystal_nova_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
 	
-	local damage = self:GetTalentSpecialValueFor("nova_damage")
-	local chill = self:GetTalentSpecialValueFor("chill")
-	local cDur = self:GetTalentSpecialValueFor("duration")
-	local vDur = self:GetTalentSpecialValueFor("vision_duration")
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local damage = self:GetSpecialValueFor("nova_damage")
+	local chill = self:GetSpecialValueFor("chill")
+	local cDur = self:GetSpecialValueFor("duration")
+	local vDur = self:GetSpecialValueFor("vision_duration")
+	local radius = self:GetSpecialValueFor("radius")
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
 		if not enemy:TriggerSpellAbsorb(self) then

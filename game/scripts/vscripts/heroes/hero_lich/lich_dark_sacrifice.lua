@@ -2,7 +2,7 @@ lich_dark_sacrifice = class({})
 
 function lich_dark_sacrifice:GetCooldown( iLvl )
 	if self:GetCaster():HasScepter() then
-		return self:GetTalentSpecialValueFor("scepter_cooldown")
+		return self:GetSpecialValueFor("scepter_cooldown")
 	else
 		return self.BaseClass.GetCooldown( self, iLvl )
 	end
@@ -20,9 +20,9 @@ function lich_dark_sacrifice:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	if target:TriggerSpellAbsorb( self ) then return end
-	local hpPct = self:GetTalentSpecialValueFor("curr_health_dmg") / 100
-	local convHp = self:GetTalentSpecialValueFor("health_conversion") / 100
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local hpPct = self:GetSpecialValueFor("curr_health_dmg") / 100
+	local convHp = self:GetSpecialValueFor("health_conversion") / 100
+	local duration = self:GetSpecialValueFor("duration")
 	
 	local targetHealth = target:GetHealth()
 	local target_damage = targetHealth * hpPct

@@ -72,7 +72,7 @@ function winterw_frozen_splinter:OnSpellStart()
 end
 
 function winterw_frozen_splinter:CreateFrozenSplinters( target )
-	local enemies = self:GetCaster():FindEnemyUnitsInRadius(target:GetAbsOrigin(), self:GetTalentSpecialValueFor("search_radius"), {})
+	local enemies = self:GetCaster():FindEnemyUnitsInRadius(target:GetAbsOrigin(), self:GetSpecialValueFor("search_radius"), {})
 	local i = 0
 	for _,enemy in pairs(enemies) do
 		if enemy ~= target then
@@ -107,7 +107,7 @@ end
 
 function winterw_frozen_splinter:OnProjectileHit_ExtraData(hTarget, vLocation, table)
 	if hTarget and hTarget:IsAlive() and not hTarget:TriggerSpellAbsorb( self ) then
-		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_frozen_splinter", {Duration = self:GetTalentSpecialValueFor("slow_duration")})
+		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_frozen_splinter", {Duration = self:GetSpecialValueFor("slow_duration")})
 		if self:GetCaster():HasTalent("special_bonus_unique_winterw_frozen_splinter_1") then
 			self:Stun(hTarget, self:GetCaster():FindTalentValue("special_bonus_unique_winterw_frozen_splinter_1"), false)
 		end
@@ -115,16 +115,16 @@ function winterw_frozen_splinter:OnProjectileHit_ExtraData(hTarget, vLocation, t
 		if table.name == "firstProj" then
 			EmitSoundOn("Hero_Winter_Wyvern.SplinterBlast.Target", hTarget)
 
-			self:DealDamage(self:GetCaster(), hTarget, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			self:DealDamage(self:GetCaster(), hTarget, self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 			
 			self:CreateFrozenSplinters( hTarget )
 		elseif table.name == "secondProj" then
 			EmitSoundOn("Hero_Winter_Wyvern.SplinterBlast.Splinter", hTarget)
 
-			self:DealDamage(self:GetCaster(), hTarget, self:GetTalentSpecialValueFor("damage")/2, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			self:DealDamage(self:GetCaster(), hTarget, self:GetSpecialValueFor("damage")/2, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 			local i = 0
 
-			local enemies = self:GetCaster():FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetTalentSpecialValueFor("search_radius"), {})
+			local enemies = self:GetCaster():FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetSpecialValueFor("search_radius"), {})
 			for _,enemy in pairs(enemies) do
 				if enemy ~= hTarget then
 					if i < 2 then
@@ -157,7 +157,7 @@ function winterw_frozen_splinter:OnProjectileHit_ExtraData(hTarget, vLocation, t
 		elseif table.name == "thirdProj" then
 			EmitSoundOn("Hero_Winter_Wyvern.SplinterBlast.Splinter", hTarget)
 
-			self:DealDamage(self:GetCaster(), hTarget, self:GetTalentSpecialValueFor("damage")/4, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			self:DealDamage(self:GetCaster(), hTarget, self:GetSpecialValueFor("damage")/4, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		end
 	end
 	return false
@@ -173,7 +173,7 @@ function modifier_frozen_splinter:DeclareFunctions()
 end
 
 function modifier_frozen_splinter:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("move_slow")
+    return self:GetSpecialValueFor("move_slow")
 end
 
 function modifier_frozen_splinter:IsDebuff()

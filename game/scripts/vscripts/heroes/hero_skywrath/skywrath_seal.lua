@@ -12,14 +12,14 @@ function skywrath_seal:OnSpellStart()
 	local target = self:GetCursorTarget()
 	EmitSoundOn("Hero_SkywrathMage.AncientSeal.Target", target)
 	if not	target:TriggerSpellAbsorb( self ) then
-		target:AddNewModifier(caster, self, "modifier_skywrath_seal", {Duration = self:GetTalentSpecialValueFor("duration")})
+		target:AddNewModifier(caster, self, "modifier_skywrath_seal", {Duration = self:GetSpecialValueFor("duration")})
 	end
 	if caster:HasScepter() then
         local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), self:GetTrueCastRange())
         for _,enemy in pairs(enemies) do
             if enemy ~= target then
             	EmitSoundOn("Hero_SkywrathMage.AncientSeal.Target", enemy)
-                enemy:AddNewModifier(caster, self, "modifier_skywrath_seal", {Duration = self:GetTalentSpecialValueFor("duration")})
+                enemy:AddNewModifier(caster, self, "modifier_skywrath_seal", {Duration = self:GetSpecialValueFor("duration")})
                 break
             end
         end
@@ -38,7 +38,7 @@ function modifier_skywrath_seal:OnCreated(table)
 end
 
 function modifier_skywrath_seal:OnRefresh()
-	self.mr = self:GetTalentSpecialValueFor("mr_reduc")
+	self.mr = self:GetSpecialValueFor("mr_reduc")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_skywrath_seal_2")
 	self.talent2Lifesteal = self:GetCaster():FindTalentValue("special_bonus_unique_skywrath_seal_2") / 100
 end

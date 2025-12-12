@@ -12,15 +12,15 @@ end
 function visage_familiars:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local totalCount = self:GetTalentSpecialValueFor("familiar_count")
-	local health = self:GetTalentSpecialValueFor("familiar_hp") + self:GetTalentSpecialValueFor("familiar_hp_scaling") * caster:GetLevel()
-	local damage = self:GetTalentSpecialValueFor("familiar_ad") + self:GetTalentSpecialValueFor("familiar_ad_scaling") * caster:GetLevel()
-	local armor = self:GetTalentSpecialValueFor("familiar_armor")
-	local magic_resist = self:GetTalentSpecialValueFor("familiar_mr")
+	local totalCount = self:GetSpecialValueFor("familiar_count")
+	local health = self:GetSpecialValueFor("familiar_hp") + self:GetSpecialValueFor("familiar_hp_scaling") * caster:GetLevel()
+	local damage = self:GetSpecialValueFor("familiar_ad") + self:GetSpecialValueFor("familiar_ad_scaling") * caster:GetLevel()
+	local armor = self:GetSpecialValueFor("familiar_armor")
+	local magic_resist = self:GetSpecialValueFor("familiar_mr")
 	local speed = math.max( 430, caster:GetIdealSpeedNoSlows() )
 
 	if caster:HasScepter() then
-		totalCount = totalCount + self:GetTalentSpecialValueFor("familiar_count_scepter")
+		totalCount = totalCount + self:GetSpecialValueFor("familiar_count_scepter")
 	end
 
 	EmitSoundOn("Hero_Visage.SummonFamiliars.Cast", caster)

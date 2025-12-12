@@ -14,7 +14,7 @@ end
 
 function medusa_split:OnProjectileHitHandle(target, position, projectile)
 	local caster = self:GetCaster()
-	local damage = self:GetTalentSpecialValueFor("damage_mod") - 100
+	local damage = self:GetSpecialValueFor("damage_mod") - 100
 	
 	local projectileRecord = self.projectileRecordCorrelation[projectile]
 	if target and self.projectiles[projectileRecord] and not self.projectiles[projectileRecord][target] then
@@ -37,7 +37,7 @@ end
 function medusa_split:FireLinearArrow(record)
 	local caster = self:GetCaster()
 	local fDir = caster:GetForwardVector()
-	local spread = self:GetTalentSpecialValueFor("cone_spread")
+	local spread = self:GetSpecialValueFor("cone_spread")
 	if caster:HasTalent("special_bonus_unique_medusa_split_2") then
 		spread = 360
 	end
@@ -49,7 +49,7 @@ function medusa_split:FireLinearArrow(record)
 	local speed = caster:GetProjectileSpeed()
 	local vel = direction * speed
 	local distance = caster:GetAttackRange() + 100
-	local width = self:GetTalentSpecialValueFor("width")
+	local width = self:GetSpecialValueFor("width")
 	
 	local position = caster:GetAbsOrigin() + caster:GetForwardVector()*50 + Vector(0,0,150)
 	local projectile = self:FireLinearProjectile("particles/units/heroes/hero_medusa/medusa_basic_attack_linear.vpcf", vel, distance, width, {origin = position}, true, false, 0)
@@ -72,8 +72,8 @@ function modifier_medusa_split:OnCreated(table)
 					ParticleManager:SetParticleControlEnt(nfx, 2, parent, PATTACH_POINT_FOLLOW, "attach_bow_mid", parent:GetAbsOrigin(), true)
 		self:AttachEffect(nfx)
 
-		self.arrowCount = self:GetTalentSpecialValueFor("arrow_count")
-		self.range = self:GetParent():GetAttackRange() + self:GetTalentSpecialValueFor("split_shot_bonus_range")
+		self.arrowCount = self:GetSpecialValueFor("arrow_count")
+		self.range = self:GetParent():GetAttackRange() + self:GetSpecialValueFor("split_shot_bonus_range")
 
 		self:StartIntervalThink(0.5)
 	end
@@ -81,15 +81,15 @@ end
 
 function modifier_medusa_split:OnRefresh(table)
 	if IsServer() then
-		self.arrowCount = self:GetTalentSpecialValueFor("arrow_count")
-		self.range = self:GetParent():GetAttackRange() + self:GetTalentSpecialValueFor("split_shot_bonus_range")
+		self.arrowCount = self:GetSpecialValueFor("arrow_count")
+		self.range = self:GetParent():GetAttackRange() + self:GetSpecialValueFor("split_shot_bonus_range")
 	end
 end
 
 function modifier_medusa_split:OnIntervalThink()
 	if IsServer() then
-		self.arrowCount = self:GetTalentSpecialValueFor("arrow_count")
-		self.range = self:GetParent():GetAttackRange() + self:GetTalentSpecialValueFor("split_shot_bonus_range")
+		self.arrowCount = self:GetSpecialValueFor("arrow_count")
+		self.range = self:GetParent():GetAttackRange() + self:GetSpecialValueFor("split_shot_bonus_range")
 	end
 end
 

@@ -10,7 +10,7 @@ function arc_warden_flux_bh:IsHiddenWhenStolen()
 end
 
 function arc_warden_flux_bh:GetCastRange(vLocation, hTarget)
-	return self:GetTalentSpecialValueFor("cast_range")
+	return self:GetSpecialValueFor("cast_range")
 end
 
 function arc_warden_flux_bh:OnSpellStart()
@@ -30,15 +30,15 @@ function arc_warden_flux_bh:Flux(target)
 				ParticleManager:SetParticleControlEnt(nfx, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 				ParticleManager:SetParticleControlEnt(nfx, 2, caster, PATTACH_POINT_FOLLOW, "attach_attack2", caster:GetAbsOrigin(), true)
 				ParticleManager:ReleaseParticleIndex(nfx)
-	target:AddNewModifier(caster, self, "modifier_arc_warden_flux_bh", { duration = self:GetTalentSpecialValueFor("duration")})
+	target:AddNewModifier(caster, self, "modifier_arc_warden_flux_bh", { duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_arc_warden_flux_bh = class ({})
 
 function modifier_arc_warden_flux_bh:OnCreated( event )
-	local tick_interval = self:GetTalentSpecialValueFor("think_interval")
-	self.damage_per_tick = self:GetTalentSpecialValueFor("damage_per_second") * tick_interval
-	self.slow = self:GetTalentSpecialValueFor("move_speed_slow_pct")
+	local tick_interval = self:GetSpecialValueFor("think_interval")
+	self.damage_per_tick = self:GetSpecialValueFor("damage_per_second") * tick_interval
+	self.slow = self:GetSpecialValueFor("move_speed_slow_pct")
 	self.duration = self:GetRemainingTime()
 	self:StartIntervalThink(tick_interval) 
 	if IsServer() then
@@ -48,7 +48,7 @@ function modifier_arc_warden_flux_bh:OnCreated( event )
 				ParticleManager:SetParticleControlEnt(nfx, 0, target, PATTACH_ABSORIGIN_FOLLOW, "attach_attack1", target:GetAbsOrigin(), true)
 				ParticleManager:SetParticleControlEnt(nfx, 1, target, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 				ParticleManager:SetParticleControlEnt(nfx, 2, target, PATTACH_ABSORIGIN_FOLLOW, "attach_attack2", target:GetAbsOrigin(), true)
-				ParticleManager:SetParticleControl(nfx, 4, Vector(self:GetTalentSpecialValueFor("duration"),0,0))
+				ParticleManager:SetParticleControl(nfx, 4, Vector(self:GetSpecialValueFor("duration"),0,0))
 				ParticleManager:SetParticleControl(nfx, 5, Vector(1,1,1))
 				ParticleManager:SetParticleControl(nfx, 6, Vector(1,1,1))
 		self:AttachEffect(nfx)
@@ -85,14 +85,14 @@ function modifier_arc_warden_flux_bh:OnDestroy()
 	if IsServer() then
 		if caster:HasTalent("special_bonus_unique_arc_warden_flux_bh_1")  then
 			local duration = self.duration - self:GetRemainingTime()
-			local damage = duration * self:GetTalentSpecialValueFor("damage_per_second") * caster:FindTalentValue("special_bonus_unique_arc_warden_flux_bh_1", "value2") / 100
+			local damage = duration * self:GetSpecialValueFor("damage_per_second") * caster:FindTalentValue("special_bonus_unique_arc_warden_flux_bh_1", "value2") / 100
 			local radius = caster:FindTalentValue("special_bonus_unique_arc_warden_flux_bh_1")
 			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), radius ) ) do
 				if enemy ~= parent then ability:DealDamage( caster, enemy, damage ) end
 			end
 		end
 		if self:GetRemainingTime() > 0.1 then
-			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("jump_radius") ) ) do
+			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), self:GetSpecialValueFor("jump_radius") ) ) do
 				if enemy ~= parent then
 					enemy:AddNewModifier( caster, ability, "modifier_arc_warden_flux_bh", {duration = self:GetRemainingTime()})
 					break

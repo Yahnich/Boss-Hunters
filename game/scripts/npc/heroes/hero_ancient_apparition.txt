@@ -12,7 +12,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityTextureName"			"ancient_apparition_cold_feet"
 		
 		// Talents		
@@ -47,23 +47,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"30 50 70 90 110 130 150"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"1.0"
-			}
+			"damage"				"30 50 70 90 110 130 150"
+			"duration"				"4.0"
+			"stun_duration"			"1.0"
 		}
 	}
 	//=================================================================================================================
@@ -79,13 +67,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"900"
-			}
+			"value"						"900"
 		}
 	}
 	//=================================================================================================================
@@ -101,13 +85,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"3"
-			}
+			"value"						"3"
 		}
 	}
 
@@ -123,7 +103,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityTextureName"			"ancient_apparition_ice_vortex"
 		
 		// Talents		
@@ -158,52 +138,35 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"16"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"slow_move"						"15 17.5 20 22.5 25 27.5 30"
+			"slow_move"						"15 17.5 20 22.5 25 27.5 30"
 				"LinkedSpecialBonus"			"special_bonus_unique_aa_ice_vortex_1"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"magic_resist"					"15 17.5 20 22.5 25 27.5 30"
+			"magic_resist"					"15 17.5 20 22.5 25 27.5 30"
 				"LinkedSpecialBonus"			"special_bonus_unique_aa_ice_vortex_1"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"275"
-			}
+			"radius"						"275"
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"tick_rate"						"0.5"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"vision_aoe"					"350"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"chill_dmg"						"100"
 				"CalculateSpellDamageTooltip"	"1"
-			}
 			"08"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"freeze_dmg"					"150"
 				"CalculateSpellDamageTooltip"	"1"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -219,13 +182,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"8"
-			}
+			"value"						"8"
 		}
 	}
 	//=================================================================================================================
@@ -241,13 +200,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-2.5"
-			}
+			"value"						"-2.5"
 		}
 	}
 
@@ -261,7 +216,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityTextureName"			"ancient_apparition_chilling_touch"
 		
 		// Talents		
@@ -297,28 +252,18 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_damage"					"50 90 130 170 230 290 350"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bonus_attack_range"			"240"
-			}
+			"bonus_damage"					"50 90 130 170 230 290 350"
+			"bonus_attack_range"			"240"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"chill"							"30"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"chill_duration"				"1.5"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -334,13 +279,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"3"
-			}
+			"value"						"3"
 		}
 	}
 	//=================================================================================================================
@@ -356,18 +297,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"120"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"3"
-			}
+			"value"						"120"
+			"duration"					"3"
 		}
 	}
 
@@ -388,7 +321,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"AbilityTextureName"			"ancient_apparition_ice_blast"
 		
 		// Talents		
@@ -425,50 +358,36 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius_min"			"275"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius_grow"			"50"
-			}
+			"radius_min"			"275"
+			"radius_grow"			"50"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius_max"			"1000"
-			}
 			"04"
 			{	
 				"var_type"				"FIELD_INTEGER"
 				"speed"					"1500"
-			}
 			"05"
 			{	
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"6 7 8 9 10 11"
 				"LinkedSpecialBonus"	"special_bonus_unique_aa_ice_blast_2"
-			}
 			"06"
 			{	
 				"var_type"				"FIELD_FLOAT"
 				"dot_damage"			"12.5 20.0 32.0 50.0 70.0 100.0"
-			}
 			"07"
 			{	
 				"var_type"				"FIELD_FLOAT"
 				"damage"				"250 350 450 550 650 750"
-			}
 			"08"
 			{	
 				"var_type"				"FIELD_FLOAT"
 				"kill_pct"				"10 11 12 13 14 15"
 				"LinkedSpecialBonus"	"special_bonus_unique_aa_ice_blast_1"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -484,13 +403,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"4"
-			}
+			"value"						"4"
 		}
 	}
 	//=================================================================================================================
@@ -506,13 +421,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"7"
-			}
+			"value"						"7"
 		}
 	}
 }

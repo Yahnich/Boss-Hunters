@@ -13,7 +13,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"phoenix_icarus_dive"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -47,45 +47,23 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hp_cost_perc"			"15"
+			"hp_cost_perc"			"15"
 				"LinkedSpecialBonus"	"special_bonus_unique_phenx_dive_1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"dash_duration"			"2"
-			}
+			"dash_duration"			"2"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"dash_length"			"1400"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"dash_width"			"500"
-			}
+			"dash_width"			"500"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"burn_duration"			"4"
 				"LinkedSpecialBonus"	"special_bonus_unique_phenx_dive_2"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_per_second"		"10 30 50 70 90 110 130"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow_movement_speed_pct"	"-28"
-			}
+			"damage_per_second"		"10 30 50 70 90 110 130"
+			"slow_movement_speed_pct"	"-28"
 		}
 	}
 
@@ -99,13 +77,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"10"
-			}
+			"value"					"10"
 		}
 	}
 
@@ -119,13 +93,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"4"
-			}
+			"value"					"4"
 		}
 	}
 
@@ -142,7 +112,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"phoenix_fire_spirits"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -179,51 +149,25 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"hp_cost_perc"				"15"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"attackspeed_slow"			"-140"
+			"hp_cost_perc"				"15"
+			"attackspeed_slow"			"-140"
 				
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_per_second"			"20 40 60 80 100 120 140"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"4.0"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"175"
+			"damage_per_second"			"20 40 60 80 100 120 140"
+"duration"					"4.0"
+			"radius"					"175"
 				"LinkedSpecialBonus"		"special_bonus_unique_phenx_spirits_2"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"spirit_count"				"4"
+			"spirit_count"				"4"
 				"LinkedSpecialBonus"		"special_bonus_unique_phenx_spirits_1"
-			}
 			"07"
 			{	
 				"var_type"					"FIELD_INTEGER"
 				"spirit_speed"				"900"
-			}
 			"08"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"tick_interval"				"1.0"
-			}
 		}
 	}
 
@@ -237,13 +181,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
-			}
+			"value"					"2"
 		}
 	}
 
@@ -257,13 +197,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"175"
-			}
+			"value"					"175"
 		}
 	}
 
@@ -280,7 +216,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"phoenix_sun_ray"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -317,44 +253,28 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"hp_cost_perc_per_second"		"6"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"hp_perc_damage"				"3"
+			"hp_perc_damage"				"3"
 				"CalculateSpellDamageTooltip"  	"0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"base_damage"					"14 20 26 32 38 44 50"
-			}
+			"base_damage"					"14 20 26 32 38 44 50"
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"8.0"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"beam_range"					"900"
-			}
+			"beam_range"					"900"
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"radius"						"130"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"tick_interval"					"0.2"
-			}
 		}
 	}
 
@@ -368,13 +288,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 
@@ -388,13 +304,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"300"
-			}
+			"value"					"300"
 		}
 	}
 
@@ -422,23 +334,11 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"hp_percent"				"2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"600"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tree_destroy_delay"		"5"
-			}
+			"hp_percent"				"2"
+			"radius"					"600"
+			"tree_destroy_delay"		"5"
 		}
 	}
 
@@ -457,7 +357,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"phoenix_supernova"
 		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -495,39 +395,24 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_per_sec"		"60 90 120 150 180 210"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6"
-			}
+			"damage_per_sec"		"60 90 120 150 180 210"
+			"duration"				"6"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"max_hero_attacks"		"14"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"1000"
-			}
+			"radius"				"1000"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"stun_duration"			"1.5"
 				"LinkedSpecialBonus"	"special_bonus_unique_phenx_egg_1"
-			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"threat_gain"			"10"
-			}			
+				"threat_gain"			"10"			
 		}
 	}
 
@@ -541,13 +426,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"2.5"
-			}
+			"value"					"2.5"
 		}
 	}
 
@@ -561,13 +442,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1.5"
-			}
+			"value"					"1.5"
 		}
 	}
 }

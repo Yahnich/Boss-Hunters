@@ -17,7 +17,7 @@ function alchemist_unstable_concoction_bh:GetBehavior()
 end
 
 function alchemist_unstable_concoction_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function alchemist_unstable_concoction_bh:GetManaCost( iLvl )
@@ -45,7 +45,7 @@ function alchemist_unstable_concoction_bh:OnSpellStart()
 	else
 		self.castTime = GameRules:GetGameTime()
 		self.actualCooldownTime = self:GetCooldownTimeRemaining()
-		caster:AddNewModifier( caster, self, "modifier_alchemist_unstable_concoction_charge", {duration = self:GetTalentSpecialValueFor("brew_explosion")})
+		caster:AddNewModifier( caster, self, "modifier_alchemist_unstable_concoction_charge", {duration = self:GetSpecialValueFor("brew_explosion")})
 		self:EndCooldown()
 	end
 end
@@ -60,10 +60,10 @@ end
 function alchemist_unstable_concoction_bh:UnstableConcoctionEffect( target, strength )
 	local caster = self:GetCaster()
 	
-	local damage = math.max( self:GetTalentSpecialValueFor("max_damage") * strength, self:GetTalentSpecialValueFor("min_damage") )
-	local stun = math.max( self:GetTalentSpecialValueFor("max_stun") * strength, self:GetTalentSpecialValueFor("min_stun") )
+	local damage = math.max( self:GetSpecialValueFor("max_damage") * strength, self:GetSpecialValueFor("min_damage") )
+	local stun = math.max( self:GetSpecialValueFor("max_stun") * strength, self:GetSpecialValueFor("min_stun") )
 	
-	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius") ) ) do
+	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), self:GetSpecialValueFor("radius") ) ) do
 		if enemy ~= target then
 			enemy:AddNewModifier( caster, self, "modifier_alchemist_unstable_concoction_gold", {duration = stun} ):SetStackCount( math.ceil(strength * 100) )
 			self:DealDamage( caster, enemy, damage )
@@ -82,7 +82,7 @@ modifier_alchemist_unstable_concoction_charge = class({})
 LinkLuaModifier( "modifier_alchemist_unstable_concoction_charge", "heroes/hero_alchemist/alchemist_unstable_concoction_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_alchemist_unstable_concoction_charge:OnCreated()
-	self.chargeUp = ( 100 / self:GetTalentSpecialValueFor("brew_time") ) * 0.1
+	self.chargeUp = ( 100 / self:GetSpecialValueFor("brew_time") ) * 0.1
 	if IsServer() then
 		self:StartIntervalThink( 0.1 )
 		

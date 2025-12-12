@@ -10,7 +10,7 @@ function tide_anchor:IsHiddenWhenStolen()
 end
 
 function tide_anchor:GetCastRange(target, position)
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function tide_anchor:OnSpellStart()
@@ -23,14 +23,14 @@ function tide_anchor:OnSpellStart()
     ParticleManager:SetParticleControl(nfx, 0, point)
     ParticleManager:ReleaseParticleIndex(nfx)
 	
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local damage = self:GetSpecialValueFor("damage")
+	local radius = self:GetSpecialValueFor("radius")
     
     local enemies = caster:FindEnemyUnitsInRadius(point, radius, {})
     for _,enemy in pairs(enemies) do
 		if not enemy:TriggerSpellAbsorb( self ) then
 			caster:PerformAbilityAttack(enemy, true, ability, damage, false, false)
-			enemy:AddNewModifier(caster, self, "modifier_anchor", {Duration = self:GetTalentSpecialValueFor("duration")})
+			enemy:AddNewModifier(caster, self, "modifier_anchor", {Duration = self:GetSpecialValueFor("duration")})
 			if CalculateDistance( enemy, caster ) <= radius/2 then
 				 enemy:ApplyKnockBack(point, 200 / 600, 200 / 600, 200, 0, caster, self)
 			end
@@ -45,7 +45,7 @@ function modifier_anchor:DeclareFunctions()
 end
 
 function modifier_anchor:GetModifierDamageOutgoing_Percentage()
-    return self:GetTalentSpecialValueFor("damage_reduction")
+    return self:GetSpecialValueFor("damage_reduction")
 end
 
 function modifier_anchor:GetEffectName()

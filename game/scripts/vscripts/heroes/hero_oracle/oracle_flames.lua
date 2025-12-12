@@ -42,7 +42,7 @@ function oracle_flames:OnSpellStart()
 				ParticleManager:SetParticleControlEnt(nfx, 2, target, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 				ParticleManager:SetParticleControlEnt(nfx, 4, target, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 				ParticleManager:ReleaseParticleIndex(nfx)
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	
 	if caster:HasTalent("special_bonus_unique_oracle_flames_1") then
 		local modifier = caster:AddNewModifier(caster, self, "modifier_oracle_cd", {})
@@ -79,7 +79,7 @@ function oracle_flames:OnSpellStart()
 			return
 		end
 	end
-	self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {damage_flags = flags}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+	self:DealDamage(caster, target, self:GetSpecialValueFor("damage"), {damage_flags = flags}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 end
 
 modifier_oracle_flames_handle = class({})
@@ -130,7 +130,7 @@ function modifier_oracle_flames:OnCreated(table)
 	if IsServer() then
 		EmitSoundOn("Hero_Oracle.PurifyingFlames", self:GetParent())
 
-		self.heal = self:GetTalentSpecialValueFor("heal")
+		self.heal = self:GetSpecialValueFor("heal")
 		self:StartIntervalThink(1)
 	end
 end
@@ -140,7 +140,7 @@ function modifier_oracle_flames:OnRefresh(table)
 		StopSoundOn("Hero_Oracle.PurifyingFlames", self:GetParent())
 		EmitSoundOn("Hero_Oracle.PurifyingFlames", self:GetParent())
 		
-		self.heal = self:GetTalentSpecialValueFor("heal")
+		self.heal = self:GetSpecialValueFor("heal")
 	end
 end
 

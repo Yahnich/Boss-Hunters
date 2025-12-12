@@ -13,9 +13,9 @@ end
 function ds_replica:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local outgoing = self:GetTalentSpecialValueFor("outgoing")
-	local incoming = self:GetTalentSpecialValueFor("incoming")
+	local duration = self:GetSpecialValueFor("duration")
+	local outgoing = self:GetSpecialValueFor("outgoing")
+	local incoming = self:GetSpecialValueFor("incoming")
 
 	EmitSoundOn("Hero_Dark_Seer.Wall_of_Replica_Start", caster)
 

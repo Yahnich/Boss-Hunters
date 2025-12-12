@@ -18,7 +18,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Silencer.Curse.Cast"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -54,33 +54,19 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"14 22 30 38 46 52 60"
-			}
+			"damage"				"14 22 30 38 46 52 60"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"425"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration"				"6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"penalty_duration"		"4"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"-15"
-			}
+			"penalty_duration"		"4"
+			"movespeed"				"-15"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}	
@@ -97,13 +83,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -119,13 +101,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -144,7 +122,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilitySound"					"Hero_Silencer.GlaivesOfWisdom"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -165,14 +143,13 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"intellect_damage_pct"			"15 20 25 30 35 40 45"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -189,13 +166,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -211,13 +184,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -238,7 +207,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Silencer.LastWord.Target"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -265,24 +234,15 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"150 200 250 300 350 400 450"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"debuff_duration"		"3"
+			"damage"				"150 200 250 300 350 400 450"
+			"debuff_duration"		"3"
 				"LinkedSpecialBonus"	"special_bonus_unique_silencer_last_word_1"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration"				"5"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -299,13 +259,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-3"
-			}
+			"value"						"-3"
 		}
 	}
 	//=================================================================================================================
@@ -321,13 +277,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
-			}
+			"value"						"50"
 		}
 	}
 	//=================================================================================================================
@@ -348,28 +300,24 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"boss_int"			"2"
-			}
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"minion_int"		"1"
-			}
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"minion_duration"	"60"
-			}
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"radius"			"900"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -389,7 +337,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"				"2"
 		"AbilitySound"					"Hero_Silencer.GlobalSilence.Cast"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -427,18 +375,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4.5 5.5 6.5 7.5 8.5 9.5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"scepter_duration"		"6 8 9 10 11 12"
-			}
+			"duration"				"4.5 5.5 6.5 7.5 8.5 9.5"
+			"scepter_duration"		"6 8 9 10 11 12"
 		}
 	}
 	//=================================================================================================================
@@ -454,13 +394,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -476,13 +412,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 }

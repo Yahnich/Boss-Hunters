@@ -5,7 +5,7 @@ function axe_cleave_strike:GetCooldown(iLvl)
 end
 
 function axe_cleave_strike:GetCastRange(target, position)
-	return self:GetCaster():GetAttackRange() + self:GetTalentSpecialValueFor("bonus_range")
+	return self:GetCaster():GetAttackRange() + self:GetSpecialValueFor("bonus_range")
 end
 
 function axe_cleave_strike:GetIntrinsicModifierName()
@@ -20,11 +20,11 @@ function modifier_cleave_strike:OnCreated()
 end
 
 function modifier_cleave_strike:OnRefresh()
-	self.bonus_damage = self:GetTalentSpecialValueFor("bonus_damage")
-	self.attack_damage = self:GetTalentSpecialValueFor("attack_damage")
-	self.duration = self:GetTalentSpecialValueFor("duration")
-	self.chance = self:GetTalentSpecialValueFor("chance")
-	self.attack_range = self:GetTalentSpecialValueFor("bonus_range")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.attack_damage = self:GetSpecialValueFor("attack_damage")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.chance = self:GetSpecialValueFor("chance")
+	self.attack_range = self:GetSpecialValueFor("bonus_range")
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_axe_cleave_strike_1")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_axe_cleave_strike_2")

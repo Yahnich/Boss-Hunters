@@ -14,7 +14,7 @@ function broodmother_web:OnSpellStart()
 	local point = self:GetCursorPosition()
 
     EmitSoundOn("Hero_Broodmother.SpinWebCast", caster)
-    local radius = self:GetTalentSpecialValueFor("radius")
+    local radius = self:GetSpecialValueFor("radius")
     local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_broodmother/broodmother_spin_web_cast.vpcf", PATTACH_POINT, caster)
                 ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT, "attach_attack1", caster:GetAbsOrigin(), true)
                 ParticleManager:SetParticleControl(nfx, 1, point)
@@ -37,7 +37,7 @@ function modifier_broodmother_web_aura:OnCreated(table)
     if IsServer() then
         local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_broodmother/brood_web.vpcf", PATTACH_POINT, self:GetCaster())
                     ParticleManager:SetParticleControl(nfx, 0, self:GetParent():GetAbsOrigin())
-                    local radius = self:GetTalentSpecialValueFor("radius")
+                    local radius = self:GetSpecialValueFor("radius")
                     ParticleManager:SetParticleControl(nfx, 1, Vector(radius, radius, radius))
         self:AttachEffect(nfx)
 		if self:GetCaster():HasTalent("special_bonus_unique_broodmother_web_2") then
@@ -47,7 +47,7 @@ function modifier_broodmother_web_aura:OnCreated(table)
 end
 
 function modifier_broodmother_web_aura:OnIntervalThink()
-    local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+    local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius"))
     for _,enemy in pairs(enemies) do
 		if enemy:IsMinion() then
 			enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_broodmother_web_enemy", {Duration = 0.5})
@@ -70,7 +70,7 @@ function modifier_broodmother_web_aura:GetAuraDuration()
 end
 
 function modifier_broodmother_web_aura:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function modifier_broodmother_web_aura:GetAuraSearchFlags()
@@ -129,11 +129,11 @@ function modifier_broodmother_web:DeclareFunctions()
 end
 
 function modifier_broodmother_web:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("bonus_movespeed")
+    return self:GetSpecialValueFor("bonus_movespeed")
 end
 
 function modifier_broodmother_web:GetModifierHealthRegenPercentage()
-    return self:GetTalentSpecialValueFor("heath_regen")
+    return self:GetSpecialValueFor("heath_regen")
 end
 
 function modifier_broodmother_web:CheckState()

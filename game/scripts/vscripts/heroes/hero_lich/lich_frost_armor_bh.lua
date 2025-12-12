@@ -16,7 +16,7 @@ end
 function lich_frost_armor_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local duration = self:GetTalentSpecialValueFor("buff_duration")
+	local duration = self:GetSpecialValueFor("buff_duration")
 	-- if caster:HasTalent("special_bonus_unique_lich_frost_armor_2") then
 		-- for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), self:GetTrueCastRange() ) ) do
 			-- ally:AddNewModifier(caster, self, "modifier_lich_frost_armor_bh", {duration = duration})
@@ -32,11 +32,11 @@ modifier_lich_frost_armor_bh = class({})
 LinkLuaModifier( "modifier_lich_frost_armor_bh", "heroes/hero_lich/lich_frost_armor_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_lich_frost_armor_bh:OnCreated()
-	self.armor = self:GetTalentSpecialValueFor("armor_bonus")
-	self.duration = self:GetTalentSpecialValueFor("slow_duration")
-	self.radius = self:GetTalentSpecialValueFor("pulse_radius")
-	self.damage = self:GetTalentSpecialValueFor("pulse_damage")
-	self.interval = self:GetTalentSpecialValueFor("pulse_interval")
+	self.armor = self:GetSpecialValueFor("armor_bonus")
+	self.duration = self:GetSpecialValueFor("slow_duration")
+	self.radius = self:GetSpecialValueFor("pulse_radius")
+	self.damage = self:GetSpecialValueFor("pulse_damage")
+	self.interval = self:GetSpecialValueFor("pulse_interval")
 	self.regen = self:GetCaster():FindTalentValue("special_bonus_unique_lich_frost_armor_1")
 	self.dmg = self.armor * self:GetCaster():FindTalentValue("special_bonus_unique_lich_frost_armor_2")
 	self.amp = self.armor * self:GetCaster():FindTalentValue("special_bonus_unique_lich_frost_armor_2")
@@ -53,11 +53,11 @@ function modifier_lich_frost_armor_bh:OnCreated()
 end
 
 function modifier_lich_frost_armor_bh:OnRefresh()
-	self.armor = self:GetTalentSpecialValueFor("armor_bonus")
-	self.duration = self:GetTalentSpecialValueFor("slow_duration")
-	self.radius = self:GetTalentSpecialValueFor("pulse_radius")
-	self.damage = self:GetTalentSpecialValueFor("pulse_damage")
-	self.interval = self:GetTalentSpecialValueFor("pulse_interval")
+	self.armor = self:GetSpecialValueFor("armor_bonus")
+	self.duration = self:GetSpecialValueFor("slow_duration")
+	self.radius = self:GetSpecialValueFor("pulse_radius")
+	self.damage = self:GetSpecialValueFor("pulse_damage")
+	self.interval = self:GetSpecialValueFor("pulse_interval")
 	self.regen = self:GetCaster():FindTalentValue("special_bonus_unique_lich_frost_armor_1")
 	self.dmg = self.armor * self:GetCaster():FindTalentValue("special_bonus_unique_lich_frost_armor_2")
 	self.amp = self.armor * self:GetCaster():FindTalentValue("special_bonus_unique_lich_frost_armor_2")
@@ -112,13 +112,13 @@ modifier_lich_frost_armor_bh_slow = class({})
 LinkLuaModifier( "modifier_lich_frost_armor_bh_slow", "heroes/hero_lich/lich_frost_armor_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_lich_frost_armor_bh_slow:OnCreated()
-	self.ms = self:GetTalentSpecialValueFor("slow_movement_speed")
-	self.as = self:GetTalentSpecialValueFor("slow_attack_speed")
+	self.ms = self:GetSpecialValueFor("slow_movement_speed")
+	self.as = self:GetSpecialValueFor("slow_attack_speed")
 end
 
 function modifier_lich_frost_armor_bh_slow:OnRefresh()
-	self.ms = self:GetTalentSpecialValueFor("slow_movement_speed")
-	self.as = self:GetTalentSpecialValueFor("slow_attack_speed")
+	self.ms = self:GetSpecialValueFor("slow_movement_speed")
+	self.as = self:GetSpecialValueFor("slow_attack_speed")
 end
 
 function modifier_lich_frost_armor_bh_slow:DeclareFunctions()

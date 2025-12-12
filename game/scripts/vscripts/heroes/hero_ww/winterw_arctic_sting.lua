@@ -45,7 +45,7 @@ function winterw_arctic_sting:OnInventoryContentsChanged()
     elseif not caster:HasScepter() and modifier and modifier:GetDuration() == -1 then
         caster:RemoveModifierByName("modifier_arctic_sting")
         self:ToggleAbility()
-        caster:AddNewModifier(caster, self, "modifier_arctic_sting",  {Duration = self:GetTalentSpecialValueFor("duration")})
+        caster:AddNewModifier(caster, self, "modifier_arctic_sting",  {Duration = self:GetSpecialValueFor("duration")})
         
     end
 end
@@ -53,24 +53,24 @@ end
 function winterw_arctic_sting:OnSpellStart()
     local caster = self:GetCaster()
     EmitSoundOn("Hero_Winter_Wyvern.ArcticBurn.Cast", caster)
-    caster:AddNewModifier(caster, self, "modifier_arctic_sting", {Duration = self:GetTalentSpecialValueFor("duration")})
+    caster:AddNewModifier(caster, self, "modifier_arctic_sting", {Duration = self:GetSpecialValueFor("duration")})
 end
 
 function winterw_arctic_sting:OnSpellStart()
 	local caster = self:GetCaster()
 	EmitSoundOn("Hero_Winter_Wyvern.ArcticBurn.Cast", caster)
-	caster:AddNewModifier(caster, self, "modifier_arctic_sting", {Duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_arctic_sting", {Duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_arctic_sting = ({})
 function modifier_arctic_sting:OnCreated(table)
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_winterw_arctic_sting_1")
 	self.talent1Cleave = self:GetCaster():FindTalentValue("special_bonus_unique_winterw_arctic_sting_1")
-	self.scepter_cost = self:GetTalentSpecialValueFor("mana_cost_scepter")
-	self.attack_range = self:GetTalentSpecialValueFor("attack_range_bonus")
-	self.vision = self:GetTalentSpecialValueFor("night_vision_bonus")
-	self.projectile_speed = self:GetTalentSpecialValueFor("projectile_speed_bonus")
-	self.duration = self:GetTalentSpecialValueFor("burn_duration")
+	self.scepter_cost = self:GetSpecialValueFor("mana_cost_scepter")
+	self.attack_range = self:GetSpecialValueFor("attack_range_bonus")
+	self.vision = self:GetSpecialValueFor("night_vision_bonus")
+	self.projectile_speed = self:GetSpecialValueFor("projectile_speed_bonus")
+	self.duration = self:GetSpecialValueFor("burn_duration")
 	if self.talent1 then
 		self:GetParent():HookInModifier("GetModifierAreaDamage", self )
 	end
@@ -207,9 +207,9 @@ end
 
 modifier_arctic_sting_target = ({})
 function modifier_arctic_sting_target:OnCreated(table)
-	self.damage_pct = self:GetTalentSpecialValueFor("burn_curr_hp")/100
-	self.damage_base = self:GetTalentSpecialValueFor("burn_damage")
-	self.slow = self:GetTalentSpecialValueFor("move_slow")
+	self.damage_pct = self:GetSpecialValueFor("burn_curr_hp")/100
+	self.damage_base = self:GetSpecialValueFor("burn_damage")
+	self.slow = self:GetSpecialValueFor("move_slow")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_winterw_arctic_sting_2")
 	self.talent2Chill = self.damage_base * self:GetCaster():FindTalentValue("special_bonus_unique_winterw_arctic_sting_2") / 100
     if IsServer() then

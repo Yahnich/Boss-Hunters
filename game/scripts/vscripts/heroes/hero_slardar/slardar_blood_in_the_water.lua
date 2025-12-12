@@ -9,11 +9,11 @@ LinkLuaModifier( "modifier_slardar_blood_in_the_water_handler", "heroes/hero_sla
 
 function modifier_slardar_blood_in_the_water_handler:OnCreated()
 	self.modifierList = {}
-	self.linger_duration = self:GetTalentSpecialValueFor("linger_duration")
+	self.linger_duration = self:GetSpecialValueFor("linger_duration")
 end
 
 function modifier_slardar_blood_in_the_water_handler:OnRefresh()
-	self.linger_duration = self:GetTalentSpecialValueFor("linger_duration")
+	self.linger_duration = self:GetSpecialValueFor("linger_duration")
 end
 
 function modifier_slardar_blood_in_the_water_handler:OnIntervalThink()
@@ -79,8 +79,8 @@ function modifier_slardar_blood_in_the_water:OnCreated()
 end
 
 function modifier_slardar_blood_in_the_water:OnRefresh()
-	self.movespeed = self:GetTalentSpecialValueFor("bonus_speed")
-	self.attackspeed = self:GetTalentSpecialValueFor("bonus_attack_speed")
+	self.movespeed = self:GetSpecialValueFor("bonus_speed")
+	self.attackspeed = self:GetSpecialValueFor("bonus_attack_speed")
 	self.red = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_blood_in_the_water_1")
 	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_blood_in_the_water_2")
 	self.dmg = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_blood_in_the_water_2", "value2")

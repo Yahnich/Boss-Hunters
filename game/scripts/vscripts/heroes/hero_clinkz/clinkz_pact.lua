@@ -26,9 +26,9 @@ function clinkz_pact:OnSpellStart()
     EmitSoundOn("Hero_Clinkz.DeathPact.Cast", caster)
     EmitSoundOn("Hero_Clinkz.DeathPact", target)
 
-    local damage = target:GetHealth() * self:GetTalentSpecialValueFor("damage")/100
-    self.hpPercent = damage * self:GetTalentSpecialValueFor("hp_percent")/100
-    self.dmgPercent = damage * self:GetTalentSpecialValueFor("damage_percent")/100
+    local damage = target:GetHealth() * self:GetSpecialValueFor("damage")/100
+    self.hpPercent = damage * self:GetSpecialValueFor("hp_percent")/100
+    self.dmgPercent = damage * self:GetSpecialValueFor("damage_percent")/100
 
     local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_clinkz/clinkz_death_pact.vpcf", PATTACH_POINT_FOLLOW, caster)
                 ParticleManager:SetParticleControlEnt(nfx, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
@@ -46,8 +46,8 @@ function clinkz_pact:OnSpellStart()
         CreateModifierThinker(caster, self, "modifier_clinkz_pact_stun", {Duration = 2}, self:GetCursorPosition(), caster:GetTeam(), false)
     end
 
-    caster:AddNewModifier(caster, self, "modifier_clinkz_pact", {Duration = self:GetTalentSpecialValueFor("duration"), hpPercent = self.hpPercent, dmgPercent = self.dmgPercent})
-    self:StartDelayedCooldown(self:GetTalentSpecialValueFor("duration"))
+    caster:AddNewModifier(caster, self, "modifier_clinkz_pact", {Duration = self:GetSpecialValueFor("duration"), hpPercent = self.hpPercent, dmgPercent = self.dmgPercent})
+    self:StartDelayedCooldown(self:GetSpecialValueFor("duration"))
 end
 
 modifier_clinkz_pact = class({})

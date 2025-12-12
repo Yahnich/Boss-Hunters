@@ -10,7 +10,7 @@ function riki_traded_tricks:IsHiddenWhenStolen()
 end
 
 function riki_traded_tricks:GetCastRange(Location, Target)
-    return self:GetTalentSpecialValueFor("range")
+    return self:GetSpecialValueFor("range")
 end
 
 function riki_traded_tricks:OnSpellStart()
@@ -21,15 +21,15 @@ function riki_traded_tricks:OnSpellStart()
     ParticleManager:SetParticleControl(nfx, 0, caster:GetAbsOrigin())
     ParticleManager:ReleaseParticleIndex(nfx)
 
-    caster:AddNewModifier(caster, self, "modifier_traded_tricks", {Duration = self:GetTalentSpecialValueFor("duration")})
+    caster:AddNewModifier(caster, self, "modifier_traded_tricks", {Duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_traded_tricks = class({})
 function modifier_traded_tricks:OnCreated(table)
     if IsServer() then
         EmitSoundOn("Hero_Riki.TricksOfTheTrade.Cast", self:GetCaster())
-		self.radius = self:GetTalentSpecialValueFor("radius")
-        self:StartIntervalThink(self:GetTalentSpecialValueFor("interval"))
+		self.radius = self:GetSpecialValueFor("radius")
+        self:StartIntervalThink(self:GetSpecialValueFor("interval"))
     end
 end
 
@@ -45,14 +45,14 @@ function modifier_traded_tricks:OnIntervalThink()
     ParticleManager:SetParticleControl(nfx, 0, caster:GetAbsOrigin())
     ParticleManager:SetParticleControl(nfx, 1, Vector(radius, radius, radius))
 
-    local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {flag = self:GetAbility():GetAbilityTargetFlags()})
+    local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {flag = self:GetAbility():GetAbilityTargetFlags()})
     for _,enemy in pairs(enemies) do
         EmitSoundOn("Hero_Riki.TricksOfTheTrade", caster)
 
         caster:PerformAttack(enemy, true, true, true, true, false, false, true)
     end
 
-    Timers:CreateTimer(self:GetTalentSpecialValueFor("interval"), function()
+    Timers:CreateTimer(self:GetSpecialValueFor("interval"), function()
         ParticleManager:DestroyParticle(nfx, false)
     end)
 end

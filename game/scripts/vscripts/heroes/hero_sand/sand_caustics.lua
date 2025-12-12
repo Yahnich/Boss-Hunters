@@ -22,7 +22,7 @@ end
 function modifier_caustics:OnAttack(params)
     if IsServer() then
         if params.attacker == self:GetCaster() and params.target:IsAlive() and not params.target:IsMagicImmune() and not params.target:HasModifier("modifier_caustics_enemy") then
-            params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_caustics_enemy", {Duration = self:GetTalentSpecialValueFor("duration"), ignoreStatusAmp = true})
+            params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_caustics_enemy", {Duration = self:GetSpecialValueFor("duration"), ignoreStatusAmp = true})
         end
     end
 end
@@ -34,12 +34,12 @@ end
 modifier_caustics_enemy = class({})
 LinkLuaModifier( "modifier_caustics_enemy", "heroes/hero_sand/sand_caustics.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_caustics_enemy:OnCreated(table)
-	self.radius = self:GetTalentSpecialValueFor("damage_radius")
-	self.base_damage = self:GetTalentSpecialValueFor("base_damage")
-	self.death_bonus_dmg = self:GetTalentSpecialValueFor("death_bonus_dmg") / 100
+	self.radius = self:GetSpecialValueFor("damage_radius")
+	self.base_damage = self:GetSpecialValueFor("base_damage")
+	self.death_bonus_dmg = self:GetSpecialValueFor("death_bonus_dmg") / 100
 	
-	self.as = self:GetTalentSpecialValueFor("attack_slow")
-	self.ms = self:GetTalentSpecialValueFor("move_slow")
+	self.as = self:GetSpecialValueFor("attack_slow")
+	self.ms = self:GetSpecialValueFor("move_slow")
 	
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_sand_caustics_2")
 	self.talent2Val = self:GetCaster():FindTalentValue("special_bonus_unique_sand_caustics_2") / 100

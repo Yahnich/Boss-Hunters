@@ -52,9 +52,9 @@ function phenx_dive:OnSpellStart()
         caster:RemoveModifierByName("modifier_phenx_dive_caster")
         self:RefundManaCost()
     else
-        caster:AddNewModifier(caster, self, "modifier_phenx_dive_caster", {Duration = self:GetTalentSpecialValueFor("dash_duration"), ignoreStatusAmp = true})
+        caster:AddNewModifier(caster, self, "modifier_phenx_dive_caster", {Duration = self:GetSpecialValueFor("dash_duration"), ignoreStatusAmp = true})
         self:EndCooldown()
-        caster:SetHealth( caster:GetHealth() * ( 100 - self:GetTalentSpecialValueFor("hp_cost_perc") ) / 100 )
+        caster:SetHealth( caster:GetHealth() * ( 100 - self:GetSpecialValueFor("hp_cost_perc") ) / 100 )
     end
 end
 
@@ -89,11 +89,11 @@ end
 function modifier_phenx_dive_caster:DoControlledMotion()
     local caster = self:GetCaster()
     local elapsedTime = GameRules:GetGameTime() - self.startTime
-    local progress = elapsedTime / self:GetTalentSpecialValueFor("dash_duration")
+    local progress = elapsedTime / self:GetSpecialValueFor("dash_duration")
 
     -- Calculate potision
     local theta = -2 * math.pi * progress
-    local x =  math.sin( theta ) * self:GetTalentSpecialValueFor("dash_width") * 0.5
+    local x =  math.sin( theta ) * self:GetSpecialValueFor("dash_width") * 0.5
     local y = -math.cos( theta ) * self:GetAbility():GetTrueCastRange() * 0.5
 
     local pos = self.ellipseCenter + self.rightDir * x + self.forwardDir * y
@@ -105,8 +105,8 @@ function modifier_phenx_dive_caster:DoControlledMotion()
 end
 
 function modifier_phenx_dive_caster:OnIntervalThink()
-    GridNav:DestroyTreesAroundPoint(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("dash_width"), false)
-    local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("dash_width"), {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
+    GridNav:DestroyTreesAroundPoint(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("dash_width"), false)
+    local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("dash_width"), {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
     for _,enemy in pairs(enemies) do
 		self:GetParent():PerformAttack(enemy, true, true, true, true, true, false, false)
         break
@@ -151,11 +151,11 @@ function modifier_phenx_dive_caster:IsAura()
 end
 
 function modifier_phenx_dive_caster:GetAuraDuration()
-    return self:GetTalentSpecialValueFor("burn_duration")
+    return self:GetSpecialValueFor("burn_duration")
 end
 
 function modifier_phenx_dive_caster:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("dash_width")
+    return self:GetSpecialValueFor("dash_width")
 end
 
 function modifier_phenx_dive_caster:GetAuraSearchFlags()
@@ -186,7 +186,7 @@ function modifier_phenx_dive_burn:OnCreated(table)
 end
 
 function modifier_phenx_dive_burn:OnIntervalThink()
-    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("damage_per_second"), {}, 0)
+    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetSpecialValueFor("damage_per_second"), {}, 0)
     self:StartIntervalThink(0.5)
 end
 
@@ -202,5 +202,5 @@ function modifier_phenx_dive_burn:DeclareFunctions()
 end
 
 function modifier_phenx_dive_burn:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("slow_movement_speed_pct")
+    return self:GetSpecialValueFor("slow_movement_speed_pct")
 end

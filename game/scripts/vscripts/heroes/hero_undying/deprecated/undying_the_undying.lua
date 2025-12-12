@@ -16,11 +16,11 @@ modifier_undying_the_undying = class({})
 LinkLuaModifier( "modifier_undying_the_undying", "heroes/hero_undying/undying_the_undying", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_undying_the_undying:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.bDuration = self:GetTalentSpecialValueFor("boss_duration")
-	self.mDuration = self:GetTalentSpecialValueFor("mob_duration")
-	self.health_pct = self:GetTalentSpecialValueFor("health_pct") / 100
-	self.damage_pct = self:GetTalentSpecialValueFor("damage_pct") / 100
+	self.radius = self:GetSpecialValueFor("radius")
+	self.bDuration = self:GetSpecialValueFor("boss_duration")
+	self.mDuration = self:GetSpecialValueFor("mob_duration")
+	self.health_pct = self:GetSpecialValueFor("health_pct") / 100
+	self.damage_pct = self:GetSpecialValueFor("damage_pct") / 100
 end
 
 function modifier_undying_the_undying:DeclareFunctions()

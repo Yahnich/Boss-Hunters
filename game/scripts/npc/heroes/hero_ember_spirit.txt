@@ -13,7 +13,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"ember_spirit_searing_chains"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -48,35 +48,18 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"30 60 90 120 150 180 210"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"2.5 2.5 2.5 2.5 3 3.5 4"
+			"damage"						"30 60 90 120 150 180 210"
+			"duration"						"2.5 2.5 2.5 2.5 3 3.5 4"
 				"LinkedSpecialBonus"			"special_bonus_unique_ember_chains_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}			
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"400"
-			}	
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"			
+			"radius"						"400"	
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"tick_rate"						"0.5"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"unit_count"					"2"
-			}			
+			"unit_count"					"2"			
 		}
 	}
 	
@@ -93,13 +76,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"25"
-			}
+			"value"						"25"
 		}
 	}
 	//=================================================================================================================
@@ -115,18 +94,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"3"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow"						"-60"
-			}
+			"value"						"3"
+			"slow"						"-60"
 		}
 	}
 
@@ -143,7 +114,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"ember_spirit_sleight_of_fist"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -179,35 +150,21 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"40 80 120 160 200 240 280"
+			"damage"						"40 80 120 160 200 240 280"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"350 350 350 350 450 550 650"
-			}		
+			"radius"						"350 350 350 350 450 550 650"		
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"jump_rate"						"0.2"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"charges"						"0"
+			"charges"						"0"
 				"LinkedSpecialBonus"			"special_bonus_unique_ember_fist_1"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"10"
-			}
 		}
 	}
 	
@@ -224,18 +181,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"3"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"cd"						"-2"
-			}
+			"value"						"3"
+			"cd"						"-2"
 		}
 	}
 
@@ -252,18 +201,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"15"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"5"
-			}
+			"value"						"15"
+			"duration"					"5"
 		}
 	}
 	
@@ -281,7 +222,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"ember_spirit_flame_guard"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -315,33 +256,19 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"absorb_amount"					"220 360 500 640 920 1200 1480"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"25 35 45 55 70 85 100"
-			}
+			"absorb_amount"					"220 360 500 640 920 1200 1480"
+			"damage"						"25 35 45 55 70 85 100"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"8 12 16 20 20 20 20"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"400"
-			}				
+			"radius"						"400"				
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"tick_rate"						"0.2"
-			}
 		}
 	}
 
@@ -358,13 +285,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"health"					"50"
-			}
+			"health"					"50"
 		}
 	}
 
@@ -381,13 +304,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"5"
-			}
+			"value"						"5"
 		}
 	}
 
@@ -440,24 +359,18 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"25"
-			}
+			"duration"				"25"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"charges"				"3"
 				"LinkedSpecialBonus"	"special_bonus_unique_ember_remnant_1"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"450"
-			}
 		}
 	}
 
@@ -474,18 +387,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"cooldown"					"-10"
-			}
+			"value"						"2"
+			"cooldown"					"-10"
 		}
 	}
 	
@@ -503,7 +408,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"ember_spirit_activate_fire_remnant"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -528,25 +433,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"100 200 300 350 400 450"
+			"damage"						"100 200 300 350 400 450"
 				"LinkedSpecialBonus"			"special_bonus_unique_ember_remnant_jump_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"450"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"remnant_charge_reduction"		"-2 -4 -6 -12 -18 -24"
-			}
+			"radius"						"450"
+			"remnant_charge_reduction"		"-2 -4 -6 -12 -18 -24"
 		}
 	}
 
@@ -563,13 +456,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 }

@@ -1,17 +1,17 @@
 terrorblade_reflection_bh = class({})
 
 function terrorblade_reflection_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function terrorblade_reflection_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
 	
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local outgoing = self:GetTalentSpecialValueFor("illusion_outgoing_damage")
-	local illusions = self:GetTalentSpecialValueFor("illusion_count")
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local radius = self:GetSpecialValueFor("radius")
+	local outgoing = self:GetSpecialValueFor("illusion_outgoing_damage")
+	local illusions = self:GetSpecialValueFor("illusion_count")
+	local duration = self:GetSpecialValueFor("duration")
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
 		enemy:AddNewModifier( caster, self, "modifier_terrorblade_reflection_bh_slow", {duration = duration})
@@ -67,11 +67,11 @@ modifier_terrorblade_reflection_bh_slow = class({})
 LinkLuaModifier( "modifier_terrorblade_reflection_bh_slow", "heroes/hero_terrorblade/terrorblade_reflection_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_terrorblade_reflection_bh_slow:OnCreated()
-	self.slow = self:GetTalentSpecialValueFor("slow")
+	self.slow = self:GetSpecialValueFor("slow")
 end
 
 function modifier_terrorblade_reflection_bh_slow:OnRefresh()
-	self.slow = self:GetTalentSpecialValueFor("slow")
+	self.slow = self:GetSpecialValueFor("slow")
 end
 
 function modifier_terrorblade_reflection_bh_slow:CheckState()

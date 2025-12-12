@@ -13,7 +13,7 @@ function batrider_flamebreak_bh:IsHiddenWhenStolen()
 end
 
 function batrider_flamebreak_bh:GetAOERadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function batrider_flamebreak_bh:OnSpellStart()
@@ -31,8 +31,8 @@ function batrider_flamebreak_bh:TossCocktail(vLocation)
 	local speed = 900
 	local time = distance / speed
 
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local radius = self:GetSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("duration")
 
 	EmitSoundOn("Hero_Batrider.Flamebreak", caster)
 
@@ -69,7 +69,7 @@ end
 modifier_batrider_flamebreak_bh_debuff = class({})
 function modifier_batrider_flamebreak_bh_debuff:OnCreated(table)
 	if IsServer() then
-		self.damage = self:GetTalentSpecialValueFor("damage")
+		self.damage = self:GetSpecialValueFor("damage")
 
 		self:StartIntervalThink(FrameTime())
 	end
@@ -77,7 +77,7 @@ end
 
 function modifier_batrider_flamebreak_bh_debuff:OnRefresh(table)
 	if IsServer() then
-		self.damage = self:GetTalentSpecialValueFor("damage")
+		self.damage = self:GetSpecialValueFor("damage")
 	end
 end
 
@@ -105,7 +105,7 @@ function modifier_batrider_flamebreak_bh_pit:OnCreated(table)
     if IsServer() then
     	local parent = self:GetParent()
     	local point = parent:GetAbsOrigin()
-    	self.radius = self:GetTalentSpecialValueFor("radius")
+    	self.radius = self:GetSpecialValueFor("radius")
     	
     	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_lina/lina_lsa_fire.vpcf", PATTACH_POINT, parent)
     				ParticleManager:SetParticleControl(nfx, 0, point)
@@ -154,7 +154,7 @@ end
 modifier_batrider_flamebreak_bh_pit_damage = class({})
 function modifier_batrider_flamebreak_bh_pit_damage:OnCreated(table)
 	if IsServer() then
-    	self.damage = self:GetTalentSpecialValueFor("damage") * 0.5
+    	self.damage = self:GetSpecialValueFor("damage") * 0.5
     	self:StartIntervalThink(0.5)
     end
 end

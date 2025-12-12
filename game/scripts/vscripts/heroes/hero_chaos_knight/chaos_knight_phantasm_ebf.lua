@@ -22,7 +22,7 @@ end
 
 function chaos_knight_phantasm_ebf:GetCooldown(iLvl)
 	if self:GetCaster():HasScepter() then
-		return self:GetTalentSpecialValueFor("cooldown_scepter")
+		return self:GetSpecialValueFor("cooldown_scepter")
 	else
 		return self.BaseClass.GetCooldown(self, iLvl)
 	end
@@ -33,8 +33,8 @@ if IsServer() then
 		local caster = self:GetCaster()
 		local target = self:GetCursorTarget() or caster
 		
-		local illusions = self:GetTalentSpecialValueFor("images_count")
-		local chance = self:GetTalentSpecialValueFor("extra_phantasm_chance_pct_tooltip")
+		local illusions = self:GetSpecialValueFor("images_count")
+		local chance = self:GetSpecialValueFor("extra_phantasm_chance_pct_tooltip")
 		local bonusIllusion = RollPercentage( chance )
 		if bonusIllusion then
 			illusions = illusions + 1
@@ -49,11 +49,11 @@ if IsServer() then
 		end
 		
 		local firstDir = -target:GetForwardVector()
-		local duration = self:GetTalentSpecialValueFor("illusion_duration")
-		local outDmg = self:GetTalentSpecialValueFor("outgoing_damage")
-		local inDmg = self:GetTalentSpecialValueFor("incoming_damage")
+		local duration = self:GetSpecialValueFor("illusion_duration")
+		local outDmg = self:GetSpecialValueFor("outgoing_damage")
+		local inDmg = self:GetSpecialValueFor("incoming_damage")
 		
-		local delay = self:GetTalentSpecialValueFor("invuln_duration")
+		local delay = self:GetSpecialValueFor("invuln_duration")
 		target:Dispel(caster)
 		
 		local cFX = ParticleManager:CreateParticle("particles/units/heroes/hero_chaos_knight/chaos_knight_phantasm.vpcf", PATTACH_POINT_FOLLOW, target)

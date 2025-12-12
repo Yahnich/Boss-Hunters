@@ -2,15 +2,15 @@ bane_fiends_grip_ebf = class({})
 
 function bane_fiends_grip_ebf:GetChannelTime()
 	if self:GetCaster():HasTalent("special_bonus_unique_bane_fiends_grip_ebf_2") then return 0 end
-	return self:GetTalentSpecialValueFor("fiend_grip_duration")
+	return self:GetSpecialValueFor("fiend_grip_duration")
 end
 
 function bane_fiends_grip_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	if target:TriggerSpellAbsorb(self) then return end
-	target:AddNewModifier(caster, self, "modifier_bane_fiends_grip_ebf", {duration = self:GetTalentSpecialValueFor("fiend_grip_duration")})
-	caster:AddNewModifier(caster, self, "modifier_bane_fiends_grip_ebf_channel", {duration = self:GetTalentSpecialValueFor("fiend_grip_duration")})
+	target:AddNewModifier(caster, self, "modifier_bane_fiends_grip_ebf", {duration = self:GetSpecialValueFor("fiend_grip_duration")})
+	caster:AddNewModifier(caster, self, "modifier_bane_fiends_grip_ebf_channel", {duration = self:GetSpecialValueFor("fiend_grip_duration")})
 end
 
 function bane_fiends_grip_ebf:OnChannelFinish(bInterrupt)
@@ -56,9 +56,9 @@ if IsServer() then
 	end
 	
 	function modifier_bane_fiends_grip_ebf:OnRefresh()
-		self.damage = self:GetTalentSpecialValueFor("fiend_grip_damage")
-		self.drain = self:GetTalentSpecialValueFor("fiend_grip_mana_drain") / 100
-		self.debuff_increase = self:GetTalentSpecialValueFor("debuff_increase") / 100
+		self.damage = self:GetSpecialValueFor("fiend_grip_damage")
+		self.drain = self:GetSpecialValueFor("fiend_grip_mana_drain") / 100
+		self.debuff_increase = self:GetSpecialValueFor("debuff_increase") / 100
 	end
 	
 	function modifier_bane_fiends_grip_ebf:OnIntervalThink()
@@ -73,7 +73,7 @@ if IsServer() then
 			end
 		end
 		if self.tick <= 0 then
-			self.tick = self:GetTalentSpecialValueFor("fiend_grip_tick_interval")
+			self.tick = self:GetSpecialValueFor("fiend_grip_tick_interval")
 			local damage = ability:DealDamage( caster, parent, self.damage, {damage_type = DAMAGE_TYPE_MAGICAL} )
 			local drain = self.drain * damage
 			caster:RestoreMana(drain)

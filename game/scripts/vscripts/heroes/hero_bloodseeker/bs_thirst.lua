@@ -20,7 +20,7 @@ function modifier_bs_thirst:OnCreated()
 end
 
 function modifier_bs_thirst:OnRefresh()
-	self.lifesteal = self:GetTalentSpecialValueFor("lifesteal")
+	self.lifesteal = self:GetSpecialValueFor("lifesteal")
 	if IsServer() then
 		self:GetCaster():HookInModifier( "GetModifierLifestealBonus", self )
 	end

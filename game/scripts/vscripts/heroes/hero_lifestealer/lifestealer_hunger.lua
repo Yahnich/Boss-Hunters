@@ -12,10 +12,10 @@ function modifier_lifestealer_hunger_handle:OnCreated(kv)
 end
 
 function modifier_lifestealer_hunger_handle:OnRefresh(kv)
-	self.min_lifesteal = self:GetTalentSpecialValueFor("min_lifesteal")
-	self.max_lifesteal = self:GetTalentSpecialValueFor("max_lifesteal")
-	self.min_ad = self:GetTalentSpecialValueFor("min_attack_damage")
-	self.max_ad = self:GetTalentSpecialValueFor("max_attack_damage")
+	self.min_lifesteal = self:GetSpecialValueFor("min_lifesteal")
+	self.max_lifesteal = self:GetSpecialValueFor("max_lifesteal")
+	self.min_ad = self:GetSpecialValueFor("min_attack_damage")
+	self.max_ad = self:GetSpecialValueFor("max_attack_damage")
 	
 	self.rageTalent2 = self:GetCaster():HasTalent("special_bonus_unique_lifestealer_rage_2")
     if IsServer() then

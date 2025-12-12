@@ -110,15 +110,15 @@ function modifier_tusk_punch_crit:GetModifierCriticalDamage(params)
 	
 	ParticleManager:FireParticle("particles/units/heroes/hero_tusk/tusk_walruspunch_txt_ult.vpcf", PATTACH_POINT, self:GetParent(), {[2]=params.target:GetAbsOrigin()})
 	ParticleManager:FireParticle("particles/units/heroes/hero_tusk/tusk_walruspunch_start.vpcf", PATTACH_POINT, self:GetParent(), {[0]=params.target:GetAbsOrigin()})
-	local airTime = self:GetTalentSpecialValueFor("air_time")
-	params.target:ApplyKnockBack(self:GetParent():GetAbsOrigin(), airTime, airTime, 1, self:GetTalentSpecialValueFor("height"), params.attacker, self:GetAbility())
-	params.target:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_tusk_punch_slow", {Duration = airTime + self:GetTalentSpecialValueFor("duration")})
+	local airTime = self:GetSpecialValueFor("air_time")
+	params.target:ApplyKnockBack(self:GetParent():GetAbsOrigin(), airTime, airTime, 1, self:GetSpecialValueFor("height"), params.attacker, self:GetAbility())
+	params.target:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_tusk_punch_slow", {Duration = airTime + self:GetSpecialValueFor("duration")})
 	Timers:CreateTimer(airTime, function() EmitSoundOn("Hero_Tusk.WalrusPunch.Damage", params.target) end)
 	if self:GetAbility().cd then
 		self:GetAbility():UseResources(true, false, true)
 	end
 	self:Destroy()
-    return self:GetTalentSpecialValueFor("crit_multiplier")
+    return self:GetSpecialValueFor("crit_multiplier")
 end
 
 function modifier_tusk_punch_crit:OnAttackStart(params)
@@ -141,7 +141,7 @@ function modifier_tusk_punch_slow:DeclareFunctions()
 end
 
 function modifier_tusk_punch_slow:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("move_slow")
+    return self:GetSpecialValueFor("move_slow")
 end
 
 function modifier_tusk_punch_slow:GetEffectName()

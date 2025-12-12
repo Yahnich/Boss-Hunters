@@ -14,14 +14,14 @@ function clinkz_strafe_bh:OnSpellStart()
 
     EmitSoundOn("Hero_Clinkz.Strafe", caster)
 
-    caster:AddNewModifier(caster, self, "modifier_clinkz_strafe_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
+    caster:AddNewModifier(caster, self, "modifier_clinkz_strafe_bh", {Duration = self:GetSpecialValueFor("duration")})
 	for _, skeleton in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), -1 ) ) do
 		if skeleton:GetUnitName() == "npc_dota_clinkz_skeleton_archer" then
-			skeleton:AddNewModifier(caster, self, "modifier_clinkz_strafe_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
+			skeleton:AddNewModifier(caster, self, "modifier_clinkz_strafe_bh", {Duration = self:GetSpecialValueFor("duration")})
 		end
 	end
     -- if caster:HasTalent("special_bonus_unique_clinkz_strafe_bh_2") then
-        -- caster:ConjureImage( caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("duration"), 100, 300, nil, self, false, caster )
+        -- caster:ConjureImage( caster:GetAbsOrigin(), self:GetSpecialValueFor("duration"), 100, 300, nil, self, false, caster )
     -- end
 end
 
@@ -39,8 +39,8 @@ function modifier_clinkz_strafe_bh:OnCreated(table)
 end
 
 function modifier_clinkz_strafe_bh:OnRefresh(table)
-    self.as = self:GetTalentSpecialValueFor("as_bonus")
-    self.rate = self:GetTalentSpecialValueFor("dodge_rate")
+    self.as = self:GetSpecialValueFor("as_bonus")
+    self.rate = self:GetSpecialValueFor("dodge_rate")
 	self.cost = self:GetCaster():FindTalentValue("special_bonus_unique_clinkz_strafe_bh_2")
     if IsServer() then
         self:StartIntervalThink(self.rate)

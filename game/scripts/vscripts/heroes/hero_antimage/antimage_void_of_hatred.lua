@@ -1,7 +1,7 @@
 antimage_void_of_hatred = class ({})
 
 function antimage_void_of_hatred:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function antimage_void_of_hatred:OnAbilityPhaseStart()
@@ -25,10 +25,10 @@ function antimage_void_of_hatred:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	if target:TriggerSpellAbsorb(self) then return end
-	local baseDmg = self:GetTalentSpecialValueFor("base_damage")
-	local stackDmg = self:GetTalentSpecialValueFor("stack_damage")
-	local stunDur = self:GetTalentSpecialValueFor("ministun")
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local baseDmg = self:GetSpecialValueFor("base_damage")
+	local stackDmg = self:GetSpecialValueFor("stack_damage")
+	local stunDur = self:GetSpecialValueFor("ministun")
+	local radius = self:GetSpecialValueFor("radius")
 	
 	local handler = caster:FindModifierByNameAndCaster("modifier_antimage_void_of_hatred_handler", caster)
 	local damage = handler:GetStackCount()
@@ -59,8 +59,8 @@ function modifier_antimage_void_of_hatred_handler:OnCreated()
 end
 
 function modifier_antimage_void_of_hatred_handler:OnRefresh()
-	self.max = self:GetTalentSpecialValueFor("damage_cap")
-	self.perc = self:GetTalentSpecialValueFor("damage_storage") / 100
+	self.max = self:GetSpecialValueFor("damage_cap")
+	self.perc = self:GetSpecialValueFor("damage_storage") / 100
 end
 
 function modifier_antimage_void_of_hatred_handler:DeclareFunctions()

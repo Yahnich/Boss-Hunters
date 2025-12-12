@@ -16,7 +16,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"storm_spirit_static_remnant"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -49,37 +49,23 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"120 175 230 285 340 395 450"
+			"damage"						"120 175 230 285 340 395 450"
 				"LinkedSpecialBonus"			"special_bonus_unique_ss_static_remnant_1"
 				"LinkedSpecialBonusField"		"damage"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"search_radius"					"250"	
+			"search_radius"					"250"	
 				"LinkedSpecialBonus"			"special_bonus_unique_ss_static_remnant_1"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_radius"					"300"
+			"damage_radius"					"300"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"delay"							"1"
-			}
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"12"
-			}
 			
 		}
 	}
@@ -97,18 +83,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"750"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"100"
-			}
+			"value"						"750"
+			"damage"					"100"
 		}
 	}
 	//=================================================================================================================
@@ -124,13 +102,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"20"
-			}
+			"value"						"20"
 		}
 	}
 
@@ -148,7 +122,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"storm_spirit_electric_vortex"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -181,18 +155,10 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range"			"300 300 300 300 350 400 450"		
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.4 1.8 2.2 2.6 2.6 2.6 2.6"
-			}
+			"cast_range"			"300 300 300 300 350 400 450"		
+			"duration"				"1.4 1.8 2.2 2.6 2.6 2.6 2.6"
 		}
 	}
 
@@ -209,13 +175,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -231,13 +193,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -253,7 +211,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"custom/storm_spirit_electric_dynamo"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -286,48 +244,38 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"buff_duration"					"8"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"debuff_duration"				"4"
-			}
+			"debuff_duration"				"4"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"buff_as"						"50 75 100 125 125 125 125"
 				"LinkedSpecialBonus"			"special_bonus_unique_ss_voltaic_surge_2"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"buff_cdr"						"15 20 25 30 30 30 30"
 				"LinkedSpecialBonus"			"special_bonus_unique_ss_voltaic_surge_2"
 				"LinkedSpecialBonusField"		"value2"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"buff_cost"						"15 20 25 30 30 30 30"
 				"LinkedSpecialBonus"			"special_bonus_unique_ss_voltaic_surge_2"
 				"LinkedSpecialBonusField"		"value2"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"debuff_cost"					"100 100 100 100 70 40"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"debuff_cdr"					"50 50 50 50 40 30"
-			}
 		}
 	}
 
@@ -344,13 +292,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-4"
-			}
+			"value"						"-4"
 		}
 	}
 
@@ -367,18 +311,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"40"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value2"					"15"
-			}
+			"value"						"40"
+			"value2"					"15"
 		}
 	}
 
@@ -420,35 +356,24 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"40"
-			}
+			"base_damage"			"40"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_per_lvl"		"5"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"300"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_mana_gain"		"20"
+			"scepter_mana_gain"		"20"
 				"RequiresScepter"		"1"
-			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"scepter_tick"			"0.2"
 				"RequiresScepter"		"1"
-			}
 		}
 	}
 
@@ -469,7 +394,7 @@
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"storm_spirit_ball_lightning"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -502,48 +427,40 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{	
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"damage"							"8 12 16 20 24 28"		
-			}
 			"02"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"mana_cost_pct"						"8"		
-			}
 			"03"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"mana_cost_base"					"30"		
-			}
 			"04"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"speed"								"1250 1875 2500 3125 3750 4375"		
-			}
 			"05"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"radius"							"200"		
-			}
 			"06"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"travel_cost_base"					"10"		
-			}
 			"07"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"travel_cost_percent"				"0.65"		
-			}
 			"08"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"vision_radius"						"400"		
-			}		
+				"vision_radius"						"400"				
 		}
 	}
 
@@ -560,13 +477,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"600"
-			}
+			"value"						"600"
 		}
 	}
 	//=================================================================================================================
@@ -582,13 +495,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	
@@ -612,7 +521,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		//"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"custom/Mandate_of_the_Stormborn_Overload_icon"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -646,19 +555,11 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"attack_damage"					"25 40 55 70 85 100 115"
+			"attack_damage"					"25 40 55 70 85 100 115"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"mana_cost"						"70 72 74 76 78 80 82"
-			}	
+			"mana_cost"						"70 72 74 76 78 80 82"	
 		}
 	}
 
@@ -675,13 +576,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -698,13 +595,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 }

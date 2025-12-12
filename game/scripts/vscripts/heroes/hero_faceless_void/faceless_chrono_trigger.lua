@@ -22,8 +22,8 @@ function faceless_chrono_trigger:TimeLock(target)
 		ParticleManager:SetParticleControl(nFX, 5, Vector(1,1,1) )
 		ParticleManager:ReleaseParticleIndex(nFX)
 		Timers:CreateTimer(0.25, function()
-			self:Stun(target, self:GetTalentSpecialValueFor("duration"), false)
-			self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			self:Stun(target, self:GetSpecialValueFor("duration"), false)
+			self:DealDamage(caster, target, self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 			caster:PerformGenericAttack(target, true)
 		end)
 		local clockstopper = caster:FindModifierByName("modifier_faceless_clock_stopper_buff")
@@ -32,8 +32,8 @@ function faceless_chrono_trigger:TimeLock(target)
 		end
 	else
 		ParticleManager:FireParticle("particles/units/heroes/hero_faceless_void/faceless_void_time_lock_bash_hit.vpcf", PATTACH_POINT, target, {})
-		self:Stun(target, self:GetTalentSpecialValueFor("duration"), false)
-		self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+		self:Stun(target, self:GetSpecialValueFor("duration"), false)
+		self:DealDamage(caster, target, self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 	end
 end
 
@@ -54,7 +54,7 @@ function modifier_faceless_chrono_trigger_handle:OnCreated()
     self.ability = self:GetAbility()
 
     -- Ability specials
-    self.damage_time = self:GetTalentSpecialValueFor("backtrack_duration")
+    self.damage_time = self:GetSpecialValueFor("backtrack_duration")
 
     if IsServer() then
         if not caster.time_walk_damage_taken then
@@ -68,7 +68,7 @@ function modifier_faceless_chrono_trigger_handle:OnAttackLanded(params)
 		local caster = params.attacker
 		local target = params.target
 
-		if caster == self:GetParent() and caster:RollPRNG(self:GetTalentSpecialValueFor("chance")) then
+		if caster == self:GetParent() and caster:RollPRNG(self:GetSpecialValueFor("chance")) then
 			self:GetAbility():TimeLock(target)
 		end
 	end
@@ -92,7 +92,7 @@ function modifier_faceless_chrono_trigger_handle:OnTakeDamage( keys )
                 end
             end)
 
-            if unit:RollPRNG( self:GetTalentSpecialValueFor("backtrack_chance") ) then
+            if unit:RollPRNG( self:GetSpecialValueFor("backtrack_chance") ) then
             	EmitSoundOn("Hero_FacelessVoid.TimeWalk", caster)
             	ParticleManager:FireParticle("particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf", PATTACH_POINT, caster, {})
 

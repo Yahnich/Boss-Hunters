@@ -15,12 +15,12 @@ function chen_holy_persuasion_bh:OnSpellStart()
 	
 	
 	if caster:IsSameTeam( target ) then
-		target:AddNewModifier( caster, self, "modifier_chen_holy_persuasion_bh_tp", { duration = self:GetTalentSpecialValueFor("teleport_delay") } )
+		target:AddNewModifier( caster, self, "modifier_chen_holy_persuasion_bh_tp", { duration = self:GetSpecialValueFor("teleport_delay") } )
 		if caster:HasTalent("special_bonus_unique_chen_holy_persuasion_2") then
 			target:AddNewModifier( caster, self, "modifier_chen_holy_persuasion_bh_tp", { duration = caster:FindTalentValue("special_bonus_unique_chen_holy_persuasion_2") } )
 		end
 	elseif not target:TriggerSpellAbsorb( self ) then
-		local duration = self:GetTalentSpecialValueFor("duration")
+		local duration = self:GetSpecialValueFor("duration")
 		if target:IsMinion() then
 			duration = -1
 			self.minionList = self.minionList or {}
@@ -29,7 +29,7 @@ function chen_holy_persuasion_bh:OnSpellStart()
 					table.remove( self.minionList, 1 )
 				end
 			end
-			if #self.minionList >= self:GetTalentSpecialValueFor("minion_limit") then
+			if #self.minionList >= self:GetSpecialValueFor("minion_limit") then
 				self.minionList[1]:ForceKill( false )
 				table.remove( self.minionList, 1 )
 			end
@@ -72,7 +72,7 @@ LinkLuaModifier( "modifier_chen_holy_persuasion_bh", "heroes/hero_chen/chen_holy
 
 function modifier_chen_holy_persuasion_bh:OnCreated()
 	if self:GetParent():IsMinion() or ( self:GetParent():IsRealHero() and self:GetCaster():HasTalent("special_bonus_unique_chen_holy_persuasion_2") ) then	
-		self.hp = self:GetTalentSpecialValueFor("bonus_health")
+		self.hp = self:GetSpecialValueFor("bonus_health")
 		if IsServer() then
 			local currHPPCT = self:GetParent():GetHealth() / self:GetParent():GetMaxHealth()
 			Timers:CreateTimer(function() self:GetParent():SetHealth( currHPPCT * self:GetParent():GetMaxHealth() + self.hp ) end )
@@ -95,7 +95,7 @@ end
 
 function modifier_chen_holy_persuasion_bh:OnDestroy()
 	if self:GetParent():IsMinion() or self:GetParent():IsRealHero() and self:GetCaster():HasTalent("special_bonus_unique_chen_holy_persuasion_2") then	
-		self.hp = self:GetTalentSpecialValueFor("bonus_health")
+		self.hp = self:GetSpecialValueFor("bonus_health")
 	end
 	if IsServer() then
 		if self.originalTeam ~= self:GetCaster():GetTeam() then

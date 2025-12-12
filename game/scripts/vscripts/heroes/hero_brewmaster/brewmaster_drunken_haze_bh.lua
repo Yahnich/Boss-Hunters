@@ -9,14 +9,14 @@ function brewmaster_drunken_haze_bh:IsHiddenWhenStolen()
 end
 
 function brewmaster_drunken_haze_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function brewmaster_drunken_haze_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local radius = self:GetSpecialValueFor("radius")
 	if caster:HasScepter() then
 		for _, unit in ipairs( caster:FindAllUnitsInRadius( target:GetAbsOrigin(), radius ) ) do
 			self:FireTrackingProjectile("particles/units/heroes/hero_brewmaster/brewmaster_cinder_brew_cast.vpcf", unit, 1300, nil, DOTA_PROJECTILE_ATTACHMENT_ATTACK_2)
@@ -35,7 +35,7 @@ end
 
 function brewmaster_drunken_haze_bh:OnProjectileHit(target, position)
 	local caster = self:GetCaster()
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	EmitSoundOn("Hero_Brewmaster.CinderBrew.Target", target)
 	if target:GetTeam() == caster:GetTeam() then
 		target:AddNewModifier(caster, self, "modifier_brewmaster_drunken_haze_buff", {duration = duration})

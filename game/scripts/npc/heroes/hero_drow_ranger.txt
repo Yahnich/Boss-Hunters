@@ -11,7 +11,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/drow_ranger_bullseye"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -49,34 +49,14 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"arrow_speed"				"3000"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"arrow_width"				"150"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"arrow_range"				"3000"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"arrow_agi_multiplier"		"2 2.5 3 3.5 4 4.5 5"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"break_duration"			"3"
+			"arrow_speed"				"3000"
+			"arrow_width"				"150"
+			"arrow_range"				"3000"
+"arrow_agi_multiplier"		"2 2.5 3 3.5 4 4.5 5"
+			"break_duration"			"3"
 				"LinkedSpecialBonus"		"special_bonus_unique_drow_ranger_bullseye_2"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -92,13 +72,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"600"
-			}
+			"value"						"600"
 		}
 	}
 	//=================================================================================================================
@@ -114,13 +90,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"6"
-			}
+			"value"						"6"
 		}
 	}
 	"drow_ranger_multishot_bh"
@@ -136,7 +108,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"drow_ranger_multishot"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -161,60 +133,36 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"arrow_count"					"12"
+			"arrow_count"					"12"
 				"LinkedSpecialBonus"			"special_bonus_unique_drow_ranger_multishot_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"arrows_per_salvo"				"4"
+			"arrows_per_salvo"				"4"
 				"LinkedSpecialBonus"			"special_bonus_unique_drow_ranger_multishot_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"salvos"						"3"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"arrow_damage_pct"				"95 110 125 140 155 170 185"
+			"salvos"						"3"
+			"arrow_damage_pct"				"95 110 125 140 155 170 185"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"arrow_width"					"90"
-			}
+			"arrow_width"					"90"
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"arrow_speed"					"1200"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"arrow_range_multiplier"		"2"
-			}
 			"08"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"arrow_angle"					"50"
 				"LinkedSpecialBonus"			"special_bonus_unique_drow_ranger_multishot_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 			"09"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"channel_duration"				"1.75"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CHANNEL_ABILITY_3"
 	}
@@ -231,13 +179,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -253,13 +197,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"600"
-			}
+			"value"						"600"
 		}
 	}
 	//=================================================================================================================
@@ -276,7 +216,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/drow_ranger_leapshot"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -306,24 +246,15 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"leap_distance"			"650 675 700 725 750 775 800"
+			"leap_distance"			"650 675 700 725 750 775 800"
 				"LinkedSpecialBonus"	"special_bonus_unique_drow_ranger_leapshot_1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"leap_speed"			"2000.0"
-			}
+			"leap_speed"			"2000.0"
 			"3"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"silence_duration"		"1"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -339,13 +270,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"500"
-			}
+			"value"						"500"
 		}
 	}
 	//=================================================================================================================
@@ -361,13 +288,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"200"
-			}
+			"value"						"200"
 		}
 	}
 	//=================================================================================================================
@@ -385,7 +308,7 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"drow_ranger_wave_of_silence"
 		"AbilitySound"					"Hero_DrowRanger.Silence"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -410,38 +333,14 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"wave_speed"				"2000.0"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"wave_width"				"250"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"silence_duration"			"3 3 3 3 4 5 6"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"knockback_distance_max"	"450"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"knockback_duration"		"0.6 0.7 0.8 0.9 0.9 0.9 0.9"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"knockback_height"			"0"
-			}
+			"wave_speed"				"2000.0"
+			"wave_width"				"250"
+			"silence_duration"			"3 3 3 3 4 5 6"
+"knockback_distance_max"	"450"
+			"knockback_duration"		"0.6 0.7 0.8 0.9 0.9 0.9 0.9"
+			"knockback_height"			"0"
 		}
 		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -458,18 +357,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"1.5"
-			}
+			"value"						"50"
+			"duration"					"1.5"
 		}
 	}
 	//=================================================================================================================
@@ -485,13 +376,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -506,7 +393,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityTextureName"			"drow_ranger_trueshot"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -525,26 +412,20 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"trueshot_ranged_damage"		"10 20 30 40 50 60 70"
 				"LinkedSpecialBonus"			"special_bonus_unique_drow_ranger_drows_teachings_2"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"trueshot_melee_damage"			"5 10 15 20 25 30 35"
+			"trueshot_melee_damage"			"5 10 15 20 25 30 35"
 				"LinkedSpecialBonus"			"special_bonus_unique_drow_ranger_drows_teachings_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"active_duration"				"30"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -561,13 +442,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -583,13 +460,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"10"
-			}
+			"value"						"10"
 		}
 	}
 	//=================================================================================================================
@@ -606,7 +479,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityTextureName"			"custom/drow_ranger_huntress_mark"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -633,25 +506,19 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"proc_chance"					"25 30 35 35 35 35 35"
 				"LinkedSpecialBonus"			"special_bonus_unique_drow_ranger_huntress_mark_1"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bonus_damage"					"60 70 80 120 160 200 240"
+			"bonus_damage"					"60 70 80 120 160 200 240"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"2"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -668,18 +535,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"35"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"10"
-			}
+			"value"						"35"
+			"duration"					"10"
 		}
 	}
 	//=================================================================================================================
@@ -695,18 +554,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"900"
-			}
+			"value"						"100"
+			"radius"					"900"
 		}
 	}
 	//=================================================================================================================
@@ -756,23 +607,14 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"base_chill"					"15"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"stack_chill"					"1"
-			}
+			"base_chill"					"15"
+			"stack_chill"					"1"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"1.5"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
@@ -789,7 +631,7 @@
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityCastRange"				"400"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"AbilityTextureName"			"drow_ranger_marksmanship"
 		"HasScepterUpgrade"				"1"
 		
@@ -808,47 +650,25 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"marksmanship_agility_bonus"	"28 36 44 46 48 50"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"glacier_arrows_mana_cost"		"-2 -2 -2 -4 -6 -8"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"huntress_mark_cd"				"-5 -5 -5 -10 -15 -20"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"400"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"split_count_scepter"			"2"
+			"marksmanship_agility_bonus"	"28 36 44 46 48 50"
+			"glacier_arrows_mana_cost"		"-2 -2 -2 -4 -6 -8"
+			"huntress_mark_cd"				"-5 -5 -5 -10 -15 -20"
+			"radius"						"400"
+			"split_count_scepter"			"2"
 				"RequiresScepter"				"1"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"scepter_range"					"375"
 				"RequiresScepter"				"1"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"damage_reduction_scepter"		"50"
 				"RequiresScepter"		"1"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -864,13 +684,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -886,13 +702,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1200"
-			}
+			"value"						"1200"
 		}
 	}
 }

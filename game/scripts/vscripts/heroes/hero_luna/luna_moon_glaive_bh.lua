@@ -8,7 +8,7 @@ function luna_moon_glaive_bh:LaunchMoonGlaive(target, damage, bounces, source)
 	local caster = self:GetCaster()
 	local hSource = source or caster
 	
-	local extraData = {damage = damage or 0, bounces = bounces or self:GetTalentSpecialValueFor("bounces"), hitUnits = {}}
+	local extraData = {damage = damage or 0, bounces = bounces or self:GetSpecialValueFor("bounces"), hitUnits = {}}
 	local projID = self:FireTrackingProjectile( caster:GetRangedProjectileName(), target, caster:GetProjectileSpeed(), {extraData = extraData, source = hSource, origin = hSource:GetAbsOrigin() })
 	
 	self.glaives = self.glaives or {}
@@ -40,8 +40,8 @@ function luna_moon_glaive_bh:OnProjectileHitHandle( target, position, projectile
 		end
 		
 		if bounces > 0 then
-			local radius = self:GetTalentSpecialValueFor("range")
-			local reduction = (100 - self:GetTalentSpecialValueFor("damage_reduction_percent")) / 100
+			local radius = self:GetSpecialValueFor("range")
+			local reduction = (100 - self:GetSpecialValueFor("damage_reduction_percent")) / 100
 			local reducedDamage = ((100 - damage)/100 * reduction)
 			
 			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), radius, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES} ) ) do
@@ -71,15 +71,15 @@ modifier_luna_moon_glaive_bh = class({})
 LinkLuaModifier( "modifier_luna_moon_glaive_bh", "heroes/hero_luna/luna_moon_glaive_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_luna_moon_glaive_bh:OnCreated()
-	self.bounces = self:GetTalentSpecialValueFor("bounces")
-	self.radius = self:GetTalentSpecialValueFor("range")
-	self.reduction = -self:GetTalentSpecialValueFor("damage_reduction_percent")
+	self.bounces = self:GetSpecialValueFor("bounces")
+	self.radius = self:GetSpecialValueFor("range")
+	self.reduction = -self:GetSpecialValueFor("damage_reduction_percent")
 end
 
 function modifier_luna_moon_glaive_bh:OnRefresh()
-	self.bounces = self:GetTalentSpecialValueFor("bounces")
-	self.radius = self:GetTalentSpecialValueFor("range")
-	self.reduction = -self:GetTalentSpecialValueFor("damage_reduction_percent")
+	self.bounces = self:GetSpecialValueFor("bounces")
+	self.radius = self:GetSpecialValueFor("range")
+	self.reduction = -self:GetSpecialValueFor("damage_reduction_percent")
 end
 
 function modifier_luna_moon_glaive_bh:DeclareFunctions()

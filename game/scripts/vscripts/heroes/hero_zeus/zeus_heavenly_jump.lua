@@ -10,7 +10,7 @@ function zeus_heavenly_jump:OnSpellStart()
 	caster:Stop()
 	ProjectileManager:ProjectileDodge(caster)
 	
-	caster:AddNewModifier( caster, self, "modifier_zeus_heavenly_jump_movement", {duration = self:GetTalentSpecialValueFor("jump_duration"), ignoreStatusAmp = true} )
+	caster:AddNewModifier( caster, self, "modifier_zeus_heavenly_jump_movement", {duration = self:GetSpecialValueFor("jump_duration"), ignoreStatusAmp = true} )
 	ParticleManager:FireParticle("particles/units/heroes/hero_zuus/zuus_shard_head.vpcf", PATTACH_ABSORIGIN, caster, {[0] = caster:GetAbsOrigin(), [1] = "attach_hitloc", [2] = caster:GetAbsOrigin() })
 	EmitSoundOn("Hero_Zuus.Taunt.Jump", caster)
 	EmitSoundOn("Hero_Zuus.GodsWrath.PreCast", caster)
@@ -22,7 +22,7 @@ if IsServer() then
 	function modifier_zeus_heavenly_jump_movement:OnCreated()
 		local parent = self:GetParent()
 		self.endPos = self:GetAbility():GetCursorPosition()
-		self.distance = TernaryOperator( self:GetTalentSpecialValueFor("jump_distance"), parent:IsMoving(), 0 )
+		self.distance = TernaryOperator( self:GetSpecialValueFor("jump_distance"), parent:IsMoving(), 0 )
 		self.direction = parent:GetForwardVector()
 		self.travel_duration = self:GetRemainingTime()
 		self.speed = self.distance / self:GetRemainingTime() * FrameTime()
@@ -30,9 +30,9 @@ if IsServer() then
 		self.height = self.initHeight
 		self.maxHeight = 250
 		
-		self.radius = self:GetTalentSpecialValueFor("shock_distance")
-		self.damage = self:GetTalentSpecialValueFor("shock_damage")
-		self.duration = self:GetTalentSpecialValueFor("shock_duration")
+		self.radius = self:GetSpecialValueFor("shock_distance")
+		self.damage = self:GetSpecialValueFor("shock_damage")
+		self.duration = self:GetSpecialValueFor("shock_duration")
 		
 		
 		local caster = self:GetCaster()

@@ -7,16 +7,16 @@ end
 function enigma_shattered_mass:CreateEidolon( position, tier )
 	local caster = self:GetCaster()
 	CreateUnitByNameAsync("npc_dota_"..tier.."eidolon", position, true, caster, caster, caster:GetTeamNumber(), function( eidolon )
-		eidolon:AddNewModifier( caster, self, "modifier_kill", {duration = self:GetTalentSpecialValueFor("duration")} )
+		eidolon:AddNewModifier( caster, self, "modifier_kill", {duration = self:GetSpecialValueFor("duration")} )
 		eidolon:SetControllableByPlayer( caster:GetPlayerID(),  true )
 		eidolon:SetOwner(caster)
 		if eidolon:GetUnitName() ~= "npc_dota_dire_eidolon" then
 			eidolon:AddNewModifier( caster, self, "modifier_enigma_shattered_mass_eidolon", {} )
-			eidolon:SetCoreHealth( self:GetTalentSpecialValueFor(tier.."eidolon_hp") )
-			eidolon:SetAverageBaseDamage( self:GetOwnerEntity():GetAverageBaseDamage() * self:GetTalentSpecialValueFor(tier.."eidolon_dmg") / 100, 15 )
+			eidolon:SetCoreHealth( self:GetSpecialValueFor(tier.."eidolon_hp") )
+			eidolon:SetAverageBaseDamage( self:GetOwnerEntity():GetAverageBaseDamage() * self:GetSpecialValueFor(tier.."eidolon_dmg") / 100, 15 )
 		else
-			eidolon:SetCoreHealth( self:GetTalentSpecialValueFor("dire_eidolon_hp") )
-			eidolon:SetAverageBaseDamage( self:GetOwnerEntity():GetAverageBaseDamage() * self:GetTalentSpecialValueFor("dire_eidolon_dmg") / 100, 15 )
+			eidolon:SetCoreHealth( self:GetSpecialValueFor("dire_eidolon_hp") )
+			eidolon:SetAverageBaseDamage( self:GetOwnerEntity():GetAverageBaseDamage() * self:GetSpecialValueFor("dire_eidolon_dmg") / 100, 15 )
 		end
 		FindClearSpaceForUnit( eidolon, eidolon:GetAbsOrigin(), true )
 	end)
@@ -28,12 +28,12 @@ LinkLuaModifier("modifier_enigma_shattered_mass", "heroes/hero_enigma/enigma_sha
 if IsServer() then
 	function modifier_enigma_shattered_mass:OnCreated()
 		self.attacks = 0
-		self.attacks_to_split = self:GetTalentSpecialValueFor("split_attack_count")
+		self.attacks_to_split = self:GetSpecialValueFor("split_attack_count")
 	end
 	
 	function modifier_enigma_shattered_mass:OnRefresh()
 		self.attacks = 0
-		self.attacks_to_split = self:GetTalentSpecialValueFor("split_attack_count")
+		self.attacks_to_split = self:GetSpecialValueFor("split_attack_count")
 	end
 end
 
@@ -58,12 +58,12 @@ LinkLuaModifier("modifier_enigma_shattered_mass_eidolon", "heroes/hero_enigma/en
 if IsServer() then
 	function modifier_enigma_shattered_mass_eidolon:OnCreated()
 		self.attacks = 0
-		self.attacks_to_split = self:GetTalentSpecialValueFor("evolve_attack_count")
+		self.attacks_to_split = self:GetSpecialValueFor("evolve_attack_count")
 	end
 	
 	function modifier_enigma_shattered_mass_eidolon:OnRefresh()
 		self.attacks = 0
-		self.attacks_to_split = self:GetTalentSpecialValueFor("evolve_attack_count")
+		self.attacks_to_split = self:GetSpecialValueFor("evolve_attack_count")
 	end
 end
 

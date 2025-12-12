@@ -78,7 +78,7 @@ function lifestealer_infest_bh:OnSpellStart()
 			if self.target:IsSameTeam( caster ) then
 				self.target:AddNewModifier(caster, self, "modifier_lifestealer_infest_bh_ally", {})
 			elseif not self.target:IsMinion() then
-				duration = self:GetTalentSpecialValueFor("duration")
+				duration = self:GetSpecialValueFor("duration")
 			end
 			caster:AddNewModifier(caster, self, "modifier_lifestealer_infest_bh", {duration = duration + 0.1})
         end
@@ -93,8 +93,8 @@ modifier_lifestealer_infest_bh = class({})
 LinkLuaModifier("modifier_lifestealer_infest_bh", "heroes/hero_lifestealer/lifestealer_infest_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_lifestealer_infest_bh:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("aoe_damage")
-	self.regen = self:GetTalentSpecialValueFor("max_hp_regen")
+	self.damage = self:GetSpecialValueFor("aoe_damage")
+	self.regen = self:GetSpecialValueFor("max_hp_regen")
 	
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_lifestealer_infest_2")
     if IsServer() then
@@ -112,7 +112,7 @@ function modifier_lifestealer_infest_bh:OnRemoved()
         parent:RemoveNoDraw()
         ParticleManager:FireParticle("particles/units/heroes/hero_life_stealer/life_stealer_infest_emerge_bloody.vpcf", PATTACH_POINT, ability.target, {[0]=ability.target:GetAbsOrigin()})
         FindClearSpaceForUnit(parent, parentPos, false)
-        local enemies = parent:FindEnemyUnitsInRadius(parentPos, self:GetTalentSpecialValueFor("radius"))
+        local enemies = parent:FindEnemyUnitsInRadius(parentPos, self:GetSpecialValueFor("radius"))
         for _,enemy in pairs(enemies) do
             ability:DealDamage(parent, enemy, self.damage)
         end
@@ -163,7 +163,7 @@ modifier_lifestealer_infest_bh_ally = class({})
 LinkLuaModifier("modifier_lifestealer_infest_bh_ally", "heroes/hero_lifestealer/lifestealer_infest_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_lifestealer_infest_bh_ally:OnCreated()
-	self.bonus_hp = self:GetTalentSpecialValueFor("ally_bonus_hp")
+	self.bonus_hp = self:GetSpecialValueFor("ally_bonus_hp")
 	
 	if IsServer() then -- heal
 		self:GetParent():HealEvent( self.bonus_hp, self:GetAbility(), self:GetCaster(), {heal_flags = HEAL_FLAG_IGNORE_AMPLIFICATION} )

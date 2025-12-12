@@ -36,16 +36,16 @@ function timbersaw_chak2:OnSpellStart()
 
     local direction = CalculateDirection(point, caster:GetAbsOrigin())
     local distance = self:GetTrueCastRange() --CalculateDistance(point, caster:GetAbsOrigin())
-    local vel = direction * self:GetTalentSpecialValueFor("speed")
+    local vel = direction * self:GetSpecialValueFor("speed")
 
     --[[self.hook_pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_meathook_chain.vpcf", PATTACH_POINT_FOLLOW, caster)
     ParticleManager:SetParticleAlwaysSimulate(self.hook_pfx)
     ParticleManager:SetParticleControlEnt(self.hook_pfx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
-    ParticleManager:SetParticleControl(self.hook_pfx, 2, Vector(self:GetTalentSpecialValueFor("speed"), self:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius")) )
+    ParticleManager:SetParticleControl(self.hook_pfx, 2, Vector(self:GetSpecialValueFor("speed"), self:GetTrueCastRange(), self:GetSpecialValueFor("radius")) )
     ParticleManager:SetParticleControl(self.hook_pfx, 3, Vector(60, 60, 60) )]]
 
     EmitSoundOn("Hero_Shredder.Chakram.Cast", caster)
-    self:FireLinearProjectile("particles/econ/items/shredder/hero_shredder_icefx/shredder_chakram_ice.vpcf", vel, distance, self:GetTalentSpecialValueFor("radius"), {}, false, true, self:GetTalentSpecialValueFor("radius"))
+    self:FireLinearProjectile("particles/econ/items/shredder/hero_shredder_icefx/shredder_chakram_ice.vpcf", vel, distance, self:GetSpecialValueFor("radius"), {}, false, true, self:GetSpecialValueFor("radius"))
     self:StartDelayedCooldown(self:GetTrueCooldown())
 end
 
@@ -56,7 +56,7 @@ function timbersaw_chak2:OnProjectileHit(hTarget, vLocation)
         --ParticleManager:SetParticleControl(self.hook_pfx, 1, vLocation )
         local dummy = self:CreateDummy(vLocation)
         EmitSoundOnLocationWithCaster(vLocation, "Hero_Shredder.Chakram.Return", caster)
-        self:FireTrackingProjectile("particles/econ/items/shredder/hero_shredder_icefx/shredder_chakram_return_ice.vpcf", caster, self:GetTalentSpecialValueFor("speed"), {source=dummy,origin=vLocation}, 0, false, true, self:GetTalentSpecialValueFor("radius"))
+        self:FireTrackingProjectile("particles/econ/items/shredder/hero_shredder_icefx/shredder_chakram_return_ice.vpcf", caster, self:GetSpecialValueFor("speed"), {source=dummy,origin=vLocation}, 0, false, true, self:GetSpecialValueFor("radius"))
         dummy:ForceKill(false)
     elseif hTarget == caster then
         self:EndDelayedCooldown()
@@ -68,12 +68,12 @@ function timbersaw_chak2:OnProjectileThink(vLocation)
     local caster = self:GetCaster()
 
    --[[ParticleManager:SetParticleControl(self.hook_pfx, 1, vLocation )
-    ParticleManager:SetParticleControl(self.hook_pfx, 2, Vector(self:GetTalentSpecialValueFor("speed"), self:GetTrueCastRange(), self:GetTalentSpecialValueFor("radius")) )
+    ParticleManager:SetParticleControl(self.hook_pfx, 2, Vector(self:GetSpecialValueFor("speed"), self:GetTrueCastRange(), self:GetSpecialValueFor("radius")) )
     ParticleManager:SetParticleControl(self.hook_pfx, 3, Vector(60, 60, 60) )]]
 
-    CutTreesInRadius(vLocation, self:GetTalentSpecialValueFor("radius"), {ability = self})
+    CutTreesInRadius(vLocation, self:GetSpecialValueFor("radius"), {ability = self})
 
-    local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"))
+    local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetSpecialValueFor("radius"))
     for _,enemy in pairs(enemies) do
         if not enemy:HasModifier("modifier_timbersaw_chak2") then
             EmitSoundOn("Hero_Shredder.Chakram.Target", enemy)
@@ -89,7 +89,7 @@ function modifier_timbersaw_chak2:OnCreated(table)
         local caster = self:GetCaster()
         local parent = self:GetParent()
         local ability = self:GetAbility()
-        local damage = self:GetTalentSpecialValueFor("damage")/6
+        local damage = self:GetSpecialValueFor("damage")/6
 
         if caster:HasTalent("special_bonus_unique_timbersaw_chak2_2") then
             caster:Lifesteal(ability, caster:FindTalentValue("special_bonus_unique_timbersaw_chak2_2"), damage, parent, ability:GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY)

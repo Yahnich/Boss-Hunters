@@ -9,7 +9,7 @@ function furion_tree_ant:IsHiddenWhenStolen()
 end
 
 function furion_tree_ant:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function furion_tree_ant:OnSpellStart()
@@ -18,12 +18,12 @@ function furion_tree_ant:OnSpellStart()
 
     local treants = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {})
 
-    local radius = self:GetTalentSpecialValueFor("radius")
+    local radius = self:GetSpecialValueFor("radius")
 
     local trees = GridNav:GetAllTreesAroundPoint(point, radius, true)
     if #trees > 1 then
     	GridNav:DestroyTreesAroundPoint(point, radius, true)
-		local treants = math.min(#trees, self:GetTalentSpecialValueFor("max_treants"))
+		local treants = math.min(#trees, self:GetSpecialValueFor("max_treants"))
 	    for i=1, treants do
 	    	local randoVect = Vector(RandomInt(-radius,radius), RandomInt(-radius,radius), 0)
 			local pointRando = point + randoVect
@@ -38,16 +38,16 @@ end
 
 function furion_tree_ant:SpawnTreant(position, bWasMinion)
 	local caster = self:GetCaster()
-	local tree = caster:CreateSummon("npc_dota_furion_treant_1", position, self:GetTalentSpecialValueFor("treant_duration"))
+	local tree = caster:CreateSummon("npc_dota_furion_treant_1", position, self:GetSpecialValueFor("treant_duration"))
 	FindClearSpaceForUnit(tree, position, true)
-	local maxHP = self:GetTalentSpecialValueFor("treant_health") + caster:GetMaxHealth() * self:GetTalentSpecialValueFor("treant_health_pct") / 100
+	local maxHP = self:GetSpecialValueFor("treant_health") + caster:GetMaxHealth() * self:GetSpecialValueFor("treant_health_pct") / 100
 	if not bWasMinion then
 		maxHP = maxHP * 4
 	end
 	tree:SetBaseMaxHealth(maxHP)
-	tree:SetMaxHealth(self:GetTalentSpecialValueFor("treant_health"))
-	tree:SetHealth(self:GetTalentSpecialValueFor("treant_health"))
-	local ad = caster:GetAverageTrueAttackDamage(caster) * self:GetTalentSpecialValueFor("treant_damage")/100
+	tree:SetMaxHealth(self:GetSpecialValueFor("treant_health"))
+	tree:SetHealth(self:GetSpecialValueFor("treant_health"))
+	local ad = caster:GetAverageTrueAttackDamage(caster) * self:GetSpecialValueFor("treant_damage")/100
 	if bWasMinion then
 		ad = ad * 4
 	end

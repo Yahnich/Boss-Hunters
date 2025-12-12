@@ -13,7 +13,7 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"lion_impale"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -56,13 +56,11 @@
 			"damage"{
 				"value"							"80 140 200 260 340 420 500"
 				"LinkedSpecialBonus"			"special_bonus_unique_lion_earth_spike_1"
-			}
 			"duration"							"1.4 1.8 2.2 2.6 2.6 2.6 2.6"
 			"speed"								"1600"
 			"radius"{
 				"value"							"125"
 				"LinkedSpecialBonus"			"special_bonus_unique_lion_earth_spike_2"
-			}
 		}
 	}
 	"special_bonus_unique_lion_earth_spike_1" 
@@ -75,18 +73,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"200"
-			}
+			"value"					"200"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"spikes"				"8"
-			}
 		}
 	}
 	"special_bonus_unique_lion_earth_spike_2" 
@@ -99,13 +92,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"125"
-			}
+			"value"					"125"
 		}
 	}
 	"lion_frogger"
@@ -121,7 +110,7 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"lion_voodoo"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -172,13 +161,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"25"
-			}
+			"value"					"25"
 		}
 	}
 	"special_bonus_unique_lion_frogger_2" 
@@ -191,13 +176,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-1"
-			}
+			"value"					"-1"
 		}
 	}
 	//=================================================================================================================
@@ -218,7 +199,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilityTextureName"			"lion_mana_drain"
 		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -258,7 +239,6 @@
 			"scepter_cdr"{
 				"value"							"100"
 				"RequiresScepter"				"1"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -272,13 +252,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"special_bonus_unique_lion_mana_drain_2" 
@@ -291,18 +267,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"100"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"2"
-			}
+			"value"					"100"
+			"delay"					"2"
 		}
 	}
 	"lion_death_finger"
@@ -319,7 +287,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"lion_finger_of_death"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -354,38 +322,17 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"600 725 850 975 1100 1225"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"325"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"stacks"					"1"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"stack_bonus"				"15"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"boss_stacks"				"4"
-			}
+			"damage"					"600 725 850 975 1100 1225"
+			"radius"					"325"
+			"stacks"					"1"
+			"stack_bonus"				"15"
+			"boss_stacks"				"4"
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"kill_grace"				"3"
-			}
 		}	
 	}
 	"special_bonus_unique_lion_death_finger_1" 
@@ -399,13 +346,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"20"
-			}
+			"value"						"20"
 		}
 	}
 	"special_bonus_unique_lion_death_finger_2" 
@@ -418,13 +361,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"5"
-			}
+			"value"					"5"
 		}
 	}
 	
@@ -444,7 +383,7 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"invoker_chaos_meteor"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -481,53 +420,26 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"burn_duration"			"3.0"
-			}
+			"burn_duration"			"3.0"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"burn_damage"			"15 20 25 30 35 40 45"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"40 75 110 155 180 215 250"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"distance"				"465 615 780 930 1095 1245 1410"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"275"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"300"
-			}			
+			"distance"				"465 615 780 930 1095 1245 1410"
+			"radius"				"275"
+			"speed"					"300"			
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"tick_rate"				"0.5"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"vision_distance"		"400"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"land_time"				"1.3"
-			}
+			"vision_distance"		"400"
+			"land_time"				"1.3"
 		}	
 	}
 	"special_bonus_unique_lion_meteor_1" 
@@ -540,13 +452,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
-			}
+			"value"					"2"
 		}
 	}
 	"special_bonus_unique_lion_meteor_2" 
@@ -559,18 +467,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1000"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"count"					"3"
-			}
+			"value"					"1000"
+			"count"					"3"
 		}
 	}
 	"lion_mana_aura"
@@ -590,33 +490,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"mana_regen"				"1.5"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"curr_mana_death"			"100"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"death_radius"				"500"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"scepter_curr_mana_dmg"		"15"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"scepter_cd"				"6"
-			}
+			"mana_regen"				"1.5"
+			"curr_mana_death"			"100"
+			"death_radius"				"500"
+"scepter_curr_mana_dmg"		"15"
+			"scepter_cd"				"6"
 		}	
 	}
 	"lion_refined_fireblast"
@@ -660,23 +540,11 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"325"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"1"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"manabonus"					"60"
-			}
+			"damage"					"325"
+			"duration"					"1"
+			"manabonus"					"60"
 		}	
 	}
 }

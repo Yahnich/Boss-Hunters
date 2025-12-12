@@ -7,10 +7,10 @@ end
 function rattletrap_aegis_deflector:AegisProc(target, bKnockback)
 	local caster = self:GetCaster()
 	
-	local duration = self:GetTalentSpecialValueFor("buff_duration")
-	local damage = self:GetTalentSpecialValueFor("mana_damage")
-	local pushDuration = self:GetTalentSpecialValueFor("push_duration")
-	local pushDistance = self:GetTalentSpecialValueFor("push_length")
+	local duration = self:GetSpecialValueFor("buff_duration")
+	local damage = self:GetSpecialValueFor("mana_damage")
+	local pushDuration = self:GetSpecialValueFor("push_duration")
+	local pushDistance = self:GetSpecialValueFor("push_length")
 	
 	if not bKnockback then pushDistance = 0 end
 	
@@ -18,7 +18,7 @@ function rattletrap_aegis_deflector:AegisProc(target, bKnockback)
 	
 	target:ApplyKnockBack(caster:GetAbsOrigin(), pushDuration, pushDuration, pushDistance, 0, caster, self)
 	local damage = self:DealDamage(caster, target, damage)
-	caster:RestoreMana( damage * self:GetTalentSpecialValueFor("mana_restore") / 100 )
+	caster:RestoreMana( damage * self:GetSpecialValueFor("mana_restore") / 100 )
 	local zap = ParticleManager:CreateParticle("particles/units/heroes/hero_rattletrap/rattletrap_cog_attack.vpcf", PATTACH_POINT_FOLLOW, target)
 	ParticleManager:SetParticleControlEnt(zap, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 	ParticleManager:SetParticleControlEnt(zap, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
@@ -37,13 +37,13 @@ modifier_rattletrap_aegis_deflector_passive = class({})
 LinkLuaModifier("modifier_rattletrap_aegis_deflector_passive", "heroes/hero_rattletrap/rattletrap_aegis_deflector", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_rattletrap_aegis_deflector_passive:OnCreated()
-	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
-	self.chance = self:GetTalentSpecialValueFor("proc_chance")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
+	self.chance = self:GetSpecialValueFor("proc_chance")
 end
 
 function modifier_rattletrap_aegis_deflector_passive:OnRefresh()
-	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
-	self.chance = self:GetTalentSpecialValueFor("proc_chance")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
+	self.chance = self:GetSpecialValueFor("proc_chance")
 end
 
 function modifier_rattletrap_aegis_deflector_passive:DeclareFunctions()
@@ -72,8 +72,8 @@ modifier_rattletrap_aegis_deflector_buff = class({})
 LinkLuaModifier("modifier_rattletrap_aegis_deflector_buff", "heroes/hero_rattletrap/rattletrap_aegis_deflector", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_rattletrap_aegis_deflector_buff:OnCreated()
-	self.armor = self:GetTalentSpecialValueFor("armor_buff")
-	self.regen = self:GetTalentSpecialValueFor("heal_pct")
+	self.armor = self:GetSpecialValueFor("armor_buff")
+	self.regen = self:GetSpecialValueFor("heal_pct")
 end
 
 function modifier_rattletrap_aegis_deflector_buff:DeclareFunctions()

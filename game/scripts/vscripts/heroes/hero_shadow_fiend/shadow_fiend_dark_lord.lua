@@ -13,7 +13,7 @@ end
 
 function modifier_shadow_fiend_dark_lord:OnRefresh()
 	self.radius = self:GetCaster():FindTalentValue("special_bonus_unique_shadow_fiend_dark_lord_1", "radius")
-	self.duration = self:GetTalentSpecialValueFor("duration")
+	self.duration = self:GetSpecialValueFor("duration")
 	if IsServer() then
 		for _, ally in ipairs( self:GetCaster():FindFriendlyUnitsInRadius( self:GetCaster():GetAbsOrigin(), -1 ) ) do
 			if ally:HasModifier("modifier_shadow_fiend_dark_lord_aura") then
@@ -74,7 +74,7 @@ function modifier_shadow_fiend_dark_lord_aura:OnCreated()
 end
 
 function modifier_shadow_fiend_dark_lord_aura:OnRefresh()
-	self.evasion = self:GetTalentSpecialValueFor("evasion")
+	self.evasion = self:GetSpecialValueFor("evasion")
 	self.movespeed = self.evasion * self:GetCaster():FindTalentValue("special_bonus_unique_shadow_fiend_dark_lord_3") / 100
 end
 
@@ -102,8 +102,8 @@ function modifier_shadow_fiend_dark_lord_mr:OnCreated()
 end
 
 function modifier_shadow_fiend_dark_lord_mr:OnRefresh()
-	self.mr = self:GetTalentSpecialValueFor("mr_reduction")
-	self.slow = self:GetTalentSpecialValueFor("mr_reduction") * self:GetCaster():FindTalentValue("special_bonus_unique_shadow_fiend_dark_lord_3", "value2") / 100
+	self.mr = self:GetSpecialValueFor("mr_reduction")
+	self.slow = self:GetSpecialValueFor("mr_reduction") * self:GetCaster():FindTalentValue("special_bonus_unique_shadow_fiend_dark_lord_3", "value2") / 100
 	if IsServer() then
 		self:AddIndependentStack()
 	end

@@ -1,14 +1,14 @@
 lifestealer_rage_bh = class({})
 
 function lifestealer_rage_bh:GetCastRange( target, position )
-	return self:GetTalentSpecialValueFor("cast_range")
+	return self:GetSpecialValueFor("cast_range")
 end
 
 function lifestealer_rage_bh:OnSpellStart()
     local caster = self:GetCaster()
     caster:StartGesture(ACT_DOTA_LIFESTEALER_RAGE)
 	caster:EmitSound("Hero_LifeStealer.Rage")
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	
     caster:AddNewModifier(caster, self, "modifier_lifestealer_rage_bh", {Duration = duration})
 	caster:Dispel(caster, true)
@@ -38,8 +38,8 @@ function modifier_lifestealer_rage_bh:OnCreated(table)
 end
 
 function modifier_lifestealer_rage_bh:OnRefresh()
-	self.ms = self:GetTalentSpecialValueFor("bonus_movespeed")
-	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
+	self.ms = self:GetSpecialValueFor("bonus_movespeed")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
 end
 
 function modifier_lifestealer_rage_bh:DeclareFunctions()

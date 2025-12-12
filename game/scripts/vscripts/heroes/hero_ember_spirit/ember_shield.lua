@@ -39,7 +39,7 @@ end
 function ember_shield:OnSpellStart()
 	local caster = self:GetCaster()
 
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	
 	EmitSoundOn("Hero_EmberSpirit.FlameGuard.Cast", caster)
 
@@ -64,7 +64,7 @@ function ember_shield:remnantShield()
 	local remnants = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE})
 	for _,remnant in pairs(remnants) do
 		if remnant:HasModifier("modifier_ember_remnant") then
-			remnant:AddNewModifier(caster, self, "modifier_ember_shield", {Duration = self:GetTalentSpecialValueFor("duration")})
+			remnant:AddNewModifier(caster, self, "modifier_ember_shield", {Duration = self:GetSpecialValueFor("duration")})
 		end
 	end
 end
@@ -75,7 +75,7 @@ function modifier_ember_shield:OnCreated(table)
 	if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
-		self.radius = self:GetTalentSpecialValueFor("radius")
+		self.radius = self:GetSpecialValueFor("radius")
 
 		if parent:IsHero() then
 			EmitSoundOn("Hero_EmberSpirit.FlameGuard.Loop", parent)
@@ -87,9 +87,9 @@ function modifier_ember_shield:OnCreated(table)
 					ParticleManager:SetParticleControl(nfx, 2, Vector(self.radius, self.radius, self.radius))
 		self:AttachEffect(nfx)
 
-		local tick_rate = self:GetTalentSpecialValueFor("tick_rate")
-		self.remaining_health = self:GetTalentSpecialValueFor("absorb_amount")
-		self.damage = self:GetTalentSpecialValueFor("damage") * tick_rate
+		local tick_rate = self:GetSpecialValueFor("tick_rate")
+		self.remaining_health = self:GetSpecialValueFor("absorb_amount")
+		self.damage = self:GetSpecialValueFor("damage") * tick_rate
 
 		if caster:HasTalent("special_bonus_unique_ember_shield_1") then
 			local casterHealth = caster:GetMaxHealth() * caster:FindTalentValue("special_bonus_unique_ember_shield_1", "health")/100
@@ -105,10 +105,10 @@ end
 
 function modifier_ember_shield:OnRefresh(table)
 	if IsServer() then
-		self.radius = self:GetTalentSpecialValueFor("radius")
-		local tick_rate = self:GetTalentSpecialValueFor("tick_rate")
-		self.remaining_health = self:GetTalentSpecialValueFor("absorb_amount")
-		self.damage = self:GetTalentSpecialValueFor("damage") * tick_rate
+		self.radius = self:GetSpecialValueFor("radius")
+		local tick_rate = self:GetSpecialValueFor("tick_rate")
+		self.remaining_health = self:GetSpecialValueFor("absorb_amount")
+		self.damage = self:GetSpecialValueFor("damage") * tick_rate
 		local caster = self:GetCaster()
 		if caster:HasTalent("special_bonus_unique_ember_shield_1") then
 			local casterHealth = caster:GetMaxHealth() * caster:FindTalentValue("special_bonus_unique_ember_shield_1", "health")/100

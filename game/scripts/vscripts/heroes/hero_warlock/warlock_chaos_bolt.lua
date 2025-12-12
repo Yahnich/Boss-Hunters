@@ -23,10 +23,10 @@ end
 function warlock_chaos_bolt:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 	if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
-		local damage = self:GetTalentSpecialValueFor("damage")
+		local damage = self:GetSpecialValueFor("damage")
 		EmitSoundOn("Hero_Batrider.Flamebreak.Impact", hTarget)
-		if self:RollPRNG( self:GetTalentSpecialValueFor("chance") ) then
-			damage = damage * self:GetTalentSpecialValueFor("crit_mult")/100
+		if self:RollPRNG( self:GetSpecialValueFor("chance") ) then
+			damage = damage * self:GetSpecialValueFor("crit_mult")/100
 
 			--Corruption Check
 			if hTarget:HasModifier("modifier_warlock_corruption_curse") then
@@ -44,7 +44,7 @@ function warlock_chaos_bolt:OnProjectileHit(hTarget, vLocation)
 			end
 
 			--Talent 2 Check
-			hTarget:AddNewModifier(caster, self, "modifier_warlock_chaos_bolt", {Duration = self:GetTalentSpecialValueFor("debuff_duration")})
+			hTarget:AddNewModifier(caster, self, "modifier_warlock_chaos_bolt", {Duration = self:GetSpecialValueFor("debuff_duration")})
 
 			local newDamage = self:DealDamage(caster, hTarget, damage, {}, 0)
 			
@@ -63,23 +63,23 @@ end
 
 modifier_warlock_chaos_bolt = class({})
 function modifier_warlock_chaos_bolt:OnCreated(table)
-	self.damage_amp = self:GetTalentSpecialValueFor("damage_amp")
-	self.damage = self:GetTalentSpecialValueFor("damage_over_time")
+	self.damage_amp = self:GetSpecialValueFor("damage_amp")
+	self.damage = self:GetSpecialValueFor("damage_over_time")
 	self.slow = self:GetCaster():FindTalentValue("special_bonus_unique_warlock_chaos_bolt_2")
 	if IsServer() then
-		self:StartIntervalThink( self:GetDuration() / self:GetTalentSpecialValueFor("debuff_duration") * 1)
+		self:StartIntervalThink( self:GetDuration() / self:GetSpecialValueFor("debuff_duration") * 1)
 	end
 end
 
 function modifier_warlock_chaos_bolt:OnRefresh(table)
-	self.damage_amp = self:GetTalentSpecialValueFor("damage_amp")
-	self.damage = self:GetTalentSpecialValueFor("damage_over_time")
+	self.damage_amp = self:GetSpecialValueFor("damage_amp")
+	self.damage = self:GetSpecialValueFor("damage_over_time")
 	self.slow = self:GetCaster():FindTalentValue("special_bonus_unique_warlock_chaos_bolt_2")
 end
 
 function modifier_warlock_chaos_bolt:OnIntervalThink()
 	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-	self:StartIntervalThink( self:GetDuration() / self:GetTalentSpecialValueFor("debuff_duration") * 1 )
+	self:StartIntervalThink( self:GetDuration() / self:GetSpecialValueFor("debuff_duration") * 1 )
 end
 
 function modifier_warlock_chaos_bolt:DeclareFunctions()

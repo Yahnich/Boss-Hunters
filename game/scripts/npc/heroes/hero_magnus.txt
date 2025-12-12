@@ -13,7 +13,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"magnataur_shockwave"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -39,33 +39,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed"						"800 900 1000 1100 1200 1300 1400"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"width"						"150"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"75 150 225 300 375 450 525"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_magnet"				"150 175 200 225 250 275 300"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"magnet_radius"				"500"
-			}
+			"speed"						"800 900 1000 1100 1200 1300 1400"
+			"width"						"150"
+			"damage"					"75 150 225 300 375 450 525"
+			"damage_magnet"				"150 175 200 225 250 275 300"
+			"magnet_radius"				"500"
 		}
 	
 		"precache"
@@ -85,13 +65,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
+			"value"						"100"
 		}
 	}
 	"special_bonus_unique_mag_shockwave_2"
@@ -104,13 +80,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"0.5"
-			}
+			"value"						"0.5"
 		}
 	}
 	"mag_magnet"
@@ -125,7 +97,7 @@
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/magnataur_reverse_polarity_forgemaster"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -158,23 +130,17 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
-			}
+			"duration"				"10"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"400 450 500 550 600 650 700"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"strength"				"4"
-			}
 		}
 	}
 	"special_bonus_unique_mag_magnet_1"
@@ -187,13 +153,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
+			"value"						"100"
 		}
 	}
 	"special_bonus_unique_mag_magnet_2"
@@ -206,13 +168,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	"mag_charge"
@@ -228,7 +186,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"magnataur_skewer"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -261,28 +219,18 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"70 140 210 280 350 420 490"
-			}
+			"damage"				"70 140 210 280 350 420 490"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"150"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"range"					"750 900 1050 1200 1350 1500 1650"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"tree_radius"			"200"
-			}
+			"tree_radius"			"200"
 		}
 	}
 	"special_bonus_unique_mag_charge_1"
@@ -295,13 +243,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	"special_bonus_unique_mag_charge_2"
@@ -314,13 +258,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"250"
-			}
+			"value"						"250"
 		}
 	}
 	"mag_empower"
@@ -347,28 +287,18 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"20"
-			}
+			"bonus_damage"			"20"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"cleave_damage"			"20"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cleave_radius"			"350"
-			}			
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aura_radius"			"900"
-			}
+				"cleave_radius"			"350"			
+			"aura_radius"			"900"
 		}
 	}
 	"mag_polarity"
@@ -384,7 +314,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"magnataur_reverse_polarity"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		
 		// Talents		
@@ -414,34 +344,23 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"50 125 200 275 350 425"
-			}
+			"damage"				"50 125 200 275 350 425"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"500 550 600 650 750 800 850"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_magnet"			"50 75 100 125 150 175"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius_magnet"			"100 150 200 250 300 350 400"
-			}
+			"radius_magnet"			"100 150 200 250 300 350 400"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"stun_duration"			"4.0"
 				"LinkedSpecialBonus"	"special_bonus_unique_mag_polarity_1"	
-			}
 		}
 	}
 	"special_bonus_unique_mag_polarity_1"
@@ -454,13 +373,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"2.5"
-			}
+			"value"						"2.5"
 		}
 	}
 	"special_bonus_unique_mag_polarity_2"
@@ -473,13 +388,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"40"
-			}
+			"value"						"40"
 		}
 	}
 	"mag_polarity_2"
@@ -518,28 +429,18 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"350"
-			}
+			"damage"				"350"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"500"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_magnet"			"150"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius_magnet"			"250"
-			}
+			"radius_magnet"			"250"
 		}
 	}
 }

@@ -23,7 +23,7 @@ function beast_hawk_spirit:OnSpellStart()
 		end
 	end
 
-	local hawk = caster:CreateSummon("npc_dota_beastmaster_hawk_1", caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("duration"))
+	local hawk = caster:CreateSummon("npc_dota_beastmaster_hawk_1", caster:GetAbsOrigin(), self:GetSpecialValueFor("duration"))
 
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_beastmaster/beastmaster_call_bird.vpcf", PATTACH_POINT, caster)
 	ParticleManager:SetParticleControl(nfx, 0, hawk:GetAbsOrigin())
@@ -31,13 +31,13 @@ function beast_hawk_spirit:OnSpellStart()
 
 	hawk:AddNewModifier(caster, self, "modifier_hawk_spirit", {})
 	
-	local hp = self:GetTalentSpecialValueFor("hits_to_kill")
+	local hp = self:GetSpecialValueFor("hits_to_kill")
 	hawk:SetBaseMaxHealth(hp)
 	hawk:SetMaxHealth(hp)
 	hawk:SetHealth(hp)
 
 	if caster:HasTalent("special_bonus_unique_beast_hawk_spirit_2") then
-		local hawk2 = caster:CreateSummon("npc_dota_beastmaster_hawk_1", caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("duration"))
+		local hawk2 = caster:CreateSummon("npc_dota_beastmaster_hawk_1", caster:GetAbsOrigin(), self:GetSpecialValueFor("duration"))
 		hawk2:AddNewModifier(caster, self, "modifier_hawk_spirit", {})
 	end
 end
@@ -47,14 +47,14 @@ function modifier_hawk_spirit:OnCreated(table)
 	if IsServer() then
 		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_beast/beast_hawk_spirit_aura/beast_hawk_spirit_aura.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster())
 		ParticleManager:SetParticleControlEnt(self.nfx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), false)
-		ParticleManager:SetParticleControl(self.nfx, 1, Vector(self:GetTalentSpecialValueFor("radius"), 0, 0))
+		ParticleManager:SetParticleControl(self.nfx, 1, Vector(self:GetSpecialValueFor("radius"), 0, 0))
 
 		self:StartIntervalThink(0.1)
 	end
 end
 
 function modifier_hawk_spirit:OnIntervalThink()
-	local units = self:GetCaster():FindAllUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
+	local units = self:GetCaster():FindAllUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
 	for _,unit in pairs(units) do
 		if unit:GetTeam() == self:GetCaster():GetTeam() then
 			if unit ~= self:GetParent() then
@@ -98,13 +98,13 @@ end
 
 modifier_hawk_spirit_ally = class({})
 function modifier_hawk_spirit_ally:OnCreated()
-	self.mana_regeneration = self:GetTalentSpecialValueFor("mana_regen")
-	self.health_regeneration = self:GetTalentSpecialValueFor("health_regen")
+	self.mana_regeneration = self:GetSpecialValueFor("mana_regen")
+	self.health_regeneration = self:GetSpecialValueFor("health_regen")
 end
 
 function modifier_hawk_spirit_ally:OnRefresh()
-	self.mana_regeneration = self:GetTalentSpecialValueFor("mana_regen")
-	self.health_regeneration = self:GetTalentSpecialValueFor("health_regen")
+	self.mana_regeneration = self:GetSpecialValueFor("mana_regen")
+	self.health_regeneration = self:GetSpecialValueFor("health_regen")
 end
 
 function modifier_hawk_spirit_ally:DeclareFunctions()

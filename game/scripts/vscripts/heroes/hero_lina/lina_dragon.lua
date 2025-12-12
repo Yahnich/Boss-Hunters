@@ -22,7 +22,7 @@ function lina_dragon:OnSpellStart()
     EmitSoundOn("Hero_Lina.DragonSlave", caster)
 
     self.castPoint = caster:GetAbsOrigin()
-    self:FireLinearProjectile("particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf", CalculateDirection(point, caster)*self:GetTalentSpecialValueFor("speed"), self:GetTrueCastRange(), self:GetTalentSpecialValueFor("width"), {}, false, true, self:GetTalentSpecialValueFor("width"))
+    self:FireLinearProjectile("particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf", CalculateDirection(point, caster)*self:GetSpecialValueFor("speed"), self:GetTrueCastRange(), self:GetSpecialValueFor("width"), {}, false, true, self:GetSpecialValueFor("width"))
 end
 
 function lina_dragon:OnProjectileHit(hTarget, vLocation)
@@ -30,23 +30,23 @@ function lina_dragon:OnProjectileHit(hTarget, vLocation)
     
     if hTarget ~= nil then
 		if hTarget:TriggerSpellAbsorb( self ) then return end
-        self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
+        self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, 0)
     else
         local fireFX = ParticleManager:CreateParticle("particles/units/heroes/hero_lina/lina_dragons_breath.vpcf", PATTACH_CUSTOMORIGIN, caster)
         ParticleManager:SetParticleControl(fireFX, 0, self.castPoint)
         ParticleManager:SetParticleControl(fireFX, 1, vLocation)
-        ParticleManager:SetParticleControl(fireFX, 2, Vector(self:GetTalentSpecialValueFor("duration"), 0, 0))
+        ParticleManager:SetParticleControl(fireFX, 2, Vector(self:GetSpecialValueFor("duration"), 0, 0))
         ParticleManager:ReleaseParticleIndex(fireFX)
         local count = 0
-        local tickRate = self:GetTalentSpecialValueFor("tick_rate")
+        local tickRate = self:GetSpecialValueFor("tick_rate")
         Timers:CreateTimer(tickRate, function()
-            if count < self:GetTalentSpecialValueFor("duration") then
-                local enemies = caster:FindEnemyUnitsInLine(self.castPoint, vLocation, self:GetTalentSpecialValueFor("radius"), {})
+            if count < self:GetSpecialValueFor("duration") then
+                local enemies = caster:FindEnemyUnitsInLine(self.castPoint, vLocation, self:GetSpecialValueFor("radius"), {})
                 for _,enemy in pairs(enemies) do
                     if caster:HasTalent("special_bonus_unique_lina_dragon_2") then
                         enemy:AddNewModifier(caster, self, "modifier_lina_dragon", {Duration = tickRate})
                     end
-                    self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage_flame"), {}, 0)
+                    self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage_flame"), {}, 0)
                 end
                 count = count + tickRate
                 return tickRate

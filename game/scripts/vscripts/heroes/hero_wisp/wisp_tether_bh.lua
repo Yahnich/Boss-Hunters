@@ -51,7 +51,7 @@ function wisp_tether_bh:OnSpellStart()
 		local target = self:GetCursorTarget()
 
 		caster:Stop()
-		local pullDistance = self:GetTalentSpecialValueFor("pull_distance")
+		local pullDistance = self:GetSpecialValueFor("pull_distance")
 		if CalculateDistance(target, caster) > pullDistance * 2 then
 			caster:AddNewModifier(caster, self, "modifier_wisp_tether_bh_motion", {Duration = 5})
 		end
@@ -67,12 +67,12 @@ end
 modifier_wisp_tether_bh = class({})
 
 function modifier_wisp_tether_bh:OnCreated(table)
-	self.bonus_ms = self:GetTalentSpecialValueFor("bonus_ms")
+	self.bonus_ms = self:GetSpecialValueFor("bonus_ms")
 	if IsServer() then
 		local caster = self:GetCaster()
 		self.target = self:GetAbility():GetCursorTarget()
-		self.range = self:GetTalentSpecialValueFor("break_distance") + caster:GetBonusCastRange()
-		self.restoreMultiplier = self:GetTalentSpecialValueFor("restore_amp")/100
+		self.range = self:GetSpecialValueFor("break_distance") + caster:GetBonusCastRange()
+		self.restoreMultiplier = self:GetSpecialValueFor("restore_amp")/100
 
 		EmitSoundOn("Hero_Wisp.Tether", caster)
 
@@ -201,7 +201,7 @@ end
 
 modifier_wisp_tether_bh_target = class({})
 function modifier_wisp_tether_bh_target:OnCreated(table)
-	self.bonus_ms = self:GetTalentSpecialValueFor("bonus_ms")
+	self.bonus_ms = self:GetSpecialValueFor("bonus_ms")
 end
 
 function modifier_wisp_tether_bh_target:OnRemoved()
@@ -257,7 +257,7 @@ function modifier_wisp_tether_bh_motion:OnCreated(table)
 
 		self.speed = 1000 * FrameTime()
 
-		self.maxDistance = self:GetTalentSpecialValueFor("pull_distance")
+		self.maxDistance = self:GetSpecialValueFor("pull_distance")
 
 		self.currentDistance = 0
 

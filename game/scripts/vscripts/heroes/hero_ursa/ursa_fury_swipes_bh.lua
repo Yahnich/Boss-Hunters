@@ -20,8 +20,8 @@ function modifier_ursa_fury_swipes_bh_handle:OnCreated()
 end
 
 function modifier_ursa_fury_swipes_bh_handle:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("bonus_ad")
-	self.duration = self:GetTalentSpecialValueFor("duration")
+	self.damage = self:GetSpecialValueFor("bonus_ad")
+	self.duration = self:GetSpecialValueFor("duration")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_ursa_fury_swipes_1")
 	self.talent1Heal = self:GetCaster():FindTalentValue("special_bonus_unique_ursa_fury_swipes_1") / 100
 	
@@ -68,7 +68,7 @@ end
 
 function modifier_ursa_fury_swipes_bh:OnRefresh(table)
 	local caster = self:GetCaster()
-	self.damage = self:GetTalentSpecialValueFor("bonus_ad") * self:GetStackCount()
+	self.damage = self:GetSpecialValueFor("bonus_ad") * self:GetStackCount()
 	self.talent2 = caster:HasTalent("special_bonus_unique_ursa_fury_swipes_2")
 	self.talent2Percent = caster:FindTalentValue("special_bonus_unique_ursa_fury_swipes_2") / 100
 	if IsServer() then

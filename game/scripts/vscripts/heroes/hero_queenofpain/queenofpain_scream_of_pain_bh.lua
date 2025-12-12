@@ -1,14 +1,14 @@
 queenofpain_scream_of_pain_bh = class({})
 
 function queenofpain_scream_of_pain_bh:GetCastRange( target, position )
-	return self:GetTalentSpecialValueFor("area_of_effect")
+	return self:GetSpecialValueFor("area_of_effect")
 end
 
 function queenofpain_scream_of_pain_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local radius = self:GetTalentSpecialValueFor("area_of_effect")
-	local speed = self:GetTalentSpecialValueFor("projectile_speed")
+	local radius = self:GetSpecialValueFor("area_of_effect")
+	local speed = self:GetSpecialValueFor("projectile_speed")
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
 		self:FireTrackingProjectile("particles/units/heroes/hero_queenofpain/queen_scream_of_pain.vpcf", enemy, speed)
 	end
@@ -22,8 +22,8 @@ function queenofpain_scream_of_pain_bh:OnProjectileHit( target, position )
 		if not target:IsSameTeam(caster) and not target:TriggerSpellAbsorb( self ) then
 			local damage = self:DealDamage( caster, target )
 			if caster:HasTalent("special_bonus_unique_queenofpain_scream_of_pain_1") and not target:IsMinion() then
-				for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( target:GetAbsOrigin(), self:GetTalentSpecialValueFor("area_of_effect") ) ) do
-					self:FireTrackingProjectile("particles/units/heroes/hero_queenofpain/queen_scream_of_pain.vpcf", ally, self:GetTalentSpecialValueFor("projectile_speed"), {source = target})
+				for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( target:GetAbsOrigin(), self:GetSpecialValueFor("area_of_effect") ) ) do
+					self:FireTrackingProjectile("particles/units/heroes/hero_queenofpain/queen_scream_of_pain.vpcf", ally, self:GetSpecialValueFor("projectile_speed"), {source = target})
 				end
 			end
 			if caster:HasTalent("special_bonus_unique_queenofpain_scream_of_pain_2") then

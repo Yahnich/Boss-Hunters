@@ -16,13 +16,13 @@ function tide_the_kraken:OnSpellStart()
     local i = 0
     local t = 25
 	
-	local maxRadius = self:GetTalentSpecialValueFor("radius")
+	local maxRadius = self:GetSpecialValueFor("radius")
 
     EmitSoundOn("Ability.Ravage", caster)
 
     local nfx2 = ParticleManager:CreateParticle("particles/econ/events/ti7/shivas_guard_active_ti7.vpcf", PATTACH_POINT, caster)
     ParticleManager:SetParticleControl(nfx2, 0, point)
-    ParticleManager:SetParticleControl(nfx2, 1, Vector(900,4,self:GetTalentSpecialValueFor("radius")/2))
+    ParticleManager:SetParticleControl(nfx2, 1, Vector(900,4,self:GetSpecialValueFor("radius")/2))
     ParticleManager:ReleaseParticleIndex(nfx2)
 
     local nfx3 = ParticleManager:CreateParticle("particles/units/heroes/hero_tidehunter/tidehunter_spell_ravage.vpcf", PATTACH_POINT, caster)
@@ -83,8 +83,8 @@ end
 
 function modifier_the_kraken:OnIntervalThink()
 	if not self:GetParent():TriggerSpellAbsorb( self:GetAbility() ) then
-		self:GetAbility():Stun(self:GetParent(), self:GetTalentSpecialValueFor("duration"), false)
-		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("damage"), {}, 0)
+		self:GetAbility():Stun(self:GetParent(), self:GetSpecialValueFor("duration"), false)
+		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetSpecialValueFor("damage"), {}, 0)
 	end
     self:Destroy()
 end

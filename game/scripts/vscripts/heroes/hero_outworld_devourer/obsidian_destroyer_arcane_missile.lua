@@ -32,7 +32,7 @@ function obsidian_destroyer_arcane_missile:GetCastRange(location, target)
 end
 
 function obsidian_destroyer_arcane_missile:GetAOERadius()
-	return self:GetTalentSpecialValueFor("int_splash_radius")	
+	return self:GetSpecialValueFor("int_splash_radius")	
 end
 
 function obsidian_destroyer_arcane_missile:LaunchArcaneOrb(target, bAttack)
@@ -60,7 +60,7 @@ function obsidian_destroyer_arcane_missile:OnProjectileHit(target, position)
 		local caster = self:GetCaster()
 		local heal = 0
 		local spellsteal = caster:FindTalentValue("special_bonus_unique_obsidian_destroyer_arcane_missile_1") / 100
-		local mainDamage = self:DealDamage(caster, target, caster:GetMana() * self:GetTalentSpecialValueFor("mana_pool_damage_pct") / 100, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+		local mainDamage = self:DealDamage(caster, target, caster:GetMana() * self:GetSpecialValueFor("mana_pool_damage_pct") / 100, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 		heal = heal + mainDamage * spellsteal
 		if caster:HasTalent("special_bonus_unique_obsidian_destroyer_arcane_missile_2") then
 			ParticleManager:FireParticle("particles/units/hero_obsidian_destroyer/obsidian_destroyer_arcane_orb_aoe.vpcf", PATTACH_POINT_FOLLOW, target)

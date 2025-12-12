@@ -12,7 +12,7 @@ function grimstroke_blood:IsHiddenWhenStolen()
 end
 
 function grimstroke_blood:GetCastRange(vLocation, hTarget)
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function grimstroke_blood:GetIntrinsicModifierName()
@@ -42,10 +42,10 @@ end
 function grimstroke_blood:CreateInkSpot(vLocation, bMinion)
 	local caster = self:GetCaster()
 
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local heal = caster:GetIntellect( false) * self:GetTalentSpecialValueFor("heal_creep")
+	local duration = self:GetSpecialValueFor("duration")
+	local heal = caster:GetIntellect( false) * self:GetSpecialValueFor("heal_creep")
 	if not bMinion then
-		heal = caster:GetIntellect( false) * self:GetTalentSpecialValueFor("heal")
+		heal = caster:GetIntellect( false) * self:GetSpecialValueFor("heal")
 	end
 	CreateModifierThinker(caster, self, "modifier_grimstroke_blood_thing", {Duration = duration, Heal = heal}, vLocation, caster:GetTeam(), false)
 end
@@ -54,7 +54,7 @@ modifier_grimstroke_blood = class({})
 
 function modifier_grimstroke_blood:OnCreated(table)
 	if IsServer() then
-		self.heal = self:GetTalentSpecialValueFor("heal_creep")
+		self.heal = self:GetSpecialValueFor("heal_creep")
 	end
 end
 
@@ -66,7 +66,7 @@ function modifier_grimstroke_blood:OnDeath(params)
 	if IsServer() then
 		local parent = self:GetParent()
 		local unit = params.unit
-		if CalculateDistance(unit, parent) <= self:GetTalentSpecialValueFor("radius") then
+		if CalculateDistance(unit, parent) <= self:GetSpecialValueFor("radius") then
 			if unit:GetTeam() ~= parent:GetTeam() then
 				self:GetAbility():CreateInkSpot(unit:GetAbsOrigin(), self.heal)
 			end
@@ -93,7 +93,7 @@ function modifier_grimstroke_blood_thing:OnCreated(table)
 		local caster = self:GetCaster()
 		local point = self:GetParent():GetAbsOrigin()
 
-		self.radius = self:GetTalentSpecialValueFor("search_radius")
+		self.radius = self:GetSpecialValueFor("search_radius")
 		self.speed = caster:GetProjectileSpeed()
 
 		self.heal = table.Heal

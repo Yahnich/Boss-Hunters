@@ -13,7 +13,7 @@ function wisp_worm_hole:IsHiddenWhenStolen()
 end
 
 function wisp_worm_hole:GetChannelTime()
-    return self:GetTalentSpecialValueFor("channel_time")
+    return self:GetSpecialValueFor("channel_time")
 end
 
 function wisp_worm_hole:GetChannelAnimation()
@@ -37,7 +37,7 @@ function wisp_worm_hole:OnChannelFinish(bInterrupted)
 		local caster = self:GetCaster()
 		local point = self:GetCursorPosition()
 
-		local duration = self:GetTalentSpecialValueFor("duration")
+		local duration = self:GetSpecialValueFor("duration")
 
 		if self.startPortal and self.endPortal then
 			self.startPortal:Destroy()
@@ -64,7 +64,7 @@ function modifier_wisp_worm_hole:OnCreated(table)
 					ParticleManager:SetParticleControl(nfx, 0, self:GetParent():GetAbsOrigin())
 		self:AttachEffect(nfx)
 
-		self.radius = self:GetTalentSpecialValueFor("radius")
+		self.radius = self:GetSpecialValueFor("radius")
 
 		self.talentRadius = self:GetCaster():FindTalentValue("special_bonus_unique_wisp_worm_hole_1")
 
@@ -80,7 +80,7 @@ function modifier_wisp_worm_hole:OnIntervalThink()
 	if self:GetAbility().endPortal then
 		local oppoPoint = self:GetAbility().endPortal:GetAbsOrigin()
 
-		local sickDuration = self:GetTalentSpecialValueFor("sickness_duration")
+		local sickDuration = self:GetSpecialValueFor("sickness_duration")
 
 		local allies = caster:FindFriendlyUnitsInRadius(point, self.radius)
 		for _,ally in pairs(allies) do
@@ -125,7 +125,7 @@ function modifier_wisp_worm_hole_end:OnCreated(table)
 					ParticleManager:SetParticleControl(nfx, 0, self:GetParent():GetAbsOrigin())
 		self:AttachEffect(nfx)
 
-		self.radius = self:GetTalentSpecialValueFor("radius")
+		self.radius = self:GetSpecialValueFor("radius")
 
 		self.talentRadius = self:GetCaster():FindTalentValue("special_bonus_unique_wisp_worm_hole_1")
 
@@ -141,7 +141,7 @@ function modifier_wisp_worm_hole_end:OnIntervalThink()
 	if self:GetAbility().startPortal then
 		local oppoPoint = self:GetAbility().startPortal:GetAbsOrigin()
 
-		local sickDuration = self:GetTalentSpecialValueFor("sickness_duration")
+		local sickDuration = self:GetSpecialValueFor("sickness_duration")
 
 		local allies = caster:FindFriendlyUnitsInRadius(point, self.radius)
 		for _,ally in pairs(allies) do

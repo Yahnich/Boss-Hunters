@@ -8,7 +8,7 @@ modifier_razor_storm_surge_bh_handle = class({})
 LinkLuaModifier("modifier_razor_storm_surge_bh_handle", "heroes/hero_razor/razor_storm_surge_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_razor_storm_surge_bh_handle:OnCreated()
-	self.duration = self:GetTalentSpecialValueFor("duration")
+	self.duration = self:GetSpecialValueFor("duration")
 end
 
 function modifier_razor_storm_surge_bh_handle:DeclareFunctions()
@@ -37,7 +37,7 @@ modifier_razor_storm_surge_bh = class({})
 LinkLuaModifier("modifier_razor_storm_surge_bh", "heroes/hero_razor/razor_storm_surge_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_razor_storm_surge_bh:OnCreated()
-	self.movespeed = self:GetTalentSpecialValueFor("movespeed_bonus")
+	self.movespeed = self:GetSpecialValueFor("movespeed_bonus")
 end
 
 function modifier_razor_storm_surge_bh:DeclareFunctions()

@@ -11,18 +11,18 @@ end
 function alchemist_chemical_rage_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	EmitSoundOn("Hero_Alchemist.ChemicalRage.Cast", caster)
-	caster:AddNewModifier(caster, self, "modifier_alchemist_chemical_rage_bh", {duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_alchemist_chemical_rage_bh", {duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_alchemist_chemical_rage_bh = class({})
 LinkLuaModifier("modifier_alchemist_chemical_rage_bh", "heroes/hero_alchemist/alchemist_chemical_rage_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_alchemist_chemical_rage_bh:OnCreated()
-	self.bat = self:GetTalentSpecialValueFor("base_attack_time")
-	self.hp = self:GetTalentSpecialValueFor("bonus_hp")
-	self.hpr = self:GetTalentSpecialValueFor("bonus_health_regen")
-	self.mpr = self:GetTalentSpecialValueFor("bonus_mana_regen")
-	self.ms = self:GetTalentSpecialValueFor("bonus_movespeed")
+	self.bat = self:GetSpecialValueFor("base_attack_time")
+	self.hp = self:GetSpecialValueFor("bonus_hp")
+	self.hpr = self:GetSpecialValueFor("bonus_health_regen")
+	self.mpr = self:GetSpecialValueFor("bonus_mana_regen")
+	self.ms = self:GetSpecialValueFor("bonus_movespeed")
 	self:GetParent():HookInModifier("GetBaseAttackTime_Bonus", self)
 	if IsServer() then
 		Timers:CreateTimer( function() self:GetCaster():HealEvent( self.hp, self:GetAbility(), self:GetCaster() ) end )
@@ -31,12 +31,12 @@ function modifier_alchemist_chemical_rage_bh:OnCreated()
 end
 
 function modifier_alchemist_chemical_rage_bh:OnRefresh()
-	self.bat = self:GetTalentSpecialValueFor("base_attack_time")
-	self.hp = self:GetTalentSpecialValueFor("bonus_hp")
-	self.hpr = self:GetTalentSpecialValueFor("bonus_health_regen")
-	self.mpr = self:GetTalentSpecialValueFor("bonus_mana_regen")
+	self.bat = self:GetSpecialValueFor("base_attack_time")
+	self.hp = self:GetSpecialValueFor("bonus_hp")
+	self.hpr = self:GetSpecialValueFor("bonus_health_regen")
+	self.mpr = self:GetSpecialValueFor("bonus_mana_regen")
 	self:GetParent():HookInModifier("GetBaseAttackTime_Bonus", self)
-	self.ms = self:GetTalentSpecialValueFor("bonus_movespeed")
+	self.ms = self:GetSpecialValueFor("bonus_movespeed")
 	if IsServer() then
 		Timers:CreateTimer( function() self:GetCaster():HealEvent( self.hp, self:GetAbility(), self:GetCaster() ) end )
 	end

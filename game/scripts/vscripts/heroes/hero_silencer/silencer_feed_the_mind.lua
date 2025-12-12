@@ -1,7 +1,7 @@
 silencer_feed_the_mind = class({})
 
 function silencer_feed_the_mind:GetCastRange( target, position )
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function silencer_feed_the_mind:GetIntrinsicModifierName()
@@ -12,10 +12,10 @@ modifier_silencer_feed_the_mind = class({})
 LinkLuaModifier( "modifier_silencer_feed_the_mind", "heroes/hero_silencer/silencer_feed_the_mind", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_silencer_feed_the_mind:OnCreated()
-	self.bossInt = self:GetTalentSpecialValueFor("boss_int")
-	self.minionInt = self:GetTalentSpecialValueFor("minion_int")
-	self.minionDur = self:GetTalentSpecialValueFor("minion_duration")
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.bossInt = self:GetSpecialValueFor("boss_int")
+	self.minionInt = self:GetSpecialValueFor("minion_int")
+	self.minionDur = self:GetSpecialValueFor("minion_duration")
+	self.radius = self:GetSpecialValueFor("radius")
 	if IsServer() then
 		self:GetParent():RemoveModifierByName("modifier_silencer_int_steal")
 		self:SetStackCount(0)

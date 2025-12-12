@@ -17,7 +17,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Crystal.CrystalNova"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -43,35 +43,18 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"400"
+			"radius"				"400"
 				"LinkedSpecialBonus"	"special_bonus_unique_crystal_maiden_crystal_nova_1"
-			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"chill"					"10 15 20 25 30 35 40"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4.5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"vision_duration"		"6.0"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"nova_damage"			"100 150 200 250 300 350 400"
+			"duration"				"4.5"
+			"vision_duration"		"6.0"
+			"nova_damage"			"100 150 200 250 300 350 400"
 				"LinkedSpecialBonus"	"special_bonus_unique_crystal_maiden_crystal_nova_2"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
@@ -85,13 +68,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1200"
-			}
+			"value"					"1200"
 		}
 	}
 	"special_bonus_unique_crystal_maiden_crystal_nova_2"
@@ -104,13 +83,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"150"
-			}
+			"value"					"150"
 		}
 	}
 	//=================================================================================================================
@@ -132,7 +107,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"hero_Crystal.frostbite"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -161,38 +136,32 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"chill_damage"						"2 3 4 5 6 7 8"
-			}
 			"02"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"freeze_duration"					"1.0"
-			}
 			"03"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"root_duration"						"2.0"
-			}
 			"04"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"creep_duration"					"10.0"
-			}
 			"05"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"damage"							"50 66 83 100 116 133 150"
-			}
 			"06"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"cast_range_tooltip"				"525 550 575 600 625 650 675"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -207,13 +176,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"8"
-			}
+			"value"					"8"
 		}
 	}
 	"special_bonus_unique_crystal_maiden_frostbite_2"
@@ -226,18 +191,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"35"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
-			}
+			"value"					"35"
+			"duration"				"5"
 		}
 	}
 	//=================================================================================================================
@@ -252,7 +209,7 @@
 		"AbilityTextureName"			"crystal_maiden_brilliance_aura"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -266,28 +223,24 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.2"
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"mana_regen"		"1 1.5 2 2.5 3 3.5 4"
-			}
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"mana_regen_self"	"2 3 4 5 6 7 8"
-			}
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"manacost"			"5 7.5 10 12.5 15 17.5 20"
-			}
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"manacost_self"		"10 15 20 25 30 35 40"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -301,18 +254,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"0.3"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"self"					"0.6"
-			}
+			"value"					"0.3"
+			"self"					"0.6"
 		}
 	}
 	"special_bonus_unique_crystal_maiden_crystalline_aura_2"
@@ -325,18 +270,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"15"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"self"					"25"
-			}
+			"value"					"15"
+			"self"					"25"
 		}
 	}
 	//=================================================================================================================
@@ -357,18 +294,16 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.2"
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"cdr"				"1"
-			}
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"mana_cost"			"1"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -384,7 +319,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"2"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -418,84 +353,58 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"1000"
-				"LinkedSpecialBonus"		"special_bonus_unique_crystal_maiden_arcane_blizzard_2"
-			}		
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"explosion_radius"			"300"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"explosion_interval"		"0.1"
+			"radius"					"1000"
+				"LinkedSpecialBonus"		"special_bonus_unique_crystal_maiden_arcane_blizzard_2"		
+			"explosion_radius"			"300"
+"explosion_interval"		"0.1"
 				"LinkedSpecialBonus"		"special_bonus_unique_crystal_maiden_arcane_blizzard_2"
 				"LinkedSpecialBonusField" 	"value2"
-			}
 			"05"
 			{	
 				"var_type"					"FIELD_INTEGER"
 				"chill_init"				"30"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"chill_hit"					"5"
-			}
+			"chill_hit"					"5"
 			"07"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"slow_duration"				"1.0"
-			}
 			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"explosion_min_dist"		"265"
-			}
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"explosion_max_dist"	"900"
-			}
 			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"105 170 250 325 405 490"
-			}
 			"11"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_scepter"		"120 200 280 360 440 520"
 				"RequiresScepter"		"1"
-			}
 			"12"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"scepter_chill_init"	"40"
 				"RequiresScepter"		"1"
-			}
 			"13"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"scepter_chill_hit"		"7"
 				"RequiresScepter"		"1"
-			}
 			"16"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration_tooltip"		"10"
-			}
 			"16"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_armor"			"20"
-			}
 		}
 		
 		// Data driven
@@ -521,13 +430,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"special_bonus_unique_crystal_maiden_arcane_blizzard_2"
@@ -540,18 +445,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"500"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-0.025"
-			}
+			"value"					"500"
+			"value"					"-0.025"
 		}
 	}
 }

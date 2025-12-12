@@ -4,10 +4,10 @@ function skywrath_flare:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local radius = self:GetSpecialValueFor("radius")
 
-	local tick_rate = self:GetTalentSpecialValueFor("tick_rate")
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local tick_rate = self:GetSpecialValueFor("tick_rate")
+	local duration = self:GetSpecialValueFor("duration")
 
 	EmitSoundOn("Hero_SkywrathMage.MysticFlare.Cast", caster)
 
@@ -24,9 +24,9 @@ end
 modifier_skywrath_flare = class({})
 LinkLuaModifier( "modifier_skywrath_flare","heroes/hero_skywrath/skywrath_flare.lua",LUA_MODIFIER_MOTION_NONE )
 function modifier_skywrath_flare:OnCreated(table)
-	self.tick_rate = self:GetTalentSpecialValueFor("tick_rate")
-	self.damage = self:GetTalentSpecialValueFor("damage") / self:GetTalentSpecialValueFor("duration")
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.tick_rate = self:GetSpecialValueFor("tick_rate")
+	self.damage = self:GetSpecialValueFor("damage") / self:GetSpecialValueFor("duration")
+	self.radius = self:GetSpecialValueFor("radius")
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_skywrath_flare_1")
 	self.talent1Pct = self:GetCaster():FindTalentValue("special_bonus_unique_skywrath_flare_1") / 100

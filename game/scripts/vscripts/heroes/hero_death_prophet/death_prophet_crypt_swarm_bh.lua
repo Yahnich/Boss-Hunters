@@ -15,10 +15,10 @@ function death_prophet_crypt_swarm_bh:OnSpellStart()
 	if caster:HasTalent("special_bonus_unique_death_prophet_crypt_swarm_2") then
 		direction = caster:GetForwardVector()
 	end
-	local speed = self:GetTalentSpecialValueFor("speed")
-	local distance = self:GetTalentSpecialValueFor("range")
-	local width = self:GetTalentSpecialValueFor("start_radius")
-	local endWidth = self:GetTalentSpecialValueFor("end_radius")
+	local speed = self:GetSpecialValueFor("speed")
+	local distance = self:GetSpecialValueFor("range")
+	local width = self:GetSpecialValueFor("start_radius")
+	local endWidth = self:GetSpecialValueFor("end_radius")
 	
 	
 	if caster:HasTalent("special_bonus_unique_death_prophet_crypt_swarm_2") then
@@ -44,7 +44,7 @@ function death_prophet_crypt_swarm_bh:OnProjectileHitHandle( target, position, i
 		if caster:HasTalent("special_bonus_unique_death_prophet_crypt_swarm_1") then
 			target:AddNewModifier( caster, self, "modifier_death_prophet_crypt_swarm_talent", {duration = caster:FindTalentValue("special_bonus_unique_death_prophet_crypt_swarm_1", "duration")})
 		else
-			local damage = self:GetTalentSpecialValueFor("damage")
+			local damage = self:GetSpecialValueFor("damage")
 			self:DealDamage( caster, target, damage )
 		end
 		target:EmitSound("Hero_DeathProphet.CarrionSwarm.Damage")
@@ -60,7 +60,7 @@ LinkLuaModifier( "modifier_death_prophet_crypt_swarm_talent", "heroes/hero_death
 if IsServer() then
 	function modifier_death_prophet_crypt_swarm_talent:OnCreated()
 		self.tick = self:GetRemainingTime() / self:GetCaster():FindTalentValue("special_bonus_unique_death_prophet_crypt_swarm_1", "duration")
-		self.damage = self:GetTalentSpecialValueFor("damage") / self:GetCaster():FindTalentValue("special_bonus_unique_death_prophet_crypt_swarm_1", "duration")
+		self.damage = self:GetSpecialValueFor("damage") / self:GetCaster():FindTalentValue("special_bonus_unique_death_prophet_crypt_swarm_1", "duration")
 		self.lifesteal = 1
 		if not self:GetParent():IsRoundNecessary() then
 			self.lifesteal = 0.25
@@ -73,7 +73,7 @@ if IsServer() then
 			self.tick = self:GetRemainingTime() / self:GetCaster():FindTalentValue("special_bonus_unique_death_prophet_crypt_swarm_1", "duration")
 			self:StartIntervalThink( self.tick )
 		end
-		self.damage = self:GetTalentSpecialValueFor("damage") / self:GetCaster():FindTalentValue("special_bonus_unique_death_prophet_crypt_swarm_1", "duration")
+		self.damage = self:GetSpecialValueFor("damage") / self:GetCaster():FindTalentValue("special_bonus_unique_death_prophet_crypt_swarm_1", "duration")
 		self.lifesteal = 1
 		if not self:GetParent():IsRoundNecessary() then
 			self.lifesteal = 0.25

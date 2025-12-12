@@ -4,12 +4,12 @@ function silencer_last_word_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	local duration = self:GetTalentSpecialValueFor("debuff_duration")
+	local duration = self:GetSpecialValueFor("debuff_duration")
 	if not target:TriggerSpellAbsorb( self ) then
 		target:RemoveModifierByName("modifier_silencer_last_word_bh")
 		target:AddNewModifier(caster, self, "modifier_silencer_last_word_bh", {duration = duration})
 		if caster:HasTalent("special_bonus_unique_silencer_last_word_2") then
-			target:AddNewModifier(caster, self, "modifier_silencer_last_word_bh_talent", {duration = duration + self:GetTalentSpecialValueFor("duration")})
+			target:AddNewModifier(caster, self, "modifier_silencer_last_word_bh_talent", {duration = duration + self:GetSpecialValueFor("duration")})
 		end
 		local fx = ParticleManager:CreateParticle("particles/units/heroes/hero_silencer/silencer_last_word_status_cast.vpcf", PATTACH_POINT_FOLLOW, caster)
 		ParticleManager:SetParticleControlEnt(fx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
@@ -28,8 +28,8 @@ LinkLuaModifier( "modifier_silencer_last_word_bh", "heroes/hero_silencer/silence
 
 if IsServer() then
 	function modifier_silencer_last_word_bh:OnCreated()
-		self.silenceDuration = self:GetTalentSpecialValueFor("duration")
-		self.damage = self:GetTalentSpecialValueFor("damage")
+		self.silenceDuration = self:GetSpecialValueFor("duration")
+		self.damage = self:GetSpecialValueFor("damage")
 		self:GetAbility():StartDelayedCooldown()
 	end
 

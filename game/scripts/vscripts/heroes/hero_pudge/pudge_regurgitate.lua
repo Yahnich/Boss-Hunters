@@ -14,14 +14,14 @@ function pudge_regurgitate:OnSpellStart()
 	EmitSoundOn("Hero_Pudge.Eject", caster)
 	caster:AddNewModifier(caster, self, "modifier_pudge_regurgitate", {Duration = 1})
 	
-	self:DealDamage( caster, caster, caster:GetHealth( ) * self:GetTalentSpecialValueFor("health_cost") / 100, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NON_LETHAL + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY} )
+	self:DealDamage( caster, caster, caster:GetHealth( ) * self:GetSpecialValueFor("health_cost") / 100, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NON_LETHAL + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY} )
 end
 
 modifier_pudge_regurgitate = class({})
 LinkLuaModifier("modifier_pudge_regurgitate", "heroes/hero_pudge/pudge_regurgitate", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_pudge_regurgitate:OnCreated(table)
-	self.duration = self:GetTalentSpecialValueFor("duration")
+	self.duration = self:GetSpecialValueFor("duration")
 	if IsServer() then
 		local caster = self:GetParent()
 
@@ -76,17 +76,18 @@ LinkLuaModifier("modifier_pudge_regurgitate_debuff", "heroes/hero_pudge/pudge_re
 
 function modifier_pudge_regurgitate_debuff:OnCreated()
 	self:OnRefresh()
-	
-	if IsServer() and self:GetCaster():HasTalent("special_bonus_unique_pudge_regurgitate_1") then
-		self.talent1Dmg = self:GetCaster():FindTalentValue("special_bonus_unique_pudge_regurgitate_1") / 100
+	if IsServer() and self.strength_damage > 0 then
 		self:StartIntervalThink(1)
 	end
 end
 
 function modifier_pudge_regurgitate_debuff:OnRefresh()
-	self.armor = self:GetTalentSpecialValueFor("armor_reduction")
-	self.lifesteal = self:GetTalentSpecialValueFor("lifesteal")
-	self.mr = self:GetTalentSpecialValueFor("mr_reduction")
+	self.armor = self:GetSpecialValueFor("armor_reduction")
+	self.lifesteal = self:GetSpecialValueFor("lifesteal")
+	self.mr = self:GetSpecialValueFor("mr_reduction")
+	
+	self.strength_damage = self:GetSpecialValueFor("strength_damage") / 100
+	self.bonus_skin_heap = self:GetSpecialValueFor("bonus_skin_heap")
 	
 	self:GetParent():HookInModifier( "GetModifierLifestealTargetBonus", self )
 end
@@ -100,7 +101,7 @@ function modifier_pudge_regurgitate_debuff:OnIntervalThink()
 	local parent = self:GetParent()
 	local ability = self:GetAbility()
 	
-	ability:DealDamage( caster, parent, caster:GetStrength() * self.talent1Dmg )
+	ability:DealDamage( caster, parent, caster:GetStrength() * self.strength_damage )
 end
 
 function modifier_pudge_regurgitate_debuff:DeclareFunctions()

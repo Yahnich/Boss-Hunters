@@ -71,9 +71,9 @@ function phenx_spirits:OnSpellStart()
         local point = self:GetCursorPosition()
         local dir = CalculateDirection(point, caster:GetAbsOrigin())
         local dist = CalculateDistance(point, caster:GetAbsOrigin())
-        local vel = dir * self:GetTalentSpecialValueFor("spirit_speed")
+        local vel = dir * self:GetSpecialValueFor("spirit_speed")
 
-        self:FireLinearProjectile("particles/units/heroes/hero_phoenix/phoenix_fire_spirit_launch.vpcf", vel, dist, self:GetTalentSpecialValueFor("radius")/1.5, {}, false, true, self:GetTalentSpecialValueFor("radius"))
+        self:FireLinearProjectile("particles/units/heroes/hero_phoenix/phoenix_fire_spirit_launch.vpcf", vel, dist, self:GetSpecialValueFor("radius")/1.5, {}, false, true, self:GetSpecialValueFor("radius"))
 
         -- Update the particle FX
         ParticleManager:SetParticleControl( modifier.pfx, 1, Vector( currentStack, 0, 0 ) )
@@ -95,8 +95,8 @@ function phenx_spirits:OnSpellStart()
     else
         EmitSoundOn("Hero_Phoenix.FireSpirits.Cast", caster)
     
-        local hpCost        = self:GetTalentSpecialValueFor("hp_cost_perc")
-        local numSpirits    = self:GetTalentSpecialValueFor("spirit_count")
+        local hpCost        = self:GetSpecialValueFor("hp_cost_perc")
+        local numSpirits    = self:GetSpecialValueFor("spirit_count")
 
 		local modifier = caster:AddNewModifier(caster, self, "modifier_phenx_spirits_caster", {})
         modifier:SetStackCount( numSpirits )
@@ -120,14 +120,14 @@ function phenx_spirits:OnProjectileHit(hTarget, vLocation)
     local caster = self:GetCaster()
 
     if hTarget ~= nil then
-        hTarget:AddNewModifier(caster, self, "modifier_phenx_spirits_burn", {Duration = self:GetTalentSpecialValueFor("duration")})
+        hTarget:AddNewModifier(caster, self, "modifier_phenx_spirits_burn", {Duration = self:GetSpecialValueFor("duration")})
     else
-        GridNav:DestroyTreesAroundPoint(vLocation, self:GetTalentSpecialValueFor("radius"), false)
-        ParticleManager:FireParticle("particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf", PATTACH_POINT, caster, {[0]=vLocation, [1]=Vector(self:GetTalentSpecialValueFor("radius"), 1, 1)})
-        local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"))
+        GridNav:DestroyTreesAroundPoint(vLocation, self:GetSpecialValueFor("radius"), false)
+        ParticleManager:FireParticle("particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf", PATTACH_POINT, caster, {[0]=vLocation, [1]=Vector(self:GetSpecialValueFor("radius"), 1, 1)})
+        local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetSpecialValueFor("radius"))
         for _,enemy in pairs(enemies) do
 			if not enemy:TriggerSpellAbsorb( self ) then
-				enemy:AddNewModifier(caster, self, "modifier_phenx_spirits_burn", {Duration = self:GetTalentSpecialValueFor("duration")})
+				enemy:AddNewModifier(caster, self, "modifier_phenx_spirits_burn", {Duration = self:GetSpecialValueFor("duration")})
 			end
         end
     end
@@ -149,8 +149,8 @@ function modifier_phenx_spirits_burn:OnCreated(table)
 end
 
 function modifier_phenx_spirits_burn:OnIntervalThink()
-    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("damage_per_second"), {}, 0)
-    self:StartIntervalThink(self:GetTalentSpecialValueFor("tick_interval"))
+    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetSpecialValueFor("damage_per_second"), {}, 0)
+    self:StartIntervalThink(self:GetSpecialValueFor("tick_interval"))
 end
 
 function modifier_phenx_spirits_burn:GetEffectName()
@@ -165,5 +165,5 @@ function modifier_phenx_spirits_burn:DeclareFunctions()
 end
 
 function modifier_phenx_spirits_burn:GetModifierAttackSpeedBonus_Constant()
-    return self:GetTalentSpecialValueFor("attackspeed_slow")
+    return self:GetSpecialValueFor("attackspeed_slow")
 end

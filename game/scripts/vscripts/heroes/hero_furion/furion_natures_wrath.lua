@@ -14,8 +14,8 @@ function furion_natures_wrath:OnSpellStart()
 
 	local previousEnemy = caster
 
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local reviveDuration = self:GetTalentSpecialValueFor("revive_duration")
+	local damage = self:GetSpecialValueFor("damage")
+	local reviveDuration = self:GetSpecialValueFor("revive_duration")
 
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_furion/furion_wrath_of_nature_cast.vpcf", PATTACH_POINT_FOLLOW, caster)
 	ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
@@ -53,11 +53,11 @@ function furion_natures_wrath:OnSpellStart()
 					
 					
 					self:DealDamage(caster, enemy, damage, {}, 0)
-					damage = damage + damage * self:GetTalentSpecialValueFor("damage_add") / 100
+					damage = damage + damage * self:GetSpecialValueFor("damage_add") / 100
 
 					previousEnemy = enemy
 
-					return self:GetTalentSpecialValueFor("jump_delay")
+					return self:GetSpecialValueFor("jump_delay")
 				end
 			end -- no valid targets found
 		end

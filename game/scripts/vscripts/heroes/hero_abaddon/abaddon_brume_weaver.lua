@@ -16,8 +16,8 @@ function abaddon_brume_weaver:OnSpellStart()
 	if IsServer() then
 		local caster = self:GetCaster()
 		
-		self:DealDamage( caster, caster, self:GetTalentSpecialValueFor("base_heal"), {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NON_LETHAL} )
-		caster:AddNewModifier( caster, self, "modifier_abaddon_brume_weaver_active", {duration = self:GetTalentSpecialValueFor("buff_duration")})
+		self:DealDamage( caster, caster, self:GetSpecialValueFor("base_heal"), {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NON_LETHAL} )
+		caster:AddNewModifier( caster, self, "modifier_abaddon_brume_weaver_active", {duration = self:GetSpecialValueFor("buff_duration")})
 	end
 end
 
@@ -25,15 +25,15 @@ LinkLuaModifier( "modifier_abaddon_brume_weaver_passive", "heroes/hero_abaddon/a
 modifier_abaddon_brume_weaver_passive = class({})
 
 function modifier_abaddon_brume_weaver_passive:OnCreated()
-	self.healFactor = self:GetAbility():GetTalentSpecialValueFor("heal_pct") / 100
-	self.healDuration = self:GetAbility():GetTalentSpecialValueFor("heal_duration")
-	self.evasion = self:GetAbility():GetTalentSpecialValueFor("evasion")
+	self.healFactor = self:GetAbility():GetSpecialValueFor("heal_pct") / 100
+	self.healDuration = self:GetAbility():GetSpecialValueFor("heal_duration")
+	self.evasion = self:GetAbility():GetSpecialValueFor("evasion")
 end
 
 function modifier_abaddon_brume_weaver_passive:OnRefresh()
-	self.healFactor = self:GetAbility():GetTalentSpecialValueFor("heal_pct") / 100
-	self.healDuration = self:GetAbility():GetTalentSpecialValueFor("heal_duration")
-	self.evasion = self:GetAbility():GetTalentSpecialValueFor("evasion")
+	self.healFactor = self:GetAbility():GetSpecialValueFor("heal_pct") / 100
+	self.healDuration = self:GetAbility():GetSpecialValueFor("heal_duration")
+	self.evasion = self:GetAbility():GetSpecialValueFor("evasion")
 end
 
 function modifier_abaddon_brume_weaver_passive:DeclareFunctions()
@@ -88,16 +88,16 @@ LinkLuaModifier( "modifier_abaddon_brume_weaver_active", "heroes/hero_abaddon/ab
 modifier_abaddon_brume_weaver_active = class({})
 
 function modifier_abaddon_brume_weaver_active:OnCreated()
-	self.restoration = self:GetAbility():GetTalentSpecialValueFor("base_heal") / self:GetTalentSpecialValueFor("buff_duration")
+	self.restoration = self:GetAbility():GetSpecialValueFor("base_heal") / self:GetSpecialValueFor("buff_duration")
 	if IsServer() and self:GetCaster():HasTalent("special_bonus_unique_abaddon_brume_weaver_1") then	
 		self.talent1Dmg = self:GetCaster():FindTalentValue("special_bonus_unique_abaddon_brume_weaver_1") / 100
 		self.talent1Radius = self:GetCaster():FindTalentValue("special_bonus_unique_abaddon_brume_weaver_1", "radius")
-		self:StartIntervalThink( 1 * self:GetDuration() / self:GetTalentSpecialValueFor("buff_duration") )
+		self:StartIntervalThink( 1 * self:GetDuration() / self:GetSpecialValueFor("buff_duration") )
 	end
 end
 
 function modifier_abaddon_brume_weaver_active:OnRefresh()
-	self.restoration = self:GetAbility():GetTalentSpecialValueFor("base_heal") / self:GetTalentSpecialValueFor("buff_duration")
+	self.restoration = self:GetAbility():GetSpecialValueFor("base_heal") / self:GetSpecialValueFor("buff_duration")
 end
 
 function modifier_abaddon_brume_weaver_active:OnIntervalThink()

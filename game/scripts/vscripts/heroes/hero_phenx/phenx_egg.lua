@@ -26,10 +26,10 @@ function phenx_egg:OnSpellStart()
 
     local egg = caster:CreateSummon( "npc_dota_phoenix_sun", caster:GetAbsOrigin() )
 	
-	local hp = self:GetTalentSpecialValueFor("max_hero_attacks")
+	local hp = self:GetSpecialValueFor("max_hero_attacks")
 	egg:SetCoreHealth(hp * 2)
 	
-    egg:AddNewModifier(caster, self, "modifier_phenx_egg_form", {Duration = self:GetTalentSpecialValueFor("duration"), ignoreStatusAmp = true})
+    egg:AddNewModifier(caster, self, "modifier_phenx_egg_form", {Duration = self:GetSpecialValueFor("duration"), ignoreStatusAmp = true})
 	egg.owners = {}
     EmitSoundOn("Hero_Phoenix.SuperNova.Begin", egg)
 
@@ -81,7 +81,7 @@ function modifier_phenx_egg_form:OnCreated(table)
         ParticleManager:SetParticleControlEnt(self.nfx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), false)
         ParticleManager:SetParticleControlEnt(self.nfx, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), false)
 
-        self.maxAttacks = self:GetTalentSpecialValueFor("max_hero_attacks") * 2
+        self.maxAttacks = self:GetSpecialValueFor("max_hero_attacks") * 2
 		self:GetParent().supernova_numAttacked = 0
         self:StartIntervalThink(0.5)
     end
@@ -91,21 +91,21 @@ function modifier_phenx_egg_form:OnIntervalThink()
 	local egg = self:GetParent()
 	local caster = self:GetCaster()
 	
-    egg:ModifyThreat(self:GetTalentSpecialValueFor("threat_gain"))
-    GridNav:DestroyTreesAroundPoint(egg:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), false)
+    egg:ModifyThreat(self:GetSpecialValueFor("threat_gain"))
+    GridNav:DestroyTreesAroundPoint(egg:GetAbsOrigin(), self:GetSpecialValueFor("radius"), false)
 	
 	egg:ModifyThreat( caster:GetThreat() )
 	caster:SetThreat(0)
 	
     if self:GetCaster():HasTalent("special_bonus_unique_phenx_egg_2") then
-        local newRadi = self:GetTalentSpecialValueFor("radius")
+        local newRadi = self:GetSpecialValueFor("radius")
         for i=1,5 do
-            pointRando = egg:GetAbsOrigin() + ActualRandomVector(self:GetTalentSpecialValueFor("radius"))
+            pointRando = egg:GetAbsOrigin() + ActualRandomVector(self:GetSpecialValueFor("radius"))
 
             ParticleManager:FireParticle("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf", PATTACH_POINT, egg, {[0]=pointRando})
             local enemies = self:GetCaster():FindEnemyUnitsInRadius(pointRando, 275)
             for _,enemy in pairs(enemies) do
-                self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage_per_sec") * self:GetCaster():FindTalentValue("special_bonus_unique_phenx_egg_2"), {}, 0)
+                self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetSpecialValueFor("damage_per_sec") * self:GetCaster():FindTalentValue("special_bonus_unique_phenx_egg_2"), {}, 0)
             end
         end
     end
@@ -184,10 +184,10 @@ function modifier_phenx_egg_form:OnRemoved()
 			end
             
 
-            local enemies = caster:FindEnemyUnitsInRadius(egg:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+            local enemies = caster:FindEnemyUnitsInRadius(egg:GetAbsOrigin(), self:GetSpecialValueFor("radius"))
             for _,enemy in pairs(enemies) do
 				if not enemy:TriggerSpellAbsorb( self ) then
-					ability:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
+					ability:Stun(enemy, self:GetSpecialValueFor("stun_duration"), false)
 				end
             end
         end
@@ -217,7 +217,7 @@ function modifier_phenx_egg_form:GetAuraDuration()
 end
 
 function modifier_phenx_egg_form:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function modifier_phenx_egg_form:GetAuraSearchFlags()
@@ -248,7 +248,7 @@ function modifier_phenx_egg_burn:OnCreated(table)
 end
 
 function modifier_phenx_egg_burn:OnIntervalThink()
-    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("damage_per_sec"), {}, 0)
+    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetSpecialValueFor("damage_per_sec"), {}, 0)
 end
 
 function modifier_phenx_egg_burn:GetEffectName()

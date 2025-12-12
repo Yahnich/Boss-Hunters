@@ -13,19 +13,19 @@ function chen_angel_persuasion:OnSpellStart()
 
 	EmitSoundOn("Hero_Chen.HolyPersuasionCast", caster)
 
-	self:SummonAngel("npc_chen_creature_1", self:GetTalentSpecialValueFor("tank_health"), self:GetTalentSpecialValueFor("tank_damage"))
-	self:SummonAngel("npc_chen_creature_2", self:GetTalentSpecialValueFor("dps_health"), self:GetTalentSpecialValueFor("dps_damage"))
-	self:SummonAngel("npc_chen_creature_3", self:GetTalentSpecialValueFor("support_health"), self:GetTalentSpecialValueFor("support_damage"))
+	self:SummonAngel("npc_chen_creature_1", self:GetSpecialValueFor("tank_health"), self:GetSpecialValueFor("tank_damage"))
+	self:SummonAngel("npc_chen_creature_2", self:GetSpecialValueFor("dps_health"), self:GetSpecialValueFor("dps_damage"))
+	self:SummonAngel("npc_chen_creature_3", self:GetSpecialValueFor("support_health"), self:GetSpecialValueFor("support_damage"))
 end
 
 function chen_angel_persuasion:SummonAngel(name, health, damage)
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition() + ActualRandomVector(300, 50)
 
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 
 	if caster:HasScepter() then
-		duration = self:GetTalentSpecialValueFor("scepter_duration")
+		duration = self:GetSpecialValueFor("scepter_duration")
 	end
 
 	local angel1 = caster:CreateSummon(name, point, duration)

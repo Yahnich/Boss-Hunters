@@ -22,7 +22,7 @@ end
 
 function phantom_assassin_blur_ebf:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier( caster, self, "modifier_phantom_assassin_blur_fade", {duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier( caster, self, "modifier_phantom_assassin_blur_fade", {duration = self:GetSpecialValueFor("duration")})
 	caster:EmitSound("Hero_PhantomAssassin.Blur")
 end
 
@@ -34,7 +34,7 @@ function modifier_phantom_assassin_blur_ebf:OnCreated()
 end
 
 function modifier_phantom_assassin_blur_ebf:OnRefresh()
-    self.evasion = self:GetTalentSpecialValueFor("bonus_evasion")
+    self.evasion = self:GetSpecialValueFor("bonus_evasion")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_pa_blur_1")
 	
 	if self.talent1 and IsServer() then
@@ -88,7 +88,7 @@ function modifier_phantom_assassin_blur_fade:OnCreated()
 end
 
 function modifier_phantom_assassin_blur_fade:OnRefresh()
-	self.break_delay = self:GetTalentSpecialValueFor("break_delay")
+	self.break_delay = self:GetSpecialValueFor("break_delay")
 end
 
 function modifier_phantom_assassin_blur_fade:DeclareFunctions()

@@ -1,7 +1,7 @@
 viper_nethertoxin_bh = class({})
 
 function viper_nethertoxin_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function viper_nethertoxin_bh:OnSpellStart()
@@ -10,14 +10,14 @@ function viper_nethertoxin_bh:OnSpellStart()
 	
 	caster:EmitSound("Hero_Viper.Nethertoxin.Cast")
 	ParticleManager:FireRopeParticle("particles/units/heroes/hero_viper/viper_nethertoxin_cast.vpcf", PATTACH_POINT_FOLLOW, caster, targetPos)
-	CreateModifierThinker(caster, self, "modifier_viper_nethertoxin_bh_thinker", {duration = self:GetTalentSpecialValueFor("duration")}, targetPos, caster:GetTeamNumber(), false)
+	CreateModifierThinker(caster, self, "modifier_viper_nethertoxin_bh_thinker", {duration = self:GetSpecialValueFor("duration")}, targetPos, caster:GetTeamNumber(), false)
 end
 
 modifier_viper_nethertoxin_bh_thinker = class({})
 LinkLuaModifier("modifier_viper_nethertoxin_bh_thinker", "heroes/hero_viper/viper_nethertoxin_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_viper_nethertoxin_bh_thinker:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 	if IsServer() then
 		EmitSoundOn("Hero_Viper.Nethertoxin.Cast", self:GetParent())
 		nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_viper/viper_nethertoxin.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
@@ -70,23 +70,23 @@ modifier_viper_nethertoxin_bh_debuff = class({})
 LinkLuaModifier("modifier_viper_nethertoxin_bh_debuff", "heroes/hero_viper/viper_nethertoxin_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_viper_nethertoxin_bh_debuff:OnCreated()
-	self.min_damage = self:GetTalentSpecialValueFor("min_damage")
+	self.min_damage = self:GetSpecialValueFor("min_damage")
 	self.damage = self.min_damage
-	self.max_damage = self:GetTalentSpecialValueFor("max_damage")
-	self.max_delay = self:GetTalentSpecialValueFor("max_delay")
+	self.max_damage = self:GetSpecialValueFor("max_damage")
+	self.max_delay = self:GetSpecialValueFor("max_delay")
 	self.damage_gain = ( (self.max_damage - self.min_damage) / self.max_delay ) * 0.5
-	self.mr = self:GetTalentSpecialValueFor("magic_resistance")
+	self.mr = self:GetSpecialValueFor("magic_resistance")
 	if IsServer() then
 		self:StartIntervalThink( 0.5 )
 	end
 end
 
 function modifier_viper_nethertoxin_bh_debuff:OnRefresh()
-	self.min_damage = self:GetTalentSpecialValueFor("min_damage")
-	self.max_damage = self:GetTalentSpecialValueFor("max_damage")
-	self.max_delay = self:GetTalentSpecialValueFor("max_delay")
+	self.min_damage = self:GetSpecialValueFor("min_damage")
+	self.max_damage = self:GetSpecialValueFor("max_damage")
+	self.max_delay = self:GetSpecialValueFor("max_delay")
 	self.damage_gain = ( (self.max_damage - self.min_damage) / self.max_delay ) * 0.5
-	self.mr = self:GetTalentSpecialValueFor("magic_resistance")
+	self.mr = self:GetSpecialValueFor("magic_resistance")
 end
 
 function modifier_viper_nethertoxin_bh_debuff:OnIntervalThink()

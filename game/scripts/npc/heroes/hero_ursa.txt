@@ -13,7 +13,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"ursa_earthshock"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -47,41 +47,17 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"75 125 175 225 300 375 450"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"4"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow_ms"					"-10 -20 -30 -40 -40 -40 -40"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"range"						"250"
+			"damage"					"75 125 175 225 300 375 450"
+			"duration"					"4"
+			"slow_ms"					"-10 -20 -30 -40 -40 -40 -40"
+			"range"						"250"
 				"LinkedSpecialBonus"		"special_bonus_unique_ursa_earthshock_bh_1"
 				"LinkedSpecialBonusField"	"value2"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"385"
+			"radius"					"385"
 				"LinkedSpecialBonus"		"special_bonus_unique_ursa_earthshock_bh_1"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed"						"1000"
-			}
+			"speed"						"1000"
 		}
 	}
 	
@@ -98,18 +74,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"600"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value2"					"250"
-			}
+			"value"						"600"
+			"value2"					"250"
 		}
 	}
 	//=================================================================================================================
@@ -125,13 +93,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"3"
-			}
+			"value"						"3"
 		}
 	}
 
@@ -144,7 +108,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"ursa_overpower"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -180,23 +144,11 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"max_attacks"				"3 4 5 6 6 6 6"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"attack_speed_bonus_pct"	"400"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"20"
-			}
+			"max_attacks"				"3 4 5 6 6 6 6"
+			"attack_speed_bonus_pct"	"400"
+			"duration"					"20"
 		}
 	}
 
@@ -213,13 +165,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
-			}
+			"value"						"50"
 		}
 	}
 	//=================================================================================================================
@@ -235,13 +183,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -258,7 +202,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/ursa_claw"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -292,24 +236,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"reduction"					"-25"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"jump_duration"				"0.5"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"jump_distance"				"500"
+			"reduction"					"-25"
+			"jump_duration"				"0.5"
+			"jump_distance"				"500"
 				"LinkedSpecialBonus"		"special_bonus_unique_ursa_lunge_1"
-			}
 		}
 	}
 	
@@ -326,13 +258,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"500"
-			}
+			"value"						"500"
 		}
 	}
 	//=================================================================================================================
@@ -348,13 +276,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -371,7 +295,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"ursa_fury_swipes"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
@@ -390,18 +314,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_ad"				"9 18 27 36 40 44 48"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8 8 8 8 12 16 20"
-			}
+			"bonus_ad"				"9 18 27 36 40 44 48"
+			"duration"				"8 8 8 8 12 16 20"
 		}
 	}
 	//=================================================================================================================
@@ -418,13 +334,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"20"
-			}
+			"value"						"20"
 		}
 	}
 	//=================================================================================================================
@@ -441,13 +353,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
-			}
+			"value"						"50"
 		}
 	}
 	
@@ -462,7 +370,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilityTextureName"			"ursa_enrage"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -504,23 +412,19 @@
 			{
 				"value"					"4 4.5 4.5 5 5 5.5"
 				"special_bonus_unique_ursa_enrage_2"	"+1.5"
-			}
 			"reduction"
 			{
 				"value"					"80"
 				"special_bonus_unique_ursa_enrage_2"	"+5"
-			}
 			"status_resist"
 			{
 				"value"					"80"
 				"special_bonus_unique_ursa_enrage_2"	"+5"
-			}
 			"AbilityCooldown"
 			{
 				"value"					"70 70 50 50 30 30"
 				"special_bonus_scepter"	"-40 -40 -26 -26 -12 -12"
 				"RequiresScepter"		"1"
-			}
 		}
 	}
 	
@@ -538,13 +442,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1.8"
-			}
+			"value"						"1.8"
 		}
 	}
 	//=================================================================================================================
@@ -560,18 +460,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"5"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value2"						"1.5"
-			}
+			"value"						"5"
+			"value2"						"1.5"
 		}
 	}
 }

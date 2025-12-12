@@ -8,7 +8,7 @@
 		"ScriptFile"					"heroes/hero_ta/ta_refract.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET |DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"			"templar_assassin_refraction"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -32,24 +32,12 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"20 40 60 80 100 120 140"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"block_count"				"6"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"4"
-				"LinkedSpecialBonus"		"special_bonus_unique_ta_refract_2"
-			}	
+			"bonus_damage"				"20 40 60 80 100 120 140"
+			"block_count"				"6"
+			"duration"					"4"
+				"LinkedSpecialBonus"		"special_bonus_unique_ta_refract_2"	
 		}
 	
 		"precache"
@@ -73,13 +61,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"0.1"
-			}
+			"value"						"0.1"
 		}
 	}
 	//=================================================================================================================
@@ -95,13 +79,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"3"
-			}
+			"value"						"3"
 		}
 	}
 	"ta_meld"
@@ -117,7 +97,7 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"   
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"templar_assassin_meld"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 		
 		// Talents		
@@ -138,34 +118,14 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"armor_reduc"				"-2 -4 -6 -8 -10 -12 -14"
+			"armor_reduc"				"-2 -4 -6 -8 -10 -12 -14"
 				"LinkedSpecialBonus"		"special_bonus_unique_ta_meld_1"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"50 100 150 200 250 300 350"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_range"				"100 150 200 250 300 400 500"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"invis_duration"			"10"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"reduc_duration"			"10"
-			}	
+			"bonus_damage"				"50 100 150 200 250 300 350"
+			"bonus_range"				"100 150 200 250 300 400 500"
+"invis_duration"			"10"
+			"reduc_duration"			"10"	
 		}
 	
 		"precache"
@@ -191,13 +151,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-8"
-			}
+			"value"						"-8"
 		}
 	}
 	//=================================================================================================================
@@ -213,13 +169,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	"ta_psi_blades"
@@ -235,7 +187,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL" 
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		//"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -248,24 +200,12 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_range"					"60 120 180 240 300 360 420"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_range_pct"				"30"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"240 260 280 300 320 340 360"
+			"bonus_range"					"60 120 180 240 300 360 420"
+			"bonus_range_pct"				"30"
+			"radius"						"240 260 280 300 320 340 360"
 				"LinkedSpecialBonus"			"special_bonus_unique_ta_psi_blades_1"
-			}
 			// "04"
 			// {
 				// "var_type"						"FIELD_INTEGER"
@@ -294,13 +234,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"340"
-			}
+			"value"						"340"
 		}
 	}
 	//=================================================================================================================
@@ -316,13 +252,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	"ta_trap"
@@ -340,7 +272,7 @@
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"templar_assassin_psionic_trap"
 		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -373,70 +305,40 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"max_traps"						"3 4 4 5 5 6"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"trap_fade_time"				"2.0"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"movement_speed_min_tooltip"	"30"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"movement_speed_max_tooltip"	"50"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_min_tooltip"			"75 100 125 150 175 200"
+			"max_traps"						"3 4 4 5 5 6"
+			"trap_fade_time"				"2.0"
+			"movement_speed_min_tooltip"	"30"
+			"movement_speed_max_tooltip"	"50"
+			"damage_min_tooltip"			"75 100 125 150 175 200"
 				"LinkedSpecialBonus"			"special_bonus_unique_ta_trap_1"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_max_tooltip"			"150 200 250 300 350 400"
+			"damage_max_tooltip"			"150 200 250 300 350 400"
 				"LinkedSpecialBonus"			"special_bonus_unique_ta_trap_1"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"tick_rate"						"0.1"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"total_tick_time"				"4.0"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"trap_duration_tooltip"			"5"
-			}
 			"08"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"scepter_bonus_radius"			"150"
-			}
 			"09"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"scepter_cooldown_reduction"	"-2"
-			}
 			"10"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"trap_radius"					"400"
-			}
 		}
 	}
 	"ta_trap_spring"
@@ -477,23 +379,11 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"trap_radius"				"400"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"trap_duration"				"5.0"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"scepter_bonus_radius"			"150"
-			}
+			"trap_radius"				"400"
+			"trap_duration"				"5.0"
+			"scepter_bonus_radius"			"150"
 		}
 	}
 	"ta_trap_tp"
@@ -536,23 +426,11 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"trap_radius"				"400"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"trap_duration"				"5.0"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"scepter_bonus_radius"			"150"
-			}
+			"trap_radius"				"400"
+			"trap_duration"				"5.0"
+			"scepter_bonus_radius"			"150"
 		}
 	}
 	//=================================================================================================================
@@ -568,13 +446,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"200"
-			}
+			"value"						"200"
 		}
 	}
 	//=================================================================================================================
@@ -590,13 +464,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 }

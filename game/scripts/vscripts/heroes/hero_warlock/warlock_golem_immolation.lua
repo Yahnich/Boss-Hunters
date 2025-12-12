@@ -16,7 +16,7 @@ function modifier_warlock_golem_immolation:GetAuraDuration()
 end
 
 function modifier_warlock_golem_immolation:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function modifier_warlock_golem_immolation:GetAuraSearchFlags()
@@ -49,7 +49,7 @@ function modifier_warlock_golem_immolation_debuff:OnCreated(table)
 end
 
 function modifier_warlock_golem_immolation_debuff:OnIntervalThink()
-    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("damage"), {}, 0)
+    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetSpecialValueFor("damage"), {}, 0)
 end
 
 function modifier_warlock_golem_immolation:GetEffectName()

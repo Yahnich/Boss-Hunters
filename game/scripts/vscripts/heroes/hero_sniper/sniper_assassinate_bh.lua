@@ -10,7 +10,7 @@ function sniper_assassinate_bh:GetCastPoint()
 end
 
 function sniper_assassinate_bh:GetCooldown(iLvl)
-	local castPoint = TernaryOperator( self:GetTalentSpecialValueFor("scepter_cooldown"), self:GetCaster():HasScepter(), self.BaseClass.GetCooldown( self, iLvl ) )
+	local castPoint = TernaryOperator( self:GetSpecialValueFor("scepter_cooldown"), self:GetCaster():HasScepter(), self.BaseClass.GetCooldown( self, iLvl ) )
 	return castPoint
 end
 
@@ -39,21 +39,21 @@ function sniper_assassinate_bh:OnSpellStart()
 
 	ParticleManager:ClearParticle(self.nfx)
 	self.projectileTable = self.projectileTable or {}
-	self:FireTrackingProjectile("particles/units/heroes/hero_sniper/sniper_assassinate.vpcf", target, self:GetTalentSpecialValueFor("speed"), {extraData = {initial = '1'}}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, false, true, 100)
+	self:FireTrackingProjectile("particles/units/heroes/hero_sniper/sniper_assassinate.vpcf", target, self:GetSpecialValueFor("speed"), {extraData = {initial = '1'}}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, false, true, 100)
 end
 
 function sniper_assassinate_bh:OnProjectileHit_ExtraData(target, vLocation, extraTable)
 	local caster = self:GetCaster()
 	if target and not target:TriggerSpellAbsorb( self ) then
 		EmitSoundOn("Hero_Sniper.AssassinateDamage", caster)
-		self:Stun(target, TernaryOperator( self:GetTalentSpecialValueFor("scepter_stun_duration"), caster:HasScepter(), self:GetTalentSpecialValueFor("ministun_duration"), false) )
-		caster:PerformGenericAttack(target, true, self:GetTalentSpecialValueFor("damage"), nil, true)
+		self:Stun(target, TernaryOperator( self:GetSpecialValueFor("scepter_stun_duration"), caster:HasScepter(), self:GetSpecialValueFor("ministun_duration"), false) )
+		caster:PerformGenericAttack(target, true, self:GetSpecialValueFor("damage"), nil, true)
 		if caster:HasTalent("special_bonus_unique_sniper_assassinate_1") and extraTable and extraTable.initial then
 			local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_sniper_assassinate_1"))
 			for _,enemy in pairs(enemies) do
 				if enemy ~= target then
 					EmitSoundOn("Hero_Sniper.AssassinateProjectile", self:GetCaster())
-					self:FireTrackingProjectile("particles/units/heroes/hero_sniper/sniper_assassinate.vpcf", enemy, self:GetTalentSpecialValueFor("speed"), {source = target}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, false, true, 100)
+					self:FireTrackingProjectile("particles/units/heroes/hero_sniper/sniper_assassinate.vpcf", enemy, self:GetSpecialValueFor("speed"), {source = target}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, false, true, 100)
 					break
 				end
 			end
@@ -75,7 +75,7 @@ function modifier_sniper_assassinate_bh_passive:OnCreated()
 end
 
 function modifier_sniper_assassinate_bh_passive:OnRefresh()
-	self.max_reduction = self:GetTalentSpecialValueFor("max_reduction")
+	self.max_reduction = self:GetSpecialValueFor("max_reduction")
 end
 
 function modifier_sniper_assassinate_bh_passive:OnIntervalThink()

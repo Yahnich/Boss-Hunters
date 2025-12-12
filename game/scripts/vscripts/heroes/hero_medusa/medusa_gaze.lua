@@ -17,7 +17,7 @@ function medusa_gaze:OnSpellStart()
 	local caster = self:GetCaster()
 
 	EmitSoundOn("Hero_Medusa.StoneGaze.Cast", caster)
-	caster:AddNewModifier(caster, self, "modifier_medusa_gaze", {Duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_medusa_gaze", {Duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_medusa_gaze = class({})
@@ -32,9 +32,9 @@ function modifier_medusa_gaze:OnCreated(table)
 					ParticleManager:SetParticleControlEnt(nfx, 1, caster, PATTACH_POINT_FOLLOW, "attach_head", caster:GetAbsOrigin(), true)
 		self:AttachEffect(nfx)
 
-		self.radius = self:GetTalentSpecialValueFor("radius")
-		self.length = self:GetTalentSpecialValueFor("length")
-		self.duration = self:GetTalentSpecialValueFor("face_duration")
+		self.radius = self:GetSpecialValueFor("radius")
+		self.length = self:GetSpecialValueFor("length")
+		self.duration = self:GetSpecialValueFor("face_duration")
 
 		self:StartIntervalThink(0.5)
 	end
@@ -87,7 +87,7 @@ function modifier_medusa_gaze_slow:OnCreated(table)
 
 		if self:GetStackCount() > 99 then
 			if not self:GetParent():TriggerSpellAbsorb(self:GetAbility()) then
-				self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_medusa_gaze_stun", {Duration = self:GetTalentSpecialValueFor("stone_duration")})
+				self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_medusa_gaze_stun", {Duration = self:GetSpecialValueFor("stone_duration")})
 			end
 			self:Destroy()
 		end
@@ -99,7 +99,7 @@ function modifier_medusa_gaze_slow:OnRefresh(table)
 	if IsServer() then
 		if self:GetStackCount() > 99 then
 			if not self:GetParent():TriggerSpellAbsorb(self:GetAbility()) then
-				self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_medusa_gaze_stun", {Duration = self:GetTalentSpecialValueFor("stone_duration")})
+				self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_medusa_gaze_stun", {Duration = self:GetSpecialValueFor("stone_duration")})
 			end
 			self:Destroy()
 		end
@@ -110,7 +110,7 @@ function modifier_medusa_gaze_slow:OnIntervalThink()
 	if IsServer() then
 		if self:GetStackCount() > 99 then
 			if not self:GetParent():TriggerSpellAbsorb(self:GetAbility()) then
-				self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_medusa_gaze_stun", {Duration = self:GetTalentSpecialValueFor("stone_duration")})
+				self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_medusa_gaze_stun", {Duration = self:GetSpecialValueFor("stone_duration")})
 			end
 			self:Destroy()
 		end
@@ -153,11 +153,11 @@ end
 modifier_medusa_gaze_stun = class({})
 
 function modifier_medusa_gaze_stun:OnCreated(table)
-	self.bonusPhys = self:GetTalentSpecialValueFor("bonus_physical")
+	self.bonusPhys = self:GetSpecialValueFor("bonus_physical")
 
 	local caster = self:GetCaster()
 	if caster:HasTalent("special_bonus_unique_medusa_gaze_1") then
-		self.mr = self:GetTalentSpecialValueFor("mr_reduc")
+		self.mr = self:GetSpecialValueFor("mr_reduc")
 	end
 
 	if IsServer() then
@@ -175,10 +175,10 @@ end
 function modifier_medusa_gaze_stun:OnRefresh(table)
 	local caster = self:GetCaster()
 	if caster:HasTalent("special_bonus_unique_medusa_gaze_1") then
-		self.mr = self:GetTalentSpecialValueFor("mr_reduc")
+		self.mr = self:GetSpecialValueFor("mr_reduc")
 	end
 
-	self.bonusPhys = self:GetTalentSpecialValueFor("bonus_physical")
+	self.bonusPhys = self:GetSpecialValueFor("bonus_physical")
 end
 
 function modifier_medusa_gaze_stun:DeclareFunctions()
@@ -222,11 +222,11 @@ end
 modifier_medusa_gaze_stun_lesser = class({modifier_stunned_generic})
 
 function modifier_medusa_gaze_stun_lesser:OnCreated(table)
-	self.bonusPhys = self:GetTalentSpecialValueFor("bonus_physical")
+	self.bonusPhys = self:GetSpecialValueFor("bonus_physical")
 
 	local caster = self:GetCaster()
 	if caster:HasTalent("special_bonus_unique_medusa_gaze_1") then
-		self.mr = self:GetTalentSpecialValueFor("mr_reduc")
+		self.mr = self:GetSpecialValueFor("mr_reduc")
 	end
 
 	if IsServer() then
@@ -244,10 +244,10 @@ end
 function modifier_medusa_gaze_stun_lesser:OnRefresh(table)
 	local caster = self:GetCaster()
 	if caster:HasTalent("special_bonus_unique_medusa_gaze_1") then
-		self.mr = self:GetTalentSpecialValueFor("mr_reduc")
+		self.mr = self:GetSpecialValueFor("mr_reduc")
 	end
 
-	self.bonusPhys = self:GetTalentSpecialValueFor("bonus_physical")
+	self.bonusPhys = self:GetSpecialValueFor("bonus_physical")
 end
 
 function modifier_medusa_gaze_stun_lesser:DeclareFunctions()

@@ -45,12 +45,12 @@ end
 
 function mirana_astral_arrow:OnProjectileHit(hTarget, vLocation)
     local caster = self:GetCaster()
-    local damage = self:GetTalentSpecialValueFor("damage")
+    local damage = self:GetSpecialValueFor("damage")
     if hTarget ~= nil and not hTarget:TriggerSpellAbsorb(self) then
         if not hTarget:IsMinion() then EmitSoundOn("Hero_Mirana.ArrowImpact", hTarget) end
 
         self:DealDamage(caster, hTarget, damage, {}, 0)
-        self:Stun(hTarget, self:GetTalentSpecialValueFor("duration"), false)
+        self:Stun(hTarget, self:GetSpecialValueFor("duration"), false)
 		return not hTarget:IsMinion()
     end
 end

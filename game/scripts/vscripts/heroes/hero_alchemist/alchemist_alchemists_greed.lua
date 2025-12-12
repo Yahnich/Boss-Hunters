@@ -8,10 +8,10 @@ modifier_alchemist_alchemists_greed_handler = class({})
 LinkLuaModifier("modifier_alchemist_alchemists_greed_handler", "heroes/hero_alchemist/alchemist_alchemists_greed", 0)
 
 function modifier_alchemist_alchemists_greed_handler:OnCreated()
-	self.minionGold = self:GetTalentSpecialValueFor("minion_gold")
-	self.monsterGold = self:GetTalentSpecialValueFor("monster_gold")
-	self.bossGold = self:GetTalentSpecialValueFor("boss_gold")
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.minionGold = self:GetSpecialValueFor("minion_gold")
+	self.monsterGold = self:GetSpecialValueFor("monster_gold")
+	self.bossGold = self:GetSpecialValueFor("boss_gold")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_alchemist_alchemists_greed_handler:DeclareFunctions()

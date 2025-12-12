@@ -14,7 +14,7 @@ function pango_swift_dash:OnSpellStart()
 	EmitSoundOn("Hero_Pangolier.Swashbuckle.Layer", self:GetCaster())
 	
 	local distance = CalculateDistance(self:GetCursorPosition(), self:GetCaster():GetAbsOrigin())
-	local speed = self:GetTalentSpecialValueFor("speed")
+	local speed = self:GetSpecialValueFor("speed")
 	local duration = distance / speed
     self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_pango_swift_dash", {duration = duration})
 

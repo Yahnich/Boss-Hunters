@@ -34,10 +34,10 @@ function modifier_cotw_boar_spirit:OnCreated(table)
 
 		ability.currentSpirit:AddNewModifier(caster, ability, "modifier_cotw_boar_spirit_boar", {})
 		
-		local hp = ability:GetTalentSpecialValueFor("boar_health")
-		local dmg = ability:GetTalentSpecialValueFor("boar_damage")
-		local bat = ability:GetTalentSpecialValueFor("boar_bat")
-		local ms = ability:GetTalentSpecialValueFor("boar_ms")
+		local hp = ability:GetSpecialValueFor("boar_health")
+		local dmg = ability:GetSpecialValueFor("boar_damage")
+		local bat = ability:GetSpecialValueFor("boar_bat")
+		local ms = ability:GetSpecialValueFor("boar_ms")
 		
 		ability.currentSpirit:SetCoreHealth(hp)
 		ability.currentSpirit:SetAverageBaseDamage(dmg, 15)
@@ -51,7 +51,7 @@ function modifier_cotw_boar_spirit:OnCreated(table)
 		self:StartIntervalThink( 1 )
 		self:SetDuration( -1, true)
 		
-		self.respawnTime = ability:GetTalentSpecialValueFor("respawn_time")
+		self.respawnTime = ability:GetSpecialValueFor("respawn_time")
 	end
 end
 
@@ -94,7 +94,7 @@ modifier_cotw_boar_spirit_boar = class({})
 LinkLuaModifier( "modifier_cotw_boar_spirit_boar", "heroes/hero_beast/beast_cotw_boar.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_cotw_boar_spirit_boar:OnCreated()
-	self.duration = self:GetTalentSpecialValueFor("debuff_duration")
+	self.duration = self:GetSpecialValueFor("debuff_duration")
 	
 	self.talent = self:GetCaster():HasTalent("special_bonus_unique_beast_cotw_boar_1")
 	self.radius = self:GetCaster():FindTalentValue("special_bonus_unique_beast_cotw_boar_1", "radius")
@@ -146,8 +146,8 @@ modifier_cotw_boar_spirit_boar_slow = class({})
 LinkLuaModifier( "modifier_cotw_boar_spirit_boar_slow", "heroes/hero_beast/beast_cotw_boar.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_cotw_boar_spirit_boar_slow:OnCreated()
-	self.as = self:GetTalentSpecialValueFor("as_slow")
-	self.ms = self:GetTalentSpecialValueFor("ms_slow")
+	self.as = self:GetSpecialValueFor("as_slow")
+	self.ms = self:GetSpecialValueFor("ms_slow")
 end
 
 function modifier_cotw_boar_spirit_boar_slow:OnRefresh()

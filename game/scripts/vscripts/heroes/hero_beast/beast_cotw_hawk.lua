@@ -34,9 +34,9 @@ function modifier_cotw_hawk_spirit:OnCreated(table)
 
 		ability.currentSpirit:AddNewModifier(caster, ability, "modifier_cotw_hawk_spirit_hawk", {})
 		
-		local hp = ability:GetTalentSpecialValueFor("hawk_health")
-		local ms = ability:GetTalentSpecialValueFor("hawk_ms")
-		local vision = ability:GetTalentSpecialValueFor("hawk_vision")
+		local hp = ability:GetSpecialValueFor("hawk_health")
+		local ms = ability:GetSpecialValueFor("hawk_ms")
+		local vision = ability:GetSpecialValueFor("hawk_vision")
 		
 		ability.currentSpirit:SetCoreHealth( hp )
 		ability.currentSpirit:SetBaseMoveSpeed( ms )
@@ -58,7 +58,7 @@ function modifier_cotw_hawk_spirit:OnCreated(table)
 		self:StartIntervalThink( 1 )
 		self:SetDuration( -1, true)
 		
-		self.respawnTime = ability:GetTalentSpecialValueFor("respawn_time")
+		self.respawnTime = ability:GetSpecialValueFor("respawn_time")
 	end
 end
 
@@ -101,7 +101,7 @@ modifier_cotw_hawk_spirit_hawk = class({})
 LinkLuaModifier( "modifier_cotw_hawk_spirit_hawk", "heroes/hero_beast/beast_cotw_hawk.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_cotw_hawk_spirit_hawk:OnCreated()
-	self.delay = self:GetTalentSpecialValueFor("invis_delay")
+	self.delay = self:GetSpecialValueFor("invis_delay")
 	if IsServer() then
 		self.last_location = self:GetParent():GetAbsOrigin()
 		self.timer = 0

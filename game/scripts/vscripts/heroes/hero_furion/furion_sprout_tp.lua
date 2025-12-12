@@ -15,7 +15,7 @@ function furion_sprout_tp:GetCooldown(iLevel)
 end
 
 function furion_sprout_tp:GetCastPoint()
-	return self:GetTalentSpecialValueFor("cast_point_tooltip")
+	return self:GetSpecialValueFor("cast_point_tooltip")
 end
 
 function furion_sprout_tp:OnAbilityPhaseStart()
@@ -47,7 +47,7 @@ function furion_sprout_tp:OnSpellStart()
 	
 	if caster:HasTalent("special_bonus_unique_furion_sprout_tp_2") then
 		local entangle = caster:FindAbilityByName("furion_entangle")
-		local entangleDur = entangle:GetTalentSpecialValueFor("duration")
+		local entangleDur = entangle:GetSpecialValueFor("duration")
 		for _,enemy in pairs(caster:FindEnemyUnitsInRadius(ogPos, 500, {})) do
 			enemy:AddNewModifier(caster, entangle, "modifier_entangle_enemy", {Duration = entangleDur})
 		end

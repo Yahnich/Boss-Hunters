@@ -31,8 +31,8 @@ end
 function mk_mastery:OnSpellStart()
 	local caster = self:GetCaster()
 
-	local mod = caster:AddNewModifier(caster, self, "modifier_mk_mastery_hits", {Duration = self:GetTalentSpecialValueFor("max_duration")})
-	mod:SetStackCount(self:GetTalentSpecialValueFor("charges"))
+	local mod = caster:AddNewModifier(caster, self, "modifier_mk_mastery_hits", {Duration = self:GetSpecialValueFor("max_duration")})
+	mod:SetStackCount(self:GetSpecialValueFor("charges"))
 end
 
 modifier_mk_mastery_handle = class({})
@@ -43,10 +43,10 @@ end
 
 function modifier_mk_mastery_handle:OnIntervalThink()
 	if self:GetCaster():HasScepter() then
-		self.bonusDamage = self:GetTalentSpecialValueFor("bonus_damage")/4
+		self.bonusDamage = self:GetSpecialValueFor("bonus_damage")/4
 
 		if IsServer() then
-			self.lifesteal = self:GetTalentSpecialValueFor("lifesteal")/4
+			self.lifesteal = self:GetSpecialValueFor("lifesteal")/4
 		end
 	else
 		self.bonusDamage = 0
@@ -77,7 +77,7 @@ function modifier_mk_mastery_handle:OnAttackLanded(params)
 		local attacker = params.attacker
 
 		if caster == attacker and not caster:HasModifier("modifier_mk_mastery_hits") then
-			local duration = self:GetTalentSpecialValueFor("counter_duration")
+			local duration = self:GetSpecialValueFor("counter_duration")
 			local enemyCheckerMod = "modifier_mk_mastery_debuff"
 
 			if caster:HasScepter() then
@@ -89,12 +89,12 @@ function modifier_mk_mastery_handle:OnAttackLanded(params)
 					
 					target:AddNewModifier(caster, self:GetAbility(), enemyCheckerMod, {Duration = duration}):IncrementStackCount()
 					
-					if target:FindModifierByName( enemyCheckerMod ):GetStackCount() >= self:GetTalentSpecialValueFor("required_hits") then
+					if target:FindModifierByName( enemyCheckerMod ):GetStackCount() >= self:GetSpecialValueFor("required_hits") then
 						
 						EmitSoundOn("Hero_MonkeyKing.IronCudgel", caster)
 
-						local mod = caster:AddNewModifier(caster, self:GetAbility(), "modifier_mk_mastery_hits", {Duration = self:GetTalentSpecialValueFor("max_duration")})
-						mod:SetStackCount(self:GetTalentSpecialValueFor("charges"))
+						local mod = caster:AddNewModifier(caster, self:GetAbility(), "modifier_mk_mastery_hits", {Duration = self:GetSpecialValueFor("max_duration")})
+						mod:SetStackCount(self:GetSpecialValueFor("charges"))
 
 						if caster:HasScepter() then
 							local damage = params.damage * 2
@@ -127,7 +127,7 @@ function modifier_mk_mastery_debuff:IsDebuff() return true end
 modifier_mk_mastery_hits = class({})
 
 function modifier_mk_mastery_hits:OnCreated(table)
-    self.bonus_Ad = self:GetTalentSpecialValueFor("bonus_damage")
+    self.bonus_Ad = self:GetSpecialValueFor("bonus_damage")
 
     if IsServer() then
     	local caster = self:GetParent()
@@ -143,15 +143,15 @@ function modifier_mk_mastery_hits:OnCreated(table)
     	self:AttachEffect(buffFx)
     				
 
-    	self.lifesteal = self:GetTalentSpecialValueFor("lifesteal")
+    	self.lifesteal = self:GetSpecialValueFor("lifesteal")
     end
 end
 
 function modifier_mk_mastery_hits:OnRefresh(table)
-    self.bonus_Ad = self:GetTalentSpecialValueFor("bonus_damage")
+    self.bonus_Ad = self:GetSpecialValueFor("bonus_damage")
 
     if IsServer() then
-    	self.lifesteal = self:GetTalentSpecialValueFor("lifesteal")
+    	self.lifesteal = self:GetSpecialValueFor("lifesteal")
     end
 end
 

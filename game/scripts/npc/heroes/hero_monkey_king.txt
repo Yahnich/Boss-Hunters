@@ -13,7 +13,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"monkey_king_boundless_strike"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -49,29 +49,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"crit_mult"					"150 175 200 225 250 275 300"
+			"crit_mult"					"150 175 200 225 250 275 300"
 				"LinkedSpecialBonus"		"special_bonus_unique_mk_boundless_2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"0.4 0.8 1.2 1.6 2 2.4 2.8"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"width"						"150"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"range"						"1200"
-			}
+			"duration"					"0.4 0.8 1.2 1.6 2 2.4 2.8"
+			"width"						"150"
+			"range"						"1200"
 		}
 	}
 	
@@ -88,18 +72,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"slow"						"-50"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"3"
-			}
+			"slow"						"-50"
+			"duration"					"3"
 		}
 	}
 	//=================================================================================================================
@@ -115,13 +91,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"150"
-			}
+			"value"						"150"
 		}
 	}
 
@@ -138,7 +110,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"monkey_king_primal_spring"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -173,38 +145,14 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"140 210 280 350 420 490 560"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"slow_ms"				"-20 -30 -40 -50 -60 -70 -80"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_distance"			"1000"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"375"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"leap_speed"			"1300"
-			}
+			"damage"				"140 210 280 350 420 490 560"
+			"slow_ms"				"-20 -30 -40 -50 -60 -70 -80"
+			"duration"				"4"
+			"max_distance"			"1000"
+			"radius"				"375"
+			"leap_speed"			"1300"
 		}
 	}
 	
@@ -221,13 +169,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -243,13 +187,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"5"
-			}
+			"value"						"5"
 		}
 	}
 
@@ -266,7 +206,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"monkey_king_jingu_mastery"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -290,40 +230,16 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"required_hits"				"4"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"counter_duration"			"10"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"charges"					"4"
+			"required_hits"				"4"
+			"counter_duration"			"10"
+			"charges"					"4"
 				"LinkedSpecialBonus"		"special_bonus_unique_mk_mastery_1"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"60 90 120 150 180 210 240"
+			"bonus_damage"				"60 90 120 150 180 210 240"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"lifesteal"					"20 30 40 50 60 70 80"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"max_duration"				"35"
-			}
+			"lifesteal"					"20 30 40 50 60 70 80"
+			"max_duration"				"35"
 		}
 	}
 	
@@ -340,13 +256,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -362,13 +274,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"6"
-			}
+			"value"						"6"
 		}
 	}
 	
@@ -431,13 +339,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"leap_speed"				"700"
-			}
+			"leap_speed"				"700"
 		}
 	}
 
@@ -455,7 +359,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"monkey_king_wukongs_command"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -488,25 +392,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_damage"					"50"
+			"bonus_damage"					"50"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"number_of_monkeys"				"3 4 5 6 7 8 9"
+			"number_of_monkeys"				"3 4 5 6 7 8 9"
 				"LinkedSpecialBonus"			"special_bonus_unique_mk_command_1"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"range"							"1500"
-			}
+			"range"							"1500"
 		}
 	}
 	
@@ -523,13 +415,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"5"
-			}
+			"value"						"5"
 		}
 	}
 	//=================================================================================================================
@@ -545,13 +433,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 }

@@ -29,15 +29,15 @@ function void_spirit_astral_step_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local origin = caster:GetAbsOrigin()
 	local position = self:GetCursorPosition()
-	position = origin + CalculateDirection( position, caster ) * math.max( self:GetTalentSpecialValueFor("min_travel_distance"), math.min( CalculateDistance( position, caster ), self:GetTalentSpecialValueFor("max_travel_distance") ) )
+	position = origin + CalculateDirection( position, caster ) * math.max( self:GetSpecialValueFor("min_travel_distance"), math.min( CalculateDistance( position, caster ), self:GetSpecialValueFor("max_travel_distance") ) )
 	ParticleManager:FireParticle( "particles/units/heroes/hero_void_spirit/astral_step/void_spirit_astral_step.vpcf", PATTACH_POINT, caster, {[0] = origin, [1] = position} )
 	FindClearSpaceForUnit( caster, position, true )
 	
-	local delay = self:GetTalentSpecialValueFor("pop_damage_delay")
+	local delay = self:GetSpecialValueFor("pop_damage_delay")
 	
 	local talent1 = caster:HasTalent("special_bonus_unique_void_spirit_astral_step_2")
 	local talent1Value = caster:FindTalentValue("special_bonus_unique_void_spirit_astral_step_2") / 100
-	for _, enemy in ipairs( caster:FindEnemyUnitsInLine( origin, position, self:GetTalentSpecialValueFor("radius") * 2 ) ) do
+	for _, enemy in ipairs( caster:FindEnemyUnitsInLine( origin, position, self:GetSpecialValueFor("radius") * 2 ) ) do
 		if not enemy:TriggerSpellAbsorb( self ) then
 			enemy:AddNewModifier( caster, self, "modifier_void_spirit_astral_step_debuff", {duration = delay} )
 			local hp = enemy:GetHealth()
@@ -62,14 +62,14 @@ LinkLuaModifier("modifier_void_spirit_astral_step_debuff", "heroes/hero_void_spi
 
 if IsServer() then
 	function modifier_void_spirit_astral_step_debuff:OnCreated()
-		self.slow = self:GetTalentSpecialValueFor("movement_slow_pct") * (-1)
-		self.dmg = self:GetTalentSpecialValueFor("pop_damage")
+		self.slow = self:GetSpecialValueFor("movement_slow_pct") * (-1)
+		self.dmg = self:GetSpecialValueFor("pop_damage")
 	end
 	
 	function modifier_void_spirit_astral_step_debuff:OnCreated()
 		self:OnDestroy()
-		self.slow = self:GetTalentSpecialValueFor("movement_slow_pct") * (-1)
-		self.dmg = self:GetTalentSpecialValueFor("pop_damage")
+		self.slow = self:GetSpecialValueFor("movement_slow_pct") * (-1)
+		self.dmg = self:GetSpecialValueFor("pop_damage")
 	end
 
 	function modifier_void_spirit_astral_step_debuff:OnDestroy()
@@ -98,8 +98,8 @@ LinkLuaModifier("modifier_void_spirit_astral_step_charges", "heroes/hero_void_sp
 
 if IsServer() then
     function modifier_void_spirit_astral_step_charges:Update()
-		self.kv.replenish_time = self:GetTalentSpecialValueFor("charge_restore_time")
-		self.kv.max_count = self:GetTalentSpecialValueFor("max_charges")
+		self.kv.replenish_time = self:GetSpecialValueFor("charge_restore_time")
+		self.kv.max_count = self:GetSpecialValueFor("max_charges")
 		if self:GetStackCount() == self.kv.max_count then
 			self:SetDuration(-1, true)
 		elseif self:GetStackCount() > self.kv.max_count then
@@ -119,8 +119,8 @@ if IsServer() then
 
     function modifier_void_spirit_astral_step_charges:OnCreated()
 		kv = {
-			max_count = self:GetTalentSpecialValueFor("max_charges"),
-			replenish_time = self:GetTalentSpecialValueFor("charge_restore_time")
+			max_count = self:GetSpecialValueFor("max_charges"),
+			replenish_time = self:GetSpecialValueFor("charge_restore_time")
 		}
         self:SetStackCount(kv.start_count or kv.max_count)
         self.kv = kv
@@ -131,8 +131,8 @@ if IsServer() then
     end
 	
 	function modifier_void_spirit_astral_step_charges:OnRefresh()
-		self.kv.max_count = self:GetTalentSpecialValueFor("max_charges")
-		self.kv.replenish_time = self:GetTalentSpecialValueFor("charge_restore_time")
+		self.kv.max_count = self:GetSpecialValueFor("max_charges")
+		self.kv.replenish_time = self:GetSpecialValueFor("charge_restore_time")
         if self:GetStackCount() ~= kv.max_count then
             self:Update()
         end
@@ -148,8 +148,8 @@ if IsServer() then
 
     function modifier_void_spirit_astral_step_charges:OnAbilityFullyCast(params)
         if params.unit == self:GetParent() then
-			self.kv.replenish_time = self:GetTalentSpecialValueFor("charge_restore_time")
-			self.kv.max_count = self:GetTalentSpecialValueFor("max_charges")
+			self.kv.replenish_time = self:GetSpecialValueFor("charge_restore_time")
+			self.kv.max_count = self:GetSpecialValueFor("max_charges")
 			
             local ability = params.ability
             if params.ability == self:GetAbility() then
@@ -170,8 +170,8 @@ if IsServer() then
 		local caster = self:GetCaster()
 		local octarine = caster:GetCooldownReduction()
 		
-		self.kv.replenish_time = self:GetTalentSpecialValueFor("charge_restore_time")
-		self.kv.max_count = self:GetTalentSpecialValueFor("max_charges")
+		self.kv.replenish_time = self:GetSpecialValueFor("charge_restore_time")
+		self.kv.max_count = self:GetSpecialValueFor("max_charges")
         if stacks < self.kv.max_count then
             self:IncrementStackCount()
 			self:Update()

@@ -1,7 +1,7 @@
 omniknight_stalwart_defender = class({})
 
 function omniknight_stalwart_defender:GetCastRange(target, position)
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function omniknight_stalwart_defender:GetIntrinsicModifierName()
@@ -12,7 +12,7 @@ modifier_omniknight_stalwart_defender = class({})
 LinkLuaModifier("modifier_omniknight_stalwart_defender", "heroes/hero_omniknight/omniknight_stalwart_defender", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_omniknight_stalwart_defender:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 	if IsServer() then
 		local nFX = ParticleManager:CreateParticle( "particles/units/heroes/hero_omniknight/omniknight_degen_aura.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster() )
 		ParticleManager:SetParticleControl(nFX, 0, Vector(0,0,75) )
@@ -22,7 +22,7 @@ function modifier_omniknight_stalwart_defender:OnCreated()
 end
 
 function modifier_omniknight_stalwart_defender:OnRefresh()
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_omniknight_stalwart_defender:IsAura()
@@ -62,12 +62,12 @@ LinkLuaModifier("modifier_omniknight_stalwart_defender_aura", "heroes/hero_omnik
 
 function modifier_omniknight_stalwart_defender_aura:OnCreated()
 	if self:GetCaster():IsSameTeam( self:GetParent() ) then
-		self.armor = self:GetTalentSpecialValueFor("aura_armor")
+		self.armor = self:GetSpecialValueFor("aura_armor")
 		if self:GetCaster():HasTalent("special_bonus_unique_omniknight_stalwart_defender_1") then
-			self.as = self:GetTalentSpecialValueFor("aura_slow") * (-1) * self:GetCaster():FindTalentValue("special_bonus_unique_omniknight_stalwart_defender_1")/100
+			self.as = self:GetSpecialValueFor("aura_slow") * (-1) * self:GetCaster():FindTalentValue("special_bonus_unique_omniknight_stalwart_defender_1")/100
 		end
 	else
-		self.ms = self:GetTalentSpecialValueFor("aura_slow")
+		self.ms = self:GetSpecialValueFor("aura_slow")
 	end
 end
 

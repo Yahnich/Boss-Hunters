@@ -12,7 +12,7 @@ function witch_doctor_death_ward_bh:GetChannelTime()
 	if self:GetCaster():HasTalent("special_bonus_unique_witch_doctor_death_ward_2") then
 		return 0
 	else
-		return self:GetTalentSpecialValueFor("total_duration")
+		return self:GetSpecialValueFor("total_duration")
 	end
 end
 
@@ -20,15 +20,15 @@ function witch_doctor_death_ward_bh:OnSpellStart()
 	if IsServer() then
 		local caster = self:GetCaster()
 		local vPosition = self:GetCursorPosition()
-		self.wardDamage = self:GetTalentSpecialValueFor("damage") + caster:GetIntellect( false)*self:GetTalentSpecialValueFor("int_to_damage")/100
+		self.wardDamage = self:GetSpecialValueFor("damage") + caster:GetIntellect( false)*self:GetSpecialValueFor("int_to_damage")/100
 		self.death_ward = CreateUnitByName("witch_doctor_death_ward_ebf", vPosition, true, caster, nil, caster:GetTeam())
 		self.death_ward:SetControllableByPlayer(caster:GetPlayerID(), true)
 		self.death_ward:SetOwner(caster)
-		self.death_ward:SetBaseAttackTime( self:GetTalentSpecialValueFor("base_attack_time") )
+		self.death_ward:SetBaseAttackTime( self:GetSpecialValueFor("base_attack_time") )
 		
 		duration = -1
 		if caster:HasTalent("special_bonus_unique_witch_doctor_death_ward_2") then
-			duration = self:GetTalentSpecialValueFor("total_duration")
+			duration = self:GetSpecialValueFor("total_duration")
 		end
 		self.deathModifier = self.death_ward:AddNewModifier(caster, self, "modifier_death_ward_handling", {duration = duration})
 		EmitSoundOn("Hero_WitchDoctor.Death_WardBuild", self.death_ward)
@@ -45,10 +45,10 @@ function witch_doctor_death_ward_bh:OnProjectileHit_ExtraData(target, vLocation,
 	if not self.death_ward:IsNull() then
 		local caster = self:GetCaster()
 		if target:IsSameTeam( caster ) then
-			local healing = self:GetTalentSpecialValueFor("healing")
+			local healing = self:GetSpecialValueFor("healing")
 			target:HealEvent( healing, self, caster )
 		else
-			local damage = self:GetTalentSpecialValueFor("damage")
+			local damage = self:GetSpecialValueFor("damage")
 			self:DealDamage( caster, target, damage )
 		end
 		if extraData.bounces_left > 0 then

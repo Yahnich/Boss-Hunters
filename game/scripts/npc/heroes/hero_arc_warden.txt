@@ -12,7 +12,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityTextureName"			"arc_warden_flux"
 		
 		// Talents		
@@ -46,38 +46,26 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"cast_range"					"500 600 700 800 900 1000 1100"
-			}
+			"cast_range"					"500 600 700 800 900 1000 1100"
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"4 5 6 7 8 9 10"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_per_second"				"15 30 45 60 75 90 105"
-			}
+			"damage_per_second"				"15 30 45 60 75 90 105"
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"think_interval"				"0.5"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"move_speed_slow_pct"			"-50 -55 -60 -65 -70 -75 -80"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"jump_radius"					"900"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -93,18 +81,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"450"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value2"					"100"
-			}
+			"value"						"450"
+			"value2"					"100"
 		}
 	}
 	//=================================================================================================================
@@ -120,13 +100,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"0.1"
-			}
+			"value"						"0.1"
 		}
 	}
 
@@ -137,7 +113,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_arc_warden/arc_warden_magnetic_field_bh.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityTextureName"			"arc_warden_magnetic_field"
 		
 		// Talents		
@@ -170,30 +146,14 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"300"
+			"radius"					"300"
 				"LinkedSpecialBonus"		"special_bonus_unique_arc_warden_magnetic_field_bh_1"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"3.5 4.5 5.5 6.5 7.5 8.5 9.5"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"attack_speed_bonus"		"50 60 70 80 90 100 110"
+			"duration"					"3.5 4.5 5.5 6.5 7.5 8.5 9.5"
+			"attack_speed_bonus"		"50 60 70 80 90 100 110"
 				"LinkedSpecialBonus"		"special_bonus_unique_arc_warden_magnetic_field_bh_2"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"evasion_chance"			"100"
-			}
+			"evasion_chance"			"100"
 		}
 	}
 	//=================================================================================================================
@@ -209,13 +169,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"200"
-			}
+			"value"						"200"
 		}
 	}
 	//=================================================================================================================
@@ -231,13 +187,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"190"
-			}
+			"value"						"190"
 		}
 	}
 
@@ -253,7 +205,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityTextureName"			"arc_warden_spark_wraith"
 		
 		// Talents		
@@ -287,54 +239,33 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"375"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"activation_delay"				"2.0"
-			}			
+			"radius"						"375"
+			"activation_delay"				"2.0"			
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"50"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"speed"							"400"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"100 160 220 280 340 400 460"
+			"speed"							"400"
+			"damage"						"100 160 220 280 340 400 460"
 				"LinkedSpecialBonus"			"special_bonus_unique_arc_warden_spark_wrath_bh_1"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"think_interval"				"0.2"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"wraith_vision_radius"			"300"
-			}  
+				"wraith_vision_radius"			"300"  
 			"08"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"wraith_vision_duration"		"3.34"
-			}
 			"09"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"ministun_duration"				"0.4 0.5 0.6 0.7 0.8 0.9 1"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -350,13 +281,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"350"
-			}
+			"value"						"350"
 		}
 	}
 	//=================================================================================================================
@@ -373,13 +300,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"6"
-			}
+			"value"						"6"
 		}
 	}
 	"arc_warden_echo_ward"
@@ -407,23 +330,17 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"0.5"
-			}
+			"delay"					"0.5"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_casts"			"1"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"scepter_casts"			"2"
-			}
 		}
 	}
 	"arc_warden_tempest_mirage"
@@ -452,23 +369,14 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"pct_cost"				"25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"25"
-			}
+			"pct_cost"				"25"
+			"duration"				"25"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"scepter_casts"			"2"
-			}
 		}
 	}
 	"arc_warden_primordial_current"
@@ -484,7 +392,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"AbilityTextureName"			"custom/arc_warden_primordial_current"
 		
 		// Talents		
@@ -521,24 +429,15 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"tick_interval"			"0.1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"channel_time"			"5"
+			"tick_interval"			"0.1"
+			"channel_time"			"5"
 				"LinkedSpecialBonus"	"special_bonus_unique_arc_warden_primordial_current_1"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"total_damage"			"100 145 190 235 280 325"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -554,13 +453,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -576,13 +471,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 }

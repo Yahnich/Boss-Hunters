@@ -20,8 +20,8 @@ modifier_omniknight_lightbringer = class({})
 LinkLuaModifier("modifier_omniknight_lightbringer", "heroes/hero_omniknight/omniknight_lightbringer", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_omniknight_lightbringer:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("damage_radius")
-	self.conversion = self:GetTalentSpecialValueFor("conversion") / 100
+	self.radius = self:GetSpecialValueFor("damage_radius")
+	self.conversion = self:GetSpecialValueFor("conversion") / 100
 end
 
 function modifier_omniknight_lightbringer:OnRefresh()

@@ -12,7 +12,7 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"  
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"tusk_ice_shards"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -38,39 +38,15 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"angle"						"35"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"70 130 190 250 310 370 430"
+			"angle"						"35"
+			"damage"					"70 130 190 250 310 370 430"
 				"LinkedSpecialBonus"		"special_bonus_unique_tusk_ice_2"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"7"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"200"
-			}			
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"speed"						"1200.0"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"width"						"300"
-			}
+			"duration"					"7"
+			"radius"					"200"			
+			"speed"						"1200.0"
+			"width"						"300"
 		}
 
 		"precache"
@@ -93,13 +69,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-3"
-			}
+			"value"					"-3"
 		}
 	}
 	"special_bonus_unique_tusk_ice_2" 
@@ -112,13 +84,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"100"
-			}
+			"value"					"100"
 		}
 	}
 
@@ -134,7 +102,7 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"  
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"tusk_snowball"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -160,29 +128,16 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"chill_amount"				"10 11 12 13 14 15 16"
-			}
+			"chill_amount"				"10 11 12 13 14 15 16"
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"chill_duration"			"10.0"
-			}
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"100 150 200 250 300 350 400"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"350"
-			}			
+			"damage"					"100 150 200 250 300 350 400"
+			"radius"					"350"			
 		}
 
 		"precache"
@@ -206,13 +161,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
-			}
+			"value"					"2"
 		}
 	}
 	"special_bonus_unique_tusk_snow_2" 
@@ -225,13 +176,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1.5"
-			}
+			"value"					"1.5"
 		}
 	}
 
@@ -245,7 +192,7 @@
 		"AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityTextureName"			"tusk_frozen_sigil"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -271,34 +218,14 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"30"
-			}			
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow_attack"				"-90"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow_move"					"-40"
+			"duration"					"30"			
+			"slow_attack"				"-90"
+			"slow_move"					"-40"
 				"LinkedSpecialBonus"		"special_bonus_unique_tusk_frozen_wasteland_1"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage_taken"		"10 20 30 40 50 60 70"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"600"
-			}		
+			"bonus_damage_taken"		"10 20 30 40 50 60 70"
+			"radius"					"600"		
 		}
 
 		// Precache
@@ -321,13 +248,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-30"
-			}
+			"value"					"-30"
 		}
 	}
 	"special_bonus_unique_tusk_frozen_wasteland_2" 
@@ -340,13 +263,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"300"
-			}
+			"value"					"300"
 		}
 	}
 
@@ -382,38 +301,14 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"air_time"					"1.0"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"300"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"push_length"				"1400"
-			}			
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"width"						"150"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_damage"			"150"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_radius"			"500"
-			}
+			"air_time"					"1.0"
+			"damage"					"300"
+			"push_length"				"1400"			
+			"width"						"150"
+			"scepter_damage"			"150"
+			"scepter_radius"			"500"
 		}
 
 		// Precache
@@ -441,7 +336,7 @@
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"tusk_walrus_punch"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE" 
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"IsOrb"							"1"
 		
 		// Talents		
@@ -468,34 +363,14 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"crit_multiplier"			"350"
+			"crit_multiplier"			"350"
 				"LinkedSpecialBonus"		"special_bonus_unique_tusk_punch_2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"air_time"					"1.0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"2.0 3.0 4.0 5.0 6.0 7.0"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"move_slow"					"-40 -45 -50 -60 -65"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"height"					"650"
-			}		
+			"air_time"					"1.0"
+			"duration"					"2.0 3.0 4.0 5.0 6.0 7.0"
+			"move_slow"					"-40 -45 -50 -60 -65"
+			"height"					"650"		
 		}
 
 		// Precache
@@ -523,13 +398,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"10"
-			}
+			"value"					"10"
 		}
 	}
 	"special_bonus_unique_tusk_punch_2" 
@@ -542,13 +413,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"350"
-			}
+			"value"					"350"
 		}
 	}
 }

@@ -8,23 +8,23 @@ modifier_dragon_knight_dragons_blood_ebf_passive = class({})
 LinkLuaModifier("modifier_dragon_knight_dragons_blood_ebf_passive", "heroes/hero_dragon_knight/dragon_knight_dragons_blood_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_dragon_knight_dragons_blood_ebf_passive:OnCreated()
-	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
-	self.regen = self:GetTalentSpecialValueFor("bonus_health_regen")
-	self.ms = self:GetTalentSpecialValueFor("bonus_movespeed")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
+	self.regen = self:GetSpecialValueFor("bonus_health_regen")
+	self.ms = self:GetSpecialValueFor("bonus_movespeed")
 	self:StartIntervalThink(1)
 end
 
 function modifier_dragon_knight_dragons_blood_ebf_passive:OnRefresh()
-	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
-	self.regen = self:GetTalentSpecialValueFor("bonus_health_regen")
-	self.ms = self:GetTalentSpecialValueFor("bonus_movespeed")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
+	self.regen = self:GetSpecialValueFor("bonus_health_regen")
+	self.ms = self:GetSpecialValueFor("bonus_movespeed")
 	self.spellamp = self:GetCaster():FindTalentValue("special_bonus_unique_dragon_knight_dragons_blood_ebf_2")
 end
 
 function modifier_dragon_knight_dragons_blood_ebf_passive:OnIntervalThink()
-	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
-	self.regen = self:GetTalentSpecialValueFor("bonus_health_regen")
-	self.ms = self:GetTalentSpecialValueFor("bonus_movespeed")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
+	self.regen = self:GetSpecialValueFor("bonus_health_regen")
+	self.ms = self:GetSpecialValueFor("bonus_movespeed")
 	self.spellamp = self:GetCaster():FindTalentValue("special_bonus_unique_dragon_knight_dragons_blood_ebf_2")
 end
 

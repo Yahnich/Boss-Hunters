@@ -14,23 +14,23 @@ function vengefulspirit_wave:OnSpellStart()
 	local point = self:GetCursorPosition()
 
 	local direction = CalculateDirection(point, caster:GetAbsOrigin())
-	local speed = self:GetTalentSpecialValueFor("speed")
+	local speed = self:GetSpecialValueFor("speed")
 	local distance = self:GetTrueCastRange()
 	local velocity = direction * speed
 
 	EmitSoundOn("Hero_VengefulSpirit.WaveOfTerror", caster)
 
-	self:FireLinearProjectile("particles/units/heroes/hero_vengeful/vengeful_wave_of_terror_orig.vpcf", velocity, distance, self:GetTalentSpecialValueFor("width"), {}, false, true, self:GetTalentSpecialValueFor("width"))
+	self:FireLinearProjectile("particles/units/heroes/hero_vengeful/vengeful_wave_of_terror_orig.vpcf", velocity, distance, self:GetSpecialValueFor("width"), {}, false, true, self:GetSpecialValueFor("width"))
 end
 
 function vengefulspirit_wave:OnProjectileHit(target, vLocation)
 	if target ~= nil and not target:TriggerSpellAbsorb( self ) then
 		local caster = self:GetCaster()
-		target:AddNewModifier(caster, self, "modifier_vengefulspirit_wave", {Duration = self:GetTalentSpecialValueFor("duration")}):AddIndependentStack()
+		target:AddNewModifier(caster, self, "modifier_vengefulspirit_wave", {Duration = self:GetSpecialValueFor("duration")}):AddIndependentStack()
 		if caster:HasTalent("special_bonus_unique_vengefulspirit_wave_2") then
 			target:Fear(self, caster, caster:FindTalentValue("special_bonus_unique_vengefulspirit_wave_2") )
 		end
-		self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {}, 0)
+		self:DealDamage(caster, target, self:GetSpecialValueFor("damage"), {}, 0)
 	end
 end
 
@@ -61,5 +61,5 @@ function modifier_vengefulspirit_wave:DeclareFunctions()
 end
 
 function modifier_vengefulspirit_wave:GetModifierPhysicalArmorBonus()
-    return self:GetTalentSpecialValueFor("armor_reduction") * self:GetStackCount()
+    return self:GetSpecialValueFor("armor_reduction") * self:GetStackCount()
 end

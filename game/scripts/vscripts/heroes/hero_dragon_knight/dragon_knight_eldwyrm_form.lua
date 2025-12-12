@@ -10,7 +10,7 @@ end
 
 function dragon_knight_eldwyrm_form:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_dragon_knight_eldwyrm_form", {duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_dragon_knight_eldwyrm_form", {duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_dragon_knight_eldwyrm_form = class({})
@@ -33,19 +33,19 @@ function modifier_dragon_knight_eldwyrm_form:OnCreated()
 end
 
 function modifier_dragon_knight_eldwyrm_form:OnRefresh()
-	self.poison_duration = self:GetTalentSpecialValueFor("dot_duration")
-	self.cleave = self:GetTalentSpecialValueFor("area_damage")
-	self.mr = self:GetTalentSpecialValueFor("magic_resist")
-	self.scale = self:GetTalentSpecialValueFor("model_scale")
-	self.str = self:GetTalentSpecialValueFor("bonus_str")
-	self.range = self:GetTalentSpecialValueFor("attack_range")
-	self.cdr = self:GetTalentSpecialValueFor("cdr")
+	self.poison_duration = self:GetSpecialValueFor("dot_duration")
+	self.cleave = self:GetSpecialValueFor("area_damage")
+	self.mr = self:GetSpecialValueFor("magic_resist")
+	self.scale = self:GetSpecialValueFor("model_scale")
+	self.str = self:GetSpecialValueFor("bonus_str")
+	self.range = self:GetSpecialValueFor("attack_range")
+	self.cdr = self:GetSpecialValueFor("cdr")
 	if self:GetCaster():HasScepter() then
-		self.cleave = self:GetTalentSpecialValueFor("scepter_area_damage")
-		self.mr = self:GetTalentSpecialValueFor("scepter_magic_resist")
-		self.str = self:GetTalentSpecialValueFor("scepter_bonus_str")
-		self.range = self:GetTalentSpecialValueFor("scepter_attack_range")
-		self.cdr = self:GetTalentSpecialValueFor("scepter_dr")
+		self.cleave = self:GetSpecialValueFor("scepter_area_damage")
+		self.mr = self:GetSpecialValueFor("scepter_magic_resist")
+		self.str = self:GetSpecialValueFor("scepter_bonus_str")
+		self.range = self:GetSpecialValueFor("scepter_attack_range")
+		self.cdr = self:GetSpecialValueFor("scepter_dr")
 	end
 	if self:GetCaster():HasTalent("special_bonus_unique_dragon_knight_eldwyrm_form_2") then
 		self.ogDmg = self:GetCaster():FindTalentValue("special_bonus_unique_dragon_knight_eldwyrm_form_2")
@@ -141,11 +141,11 @@ modifier_dragon_knight_eldwyrm_form_poison = class({})
 LinkLuaModifier("modifier_dragon_knight_eldwyrm_form_poison", "heroes/hero_dragon_knight/dragon_knight_eldwyrm_form", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_dragon_knight_eldwyrm_form_poison:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("dot")
-	self.slow = self:GetTalentSpecialValueFor("slow")
+	self.damage = self:GetSpecialValueFor("dot")
+	self.slow = self:GetSpecialValueFor("slow")
 	if self:GetCaster():HasScepter() then
-		self.damage = self:GetTalentSpecialValueFor("scepter_dot")
-		self.slow = self:GetTalentSpecialValueFor("scepter_slow")
+		self.damage = self:GetSpecialValueFor("scepter_dot")
+		self.slow = self:GetSpecialValueFor("scepter_slow")
 	end
 	if IsServer() then
 		self:StartIntervalThink(1)
@@ -153,11 +153,11 @@ function modifier_dragon_knight_eldwyrm_form_poison:OnCreated()
 end
 
 function modifier_dragon_knight_eldwyrm_form_poison:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("dot")
-	self.slow = self:GetTalentSpecialValueFor("slow")
+	self.damage = self:GetSpecialValueFor("dot")
+	self.slow = self:GetSpecialValueFor("slow")
 	if self:GetCaster():HasScepter() then
-		self.damage = self:GetTalentSpecialValueFor("scepter_dot")
-		self.slow = self:GetTalentSpecialValueFor("scepter_slow")
+		self.damage = self:GetSpecialValueFor("scepter_dot")
+		self.slow = self:GetSpecialValueFor("scepter_slow")
 	end
 end
 

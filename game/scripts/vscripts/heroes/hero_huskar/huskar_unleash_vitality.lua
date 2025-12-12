@@ -25,7 +25,7 @@ end
 function huskar_unleash_vitality:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	target:AddNewModifier(caster, self, "modifier_huskar_unleash_vitality_buff", {duration = self:GetTalentSpecialValueFor("duration")})
+	target:AddNewModifier(caster, self, "modifier_huskar_unleash_vitality_buff", {duration = self:GetSpecialValueFor("duration")})
 end
 
 
@@ -33,27 +33,27 @@ modifier_huskar_unleash_vitality_talent = class({})
 LinkLuaModifier("modifier_huskar_unleash_vitality_talent", "heroes/hero_huskar/huskar_unleash_vitality", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_huskar_unleash_vitality_talent:OnCreated()
-	self.heal = self:GetTalentSpecialValueFor("heal")
-	self.ms = self:GetTalentSpecialValueFor("movespeed")
-	self.as = self:GetTalentSpecialValueFor("attackspeed")
-	self.bonus_heal = self:GetTalentSpecialValueFor("attrib_bonus_heal") / 100
-	self.bonus_ms = self:GetTalentSpecialValueFor("attrib_bonus_ms") / 100
-	self.bonus_as = self:GetTalentSpecialValueFor("attrib_bonus_as") / 100
-	self.hpPct = self:GetTalentSpecialValueFor("hurt_percent")
-	self.hurt_bonus = self:GetTalentSpecialValueFor("hurt_multiplier")
+	self.heal = self:GetSpecialValueFor("heal")
+	self.ms = self:GetSpecialValueFor("movespeed")
+	self.as = self:GetSpecialValueFor("attackspeed")
+	self.bonus_heal = self:GetSpecialValueFor("attrib_bonus_heal") / 100
+	self.bonus_ms = self:GetSpecialValueFor("attrib_bonus_ms") / 100
+	self.bonus_as = self:GetSpecialValueFor("attrib_bonus_as") / 100
+	self.hpPct = self:GetSpecialValueFor("hurt_percent")
+	self.hurt_bonus = self:GetSpecialValueFor("hurt_multiplier")
 	self.talentMultiplier = self:GetParent():FindTalentValue("special_bonus_unique_huskar_unleash_vitality_2")
 	self:StartIntervalThink(0.33)
 end
 
 function modifier_huskar_unleash_vitality_talent:OnRefresh()
-	self.heal = self:GetTalentSpecialValueFor("heal")
-	self.ms = self:GetTalentSpecialValueFor("movespeed")
-	self.as = self:GetTalentSpecialValueFor("attackspeed")
-	self.bonus_heal = self:GetTalentSpecialValueFor("attrib_bonus_heal") / 100
-	self.bonus_ms = self:GetTalentSpecialValueFor("attrib_bonus_ms") / 100
-	self.bonus_as = self:GetTalentSpecialValueFor("attrib_bonus_as") / 100
-	self.hpPct = self:GetTalentSpecialValueFor("hurt_percent")
-	self.hurt_bonus = self:GetTalentSpecialValueFor("hurt_multiplier")
+	self.heal = self:GetSpecialValueFor("heal")
+	self.ms = self:GetSpecialValueFor("movespeed")
+	self.as = self:GetSpecialValueFor("attackspeed")
+	self.bonus_heal = self:GetSpecialValueFor("attrib_bonus_heal") / 100
+	self.bonus_ms = self:GetSpecialValueFor("attrib_bonus_ms") / 100
+	self.bonus_as = self:GetSpecialValueFor("attrib_bonus_as") / 100
+	self.hpPct = self:GetSpecialValueFor("hurt_percent")
+	self.hurt_bonus = self:GetSpecialValueFor("hurt_multiplier")
 	self.talentMultiplier = self:GetParent():FindTalentValue("special_bonus_unique_huskar_unleash_vitality_2") / 100
 end
 
@@ -87,14 +87,14 @@ modifier_huskar_unleash_vitality_buff = class({})
 LinkLuaModifier("modifier_huskar_unleash_vitality_buff", "heroes/hero_huskar/huskar_unleash_vitality", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_huskar_unleash_vitality_buff:OnCreated()
-	self.heal = self:GetTalentSpecialValueFor("heal")
-	self.ms = self:GetTalentSpecialValueFor("movespeed")
-	self.as = self:GetTalentSpecialValueFor("attackspeed")
-	self.bonus_heal = self:GetTalentSpecialValueFor("attrib_bonus_heal") / 100
-	self.bonus_ms = self:GetTalentSpecialValueFor("attrib_bonus_ms") / 100
-	self.bonus_as = self:GetTalentSpecialValueFor("attrib_bonus_as") / 100
-	self.hpPct = self:GetTalentSpecialValueFor("hurt_percent")
-	self.hurt_bonus = self:GetTalentSpecialValueFor("hurt_multiplier")
+	self.heal = self:GetSpecialValueFor("heal")
+	self.ms = self:GetSpecialValueFor("movespeed")
+	self.as = self:GetSpecialValueFor("attackspeed")
+	self.bonus_heal = self:GetSpecialValueFor("attrib_bonus_heal") / 100
+	self.bonus_ms = self:GetSpecialValueFor("attrib_bonus_ms") / 100
+	self.bonus_as = self:GetSpecialValueFor("attrib_bonus_as") / 100
+	self.hpPct = self:GetSpecialValueFor("hurt_percent")
+	self.hurt_bonus = self:GetSpecialValueFor("hurt_multiplier")
 	self.talentMultiplier = self:GetParent():FindTalentValue("special_bonus_unique_huskar_unleash_vitality_2")
 	self:StartIntervalThink(0.33)
 	
@@ -104,14 +104,14 @@ function modifier_huskar_unleash_vitality_buff:OnCreated()
 end
 
 function modifier_huskar_unleash_vitality_buff:OnRefresh()
-	self.heal = self:GetTalentSpecialValueFor("heal")
-	self.ms = self:GetTalentSpecialValueFor("movespeed")
-	self.as = self:GetTalentSpecialValueFor("attackspeed")
-	self.bonus_heal = self:GetTalentSpecialValueFor("attrib_bonus_heal") / 100
-	self.bonus_ms = self:GetTalentSpecialValueFor("attrib_bonus_ms") / 100
-	self.bonus_as = self:GetTalentSpecialValueFor("attrib_bonus_as") / 100
-	self.hpPct = self:GetTalentSpecialValueFor("hurt_percent")
-	self.hurt_bonus = self:GetTalentSpecialValueFor("hurt_multiplier")
+	self.heal = self:GetSpecialValueFor("heal")
+	self.ms = self:GetSpecialValueFor("movespeed")
+	self.as = self:GetSpecialValueFor("attackspeed")
+	self.bonus_heal = self:GetSpecialValueFor("attrib_bonus_heal") / 100
+	self.bonus_ms = self:GetSpecialValueFor("attrib_bonus_ms") / 100
+	self.bonus_as = self:GetSpecialValueFor("attrib_bonus_as") / 100
+	self.hpPct = self:GetSpecialValueFor("hurt_percent")
+	self.hurt_bonus = self:GetSpecialValueFor("hurt_multiplier")
 	
 	self.total_heal = math.floor(self.heal + self:GetParent():GetPrimaryStatValue() * self.bonus_heal)
 	self.total_ms = math.floor(self.ms + self:GetParent():GetPrimaryStatValue() * self.bonus_ms)

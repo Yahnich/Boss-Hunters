@@ -32,12 +32,12 @@ end
 function mirana_starcall:OnSpellStart()
     local caster = self:GetCaster()
 	
-    local damage = self:GetTalentSpecialValueFor("damage")
-    -- local agi_damage = self:GetTalentSpecialValueFor("agi_damage")/100
+    local damage = self:GetSpecialValueFor("damage")
+    -- local agi_damage = self:GetSpecialValueFor("agi_damage")/100
     -- damage = damage + caster:GetAgility() * agi_damage
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local radius = self:GetSpecialValueFor("radius")
 	self:StarFall( radius, damage, 0 )
-	local damage2 = damage * self:GetTalentSpecialValueFor("wave_damage") / 100
+	local damage2 = damage * self:GetSpecialValueFor("wave_damage") / 100
 	local target
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius, {order = FIND_CLOSEST} ) ) do
 		if not enemy:IsMinion() then
@@ -45,7 +45,7 @@ function mirana_starcall:OnSpellStart()
 			break
 		end
 	end
-	self:StarFall( radius, damage2, self:GetTalentSpecialValueFor("wave_delay"), target )
+	self:StarFall( radius, damage2, self:GetSpecialValueFor("wave_delay"), target )
 	-- if caster:HasTalent("special_bonus_unique_mirana_starcall_2") then
 		-- local damage3 = damage * caster:FindTalentValue("special_bonus_unique_mirana_starcall_2", "damage")
 		-- self:StarFall( radius, damage3, self:GetSpecialValueFor("wave_delay") )
@@ -93,7 +93,7 @@ end
 function modifier_mirana_starcall:OnIntervalThink()
     if self:GetParent():HasTalent("special_bonus_unique_mirana_starcall_1") and self:GetParent():IsAlive() and self:GetAbility():GetAutoCastState() then
 		local caster = self:GetCaster()
-		local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius") )
+		local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self:GetSpecialValueFor("radius") )
 		if #enemies > 0 then
 			self:GetAbility():OnSpellStart()
 			self:StartIntervalThink(self:GetParent():FindTalentValue("special_bonus_unique_mirana_starcall_1"))

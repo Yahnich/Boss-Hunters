@@ -15,8 +15,8 @@ function modifier_hoodwink_heartland_wanderer_passive:OnCreated()
 end
 
 function modifier_hoodwink_heartland_wanderer_passive:OnRefresh()
-	self.evasion = self:GetTalentSpecialValueFor("evasion")
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.evasion = self:GetSpecialValueFor("evasion")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_hoodwink_heartland_wanderer_passive:OnIntervalThink()

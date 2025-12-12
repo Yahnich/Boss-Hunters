@@ -11,7 +11,7 @@ function timbersaw_claw:IsHiddenWhenStolen()
 end
 
 function timbersaw_claw:GetCastRange(vLocation, hTarget)
-    return self:GetTalentSpecialValueFor("distance")
+    return self:GetSpecialValueFor("distance")
 end
 
 function timbersaw_claw:PiercesDisableResistance()
@@ -27,10 +27,10 @@ function timbersaw_claw:OnSpellStart()
     self.hook_launched = true
     
     -- Parameters
-    local hook_speed = self:GetTalentSpecialValueFor("speed")
-    local hook_width = self:GetTalentSpecialValueFor("width")
+    local hook_speed = self:GetSpecialValueFor("speed")
+    local hook_width = self:GetSpecialValueFor("width")
     local hook_range = self:GetTrueCastRange()
-    local hook_damage = self:GetTalentSpecialValueFor("damage")
+    local hook_damage = self:GetSpecialValueFor("damage")
     local caster_loc = caster:GetAbsOrigin()
     local start_loc = caster_loc + CalculateDirection(self:GetCursorPosition(), caster_loc) * hook_range
 
@@ -71,7 +71,7 @@ function timbersaw_claw:OnSpellStart()
                 if caster:HasTalent("special_bonus_unique_timbersaw_claw_2") then
                     self:Stun(enemy, caster:FindTalentValue("special_bonus_unique_timbersaw_claw_2"), false)
                 else
-                    enemy:ApplyKnockBack(caster_loc, 0.5, 0.5, self:GetTalentSpecialValueFor("knockback"), 100, caster, self)
+                    enemy:ApplyKnockBack(caster_loc, 0.5, 0.5, self:GetSpecialValueFor("knockback"), 100, caster, self)
                 end
 
                 self:DealDamage(caster, enemy, hook_damage, {}, 0)
@@ -128,7 +128,7 @@ function timbersaw_claw:OnSpellStart()
                     --target_hit = true
                     --target = enemy
                     EmitSoundOn("Hero_Shredder.TimberChain.Damage", enemy)
-                    enemy:ApplyKnockBack(caster_loc, 0.5, 0.5, -self:GetTalentSpecialValueFor("knockback"), 100, caster, self)
+                    enemy:ApplyKnockBack(caster_loc, 0.5, 0.5, -self:GetSpecialValueFor("knockback"), 100, caster, self)
                     self:DealDamage(caster, enemy, hook_damage, {}, 0)
                     break
                 end
@@ -176,7 +176,7 @@ function modifier_timbersaw_claw_pull:OnIntervalThink()
     for _,enemy in pairs(enemies) do
         if not enemy:IsKnockedBack() then
             EmitSoundOn("Hero_Shredder.TimberChain.Damage", enemy)
-            enemy:ApplyKnockBack(parent:GetAbsOrigin(), 0.5, 0.5, -self:GetTalentSpecialValueFor("knockback"), 100, parent, self)
+            enemy:ApplyKnockBack(parent:GetAbsOrigin(), 0.5, 0.5, -self:GetSpecialValueFor("knockback"), 100, parent, self)
             self:GetAbility():DealDamage(parent, enemy, self:GetSpecialValueFor("damage"), {}, 0)
         end
     end
@@ -189,7 +189,7 @@ function modifier_timbersaw_claw_pull:DoControlledMotion()
         self.distance = self.distance - 100
         parent:SetAbsOrigin(GetGroundPosition(parent:GetAbsOrigin(), parent) + self.dir*100)
 
-        CutTreesInRadius(parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("width"), {ability = self:GetAbility()})
+        CutTreesInRadius(parent:GetAbsOrigin(), self:GetSpecialValueFor("width"), {ability = self:GetAbility()})
     else
         FindClearSpaceForUnit(parent, parent:GetAbsOrigin(), true)
 

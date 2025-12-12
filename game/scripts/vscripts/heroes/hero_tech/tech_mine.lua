@@ -13,7 +13,7 @@ function tech_mine:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
 	
-	local duration = self:GetTalentSpecialValueFor("lifetime")
+	local duration = self:GetSpecialValueFor("lifetime")
 	
 	EmitSoundOn("Hero_Techies.LandMine.Plant", caster)
 	self:PlantLandMine( position, duration )
@@ -25,7 +25,7 @@ end
 
 function tech_mine:PlantLandMine( position, duration )
 	local caster = self:GetCaster()
-	local lifetime = duration or self:GetTalentSpecialValueFor("lifetime")
+	local lifetime = duration or self:GetSpecialValueFor("lifetime")
 	local mine = CreateUnitByName("npc_dota_techies_land_mine", position, true, caster, caster, caster:GetTeam())
 	mine:AddNewModifier(caster, self, "modifier_mine", {})
 	mine:AddNewModifier(caster, self, "modifier_kill", {duration = lifetime})
@@ -35,14 +35,14 @@ end
 modifier_mine = ({})
 function modifier_mine:OnCreated(table)
 	if IsServer() then
-		Timers:CreateTimer(self:GetTalentSpecialValueFor("active_delay"), function()
+		Timers:CreateTimer(self:GetSpecialValueFor("active_delay"), function()
 			self:StartIntervalThink(FrameTime())
 		end)
 	end
 end
 
 function modifier_mine:OnIntervalThink()
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local radius = self:GetSpecialValueFor("radius")
 	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), radius, {flag = self:GetAbility():GetAbilityTargetFlags()})
 	if enemies[1] then
 		self:StartIntervalThink(-1)
@@ -59,7 +59,7 @@ function modifier_mine:OnIntervalThink()
 					ParticleManager:SetParticleControl(nfx, 2, Vector(radius, radius, radius))
 					ParticleManager:ReleaseParticleIndex(nfx)
 					if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
-						self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+						self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetSpecialValueFor("damage"), {}, 0)
 						EmitSoundOn("Hero_Techies.LandMine.Detonate", self:GetParent())
 					end
 				end

@@ -5,9 +5,9 @@ function drow_ranger_bullseye:OnSpellStart()
 	local target = self:GetCursorPosition()
 	
 	local direction = CalculateDirection( target, caster )
-	local speed = self:GetTalentSpecialValueFor("arrow_speed")
-	local distance = self:GetTalentSpecialValueFor("arrow_range")
-	local width = self:GetTalentSpecialValueFor("arrow_width")
+	local speed = self:GetSpecialValueFor("arrow_speed")
+	local distance = self:GetSpecialValueFor("arrow_range")
+	local width = self:GetSpecialValueFor("arrow_width")
 	
 	self:FireLinearProjectile("particles/drow_bullseye_arrow.vpcf", direction * speed, distance, width)
 	
@@ -31,7 +31,7 @@ end
 
 function drow_ranger_bullseye:BreakAndDamage(target)
 	local caster = self:GetCaster()
-	target:Break( self, caster, self:GetTalentSpecialValueFor("break_duration"))
-	local damage = caster:GetAgility() * self:GetTalentSpecialValueFor("arrow_agi_multiplier")
+	target:Break( self, caster, self:GetSpecialValueFor("break_duration"))
+	local damage = caster:GetAgility() * self:GetSpecialValueFor("arrow_agi_multiplier")
 	caster:PerformAbilityAttack(target, true, self, damage - caster:GetAttackDamage() )
 end

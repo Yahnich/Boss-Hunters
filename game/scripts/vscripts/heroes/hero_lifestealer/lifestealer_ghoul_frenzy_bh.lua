@@ -12,8 +12,8 @@ function modifier_lifestealer_ghoul_frenzy_bh_handle:OnCreated(kv)
 end
 
 function modifier_lifestealer_ghoul_frenzy_bh_handle:OnRefresh(kv)
-	self.duration = self:GetTalentSpecialValueFor("duration")
-	self.attack_speed = self:GetTalentSpecialValueFor("attack_speed_bonus")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.attack_speed = self:GetSpecialValueFor("attack_speed_bonus")
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_lifestealer_ghoul_frenzy_1")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_lifestealer_ghoul_frenzy_2")
@@ -59,9 +59,9 @@ function modifier_lifestealer_ghoul_frenzy_bh_debuff:OnCreated(kv)
 end
 
 function modifier_lifestealer_ghoul_frenzy_bh_debuff:OnRefresh(kv)
-	self.armor_reduction = self:GetTalentSpecialValueFor("armor_reduction")
+	self.armor_reduction = self:GetSpecialValueFor("armor_reduction")
 	
-	self.talent1Val = -self:GetTalentSpecialValueFor("attack_speed_bonus") * self:GetCaster():FindTalentValue("special_bonus_unique_lifestealer_ghoul_frenzy_1") / 100
+	self.talent1Val = -self:GetSpecialValueFor("attack_speed_bonus") * self:GetCaster():FindTalentValue("special_bonus_unique_lifestealer_ghoul_frenzy_1") / 100
 end
 
 function modifier_lifestealer_ghoul_frenzy_bh_debuff:DeclareFunctions()
@@ -88,7 +88,7 @@ function modifier_lifestealer_ghoul_frenzy_bh_buff:OnCreated(kv)
 end
 
 function modifier_lifestealer_ghoul_frenzy_bh_buff:OnRefresh(kv)
-	self.armor_reduction = -self:GetTalentSpecialValueFor("armor_reduction")
+	self.armor_reduction = -self:GetSpecialValueFor("armor_reduction")
 	self.talent1Val = self:GetCaster():FindTalentValue("special_bonus_unique_lifestealer_ghoul_frenzy_1") / 100
 end
 

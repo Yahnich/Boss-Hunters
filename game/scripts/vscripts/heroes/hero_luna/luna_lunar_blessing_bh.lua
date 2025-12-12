@@ -52,11 +52,11 @@ LinkLuaModifier( "modifier_luna_lunar_blessing_passive", "heroes/hero_luna/luna_
 modifier_luna_lunar_blessing_passive = class({})
 
 function modifier_luna_lunar_blessing_passive:OnCreated()
-	self.aura_radius = self:GetAbility():GetTalentSpecialValueFor("radius")
+	self.aura_radius = self:GetAbility():GetSpecialValueFor("radius")
 end
 
 function modifier_luna_lunar_blessing_passive:OnRefresh()
-	self.aura_radius = self:GetAbility():GetTalentSpecialValueFor("radius")
+	self.aura_radius = self:GetAbility():GetSpecialValueFor("radius")
 end
 
 function modifier_luna_lunar_blessing_passive:IsHidden()
@@ -105,8 +105,8 @@ LinkLuaModifier( "modifier_luna_lunar_blessing_bh_aura", "heroes/hero_luna/luna_
 modifier_luna_lunar_blessing_bh_aura = class({})
 
 function modifier_luna_lunar_blessing_bh_aura:OnCreated()
-    self.dmg = self:GetAbility():GetTalentSpecialValueFor("bonus_primary")
-	self.night_dmg = self:GetAbility():GetTalentSpecialValueFor("bonus_damage_pct")
+    self.dmg = self:GetAbility():GetSpecialValueFor("bonus_primary")
+	self.night_dmg = self:GetAbility():GetSpecialValueFor("bonus_damage_pct")
 	
 	self.mult = self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_1")
 	self.mult2 = self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_2", "value2")
@@ -115,8 +115,8 @@ function modifier_luna_lunar_blessing_bh_aura:OnCreated()
 end
 
 function modifier_luna_lunar_blessing_bh_aura:OnRefresh()
-    self.dmg = self:GetAbility():GetTalentSpecialValueFor("bonus_primary")
-	self.night_dmg = self:GetAbility():GetTalentSpecialValueFor("bonus_damage_pct")
+    self.dmg = self:GetAbility():GetSpecialValueFor("bonus_primary")
+	self.night_dmg = self:GetAbility():GetSpecialValueFor("bonus_damage_pct")
 	
 	self.mult = self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_1")
 	self.mult2 = self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_2", "value2")
@@ -174,8 +174,8 @@ LinkLuaModifier( "modifier_luna_lunar_blessing_bh_talent", "heroes/hero_luna/lun
 modifier_luna_lunar_blessing_bh_talent = class({})
 
 function modifier_luna_lunar_blessing_bh_talent:OnCreated()
-	self.ms = self:GetTalentSpecialValueFor("bonus_primary")
-	self.night_ms = self:GetTalentSpecialValueFor("bonus_damage_pct")
+	self.ms = self:GetSpecialValueFor("bonus_primary")
+	self.night_ms = self:GetSpecialValueFor("bonus_damage_pct")
 	
 	self.mult = self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_1")
 end

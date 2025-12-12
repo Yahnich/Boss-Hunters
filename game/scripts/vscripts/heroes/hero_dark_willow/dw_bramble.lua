@@ -9,7 +9,7 @@ function dw_bramble:IsHiddenWhenStolen()
 end
 
 function dw_bramble:GetAOERadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function dw_bramble:OnSpellStart()
@@ -27,7 +27,7 @@ function dw_bramble:PlantBush(vLocation)
 
 	local point = vLocation
 
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	local bush = CreateModifierThinker(caster, self, "modifier_dw_bramble", {Duration = duration}, point, caster:GetTeam(), false)
 
 end
@@ -37,9 +37,9 @@ function dw_bramble:GrowMaze(vLocation)
 	local point = vLocation
 
 	local direction = CalculateDirection(point, caster:GetAbsOrigin())
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local limit = self:GetTalentSpecialValueFor("max_count")
+	local radius = self:GetSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("duration")
+	local limit = self:GetSpecialValueFor("max_count")
 
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_dark_willow/dark_willow_bramble_cast.vpcf", PATTACH_POINT, caster)
 				ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT, "attach_attack1", caster:GetAbsOrigin(), true)
@@ -89,8 +89,8 @@ function modifier_dw_bramble:OnCreated(table)
 		EmitSoundOn("Hero_DarkWillow.Bramble.Spawn", self:GetParent())
 		EmitSoundOn("Hero_DarkWillow.BrambleLoop", self:GetParent())
 
-		self.radius = self:GetTalentSpecialValueFor("latch_range")
-		self.duration = self:GetTalentSpecialValueFor("debuff_duration")
+		self.radius = self:GetSpecialValueFor("latch_range")
+		self.duration = self:GetSpecialValueFor("debuff_duration")
 
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_dark_willow/dark_willow_bramble_wraith.vpcf", PATTACH_POINT, caster)
 					ParticleManager:SetParticleControl(nfx, 0, point)
@@ -98,7 +98,7 @@ function modifier_dw_bramble:OnCreated(table)
 
 		self:AttachEffect(nfx)
 
-		self:StartIntervalThink(self:GetTalentSpecialValueFor("delay"))
+		self:StartIntervalThink(self:GetSpecialValueFor("delay"))
 	end
 end
 
@@ -190,10 +190,10 @@ function modifier_dw_bramble_damage:OnCreated(table)
 
 		EmitSoundOn("Hero_DarkWillow.Bramble.Target", self:GetParent())
 
-		self.damage = self:GetTalentSpecialValueFor("damage") * 0.5
+		self.damage = self:GetSpecialValueFor("damage") * 0.5
 		self.lifesteal = caster:FindTalentValue("special_bonus_unique_dw_bramble_1")
 		
-		local radius = self:GetTalentSpecialValueFor("latch_range")
+		local radius = self:GetSpecialValueFor("latch_range")
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_dark_willow/dark_willow_bramble.vpcf", PATTACH_POINT, caster)
 					ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
 					ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
@@ -207,7 +207,7 @@ end
 function modifier_dw_bramble_damage:OnRefresh(table)
 	if IsServer() then
 		self.lifesteal = caster:FindTalentValue("special_bonus_unique_dw_bramble_1")
-		self.damage = self:GetTalentSpecialValueFor("damage") * 0.5
+		self.damage = self:GetSpecialValueFor("damage") * 0.5
 	end
 end
 

@@ -21,12 +21,12 @@ modifier_slardar_oathkeeper = class({})
 LinkLuaModifier( "modifier_slardar_oathkeeper", "heroes/hero_slardar/slardar_oathkeeper", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_slardar_oathkeeper:OnCreated()
-	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
 	self.mr = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_oathkeeper_1")
 end
 
 function modifier_slardar_oathkeeper:OnRefresh()
-	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
 	self.mr = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_oathkeeper_1")
 end
 

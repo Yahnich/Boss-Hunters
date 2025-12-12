@@ -8,10 +8,10 @@ modifier_axe_force_of_will = class({})
 LinkLuaModifier("modifier_axe_force_of_will", "heroes/hero_axe/axe_force_of_will", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_axe_force_of_will:OnCreated()
-	self.lifesteal = self:GetTalentSpecialValueFor("lifesteal") / 100
-	self.mLifesteal = self:GetTalentSpecialValueFor("minion_lifesteal") / 100
-	self.bChance = self:GetTalentSpecialValueFor("scepter_bash_chance")
-	self.bDur = self:GetTalentSpecialValueFor("scepter_bash_duration")
+	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
+	self.mLifesteal = self:GetSpecialValueFor("minion_lifesteal") / 100
+	self.bChance = self:GetSpecialValueFor("scepter_bash_chance")
+	self.bDur = self:GetSpecialValueFor("scepter_bash_duration")
 end
 
 function modifier_axe_force_of_will:DeclareFunctions()

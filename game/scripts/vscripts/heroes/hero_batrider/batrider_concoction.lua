@@ -16,7 +16,7 @@ end
 modifier_batrider_concoction = class({})
 function modifier_batrider_concoction:OnCreated(table)
 	if IsServer() then
-		self.damage = self:GetTalentSpecialValueFor("base_damage") + self:GetTalentSpecialValueFor("damage_per_lvl") * self:GetCaster():GetLevel()
+		self.damage = self:GetSpecialValueFor("base_damage") + self:GetSpecialValueFor("damage_per_lvl") * self:GetCaster():GetLevel()
 
 		self:StartIntervalThink(1)
 	end
@@ -24,13 +24,13 @@ end
 
 function modifier_batrider_concoction:OnRefresh(table)
 	if IsServer() then
-		self.damage = self:GetTalentSpecialValueFor("base_damage") + self:GetTalentSpecialValueFor("damage_per_lvl") * self:GetCaster():GetLevel()
+		self.damage = self:GetSpecialValueFor("base_damage") + self:GetSpecialValueFor("damage_per_lvl") * self:GetCaster():GetLevel()
 	end
 end
 
 function modifier_batrider_concoction:OnIntervalThink()
 	if IsServer() then
-		self.damage = self:GetTalentSpecialValueFor("base_damage") + self:GetTalentSpecialValueFor("damage_per_lvl") * self:GetCaster():GetLevel()
+		self.damage = self:GetSpecialValueFor("base_damage") + self:GetSpecialValueFor("damage_per_lvl") * self:GetCaster():GetLevel()
 	end
 end
 

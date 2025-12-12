@@ -67,7 +67,7 @@ function modifier_wk_crit_passive:OnCreated()
 end
 
 function modifier_wk_crit_passive:OnRefresh()
-	self.crit_dmg = self:GetTalentSpecialValueFor("crit_mult")
+	self.crit_dmg = self:GetSpecialValueFor("crit_mult")
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_wk_crit_1")
 	self.talent1AOE = self:GetCaster():FindTalentValue("special_bonus_unique_wk_crit_1")
@@ -144,7 +144,7 @@ function modifier_wk_crit_str:OnDestroy(args)
 end
 
 function modifier_wk_crit_str:OnRefresh()
-	self.bonus_str = self:GetTalentSpecialValueFor("bonus_str")
+	self.bonus_str = self:GetSpecialValueFor("bonus_str")
 	if IsServer() then
 		self:IncrementStackCount()
 		self:GetCaster():CalculateStatBonus()

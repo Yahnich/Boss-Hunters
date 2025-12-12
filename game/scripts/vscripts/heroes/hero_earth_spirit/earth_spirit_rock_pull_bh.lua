@@ -76,9 +76,9 @@ function modifier_rock_pull:OnCreated(table)
 	if IsServer() then
 		caster = self:GetCaster()
 		target = self:GetParent()
-		self.silence = self:GetTalentSpecialValueFor("duration")
-		self.radius = self:GetTalentSpecialValueFor("radius")
-		self.damage = self:GetTalentSpecialValueFor("damage")
+		self.silence = self:GetSpecialValueFor("duration")
+		self.radius = self:GetSpecialValueFor("radius")
+		self.damage = self:GetSpecialValueFor("damage")
 		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_earth_spirit/espirit_geomagentic_target_sphere.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControlForward( self.nfx, 3, CalculateDirection(self:GetParent(), self:GetCaster() ) )
 		self:AddEffect( self.nfx )
@@ -146,7 +146,7 @@ end
 function modifier_rock_pull_enemy:OnRefresh(table)
 	if IsServer() then
 		EmitSoundOn("Hero_EarthSpirit.GeomagneticGrip.Damage", self:GetParent())
-		if not self:GetParent():TriggerSpellAbsorb( self:GetAbility() ) then self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("target_damage"), {}, 0) end
+		if not self:GetParent():TriggerSpellAbsorb( self:GetAbility() ) then self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetSpecialValueFor("target_damage"), {}, 0) end
 	end
 end
 

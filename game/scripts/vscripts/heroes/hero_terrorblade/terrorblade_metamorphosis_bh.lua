@@ -2,14 +2,14 @@ terrorblade_metamorphosis_bh = class({})
 
 function terrorblade_metamorphosis_bh:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier( caster, self, "modifier_terrorblade_metamorphosis_bh", {duration = self:GetTalentSpecialValueFor("duration")} )
+	caster:AddNewModifier( caster, self, "modifier_terrorblade_metamorphosis_bh", {duration = self:GetSpecialValueFor("duration")} )
 end
 
 modifier_terrorblade_metamorphosis_bh = class({})
 LinkLuaModifier("modifier_terrorblade_metamorphosis_bh", "heroes/hero_terrorblade/terrorblade_metamorphosis_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_terrorblade_metamorphosis_bh:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("metamorph_aura_tooltip")
+	self.radius = self:GetSpecialValueFor("metamorph_aura_tooltip")
 end
 
 function modifier_terrorblade_metamorphosis_bh:IsAura()
@@ -49,9 +49,9 @@ modifier_terrorblade_metamorphosis_bh_aura = class({})
 LinkLuaModifier( "modifier_terrorblade_metamorphosis_bh_aura", "heroes/hero_terrorblade/terrorblade_metamorphosis_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_terrorblade_metamorphosis_bh_aura:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("bonus_damage")
-	self.movespeed = self:GetTalentSpecialValueFor("speed_loss")
-	self.range = self:GetTalentSpecialValueFor("bonus_range")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
+	self.movespeed = self:GetSpecialValueFor("speed_loss")
+	self.range = self:GetSpecialValueFor("bonus_range")
 	if IsServer() then
 		self:GetParent():StartGesture( ACT_DOTA_CAST_ABILITY_3 )
 		self:GetParent():SetAttackCapability( DOTA_UNIT_CAP_RANGED_ATTACK )

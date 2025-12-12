@@ -11,20 +11,20 @@ end
 
 function sb_nether_strike:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
-    if self:GetCaster():HasScepter() then cooldown = self:GetTalentSpecialValueFor("cooldown_scepter") end
+    if self:GetCaster():HasScepter() then cooldown = self:GetSpecialValueFor("cooldown_scepter") end
     return cooldown
 end
 
 function sb_nether_strike:GetCastRange(vLocation, hTarget)
 	if self:GetCaster():HasScepter() then
-		return self:GetTalentSpecialValueFor("range_scepter")
+		return self:GetSpecialValueFor("range_scepter")
 	end
-	return self:GetTalentSpecialValueFor("range")
+	return self:GetSpecialValueFor("range")
 end
 
 function sb_nether_strike:GetAOERadius()
 	if self:GetCaster():HasTalent() or self:GetCaster():HasScepter() then 
-		return self:GetTalentSpecialValueFor("bash_radius_scepter")
+		return self:GetSpecialValueFor("bash_radius_scepter")
 	end
 end
 
@@ -55,9 +55,9 @@ function sb_nether_strike:OnSpellStart()
 	FindClearSpaceForUnit(caster, tpPoint, true)
 	caster:FaceTowards(target:GetAbsOrigin())
 
-	local radius = TernaryOperator( self:GetTalentSpecialValueFor("bash_radius_scepter"), caster:HasScepter(), 0 )
+	local radius = TernaryOperator( self:GetSpecialValueFor("bash_radius_scepter"), caster:HasScepter(), 0 )
 	local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), radius)
-	local damage = self:GetTalentSpecialValueFor("damage") + caster:GetIdealSpeed() * caster:FindTalentValue("special_bonus_unique_sb_nether_strike_1") / 100
+	local damage = self:GetSpecialValueFor("damage") + caster:GetIdealSpeed() * caster:FindTalentValue("special_bonus_unique_sb_nether_strike_1") / 100
 	
 	local talent = caster:HasTalent("special_bonus_unique_sb_nether_strike_2")
 	local tDur = caster:FindTalentValue("special_bonus_unique_sb_nether_strike_2")

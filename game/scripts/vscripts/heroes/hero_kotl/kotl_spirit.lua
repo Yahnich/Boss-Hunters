@@ -15,7 +15,7 @@ modifier_kotl_spirit_passive = class({})
 LinkLuaModifier( "modifier_kotl_spirit_passive", "heroes/hero_kotl/kotl_spirit.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_kotl_spirit_passive:OnCreated()
-	self.day_multiplier = self:GetTalentSpecialValueFor("day_multiplier")
+	self.day_multiplier = self:GetSpecialValueFor("day_multiplier")
 	if IsServer() then
 		self:StartIntervalThink(0.5)
 	end
@@ -62,11 +62,11 @@ function modifier_kotl_spirit_passive:GetModifierOverrideAbilitySpecialValue(par
 end
 
 function modifier_kotl_spirit_passive:GetModifierSpellAmplify_Percentage()
-	return self:GetTalentSpecialValueFor("spell_amp")
+	return self:GetSpecialValueFor("spell_amp")
 end
 
 function modifier_kotl_spirit_passive:GetModifierHealAmplify_Percentage()
-	return self:GetTalentSpecialValueFor("heal_amp")
+	return self:GetSpecialValueFor("heal_amp")
 end
 
 function modifier_kotl_spirit_passive:IsHidden()

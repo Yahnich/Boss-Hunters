@@ -11,7 +11,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"naga_siren_mirror_image"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -41,56 +41,36 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"15"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_evasion"					"30"
+			"bonus_evasion"					"30"
 				"LinkedSpecialBonus"			"special_bonus_unique_naga_siren_liquid_form_2"
 				"LinkedSpecialBonusField"		"evasion"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_hp_regen"				"7 10 13 16 19 22 25"
+			"bonus_hp_regen"				"7 10 13 16 19 22 25"
 				"LinkedSpecialBonus"			"special_bonus_unique_naga_siren_liquid_form_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"water_hp_regen"				"14 20 26 32 38 44 50"
+			"water_hp_regen"				"14 20 26 32 38 44 50"
 				"LinkedSpecialBonus"			"special_bonus_unique_naga_siren_liquid_form_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"max_illusions"					"3"	
-			}
+			"max_illusions"					"3"	
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"out_damage"					"20 25 30 35 40 45 50"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"inc_damage"					"250 225 200 175 150 125 100"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 			"08"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"illu_duration"					"30"	
-			}
 		}
 	}
 	"special_bonus_unique_naga_siren_liquid_form_1" 
@@ -103,13 +83,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"special_bonus_unique_naga_siren_liquid_form_2" 
@@ -122,18 +98,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"evasion"				"20"
-			}
+			"value"					"2"
+			"evasion"				"20"
 		}
 	}
 	//=================================================================================================================
@@ -152,7 +120,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"naga_siren_ensnare"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -186,33 +154,13 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"2.0 2.5 3.0 3.5 4.0 4.5 5.0"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"net_speed"					"1500 1500 1500 1500"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"fake_ensnare_distance"		"900 900 900 900"	
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"agility_damage"			"20"	
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"base_damage"				"100"	
-			}
+			"duration"					"2.0 2.5 3.0 3.5 4.0 4.5 5.0"
+			"net_speed"					"1500 1500 1500 1500"
+			"fake_ensnare_distance"		"900 900 900 900"	
+			"agility_damage"			"20"	
+			"base_damage"				"100"	
 		}
 	}
 	"special_bonus_unique_naga_siren_water_snare_1" 
@@ -225,18 +173,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"100"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value2"				"30"
-			}
+			"value"					"100"
+			"value2"				"30"
 		}
 	}
 	"special_bonus_unique_naga_siren_water_snare_2" 
@@ -249,13 +189,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"325"
-			}
+			"value"					"325"
 		}
 	}
 	//=================================================================================================================
@@ -270,7 +206,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"naga_siren_rip_tide"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -286,7 +222,7 @@
 			"particle"					"particles/items_fx/battlefury_cleave.vpcf"
 		}
 	
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -306,35 +242,21 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"armor_reduction"				"-2 -3 -4 -5 -6 -7 -8"
+			"armor_reduction"				"-2 -3 -4 -5 -6 -7 -8"
 				"LinkedSpecialBonus"			"special_bonus_unique_naga_siren_tidal_waves_2"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"damage_reduction"				"-10 -12.5 -15 -17.5 -20 -22.5 -25"
-			}
+			"damage_reduction"				"-10 -12.5 -15 -17.5 -20 -22.5 -25"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"mr_reduction"					"-10 -12.5 -15 -17.5 -20 -22.5 -25"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"325"
+			"radius"						"325"
 				"LinkedSpecialBonus"			"special_bonus_unique_naga_siren_tidal_waves_1"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"8.0"
-			}
 		}
 	}
 	"special_bonus_unique_naga_siren_tidal_waves_1" 
@@ -347,18 +269,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"175"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cd"					"-4"
-			}
+			"value"					"175"
+			"cd"					"-4"
 		}
 	}
 	"special_bonus_unique_naga_siren_tidal_waves_2" 
@@ -371,13 +285,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-4"
-			}
+			"value"					"-4"
 		}
 	}
 	"naga_siren_ebb_and_flow"
@@ -395,23 +305,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"proc_chance"				"17"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"proc_value"				"35"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_proc_chance"		"25"
-			}
+			"proc_chance"				"17"
+			"proc_value"				"35"
+			"scepter_proc_chance"		"25"
 		}
 	}
 	//=================================================================================================================
@@ -427,7 +325,7 @@
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"naga_siren_song_of_the_siren"
 		"FightRecapLevel"				"2"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -459,19 +357,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"1200"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"7.0"
+			"radius"					"1200"
+			"duration"					"7.0"
 				"LinkedSpecialBonus"		"special_bonus_unique_naga_siren_song_of_the_siren_1"
-			}
 		}
 	}
 	"special_bonus_unique_naga_siren_song_of_the_siren_1" 
@@ -484,13 +374,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-2"
-			}	
+			"value"					"-2"	
 		}
 	}
 	"special_bonus_unique_naga_siren_song_of_the_siren_2" 
@@ -503,13 +389,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"56"
-			}
+			"value"					"56"
 		}
 	}
 }

@@ -26,7 +26,7 @@ function modifier_chaos_knight_chaos_strike_actCrit:GetModifierPreAttack_Critica
 	EmitSoundOn( "Hero_ChaosKnight.ChaosStrike", parent)
 	ParticleManager:FireParticle("particles/units/heroes/hero_chaos_knight/chaos_knight_weapon_blur_critical.vpcf", PATTACH_ABSORIGIN_FOLLOW, parent)
 	self.crit = true
-	return self:GetTalentSpecialValueFor("crit_damage")
+	return self:GetSpecialValueFor("crit_damage")
 end
 
 function modifier_chaos_knight_chaos_strike_actCrit:OnAttackLanded( params )
@@ -41,7 +41,7 @@ end
 function modifier_chaos_knight_chaos_strike_actCrit:OnTakeDamage( params )
 	if params.attacker == self:GetParent() and not params.inflictor then
 		self:Destroy()
-		params.attacker:Lifesteal(self:GetAbility(), self:GetTalentSpecialValueFor("lifesteal"), params.damage)
+		params.attacker:Lifesteal(self:GetAbility(), self:GetSpecialValueFor("lifesteal"), params.damage)
 	end
 end
 
@@ -53,10 +53,10 @@ function modifier_chaos_knight_chaos_strike_ebf:OnCreated()
 end
 
 function modifier_chaos_knight_chaos_strike_ebf:OnRefresh()
-	self.activation_delay = self:GetTalentSpecialValueFor("activation_delay")
-	self.crit_min = self:GetTalentSpecialValueFor("crit_min")
-	self.crit_max = self:GetTalentSpecialValueFor("crit_max")
-	self.crit_chance = self:GetTalentSpecialValueFor("crit_chance")
+	self.activation_delay = self:GetSpecialValueFor("activation_delay")
+	self.crit_min = self:GetSpecialValueFor("crit_min")
+	self.crit_max = self:GetSpecialValueFor("crit_max")
+	self.crit_chance = self:GetSpecialValueFor("crit_chance")
 	self.talent = self:GetParent():HasTalent("special_bonus_unique_chaos_knight_chaos_strike_1")
 	if IsServer() then
 		self.timer = self.activation_delay
@@ -109,7 +109,7 @@ end
 
 function modifier_chaos_knight_chaos_strike_ebf:OnTakeDamage( params )
 	if self.on_crit and params.attacker == self:GetParent() and not params.inflictor then
-		params.attacker:Lifesteal(self:GetAbility(), self:GetTalentSpecialValueFor("lifesteal"), params.damage)
+		params.attacker:Lifesteal(self:GetAbility(), self:GetSpecialValueFor("lifesteal"), params.damage)
 		self.on_crit = false  -- last in damage order, don't set to false before this
 	end
 end

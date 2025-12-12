@@ -47,8 +47,8 @@ function modifier_chen_god_hand:OnCreated()
 end
 
 function modifier_chen_god_hand:OnRefresh()
-	self.cdr = self:GetTalentSpecialValueFor("cdr")
-	self.dmg = self:GetTalentSpecialValueFor("dmg")
+	self.cdr = self:GetSpecialValueFor("cdr")
+	self.dmg = self:GetSpecialValueFor("dmg")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_chen_god_hand_1")
 end
 

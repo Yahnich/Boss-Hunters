@@ -10,7 +10,7 @@ end
 
 function earthshaker_enchant_totem_ebf:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_earthshaker_enchant_totem_ebf", {duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_earthshaker_enchant_totem_ebf", {duration = self:GetSpecialValueFor("duration")})
 	if caster:HasTalent("special_bonus_unique_earthshaker_enchant_totem_ebf_2") then
 		caster:AddNewModifier(caster, self, "modifier_earthshaker_enchant_totem_talent", {duration = caster:FindTalentValue("special_bonus_unique_earthshaker_enchant_totem_ebf_2", "duration")})
 	end
@@ -21,8 +21,8 @@ modifier_earthshaker_enchant_totem_ebf = class({})
 LinkLuaModifier("modifier_earthshaker_enchant_totem_ebf", "heroes/hero_earthshaker/earthshaker_enchant_totem_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_earthshaker_enchant_totem_ebf:OnCreated()
-	self.dmg = self:GetTalentSpecialValueFor("bonus_attack_damage")
-	self.amp = self:GetTalentSpecialValueFor("bonus_spell_damage")
+	self.dmg = self:GetSpecialValueFor("bonus_attack_damage")
+	self.amp = self:GetSpecialValueFor("bonus_spell_damage")
 	self.cdr = self:GetParent():FindTalentValue("special_bonus_unique_earthshaker_enchant_totem_ebf_1")
 	if IsServer() then
 		local bFX = ParticleManager:CreateParticle("particles/units/heroes/hero_earthshaker/earthshaker_totem_buff.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
@@ -32,8 +32,8 @@ function modifier_earthshaker_enchant_totem_ebf:OnCreated()
 end
 
 function modifier_earthshaker_enchant_totem_ebf:OnRefresh()
-	self.dmg = self:GetTalentSpecialValueFor("bonus_attack_damage")
-	self.amp = self:GetTalentSpecialValueFor("bonus_spell_damage")
+	self.dmg = self:GetSpecialValueFor("bonus_attack_damage")
+	self.amp = self:GetSpecialValueFor("bonus_spell_damage")
 	self.cdr = self:GetParent():FindTalentValue("special_bonus_unique_earthshaker_enchant_totem_ebf_1")
 end
 

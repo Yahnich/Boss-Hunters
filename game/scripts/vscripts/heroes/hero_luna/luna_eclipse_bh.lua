@@ -1,11 +1,11 @@
 luna_eclipse_bh = class({})
 
 function luna_eclipse_bh:GetCastRange(target, position)
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function luna_eclipse_bh:GetAOERadius()	
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function luna_eclipse_bh:GetCooldown( iLvl )
@@ -33,17 +33,17 @@ end
 function luna_eclipse_bh:CreateEclipse( target, flMinor )
 	local caster = self:GetCaster()
 	
-	local beams = self:GetTalentSpecialValueFor("beams")
-	local maxBeams = self:GetTalentSpecialValueFor("hit_count")
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local nightDuration = self:GetTalentSpecialValueFor("night_duration")
+	local beams = self:GetSpecialValueFor("beams")
+	local maxBeams = self:GetSpecialValueFor("hit_count")
+	local radius = self:GetSpecialValueFor("radius")
+	local nightDuration = self:GetSpecialValueFor("night_duration")
 	if flMinor then
 		beams = math.ceil( beams * flMinor )
 		beams = beams - 1
 		maxBeams = math.ceil( maxBeams * flMinor )
 		nightDuration = nightDuration * flMinor
 	end
-	local duration = beams * self:GetTalentSpecialValueFor("beam_interval") + 0.1
+	local duration = beams * self:GetSpecialValueFor("beam_interval") + 0.1
 	
 	GameRules:BeginTemporaryNight( nightDuration )
 	print( nightDuration )
@@ -62,10 +62,10 @@ LinkLuaModifier( "modifier_luna_eclipse_bh", "heroes/hero_luna/luna_eclipse_bh",
 
 function modifier_luna_eclipse_bh:OnCreated(kv)
 	local caster = self:GetCaster()
-	self.beams = kv.beams or self:GetTalentSpecialValueFor("beams")
-	self.hits = kv.hits or self:GetTalentSpecialValueFor("hit_count")
-	self.interval = self:GetTalentSpecialValueFor("beam_interval")
-	self.radius = kv.radius or self:GetTalentSpecialValueFor("radius")
+	self.beams = kv.beams or self:GetSpecialValueFor("beams")
+	self.hits = kv.hits or self:GetSpecialValueFor("hit_count")
+	self.interval = self:GetSpecialValueFor("beam_interval")
+	self.radius = kv.radius or self:GetSpecialValueFor("radius")
 	self.talent = caster:HasTalent("special_bonus_unique_luna_eclipse_1")
 	self.hitEnemies = {}
 	
@@ -78,9 +78,9 @@ function modifier_luna_eclipse_bh:OnCreated(kv)
 		self:AddEffect( particle )
 		self.lucent = caster:FindAbilityByName("luna_lucent_beam_bh")
 		if self.lucent then 
-			self.beam_radius = self.lucent:GetTalentSpecialValueFor("beam_radius")
+			self.beam_radius = self.lucent:GetSpecialValueFor("beam_radius")
 			if self.talent then
-				self.stun_dur = self.lucent:GetTalentSpecialValueFor("stun_night")
+				self.stun_dur = self.lucent:GetSpecialValueFor("stun_night")
 			end
 		end
 		self:StartIntervalThink(self.interval)

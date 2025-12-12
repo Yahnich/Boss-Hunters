@@ -30,7 +30,7 @@ function ember_fist:HasCharges()
 end
 
 function ember_fist:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function ember_fist:OnSpellStart()
@@ -42,9 +42,9 @@ function ember_fist:OnSpellStart()
 
 	local startPos = caster:GetAbsOrigin()
 
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local baseDamage = self:GetTalentSpecialValueFor("damage")
-	local jumpRate = self:GetTalentSpecialValueFor("jump_rate")
+	local radius = self:GetSpecialValueFor("radius")
+	local baseDamage = self:GetSpecialValueFor("damage")
+	local jumpRate = self:GetSpecialValueFor("jump_rate")
 
 	self.hitUnits = {}
 
@@ -59,7 +59,7 @@ function ember_fist:OnSpellStart()
 	---Remnant Only lasts 10 seconds.-----
 	local enemies = caster:FindEnemyUnitsInRadius(point, radius, {flag = self:GetAbilityTargetFlags()})
 	if #enemies > 0 then
-		local duration = self:GetTalentSpecialValueFor("duration")
+		local duration = self:GetSpecialValueFor("duration")
 		local remnant = caster:FindAbilityByName("ember_remnant")
 		if remnant then
 			remnant:SpawnRemnant(startPos, duration)
@@ -185,7 +185,7 @@ modifier_ember_fist_charges = class({})
 if IsServer() then
     function modifier_ember_fist_charges:Update()
 		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+		self.kv.max_count = self:GetSpecialValueFor("charges")
 
 		if self:GetStackCount() == self.kv.max_count then
 			self:SetDuration(-1, true)
@@ -205,7 +205,7 @@ if IsServer() then
 
     function modifier_ember_fist_charges:OnCreated()
 		kv = {
-			max_count = self:GetTalentSpecialValueFor("charges"),
+			max_count = self:GetSpecialValueFor("charges"),
 			replenish_time = self:GetAbility():GetTrueCooldown()
 		}
         self:SetStackCount(kv.start_count or kv.max_count)
@@ -217,7 +217,7 @@ if IsServer() then
     end
 	
 	function modifier_ember_fist_charges:OnRefresh()
-		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+		self.kv.max_count = self:GetSpecialValueFor("charges")
 		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
         if self:GetStackCount() ~= kv.max_count then
             self:Update()
@@ -235,7 +235,7 @@ if IsServer() then
     function modifier_ember_fist_charges:OnAbilityFullyCast(params)
         if params.unit == self:GetParent() then
 			self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-			self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+			self.kv.max_count = self:GetSpecialValueFor("charges")
 			
             local ability = params.ability
             if params.ability == self:GetAbility() then
@@ -257,7 +257,7 @@ if IsServer() then
 		local octarine = caster:GetCooldownReduction()
 		
 		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+		self.kv.max_count = self:GetSpecialValueFor("charges")
 		
         if stacks < self.kv.max_count then
             self:IncrementStackCount()

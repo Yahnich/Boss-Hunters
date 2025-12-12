@@ -28,14 +28,14 @@ function medusa_viper:OnSpellStart()
 		end
 		caster:RemoveModifierByName("modifier_medusa_viper")
 	else
-		caster:AddNewModifier(caster, self, "modifier_medusa_viper", {Duration = 10}):SetStackCount(self:GetTalentSpecialValueFor("arrow_count"))
+		caster:AddNewModifier(caster, self, "modifier_medusa_viper", {Duration = 10}):SetStackCount(self:GetSpecialValueFor("arrow_count"))
 		self:EndCooldown()
 	end
 end
 
 function medusa_viper:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
-	local damage = self:GetTalentSpecialValueFor("damage_mod")
+	local damage = self:GetSpecialValueFor("damage_mod")
 
 	EmitSoundOnLocationWithCaster(vLocation, "Hero_Medusa.MysticSnake.Target", caster)
 
@@ -50,7 +50,7 @@ function medusa_viper:OnProjectileHit(hTarget, vLocation)
 			hTarget:AddNewModifier(caster, self, "modifier_medusa_gaze_stun_lesser", {Duration = 1})
 		end
 
-		hTarget:AddNewModifier(caster, self, "modifier_medusa_viper_dot", {Duration = self:GetTalentSpecialValueFor("duration")})
+		hTarget:AddNewModifier(caster, self, "modifier_medusa_viper_dot", {Duration = self:GetSpecialValueFor("duration")})
 		return true
 	end
 end
@@ -58,7 +58,7 @@ end
 function medusa_viper:FireLinearArrow()
 	local caster = self:GetCaster()
 	local fDir = caster:GetForwardVector()
-	local spread = self:GetTalentSpecialValueFor("cone_spread")
+	local spread = self:GetSpecialValueFor("cone_spread")
 	local rndAng = math.rad(RandomInt(-spread/2, spread/2))
 	local dirX = fDir.x * math.cos(rndAng) - fDir.y * math.sin(rndAng); 
 	local dirY = fDir.x * math.sin(rndAng) + fDir.y * math.cos(rndAng);
@@ -67,7 +67,7 @@ function medusa_viper:FireLinearArrow()
 	local speed = caster:GetProjectileSpeed()
 	local vel = direction * speed
 	local distance = caster:GetAttackRange() + 100
-	local width = self:GetTalentSpecialValueFor("width")
+	local width = self:GetSpecialValueFor("width")
 
 	local position = caster:GetAbsOrigin() + caster:GetForwardVector()*50 + Vector(0,0,150)
 	self:FireLinearProjectile("particles/units/heroes/hero_medusa/medusa_viper.vpcf", vel, distance, width, {origin = position}, true, false, 0)
@@ -119,19 +119,19 @@ end
 modifier_medusa_viper_dot = class({})
 
 function modifier_medusa_viper_dot:OnCreated(table)
-	self.slow = self:GetTalentSpecialValueFor("move_slow")
+	self.slow = self:GetSpecialValueFor("move_slow")
 
 	if IsServer then
-		self.dot = self:GetTalentSpecialValueFor("damage")
+		self.dot = self:GetSpecialValueFor("damage")
 		self:StartIntervalThink(1)
 	end
 end
 
 function modifier_medusa_viper_dot:OnRefresh(table)
-	self.slow = self:GetTalentSpecialValueFor("move_slow")
+	self.slow = self:GetSpecialValueFor("move_slow")
 
 	if IsServer then
-		self.dot = self:GetTalentSpecialValueFor("damage")
+		self.dot = self:GetSpecialValueFor("damage")
 	end
 end
 

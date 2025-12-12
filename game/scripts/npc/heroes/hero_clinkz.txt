@@ -12,7 +12,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"clinkz_strafe"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -46,24 +46,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"3 3 3 3 4 5 6"
+			"duration"					"3 3 3 3 4 5 6"
 				"LinkedSpecialBonus"		"special_bonus_unique_clinkz_strafe_bh_1"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"as_bonus"					"90 120 150 180 190 200 210"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"dodge_rate"				"0.5"
-			}
+			"as_bonus"					"90 120 150 180 190 200 210"
+			"dodge_rate"				"0.5"
 		}
 	}
 	
@@ -80,13 +68,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"3"
-			}
+			"value"						"3"
 		}
 	}
 	//=================================================================================================================
@@ -102,13 +86,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-100"
-			}
+			"value"						"-100"
 		}
 	}
 
@@ -125,7 +105,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"clinkz_searing_arrows"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -159,38 +139,21 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"24 36 48 60 72 84 96"
+			"damage"						"24 36 48 60 72 84 96"
 				"LinkedSpecialBonus"			"special_bonus_unique_clinkz_arrows_1"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"scepter_width"					"250"
+			"scepter_width"					"250"
 				"RequiresScepter"				"1"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"scepter_damage"				"48 72 96 120 144 168 192"
+			"scepter_damage"				"48 72 96 120 144 168 192"
 				"RequiresScepter"				"1"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"scepter_duration"				"5"
 				"RequiresScepter"				"1"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"scepter_attacks"				"5"
+			"scepter_attacks"				"5"
 				"RequiresScepter"				"1"
-			}
 		}
 	}
 	
@@ -207,23 +170,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"3"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"3"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"325"
-			}
+			"value"						"3"
+			"duration"					"3"
+			"radius"					"325"
 		}
 	}
 
@@ -240,13 +191,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	
@@ -264,7 +211,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilityTextureName"			"clinkz_wind_walk"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -300,23 +247,11 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_ms"					"15 30 45 60 60 60 60"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"25 25 25 25 30 35 40"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"fade_time"					"0.6"
-			}
+			"bonus_ms"					"15 30 45 60 60 60 60"
+			"duration"					"25 25 25 25 30 35 40"
+			"fade_time"					"0.6"
 		}
 	}
 
@@ -333,23 +268,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"cd"						"-9"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"range"						"1000"
-			}
+			"value"						"2"
+			"cd"						"-9"
+			"range"						"1000"
 		}
 	}
 
@@ -366,13 +289,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -405,14 +324,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"targets"					"1"
+			"targets"					"1"
 				"LinkedSpecialBonus"		"special_bonus_unique_clinkz_shot_1"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -429,13 +344,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -453,7 +364,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Clinkz.DeathPact"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -480,34 +391,20 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"1300"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"20 20 40 40 60 60"
-			}
+			"range"					"1300"
+			"duration"				"20 20 40 40 60 60"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"count"					"3 4 4 5 5 6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attack_rate"			"1"
-			}
+			"attack_rate"			"1"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"spawn_interval"		"0.7"
 				"LinkedSpecialBonus"	"special_bonus_unique_clinkz_burning_army_1"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -523,18 +420,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-0.7"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"cd"						"-15"
-			}
+			"value"						"-0.7"
+			"cd"						"-15"
 		}
 	}
 	//=================================================================================================================
@@ -550,13 +439,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -577,7 +462,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"clinkz_death_pact"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -612,30 +497,20 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"26"
+			"damage"				"26"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"hp_percent"			"40 50 60 70 80 90"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_percent"		"4 5 6 7 8 9"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"5 7 9 11 13 15"
-			}
+			"duration"				"5 7 9 11 13 15"
 		}
 	}
 	//=================================================================================================================
@@ -651,13 +526,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -673,13 +544,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"10"
-			}
+			"value"						"10"
 		}
 	}
 }

@@ -7,7 +7,7 @@ function broodmother_hunger:OnSpellStart()
 	local friends = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
     for _,friend in pairs(friends) do
         if friend:GetPlayerOwnerID() == caster:GetPlayerOwnerID() or caster:HasScepter() then
-            friend:AddNewModifier(caster, self, "modifier_broodmother_hunger", {Duration = self:GetTalentSpecialValueFor("duration")})
+            friend:AddNewModifier(caster, self, "modifier_broodmother_hunger", {Duration = self:GetSpecialValueFor("duration")})
         end
     end
 end
@@ -35,13 +35,13 @@ end
 function modifier_broodmother_hunger:OnAttackLanded(params)
     if IsServer() then
         if params.attacker == self:GetParent() then
-            self:GetParent():Lifesteal(self:GetAbility(), self:GetTalentSpecialValueFor("lifesteal_pct"), params.damage, params.target, DAMAGE_TYPE_PHYSICAL, DOTA_LIFESTEAL_SOURCE_NONE, true)
+            self:GetParent():Lifesteal(self:GetAbility(), self:GetSpecialValueFor("lifesteal_pct"), params.damage, params.target, DAMAGE_TYPE_PHYSICAL, DOTA_LIFESTEAL_SOURCE_NONE, true)
         end
     end
 end
 
 function modifier_broodmother_hunger:GetModifierBaseAttack_BonusDamage()
-    return self:GetTalentSpecialValueFor("bonus_damage")
+    return self:GetSpecialValueFor("bonus_damage")
 end
 
 function modifier_broodmother_hunger:GetModifierBonusStats_Agility()

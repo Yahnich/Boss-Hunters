@@ -6,9 +6,9 @@ end
 
 function nyx_impale:GetCastRange(vLocation, hTarget)
 	if self:GetCaster():HasModifier("modifier_nyx_burrow") then
-		return self:GetTalentSpecialValueFor("length") + self:GetTalentSpecialValueFor("impale_range")
+		return self:GetSpecialValueFor("length") + self:GetSpecialValueFor("impale_range")
 	end
-	return self:GetTalentSpecialValueFor("length")
+	return self:GetSpecialValueFor("length")
 end
 
 function nyx_impale:GetBehavior()
@@ -23,7 +23,7 @@ end
 function nyx_impale:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
     if self:GetCaster():HasModifier("modifier_nyx_burrow") then 
-    	cooldown = cooldown + self:GetTalentSpecialValueFor("impale_cd")
+    	cooldown = cooldown + self:GetSpecialValueFor("impale_cd")
     end
     return cooldown
 end
@@ -33,12 +33,12 @@ function nyx_impale:OnSpellStart()
 	local point = self:GetCursorPosition()
 
 	local direction = CalculateDirection(point, caster:GetAbsOrigin())
-	local distance = self:GetTalentSpecialValueFor("length")
+	local distance = self:GetSpecialValueFor("length")
 	if caster:HasModifier("modifier_nyx_burrow") then
-		distance = distance + self:GetTalentSpecialValueFor("impale_range")
+		distance = distance + self:GetSpecialValueFor("impale_range")
 	end
-	local width = self:GetTalentSpecialValueFor("width")
-	local speed = self:GetTalentSpecialValueFor("speed")
+	local width = self:GetSpecialValueFor("width")
+	local speed = self:GetSpecialValueFor("speed")
 
 	EmitSoundOn("Hero_NyxAssassin.Impale", caster)
 
@@ -56,7 +56,7 @@ end
 
 function nyx_impale:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 
 	if hTarget and not hTarget:TriggerSpellAbsorb(self) then
 		EmitSoundOn("Hero_NyxAssassin.Impale.Target", hTarget)
@@ -66,7 +66,7 @@ function nyx_impale:OnProjectileHit(hTarget, vLocation)
 		--self:Stun(hTarget, duration, false)
 		Timers:CreateTimer(duration, function()
 			EmitSoundOn("Hero_NyxAssassin.Impale.TargetLand", hTarget)
-			self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
+			self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, 0)
 		end)
 	end
 end

@@ -9,11 +9,11 @@ function ursa_earthshock_bh:IsHiddenWhenStolen()
 end
 
 function ursa_earthshock_bh:GetCastRange(target, position)
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function ursa_earthshock_bh:GetCastPoint()
-	return 250 / self:GetTalentSpecialValueFor("speed")
+	return 250 / self:GetSpecialValueFor("speed")
 end
 
 function ursa_earthshock_bh:GetBehavior()
@@ -42,8 +42,8 @@ function ursa_earthshock_bh:OnSpellStart()
 
 	EmitSoundOn("Hero_LoneDruid.BattleCry.Bear", caster)
 	if not self:GetAutoCastState() then
-		caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 0.25 / ( self:GetTalentSpecialValueFor("range") / self:GetTalentSpecialValueFor("speed") ))
-		caster:AddNewModifier(caster, self, "modifier_ursa_earthshock_movement", {duration = self:GetTalentSpecialValueFor("range") / self:GetTalentSpecialValueFor("speed") + 0.2})
+		caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 0.25 / ( self:GetSpecialValueFor("range") / self:GetSpecialValueFor("speed") ))
+		caster:AddNewModifier(caster, self, "modifier_ursa_earthshock_movement", {duration = self:GetSpecialValueFor("range") / self:GetSpecialValueFor("speed") + 0.2})
 	else
 		self:EarthShock()
 	end
@@ -52,7 +52,7 @@ end
 function ursa_earthshock_bh:EarthShock()
 	local caster = self:GetCaster()
 	
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local radius = self:GetSpecialValueFor("radius")
 
 	EmitSoundOn("Hero_Ursa.Earthshock", caster)
 
@@ -67,20 +67,20 @@ function ursa_earthshock_bh:EarthShock()
 	local hasTalent2 = caster:HasTalent("special_bonus_unique_ursa_earthshock_bh_2")
 	local talent2Swipes =  caster:FindTalentValue("special_bonus_unique_ursa_earthshock_bh_2")
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local damage = self:GetSpecialValueFor("damage")
+	local duration = self:GetSpecialValueFor("duration")
 	local furySwipes = caster:FindAbilityByName("ursa_fury_swipes_bh")
 	local furySwipesDamage = 0 
 	local furySwipesDuration = 0 
 	local hasFurySwipesTalent1 = caster:HasTalent("special_bonus_unique_ursa_fury_swipes_1")
 	local furySwipesTalent1Heal = caster:FindTalentValue("special_bonus_unique_ursa_fury_swipes_1")
 	if furySwipes then
-		furySwipesDamage = furySwipes:GetTalentSpecialValueFor("bonus_ad")
-		furySwipesDuration = furySwipes:GetTalentSpecialValueFor("duration")
+		furySwipesDamage = furySwipes:GetSpecialValueFor("bonus_ad")
+		furySwipesDuration = furySwipes:GetSpecialValueFor("duration")
 		if caster:HasModifier("modifier_ursa_enrage_bh") then
 			local enrage = caster:FindAbilityByName("ursa_enrage_bh")
 			if enrage then
-				furySwipesDamage = furySwipesDamage * enrage:GetTalentSpecialValueFor("fury_multiplier")
+				furySwipesDamage = furySwipesDamage * enrage:GetSpecialValueFor("fury_multiplier")
 			end
 		end
 	end
@@ -111,9 +111,9 @@ if IsServer() then
 	function modifier_ursa_earthshock_movement:OnCreated()
 		local parent = self:GetParent()
 		self.endPos = self:GetAbility():GetCursorPosition()
-		self.distance = self:GetTalentSpecialValueFor("range")
+		self.distance = self:GetSpecialValueFor("range")
 		self.direction = parent:GetForwardVector()
-		self.speed = self:GetTalentSpecialValueFor("speed") * FrameTime()
+		self.speed = self:GetSpecialValueFor("speed") * FrameTime()
 		self.maxHeight = 100
 		self:StartMotionController()
 
@@ -184,7 +184,7 @@ function modifier_ursa_earthshock_bh_slow:DeclareFunctions()
 end
 
 function modifier_ursa_earthshock_bh_slow:GetModifierMoveSpeedBonus_Percentage()
-	return self:GetTalentSpecialValueFor("slow_ms")
+	return self:GetSpecialValueFor("slow_ms")
 end
 
 function modifier_ursa_earthshock_bh_slow:GetEffectName()

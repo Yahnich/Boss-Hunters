@@ -54,14 +54,14 @@ function bane_enfeeble_ebf:ApplyEnfeeble(target)
 	local baseDuration = 0
 	local enfeeble = target:FindModifierByName( "modifier_bane_enfeeble_debuff" )
 	if enfeeble then
-		baseDuration = math.min( enfeeble:GetRemainingTime(), self:GetTalentSpecialValueFor("debuff_duration") ) + 1
+		baseDuration = math.min( enfeeble:GetRemainingTime(), self:GetSpecialValueFor("debuff_duration") ) + 1
 		enfeeble:SetDuration( baseDuration, true )
 	else
-		target:AddNewModifier(caster, self, "modifier_bane_enfeeble_debuff", {duration = baseDuration + self:GetTalentSpecialValueFor("debuff_duration")})
+		target:AddNewModifier(caster, self, "modifier_bane_enfeeble_debuff", {duration = baseDuration + self:GetSpecialValueFor("debuff_duration")})
 	end
 	
 	if caster:HasTalent("special_bonus_unique_bane_enfeeble_ebf_1") then
-		caster:AddNewModifier(caster, self, "modifier_bane_enfeeble_buff", {duration = self:GetTalentSpecialValueFor("debuff_duration")})
+		caster:AddNewModifier(caster, self, "modifier_bane_enfeeble_buff", {duration = self:GetSpecialValueFor("debuff_duration")})
 	end
 	EmitSoundOn("Hero_Bane.Enfeeble", caster)
 end
@@ -87,10 +87,10 @@ modifier_bane_enfeeble_debuff = class({})
 LinkLuaModifier("modifier_bane_enfeeble_debuff", "heroes/hero_bane/bane_enfeeble_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_bane_enfeeble_debuff:OnCreated()
-	self.magic_resist = self:GetTalentSpecialValueFor("magic_resist_reduction")
-	self.status_resist = self:GetTalentSpecialValueFor("status_resist_reduction")
-	self.spell_amp = self:GetTalentSpecialValueFor("spell_amp_reduction")
-	self.status_amp = self:GetTalentSpecialValueFor("status_amp_reduction")
+	self.magic_resist = self:GetSpecialValueFor("magic_resist_reduction")
+	self.status_resist = self:GetSpecialValueFor("status_resist_reduction")
+	self.spell_amp = self:GetSpecialValueFor("spell_amp_reduction")
+	self.status_amp = self:GetSpecialValueFor("status_amp_reduction")
 end
 
 function modifier_bane_enfeeble_debuff:OnRefresh()
@@ -132,10 +132,10 @@ modifier_bane_enfeeble_buff = class({})
 LinkLuaModifier("modifier_bane_enfeeble_buff", "heroes/hero_bane/bane_enfeeble_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_bane_enfeeble_buff:OnCreated()
-	self.magic_resist = -self:GetTalentSpecialValueFor("magic_resist_reduction")
-	self.status_resist = -self:GetTalentSpecialValueFor("status_resist_reduction")
-	self.spell_amp = -self:GetTalentSpecialValueFor("spell_amp_reduction")
-	self.status_amp = -self:GetTalentSpecialValueFor("status_amp_reduction")
+	self.magic_resist = -self:GetSpecialValueFor("magic_resist_reduction")
+	self.status_resist = -self:GetSpecialValueFor("status_resist_reduction")
+	self.spell_amp = -self:GetSpecialValueFor("spell_amp_reduction")
+	self.status_amp = -self:GetSpecialValueFor("status_amp_reduction")
 end
 
 function modifier_bane_enfeeble_buff:OnRefresh()

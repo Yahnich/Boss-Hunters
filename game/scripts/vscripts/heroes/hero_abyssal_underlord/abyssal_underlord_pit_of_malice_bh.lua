@@ -13,14 +13,14 @@ function abyssal_underlord_pit_of_malice_bh:IsHiddenWhenStolen()
 end
 
 function abyssal_underlord_pit_of_malice_bh:GetAOERadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function abyssal_underlord_pit_of_malice_bh:OnAbilityPhaseStart()
     local caster = self:GetCaster()
     local point = self:GetCursorPosition()
 
-    local radius = self:GetTalentSpecialValueFor("radius")
+    local radius = self:GetSpecialValueFor("radius")
 	caster:EmitSound("Hero_AbyssalUnderlord.PitOfMalice.Start")
 	self.nfx = ParticleManager:CreateParticle("particles/units/heroes/heroes_underlord/underlord_pitofmalice_pre.vpcf", PATTACH_POINT, caster)
                 ParticleManager:SetParticleControl(self.nfx, 0, point)
@@ -44,7 +44,7 @@ function abyssal_underlord_pit_of_malice_bh:OnSpellStart()
 	end
 	
 	caster:EmitSound("Hero_AbyssalUnderlord.PitOfMalice")
-    CreateModifierThinker(caster, self, "modifier_abyssal_underlord_pit_of_malice_bh", {Duration = self:GetTalentSpecialValueFor("duration")}, point, caster:GetTeam(), false)
+    CreateModifierThinker(caster, self, "modifier_abyssal_underlord_pit_of_malice_bh", {Duration = self:GetSpecialValueFor("duration")}, point, caster:GetTeam(), false)
 end
 
 modifier_abyssal_underlord_pit_of_malice_bh = class({})
@@ -73,7 +73,7 @@ function modifier_abyssal_underlord_pit_of_malice_bh:GetAuraDuration()
 end
 
 function modifier_abyssal_underlord_pit_of_malice_bh:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function modifier_abyssal_underlord_pit_of_malice_bh:GetAuraSearchFlags()
@@ -113,7 +113,7 @@ function modifier_abyssal_underlord_pit_of_malice_bh_root_handle:OnCreated(table
 			if not parent:TriggerSpellAbsorb(ability) then
 				parent:AddNewModifier(caster, ability, "modifier_abyssal_underlord_pit_of_malice_bh_root", {Duration = duration})
 			end
-			self:StartIntervalThink( self:GetTalentSpecialValueFor("interval") )
+			self:StartIntervalThink( self:GetSpecialValueFor("interval") )
 		end
     end
 end

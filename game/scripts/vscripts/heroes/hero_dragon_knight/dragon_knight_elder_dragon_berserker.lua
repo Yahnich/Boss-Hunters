@@ -12,7 +12,7 @@ function dragon_knight_elder_dragon_berserker:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	EmitSoundOn("Hero_DragonKnight.ElderDragonForm", caster)
-	caster:AddNewModifier(caster, self, "modifier_dragon_knight_elder_dragon_berserker_active", {duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_dragon_knight_elder_dragon_berserker_active", {duration = self:GetSpecialValueFor("duration")})
 	ParticleManager:FireParticle("particles/units/heroes/hero_dragon_knight/dragon_knight_transform_red.vpcf", PATTACH_POINT_FOLLOW, caster)
 end
 
@@ -20,14 +20,14 @@ modifier_dragon_knight_elder_dragon_berserker_active = class({})
 LinkLuaModifier("modifier_dragon_knight_elder_dragon_berserker_active", "heroes/hero_dragon_knight/dragon_knight_elder_dragon_berserker", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_dragon_knight_elder_dragon_berserker_active:OnCreated()
-	self.ms = self:GetTalentSpecialValueFor("bonus_movement_speed")
-	self.as = self:GetTalentSpecialValueFor("bonus_attack_speed")
+	self.ms = self:GetSpecialValueFor("bonus_movement_speed")
+	self.as = self:GetSpecialValueFor("bonus_attack_speed")
 	self.dmg = self:GetCaster():FindTalentValue("special_bonus_unique_dragon_knight_elder_dragon_berserker_2")
-	self.threat = self:GetTalentSpecialValueFor("threat")
-	self.tick = self:GetTalentSpecialValueFor("threat_tick")
-	self.heal = self:GetTalentSpecialValueFor("heal_amount") / 100
-	self.healChance = self:GetTalentSpecialValueFor("heal_chance")
-	self.cd = self:GetTalentSpecialValueFor("internal_cooldown")
+	self.threat = self:GetSpecialValueFor("threat")
+	self.tick = self:GetSpecialValueFor("threat_tick")
+	self.heal = self:GetSpecialValueFor("heal_amount") / 100
+	self.healChance = self:GetSpecialValueFor("heal_chance")
+	self.cd = self:GetSpecialValueFor("internal_cooldown")
 	if IsServer() then
 		local caster = self:GetCaster()
 		local nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_dragon_knight/dragon_knight_dragon_berserker.vpcf", PATTACH_POINT_FOLLOW, caster)
@@ -38,14 +38,14 @@ function modifier_dragon_knight_elder_dragon_berserker_active:OnCreated()
 end
 
 function modifier_dragon_knight_elder_dragon_berserker_active:OnRefresh()
-	self.ms = self:GetTalentSpecialValueFor("bonus_movement_speed")
-	self.as = self:GetTalentSpecialValueFor("bonus_attack_speed")
+	self.ms = self:GetSpecialValueFor("bonus_movement_speed")
+	self.as = self:GetSpecialValueFor("bonus_attack_speed")
 	self.dmg = self:GetCaster():FindTalentValue("special_bonus_unique_dragon_knight_elder_dragon_berserker_2")
-	self.threat = self:GetTalentSpecialValueFor("threat")
-	self.tick = self:GetTalentSpecialValueFor("threat_tick")
-	self.heal = self:GetTalentSpecialValueFor("heal_amount") / 100
-	self.healChance = self:GetTalentSpecialValueFor("heal_chance")
-	self.cd = self:GetTalentSpecialValueFor("internal_cooldown")
+	self.threat = self:GetSpecialValueFor("threat")
+	self.tick = self:GetSpecialValueFor("threat_tick")
+	self.heal = self:GetSpecialValueFor("heal_amount") / 100
+	self.healChance = self:GetSpecialValueFor("heal_chance")
+	self.cd = self:GetSpecialValueFor("internal_cooldown")
 end
 
 function modifier_dragon_knight_elder_dragon_berserker_active:OnDestroy()

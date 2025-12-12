@@ -16,7 +16,7 @@
 		//"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"rubick_telekinesis"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -51,28 +51,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"lift_duration"				"1.5"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"1.0 1.25 1.5 1.75 2 2.25 2.5"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"325"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cast_range"				"550 575 600 625 650 675 700"
-			}
+			"lift_duration"				"1.5"
+			"stun_duration"				"1.0 1.25 1.5 1.75 2 2.25 2.5"
+			"radius"					"325"
+			"cast_range"				"550 575 600 625 650 675 700"
 		}
 	}
 
@@ -89,13 +73,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"10"
-			}
+			"value"						"10"
 		}
 	}
 	//=================================================================================================================
@@ -111,13 +91,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -135,7 +111,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"rubick_fade_bolt"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -169,42 +145,21 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"80 160 240 320 400 480 560"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_reduc_pct"			"4"
+			"damage"					"80 160 240 320 400 480 560"
+			"damage_reduc_pct"			"4"
 				"LinkedSpecialBonus"		"special_bonus_unique_rubick_bolt_2"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_reduc"				"20 25 30 35 40 45 50"
-				"CalculateSpellDamageTooltip"	"0"
-			}			
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"10"
+			"damage_reduc"				"20 25 30 35 40 45 50"
+				"CalculateSpellDamageTooltip"	"0"			
+			"duration"					"10"
 				"LinkedSpecialBonus"		"special_bonus_unique_rubick_bolt_1"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"440"
-			}			
+			"radius"					"440"			
 			"07"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"jump_delay"				"0.25"
-			}
 		}
 	}
 
@@ -221,13 +176,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-5"
-			}
+			"value"						"-5"
 		}
 	}
 	//=================================================================================================================
@@ -243,13 +194,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-2"
-			}
+			"value"						"-2"
 		}
 	}
 
@@ -270,7 +217,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		//"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"rubick_null_field"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -307,28 +254,18 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"spell_amp"						"14 18 22 26 28 30 32"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"status_resist"					"-4 -12 -20 -28 -36 -44 -52"
-			}
+			"spell_amp"						"14 18 22 26 28 30 32"
+			"status_resist"					"-4 -12 -20 -28 -36 -44 -52"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"magic_resist_reduc"			"-6 -10 -14 -18 -22 -26 -28"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"5"
-			}	
+				"duration"						"5"	
 		}
 	}
 
@@ -345,13 +282,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -368,13 +301,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -410,13 +339,9 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"0.25"
-			}
+			"delay"					"0.25"
 		}
 	}
 
@@ -437,7 +362,7 @@
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		//"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilityTextureName"			"rubick_spell_steal"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -471,13 +396,9 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{	
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"20 40 60 80 100 120"
-			}		
+			"duration"				"20 40 60 80 100 120"		
 		}
 	}
 
@@ -494,13 +415,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -516,13 +433,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 }

@@ -13,7 +13,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"morphling_waveform"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -46,34 +46,20 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"75 150 225 300 375 450 525"
-			}
+			"damage"				"75 150 225 300 375 450 525"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"speed"					"1250"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"200"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"1000"
+			"range"					"1000"
 				"LinkedSpecialBonus"	"special_bonus_unique_morph_wave_1"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"charges"				"2"
-			}
+			"charges"				"2"
 		}
 	}
 	
@@ -90,13 +76,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"350"
-			}
+			"value"						"350"
 		}
 	}
 	//=================================================================================================================
@@ -112,13 +94,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -135,7 +113,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"morphling_adaptive_strike_agi"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -170,20 +148,18 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"damage"							"100"
 				
-			}
 			"02"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"agi_max"							"1 1.25 1.5 1.75 2 2.25 2.5"
 				"CalculateSpellDamageTooltip"		"1"
-			}
 		}
 	}
 	
@@ -200,13 +176,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"3"
-			}
+			"value"						"3"
 		}
 	}
 	//=================================================================================================================
@@ -222,13 +194,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"300"
-			}
+			"value"						"300"
 		}
 	}
 
@@ -245,7 +213,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"morphling_adaptive_strike_str"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -280,40 +248,34 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"damage"							"100"
 				"LinkedSpecialBonus"				"special_bonus_unique_morph_str_strike_1"
-			}
 			"02"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"str_mult"							"0.5"
 				"CalculateSpellDamageTooltip"		"0"
-			}
 			"03"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"stun_min"							"0.5"
-			}
 			"04"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"stun_max"							"1.5 1.75 2 2.25 2.5 2.75 3"
-			}
 			"05"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"knockback_min"						"100"
-			}
 			"06"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"knockback_max"						"500"
-			}
 		}
 	}
 	
@@ -330,13 +292,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"300"
-			}
+			"value"						"300"
 		}
 	}
 	//=================================================================================================================
@@ -352,13 +310,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	
@@ -383,18 +337,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_agi"				"2"
-			}
+			"bonus_agi"				"2"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"morph_rate"			"1"
-			}
 		}
 	}
 
@@ -419,18 +368,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_str"				"2"
-			}
+			"bonus_str"				"2"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"morph_rate"			"1"
-			}
 		}
 	}
 
@@ -448,7 +392,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"morphling_replicate"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -483,48 +427,28 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"50"
-			}
+			"duration"				"50"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"incoming"				"260"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"outgoing"				"100"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"350"
-			}
+			"radius"				"350"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"scepter_evasion"		"35"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_radius"		"150"
-			}
+			"scepter_radius"		"150"
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"scepter_duration"		"5"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"scepter_damage"		"125"
-			}
+			"scepter_damage"		"125"
 		}
 	}
 	
@@ -541,13 +465,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -563,13 +483,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 }

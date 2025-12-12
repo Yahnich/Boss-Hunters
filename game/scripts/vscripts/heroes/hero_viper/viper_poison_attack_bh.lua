@@ -47,7 +47,7 @@ end
 function viper_poison_attack_bh:OnProjectileHit(target, position)
 	if target then
 		local caster = self:GetCaster()
-		local duration = self:GetTalentSpecialValueFor("duration") + 0.1
+		local duration = self:GetSpecialValueFor("duration") + 0.1
 		target:AddNewModifier( caster, self, "modifier_viper_poison_attack_bh", {duration = duration})
 		target:EmitSound("hero_viper.PoisonAttack.Target")
 	end
@@ -61,17 +61,17 @@ function modifier_viper_poison_attack_bh:OnCreated()
 end
 
 function modifier_viper_poison_attack_bh:OnRefresh()
-	self.mr = self:GetTalentSpecialValueFor("mr_reduction")
-	self.ms = self:GetTalentSpecialValueFor("bonus_movement_speed")
-	self.dmg = self:GetTalentSpecialValueFor("damage")
+	self.mr = self:GetSpecialValueFor("mr_reduction")
+	self.ms = self:GetSpecialValueFor("bonus_movement_speed")
+	self.dmg = self:GetSpecialValueFor("damage")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_viper_poison_attack_1")
 	self.talent1Threshold = self:GetCaster():FindTalentValue("special_bonus_unique_viper_poison_attack_1")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_viper_poison_attack_2")
 	if IsServer() then
-		if self:GetStackCount() < self:GetTalentSpecialValueFor("max_stacks") then
+		if self:GetStackCount() < self:GetSpecialValueFor("max_stacks") then
 			self:IncrementStackCount()
 		end
-		local tick = ( self:GetRemainingTime() / self:GetTalentSpecialValueFor("duration") + 0.1 ) * 1
+		local tick = ( self:GetRemainingTime() / self:GetSpecialValueFor("duration") + 0.1 ) * 1
 		if tick - (self.tick or 0) > 0.03 then
 			self.tick = tick
 			self:StartIntervalThink( self.tick )

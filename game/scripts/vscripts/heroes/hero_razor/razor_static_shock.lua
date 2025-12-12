@@ -34,7 +34,7 @@ function modifier_razor_static_shock_handle:OnAttackLanded(params)
 			
 			ability.initialTarget = target
 			-- Sets the total number of jumps for this instance (to be decremented later)
-			ability.strike_bounces[ability.instance] = ability:GetTalentSpecialValueFor("jump_count")
+			ability.strike_bounces[ability.instance] = ability:GetSpecialValueFor("jump_count")
 			-- Sets the first target as the current target for this instance
 			ability.target[ability.instance] = target
 
@@ -61,7 +61,7 @@ function modifier_razor_static_shock:OnCreated()
 			counter = 1
 		end
 
-		local strike_damage = caster:GetAttackDamage() / counter --self:GetTalentSpecialValueFor("jump_count")
+		local strike_damage = caster:GetAttackDamage() / counter --self:GetSpecialValueFor("jump_count")
 		if target ~= ability.initialTarget then
 			ability:DealDamage(caster, target, strike_damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
 		end

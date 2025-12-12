@@ -57,7 +57,7 @@ function weaver_time:OnSpellStart()
 	
 	if caster:HasTalent("special_bonus_unique_weaver_time_1") then
 		local fabricTear = caster:FindAbilityByName("weaver_fabric_tear")
-		local duration = fabricTear:GetTalentSpecialValueFor("duration") * caster:FindTalentValue("special_bonus_unique_weaver_time_1") / 100
+		local duration = fabricTear:GetSpecialValueFor("duration") * caster:FindTalentValue("special_bonus_unique_weaver_time_1") / 100
 		if fabricTear then
 			fabricTear:CreateFabricTear( target:GetAbsOrigin(), duration )
 			fabricTear:CreateFabricTear( position, duration )
@@ -79,7 +79,7 @@ function modifier_weaver_time:OnIntervalThink()
     local caster = self:GetParent()
 
     local ability = self:GetAbility()
-    local backtrack_time = self:GetTalentSpecialValueFor("time")
+    local backtrack_time = self:GetSpecialValueFor("time")
     
     -- Temporary damage array and index
     if not ability.tempList then ability.tempList = {} end

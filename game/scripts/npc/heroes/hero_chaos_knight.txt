@@ -13,7 +13,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"chaos_knight_chaos_bolt"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -47,38 +47,14 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"chaos_bolt_speed"		"1000"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_min"				"0.5 01 1.5 2.0 2.0 2.0 2.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_max"				"1.0 2.0 3.0 4.0 4.0 4.0 4.0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_min"			"90 110 130 150 200 250 300"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_max"			"180 220 260 300 400 500 600"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bounce_chance"			"50"
-			}
+			"chaos_bolt_speed"		"1000"
+			"stun_min"				"0.5 01 1.5 2.0 2.0 2.0 2.0"
+			"stun_max"				"1.0 2.0 3.0 4.0 4.0 4.0 4.0"
+			"damage_min"			"90 110 130 150 200 250 300"
+			"damage_max"			"180 220 260 300 400 500 600"
+			"bounce_chance"			"50"
 		}
 	}
 	"special_bonus_unique_chaos_knight_chaos_bolt_1" 
@@ -91,18 +67,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"4"
-			}
+			"value"					"4"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration"				"10"
-			}
 		}
 	}
 	"special_bonus_unique_chaos_knight_chaos_bolt_2" 
@@ -115,13 +86,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"50"
-			}
+			"value"					"50"
 		}
 	}
 	//=================================================================================================================
@@ -139,7 +106,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"chaos_knight_reality_rift"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -173,24 +140,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cast_range"				"550 600 650 700 750 800 900"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"armor_reduction"			"-3 -4 -5 -6 -7 -8 -9"
-				"LinkedSpecialBonus"		"special_bonus_unique_chaos_knight_reality_rift_1"
-			}		
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"armor_duration"			"8 8 8 8 10 12 14"
-			}
+			"cast_range"				"550 600 650 700 750 800 900"
+			"armor_reduction"			"-3 -4 -5 -6 -7 -8 -9"
+				"LinkedSpecialBonus"		"special_bonus_unique_chaos_knight_reality_rift_1"		
+			"armor_duration"			"8 8 8 8 10 12 14"
 		}
 	}
 	"special_bonus_unique_chaos_knight_reality_rift_1" 
@@ -203,18 +158,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-3"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value2"				"40"
-			}	
+			"value"					"-3"
+			"value2"				"40"	
 		}
 	}
 	"special_bonus_unique_chaos_knight_reality_rift_2" 
@@ -227,18 +174,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"600"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"as"					"-80"
-			}
+			"value"					"600"
+			"as"					"-80"
 		}
 	}
 	//=================================================================================================================
@@ -252,7 +191,7 @@
 		"ScriptFile"					"heroes/hero_chaos_knight/chaos_knight_chaos_strike_ebf"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"chaos_knight_chaos_strike"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -270,29 +209,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"crit_chance"				"30"
+			"crit_chance"				"30"
 				"LinkedSpecialBonus"		"special_bonus_unique_chaos_knight_chaos_strike_2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"crit_min"					"120 120 120 120 135 150 165"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"crit_max"					"140 170 200 230 230 230 230 "
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"lifesteal"					"70"
-			}
+			"crit_min"					"120 120 120 120 135 150 165"
+			"crit_max"					"140 170 200 230 230 230 230 "
+			"lifesteal"					"70"
 		}
 	}
 	"special_bonus_unique_chaos_knight_chaos_strike_1" 
@@ -305,13 +228,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"100"
-			}
+			"value"					"100"
 		}
 	}
 	"special_bonus_unique_chaos_knight_chaos_strike_2" 
@@ -325,13 +244,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"10"
-			}
+			"value"					"10"
 		}
 	}
 	//=================================================================================================================
@@ -346,7 +261,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"FightRecapLevel"				"2"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -383,60 +298,50 @@
 		}
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"								"FIELD_INTEGER"
 				"images_count"							"1 1 2 2 3 3"
-			}
 			"02"
 			{
 				"var_type"								"FIELD_INTEGER"
 				"extra_phantasm_chance_pct_tooltip"		"50"
 				"LinkedSpecialBonus"					"special_bonus_unique_chaos_knight_phantasm_2"
-			}
 			"03"
 			{
 				"var_type"								"FIELD_FLOAT"
-				"illusion_duration"						"30"
-			}	
+				"illusion_duration"						"30"	
 			"04"
 			{
 				"var_type"								"FIELD_INTEGER"
 				"outgoing_damage"						"-0"
-			}
 			"05"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"outgoing_damage_tooltip"				"100"
-			}	
+				"outgoing_damage_tooltip"				"100"	
 			"06"
 			{
 				"var_type"								"FIELD_INTEGER"
 				"incoming_damage"						"100 50 50 25 25 0"
-			}
 			"07"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"incoming_damage_tooltip"				"200 150 150 125 125 100"
-			}			
+				"incoming_damage_tooltip"				"200 150 150 125 125 100"			
 			"08"
 			{
 				"var_type"								"FIELD_FLOAT"
 				"invuln_duration"						"0.5"
-			}
 			"09"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"vision_radius"							"400"
-			}			
+				"vision_radius"							"400"			
 			"10"
 			{
 				"var_type"								"FIELD_INTEGER"
 				"cooldown_scepter"						"60"
 				"RequiresScepter"						"1"
-			}
 		}
 	}
 	"special_bonus_unique_chaos_knight_phantasm_1" 
@@ -449,13 +354,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
-			}	
+			"value"					"1"	
 		}
 	}
 	"special_bonus_unique_chaos_knight_phantasm_2" 
@@ -468,13 +369,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-10"
-			}
+			"value"					"-10"
 		}
 	}
 }

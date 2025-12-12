@@ -10,7 +10,7 @@ end
 
 function medusa_slither:GetCastRange(vLocation, hTarget)
 	if IsClient() then
-		return self:GetTalentSpecialValueFor("dash_range")
+		return self:GetSpecialValueFor("dash_range")
 	end
 end
 
@@ -22,8 +22,8 @@ function medusa_slither:OnSpellStart()
 	local caster = self:GetCaster()
 
 	caster:RemoveModifierByName("modifier_medusa_slither")
-	caster:AddNewModifier(caster, self, "modifier_medusa_slither", {Duration = self:GetTalentSpecialValueFor("duration")})
-	caster:AddNewModifier(caster, self, "modifier_medusa_slither_evasion", {Duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_medusa_slither", {Duration = self:GetSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_medusa_slither_evasion", {Duration = self:GetSpecialValueFor("duration")})
 	
 	EmitSoundOn( "Hero_Medusa.MysticSnake.Cast", caster )
 end
@@ -36,7 +36,7 @@ function modifier_medusa_slither_evasion:OnCreated()
 end
 
 function modifier_medusa_slither_evasion:OnRefresh()
-	self.evasion = self:GetTalentSpecialValueFor("evasion")
+	self.evasion = self:GetSpecialValueFor("evasion")
 	if self:GetCaster():HasTalent("special_bonus_unique_medusa_slither_1") then
 		self.as = self.evasion
 		self.ms = self.evasion
@@ -64,9 +64,9 @@ LinkLuaModifier("modifier_medusa_slither", "heroes/hero_medusa/medusa_slither", 
 if IsServer() then
 	function modifier_medusa_slither:OnCreated()
 		local parent = self:GetParent()
-		self.distance = math.min( self:GetTalentSpecialValueFor("dash_range"), CalculateDistance( parent, self:GetAbility():GetCursorPosition() ) )
+		self.distance = math.min( self:GetSpecialValueFor("dash_range"), CalculateDistance( parent, self:GetAbility():GetCursorPosition() ) )
 		self.direction = CalculateDirection( self:GetAbility():GetCursorPosition(), parent )
-		self.speed = self:GetTalentSpecialValueFor("speed") * FrameTime()
+		self.speed = self:GetSpecialValueFor("speed") * FrameTime()
 		self:StartMotionController()
 	end
 	

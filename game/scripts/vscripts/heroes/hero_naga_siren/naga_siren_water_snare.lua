@@ -9,13 +9,13 @@ function naga_siren_water_snare:OnSpellStart()
 	local target = self:GetCursorTarget()
 	
 	caster:EmitSound("Hero_NagaSiren.Ensnare.Cast")
-	self:FireTrackingProjectile( "particles/units/heroes/hero_siren/siren_net_projectile.vpcf", target, self:GetTalentSpecialValueFor("net_speed") )
+	self:FireTrackingProjectile( "particles/units/heroes/hero_siren/siren_net_projectile.vpcf", target, self:GetSpecialValueFor("net_speed") )
 end
 
 function naga_siren_water_snare:OnProjectileHit(target, position)
 	if target and not target:IsMagicImmune() and not target:TriggerSpellAbsorb(self) then
-		local duration = self:GetTalentSpecialValueFor("duration")
-		local damage = self:GetTalentSpecialValueFor("base_damage")
+		local duration = self:GetSpecialValueFor("duration")
+		local damage = self:GetSpecialValueFor("base_damage")
 		local caster = self:GetCaster()
 		
 		target:EmitSound("Hero_NagaSiren.Ensnare.Target")
@@ -41,7 +41,7 @@ LinkLuaModifier("modifier_naga_siren_water_snare", "heroes/hero_naga_siren/naga_
 
 if IsServer() then
 	function modifier_naga_siren_water_snare:OnCreated()
-		self.dmg = self:GetTalentSpecialValueFor("agility_damage") / 100
+		self.dmg = self:GetSpecialValueFor("agility_damage") / 100
 		self:StartIntervalThink(1)
 	end
 	

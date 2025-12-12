@@ -20,7 +20,7 @@ end
 	-- EmitSoundOn("Hero_Chen.DivineFavor.Target", target)
 
 	-- target:Dispel(caster, false)
-	-- target:AddNewModifier(caster, self, "modifier_chen_divine_favor_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
+	-- target:AddNewModifier(caster, self, "modifier_chen_divine_favor_bh", {Duration = self:GetSpecialValueFor("duration")})
 	-- ParticleManager:FireParticle("particles/units/heroes/hero_chen/chen_divine_favor.vpcf", PATTACH_POINT, target, {})
 -- end
 
@@ -29,11 +29,11 @@ modifier_chen_divine_favor_bh_aura = class({})
 LinkLuaModifier( "modifier_chen_divine_favor_bh_aura", "heroes/hero_chen/chen_divine_favor_bh.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_chen_divine_favor_bh_aura:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("aura_radius")
+	self.radius = self:GetSpecialValueFor("aura_radius")
 end
 
 function modifier_chen_divine_favor_bh_aura:OnRefresh()
-	self.radius = self:GetTalentSpecialValueFor("aura_radius")
+	self.radius = self:GetSpecialValueFor("aura_radius")
 end
 
 function modifier_chen_divine_favor_bh_aura:IsAura()
@@ -68,9 +68,9 @@ modifier_chen_divine_favor_bh = class({})
 LinkLuaModifier( "modifier_chen_divine_favor_bh", "heroes/hero_chen/chen_divine_favor_bh.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_chen_divine_favor_bh:OnCreated()
-	self.bonus_dmg = self:GetTalentSpecialValueFor("bonus_dmg")
-	self.regen = self:GetTalentSpecialValueFor("health_regeneration")
-	self.heal_amp = self:GetTalentSpecialValueFor("heal_amp")
+	self.bonus_dmg = self:GetSpecialValueFor("bonus_dmg")
+	self.regen = self:GetSpecialValueFor("health_regeneration")
+	self.heal_amp = self:GetSpecialValueFor("heal_amp")
 	self.evasion = self:GetCaster():FindTalentValue("special_bonus_unique_chen_divine_favor_2")
 	if self:GetCaster() == self:GetParent() and self:GetCaster():HasTalent("special_bonus_unique_chen_divine_favor_1") then
 		local mult = self:GetCaster():FindTalentValue("special_bonus_unique_chen_divine_favor_1")
@@ -82,9 +82,9 @@ function modifier_chen_divine_favor_bh:OnCreated()
 end
 
 function modifier_chen_divine_favor_bh:OnRefresh()
-	self.bonus_dmg = self:GetTalentSpecialValueFor("bonus_dmg")
-	self.regen = self:GetTalentSpecialValueFor("health_regeneration")
-	self.heal_amp = self:GetTalentSpecialValueFor("heal_amp")
+	self.bonus_dmg = self:GetSpecialValueFor("bonus_dmg")
+	self.regen = self:GetSpecialValueFor("health_regeneration")
+	self.heal_amp = self:GetSpecialValueFor("heal_amp")
 	self.evasion = self:GetCaster():FindTalentValue("special_bonus_unique_chen_divine_favor_2")
 	if self:GetCaster() == self:GetParent() and self:GetCaster():HasTalent("special_bonus_unique_chen_divine_favor_1") then
 		local mult = self:GetCaster():FindTalentValue("special_bonus_unique_chen_divine_favor_1")

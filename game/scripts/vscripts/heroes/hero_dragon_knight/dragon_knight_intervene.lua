@@ -25,10 +25,10 @@ LinkLuaModifier( "modifier_dragon_knight_intervene_movement", "heroes/hero_drago
 modifier_dragon_knight_intervene_movement = class({})
 
 function modifier_dragon_knight_intervene_movement:OnCreated()
-	self.speed = self:GetTalentSpecialValueFor("rush_speed")
-	self.stunDuration = self:GetTalentSpecialValueFor("stun_duration")
-	self.healDuration = self:GetTalentSpecialValueFor("heal_duration")
-	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.speed = self:GetSpecialValueFor("rush_speed")
+	self.stunDuration = self:GetSpecialValueFor("stun_duration")
+	self.healDuration = self:GetSpecialValueFor("heal_duration")
+	self.damage = self:GetSpecialValueFor("damage")
 	if IsServer() then
 		EmitSoundOn( "Hero_DragonKnight.Wings", self:GetParent() )
 		self:GetAbility():StartDelayedCooldown()
@@ -37,10 +37,10 @@ function modifier_dragon_knight_intervene_movement:OnCreated()
 end
 
 function modifier_dragon_knight_intervene_movement:OnRefresh()
-	self.speed = self:GetTalentSpecialValueFor("rush_speed")
-	self.stunDuration = self:GetTalentSpecialValueFor("stun_duration")
-	self.healDuration = self:GetTalentSpecialValueFor("heal_duration")
-	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.speed = self:GetSpecialValueFor("rush_speed")
+	self.stunDuration = self:GetSpecialValueFor("stun_duration")
+	self.healDuration = self:GetSpecialValueFor("heal_duration")
+	self.damage = self:GetSpecialValueFor("damage")
 end
 
 function modifier_dragon_knight_intervene_movement:OnIntervalThink()
@@ -131,11 +131,11 @@ modifier_dragon_knight_intervene_buff = class({})
 LinkLuaModifier( "modifier_dragon_knight_intervene_buff", "heroes/hero_dragon_knight/dragon_knight_intervene" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_dragon_knight_intervene_buff:OnCreated()
-	self.hAmp = self:GetTalentSpecialValueFor("heal_bonus")
+	self.hAmp = self:GetSpecialValueFor("heal_bonus")
 end
 
 function modifier_dragon_knight_intervene_buff:OnRefresh()
-	self.hAmp = self:GetTalentSpecialValueFor("heal_bonus")
+	self.hAmp = self:GetSpecialValueFor("heal_bonus")
 end
 
 function modifier_dragon_knight_intervene_buff:DeclareFunctions()

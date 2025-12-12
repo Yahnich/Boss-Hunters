@@ -26,7 +26,7 @@ end
 function ds_surge:OnSpellStart()
 	local caster = self:GetCaster()
 
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 
 	if caster:HasTalent("special_bonus_unique_ds_surge_1") then
 		local point = self:GetCursorPosition()
@@ -49,7 +49,7 @@ modifier_ds_surge = class({})
 function modifier_ds_surge:OnCreated(table)
 	local caster = self:GetCaster()
 
-	self.bonusMs = self:GetTalentSpecialValueFor("bonus_ms")
+	self.bonusMs = self:GetSpecialValueFor("bonus_ms")
 	if caster:HasTalent("special_bonus_unique_ds_surge_2") then
 		self.bonus_as = self.bonusMs
 	end
@@ -70,7 +70,7 @@ end
 function modifier_ds_surge:OnRefresh(table)
 	local caster = self:GetCaster()
 
-	self.bonusMs = self:GetTalentSpecialValueFor("bonus_ms")
+	self.bonusMs = self:GetSpecialValueFor("bonus_ms")
 	if caster:HasTalent("special_bonus_unique_ds_surge_2") then
 		self.bonus_as = self.bonusMs
 	end

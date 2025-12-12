@@ -21,10 +21,10 @@ function venomancer_poison_nova_ebf:OnSpellStart(bLesser)
 	local caster = self:GetCaster()
 	local origin = self:GetCursorTarget() or self:GetCaster()
 	
-	local radius = self:GetTalentSpecialValueFor("start_radius")
-	local maxRadius = self:GetTalentSpecialValueFor("radius")
-	local radiusGrowth = self:GetTalentSpecialValueFor("speed") * 0.1
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local radius = self:GetSpecialValueFor("start_radius")
+	local maxRadius = self:GetSpecialValueFor("radius")
+	local radiusGrowth = self:GetSpecialValueFor("speed") * 0.1
+	local duration = self:GetSpecialValueFor("duration")
 	local modifierName = "modifier_venomancer_poison_nova_cancer"
 	if bLesser then
 		local multiplier = caster:FindTalentValue("special_bonus_unique_venomancer_poison_nova_2") / 100

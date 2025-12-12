@@ -14,12 +14,12 @@ function modifier_queenofpain_sadomasochism:OnCreated()
 end
 
 function modifier_queenofpain_sadomasochism:OnRefresh()
-	self.dmg = self:GetAbility():GetTalentSpecialValueFor("damage_amp")
-	self.area = self:GetAbility():GetTalentSpecialValueFor("area_dmg")
-	self.lifesteal = self:GetAbility():GetTalentSpecialValueFor("lifesteal") / 100
-	self.minionMult = self:GetAbility():GetTalentSpecialValueFor("minion_lifesteal") / 100
-	self.stack_bonus = self:GetAbility():GetTalentSpecialValueFor("stack_increase")
-	self.duration = self:GetAbility():GetTalentSpecialValueFor("stack_duration")
+	self.dmg = self:GetAbility():GetSpecialValueFor("damage_amp")
+	self.area = self:GetAbility():GetSpecialValueFor("area_dmg")
+	self.lifesteal = self:GetAbility():GetSpecialValueFor("lifesteal") / 100
+	self.minionMult = self:GetAbility():GetSpecialValueFor("minion_lifesteal") / 100
+	self.stack_bonus = self:GetAbility():GetSpecialValueFor("stack_increase")
+	self.duration = self:GetAbility():GetSpecialValueFor("stack_duration")
 	self:GetParent():HookInModifier( "GetModifierAreaDamage", self )
 end
 

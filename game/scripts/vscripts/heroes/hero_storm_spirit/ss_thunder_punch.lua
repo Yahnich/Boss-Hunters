@@ -12,9 +12,9 @@ end
 
 function ss_thunder_punch:GetManaCost(iLevel)
     if self:GetCaster():HasModifier("modifier_ss_thunder_punch_talent") then
-    	return self:GetTalentSpecialValueFor("mana_cost")/2
+    	return self:GetSpecialValueFor("mana_cost")/2
     end
-    return self:GetTalentSpecialValueFor("mana_cost")
+    return self:GetSpecialValueFor("mana_cost")
 end
 
 function ss_thunder_punch:OnSpellStart()
@@ -48,7 +48,7 @@ end
 function ss_thunder_punch:OnProjectileHit_ExtraData(hTarget, vLocation, table)
 	local caster = self:GetCaster()
 
-	local bonusAttack = self:GetTalentSpecialValueFor("attack_damage")
+	local bonusAttack = self:GetSpecialValueFor("attack_damage")
 
 	if table.name == "second" then
 		bonusAttack = bonusAttack/2

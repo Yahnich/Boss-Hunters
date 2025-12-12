@@ -16,12 +16,12 @@ function warlock_corruption_curse:OnSpellStart()
 	EmitSoundOn("Hero_Warlock.ShadowWordCastBad", target)
 	EmitSoundOn("Hero_Warlock.Incantations", target)
 	if target:TriggerSpellAbsorb( self ) then return end
-	target:AddNewModifier(caster, self, "modifier_warlock_corruption_curse", {Duration = self:GetTalentSpecialValueFor("duration")})
+	target:AddNewModifier(caster, self, "modifier_warlock_corruption_curse", {Duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_warlock_corruption_curse = class({})
 function modifier_warlock_corruption_curse:OnCreated(table)
-	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.damage = self:GetSpecialValueFor("damage")
 	if IsServer() then 
 		EmitSoundOn("Hero_Warlock.ShadowWord", self:GetParent())
 		if self:GetCaster():HasTalent("special_bonus_unique_warlock_corruption_curse_2") then
@@ -72,7 +72,7 @@ function modifier_warlock_corruption_curse:OnDeath(params)
 			if caster:HasTalent("special_bonus_unique_warlock_corruption_curse_1") then
 				local enemies = caster:FindAllUnitsInRadius(parent:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_warlock_corruption_curse_1"))
 				for _,enemy in pairs(enemies) do
-					enemy:AddNewModifier(caster, self:GetAbility(), "modifier_warlock_corruption_curse", {Duration = self:GetTalentSpecialValueFor("duration")})
+					enemy:AddNewModifier(caster, self:GetAbility(), "modifier_warlock_corruption_curse", {Duration = self:GetSpecialValueFor("duration")})
 				end
 			end
 		end

@@ -12,7 +12,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"bloodseeker_bloodrage"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -47,43 +47,34 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"attack_speed_self"				"50 80 110 140 140 140 140"
 				"LinkedSpecialBonus"			"special_bonus_unique_bs_bloodrage_2"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"attack_speed_ally"				"25 40 55 70 70 70 70"
-			}
+			"attack_speed_ally"				"25 40 55 70 70 70 70"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"spell_amp_self"				"10 20 30 40 40 40 40"
 				"LinkedSpecialBonus"			"special_bonus_unique_bs_bloodrage_2"
 				"LinkedSpecialBonusField"		"value2"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"spell_amp_ally"				"5 10 15 20 20 20 20"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"hp_loss"						"-2.2 -2.4 -2.6 -2.8 -2.8 -2.8 -2.8"
 				"LinkedSpecialBonus"			"special_bonus_unique_bs_bloodrage_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"8"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -99,13 +90,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-0.25"
-			}
+			"value"						"-0.25"
 		}
 	}
 	//=================================================================================================================
@@ -121,18 +108,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"20"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value2"					"10"
-			}
+			"value"						"20"
+			"value2"					"10"
 		}
 	}
 
@@ -149,7 +128,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"bloodseeker_blood_bath"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -183,29 +162,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"125 225 325 425 500 575 650"
+			"damage"				"125 225 325 425 500 575 650"
 				"LinkedSpecialBonus"	"special_bonus_unique_bs_blood_rite_1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3 3 3 3 4 5 6"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"2.6"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"400 400 400 400 500 600 700"
-			}
+			"duration"				"3 3 3 3 4 5 6"
+			"delay"					"2.6"
+			"radius"				"400 400 400 400 500 600 700"
 		}
 	}
 	//=================================================================================================================
@@ -221,13 +184,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-60"
-			}
+			"value"						"-60"
 		}
 	}
 	//=================================================================================================================
@@ -243,13 +202,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-2"
-			}
+			"value"						"-2"
 		}
 	}
 
@@ -266,7 +221,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"bloodseeker_thirst"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -301,45 +256,23 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"60 70 80 90 100 110 120"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"tick_rate"				"0.25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"600"
-			}
+			"damage"				"60 70 80 90 100 110 120"
+			"duration"				"5"
+			"tick_rate"				"0.25"
+			"radius"				"600"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"debuff_duration"		"8"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"debuff_slow"			"-25 -25 -25 -25 -35 -45 -55"
+			"debuff_slow"			"-25 -25 -25 -25 -35 -45 -55"
 				"LinkedSpecialBonus"	"special_bonus_unique_bs_devils_blood_1"
-			}
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"debuff_sr"				"-25 -30 -35 -40 -45 -50 -55"
 				"LinkedSpecialBonus"	"special_bonus_unique_bs_devils_blood_1"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -355,13 +288,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"20"
-			}
+			"value"						"20"
 		}
 	}
 	//=================================================================================================================
@@ -377,13 +306,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"15"
-			}
+			"value"						"15"
 		}
 	}
 
@@ -403,13 +328,12 @@
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
 	
-		"AbilitySpecial"
+		"AbilityValues"
 	    {
 	        "01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
 	            "lifesteal"				"20"
-	        }
 	    }
 	}
 
@@ -427,7 +351,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"bloodseeker_rupture"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -463,57 +387,40 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"bleed"							"2.25 2.65 3 3.35 3.75 4.15"
 				"LinkedSpecialBonus"			"special_bonus_unique_bs_rupture_1"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"evasion_loss"					"-30 -30 -40 -40 -50 -50"
+			"evasion_loss"					"-30 -30 -40 -40 -50 -50"
 				"LinkedSpecialBonus"			"special_bonus_unique_bs_rupture_1"
 				"LinkedSpecialBonusField"		"value2"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"armor_loss"					"-6 -6 -8 -8 -10 -10"
+			"armor_loss"					"-6 -6 -8 -8 -10 -10"
 				"LinkedSpecialBonus"			"special_bonus_unique_bs_rupture_1"
 				"LinkedSpecialBonusField"		"value3"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"mr_loss"						"-30 -30 -40 -40 -50 -50"
+			"mr_loss"						"-30 -30 -40 -40 -50 -50"
 				"LinkedSpecialBonus"			"special_bonus_unique_bs_rupture_1"
 				"LinkedSpecialBonusField"		"value2"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"7 8 9 10 11 12"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"tick_rate"						"1"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"scepter_charges"				"2"
 				"RequiresScepter"				"1"
-			}
 			"08"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"scepter_charge_restore_time"	"40"
 				"RequiresScepter"				"1"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -529,23 +436,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value2"					"-5"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value3"					"-2"
-			}
+			"value"						"1"
+			"value2"					"-5"
+			"value3"					"-2"
 		}
 	}
 	//=================================================================================================================
@@ -561,13 +456,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"300"
-			}
+			"value"						"300"
 		}
 	}
 }

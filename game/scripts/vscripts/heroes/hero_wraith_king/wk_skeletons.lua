@@ -21,7 +21,7 @@ function wk_skeletons:OnSpellStart()
     local caster = self:GetCaster()
     local point = caster:GetAbsOrigin()
 
-    local tick_rate = self:GetTalentSpecialValueFor("spawn_interval")
+    local tick_rate = self:GetSpecialValueFor("spawn_interval")
     caster:EmitSound("n_creep_TrollWarlord.RaiseDead")
 	
 	self.skeletons = self.skeletons or {}
@@ -120,8 +120,8 @@ end
 
 function wk_skeletons:UpdateSkeleton( skeleton )
 	local caster = self:GetCaster()
-	local damage = (self:GetTalentSpecialValueFor("skeleton_base_dmg") + self:GetTalentSpecialValueFor("skeleton_lvl_dmg") * caster:GetLevel() )
-	local health = self:GetTalentSpecialValueFor("skeleton_base_hp") + self:GetTalentSpecialValueFor("skeleton_lvl_hp") * caster:GetLevel()
+	local damage = (self:GetSpecialValueFor("skeleton_base_dmg") + self:GetSpecialValueFor("skeleton_lvl_dmg") * caster:GetLevel() )
+	local health = self:GetSpecialValueFor("skeleton_base_hp") + self:GetSpecialValueFor("skeleton_lvl_hp") * caster:GetLevel()
 	
 
 	if not skeleton:IsAlive() then skeleton:RespawnUnit() end
@@ -184,7 +184,7 @@ function wk_skeletons:IncrementCharge(amount)
 	local caster = self:GetCaster()
 	
 	local bCount = amount or 1
-	local skeletonMax = self:GetTalentSpecialValueFor("max_skeleton_charges")
+	local skeletonMax = self:GetSpecialValueFor("max_skeleton_charges")
 	local stacks = self.skeletonModifier:GetStackCount()
 	if stacks < skeletonMax then
 		self.skeletonModifier:SetStackCount( math.min( skeletonMax, stacks + bCount ) )
@@ -196,10 +196,10 @@ LinkLuaModifier("modifier_wk_skeletons_passive", "heroes/hero_wraith_king/wk_ske
 
 function modifier_wk_skeletons_passive:OnCreated()
 	self:GetAbility().skeletonModifier = self
-	self.unitCharges = self:GetTalentSpecialValueFor("unit_charges")
-	self.bossCharges = self:GetTalentSpecialValueFor("boss_charges")
-	self.minionCharges = self:GetTalentSpecialValueFor("minion_charges")
-	self.auraKills = self:GetTalentSpecialValueFor("aura_kills")
+	self.unitCharges = self:GetSpecialValueFor("unit_charges")
+	self.bossCharges = self:GetSpecialValueFor("boss_charges")
+	self.minionCharges = self:GetSpecialValueFor("minion_charges")
+	self.auraKills = self:GetSpecialValueFor("aura_kills")
 	self.currentKills = 0
 end
 

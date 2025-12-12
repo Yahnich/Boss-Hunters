@@ -4,7 +4,6 @@ var dotaHud = $.GetContextPanel().GetParent().GetParent().GetParent();
 
 
 (function(){
-	$.Msg("fuck");
 	var hud = dotaHud.FindChildTraverse("HUDElements");
 	var minimapBlock = hud.FindChildTraverse("minimap_block");
 	var minimapContainer = hud.FindChildTraverse("minimap_container");

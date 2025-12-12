@@ -29,7 +29,7 @@ function earth_spirit_stone_rip_bh:GetBehavior()
 end
 
 function earth_spirit_stone_rip_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function earth_spirit_stone_rip_bh:OnSpellStart()

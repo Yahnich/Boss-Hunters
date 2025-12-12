@@ -12,10 +12,10 @@ function dragon_knight_dragonbreath:OnSpellStart()
 	local caster = self:GetCaster()
 	local direction = CalculateDirection( self:GetCursorPosition(), caster)
 	
-	local velocity = self:GetTalentSpecialValueFor("speed")
-	local distance = self:GetTalentSpecialValueFor("range")
-	local width = self:GetTalentSpecialValueFor("start_radius")
-	local endWidth = self:GetTalentSpecialValueFor("end_radius")
+	local velocity = self:GetSpecialValueFor("speed")
+	local distance = self:GetSpecialValueFor("range")
+	local width = self:GetSpecialValueFor("start_radius")
+	local endWidth = self:GetSpecialValueFor("end_radius")
 
 	self:FireLinearProjectile("particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf", velocity * direction, distance, width, {width_end = endWidth})
 	
@@ -33,7 +33,7 @@ function dragon_knight_dragonbreath:DropFirePool( position, radius, duration )
 	ParticleManager:SetParticleControl(poolFX, 1, vPos )
 	ParticleManager:SetParticleControl(poolFX, 2, Vector(duration,0,0) )
 	ParticleManager:SetParticleControl(poolFX, 3, vPos )
-	local damage = ability:GetTalentSpecialValueFor("dot_damage")
+	local damage = ability:GetSpecialValueFor("dot_damage")
 	Timers:CreateTimer(1, function()
 		local enemies = caster:FindEnemyUnitsInRadius(vPos, rad)
 		for _, enemy in ipairs( enemies ) do
@@ -51,14 +51,14 @@ end
 function dragon_knight_dragonbreath:OnProjectileHit(target, position)
 	local caster = self:GetCaster()
 	if target and not target:IsMagicImmune() and not target:IsInvulnerable() and not target:TriggerSpellAbsorb(self) then
-		local damage = self:GetTalentSpecialValueFor("hit_damage")
-		local duration = self:GetTalentSpecialValueFor("duration")
+		local damage = self:GetSpecialValueFor("hit_damage")
+		local duration = self:GetSpecialValueFor("duration")
 		
 		self:DealDamage( caster, target, damage )
 		target:AddNewModifier( caster, self, "modifier_dragon_knight_dragonbreath_debuff", {duration = duration} )
 	else
 		if caster:HasTalent("special_bonus_unique_dragon_knight_dragonbreath_1") then
-			self:DropFirePool( position, self:GetTalentSpecialValueFor("end_radius"), self:GetTalentSpecialValueFor("duration") * caster:FindTalentValue("special_bonus_unique_dragon_knight_dragonbreath_1"))
+			self:DropFirePool( position, self:GetSpecialValueFor("end_radius"), self:GetSpecialValueFor("duration") * caster:FindTalentValue("special_bonus_unique_dragon_knight_dragonbreath_1"))
 		end
 	end
 	return false
@@ -68,14 +68,14 @@ modifier_dragon_knight_dragonbreath_debuff = class({})
 LinkLuaModifier("modifier_dragon_knight_dragonbreath_debuff", "heroes/hero_dragon_knight/dragon_knight_dragonbreath", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_dragon_knight_dragonbreath_debuff:OnCreated()
-	self.dmg_reduction = self:GetTalentSpecialValueFor("reduction")
-	self.dot_dmg = self:GetTalentSpecialValueFor("dot_damage")
+	self.dmg_reduction = self:GetSpecialValueFor("reduction")
+	self.dot_dmg = self:GetSpecialValueFor("dot_damage")
 	if IsServer() then self:StartIntervalThink(1) end
 end
 
 function modifier_dragon_knight_dragonbreath_debuff:OnRefresh()
-	self.dmg_reduction = self:GetTalentSpecialValueFor("reduction")
-	self.dot_dmg = self:GetTalentSpecialValueFor("dot_damage")
+	self.dmg_reduction = self:GetSpecialValueFor("reduction")
+	self.dot_dmg = self:GetSpecialValueFor("dot_damage")
 end
 
 function modifier_dragon_knight_dragonbreath_debuff:OnIntervalThink()

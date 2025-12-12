@@ -15,7 +15,7 @@
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"axe_berserkers_call"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -41,28 +41,15 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_bonus"			"0"
-			}
+			"armor_bonus"			"0"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"armor_bonus_base"		"30"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4 5 6 7 7 7 7"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"300 300 300 300 400 500 600"
-			}
+			"duration"				"4 5 6 7 7 7 7"
+			"radius"				"300 300 300 300 400 500 600"
 		}
 	
 		"precache"
@@ -82,13 +69,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"100"
-			}
+			"value"					"100"
 		}
 	}
 	"special_bonus_unique_axe_forced_shout_2" 
@@ -101,13 +84,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
-			}
+			"value"					"2"
 		}
 	}
 	//=================================================================================================================
@@ -125,7 +104,7 @@
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 	    "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityTextureName"			"axe_battle_hunger"
 		
 		// Talents		
@@ -152,38 +131,17 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"chance"				"25"
-			}
+			"chance"				"25"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"16 24 32 40 60 80 100"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"12"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"move_slow"				"12"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor"					"4 4 4 4 5 6 7"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"minion_multiplier"		"0.5"
-			}
+			"duration"				"12"
+			"move_slow"				"12"
+			"armor"					"4 4 4 4 5 6 7"
+			"minion_multiplier"		"0.5"
 		}
 	
 		"precache"
@@ -204,13 +162,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"20"
-			}
+			"value"					"20"
 		}
 	}
 	"special_bonus_unique_axe_blood_hunger_2" 
@@ -223,13 +177,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"special_bonus_unique_axe_blood_hunger_3" 
@@ -242,13 +192,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"12"
-			}
+			"value"					"12"
 		}
 	}
 	//=================================================================================================================
@@ -281,34 +227,20 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"bonus_damage"					"60 100 140 180 190 200 210"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"attack_damage"					"50"
+			"attack_damage"					"50"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"chance"						"17 18 19 20 25 30 35"
-			}
+			"chance"						"17 18 19 20 25 30 35"
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"2"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_range"					"125"
-			}
+			"bonus_range"					"125"
 		}
 	
 		"precache"
@@ -329,13 +261,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"100"
-			}
+			"value"					"100"
 		}
 	}
 	"special_bonus_unique_axe_cleave_strike_2" 
@@ -349,13 +277,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"axe_force_of_will"
@@ -372,28 +296,12 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"lifesteal"				"15"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"minion_lifesteal"		"5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"scepter_bash_chance"	"15"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"scepter_bash_duration"	"2"
-			}
+			"lifesteal"				"15"
+			"minion_lifesteal"		"5"
+			"scepter_bash_chance"	"15"
+			"scepter_bash_duration"	"2"
 		}
 	}
 	//=================================================================================================================
@@ -413,7 +321,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"axe_culling_blade"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -439,45 +347,35 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"critical_damage"				"200 250 300 300 300 300"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"armor_damage"					"5 5 5 6 7 8"
+			"armor_damage"					"5 5 5 6 7 8"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"taunt_duration"				"5.0"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"buff_duration"					"10 15 20 20 20 20"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"10"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"move_slow"						"-25 -35 -45 -45 -45 -45"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"radius"						"350 350 350 400 450 500"
-			}
 		}
 	
 		"precache"
@@ -501,18 +399,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-60"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"					"10"
-			}
+			"value"					"-60"
+			"duration"					"10"
 		}
 	}
 	"special_bonus_unique_axe_ground_pound_2" 
@@ -525,13 +415,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	
@@ -553,18 +439,10 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"str_to_armor"			"0.05"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"scepter_str_to_as"		"1"
-			}
+			"str_to_armor"			"0.05"
+			"scepter_str_to_as"		"1"
 		}
 	}
 }

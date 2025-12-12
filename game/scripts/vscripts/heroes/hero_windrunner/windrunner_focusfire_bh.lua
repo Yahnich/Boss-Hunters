@@ -16,7 +16,7 @@ function windrunner_focusfire_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	EmitSoundOn("Ability.Focusfire", caster)
 	self.targetModifier = target:AddNewModifier(caster, self, "modifier_windrunner_focusfire_target_bh", {duration = duration})
 	ExecuteOrderFromTable({
@@ -94,8 +94,8 @@ end
 modifier_windrunner_focusfire_bh = class({})
 LinkLuaModifier("modifier_windrunner_focusfire_bh", "heroes/hero_windrunner/windrunner_focusfire_bh", LUA_MODIFIER_MOTION_NONE)
 function modifier_windrunner_focusfire_bh:OnCreated(table)
-	self.as = self:GetTalentSpecialValueFor("bonus_as")
-	self.dmg = self:GetTalentSpecialValueFor("dmg_reduction")
+	self.as = self:GetSpecialValueFor("bonus_as")
+	self.dmg = self:GetSpecialValueFor("dmg_reduction")
     if IsServer() then
 		local caster = self:GetCaster()
 		self:StartIntervalThink( math.max( 0.31, ( caster:GetLastAttackTime( ) - GameRules:GetGameTime() ) + caster:GetSecondsPerAttack() ) )

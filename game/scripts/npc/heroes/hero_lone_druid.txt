@@ -46,32 +46,19 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"500"
+			"damage"					"500"
 				"RequiresScepter"			"1"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"sun_heal"					"100"
+			"sun_heal"					"100"
 				"RequiresScepter"			"1"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"sun_radius"				"600"
+			"sun_radius"				"600"
 				"RequiresScepter"			"1"
-			}
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"moon_duration"				"5"
-				"RequiresScepter"			"1"
-			}		
+				"RequiresScepter"			"1"		
 		}
 	}
 
@@ -92,7 +79,7 @@
 		//"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"lone_druid_true_form_battle_cry"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -126,28 +113,18 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ad"				"50 100 150 200 200 200 200"		
-			}
+			"bonus_ad"				"50 100 150 200 200 200 200"		
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_armor"			"15 20 25 30 30 30 30"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration"				"5 6 7 8 10 12 14"		
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"1000"
-			}		
+			"radius"				"1000"		
 		}
 	}
 
@@ -164,18 +141,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"reduction"					"-40"
-			}
+			"value"						"100"
+			"reduction"					"-40"
 		}
 	}
 	//=================================================================================================================
@@ -191,13 +160,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -213,13 +178,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"33"
-			}
+			"value"						"33"
 		}
 	}
 
@@ -235,7 +196,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"lone_druid_spirit_link"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -255,23 +216,17 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_as"				"30 30 30 30 60 90 120"
-			}
+			"bonus_as"				"30 30 30 30 60 90 120"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"health_gain"			"20 35 50 65 65 65 65"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"1000"
-			}
 		}
 	}
 
@@ -289,13 +244,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -312,13 +263,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -339,7 +286,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"lone_druid_savage_roar"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -372,27 +319,18 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"1.5 2.0 2.5 3.0 3.0 3.0 3.0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"325"
+			"radius"						"325"
 				"LinkedSpecialBonus"			"special_bonus_unique_druid_savage_roar_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"60 100 140 180 220 260 300"
+			"damage"						"60 100 140 180 220 260 300"
 				"LinkedSpecialBonus"			"special_bonus_unique_druid_savage_roar_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 		}
 	}
 	
@@ -409,23 +347,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow"						"-50"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"amp"						"15"
-			}
+			"value"						"2"
+			"slow"						"-50"
+			"amp"						"15"
 		}
 	}
 
@@ -442,13 +368,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 
@@ -515,43 +437,21 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"percent"				"75"
-			}
+			"percent"				"75"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"hp_scaling"			"75"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"dmg_scaling"			"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_health"			"1000"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"40"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_hp_threshold"		"35"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"invuln_duration"		"1"
-			}
+			"base_health"			"1000"
+			"base_damage"			"40"
+			"max_hp_threshold"		"35"
+			"invuln_duration"		"1"
 		}
 
 	}
@@ -568,7 +468,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"lone_druid_true_form"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -604,43 +504,22 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{	
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"bat"						"-10"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_armor"				"10 15 20 20 20 20"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_hp"					"500 1000 1500 1500 1500 1500"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"speed_loss"				"-40 -40 -40 -30 -20 -10"
+			"bat"						"-10"
+			"bonus_armor"				"10 15 20 20 20 20"
+			"bonus_hp"					"500 1000 1500 1500 1500 1500"
+"speed_loss"				"-40 -40 -40 -30 -20 -10"
 				"LinkedSpecialBonus"		"special_bonus_unique_druid_transform_1"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"bear_transform_time"		"1.933 1.933 1.933 1.666 1.333 1.0"
+			"bear_transform_time"		"1.933 1.933 1.933 1.666 1.333 1.0"
 				"LinkedSpecialBonus"		"special_bonus_unique_druid_transform_1"
 				"LinkedSpecialBonusField"	"value2"
-			}
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"man_transform_time"		"1.933 1.933 1.933 1.666 1.333 1.0"
 				"LinkedSpecialBonus"		"special_bonus_unique_druid_transform_1"
-				"LinkedSpecialBonusField"	"value2"
-			}		
+				"LinkedSpecialBonusField"	"value2"		
 		}
 	}
 
@@ -657,18 +536,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"40"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value2"					"-1"
-			}
+			"value"						"40"
+			"value2"					"-1"
 		}
 	}
 	//=================================================================================================================
@@ -685,13 +556,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -723,18 +590,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"percent_shared"		"30"
-			}
+			"percent_shared"		"30"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"1100"
-			}	
+				"radius"				"1100"	
 		}
 	}
 
@@ -796,23 +658,17 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"int_damage"			"100"
-			}	
+			"int_damage"			"100"	
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"chance"				"20"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration"				"3"
-			}
 		}
 	}
 
@@ -844,34 +700,20 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mr"				"33"
-			}
+			"bonus_mr"				"33"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"cleave_damage"			"40"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cleave_start"			"150"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cleave_end"			"360"
-			}
+			"cleave_start"			"150"
+			"cleave_end"			"360"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"cleave_distance"		"650"
-			}
 		}
 	}
 }

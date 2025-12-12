@@ -28,7 +28,7 @@ function chen_penitence_bh:OnProjectileHit(hTarget, vLocation)
 		EmitSoundOn("Hero_Chen.PenitenceImpact", self:GetCaster())
 		
 		ParticleManager:FireParticle("particles/units/heroes/hero_chen/chen_penitence.vpcf", PATTACH_POINT, hTarget, {})
-		hTarget:AddNewModifier(caster, self, "modifier_chen_penitence_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
+		hTarget:AddNewModifier(caster, self, "modifier_chen_penitence_bh", {Duration = self:GetSpecialValueFor("duration")})
 
 		if caster:HasTalent("special_bonus_unique_chen_penitence_bh_2") then
 			local damage = caster:GetAttackDamage()*caster:FindTalentValue("special_bonus_unique_chen_penitence_bh_2")/100
@@ -41,13 +41,13 @@ modifier_chen_penitence_bh = class({})
 LinkLuaModifier( "modifier_chen_penitence_bh", "heroes/hero_chen/chen_penitence_bh.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_chen_penitence_bh:OnCreated()
-	self.duration = self:GetTalentSpecialValueFor("buff_duration")
-	self.ms = self:GetTalentSpecialValueFor("bonus_movement_speed")
+	self.duration = self:GetSpecialValueFor("buff_duration")
+	self.ms = self:GetSpecialValueFor("bonus_movement_speed")
 end
 
 function modifier_chen_penitence_bh:OnRefresh()
-	self.duration = self:GetTalentSpecialValueFor("buff_duration")
-	self.ms = self:GetTalentSpecialValueFor("bonus_movement_speed")
+	self.duration = self:GetSpecialValueFor("buff_duration")
+	self.ms = self:GetSpecialValueFor("bonus_movement_speed")
 end
 
 function modifier_chen_penitence_bh:GetEffectName()
@@ -80,11 +80,11 @@ modifier_chen_penitence_bh_buff = class({})
 LinkLuaModifier( "modifier_chen_penitence_bh_buff", "heroes/hero_chen/chen_penitence_bh.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_chen_penitence_bh_buff:OnCreated()
-	self.as = self:GetTalentSpecialValueFor("bonus_as")
+	self.as = self:GetSpecialValueFor("bonus_as")
 end
 
 function modifier_chen_penitence_bh_buff:OnRefresh()
-	self.as = self:GetTalentSpecialValueFor("bonus_as")
+	self.as = self:GetSpecialValueFor("bonus_as")
 end
 
 function modifier_chen_penitence_bh_buff:DeclareFunctions()

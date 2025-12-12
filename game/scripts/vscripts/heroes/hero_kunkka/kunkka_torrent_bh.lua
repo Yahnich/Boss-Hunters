@@ -2,7 +2,7 @@ kunkka_torrent_bh = class({})
 LinkLuaModifier("modifier_kunkka_torrent_bh", "heroes/hero_kunkka/kunkka_torrent_bh", LUA_MODIFIER_MOTION_NONE)
 
 function kunkka_torrent_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function kunkka_torrent_bh:IsStealable()
@@ -25,22 +25,22 @@ function kunkka_torrent_bh:CreateTorrent(position)
 
     local bubbles = ParticleManager:CreateParticle("particles/units/heroes/hero_kunkka/kunkka_spell_torrent_bubbles.vpcf", PATTACH_POINT, caster)
                     ParticleManager:SetParticleControl(bubbles, 0, position)
-	local stunDuration = self:GetTalentSpecialValueFor("stun_duration")
-	local slow = self:GetTalentSpecialValueFor("slow_duration") + stunDuration
-    Timers:CreateTimer(self:GetTalentSpecialValueFor("delay"), function()
+	local stunDuration = self:GetSpecialValueFor("stun_duration")
+	local slow = self:GetSpecialValueFor("slow_duration") + stunDuration
+    Timers:CreateTimer(self:GetSpecialValueFor("delay"), function()
         ParticleManager:ClearParticle(bubbles)
         StopSoundOn("Ability.pre.Torrent", caster)
         EmitSoundOnLocationWithCaster(position, "Ability.Torrent", caster)
         ParticleManager:FireParticle("particles/units/heroes/hero_kunkka/kunkka_spell_torrent_splash.vpcf", PATTACH_POINT, caster, {[0]=position})
-        local enemies = caster:FindEnemyUnitsInRadius(position, self:GetTalentSpecialValueFor("radius"))
+        local enemies = caster:FindEnemyUnitsInRadius(position, self:GetSpecialValueFor("radius"))
         for _,enemy in pairs(enemies) do
 			if not enemy:TriggerSpellAbsorb( self ) then
 				enemy:ApplyKnockBack(enemy:GetAbsOrigin(), stunDuration + 0.1, stunDuration, 0, 350, caster, self, true)
 				enemy:AddNewModifier(caster, self, "modifier_kunkka_torrent_bh", {Duration = slow})
-				self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"))
+				self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage"))
 			end
         end
-		local allies = caster:FindFriendlyUnitsInRadius(position, self:GetTalentSpecialValueFor("radius"))
+		local allies = caster:FindFriendlyUnitsInRadius(position, self:GetSpecialValueFor("radius"))
 		for _,ally in pairs(allies) do
             ally:AddNewModifier(caster, self, "modifier_in_water", {Duration = slow})
         end
@@ -55,7 +55,7 @@ function modifier_kunkka_torrent_bh:DeclareFunctions()
 end
 
 function modifier_kunkka_torrent_bh:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("movespeed_bonus")
+    return self:GetSpecialValueFor("movespeed_bonus")
 end
 
 function modifier_kunkka_torrent_bh:GetEffectName()

@@ -12,8 +12,8 @@ function modifier_timbersaw_hylophobia:OnCreated()
 end
 
 function modifier_timbersaw_hylophobia:OnRefresh()
-	self.amp = self:GetTalentSpecialValueFor("bonus_spell_amp")
-	self.duration = self:GetTalentSpecialValueFor("duration")
+	self.amp = self:GetSpecialValueFor("bonus_spell_amp")
+	self.duration = self:GetSpecialValueFor("duration")
 end
 
 function modifier_timbersaw_hylophobia:OnIntervalThink()

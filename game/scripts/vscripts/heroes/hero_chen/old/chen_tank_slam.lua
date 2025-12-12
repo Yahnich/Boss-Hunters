@@ -15,10 +15,10 @@ function modifier_chen_tank_slam_handle:DeclareFunctions()
 end
 
 function modifier_chen_tank_slam_handle:OnAttackLanded(params)
-	if IsServer() and params.attacker == self:GetParent() and RollPercentage(self:GetTalentSpecialValueFor("chance")) then
+	if IsServer() and params.attacker == self:GetParent() and RollPercentage(self:GetSpecialValueFor("chance")) then
 		ParticleManager:FireParticle("particles/econ/items/brewmaster/brewmaster_offhand_elixir/brewmaster_thunder_clap_elixir.vpcf", PATTACH_POINT, params.target, {})
 
-		local enemies = params.attacker:FindEnemyUnitsInRadius(params.target:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
+		local enemies = params.attacker:FindEnemyUnitsInRadius(params.target:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
 		for _,enemy in pairs(enemies) do
 			local intellect = 0
 			if params.attacker:GetOwner() then
@@ -26,9 +26,9 @@ function modifier_chen_tank_slam_handle:OnAttackLanded(params)
 			else
 				intellect = params.attacker:GetIntellect( false)
 			end
-			local damage = intellect * self:GetTalentSpecialValueFor("damage") / 100
+			local damage = intellect * self:GetSpecialValueFor("damage") / 100
 			self:GetAbility():DealDamage(params.attacker, params.target, damage)
-			self:GetAbility():Stun(enemy, self:GetTalentSpecialValueFor("duration"), false)
+			self:GetAbility():Stun(enemy, self:GetSpecialValueFor("duration"), false)
 		end
 	end
 end

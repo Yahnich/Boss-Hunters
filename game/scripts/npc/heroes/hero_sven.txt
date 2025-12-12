@@ -18,7 +18,7 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Sven.StormBoltImpact"
 		"AbilityTextureName"			"sven_storm_bolt"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -53,36 +53,19 @@
 		}
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bolt_speed"			"1000"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bolt_stun_duration"	"1.4 1.6 1.8 2.0 2.0 2.0 2.0"
-			}
+			"bolt_speed"			"1000"
+			"bolt_stun_duration"	"1.4 1.6 1.8 2.0 2.0 2.0 2.0"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bolt_aoe"				"255"
 				"LinkedSpecialBonus"	"special_bonus_unique_sven_storm_bolt_2"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"vision_radius"			"225"
+			"vision_radius"			"225"
 				"LinkedSpecialBonus"	"special_bonus_unique_sven_storm_bolt_2"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_range"			"950"
+			"scepter_range"			"950"
 				"RequiresScepter"		"1"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
@@ -97,18 +80,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value2"				"100"
-			}
+			"value"					"2"
+			"value2"				"100"
 		}
 	}
 	"special_bonus_unique_sven_storm_bolt_2" 
@@ -121,33 +96,22 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"245"
-			}
+			"value"					"245"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"minion_str"			"1"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"unit_str"				"4"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"boss_str"				"16"
-			}
+			"boss_str"				"16"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"30"
-			}
 		}
 	}
 	"sven_valiant_charge"
@@ -159,7 +123,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName"			"custom/sven_valiant_charge"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -197,39 +161,15 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"distance"					"600 800 1000 1200 1200 1200 1200"		
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"knockback"					"300"	
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"armor_damage"				"10 10.75 11.5 12.25 13 13.75 14.5"
+			"distance"					"600 800 1000 1200 1200 1200 1200"		
+			"knockback"					"300"	
+			"armor_damage"				"10 10.75 11.5 12.25 13 13.75 14.5"
 				"LinkedSpecialBonus"		"special_bonus_unique_sven_valiant_charge_1"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"daze_duration"				"5"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"movespeed"					"200"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"max_duration"				"3"
-			}
+"daze_duration"				"5"
+			"movespeed"					"200"
+"max_duration"				"3"
 		}
 	}
 	"special_bonus_unique_sven_valiant_charge_1" 
@@ -242,18 +182,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1.5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"2.0"
-			}
+			"value"					"1.5"
+			"duration"				"2.0"
 		}
 	}
 	"special_bonus_unique_sven_valiant_charge_2" 
@@ -266,18 +198,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-4"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
-			}
+			"value"					"-4"
+			"duration"				"8"
 		}
 	}
 	"sven_warcry_bh"
@@ -288,7 +212,7 @@
 		"ScriptFile"					"heroes/hero_sven/sven_warcry_bh"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"			"sven_warcry"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -321,28 +245,24 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"warcry_armor"						"6 9 12 15 20 25 30"			
-			}
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"warcry_movespeed"					"10 14 18 22 30 38 46"
-			}
 			"03"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"warcry_radius"						"700"
-			}
 			"04"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"duration"							"8 8 8 8 9.5 11 12.5"
-			}
 		}
 	}
 	"special_bonus_unique_sven_warcry_1" 
@@ -355,13 +275,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"200"
-			}
+			"value"					"200"
 		}
 	}
 	"special_bonus_unique_sven_warcry_2" 
@@ -375,18 +291,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"50"
-			}
+			"value"					"50"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"1200"
-			}
 		}
 	}
 	"sven_great_cleave_bh"
@@ -410,28 +321,12 @@
 				
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cleave_starting_width"		"300"
-			}			
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cleave_ending_width"		"400"
-			}			
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cleave_distance"			"550"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"great_cleave_damage"		"50"
-			}
+			"cleave_starting_width"		"300"			
+			"cleave_ending_width"		"400"			
+			"cleave_distance"			"550"
+			"great_cleave_damage"		"50"
 		}
 	}
 	//=================================================================================================================
@@ -449,7 +344,7 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Sven.GodsStrength"
 		"AbilityTextureName"			"sven_gods_strength"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -474,18 +369,10 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"gods_strength_damage"			"120 160 200 210 250 300"		
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"duration"						"35"
-			}
+			"gods_strength_damage"			"120 160 200 210 250 300"		
+			"duration"						"35"
 		}
 	}
 	"special_bonus_unique_sven_gods_strength_1" 
@@ -499,13 +386,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"5"
-			}
+			"value"					"5"
 		}
 	}
 	"special_bonus_unique_sven_gods_strength_2" 
@@ -518,18 +401,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"3"
-			}
+			"value"					"3"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"1200"
-			}
 		}
 	}
 }

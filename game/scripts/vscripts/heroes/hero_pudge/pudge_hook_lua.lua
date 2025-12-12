@@ -9,14 +9,6 @@ function pudge_hook_lua:OnAbilityPhaseInterrupted()
 	self:GetCaster():RemoveGesture( ACT_DOTA_OVERRIDE_ABILITY_1 )
 end
 
-function pudge_hook_lua:GetCooldown(iLvl)
-	if self:GetCaster():HasScepter() then
-		return self:GetTalentSpecialValueFor("scepter_cooldown") 
-	else
-		return self.BaseClass.GetCooldown(self, iLvl) + self:GetCaster():FindTalentValue("special_bonus_unique_pudge_hook_lua_2")
-	end
-end
-
 function pudge_hook_lua:OnSpellStart()
 	local caster = self:GetCaster()
 	
@@ -37,32 +29,32 @@ function pudge_hook_lua:OnSpellStart()
 		end
 	end
 	
-	if caster:HasTalent("special_bonus_unique_pudge_hook_lua_2") then
-		local bonusHooks = caster:FindTalentValue("special_bonus_unique_pudge_hook_lua_2")
-		local angle = caster:FindTalentValue("special_bonus_unique_pudge_hook_lua_2", "angle")
+	local bonusHooks = self:GetSpecialValueFor("bonus_hooks")
+	if bonus_hooks > 0 then
+		local angle = self:GetSpecialValueFor("bonus_hook_angle")
 		for i = 1, bonusHooks do
 			local newAngle = angle * math.ceil(i / 2) * (-1)^i
 			local newDir = RotateVector2D( direction, ToRadians( newAngle ) )
 			self:FireMeatHook( newDir )
 		end
 	end
-	if caster:HasTalent("special_bonus_unique_pudge_hook_lua_1") then
-		local duration = caster:FindTalentValue("special_bonus_unique_pudge_hook_lua_1", "duration")
-		caster:AddNewModifier( caster, self, "modifier_meat_hook_talent", {duration = duration})
+	local msDuration = self:GetSpecialValueFor("movespeed_duration")
+	if msDuration > 0 then
+		caster:AddNewModifier( caster, self, "modifier_meat_hook_talent", {duration = msDuration})
 	else
-		caster:AddNewModifier( caster, self, "modifier_meat_hook_followthrough_lua", {duration = self:GetTrueCastRange() / self:GetTalentSpecialValueFor("speed")})
+		caster:AddNewModifier( caster, self, "modifier_meat_hook_followthrough_lua", {duration = self:GetTrueCastRange() / self:GetSpecialValueFor("speed")})
 	end
 end
 
 function pudge_hook_lua:FireMeatHook( direction )
 	local caster = self:GetCaster()
 	-- Parameters
-	local hook_speed = self:GetTalentSpecialValueFor("speed")
-	local hook_width = self:GetTalentSpecialValueFor("width")
+	local hook_speed = self:GetSpecialValueFor("speed")
+	local hook_width = self:GetSpecialValueFor("width")
 	local hook_range = self:GetTrueCastRange()
-	local hook_damage = self:GetTalentSpecialValueFor("damage")
+	local hook_damage = self:GetSpecialValueFor("damage")
 	if caster:HasScepter() then 
-		hook_damage = self:GetTalentSpecialValueFor("scepter_damage") 
+		hook_damage = self:GetSpecialValueFor("scepter_damage") 
 	end
 	local caster_loc = caster:GetAbsOrigin()
 	local start_loc = GetGroundPosition(caster_loc + direction * hook_width, caster) + Vector(0,0,100)
@@ -94,9 +86,9 @@ function pudge_hook_lua:OnProjectileHitHandle( target, position, projectileIndex
 				end
 			end
 		end
-		local damage = TernaryOperator( self:GetTalentSpecialValueFor("scepter_damage"), caster:HasScepter(), self:GetTalentSpecialValueFor("damage") )
+		local damage = TernaryOperator( self:GetSpecialValueFor("scepter_damage"), caster:HasScepter(), self:GetSpecialValueFor("damage") )
 		if target:IsMinion() then
-			damage = damage + damage * self:GetTalentSpecialValueFor("minion_damage")/100
+			damage = damage + damage * self:GetSpecialValueFor("minion_damage")/100
 		end
 		self.hooks[projectileIndex].targets = self.hooks[projectileIndex].targets or {}
 		table.insert( self.hooks[projectileIndex].targets, target )
@@ -242,8 +234,8 @@ function modifier_meat_hook_talent:OnCreated()
 end
 
 function modifier_meat_hook_talent:OnRefresh()
-	self.evasion = self:GetCaster():FindTalentValue("special_bonus_unique_pudge_hook_lua_1", "value2")
-	self.ms = self:GetCaster():FindTalentValue("special_bonus_unique_pudge_hook_lua_1", "value")
+	self.evasion = self:GetSpecialValueFor("bonus_movespeed")
+	self.bonus_movespeed = self:GetSpecialValueFor("bonus_movespeed")
 end
 
 function modifier_meat_hook_talent:DeclareFunctions()
@@ -255,7 +247,7 @@ function modifier_meat_hook_talent:GetModifierEvasion_Constant()
 end
 
 function modifier_meat_hook_talent:GetModifierMoveSpeedBonus_Percentage()
-	return self.ms
+	return self.bonus_movespeed
 end
 
 modifier_meat_hook_root = class({})

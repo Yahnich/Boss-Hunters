@@ -18,7 +18,7 @@ function bristleback_quills:GetCooldown( iLvl )
 	end
 	local cd = self.BaseClass.GetCooldown( self, iLvl )
 	-- if self:GetCaster():HasModifier("modifier_quills_buff") then
-		-- cd = cd - self:GetTalentSpecialValueFor("cdr_per_stack") * self:GetCaster():GetModifierStackCount( "modifier_quills_buff", self:GetCaster() )
+		-- cd = cd - self:GetSpecialValueFor("cdr_per_stack") * self:GetCaster():GetModifierStackCount( "modifier_quills_buff", self:GetCaster() )
 	-- end
 	return cd
 end
@@ -41,13 +41,13 @@ end
 function bristleback_quills:Spray(dmgModifier, flRadius, target)
 	local caster = self:GetCaster()
 	local target = target or caster
-	local radius = flRadius or self:GetTalentSpecialValueFor("radius")
+	local radius = flRadius or self:GetSpecialValueFor("radius")
 	
 	local dmgMod = (dmgModifier or 100)/100
-	local baseDamage = self:GetTalentSpecialValueFor("quill_base_damage")
-	local stackDamage = self:GetTalentSpecialValueFor("quill_stack_damage")
-	local maxDamage = self:GetTalentSpecialValueFor("quill_max_dmg")
-	local duration = self:GetTalentSpecialValueFor("quill_stack_duration")
+	local baseDamage = self:GetSpecialValueFor("quill_base_damage")
+	local stackDamage = self:GetSpecialValueFor("quill_stack_damage")
+	local maxDamage = self:GetSpecialValueFor("quill_max_dmg")
+	local duration = self:GetSpecialValueFor("quill_stack_duration")
 	
 	EmitSoundOn("Hero_Bristleback.QuillSpray.Cast", target)
 	ParticleManager:FireParticle("particles/units/heroes/hero_bristleback/bristleback_quill_spray.vpcf", PATTACH_POINT, target)
@@ -99,7 +99,7 @@ if IsServer() then
 	end
 	
 	function modifier_quills_buff:OnRefresh(kv)
-		self:SetStackCount( math.min( self:GetStackCount() + 1, self:GetTalentSpecialValueFor("quill_max_stacks") ) )
+		self:SetStackCount( math.min( self:GetStackCount() + 1, self:GetSpecialValueFor("quill_max_stacks") ) )
 	end
 end
 

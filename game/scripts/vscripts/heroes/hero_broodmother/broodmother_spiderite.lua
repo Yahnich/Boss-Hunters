@@ -4,9 +4,9 @@ LinkLuaModifier("modifier_broodmother_spiderite", "heroes/hero_broodmother/brood
 function broodmother_spiderite:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local egg = caster:CreateSummon("npc_dota_spider_sack", caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("duration") + 0.1)
+	local egg = caster:CreateSummon("npc_dota_spider_sack", caster:GetAbsOrigin(), self:GetSpecialValueFor("duration") + 0.1)
     FindClearSpaceForUnit(egg, caster:GetAbsOrigin(), false)
-    egg:AddNewModifier(caster, self, "modifier_broodmother_spiderite", {Duration = self:GetTalentSpecialValueFor("duration") + 0.1})
+    egg:AddNewModifier(caster, self, "modifier_broodmother_spiderite", {Duration = self:GetSpecialValueFor("duration") + 0.1})
 end
 
 modifier_broodmother_spiderite = class({})
@@ -16,7 +16,7 @@ function modifier_broodmother_spiderite:OnCreated(table)
 end
 
 function modifier_broodmother_spiderite:OnIntervalThink()
-    local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("squish_radius"))
+    local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("squish_radius"))
     if #enemies > 0 then
 		self:Destroy() 
 		return
@@ -28,12 +28,12 @@ function modifier_broodmother_spiderite:OnIntervalThink()
 		self.hatch_delay = 1
 		
 		local position = self:GetParent():GetAbsOrigin() + ActualRandomVector(200, 100)
-		local spider = caster:CreateSummon("npc_dota_broodmother_spiderite", position, self:GetTalentSpecialValueFor("spider_duration"))
+		local spider = caster:CreateSummon("npc_dota_broodmother_spiderite", position, self:GetSpecialValueFor("spider_duration"))
 		FindClearSpaceForUnit(spider, position, false)
-		spider:SetAverageBaseDamage( self:GetTalentSpecialValueFor("spider_damage") )
+		spider:SetAverageBaseDamage( self:GetSpecialValueFor("spider_damage") )
 		spider:SetBaseAttackTime( 1 )
-		spider:SetCoreHealth( self:GetTalentSpecialValueFor("spider_health") )
-		spider:SetBaseMagicalResistanceValue( self:GetTalentSpecialValueFor("spider_mr") )
+		spider:SetCoreHealth( self:GetSpecialValueFor("spider_health") )
+		spider:SetBaseMagicalResistanceValue( self:GetSpecialValueFor("spider_mr") )
 		spider:AddNewModifier( caster, ability, "modifier_broodmother_spiderite_evasion", {})
 
 		spider:AddAbility("broodmother_bite"):SetLevel(1)
@@ -63,12 +63,12 @@ function modifier_broodmother_spiderite:OnRemoved()
 		if count > 0 then
 			for i=1,count do
 				local position = self:GetParent():GetAbsOrigin() + ActualRandomVector(200, 100)
-				local spider = caster:CreateSummon("npc_dota_broodmother_spiderite", position, self:GetTalentSpecialValueFor("spider_duration"))
+				local spider = caster:CreateSummon("npc_dota_broodmother_spiderite", position, self:GetSpecialValueFor("spider_duration"))
 				FindClearSpaceForUnit(spider, position, false)
-				spider:SetAverageBaseDamage( self:GetTalentSpecialValueFor("spider_damage") )
+				spider:SetAverageBaseDamage( self:GetSpecialValueFor("spider_damage") )
 				spider:SetBaseAttackTime( 1 )
-				spider:SetCoreHealth( self:GetTalentSpecialValueFor("spider_health") )
-				spider:SetBaseMagicalResistanceValue( self:GetTalentSpecialValueFor("spider_mr") )
+				spider:SetCoreHealth( self:GetSpecialValueFor("spider_health") )
+				spider:SetBaseMagicalResistanceValue( self:GetSpecialValueFor("spider_mr") )
 				spider:AddNewModifier( caster, ability, "modifier_broodmother_spiderite_evasion", {})
 				
 				spider:AddAbility("broodmother_bite"):SetLevel(1)
@@ -82,7 +82,7 @@ modifier_broodmother_spiderite_evasion = class({})
 LinkLuaModifier("modifier_broodmother_spiderite_evasion", "heroes/hero_broodmother/broodmother_spiderite", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_broodmother_spiderite_evasion:OnCreated()
-	self.evasion = self:GetTalentSpecialValueFor("spider_evasion")
+	self.evasion = self:GetSpecialValueFor("spider_evasion")
 	self.talent = self:GetCaster():HasTalent("special_bonus_unique_broodmother_spiderite_2")
 	self.prng = self:GetCaster():FindTalentValue("special_bonus_unique_broodmother_spiderite_2")
 end

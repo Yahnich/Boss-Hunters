@@ -14,7 +14,7 @@ end
 
 function treant_living_armor_bh:ApplyLivingArmor(target, duration)
 	local caster = self:GetCaster()
-	local bDur = duration or self:GetTalentSpecialValueFor("duration")
+	local bDur = duration or self:GetSpecialValueFor("duration")
 	target:AddNewModifier( caster, self, "modifier_treant_living_armor_bh", {duration = bDur})
 	target:EmitSound("Hero_Treant.LivingArmor.Target")
 end
@@ -23,9 +23,9 @@ modifier_treant_living_armor_bh = class({})
 LinkLuaModifier( "modifier_treant_living_armor_bh", "heroes/hero_treant_protector/treant_living_armor_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_treant_living_armor_bh:OnCreated()
-	self.instances = self:GetTalentSpecialValueFor("damage_count")
-	self.block = self:GetTalentSpecialValueFor("damage_block")
-	self.regen = self:GetTalentSpecialValueFor("health_regen")
+	self.instances = self:GetSpecialValueFor("damage_count")
+	self.block = self:GetSpecialValueFor("damage_block")
+	self.regen = self:GetSpecialValueFor("health_regen")
 	self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_treant_living_armor_1")
 	self.healAmp = self:GetCaster():FindTalentValue("special_bonus_unique_treant_living_armor_2")
 	if IsServer() then
@@ -40,9 +40,9 @@ function modifier_treant_living_armor_bh:OnCreated()
 end
 
 function modifier_treant_living_armor_bh:OnRefresh()
-	self.instances = self:GetTalentSpecialValueFor("damage_count")
-	self.block = self:GetTalentSpecialValueFor("damage_block")
-	self.regen = self:GetTalentSpecialValueFor("health_regen")
+	self.instances = self:GetSpecialValueFor("damage_count")
+	self.block = self:GetSpecialValueFor("damage_block")
+	self.regen = self:GetSpecialValueFor("health_regen")
 	self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_treant_living_armor_1")
 	self.healAmp = self:GetCaster():FindTalentValue("special_bonus_unique_treant_living_armor_2")
 	if IsServer() then

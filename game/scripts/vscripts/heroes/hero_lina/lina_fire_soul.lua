@@ -8,13 +8,13 @@ modifier_lina_fire_soul_handle = class({})
 LinkLuaModifier( "modifier_lina_fire_soul_handle", "heroes/hero_lina/lina_fire_soul.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_lina_fire_soul_handle:OnCreated()
-	self.duration = self:GetTalentSpecialValueFor("stack_duration")
-	self.max_stacks = self:GetTalentSpecialValueFor("max_stacks")
+	self.duration = self:GetSpecialValueFor("stack_duration")
+	self.max_stacks = self:GetSpecialValueFor("max_stacks")
 end
 
 function modifier_lina_fire_soul_handle:OnRefresh()
-	self.duration = self:GetTalentSpecialValueFor("stack_duration")
-	self.max_stacks = self:GetTalentSpecialValueFor("max_stacks")
+	self.duration = self:GetSpecialValueFor("stack_duration")
+	self.max_stacks = self:GetSpecialValueFor("max_stacks")
 end
 
 function modifier_lina_fire_soul_handle:DeclareFunctions()
@@ -42,17 +42,17 @@ modifier_lina_fire_soul = class({})
 LinkLuaModifier( "modifier_lina_fire_soul", "heroes/hero_lina/lina_fire_soul.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_lina_fire_soul:OnCreated(kv)
-    self.as = self:GetTalentSpecialValueFor("attack_speed_bonus")
-	self.ms = self:GetTalentSpecialValueFor("move_speed_bonus")
-	self.dmg = TernaryOperator( self:GetTalentSpecialValueFor("scepter_bonus_damage"), self:GetCaster():HasScepter(), 0 )
-	self.amp = TernaryOperator( self:GetTalentSpecialValueFor("scepter_spell_amp"), self:GetCaster():HasScepter(), 0 )
+    self.as = self:GetSpecialValueFor("attack_speed_bonus")
+	self.ms = self:GetSpecialValueFor("move_speed_bonus")
+	self.dmg = TernaryOperator( self:GetSpecialValueFor("scepter_bonus_damage"), self:GetCaster():HasScepter(), 0 )
+	self.amp = TernaryOperator( self:GetSpecialValueFor("scepter_spell_amp"), self:GetCaster():HasScepter(), 0 )
 end
 
 function modifier_lina_fire_soul:OnRefresh(kv)
-    self.as = self:GetTalentSpecialValueFor("attack_speed_bonus")
-	self.ms = self:GetTalentSpecialValueFor("move_speed_bonus")
-	self.dmg = TernaryOperator( self:GetTalentSpecialValueFor("scepter_bonus_damage"), self:GetCaster():HasScepter(), 0 )
-	self.amp = TernaryOperator( self:GetTalentSpecialValueFor("scepter_spell_amp"), self:GetCaster():HasScepter(), 0 )
+    self.as = self:GetSpecialValueFor("attack_speed_bonus")
+	self.ms = self:GetSpecialValueFor("move_speed_bonus")
+	self.dmg = TernaryOperator( self:GetSpecialValueFor("scepter_bonus_damage"), self:GetCaster():HasScepter(), 0 )
+	self.amp = TernaryOperator( self:GetSpecialValueFor("scepter_spell_amp"), self:GetCaster():HasScepter(), 0 )
 end
 
 function modifier_lina_fire_soul:DeclareFunctions()

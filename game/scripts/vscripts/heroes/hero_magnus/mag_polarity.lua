@@ -16,8 +16,8 @@ end
 
 function mag_polarity:OnSpellStart()
     local caster = self:GetCaster()
-    local radius = self:GetTalentSpecialValueFor("radius")
-    local damage = self:GetTalentSpecialValueFor("damage")
+    local radius = self:GetSpecialValueFor("radius")
+    local damage = self:GetSpecialValueFor("damage")
 
     EmitSoundOn("Hero_Magnataur.ReversePolarity.Cast", self:GetCaster())
 
@@ -25,8 +25,8 @@ function mag_polarity:OnSpellStart()
 	local magnets = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), radius)
     for _,magnet in pairs(magnets) do
         if magnet:HasModifier("modifier_mag_magnet") then
-            radius = radius + self:GetTalentSpecialValueFor("radius_magnet")
-            damage = damage + self:GetTalentSpecialValueFor("damage_magnet")
+            radius = radius + self:GetSpecialValueFor("radius_magnet")
+            damage = damage + self:GetSpecialValueFor("damage_magnet")
         end
     end
 
@@ -37,7 +37,7 @@ function mag_polarity:OnSpellStart()
 
 			EmitSoundOn("Hero_Magnataur.ReversePolarity.Cast", enemy)
 			FindClearSpaceForUnit(enemy, GetGroundPosition(caster:GetAbsOrigin(), caster) + caster:GetForwardVector()*200, true)
-			self:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
+			self:Stun(enemy, self:GetSpecialValueFor("stun_duration"), false)
 			self:DealDamage(caster, enemy, damage, {}, 0)
 		end
     end

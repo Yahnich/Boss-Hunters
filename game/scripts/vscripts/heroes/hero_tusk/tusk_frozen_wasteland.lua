@@ -12,7 +12,7 @@ function tusk_frozen_wasteland:IsHiddenWhenStolen()
 end
 
 function tusk_frozen_wasteland:GetAOERadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function tusk_frozen_wasteland:OnSpellStart()
@@ -22,7 +22,7 @@ function tusk_frozen_wasteland:OnSpellStart()
     EmitSoundOn("Hero_Tusk.TagTeam.Cast", caster)
 	ParticleManager:FireParticle("particles/units/heroes/hero_tusk/tusk_tag_team_start.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	
-	target:AddNewModifier(caster, self, "modifier_tusk_frozen_wasteland", {Duration = self:GetTalentSpecialValueFor("duration")})    
+	target:AddNewModifier(caster, self, "modifier_tusk_frozen_wasteland", {Duration = self:GetSpecialValueFor("duration")})    
 end
 
 modifier_tusk_frozen_wasteland = class({})
@@ -32,7 +32,7 @@ function modifier_tusk_frozen_wasteland:OnCreated(table)
 
         local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_tusk/tusk_tag_team.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
                     ParticleManager:SetParticleControlEnt(nfx, 0, self:GetParent(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
-                    ParticleManager:SetParticleControl(nfx, 1, Vector(self:GetTalentSpecialValueFor("radius"), 0, -self:GetTalentSpecialValueFor("radius")))
+                    ParticleManager:SetParticleControl(nfx, 1, Vector(self:GetSpecialValueFor("radius"), 0, -self:GetSpecialValueFor("radius")))
         self:AttachEffect(nfx)
         self:StartIntervalThink(0.1)
     end
@@ -41,7 +41,7 @@ end
 function modifier_tusk_frozen_wasteland:OnIntervalThink()
     if self:GetCaster():HasTalent("special_bonus_unique_tusk_frozen_wasteland_2") then
         local damage = self:GetParent():GetStrength() * self:GetCaster():FindTalentValue("special_bonus_unique_tusk_frozen_wasteland_2")/100
-        local enemies = self:GetParent():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+        local enemies = self:GetParent():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius"))
         for _,enemy in pairs(enemies) do
             self:GetAbility():DealDamage(self:GetCaster(), enemy, damage, {damage_type=DAMAGE_TYPE_MAGICAL})
         end
@@ -64,7 +64,7 @@ function modifier_tusk_frozen_wasteland:GetAuraDuration()
 end
 
 function modifier_tusk_frozen_wasteland:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function modifier_tusk_frozen_wasteland:GetAuraSearchFlags()
@@ -101,7 +101,7 @@ function modifier_tusk_frozen_wasteland_effect:DeclareFunctions()
 end
 
 function modifier_tusk_frozen_wasteland_effect:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("slow_move")
+    return self:GetSpecialValueFor("slow_move")
 end
 
 function modifier_tusk_frozen_wasteland_effect:OnAttackStart(params)
@@ -120,7 +120,7 @@ function modifier_tusk_frozen_wasteland_effect:OnAttackLanded(params)
 end
 
 function modifier_tusk_frozen_wasteland_effect:GetModifierAttackSpeedBonus_Constant()
-    return self:GetTalentSpecialValueFor("slow_attack")
+    return self:GetSpecialValueFor("slow_attack")
 end
 
 function modifier_tusk_frozen_wasteland_effect:GetEffectName()
@@ -137,11 +137,11 @@ end
 
 modifier_tusk_frozen_wasteland_bonus_damage = class({})
 function modifier_tusk_frozen_wasteland_bonus_damage:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("bonus_damage_taken")
+	self.damage = self:GetSpecialValueFor("bonus_damage_taken")
 end
 
 function modifier_tusk_frozen_wasteland_bonus_damage:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("bonus_damage_taken")
+	self.damage = self:GetSpecialValueFor("bonus_damage_taken")
 end
 
 function modifier_tusk_frozen_wasteland_bonus_damage:DeclareFunctions()

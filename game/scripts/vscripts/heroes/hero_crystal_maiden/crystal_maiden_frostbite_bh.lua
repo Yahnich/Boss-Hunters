@@ -18,14 +18,14 @@ function crystal_maiden_frostbite_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	if target:TriggerSpellAbsorb(self) then return end
-	local freezeDur = self:GetTalentSpecialValueFor("freeze_duration")
-	local rootDur = TernaryOperator( self:GetTalentSpecialValueFor("root_duration"), target:IsRoundNecessary(), self:GetTalentSpecialValueFor("creep_duration") )
+	local freezeDur = self:GetSpecialValueFor("freeze_duration")
+	local rootDur = TernaryOperator( self:GetSpecialValueFor("root_duration"), target:IsRoundNecessary(), self:GetSpecialValueFor("creep_duration") )
 	local totDur = rootDur + freezeDur
 	
 	local chill = target:GetChillCount()
 	target:Freeze(self, caster, freezeDur)
 
-	local chillDamage = chill * self:GetTalentSpecialValueFor("chill_damage")
+	local chillDamage = chill * self:GetSpecialValueFor("chill_damage")
 	if chillDamage > 0 then
 		self:DealDamage( caster, target, chillDamage)
 	end
@@ -39,7 +39,7 @@ modifier_crystal_maiden_frostbite_bh = class({})
 LinkLuaModifier( "modifier_crystal_maiden_frostbite_bh", "heroes/hero_crystal_maiden/crystal_maiden_frostbite_bh" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_crystal_maiden_frostbite_bh:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("damage") * 0.5
+	self.damage = self:GetSpecialValueFor("damage") * 0.5
 	if IsServer() then
 		self:StartIntervalThink(0.5)
 	end

@@ -43,7 +43,7 @@ end
 function silencer_glaives_of_wisdom_bh:OnProjectileHit(target, position)
 	if target then
 		local caster = self:GetCaster()
-		local damage = caster:GetIntellect( false) * self:GetTalentSpecialValueFor("intellect_damage_pct") / 100
+		local damage = caster:GetIntellect( false) * self:GetSpecialValueFor("intellect_damage_pct") / 100
 		if caster:HasTalent("special_bonus_unique_silencer_glaives_of_wisdom_1") and target:IsSilenced() then
 			damage = damage * self:GetParent():FindTalentValue("special_bonus_unique_silencer_glaives_of_wisdom_1")
 		end

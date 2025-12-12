@@ -13,7 +13,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilitySound"					"Hero_Slardar.Sprint"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -23,29 +23,13 @@
 			"special_bonus_unique_slardar_blood_in_the_water_2"	"1"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_speed"				"10 15 20 25 26 27 28"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_attack_speed"		"20 30 40 50 52 54 56"
+			"bonus_speed"				"10 15 20 25 26 27 28"
+			"bonus_attack_speed"		"20 30 40 50 52 54 56"
 				"LinkedSpecialBonus"		"special_bonus_unique_slardar_blood_in_the_water_2"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"water_multiplier"			"2"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"linger_duration"			"3 3 3 3 4 5 6"
-			}
+			"water_multiplier"			"2"
+"linger_duration"			"3 3 3 3 4 5 6"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}	
@@ -62,13 +46,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"15"
-			}
+			"value"						"15"
 		}
 	}
 	//=================================================================================================================
@@ -84,18 +64,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"30"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value2"					"15"
-			}
+			"value"						"30"
+			"value2"					"15"
 		}
 	}
 	//=================================================================================================================
@@ -114,7 +86,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Slardar.Slithereen_Crush"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -146,48 +118,32 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"crush_radius"					"350"
+			"crush_radius"					"350"
 				"LinkedSpecialBonus"			"special_bonus_unique_slardar_slithereen_crush_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"crush_extra_slow"				"-50"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"crush_attack_slow_tooltip"		"-50"
-			}
+			"crush_extra_slow"				"-50"
+			"crush_attack_slow_tooltip"		"-50"
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"crush_extra_slow_duration"		"4.5"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"stun_duration"					"1.5"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"damage"						"75 125 175 225 275 325 375"
 				"LinkedSpecialBonus"			"special_bonus_unique_slardar_slithereen_crush_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"scepter_duration"				"4"
 				"RequiresScepter"				"1"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -204,18 +160,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1200"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed"						"250"
-			}
+			"value"						"1200"
+			"speed"						"250"
 		}
 	}
 	//=================================================================================================================
@@ -231,13 +179,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -255,7 +199,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
 		"AbilitySound"					"Hero_Slardar.Bash"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -271,33 +215,19 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bash_counter"			"5"
-			}
+			"bash_counter"			"5"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_damage"			"50 100 150 200 300 400 500"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.6 0.8 1 1.2 1.2 1.2 1.2"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"minion_stun_mul"		"4.0"
-			}
+			"duration"				"0.6 0.8 1 1.2 1.2 1.2 1.2"
+			"minion_stun_mul"		"4.0"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"minion_dmg_mult"		"2.0"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -315,13 +245,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -338,18 +264,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"375"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value2"					"100"
-			}
+			"value"						"375"
+			"value2"					"100"
 		}
 	}
 	//=================================================================================================================
@@ -372,18 +290,13 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_steal"			"50"
-			}
+			"armor_steal"			"50"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"minion_steal"			"15"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -420,7 +333,7 @@
 		"AbilityCastRange"				"700"
 		"AbilityCastPoint"				"0.35 0.35 0.35"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -435,18 +348,10 @@
 		"AbilityModifierSupportValue"	"6.0"	// Very valuable compared to cost.
 
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-10 -10 -15 -15 -20 -20"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"15 18 18 21 21 24"
-			}
+			"armor_reduction"		"-10 -10 -15 -15 -20 -20"
+			"duration"				"15 18 18 21 21 24"
 		}
 	}
 	//=================================================================================================================
@@ -462,13 +367,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"350"
-			}
+			"value"						"350"
 		}
 	}
 	//=================================================================================================================
@@ -484,13 +385,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"10"
-			}
+			"value"						"10"
 		}
 	}
 	//=================================================================================================================
@@ -506,13 +403,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"450"
-			}
+			"value"						"450"
 		}
 	}
 	
@@ -532,7 +425,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilitySound"					"Hero_Slardar.Sprint"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -551,18 +444,10 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"17"
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_speed"				"20 28 36 44 52 60 68"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"10"
-			}
+			"bonus_speed"				"20 28 36 44 52 60 68"
+			"duration"					"10"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}	
@@ -579,13 +464,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"20"
-			}
+			"value"						"20"
 		}
 	}
 	//=================================================================================================================
@@ -601,18 +482,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value2"					"15"
-			}
+			"value"						"50"
+			"value2"					"15"
 		}
 	}
 	//=================================================================================================================
@@ -631,7 +504,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
 		"AbilitySound"					"Hero_Slardar.Bash"
 		"LinkedAbility"					"slardar_oathkeeper"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -647,28 +520,15 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"chance"				"20"
-			}
+			"chance"				"20"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_damage"			"60 80 100 120 140 160 180"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration_creep"		"2.0"
-			}
+			"duration"				"1.0"
+			"duration_creep"		"2.0"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -686,13 +546,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -707,7 +563,7 @@
 		"AbilityTextureName"			"custom/slardar_oathkeeper"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"LinkedAbility"					"slardar_oathbreaker"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -723,13 +579,9 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"3 6 9 12 15 18 21"
-			}
+			"bonus_armor"			"3 6 9 12 15 18 21"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -747,13 +599,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"15"
-			}
+			"value"						"15"
 		}
 	}
 }

@@ -16,7 +16,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"abyssal_underlord_firestorm"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		"AbilityCastRange"				"750"
 		"AbilityCastPoint"				"0.6"
@@ -49,51 +49,31 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"400"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"wave_duration"					"7"
-			}		
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"wave_count"					"6"
+			"radius"						"400"
+			"wave_duration"					"7"		
+			"wave_count"					"6"
 				"LinkedSpecialBonus"			"special_bonus_unique_abyssal_underlord_firestorm_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"wave_damage"					"25 40 55 70 85 100 115"
-			}
+			"wave_damage"					"25 40 55 70 85 100 115"
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"wave_interval"					"1"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"burn_damage"					"2"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"burn_interval"					"1"
-			}
 			"08"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"burn_duration"					"2"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -109,13 +89,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"3"
-			}
+			"value"						"3"
 		}
 	}
 	//=================================================================================================================
@@ -131,18 +107,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"miss"						"25"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"blind"						"50"
-			}
+			"miss"						"25"
+			"blind"						"50"
 		}
 	}
 	//=================================================================================================================
@@ -161,7 +129,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"abyssal_underlord_pit_of_malice"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 
 		"AbilityCastRange"				"750"
 		"AbilityCastPoint"				"0.45"
@@ -194,34 +162,20 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"425"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"12"
-			}		
+			"radius"						"425"
+			"duration"						"12"		
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"interval"						"3"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"25 50 75 100 125 150 175"
-			}
+			"damage"						"25 50 75 100 125 150 175"
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"ensnare_duration"				"0.8 0.9 1.0 1.1 1.2 1.3 1.4"
 				"LinkedSpecialBonus"			"special_bonus_unique_underlord"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -238,18 +192,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"as"						"80"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"dmg"						"35"
-			}
+			"as"						"80"
+			"dmg"						"35"
 		}
 	}
 	//=================================================================================================================
@@ -265,13 +211,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
+			"value"						"100"
 		}
 	}
 	//=================================================================================================================
@@ -287,7 +229,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		"HasScepterUpgrade"				"1"
 		
@@ -303,40 +245,34 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"900"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"radius"							"900"
-			}
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"damage_reduction_pct"				"25"
-			}
 			"03"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"bonus_damage_from_creep"			"5"
-			}
 			"04"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"bonus_damage_from_hero"			"30 35 40 45 50 55 60"
 				"LinkedSpecialBonus"				"special_bonus_unique_abyssal_underlord_atrophy_aura_1"
 				"LinkedSpecialBonusOperation"		"SPECIAL_BONUS_MULTIPLY"
-			}
 			"05"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"bonus_damage_duration"				"30 40 50 60 70 80 90"
-			}
 			"06"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"bonus_damage_duration_scepter"		"70 80 90 100 110 120 130"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -353,13 +289,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -375,13 +307,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	"abyssal_underlord_abyssal_expulsion"
@@ -396,7 +324,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityTextureName"			"custom/underlord_expulsion"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -420,48 +348,31 @@
 		"AbilityCooldown"				"45"
 		"AbilityManaCost"				"150"
 	
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"search_radius"					"900"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"heal_radius"					"450"
-			}
+			"search_radius"					"900"
+			"heal_radius"					"450"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"explosion_interval"			"0.33"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_per_sec"				"20 40 60 80 100 120"
-			}
+			"damage_per_sec"				"20 40 60 80 100 120"
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"heal_per_sec"					"10 20 30 40 50 60"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"6.66"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"death_damage"					"100 150 200 250 300 350"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"death_radius"					"450"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -477,13 +388,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -499,13 +406,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"3"
-			}
+			"value"						"3"
 		}
 	}
 }

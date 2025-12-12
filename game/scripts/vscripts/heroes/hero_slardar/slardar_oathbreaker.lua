@@ -21,19 +21,19 @@ modifier_slardar_oathbreaker = class({})
 LinkLuaModifier( "modifier_slardar_oathbreaker", "heroes/hero_slardar/slardar_oathbreaker", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_slardar_oathbreaker:OnCreated()
-	self.chance = self:GetTalentSpecialValueFor("chance")
-	self.damage = self:GetTalentSpecialValueFor("bonus_damage")
+	self.chance = self:GetSpecialValueFor("chance")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
 	self.talent = self:GetCaster():HasTalent("special_bonus_unique_slardar_oathbreaker_1")
-	self.stunBoss = self:GetTalentSpecialValueFor("duration")
-	self.stunMinion = self:GetTalentSpecialValueFor("duration_creep")
+	self.stunBoss = self:GetSpecialValueFor("duration")
+	self.stunMinion = self:GetSpecialValueFor("duration_creep")
 end
 
 function modifier_slardar_oathbreaker:OnRefresh()
-	self.chance = self:GetTalentSpecialValueFor("chance")
-	self.damage = self:GetTalentSpecialValueFor("bonus_damage")
+	self.chance = self:GetSpecialValueFor("chance")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
 	self.talent = self:GetCaster():HasTalent("special_bonus_unique_slardar_oathbreaker_1")
-	self.stunBoss = self:GetTalentSpecialValueFor("duration")
-	self.stunMinion = self:GetTalentSpecialValueFor("duration_creep")
+	self.stunBoss = self:GetSpecialValueFor("duration")
+	self.stunMinion = self:GetSpecialValueFor("duration_creep")
 end
 
 function modifier_slardar_oathbreaker:DeclareFunctions()

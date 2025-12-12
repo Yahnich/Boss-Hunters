@@ -1,7 +1,7 @@
 sniper_shrapnel_bh = class({})
 
 function sniper_shrapnel_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function sniper_shrapnel_bh:GetCooldown(iLvl)
@@ -14,8 +14,8 @@ function sniper_shrapnel_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 
-	local duration =  self:GetTalentSpecialValueFor("duration")
-	local radius =  self:GetTalentSpecialValueFor("radius")
+	local duration =  self:GetSpecialValueFor("duration")
+	local radius =  self:GetSpecialValueFor("radius")
 	print( self:GetSpecialValueFor("AbilityCharges") )
 	
 	EmitSoundOn("Hero_Sniper.ShrapnelShoot", caster)
@@ -25,7 +25,7 @@ function sniper_shrapnel_bh:OnSpellStart()
 				ParticleManager:SetParticleControl(nfx, 1, point + Vector(0,0,1500))
 				ParticleManager:ReleaseParticleIndex(nfx)
 	
-	Timers:CreateTimer(self:GetTalentSpecialValueFor("delay"), function()
+	Timers:CreateTimer(self:GetSpecialValueFor("delay"), function()
 		AddFOWViewer(caster:GetTeam(), point, radius, duration, false)
 		CreateModifierThinker(caster, self, "modifier_sniper_shrapnel_bh", {Duration = duration}, point, caster:GetTeam(), false)
 	end)
@@ -42,9 +42,9 @@ function modifier_sniper_shrapnel_bh:OnCreated(table)
 		local caster = self:GetCaster()
 		EmitSoundOnLocationWithCaster(self:GetParent():GetAbsOrigin(), "Hero_Sniper.ShrapnelShatter", caster)
 
-		local damage =  self:GetTalentSpecialValueFor("burst_damage")
+		local damage =  self:GetSpecialValueFor("burst_damage")
 		local point = self:GetParent():GetAbsOrigin()
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local radius = self:GetSpecialValueFor("radius")
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_sniper/sniper_shrapnel.vpcf", PATTACH_POINT, caster)
 					ParticleManager:SetParticleControl(nfx, 0, point)
 					ParticleManager:SetParticleControl(nfx, 1, Vector(radius, 0, 0))
@@ -77,12 +77,12 @@ function modifier_sniper_shrapnel_bh:OnIntervalThink()
 	local caster = self:GetCaster()
 	local point = self:GetParent():GetAbsOrigin()
 	
-	GridNav:DestroyTreesAroundPoint(point, self:GetTalentSpecialValueFor("radius"), false)
+	GridNav:DestroyTreesAroundPoint(point, self:GetSpecialValueFor("radius"), false)
 
-	local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius")) 
+	local enemies = caster:FindEnemyUnitsInRadius(point, self:GetSpecialValueFor("radius")) 
 	for _,enemy in pairs(enemies) do
-		enemy:AddNewModifier(caster, self:GetAbility(), "modifier_sniper_shrapnel_bh_slow", {Duration = self:GetTalentSpecialValueFor("slow_duration")})
-		self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+		enemy:AddNewModifier(caster, self:GetAbility(), "modifier_sniper_shrapnel_bh_slow", {Duration = self:GetSpecialValueFor("slow_duration")})
+		self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, 0)
 	end
 
 	self:StartIntervalThink(1)
@@ -99,7 +99,7 @@ function modifier_sniper_shrapnel_bh_slow:DeclareFunctions()
 end
 
 function modifier_sniper_shrapnel_bh_slow:GetModifierMoveSpeedBonus_Percentage()
-	return self:GetTalentSpecialValueFor("slow_movement_speed")
+	return self:GetSpecialValueFor("slow_movement_speed")
 end
 
 function modifier_sniper_shrapnel_bh_slow:IsDebuff()

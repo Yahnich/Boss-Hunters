@@ -7,7 +7,7 @@ function shadow_fiend_dark_lord:GetChannelAnimation()
 end
 
 function shadow_fiend_dark_lord:GetChannelTime()
-    return self:GetTalentSpecialValueFor("duration")
+    return self:GetSpecialValueFor("duration")
 end
 
 function shadow_fiend_dark_lord:OnSpellStart()
@@ -21,17 +21,17 @@ end
 modifier_shadow_fiend_dark_lord = class({})
 function modifier_shadow_fiend_dark_lord:OnCreated(table)
     if IsServer() then
-        self:StartIntervalThink(self:GetTalentSpecialValueFor("soul_rate") - 0.01 )
+        self:StartIntervalThink(self:GetSpecialValueFor("soul_rate") - 0.01 )
         if self:GetCaster():HasTalent("special_bonus_unique_shadow_fiend_dark_lord_2") then
-            self.damage = -self:GetTalentSpecialValueFor("damage_weak")
+            self.damage = -self:GetSpecialValueFor("damage_weak")
         else
-            self.damage = self:GetTalentSpecialValueFor("damage_weak")
+            self.damage = self:GetSpecialValueFor("damage_weak")
         end
     end
 end
 
 function modifier_shadow_fiend_dark_lord:OnIntervalThink()
-    for i=1,self:GetTalentSpecialValueFor("souls_per_second") do
+    for i=1,self:GetSpecialValueFor("souls_per_second") do
         EmitSoundOn("Hero_DeathProphet.SpiritSiphon.Cast", self:GetParent())
         local pointRando = self:GetParent():GetAbsOrigin() + ActualRandomVector(0, self:GetCaster():GetAttackRange())
        

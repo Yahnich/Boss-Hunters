@@ -15,7 +15,7 @@ function winterw_ice_shell:OnSpellStart()
 	EmitSoundOn("Hero_Winter_Wyvern.ColdEmbrace.Cast", caster)
 	EmitSoundOn("Hero_Winter_Wyvern.ColdEmbrace", target)
 
-	target:AddNewModifier(caster, self, "modifier_ice_shell", {Duration = self:GetTalentSpecialValueFor("duration")})
+	target:AddNewModifier(caster, self, "modifier_ice_shell", {Duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_ice_shell = ({})

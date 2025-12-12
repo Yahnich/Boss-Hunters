@@ -3,8 +3,8 @@ lycan_howl_bh = class({})
 function lycan_howl_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local duration = self:GetTalentSpecialValueFor("howl_duration")
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("howl_duration")
+	local radius = self:GetSpecialValueFor("radius")
 	local talent2 = caster:HasTalent("special_bonus_unique_lycan_howl_2")
 	if not GameRules:IsDaytime() then
 		duration = duration * 2
@@ -24,8 +24,8 @@ modifier_lycan_howl_bh_buff = class({})
 LinkLuaModifier("modifier_lycan_howl_bh_buff", "heroes/hero_lycan/lycan_howl_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_lycan_howl_bh_buff:OnCreated()
-	self.dmg = self:GetTalentSpecialValueFor("dmg_reduction")
-	self.armor = self:GetTalentSpecialValueFor("armor_reduction")
+	self.dmg = self:GetSpecialValueFor("dmg_reduction")
+	self.armor = self:GetSpecialValueFor("armor_reduction")
 	self.lifesteal = self:GetCaster():FindTalentValue("special_bonus_unique_lycan_howl_1") / 100
 	self.minionLS = self:GetCaster():FindTalentValue("special_bonus_unique_lycan_howl_1", "value2") / 100
 end

@@ -12,16 +12,16 @@ function brewmaster_primal_avatar:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	EmitSoundOn("Hero_Brewmaster.PrimalSplit.Cast", caster)
-	caster:AddNewModifier(caster, self, "modifier_brewmaster_primal_avatar", {duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_brewmaster_primal_avatar", {duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_brewmaster_primal_avatar = class({})
 LinkLuaModifier("modifier_brewmaster_primal_avatar", "heroes/hero_brewmaster/brewmaster_primal_avatar", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_brewmaster_primal_avatar:OnCreated()
-	self.area_damage = self:GetTalentSpecialValueFor("area_damage")
-	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
-	self.radius = self:GetTalentSpecialValueFor("aoe_radius")
+	self.area_damage = self:GetSpecialValueFor("area_damage")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
+	self.radius = self:GetSpecialValueFor("aoe_radius")
 	
 	if self:GetCaster():HasTalent("special_bonus_unique_brewmaster_primal_avatar_2") then
 		self.talent_spellamp = self:GetCaster():FindTalentValue("special_bonus_unique_brewmaster_primal_avatar_2", "spell_amp")
@@ -44,9 +44,9 @@ function modifier_brewmaster_primal_avatar:OnCreated()
 end
  
 function modifier_brewmaster_primal_avatar:OnRefresh()
-	self.area_damage = self:GetTalentSpecialValueFor("area_damage")
-	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
-	self.radius = self:GetTalentSpecialValueFor("aoe_radius")
+	self.area_damage = self:GetSpecialValueFor("area_damage")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
+	self.radius = self:GetSpecialValueFor("aoe_radius")
 	
 	if self:GetCaster():HasTalent("special_bonus_unique_brewmaster_primal_avatar_2") then
 		self.talent_spellamp = self:GetCaster():FindTalentValue("special_bonus_unique_brewmaster_primal_avatar_2", "spell_amp")
@@ -136,16 +136,16 @@ modifier_brewmaster_primal_avatar_debuff = class({})
 LinkLuaModifier("modifier_brewmaster_primal_avatar_debuff", "heroes/hero_brewmaster/brewmaster_primal_avatar", 0)
 
 function modifier_brewmaster_primal_avatar_debuff:OnCreated()
-	self.miss = self:GetTalentSpecialValueFor("aoe_blind")
-	self.tick = self:GetTalentSpecialValueFor("tick_interval")
-	self.damage = self:GetTalentSpecialValueFor("aoe_damage_tooltip") * self.tick
+	self.miss = self:GetSpecialValueFor("aoe_blind")
+	self.tick = self:GetSpecialValueFor("tick_interval")
+	self.damage = self:GetSpecialValueFor("aoe_damage_tooltip") * self.tick
 	if IsServer() then self:StartIntervalThink(self.tick) end
 end
 
 function modifier_brewmaster_primal_avatar_debuff:OnRefresh()
-	self.miss = self:GetTalentSpecialValueFor("aoe_blind")
-	self.tick = self:GetTalentSpecialValueFor("tick_interval")
-	self.damage = self:GetTalentSpecialValueFor("aoe_damage_tooltip") * self.tick
+	self.miss = self:GetSpecialValueFor("aoe_blind")
+	self.tick = self:GetSpecialValueFor("tick_interval")
+	self.damage = self:GetSpecialValueFor("aoe_damage_tooltip") * self.tick
 end
 
 function modifier_brewmaster_primal_avatar_debuff:OnIntervalThink()

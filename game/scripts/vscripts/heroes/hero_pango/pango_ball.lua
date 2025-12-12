@@ -57,7 +57,7 @@ function pango_ball:OnSpellStart()
 		caster:RemoveModifierByName("modifier_pango_ball_movement")
 		self:RefundManaCost()
 	else
-		caster:AddNewModifier(caster, self, "modifier_pango_ball_movement", {Duration = self:GetTalentSpecialValueFor("duration")})
+		caster:AddNewModifier(caster, self, "modifier_pango_ball_movement", {Duration = self:GetSpecialValueFor("duration")})
 		self:EndCooldown()
 	end
 end
@@ -66,12 +66,12 @@ modifier_pango_ball_movement = class({})
 
 function modifier_pango_ball_movement:OnCreated()
 	if IsServer() then
-		self.speed = self:GetTalentSpecialValueFor("speed") * FrameTime()
-		self.radius = self:GetTalentSpecialValueFor("radius")
-		self.turnRate = self:GetTalentSpecialValueFor("turn_rate")
-		self.knockbackDuration = self:GetTalentSpecialValueFor("bounce_duration")
-		self.stunDuration = self:GetTalentSpecialValueFor("stun_duration")
-		self.damage = self:GetTalentSpecialValueFor("damage")
+		self.speed = self:GetSpecialValueFor("speed") * FrameTime()
+		self.radius = self:GetSpecialValueFor("radius")
+		self.turnRate = self:GetSpecialValueFor("turn_rate")
+		self.knockbackDuration = self:GetSpecialValueFor("bounce_duration")
+		self.stunDuration = self:GetSpecialValueFor("stun_duration")
+		self.damage = self:GetSpecialValueFor("damage")
 
 		EmitSoundOn("Hero_Pangolier.Gyroshell.Loop", self:GetParent())
 		EmitSoundOn("Hero_Pangolier.Gyroshell.Layer", self:GetParent())

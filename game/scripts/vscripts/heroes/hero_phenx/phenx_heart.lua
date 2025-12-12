@@ -3,7 +3,7 @@ LinkLuaModifier( "modifier_phenx_heart_caster", "heroes/hero_phenx/phenx_heart.l
 LinkLuaModifier( "modifier_phenx_heart_burn", "heroes/hero_phenx/phenx_heart.lua", LUA_MODIFIER_MOTION_NONE )
 
 function phenx_heart:GetCastRange()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function phenx_heart:GetIntrinsicModifierName()
@@ -14,7 +14,7 @@ function phenx_heart:OnOwnerSpawned()
 	self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_ember_spirit/ember_spirit_flameguard.vpcf", PATTACH_ABSORIGIN, self:GetCaster())
 	ParticleManager:SetParticleControlEnt(self.nfx, 0, self:GetCaster(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true)
 	ParticleManager:SetParticleControlEnt(self.nfx, 1, self:GetCaster(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true)
-	ParticleManager:SetParticleControl(self.nfx, 2, Vector(self:GetTalentSpecialValueFor("radius"),self:GetTalentSpecialValueFor("radius"),self:GetTalentSpecialValueFor("radius")))
+	ParticleManager:SetParticleControl(self.nfx, 2, Vector(self:GetSpecialValueFor("radius"),self:GetSpecialValueFor("radius"),self:GetSpecialValueFor("radius")))
 end
 
 function phenx_heart:OnOwnerDied()
@@ -23,14 +23,14 @@ end
 
 modifier_phenx_heart_caster = class({})
 function modifier_phenx_heart_caster:OnCreated(table)
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.delay = self:GetTalentSpecialValueFor("tree_destroy_delay")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.delay = self:GetSpecialValueFor("tree_destroy_delay")
 	self.trees = {}
     if IsServer() then
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_ember_spirit/ember_spirit_flameguard.vpcf", PATTACH_ABSORIGIN, self:GetCaster())
 		ParticleManager:SetParticleControlEnt(nfx, 0, self:GetCaster(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true)
 		ParticleManager:SetParticleControlEnt(nfx, 1, self:GetCaster(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true)
-		ParticleManager:SetParticleControl(nfx, 2, Vector(self:GetTalentSpecialValueFor("radius"),self:GetTalentSpecialValueFor("radius"),self:GetTalentSpecialValueFor("radius")))
+		ParticleManager:SetParticleControl(nfx, 2, Vector(self:GetSpecialValueFor("radius"),self:GetSpecialValueFor("radius"),self:GetSpecialValueFor("radius")))
 		self:AddEffect( nfx )
 		self:StartIntervalThink(0.25)
     end
@@ -93,7 +93,7 @@ function modifier_phenx_heart_burn:OnCreated(table)
 end
 
 function modifier_phenx_heart_burn:OnIntervalThink()
-    local damage = self:GetCaster():GetHealth()*self:GetTalentSpecialValueFor("hp_percent")/100
+    local damage = self:GetCaster():GetHealth()*self:GetSpecialValueFor("hp_percent")/100
     self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), damage, {}, 0)
     self:StartIntervalThink(1.0)
 end

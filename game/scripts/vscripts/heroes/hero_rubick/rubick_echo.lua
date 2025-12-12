@@ -22,7 +22,7 @@ function rubick_echo:SpellEcho(hAbility, vLocation, hTarget)
 
 	if not echoed_ability then return end
 
-	local delay = self:GetTalentSpecialValueFor("delay")
+	local delay = self:GetSpecialValueFor("delay")
 
 	--99% of this is because its a waste of a cooldown for echo because
 	--it often times will just refresh a buff/debuff that you just applied.

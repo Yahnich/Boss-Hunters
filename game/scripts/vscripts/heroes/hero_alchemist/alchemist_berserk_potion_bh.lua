@@ -12,7 +12,7 @@ function alchemist_berserk_potion_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	self:FireTrackingProjectile("particles/units/heroes/hero_alchemist/alchemist_berserk_potion_projectile.vpcf", target, self:GetTalentSpecialValueFor("projectile_speed"))
+	self:FireTrackingProjectile("particles/units/heroes/hero_alchemist/alchemist_berserk_potion_projectile.vpcf", target, self:GetSpecialValueFor("projectile_speed"))
 	EmitSoundOn( "Hero_Alchemist.UnstableConcoction.Throw", caster )
 end
 
@@ -20,13 +20,13 @@ function alchemist_berserk_potion_bh:OnProjectileHit( target, position )
 	if target then
 		local caster = self:GetCaster()
 		target:Dispel( caster, true )
-		target:HealEvent( target:GetMaxHealth() * self:GetTalentSpecialValueFor("max_hp_heal") / 100, self, caster )
-		target:AddNewModifier( caster, self, "modifier_alchemist_berserk_potion_stats", {duration = self:GetTalentSpecialValueFor("duration")} )
+		target:HealEvent( target:GetMaxHealth() * self:GetSpecialValueFor("max_hp_heal") / 100, self, caster )
+		target:AddNewModifier( caster, self, "modifier_alchemist_berserk_potion_stats", {duration = self:GetSpecialValueFor("duration")} )
 		
 		if caster:HasTalent("special_bonus_unique_alchemist_berserk_potion_1") then
 			local rage = caster:FindAbilityByName("alchemist_chemical_rage_bh")
 			if rage then	
-				target:AddNewModifier(caster, rage, "modifier_alchemist_chemical_rage_bh", {duration = self:GetTalentSpecialValueFor("duration")})
+				target:AddNewModifier(caster, rage, "modifier_alchemist_chemical_rage_bh", {duration = self:GetSpecialValueFor("duration")})
 			end
 		end
 		
@@ -43,11 +43,11 @@ end
 
 function modifier_alchemist_berserk_potion_stats:OnRefresh()
 	if self:GetParent():GetPrimaryAttribute() == DOTA_ATTRIBUTE_STRENGTH then
-		self.strength = self:GetTalentSpecialValueFor("primary_bonus")
+		self.strength = self:GetSpecialValueFor("primary_bonus")
 	elseif self:GetParent():GetPrimaryAttribute() == DOTA_ATTRIBUTE_AGILITY  then
-		self.agility = self:GetTalentSpecialValueFor("primary_bonus")
+		self.agility = self:GetSpecialValueFor("primary_bonus")
 	elseif self:GetParent():GetPrimaryAttribute() == DOTA_ATTRIBUTE_INTELLECT  then
-		self.intelligence = self:GetTalentSpecialValueFor("primary_bonus")
+		self.intelligence = self:GetSpecialValueFor("primary_bonus")
 	end
 end
 

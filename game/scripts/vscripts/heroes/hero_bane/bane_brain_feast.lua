@@ -6,13 +6,13 @@ end
 
 function bane_brain_feast:GetCooldown(iLvl)
 	local cd = self.BaseClass.GetCooldown(self, iLvl)
-	if self:GetCaster():HasScepter() then cd = self:GetTalentSpecialValueFor("scepter_cooldown") end
+	if self:GetCaster():HasScepter() then cd = self:GetSpecialValueFor("scepter_cooldown") end
 	return cd
 end
 
 function bane_brain_feast:GetManaCost(iLvl)
 	local mc = self.BaseClass.GetManaCost(self, iLvl)
-	if self:GetCaster():HasScepter() then mc = mc * self:GetTalentSpecialValueFor("scepter_mana_cost") end
+	if self:GetCaster():HasScepter() then mc = mc * self:GetSpecialValueFor("scepter_mana_cost") end
 	return mc
 end
 
@@ -34,7 +34,7 @@ function bane_brain_feast:OnSpellStart()
 	ParticleManager:FireRopeParticle("particles/units/heroes/hero_bane/bane_sap.vpcf", PATTACH_POINT_FOLLOW, caster, target)
 	if target:TriggerSpellAbsorb(self) then return end
 	
-	local damage = self:GetTalentSpecialValueFor("heal_damage")
+	local damage = self:GetSpecialValueFor("heal_damage")
 	if not target.IsNightmared then 
 		target.IsNightmared = function() return ( target:HasModifier("modifier_bane_nightmare_prison_sleep") or target:HasModifier("modifier_bane_nightmare_prison_fear") ) end
 	end
@@ -46,7 +46,7 @@ function bane_brain_feast:OnSpellStart()
 	
 
 	if caster:HasTalent("special_bonus_unique_bane_brain_feast_2") then
-		target:AddNewModifier(caster, self, "modifier_bane_brain_feast_debuff", {duration = self:GetTalentSpecialValueFor("debuff_duration")})
+		target:AddNewModifier(caster, self, "modifier_bane_brain_feast_debuff", {duration = self:GetSpecialValueFor("debuff_duration")})
 	end
 end
 

@@ -7,12 +7,12 @@ function lifestealer_flesh_wounds:OnSpellStart()
     
     EmitSoundOn("Hero_LifeStealer.OpenWounds.Cast", target)
 	if target:TriggerSpellAbsorb( self ) then return end
-    target:AddNewModifier(caster, self, "modifier_lifestealer_flesh_wounds", {Duration = self:GetTalentSpecialValueFor("duration")})
+    target:AddNewModifier(caster, self, "modifier_lifestealer_flesh_wounds", {Duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_lifestealer_flesh_wounds = class({})
 function modifier_lifestealer_flesh_wounds:OnCreated(table)
-	self.slow = self:GetTalentSpecialValueFor("slow")
+	self.slow = self:GetSpecialValueFor("slow")
 	self.slow_decay = ( self.slow / self:GetRemainingTime() ) * 0.5
     self:StartIntervalThink(0.5)
 end
@@ -20,7 +20,7 @@ end
 function modifier_lifestealer_flesh_wounds:OnIntervalThink()
 	self.slow = self.slow - self.slow_decay
 	if IsServer() then 
-		local damage = self:GetParent():GetHealth() * self:GetTalentSpecialValueFor("damage")/100
+		local damage = self:GetParent():GetHealth() * self:GetSpecialValueFor("damage")/100
 		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), damage * 0.5, {damage_flags=DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_DAMAGE)
 	 end
 end
@@ -37,7 +37,7 @@ function modifier_lifestealer_flesh_wounds:OnTakeDamage(params)
     if IsServer() then
         if params.attacker:GetTeam() == self:GetCaster():GetTeam() then
             ParticleManager:FireParticle("particles/units/heroes/hero_life_stealer/life_stealer_open_wounds_impact.vpcf", PATTACH_POINT, self:GetCaster(), {[0]=params.unit:GetAbsOrigin()})
-            local heal = params.damage * self:GetTalentSpecialValueFor("heal_percent")/100
+            local heal = params.damage * self:GetSpecialValueFor("heal_percent")/100
             params.attacker:HealEvent(heal, self:GetAbility(), self:GetCaster(), false)
         end
     end

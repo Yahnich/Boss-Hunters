@@ -18,7 +18,7 @@ end
 
 function rattletrap_automated_artillery:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_rattletrap_automated_artillery", {duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_rattletrap_automated_artillery", {duration = self:GetSpecialValueFor("duration")})
 end
 
 function rattletrap_automated_artillery:OnUpgrade()
@@ -38,7 +38,7 @@ end
 function rattletrap_automated_artillery:OnProjectileHit(target, position)
 	if target and not target:IsMagicImmune() then	
 		EmitSoundOn( "Hero_Rattletrap.Automated_Artillery.Explode", target )
-		self:DealDamage(self:GetCaster(), target, self:GetTalentSpecialValueFor("damage_per_rocket") )
+		self:DealDamage(self:GetCaster(), target, self:GetSpecialValueFor("damage_per_rocket") )
 	end
 end
 
@@ -46,9 +46,9 @@ modifier_rattletrap_automated_artillery = class({})
 LinkLuaModifier("modifier_rattletrap_automated_artillery", "heroes/hero_rattletrap/rattletrap_automated_artillery", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_rattletrap_automated_artillery:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("damage_per_rocket")
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.rockets = self:GetTalentSpecialValueFor("rockets_per_second")
+	self.damage = self:GetSpecialValueFor("damage_per_rocket")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.rockets = self:GetSpecialValueFor("rockets_per_second")
 	if IsServer() then 
 		self.sisterAb = self:GetCaster():FindAbilityByName("rattletrap_reactive_shielding")
 		if self.sisterAb then
@@ -60,9 +60,9 @@ function modifier_rattletrap_automated_artillery:OnCreated()
 end
 
 function modifier_rattletrap_automated_artillery:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("damage_per_rocket")
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.rockets = self:GetTalentSpecialValueFor("rockets_per_second")
+	self.damage = self:GetSpecialValueFor("damage_per_rocket")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.rockets = self:GetSpecialValueFor("rockets_per_second")
 	if IsServer() then 
 		if self.sisterAb then
 			self.sisterAb:SetActivated(false)
@@ -78,7 +78,7 @@ function modifier_rattletrap_automated_artillery:OnIntervalThink()
 	for _, enemy in ipairs( self:GetParent():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self.radius ) ) do
 		if caster:HasTalent("special_bonus_unique_rattletrap_automated_artillery_1") and ability:GetToggleState() then
 			if caster:GetMana() >= ability:GetManaCost(-1) then
-				local manaCost = ability:GetManaCost(-1) / ( self.rockets * (self:GetTalentSpecialValueFor("duration") / 2) )
+				local manaCost = ability:GetManaCost(-1) / ( self.rockets * (self:GetSpecialValueFor("duration") / 2) )
 				caster:SpendMana( manaCost, ability )
 			else
 				ability:ToggleAbility()

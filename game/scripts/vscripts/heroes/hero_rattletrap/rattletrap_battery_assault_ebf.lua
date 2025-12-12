@@ -10,7 +10,7 @@ end
 
 function rattletrap_battery_assault_ebf:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_rattletrap_battery_assault_ebf", {duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_rattletrap_battery_assault_ebf", {duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_rattletrap_battery_assault_ebf = class({})
@@ -18,16 +18,16 @@ LinkLuaModifier("modifier_rattletrap_battery_assault_ebf", "heroes/hero_rattletr
 
 if IsServer() then
 	function modifier_rattletrap_battery_assault_ebf:OnCreated()
-		self.damage = self:GetTalentSpecialValueFor("damage")
-		self.radius = self:GetTalentSpecialValueFor("radius")
-		self:StartIntervalThink( self:GetTalentSpecialValueFor("interval") )
+		self.damage = self:GetSpecialValueFor("damage")
+		self.radius = self:GetSpecialValueFor("radius")
+		self:StartIntervalThink( self:GetSpecialValueFor("interval") )
 		self:GetAbility():StartDelayedCooldown()
 	end
 	
 	function modifier_rattletrap_battery_assault_ebf:OnRefresh()
-		self.damage = self:GetTalentSpecialValueFor("damage")
-		self.radius = self:GetTalentSpecialValueFor("radius")
-		self:StartIntervalThink( self:GetTalentSpecialValueFor("interval") )
+		self.damage = self:GetSpecialValueFor("damage")
+		self.radius = self:GetSpecialValueFor("radius")
+		self:StartIntervalThink( self:GetSpecialValueFor("interval") )
 		self:GetAbility():StartDelayedCooldown()
 	end
 	

@@ -11,13 +11,13 @@ function mag_magnet:IsHiddenWhenStolen()
 end
 
 function mag_magnet:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function mag_magnet:OnSpellStart()
 	EmitSoundOn("Hero_Magnataur.Empower.Cast", self:GetCaster())
 
-	local tower = self:GetCaster():CreateSummon("npc_magnus_magnet", self:GetCursorPosition(), self:GetTalentSpecialValueFor("duration"))
+	local tower = self:GetCaster():CreateSummon("npc_magnus_magnet", self:GetCursorPosition(), self:GetSpecialValueFor("duration"))
 	EmitSoundOn("Hero_Magnataur.Empower.Target", tower)
 	FindClearSpaceForUnit(tower, tower:GetAbsOrigin(), true)
 	ParticleManager:FireParticle("particles/units/heroes/hero_undying/undying_tombstone_spawn.vpcf", PATTACH_POINT, self:GetCaster(), {[0]=tower:GetAbsOrigin()})
@@ -26,7 +26,7 @@ end
 
 modifier_mag_magnet = class({})
 function modifier_mag_magnet:OnCreated(table)
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 	if IsServer() then
 		self:StartIntervalThink(FrameTime())
 		local FX = ParticleManager:CreateParticle("particles/units/heroes/hero_magnus/magnus_magnet_wave.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())

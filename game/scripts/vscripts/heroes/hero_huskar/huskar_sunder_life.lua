@@ -17,26 +17,26 @@ function huskar_sunder_life:OnSpellStart()
 	local targetPos = self:GetCursorPosition()
 	
 	local distance = CalculateDistance(targetPos, caster)
-	local duration = distance / self:GetTalentSpecialValueFor("charge_speed")
+	local duration = distance / self:GetSpecialValueFor("charge_speed")
 	caster:AddNewModifier(caster, self, "modifier_huskar_sunder_life_movement", {duration = duration})
 	EmitSoundOn("Hero_Huskar.Life_Break", caster)
 end
 
 function huskar_sunder_life:SunderLife(position)
 	local caster = self:GetCaster()
-	local lossPct = TernaryOperator(self:GetTalentSpecialValueFor("health_cost_pct_scepter"), caster:HasScepter(), self:GetTalentSpecialValueFor("health_cost_pct")) / 100
-	local damagePct = TernaryOperator(self:GetTalentSpecialValueFor("missing_health_dmg_scepter"), caster:HasScepter(), self:GetTalentSpecialValueFor("missing_health_dmg")) / 100
+	local lossPct = TernaryOperator(self:GetSpecialValueFor("health_cost_pct_scepter"), caster:HasScepter(), self:GetSpecialValueFor("health_cost_pct")) / 100
+	local damagePct = TernaryOperator(self:GetSpecialValueFor("missing_health_dmg_scepter"), caster:HasScepter(), self:GetSpecialValueFor("missing_health_dmg")) / 100
 	local damage = caster:GetHealth() * lossPct
 	self:DealDamage( caster, caster, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NON_LETHAL})
 	if caster:HasTalent("special_bonus_unique_huskar_sunder_life_1") then
 		caster:AddNewModifier( caster, self, "modifier_huskar_sunder_life_talent", {duration = caster:FindTalentValue("special_bonus_unique_huskar_sunder_life_1", "duration")} )
 	end
 	local eDamage = caster:GetHealthDeficit() * damagePct + damage
-	local enemies = caster:FindEnemyUnitsInRadius(position, self:GetTalentSpecialValueFor("damage_radius"))
+	local enemies = caster:FindEnemyUnitsInRadius(position, self:GetSpecialValueFor("damage_radius"))
 	for _, enemy in ipairs( enemies ) do
 		if not enemy:TriggerSpellAbsorb(self) then
 			self:DealDamage( caster, enemy, eDamage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
-			enemy:AddNewModifier(caster, self, "modifier_huskar_sunder_life_debuff", {duration = self:GetTalentSpecialValueFor("slow_duration")})
+			enemy:AddNewModifier(caster, self, "modifier_huskar_sunder_life_debuff", {duration = self:GetSpecialValueFor("slow_duration")})
 		end
 	end
 end
@@ -57,7 +57,7 @@ if IsServer() then
 		self.endPos = self:GetAbility():GetCursorPosition()
 		self.distance = CalculateDistance( self.endPos, parent )
 		self.direction = CalculateDirection( self.endPos, parent )
-		self.speed = self:GetTalentSpecialValueFor("charge_speed") * FrameTime()
+		self.speed = self:GetSpecialValueFor("charge_speed") * FrameTime()
 		self:StartMotionController()
 	end
 	
@@ -65,7 +65,7 @@ if IsServer() then
 	function modifier_huskar_sunder_life_movement:OnDestroy()
 		local parent = self:GetParent()
 		local parentPos = parent:GetAbsOrigin()
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local radius = self:GetSpecialValueFor("radius")
 		FindClearSpaceForUnit(parent, parentPos, true)
 		local ability = self:GetAbility()
 		ability:SunderLife(parentPos)
@@ -111,11 +111,11 @@ modifier_huskar_sunder_life_debuff = class({})
 LinkLuaModifier("modifier_huskar_sunder_life_debuff", "heroes/hero_huskar/huskar_sunder_life", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_huskar_sunder_life_debuff:OnCreated()
-	self.slow = self:GetTalentSpecialValueFor("movespeed")
+	self.slow = self:GetSpecialValueFor("movespeed")
 end
 
 function modifier_huskar_sunder_life_debuff:OnRefresh()
-	self.slow = self:GetTalentSpecialValueFor("movespeed")
+	self.slow = self:GetSpecialValueFor("movespeed")
 end
 
 function modifier_huskar_sunder_life_debuff:DeclareFunctions()

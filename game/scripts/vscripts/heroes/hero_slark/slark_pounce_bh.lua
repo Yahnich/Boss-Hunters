@@ -18,7 +18,7 @@ function slark_pounce_bh:OnSpellStart()
 	caster:Stop()
 	ProjectileManager:ProjectileDodge(caster)
 	
-	caster:AddNewModifier( caster, self, "modifier_slark_pounce_movement", {duration = self:GetTalentSpecialValueFor("pounce_distance") / self:GetTalentSpecialValueFor("pounce_speed") + 0.1} )
+	caster:AddNewModifier( caster, self, "modifier_slark_pounce_movement", {duration = self:GetSpecialValueFor("pounce_distance") / self:GetSpecialValueFor("pounce_speed") + 0.1} )
 	ParticleManager:FireParticle("particles/units/heroes/hero_slark/slark_pounce_start.vpcf", PATTACH_ABSORIGIN, caster)
 	EmitSoundOn("Hero_Slark.Pounce.Cast", caster)
 end
@@ -29,16 +29,16 @@ if IsServer() then
 	function modifier_slark_pounce_movement:OnCreated()
 		local parent = self:GetParent()
 		self.endPos = self:GetAbility():GetCursorPosition()
-		self.distance = self:GetTalentSpecialValueFor("pounce_distance")
+		self.distance = self:GetSpecialValueFor("pounce_distance")
 		self.direction = parent:GetForwardVector()
-		self.speed = self:GetTalentSpecialValueFor("pounce_speed") * FrameTime()
+		self.speed = self:GetSpecialValueFor("pounce_speed") * FrameTime()
 		self.initHeight = GetGroundHeight(parent:GetAbsOrigin(), parent)
 		self.height = self.initHeight
 		self.maxHeight = 125
 		
-		self.radius = self:GetTalentSpecialValueFor("pounce_radius")
-		self.damage = self:GetTalentSpecialValueFor("pounce_damage")
-		self.duration = self:GetTalentSpecialValueFor("leash_duration")
+		self.radius = self:GetSpecialValueFor("pounce_radius")
+		self.damage = self:GetSpecialValueFor("pounce_damage")
+		self.duration = self:GetSpecialValueFor("leash_duration")
 		
 		self.enemiesHit = {}
 		parent:StartGesture( ACT_DOTA_SLARK_POUNCE )

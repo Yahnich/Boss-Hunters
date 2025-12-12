@@ -27,7 +27,7 @@ end
 
 function clinkz_walk:OnSpellStart()
 	local caster = self:GetCaster()
-	local fadeTime = self:GetTalentSpecialValueFor("fade_time")
+	local fadeTime = self:GetSpecialValueFor("fade_time")
 
 	EmitSoundOn("Hero_Clinkz.WindWalk", caster)
 
@@ -36,7 +36,7 @@ function clinkz_walk:OnSpellStart()
 	if caster:HasTalent("special_bonus_unique_clinkz_walk_1") then
 		local point = self:GetCursorPosition()
 		FindClearSpaceForUnit(caster, point, true)
-		caster:AddNewModifier(caster, self, "modifier_clinkz_walk", {Duration = self:GetTalentSpecialValueFor("duration")/2})
+		caster:AddNewModifier(caster, self, "modifier_clinkz_walk", {Duration = self:GetSpecialValueFor("duration")/2})
 
 		ParticleManager:FireParticle("particles/units/heroes/hero_clinkz/clinkz_windwalk.vpcf", PATTACH_POINT, caster, {[0]=caster:GetAbsOrigin()})
 		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), 345)
@@ -57,28 +57,28 @@ function clinkz_walk:OnSpellStart()
 
 				ParticleManager:FireParticle("particles/units/heroes/hero_clinkz/clinkz_windwalk.vpcf", PATTACH_POINT, skeleton, {[0]=skeleton:GetAbsOrigin()})
 				FindClearSpaceForUnit(skeleton, newPos, true)
-				skeleton:AddNewModifier(caster, self, "modifier_clinkz_walk", {Duration = self:GetTalentSpecialValueFor("duration")/2})
+				skeleton:AddNewModifier(caster, self, "modifier_clinkz_walk", {Duration = self:GetSpecialValueFor("duration")/2})
 
 				ParticleManager:FireParticle("particles/units/heroes/hero_clinkz/clinkz_windwalk.vpcf", PATTACH_POINT, skeleton, {[0]=skeleton:GetAbsOrigin()})
 			end
 		end
 	else
 		Timers:CreateTimer(fadeTime, function()
-			caster:AddNewModifier(caster, self, "modifier_clinkz_walk", {Duration = self:GetTalentSpecialValueFor("duration")})
+			caster:AddNewModifier(caster, self, "modifier_clinkz_walk", {Duration = self:GetSpecialValueFor("duration")})
 			for _, skeleton in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), -1 ) ) do
 				if skeleton:GetUnitName() == "npc_dota_clinkz_skeleton_archer" then
-					skeleton:AddNewModifier(caster, self, "modifier_clinkz_walk", {Duration = self:GetTalentSpecialValueFor("duration")})
+					skeleton:AddNewModifier(caster, self, "modifier_clinkz_walk", {Duration = self:GetSpecialValueFor("duration")})
 				end
 			end
 		end)
 
-		self:StartDelayedCooldown(self:GetTalentSpecialValueFor("duration"))
+		self:StartDelayedCooldown(self:GetSpecialValueFor("duration"))
 	end
 end
 
 modifier_clinkz_walk = class({})
 function modifier_clinkz_walk:OnCreated(table)
-    self.bonus_ms = self:GetTalentSpecialValueFor("bonus_ms")
+    self.bonus_ms = self:GetSpecialValueFor("bonus_ms")
     self.regen = self:GetCaster():FindTalentValue("special_bonus_unique_clinkz_walk_2")
     self.hitUnits = {}
 	self.talent = self:GetCaster():HasTalent("special_bonus_unique_clinkz_walk_1")
@@ -91,7 +91,7 @@ function modifier_clinkz_walk:OnCreated(table)
 end
 
 function modifier_clinkz_walk:OnRefresh(table)
-    self.bonus_ms = self:GetTalentSpecialValueFor("bonus_ms")
+    self.bonus_ms = self:GetSpecialValueFor("bonus_ms")
     self.regen = self:GetCaster():FindTalentValue("special_bonus_unique_clinkz_walk_2")
     self.hitUnits = {}
 	self.talent = self:GetCaster():HasTalent("special_bonus_unique_clinkz_walk_1")

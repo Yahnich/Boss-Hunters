@@ -37,8 +37,8 @@ function winterw_winters_kiss:OnSpellStart()
             enemy:FindModifierByName("modifier_winters_kiss_enemy"):Destroy()
         end
     end
-	target:AddNewModifier(caster, self, "modifier_winters_kiss", {Duration = self:GetTalentSpecialValueFor("duration")})
-    -- self:StartDelayedCooldown(self:GetTalentSpecialValueFor("duration"))
+	target:AddNewModifier(caster, self, "modifier_winters_kiss", {Duration = self:GetSpecialValueFor("duration")})
+    -- self:StartDelayedCooldown(self:GetSpecialValueFor("duration"))
 end
 
 modifier_winters_kiss = ({})

@@ -48,7 +48,7 @@ function tinker_laser_ebf:FireLaser(target, oldTarget)
 	
 	if target:TriggerSpellAbsorb( self ) then return end
 	
-	local laserDamage = self:GetTalentSpecialValueFor("laser_damage")
+	local laserDamage = self:GetSpecialValueFor("laser_damage")
 
 	if caster:HasTalent("special_bonus_unique_tinker_laser_ebf_2") then
 		local blindDuration = caster:FindTalentValue("special_bonus_unique_tinker_laser_ebf_2")

@@ -18,11 +18,11 @@ function death_prophet_exorcism_bh:CreateGhost(position, duration)
 	local caster = self:GetCaster()
 	local vPos = position or caster:GetAbsOrigin()
 	
-	local speed = self:GetTalentSpecialValueFor("spirit_speed")
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local give_up_distance = self:GetTalentSpecialValueFor("give_up_distance")
-	local max_distance = self:GetTalentSpecialValueFor("max_distance")
-	local damage = self:GetTalentSpecialValueFor("average_damage")
+	local speed = self:GetSpecialValueFor("spirit_speed")
+	local radius = self:GetSpecialValueFor("radius")
+	local give_up_distance = self:GetSpecialValueFor("give_up_distance")
+	local max_distance = self:GetSpecialValueFor("max_distance")
+	local damage = self:GetSpecialValueFor("average_damage")
 	local damageType = TernaryOperator( DAMAGE_TYPE_PURE, caster:HasScepter(), DAMAGE_TYPE_PHYSICAL )
 	local turnSpeed = 150
 	local stateList = {ORBITING = 1, SEEKING = 2, RETURNING = 3}
@@ -138,9 +138,9 @@ LinkLuaModifier( "modifier_death_prophet_exorcism_bh", "heroes/hero_death_prophe
 
 if IsServer() then
 	function modifier_death_prophet_exorcism_bh:OnCreated()
-		self.spawnRate = self:GetTalentSpecialValueFor("ghost_spawn_rate")
-		self.maxGhosts = self:GetTalentSpecialValueFor("spirits")
-		self.seekRadius = self:GetTalentSpecialValueFor("radius")
+		self.spawnRate = self:GetSpecialValueFor("ghost_spawn_rate")
+		self.maxGhosts = self:GetSpecialValueFor("spirits")
+		self.seekRadius = self:GetSpecialValueFor("radius")
 		self:StartIntervalThink( self.spawnRate )
 		self:GetCaster():EmitSound("Hero_DeathProphet.Exorcism")
 		self.ghostList = {}

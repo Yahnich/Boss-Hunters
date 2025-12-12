@@ -22,12 +22,12 @@ function legion_commander_war_fury:OnTalentLearned()
 end
 
 function legion_commander_war_fury:GetAOERadius()
-	return self:GetTalentSpecialValueFor( "radius" )
+	return self:GetSpecialValueFor( "radius" )
 end
 
 function legion_commander_war_fury:GetCastRange(  target, position 	)
 	if self:GetCaster():HasTalent("special_bonus_unique_legion_commander_war_fury_2") then
-		return self:GetTalentSpecialValueFor( "radius" )
+		return self:GetSpecialValueFor( "radius" )
 	else
 		return self.BaseClass.GetCastRange( self, target, position )
 	end
@@ -40,7 +40,7 @@ function legion_commander_war_fury:OnSpellStart()
 	EmitSoundOn("Hero_LegionCommander.WarFuryShout",self:GetCaster())
 	EmitSoundOn("Hero_LegionCommander.Duel.Cast",self:GetCaster())
 	
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	if not caster:HasTalent("special_bonus_unique_legion_commander_war_fury_2") then
 		CreateModifierThinker(caster, self, "modifier_legion_commander_war_fury_thinker", {duration = duration}, target, caster:GetTeam(), false)
 	else
@@ -56,7 +56,7 @@ LinkLuaModifier( "modifier_legion_commander_war_fury_thinker", "heroes/hero_legi
 modifier_legion_commander_war_fury_thinker = class({})
 
 function modifier_legion_commander_war_fury_thinker:OnCreated( kv )
-	self.aura_radius = self:GetAbility():GetTalentSpecialValueFor( "radius" )
+	self.aura_radius = self:GetAbility():GetSpecialValueFor( "radius" )
 	if IsServer() then
 		EmitSoundOn("Hero_LegionCommander.Duel",self:GetCaster())
 		self:GetCaster().warFuryAuraEntity = self:GetParent()
@@ -124,17 +124,17 @@ LinkLuaModifier( "modifier_legion_commander_war_fury_buff", "heroes/hero_legion_
 modifier_legion_commander_war_fury_buff = class({})
 
 function modifier_legion_commander_war_fury_buff:OnCreated()
-	self.bonusDamage = self:GetAbility():GetTalentSpecialValueFor("bonus_damage_aura")
-	self.hp_regen = self:GetAbility():GetTalentSpecialValueFor("hp_regen")
-	self.dmg_reduction = -self:GetAbility():GetTalentSpecialValueFor("damage_resist")
-	self.ally_bonus = self:GetAbility():GetTalentSpecialValueFor("ally_bonus") / 100
+	self.bonusDamage = self:GetAbility():GetSpecialValueFor("bonus_damage_aura")
+	self.hp_regen = self:GetAbility():GetSpecialValueFor("hp_regen")
+	self.dmg_reduction = -self:GetAbility():GetSpecialValueFor("damage_resist")
+	self.ally_bonus = self:GetAbility():GetSpecialValueFor("ally_bonus") / 100
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_legion_commander_war_fury_1")
 	if self:GetParent() ~= self:GetCaster() then
 		self.bonusDamage = self.bonusDamage * self.ally_bonus
 		self.hp_regen = self.hp_regen * self.ally_bonus
 		self.dmg_reduction = self.dmg_reduction * self.ally_bonus
 	elseif self.talent1 then
-		self.radius = self:GetTalentSpecialValueFor("radius")
+		self.radius = self:GetSpecialValueFor("radius")
 		self.damage_amp = self:GetCaster():FindTalentValue("special_bonus_unique_legion_commander_war_fury_1")
 		self.heal_amp = self:GetCaster():FindTalentValue("special_bonus_unique_legion_commander_war_fury_1", "value2")
 		if IsServer() then

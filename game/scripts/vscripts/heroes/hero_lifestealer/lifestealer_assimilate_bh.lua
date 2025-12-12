@@ -131,9 +131,9 @@ function modifier_lifestealer_assimilate_bh_ally:OnRemoved()
         self:GetParent():RemoveNoDraw()
         ParticleManager:FireParticle("particles/units/heroes/hero_life_stealer/life_stealer_infest_emerge_bloody.vpcf", PATTACH_POINT, self:GetCaster(), {[0]=self:GetCaster():GetAbsOrigin()})
         FindClearSpaceForUnit(self:GetParent(), self:GetParent():GetAbsOrigin(), false)
-        local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+        local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius"))
         for _,enemy in pairs(enemies) do
-            self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+            self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetSpecialValueFor("damage"), {}, 0)
         end
         self:GetCaster():RemoveModifierByName("modifier_lifestealer_assimilate_bh")
     end

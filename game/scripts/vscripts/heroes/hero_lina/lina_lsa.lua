@@ -11,7 +11,7 @@ function lina_lsa:IsHiddenWhenStolen()
 end
 
 function lina_lsa:GetAOERadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function lina_lsa:OnAbilityPhaseStart()
@@ -26,21 +26,21 @@ function lina_lsa:OnSpellStart()
     StopSoundOn("Ability.PreLightStrikeArray", caster)
     EmitSoundOnLocationWithCaster(point, "Ability.LightStrikeArray", caster)
 
-    local radius = self:GetTalentSpecialValueFor("radius")
+    local radius = self:GetSpecialValueFor("radius")
 
     ParticleManager:FireParticle("particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf", PATTACH_POINT, caster, {[0]=point, [1]=Vector(radius,1,1)})
 
-    local damage = self:GetTalentSpecialValueFor("damage")
+    local damage = self:GetSpecialValueFor("damage")
 
 	local enemies = caster:FindEnemyUnitsInRadius(point, radius)
     for _,enemy in pairs(enemies) do
 		if not enemy:TriggerSpellAbsorb( self ) then
 			self:DealDamage(caster, enemy, damage, {}, 0)
-			self:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
+			self:Stun(enemy, self:GetSpecialValueFor("stun_duration"), false)
 		end
     end
 
-    CreateModifierThinker(caster, self, "modifier_lina_lsa_fire", {Duration = self:GetTalentSpecialValueFor("duration")}, point, caster:GetTeam(), false)
+    CreateModifierThinker(caster, self, "modifier_lina_lsa_fire", {Duration = self:GetSpecialValueFor("duration")}, point, caster:GetTeam(), false)
 end
 
 modifier_lina_lsa_fire = class({})
@@ -49,15 +49,15 @@ function modifier_lina_lsa_fire:OnCreated(table)
 		self.fireFX = ParticleManager:CreateParticle("particles/units/heroes/hero_lina/lina_lsa_fire.vpcf", PATTACH_CUSTOMORIGIN, self:GetCaster())
 		--self.fireFX = ParticleManager:CreateParticle("particles/units/heroes/hero_lina/lina_lsa_aoe.vpcf", PATTACH_CUSTOMORIGIN, self:GetCaster())
     	ParticleManager:SetParticleControl(self.fireFX, 0, self:GetParent():GetAbsOrigin())
-    	ParticleManager:SetParticleControl(self.fireFX, 1, Vector(self:GetTalentSpecialValueFor("radius"),1,1))
+    	ParticleManager:SetParticleControl(self.fireFX, 1, Vector(self:GetSpecialValueFor("radius"),1,1))
 		self:StartIntervalThink(0.5)
 	end
 end
 
 function modifier_lina_lsa_fire:OnIntervalThink()
-	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius"))
     for _,enemy in pairs(enemies) do
-    	self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage_flame"), {}, 0)
+    	self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetSpecialValueFor("damage_flame"), {}, 0)
     end
 end
 
@@ -80,7 +80,7 @@ function modifier_lina_lsa_fire:GetAuraDuration()
 end
 
 function modifier_lina_lsa_fire:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function modifier_lina_lsa_fire:GetAuraSearchFlags()

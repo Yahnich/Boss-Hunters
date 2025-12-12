@@ -9,7 +9,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"faceless_void_time_walk"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -47,29 +47,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"backtrack_duration"	"2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"				"80 120 160 200 240 280 320"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"675 675 675 675 750 825 900"
+			"backtrack_duration"	"2"
+			"damage"				"80 120 160 200 240 280 320"
+			"range"					"675 675 675 675 750 825 900"
 				"LinkedSpecialBonus"	"special_bonus_unique_faceless_time_walk_1"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"3000"
-			}
+			"speed"					"3000"
 		}
 	}
 	
@@ -86,18 +70,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"450"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cd"						"-2"
-			}
+			"value"						"450"
+			"cd"						"-2"
 		}
 	}
 	//=================================================================================================================
@@ -113,13 +89,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	"faceless_time_dilation" 
@@ -131,7 +103,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"faceless_void_time_dilation"
 		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -158,38 +130,17 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"775"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attack_speed_buff"		"50 100 150 200 200 200 200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attack_speed_debuff"	"25 50 75 100 100 100 100"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cdr_buff"				"25"
-			}
+			"radius"				"775"
+			"attack_speed_buff"		"50 100 150 200 200 200 200"
+			"attack_speed_debuff"	"25 50 75 100 100 100 100"
+			"cdr_buff"				"25"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"cdr_debuff"			"50"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8 8 8 8 10 12 14"
-			}
+			"duration"				"8 8 8 8 10 12 14"
 		}
 	}
 
@@ -206,13 +157,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -228,13 +175,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"200"
-			}
+			"value"						"200"
 		}
 	}	
 	"faceless_time_lock"
@@ -250,7 +193,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"faceless_void_time_lock"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -270,34 +213,14 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"chance"					"12 16 20 24 24 24 24"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"0.65"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"minion_duration"			"3"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"20 25 30 35 50 65 80"
+			"chance"					"12 16 20 24 24 24 24"
+			"duration"					"0.65"
+			"minion_duration"			"3"
+			"damage"					"20 25 30 35 50 65 80"
 				"LinkedSpecialBonus"		"special_bonus_unique_faceless_time_lock_1"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"damage_delay"				"0.33"
-			}
+			"damage_delay"				"0.33"
 		}
 	}
 
@@ -314,13 +237,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"160"
-			}
+			"value"						"160"
 		}
 	}
 
@@ -358,14 +277,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"chance"					"15"
+			"chance"					"15"
 				"LinkedSpecialBonus"		"special_bonus_unique_faceless_erase_timeline_1"
-			}
 		}
 	}
 
@@ -383,13 +298,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"10"
-			}
+			"value"						"10"
 		}
 	}
 	"faceless_chrono"
@@ -405,7 +316,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"faceless_void_chronosphere"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -443,27 +354,15 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"5"
+			"duration"					"5"
 				"LinkedSpecialBonus"		"special_bonus_unique_faceless_chrono_1"
 				"LinkedSpecialBonusField"	"value2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"350 375 400 425 450 475"
+			"radius"					"350 375 400 425 450 475"
 				"LinkedSpecialBonus"		"special_bonus_unique_faceless_chrono_1"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"vision_radius"				"350 375 400 425 450 475"
+			"vision_radius"				"350 375 400 425 450 475"
 				"LinkedSpecialBonus"		"special_bonus_unique_faceless_chrono_1"
-			}
 		}
 	}
 
@@ -480,18 +379,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"175"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value2"					"1"
-			}
+			"value"						"175"
+			"value2"					"1"
 		}
 	}
 	//=================================================================================================================
@@ -507,13 +398,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"20"
-			}
+			"value"						"20"
 		}
 	}
 	
@@ -529,7 +416,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityTextureName"			"custom/faceless_clock_stopper"
 		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -556,24 +443,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_attack_time"		"-0.4 -0.55 -0.7 -0.85 -1 -1.15 -1.3"
+			"base_attack_time"		"-0.4 -0.55 -0.7 -0.85 -1 -1.15 -1.3"
 				"LinkedSpecialBonus"	"special_bonus_unique_faceless_clock_stopper_1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"2.5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"scepter_radius"		"900"
-			}
+			"duration"				"2.5"
+			"scepter_radius"		"900"
 		}
 	}
 
@@ -590,13 +465,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"0.25"
-			}
+			"value"						"0.25"
 		}
 	}
 	//=================================================================================================================
@@ -612,13 +483,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	"faceless_chrono_trigger"
@@ -634,7 +501,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"custom/faceless_time_lord"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -655,37 +522,17 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"backtrack_chance"			"11 12 13 14 15 16 17"
+			"backtrack_chance"			"11 12 13 14 15 16 17"
 				"LinkedSpecialBonus"		"special_bonus_unique_faceless_chrono_trigger_2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"backtrack_duration"		"1.0"
+			"backtrack_duration"		"1.0"
 				"LinkedSpecialBonus"		"special_bonus_unique_faceless_chrono_trigger_2"
 				"LinkedSpecialBonusField"	"duration"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"chance"					"10 13 16 19 22 25 28"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"0.5"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"50 75 100 125 150 175 200"
+			"chance"					"10 13 16 19 22 25 28"
+"duration"					"0.5"
+			"damage"					"50 75 100 125 150 175 200"
 				"LinkedSpecialBonus"		"special_bonus_unique_faceless_chrono_trigger_1"
-			}
 		}
 	}
 
@@ -702,13 +549,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
+			"value"						"100"
 		}
 	}
 	//=================================================================================================================
@@ -724,18 +567,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"8"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"-0.5"
-			}
+			"value"						"8"
+			"duration"					"-0.5"
 		}
 	}
 }

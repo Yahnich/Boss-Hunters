@@ -131,7 +131,7 @@ function rubick_steal:OnProjectileHit( target, location )
 	self.stolenSpell = nil
 
 	-- Add modifier
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	target:AddNewModifier(
 		caster, -- player source
 		self, -- ability source

@@ -46,11 +46,11 @@ end
 
 if IsServer() then
 	function modifier_lifestealer_rend_autocast:OnCreated()
-		self.duration = self:GetTalentSpecialValueFor("duration")
+		self.duration = self:GetSpecialValueFor("duration")
 	end
 	
 	function modifier_lifestealer_rend_autocast:OnRefresh()
-		self.duration = self:GetTalentSpecialValueFor("duration")
+		self.duration = self:GetSpecialValueFor("duration")
 	end
 	
     function modifier_lifestealer_rend_autocast:DeclareFunctions()
@@ -82,7 +82,7 @@ if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
 		local ability = self:GetAbility()
-		local heal = caster:Lifesteal(ability, self:GetTalentSpecialValueFor("heal"), self:GetTalentSpecialValueFor("damage") * self:GetStackCount(), parent, ability:GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY, true)
+		local heal = caster:Lifesteal(ability, self:GetSpecialValueFor("heal"), self:GetSpecialValueFor("damage") * self:GetStackCount(), parent, ability:GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY, true)
 		if caster:HasModifier("modifier_lifestealer_infest_bh") then
 			local modifier = caster:FindModifierByName("modifier_lifestealer_infest_bh")
 			print(modifier, "?")

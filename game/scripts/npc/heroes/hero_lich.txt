@@ -59,36 +59,16 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{			
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"200"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"slow_movement_speed"			"-30"
+			"radius"						"200"
+			"slow_movement_speed"			"-30"
 				"LinkedSpecialBonus"			"special_bonus_unique_lich_frost_nova_2"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"slow_attack_speed"				"-20"
+			"slow_attack_speed"				"-20"
 				"LinkedSpecialBonus"			"special_bonus_unique_lich_frost_nova_2"
 				"LinkedSpecialBonusField"		"value2"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"aoe_damage"					"75 100 125 150 175 200 225"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"duration"						"4.0"
-			}
+			"aoe_damage"					"75 100 125 150 175 200 225"
+			"duration"						"4.0"
 		}
 		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_1"
 	}
@@ -102,13 +82,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"0.3"
-			}
+			"value"					"0.3"
 		}
 	}
 	"special_bonus_unique_lich_frost_nova_2" 
@@ -121,18 +97,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-20"
-			}
+			"value"					"-20"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value2"				"-80"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -190,48 +161,28 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"armor_bonus"					"15 16 17 18 19 20 21"
-			}	
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"buff_duration"					"8 10 12 14 16 18 20"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"pulse_damage"					"20 30 40 50 60 70 80"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"pulse_interval"				"2"
-			}
+			"armor_bonus"					"15 16 17 18 19 20 21"	
+			"buff_duration"					"8 10 12 14 16 18 20"
+			"pulse_damage"					"20 30 40 50 60 70 80"
+			"pulse_interval"				"2"
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"slow_duration"					"1.0"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"slow_movement_speed"			"-20"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"slow_attack_speed"				"-40"
-			}
 			"08"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"pulse_radius"					"350"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -245,13 +196,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"30"
-			}
+			"value"					"30"
 		}
 	}
 	"special_bonus_unique_lich_frost_armor_2" 
@@ -264,13 +211,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"3"
-			}
+			"value"					"3"
 		}
 	}
 	//=================================================================================================================
@@ -329,51 +272,28 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"75 125 175 225 275 325 475"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"jumps"							"10"
+			"damage"						"75 125 175 225 275 325 475"
+			"jumps"							"10"
 				"LinkedSpecialBonus"			"special_bonus_unique_lich_chain_frost_1"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"jump_range"					"600"
-			}			
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"slow_movement_speed"			"-30"
+			"jump_range"					"600"			
+			"slow_movement_speed"			"-30"
 				"LinkedSpecialBonus"			"special_bonus_unique_lich_chain_frost_2"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"slow_attack_speed"				"-30"
+			"slow_attack_speed"				"-30"
 				"LinkedSpecialBonus"			"special_bonus_unique_lich_chain_frost_2"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"slow_duration"					"2.5"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"projectile_speed"				"850"
-			}
 			"08"
 			{	
 				"var_type"						"FIELD_INTEGER"
 				"vision_radius"					"800"
-			}
 		}			
 	}
 	"special_bonus_unique_lich_chain_frost_1" 
@@ -386,13 +306,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-11"
-			}
+			"value"					"-11"
 		}
 	}
 	"special_bonus_unique_lich_chain_frost_2" 
@@ -405,13 +321,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"10"
-			}
+			"value"					"10"
 		}
 	}
 	"special_bonus_unique_lich_chain_frost_3" 
@@ -424,13 +336,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"33"
-			}
+			"value"					"33"
 		}
 	}
 	//=================================================================================================================
@@ -467,23 +375,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"ms_slow"						"-15"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"as_slow"						"-30"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"425"
-			}
+			"ms_slow"						"-15"
+			"as_slow"						"-30"
+			"radius"						"425"
 		}			
 	}
 	//=================================================================================================================
@@ -535,29 +431,13 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"curr_health_dmg"				"25"
+			"curr_health_dmg"				"25"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"health_conversion"				"50 60 70 80 90 100"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"duration"						"40"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"scepter_cooldown"				"65"
-			}
+			"health_conversion"				"50 60 70 80 90 100"
+			"duration"						"40"
+			"scepter_cooldown"				"65"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -571,18 +451,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"15"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"5"
-			}
+			"value"					"15"
+			"value"					"5"
 		}
 	}
 	"special_bonus_unique_lich_dark_sacrifice_2" 
@@ -595,13 +467,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"20"
-			}
+			"value"					"20"
 		}
 	}
 }

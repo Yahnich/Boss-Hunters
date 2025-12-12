@@ -35,13 +35,13 @@ function zeus_olympus_calls:OnSpellStart()
 	local caster = self:GetCaster()
 
 	EmitSoundOn("Hero_Zuus.GodsWrath", caster)
-	caster:AddNewModifier(caster, self, "modifier_zeus_olympus_calls", {Duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_zeus_olympus_calls", {Duration = self:GetSpecialValueFor("duration")})
 
 	if caster:HasTalent("special_bonus_unique_zeus_olympus_calls_2") then
 		local allies = caster:FindFriendlyUnitsInRadius(caster, FIND_UNITS_EVERYWHERE)
 		for _,ally in pairs(allies) do
 			if ally ~= caster then
-				ally:AddNewModifier(caster, self, "modifier_zeus_olympus_calls_ally", {Duration = self:GetTalentSpecialValueFor("duration")})
+				ally:AddNewModifier(caster, self, "modifier_zeus_olympus_calls_ally", {Duration = self:GetSpecialValueFor("duration")})
 			end
 		end
 	end
@@ -49,20 +49,20 @@ end
 
 modifier_zeus_olympus_calls = class({})
 function modifier_zeus_olympus_calls:OnCreated(table)
-	self.amp = self:GetTalentSpecialValueFor("bonus_spell_amp")
-	self.interval = self:GetTalentSpecialValueFor("tick_rate")
-	self.damage = TernaryOperator( self:GetTalentSpecialValueFor("scepter_damage"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("damage") ) * self.interval
-	self.radius = TernaryOperator( self:GetTalentSpecialValueFor("scepter_radius"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("radius") )
+	self.amp = self:GetSpecialValueFor("bonus_spell_amp")
+	self.interval = self:GetSpecialValueFor("tick_rate")
+	self.damage = TernaryOperator( self:GetSpecialValueFor("scepter_damage"), self:GetCaster():HasScepter(), self:GetSpecialValueFor("damage") ) * self.interval
+	self.radius = TernaryOperator( self:GetSpecialValueFor("scepter_radius"), self:GetCaster():HasScepter(), self:GetSpecialValueFor("radius") )
 	if IsServer() then
 		self:StartIntervalThink(self.interval)
 	end
 end
 
 function modifier_zeus_olympus_calls:OnRefresh(table)
-	self.amp = self:GetTalentSpecialValueFor("bonus_spell_amp")
-	self.interval = self:GetTalentSpecialValueFor("tick_rate")
-	self.damage = TernaryOperator( self:GetTalentSpecialValueFor("scepter_damage"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("damage") ) * self.interval
-	self.radius = TernaryOperator( self:GetTalentSpecialValueFor("scepter_radius"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("radius") )
+	self.amp = self:GetSpecialValueFor("bonus_spell_amp")
+	self.interval = self:GetSpecialValueFor("tick_rate")
+	self.damage = TernaryOperator( self:GetSpecialValueFor("scepter_damage"), self:GetCaster():HasScepter(), self:GetSpecialValueFor("damage") ) * self.interval
+	self.radius = TernaryOperator( self:GetSpecialValueFor("scepter_radius"), self:GetCaster():HasScepter(), self:GetSpecialValueFor("radius") )
 end
 
 function modifier_zeus_olympus_calls:OnIntervalThink()
@@ -120,14 +120,14 @@ end
 
 modifier_zeus_olympus_calls_ally = class({})
 function modifier_zeus_olympus_calls_ally:OnCreated(table)
-	self.amp = self:GetTalentSpecialValueFor("bonus_spell_amp")
+	self.amp = self:GetSpecialValueFor("bonus_spell_amp")
 	if IsServer() then
-		self:StartIntervalThink(self:GetTalentSpecialValueFor("tick_rate"))
+		self:StartIntervalThink(self:GetSpecialValueFor("tick_rate"))
 	end
 end
 
 function modifier_zeus_olympus_calls_ally:OnRefresh(table)
-	self.amp = self:GetTalentSpecialValueFor("bonus_spell_amp")
+	self.amp = self:GetSpecialValueFor("bonus_spell_amp")
 end
 
 function modifier_zeus_olympus_calls_ally:DeclareFunctions()
@@ -148,12 +148,12 @@ end
 modifier_zeus_olympus_calls_talent = class({})
 function modifier_zeus_olympus_calls_talent:OnCreated()
 	self.chance = self:GetCaster():FindTalentValue("special_bonus_unique_zeus_olympus_calls_1")
-	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.damage = self:GetSpecialValueFor("damage")
 end
 
 function modifier_zeus_olympus_calls_talent:OnRefresh()
 	self.chance = self:GetCaster():FindTalentValue("special_bonus_unique_zeus_olympus_calls_1")
-	self.damage = self:GetTalentSpecialValueFor("damage")
+	self.damage = self:GetSpecialValueFor("damage")
 end
 
 function modifier_zeus_olympus_calls_talent:DeclareFunctions()

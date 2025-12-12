@@ -12,17 +12,17 @@ function batrider_lasso:IsHiddenWhenStolen()
 end
 
 function batrider_lasso:GetAOERadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function batrider_lasso:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("duration")
+	local radius = self:GetSpecialValueFor("radius")
 
-	local maxTargets = self:GetTalentSpecialValueFor("max_targets") - 1 --because the selected target counts too
+	local maxTargets = self:GetSpecialValueFor("max_targets") - 1 --because the selected target counts too
 
 	EmitSoundOn("Hero_Batrider.FlamingLasso.Cast", caster)
 	if not target:TriggerSpellAbsorb(self) then
@@ -66,8 +66,8 @@ function modifier_batrider_lasso_debuff:OnCreated(table)
 
 		EmitSoundOn("Hero_Batrider.FlamingLasso.Loop", parent)
 
-		self.damage = self:GetTalentSpecialValueFor("damage")
-		self.maxDistance = self:GetTalentSpecialValueFor("drag_distance")
+		self.damage = self:GetSpecialValueFor("damage")
+		self.maxDistance = self:GetSpecialValueFor("drag_distance")
 
 		self.tick = 1 + FrameTime()
 
@@ -83,8 +83,8 @@ end
 
 function modifier_batrider_lasso_debuff:OnRefresh(table)
 	if IsServer() then
-		self.damage = self:GetTalentSpecialValueFor("damage")
-		self.maxDistance = self:GetTalentSpecialValueFor("drag_distance")
+		self.damage = self:GetSpecialValueFor("damage")
+		self.maxDistance = self:GetSpecialValueFor("drag_distance")
 	end
 end
 
@@ -156,7 +156,7 @@ end
 modifier_batrider_lasso_debuff_after = class({})
 function modifier_batrider_lasso_debuff_after:OnCreated(table)
 	if IsServer() then
-		self.damage = self:GetTalentSpecialValueFor("damage")
+		self.damage = self:GetSpecialValueFor("damage")
 
 		self:StartIntervalThink(1)
 	end
@@ -164,7 +164,7 @@ end
 
 function modifier_batrider_lasso_debuff_after:OnRefresh(table)
 	if IsServer() then
-		self.damage = self:GetTalentSpecialValueFor("damage")
+		self.damage = self:GetSpecialValueFor("damage")
 	end
 end
 

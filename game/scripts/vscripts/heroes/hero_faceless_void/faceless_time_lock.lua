@@ -21,8 +21,8 @@ function faceless_time_lock:TimeLock(target)
 	ParticleManager:SetParticleControl(nFX, 5, Vector(1,1,1) )
 	ParticleManager:ReleaseParticleIndex(nFX)
 	
-	local duration = TernaryOperator( self:GetTalentSpecialValueFor("minion_duration"), target:IsMinion(), self:GetTalentSpecialValueFor("duration") )
-	local damage = self:GetTalentSpecialValueFor("damage")
+	local duration = TernaryOperator( self:GetSpecialValueFor("minion_duration"), target:IsMinion(), self:GetSpecialValueFor("duration") )
+	local damage = self:GetSpecialValueFor("damage")
 	
 	if caster:HasTalent("special_bonus_unique_faceless_time_dilation_1") then
 		local mult = caster:FindTalentValue("special_bonus_unique_faceless_time_dilation_1")
@@ -30,7 +30,7 @@ function faceless_time_lock:TimeLock(target)
 		damage = damage * mult
 	end
 	
-	local delay = self:GetTalentSpecialValueFor("damage_delay")
+	local delay = self:GetSpecialValueFor("damage_delay")
 	Timers:CreateTimer(delay, function()
 		self:Stun(target, duration, false)
 		self:DealDamage(caster, target, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
@@ -48,7 +48,7 @@ function modifier_faceless_time_lock_handle:OnCreated()
 end
 
 function modifier_faceless_time_lock_handle:OnRefresh()
-	self.chance = self:GetTalentSpecialValueFor("chance")
+	self.chance = self:GetSpecialValueFor("chance")
 end
 
 function modifier_faceless_time_lock_handle:DeclareFunctions()

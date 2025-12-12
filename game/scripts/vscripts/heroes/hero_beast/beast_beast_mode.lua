@@ -41,15 +41,15 @@ end
 
 modifier_beast_mode_allies = class({})
 function modifier_beast_mode_allies:OnCreated()
-	self.cdr = self:GetTalentSpecialValueFor("bonus_cdr") 
+	self.cdr = self:GetSpecialValueFor("bonus_cdr") 
 	if self:GetCaster():HasTalent("special_bonus_unique_beast_beast_mode_1") then
-		self.amp = self:GetTalentSpecialValueFor("bonus_cdr") 
+		self.amp = self:GetSpecialValueFor("bonus_cdr") 
 	end
-	self.as = self:GetTalentSpecialValueFor("bonus_attackspeed")
-	self.hp = self:GetTalentSpecialValueFor("boar_bonus_health")
-	self.hpr = self:GetTalentSpecialValueFor("boar_bonus_regen")
-	self.ms = self:GetTalentSpecialValueFor("hawk_bonus_ms")
-	self.vis = self:GetTalentSpecialValueFor("hawk_bonus_vision")
+	self.as = self:GetSpecialValueFor("bonus_attackspeed")
+	self.hp = self:GetSpecialValueFor("boar_bonus_health")
+	self.hpr = self:GetSpecialValueFor("boar_bonus_regen")
+	self.ms = self:GetSpecialValueFor("hawk_bonus_ms")
+	self.vis = self:GetSpecialValueFor("hawk_bonus_vision")
 	self:GetParent():HookInModifier("GetModifierExtraHealthBonusPercentage", self)
 end
 

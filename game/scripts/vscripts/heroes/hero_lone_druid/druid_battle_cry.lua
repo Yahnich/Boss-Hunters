@@ -9,7 +9,7 @@ function druid_battle_cry:IsHiddenWhenStolen()
 end
 
 function druid_battle_cry:GetCastRange(vLocation, hTarget)
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function druid_battle_cry:GetCastAnimation()
@@ -30,8 +30,8 @@ end
 function druid_battle_cry:OnSpellStart()
 	local caster = self:GetCaster()
 
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("duration")
+	local radius = self:GetSpecialValueFor("radius")
 
 	EmitSoundOn("Hero_LoneDruid.BattleCry", caster)
 	
@@ -79,8 +79,8 @@ function modifier_druid_battle_cry:OnCreated(table)
 end
 
 function modifier_druid_battle_cry:OnRefresh(table)
-	self.bonus_ad = self:GetTalentSpecialValueFor("bonus_ad")
-	self.bonus_armor = self:GetTalentSpecialValueFor("bonus_armor")
+	self.bonus_ad = self:GetSpecialValueFor("bonus_ad")
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
 	self.damage_reduction = self:GetCaster():FindTalentValue("special_bonus_unique_druid_battle_cry_1", "reduction")
 
 	if self:GetCaster():HasTalent("special_bonus_unique_druid_battle_cry_2") then
@@ -143,8 +143,8 @@ LinkLuaModifier("modifier_druid_lesser_battle_cry", "heroes/hero_lone_druid/drui
 
 function modifier_druid_lesser_battle_cry:OnRefresh(table)
 	local mult = self:GetCaster():FindTalentValue("special_bonus_unique_druid_battle_cry_3") / 100
-	self.bonus_ad = math.floor( self:GetTalentSpecialValueFor("bonus_ad") * mult + 0.5 )
-	self.bonus_armor = math.floor( self:GetTalentSpecialValueFor("bonus_armor") * mult + 0.5 )
+	self.bonus_ad = math.floor( self:GetSpecialValueFor("bonus_ad") * mult + 0.5 )
+	self.bonus_armor = math.floor( self:GetSpecialValueFor("bonus_armor") * mult + 0.5 )
 	self.damage_reduction = math.floor( self:GetCaster():FindTalentValue("special_bonus_unique_druid_battle_cry_1", "reduction") * mult + 0.5 )
 
 	if self:GetCaster():HasTalent("special_bonus_unique_druid_battle_cry_2") then

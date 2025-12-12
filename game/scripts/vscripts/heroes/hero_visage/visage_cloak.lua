@@ -85,7 +85,7 @@ function visage_cloak:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()
 	local talentOwner = caster.visage or caster
-	local layers = self:GetTalentSpecialValueFor("max_layers")
+	local layers = self:GetSpecialValueFor("max_layers")
     target:AddNewModifier(caster, self, "modifier_visage_cloak", {}):SetStackCount(layers)
 	if talentOwner:HasTalent("special_bonus_unique_visage_cloak_1") then
 		target:AddNewModifier(caster, self, "modifier_visage_cloak_talent", {}):SetStackCount(layers)
@@ -100,8 +100,8 @@ function modifier_visage_cloak_handle:OnCreated()
 end
 
 function modifier_visage_cloak_handle:OnRefresh()
-	self.recovery_time = self:GetTalentSpecialValueFor("recovery_time")
-	self.max = self:GetTalentSpecialValueFor("max_layers")
+	self.recovery_time = self:GetSpecialValueFor("recovery_time")
+	self.max = self:GetSpecialValueFor("max_layers")
 	if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
@@ -149,8 +149,8 @@ function modifier_visage_cloak:OnCreated()
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
 
-	self.instances = self:GetTalentSpecialValueFor("max_layers")
-	self.block = self:GetTalentSpecialValueFor("reduction")
+	self.instances = self:GetSpecialValueFor("max_layers")
+	self.block = self:GetSpecialValueFor("reduction")
 	if IsServer() then		
 		self.nfx =  ParticleManager:CreateParticle("particles/units/heroes/hero_visage/visage_cloak_ambient.vpcf", PATTACH_ABSORIGIN, caster)
 					ParticleManager:SetParticleAlwaysSimulate(self.nfx)
@@ -169,8 +169,8 @@ function modifier_visage_cloak:OnRefresh()
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
 
-	self.block = self:GetTalentSpecialValueFor("reduction")
-	self.instances = self:GetTalentSpecialValueFor("max_layers")
+	self.block = self:GetSpecialValueFor("reduction")
+	self.instances = self:GetSpecialValueFor("max_layers")
 	if IsServer() then
 		self:SetStackCount(self.instances)
 		if self:GetStackCount() > 0 then
@@ -265,7 +265,7 @@ function modifier_visage_cloak_talent:OnRefresh()
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
 	local talentOwner = parent.visage or parent
-	self.instances = self:GetTalentSpecialValueFor("max_layers")
+	self.instances = self:GetSpecialValueFor("max_layers")
 	self.spellAmp = talentOwner:FindTalentValue("special_bonus_unique_visage_cloak_1")
 	self.grace_period = talentOwner:FindTalentValue("special_bonus_unique_visage_cloak_1", "grace_period")
 	if IsServer() then

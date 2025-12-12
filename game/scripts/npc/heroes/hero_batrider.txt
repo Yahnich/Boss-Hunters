@@ -16,7 +16,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"batrider_sticky_napalm"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -56,39 +56,27 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"damage_amp"					"5.8 6 6.2 6.4 6.6 6.8 7"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"10"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"375"
-			}
+			"duration"						"10"
+			"radius"						"375"
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"slow_ms"						"-3 -4 -5 -6 -7 -8 -9"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"turn_rate_pct"					"-70"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"max_stacks"					"10"
-			}
 		}
 	}
 
@@ -105,13 +93,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -127,13 +111,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"300"
-			}
+			"value"						"300"
 		}
 	}
 
@@ -150,7 +130,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"batrider_flamebreak"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -185,24 +165,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"25 30 35 40 45 50 55"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4 5 6 7 8 9 10"
-				"LinkedSpecialBonus"	"special_bonus_unique_batrider_3"
-			}			
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"375"
-			}
+			"damage"				"25 30 35 40 45 50 55"
+			"duration"				"4 5 6 7 8 9 10"
+				"LinkedSpecialBonus"	"special_bonus_unique_batrider_3"			
+			"radius"				"375"
 		}
 	}
 
@@ -219,13 +187,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -241,13 +205,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -267,7 +227,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"batrider_firefly"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -304,24 +264,15 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"10 30 50 70 90 110 130"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"18"
+			"damage"				"10 30 50 70 90 110 130"
+			"duration"				"18"
 				"LinkedSpecialBonus"	"special_bonus_unique_batrider_fly_2"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"100"
-			}
 		}
 	}
 
@@ -338,18 +289,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"40"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value2"					"25"
-			}
+			"value"						"40"
+			"value2"					"25"
 		}
 	}
 
@@ -366,13 +309,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"evasion"					"8"
-			}
+			"evasion"					"8"
 		}
 	}
 
@@ -404,18 +343,13 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"10"
-			}
+			"base_damage"			"10"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_per_lvl"		"2"
-			}
 		}
 	}
 
@@ -435,7 +369,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"batrider_flaming_lasso"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -470,33 +404,16 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{	
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"				"20 40 60 80 100 120"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3 3.5 4 4.5 5 5.5"
-			}
+			"damage"				"20 40 60 80 100 120"
+			"duration"				"3 3.5 4 4.5 5 5.5"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"drag_distance"			"300"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"300"
-			}	
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_targets"			"2"
-			}						
+			"radius"				"300"	
+			"max_targets"			"2"						
 		}
 	}
 
@@ -513,13 +430,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -535,13 +448,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 }

@@ -9,7 +9,7 @@ function zeus_static_field:OnSpellStart()
 	local point = self:GetCursorPosition()
 
 	EmitSoundOn("Hero_Zuus.Cloud.Cast", caster)
-	local cloud = caster:CreateSummon("npc_dota_zeus_cloud", point, self:GetTalentSpecialValueFor("duration"))
+	local cloud = caster:CreateSummon("npc_dota_zeus_cloud", point, self:GetSpecialValueFor("duration"))
 	cloud:AddNewModifier(caster, self, "modifier_zeus_nimbus_storm", {})
 end
 
@@ -50,9 +50,9 @@ end
 
 if IsServer() then
 	function modifier_zeus_static_field:OnCreated()
-		self.radius = self:GetAbility():GetTalentSpecialValueFor("radius")
-		self:GetAbility().hpdamage = self:GetAbility():GetTalentSpecialValueFor("damage_health_pct") / 100
-		self:GetAbility().miniondamage = self:GetAbility():GetTalentSpecialValueFor("minion_damage_pct") / 100
+		self.radius = self:GetAbility():GetSpecialValueFor("radius")
+		self:GetAbility().hpdamage = self:GetAbility():GetSpecialValueFor("damage_health_pct") / 100
+		self:GetAbility().miniondamage = self:GetAbility():GetSpecialValueFor("minion_damage_pct") / 100
 	end
 
 	function modifier_zeus_static_field:OnTakeDamage(params)
@@ -70,7 +70,7 @@ function modifier_zeus_nimbus_storm:OnCreated()
 	if IsServer() then
 		local caster = self:GetCaster()
 		local cloud = self:GetParent()
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local radius = self:GetSpecialValueFor("radius")
 		
 		cloud.radius = radius
 		

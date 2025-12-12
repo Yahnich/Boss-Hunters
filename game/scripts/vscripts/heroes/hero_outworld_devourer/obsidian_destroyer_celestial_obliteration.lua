@@ -1,14 +1,14 @@
 obsidian_destroyer_celestial_obliteration = class({})
 
 function obsidian_destroyer_celestial_obliteration:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function obsidian_destroyer_celestial_obliteration:OnSpellStart()
 	local caster = self:GetCaster()
 	EmitSoundOn("Hero_ObsidianDestroyer.SanityEclipse.Cast", caster)
 	local vTarget = self:GetCursorPosition()
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local radius = self:GetSpecialValueFor("radius")
 	
 	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), vTarget, nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 	if caster:HasScepter() then
@@ -29,11 +29,11 @@ function obsidian_destroyer_celestial_obliteration:OnSpellStart()
 		end
 		caster:AddNewModifier(caster, self, "modifier_obsidian_destroyer_celestial_obliteration_talent", {duration = tDur})
 	end
-	local intDamage = self:GetTalentSpecialValueFor("damage_multiplier") * caster:GetIntellect( false)
+	local intDamage = self:GetSpecialValueFor("damage_multiplier") * caster:GetIntellect( false)
 	for _,enemy in pairs(enemies) do
 		if not enemy:TriggerSpellAbsorb( self ) then
 			self:DealDamage( caster, enemy, intDamage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
-			enemy:AddNewModifier(caster, self, "modifier_obsidian_destroyer_celestial_obliteration_mindbreak", {duration = self:GetTalentSpecialValueFor("debuff_duration")})
+			enemy:AddNewModifier(caster, self, "modifier_obsidian_destroyer_celestial_obliteration_mindbreak", {duration = self:GetSpecialValueFor("debuff_duration")})
 		end
 	end
 	local eclipse = ParticleManager:CreateParticle("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_area.vpcf", PATTACH_ABSORIGIN, caster)

@@ -1,7 +1,7 @@
 undying_decay_bh = class({})
 
 function undying_decay_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function undying_decay_bh:OnSpellStart()
@@ -10,13 +10,13 @@ end
 
 function undying_decay_bh:Decay( position, radiusMod )
 	local caster = self:GetCaster()
-	local radius = self:GetTalentSpecialValueFor("radius") * (radiusMod or 1)
+	local radius = self:GetSpecialValueFor("radius") * (radiusMod or 1)
 	
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local bossStr = TernaryOperator( self:GetTalentSpecialValueFor("scepter_str_per_boss"), caster:HasScepter(), self:GetTalentSpecialValueFor("str_per_boss") )
-	local monsterStr = TernaryOperator( self:GetTalentSpecialValueFor("scepter_str_per_monster"), caster:HasScepter(), self:GetTalentSpecialValueFor("str_per_monster") )
-	local mobStr = self:GetTalentSpecialValueFor("str_per_mob")
+	local damage = self:GetSpecialValueFor("damage")
+	local duration = self:GetSpecialValueFor("duration")
+	local bossStr = TernaryOperator( self:GetSpecialValueFor("scepter_str_per_boss"), caster:HasScepter(), self:GetSpecialValueFor("str_per_boss") )
+	local monsterStr = TernaryOperator( self:GetSpecialValueFor("scepter_str_per_monster"), caster:HasScepter(), self:GetSpecialValueFor("str_per_monster") )
+	local mobStr = self:GetSpecialValueFor("str_per_mob")
 	
 	local modifierName = TernaryOperator("modifier_undying_decay_bh_talent", caster:HasTalent("special_bonus_unique_undying_decay_2"), "modifier_undying_decay_bh")
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius) ) do

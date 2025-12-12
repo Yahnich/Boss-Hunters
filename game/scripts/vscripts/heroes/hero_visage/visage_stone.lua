@@ -17,10 +17,10 @@ end
 function visage_stone:OnSpellStart()
 	local caster = self:GetCaster()
 	local talentOwner = caster.visage or caster
-	local duration = self:GetTalentSpecialValueFor("stone_duration")
+	local duration = self:GetSpecialValueFor("stone_duration")
 
 	if caster:IsHero() then
-		duration = self:GetTalentSpecialValueFor("stone_duration_hero")
+		duration = self:GetSpecialValueFor("stone_duration_hero")
 
 		local units = caster:FindAllUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
 		for _,unit in pairs(units) do
@@ -44,16 +44,16 @@ end
 modifier_visage_stone = class({})
 
 function modifier_visage_stone:OnCreated(table)
-	self.hpRegen = self:GetTalentSpecialValueFor("hp_regen")
+	self.hpRegen = self:GetSpecialValueFor("hp_regen")
 
 	if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
 
-		local radius = self:GetTalentSpecialValueFor("radius")
-		local damage = self:GetTalentSpecialValueFor("damage")
-		local duration = self:GetTalentSpecialValueFor("duration")
-		local delay = self:GetTalentSpecialValueFor("delay")
+		local radius = self:GetSpecialValueFor("radius")
+		local damage = self:GetSpecialValueFor("damage")
+		local duration = self:GetSpecialValueFor("duration")
+		local delay = self:GetSpecialValueFor("delay")
 
 		if parent:IsHero() then
 			delay = 0
@@ -124,10 +124,10 @@ function modifier_visage_stone:OnRemoved()
 
 		if talentOwner:HasTalent("special_bonus_unique_visage_stone_2") then
 			local knockback = talentOwner:FindTalentValue("special_bonus_unique_visage_stone_2", "knockback")
-			local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+			local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self:GetSpecialValueFor("radius"))
 			for _,enemy in pairs(enemies) do
 				enemy:ApplyKnockBack(parent:GetAbsOrigin(), 0.5, 0.5, knockback, 300, caster, self:GetAbility(), true)
-				self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+				self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 			end
 		end
 
@@ -142,16 +142,16 @@ end
 modifier_visage_stone_talent = class({})
 
 function modifier_visage_stone_talent:OnCreated(table)
-	self.hpRegen = self:GetTalentSpecialValueFor("hp_regen")
+	self.hpRegen = self:GetSpecialValueFor("hp_regen")
 
 	if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
 		local talentOwner = caster.visage or parent
 		self.damage_reduce = talentOwner:FindTalentValue("special_bonus_unique_visage_stone_1", "dmg_reduction")
-		local radius = self:GetTalentSpecialValueFor("radius")
-		local damage = self:GetTalentSpecialValueFor("damage")
-		local duration = self:GetTalentSpecialValueFor("duration")
+		local radius = self:GetSpecialValueFor("radius")
+		local damage = self:GetSpecialValueFor("damage")
+		local duration = self:GetSpecialValueFor("duration")
 
 		ParticleManager:FireParticle("particles/units/heroes/hero_visage/visage_stone_form.vpcf", PATTACH_POINT, caster, {[0]=parent:GetAbsOrigin(), [1]=Vector(radius, radius, radius)})
 	
@@ -211,10 +211,10 @@ function modifier_visage_stone_talent:OnRemoved()
 		local parent = self:GetParent()
 		local talentOwner = caster.visage or parent
 		if talentOwner:HasTalent("special_bonus_unique_visage_stone_2") then
-			local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+			local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self:GetSpecialValueFor("radius"))
 			for _,enemy in pairs(enemies) do
 				enemy:ApplyKnockBack(parent:GetAbsOrigin(), 0.5, 0.5, 250, 300, caster, self:GetAbility(), true)
-				self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage")/2, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+				self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("damage")/2, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 			end
 		end
 

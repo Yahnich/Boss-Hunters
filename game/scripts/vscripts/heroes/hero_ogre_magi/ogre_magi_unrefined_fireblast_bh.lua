@@ -27,7 +27,7 @@ function ogre_magi_unrefined_fireblast_bh:GetBehavior()
 end
 
 function ogre_magi_unrefined_fireblast_bh:GetManaCost()
-    local manaCost = self:GetCaster():GetMana()*self:GetTalentSpecialValueFor("mana_cost")/100
+    local manaCost = self:GetCaster():GetMana()*self:GetSpecialValueFor("mana_cost")/100
     return manaCost
 end
 
@@ -63,6 +63,6 @@ function ogre_magi_unrefined_fireblast_bh:Fireblast()
 				ParticleManager:SetParticleControl(nfx, 1, target:GetAbsOrigin())
 				ParticleManager:ReleaseParticleIndex(nfx)
 
-	self:Stun(target, self:GetTalentSpecialValueFor("duration"), false)
-	self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {}, 0)
+	self:Stun(target, self:GetSpecialValueFor("duration"), false)
+	self:DealDamage(caster, target, self:GetSpecialValueFor("damage"), {}, 0)
 end

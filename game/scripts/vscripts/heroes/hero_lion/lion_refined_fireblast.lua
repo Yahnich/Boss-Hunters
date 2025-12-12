@@ -21,7 +21,7 @@ function lion_refined_fireblast:OnInventoryContentsChanged()
 end
 
 function lion_refined_fireblast:GetManaCost()
-    local manaCost = self:GetCaster():GetMana()*self:GetTalentSpecialValueFor("manabonus")/100
+    local manaCost = self:GetCaster():GetMana()*self:GetSpecialValueFor("manabonus")/100
     return manaCost
 end
 
@@ -43,8 +43,8 @@ function lion_refined_fireblast:OnSpellStart()
     ParticleManager:SetParticleControl(nfx, 1, target:GetAbsOrigin())
     ParticleManager:ReleaseParticleIndex(nfx)
 	if target:TriggerSpellAbsorb( self ) then return end
-    local damage = caster:GetMana()*self:GetTalentSpecialValueFor("manabonus")/100
-    damage = damage + self:GetTalentSpecialValueFor("damage")
+    local damage = caster:GetMana()*self:GetSpecialValueFor("manabonus")/100
+    damage = damage + self:GetSpecialValueFor("damage")
     self:DealDamage(caster, target, damage, {}, 0)
 
     self:Stun(target, self:GetSpecialValueFor("duration"), false)

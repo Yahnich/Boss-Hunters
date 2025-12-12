@@ -7,17 +7,17 @@ function nyx_vendetta:OnSpellStart()
 	EmitSoundOn("Hero_NyxAssassin.Vendetta", caster)
 
 	ParticleManager:FireParticle("particles/units/heroes/hero_nyx_assassin/nyx_loadout.vpcf", PATTACH_POINT, caster, {})
-	local vendetta = caster:AddNewModifier(caster, self, "modifier_nyx_vendetta", {Duration = self:GetTalentSpecialValueFor("duration")})
+	local vendetta = caster:AddNewModifier(caster, self, "modifier_nyx_vendetta", {Duration = self:GetSpecialValueFor("duration")})
 	if caster:HasScepter() then
-		vendetta:SetStackCount( self:GetTalentSpecialValueFor("scepter_charges") )
+		vendetta:SetStackCount( self:GetSpecialValueFor("scepter_charges") )
 	end
-	self:StartDelayedCooldown(self:GetTalentSpecialValueFor("duration"))
+	self:StartDelayedCooldown(self:GetSpecialValueFor("duration"))
 end
 
 modifier_nyx_vendetta = class({})
 function modifier_nyx_vendetta:OnCreated(table)
-    self.move = self:GetTalentSpecialValueFor("movement_speed")
-    self.damage = self:GetTalentSpecialValueFor("damage")
+    self.move = self:GetSpecialValueFor("movement_speed")
+    self.damage = self:GetSpecialValueFor("damage")
 
 	if IsServer() then self:GetCaster():CalculateStatBonus() end
 end
@@ -111,7 +111,7 @@ end
 
 function modifier_nyx_vendetta:GetModifierAttackRangeBonus()
 	if self:GetParent():HasModifier("modifier_nyx_burrow") then
-		return self:GetTalentSpecialValueFor("attack_range")
+		return self:GetSpecialValueFor("attack_range")
 	end
 end
 

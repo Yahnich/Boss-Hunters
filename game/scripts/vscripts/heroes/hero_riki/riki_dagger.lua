@@ -17,7 +17,7 @@ function modifier_dagger:GetModifierPreAttack_BonusDamage(params)
     if IsServer() then
         local caster = self:GetCaster()
         if params.attacker == caster then
-            local agility_damage_multiplier = self:GetTalentSpecialValueFor("damage_multiplier")
+            local agility_damage_multiplier = self:GetSpecialValueFor("damage_multiplier")
 
             -- The y value of the angles vector contains the angle we actually want: where units are directionally facing in the world.
             local victim_angle = params.target:GetAnglesAsVector().y
@@ -37,7 +37,7 @@ function modifier_dagger:GetModifierPreAttack_BonusDamage(params)
             result_angle = math.abs(result_angle)
             -- Check for the backstab angle.
             local damage = params.attacker:GetAgility() * agility_damage_multiplier
-            if result_angle >= (180 - (self:GetTalentSpecialValueFor("backstab_angle") / 2)) and result_angle <= (180 + (self:GetTalentSpecialValueFor("backstab_angle") / 2)) then 
+            if result_angle >= (180 - (self:GetSpecialValueFor("backstab_angle") / 2)) and result_angle <= (180 + (self:GetSpecialValueFor("backstab_angle") / 2)) then 
                 -- Play the sound on the victim.
                 EmitSoundOn("Hero_Riki.Backstab", params.target)
                 -- Create the back particle effect.

@@ -1,15 +1,15 @@
 lich_frost_nova_bh = class({})
 
 function lich_frost_nova_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function lich_frost_nova_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	local aoeDamage = self:GetTalentSpecialValueFor("aoe_damage")
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local aoeDamage = self:GetSpecialValueFor("aoe_damage")
+	local radius = self:GetSpecialValueFor("radius")
 	local duration = self:GetDuration()
 	
 	local hitTable = {}
@@ -38,13 +38,13 @@ modifier_lich_frost_nova_bh = class({})
 LinkLuaModifier( "modifier_lich_frost_nova_bh", "heroes/hero_lich/lich_frost_nova_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_lich_frost_nova_bh:OnCreated()
-	self.ms = self:GetTalentSpecialValueFor("slow_movement_speed")
-	self.as = self:GetTalentSpecialValueFor("slow_attack_speed")
+	self.ms = self:GetSpecialValueFor("slow_movement_speed")
+	self.as = self:GetSpecialValueFor("slow_attack_speed")
 end
 
 function modifier_lich_frost_nova_bh:OnRefresh()
-	self.ms = self:GetTalentSpecialValueFor("slow_movement_speed")
-	self.as = self:GetTalentSpecialValueFor("slow_attack_speed")
+	self.ms = self:GetSpecialValueFor("slow_movement_speed")
+	self.as = self:GetSpecialValueFor("slow_attack_speed")
 end
 
 function modifier_lich_frost_nova_bh:DeclareFunctions()

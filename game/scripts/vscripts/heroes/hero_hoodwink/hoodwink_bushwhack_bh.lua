@@ -1,7 +1,7 @@
 hoodwink_bushwhack_bh = class({})
 
 function hoodwink_bushwhack_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("trap_radius")
+	return self:GetSpecialValueFor("trap_radius")
 end
 
 function hoodwink_bushwhack_bh:OnSpellStart()
@@ -11,7 +11,7 @@ function hoodwink_bushwhack_bh:OnSpellStart()
 	local direction = CalculateDirection( position, caster )
 	local distance = CalculateDistance( position, caster )
 	
-	local speed = self:GetTalentSpecialValueFor("projectile_speed")
+	local speed = self:GetSpecialValueFor("projectile_speed")
 	
 	local dummy = caster:CreateDummy( position, distance / speed + 0.1 )
 	self:FireTrackingProjectile("particles/units/heroes/hero_hoodwink/hoodwink_bushwhack_projectile.vpcf", dummy, speed, {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, false, true, 200)
@@ -22,9 +22,9 @@ end
 function hoodwink_bushwhack_bh:OnProjectileHit( target, position )
 	local caster = self:GetCaster()
 	if target then
-		local radius = self:GetTalentSpecialValueFor("trap_radius")
-		local damage = self:GetTalentSpecialValueFor("total_damage")
-		local duration = self:GetTalentSpecialValueFor("debuff_duration")
+		local radius = self:GetSpecialValueFor("trap_radius")
+		local damage = self:GetSpecialValueFor("total_damage")
+		local duration = self:GetSpecialValueFor("debuff_duration")
 		
 		local nearestTrees = GridNav:GetAllTreesAroundPoint( position, radius, true )
 		local enemies = caster:FindEnemyUnitsInRadius( position, radius )
@@ -93,8 +93,8 @@ end
 
 function modifier_hoodwink_bushwhack_handler:OnRefresh()
 	local caster = self:GetCaster()
-	self.height = self:GetTalentSpecialValueFor("visual_height")
-	self.rate = self:GetTalentSpecialValueFor("visual_height")
+	self.height = self:GetSpecialValueFor("visual_height")
+	self.rate = self:GetSpecialValueFor("visual_height")
 end
 
 function modifier_hoodwink_bushwhack_handler:DeclareFunctions()

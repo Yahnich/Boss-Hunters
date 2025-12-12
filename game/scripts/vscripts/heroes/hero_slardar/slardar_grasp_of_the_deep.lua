@@ -16,11 +16,11 @@ function modifier_slardar_grasp_of_the_deep:OnCreated()
 end
 
 function modifier_slardar_grasp_of_the_deep:OnRefresh()
-	self.counter = self:GetTalentSpecialValueFor("bash_counter")
-	self.damage = self:GetTalentSpecialValueFor("bonus_damage")
-	self.duration = self:GetTalentSpecialValueFor("duration")
-	self.durationMult = self:GetTalentSpecialValueFor("minion_stun_mul")
-	self.damageMult = self:GetTalentSpecialValueFor("minion_dmg_mult")
+	self.counter = self:GetSpecialValueFor("bash_counter")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.durationMult = self:GetSpecialValueFor("minion_stun_mul")
+	self.damageMult = self:GetSpecialValueFor("minion_dmg_mult")
 	self.talent = self:GetCaster():HasTalent("special_bonus_unique_slardar_grasp_of_the_deep_1")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_slardar_grasp_of_the_deep_2")
 	self.talent2Heal = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_grasp_of_the_deep_2", "value2") / 100

@@ -1,7 +1,7 @@
 crystal_maiden_arcane_blizzard = class({})
 
 function crystal_maiden_arcane_blizzard:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 if IsServer() then
@@ -26,7 +26,7 @@ LinkLuaModifier( "modifier_crystal_maiden_arcane_blizzard_armor", "heroes/hero_c
 modifier_crystal_maiden_arcane_blizzard_armor = class({})
 
 function modifier_crystal_maiden_arcane_blizzard_armor:OnCreated()
-	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
 end
 
 function modifier_crystal_maiden_arcane_blizzard_armor:OnRefresh()
@@ -46,20 +46,20 @@ modifier_crystal_maiden_arcane_blizzard_dummy = class({})
 
 if IsServer() then
 	function modifier_crystal_maiden_arcane_blizzard_dummy:OnCreated( kv )
-		self.aura_radius = self:GetAbility():GetTalentSpecialValueFor( "radius" )
-		self.minDistance = self:GetAbility():GetTalentSpecialValueFor( "explosion_min_dist" )
-		self.maxDistance = self:GetAbility():GetTalentSpecialValueFor( "explosion_max_dist" )
-		self.radius = self:GetAbility():GetTalentSpecialValueFor( "explosion_radius" )
-		self.damage = self:GetAbility():GetTalentSpecialValueFor( "damage" )
-		self.tick = self:GetTalentSpecialValueFor("explosion_interval")
+		self.aura_radius = self:GetAbility():GetSpecialValueFor( "radius" )
+		self.minDistance = self:GetAbility():GetSpecialValueFor( "explosion_min_dist" )
+		self.maxDistance = self:GetAbility():GetSpecialValueFor( "explosion_max_dist" )
+		self.radius = self:GetAbility():GetSpecialValueFor( "explosion_radius" )
+		self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
+		self.tick = self:GetSpecialValueFor("explosion_interval")
 		
-		self.chillInit = self:GetTalentSpecialValueFor("chill_init")
-		self.chillHit = self:GetTalentSpecialValueFor("chill_hit")
+		self.chillInit = self:GetSpecialValueFor("chill_init")
+		self.chillHit = self:GetSpecialValueFor("chill_hit")
 		if self:GetCaster():HasScepter() then
-			self.chillInit = self:GetTalentSpecialValueFor("scepter_chill_init")
-			self.chillHit = self:GetTalentSpecialValueFor("scepter_chill_hit")
+			self.chillInit = self:GetSpecialValueFor("scepter_chill_init")
+			self.chillHit = self:GetSpecialValueFor("scepter_chill_hit")
 		end
-		if self:GetCaster():HasScepter() then self.damage = self:GetAbility():GetTalentSpecialValueFor( "damage_scepter" ) end
+		if self:GetCaster():HasScepter() then self.damage = self:GetAbility():GetSpecialValueFor( "damage_scepter" ) end
 		self.FXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_snow.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 		ParticleManager:SetParticleControl( self.FXIndex, 1, Vector( self.aura_radius, self.aura_radius, self.aura_radius) )
 
@@ -167,9 +167,9 @@ LinkLuaModifier( "modifier_crystal_maiden_arcane_blizzard_slow_aura", "heroes/he
 modifier_crystal_maiden_arcane_blizzard_slow_aura = class({})
 
 function modifier_crystal_maiden_arcane_blizzard_slow_aura:OnCreated()
-	self.chill = self:GetTalentSpecialValueFor("chill_init")
+	self.chill = self:GetSpecialValueFor("chill_init")
 	if self:GetCaster():HasScepter() then
-		self.chill = self:GetTalentSpecialValueFor("scepter_chill_init")
+		self.chill = self:GetSpecialValueFor("scepter_chill_init")
 	end
 	if IsServer() then
 		self:GetParent():AddChill(self:GetAbility(), self:GetCaster(), self:GetAbility():GetChannelTimeRemaining(), self.chill)

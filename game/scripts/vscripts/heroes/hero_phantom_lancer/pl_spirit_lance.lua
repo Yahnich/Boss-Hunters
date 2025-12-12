@@ -10,7 +10,7 @@ function pl_spirit_lance:IsHiddenWhenStolen()
 end
 
 function pl_spirit_lance:GetCastRange(vLocation, hTarget)
-    return self:GetTalentSpecialValueFor("cast_range")
+    return self:GetSpecialValueFor("cast_range")
 end
 
 function pl_spirit_lance:OnSpellStart()
@@ -40,12 +40,12 @@ function pl_spirit_lance:doProjectileHitStuff(hTarget, vLocation, projectile)
 
 	EmitSoundOn("Hero_PhantomLancer.SpiritLance.Impact", hTarget)
 
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local slow_duration = self:GetTalentSpecialValueFor("slow_duration")
+	local damage = self:GetSpecialValueFor("damage")
+	local slow_duration = self:GetSpecialValueFor("slow_duration")
 
-	local illusion_duration = self:GetTalentSpecialValueFor("illusion_duration")
-	local illusion_in = self:GetTalentSpecialValueFor("illusion_in") - 100
-	local illusion_out = self:GetTalentSpecialValueFor("illusion_out") - 100
+	local illusion_duration = self:GetSpecialValueFor("illusion_duration")
+	local illusion_in = self:GetSpecialValueFor("illusion_in") - 100
+	local illusion_out = self:GetSpecialValueFor("illusion_out") - 100
 
 	hTarget:Paralyze(self, caster, slow_duration)
 

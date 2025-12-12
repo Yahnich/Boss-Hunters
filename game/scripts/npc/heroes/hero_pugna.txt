@@ -15,7 +15,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Pugna.NetherBlast"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -41,28 +41,19 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"delay"							"0.9 0.9 0.9 0.9"
 				"LinkedSpecialBonus"			"special_bonus_unique_pugna_nether_blast_2"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"400"
+			"radius"						"400"
 				"LinkedSpecialBonus"			"special_bonus_unique_pugna_nether_blast_1"
 				"LinkedSpecialBonusOperation" 	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"blast_damage"					"100 175 250 325 400 475 550"
+			"blast_damage"					"100 175 250 325 400 475 550"
 				"LinkedSpecialBonus"			"special_bonus_unique_pugna_nether_blast_1"
 				"LinkedSpecialBonusOperation" 	"SPECIAL_BONUS_MULTIPLY"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
@@ -79,13 +70,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1.5"
-			}
+			"value"						"1.5"
 		}
 	}
 	//=================================================================================================================
@@ -101,18 +88,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-0.9"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stun"						"0.3"
-			}
+			"value"						"-0.9"
+			"stun"						"0.3"
 		}
 	}
 	"pugna_decrepify_bh"
@@ -126,7 +105,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_OTHER"//"DOTA_UNIT_TARGET_CUSTOM" //Awful Valve-hack to let it target Nether Ward and Tombstone
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"pugna_decrepify"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -153,36 +132,16 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_spell_damage_pct_allies"	"-30 -25 -20 -15 -10 -5 0"
+			"bonus_spell_damage_pct_allies"	"-30 -25 -20 -15 -10 -5 0"
 				"LinkedSpecialBonus"			"special_bonus_unique_pugna_decrepify_1"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_movement_speed_allies"	"-30 -25 -20 -15 -10 -5 0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_spell_damage_pct"	"-20 -23 -26 -30 -33 -36 -40"
+			"bonus_movement_speed_allies"	"-30 -25 -20 -15 -10 -5 0"
+			"bonus_spell_damage_pct"	"-20 -23 -26 -30 -33 -36 -40"
 				"LinkedSpecialBonus"		"special_bonus_unique_pugna_decrepify_1"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_movement_speed"		"-20 -23 -26 -30 -33 -36 -40"
-			}			
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tooltip_duration"			"4.0"
+			"bonus_movement_speed"		"-20 -23 -26 -30 -33 -36 -40"			
+			"tooltip_duration"			"4.0"
 				"LinkedSpecialBonus"		"special_bonus_unique_pugna_decrepify_2"
-			}
 		}
 	
 		"precache"
@@ -205,13 +164,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-35"
-			}
+			"value"						"-35"
 		}
 	}
 	//=================================================================================================================
@@ -227,13 +182,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"5"
-			}
+			"value"						"5"
 		}
 	}
 	"pugna_nether_turret"
@@ -247,7 +198,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"pugna_nether_ward"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -273,19 +224,11 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"1600"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"dmg_mult"					"0.6 0.7 0.8 0.9 1.0 1.1 1.2"
+			"radius"					"1600"
+			"dmg_mult"					"0.6 0.7 0.8 0.9 1.0 1.1 1.2"
 				"LinkedSpecialBonus"		"special_bonus_unique_pugna_3"
-			}
 		}
 	
 		"precache"
@@ -312,13 +255,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-15"
-			}
+			"value"						"-15"
 		}
 	}
 	//=================================================================================================================
@@ -334,13 +273,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"25"
-			}
+			"value"						"25"
 		}
 	}
 	"pugna_power_vacuum"
@@ -355,18 +290,10 @@
 		"InnateAbility"					"1"
 		"MaxLevel"						"1"
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"boss_lifesteal"			"25"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"mob_lifesteal"				"5"
-			}
+			"boss_lifesteal"			"25"
+			"mob_lifesteal"				"5"
 		}
 	}
 	"pugna_lifedrain_bh"
@@ -386,7 +313,7 @@
 		"AbilityTextureName"			"pugna_life_drain"
 		"FightRecapLevel"				"1"
 		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -415,39 +342,24 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"health_drain"					"150 225 300 375 450 525"
+			"health_drain"					"150 225 300 375 450 525"
 				"CalculateSpellDamageTooltip"	"1"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"cast_range_tooltip"			"900 950 1000 1050 1100 1150 1200"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"duration_tooltip"				"10"
-			}
+			"cast_range_tooltip"			"900 950 1000 1050 1100 1150 1200"
+			"duration_tooltip"				"10"
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"scepter_cooldown"				"0.0 0.0 0.0"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"tick_rate"						"0.25"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"break_buffer"					"200"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -463,13 +375,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -485,13 +393,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-100"
-			}
+			"value"						"-100"
 		}
 	}
 }

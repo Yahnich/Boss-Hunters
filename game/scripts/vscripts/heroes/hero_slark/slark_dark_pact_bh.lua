@@ -21,8 +21,8 @@ end
 function slark_dark_pact_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local delay = self:GetTalentSpecialValueFor("delay")
-	local duration = self:GetTalentSpecialValueFor("pulse_duration")
+	local delay = self:GetSpecialValueFor("delay")
+	local duration = self:GetSpecialValueFor("pulse_duration")
 	ParticleManager:FireParticle("particles/units/heroes/hero_slark/slark_dark_pact_start.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster, {[1] = "attach_hitloc"})
 	EmitSoundOn("Hero_Slark.DarkPact.PreCast", caster)
 	
@@ -40,9 +40,9 @@ modifier_slark_dark_pact_effect = class({})
 LinkLuaModifier("modifier_slark_dark_pact_effect", "heroes/hero_slark/slark_dark_pact_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_slark_dark_pact_effect:OnCreated()
-	self.rate = self:GetTalentSpecialValueFor("pulse_interval")
-	self.damage = self:GetTalentSpecialValueFor("total_damage")
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.rate = self:GetSpecialValueFor("pulse_interval")
+	self.damage = self:GetSpecialValueFor("total_damage")
+	self.radius = self:GetSpecialValueFor("radius")
 	if IsServer() then
 		local caster = self:GetCaster()
 		self:GetParent():StartGesture( ACT_DOTA_CAST_ABILITY_1 )

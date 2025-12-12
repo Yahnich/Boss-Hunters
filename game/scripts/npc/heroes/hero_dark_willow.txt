@@ -16,7 +16,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"dark_willow_bramble_maze"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -52,44 +52,16 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"125"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"0.5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"15"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"debuff_duration"		"1 1.5 2 2.5 2.5 2.5 2.5"
+			"damage"				"125"
+			"delay"					"0.5"
+			"duration"				"15"
+			"debuff_duration"		"1 1.5 2 2.5 2.5 2.5 2.5"
 				"LinkedSpecialBonus"	"special_bonus_unique_dw_bramble_2"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"latch_range"			"90"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_count"				"8 8 8 8 10 12 14"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"500"
-			}
+			"latch_range"			"90"
+			"max_count"				"8 8 8 8 10 12 14"
+			"radius"				"500"
 			
 		}
 	}
@@ -107,13 +79,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"65"
-			}
+			"value"						"65"
 		}
 	}
 	//=================================================================================================================
@@ -129,18 +97,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"15"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"radius"					"325"
-			}
+			"value"						"15"
+			"radius"					"325"
 		}
 	}
 
@@ -157,7 +117,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"dark_willow_shadow_realm"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -193,33 +153,22 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"attack_range_bonus"			"600"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"max_damage"					"90 180 270 360 450 540 630"
-			}
+			"attack_range_bonus"			"600"
+			"max_damage"					"90 180 270 360 450 540 630"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"5"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"max_delay"						"3.5 3.5 3.5 3.5 3 2.5 2"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"linger_duration"				"3.5"
-			}
 		}
 	}
 
@@ -236,23 +185,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"40"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"20"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tick"						"0.5"
-			}
+			"value"						"40"
+			"damage"					"20"
+			"tick"						"0.5"
 		}
 	}
 	//=================================================================================================================
@@ -268,18 +205,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"400"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"4"
-			}
+			"value"						"400"
+			"duration"					"4"
 		}
 	}
 
@@ -299,7 +228,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"dark_willow_cursed_crown"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -335,28 +264,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"4"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.75 2.25 2.75 3.25 3.25 3.25 3.25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"status_resist"			"0 0 0 0 -10 -20 -30"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"360"
-			}
+			"delay"					"4"
+			"duration"				"1.75 2.25 2.75 3.25 3.25 3.25 3.25"
+			"status_resist"			"0 0 0 0 -10 -20 -30"
+			"radius"				"360"
 		}
 	}
 
@@ -373,13 +286,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -396,13 +305,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -453,28 +358,15 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attack_rate"			"0.25"
-			}
+			"duration"				"5"
+			"attack_rate"			"0.25"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"200"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_mana_cost"		"30"
-			}
+			"scepter_mana_cost"		"30"
 		}
 	}
 
@@ -494,7 +386,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"dark_willow_terrorize"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -531,34 +423,20 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{	
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"2000"
-			}
+			"speed"					"2000"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"400"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4"
-				"LinkedSpecialBonus"		"special_bonus_unique_dark_willow_2"
-			}	
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"return_speed"			"500"
-			}
+			"duration"				"4"
+				"LinkedSpecialBonus"		"special_bonus_unique_dark_willow_2"	
+			"return_speed"			"500"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"starting_height"		"300"
-			}						
+				"starting_height"		"300"						
 		}
 	}
 
@@ -575,13 +453,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -597,13 +471,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 }

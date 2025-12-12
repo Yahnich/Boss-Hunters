@@ -40,13 +40,13 @@ LinkLuaModifier("modifier_crystal_maiden_crystalline_aura_buff", "heroes/hero_cr
 
 function modifier_crystal_maiden_crystalline_aura_buff:OnCreated()
 	if self:GetParent() == self:GetCaster() then
-		self.regen = self:GetTalentSpecialValueFor("mana_regen_self")
-		self.manacost = self:GetTalentSpecialValueFor("manacost_self")
+		self.regen = self:GetSpecialValueFor("mana_regen_self")
+		self.manacost = self:GetSpecialValueFor("manacost_self")
 		self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_crystal_maiden_crystalline_aura_1", "self")
 		self.amp = self:GetCaster():FindTalentValue("special_bonus_unique_crystal_maiden_crystalline_aura_2", "self")
 	else
-		self.regen = self:GetTalentSpecialValueFor("mana_regen")
-		self.manacost = self:GetTalentSpecialValueFor("manacost")
+		self.regen = self:GetSpecialValueFor("mana_regen")
+		self.manacost = self:GetSpecialValueFor("manacost")
 		self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_crystal_maiden_crystalline_aura_1")
 		self.amp = self:GetCaster():FindTalentValue("special_bonus_unique_crystal_maiden_crystalline_aura_2")
 	end
@@ -55,13 +55,13 @@ end
 
 function modifier_crystal_maiden_crystalline_aura_buff:OnIntervalThink()
 	if self:GetParent() == self:GetCaster() then
-		self.regen = self:GetTalentSpecialValueFor("mana_regen_self")
-		self.manacost = self:GetTalentSpecialValueFor("manacost_self")
+		self.regen = self:GetSpecialValueFor("mana_regen_self")
+		self.manacost = self:GetSpecialValueFor("manacost_self")
 		self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_crystal_maiden_crystalline_aura_1", "self")
 		self.amp = self:GetCaster():FindTalentValue("special_bonus_unique_crystal_maiden_crystalline_aura_2", "self")
 	else
-		self.regen = self:GetTalentSpecialValueFor("mana_regen")
-		self.manacost = self:GetTalentSpecialValueFor("manacost")
+		self.regen = self:GetSpecialValueFor("mana_regen")
+		self.manacost = self:GetSpecialValueFor("manacost")
 		self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_crystal_maiden_crystalline_aura_1")
 		self.amp = self:GetCaster():FindTalentValue("special_bonus_unique_crystal_maiden_crystalline_aura_2")
 	end

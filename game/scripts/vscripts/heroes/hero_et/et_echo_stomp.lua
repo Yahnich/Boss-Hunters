@@ -56,9 +56,9 @@ function et_echo_stomp:OnSpellStart()
 
 	EmitSoundOn("Hero_ElderTitan.EchoStomp", caster)
 
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local min_duration = self:GetTalentSpecialValueFor("min_duration")
+	local damage = self:GetSpecialValueFor("damage")
+	local duration = self:GetSpecialValueFor("duration")
+	local min_duration = self:GetSpecialValueFor("min_duration")
 	
 	local talent1 = caster:HasTalent("special_bonus_unique_et_echo_stomp_1")
 	if not caster:HasModifier("modifier_elder_spirit") then
@@ -77,13 +77,13 @@ function et_echo_stomp:OnSpellStart()
    			if caster:HasModifier("modifier_elder_spirit_check") then
    				ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_physical.vpcf", PATTACH_POINT, caster, {[0] = point})
 
-				local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius"), {})
+				local enemies = caster:FindEnemyUnitsInRadius(point, self:GetSpecialValueFor("radius"), {})
 				for _,enemy in pairs(enemies) do
 					if not enemy:TriggerSpellAbsorb(self) then
 						local sleep = self:Sleep(enemy, duration, min_duration)
 						if talent1 then
 							sleep.OnDestroy = function(sleep)
-								local damage = self:GetTalentSpecialValueFor("damage")
+								local damage = self:GetSpecialValueFor("damage")
 								sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
 								sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
 							end
@@ -99,13 +99,13 @@ function et_echo_stomp:OnSpellStart()
    			else
    				ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_physical.vpcf", PATTACH_POINT, caster:GetOwner(), {[0] = point})
    				ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_magical.vpcf", PATTACH_POINT, caster, {[0] = point})
-				local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius"), {})
+				local enemies = caster:FindEnemyUnitsInRadius(point, self:GetSpecialValueFor("radius"), {})
 				for _,enemy in pairs(enemies) do
 					if not enemy:TriggerSpellAbsorb(self) then
 						local sleep = self:Sleep(enemy, duration, min_duration)
 						if talent1 then
 							sleep.OnDestroy = function(sleep)
-								local damage = self:GetTalentSpecialValueFor("damage")
+								local damage = self:GetSpecialValueFor("damage")
 								sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
 								sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
 							end
@@ -123,13 +123,13 @@ function et_echo_stomp:OnSpellStart()
    			ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_physical.vpcf", PATTACH_POINT, caster, {[0] = point})
    			ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_magical.vpcf", PATTACH_POINT, caster, {[0] = point})
 			
-			local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius"), {})
+			local enemies = caster:FindEnemyUnitsInRadius(point, self:GetSpecialValueFor("radius"), {})
 			for _,enemy in pairs(enemies) do
 				if not enemy:TriggerSpellAbsorb(self) then
 					local sleep = self:Sleep(enemy, duration, min_duration)
 					if talent1 then
 						sleep.OnDestroy = function(sleep)
-							local damage = self:GetTalentSpecialValueFor("damage")
+							local damage = self:GetSpecialValueFor("damage")
 							sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
 							sleep:GetAbility():DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
 						end
@@ -147,10 +147,10 @@ function et_echo_stomp:OnSpellStart()
    else
    		ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_magical.vpcf", PATTACH_POINT, caster, {[0] = point})
 
-		local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius"), {})
+		local enemies = caster:FindEnemyUnitsInRadius(point, self:GetSpecialValueFor("radius"), {})
 		for _,enemy in pairs(enemies) do
 			if not enemy:TriggerSpellAbsorb(self) then
-				self:Stun(enemy, self:GetTalentSpecialValueFor("duration"), false)
+				self:Stun(enemy, self:GetSpecialValueFor("duration"), false)
 
 				self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
 

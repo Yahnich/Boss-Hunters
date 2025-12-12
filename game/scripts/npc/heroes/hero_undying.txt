@@ -12,7 +12,7 @@
 		"FightRecapLevel"               "2"
 		"AbilityTextureName"			"undying_decay"
 		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -46,54 +46,34 @@
 			
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"radius"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"325"
-				"LinkedSpecialBonus"			"special_bonus_unique_undying_decay_1"
-				"LinkedSpecialBonusField"		"value2"
+				"value"									"325"
+				"special_bonus_unique_undying_decay_1"	"+75"
 			}
-			"02"
+			"duration"									"45"
+			"damage"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"45"
+				"value"									"80 140 200 260"
+				"special_bonus_unique_undying_decay_1"	"+50%"
 			}
-			"03"
+			"str_per_boss"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"80 140 200 260 320 380 440"
-				"LinkedSpecialBonus"			"special_bonus_unique_undying_decay_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
+				"value"			 						"6"
+				"special_bonus_scepter"					"+4"
 			}
-			"04"
+			"str_per_monster"
 			{
-				"var_type"              		"FIELD_FLOAT"
-				"str_per_boss"			 		"6"
+				"value"									"3"
+				"special_bonus_scepter"					"+2"
 			}
-			"05"
-			{
-				"var_type"              		"FIELD_FLOAT"
-				"str_per_monster"				"3"
-			}
-			"06"
-			{
-				"var_type"              		"FIELD_FLOAT"
-				"str_per_mob"					"1"
-			}
-			"07"
-			{
-				"var_type"              		"FIELD_FLOAT"
-				"scepter_str_per_boss"			"10"
-				"RequiresScepter"				"1"
-			}
-			"08"
-			{
-				"var_type"              		"FIELD_FLOAT"
-				"scepter_str_per_monster"		"6"
-				"RequiresScepter"				"1"
-			}
+			"str_per_mob"								"1"
+			
+			"attack_damage_per_stack"					{"special_bonus_unique_undying_decay_2"	"6"}
+			"attack_range_per_stack"					{"special_bonus_unique_undying_decay_2"	"2"}
+				
 		}
 		
 		// Data driven
@@ -102,60 +82,6 @@
 		{
 			"soundfile"             "sounds/weapons/hero/undying/decay_cast.vsnd"
 			"particle"              "particles/units/heroes/hero_undying/undying_decay.vpcf"       // Attach for core
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_undying_decay_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"50"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value2"					"75"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_undying_decay_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"6"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value2"					"2"
-			}
 		}
 	}
 	"undying_soul_rip_bh"
@@ -169,7 +95,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"undying_soul_rip"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -189,108 +115,38 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"18 14 10 6 6 6 6"
+		"AbilityCooldown"				"18 14 10 6"
 		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_SOUL_RIP"
-		"AbilityManaCost"				"80 80 80 80 90 100 110"		
+		"AbilityManaCost"				"80 90 100 110"		
 		
 		"AbilityCastRange"				"750"
 		"AbilityCastPoint"				"0.35"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"enemy_hp_loss"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"enemy_hp_loss"					"30 50 70 90 120 150 180"
+				"value"							"30 50 70 90"
 				"CalculateSpellDamageTooltip"	"1"
 			}
-			"02"
+			"health_per_unit"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"health_per_unit"				"15 25 35 45 60 75 90"
+				"value"							"15 25 35 45"
 				"CalculateSpellDamageTooltip"	"1"
 			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"mob_bonus_dmg"					"100"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"range"							"1300"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"unit_maximum"					"10"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_undying_soul_rip_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"15"
-			}
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"chance"					"20"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_undying_soul_rip_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value2"					"20"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"damage"					"100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"12"
-			}
+			"mob_bonus_dmg"						"100"
+			"range"								"1300"
+			"unit_maximum"						"10"
+			
+			"zombie_duration"					{"special_bonus_unique_undying_soul_rip_1"	"15"}
+			"zombie_chance"						{"special_bonus_unique_undying_soul_rip_1"	"20"}
+			
+			"strength_effect"					{"special_bonus_unique_undying_soul_rip_2"	"100"}
+			"bonus_attack_speed"				{"special_bonus_unique_undying_soul_rip_2"	"100"}
+			"strength_share"					{"special_bonus_unique_undying_soul_rip_2"	"20"}
+			"buff_duration"						{"special_bonus_unique_undying_soul_rip_2"	"12"}
 		}
 	}
 	"undying_tombstone_bh"
@@ -302,7 +158,7 @@
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
 	    "AbilityTextureName"			"undying_tombstone"
 		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_TOMBSTONE"
-	    "MaxLevel"						"7"
+	    "MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -330,131 +186,35 @@
 	
 	    // Time     
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "85 80 75 70 60 50 40"
+	    "AbilityCooldown"               "70 60 50 40"
 	
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityManaCost"               "120 130 140 150 150 150 150"
+	    "AbilityManaCost"               "120 130 140 150"
 	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilitySpecial"
+	    "AbilityValues"
 	    {
-	        "01"
-	        {
-	            "var_type"                  "FIELD_FLOAT"
-	            "tombstone_duration"		"30"
-	        }
-			"02"
-	        {
-	            "var_type"                  "FIELD_INTEGER"
-	            "tombstone_hp"				"20 24 28 32 32 32 32"
-	        }
-			"03"
-	        {
-	            "var_type"                  "FIELD_INTEGER"
-	            "tombstone_boss_dmg"		"4"
-	        }
-			"04"
-	        {
-	            "var_type"                  "FIELD_INTEGER"
-	            "tombstone_monster_dmg"		"2"
-	        }
-			"05"
-	        {
-	            "var_type"                  "FIELD_INTEGER"
-	            "tombstone_minion_dmg"		"1"
-	        }
-			"06"
-	        {
-	            "var_type"                  "FIELD_INTEGER"
-	            "tombstone_spawn_radius"	"1200"
-	        }
-			"07"
-	        {
-	            "var_type"                  "FIELD_FLOAT"
-	            "tombstone_spawn_interval"	"4 3.6 3.2 2.8 2.8 2.8 2.8"
-	        }
-			"08"
-	        {
-	            "var_type"                  "FIELD_FLOAT"
-	            "zombie_atk_dmg"			"40 50 60 70 70 70 70"
-	        }
-			"09"
-	        {
-	            "var_type"                  "FIELD_INTEGER"
-	            "zombie_hp"					"2"
-	        }
-			"10"
-	        {
-	            "var_type"                  "FIELD_INTEGER"
-	            "zombie_boss_dmg"			"2"
-	        }
-			"11"
-	        {
-	            "var_type"                  "FIELD_INTEGER"
-	            "zombie_dmg"				"1"
-	        }
+	        "tombstone_duration"		"30"
+			"tombstone_hp"				"20 24 28 32"
+			"tombstone_boss_dmg"		"4"
+			"tombstone_monster_dmg"		"2"
+			"tombstone_minion_dmg"		"1"
+			"tombstone_spawn_radius"	"1200"
+			"tombstone_spawn_interval"	"4 3.6 3.2 2.8"
+			"zombie_atk_dmg"			"40 50 60 70"
+			"zombie_hp"					"2"
+			"zombie_boss_dmg"			"2"
+			"zombie_dmg"				"1"
+			
+			"fog_radius"				{"special_bonus_unique_undying_tombstone_1"	"600"}
+			"fog_slow"					{"special_bonus_unique_undying_tombstone_1"	"20"}
+			"fog_blind"					{"special_bonus_unique_undying_tombstone_1"	"50"}
+			
+			"decay_chance"				{"special_bonus_unique_undying_tombstone_2"	"25"}
+			"decay_radius"				{"special_bonus_unique_undying_tombstone_2"	"50"}
 	    }
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_undying_tombstone_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"25"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value2"					"50"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_undying_tombstone_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"600"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"slow"						"20"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"blind"						"50"
-			}
-		}
 	}
 	"undying_deathlust"
 	{
@@ -465,52 +225,20 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"undying_tombstone_zombie_deathstrike"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"						"1"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"slow"					"-7"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"2.5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"health_threshold_pct"	"40"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"linger_duration"		"1.5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_move_speed"		"30"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms_lvlup"		"1"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"50"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_as_lvlup"		"3"
-			}
+			"slow"					"-7"
+			"duration"				"2.5"
+			"health_threshold_pct"	"40"
+			"linger_duration"		"1.5"
+			"bonus_move_speed"		"30"
+			"bonus_ms_lvlup"		"1"
+			"bonus_attack_speed"	"50"
+			"bonus_as_lvlup"		"3"
 		}
 	}
 	//=================================================================================================================
@@ -530,7 +258,7 @@
 		"FightRecapLevel"				"2"
 		"AbilitySound"					"Hero_Undying.FleshGolem"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -556,116 +284,22 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"40 40 40 40 40 60"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"bonus_strength"			"40 40 50 50 60 60"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"bonus_ms"					"30 40 50 60 70 70"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"damage_amp"				"20 25 25 30 30 30"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"debuff_duration"			"6"
-			}
+			"duration"					"40"
+			"bonus_strength"			"40 50 60"
+			"bonus_ms"					"30 40 50"
+			"damage_amp"				"20 25 30"
+			"debuff_duration"			"6"
+			
+			"bonus_armor"				{"special_bonus_unique_undying_flesh_golem_1"	"10"}
+			"bonus_magic_resist"		{"special_bonus_unique_undying_flesh_golem_1"	"25"}
+			"bonus_threat"				{"special_bonus_unique_undying_flesh_golem_1"	"300"}
+			
+			"zombie_duration"			{"special_bonus_unique_undying_flesh_golem_1"	"5"}
 		}
 	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_undying_flesh_golem_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"10"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value2"					"25"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value3"					"300"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_undying_flesh_golem_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"15"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"2"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_undying_flesh_golem_3"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"5"
-			}
-		}
-	}
+	
 	//=================================================================================================================
 	//=================================================================================================================
 	// DEPRECATED
@@ -674,7 +308,7 @@
 	"undying_summon_zombies"
 	{
 	    // General
-	    //-------------------------------------------------------------------------------------------------------------
+	    // -------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             		"ability_lua"
 		"ScriptFile"					"heroes/hero_undying/undying_summon_zombies"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
@@ -684,10 +318,10 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 	    "AbilityTextureName"			"custom/undying_summon_zombies"
 		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_TOMBSTONE"
-	    "MaxLevel"						"7"
+	    "MaxLevel"						"4"
 		
 		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
 			"special_bonus_unique_undying_summon_zombies_1"	"1"
@@ -695,7 +329,7 @@
 		}
 	
 	    // Precache
-	    //-------------------------------------------------------------------------------------------------------------
+	    // -------------------------------------------------------------------------------------------------------------
 	    "precache"
 	    {
 	        "soundfile"     "soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
@@ -706,126 +340,36 @@
 	    }   
 	    
 	    // Casting
-	    //-------------------------------------------------------------------------------------------------------------
+	    // -------------------------------------------------------------------------------------------------------------
 	    "AbilityCastPoint"              "0.3 0.3 0.3 0.3"
 		"AbilityCastRange"				"900"
 	
 	    // Time     
-	    //-------------------------------------------------------------------------------------------------------------
+	    // -------------------------------------------------------------------------------------------------------------
 	    "AbilityCooldown"               "30 30 30 30 27 24 21"
 	
 	    // Cost
-	    //-------------------------------------------------------------------------------------------------------------
+	    // -------------------------------------------------------------------------------------------------------------
 	    "AbilityManaCost"               "85 85 85 85 100 115 130"
 	
 	    // Special
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilitySpecial"
+	    // -------------------------------------------------------------------------------------------------------------
+	    "AbilityValues"
 	    {
-	        "01"
-	        {
-	            "var_type"                  "FIELD_FLOAT"
-	            "zombie_duration"           "12"
-	        }
-			"02"
-	        {
-	            "var_type"                  "FIELD_FLOAT"
-	            "min_slow"					"-1"
-				"LinkedSpecialBonus"		"special_bonus_unique_undying_summon_zombies_1"
-	        }
-			"03"
-	        {
-	            "var_type"                  "FIELD_FLOAT"
-	            "max_slow"         		    "-20 -25 -30 -35 -35 -35 -35"
-				"LinkedSpecialBonus"		"special_bonus_unique_undying_summon_zombies_1"
-				"LinkedSpecialBonusField"	"value2"
-	        }
-			"04"
-	        {
-	            "var_type"                  "FIELD_FLOAT"
-	            "min_dmg"					"-1"
-				"LinkedSpecialBonus"		"special_bonus_unique_undying_summon_zombies_1"
-	        }
-			"05"
-	        {
-	            "var_type"                  "FIELD_FLOAT"
-	            "max_dmg"					"-20 -25 -30 -35 -35 -35 -35"
-	        }
-			"06"
-	        {
-	            "var_type"                  "FIELD_FLOAT"
-	            "damage"					"35 70 105 140 175 210 245"
-	        }
-			"07"
-	        {
-	            "var_type"                  "FIELD_FLOAT"
-	            "minimum_range"         	"900"
-	        }
-			"08"
-	        {
-	            "var_type"                  "FIELD_FLOAT"
-	            "maximum_range"         	"150"
-	        }
+	        "zombie_duration"           "12"
+			"min_slow"					"-1"
+			"max_slow"         		    "-20 -25 -30 -35 -35 -35 -35"
+			"min_dmg"					"-1"
+			"max_dmg"					"-20 -25 -30 -35 -35 -35 -35"
+			"damage"					"35 70 105 140 175 210 245"
+			"minimum_range"         	"900"
+			"maximum_range"         	"150"
 	    }
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_undying_summon_zombies_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-14"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value2"					"-35"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_undying_summon_zombies_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value2"					"1"
-			}
-		}
 	}
 	"undying_the_undying"
 	{
 		// General
-		//-------------------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_undying/undying_the_undying"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -841,34 +385,14 @@
 	        "soundfile"     			"sounds/weapons/hero/undying/decay_cast.vsnd"        
 	    }
 		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_pct"					"35"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"health_pct"					"20"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"boss_duration"					"30"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"mob_duration"					"15"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"900"
-			}
+			"damage_pct"					"35"
+			"health_pct"					"20"
+			"boss_duration"					"30"
+			"mob_duration"					"15"
+			"radius"						"900"
 		}
 	}
 }

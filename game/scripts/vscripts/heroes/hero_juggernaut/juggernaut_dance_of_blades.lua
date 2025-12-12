@@ -4,12 +4,12 @@ function juggernaut_dance_of_blades:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	
 	caster:AddNewModifier(caster, self, "modifier_juggernaut_dance_of_blades", {duration = duration + 0.1})
 	self:Bounce(target)
 	if caster:HasTalent("special_bonus_unique_juggernaut_dance_of_blades_1") then
-		local radius = self:GetTalentSpecialValueFor("radius") + caster:GetAttackRange()
+		local radius = self:GetSpecialValueFor("radius") + caster:GetAttackRange()
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius) ) do
 			if enemy ~= target then
 				self:Bounce(enemy)
@@ -45,14 +45,14 @@ LinkLuaModifier("modifier_juggernaut_dance_of_blades", "heroes/hero_juggernaut/j
 
 function modifier_juggernaut_dance_of_blades:OnCreated()
 	local caster = self:GetCaster()
-	self.bonus_damage = self:GetTalentSpecialValueFor("bonus_damage")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
 	self.cleave = caster:FindTalentValue("special_bonus_unique_juggernaut_dance_of_blades_1")
 	self.talent1 = caster:HasTalent("special_bonus_unique_juggernaut_dance_of_blades_1")
-	self.radius = self:GetTalentSpecialValueFor("radius") + caster:GetAttackRange()
+	self.radius = self:GetSpecialValueFor("radius") + caster:GetAttackRange()
 	self:GetParent():HookInModifier( "GetModifierAreaDamage", self )
 	if IsServer() then
 		caster:RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
-		self.rate = self:GetTalentSpecialValueFor("bounce_rate")
+		self.rate = self:GetSpecialValueFor("bounce_rate")
 		self.tick = caster:GetSecondsPerAttack() / self.rate
 		caster:StartGestureWithPlaybackRate(ACT_DOTA_OVERRIDE_ABILITY_4, 0.5/self.tick)
 		self:StartIntervalThink( self.tick )

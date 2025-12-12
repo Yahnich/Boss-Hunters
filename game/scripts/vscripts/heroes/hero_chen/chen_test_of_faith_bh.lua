@@ -16,8 +16,8 @@ end
 function chen_test_of_faith_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	local minVal = caster:GetLevel() * self:GetTalentSpecialValueFor("damage_min")
-	local maxVal = caster:GetLevel() * self:GetTalentSpecialValueFor("damage_max")
+	local minVal = caster:GetLevel() * self:GetSpecialValueFor("damage_min")
+	local maxVal = caster:GetLevel() * self:GetSpecialValueFor("damage_max")
 
 	EmitSoundOn("Hero_Chen.DivineFavor.Cast", caster)
 	EmitSoundOn("Hero_Chen.DivineFavor.Target", target)

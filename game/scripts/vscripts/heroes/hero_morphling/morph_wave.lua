@@ -26,7 +26,7 @@ function morph_wave:GetManaCost(iLevel)
 end
 
 function morph_wave:GetCastRange(vLocation, hTarget)
-	return self:GetTalentSpecialValueFor("range")
+	return self:GetSpecialValueFor("range")
 end
 
 function morph_wave:OnSpellStart()
@@ -37,9 +37,9 @@ function morph_wave:OnSpellStart()
 
 	local dir = CalculateDirection(point, casterPos)
 	local distance = CalculateDistance(point, casterPos)
-	local speed = self:GetTalentSpecialValueFor("speed")
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local damage = self:GetTalentSpecialValueFor("damage")
+	local speed = self:GetSpecialValueFor("speed")
+	local radius = self:GetSpecialValueFor("radius")
+	local damage = self:GetSpecialValueFor("damage")
 
 	local velocity = dir * speed
 
@@ -56,7 +56,7 @@ function morph_wave:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 
 	if hTarget and not hTarget:TriggerSpellAbsorb(self) then
-		local damage = self:GetTalentSpecialValueFor("damage")
+		local damage = self:GetSpecialValueFor("damage")
 
 		self:DealDamage(caster, hTarget, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 
@@ -74,7 +74,7 @@ function modifier_morph_wave:OnCreated(table)
 
 		self.dir = CalculateDirection(point, casterPos)
 		self.distance = CalculateDistance(point, casterPos)
-		self.speed = self:GetTalentSpecialValueFor("speed") * FrameTime()
+		self.speed = self:GetSpecialValueFor("speed") * FrameTime()
 
 		self.velocity = self.dir * self.speed
 
@@ -91,7 +91,7 @@ function modifier_morph_wave:OnRefresh(table)
 
 		self.dir = CalculateDirection(point, casterPos)
 		self.distance = CalculateDistance(point, casterPos)
-		self.speed = self:GetTalentSpecialValueFor("speed") * FrameTime()
+		self.speed = self:GetSpecialValueFor("speed") * FrameTime()
 
 		self.velocity = self.dir * self.speed
 	end
@@ -109,7 +109,7 @@ function modifier_morph_wave:DoControlledMotion()
 	local ability = self:GetAbility()
 
 	if self.distance > 0 then
-		GridNav:DestroyTreesAroundPoint(parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), false)
+		GridNav:DestroyTreesAroundPoint(parent:GetAbsOrigin(), self:GetSpecialValueFor("radius"), false)
 		parent:SetAbsOrigin(GetGroundPosition(parent:GetAbsOrigin(), parent) + self.velocity)
 
 		self.distance = self.distance - self.speed
@@ -173,7 +173,7 @@ modifier_morph_wave_charges = class({})
 if IsServer() then
     function modifier_morph_wave_charges:Update()
 		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+		self.kv.max_count = self:GetSpecialValueFor("charges")
 
 		if self:GetStackCount() == self.kv.max_count then
 			self:SetDuration(-1, true)
@@ -193,7 +193,7 @@ if IsServer() then
 
     function modifier_morph_wave_charges:OnCreated()
 		kv = {
-			max_count = self:GetTalentSpecialValueFor("charges"),
+			max_count = self:GetSpecialValueFor("charges"),
 			replenish_time = self:GetAbility():GetTrueCooldown()
 		}
         self:SetStackCount(kv.start_count or kv.max_count)
@@ -205,7 +205,7 @@ if IsServer() then
     end
 	
 	function modifier_morph_wave_charges:OnRefresh()
-		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+		self.kv.max_count = self:GetSpecialValueFor("charges")
 		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
         if self:GetStackCount() ~= kv.max_count then
             self:Update()
@@ -223,7 +223,7 @@ if IsServer() then
     function modifier_morph_wave_charges:OnAbilityFullyCast(params)
         if params.unit == self:GetParent() then
 			self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-			self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+			self.kv.max_count = self:GetSpecialValueFor("charges")
 			
             local ability = params.ability
             if params.ability == self:GetAbility() then
@@ -244,7 +244,7 @@ if IsServer() then
 		local caster = self:GetCaster()
 		
 		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+		self.kv.max_count = self:GetSpecialValueFor("charges")
 		
         if stacks < self.kv.max_count then
             self:IncrementStackCount()

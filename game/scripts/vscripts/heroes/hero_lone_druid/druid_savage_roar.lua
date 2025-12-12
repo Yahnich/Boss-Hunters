@@ -9,14 +9,14 @@ function druid_savage_roar:IsHiddenWhenStolen()
 end
 
 function druid_savage_roar:GetCastRange(vLocation, hTarget)
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function druid_savage_roar:OnSpellStart()
 	local caster = self:GetCaster()
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("duration")
+	local damage = self:GetSpecialValueFor("damage")
+	local radius = self:GetSpecialValueFor("radius")
 	local talent2 = caster:HasTalent("special_bonus_unique_druid_savage_roar_2")
 	local talent1 = caster:HasTalent("special_bonus_unique_druid_savage_roar_1")
 	local minionMultiplier = caster:FindTalentValue("special_bonus_unique_druid_savage_roar_2")

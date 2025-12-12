@@ -24,11 +24,11 @@ function vengefulspirit_haunt:OnSpellStart()
 		FindClearSpaceForUnit( caster, position, true )
 	end
 	
-	caster:AddNewModifier( caster, self, "modifier_vengefulspirit_haunt", {duration = self:GetTalentSpecialValueFor("duration")} )
+	caster:AddNewModifier( caster, self, "modifier_vengefulspirit_haunt", {duration = self:GetSpecialValueFor("duration")} )
 	
 	if caster:HasScepter() then
-		local scepter_stun = self:GetTalentSpecialValueFor("scepter_stun")
-		local radius = self:GetTalentSpecialValueFor("effect_radius") 
+		local scepter_stun = self:GetSpecialValueFor("scepter_stun")
+		local radius = self:GetSpecialValueFor("effect_radius") 
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
 			self:Stun(enemy, scepter_stun)
 		end
@@ -70,8 +70,8 @@ function vengefulspirit_haunt:OnProjectileHit(target, position)
 	if target ~= nil and not target:TriggerSpellAbsorb( self ) then
 		local caster = self:GetCaster()
 		EmitSoundOn("Hero_Bane.Nightmare.End", target)
-		target:AddNewModifier(self:GetCaster(), self, "modifier_vengefulspirit_haunt_debuff", {Duration = self:GetTalentSpecialValueFor("debuff_duration")})
-		self:DealDamage( caster, target, self:GetTalentSpecialValueFor("phantasm_damage") )
+		target:AddNewModifier(self:GetCaster(), self, "modifier_vengefulspirit_haunt_debuff", {Duration = self:GetSpecialValueFor("debuff_duration")})
+		self:DealDamage( caster, target, self:GetSpecialValueFor("phantasm_damage") )
 	end
 end
 
@@ -82,8 +82,8 @@ function modifier_vengefulspirit_haunt:OnCreated(table)
 end
 
 function modifier_vengefulspirit_haunt:OnRefresh(table)
-	self.radius = self:GetTalentSpecialValueFor("effect_radius")
-	self.tick_rate = self:GetTalentSpecialValueFor("phantasm_rate")
+	self.radius = self:GetSpecialValueFor("effect_radius")
+	self.tick_rate = self:GetSpecialValueFor("phantasm_rate")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_vengefulspirit_haunt_2")
 	self.talent2CDR = -self:GetCaster():FindTalentValue("special_bonus_unique_vengefulspirit_haunt_2")
 	if IsServer() then
@@ -110,8 +110,8 @@ function modifier_vengefulspirit_haunt_debuff:OnCreated()
 end
 
 function modifier_vengefulspirit_haunt_debuff:OnRefresh()
-	self.spell_amp = -self:GetTalentSpecialValueFor("spell_damage_reduction")
-	self.attack_dmg = -self:GetTalentSpecialValueFor("attack_damage_reduction")
+	self.spell_amp = -self:GetSpecialValueFor("spell_damage_reduction")
+	self.attack_dmg = -self:GetSpecialValueFor("attack_damage_reduction")
 end
 
 function modifier_vengefulspirit_haunt_debuff:OnDestroy()
@@ -134,7 +134,7 @@ end
 
 function modifier_vengefulspirit_haunt_debuff:OnDeath(params)
 	if params.unit == self:GetParent() then
-		self:GetAbility():LaunchPhantasms( self:GetTalentSpecialValueFor("effect_radius"), self:GetParent() )
+		self:GetAbility():LaunchPhantasms( self:GetSpecialValueFor("effect_radius"), self:GetParent() )
 	end
 end
 

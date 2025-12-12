@@ -10,7 +10,7 @@ function naga_siren_song_of_the_siren_bh:GetAbilityTextureName()
 end
 
 function naga_siren_song_of_the_siren_bh:GetCastRange(target, position)
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function naga_siren_song_of_the_siren_bh:GetManaCost( iLvl )
@@ -32,7 +32,7 @@ end
 function naga_siren_song_of_the_siren_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	if not caster:HasModifier("modifier_naga_siren_song_of_the_siren_song") then
-		caster:AddNewModifier(caster, self, "modifier_naga_siren_song_of_the_siren_song", {duration = self:GetTalentSpecialValueFor("duration")})
+		caster:AddNewModifier(caster, self, "modifier_naga_siren_song_of_the_siren_song", {duration = self:GetSpecialValueFor("duration")})
 		self:EndCooldown()
 		ParticleManager:FireParticle("particles/units/heroes/hero_siren/naga_siren_siren_song_cast.vpcf", PATTACH_POINT_FOLLOW, caster)
 	else
@@ -44,7 +44,7 @@ modifier_naga_siren_song_of_the_siren_song = class({})
 LinkLuaModifier("modifier_naga_siren_song_of_the_siren_song", "heroes/hero_naga_siren/naga_siren_song_of_the_siren_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_naga_siren_song_of_the_siren_song:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 	if IsServer() then
 		self:GetParent():EmitSound("Hero_NagaSiren.SongOfTheSiren")
 		if self:GetCaster():HasTalent("special_bonus_unique_naga_siren_song_of_the_siren_2") then
@@ -55,7 +55,7 @@ function modifier_naga_siren_song_of_the_siren_song:OnCreated()
 end
 
 function modifier_naga_siren_song_of_the_siren_song:OnRefresh()
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_naga_siren_song_of_the_siren_song:OnIntervalThink()

@@ -3,13 +3,13 @@ troll_warlord_axe_throw = class({})
 function troll_warlord_axe_throw:GetCooldown( iLvl )
 	local cd = self.BaseClass.GetCooldown( self, iLvl )
 	if self:GetCaster():HasScepter() then
-		cd = cd + self:GetTalentSpecialValueFor("scepter_cdr")
+		cd = cd + self:GetSpecialValueFor("scepter_cdr")
 	end
 	return cd
 end
 
 function troll_warlord_axe_throw:GetCastRange( target, position )
-	return self:GetTalentSpecialValueFor("axe_range")
+	return self:GetSpecialValueFor("axe_range")
 end
 
 function troll_warlord_axe_throw:GetManaCost( iLvl )
@@ -40,11 +40,11 @@ function troll_warlord_axe_throw:OnSpellStart()
 	local initPos = self:GetCursorPosition()
 	local direction = CalculateDirection( initPos , caster )
 	
-	local axes = self:GetTalentSpecialValueFor("axe_count")
-	local speed = self:GetTalentSpecialValueFor("axe_speed")
+	local axes = self:GetSpecialValueFor("axe_count")
+	local speed = self:GetSpecialValueFor("axe_speed")
 	local distance = self:GetTrueCastRange( )
-	local width = self:GetTalentSpecialValueFor("axe_width")
-	local angle = self:GetTalentSpecialValueFor("axe_spread") / 2
+	local width = self:GetSpecialValueFor("axe_width")
+	local angle = self:GetSpecialValueFor("axe_spread") / 2
 	
 	self.castIndex = (self.castIndex or 0) + 1
 	if self.castIndex > 10 then
@@ -70,9 +70,9 @@ function troll_warlord_axe_throw:OnSpellStart()
 end
 
 function troll_warlord_axe_throw:AxeThrow(direction, fSpeed, fDistance, fWidth)
-	local speed = fSpeed or self:GetTalentSpecialValueFor("axe_speed")
+	local speed = fSpeed or self:GetSpecialValueFor("axe_speed")
 	local distance = fDistance or self:GetTrueCastRange( )
-	local width = fWidth or self:GetTalentSpecialValueFor("axe_width")
+	local width = fWidth or self:GetSpecialValueFor("axe_width")
 	return self:FireLinearProjectile("particles/units/heroes/hero_troll_warlord/troll_warlord_whirling_axe_ranged.vpcf", direction * speed, distance, width, nil, false, true, width)
 end
 
@@ -80,8 +80,8 @@ function troll_warlord_axe_throw:OnProjectileHitHandle( target, position, projID
 	if target and not target:TriggerSpellAbsorb( self ) then
 		local caster = self:GetCaster()
 		
-		local damage = self:GetTalentSpecialValueFor("axe_damage")
-		local slowDur = self:GetTalentSpecialValueFor("axe_slow_duration")
+		local damage = self:GetSpecialValueFor("axe_damage")
+		local slowDur = self:GetSpecialValueFor("axe_slow_duration")
 		if not self.axes[projID] or not self.casts[self.axes[projID]][target] then
 			self:DealDamage( caster, target, damage )
 			target:AddNewModifier( caster, self, "modifier_troll_warlord_axe_throw", {duration = slowDur})
@@ -98,11 +98,11 @@ modifier_troll_warlord_axe_throw = class({})
 LinkLuaModifier( "modifier_troll_warlord_axe_throw", "heroes/hero_troll_warlord/troll_warlord_axe_throw", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_troll_warlord_axe_throw:OnCreated()
-	self.slow = self:GetTalentSpecialValueFor("movement_speed") * (-1)
+	self.slow = self:GetSpecialValueFor("movement_speed") * (-1)
 end
 
 function modifier_troll_warlord_axe_throw:OnRefresh()
-	self.slow = self:GetTalentSpecialValueFor("movement_speed") * (-1)
+	self.slow = self:GetSpecialValueFor("movement_speed") * (-1)
 end
 
 function modifier_troll_warlord_axe_throw:DeclareFunctions()

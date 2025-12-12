@@ -4,7 +4,7 @@ function razor_plasma_field_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	EmitSoundOn("Ability.PlasmaField", caster)
 	caster:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
-	local duration = self:GetTalentSpecialValueFor("radius")/self:GetTalentSpecialValueFor("speed")
+	local duration = self:GetSpecialValueFor("radius")/self:GetSpecialValueFor("speed")
 	caster:AddNewModifier(caster, self, "modifier_razor_plasma_field_bh", {Duration = duration*2})
 end
 
@@ -12,12 +12,12 @@ modifier_razor_plasma_field_attackspeed = class({})
 LinkLuaModifier("modifier_razor_plasma_field_attackspeed", "heroes/hero_razor/razor_plasma_field_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_razor_plasma_field_attackspeed:OnCreated()
-	self.attackspeed = self:GetTalentSpecialValueFor("attack_speed")
+	self.attackspeed = self:GetSpecialValueFor("attack_speed")
 	self.movespeed = self:GetCaster():FindTalentValue("special_bonus_unique_razor_plasma_field_bh_1", "value2")
 end
 
 function modifier_razor_plasma_field_attackspeed:OnRefresh()
-	self.attackspeed = self:GetTalentSpecialValueFor("attack_speed")
+	self.attackspeed = self:GetSpecialValueFor("attack_speed")
 	self.movespeed = self:GetCaster():FindTalentValue("special_bonus_unique_razor_plasma_field_bh_1", "value2")
 end
 
@@ -40,15 +40,15 @@ function modifier_razor_plasma_field_bh:OnCreated(table)
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
 		local currentRadius = 0
-		local maxRadius = self:GetTalentSpecialValueFor("radius")
-		local speed = self:GetTalentSpecialValueFor("speed")
-		local damage = self:GetTalentSpecialValueFor("damage")
+		local maxRadius = self:GetSpecialValueFor("radius")
+		local speed = self:GetSpecialValueFor("speed")
+		local damage = self:GetSpecialValueFor("damage")
 		local talent2 = caster:HasTalent("special_bonus_unique_razor_plasma_field_bh_2")
 		
 		
-		local attackspeed = caster:AddNewModifier(caster, ability, "modifier_razor_plasma_field_attackspeed", {Duration = self:GetTalentSpecialValueFor("duration")})
-		local duration_increase = self:GetTalentSpecialValueFor("duration_increase")
-		local minion_increase = self:GetTalentSpecialValueFor("duration_minion")
+		local attackspeed = caster:AddNewModifier(caster, ability, "modifier_razor_plasma_field_attackspeed", {Duration = self:GetSpecialValueFor("duration")})
+		local duration_increase = self:GetSpecialValueFor("duration_increase")
+		local minion_increase = self:GetSpecialValueFor("duration_minion")
 
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_razor/razor_plasmafield.vpcf", PATTACH_POINT_FOLLOW, caster)
 					ParticleManager:SetParticleControl(nfx, 0, caster:GetAbsOrigin())

@@ -9,7 +9,7 @@ function witch_doctor_voodoo_restoration_bh:GetAbilityTextureName()
 end
 
 function witch_doctor_voodoo_restoration_bh:GetCastRange()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function witch_doctor_voodoo_restoration_bh:GetManaCost(iLvl)
@@ -64,9 +64,9 @@ modifier_witch_doctor_voodoo_restoration_bh_handler = class(toggleModifierBaseCl
 LinkLuaModifier("modifier_witch_doctor_voodoo_restoration_bh_handler", "heroes/hero_witch_doctor/witch_doctor_voodoo_restoration_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_witch_doctor_voodoo_restoration_bh_handler:OnCreated()
-	self.interval = self:GetAbility():GetTalentSpecialValueFor("tick_interval")
-	self.manaCost = self:GetAbility():GetTalentSpecialValueFor("mana_per_second") * self.interval
-	self.radius = self:GetAbility():GetTalentSpecialValueFor("radius")
+	self.interval = self:GetAbility():GetSpecialValueFor("tick_interval")
+	self.manaCost = self:GetAbility():GetSpecialValueFor("mana_per_second") * self.interval
+	self.radius = self:GetAbility():GetSpecialValueFor("radius")
 	
 	if IsServer() then
 		local mainParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_witchdoctor/witchdoctor_voodoo_restoration.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
@@ -132,9 +132,9 @@ function modifier_witch_doctor_voodoo_restoration_bh_heal:OnCreated()
 end
 
 function modifier_witch_doctor_voodoo_restoration_bh_heal:OnRefresh()
-	self.interval = self:GetAbility():GetTalentSpecialValueFor("tick_interval")
-	self.heal = ( self:GetAbility():GetTalentSpecialValueFor("heal") ) * self.interval
-	self.bonusHeal = self.heal * self:GetAbility():GetTalentSpecialValueFor("bonus_damage") / 100
+	self.interval = self:GetAbility():GetSpecialValueFor("tick_interval")
+	self.heal = ( self:GetAbility():GetSpecialValueFor("heal") ) * self.interval
+	self.bonusHeal = self.heal * self:GetAbility():GetSpecialValueFor("bonus_damage") / 100
 	if IsServer() then
 		self.modifier = self:GetCaster():FindModifierByName("modifier_witch_doctor_voodoo_restoration_bh_handler")
 		self.lastUnitCount = math.max(self.modifier:GetStackCount(), 1)
@@ -160,9 +160,9 @@ modifier_witch_doctor_voodoo_restoration_curse_bh_handler = class(toggleModifier
 LinkLuaModifier("modifier_witch_doctor_voodoo_restoration_curse_bh_handler", "heroes/hero_witch_doctor/witch_doctor_voodoo_restoration_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_witch_doctor_voodoo_restoration_curse_bh_handler:OnCreated()
-	self.interval = self:GetAbility():GetTalentSpecialValueFor("tick_interval")
-	self.manaCost = self:GetAbility():GetTalentSpecialValueFor("mana_per_second") * self.interval
-	self.radius = self:GetAbility():GetTalentSpecialValueFor("radius")
+	self.interval = self:GetAbility():GetSpecialValueFor("tick_interval")
+	self.manaCost = self:GetAbility():GetSpecialValueFor("mana_per_second") * self.interval
+	self.radius = self:GetAbility():GetSpecialValueFor("radius")
 	
 	if IsServer() then
 		local mainParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_witchdoctor/witchdoctor_voodoo_curse.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
@@ -232,9 +232,9 @@ function modifier_witch_doctor_voodoo_restoration_bh_curse:OnCreated()
 end
 
 function modifier_witch_doctor_voodoo_restoration_bh_curse:OnRefresh()
-	self.interval = self:GetAbility():GetTalentSpecialValueFor("tick_interval")
-	self.damage = ( self:GetAbility():GetTalentSpecialValueFor("damage") ) * self.interval
-	self.bonusDamage = self.damage * self:GetAbility():GetTalentSpecialValueFor("bonus_damage") / 100
+	self.interval = self:GetAbility():GetSpecialValueFor("tick_interval")
+	self.damage = ( self:GetAbility():GetSpecialValueFor("damage") ) * self.interval
+	self.bonusDamage = self.damage * self:GetAbility():GetSpecialValueFor("bonus_damage") / 100
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_witch_doctor_voodoo_restoration_2")
 	self.talentDmg = self:GetCaster():FindTalentValue("special_bonus_unique_witch_doctor_voodoo_restoration_2")
 	self.talentManaCost = self:GetCaster():FindTalentValue("special_bonus_unique_witch_doctor_voodoo_restoration_2", "cost")

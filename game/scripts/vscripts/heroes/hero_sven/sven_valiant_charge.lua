@@ -4,7 +4,7 @@ function sven_valiant_charge:GetCastRange(target, position)
 	if IsClient() then
 		return 0
 	elseif IsServer() then
-		return self:GetTalentSpecialValueFor("distance")
+		return self:GetSpecialValueFor("distance")
 	end
 end
 
@@ -22,7 +22,7 @@ function sven_valiant_charge:OnSpellStart()
 	
 	caster:EmitSound("Hero_Sven.WarCry.Signet")
 	caster:MoveToPosition( position )
-	Timers:CreateTimer( function() caster:AddNewModifier(caster, self, "modifier_sven_valiant_charge", {duration = self:GetTalentSpecialValueFor("max_duration")}) end )
+	Timers:CreateTimer( function() caster:AddNewModifier(caster, self, "modifier_sven_valiant_charge", {duration = self:GetSpecialValueFor("max_duration")}) end )
 end
 
 modifier_sven_valiant_charge = class({})
@@ -36,10 +36,10 @@ function modifier_sven_valiant_charge:OnCreated()
 end
 
 function modifier_sven_valiant_charge:OnRefresh()
-	self.movespeed = self:GetParent():GetIdealSpeedNoSlows() * self:GetTalentSpecialValueFor("movespeed") / 100
-	self.damage = self:GetTalentSpecialValueFor("armor_damage")
-	self.knockback = self:GetTalentSpecialValueFor("knockback")
-	self.daze_duration = self:GetTalentSpecialValueFor("daze_duration")
+	self.movespeed = self:GetParent():GetIdealSpeedNoSlows() * self:GetSpecialValueFor("movespeed") / 100
+	self.damage = self:GetSpecialValueFor("armor_damage")
+	self.knockback = self:GetSpecialValueFor("knockback")
+	self.daze_duration = self:GetSpecialValueFor("daze_duration")
 	if IsServer() then
 		local parent = self:GetParent()
 		self.targets = {}

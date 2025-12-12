@@ -15,7 +15,7 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Slark.DarkPact.Cast"
 		"AbilityTextureName"			"slark_dark_pact"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -46,43 +46,21 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"1.5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"pulse_duration"		"1.0"
-			}
+			"delay"					"1.5"
+			"pulse_duration"		"1.0"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"325"
-			}	
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"total_damage"			"75 150 225 300 375 450 525"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"total_pulses"			"10"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"pulse_interval"		"0.1"
-			}	
+				"radius"				"325"	
+			"total_damage"			"75 150 225 300 375 450 525"
+			"total_pulses"			"10"
+			"pulse_interval"		"0.1"	
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"self_damage"			"50"
-			}		
+				"self_damage"			"50"		
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
@@ -100,13 +78,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -122,13 +96,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1.6"
-			}
+			"value"						"1.6"
 		}
 	}
 
@@ -148,7 +118,7 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Slark.Pounce.Cast"
 		"AbilityTextureName"			"slark_pounce"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -176,32 +146,19 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"pounce_distance"				"700"
+			"pounce_distance"				"700"
 				"LinkedSpecialBonus"			"special_bonus_unique_slark_pounce_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"pounce_speed"					"933.33"
+			"pounce_speed"					"933.33"
 				"LinkedSpecialBonus"			"special_bonus_unique_slark_pounce_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"pounce_radius"					"95"
-			}
+			"pounce_radius"					"95"
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"leash_duration"				"2.5 2.5 2.5 2.5 2.75 3.0 3.25"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -219,13 +176,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"100"
-			}
+			"value"						"100"
 		}
 	}
 	//=================================================================================================================
@@ -241,13 +194,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -264,7 +213,7 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Slark.Pounce.Cast"
 		"AbilityTextureName"			"slark_depth_shroud"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -291,7 +240,7 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
@@ -299,14 +248,9 @@
 				"duration"						"1.5 2.0 2.5 3.0 3.0 3.0 3.0"
 				"LinkedSpecialBonus"			"special_bonus_unique_slark_depth_shroud_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"300"
+			"radius"						"300"
 				"LinkedSpecialBonus"			"special_bonus_unique_slark_depth_shroud_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -322,18 +266,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"10"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value2"					"150"
-			}
+			"value"						"10"
+			"value2"					"150"
 		}
 	}
 	//=================================================================================================================
@@ -349,13 +285,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -384,39 +316,18 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"agi_gain"						"1"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"ad_loss"						"-1.5"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"as_loss"						"-1"
+			"agi_gain"						"1"
+			"ad_loss"						"-1.5"
+			"as_loss"						"-1"
 				
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"hp_loss"						"-20"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"perma_agi"						"1"
-			}
+			"hp_loss"						"-20"
+			"perma_agi"						"1"
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"boss_agi"						"3"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -434,13 +345,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -456,13 +363,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"30"
-			}
+			"value"						"30"
 		}
 	}
 	
@@ -504,7 +407,7 @@
 		"AbilitySound"					"Hero_Slark.ShadowDance"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityTextureName"			"slark_shadow_dance"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -524,35 +427,15 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"4.0 4.0 4.25 4.25 4.5 4.5"
+			"duration"					"4.0 4.0 4.25 4.25 4.5 4.5"
 				"LinkedSpecialBonus"		"special_bonus_unique_slark_shadow_dance_2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_movement_speed"		"24 36 36 48 48 60"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_regen_pct"			"5 6 6 7 7 8"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"search_radius"				"625"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"disable_time"				"2"
-			}
+			"bonus_movement_speed"		"24 36 36 48 48 60"
+			"bonus_regen_pct"			"5 6 6 7 7 8"
+"search_radius"				"625"
+			"disable_time"				"2"
 		}
 	}
 	//=================================================================================================================
@@ -569,13 +452,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -592,18 +471,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"cd"						"-10"
-			}
+			"value"						"2"
+			"cd"						"-10"
 		}
 	}
 }

@@ -9,7 +9,7 @@ function juggernaut_momentum_strike:GetBehavior()
 end
 
 function juggernaut_momentum_strike:GetCastRange()
-	return self:GetTalentSpecialValueFor("jump_distance")
+	return self:GetSpecialValueFor("jump_distance")
 end
 	
 function juggernaut_momentum_strike:GetCooldown()
@@ -25,7 +25,7 @@ end
 function juggernaut_momentum_strike:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
-	local speed = self:GetTalentSpecialValueFor("jump_speed")
+	local speed = self:GetSpecialValueFor("jump_speed")
 	local distance = CalculateDistance( caster, position )
 	
 	caster:AddNewModifier( caster, self, "modifier_juggernaut_blade_dance_movement", {duration = distance / speed} )
@@ -54,7 +54,7 @@ if IsServer() then
 		self.endPos = self:GetAbility():GetCursorPosition()
 		self.distance = CalculateDistance(parent, self.endPos)
 		self.direction = CalculateDirection( self.endPos, parent )
-		self.speed = self:GetTalentSpecialValueFor("jump_speed") * FrameTime()
+		self.speed = self:GetSpecialValueFor("jump_speed") * FrameTime()
 			
 		
 		self:StartMotionController()
@@ -108,9 +108,9 @@ function modifier_juggernaut_momentum_strike_passive:OnCreated()
 end
 
 function modifier_juggernaut_momentum_strike_passive:OnRefresh()
-	self.crit_damage = self:GetTalentSpecialValueFor("critical_bonus")
-	self.crit_chance = self:GetTalentSpecialValueFor("critical_chance")
-	self.scepter_cdr = self:GetTalentSpecialValueFor("scepter_cdr_on_hit")
+	self.crit_damage = self:GetSpecialValueFor("critical_bonus")
+	self.crit_chance = self:GetSpecialValueFor("critical_chance")
+	self.scepter_cdr = self:GetSpecialValueFor("scepter_cdr_on_hit")
 	if IsServer() then
 		self:GetParent():HookInModifier("GetModifierCriticalDamage", self)
 	end
@@ -155,12 +155,12 @@ LinkLuaModifier("modifier_juggernaut_momentum_strike_momentum", "heroes/hero_jug
 
 if IsServer() then
 	function modifier_juggernaut_momentum_strike_momentum:OnCreated()
-		self.max = self:GetTalentSpecialValueFor("maximum_charges")
+		self.max = self:GetSpecialValueFor("maximum_charges")
 		self:SetStackCount(1)
 	end
 
 	function modifier_juggernaut_momentum_strike_momentum:OnRefresh()
-		self.max = self:GetTalentSpecialValueFor("maximum_charges")
+		self.max = self:GetSpecialValueFor("maximum_charges")
 		if self:GetStackCount() < self.max then self:IncrementStackCount() end
 	end
 end

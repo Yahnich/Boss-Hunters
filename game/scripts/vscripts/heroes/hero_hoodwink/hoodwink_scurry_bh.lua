@@ -23,7 +23,7 @@ end
 function hoodwink_scurry_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	caster:AddNewModifier( caster, self, "modifier_hoodwink_scurry_bh_active", {duration = duration} )
 	if caster:HasTalent("special_bonus_unique_hoodwink_scurry_2") then
 		local illusions = caster:ConjureImage( {outgoing_damage = -100, incoming_damage = 9999}, duration, caster, 1 )
@@ -35,8 +35,8 @@ modifier_hoodwink_scurry_bh_active = class({})
 LinkLuaModifier("modifier_hoodwink_scurry_bh_active", "heroes/hero_hoodwink/hoodwink_scurry_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_hoodwink_scurry_bh_active:OnCreated()
-	self.movespeed = self:GetTalentSpecialValueFor("movement_speed_pct")
-	self.evasion = self:GetTalentSpecialValueFor("evasion")
+	self.movespeed = self:GetSpecialValueFor("movement_speed_pct")
+	self.evasion = self:GetSpecialValueFor("evasion")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_hoodwink_scurry_1")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_hoodwink_scurry_2") and not self:GetParent():IsIllusion()
 	if self.talent1 and IsServer() then
@@ -87,7 +87,7 @@ function modifier_hoodwink_scurry_bh_active:OnDeath(params)
 	if params.unit == self:GetParent() then
 		local bushwack = self:GetParent():FindAbilityByName("hoodwink_bushwhack_bh")
 		if bushwack and bushwack:GetLevel() >= 1 then
-			local radius = bushwack:GetTalentSpecialValueFor("trap_radius")
+			local radius = bushwack:GetSpecialValueFor("trap_radius")
 			local checkDist = radius * 2
 			local treePos
 			local nearestTrees = GridNav:GetAllTreesAroundPoint( params.attacker:GetAbsOrigin(), checkDist*2, true )

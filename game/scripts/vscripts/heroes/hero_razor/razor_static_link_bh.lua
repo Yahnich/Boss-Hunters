@@ -4,7 +4,7 @@ LinkLuaModifier("modifier_razor_static_link_bh_enemy", "heroes/hero_razor/razor_
 LinkLuaModifier("modifier_razor_static_link_bh_buff", "heroes/hero_razor/razor_static_link_bh", LUA_MODIFIER_MOTION_NONE)
 
 function razor_static_link_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("link_radius")
+	return self:GetSpecialValueFor("link_radius")
 end
 
 function razor_static_link_bh:OnSpellStart()
@@ -15,11 +15,11 @@ function razor_static_link_bh:OnSpellStart()
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_razor/razor_static_link.vpcf", PATTACH_POINT_FOLLOW, caster)
 					ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT_FOLLOW, "attach_static", caster:GetAbsOrigin(), true)
 					ParticleManager:SetParticleControlEnt(nfx, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
-	local main = target:AddNewModifier(caster, self, "modifier_razor_static_link_bh", {Duration = self:GetTalentSpecialValueFor("link_duration"), target = target:entindex()})
+	local main = target:AddNewModifier(caster, self, "modifier_razor_static_link_bh", {Duration = self:GetSpecialValueFor("link_duration"), target = target:entindex()})
 	main:AttachEffect(nfx)
-	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), self:GetTalentSpecialValueFor("link_radius") ) ) do
+	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), self:GetSpecialValueFor("link_radius") ) ) do
 		if enemy ~= target then
-			local secondary = enemy:AddNewModifier(caster, self, "modifier_razor_static_link_bh", {Duration = self:GetTalentSpecialValueFor("link_duration"), target = target:entindex()})
+			local secondary = enemy:AddNewModifier(caster, self, "modifier_razor_static_link_bh", {Duration = self:GetSpecialValueFor("link_duration"), target = target:entindex()})
 			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_razor/razor_static_link.vpcf", PATTACH_POINT_FOLLOW, target)
 						ParticleManager:SetParticleControlEnt(nfx, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 						ParticleManager:SetParticleControlEnt(nfx, 1, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
@@ -33,11 +33,11 @@ function modifier_razor_static_link_bh:OnCreated(kv)
 	if IsServer() then
 		local caster = self:GetCaster()
 		self.target = EntIndexToHScript( tonumber(kv.target) )
-		self.duration = self:GetTalentSpecialValueFor("buff_duration")
-		self.drain = self:GetTalentSpecialValueFor("drain_rate")
-		self.buffer = self:GetTalentSpecialValueFor("buffer_range")
-		self.link_radius = self:GetTalentSpecialValueFor("link_radius")
-		self.split = self:GetTalentSpecialValueFor("link_damage") / 100
+		self.duration = self:GetSpecialValueFor("buff_duration")
+		self.drain = self:GetSpecialValueFor("drain_rate")
+		self.buffer = self:GetSpecialValueFor("buffer_range")
+		self.link_radius = self:GetSpecialValueFor("link_radius")
+		self.split = self:GetSpecialValueFor("link_damage") / 100
 		self.talent2 = caster:HasTalent("special_bonus_unique_razor_static_link_bh_2")
 		self.talent2Dmg = caster:FindTalentValue("special_bonus_unique_razor_static_link_bh_2") / 100
 		if self:GetParent() == self.target then

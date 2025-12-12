@@ -14,7 +14,7 @@ function zeus_nimbus_storm:OnSpellStart()
 	local point = self:GetCursorPosition()
 
 	EmitSoundOn("Hero_Zuus.Cloud.Cast", caster)
-	local cloud = caster:CreateSummon("npc_dota_zeus_cloud", point, self:GetTalentSpecialValueFor("duration"))
+	local cloud = caster:CreateSummon("npc_dota_zeus_cloud", point, self:GetSpecialValueFor("duration"))
 	cloud:AddNewModifier(caster, self, "modifier_zeus_nimbus_storm", {})
 end
 
@@ -23,9 +23,9 @@ function modifier_zeus_nimbus_storm:OnCreated(table)
 	if IsServer() then
 		local caster = self:GetCaster()
 		local cloud = self:GetParent()
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local radius = self:GetSpecialValueFor("radius")
 		
-		self.damage = self:GetCaster():FindAbilityByName("zeus_thunder_bolt"):GetTalentSpecialValueFor("damage")
+		self.damage = self:GetCaster():FindAbilityByName("zeus_thunder_bolt"):GetSpecialValueFor("damage")
 		self.radius = radius
 		self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_zeus_nimbus_storm_2")
 		
@@ -36,7 +36,7 @@ function modifier_zeus_nimbus_storm:OnCreated(table)
 		ParticleManager:SetParticleControl(nfx, 5, cloud:GetAbsOrigin())
 		self:AttachEffect(nfx)
 
-		self:StartIntervalThink(self:GetTalentSpecialValueFor("bolt_interval"))
+		self:StartIntervalThink(self:GetSpecialValueFor("bolt_interval"))
 		self:OnIntervalThink()
 	end
 end

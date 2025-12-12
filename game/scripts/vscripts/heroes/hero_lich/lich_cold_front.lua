@@ -9,11 +9,11 @@ modifier_lich_cold_front = class({})
 LinkLuaModifier("modifier_lich_cold_front", "heroes/hero_lich/lich_cold_front", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_lich_cold_front:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_lich_cold_front:OnRefresh()
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_lich_cold_front:IsAura()
@@ -52,13 +52,13 @@ modifier_lich_cold_front_debuff = class({})
 LinkLuaModifier("modifier_lich_cold_front_debuff", "heroes/hero_lich/lich_cold_front", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_lich_cold_front_debuff:OnCreated()
-	self.ms = self:GetTalentSpecialValueFor("ms_slow")
-	self.as = self:GetTalentSpecialValueFor("as_slow")
+	self.ms = self:GetSpecialValueFor("ms_slow")
+	self.as = self:GetSpecialValueFor("as_slow")
 end
 
 function modifier_lich_cold_front_debuff:OnRefresh()
-	self.ms = self:GetTalentSpecialValueFor("ms_slow")
-	self.as = self:GetTalentSpecialValueFor("as_slow")
+	self.ms = self:GetSpecialValueFor("ms_slow")
+	self.as = self:GetSpecialValueFor("as_slow")
 end
 
 function modifier_lich_cold_front_debuff:DeclareFunctions()

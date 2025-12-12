@@ -9,15 +9,15 @@ function witch_doctor_maledict_bh:GetAbilityTextureName()
 end
 
 function witch_doctor_maledict_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function witch_doctor_maledict_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	local position = self:GetCursorPosition()
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local duration = self:GetTalentSpecialValueFor("duration_tooltip")
+	local radius = self:GetSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("duration_tooltip")
 	
 	EmitSoundOnLocationWithCaster(position, "Hero_WitchDoctor.Maledict_Cast", caster)
 	if caster:HasScepter() then
@@ -72,10 +72,10 @@ modifier_witch_doctor_maledict_bh = class({})
 LinkLuaModifier("modifier_witch_doctor_maledict_bh", "heroes/hero_witch_doctor/witch_doctor_maledict_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_witch_doctor_maledict_bh:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("base_damage")
-	self.burst = self:GetTalentSpecialValueFor("bonus_damage") / 100
+	self.damage = self:GetSpecialValueFor("base_damage")
+	self.burst = self:GetSpecialValueFor("bonus_damage") / 100
 	if IsServer() then
-		self.burstTimer = self:GetTalentSpecialValueFor("burst_interval")
+		self.burstTimer = self:GetSpecialValueFor("burst_interval")
 		self.currentTime = GameRules:GetGameTime()
 		self.hp = self:GetParent():GetHealth()
 		self:StartIntervalThink( 0.25 )
@@ -87,8 +87,8 @@ function modifier_witch_doctor_maledict_bh:OnCreated()
 end
 
 function modifier_witch_doctor_maledict_bh:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("base_damage")
-	self.burst = self:GetTalentSpecialValueFor("bonus_damage") / 100
+	self.damage = self:GetSpecialValueFor("base_damage")
+	self.burst = self:GetSpecialValueFor("bonus_damage") / 100
 end
 
 function modifier_witch_doctor_maledict_bh:OnIntervalThink()
@@ -122,7 +122,7 @@ LinkLuaModifier("modifier_witch_doctor_maledict_bh_heal", "heroes/hero_witch_doc
 function modifier_witch_doctor_maledict_bh_heal:OnCreated()
 	self:OnRefresh()
 	if IsServer() then
-		self.burstTimer = self:GetTalentSpecialValueFor("burst_interval")
+		self.burstTimer = self:GetSpecialValueFor("burst_interval")
 		self.currentTime = GameRules:GetGameTime()
 		self.hp = self:GetParent():GetHealth()
 		self:StartIntervalThink( 0.25 )
@@ -134,8 +134,8 @@ function modifier_witch_doctor_maledict_bh_heal:OnCreated()
 end
 
 function modifier_witch_doctor_maledict_bh_heal:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("base_heal")
-	self.burst = self:GetTalentSpecialValueFor("bonus_damage") / 100
+	self.damage = self:GetSpecialValueFor("base_heal")
+	self.burst = self:GetSpecialValueFor("bonus_damage") / 100
 	self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_witch_doctor_maledict_1")
 	self.magic_resistance = self:GetCaster():FindTalentValue("special_bonus_unique_witch_doctor_maledict_1", "mr")
 end

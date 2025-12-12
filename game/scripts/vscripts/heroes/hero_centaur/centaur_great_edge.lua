@@ -20,10 +20,10 @@ function centaur_great_edge:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	local edgeDamage = self:GetTalentSpecialValueFor( "edge_damage" )
-	local bonusDamage = caster:GetStrength() * self:GetTalentSpecialValueFor( "edge_str_damage" ) / 100
-	local selfDamage = self:GetTalentSpecialValueFor("self_damage") / 100
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local edgeDamage = self:GetSpecialValueFor( "edge_damage" )
+	local bonusDamage = caster:GetStrength() * self:GetSpecialValueFor( "edge_str_damage" ) / 100
+	local selfDamage = self:GetSpecialValueFor("self_damage") / 100
+	local radius = self:GetSpecialValueFor("radius")
 	
 	EmitSoundOn( "Hero_Centaur.DoubleEdge", caster )
 	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_centaur/centaur_double_edge.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)

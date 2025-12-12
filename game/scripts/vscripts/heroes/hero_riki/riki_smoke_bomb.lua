@@ -15,9 +15,9 @@ function riki_smoke_bomb:OnSpellStart()
     local point = self:GetCursorPosition()
 
     if caster:HasTalent("special_bonus_unique_riki_smoke_bomb_2") then
-		local damage = self:GetTalentSpecialValueFor("damage")
+		local damage = self:GetSpecialValueFor("damage")
 		local dmgMultiplier = caster:FindTalentValue("special_bonus_unique_riki_smoke_bomb_2")
-        local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius"), {})
+        local enemies = caster:FindEnemyUnitsInRadius(point, self:GetSpecialValueFor("radius"), {})
         for _,enemy in pairs(enemies) do
 			if not enemy:TriggerSpellAbsorb( self ) then
 				self:DealDamage(caster, enemy, damage * dmgMultiplier, {}, 0)
@@ -25,7 +25,7 @@ function riki_smoke_bomb:OnSpellStart()
         end
     end
 
-    CreateModifierThinker(caster, self, "modifier_smoke_bomb", {Duration = self:GetTalentSpecialValueFor("duration")}, point, caster:GetTeam(), false)
+    CreateModifierThinker(caster, self, "modifier_smoke_bomb", {Duration = self:GetSpecialValueFor("duration")}, point, caster:GetTeam(), false)
 end
 
 modifier_smoke_bomb = class({})
@@ -33,7 +33,7 @@ function modifier_smoke_bomb:OnCreated(table)
     if IsServer() then
         EmitSoundOn("Hero_Riki.Smoke_Screen", self:GetParent())
 
-        local radius = self:GetTalentSpecialValueFor("radius")
+        local radius = self:GetSpecialValueFor("radius")
         self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_riki/riki_smokebomb.vpcf", PATTACH_POINT, self:GetCaster())
         ParticleManager:SetParticleControl(self.nfx, 0, self:GetParent():GetAbsOrigin())
         ParticleManager:SetParticleControl(self.nfx, 1, Vector(radius, radius, radius))
@@ -43,9 +43,9 @@ function modifier_smoke_bomb:OnCreated(table)
 end
 
 function modifier_smoke_bomb:OnIntervalThink()
-    local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
+    local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
 	local hasTalent1 = self:GetCaster():HasTalent("special_bonus_unique_riki_smoke_bomb_1")
-	local damage = self:GetTalentSpecialValueFor("damage")
+	local damage = self:GetSpecialValueFor("damage")
     for _,enemy in pairs(enemies) do
         enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_smoke_bomb_enemy", {Duration = 1.0})
 		if hasTalent1 then
@@ -72,7 +72,7 @@ function modifier_smoke_bomb_enemy:DeclareFunctions()
 end
 
 function modifier_smoke_bomb_enemy:GetModifierMiss_Percentage()
-    return self:GetTalentSpecialValueFor("miss_rate")
+    return self:GetSpecialValueFor("miss_rate")
 end
 
 function modifier_smoke_bomb_enemy:IsDebuff()

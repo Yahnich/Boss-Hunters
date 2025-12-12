@@ -13,14 +13,14 @@ function drow_ranger_leapshot:OnSpellStart()
 		end
 		
 	end
-	caster:AddNewModifier( caster, self, "modifier_drow_ranger_leapshot_movement", {duration = self:GetTalentSpecialValueFor("leap_distance") / self:GetTalentSpecialValueFor("leap_speed")} )
+	caster:AddNewModifier( caster, self, "modifier_drow_ranger_leapshot_movement", {duration = self:GetSpecialValueFor("leap_distance") / self:GetSpecialValueFor("leap_speed")} )
 end
 
 function drow_ranger_leapshot:OnProjectileHit( target, position )
 	if target then
 		local caster = self:GetCaster()
 		caster:PerformGenericAttack(target, true)
-		target:Silence( self, caster, self:GetTalentSpecialValueFor("silence_duration") )
+		target:Silence( self, caster, self:GetSpecialValueFor("silence_duration") )
 		if caster:HasTalent("special_bonus_unique_drow_ranger_leapshot_2") then
 			target:ApplyKnockBack(position, 0.3, 0.3, -200, 0, caster, self)
 		end
@@ -34,9 +34,9 @@ if IsServer() then
 	function modifier_drow_ranger_leapshot_movement:OnCreated()
 		local parent = self:GetParent()
 		self.endPos = self:GetAbility():GetCursorPosition()
-		self.distance = self:GetTalentSpecialValueFor("leap_distance")
+		self.distance = self:GetSpecialValueFor("leap_distance")
 		self.direction = CalculateDirection( self.endPos, parent )
-		self.speed = self:GetTalentSpecialValueFor("leap_speed") * FrameTime()
+		self.speed = self:GetSpecialValueFor("leap_speed") * FrameTime()
 		self.initHeight = GetGroundHeight(parent:GetAbsOrigin(), parent)
 		self.height = self.initHeight
 		self.maxHeight = 325
@@ -47,11 +47,11 @@ if IsServer() then
 	function modifier_drow_ranger_leapshot_movement:OnDestroy()
 		local parent = self:GetParent()
 		local parentPos = parent:GetAbsOrigin()
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local radius = self:GetSpecialValueFor("radius")
 		FindClearSpaceForUnit(parent, parentPos, true)
 		local ability = self:GetAbility()
-		local damage = self:GetTalentSpecialValueFor("damage")
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local damage = self:GetSpecialValueFor("damage")
+		local radius = self:GetSpecialValueFor("radius")
 
 		local angles = parent:GetAnglesAsVector()
 		parent:SetAngles(0, angles.y, angles.z)

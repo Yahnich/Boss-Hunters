@@ -24,23 +24,20 @@
 			"particle"	"particles/mage_rage.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
 		}
-		"AbilitySpecial"
+		"AbilityValues"
 	    {
 	        "01"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
 	            "damage_on_hit"     			"28 40 52 64 80 96 112"
-	        }
 			"02"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
 	            "spell_amp_red"     			"-15 -25 -35 -45 -50 -55 -60"
-	        }
 	        "03"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
 	            "duration"     					"12"
-	        }
 	    }
 	}
 	"special_bonus_unique_antimage_magus_breaker_1" 
@@ -53,38 +50,17 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cd"					"16"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cost"					"50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"outgoing"				"-75"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"incoming"				"300"
-			}
+			"cd"					"16"
+			"cost"					"50"
+			"outgoing"				"-75"
+			"incoming"				"300"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"5"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cast_range"			"900"
-			}
+			"cast_range"			"900"
 			
 		}
 	}
@@ -99,13 +75,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"100"
-			}
+			"value"					"100"
 		}
 	}
 	//=================================================================================================================
@@ -119,7 +91,7 @@
 		"ScriptFile"					"heroes/hero_antimage/antimage_blink_bh"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName"			"antimage_blink"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -145,18 +117,13 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"925 925 925 925 1000 1075 1150"
-			}
+			"blink_range"			"925 925 925 925 1000 1075 1150"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"min_blink_range"		"200"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -171,13 +138,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"outgoing"				"1"
-			}
+			"outgoing"				"1"
 		}
 	}
 	"special_bonus_unique_antimage_blink_2" 
@@ -190,13 +153,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"450"
-			}
+			"value"					"450"
 		}
 	}
 	"antimage_hex_guard"
@@ -232,19 +191,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"magic_resistance"				"15 25 35 45 45 45 45"
+			"magic_resistance"				"15 25 35 45 45 45 45"
 				"LinkedSpecialBonus"			"special_bonus_unique_antimage_hex_guard_2"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"1.2"
-			}
+			"duration"						"1.2"
 		}
 		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_3"
 		"AbilityCastGestureSlot"				"DEFAULT"
@@ -260,13 +211,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"450"
-			}
+			"value"					"450"
 		}
 	}
 	"special_bonus_unique_antimage_hex_guard_2" 
@@ -280,13 +227,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"15"
-			}
+			"value"					"15"
 		}
 	}
 	"antimage_ender_of_magic"
@@ -303,51 +246,37 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_attackspeed"				"20"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bonus_movespeed"				"5"
-			}
+			"bonus_attackspeed"				"20"
+			"bonus_movespeed"				"5"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"30.0"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"radius"						"900"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"max_stacks"					"5"
-			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"scepter_stacks"				"8"
 				"RequiresScepter"				"1"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"scepter_as"					"25"
 				"RequiresScepter"				"1"
-			}
 			"08"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"scepter_ms"					"10"
 				"RequiresScepter"				"1"
-			}
 		}
 	}
 	"antimage_void_of_hatred"
@@ -403,7 +332,7 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
@@ -411,22 +340,12 @@
 				"damage_cap"					"800 1200 1400 1600 1800 2000"
 				"LinkedSpecialBonus"			"special_bonus_unique_antimage_void_of_hatred_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_storage"				"25"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"450"
-			}
+			"damage_storage"				"25"
+			"radius"						"450"
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"ministun"						"0.6"
-			}
 		}
 	}
 	"special_bonus_unique_antimage_void_of_hatred_1" 
@@ -440,13 +359,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"50"
-			}
+			"value"					"50"
 		}
 	}
 	"special_bonus_unique_antimage_void_of_hatred_2" 
@@ -459,13 +374,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"7"
-			}
+			"value"					"7"
 		}
 	}
 }

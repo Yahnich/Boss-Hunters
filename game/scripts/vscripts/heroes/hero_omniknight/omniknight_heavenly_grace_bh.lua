@@ -4,7 +4,7 @@ function omniknight_heavenly_grace_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	target:AddNewModifier(caster, self, "modifier_omniknight_heavenly_grace_bh", {duration = self:GetTalentSpecialValueFor("duration")})
+	target:AddNewModifier(caster, self, "modifier_omniknight_heavenly_grace_bh", {duration = self:GetSpecialValueFor("duration")})
 	
 	EmitSoundOn("Hero_Omniknight.Repel", target)
 	ParticleManager:FireParticle("particles/units/heroes/hero_omniknight/omniknight_repel_cast.vpcf", PATTACH_POINT_FOLLOW, caster)
@@ -18,10 +18,10 @@ function modifier_omniknight_heavenly_grace_bh:OnCreated()
 end
 
 function modifier_omniknight_heavenly_grace_bh:OnRefresh()
-	self.status_resist = self:GetTalentSpecialValueFor("status_resist")
-	self.restore_amp = self:GetTalentSpecialValueFor("restore_amp")
-	self.regen = self:GetTalentSpecialValueFor("health_regen")
-	self.bonus_str = self:GetTalentSpecialValueFor("bonus_str")
+	self.status_resist = self:GetSpecialValueFor("status_resist")
+	self.restore_amp = self:GetSpecialValueFor("restore_amp")
+	self.regen = self:GetSpecialValueFor("health_regen")
+	self.bonus_str = self:GetSpecialValueFor("bonus_str")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_omniknight_heavenly_grace_2")
 	self.talent2Val = self:GetCaster():FindTalentValue("special_bonus_unique_omniknight_heavenly_grace_2") / 100
 end

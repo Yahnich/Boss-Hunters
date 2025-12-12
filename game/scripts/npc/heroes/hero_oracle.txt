@@ -16,7 +16,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"oracle_fortunes_end"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -54,45 +54,20 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"120 150 180 210 300 390 480"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"min_duration"				"0.5"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"max_duration"				"2.5"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"max_channel"				"2.5 2.5 2.5 2.5 2.0 1.5 1.0"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"300"
-			}
+			"damage"					"120 150 180 210 300 390 480"
+			"min_duration"				"0.5"
+			"max_duration"				"2.5"
+"max_channel"				"2.5 2.5 2.5 2.5 2.0 1.5 1.0"
+			"radius"					"300"
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"scepter_stun_pct"			"50"
 				"RequiresScepter"			"1"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_cast_range_bonus"	"800"
+			"scepter_cast_range_bonus"	"800"
 				"RequiresScepter"			"1"
-			}
 		}
 	}
 
@@ -109,13 +84,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -131,13 +102,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-25"
-			}
+			"value"						"-25"
 		}
 	}
 
@@ -155,7 +122,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"oracle_fates_edict"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -190,13 +157,9 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3 3 3 3 3.5 4 4.5"
-			}
+			"duration"				"3 3 3 3 3.5 4 4.5"
 		}
 	}
 
@@ -213,13 +176,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -235,13 +194,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -262,7 +217,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"oracle_purifying_flames"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -298,23 +253,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"90 180 270 360 450 540 630"
-			}			
+			"damage"				"90 180 270 360 450 540 630"			
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"heal"					"11 22 33 44 55 66 77"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"9"
-			}			
+			"duration"				"9"			
 		}
 	}
 
@@ -331,18 +277,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"0.15"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"max"						"10"
-			}
+			"value"						"0.15"
+			"max"						"10"
 		}
 	}
 	//=================================================================================================================
@@ -358,13 +296,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"10"
-			}
+			"value"						"10"
 		}
 	}
 	//=================================================================================================================
@@ -380,13 +314,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"10"
-			}
+			"value"						"10"
 		}
 	}
 	//=================================================================================================================
@@ -420,14 +350,10 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"cooldown"						"13"
+			"cooldown"						"13"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -456,14 +382,10 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"cooldown"						"13"
+			"cooldown"						"13"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -479,13 +401,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-6"
-			}
+			"value"						"-6"
 		}
 	}
 	//=================================================================================================================
@@ -505,7 +423,7 @@
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilityTextureName"			"oracle_false_promise"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -542,24 +460,12 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{	
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8 9 9 10 10 11"
+			"duration"				"8 9 9 10 10 11"
 				"LinkedSpecialBonus"	"special_bonus_unique_oracle_promise_2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_amp"				"50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_amp"			"50"
-			}
+			"heal_amp"				"50"
+			"damage_amp"			"50"
 		}
 	}
 
@@ -576,13 +482,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -598,13 +500,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 }

@@ -37,7 +37,7 @@ function modifier_vengefulspirit_aura:GetAuraDuration()
 end
 
 function modifier_vengefulspirit_aura:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function modifier_vengefulspirit_aura:GetAuraSearchFlags()
@@ -71,12 +71,12 @@ function modifier_vengefulspirit_aura_buff:OnCreated(table)
 end
 
 function modifier_vengefulspirit_aura_buff:OnRefresh(table)
-    self.attack_range = self:GetTalentSpecialValueFor("bonus_attack_range")
-    self.melee_pct = self:GetTalentSpecialValueFor("melee_reduction") / 100
-    self.reflection = self:GetTalentSpecialValueFor("bonus_reflection")
-    self.illu_dmg_out = self:GetTalentSpecialValueFor("image_damage_in")
-    self.illu_dmg_in = self:GetTalentSpecialValueFor("image_damage_out")
-    self.illus_spawned = self:GetTalentSpecialValueFor("images_spawned")
+    self.attack_range = self:GetSpecialValueFor("bonus_attack_range")
+    self.melee_pct = self:GetSpecialValueFor("melee_reduction") / 100
+    self.reflection = self:GetSpecialValueFor("bonus_reflection")
+    self.illu_dmg_out = self:GetSpecialValueFor("image_damage_in")
+    self.illu_dmg_in = self:GetSpecialValueFor("image_damage_out")
+    self.illus_spawned = self:GetSpecialValueFor("images_spawned")
 	self:GetParent():HookInModifier("GetModifierDamageReflectPercentageBonus", self)
 end
 
@@ -148,8 +148,8 @@ modifier_vengefulspirit_aura_invis = class({})
 LinkLuaModifier( "modifier_vengefulspirit_aura_invis", "heroes/hero_vengeful/vengefulspirit_aura.lua",LUA_MODIFIER_MOTION_NONE )
 function modifier_vengefulspirit_aura_invis:OnCreated()
 	if IsServer() then
-		self.illu_dmg_out = self:GetTalentSpecialValueFor("image_damage_in")
-		self.illu_dmg_in = self:GetTalentSpecialValueFor("image_damage_out")
+		self.illu_dmg_out = self:GetSpecialValueFor("image_damage_in")
+		self.illu_dmg_in = self:GetSpecialValueFor("image_damage_out")
 		local illusions = self:GetParent():ConjureImage( {outgoing_damage = self.illu_dmg_out - 100, incoming_damage = self.illu_dmg_in - 100, position = self:GetParent():GetAbsOrigin()}, -1, self:GetCaster(), 1 )
 		self.illusion = illusions[1]
 		self.illusion:AddNewModifier(self:GetCaster(), ability, "modifier_vengefulspirit_aura_illusion", {})

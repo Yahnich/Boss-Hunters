@@ -29,15 +29,15 @@ function modifier_medusa_shield:OnCreated(table)
 					ParticleManager:SetParticleControlEnt(nfx, 0, self:GetParent(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
 		self:AttachEffect(nfx)
 
-		self.damageMana = self:GetTalentSpecialValueFor("damage_per_mana")
-		self.absorb = self:GetTalentSpecialValueFor("absorb")
+		self.damageMana = self:GetSpecialValueFor("damage_per_mana")
+		self.absorb = self:GetSpecialValueFor("absorb")
 	end
 end
 
 function modifier_medusa_shield:OnRefresh(table)
 	if IsServer() then
-		self.damageMana = self:GetTalentSpecialValueFor("damage_per_mana")
-		self.absorb = self:GetTalentSpecialValueFor("absorb")
+		self.damageMana = self:GetSpecialValueFor("damage_per_mana")
+		self.absorb = self:GetSpecialValueFor("absorb")
 	end
 end
 

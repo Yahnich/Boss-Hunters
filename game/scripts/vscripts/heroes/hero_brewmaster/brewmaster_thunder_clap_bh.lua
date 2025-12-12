@@ -9,15 +9,15 @@ function brewmaster_thunder_clap_bh:IsHiddenWhenStolen()
 end
 
 function brewmaster_thunder_clap_bh:GetCastRange(target, position)
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function brewmaster_thunder_clap_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local radius = self:GetSpecialValueFor("radius")
+	local damage = self:GetSpecialValueFor("damage")
+	local duration = self:GetSpecialValueFor("duration")
 	
 	ParticleManager:FireParticle("particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap.vpcf", PATTACH_ABSORIGIN, caster, {[1] = Vector(radius, 0, 0)})
 	EmitSoundOn( "Hero_Brewmaster.ThunderClap", caster )
@@ -40,8 +40,8 @@ modifier_brewmaster_thunder_clap_bh_debuff = class({})
 LinkLuaModifier("modifier_brewmaster_thunder_clap_bh_debuff", "heroes/hero_brewmaster/brewmaster_thunder_clap_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_brewmaster_thunder_clap_bh_debuff:OnCreated()
-	self.ms = self:GetTalentSpecialValueFor("movement_slow") * (-1)
-	self.dr = self:GetTalentSpecialValueFor("damage_reduction") * (-1)
+	self.ms = self:GetSpecialValueFor("movement_slow") * (-1)
+	self.dr = self:GetSpecialValueFor("damage_reduction") * (-1)
 end
 
 function modifier_brewmaster_thunder_clap_bh_debuff:DeclareFunctions()

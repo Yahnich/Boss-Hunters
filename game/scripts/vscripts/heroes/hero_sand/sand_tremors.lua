@@ -12,7 +12,7 @@ function sand_tremors:GetCastPoint()
 	if self:GetCaster():HasTalent("special_bonus_unique_sand_tremors_1") then
 		return self:GetCaster():FindTalentValue("special_bonus_unique_sand_tremors_1", "cast_point")
 	else
-		return self:GetTalentSpecialValueFor("cast_point")
+		return self:GetSpecialValueFor("cast_point")
 	end
 end
 
@@ -28,7 +28,7 @@ end
 function sand_tremors:OnSpellStart()
     local caster = self:GetCaster()
 
-    caster:AddNewModifier(caster, self, "modifier_tremors", {Duration = self:GetTalentSpecialValueFor("duration") + 0.1, ignoreStatusAmp = true})
+    caster:AddNewModifier(caster, self, "modifier_tremors", {Duration = self:GetSpecialValueFor("duration") + 0.1, ignoreStatusAmp = true})
 	caster:RemoveGesture( ACT_DOTA_CAST_ABILITY_4 )
 end
 
@@ -36,11 +36,11 @@ modifier_tremors = class({})
 LinkLuaModifier("modifier_tremors", "heroes/hero_sand/sand_tremors.lua", 0)
 
 function modifier_tremors:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("damage")
-	self.radius = self:GetTalentSpecialValueFor("starting_radius")
-	self.radius_growth = self:GetTalentSpecialValueFor("radius_growth")
-	self.duration = self:GetTalentSpecialValueFor("slow_duration")
-	self.rate = self:GetTalentSpecialValueFor("duration") / self:GetTalentSpecialValueFor("tremors")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.radius = self:GetSpecialValueFor("starting_radius")
+	self.radius_growth = self:GetSpecialValueFor("radius_growth")
+	self.duration = self:GetSpecialValueFor("slow_duration")
+	self.rate = self:GetSpecialValueFor("duration") / self:GetSpecialValueFor("tremors")
 	
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_sand_tremors_2")
 	self.talent2Val = self:GetCaster():FindTalentValue("special_bonus_unique_sand_tremors_2", "distance")
@@ -105,8 +105,8 @@ end
 modifier_tremors_enemy = class({})
 LinkLuaModifier("modifier_tremors_enemy", "heroes/hero_sand/sand_tremors.lua", 0)
 function modifier_tremors_enemy:OnCreated()
-	self.as = self:GetTalentSpecialValueFor("slow_as")
-	self.ms = self:GetTalentSpecialValueFor("slow_move")
+	self.as = self:GetSpecialValueFor("slow_as")
+	self.ms = self:GetSpecialValueFor("slow_move")
 end
 
 function modifier_tremors_enemy:DeclareFunctions()

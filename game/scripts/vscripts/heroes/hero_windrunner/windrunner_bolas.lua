@@ -21,7 +21,7 @@ end
 
 function windrunner_bolas:DoBolasStun( target, duration, failure, FX, source, sourceIsTree )
 	local caster = self:GetCaster()
-	local fDur = duration or TernaryOperator( self:GetTalentSpecialValueFor("duration"), failure, self:GetTalentSpecialValueFor("fail_duration") )
+	local fDur = duration or TernaryOperator( self:GetSpecialValueFor("duration"), failure, self:GetSpecialValueFor("fail_duration") )
 	self:Stun(target, fDur )
 	local bolas = target:AddNewModifier( caster, self, "modifier_windrunner_bolas_primary", {duration = fDur} )
 	if FX == true or FX == nil then
@@ -52,10 +52,10 @@ end
 function windrunner_bolas:OnProjectileHitHandle(target, position, projectile)
 	local caster = self:GetCaster()
 	if target and not target:TriggerSpellAbsorb( self ) then
-		local maxTargets = self:GetTalentSpecialValueFor("targets")
+		local maxTargets = self:GetSpecialValueFor("targets")
 		local currentTargets = 1
-		local duration = self:GetTalentSpecialValueFor("duration")
-		local searchRadius = self:GetTalentSpecialValueFor("radius")
+		local duration = self:GetSpecialValueFor("duration")
+		local searchRadius = self:GetSpecialValueFor("radius")
 		local direction = CalculateDirection( position, self.projectiles[projectile] )
 		local shackleTargets = caster:FindEnemyUnitsInCone(direction, position, 150, searchRadius, {order = FIND_CLOSEST})
 		for _, enemy in ipairs( shackleTargets ) do
@@ -79,7 +79,7 @@ function windrunner_bolas:OnProjectileHitHandle(target, position, projectile)
 				self:DoBolasStun( target, duration, false, true, tree, true )
 				return
 			end
-			self:DoBolasStun( target, self:GetTalentSpecialValueFor("fail_duration") )
+			self:DoBolasStun( target, self:GetSpecialValueFor("fail_duration") )
 		end
 	end
 end
@@ -91,7 +91,7 @@ function modifier_windrunner_bolas_primary:OnCreated(kv)
 end
 
 function modifier_windrunner_bolas_primary:OnRefresh(kv)
-	self.damage = self:GetTalentSpecialValueFor("damage") * 0.25
+	self.damage = self:GetSpecialValueFor("damage") * 0.25
 	self.evasion = self:GetCaster():FindTalentValue("special_bonus_unique_windrunner_bolas_1")
 	if IsServer() then
 		self.tick = 0.25 * ( kv.duration / kv.original_duration )

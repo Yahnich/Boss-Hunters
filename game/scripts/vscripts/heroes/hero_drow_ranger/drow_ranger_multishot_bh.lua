@@ -17,7 +17,7 @@ function drow_ranger_multishot_bh:GetCastRange(target, position)
 end
 
 function drow_ranger_multishot_bh:GetVectorTargetRange()
-	return self:GetCaster():GetAttackRange() * self:GetTalentSpecialValueFor("arrow_range_multiplier")
+	return self:GetCaster():GetAttackRange() * self:GetSpecialValueFor("arrow_range_multiplier")
 end
 
 function drow_ranger_multishot_bh:GetVectorTargetStartRadius()
@@ -25,7 +25,7 @@ function drow_ranger_multishot_bh:GetVectorTargetStartRadius()
 end 
 
 function drow_ranger_multishot_bh:GetVectorTargetEndRadius()
-	return math.tan( ToRadians( self:GetTalentSpecialValueFor("arrow_angle") / 4 ) ) * self:GetVectorTargetRange() *2
+	return math.tan( ToRadians( self:GetSpecialValueFor("arrow_angle") / 4 ) ) * self:GetVectorTargetRange() *2
 end 
 
 function drow_ranger_multishot_bh:OnVectorCastStart()
@@ -38,15 +38,15 @@ end
 
 function drow_ranger_multishot_bh:InitializeMultishot()
 	local caster = self:GetCaster()
-	local waves = self:GetTalentSpecialValueFor("salvos")
+	local waves = self:GetSpecialValueFor("salvos")
 	self.timer = 0
 	self.glacier = caster:FindAbilityByName("drow_ranger_glacier_arrows")
 	self.wasVectorCast = caster:HasTalent("special_bonus_unique_drow_ranger_multishot_2")
 	self.seconds_per_wave = self:GetChannelTime() / waves - 0.1
-	self.arrows = self:GetTalentSpecialValueFor("arrows_per_salvo")
-	self.damage = self:GetTalentSpecialValueFor("arrow_damage_pct")
-	self.spread = self:GetTalentSpecialValueFor("arrow_angle")
-	self.range = caster:GetAttackRange() * self:GetTalentSpecialValueFor("arrow_range_multiplier")
+	self.arrows = self:GetSpecialValueFor("arrows_per_salvo")
+	self.damage = self:GetSpecialValueFor("arrow_damage_pct")
+	self.spread = self:GetSpecialValueFor("arrow_angle")
+	self.range = caster:GetAttackRange() * self:GetSpecialValueFor("arrow_range_multiplier")
 	if self.wasVectorCast then
 		self.walkTo = self:GetVectorPosition()
 		self.fireDirection = self:GetVectorDirection()
@@ -81,8 +81,8 @@ end
 
 function drow_ranger_multishot_bh:FireBurst( direction )
 	local caster = self:GetCaster()
-	local speed = self:GetTalentSpecialValueFor("arrow_speed")
-	local width = self:GetTalentSpecialValueFor("arrow_width")
+	local speed = self:GetSpecialValueFor("arrow_speed")
+	local width = self:GetSpecialValueFor("arrow_width")
 	local anglePerArrow = self.spread / self.arrows
 	local FX = "particles/frostivus_gameplay/drow_linear_arrow.vpcf"
 	if self.glacier and self.glacier:GetAutoCastState() then

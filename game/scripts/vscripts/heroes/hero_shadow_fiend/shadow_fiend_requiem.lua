@@ -25,8 +25,8 @@ function shadow_fiend_requiem:ReleaseSouls(bDeath)
 	local startPos = caster:GetAbsOrigin()
 	local direction = caster:GetForwardVector()
 
-	local distance = self:GetTalentSpecialValueFor("radius")
-	local speed = self:GetTalentSpecialValueFor("speed")
+	local distance = self:GetSpecialValueFor("radius")
+	local speed = self:GetSpecialValueFor("speed")
 
 	local modifier = caster:FindModifierByName("modifier_shadow_fiend_necro_handle")
 	local necromastery = caster:FindAbilityByName("shadow_fiend_necro")
@@ -37,7 +37,7 @@ function shadow_fiend_requiem:ReleaseSouls(bDeath)
 		souls = modifier:GetStackCount()
 	end
 	
-	self.damage = self:GetTalentSpecialValueFor("damage") * souls
+	self.damage = self:GetSpecialValueFor("damage") * souls
 	local projectiles = 18
 	if bDeath then projectiles = math.floor(projectiles) / 2 end
 	
@@ -47,12 +47,12 @@ function shadow_fiend_requiem:ReleaseSouls(bDeath)
 	local angle = 360/projectiles
 
 	if caster:FindAbilityByName("shadow_fiend_necro"):GetToggleState() or caster:HasScepter() then
-		local cost = TernaryOperator( 0, caster:HasScepter(), self:GetTalentSpecialValueFor("soul_cost") )
+		local cost = TernaryOperator( 0, caster:HasScepter(), self:GetSpecialValueFor("soul_cost") )
 		local newStackCount = modifier:GetStackCount() - cost
 		modifier:SetStackCount(newStackCount)
 		if modifier:GetStackCount() < 1 then caster:RemoveModifierByName("modifier_shadow_fiend_necro_handle") end
 
-		self.damage = self.damage + self:GetTalentSpecialValueFor("soul_cost") * caster:FindAbilityByName("shadow_fiend_necro"):GetTalentSpecialValueFor("damage") * 2
+		self.damage = self.damage + self:GetSpecialValueFor("soul_cost") * caster:FindAbilityByName("shadow_fiend_necro"):GetSpecialValueFor("damage") * 2
 	end
 	EmitSoundOn("Hero_Nevermore.RequiemOfSouls", caster)
 	for i=0, projectiles do
@@ -64,7 +64,7 @@ function shadow_fiend_requiem:ReleaseSouls(bDeath)
 		ParticleManager:SetParticleControl(particle_lines_fx, 2, Vector(0, distance/speed, 0))
 		ParticleManager:ReleaseParticleIndex(particle_lines_fx)
 
-		self:FireLinearProjectile("", direction*speed, distance, self:GetTalentSpecialValueFor("width_start"), {width_end=self:GetTalentSpecialValueFor("width_end"), extraData={secondProj=false}}, false, true, self:GetTalentSpecialValueFor("width_end"))
+		self:FireLinearProjectile("", direction*speed, distance, self:GetSpecialValueFor("width_start"), {width_end=self:GetSpecialValueFor("width_end"), extraData={secondProj=false}}, false, true, self:GetSpecialValueFor("width_end"))
 	end
 end
 
@@ -78,8 +78,8 @@ function shadow_fiend_requiem:OnProjectileHit_ExtraData(hTarget, vLocation, extr
 		secondProj = true
 	end
 	
-	local duration = self:GetTalentSpecialValueFor("reduction_duration")
-	local fear = self:GetTalentSpecialValueFor("fear_duration")
+	local duration = self:GetSpecialValueFor("reduction_duration")
+	local fear = self:GetSpecialValueFor("fear_duration")
 	if hTarget and not hTarget:TriggerSpellAbsorb( self ) and not hTarget:HasModifier("modifier_shadow_fiend_requiem") then
 		EmitSoundOn("Hero_Nevermore.RequiemOfSouls.Damage", hTarget)
 
@@ -96,8 +96,8 @@ function shadow_fiend_requiem:OnProjectileHit_ExtraData(hTarget, vLocation, extr
 	else
 		-- if not secondProj and caster:HasTalent("special_bonus_unique_shadow_fiend_requiem_1") then
 			-- local direction = -CalculateDirection(vLocation, caster:GetAbsOrigin())
-			-- local speed = self:GetTalentSpecialValueFor("speed")
-			-- local distance = self:GetTalentSpecialValueFor("radius")
+			-- local speed = self:GetSpecialValueFor("speed")
+			-- local distance = self:GetSpecialValueFor("radius")
 
 			-- local dummy = caster:CreateDummy(vLocation, 0.5)
 			-- local particle_lines_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_line.vpcf", PATTACH_ABSORIGIN, caster)
@@ -106,7 +106,7 @@ function shadow_fiend_requiem:OnProjectileHit_ExtraData(hTarget, vLocation, extr
 		    -- ParticleManager:SetParticleControl(particle_lines_fx, 2, Vector(0, distance/speed, 0))
 			-- ParticleManager:ReleaseParticleIndex(particle_lines_fx)
 
-			-- self:FireLinearProjectile("particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_line.vpcf", direction*speed, distance, self:GetTalentSpecialValueFor("width_start"), {orign=vlocation,source=dummy,width_end=self:GetTalentSpecialValueFor("width_end"),extraData={secondProj=true}}, false, true, self:GetTalentSpecialValueFor("width_end"))
+			-- self:FireLinearProjectile("particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_line.vpcf", direction*speed, distance, self:GetSpecialValueFor("width_start"), {orign=vlocation,source=dummy,width_end=self:GetSpecialValueFor("width_end"),extraData={secondProj=true}}, false, true, self:GetSpecialValueFor("width_end"))
 		-- end
 	end
 end
@@ -127,11 +127,11 @@ function modifier_shadow_fiend_requiem:DeclareFunctions()
 end
 
 function modifier_shadow_fiend_requiem:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("reduction_ms")
+    return self:GetSpecialValueFor("reduction_ms")
 end
 
 function modifier_shadow_fiend_requiem:GetModifierDamageOutgoing_Percentage()
-    return self:GetTalentSpecialValueFor("reduction_damage")
+    return self:GetSpecialValueFor("reduction_damage")
 end
 
 function modifier_shadow_fiend_requiem:IsDebuff()

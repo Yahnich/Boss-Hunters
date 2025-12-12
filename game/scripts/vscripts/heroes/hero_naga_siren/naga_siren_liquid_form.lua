@@ -15,16 +15,16 @@ end
 function naga_siren_liquid_form:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget() or caster
-	target:AddNewModifier(caster, self, "modifier_naga_siren_liquid_form", {duration = self:GetTalentSpecialValueFor("illu_duration")})
+	target:AddNewModifier(caster, self, "modifier_naga_siren_liquid_form", {duration = self:GetSpecialValueFor("illu_duration")})
 	target:Dispel(caster, false)
 	target:EmitSound("Hero_NagaSiren.MirrorImage")
 	local nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_siren/naga_siren_mirror_image.vpcf", PATTACH_POINT_FOLLOW, target)
 	Timers:CreateTimer(0.5, function() ParticleManager:ClearParticle(nFX) end)
 	
 	
-	local out = self:GetTalentSpecialValueFor("out_damage")
-	local incomingDamage = self:GetTalentSpecialValueFor("inc_damage")
-	local illuDur = self:GetTalentSpecialValueFor("illu_duration")
+	local out = self:GetSpecialValueFor("out_damage")
+	local incomingDamage = self:GetSpecialValueFor("inc_damage")
+	local illuDur = self:GetSpecialValueFor("illu_duration")
 	
 	target.liquidFormIllusions = target.liquidFormIllusions or {}
 	for _, illusion in ipairs( target.liquidFormIllusions ) do
@@ -33,7 +33,7 @@ function naga_siren_liquid_form:OnSpellStart()
 		end
 	end
 	target.liquidFormIllusions = {}
-	Timers:CreateTimer(self:GetTalentSpecialValueFor("duration"), function()
+	Timers:CreateTimer(self:GetSpecialValueFor("duration"), function()
 		for _, illusion in ipairs( target.liquidFormIllusions ) do
 			if not illusion:IsNull() and illusion:IsAlive() then
 				return 1
@@ -43,7 +43,7 @@ function naga_siren_liquid_form:OnSpellStart()
 		end
 	end)
 	
-	local illusions = self:GetTalentSpecialValueFor("max_illusions")
+	local illusions = self:GetSpecialValueFor("max_illusions")
 	local angle = 360 / illusions
 	local images = target:ConjureImage( {outgoing_damage = out - 100, incoming_damage = incomingDamage - 100, position = target:GetAbsOrigin() + RandomVector( 150 ), scramble = true}, illuDur, caster,  illusions )
 	for i = 1, illusions do	
@@ -58,15 +58,15 @@ modifier_naga_siren_liquid_form = class({})
 LinkLuaModifier("modifier_naga_siren_liquid_form", "heroes/hero_naga_siren/naga_siren_liquid_form", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_naga_siren_liquid_form:OnCreated()
-	self.evasion = self:GetTalentSpecialValueFor("bonus_evasion")
-	self.health_regen = self:GetTalentSpecialValueFor("bonus_hp_regen")
-	self.water_regen = self:GetTalentSpecialValueFor("water_hp_regen")
+	self.evasion = self:GetSpecialValueFor("bonus_evasion")
+	self.health_regen = self:GetSpecialValueFor("bonus_hp_regen")
+	self.water_regen = self:GetSpecialValueFor("water_hp_regen")
 end
 
 function modifier_naga_siren_liquid_form:OnRefresh()
-	self.evasion = self:GetTalentSpecialValueFor("bonus_evasion")
-	self.health_regen = self:GetTalentSpecialValueFor("bonus_hp_regen")
-	self.water_regen = self:GetTalentSpecialValueFor("water_hp_regen")
+	self.evasion = self:GetSpecialValueFor("bonus_evasion")
+	self.health_regen = self:GetSpecialValueFor("bonus_hp_regen")
+	self.water_regen = self:GetSpecialValueFor("water_hp_regen")
 end
 
 function modifier_naga_siren_liquid_form:DeclareFunctions()

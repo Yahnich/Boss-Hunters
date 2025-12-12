@@ -9,13 +9,13 @@ LinkLuaModifier( "modifier_slardar_maw_of_the_void_handler", "heroes/hero_slarda
 
 function modifier_slardar_maw_of_the_void_handler:OnCreated()
 	self.modifierList = {}
-	self.armor_steal = self:GetTalentSpecialValueFor("armor_steal") / 100
-	self.minion_steal = self:GetTalentSpecialValueFor("minion_steal") / 100
+	self.armor_steal = self:GetSpecialValueFor("armor_steal") / 100
+	self.minion_steal = self:GetSpecialValueFor("minion_steal") / 100
 end
 
 function modifier_slardar_maw_of_the_void_handler:OnRefresh()
-	self.armor_steal = self:GetTalentSpecialValueFor("armor_steal") / 100
-	self.minion_steal = self:GetTalentSpecialValueFor("minion_steal") / 100
+	self.armor_steal = self:GetSpecialValueFor("armor_steal") / 100
+	self.minion_steal = self:GetSpecialValueFor("minion_steal") / 100
 end
 
 function modifier_slardar_maw_of_the_void_handler:OnIntervalThink()

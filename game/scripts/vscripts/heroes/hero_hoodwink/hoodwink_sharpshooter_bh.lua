@@ -25,7 +25,7 @@ end
 function hoodwink_sharpshooter_bh:GetCooldown( iLvl )
 	local cd = self.BaseClass.GetCooldown( self, iLvl )
 	if self:GetCaster():HasScepter() then
-		cd = cd + self:GetTalentSpecialValueFor("scepter_cd")
+		cd = cd + self:GetSpecialValueFor("scepter_cd")
 	end
 	return cd
 end
@@ -42,7 +42,7 @@ function hoodwink_sharpshooter_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	if not caster:HasModifier("modifier_hoodwink_sharpshooter_bh_windup") then
-		caster:AddNewModifier(caster, self, "modifier_hoodwink_sharpshooter_bh_windup", {duration = self:GetTalentSpecialValueFor("misfire_time"), ignoreStatusAmp = true})
+		caster:AddNewModifier(caster, self, "modifier_hoodwink_sharpshooter_bh_windup", {duration = self:GetSpecialValueFor("misfire_time"), ignoreStatusAmp = true})
 		self:EndCooldown()
 	else
 		caster:RemoveModifierByName("modifier_hoodwink_sharpshooter_bh_windup")
@@ -65,7 +65,7 @@ function hoodwink_sharpshooter_bh:OnProjectileHitHandle( target, position, proje
 		self:DealDamage( caster, target, damage, {damage_type = damage_type}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE )
 		target:AddNewModifier( caster, self, "modifier_hoodwink_sharpshooter_bh_debuff", {duration = slow} )
 		
-		local reduction = (100 + TernaryOperator( self:GetTalentSpecialValueFor("minion_reduction"), target:IsMinion(), self:GetTalentSpecialValueFor("power_reduction") ) )/100
+		local reduction = (100 + TernaryOperator( self:GetSpecialValueFor("minion_reduction"), target:IsMinion(), self:GetSpecialValueFor("power_reduction") ) )/100
 		self.projectileData[projectile].damage = math.max( 25, self.projectileData[projectile].damage * reduction )
 		self.projectileData[projectile].slow = math.max( 0.5, self.projectileData[projectile].slow * reduction )
 		
@@ -97,7 +97,7 @@ function modifier_hoodwink_sharpshooter_bh_debuff:OnCreated()
 end
 
 function modifier_hoodwink_sharpshooter_bh_debuff:OnRefresh()
-	self.slow = self:GetTalentSpecialValueFor("slow_move_pct")
+	self.slow = self:GetSpecialValueFor("slow_move_pct")
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_hoodwink_sharpshooter_1")
 	
@@ -145,22 +145,22 @@ LinkLuaModifier( "modifier_hoodwink_sharpshooter_bh_windup", "heroes/hero_hoodwi
 function modifier_hoodwink_sharpshooter_bh_windup:OnCreated()
 	local caster = self:GetCaster()
 	
-	self.recoil_duration = self:GetTalentSpecialValueFor("recoil_duration")
-	self.recoil_height = self:GetTalentSpecialValueFor("recoil_height")
-	self.recoil_distance = self:GetTalentSpecialValueFor("recoil_distance")
+	self.recoil_duration = self:GetSpecialValueFor("recoil_duration")
+	self.recoil_height = self:GetSpecialValueFor("recoil_height")
+	self.recoil_distance = self:GetSpecialValueFor("recoil_distance")
 	
-	self.arrow_range = self:GetTalentSpecialValueFor("arrow_range")
-	self.arrow_width = self:GetTalentSpecialValueFor("arrow_width")
-	self.arrow_speed = self:GetTalentSpecialValueFor("arrow_speed")
-	self.arrow_vision = self:GetTalentSpecialValueFor("arrow_vision")
+	self.arrow_range = self:GetSpecialValueFor("arrow_range")
+	self.arrow_width = self:GetSpecialValueFor("arrow_width")
+	self.arrow_speed = self:GetSpecialValueFor("arrow_speed")
+	self.arrow_vision = self:GetSpecialValueFor("arrow_vision")
 	
-	self.max_charge_time = self:GetTalentSpecialValueFor("max_charge_time")
-	self.max_damage = self:GetTalentSpecialValueFor("max_damage")
-	self.max_slow = self:GetTalentSpecialValueFor("max_slow_debuff_duration")
+	self.max_charge_time = self:GetSpecialValueFor("max_charge_time")
+	self.max_damage = self:GetSpecialValueFor("max_damage")
+	self.max_slow = self:GetSpecialValueFor("max_slow_debuff_duration")
 	self.pct_increase = (100 / self.max_charge_time ) * FrameTime()
 	self.rest = 0
 	
-	self.turn_rate = ToRadians( self:GetTalentSpecialValueFor("turn_rate") ) * FrameTime()
+	self.turn_rate = ToRadians( self:GetSpecialValueFor("turn_rate") ) * FrameTime()
 	if IsServer() then
 		caster:SetForwardVector( CalculateDirection( self:GetAbility():GetCursorPosition(), caster ) )
 		

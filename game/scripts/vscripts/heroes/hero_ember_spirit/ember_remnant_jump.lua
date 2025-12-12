@@ -24,8 +24,8 @@ function ember_remnant_jump:OnSpellStart()
 			table.insert(self.totesRems, remnant)
 		end
 	end
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local damage = self:GetTalentSpecialValueFor("damage")
+	local radius = self:GetSpecialValueFor("radius")
+	local damage = self:GetSpecialValueFor("damage")
 	EmitSoundOn("Hero_EmberSpirit.FireRemnant.Explode", caster)
 	ParticleManager:FireParticle("particles/units/heroes/hero_ember_spirit/ember_spirit_hit.vpcf", PATTACH_POINT_FOLLOW, caster )
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
@@ -61,8 +61,8 @@ function modifier_ember_remnant_jump:OnCreated(table)
 
 		EmitSoundOn("Hero_EmberSpirit.FireRemnant.Activate", caster)
 
-		self.radius = self:GetTalentSpecialValueFor("radius")
-		self.damage = self:GetTalentSpecialValueFor("damage")
+		self.radius = self:GetSpecialValueFor("radius")
+		self.damage = self:GetSpecialValueFor("damage")
 
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_ember_spirit/ember_spirit_remnant_dash.vpcf", PATTACH_POINT_FOLLOW, caster)
 					ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)

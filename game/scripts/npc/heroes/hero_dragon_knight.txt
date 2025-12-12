@@ -17,7 +17,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"AbilityTextureName"			"dragon_knight_breathe_fire"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -50,51 +50,22 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"start_radius"				"150 150 150 150"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"end_radius"				"250 250 250 250"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"range"						"650 650 650 650"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed"						"1050"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"reduction"					"-15"
+			"start_radius"				"150 150 150 150"
+			"end_radius"				"250 250 250 250"
+			"range"						"650 650 650 650"
+			"speed"						"1050"
+			"reduction"					"-15"
 				"LinkedSpecialBonus"		"special_bonus_unique_dragon_knight_dragonbreath_2"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"5"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"hit_damage"				"150 225 300 375 450 525 600"
-			}
+			"duration"					"5"
+			"hit_damage"				"150 225 300 375 450 525 600"
 			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"dot_damage"				"25"
 				"LinkedSpecialBonus"		"special_bonus_unique_dragon_knight_dragonbreath_2"
 				"LinkedSpecialBonusField"	"value2"
-			}
 		}
 	}
 	"special_bonus_unique_dragon_knight_dragonbreath_1" 
@@ -107,13 +78,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"8"
-			}
+			"value"					"8"
 		}
 	}
 	"special_bonus_unique_dragon_knight_dragonbreath_2" 
@@ -126,18 +93,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-5"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value2"				"25"
-			}
+			"value"					"-5"
+			"value2"				"25"
 		}
 	}
 	"dragon_knight_intervene"
@@ -153,7 +112,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/dragon_knight_intervene"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -193,29 +152,16 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"1.0"
+			"stun_duration"			"1.0"
 				"LinkedSpecialBonus"	"special_bonus_unique_dragon_knight_intervene_1"
-			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rush_speed"			"1200 1250 1300 1350 1400 1450 1500"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_duration"			"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal_bonus"			"50"
-			}
+			"heal_duration"			"10"
+			"heal_bonus"			"50"
 		}
 	}
 	"special_bonus_unique_dragon_knight_intervene_1" 
@@ -228,13 +174,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1.0"
-			}
+			"value"					"1.0"
 		}
 	}
 	"special_bonus_unique_dragon_knight_intervene_2" 
@@ -247,13 +189,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"5"
-			}
+			"value"					"5"
 		}
 	}
 	//=================================================================================================================
@@ -267,7 +205,7 @@
 		"ScriptFile"					"heroes/hero_dragon_knight/dragon_knight_dragons_blood_ebf"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"dragon_knight_dragon_blood"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -279,7 +217,7 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
@@ -287,21 +225,15 @@
 				"bonus_health_regen"			"6 10 14 18 21 26 30"
 				"LinkedSpecialBonus"			"special_bonus_unique_dragon_knight_dragons_blood_ebf_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bonus_armor"					"3 5 7 9 11 13 15"
+			"bonus_armor"					"3 5 7 9 11 13 15"
 				"LinkedSpecialBonus"			"special_bonus_unique_dragon_knight_dragons_blood_ebf_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"bonus_movespeed"				"12 24 36 48 60 72 84"
 				"LinkedSpecialBonus"			"special_bonus_unique_dragon_knight_dragons_blood_ebf_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 		}
 	}
 	"special_bonus_unique_dragon_knight_dragons_blood_ebf_1" 
@@ -314,13 +246,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1.5"
-			}
+			"value"					"1.5"
 		}
 	}
 	"special_bonus_unique_dragon_knight_dragons_blood_ebf_2" 
@@ -333,13 +261,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"50"
-			}
+			"value"					"50"
 		}
 	}
 	"dragon_knight_eldwyrm_form"
@@ -354,7 +278,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"dragon_knight_elder_dragon_form"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -390,102 +314,76 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"20.0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"dot"							"25 30 35 40 45 50"
+			"dot"							"25 30 35 40 45 50"
 				"CalculateSpellDamageTooltip"	"1"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"dot_duration"					"3"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"area_damage"					"0 35 40 45 50 55 60"
+			"area_damage"					"0 35 40 45 50 55 60"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"slow"							"0 0 -30 -40 -50 -60"
-			}
+			"slow"							"0 0 -30 -40 -50 -60"
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"magic_resist"					"0 0 0 30 30 35"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"model_scale"					"0 0 0 0 35 50"
-			}
 			"08"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"bonus_str"						"0 0 0 0 40 50"
-			}
 			"09"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"attack_range"					"150 150 150 150 250 350"
-			}
 			"10"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"cdr"							"0 0 0 0 0 35"
-			}
 			"11"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"scepter_dot"					"70 75 80 85 90 95"
 				"RequiresScepter"				"1"
-			}
 			"12"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"scepter_area_damage"			"15 50 55 60 65 70 75"
 				"RequiresScepter"				"1"
-			}
 			"13"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"scepter_slow"					"-15 -15 -45 -55 -65 -75"
 				"RequiresScepter"				"1"
-			}
 			"14"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"scepter_magic_resist"			"15 15 15 45 45 50"
 				"RequiresScepter"				"1"
-			}
 			"15"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"scepter_bonus_str"				"10 10 10 10 50 60"
 				"RequiresScepter"				"1"
-			}
 			"16"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"scepter_attack_range"			"250 250 250 250 350 450"
 				"RequiresScepter"				"1"
-			}
 			"17"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"scepter_cdr"					"15 15 15 15 15 50"
 				"RequiresScepter"				"1"
-			}
 		}
 	}
 	"special_bonus_unique_dragon_knight_eldwyrm_form_1" 
@@ -498,13 +396,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"25"
-			}
+			"value"					"25"
 		}
 	}
 	"special_bonus_unique_dragon_knight_eldwyrm_form_2" 
@@ -517,13 +411,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"100"
-			}
+			"value"					"100"
 		}
 	}
 	"dragon_knight_elder_dragon_berserker"
@@ -537,7 +427,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"custom/dragon_knight_elder_dragon_berserker"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -564,49 +454,26 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"20.0"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_movement_speed"		"25"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_attack_speed"		"50 100 150 200 250 300 350"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"threat"					"10 15 20 25 30 35 40"
-			}		
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"threat_tick"				"0.1"
-			}
+			"duration"					"20.0"
+			"bonus_movement_speed"		"25"
+			"bonus_attack_speed"		"50 100 150 200 250 300 350"
+			"threat"					"10 15 20 25 30 35 40"		
+			"threat_tick"				"0.1"
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"heal_amount"				"30 32.5 35 37.5 40 42.5 45"
-			}
 			"07"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"heal_chance"				"25"
 				"LinkedSpecialBonus"		"special_bonus_unique_dragon_knight_elder_dragon_berserker_1"
-			}
 			"08"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"internal_cooldown"			"3"
-			}
 		}
 	}
 	"special_bonus_unique_dragon_knight_elder_dragon_berserker_1" 
@@ -619,13 +486,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-5"
-			}
+			"value"					"-5"
 		}
 	}
 	"special_bonus_unique_dragon_knight_elder_dragon_berserker_2" 
@@ -638,13 +501,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"100"
-			}
+			"value"					"100"
 		}
 	}
 }

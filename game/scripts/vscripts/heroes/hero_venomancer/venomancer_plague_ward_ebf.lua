@@ -5,7 +5,7 @@ function venomancer_plague_ward_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
 	
-	local spawnCount = self:GetTalentSpecialValueFor("spawn_count")
+	local spawnCount = self:GetSpecialValueFor("spawn_count")
 	EmitSoundOn("Hero_Venomancer.Plague_Ward", caster)
 	for i = 1, spawnCount do
 		if spawnCount > 1 then position = position + RandomVector(150) end
@@ -15,9 +15,9 @@ end
 
 function venomancer_plague_ward_ebf:CreateWard(position, duration)
 	local caster = self:GetCaster()
-	local fDur = duration or self:GetTalentSpecialValueFor("duration")
-	local hp = self:GetTalentSpecialValueFor("ward_hp")
-	local damage = self:GetTalentSpecialValueFor("ward_damage")
+	local fDur = duration or self:GetSpecialValueFor("duration")
+	local hp = self:GetSpecialValueFor("ward_hp")
+	local damage = self:GetSpecialValueFor("ward_damage")
 	local ward = caster:CreateSummon("npc_dota_venomancer_plague_ward_1", position or caster:GetAbsOrigin(), fDur)
 	ward:SetCoreHealth(hp)
 	ward:SetBaseHealthRegen(0)

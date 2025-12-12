@@ -43,9 +43,9 @@ function druid_transform:GetCastPoint()
 	local caster = self:GetCaster()
 
 	if caster:HasModifier("modifier_druid_transform") then
-    	return self:GetTalentSpecialValueFor("man_transform_time")
+    	return self:GetSpecialValueFor("man_transform_time")
     else
-    	return self:GetTalentSpecialValueFor("bear_transform_time")
+    	return self:GetSpecialValueFor("bear_transform_time")
     end
 end
 
@@ -120,9 +120,9 @@ end
 
 modifier_druid_transform = class({})
 function modifier_druid_transform:OnCreated(table)
-	self.bonus_armor = self:GetTalentSpecialValueFor("bonus_armor")
-	self.bonus_hp = self:GetTalentSpecialValueFor("bonus_hp")
-	self.speed_loss = self:GetTalentSpecialValueFor("speed_loss")
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
+	self.bonus_hp = self:GetSpecialValueFor("bonus_hp")
+	self.speed_loss = self:GetSpecialValueFor("speed_loss")
 
 	--reduce attack range by x
 	self.attackRange = 150
@@ -134,7 +134,7 @@ function modifier_druid_transform:OnCreated(table)
 		self.attackCapability = parent:GetAttackCapability()
 		self.primaryAttribute = DOTA_ATTRIBUTE_AGILITY
 
-		self.bat = self:GetTalentSpecialValueFor("bat")
+		self.bat = self:GetSpecialValueFor("bat")
 
 		-- if not self:GetCaster():HasTalent("special_bonus_unique_druid_transform_2") then
 		parent:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
@@ -232,8 +232,8 @@ end
 
 modifier_druid_transform_talent = class({})
 function modifier_druid_transform_talent:OnCreated(table)
-	self.bonus_hp = self:GetTalentSpecialValueFor("bonus_hp")
-	self.bat = self:GetTalentSpecialValueFor("bat")
+	self.bonus_hp = self:GetSpecialValueFor("bonus_hp")
+	self.bat = self:GetSpecialValueFor("bat")
 	self:GetParent():HookInModifier("GetBaseAttackTime_BonusPercentage", self)
 end
 

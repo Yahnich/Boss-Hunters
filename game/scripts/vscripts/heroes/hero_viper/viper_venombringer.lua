@@ -8,11 +8,11 @@ modifier_viper_viper_venombringer = class({})
 LinkLuaModifier("modifier_viper_viper_venombringer", "heroes/hero_viper/viper_venombringer", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_viper_viper_venombringer:OnCreated()
-	self.amp = self:GetTalentSpecialValueFor("bonus_damage")
+	self.amp = self:GetSpecialValueFor("bonus_damage")
 end
 
 function modifier_viper_viper_venombringer:OnRefresh()
-	self.amp = self:GetTalentSpecialValueFor("bonus_damage")
+	self.amp = self:GetSpecialValueFor("bonus_damage")
 end
 
 function modifier_viper_viper_venombringer:DeclareFunctions()

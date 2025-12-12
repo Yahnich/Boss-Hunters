@@ -70,7 +70,7 @@ function phenx_ray:OnSpellStart()
     else
         EmitSoundOn("Hero_Phoenix.SunRay.Cast", caster)
 
-        caster:AddNewModifier(caster, self, "modifier_phenx_ray", {Duration = self:GetTalentSpecialValueFor("duration")})
+        caster:AddNewModifier(caster, self, "modifier_phenx_ray", {Duration = self:GetSpecialValueFor("duration")})
 
         local pathLength = self:GetTrueCastRange()
 
@@ -87,7 +87,7 @@ function phenx_ray:OnSpellStart()
                 endPos.z = GetGroundHeight(caster:GetAbsOrigin(), caster) + 92
                 --ParticleManager:SetParticleControlEnt( pfx, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", endPos, true )
                 ParticleManager:SetParticleControl( pfx, 1, endPos )
-                local units = caster:FindAllUnitsInLine(caster:GetAbsOrigin(), endPos, self:GetTalentSpecialValueFor("radius"), {})
+                local units = caster:FindAllUnitsInLine(caster:GetAbsOrigin(), endPos, self:GetSpecialValueFor("radius"), {})
                 for _,unit in pairs(units) do
                     if unit ~= caster then
                         if unit:GetTeam() ~= caster:GetTeam() then
@@ -101,7 +101,7 @@ function phenx_ray:OnSpellStart()
                         end
                     end
                 end
-                GridNav:DestroyTreesAroundPoint(endPos, self:GetTalentSpecialValueFor("radius"), false)
+                GridNav:DestroyTreesAroundPoint(endPos, self:GetSpecialValueFor("radius"), false)
                 return 0.03
             else
                 endPos = 0
@@ -121,7 +121,7 @@ function modifier_phenx_ray:OnCreated(table)
 end
 
 function modifier_phenx_ray:OnIntervalThink()
-    self:GetParent():SetHealth( math.max(1, self:GetParent():GetHealth() * ( 100 - self:GetTalentSpecialValueFor("hp_cost_perc_per_second") ) / 100 ) )
+    self:GetParent():SetHealth( math.max(1, self:GetParent():GetHealth() * ( 100 - self:GetSpecialValueFor("hp_cost_perc_per_second") ) / 100 ) )
 
     if self:GetParent():HasTalent("special_bonus_unique_phenx_ray_2") then
         local damage = self:GetParent():GetIntellect( false) * self:GetParent():FindTalentValue("special_bonus_unique_phenx_ray_2")/100
@@ -173,9 +173,9 @@ end
 
 modifier_phenx_ray_enemy = class({})
 function modifier_phenx_ray_enemy:OnCreated(table)
-	self.tick = self:GetTalentSpecialValueFor("tick_interval")
-	self.hpDmg = self:GetTalentSpecialValueFor("hp_perc_damage")/100
-	self.baseDmg = self:GetTalentSpecialValueFor("base_damage")
+	self.tick = self:GetSpecialValueFor("tick_interval")
+	self.hpDmg = self:GetSpecialValueFor("hp_perc_damage")/100
+	self.baseDmg = self:GetSpecialValueFor("base_damage")
     if IsServer() then
         self:StartIntervalThink(self.tick)
     end
@@ -199,9 +199,9 @@ end
 
 modifier_phenx_ray_ally = class({})
 function modifier_phenx_ray_ally:OnCreated(table)
-	self.tick = self:GetTalentSpecialValueFor("tick_interval")
-	self.hpDmg = self:GetTalentSpecialValueFor("hp_perc_damage")/100
-	self.baseDmg = self:GetTalentSpecialValueFor("base_damage")
+	self.tick = self:GetSpecialValueFor("tick_interval")
+	self.hpDmg = self:GetSpecialValueFor("hp_perc_damage")/100
+	self.baseDmg = self:GetSpecialValueFor("base_damage")
     if IsServer() then
         ParticleManager:FireParticle("particles/units/heroes/hero_phoenix/phoenix_sunray_beam_friend.vpcf", PATTACH_POINT_FOLLOW, self:GetParent(), {})
         self:StartIntervalThink(self.tick)

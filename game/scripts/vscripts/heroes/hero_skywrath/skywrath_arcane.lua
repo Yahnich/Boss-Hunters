@@ -16,8 +16,8 @@ function skywrath_arcane:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	EmitSoundOn("Hero_SkywrathMage.ArcaneBolt.Cast", caster)
-	local vision = self:GetTalentSpecialValueFor("vision")
-	local speed = self:GetTalentSpecialValueFor("speed")
+	local vision = self:GetSpecialValueFor("vision")
+	local speed = self:GetSpecialValueFor("speed")
 	self:FireTrackingProjectile("particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt.vpcf", target, speed, {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, false, true, vision)
 
     if caster:HasScepter() then
@@ -50,7 +50,7 @@ function skywrath_arcane:OnProjectileHit(hTarget, vLocation)
 
     if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
         EmitSoundOn("Hero_SkywrathMage.ArcaneBolt.Impact", hTarget)
-        local baseDamage = self:GetTalentSpecialValueFor("damage")
+        local baseDamage = self:GetSpecialValueFor("damage")
         self:DealDamage(caster, hTarget, baseDamage)
     end
 end
@@ -59,7 +59,7 @@ modifier_skywrath_arcane = class({})
 LinkLuaModifier("modifier_skywrath_arcane", "heroes/hero_skywrath/skywrath_arcane", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_skywrath_arcane:OnCreated(table)
-	self.int_modifier = self:GetTalentSpecialValueFor("int_multiplier") / 100
+	self.int_modifier = self:GetSpecialValueFor("int_multiplier") / 100
 end
 
 function modifier_skywrath_arcane:DeclareFunctions()

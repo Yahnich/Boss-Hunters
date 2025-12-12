@@ -11,9 +11,9 @@ end
 function earth_spirit_boulder_bh:OnSpellStart()
     local caster = self:GetCaster()
 	
-	local distance = self:GetTalentSpecialValueFor("distance")
-	local remnantDistance = self:GetTalentSpecialValueFor("remnant_distance")
-	local speed = self:GetTalentSpecialValueFor("speed")
+	local distance = self:GetSpecialValueFor("distance")
+	local remnantDistance = self:GetSpecialValueFor("remnant_distance")
+	local speed = self:GetSpecialValueFor("speed")
 	local duration = ( remnantDistance / speed ) + 0.1
 	
     caster:AddNewModifier( caster, self, "modifier_earth_spirit_boulder", {duration = 10})
@@ -34,15 +34,15 @@ function modifier_earth_spirit_boulder:OnCreated(table)
 	if IsServer() then
 		local caster = self:GetCaster()
 		local target = self:GetParent()
-		self.duration = self:GetTalentSpecialValueFor("stun_duration")
-		self.remnantDuration = self:GetTalentSpecialValueFor("remnant_stun")
-		self.radius = self:GetTalentSpecialValueFor("collision_radius") + caster:GetHullRadius() + caster:GetCollisionPadding()
-		self.damage = self:GetTalentSpecialValueFor("damage")
-		self.distance = self:GetTalentSpecialValueFor("distance")
+		self.duration = self:GetSpecialValueFor("stun_duration")
+		self.remnantDuration = self:GetSpecialValueFor("remnant_stun")
+		self.radius = self:GetSpecialValueFor("collision_radius") + caster:GetHullRadius() + caster:GetCollisionPadding()
+		self.damage = self:GetSpecialValueFor("damage")
+		self.distance = self:GetSpecialValueFor("distance")
 		self.direction = CalculateDirection( self:GetAbility():GetCursorPosition(), caster )
-		self.remnantDistance = self:GetTalentSpecialValueFor("remnant_distance")
-		self.speed = self:GetTalentSpecialValueFor("speed")
-		self.remnantSpeed = self:GetTalentSpecialValueFor("remnant_speed")
+		self.remnantDistance = self:GetSpecialValueFor("remnant_distance")
+		self.speed = self:GetSpecialValueFor("speed")
+		self.remnantSpeed = self:GetSpecialValueFor("remnant_speed")
 		
 		self.talent1 = caster:HasTalent("special_bonus_unique_earth_spirit_boulder_1")
 		if self.talent1 then
@@ -71,7 +71,7 @@ function modifier_earth_spirit_boulder:DoControlledMotion()
     			stone:ForceKill(false)
 				if not self.remnantHit then
 					self.remnnantHit = true
-					self.distance = self.distance + ( self.remnantDistance - self:GetTalentSpecialValueFor("distance") )
+					self.distance = self.distance + ( self.remnantDistance - self:GetSpecialValueFor("distance") )
 					self.speed = self.remnantSpeed
 					self.duration = self.remnantDuration
 					self.talent1Duration = self.talent1RemnantDuration

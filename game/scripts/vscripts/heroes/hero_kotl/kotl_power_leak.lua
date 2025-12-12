@@ -23,7 +23,7 @@ if IsServer() then
 
         ParticleManager:FireParticle("particles/units/heroes/hero_keeper_of_the_light/keeper_mana_leak.vpcf", PATTACH_ABSORIGIN, target, {})
 
-        target:AddNewModifier(caster, self, "modifier_kotl_power_leak", {duration = self:GetTalentSpecialValueFor("duration")})
+        target:AddNewModifier(caster, self, "modifier_kotl_power_leak", {duration = self:GetSpecialValueFor("duration")})
 
         if caster:HasTalent("special_bonus_unique_kotl_power_leak_2") then
             local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_kotl_power_leak_2"))
@@ -35,7 +35,7 @@ if IsServer() then
                     ParticleManager:ReleaseParticleIndex(leakCast)
 
                     ParticleManager:FireParticle("particles/units/heroes/hero_keeper_of_the_light/keeper_mana_leak.vpcf", PATTACH_ABSORIGIN, enemy, {})
-                    enemy:AddNewModifier(caster, self, "modifier_kotl_power_leak", {duration = self:GetTalentSpecialValueFor("duration")})
+                    enemy:AddNewModifier(caster, self, "modifier_kotl_power_leak", {duration = self:GetSpecialValueFor("duration")})
                 end
             end
         end
@@ -45,19 +45,19 @@ end
 modifier_kotl_power_leak = class({})
 
 function modifier_kotl_power_leak:OnCreated()
-    self.damagereduction = self:GetAbility():GetTalentSpecialValueFor("damage_reduction")
+    self.damagereduction = self:GetAbility():GetSpecialValueFor("damage_reduction")
     self:IncrementStackCount()
 end
 
 function modifier_kotl_power_leak:OnRefresh()
-    self.damagereduction = self:GetAbility():GetTalentSpecialValueFor("damage_reduction")
+    self.damagereduction = self:GetAbility():GetSpecialValueFor("damage_reduction")
     self:IncrementStackCount()
 end
 
 function modifier_kotl_power_leak:OnRemoved()
     if IsServer() then
         EmitSoundOn("Hero_KeeperOfTheLight.ManaLeak.Stun", self:GetParent())
-        self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_stunned", {duration = self:GetAbility():GetTalentSpecialValueFor("stun_duration")})
+        self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_stunned", {duration = self:GetAbility():GetSpecialValueFor("stun_duration")})
     end
 end
 

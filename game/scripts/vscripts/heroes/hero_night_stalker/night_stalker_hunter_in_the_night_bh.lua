@@ -35,21 +35,21 @@ modifier_night_stalker_hunter_in_the_night_bh = class({})
 LinkLuaModifier("modifier_night_stalker_hunter_in_the_night_bh", "heroes/hero_night_stalker/night_stalker_hunter_in_the_night_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_night_stalker_hunter_in_the_night_bh:OnCreated()
-	self.ms = self:GetTalentSpecialValueFor("bonus_movement_speed_pct_night")
-	self.as = self:GetTalentSpecialValueFor("bonus_attack_speed_night")
+	self.ms = self:GetSpecialValueFor("bonus_movement_speed_pct_night")
+	self.as = self:GetSpecialValueFor("bonus_attack_speed_night")
 	self.amp = self:GetParent():FindTalentValue("special_bonus_unique_night_stalker_hunter_in_the_night_1")
 	self.armor = self:GetParent():FindTalentValue("special_bonus_unique_night_stalker_hunter_in_the_night_2")
 	
-	self.scepter_pct = self:GetTalentSpecialValueFor("scepter_pct") / 100
+	self.scepter_pct = self:GetSpecialValueFor("scepter_pct") / 100
 end
 
 function modifier_night_stalker_hunter_in_the_night_bh:OnRefresh()
-	self.ms = self:GetTalentSpecialValueFor("bonus_movement_speed_pct_night")
-	self.as = self:GetTalentSpecialValueFor("bonus_attack_speed_night")
+	self.ms = self:GetSpecialValueFor("bonus_movement_speed_pct_night")
+	self.as = self:GetSpecialValueFor("bonus_attack_speed_night")
 	self.amp = self:GetParent():FindTalentValue("special_bonus_unique_night_stalker_hunter_in_the_night_1")
 	self.armor = self:GetParent():FindTalentValue("special_bonus_unique_night_stalker_hunter_in_the_night_2")
 	
-	self.scepter_pct = self:GetTalentSpecialValueFor("scepter_pct") / 100
+	self.scepter_pct = self:GetSpecialValueFor("scepter_pct") / 100
 end
 
 function modifier_night_stalker_hunter_in_the_night_bh:DeclareFunctions()

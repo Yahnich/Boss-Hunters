@@ -24,7 +24,7 @@ end
 
 function modifier_sb_armor_handle:OnIntervalThink()
     local caster = self:GetCaster()
-    self.armor = (caster:GetIdealSpeed() - 100) * self:GetTalentSpecialValueFor("ms_to_armor")/100
+    self.armor = (caster:GetIdealSpeed() - 100) * self:GetSpecialValueFor("ms_to_armor")/100
 end
 
 function modifier_sb_armor_handle:DeclareFunctions()

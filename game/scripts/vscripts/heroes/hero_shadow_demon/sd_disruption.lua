@@ -193,7 +193,7 @@ modifier_sd_disruption_charges = class({})
 if IsServer() then
     function modifier_sd_disruption_charges:Update()
 		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+		self.kv.max_count = self:GetSpecialValueFor("charges")
 
 		if self:GetStackCount() == self.kv.max_count then
 			self:SetDuration(-1, true)
@@ -213,7 +213,7 @@ if IsServer() then
 
     function modifier_sd_disruption_charges:OnCreated()
 		kv = {
-			max_count = self:GetTalentSpecialValueFor("charges"),
+			max_count = self:GetSpecialValueFor("charges"),
 			replenish_time = self:GetAbility():GetTrueCooldown()
 		}
         self:SetStackCount(kv.start_count or kv.max_count)
@@ -225,7 +225,7 @@ if IsServer() then
     end
 	
 	function modifier_sd_disruption_charges:OnRefresh()
-		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+		self.kv.max_count = self:GetSpecialValueFor("charges")
 		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
         if self:GetStackCount() ~= kv.max_count then
             self:Update()
@@ -243,7 +243,7 @@ if IsServer() then
     function modifier_sd_disruption_charges:OnAbilityFullyCast(params)
         if params.unit == self:GetParent() then
 			self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-			self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+			self.kv.max_count = self:GetSpecialValueFor("charges")
 			
             local ability = params.ability
             if params.ability == self:GetAbility() then
@@ -265,7 +265,7 @@ if IsServer() then
 		local octarine = caster:GetCooldownReduction()
 		
 		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+		self.kv.max_count = self:GetSpecialValueFor("charges")
 		
         if stacks < self.kv.max_count then
             self:IncrementStackCount()

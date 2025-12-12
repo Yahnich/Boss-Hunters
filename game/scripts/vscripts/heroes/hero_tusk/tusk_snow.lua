@@ -9,7 +9,7 @@ function tusk_snow:IsHiddenWhenStolen()
 end
 
 function tusk_snow:GetAOERadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function tusk_snow:OnSpellStart()
@@ -29,7 +29,7 @@ function tusk_snow:OnSpellStart()
         local delay = 0.25
         Timers:CreateTimer(delay, function()
             if curCount < maxCount then
-                local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+                local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), self:GetSpecialValueFor("radius"))
                 for _,enemy in pairs(enemies) do
                     self:FireTrackingProjectile("particles/units/heroes/hero_tusk/tusk_snow_copy.vpcf", enemy, 1000, {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_2, false, true, 100)
                         curCount = curCount + 1
@@ -48,14 +48,14 @@ function tusk_snow:OnProjectileHit(hTarget, vLocation)
     
     if hTarget ~= nil then
         EmitSoundOn("Hero_Tusk.Snowball.ProjectileHit", hTarget)
-        local radius = self:GetTalentSpecialValueFor("radius")
+        local radius = self:GetSpecialValueFor("radius")
         ParticleManager:FireParticle("particles/units/heroes/hero_lich/lich_frost_nova.vpcf", PATTACH_ABSORIGIN, caster, {[0]=vLocation, [1]=Vector(radius,radius,radius)})
-        local enemies = caster:FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+        local enemies = caster:FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetSpecialValueFor("radius"))
         for _,enemy in pairs(enemies) do
-            for i=1,self:GetTalentSpecialValueFor("chill_amount") do
-                enemy:AddChill(self, caster, self:GetTalentSpecialValueFor("chill_duration"))
+            for i=1,self:GetSpecialValueFor("chill_amount") do
+                enemy:AddChill(self, caster, self:GetSpecialValueFor("chill_duration"))
             end
-            self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+            self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, 0)
         end
     end
 end

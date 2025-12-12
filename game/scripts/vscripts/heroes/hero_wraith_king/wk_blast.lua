@@ -42,7 +42,7 @@ function wk_blast:OnSpellStart()
 end
 
 function wk_blast:FireBlast(target)
-    local speed = self:GetTalentSpecialValueFor("speed")
+    local speed = self:GetSpecialValueFor("speed")
     self:FireTrackingProjectile("particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast.vpcf", target, speed, {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_2, true, true, 100)
 end
 
@@ -52,7 +52,7 @@ function wk_blast:floatyOrb(pos)
     
     local vDir = CalculateDirection(mousePos, caster) * Vector(1,1,0)
     local orbDuration = 10
-    local orbSpeed = self:GetTalentSpecialValueFor("speed") + FrameTime()
+    local orbSpeed = self:GetSpecialValueFor("speed") + FrameTime()
     local orbRadius = 75
     
     local position = caster:GetAbsOrigin()
@@ -71,9 +71,9 @@ function wk_blast:floatyOrb(pos)
         local caster = self:GetCaster()
         local ability = self:GetAbility()
 
-        local damage = ability:GetTalentSpecialValueFor("damage")
-        local stun_duration = ability:GetTalentSpecialValueFor("stun_duration")
-        local dot_duration = ability:GetTalentSpecialValueFor("dot_duration")  
+        local damage = ability:GetSpecialValueFor("damage")
+        local stun_duration = ability:GetSpecialValueFor("stun_duration")
+        local dot_duration = ability:GetSpecialValueFor("dot_duration")  
 
         if not self.hitUnits[target:entindex()] then
 			if not target:TriggerSpellAbsorb( self ) then
@@ -102,9 +102,9 @@ end
 function wk_blast:OnProjectileHit(hTarget, vLocation, bNoStun)
     local caster = self:GetCaster()
 
-    local damage = self:GetTalentSpecialValueFor("damage")
-    local stun_duration = self:GetTalentSpecialValueFor("stun_duration")
-    local dot_duration = self:GetTalentSpecialValueFor("dot_duration")
+    local damage = self:GetSpecialValueFor("damage")
+    local stun_duration = self:GetSpecialValueFor("stun_duration")
+    local dot_duration = self:GetSpecialValueFor("dot_duration")
 
     if hTarget and not hTarget:TriggerSpellAbsorb( self ) then
         self:DealDamage(caster, hTarget, damage, {}, 0)
@@ -131,8 +131,8 @@ modifier_wk_blast = class({})
 LinkLuaModifier( "modifier_wk_blast", "heroes/hero_wraith_king/wk_blast.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_wk_blast:OnCreated(table)
-	self.slow = self:GetTalentSpecialValueFor("slow")
-	self.damage = self:GetTalentSpecialValueFor("dot_damage")
+	self.slow = self:GetSpecialValueFor("slow")
+	self.damage = self:GetSpecialValueFor("dot_damage")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_wk_blast_2") 
 	if self.talent2 then
 		self.talentSlow = self.slow * self:GetCaster():FindTalentValue("special_bonus_unique_wk_blast_2") / 100
@@ -186,7 +186,7 @@ LinkLuaModifier( "modifier_wk_blast_buff_talent", "heroes/hero_wraith_king/wk_bl
 
 
 function modifier_wk_blast_buff_talent:OnCreated(table)
-	self.ms = self:GetTalentSpecialValueFor("slow")
+	self.ms = self:GetSpecialValueFor("slow")
 	self.as = self.ms * self:GetCaster():FindTalentValue("special_bonus_unique_wk_blast_2") / 100
 end
 

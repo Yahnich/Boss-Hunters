@@ -10,7 +10,7 @@ function pl_doppelganger:IsHiddenWhenStolen()
 end
 
 function pl_doppelganger:GetAOERadius()
-    return self:GetTalentSpecialValueFor("target_aoe")
+    return self:GetSpecialValueFor("target_aoe")
 end
 
 function pl_doppelganger:GetCooldown(iLvl)
@@ -27,9 +27,9 @@ function pl_doppelganger:OnSpellStart()
     local caster = self:GetCaster()
     local point = self:GetCursorPosition()
 
-    local delay = self:GetTalentSpecialValueFor("delay")
+    local delay = self:GetSpecialValueFor("delay")
 
-    local radius = self:GetTalentSpecialValueFor("target_aoe")
+    local radius = self:GetSpecialValueFor("target_aoe")
 	caster:Dispel()
 	ProjectileManager:ProjectileDodge( caster )
     EmitSoundOn("Hero_PhantomLancer.Doppelganger.Cast", caster)
@@ -51,15 +51,15 @@ function modifier_pl_doppelganger:OnCreated(table)
         
         self.point = self:GetAbility():GetCursorPosition()
 
-		self.radius = self:GetTalentSpecialValueFor("search_radius")
-        local illusion_extended_duration = self:GetTalentSpecialValueFor("illusion_extended_duration")
+		self.radius = self:GetSpecialValueFor("search_radius")
+        local illusion_extended_duration = self:GetSpecialValueFor("illusion_extended_duration")
         
         if not parent:IsIllusion() then
             local illusions = caster:FindFriendlyUnitsInRadius(parent:GetAbsOrigin(), self.radius)
             for _,illusion in pairs(illusions) do
                 if illusion and illusion:IsIllusion() and illusion:GetOwner() == caster then 
                     --illusion:FindModifierByName("modifier_illusion"):SetDuration(illusion:FindModifierByName("modifier_illusion"):GetRemainingTime() + illusion_extended_duration, true)
-                    illusion:AddNewModifier(caster, self:GetAbility(), "modifier_pl_doppelganger", {Duration = self:GetTalentSpecialValueFor("delay")})
+                    illusion:AddNewModifier(caster, self:GetAbility(), "modifier_pl_doppelganger", {Duration = self:GetSpecialValueFor("delay")})
                 end
             end
 		else
@@ -108,29 +108,29 @@ function modifier_pl_doppelganger:OnRemoved()
                         ParticleManager:SetParticleControlEnt(nfx, 5, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
                         ParticleManager:ReleaseParticleIndex(nfx)
 
-            local image_duration = self:GetTalentSpecialValueFor("illusion_duration")
+            local image_duration = self:GetSpecialValueFor("illusion_duration")
 
-            local image1_in = self:GetTalentSpecialValueFor("illusion_1_in") - 100
-            local image1_out = self:GetTalentSpecialValueFor("illusion_1_out") - 100
+            local image1_in = self:GetSpecialValueFor("illusion_1_in") - 100
+            local image1_out = self:GetSpecialValueFor("illusion_1_out") - 100
             local image1 = caster:ConjureImage( {outgoing_damage = image1_out, incoming_damage = image1_in, scramble = true, illusion_modifier = "modifier_phantom_lancer_juxtapose_illusion", position = self.point + ActualRandomVector(radius)}, image_duration, caster, 1 )
 			image1[1]:AddNewModifier( caster, self:GetAbility(), "modifier_pl_juxtapose_illusion", {} )
 			image1[1]:SetThreat( caster:GetThreat() )
 
-            local image2_in = self:GetTalentSpecialValueFor("illusion_2_in") - 100
-            local image2_out = self:GetTalentSpecialValueFor("illusion_2_out") - 100
+            local image2_in = self:GetSpecialValueFor("illusion_2_in") - 100
+            local image2_out = self:GetSpecialValueFor("illusion_2_out") - 100
             local image2 = caster:ConjureImage( {outgoing_damage = image2_out, incoming_damage = image2_out, scramble = true, illusion_modifier = "modifier_phantom_lancer_juxtapose_illusion", position = self.point + ActualRandomVector(radius)}, image_duration, caster, 1 )
 			image2[1]:AddNewModifier( caster, self:GetAbility(), "modifier_pl_juxtapose_illusion", {} )
 			image2[1]:SetThreat( caster:GetThreat() )
 		else
 			FindClearSpaceForUnit(parent, self.point + ActualRandomVector(radius), true)
 			local illuModifier = parent:FindModifierByName("modifier_illusion")
-			illuModifier:SetDuration( illuModifier:GetRemainingTime() + self:GetTalentSpecialValueFor("illusion_extended_duration"), true )
+			illuModifier:SetDuration( illuModifier:GetRemainingTime() + self:GetSpecialValueFor("illusion_extended_duration"), true )
 			parent:SetThreat( caster:GetThreat() )
         end
 		if caster:HasTalent("special_bonus_unique_pl_doppelganger_1") then
 			local phantom = caster:FindAbilityByName("pl_phantom_rush")
 			if phantom and phantom:IsTrained() then
-				parent:AddNewModifier( caster, phantom, "modifier_pl_phantom_rush_agi", {duration = phantom:GetTalentSpecialValueFor("agility_duration")} )
+				parent:AddNewModifier( caster, phantom, "modifier_pl_phantom_rush_agi", {duration = phantom:GetSpecialValueFor("agility_duration")} )
 			end
 			if parent:IsRealHero() then
 				for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do

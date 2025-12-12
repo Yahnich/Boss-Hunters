@@ -39,18 +39,18 @@ function bh_track:Track(target)
 				ParticleManager:SetParticleControlEnt(nfx, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 				ParticleManager:ReleaseParticleIndex(nfx)
 
-	target:AddNewModifier(caster, self, "modifier_bh_track", {Duration = self:GetTalentSpecialValueFor("duration")})
+	target:AddNewModifier(caster, self, "modifier_bh_track", {Duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_bh_track = class({})
 function modifier_bh_track:OnCreated(table)
 	local caster = self:GetCaster()
    	local parent = self:GetParent()
-	self.crit = self:GetTalentSpecialValueFor("critical_strike")
-	self.gold = self:GetTalentSpecialValueFor("bonus_gold")
-	self.bhGold = self:GetTalentSpecialValueFor("self_gold")
-	self.trashGold = self:GetTalentSpecialValueFor("trash_gold_reduc")/100
-	self.bossGold = self:GetTalentSpecialValueFor("boss_gold_inc")/100
+	self.crit = self:GetSpecialValueFor("critical_strike")
+	self.gold = self:GetSpecialValueFor("bonus_gold")
+	self.bhGold = self:GetSpecialValueFor("self_gold")
+	self.trashGold = self:GetSpecialValueFor("trash_gold_reduc")/100
+	self.bossGold = self:GetSpecialValueFor("boss_gold_inc")/100
 	self.talent = caster:HasTalent("special_bonus_unique_bh_track_2")
     if IsServer() then
     	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_trail.vpcf", PATTACH_POINT_FOLLOW, caster)

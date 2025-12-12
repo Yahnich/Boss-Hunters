@@ -40,7 +40,7 @@ function enchantress_impetus_bh:OnProjectileHit_ExtraData(hTarget, vLocation, ta
 	if hTarget then
 		EmitSoundOn("Hero_Enchantress.ImpetusDamage", hTarget)
 
-		local damage = distance * self:GetTalentSpecialValueFor("distance_damage_pct")/100
+		local damage = distance * self:GetSpecialValueFor("distance_damage_pct")/100
 
 		if caster:HasTalent("special_bonus_unique_enchantress_impetus_bh_2") then
 			local mod = hTarget:AddNewModifier(caster, self, "modifier_enchantress_impetus_bh_slow", {Duration = 1})

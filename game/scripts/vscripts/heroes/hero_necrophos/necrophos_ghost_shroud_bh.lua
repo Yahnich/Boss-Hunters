@@ -9,7 +9,7 @@ function necrophos_ghost_shroud_bh:OnSpellStart()
 	if caster:HasModifier("modifier_necrophos_ghost_shroud_bh") then
 		caster:RemoveModifierByName("modifier_necrophos_ghost_shroud_bh")
 	else
-		caster:AddNewModifier( caster, self, "modifier_necrophos_ghost_shroud_bh", {duration = self:GetTalentSpecialValueFor("duration")})
+		caster:AddNewModifier( caster, self, "modifier_necrophos_ghost_shroud_bh", {duration = self:GetSpecialValueFor("duration")})
 		caster:EmitSound("Hero_Necrolyte.SpiritForm.Cast")
 		ProjectileManager:ProjectileDodge( caster )
 		self:EndCooldown()
@@ -20,9 +20,9 @@ modifier_necrophos_ghost_shroud_bh = class({})
 LinkLuaModifier( "modifier_necrophos_ghost_shroud_bh", "heroes/hero_necrophos/necrophos_ghost_shroud_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_necrophos_ghost_shroud_bh:OnCreated()
-	self.heal_amp = self:GetTalentSpecialValueFor("heal_bonus")
-	self.radius = self:GetTalentSpecialValueFor("slow_aoe")
-	self.minus_mr = self:GetTalentSpecialValueFor("bonus_damage")
+	self.heal_amp = self:GetSpecialValueFor("heal_bonus")
+	self.radius = self:GetSpecialValueFor("slow_aoe")
+	self.minus_mr = self:GetSpecialValueFor("bonus_damage")
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_necrophos_ghost_shroud_1")
 	if self.talent1 then
@@ -117,7 +117,7 @@ modifier_necrophos_ghost_shroud_bh_slow = class({})
 LinkLuaModifier( "modifier_necrophos_ghost_shroud_bh_slow", "heroes/hero_necrophos/necrophos_ghost_shroud_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_necrophos_ghost_shroud_bh_slow:OnCreated()
-	self.slow = self:GetTalentSpecialValueFor("movement_speed") * (-1)
+	self.slow = self:GetSpecialValueFor("movement_speed") * (-1)
 end
 
 function modifier_necrophos_ghost_shroud_bh_slow:DeclareFunctions()

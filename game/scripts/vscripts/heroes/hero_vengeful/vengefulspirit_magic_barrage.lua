@@ -14,7 +14,7 @@ function vengefulspirit_magic_barrage:GetCooldown(iLvl)
 end
 
 function vengefulspirit_magic_barrage:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function vengefulspirit_magic_barrage:OnSpellStart()
@@ -22,12 +22,12 @@ function vengefulspirit_magic_barrage:OnSpellStart()
 	local target = self:GetCursorTarget()
 	EmitSoundOn("Hero_VengefulSpirit.MagicMissile", caster)
 
-	self:FireTrackingProjectile("particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf", target, self:GetTalentSpecialValueFor("speed"), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_2, false, true, 100)
+	self:FireTrackingProjectile("particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf", target, self:GetSpecialValueFor("speed"), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_2, false, true, 100)
 
-	local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+	local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), self:GetSpecialValueFor("radius"))
 	for _,enemy in pairs(enemies) do
 		if enemy ~= target then
-			self:FireTrackingProjectile("particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf", enemy, self:GetTalentSpecialValueFor("speed"), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_2, false, true, 100)
+			self:FireTrackingProjectile("particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf", enemy, self:GetSpecialValueFor("speed"), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_2, false, true, 100)
 		end
 	end
 end
@@ -36,8 +36,8 @@ function vengefulspirit_magic_barrage:OnProjectileHit(target, position)
 	if target ~= nil and not target:TriggerSpellAbsorb( self ) then
 		local caster = self:GetCaster()
 		EmitSoundOn("Hero_VengefulSpirit.MagicMissile", target)
-		self:Stun(target, self:GetTalentSpecialValueFor("stun_duration"), false)
-		self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {}, 0)
+		self:Stun(target, self:GetSpecialValueFor("stun_duration"), false)
+		self:DealDamage(caster, target, self:GetSpecialValueFor("damage"), {}, 0)
 		if caster:HasTalent("special_bonus_unique_vengefulspirit_magic_barrage_2") then
 			target:AddNewModifier( caster, self, "modifier_vengefulspirit_magic_barrage_talent", {} )
 		end

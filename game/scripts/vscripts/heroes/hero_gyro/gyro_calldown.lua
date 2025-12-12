@@ -28,14 +28,14 @@ function gyro_calldown:GetIntrinsicModifierName()
 end
 
 function gyro_calldown:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function gyro_calldown:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local radius = self:GetSpecialValueFor("radius")
 
 	EmitSoundOn("Hero_Gyrocopter.CallDown.Fire", caster)
 
@@ -56,8 +56,8 @@ function gyro_calldown:OnSpellStart()
 		local enemies = caster:FindEnemyUnitsInRadius(point, radius)
 		for _,enemy in pairs(enemies) do
 			if not enemy:TriggerSpellAbsorb(self) then
-				enemy:AddNewModifier(caster, self, "modifier_gyro_calldown_slow", {Duration = self:GetTalentSpecialValueFor("duration_first")})
-				self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage_first"), {}, 0)
+				enemy:AddNewModifier(caster, self, "modifier_gyro_calldown_slow", {Duration = self:GetSpecialValueFor("duration_first")})
+				self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage_first"), {}, 0)
 			else
 				table.insert( spellBlockEnemy, enemy )
 			end
@@ -76,8 +76,8 @@ function gyro_calldown:OnSpellStart()
 		local enemies = caster:FindEnemyUnitsInRadius(point, radius)
 		for _,enemy in pairs(enemies) do
 			if not spellBlockEnemy[enemy] then
-				enemy:AddNewModifier(caster, self, "modifier_gyro_calldown_slow2", {Duration = self:GetTalentSpecialValueFor("duration_second")})
-				self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage_second"), {}, 0)
+				enemy:AddNewModifier(caster, self, "modifier_gyro_calldown_slow2", {Duration = self:GetSpecialValueFor("duration_second")})
+				self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage_second"), {}, 0)
 			end
 		end
 	end)
@@ -119,7 +119,7 @@ function modifier_gyro_calldown_slow:DeclareFunctions()
 end
 
 function modifier_gyro_calldown_slow:GetModifierMoveSpeedBonus_Percentage()
-	return self:GetTalentSpecialValueFor("slow_first")
+	return self:GetSpecialValueFor("slow_first")
 end
 
 function modifier_gyro_calldown_slow:IsHidden()
@@ -135,7 +135,7 @@ function modifier_gyro_calldown_slow2:DeclareFunctions()
 end
 
 function modifier_gyro_calldown_slow2:GetModifierMoveSpeedBonus_Percentage()
-	return self:GetTalentSpecialValueFor("slow_second")
+	return self:GetSpecialValueFor("slow_second")
 end
 
 function modifier_gyro_calldown_slow2:IsHidden()

@@ -21,7 +21,7 @@ end
 
 function mk_spring:GetCastRange(vLocation, hTarget)
 	if self:GetCaster():HasModifier("modifier_mk_tree_perch") or self:GetCaster():HasTalent("special_bonus_unique_mk_spring_1") then
-		return self:GetTalentSpecialValueFor("max_distance")
+		return self:GetSpecialValueFor("max_distance")
 	end
 	return 375
 end
@@ -52,7 +52,7 @@ function mk_spring:OnSpellStart()
 					ParticleManager:SetParticleControl(nfx, 0, point)
 
 		Timers:CreateTimer(0.4, function()
-			GridNav:DestroyTreesAroundPoint(point, self:GetTalentSpecialValueFor("radius"), false)
+			GridNav:DestroyTreesAroundPoint(point, self:GetSpecialValueFor("radius"), false)
 			self:DoSpring(point)
 			ParticleManager:ClearParticle(nfx)
 		end)
@@ -71,9 +71,9 @@ function mk_spring:DoSpring(vLocation)
 	local caster = self:GetCaster()
 	local point = vLocation
 
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local damage = self:GetTalentSpecialValueFor("damage")
+	local duration = self:GetSpecialValueFor("duration")
+	local radius = self:GetSpecialValueFor("radius")
+	local damage = self:GetSpecialValueFor("damage")
 
 	EmitSoundOnLocationWithCaster(vLocation, "Hero_MonkeyKing.Spring.Impact", caster)
 
@@ -85,7 +85,7 @@ function mk_spring:DoSpring(vLocation)
 	if caster:HasTalent("special_bonus_unique_mk_spring_2") then
 		local ability = caster:FindAbilityByName("mk_mastery")
 		for i=1,2 do
-			caster:AddNewModifier(caster, ability, "modifier_mk_mastery_hits", {Duration = ability:GetTalentSpecialValueFor("max_duration")}):IncrementStackCount()
+			caster:AddNewModifier(caster, ability, "modifier_mk_mastery_hits", {Duration = ability:GetSpecialValueFor("max_duration")}):IncrementStackCount()
 		end
 	end
 
@@ -101,11 +101,11 @@ end
 
 modifier_mk_spring_slow = class({})
 function modifier_mk_spring_slow:OnCreated(table)
-	self.ms = self:GetTalentSpecialValueFor("slow_ms")
+	self.ms = self:GetSpecialValueFor("slow_ms")
 end
 
 function modifier_mk_spring_slow:OnRefresh(table)
-	self.ms = self:GetTalentSpecialValueFor("slow_ms")
+	self.ms = self:GetSpecialValueFor("slow_ms")
 end
 
 function modifier_mk_spring_slow:DeclareFunctions()
@@ -136,7 +136,7 @@ function modifier_mk_spring:OnCreated(table)
 					ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
 		self:AttachEffect(nfx)
 
-		self.speed = self:GetTalentSpecialValueFor("leap_speed") * FrameTime()
+		self.speed = self:GetSpecialValueFor("leap_speed") * FrameTime()
 
 		self.distance = CalculateDistance(ability:GetCursorPosition(), caster:GetAbsOrigin())
 		self.direction = CalculateDirection(ability:GetCursorPosition(), caster:GetAbsOrigin())
@@ -150,7 +150,7 @@ end
 
 function modifier_mk_spring:OnRefresh(table)
 	if IsServer() then
-		self.speed = self:GetTalentSpecialValueFor("leap_speed") * FrameTime()
+		self.speed = self:GetSpecialValueFor("leap_speed") * FrameTime()
 	end
 end
 

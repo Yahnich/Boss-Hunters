@@ -18,7 +18,7 @@ function pl_juxtapose:SpawnIllusion(forceIllusion)
     local caster = self:GetCaster()
 	local player = caster:GetPlayerID()
 	
-	local max_illusions =  TernaryOperator( self:GetTalentSpecialValueFor("scepter_illusions"), caster:HasScepter(), self:GetTalentSpecialValueFor("max_illusions") )
+	local max_illusions =  TernaryOperator( self:GetSpecialValueFor("scepter_illusions"), caster:HasScepter(), self:GetSpecialValueFor("max_illusions") )
 	local current_illusions = 0
 	
 	-- Gets the ability owned by the original caster, so we can keep track of the number of illusions
@@ -41,12 +41,12 @@ function pl_juxtapose:SpawnIllusion(forceIllusion)
 	if current_illusions < max_illusions or forceIllusion then
 		local origin = caster:GetAbsOrigin() + RandomVector(72)
 
-		local duration = self:GetTalentSpecialValueFor("illusion_duration")
-		local outgoingDamage = self:GetTalentSpecialValueFor("illusion_out") - 100
-		local incomingDamage = self:GetTalentSpecialValueFor("illusion_in") - 100
+		local duration = self:GetSpecialValueFor("illusion_duration")
+		local outgoingDamage = self:GetSpecialValueFor("illusion_out") - 100
+		local incomingDamage = self:GetSpecialValueFor("illusion_in") - 100
 
 		if caster:IsIllusion() then
-			duration = self:GetTalentSpecialValueFor("illusion_duration") / 2
+			duration = self:GetSpecialValueFor("illusion_duration") / 2
 		end
 
         local image = original_hero:ConjureImage( {outgoing_damage = outgoingDamage, incoming_damage = incomingDamage, illusion_modifier = "modifier_phantom_lancer_juxtapose_illusion", position = origin}, duration, original_hero, 1 )
@@ -67,8 +67,8 @@ function modifier_pl_juxtapose:OnCreated()
 end
 
 function modifier_pl_juxtapose:OnRefresh()
-	self.chance = self:GetTalentSpecialValueFor("chance")
-	self.illusion_chance = self:GetTalentSpecialValueFor("illusion_chance")
+	self.chance = self:GetSpecialValueFor("chance")
+	self.illusion_chance = self:GetSpecialValueFor("illusion_chance")
 end
 
 function modifier_pl_juxtapose:DeclareFunctions()

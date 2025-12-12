@@ -15,7 +15,7 @@ function dw_terrorize:OnAbilityPhaseStart()
 
 	local point = self:GetCursorPosition()
 
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local radius = self:GetSpecialValueFor("radius")
 
 	self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_marker.vpcf", PATTACH_POINT, caster)
 				ParticleManager:SetParticleControl(self.nfx, 0, point)
@@ -101,8 +101,8 @@ function modifier_dw_terrorize:OnRemoved(bIgnore)
 		if not bIgnore then
 			local point = GetGroundPosition(parent:GetAbsOrigin(), parent)
 
-			local radius = self:GetTalentSpecialValueFor("radius")
-			local duration = self:GetTalentSpecialValueFor("duration")
+			local radius = self:GetSpecialValueFor("radius")
+			local duration = self:GetSpecialValueFor("duration")
 
 			StopSoundOn("Hero_DarkWillow.Fear.Wisp", parent)
 			EmitSoundOnLocationWithCaster(point, "Hero_DarkWillow.Fear.Location", caster)

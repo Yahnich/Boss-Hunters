@@ -34,7 +34,7 @@ function rubick_lift:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
-	local lift_duration = self:GetTalentSpecialValueFor("lift_duration")
+	local lift_duration = self:GetSpecialValueFor("lift_duration")
 	
 	EmitSoundOn("Hero_Rubick.Telekinesis.Cast", caster)
 	EmitSoundOn("Hero_Rubick.Telekinesis.Target", target)
@@ -45,7 +45,7 @@ function rubick_lift:OnSpellStart()
 		target:AddNewModifier(caster, self, "modifier_invulnerable", {Duration = lift_duration})
 	end
 
-	self:StartDelayedCooldown(lift_duration + self:GetTalentSpecialValueFor("stun_duration"))
+	self:StartDelayedCooldown(lift_duration + self:GetSpecialValueFor("stun_duration"))
 end
 
 modifier_rubick_lift = class({})
@@ -54,7 +54,7 @@ function modifier_rubick_lift:OnCreated(table)
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
 
-		self:SetDuration(self:GetTalentSpecialValueFor("lift_duration"), true)
+		self:SetDuration(self:GetSpecialValueFor("lift_duration"), true)
 
 		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_rubick/rubick_telekinesis.vpcf", PATTACH_POINT, caster)
 					ParticleManager:SetParticleControlEnt(self.nfx, 0, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
@@ -62,11 +62,11 @@ function modifier_rubick_lift:OnCreated(table)
 					ParticleManager:SetParticleControl(self.nfx, 2, Vector(self:GetDuration(), 0, 0))
 		self:AttachEffect(self.nfx)
 
-		self.stun_duration = self:GetTalentSpecialValueFor("stun_duration")
+		self.stun_duration = self:GetSpecialValueFor("stun_duration")
 		self.z_height = 0
 		self.maxHeight = 200
 		self.duration = self:GetDuration()
-		self.lift_animation = self:GetTalentSpecialValueFor("lift_duration")/2
+		self.lift_animation = self:GetSpecialValueFor("lift_duration")/2
 		self.fall_animation = 0.1
 		self.current_time = 0
 
@@ -75,7 +75,7 @@ function modifier_rubick_lift:OnCreated(table)
 end
 
 function modifier_rubick_lift:OnRefresh(table)
-	self.stun_duration = self:GetTalentSpecialValueFor("stun_duration")
+	self.stun_duration = self:GetSpecialValueFor("stun_duration")
 end
 
 function modifier_rubick_lift:OnIntervalThink()
@@ -112,7 +112,7 @@ function modifier_rubick_lift:OnRemoved()
 		local point = self:GetParent():GetAbsOrigin()
 		local damage = 0
 
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local radius = self:GetSpecialValueFor("radius")
 
 		EmitSoundOn("Hero_Rubick.Telekinesis.Target.Land", self:GetParent())
 

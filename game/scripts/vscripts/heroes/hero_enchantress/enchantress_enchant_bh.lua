@@ -13,7 +13,7 @@ function enchantress_enchant_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 
 	EmitSoundOn("Hero_Enchantress.EnchantCast", caster)
 	EmitSoundOn("Hero_Enchantress.EnchantHero", target)
@@ -26,7 +26,7 @@ end
 
 modifier_enchantress_enchant_bh_slow = class({})
 function modifier_enchantress_enchant_bh_slow:OnCreated(table)
-	self.slow_ms = self:GetTalentSpecialValueFor("slow_ms")
+	self.slow_ms = self:GetSpecialValueFor("slow_ms")
 
 	if self:GetCaster():HasTalent("special_bonus_unique_enchantress_enchant_bh_1") then
 		self.damage = self:GetCaster():FindTalentValue("special_bonus_unique_enchantress_enchant_bh_1")
@@ -38,7 +38,7 @@ function modifier_enchantress_enchant_bh_slow:OnCreated(table)
 end
 
 function modifier_enchantress_enchant_bh_slow:OnRefresh(table)
-	self.slow_ms = self:GetTalentSpecialValueFor("slow_ms")
+	self.slow_ms = self:GetSpecialValueFor("slow_ms")
 
 	if self:GetCaster():HasTalent("special_bonus_unique_enchantress_enchant_bh_1") then
 		self.damage = self:GetCaster():FindTalentValue("special_bonus_unique_enchantress_enchant_bh_1")

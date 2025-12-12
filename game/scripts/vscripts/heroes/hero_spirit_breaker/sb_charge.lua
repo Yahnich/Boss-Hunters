@@ -15,15 +15,15 @@ end
 
 function sb_charge:OnSpellStart()
 	EmitSoundOn("Hero_Spirit_Breaker.ChargeOfDarkness", self:GetCaster())
-	local duration = 1000 / ( self:GetTalentSpecialValueFor("movement_speed") + self:GetCaster():GetIdealSpeed() )
+	local duration = 1000 / ( self:GetSpecialValueFor("movement_speed") + self:GetCaster():GetIdealSpeed() )
     self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_sb_charge", {duration = duration + 0.1})
 end
 
 modifier_sb_charge = class({})
 function modifier_sb_charge:OnCreated(table)
-	self.ms = self:GetTalentSpecialValueFor("movement_speed")
+	self.ms = self:GetSpecialValueFor("movement_speed")
 	self.basems = self:GetParent():GetIdealSpeed()
-	self.sr = self:GetTalentSpecialValueFor("status_resistance")
+	self.sr = self:GetSpecialValueFor("status_resistance")
 	if IsServer() then
 		local parent = self:GetParent()
 
@@ -62,7 +62,7 @@ function modifier_sb_charge:DoControlledMotion()
 
 					local ability2 = parent:FindAbilityByName("sb_bash")
 					if ability2 and ability2:IsTrained() then
-						ability2:Bash(enemy, ability2:GetTalentSpecialValueFor("knockback_distance"), false)
+						ability2:Bash(enemy, ability2:GetSpecialValueFor("knockback_distance"), false)
 					end
 				end
 				self.hitUnits[enemy:entindex()] = true

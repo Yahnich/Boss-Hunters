@@ -19,17 +19,17 @@ function undying_soul_rip_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	local radius = self:GetTalentSpecialValueFor("range")
-	local hploss = self:GetTalentSpecialValueFor("enemy_hp_loss")
-	local healPUnit = self:GetTalentSpecialValueFor("health_per_unit")
-	local heroBonus = 1 + self:GetTalentSpecialValueFor("mob_bonus_dmg") / 100
+	local radius = self:GetSpecialValueFor("range")
+	local hploss = self:GetSpecialValueFor("enemy_hp_loss")
+	local healPUnit = self:GetSpecialValueFor("health_per_unit")
+	local heroBonus = 1 + self:GetSpecialValueFor("mob_bonus_dmg") / 100
 	
 	local units = caster:FindAllUnitsInRadius( caster:GetAbsOrigin(), radius )
-	local maxUnits = self:GetTalentSpecialValueFor("unit_maximum")
-
-	local talent1 = caster:HasTalent("special_bonus_unique_undying_soul_rip_1")
-	local talent1Duration = caster:FindTalentValue("special_bonus_unique_undying_soul_rip_1")
-	local talent1Chance = caster:FindTalentValue("special_bonus_unique_undying_soul_rip_1", "chance")
+	local maxUnits = self:GetSpecialValueFor("unit_maximum")
+	
+	local talent1Duration = caster:GetSpecialValueFor("zombie_duration")
+	local talent1Chance = caster:GetSpecialValueFor("zombie_chance")
+	local talent1 = talent1Duration > 0
 	if talent1 then
 		self.tombstone = caster:FindAbilityByName("undying_tombstone_bh")
 		if not self.tombstone or self.tombstone:GetLevel() == 0 then -- disable talent if tombstone isn't leveled
@@ -111,18 +111,21 @@ function undying_soul_rip_bh:OnSpellStart()
 			ParticleManager:FireRopeParticle(ripFX, PATTACH_ABSORIGIN_FOLLOW, target, unit)
 		end
 	end
-	
-	
++
+	local effectDuration = self:GetSpecialValueFor("buff_duration")
+	local strengthDamage = self:GetSpecialValueFor("strength_effect") / 100
 	if target:IsSameTeam(caster) then
 		target:HealEvent( totalValue, self, caster )
-		if caster:HasTalent("special_bonus_unique_undying_soul_rip_2") then
+		if effectDuration > 0 then
 			target:RemoveModifierByName("modifier_undying_soul_rip_bh_talent")
-			target:AddNewModifier(caster, self, "modifier_undying_soul_rip_bh_talent", {duration = caster:FindTalentValue("special_bonus_unique_undying_soul_rip_2", "duration")})
+			target:AddNewModifier(caster, self, "modifier_undying_soul_rip_bh_talent", {duration = effectDuration})
 		end
 	elseif not target:TriggerSpellAbsorb( self ) then 
-		if caster:HasTalent("special_bonus_unique_undying_soul_rip_2") then
-			target:AddNewModifier(caster, self, "modifier_undying_soul_rip_bh_talent", {duration = caster:FindTalentValue("special_bonus_unique_undying_soul_rip_2", "duration")})
-			totalValue = totalValue + caster:GetStrength() * caster:FindTalentValue("special_bonus_unique_undying_soul_rip_2", "damage") / 100
+		if effectDuration > 0 then
+			target:AddNewModifier(caster, self, "modifier_undying_soul_rip_bh_talent", {duration = effectDuration})
+		end
+		if strengthDamage > 0 then
+			totalValue = totalValue + caster:GetStrength() * strengthDamage
 		end
 		
 		self:DealDamage( caster, target, totalValue )
@@ -137,8 +140,8 @@ function modifier_undying_soul_rip_bh_talent:OnCreated()
 end
 
 function modifier_undying_soul_rip_bh_talent:OnRefresh()
-	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_undying_soul_rip_2")
-	self.str = self:GetCaster():GetStrength() * self:GetCaster():FindTalentValue("special_bonus_unique_undying_soul_rip_2", "value2") / 100
+	self.as = self:GetSpecialValueFor("bonus_attack_speed")
+	self.str = self:GetCaster():GetStrength() * self:GetSpecialValueFor("strength_share") / 100
 	if not self:GetCaster():IsSameTeam( self:GetParent() ) then
 		self.str = 0
 	end

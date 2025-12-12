@@ -11,7 +11,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"venomancer_venomous_gale"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -46,49 +46,23 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"15.0"
-			}
+			"duration"				"15.0"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"strike_damage"			"50 75 100 125 250 375 500"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"tick_damage"			"15 45 75 105 120 135 150"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"tick_interval"			"3.0"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movement_slow"			"-50"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"125"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"1200"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_wards_spawned"	"2"
+			"tick_interval"			"3.0"
+			"movement_slow"			"-50"
+			"radius"				"125"
+			"speed"					"1200"
+			"scepter_wards_spawned"	"2"
 				"RequiresScepter"		"1"
-			}
 		}
 	}"special_bonus_unique_venomancer_venomous_gale_1" 
 	{
@@ -100,13 +74,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1.0"
-			}
+			"value"					"1.0"
 		}
 	}
 	"special_bonus_unique_venomancer_venomous_gale_2" 
@@ -119,13 +89,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-8"
-			}
+			"value"					"-8"
 		}
 	}
 	"venomancer_poison_sting_ebf"
@@ -139,7 +105,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"venomancer_poison_sting"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -156,33 +122,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"6 6 6 6 9 12 15"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"damage_stack"				"0.5 0.9 1.3 1.7 1.8 1.9 2.0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"ms_stack"					"-0.66"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"initial_stacks"			"12 15 18 21 22 23 24"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"ward_power"				"50"
-			}
+			"duration"					"6 6 6 6 9 12 15"
+			"damage_stack"				"0.5 0.9 1.3 1.7 1.8 1.9 2.0"
+			"ms_stack"					"-0.66"
+			"initial_stacks"			"12 15 18 21 22 23 24"
+			"ward_power"				"50"
 		}
 	}
 	"special_bonus_unique_venomancer_poison_sting_1" 
@@ -196,13 +142,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"60"
-			}
+			"value"					"60"
 		}
 	}
 	"special_bonus_unique_venomancer_poison_sting_2" 
@@ -215,13 +157,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"325"
-			}
+			"value"					"325"
 		}
 	}
 	//=================================================================================================================
@@ -237,7 +175,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"venomancer_plague_ward"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -263,34 +201,21 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"40"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"ward_hp"						"3"
+			"ward_hp"						"3"
 				"LinkedSpecialBonus"			"special_bonus_unique_venomancer_plague_ward_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"ward_damage"					"13 22 31 40 43 46 50"
+			"ward_damage"					"13 22 31 40 43 46 50"
 				"LinkedSpecialBonus"			"special_bonus_unique_venomancer_plague_ward_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"spawn_count"					"1"
+			"spawn_count"					"1"
 				"LinkedSpecialBonus"			"special_bonus_unique_venomancer_plague_ward_1"
-			}
 		}
 	}
 	"special_bonus_unique_venomancer_plague_ward_1" 
@@ -304,23 +229,17 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value2"				"1"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"minion_duration"		"5"
-			}
 			
 		}
 	}
@@ -334,23 +253,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value2"				"50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value3"				"175"
-			}
+			"value"					"2"
+			"value2"				"50"
+			"value3"				"175"
 		}
 	}
 	"venomancer_poison_nova_ebf"
@@ -365,7 +272,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"venomancer_poison_nova"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -404,40 +311,16 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"885"
+			"radius"					"885"
 				"LinkedSpecialBonus"		"special_bonus_unique_venomancer_6"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"start_radius"				"255 255 255"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"20.0"
+			"start_radius"				"255 255 255"
+			"duration"					"20.0"
 				"LinkedSpecialBonus"		"special_bonus_unique_venomancer_4"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"20 40 60 80 120 160"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"max_hp_dmg"				"2 2.75 3.5 3.5 3.5 3.5"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed"						"500 500 500"
-			}
+			"damage"					"20 40 60 80 120 160"
+			"max_hp_dmg"				"2 2.75 3.5 3.5 3.5 3.5"
+			"speed"						"500 500 500"
 		}
 	}
 	"special_bonus_unique_venomancer_poison_nova_1" 
@@ -451,13 +334,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"5"
-			}
+			"value"					"5"
 		}
 	}
 	"special_bonus_unique_venomancer_poison_nova_2" 
@@ -471,13 +350,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"25"
-			}
+			"value"					"25"
 		}
 	}
 }

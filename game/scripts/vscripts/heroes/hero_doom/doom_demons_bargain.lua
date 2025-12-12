@@ -21,9 +21,9 @@ function doom_demons_bargain:OnAbilityPhaseInterrupted()
 end
 
 function doom_demons_bargain:OnSpellStart()
-    local gold = self:GetTalentSpecialValueFor("total_gold")
-    local duration = self:GetTalentSpecialValueFor("duration")
-	local damage = gold * TernaryOperator( self:GetTalentSpecialValueFor("dmg_mult_minion"), self.target:IsMinion(), self:GetTalentSpecialValueFor("dmg_mult") )
+    local gold = self:GetSpecialValueFor("total_gold")
+    local duration = self:GetSpecialValueFor("duration")
+	local damage = gold * TernaryOperator( self:GetSpecialValueFor("dmg_mult_minion"), self.target:IsMinion(), self:GetSpecialValueFor("dmg_mult") )
 	ParticleManager:FireParticle("particles/units/heroes/hero_doom_bringer/doom_bringer_devour.vpcf", PATTACH_POINT_FOLLOW, self.target)
 	EmitSoundOn("Hero_DoomBringer.Devour", self.target)
 	if self:GetCursorTarget():TriggerSpellAbsorb(self) then return end
@@ -57,7 +57,7 @@ function modifier_doom_demons_bargain_devour_target:OnDestroy()
 	if IsServer() then
 		local devour = self:GetCaster():FindModifierByName("modifier_doom_demons_bargain_devour")
 		if devour then
-			devour:SetStackCount( self:GetTalentSpecialValueFor("hp_regen_mult") )
+			devour:SetStackCount( self:GetSpecialValueFor("hp_regen_mult") )
 		end
 	end
 end
@@ -87,8 +87,8 @@ function modifier_doom_demons_bargain_devour:OnCreated()
 end
 
 function modifier_doom_demons_bargain_devour:OnRefresh()
-	self.hp_regen = self:GetTalentSpecialValueFor("regen")
-	self.hp_regen_mult = self:GetTalentSpecialValueFor("hp_regen_mult")
+	self.hp_regen = self:GetSpecialValueFor("regen")
+	self.hp_regen_mult = self:GetSpecialValueFor("hp_regen_mult")
 	self.talent3 = self:GetCaster():HasTalent("special_bonus_unique_doom_demons_bargain_3")
 	self.talent3Value = self.hp_regen * self:GetCaster():FindTalentValue("special_bonus_unique_doom_demons_bargain_3")
 	self.talent4 = self:GetCaster():HasTalent("special_bonus_unique_doom_demons_bargain_4")

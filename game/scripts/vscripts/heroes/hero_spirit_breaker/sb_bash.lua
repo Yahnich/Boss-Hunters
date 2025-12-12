@@ -17,13 +17,13 @@ end
 function sb_bash:Bash(target, distance, bBuff)
     local caster = self:GetCaster()
 
-    local stunDuration = self:GetTalentSpecialValueFor("duration")
-    local knockbackDuration = self:GetTalentSpecialValueFor("knockback_duration")
-    local height = self:GetTalentSpecialValueFor("knockback_height")
+    local stunDuration = self:GetSpecialValueFor("duration")
+    local knockbackDuration = self:GetSpecialValueFor("knockback_duration")
+    local height = self:GetSpecialValueFor("knockback_height")
 
-    local dist = distance or self:GetTalentSpecialValueFor("knockback_distance")
+    local dist = distance or self:GetSpecialValueFor("knockback_distance")
 
-    local damage = caster:GetIdealSpeed() * self:GetTalentSpecialValueFor("damage")/100
+    local damage = caster:GetIdealSpeed() * self:GetSpecialValueFor("damage")/100
 
     local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_spirit_breaker/spirit_breaker_greater_bash.vpcf", PATTACH_POINT, caster)
                 ParticleManager:SetParticleControlEnt(nfx, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
@@ -47,7 +47,7 @@ function sb_bash:Bash(target, distance, bBuff)
         end
     end)
 	if bBuff ~= false then
-		caster:AddNewModifier(caster, self, "modifier_sb_bash_ms", {Duration = self:GetTalentSpecialValueFor("ms_duration")})
+		caster:AddNewModifier(caster, self, "modifier_sb_bash_ms", {Duration = self:GetSpecialValueFor("ms_duration")})
 	end
     self:DealDamage(caster, target, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 end
@@ -67,8 +67,8 @@ function modifier_sb_bash_handle:OnAttackLanded(params)
     local target = params.target
     local ability = self:GetAbility()
     if attacker == caster and ( ability:IsCooldownReady() or caster:IsInAbilityAttackMode() ) then
-        if self:RollPRNG( self:GetTalentSpecialValueFor("chance") ) or caster:IsInAbilityAttackMode() then
-            local distance = self:GetTalentSpecialValueFor("knockback_distance")
+        if self:RollPRNG( self:GetSpecialValueFor("chance") ) or caster:IsInAbilityAttackMode() then
+            local distance = self:GetSpecialValueFor("knockback_distance")
             ability:Bash(target, distance)
             if not caster:IsInAbilityAttackMode() then
 				ability:SetCooldown()
@@ -90,7 +90,7 @@ function modifier_sb_bash_ms:DeclareFunctions()
 end
 
 function modifier_sb_bash_ms:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("bonus_ms")
+    return self:GetSpecialValueFor("bonus_ms")
 end
 
 function modifier_sb_bash_ms:IsDebuff()

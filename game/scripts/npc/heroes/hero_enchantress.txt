@@ -16,7 +16,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"enchantress_untouchable"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -52,30 +52,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"slow_as"				"-60 -90 -120 -150 -180 -210 -240"	
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"passive_as"			"-24 -36 -48 -60 -72 -84 -96"	
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6"
+			"slow_as"				"-60 -90 -120 -150 -180 -210 -240"	
+			"passive_as"			"-24 -36 -48 -60 -72 -84 -96"	
+			"duration"				"6"
 				"LinkedSpecialBonus"	"special_bonus_unique_enchantress_untouchable_bh_1"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"500"
-				"LinkedSpecialBonus"	"special_bonus_unique_enchantress_attendants_2"
-			}		
+			"radius"				"500"
+				"LinkedSpecialBonus"	"special_bonus_unique_enchantress_attendants_2"		
 		}
 	}
 
@@ -93,23 +77,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"ms"						"-50"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"passive_ms"				"-20"
-			}
+			"value"						"-2"
+			"ms"						"-50"
+			"passive_ms"				"-20"
 		}
 	}
 	//=================================================================================================================
@@ -125,18 +97,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1.5"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"cast_range"				"500"
-			}
+			"value"						"1.5"
+			"cast_range"				"500"
 		}
 	}
 
@@ -154,7 +118,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"enchantress_enchant"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -189,18 +153,10 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"slow_ms"				"-55"
-			}			
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.5 2 2.5 3 3.5 4 4.5"
-			}
+			"slow_ms"				"-55"			
+			"duration"				"1.5 2 2.5 3 3.5 4 4.5"
 		}
 	}
 
@@ -217,13 +173,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"15"
-			}
+			"value"						"15"
 		}
 	}
 	//=================================================================================================================
@@ -239,13 +191,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"30"
-			}
+			"value"						"30"
 		}
 	}
 
@@ -264,7 +212,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"enchantress_natures_attendants"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -301,34 +249,20 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"count"					"4 6 8 10 12 14 16"
+			"count"					"4 6 8 10 12 14 16"
 				"LinkedSpecialBonus"	"special_bonus_unique_enchantress_attendants_2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"11"
-			}
+			"duration"				"11"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"heal"					"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"275"
-			}
+			"radius"				"275"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"scepter_mana_cost"		"1.5"
-			}
 			
 		}
 	}
@@ -346,13 +280,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 
@@ -369,13 +299,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"8"
-			}
+			"value"						"8"
 		}
 	}
 
@@ -404,33 +330,19 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ar"				"100"
-			}
+			"bonus_ar"				"100"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_proj_speed"		"50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"slow_as"				"-20"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_acc"				"50"
-			}
+			"slow_as"				"-20"
+			"bonus_acc"				"50"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"bonus_dmg"				"20"
-			}
 		}
 	}
 
@@ -450,7 +362,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"enchantress_impetus"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -485,13 +397,9 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{	
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"distance_damage_pct"	"16 20 24 28 32 36"			
-			}				
+			"distance_damage_pct"	"16 20 24 28 32 36"							
 		}
 	}
 
@@ -508,18 +416,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"625"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"heal"						"100"
-			}
+			"value"						"625"
+			"heal"						"100"
 		}
 	}
 	//=================================================================================================================
@@ -535,13 +435,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"10"
-			}
+			"value"						"10"
 		}
 	}
 }

@@ -14,7 +14,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"centaur_hoof_stomp"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -32,28 +32,12 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"350"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"stun_duration"					"1.7 2 2.3 2.6 2.6 2.6 2.6"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"stomp_damage"					"100 150 200 250 325 400 475"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"str_to_radius"					"100"
-			}
+			"radius"						"350"
+			"stun_duration"					"1.7 2 2.3 2.6 2.6 2.6 2.6"
+			"stomp_damage"					"100 150 200 250 325 400 475"
+			"str_to_radius"					"100"
 		}
 	}
 	"special_bonus_unique_centaur_hoof_stomp_1" 
@@ -66,13 +50,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-6"
-			}
+			"value"					"-6"
 		}
 	}
 	"special_bonus_unique_centaur_hoof_stomp_2" 
@@ -85,23 +65,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ms"					"-50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"as"					"-180"
-			}
+			"value"					"5"
+			"ms"					"-50"
+			"as"					"-180"
 		}
 	}
 	"centaur_great_edge"
@@ -117,7 +85,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"centaur_double_edge"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -138,31 +106,15 @@
 	
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"edge_damage"					"150 250 350 450 450 450 450"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"edge_str_damage"				"60 60 60 60 80 100 120"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"190"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"self_damage"					"50"
+			"edge_damage"					"150 250 350 450 450 450 450"
+			"edge_str_damage"				"60 60 60 60 80 100 120"
+			"radius"						"190"
+			"self_damage"					"50"
 				"LinkedSpecialBonus"			"special_bonus_unique_centaur_great_edge_1"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 		}
 	
 		"precache"
@@ -181,18 +133,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cd"					"-4"
-			}
+			"value"					"50"
+			"cd"					"-4"
 		}
 	}
 	"special_bonus_unique_centaur_great_edge_2" 
@@ -205,13 +149,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"special_bonus_unique_centaur_great_edge_3" 
@@ -224,13 +164,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"5"
-			}
+			"value"					"5"
 		}
 	}
 	"centaur_champions_presence"
@@ -242,7 +178,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/centaur_champions_presence"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -263,33 +199,13 @@
 	
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"duration"						"10"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_damage"					"15 30 45 60 60 60 60"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_spell_amp"				"15 30 45 60 60 60 60"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"health_regen"					"15 30 45 60 60 60 60"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_threat_amp"				"15 30 45 60 60 60 60"
-			}
+			"duration"						"10"
+			"bonus_damage"					"15 30 45 60 60 60 60"
+			"bonus_spell_amp"				"15 30 45 60 60 60 60"
+			"health_regen"					"15 30 45 60 60 60 60"
+			"bonus_threat_amp"				"15 30 45 60 60 60 60"
 		}
 	
 		"precache"
@@ -311,18 +227,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-30"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value2"				"-60"
-			}
+			"value"					"-30"
+			"value2"				"-60"
 		}
 	}
 	"special_bonus_unique_centaur_champions_presence_2" 
@@ -335,13 +243,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"30"
-			}
+			"value"					"30"
 		}
 	}
 	//=================================================================================================================
@@ -363,27 +267,15 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"level_damage"				"5"
+			"level_damage"				"5"
 				"LinkedSpecialBonus"		"special_bonus_unique_centaur_warchiefs_aegis_2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"bonus_strength"			"20"
+			"bonus_strength"			"20"
 				"LinkedSpecialBonus"		"special_bonus_unique_centaur_warchiefs_aegis_2"
 				"LinkedSpecialBonusField"	"str"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_radius"			"900"
+			"scepter_radius"			"900"
 				"RequiresScepter"			"1"
-			}
 		}
 	
 		"precache"
@@ -401,13 +293,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"900"
-			}
+			"value"					"900"
 		}
 	}
 	"special_bonus_unique_centaur_warchiefs_aegis_2" 
@@ -421,18 +309,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
-			}
+			"value"					"2"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"str"					"5"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -451,7 +334,7 @@
 		"AbilityTextureName"			"centaur_stampede"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"FightRecapLevel"				"2"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -475,42 +358,30 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"6"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"base_damage"					"100 150 200 250 300 350"
-			}
+			"base_damage"					"100 150 200 250 300 350"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"strength_damage"				"6 7 7 8 8 9"
 				"LinkedSpecialBonus"			"special_bonus_unique_centaur_stampede_1"
 				"LinkedSpecialBonusField"		"value2"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"slow_duration"					"1.5"
 				"LinkedSpecialBonus"			"special_bonus_unique_centaur_stampede_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"150"
-			}
+			"radius"						"150"
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"slow_movement_speed"			"100"
-			}
 		}
 		
 		"precache"
@@ -534,23 +405,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"3"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value2"				"1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.5"
-			}
+			"value"					"3"
+			"value2"				"1"
+			"duration"				"1.5"
 		}
 	}
 	"special_bonus_unique_centaur_stampede_2" 
@@ -563,13 +422,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-10"
-			}
+			"value"					"-10"
 		}
 	}
 }

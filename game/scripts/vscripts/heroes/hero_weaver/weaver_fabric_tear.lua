@@ -12,7 +12,7 @@ function weaver_fabric_tear:IsHiddenWhenStolen()
 end
 
 function weaver_fabric_tear:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function weaver_fabric_tear:OnSpellStart()
@@ -23,7 +23,7 @@ function weaver_fabric_tear:CreateFabricTear( position, duration )
 	local caster = self:GetCaster()
 	local point = position or self:GetCaster():GetAbsOrigin()
 	
-	local thinkerDur = duration or self:GetTalentSpecialValueFor("duration")
+	local thinkerDur = duration or self:GetSpecialValueFor("duration")
 
 	EmitSoundOn("Hero_ArcWarden.MagneticField.Cast", caster)
 	CreateModifierThinker(caster, self, "modifier_weaver_fabric_tear", {Duration = thinkerDur}, point, caster:GetTeam(), false)
@@ -39,7 +39,7 @@ function modifier_weaver_fabric_tear:OnCreated(table)
 
 		EmitSoundOn("Hero_ArcWarden.MagneticField", parent)
 
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local radius = self:GetSpecialValueFor("radius")
 		local vRadius = Vector(radius, radius, radius)
 		
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_weaver/weaver_fabric_tear.vpcf", PATTACH_POINT, caster)
@@ -61,7 +61,7 @@ function modifier_weaver_fabric_tear:OnIntervalThink()
 	if IsServer() then
 		local caster = self:GetCaster()
 		local point = self:GetParent():GetAbsOrigin()
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local radius = self:GetSpecialValueFor("radius")
 
 		local enemies = caster:FindEnemyUnitsInRadius(point, radius)
 		for _,enemy in pairs(enemies) do

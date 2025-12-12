@@ -13,13 +13,13 @@ function ss_electric_vortex:GetBehavior()
 end
 
 function ss_electric_vortex:GetCastRange(vLocation, hTarget)
-    return self:GetTalentSpecialValueFor("cast_range")
+    return self:GetSpecialValueFor("cast_range")
 end
 
 function ss_electric_vortex:OnSpellStart()
 	local caster = self:GetCaster()
 
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 
 	EmitSoundOn("Hero_StormSpirit.ElectricVortexCast", caster)
 
@@ -61,7 +61,7 @@ function modifier_ss_electric_vortex:OnCreated(table)
 		self.point = self.caster:GetAbsOrigin()
 		self.parent = self:GetParent()
 
-		self.speed = self:GetTalentSpecialValueFor("cast_range") / self:GetDuration() * FrameTime()
+		self.speed = self:GetSpecialValueFor("cast_range") / self:GetDuration() * FrameTime()
 
 		self.talent1 = self.caster:HasTalent("special_bonus_unique_ss_electric_vortex_1")
 		self.damage = self.caster:GetLevel()*self.caster:FindTalentValue("special_bonus_unique_ss_electric_vortex_1") * FrameTime()

@@ -3,10 +3,10 @@ lycan_shapeshift_bh = class({})
 function lycan_shapeshift_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local transformation = self:GetTalentSpecialValueFor("transformation_time")
+	local transformation = self:GetSpecialValueFor("transformation_time")
 	self:Stun(caster, transformation)
 	
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	caster:AddNewModifier(caster, self, "modifier_lycan_shapeshift_bh", {duration = duration + transformation})
 	caster:AddNewModifier(caster, self, "modifier_lycan_shapeshift_bh_wolf", {duration = duration + transformation})
 	ParticleManager:FireParticle("particles/units/heroes/hero_lycan/lycan_shapeshift_cast.vpcf", PATTACH_POINT_FOLLOW, caster)

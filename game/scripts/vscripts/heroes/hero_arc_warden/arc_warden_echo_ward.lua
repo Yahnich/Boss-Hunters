@@ -18,10 +18,10 @@ function modifier_arc_warden_echo_ward:OnAbilityFullyCast(params)
 	if IsServer() and self:GetAbility():IsCooldownReady() then
 		local caster = self:GetCaster()
 		if params.unit == caster then
-			local tick_rate = self:GetTalentSpecialValueFor("delay")
+			local tick_rate = self:GetSpecialValueFor("delay")
 			local ability = params.ability
 			local currentCasts = 0
-			local maxCasts = TernaryOperator( self:GetTalentSpecialValueFor("scepter_casts"), caster:HasScepter(), self:GetTalentSpecialValueFor("bonus_casts") )
+			local maxCasts = TernaryOperator( self:GetSpecialValueFor("scepter_casts"), caster:HasScepter(), self:GetSpecialValueFor("bonus_casts") )
 
 			local cursorPos = ability:GetCursorPosition()
 

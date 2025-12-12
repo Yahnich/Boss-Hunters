@@ -9,7 +9,7 @@ function leshrac_diabolic_edict_bh:IsHiddenWhenStolen()
 end
 
 function leshrac_diabolic_edict_bh:GetCastRange( target, position )
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function leshrac_diabolic_edict_bh:GetBehavior()
@@ -28,7 +28,7 @@ function leshrac_diabolic_edict_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget() or caster
 	
-	target:AddNewModifier( caster, self, "modifier_leshrac_diabolic_edict_bh", {duration = self:GetTalentSpecialValueFor("duration_tooltip")})
+	target:AddNewModifier( caster, self, "modifier_leshrac_diabolic_edict_bh", {duration = self:GetSpecialValueFor("duration_tooltip")})
 end
 
 modifier_leshrac_diabolic_edict_bh = class({})
@@ -36,9 +36,9 @@ LinkLuaModifier("modifier_leshrac_diabolic_edict_bh", "heroes/hero_leshrac/leshr
 
 if IsServer() then
 	function modifier_leshrac_diabolic_edict_bh:OnCreated()
-		self.radius = self:GetTalentSpecialValueFor("radius")
+		self.radius = self:GetSpecialValueFor("radius")
 		self.damage = self:GetAbility():GetAbilityDamage() + self:GetParent():GetAverageTrueAttackDamage( self:GetParent() ) * self:GetCaster():FindTalentValue("special_bonus_unique_leshrac_diabolic_edict_2") / 100
-		self.tick = self:GetTalentSpecialValueFor("duration_tooltip") / self:GetTalentSpecialValueFor("num_explosions")
+		self.tick = self:GetSpecialValueFor("duration_tooltip") / self:GetSpecialValueFor("num_explosions")
 		self:StartIntervalThink( self.tick )
 		
 		self:GetCaster():StopSound("Hero_Leshrac.Diabolic_Edict_lp")

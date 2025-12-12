@@ -13,7 +13,7 @@ function furion_tree_jail:IsHiddenWhenStolen()
 end
 
 function furion_tree_jail:GetAOERadius()
-	return self:GetTalentSpecialValueFor("tree_radius")
+	return self:GetSpecialValueFor("tree_radius")
 end
 
 function furion_tree_jail:PiercesDisableResistance()
@@ -26,10 +26,10 @@ function furion_tree_jail:OnSpellStart()
 	if self:GetCursorTarget() then
 		local point = self:GetCursorTarget():GetAbsOrigin()
 	end
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local vision_range = self:GetTalentSpecialValueFor("vision_range")
-	local trees = self:GetTalentSpecialValueFor("tree_count")
-	local radius = self:GetTalentSpecialValueFor("tree_radius")
+	local duration = self:GetSpecialValueFor("duration")
+	local vision_range = self:GetSpecialValueFor("vision_range")
+	local trees = self:GetSpecialValueFor("tree_count")
+	local radius = self:GetSpecialValueFor("tree_radius")
 	local angle = math.pi/(trees/2)
 	
 	-- Creates 16 temporary trees at each 45 degree interval around the clicked point
@@ -54,7 +54,7 @@ end
 modifier_furion_sprout_sleep_thinker = class({})
 
 function modifier_furion_sprout_sleep_thinker:OnCreated( kv )
-	self.aura_radius = self:GetAbility():GetTalentSpecialValueFor( "sleep_radius" )
+	self.aura_radius = self:GetAbility():GetSpecialValueFor( "sleep_radius" )
 end
 
 function modifier_furion_sprout_sleep_thinker:OnDestroy( kv )
@@ -129,18 +129,18 @@ end
 modifier_furion_sprout_sleep_aura = class({})
 
 function modifier_furion_sprout_sleep_aura:OnCreated()
-	self.sleepDelay = self:GetAbility():GetTalentSpecialValueFor("sleep_delay")
-	self.sleepDuration = self:GetAbility():GetTalentSpecialValueFor("sleep_duration")
-	self.chokeDamage = self:GetAbility():GetTalentSpecialValueFor("damage") * self.sleepDelay
+	self.sleepDelay = self:GetAbility():GetSpecialValueFor("sleep_delay")
+	self.sleepDuration = self:GetAbility():GetSpecialValueFor("sleep_duration")
+	self.chokeDamage = self:GetAbility():GetSpecialValueFor("damage") * self.sleepDelay
 	if IsServer() then
 		self:StartIntervalThink(self.sleepDelay)
 	end
 end
 
 function modifier_furion_sprout_sleep_aura:OnRefresh()
-	self.sleepDelay = self:GetAbility():GetTalentSpecialValueFor("sleep_delay")
-	self.sleepDuration = self:GetAbility():GetTalentSpecialValueFor("sleep_duration")
-	self.chokeDamage = self:GetAbility():GetTalentSpecialValueFor("damage") * self.sleepDelay
+	self.sleepDelay = self:GetAbility():GetSpecialValueFor("sleep_delay")
+	self.sleepDuration = self:GetAbility():GetSpecialValueFor("sleep_duration")
+	self.chokeDamage = self:GetAbility():GetSpecialValueFor("damage") * self.sleepDelay
 end
 
 function modifier_furion_sprout_sleep_aura:OnIntervalThink()
@@ -166,7 +166,7 @@ function modifier_furion_sprout_sleep:OnTakeDamage(params)
 			if self:GetCaster():HasTalent("special_bonus_unique_furion_tree_jail_1") and self:GetCaster():FindAbilityByName("furion_entangle") then
 				local entangle = self:GetCaster():FindAbilityByName("furion_entangle")
 				if entangle then
-					enemy:AddNewModifier(self:GetCaster(), entangle, "modifier_entangle_enemy", {Duration = entangle:GetTalentSpecialValueFor("duration")})
+					enemy:AddNewModifier(self:GetCaster(), entangle, "modifier_entangle_enemy", {Duration = entangle:GetSpecialValueFor("duration")})
 				end
 			end
 			self:Destroy()

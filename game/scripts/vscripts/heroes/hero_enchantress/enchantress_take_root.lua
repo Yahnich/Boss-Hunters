@@ -9,7 +9,7 @@ function enchantress_take_root:IsHiddenWhenStolen()
 end
 
 function enchantress_take_root:GetCastRange(vLocation, hTarget)
-	local range = self:GetCaster():GetAttackRange() + self:GetCaster():GetAttackRange() * self:GetTalentSpecialValueFor("bonus_ar")/100
+	local range = self:GetCaster():GetAttackRange() + self:GetCaster():GetAttackRange() * self:GetSpecialValueFor("bonus_ar")/100
     return range
 end
 
@@ -25,16 +25,16 @@ end
 
 modifier_enchantress_take_root = class(toggleModifierBaseClass)
 function modifier_enchantress_take_root:OnCreated(table)
-	self.bonus_ar = self:GetParent():GetAttackRange() * self:GetTalentSpecialValueFor("bonus_ar")/100
-	self.slow_as = self:GetTalentSpecialValueFor("slow_as")
-	self.bonus_dmg = self:GetTalentSpecialValueFor("bonus_dmg")
-	self.bonus_acc = self:GetTalentSpecialValueFor("bonus_acc")
+	self.bonus_ar = self:GetParent():GetAttackRange() * self:GetSpecialValueFor("bonus_ar")/100
+	self.slow_as = self:GetSpecialValueFor("slow_as")
+	self.bonus_dmg = self:GetSpecialValueFor("bonus_dmg")
+	self.bonus_acc = self:GetSpecialValueFor("bonus_acc")
 	
 	self:GetParent():HookInModifier("GetModifierAttackSpeedBonusPercentage", self)
 	if IsServer() then
 		local parent = self:GetParent()
 
-		self.bonus_proj_speed = self:GetParent():GetProjectileSpeed() * self:GetTalentSpecialValueFor("bonus_proj_speed")/100
+		self.bonus_proj_speed = self:GetParent():GetProjectileSpeed() * self:GetSpecialValueFor("bonus_proj_speed")/100
 
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle.vpcf", PATTACH_POINT, parent)
 					ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)

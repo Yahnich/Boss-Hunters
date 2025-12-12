@@ -13,17 +13,17 @@ end
 function oracle_fortunes:GetCastRange( position, target )
 	local range = self.BaseClass.GetCastRange( self, position, target )
 	if self:GetCaster():HasScepter() then
-		range = range + self:GetTalentSpecialValueFor("scepter_cast_range_bonus")
+		range = range + self:GetSpecialValueFor("scepter_cast_range_bonus")
 	end
 	return range
 end
 
 function oracle_fortunes:GetChannelTime()
-    return self:GetTalentSpecialValueFor("max_channel")
+    return self:GetSpecialValueFor("max_channel")
 end
 
 function oracle_fortunes:GetAOERadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function oracle_fortunes:OnChannelFinish(bInterrupted)
@@ -38,16 +38,16 @@ function oracle_fortunes:OnSpellStart()
 	
 	EmitSoundOn("Hero_Oracle.FortunesEnd.Channel", caster)
 
-	caster:AddNewModifier(caster, self, "modifier_oracle_fortunes_channel", {Duration = self:GetTalentSpecialValueFor("max_channel"), ignoreStatusAmp = true})
+	caster:AddNewModifier(caster, self, "modifier_oracle_fortunes_channel", {Duration = self:GetSpecialValueFor("max_channel"), ignoreStatusAmp = true})
 end
 
 function oracle_fortunes:OnProjectileHit_ExtraData(hTarget, vLocation, table)
     local caster = self:GetCaster()
-    local damage = self:GetTalentSpecialValueFor("damage")
-    local scepter_mult = self:GetTalentSpecialValueFor("scepter_stun_pct") / 100
+    local damage = self:GetSpecialValueFor("damage")
+    local scepter_mult = self:GetSpecialValueFor("scepter_stun_pct") / 100
     local rootDuration = table.root
 
-    local radius = self:GetTalentSpecialValueFor("radius")
+    local radius = self:GetSpecialValueFor("radius")
 
     EmitSoundOnLocationWithCaster(vLocation, "Hero_Oracle.FortunesEnd.Target", caster)
 
@@ -95,11 +95,11 @@ function modifier_oracle_fortunes_channel:OnCreated(table)
 
 		self.target = self:GetAbility():GetCursorTarget()
 
-		self.damageIncrement = ( self:GetTalentSpecialValueFor("damage") / self:GetDuration() ) * 0.1
+		self.damageIncrement = ( self:GetSpecialValueFor("damage") / self:GetDuration() ) * 0.1
 		self.damage = 0
 		
-		self.root = self:GetTalentSpecialValueFor("min_duration")
-		self.rootIncrement = ( ( self:GetTalentSpecialValueFor("max_duration") - self.root ) / self:GetDuration() ) * 0.1
+		self.root = self:GetSpecialValueFor("min_duration")
+		self.rootIncrement = ( ( self:GetSpecialValueFor("max_duration") - self.root ) / self:GetDuration() ) * 0.1
 
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_oracle/oracle_fortune_channel.vpcf", PATTACH_POINT_FOLLOW, parent)
 					ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_POINT_FOLLOW, "attach_attack1", parent:GetAbsOrigin(), true)
@@ -115,11 +115,11 @@ function modifier_oracle_fortunes_channel:OnRefresh(table)
 	if IsServer() then
 		self.target = self:GetAbility():GetCursorTarget()
 
-		self.damageIncrement = ( self:GetTalentSpecialValueFor("damage") / self:GetDuration() ) * 0.1
+		self.damageIncrement = ( self:GetSpecialValueFor("damage") / self:GetDuration() ) * 0.1
 		self.damage = 0
 		
-		self.root = self:GetTalentSpecialValueFor("min_duration")
-		self.rootIncrement = ( ( self:GetTalentSpecialValueFor("max_duration") - self.root ) / self:GetDuration() ) * 0.1
+		self.root = self:GetSpecialValueFor("min_duration")
+		self.rootIncrement = ( ( self:GetSpecialValueFor("max_duration") - self.root ) / self:GetDuration() ) * 0.1
 		
 
 		self:StartIntervalThink(0.1)

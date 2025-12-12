@@ -16,11 +16,11 @@ function rubick_bolt:OnSpellStart()
 
 	local entities_damaged = {}
 
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local damage_reduc = self:GetTalentSpecialValueFor("damage_reduc")
-	local jump_delay = self:GetTalentSpecialValueFor("jump_delay")
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local damage = self:GetSpecialValueFor("damage")
+	local radius = self:GetSpecialValueFor("radius")
+	local damage_reduc = self:GetSpecialValueFor("damage_reduc")
+	local jump_delay = self:GetSpecialValueFor("jump_delay")
+	local duration = self:GetSpecialValueFor("duration")
 
 	EmitSoundOn("Hero_Rubick.FadeBolt.Cast", self:GetCaster())
 
@@ -42,8 +42,8 @@ function rubick_bolt:OnSpellStart()
 			end
 		end
 
-		if damage < self:GetTalentSpecialValueFor("damage")/10 then
-			damage = self:GetTalentSpecialValueFor("damage")/10
+		if damage < self:GetSpecialValueFor("damage")/10 then
+			damage = self:GetSpecialValueFor("damage")/10
 		end
 
 		-- play Fade Bolt particle
@@ -99,7 +99,7 @@ function modifier_rubick_bolt:OnCreated(table)
 		self.attribute = MODIFIER_ATTRIBUTE_NONE
 	end
 
-	self.damage_reduc = self:GetTalentSpecialValueFor("damage_reduc")
+	self.damage_reduc = self:GetSpecialValueFor("damage_reduc")
 end
 
 function modifier_rubick_bolt:OnRefresh(table)
@@ -109,7 +109,7 @@ function modifier_rubick_bolt:OnRefresh(table)
 		self.attribute = MODIFIER_ATTRIBUTE_NONE
 	end
 
-	self.damage_reduc = self:GetTalentSpecialValueFor("damage_reduc")
+	self.damage_reduc = self:GetSpecialValueFor("damage_reduc")
 end
 
 function modifier_rubick_bolt:DeclareFunctions()

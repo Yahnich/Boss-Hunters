@@ -4,7 +4,7 @@ function treant_little_tree:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
 	
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	
 	self:CreateLittleTree(position, duration)
 	if caster:HasTalent("special_bonus_unique_treant_little_tree_2") then
@@ -20,7 +20,7 @@ end
 function treant_little_tree:CreateLittleTree(position, duration)
 	local caster = self:GetCaster()
 	
-	local fDur = duration or self:GetTalentSpecialValueFor("duration")
+	local fDur = duration or self:GetSpecialValueFor("duration")
 	CreateModifierThinker(caster, self, "modifier_treant_little_tree_thinker", {Duration = fDur}, position, caster:GetTeam(), false)
 	CreateTempTree(position, fDur)
 	ResolveNPCPositions(position, 150)
@@ -30,7 +30,7 @@ modifier_treant_little_tree_thinker = class({})
 LinkLuaModifier("modifier_treant_little_tree_thinker", "heroes/hero_treant_protector/treant_little_tree", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_treant_little_tree_thinker:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("aura_radius")
+	self.radius = self:GetSpecialValueFor("aura_radius")
 	if IsServer() then
 		self:StartIntervalThink(0.1)
 		local FX = ParticleManager:CreateParticle("particles/units/heroes/hero_treant/treant_eyesintheforest.vpcf", PATTACH_ABSORIGIN, self:GetParent() )
@@ -76,7 +76,7 @@ modifier_treant_little_tree_buff = class({})
 LinkLuaModifier("modifier_treant_little_tree_buff", "heroes/hero_treant_protector/treant_little_tree", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_treant_little_tree_buff:OnCreated()
-	self.heal = self:GetTalentSpecialValueFor("heal")
+	self.heal = self:GetSpecialValueFor("heal")
 	if IsServer() then
 		self:StartIntervalThink(1)
 	end
@@ -90,7 +90,7 @@ modifier_treant_little_tree_debuff = class({})
 LinkLuaModifier("modifier_treant_little_tree_debuff", "heroes/hero_treant_protector/treant_little_tree", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_treant_little_tree_debuff:OnCreated()
-	self.dmg = self:GetTalentSpecialValueFor("leech")
+	self.dmg = self:GetSpecialValueFor("leech")
 	if IsServer() then
 		self:StartIntervalThink(1)
 	end

@@ -6,15 +6,15 @@ function razor_eye_of_the_storm_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	EmitSoundOn("Hero_Razor.Storm.Cast", caster)
 	caster:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_4)
-	caster:AddNewModifier(caster, self, "modifier_razor_eye_of_the_storm_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_razor_eye_of_the_storm_bh", {Duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_razor_eye_of_the_storm_bh = class({})
 function modifier_razor_eye_of_the_storm_bh:OnCreated(table)
 	if IsServer() then
 		EmitSoundOn("Hero_Razor.Storm.Loop", self:GetCaster())
-		self.interval = self:GetTalentSpecialValueFor("strike_interval")
-		self.targets = TernaryOperator( self:GetTalentSpecialValueFor("scepter_target"), self:GetCaster():HasScepter(), 1 )
+		self.interval = self:GetSpecialValueFor("strike_interval")
+		self.targets = TernaryOperator( self:GetSpecialValueFor("scepter_target"), self:GetCaster():HasScepter(), 1 )
 		self:StartIntervalThink( self.interval ) 
 	end 
 end
@@ -28,9 +28,9 @@ function modifier_razor_eye_of_the_storm_bh:OnIntervalThink()
 		EmitSoundOn("Hero_razor.lightning", enemy)
 		ParticleManager:FireParticle("particles/units/heroes/hero_razor/razor_storm_lightning_strike.vpcf", PATTACH_POINT, enemy, {[0] = caster:GetAbsOrigin() + Vector(0, 0, 500), [1] = "attach_hitloc"})
 		if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
-			local duration = self:GetTalentSpecialValueFor("duration")
+			local duration = self:GetSpecialValueFor("duration")
 			enemy:AddNewModifier(caster, self:GetAbility(), "modifier_razor_eye_of_the_storm_bh_enemy", {Duration = duration}):AddIndependentStack(duration)
-			self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+			self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, 0)
 		end
 		targets = targets - 1
 		if targets <= 0 then
@@ -60,12 +60,12 @@ end
 
 modifier_razor_eye_of_the_storm_bh_enemy = class({})
 function modifier_razor_eye_of_the_storm_bh_enemy:OnCreated()
-	self.armor = self:GetTalentSpecialValueFor("armor_reduction")
+	self.armor = self:GetSpecialValueFor("armor_reduction")
 	self.mr = self:GetCaster():FindTalentValue("special_bonus_unique_razor_eye_of_the_storm_bh_1")
 end
 
 function modifier_razor_eye_of_the_storm_bh_enemy:OnRefresh()
-	self.armor = self:GetTalentSpecialValueFor("armor_reduction")
+	self.armor = self:GetSpecialValueFor("armor_reduction")
 	self.mr = self:GetCaster():FindTalentValue("special_bonus_unique_razor_eye_of_the_storm_bh_1")
 end
 

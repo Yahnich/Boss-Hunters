@@ -1,7 +1,7 @@
 naga_siren_tidal_waves = class({})
 
 function naga_siren_tidal_waves:GetCastRange(target, position)
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function naga_siren_tidal_waves:GetCooldown( iLvl )
@@ -27,8 +27,8 @@ function naga_siren_tidal_waves:FireTidal( origin, fProcValue )
 	local caster = self:GetCaster()
 	local ability = self
 	
-	local radius = ability:GetTalentSpecialValueFor("radius")
-	local duration = ability:GetTalentSpecialValueFor("duration") * (fProcValue or 100) / 100
+	local radius = ability:GetSpecialValueFor("radius")
+	local duration = ability:GetSpecialValueFor("duration") * (fProcValue or 100) / 100
 	local damage = ability:GetAbilityDamage() * (fProcValue or 100) / 100
 	
 	
@@ -68,11 +68,11 @@ end
 -- LinkLuaModifier("modifier_naga_siren_tidal_waves_dead_tide_debuff", "heroes/hero_naga_siren/naga_siren_tidal_waves", LUA_MODIFIER_MOTION_NONE)
 
 -- function modifier_naga_siren_tidal_waves_dead_tide_debuff:OnCreated()
-	-- self.loss = self:GetTalentSpecialValueFor("damage_reduction")
+	-- self.loss = self:GetSpecialValueFor("damage_reduction")
 -- end
 
 -- function modifier_naga_siren_tidal_waves_dead_tide_debuff:OnRefresh()
-	-- self.loss = self:GetTalentSpecialValueFor("damage_reduction")
+	-- self.loss = self:GetSpecialValueFor("damage_reduction")
 -- end
 
 -- function modifier_naga_siren_tidal_waves_dead_tide_debuff:DeclareFunctions()
@@ -91,11 +91,11 @@ end
 -- LinkLuaModifier("modifier_naga_siren_tidal_waves_spring_tide_debuff", "heroes/hero_naga_siren/naga_siren_tidal_waves", LUA_MODIFIER_MOTION_NONE)
 
 -- function modifier_naga_siren_tidal_waves_spring_tide_debuff:OnCreated()
-	-- self.loss = self:GetTalentSpecialValueFor("mr_reduction")
+	-- self.loss = self:GetSpecialValueFor("mr_reduction")
 -- end
 
 -- function modifier_naga_siren_tidal_waves_spring_tide_debuff:OnRefresh()
-	-- self.loss = self:GetTalentSpecialValueFor("mr_reduction")
+	-- self.loss = self:GetSpecialValueFor("mr_reduction")
 -- end
 
 -- function modifier_naga_siren_tidal_waves_spring_tide_debuff:DeclareFunctions()
@@ -114,11 +114,11 @@ modifier_naga_siren_tidal_waves_rip_tide_buff = class({})
 LinkLuaModifier("modifier_naga_siren_tidal_waves_rip_tide_buff", "heroes/hero_naga_siren/naga_siren_tidal_waves", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_naga_siren_tidal_waves_rip_tide_buff:OnCreated()
-	self.loss = -self:GetTalentSpecialValueFor("armor_reduction")
+	self.loss = -self:GetSpecialValueFor("armor_reduction")
 end
 
 function modifier_naga_siren_tidal_waves_rip_tide_buff:OnRefresh()
-	self.loss = -self:GetTalentSpecialValueFor("armor_reduction")
+	self.loss = -self:GetSpecialValueFor("armor_reduction")
 end
 
 function modifier_naga_siren_tidal_waves_rip_tide_buff:DeclareFunctions()
@@ -137,11 +137,11 @@ modifier_naga_siren_tidal_waves_rip_tide_buff_weak = class({})
 LinkLuaModifier("modifier_naga_siren_tidal_waves_rip_tide_buff_weak", "heroes/hero_naga_siren/naga_siren_tidal_waves", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_naga_siren_tidal_waves_rip_tide_buff_weak:OnCreated()
-	self.loss = self:GetTalentSpecialValueFor("armor_reduction") / (-2)
+	self.loss = self:GetSpecialValueFor("armor_reduction") / (-2)
 end
 
 function modifier_naga_siren_tidal_waves_rip_tide_buff_weak:OnRefresh()
-	self.loss = self:GetTalentSpecialValueFor("armor_reduction") / (-2)
+	self.loss = self:GetSpecialValueFor("armor_reduction") / (-2)
 end
 
 function modifier_naga_siren_tidal_waves_rip_tide_buff_weak:DeclareFunctions()
@@ -164,11 +164,11 @@ modifier_naga_siren_tidal_waves_rip_tide_debuff = class({})
 LinkLuaModifier("modifier_naga_siren_tidal_waves_rip_tide_debuff", "heroes/hero_naga_siren/naga_siren_tidal_waves", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_naga_siren_tidal_waves_rip_tide_debuff:OnCreated()
-	self.loss = self:GetTalentSpecialValueFor("armor_reduction")
+	self.loss = self:GetSpecialValueFor("armor_reduction")
 end
 
 function modifier_naga_siren_tidal_waves_rip_tide_debuff:OnRefresh()
-	self.loss = self:GetTalentSpecialValueFor("armor_reduction")
+	self.loss = self:GetSpecialValueFor("armor_reduction")
 end
 
 function modifier_naga_siren_tidal_waves_rip_tide_debuff:DeclareFunctions()

@@ -1,7 +1,7 @@
 tech_blasting_off = class({})
 
 function tech_blasting_off:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function tech_blasting_off:OnAbilityPhaseStart()
@@ -19,7 +19,7 @@ function tech_blasting_off:OnSpellStart()
 	caster:Stop()
 	
 	StopSoundOn("Hero_Techies.BlastOff.Cast", self:GetCaster() )
-	caster:AddNewModifier( caster, self, "modifier_tech_blasting_off_movement", { duration = self:GetTalentSpecialValueFor("jump_duration") + 0.1 } )
+	caster:AddNewModifier( caster, self, "modifier_tech_blasting_off_movement", { duration = self:GetSpecialValueFor("jump_duration") + 0.1 } )
 	ParticleManager:FireParticle("particles/units/heroes/hero_techies/techies_blast_off_cast.vpcf", PATTACH_ABSORIGIN, caster)
 end
 
@@ -33,15 +33,15 @@ if IsServer() then
 		self.endPos = self:GetAbility():GetCursorPosition()
 		self.distance = CalculateDistance( self.endPos, parent )
 		self.direction = parent:GetForwardVector()
-		self.speed = (self.distance / self:GetTalentSpecialValueFor("jump_duration")) * FrameTime()
+		self.speed = (self.distance / self:GetSpecialValueFor("jump_duration")) * FrameTime()
 		self.initHeight = GetGroundHeight(parent:GetAbsOrigin(), parent)
 		self.height = self.initHeight
 		self.maxHeight = 281.108
 		
-		self.radius = self:GetTalentSpecialValueFor("radius")
-		self.damage = self:GetTalentSpecialValueFor("damage")
-		self.selfDmg = self:GetTalentSpecialValueFor("hp_cost") / 100
-		self.duration = self:GetTalentSpecialValueFor("silence_duration")
+		self.radius = self:GetSpecialValueFor("radius")
+		self.damage = self:GetSpecialValueFor("damage")
+		self.selfDmg = self:GetSpecialValueFor("hp_cost") / 100
+		self.duration = self:GetSpecialValueFor("silence_duration")
 		
 		if parent:HasTalent("special_bonus_unique_tech_blasting_off_1") then
 			self.mine = parent:FindAbilityByName("tech_mine")

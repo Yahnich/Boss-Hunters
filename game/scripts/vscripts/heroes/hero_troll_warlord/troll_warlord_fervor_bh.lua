@@ -49,8 +49,8 @@ function modifier_troll_warlord_fervor_bh:OnCreated()
 end
 
 function modifier_troll_warlord_fervor_bh:OnRefresh()
-	self.attack_speed = self:GetTalentSpecialValueFor("attack_speed")
-	self.max = self:GetTalentSpecialValueFor("max_stacks")
+	self.attack_speed = self:GetSpecialValueFor("attack_speed")
+	self.max = self:GetSpecialValueFor("max_stacks")
 	self.duration = self:GetCaster():FindTalentValue("special_bonus_unique_troll_warlord_fervor_1")
 	self.talent = self:GetCaster():HasTalent("special_bonus_unique_troll_warlord_fervor_1")
 end

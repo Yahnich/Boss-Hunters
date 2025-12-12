@@ -19,12 +19,12 @@ function arc_warden_magnetic_field_bh:Field(vLocation)
 	local point = vLocation
 	local caster = self:GetCaster()
 	local team_id = caster:GetTeamNumber()
-	local thinker = CreateModifierThinker(caster, self, "arc_warden_magnetic_field_bh_thinker", {Duration = self:GetTalentSpecialValueFor("duration")}, point, team_id, false)
+	local thinker = CreateModifierThinker(caster, self, "arc_warden_magnetic_field_bh_thinker", {Duration = self:GetSpecialValueFor("duration")}, point, team_id, false)
 	EmitSoundOnLocationWithCaster(point, "Hero_ArcWarden.MagneticField", caster)
 end
 
 function arc_warden_magnetic_field_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 arc_warden_magnetic_field_bh_thinker = class({})
@@ -33,7 +33,7 @@ function arc_warden_magnetic_field_bh_thinker:OnCreated(event)
 	local thinker = self:GetParent()
 	local ability = self:GetAbility()
 	self.team_number = thinker:GetTeamNumber()
-	self.radius = ability:GetTalentSpecialValueFor("radius")
+	self.radius = ability:GetSpecialValueFor("radius")
 
 	if IsServer() then
 		local caster = self:GetCaster()
@@ -76,8 +76,8 @@ function arc_warden_magnetic_field_bh_modifier:IsDebuff()
 end
 
 function arc_warden_magnetic_field_bh_modifier:OnCreated(  )
-	self.evasion = self:GetTalentSpecialValueFor("evasion_chance")
-	self.as = self:GetTalentSpecialValueFor("attack_speed_bonus")
+	self.evasion = self:GetSpecialValueFor("evasion_chance")
+	self.as = self:GetSpecialValueFor("attack_speed_bonus")
 	if IsServer() then
 		self:StartIntervalThink(0.5)
 	end

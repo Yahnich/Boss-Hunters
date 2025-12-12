@@ -22,12 +22,12 @@ function lina_laguna:OnSpellStart()
     end
 
     if caster:HasTalent("special_bonus_unique_lina_laguna_1") then
-        self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {damage_type = DAMAGE_TYPE_PURE}, 0) 
-        local hpDamage = target:GetMaxHealth()*self:GetTalentSpecialValueFor("hp")/100
+        self:DealDamage(caster, target, self:GetSpecialValueFor("damage"), {damage_type = DAMAGE_TYPE_PURE}, 0) 
+        local hpDamage = target:GetMaxHealth()*self:GetSpecialValueFor("hp")/100
         self:DealDamage(caster, target, hpDamage, {damage_type = DAMAGE_TYPE_PURE, damage_flags=DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_DAMAGE)
     else
-        self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {damage_type = DAMAGE_TYPE_MAGICAL}, 0) 
-        local hpDamage = target:GetMaxHealth()*self:GetTalentSpecialValueFor("hp")/100
+        self:DealDamage(caster, target, self:GetSpecialValueFor("damage"), {damage_type = DAMAGE_TYPE_MAGICAL}, 0) 
+        local hpDamage = target:GetMaxHealth()*self:GetSpecialValueFor("hp")/100
         self:DealDamage(caster, target, hpDamage, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags=DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_DAMAGE)
     end
 end

@@ -21,7 +21,7 @@ function mirana_celestial_jump:GetCooldown( iLvl )
 end
 
 function mirana_celestial_jump:GetCastRange(target, position)
-	return self:GetTalentSpecialValueFor("jump_distance")
+	return self:GetSpecialValueFor("jump_distance")
 end
 
 function mirana_celestial_jump:OnSpellStart()
@@ -38,12 +38,12 @@ LinkLuaModifier("modifier_mirana_celestial_jump_movement", "heroes/hero_mirana/m
 if IsServer() then
 	function modifier_mirana_celestial_jump_movement:OnCreated()
 		local parent = self:GetParent()
-		self.distance = self:GetTalentSpecialValueFor("jump_distance")
+		self.distance = self:GetSpecialValueFor("jump_distance")
 		self.direction = parent:GetForwardVector()
-		self.speed = self.distance / self:GetTalentSpecialValueFor("jump_duration") * FrameTime()
+		self.speed = self.distance / self:GetSpecialValueFor("jump_duration") * FrameTime()
 		self.initHeight = GetGroundHeight(parent:GetAbsOrigin(), parent)
 		self.height = self.initHeight
-		self.maxHeight = self:GetTalentSpecialValueFor("max_height")
+		self.maxHeight = self:GetSpecialValueFor("max_height")
 		self:StartMotionController()
 	end
 	
@@ -52,7 +52,7 @@ if IsServer() then
 		local parentPos = parent:GetAbsOrigin()
 		FindClearSpaceForUnit(parent, parentPos, true)
 		local ability = self:GetAbility()
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local radius = self:GetSpecialValueFor("radius")
 		local duration = self:GetSpecialValueFor("duration")
 		self:StopMotionController()
 
@@ -116,8 +116,8 @@ end
 
 
 function modifier_mirana_celestial_jump_buff:OnRefresh(table)
-	self.as = self:GetTalentSpecialValueFor("bonus_attackspeed")
-	self.ms = self:GetTalentSpecialValueFor("bonus_movespeed")
+	self.as = self:GetSpecialValueFor("bonus_attackspeed")
+	self.ms = self:GetSpecialValueFor("bonus_movespeed")
 
 	if self:GetCaster():HasTalent("special_bonus_unique_mirana_celestial_jump_2") then
 		self.agi = self.ms * self:GetCaster():FindTalentValue("special_bonus_unique_mirana_celestial_jump_2") / 100
@@ -151,7 +151,7 @@ LinkLuaModifier("modifier_mirana_celestial_jump_charges", "heroes/hero_mirana/mi
 if IsServer() then
     function modifier_mirana_celestial_jump_charges:Update()
 		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+		self.kv.max_count = self:GetSpecialValueFor("charges")
 
 		if self:GetStackCount() == self.kv.max_count then
 			self:SetDuration(-1, true)
@@ -174,7 +174,7 @@ if IsServer() then
 
     function modifier_mirana_celestial_jump_charges:OnCreated()
 		kv = {
-			max_count = self:GetTalentSpecialValueFor("charges"),
+			max_count = self:GetSpecialValueFor("charges"),
 			replenish_time = self:GetAbility():GetTrueCooldown()
 		}
         self:SetStackCount(kv.start_count or kv.max_count)
@@ -186,7 +186,7 @@ if IsServer() then
     end
 	
 	function modifier_mirana_celestial_jump_charges:OnRefresh()
-		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+		self.kv.max_count = self:GetSpecialValueFor("charges")
 		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
         if self:GetStackCount() ~= kv.max_count then
             self:Update()
@@ -204,7 +204,7 @@ if IsServer() then
     function modifier_mirana_celestial_jump_charges:OnAbilityFullyCast(params)
         if params.unit == self:GetParent() then
 			self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-			self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+			self.kv.max_count = self:GetSpecialValueFor("charges")
 			
             local ability = params.ability
             if params.ability == self:GetAbility() then
@@ -226,7 +226,7 @@ if IsServer() then
 		local octarine = caster:GetCooldownReduction()
 		
 		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+		self.kv.max_count = self:GetSpecialValueFor("charges")
 		
         if stacks < self.kv.max_count then
             self:IncrementStackCount()

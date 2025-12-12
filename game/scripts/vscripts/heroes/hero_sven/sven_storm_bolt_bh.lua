@@ -14,14 +14,14 @@ end
 
 function sven_storm_bolt_bh:GetCastRange( target, position )
 	if self:GetCaster():HasScepter() then
-		return self:GetTalentSpecialValueFor("scepter_range")
+		return self:GetSpecialValueFor("scepter_range")
 	else
 		return self.BaseClass.GetCastRange( self, target, position )
 	end
 end
 
 function sven_storm_bolt_bh:GetAOERadius()
-	local radius = self:GetTalentSpecialValueFor("bolt_aoe") * math.max(1, self:GetCaster():FindTalentValue("special_bonus_unique_sven_storm_bolt_1"))
+	local radius = self:GetSpecialValueFor("bolt_aoe") * math.max(1, self:GetCaster():FindTalentValue("special_bonus_unique_sven_storm_bolt_1"))
 	return radius
 end
 
@@ -29,10 +29,10 @@ function sven_storm_bolt_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	local bolt_speed = self:GetTalentSpecialValueFor("bolt_speed")
-	local vision_radius = self:GetTalentSpecialValueFor("vision_radius")
+	local bolt_speed = self:GetSpecialValueFor("bolt_speed")
+	local vision_radius = self:GetSpecialValueFor("vision_radius")
 	if caster:HasTalent("special_bonus_unique_sven_storm_bolt_1") then
-		local radius = self:GetTalentSpecialValueFor("bolt_aoe") * caster:FindTalentValue("special_bonus_unique_sven_storm_bolt_1")
+		local radius = self:GetSpecialValueFor("bolt_aoe") * caster:FindTalentValue("special_bonus_unique_sven_storm_bolt_1")
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), radius ) ) do
 			if enemy ~= target and not enemy:TriggerSpellAbsorb( self ) then
 				enemy:ApplyKnockBack( target:GetAbsOrigin(), 0.25, 0.25, -math.abs(CalculateDistance( enemy, target ) - 150), height, caster, ability, bStun)
@@ -61,8 +61,8 @@ end
 function sven_storm_bolt_bh:StormBolt( target )
 	local caster = self:GetCaster()
 	local damage = self:GetAbilityDamage() + caster:GetStrength() * caster:FindTalentValue("special_bonus_unique_sven_storm_bolt_1", "value2") / 100
-	local stunDur = self:GetTalentSpecialValueFor("bolt_stun_duration")
-	local radius = self:GetTalentSpecialValueFor("bolt_aoe")
+	local stunDur = self:GetSpecialValueFor("bolt_stun_duration")
+	local radius = self:GetSpecialValueFor("bolt_aoe")
 	
 	local talent = caster:HasTalent("special_bonus_unique_sven_storm_bolt_2")
 	local tDuration = caster:FindTalentValue("special_bonus_unique_sven_storm_bolt_2", "duration")

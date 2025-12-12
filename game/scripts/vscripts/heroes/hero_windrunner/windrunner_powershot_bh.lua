@@ -53,30 +53,30 @@ function windrunner_powershot_bh:LaunchPowerShot(target)
 	self:SpendMana()
 	EmitSoundOn("Ability.Powershot", caster)
 	caster:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_2)
-	local projectile = self:FireLinearProjectile("particles/units/heroes/hero_windrunner/windrunner_spell_powershot.vpcf", CalculateDirection( target, caster ) * self:GetTalentSpecialValueFor("arrow_speed"), self:GetTrueCastRange(), self:GetTalentSpecialValueFor("arrow_width"), {}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
+	local projectile = self:FireLinearProjectile("particles/units/heroes/hero_windrunner/windrunner_spell_powershot.vpcf", CalculateDirection( target, caster ) * self:GetSpecialValueFor("arrow_speed"), self:GetTrueCastRange(), self:GetSpecialValueFor("arrow_width"), {}, false, true, self:GetSpecialValueFor("vision_radius"))
 	self.projectiles = self.projectiles or {}
-	self.projectiles[projectile] = { damage= self:GetTalentSpecialValueFor("damage"), origin = caster:GetAbsOrigin() }
+	self.projectiles[projectile] = { damage= self:GetSpecialValueFor("damage"), origin = caster:GetAbsOrigin() }
 end
 
 function windrunner_powershot_bh:OnProjectileHitHandle(target, position, projectile)
 	if target and not target:TriggerSpellAbsorb( self ) then
 		EmitSoundOn("Ability.PowershotDamage", target)
 		self:DealDamage(self:GetCaster(), target, self.projectiles[projectile].damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-		local reduction = 1 - TernaryOperator( self:GetTalentSpecialValueFor("minion_reduction"), target:IsMinion(), self:GetTalentSpecialValueFor("damage_reduction") ) / 100
+		local reduction = 1 - TernaryOperator( self:GetSpecialValueFor("minion_reduction"), target:IsMinion(), self:GetSpecialValueFor("damage_reduction") ) / 100
 		self.projectiles[projectile].damage = math.floor( self.projectiles[projectile].damage * reduction )
 		return self.projectiles[projectile].damage <= 0
 	else
-		AddFOWViewer(self:GetCaster():GetTeam(), position, self:GetTalentSpecialValueFor("vision_radius"), self:GetTalentSpecialValueFor("vision_duration"), true)
+		AddFOWViewer(self:GetCaster():GetTeam(), position, self:GetSpecialValueFor("vision_radius"), self:GetSpecialValueFor("vision_duration"), true)
 		local caster = self:GetCaster()
 		if caster:HasTalent("special_bonus_unique_windrunner_powershot_bh_2") then
 			local windrun = caster:FindAbilityByName("windrunner_windrun_bh")
 			local duration = caster:FindTalentValue("special_bonus_unique_windrunner_powershot_bh_2", "duration") * caster:GetStatusAmplification()
 			local startPos = self.projectiles[projectile].origin
 			local endPos = position
-			local radius = self:GetTalentSpecialValueFor("arrow_width")
+			local radius = self:GetSpecialValueFor("arrow_width")
 			local hitPos = {}
 			local talent2 = caster:HasTalent("special_bonus_unique_windrunner_windrun_bh_2")
-			local duration = windrun:GetTalentSpecialValueFor("buff_duration") * caster:GetStatusAmplification()
+			local duration = windrun:GetSpecialValueFor("buff_duration") * caster:GetStatusAmplification()
 			ParticleManager:FireParticle( "particles/units/heroes/hero_windrunner/windrunner_shinneysu_blessing.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = startPos, [1] = endPos, [2] = duration} )
 			Timers:CreateTimer( function()
 				local allies = caster:FindFriendlyUnitsInLine( startPos, endPos, radius )
@@ -98,7 +98,7 @@ function windrunner_powershot_bh:OnProjectileHitHandle(target, position, project
 end
 
 function windrunner_powershot_bh:OnProjectileThink(vLocation)
-	GridNav:DestroyTreesAroundPoint(vLocation, self:GetTalentSpecialValueFor("arrow_width"), true)
+	GridNav:DestroyTreesAroundPoint(vLocation, self:GetSpecialValueFor("arrow_width"), true)
 end
 
 modifier_windrunner_powershot_bh = class({})

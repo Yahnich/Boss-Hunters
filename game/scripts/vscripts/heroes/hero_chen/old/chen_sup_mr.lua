@@ -16,14 +16,14 @@ function modifier_chen_sup_mr_handle:DeclareFunctions()
 end
 
 function modifier_chen_sup_mr_handle:OnAttackLanded(params)
-	if IsServer() and params.attacker == self:GetParent() and RollPercentage(self:GetTalentSpecialValueFor("chance")) then
+	if IsServer() and params.attacker == self:GetParent() and RollPercentage(self:GetSpecialValueFor("chance")) then
 		local intellect = 0
 		if params.attacker:GetOwner() then
 			intellect = params.attacker:GetOwner():GetIntellect( false)
 		else
 			intellect = params.attacker:GetIntellect( false)
 		end
-		local damage = intellect * self:GetTalentSpecialValueFor("damage") / 100
+		local damage = intellect * self:GetSpecialValueFor("damage") / 100
 		self:GetAbility():DealDamage(params.attacker, params.target, damage)
 		params.target:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_chen_sup_mr", {Duration = self:GetSpecialValueFor("duration")})
 	end

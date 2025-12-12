@@ -30,9 +30,9 @@ function huskar_sacred_inferno:OnProjectileHit(target, position)
 			stacks = bsDebuff:GetStackCount()
 		end
 		
-		local damage = stacks * spears:GetTalentSpecialValueFor("burn_damage")
+		local damage = stacks * spears:GetSpecialValueFor("burn_damage")
 		
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local radius = self:GetSpecialValueFor("radius")
 		ParticleManager:FireParticle("particles/huskar_flashfire_hit.vpcf", PATTACH_POINT_FOLLOW, target, {[1] = Vector(radius,radius,radius)})
 		
 		local units = FindUnitsInRadius(caster:GetTeam(),
@@ -57,7 +57,7 @@ modifier_huskar_sacred_inferno_passive = class({})
 LinkLuaModifier("modifier_huskar_sacred_inferno_passive", "heroes/hero_huskar/huskar_sacred_inferno", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_huskar_sacred_inferno_passive:OnCreated()
-	self.chance = self:GetTalentSpecialValueFor("chance")
+	self.chance = self:GetSpecialValueFor("chance")
 end
 
 function modifier_huskar_sacred_inferno_passive:DeclareFunctions()

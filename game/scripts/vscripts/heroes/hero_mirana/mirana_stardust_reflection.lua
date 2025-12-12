@@ -30,7 +30,7 @@ modifier_moonlight_duration = class({})
 LinkLuaModifier("modifier_moonlight_duration", "heroes/hero_mirana/mirana_stardust_reflection", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_moonlight_duration:OnCreated()
-	self.ms = self:GetTalentSpecialValueFor("movespeed")
+	self.ms = self:GetSpecialValueFor("movespeed")
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_mirana_stardust_reflection_1")
 	self.talent1Cdr = 0.33 * (self:GetCaster():FindTalentValue("special_bonus_unique_mirana_stardust_reflection_1") / 100)

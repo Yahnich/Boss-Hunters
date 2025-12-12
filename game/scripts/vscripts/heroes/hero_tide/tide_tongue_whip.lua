@@ -11,7 +11,7 @@ function tide_tongue_whip:IsHiddenWhenStolen()
 end
 
 function tide_tongue_whip:GetCastRange(vLocation, hTarget)
-    return self:GetTalentSpecialValueFor("distance")
+    return self:GetSpecialValueFor("distance")
 end
 
 function tide_tongue_whip:PiercesDisableResistance()
@@ -25,10 +25,10 @@ function tide_tongue_whip:OnSpellStart()
     self.hook_launched = true
     
     -- Parameters
-    local hook_speed = self:GetTalentSpecialValueFor("speed")
-    local hook_width = self:GetTalentSpecialValueFor("width")
+    local hook_speed = self:GetSpecialValueFor("speed")
+    local hook_width = self:GetSpecialValueFor("width")
     local hook_range = self:GetTrueCastRange()
-    local hook_damage = self:GetTalentSpecialValueFor("damage")
+    local hook_damage = self:GetSpecialValueFor("damage")
     local caster_loc = caster:GetAbsOrigin()
     local start_loc = caster_loc + ((self:GetCursorPosition() - caster_loc) * Vector(1,1,0)):Normalized() * hook_width
 
@@ -64,7 +64,7 @@ function tide_tongue_whip:OnSpellStart()
             if enemy ~= caster and enemy ~= hook_dummy then
                 target_hit = true
                 target = enemy
-                if target:GetHealthPercent() <= self:GetTalentSpecialValueFor("eat_threshold") then
+                if target:GetHealthPercent() <= self:GetSpecialValueFor("eat_threshold") then
                     eat = true
                 end
 
@@ -84,7 +84,7 @@ function tide_tongue_whip:OnSpellStart()
         if target_hit then
 			if not target:TriggerSpellAbsorb( self ) then
 				self:DealDamage(caster, target, hook_damage, {}, 0)
-				caster:ModifyThreat(self:GetTalentSpecialValueFor("threat_gain"))
+				caster:ModifyThreat(self:GetSpecialValueFor("threat_gain"))
 			end
 
             local hook_pfx2 = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_meathook_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
@@ -201,11 +201,11 @@ function modifier_tongue_whip_health:DeclareFunctions()
 end
 
 function modifier_tongue_whip_health:OnCreated()
-	self.bonus_hp = self:GetTalentSpecialValueFor("eat_health")
+	self.bonus_hp = self:GetSpecialValueFor("eat_health")
 end
 
 function modifier_tongue_whip_health:OnRefresh()
-	self.bonus_hp = self:GetTalentSpecialValueFor("eat_health")
+	self.bonus_hp = self:GetSpecialValueFor("eat_health")
 end
 
 function modifier_tongue_whip_health:GetModifierExtraHealthBonus()

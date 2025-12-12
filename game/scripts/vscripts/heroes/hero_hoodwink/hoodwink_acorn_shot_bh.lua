@@ -1,7 +1,7 @@
 hoodwink_acorn_shot_bh = class({})
 
 function hoodwink_acorn_shot_bh:GetCastRange( target, position )
-	return self:GetCaster():GetAttackRange() + self:GetTalentSpecialValueFor("bonus_range")
+	return self:GetCaster():GetAttackRange() + self:GetSpecialValueFor("bonus_range")
 end
 
 function hoodwink_acorn_shot_bh:GetBehavior( )
@@ -59,16 +59,16 @@ end
 
 function hoodwink_acorn_shot_bh:FireAcorn( target, bounces )
 	local caster = self:GetCaster()
-	local bounces = bounces or self:GetTalentSpecialValueFor("bounce_count")
+	local bounces = bounces or self:GetSpecialValueFor("bounce_count")
 	if not target.GetAbsOrigin then -- vector
 		local direction = CalculateDirection( target, caster )
 		local distance = CalculateDistance( target, caster )
-		local projIndex = self:FireLinearProjectile("particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_initial.vpcf", self:GetTalentSpecialValueFor("projectile_speed") * direction, distance, 100, {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 200)
+		local projIndex = self:FireLinearProjectile("particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_initial.vpcf", self:GetSpecialValueFor("projectile_speed") * direction, distance, 100, {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 200)
 		self.projectileData[projIndex] = {}
 		self.projectileData[projIndex].isTracking = false
 		self.projectileData[projIndex].bounces = bounces
 	else -- vector
-		local projIndex = self:FireTrackingProjectile("particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_tracking.vpcf", target, self:GetTalentSpecialValueFor("projectile_speed"), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 200)
+		local projIndex = self:FireTrackingProjectile("particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_tracking.vpcf", target, self:GetSpecialValueFor("projectile_speed"), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 200)
 		self.projectileData[projIndex] = {}
 		self.projectileData[projIndex].isTracking = true
 		self.projectileData[projIndex].bounces = bounces
@@ -81,15 +81,15 @@ function hoodwink_acorn_shot_bh:OnProjectileHitHandle( target, position, project
 	if data then
 		if data.isTracking then
 			if target then
-				caster:PerformGenericAttack(target, true, self:GetTalentSpecialValueFor("bonus_damage"))
-				target:AddNewModifier( caster, self, "modifier_hoodwink_acorn_shot_bh_slow", { duration = self:GetTalentSpecialValueFor("debuff_duration")} )
+				caster:PerformGenericAttack(target, true, self:GetSpecialValueFor("bonus_damage"))
+				target:AddNewModifier( caster, self, "modifier_hoodwink_acorn_shot_bh_slow", { duration = self:GetSpecialValueFor("debuff_duration")} )
 				EmitSoundOn( "Hero_Hoodwink.AcornShot.Target", caster )
 				EmitSoundOn( "Hero_Hoodwink.AcornShot.Slow", caster )
 				if self.projectileData[projectile].bounces > 0 then
-					for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(position, self:GetTalentSpecialValueFor("bounce_range")) ) do
+					for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(position, self:GetSpecialValueFor("bounce_range")) ) do
 						if enemy ~= target then
 							EmitSoundOn( "Hero_Hoodwink.AcornShot.Bounce", caster )
-							local projIndex = self:FireTrackingProjectile("particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_tracking.vpcf", enemy, self:GetTalentSpecialValueFor("projectile_speed"), {source = target}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 200)
+							local projIndex = self:FireTrackingProjectile("particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_tracking.vpcf", enemy, self:GetSpecialValueFor("projectile_speed"), {source = target}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 200)
 							self.projectileData[projIndex] = {}
 							self.projectileData[projIndex].isTracking = true
 							self.projectileData[projIndex].bounces = self.projectileData[projectile].bounces - 1
@@ -106,10 +106,10 @@ function hoodwink_acorn_shot_bh:OnProjectileHitHandle( target, position, project
 			AddFOWViewer( caster:GetTeam(), position, 200, 20, false )
 			CreateTempTree( position, 20 )
 			ResolveNPCPositions( position, 128 )
-			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(position, self:GetTalentSpecialValueFor("bounce_range")) ) do
+			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(position, self:GetSpecialValueFor("bounce_range")) ) do
 				if enemy ~= target then
 					EmitSoundOn( "Hero_Hoodwink.AcornShot.Bounce", caster )
-					local projIndex = self:FireTrackingProjectile("particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_tracking.vpcf", enemy, self:GetTalentSpecialValueFor("projectile_speed"), {source = dummy}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 200)
+					local projIndex = self:FireTrackingProjectile("particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_tracking.vpcf", enemy, self:GetSpecialValueFor("projectile_speed"), {source = dummy}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, true, 200)
 					self.projectileData[projIndex] = {}
 					self.projectileData[projIndex].isTracking = true
 					self.projectileData[projIndex].bounces = data.bounces
@@ -129,9 +129,9 @@ function modifier_hoodwink_acorn_shot_bh_slow:OnCreated()
 end
 
 function modifier_hoodwink_acorn_shot_bh_slow:OnRefresh()
-	self.moveslow = self:GetTalentSpecialValueFor("slow")
+	self.moveslow = self:GetSpecialValueFor("slow")
 	if self:GetCaster():FindTalentValue("special_bonus_unique_hoodwink_acorn_shot_2") then
-		self.attackslow = self.moveslow * self:GetTalentSpecialValueFor("slow") / 100
+		self.attackslow = self.moveslow * self:GetSpecialValueFor("slow") / 100
 	end
 end
 

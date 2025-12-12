@@ -1,22 +1,22 @@
 spectre_echo_scream = class({})
 
 function spectre_echo_scream:GetCastRange()
-	return self:GetTalentSpecialValueFor("scream_radius")
+	return self:GetSpecialValueFor("scream_radius")
 end
 
 function spectre_echo_scream:OnSpellStart()
     local caster = self:GetCaster()
 	
-	local radius = self:GetTalentSpecialValueFor("scream_radius")
-	local duration = self:GetTalentSpecialValueFor("scream_duration")
-	local damage = self:GetTalentSpecialValueFor("scream_damage")
+	local radius = self:GetSpecialValueFor("scream_radius")
+	local duration = self:GetSpecialValueFor("scream_duration")
+	local damage = self:GetSpecialValueFor("scream_damage")
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
 		if not enemy:TriggerSpellAbsorb( self ) then
 			enemy:AddNewModifier( caster, self, "modifier_spectre_echo_scream", {duration = duration})
 			self:DealDamage( caster, enemy, damage )
 			if caster:HasScepter() then
-				local attacks = self:GetTalentSpecialValueFor("scepter_scream_attacks")
+				local attacks = self:GetSpecialValueFor("scepter_scream_attacks")
 				for i = 1, attacks do
 					caster:PerformAttack(enemy, true, true, true, false, true, false, false)
 				end
@@ -36,13 +36,13 @@ modifier_spectre_echo_scream = class({})
 LinkLuaModifier( "modifier_spectre_echo_scream", "heroes/hero_spectre/spectre_echo_scream", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_spectre_echo_scream:OnCreated()
-	self.miss = self:GetTalentSpecialValueFor("scream_miss")
-	self.slow = self:GetTalentSpecialValueFor("scream_slow")
+	self.miss = self:GetSpecialValueFor("scream_miss")
+	self.slow = self:GetSpecialValueFor("scream_slow")
 end
 
 function modifier_spectre_echo_scream:OnCreated()
-	self.miss = self:GetTalentSpecialValueFor("scream_miss")
-	self.slow = self:GetTalentSpecialValueFor("scream_slow")
+	self.miss = self:GetSpecialValueFor("scream_miss")
+	self.slow = self:GetSpecialValueFor("scream_slow")
 end
 
 function modifier_spectre_echo_scream:DeclareFunctions()

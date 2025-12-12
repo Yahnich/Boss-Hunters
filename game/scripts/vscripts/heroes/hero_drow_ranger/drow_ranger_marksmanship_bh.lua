@@ -7,7 +7,7 @@ end
 function drow_ranger_marksmanship_bh:OnProjectileHit( target, position )
 	if target then
 		local caster = self:GetCaster()
-		caster:PerformAbilityAttack(target, true, self, (caster:GetAttackDamage() * self:GetTalentSpecialValueFor("damage_reduction_scepter")/100) * (-1))
+		caster:PerformAbilityAttack(target, true, self, (caster:GetAttackDamage() * self:GetSpecialValueFor("damage_reduction_scepter")/100) * (-1))
 	end
 end
 
@@ -22,10 +22,10 @@ function modifier_drow_ranger_marksmanship_bh_handler:OnCreated()
 end
 
 function modifier_drow_ranger_marksmanship_bh_handler:OnRefresh()
-	self:GetCaster().huntressMarkCooldown = self:GetTalentSpecialValueFor("huntress_mark_cd")
-	self:GetCaster().glacierArrowsManaCost = self:GetTalentSpecialValueFor("glacier_arrows_mana_cost")
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.bonusAgility = self:GetTalentSpecialValueFor("marksmanship_agility_bonus") / 100
+	self:GetCaster().huntressMarkCooldown = self:GetSpecialValueFor("huntress_mark_cd")
+	self:GetCaster().glacierArrowsManaCost = self:GetSpecialValueFor("glacier_arrows_mana_cost")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.bonusAgility = self:GetSpecialValueFor("marksmanship_agility_bonus") / 100
 end
 
 function modifier_drow_ranger_marksmanship_bh_handler:OnIntervalThink()
@@ -72,8 +72,8 @@ end
 function modifier_drow_ranger_marksmanship_bh_handler:OnAttackLanded(params)
 	if params.attacker == self:GetParent() and not params.attacker.autoAttackFromAbilityState and params.attacker:HasScepter() then
 		local caster = self:GetCaster()
-		local count = self:GetTalentSpecialValueFor("split_count_scepter")
-		local radius = self:GetTalentSpecialValueFor("scepter_range")
+		local count = self:GetSpecialValueFor("split_count_scepter")
+		local radius = self:GetSpecialValueFor("scepter_range")
 
 		for _, enemy in ipairs( params.attacker:FindEnemyUnitsInRadius( params.target:GetAbsOrigin(), radius ) ) do
 			if enemy ~= params.target then

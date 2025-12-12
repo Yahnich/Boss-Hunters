@@ -17,7 +17,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_DeathProphet.CarrionSwarm"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -42,35 +42,15 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"start_radius"					"110 110 110 110"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"end_radius"					"300 300 300 300"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"range"							"810 810 810 810"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"speed"							"1100 1100 1100 1100"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"100 175 250 325 400 475 550"
+			"start_radius"					"110 110 110 110"
+			"end_radius"					"300 300 300 300"
+			"range"							"810 810 810 810"
+			"speed"							"1100 1100 1100 1100"
+			"damage"						"100 175 250 325 400 475 550"
 				"LinkedSpecialBonus"			"special_bonus_unique_death_prophet_crypt_swarm_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
@@ -87,18 +67,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"6"
-			}
+			"value"						"2"
+			"duration"					"6"
 		}
 	}
 	//=================================================================================================================
@@ -114,13 +86,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	"death_prophet_ghastly_haunting"
@@ -157,27 +125,18 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"425"
+			"radius"						"425"
 				"LinkedSpecialBonus"			"special_bonus_unique_death_prophet_ghastly_haunting_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"3.0 3.5 4.0 4.5 5.0 5.5 6.0"
+			"duration"						"3.0 3.5 4.0 4.5 5.0 5.5 6.0"
 				"LinkedSpecialBonus"			"special_bonus_unique_death_prophet_ghastly_haunting_2"
 				"LinkedSpecialBonusField"		"duration"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"damage_amp"					"20"
-			}
 		}
 	
 		"precache"
@@ -201,13 +160,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"20"
-			}
+			"value"						"20"
 		}
 	}
 	//=================================================================================================================
@@ -223,18 +178,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"6"
-			}
+			"value"						"2"
+			"duration"					"6"
 		}
 	}
 	//=================================================================================================================
@@ -255,7 +202,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_DeathProphet.SpiritSiphon.Cast"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -282,47 +229,31 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"base_damage"					"10 25 40 55 70 85 100"
 				"CalculateSpellDamageTooltip"	"1"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"damage_pct"					"2.5"
+			"damage_pct"					"2.5"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"haunt_duration"				"6"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"movement_slow"					"-30"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"siphon_buffer"					"250"
-			}
+			"movement_slow"					"-30"
+			"siphon_buffer"					"250"
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"max_charges"					"2 3 4 5 6 7 8"
 				"LinkedSpecialBonus"			"special_bonus_unique_death_prophet_spirit_siphon_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"charge_restore_time"			"45"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -339,13 +270,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -362,13 +289,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"0.5"
-			}
+			"value"						"0.5"
 		}
 	}
 	//=================================================================================================================
@@ -388,18 +311,10 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_movespeed"				"1"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_attackspeed"				"1"
-			}
+			"bonus_movespeed"				"1"
+			"bonus_attackspeed"				"1"
 		}
 	}
 	//=================================================================================================================
@@ -419,7 +334,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"FightRecapLevel"				"2"
 		"AbilitySound"					"Hero_DeathProphet.Exorcism.Cast"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -446,58 +361,30 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"700 700 700"
-			}
+			"radius"				"700 700 700"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"spirits"				"4 8 12 16 20 24"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"spirit_speed"			"500 500 500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_distance"			"2000 2000 2000"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"give_up_distance"		"1200 1200 1200"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"min_damage"			"112"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_damage"			"122"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal_percent"			"25 25 25"
-			}
+			"max_distance"			"2000 2000 2000"
+			"give_up_distance"		"1200 1200 1200"
+			"min_damage"			"112"
+			"max_damage"			"122"
+			"heal_percent"			"25 25 25"
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"average_damage"		"116"
-			}
 			"10"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"ghost_spawn_rate"		"0.3"
-			}
 		}
 	}	
 	//=================================================================================================================
@@ -513,13 +400,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -536,13 +419,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 }

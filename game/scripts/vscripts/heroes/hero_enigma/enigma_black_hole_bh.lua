@@ -1,11 +1,11 @@
 enigma_black_hole_bh = class({})
 
 function enigma_black_hole_bh:GetChannelTime()
-	return self:GetTalentSpecialValueFor("channel_time")
+	return self:GetSpecialValueFor("channel_time")
 end
 
 function enigma_black_hole_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function enigma_black_hole_bh:OnSpellStart()
@@ -13,7 +13,7 @@ function enigma_black_hole_bh:OnSpellStart()
 	local target = self:GetCursorPosition()
 	
 	if self.thinker then UTIL_Remove( self.thinker ) end
-	self.thinker = CreateModifierThinker(caster, self, "modifier_enigma_black_hole_bh_thinker", {Duration = self:GetTalentSpecialValueFor("channel_time")}, target, caster:GetTeam(), false)
+	self.thinker = CreateModifierThinker(caster, self, "modifier_enigma_black_hole_bh_thinker", {Duration = self:GetSpecialValueFor("channel_time")}, target, caster:GetTeam(), false)
 end
 
 function enigma_black_hole_bh:OnChannelFinish(bInterrupt)
@@ -24,7 +24,7 @@ modifier_enigma_black_hole_bh_thinker = class({})
 LinkLuaModifier("modifier_enigma_black_hole_bh_thinker", "heroes/hero_enigma/enigma_black_hole_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_enigma_black_hole_bh_thinker:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 	if IsServer() then
 		local bhFX = ParticleManager:CreateParticle( "particles/units/heroes/hero_enigma/enigma_blackhole.vpcf", PATTACH_ABSORIGIN, self:GetParent() )
 		ParticleManager:SetParticleControl(bhFX, 15, Vector( self.radius, 1, 1) )
@@ -76,18 +76,18 @@ modifier_enigma_black_hole_bh_aura = class({})
 LinkLuaModifier("modifier_enigma_black_hole_bh_aura", "heroes/hero_enigma/enigma_black_hole_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_enigma_black_hole_bh_aura:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("damage")
-	self.pull_speed = self:GetTalentSpecialValueFor("pull_speed")
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.tick = self:GetTalentSpecialValueFor("tick_rate")
-	self.animation = self:GetTalentSpecialValueFor("animation_rate")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.pull_speed = self:GetSpecialValueFor("pull_speed")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.tick = self:GetSpecialValueFor("tick_rate")
+	self.animation = self:GetSpecialValueFor("animation_rate")
 	
 	if IsServer() then
 	
 		if self:GetCaster():HasScepter() then
 			local midnight = self:GetCaster():FindAbilityByName("enigma_midnight_pulse_bh")
 			if midnight then
-				self.midnightDamage = self:GetTalentSpecialValueFor("damage_percent") / 100
+				self.midnightDamage = self:GetSpecialValueFor("damage_percent") / 100
 			end
 		end
 		self.centerPos = self:GetAbility():GetCursorPosition()

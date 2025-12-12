@@ -14,7 +14,7 @@ function bs_bloodrage:OnSpellStart()
 	local target = self:GetCursorTarget()
 
 	EmitSoundOn("hero_bloodseeker.bloodRage", target)
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 	if caster:HasTalent("special_bonus_unique_bs_bloodrage_1") and target ~= caster then
 		caster:AddNewModifier(caster, self, "modifier_bs_bloodrage", {Duration = duration})
 	end
@@ -32,13 +32,13 @@ end
 
 function modifier_bs_bloodrage:OnRefresh()
 	if self:GetCaster() == self:GetParent() or self:GetCaster():HasTalent("special_bonus_unique_bs_bloodrage_2") then
-		self.spell_amp = self:GetTalentSpecialValueFor("spell_amp_self")
-		self.attack_speed = self:GetTalentSpecialValueFor("attack_speed_self")
+		self.spell_amp = self:GetSpecialValueFor("spell_amp_self")
+		self.attack_speed = self:GetSpecialValueFor("attack_speed_self")
 	else
-		self.spell_amp = self:GetTalentSpecialValueFor("spell_amp_ally")
-		self.attack_speed = self:GetTalentSpecialValueFor("attack_speed_ally")
+		self.spell_amp = self:GetSpecialValueFor("spell_amp_ally")
+		self.attack_speed = self:GetSpecialValueFor("attack_speed_ally")
 	end
-	self.hp_loss = self:GetTalentSpecialValueFor("hp_loss") / 100
+	self.hp_loss = self:GetSpecialValueFor("hp_loss") / 100
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_bs_bloodrage_1")
 end
 

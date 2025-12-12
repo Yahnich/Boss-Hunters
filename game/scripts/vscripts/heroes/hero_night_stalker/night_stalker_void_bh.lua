@@ -7,7 +7,7 @@ function night_stalker_void_bh:GetIntriniscModifierName()
 end
 
 function night_stalker_void_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("aoe")
+	return self:GetSpecialValueFor("aoe")
 end
 
 function night_stalker_void_bh:OnSpellStart()
@@ -17,15 +17,15 @@ end
 function night_stalker_void_bh:Void(target)
 	local caster = self:GetCaster()
 	local damage = self:GetAbilityDamage()
-	local radius = self:GetTalentSpecialValueFor("aoe")
-	local duration = self:GetTalentSpecialValueFor("duration_day")
+	local radius = self:GetSpecialValueFor("aoe")
+	local duration = self:GetSpecialValueFor("duration_day")
 	
 	ParticleManager:FireParticle("particles/units/heroes/hero_night_stalker/nightstalker_loadout.vpcf", PATTACH_POINT_FOLLOW, target)
 	EmitSoundOn( "Hero_Nightstalker.Void", target )
 	
 	if target:TriggerSpellAbsorb(self) then return end
 	if not GameRules:IsDaytime() then
-		duration = self:GetTalentSpecialValueFor("duration_night")
+		duration = self:GetSpecialValueFor("duration_night")
 	end
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), radius ) ) do
@@ -35,7 +35,7 @@ function night_stalker_void_bh:Void(target)
 		end
 	end
 	
-	self:Stun( target, self:GetTalentSpecialValueFor("mini_stun"), false )
+	self:Stun( target, self:GetSpecialValueFor("mini_stun"), false )
 	target:AddNewModifier(caster, self, "modifier_night_stalker_void_bh", {duration = duration})
 	
 	if caster:HasTalent("special_bonus_unique_night_stalker_void_2") then
@@ -56,13 +56,13 @@ modifier_night_stalker_void_bh = class({})
 LinkLuaModifier("modifier_night_stalker_void_bh", "heroes/hero_night_stalker/night_stalker_void_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_night_stalker_void_bh:OnCreated()
-	self.ms = self:GetTalentSpecialValueFor("movespeed_slow")
-	self.as = self:GetTalentSpecialValueFor("attackspeed_slow")
+	self.ms = self:GetSpecialValueFor("movespeed_slow")
+	self.as = self:GetSpecialValueFor("attackspeed_slow")
 end
 
 function modifier_night_stalker_void_bh:OnRefresh()
-	self.ms = self:GetTalentSpecialValueFor("movespeed_slow")
-	self.as = self:GetTalentSpecialValueFor("attackspeed_slow")
+	self.ms = self:GetSpecialValueFor("movespeed_slow")
+	self.as = self:GetSpecialValueFor("attackspeed_slow")
 end
 
 function modifier_night_stalker_void_bh:DeclareFunctions()

@@ -10,7 +10,7 @@ function gyro_rocket_salvo:IsHiddenWhenStolen()
 end
 
 function gyro_rocket_salvo:GetCastRange( target, position )
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local radius = self:GetSpecialValueFor("radius")
 	if self:GetCaster():HasTalent("special_bonus_unique_gyro_rocket_salvo_2") then
 		radius = self:GetCaster():GetAttackRange() + radius
 	end
@@ -33,7 +33,7 @@ end
 function gyro_rocket_salvo:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 	EmitSoundOn("Hero_Gyrocopter.Rocket_Barrage.Impact", caster)
-	self:DealDamage( caster, hTarget, self:GetTalentSpecialValueFor("damage") )
+	self:DealDamage( caster, hTarget, self:GetSpecialValueFor("damage") )
 	if caster:HasTalent("special_bonus_unique_gyro_rocket_salvo_2") then
 		hTarget:Paralyze(self, caster, caster:FindTalentValue("special_bonus_unique_gyro_rocket_salvo_2") )
 	end
@@ -44,7 +44,7 @@ modifier_rocket_salvo = class(toggleModifierBaseClass)
 function modifier_rocket_salvo:OnCreated(table)
 	if IsServer() then
 		self.drainThink = 0
-		self.tick = self:GetTalentSpecialValueFor("fire_rate")
+		self.tick = self:GetSpecialValueFor("fire_rate")
 		self.talent = self:GetCaster():HasTalent("special_bonus_unique_gyro_rocket_salvo_2")
 		self:StartIntervalThink(self.tick)
 	end
@@ -52,7 +52,7 @@ end
 
 function modifier_rocket_salvo:OnRefresh(kv)
 	if IsServer() then
-		self.tick = self:GetTalentSpecialValueFor("fire_rate")
+		self.tick = self:GetSpecialValueFor("fire_rate")
 		self.talent = self:GetCaster():HasTalent("special_bonus_unique_gyro_rocket_salvo_2")
 		self:StartIntervalThink(self.tick)
 	end
@@ -75,7 +75,7 @@ function modifier_rocket_salvo:OnIntervalThink()
 	end
 	if caster:GetMana() >= self:GetAbility():GetManaCost(-1) then
 		local currentTargets = 0
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local radius = self:GetSpecialValueFor("radius")
 		if self.talent then
 			radius = caster:GetAttackRange() + radius
 		end
@@ -84,7 +84,7 @@ function modifier_rocket_salvo:OnIntervalThink()
 			EmitSoundOn("Hero_Gyrocopter.Rocket_Barrage.Launch", caster)
 			
 			for _,enemy in pairs(enemies) do
-				if currentTargets < self:GetTalentSpecialValueFor("max_targets") then
+				if currentTargets < self:GetSpecialValueFor("max_targets") then
 					if RollPercentage(50) then
 						local info = 
 						{

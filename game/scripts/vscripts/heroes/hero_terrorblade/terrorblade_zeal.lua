@@ -12,15 +12,15 @@ function terrorblade_zeal:GetBehavior()
 end
 
 function terrorblade_zeal:GetCooldown( iLvl )
-	if self:GetCaster():HasScepter() then return self:GetTalentSpecialValueFor("scepter_cd") end
+	if self:GetCaster():HasScepter() then return self:GetSpecialValueFor("scepter_cd") end
 end
 
 function terrorblade_zeal:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier( caster, self, "modifier_terrorblade_zeal_scepter", {duration = self:GetTalentSpecialValueFor("scepter_duration")})
+	caster:AddNewModifier( caster, self, "modifier_terrorblade_zeal_scepter", {duration = self:GetSpecialValueFor("scepter_duration")})
 	
-	local radius = self:GetTalentSpecialValueFor("illusion_explosion_radius")
-	local damage = self:GetTalentSpecialValueFor("self_explosion_damage")
+	local radius = self:GetSpecialValueFor("illusion_explosion_radius")
+	local damage = self:GetSpecialValueFor("self_explosion_damage")
 	
 	EmitSoundOn("Hero_Terrorblade.Sunder.Cast", caster)
 	ParticleManager:FireParticle( "particles/units/heroes/hero_terrorblade/terrorblade_death.vpcf", PATTACH_WORLDORIGIN, caster, {[0] = caster:GetAbsOrigin(), [15] = Vector(100,100,255),
@@ -34,15 +34,15 @@ LinkLuaModifier( "modifier_terrorblade_zeal_passive", "heroes/hero_terrorblade/t
 modifier_terrorblade_zeal_passive = class({})
 
 function modifier_terrorblade_zeal_passive:OnCreated()
-	self.healthregen = self:GetAbility():GetTalentSpecialValueFor("health_regen")
-	self.attackspeed = self:GetAbility():GetTalentSpecialValueFor("attackspeed_bonus")
-	self.increase = 1 + self:GetAbility():GetTalentSpecialValueFor("scepter_increase") / 100
+	self.healthregen = self:GetAbility():GetSpecialValueFor("health_regen")
+	self.attackspeed = self:GetAbility():GetSpecialValueFor("attackspeed_bonus")
+	self.increase = 1 + self:GetAbility():GetSpecialValueFor("scepter_increase") / 100
 end
 
 function modifier_terrorblade_zeal_passive:OnRefresh()
-	self.healthregen = self:GetAbility():GetTalentSpecialValueFor("health_regen")
-	self.attackspeed = self:GetAbility():GetTalentSpecialValueFor("attackspeed_bonus")
-	self.increase = 1 + self:GetAbility():GetTalentSpecialValueFor("scepter_increase") / 100
+	self.healthregen = self:GetAbility():GetSpecialValueFor("health_regen")
+	self.attackspeed = self:GetAbility():GetSpecialValueFor("attackspeed_bonus")
+	self.increase = 1 + self:GetAbility():GetSpecialValueFor("scepter_increase") / 100
 end
 
 function modifier_terrorblade_zeal_passive:DeclareFunctions()
@@ -57,12 +57,12 @@ end
 function modifier_terrorblade_zeal_passive:OnDeath(params)
 	if IsServer() then
 		if params.unit == self:GetParent() then
-			local radius = self:GetAbility():GetTalentSpecialValueFor("illusion_explosion_radius")
-			local damage = self:GetAbility():GetTalentSpecialValueFor("illusion_explosion_damage")
+			local radius = self:GetAbility():GetSpecialValueFor("illusion_explosion_radius")
+			local damage = self:GetAbility():GetSpecialValueFor("illusion_explosion_damage")
 			local parent = self:GetParent()
 			local owner = PlayerResource:GetSelectedHeroEntity( self:GetParent():GetPlayerID() )
 			if parent:IsRealHero() then
-				damage = self:GetAbility():GetTalentSpecialValueFor("self_explosion_damage")
+				damage = self:GetAbility():GetSpecialValueFor("self_explosion_damage")
 				if parent:HasTalent("special_bonus_unique_terrorblade_zeal_2") then
 					local conjure = parent:FindAbilityByName("terrorblade_conjure_image_bh")
 					if conjure then

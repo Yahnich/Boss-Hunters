@@ -8,11 +8,11 @@ modifier_lycan_feral_impulse_bh = class({})
 LinkLuaModifier("modifier_lycan_feral_impulse_bh", "heroes/hero_lycan/lycan_feral_impulse_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_lycan_feral_impulse_bh:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_lycan_feral_impulse_bh:OnRefresh()
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_lycan_feral_impulse_bh:IsAura()
@@ -55,8 +55,8 @@ modifier_lycan_feral_impulse_bh_aura = class({})
 LinkLuaModifier("modifier_lycan_feral_impulse_bh_aura", "heroes/hero_lycan/lycan_feral_impulse_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_lycan_feral_impulse_bh_aura:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("bonus_damage")
-	self.regen = self:GetTalentSpecialValueFor("bonus_hp_regen")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
+	self.regen = self:GetSpecialValueFor("bonus_hp_regen")
 	self:StartIntervalThink(0.33)
 	if self:GetCaster():HasTalent("special_bonus_unique_lycan_feral_impulse_2") then
 		if not GameRules:IsDaytime() then
@@ -65,7 +65,7 @@ function modifier_lycan_feral_impulse_bh_aura:OnCreated()
 	end
 	self:GetParent():HookInModifier("GetModifierExtraHealthBonusPercentage", self)
 	if self:GetCaster():HasScepter() then
-		self.health = self:GetTalentSpecialValueFor("scepter_bonus_health")
+		self.health = self:GetSpecialValueFor("scepter_bonus_health")
 	else
 		self.health = 0
 	end
@@ -76,15 +76,15 @@ function modifier_lycan_feral_impulse_bh_aura:OnDestroy()
 end
 
 function modifier_lycan_feral_impulse_bh_aura:OnIntervalThink()
-	self.damage = self:GetTalentSpecialValueFor("bonus_damage")
-	self.regen = self:GetTalentSpecialValueFor("bonus_hp_regen")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
+	self.regen = self:GetSpecialValueFor("bonus_hp_regen")
 	if self:GetCaster():HasTalent("special_bonus_unique_lycan_feral_impulse_2") then
 		if not GameRules:IsDaytime() then
 			self.damage = self.damage + self:GetCaster():FindTalentValue("special_bonus_unique_lycan_feral_impulse_2")
 		end
 	end
 	if self:GetCaster():HasScepter() then
-		self.health = self:GetTalentSpecialValueFor("scepter_bonus_health")
+		self.health = self:GetSpecialValueFor("scepter_bonus_health")
 	else
 		self.health = 0
 	end

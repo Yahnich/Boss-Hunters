@@ -20,10 +20,10 @@ function batrider_fly:OnSpellStart()
 	caster:StartGesture(ACT_DOTA_CAST_ABILITY_3)
 
 	if caster:HasTalent("special_bonus_unique_batrider_fly_2") then
-		caster:AddNewModifier(caster, self, "modifier_batrider_fly_movement", {Duration = self:GetTalentSpecialValueFor("duration")})
+		caster:AddNewModifier(caster, self, "modifier_batrider_fly_movement", {Duration = self:GetSpecialValueFor("duration")})
 	end
 
-	caster:AddNewModifier(caster, self, "modifier_batrider_fly", {Duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_batrider_fly", {Duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_batrider_fly = class({})
@@ -42,7 +42,7 @@ function modifier_batrider_fly:OnCreated(table)
 		self.pits = {}
 
 		self.point = parent:GetAbsOrigin()
-		self.radius = self:GetTalentSpecialValueFor("radius")
+		self.radius = self:GetSpecialValueFor("radius")
 
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_batrider/batrider_firefly.vpcf", PATTACH_POINT, caster)
 					ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
@@ -77,7 +77,7 @@ function modifier_batrider_fly:OnIntervalThink()
 	if CalculateDistance(self.point, parent:GetAbsOrigin()) >= self.radius*1.5 then
 		GridNav:DestroyTreesAroundPoint(parent:GetAbsOrigin(), self.radius, false)
 
-		local pit = CreateModifierThinker(caster, self:GetAbility(), "modifier_batrider_fly_fire", {Duration = self:GetTalentSpecialValueFor("duration")}, parent:GetAbsOrigin(), parent:GetTeam(), false)
+		local pit = CreateModifierThinker(caster, self:GetAbility(), "modifier_batrider_fly_fire", {Duration = self:GetSpecialValueFor("duration")}, parent:GetAbsOrigin(), parent:GetTeam(), false)
 		table.insert(self.pits, pit)
 
 		self.point = parent:GetAbsOrigin()
@@ -133,13 +133,13 @@ end
 
 modifier_batrider_fly_fire = class({})
 function modifier_batrider_fly_fire:OnCreated(table)
-    self.radius = self:GetTalentSpecialValueFor("radius")
+    self.radius = self:GetSpecialValueFor("radius")
 
     --Debug stuff--
     --[[if IsServer() then
     	local parent = self:GetParent()
     	local point = parent:GetAbsOrigin()
-    	local radius = self:GetTalentSpecialValueFor("radius")
+    	local radius = self:GetSpecialValueFor("radius")
     	
     	local nfx = ParticleManager:CreateParticle("particles/econ/generic/generic_progress_meter/generic_progress_circle.vpcf", PATTACH_POINT, parent)
     				ParticleManager:SetParticleControl(nfx, 0, point)
@@ -188,7 +188,7 @@ end
 modifier_batrider_fly_fire_damage = class({})
 function modifier_batrider_fly_fire_damage:OnCreated(table)
 	if IsServer() then
-    	self.damage = self:GetTalentSpecialValueFor("damage") * 0.5
+    	self.damage = self:GetSpecialValueFor("damage") * 0.5
     	self:StartIntervalThink(0.5)
     end
 end

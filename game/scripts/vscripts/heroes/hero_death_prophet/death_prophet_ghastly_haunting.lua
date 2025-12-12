@@ -5,15 +5,15 @@ function death_prophet_ghastly_haunting:GetCooldown( iLvl )
 end
 
 function death_prophet_ghastly_haunting:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function death_prophet_ghastly_haunting:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
 	
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local radius = self:GetSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("duration")
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
 		if not enemy:TriggerSpellAbsorb(self) then
@@ -30,7 +30,7 @@ modifier_death_prophet_ghastly_haunting = class({})
 LinkLuaModifier("modifier_death_prophet_ghastly_haunting", "heroes/hero_death_prophet/death_prophet_ghastly_haunting", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_death_prophet_ghastly_haunting:OnCreated()
-	self.amp = self:GetTalentSpecialValueFor("damage_amp")
+	self.amp = self:GetSpecialValueFor("damage_amp")
 	if IsServer() then 
 		if self:GetCaster():HasTalent("special_bonus_unique_death_prophet_ghastly_haunting_1") then
 			self.damage = self:GetCaster():FindTalentValue("special_bonus_unique_death_prophet_ghastly_haunting_1") / 100
@@ -42,7 +42,7 @@ function modifier_death_prophet_ghastly_haunting:OnCreated()
 end
 
 function modifier_death_prophet_ghastly_haunting:OnRefresh()
-	self.amp = self:GetTalentSpecialValueFor("damage_amp")
+	self.amp = self:GetSpecialValueFor("damage_amp")
 	if IsServer() then 
 		if self:GetCaster():HasTalent("special_bonus_unique_death_prophet_ghastly_haunting_1") then
 			self.damage = self:GetCaster():FindTalentValue("special_bonus_unique_death_prophet_ghastly_haunting_1") / 100

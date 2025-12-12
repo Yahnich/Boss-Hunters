@@ -106,11 +106,11 @@ function sand_claw_impact:OnProjectileHitHandle(hTarget, vLocation, projectileID
 			end
 			
             Timers:CreateTimer(0.5,function()
-                self:Stun(hTarget, self:GetTalentSpecialValueFor("duration"), false)
+                self:Stun(hTarget, self:GetSpecialValueFor("duration"), false)
 				if not self.projectiles[tostring(projectileID)] then -- false or nil
-					self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
+					self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, 0)
 				else
-					self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage") * caster:FindTalentValue("special_bonus_unique_sand_claw_impact_2") / 100, {}, 0)
+					self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage") * caster:FindTalentValue("special_bonus_unique_sand_claw_impact_2") / 100, {}, 0)
 				end
 				
                 if talentTarget then -- need tri-state

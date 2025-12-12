@@ -34,7 +34,7 @@ function bh_tree_hook:OnSpellStart()
 
     EmitSoundOn("Hero_Pudge.AttackHookExtend", caster)
 
-    caster:AddNewModifier(caster, self, "modifier_bh_tree_hook_pull", {Duration = self:GetTalentSpecialValueFor("duration")})
+    caster:AddNewModifier(caster, self, "modifier_bh_tree_hook_pull", {Duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_bh_tree_hook_pull = class({})
@@ -160,19 +160,19 @@ end
 
 function modifier_bh_tree_hook_pull:OnIntervalThink()
     local caster = self:GetCaster()
-    local enemies = caster:FindEnemyUnitsInLine(self.tree, caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("width")/2, {})
+    local enemies = caster:FindEnemyUnitsInLine(self.tree, caster:GetAbsOrigin(), self:GetSpecialValueFor("width")/2, {})
     for _,enemy in pairs(enemies) do
 		if not self.hitUnits[enemy] then
 			if not enemy:TriggerSpellAbsorb( self:GetAbility() ) then
 				EmitSoundOn("Hero_Meepo.Earthbind.Target", enemy)
-				enemy:AddNewModifier(caster, self:GetAbility(), "modifier_bh_tree_root", {Duration = self:GetTalentSpecialValueFor("root_duration")})
-				caster:AddNewModifier(caster, self:GetAbility(), "modifier_bh_tree_ms", {Duration = self:GetTalentSpecialValueFor("root_duration")})
+				enemy:AddNewModifier(caster, self:GetAbility(), "modifier_bh_tree_root", {Duration = self:GetSpecialValueFor("root_duration")})
+				caster:AddNewModifier(caster, self:GetAbility(), "modifier_bh_tree_ms", {Duration = self:GetSpecialValueFor("root_duration")})
 			end
 			self.hitUnits[enemy] = true
         end
     end
 
-    if CalculateDistance(self.tree, caster:GetAbsOrigin()) > self:GetTalentSpecialValueFor("max_distance") then
+    if CalculateDistance(self.tree, caster:GetAbsOrigin()) > self:GetSpecialValueFor("max_distance") then
         self:Destroy()
     end
 end
@@ -220,7 +220,7 @@ function modifier_bh_tree_ms:DeclareFunctions()
 end
 
 function modifier_bh_tree_ms:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("bonus_ms")
+    return self:GetSpecialValueFor("bonus_ms")
 end
 
 function modifier_bh_tree_ms:GetEffectName()
@@ -275,7 +275,7 @@ modifier_bh_tree_charges = class({})
 if IsServer() then
     function modifier_bh_tree_charges:Update()
         self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-        self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+        self.kv.max_count = self:GetSpecialValueFor("charges")
 
         if self:GetStackCount() == self.kv.max_count then
             self:SetDuration(-1, true)
@@ -295,7 +295,7 @@ if IsServer() then
 
     function modifier_bh_tree_charges:OnCreated()
         kv = {
-            max_count = self:GetTalentSpecialValueFor("charges"),
+            max_count = self:GetSpecialValueFor("charges"),
             replenish_time = self:GetAbility():GetTrueCooldown()
         }
         self:SetStackCount(kv.start_count or kv.max_count)
@@ -307,7 +307,7 @@ if IsServer() then
     end
     
     function modifier_bh_tree_charges:OnRefresh()
-        self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+        self.kv.max_count = self:GetSpecialValueFor("charges")
         self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
         if self:GetStackCount() ~= kv.max_count then
             self:Update()
@@ -325,7 +325,7 @@ if IsServer() then
     function modifier_bh_tree_charges:OnAbilityFullyCast(params)
         if params.unit == self:GetParent() then
             self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-            self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+            self.kv.max_count = self:GetSpecialValueFor("charges")
             
             local ability = params.ability
             if params.ability == self:GetAbility() then
@@ -347,7 +347,7 @@ if IsServer() then
         local octarine = caster:GetCooldownReduction()
         
         self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
-        self.kv.max_count = self:GetTalentSpecialValueFor("charges")
+        self.kv.max_count = self:GetSpecialValueFor("charges")
         
         if stacks < self.kv.max_count then
             self:IncrementStackCount()

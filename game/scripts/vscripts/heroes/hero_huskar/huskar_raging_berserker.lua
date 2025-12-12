@@ -114,10 +114,10 @@ function modifier_huskar_raging_berserker_effect:OnCreated()
 end
 
 function modifier_huskar_raging_berserker_effect:OnRefresh()
-	self.as = self:GetTalentSpecialValueFor("maximum_as")
-	-- self.mr = self:GetTalentSpecialValueFor("maximum_resistance")
-	self.regen = self:GetParent():GetStrength() * self:GetTalentSpecialValueFor("maximum_regen") / 100
-	self.hpThreshold = self:GetTalentSpecialValueFor("hp_threshold_max")
+	self.as = self:GetSpecialValueFor("maximum_as")
+	-- self.mr = self:GetSpecialValueFor("maximum_resistance")
+	self.regen = self:GetParent():GetStrength() * self:GetSpecialValueFor("maximum_regen") / 100
+	self.hpThreshold = self:GetSpecialValueFor("hp_threshold_max")
 	self.hpPct = math.min(1, (100 - self:GetParent():GetHealthPercent()) / (100 - self.hpThreshold) )
 end
 
@@ -133,7 +133,7 @@ function modifier_huskar_raging_berserker_effect:OnIntervalThink()
 	if IsServer() then
 		ParticleManager:SetParticleControl(self.glowFX, 1, Vector(self.hpPct * 100, 0, 0) )
 	end
-	self.regen = self:GetParent():GetStrength() * self:GetTalentSpecialValueFor("maximum_regen") / 100
+	self.regen = self:GetParent():GetStrength() * self:GetSpecialValueFor("maximum_regen") / 100
 	self.total_as = self.as * self.hpPct 
 	-- self.total_mr = self.mr * self.hpPct 
 	self.total_regen = self.regen * self.hpPct

@@ -16,9 +16,9 @@ function terrorblade_conjure_image_bh:CreateImage( position, duration, outgoing,
 	local caster = self:GetCaster()
 
 	local vPos = position or caster:GetAbsOrigin() + RandomVector(150)
-	local fDur = duration or self:GetTalentSpecialValueFor("illusion_duration")
-	local fOut = outgoing or self:GetTalentSpecialValueFor("illusion_outgoing_damage")
-	local fInc = incoming or self:GetTalentSpecialValueFor("illusion_incoming_damage")
+	local fDur = duration or self:GetSpecialValueFor("illusion_duration")
+	local fOut = outgoing or self:GetSpecialValueFor("illusion_outgoing_damage")
+	local fInc = incoming or self:GetSpecialValueFor("illusion_incoming_damage")
 
 	-- local callback = ( function(illusion)
 		-- illusion:StartGesture( ACT_DOTA_SPAWN )

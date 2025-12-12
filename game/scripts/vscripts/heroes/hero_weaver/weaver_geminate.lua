@@ -35,8 +35,8 @@ function modifier_weaver_geminate:OnAttack(params)
             local target = params.target
             local ability = self:GetAbility()
 
-            local delay = self:GetTalentSpecialValueFor("delay")
-            local maxAttacks = self:GetTalentSpecialValueFor("max_attacks")
+            local delay = self:GetSpecialValueFor("delay")
+            local maxAttacks = self:GetSpecialValueFor("max_attacks")
 
             if ability:IsCooldownReady() and not caster:IsInAbilityAttackMode() then
                 Timers:CreateTimer(delay, function()

@@ -31,11 +31,11 @@ modifier_lycan_apex_predator = class({})
 LinkLuaModifier("modifier_lycan_apex_predator", "heroes/hero_lycan/lycan_apex_predator", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_lycan_apex_predator:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_lycan_apex_predator:OnRefresh()
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_lycan_apex_predator:IsAura()
@@ -78,11 +78,11 @@ modifier_lycan_apex_predator_aura = class({})
 LinkLuaModifier("modifier_lycan_apex_predator_aura", "heroes/hero_lycan/lycan_apex_predator", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_lycan_apex_predator_aura:OnCreated()
-	self.chance = self:GetTalentSpecialValueFor("day_critical_chance")
-	self.damage = self:GetTalentSpecialValueFor("critical_damage")
+	self.chance = self:GetSpecialValueFor("day_critical_chance")
+	self.damage = self:GetSpecialValueFor("critical_damage")
 	self:StartIntervalThink(0.33)
 	if (not GameRules:IsDaytime()) or self:GetCaster():HasModifier("modifier_lycan_shapeshift_bh") then
-		self.chance = self:GetTalentSpecialValueFor("night_critical_chance")
+		self.chance = self:GetSpecialValueFor("night_critical_chance")
 		if self:GetCaster():HasTalent("special_bonus_unique_lycan_shapeshift_2") and self:GetCaster():HasModifier("modifier_lycan_shapeshift_bh") then
 			self.chance = self:GetCaster():FindTalentValue("special_bonus_unique_lycan_shapeshift_2")
 		end
@@ -99,10 +99,10 @@ function modifier_lycan_apex_predator_aura:OnDestroy()
 end
 
 function modifier_lycan_apex_predator_aura:OnIntervalThink()
-	self.chance = self:GetTalentSpecialValueFor("day_critical_chance")
-	self.damage = self:GetTalentSpecialValueFor("critical_damage")
+	self.chance = self:GetSpecialValueFor("day_critical_chance")
+	self.damage = self:GetSpecialValueFor("critical_damage")
 	if (not GameRules:IsDaytime()) or self:GetCaster():HasModifier("modifier_lycan_shapeshift_bh") then
-		self.chance = self:GetTalentSpecialValueFor("night_critical_chance")
+		self.chance = self:GetSpecialValueFor("night_critical_chance")
 		if self:GetCaster():HasTalent("special_bonus_unique_lycan_shapeshift_2") and self:GetCaster():HasModifier("modifier_lycan_shapeshift_bh") then
 			self.chance = self:GetCaster():FindTalentValue("special_bonus_unique_lycan_shapeshift_2")
 		end

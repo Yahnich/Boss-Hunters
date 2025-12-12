@@ -5,22 +5,22 @@ function enigma_midnight_pulse_bh:GetCastAnimation()
 end
 
 function enigma_midnight_pulse_bh:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function enigma_midnight_pulse_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorPosition()
 	
-	CreateModifierThinker(caster, self, "modifier_enigma_midnight_pulse_bh_thinker", {Duration = self:GetTalentSpecialValueFor("duration")}, target, caster:GetTeam(), false)
+	CreateModifierThinker(caster, self, "modifier_enigma_midnight_pulse_bh_thinker", {Duration = self:GetSpecialValueFor("duration")}, target, caster:GetTeam(), false)
 end
 
 modifier_enigma_midnight_pulse_bh_thinker = class({})
 LinkLuaModifier("modifier_enigma_midnight_pulse_bh_thinker", "heroes/hero_enigma/enigma_midnight_pulse_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_enigma_midnight_pulse_bh_thinker:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.damage = self:GetTalentSpecialValueFor("damage_percent") / 100
+	self.radius = self:GetSpecialValueFor("radius")
+	self.damage = self:GetSpecialValueFor("damage_percent") / 100
 	
 	self.heal = self.damage * self:GetCaster():FindTalentValue("special_bonus_unique_enigma_midnight_pulse_2")
 	if IsServer() then 

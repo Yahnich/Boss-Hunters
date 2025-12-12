@@ -10,8 +10,8 @@ function doom_apocalypse:IsHiddenWhenStolen()
 end
 
 function doom_apocalypse:OnSpellStart()
-	self.doomDamage = self:GetTalentSpecialValueFor( "damage" )
-	self.doomDuration = self:GetTalentSpecialValueFor("duration")
+	self.doomDamage = self:GetSpecialValueFor( "damage" )
+	self.doomDuration = self:GetSpecialValueFor("duration")
 	local doomModifier = "modifier_doom_apocalypse"
 	local hTarget = self:GetCursorTarget()
 	EmitSoundOn( "Hero_DoomBringer.LvlDeath", self:GetCaster())
@@ -72,7 +72,7 @@ function modifier_doom_apocalypse:OnCreated( kv )
 	self.talent3 = self:GetCaster():HasTalent("special_bonus_unique_doom_apocalypse_3")
 	self.ogDuration = self:GetDuration()
 	if IsServer() then
-		self.damage = self:GetTalentSpecialValueFor( "damage" )
+		self.damage = self:GetSpecialValueFor( "damage" )
 		self:OnIntervalThink()
 		self:StartIntervalThink( 1 )
 	end
@@ -167,7 +167,7 @@ LinkLuaModifier( "modifier_doom_apocalypse_talent", "heroes/hero_doom/doom_apoca
 
 function modifier_doom_apocalypse_talent:OnRefresh( kv )
 	if IsServer() then
-		self.damage = self.damage + self:GetAbility():GetTalentSpecialValueFor( "damage" )
+		self.damage = self.damage + self:GetAbility():GetSpecialValueFor( "damage" )
 		self:OnIntervalThink()
 	end
 end

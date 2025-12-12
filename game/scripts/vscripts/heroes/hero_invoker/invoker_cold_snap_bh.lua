@@ -23,11 +23,11 @@ function invoker_cold_snap_bh:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()
 
-    local duration = self:GetTalentSpecialValueFor("duration")
+    local duration = self:GetSpecialValueFor("duration")
 
-    local freeze_duration = self:GetTalentSpecialValueFor("freeze_duration")
-    local freeze_cooldown = self:GetTalentSpecialValueFor("freeze_cooldown")
-    local freeze_damage = self:GetTalentSpecialValueFor("freeze_damage")
+    local freeze_duration = self:GetSpecialValueFor("freeze_duration")
+    local freeze_cooldown = self:GetSpecialValueFor("freeze_cooldown")
+    local freeze_damage = self:GetSpecialValueFor("freeze_damage")
 
     local cooldown_modifier = "modifier_invoker_cold_snap_bh_cooldown"
     local cold_snap_modifier = "modifier_invoker_cold_snap_bh"
@@ -45,11 +45,11 @@ function modifier_invoker_cold_snap_bh:OnCreated(table)
     if IsServer() then
         local caster = self:GetCaster()
 
-        self.duration = self:GetTalentSpecialValueFor("duration")
+        self.duration = self:GetSpecialValueFor("duration")
 
-        self.freeze_duration = self:GetTalentSpecialValueFor("freeze_duration")
-        self.freeze_cooldown = self:GetTalentSpecialValueFor("freeze_cooldown")
-        self.freeze_damage = self:GetTalentSpecialValueFor("freeze_damage")
+        self.freeze_duration = self:GetSpecialValueFor("freeze_duration")
+        self.freeze_cooldown = self:GetSpecialValueFor("freeze_cooldown")
+        self.freeze_damage = self:GetSpecialValueFor("freeze_damage")
 
         self.cooldown_modifier = "modifier_invoker_cold_snap_bh_cooldown"
         self.cold_snap_modifier = "modifier_invoker_cold_snap_bh"
@@ -60,11 +60,11 @@ function modifier_invoker_cold_snap_bh:OnRefresh(table)
     if IsServer() then
         local caster = self:GetCaster()
 
-        self.duration = self:GetTalentSpecialValueFor("duration")
+        self.duration = self:GetSpecialValueFor("duration")
 
-        self.freeze_duration = self:GetTalentSpecialValueFor("freeze_duration")
-        self.freeze_cooldown = self:GetTalentSpecialValueFor("freeze_cooldown")
-        self.freeze_damage = self:GetTalentSpecialValueFor("freeze_damage")
+        self.freeze_duration = self:GetSpecialValueFor("freeze_duration")
+        self.freeze_cooldown = self:GetSpecialValueFor("freeze_cooldown")
+        self.freeze_damage = self:GetSpecialValueFor("freeze_damage")
 
         self.cooldown_modifier = "modifier_invoker_cold_snap_bh_cooldown"
         self.cold_snap_modifier = "modifier_invoker_cold_snap_bh"

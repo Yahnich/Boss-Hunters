@@ -45,40 +45,19 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"strike_damage"					"100 125 150 175 225 275 325"
+			"strike_damage"					"100 125 150 175 225 275 325"
 				"LinkedSpecialBonus"			"special_bonus_unique_queenofpain_shadow_strike_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"duration_damage"				"40 56 72 88 88 88 88"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"movement_slow"					"-60"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"projectile_speed"				"900"
-			}			
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"cast_range_tooltip"			"450 500 550 600 650 700 750"
-			}	
+			"duration_damage"				"40 56 72 88 88 88 88"
+			"movement_slow"					"-60"
+			"projectile_speed"				"900"			
+			"cast_range_tooltip"			"450 500 550 600 650 700 750"	
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"duration_tooltip"				"15"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
@@ -95,13 +74,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -117,13 +92,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"3"
-			}
+			"value"						"3"
 		}
 	}
 	//=================================================================================================================
@@ -138,7 +109,7 @@
 		"AbilityTextureName"			"queenofpain_blink"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilitySound"					"Hero_QueenOfPain.Blink_in"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -163,19 +134,14 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1300"
-			}
+			"blink_range"			"1300"
 			
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"min_blink_range"		"200"
-			}
 		}
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -192,13 +158,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	//=================================================================================================================
@@ -215,18 +177,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"3"
-			}
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_cd"					"2"
-			}
+			"value"						"3"
+			"bonus_cd"					"2"
 		}
 	}
 	//=================================================================================================================
@@ -243,7 +197,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilitySound"					"Hero_QueenOfPain.ScreamOfPain"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -272,18 +226,13 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"area_of_effect"		"550 550 550 550 650 750 850"
-			}
+			"area_of_effect"		"550 550 550 550 650 750 850"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"projectile_speed"		"900"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -300,13 +249,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"35"
-			}
+			"value"						"35"
 		}
 	}
 	//=================================================================================================================
@@ -322,23 +267,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"60"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cdr"						"10"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"4"
-			}
+			"value"						"60"
+			"cdr"						"10"
+			"duration"					"4"
 		}
 	}
 	"queenofpain_sadomasochism"
@@ -356,38 +289,17 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"damage_amp"				"16"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"area_dmg"					"16"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"lifesteal"					"16"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"minion_lifesteal"			"25"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stack_increase"			"2"
-			}
+			"damage_amp"				"16"
+			"area_dmg"					"16"
+			"lifesteal"					"16"
+"minion_lifesteal"			"25"
+			"stack_increase"			"2"
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"stack_duration"			"6"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -433,55 +345,31 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"starting_aoe"			"100"
-			}
+			"starting_aoe"			"100"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"distance"				"900"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"final_aoe"				"450"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"900"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"320 450 585 715 850 985"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"knockback_distance"	"350"
-			}
+			"speed"					"900"
+			"damage"				"320 450 585 715 850 985"
+			"knockback_distance"	"350"
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"knockback_duration"	"1.4"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_scepter"		"345 505 665 825 985 1145"
+			"damage_scepter"		"345 505 665 825 985 1145"
 				"RequiresScepter"		"1"
-			}
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"scepter_cd_reduction"	"50"
 				"RequiresScepter"		"1"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -497,18 +385,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"6"
-			}
+			"value"						"-100"
+			"duration"					"6"
 		}
 	}
 	//=================================================================================================================
@@ -524,13 +404,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-25"
-			}
+			"value"						"-25"
 		}
 	}
 }

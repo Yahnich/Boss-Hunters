@@ -41,14 +41,14 @@ function modifier_ta_meld_armor:DeclareFunctions()
 end
 
 function modifier_ta_meld_armor:GetModifierPreAttack_BonusDamage()
-	return self:GetTalentSpecialValueFor("bonus_damage")
+	return self:GetSpecialValueFor("bonus_damage")
 end
 
 function modifier_ta_meld_armor:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() then
 			EmitSoundOn("Hero_TemplarAssassin.Meld.Attack", params.target)
-			params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_ta_meld_enemy", {Duration = self:GetTalentSpecialValueFor("reduc_duration")})
+			params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_ta_meld_enemy", {Duration = self:GetSpecialValueFor("reduc_duration")})
 			if params.attacker:HasTalent("special_bonus_unique_ta_meld_2") then
 				params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_disarmed", {Duration = params.attacker:FindTalentValue("special_bonus_unique_ta_meld_2")})
 			end
@@ -116,7 +116,7 @@ function modifier_ta_meld_enemy:DeclareFunctions()
 end
 
 function modifier_ta_meld_enemy:GetModifierPhysicalArmorBonus()
-	return self:GetTalentSpecialValueFor("armor_reduc")
+	return self:GetSpecialValueFor("armor_reduc")
 end
 
 function modifier_ta_meld_enemy:GetEffectName()

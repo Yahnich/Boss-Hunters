@@ -24,11 +24,11 @@ function modifier_cloak:OnTakeDamage(params)
         if params.unit == caster and self:GetAbility():IsCooldownReady() and not caster:IsInvisible() then
             EmitSoundOn("Hero_Riki.Invisibility", caster)
 
-            caster:AddNewModifier(caster, self:GetAbility(), "modifier_invisible", {Duration = self:GetTalentSpecialValueFor("duration")})
-            caster:AddNewModifier(caster, self:GetAbility(), "modifier_cloak_speed", {Duration = self:GetTalentSpecialValueFor("duration")})
+            caster:AddNewModifier(caster, self:GetAbility(), "modifier_invisible", {Duration = self:GetSpecialValueFor("duration")})
+            caster:AddNewModifier(caster, self:GetAbility(), "modifier_cloak_speed", {Duration = self:GetSpecialValueFor("duration")})
 
             if caster:HasScepter() and caster:HasModifier("modifier_invisible") then
-                caster:AddNewModifier(caster, self:GetAbility(), "modifier_invulnerable", {Duration = self:GetTalentSpecialValueFor("duration")})
+                caster:AddNewModifier(caster, self:GetAbility(), "modifier_invulnerable", {Duration = self:GetSpecialValueFor("duration")})
             end
 
             caster:SetThreat(0)
@@ -67,7 +67,7 @@ function modifier_cloak_speed:DeclareFunctions()
 end
 
 function modifier_cloak_speed:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("move_speed")
+    return self:GetSpecialValueFor("move_speed")
 end
 
 function modifier_cloak_speed:IsHidden()

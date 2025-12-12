@@ -17,7 +17,7 @@ end
 function modifier_worked_up:OnAbilityExecuted(params)
 	if IsServer() then
 		if params.unit == self:GetCaster() and params.unit:HasAbility( params.ability:GetName() ) then
-			params.unit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_worked_up_stack", {Duration = self:GetTalentSpecialValueFor("duration")})
+			params.unit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_worked_up_stack", {Duration = self:GetSpecialValueFor("duration")})
 		end
 	end
 end
@@ -42,9 +42,9 @@ function modifier_worked_up_stack:OnCreated(kv)
 end
 
 function modifier_worked_up_stack:OnRefresh(kv)
-	self.dmg = self:GetTalentSpecialValueFor("bonus_dmg")
-	self.ms =  self:GetTalentSpecialValueFor("bonus_ms")
-	self.max =  self:GetTalentSpecialValueFor("max_stacks")
+	self.dmg = self:GetSpecialValueFor("bonus_dmg")
+	self.ms =  self:GetSpecialValueFor("bonus_ms")
+	self.max =  self:GetSpecialValueFor("max_stacks")
 	self.sa =  self:GetCaster():FindTalentValue("special_bonus_unique_bristleback_work_up_1")
 	if IsServer() then self:AddIndependentStack(self:GetRemainingTime(), self.max) end
 end

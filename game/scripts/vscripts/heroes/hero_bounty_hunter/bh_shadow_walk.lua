@@ -4,7 +4,7 @@ LinkLuaModifier( "modifier_bh_shadow_walk_slow", "heroes/hero_bounty_hunter/bh_s
 
 function bh_shadow_walk:OnSpellStart()
 	local caster = self:GetCaster()
-	local fadeTime = self:GetTalentSpecialValueFor("fade_time")
+	local fadeTime = self:GetSpecialValueFor("fade_time")
 
 	if caster:HasTalent("special_bonus_unique_bh_shadow_walk_2") then
 		fadeTime = 0
@@ -23,14 +23,14 @@ function bh_shadow_walk:OnSpellStart()
 	
 	self:StartDelayedCooldown()
 	Timers:CreateTimer(fadeTime, function()
-		caster:AddNewModifier(caster, self, "modifier_bh_shadow_walk", {Duration = self:GetTalentSpecialValueFor("duration")})
+		caster:AddNewModifier(caster, self, "modifier_bh_shadow_walk", {Duration = self:GetSpecialValueFor("duration")})
 	end)
 	
 end
 
 modifier_bh_shadow_walk = class({})
 function modifier_bh_shadow_walk:OnCreated(table)
-    self.damage = self:GetTalentSpecialValueFor("damage")
+    self.damage = self:GetSpecialValueFor("damage")
 	self.talent = self:GetCaster():HasTalent("special_bonus_unique_bh_shadow_walk_1")
 	if IsServer() then 
 		self:GetCaster():CalculateStatBonus()
@@ -39,7 +39,7 @@ function modifier_bh_shadow_walk:OnCreated(table)
 end
 
 function modifier_bh_shadow_walk:OnRefresh(table)
-    self.damage = self:GetTalentSpecialValueFor("damage")
+    self.damage = self:GetSpecialValueFor("damage")
 	self.talent = self:GetCaster():HasTalent("special_bonus_unique_bh_shadow_walk_1")
 	if IsServer() then self:GetCaster():CalculateStatBonus() end
 end
@@ -95,7 +95,7 @@ end
 function modifier_bh_shadow_walk:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() then
-			params.target:AddNewModifier( params.attacker, self:GetAbility(), "modifier_bh_shadow_walk_slow", {duration = self:GetTalentSpecialValueFor("slow_duration")} )
+			params.target:AddNewModifier( params.attacker, self:GetAbility(), "modifier_bh_shadow_walk_slow", {duration = self:GetSpecialValueFor("slow_duration")} )
 			Timers:CreateTimer(function() self:Destroy() end)
 		end
 	end
@@ -132,7 +132,7 @@ end
 
 modifier_bh_shadow_walk_slow = class({})
 function modifier_bh_shadow_walk_slow:OnCreated()
-	self.slow = self:GetTalentSpecialValueFor("slow")
+	self.slow = self:GetSpecialValueFor("slow")
 end
 
 function modifier_bh_shadow_walk_slow:DeclareFunctions()

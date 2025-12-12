@@ -69,7 +69,7 @@ end
 function modifier_et_natural_order_handle:GetModifierPhysicalArmorBonus()
 	local bonus = 0
 	if self:GetCaster():HasScepter() then
-		bonus = self:GetCaster():GetPhysicalArmorBaseValue() * (-self:GetTalentSpecialValueFor("reduc")) / 100
+		bonus = self:GetCaster():GetPhysicalArmorBaseValue() * (-self:GetSpecialValueFor("reduc")) / 100
 	end
 	return bonus
 end
@@ -77,7 +77,7 @@ end
 function modifier_et_natural_order_handle:GetModifierMagicalResistanceBonus()
 	local bonus = 0
 	if self:GetCaster():HasScepter() then
-		bonus = -self:GetTalentSpecialValueFor("reduc")
+		bonus = -self:GetSpecialValueFor("reduc")
 	end
 	return bonus
 end
@@ -96,7 +96,7 @@ function modifier_et_natural_order_both:GetAuraDuration()
 end
 
 function modifier_et_natural_order_both:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function modifier_et_natural_order_both:GetAuraSearchFlags()
@@ -133,7 +133,7 @@ function modifier_et_natural_order_phys:GetAuraDuration()
 end
 
 function modifier_et_natural_order_phys:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function modifier_et_natural_order_phys:GetAuraSearchFlags()
@@ -170,7 +170,7 @@ function modifier_et_natural_order_magic:GetAuraDuration()
 end
 
 function modifier_et_natural_order_magic:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function modifier_et_natural_order_magic:GetAuraSearchFlags()
@@ -199,7 +199,7 @@ end
 
 modifier_et_natural_order_enemy_both = class({})
 function modifier_et_natural_order_enemy_both:OnCreated(table)
-	self.armor1 = -(self:GetParent():GetPhysicalArmorValue(false) + self:GetParent():GetPhysicalArmorValue(false) * self:GetTalentSpecialValueFor("reduc")/100)
+	self.armor1 = -(self:GetParent():GetPhysicalArmorValue(false) + self:GetParent():GetPhysicalArmorValue(false) * self:GetSpecialValueFor("reduc")/100)
 	if IsServer() then
 		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_elder_titan/elder_titan_natural_order_magical.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControl(self.nfx, 0, self:GetParent():GetAbsOrigin())
@@ -225,7 +225,7 @@ function modifier_et_natural_order_enemy_both:GetModifierPhysicalArmorBonus()
 end
 
 function modifier_et_natural_order_enemy_both:GetModifierMagicalResistanceBonus()
-	return self:GetTalentSpecialValueFor("reduc")
+	return self:GetSpecialValueFor("reduc")
 end
 
 function modifier_et_natural_order_enemy_both:GetEffectName()
@@ -234,7 +234,7 @@ end
 
 modifier_et_natural_order_enemy_phys = class({})
 function modifier_et_natural_order_enemy_phys:OnCreated(table)
-	self.armor2 = -(self:GetParent():GetPhysicalArmorValue(false) + self:GetParent():GetPhysicalArmorValue(false) * self:GetTalentSpecialValueFor("reduc")/100)
+	self.armor2 = -(self:GetParent():GetPhysicalArmorValue(false) + self:GetParent():GetPhysicalArmorValue(false) * self:GetSpecialValueFor("reduc")/100)
 end
 
 function modifier_et_natural_order_enemy_phys:DeclareFunctions()
@@ -261,7 +261,7 @@ function modifier_et_natural_order_enemy_magic:DeclareFunctions()
 end
 
 function modifier_et_natural_order_enemy_magic:GetModifierMagicalResistanceBonus()
-	return self:GetTalentSpecialValueFor("reduc")
+	return self:GetSpecialValueFor("reduc")
 end
 
 function modifier_et_natural_order_enemy_magic:GetEffectName()

@@ -16,7 +16,7 @@ function queenofpain_shadow_strike_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	local speed = self:GetTalentSpecialValueFor("projectile_speed")
+	local speed = self:GetSpecialValueFor("projectile_speed")
 	caster:EmitSound("Hero_QueenOfPain.ShadowStrike")
 	self:FireTrackingProjectile("particles/units/heroes/hero_queenofpain/queen_shadow_strike.vpcf", target, speed)
 	if caster:HasTalent("special_bonus_unique_queenofpain_shadow_strike_1") then
@@ -32,8 +32,8 @@ function queenofpain_shadow_strike_bh:OnProjectileHit( target, position )
 	if target and not target:TriggerSpellAbsorb( self ) then
 		local caster = self:GetCaster()
 		
-		local damage = self:GetTalentSpecialValueFor("strike_damage")
-		local duration = self:GetTalentSpecialValueFor("duration_tooltip")
+		local damage = self:GetSpecialValueFor("strike_damage")
+		local duration = self:GetSpecialValueFor("duration_tooltip")
 		self:DealDamage( caster, target, damage )
 		target:AddNewModifier( caster, self, "modifier_queen_of_pain_shadow_strike_bh", {duration = duration})
 		
@@ -63,9 +63,9 @@ modifier_queen_of_pain_shadow_strike_bh = class({})
 LinkLuaModifier("modifier_queen_of_pain_shadow_strike_bh", "heroes/hero_queenofpain/queenofpain_shadow_strike_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_queen_of_pain_shadow_strike_bh:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("duration_damage")
-	self.slow = self:GetTalentSpecialValueFor("movement_slow")
-	self.tick = 3 * ( self:GetRemainingTime() / self:GetTalentSpecialValueFor("duration_tooltip") )
+	self.damage = self:GetSpecialValueFor("duration_damage")
+	self.slow = self:GetSpecialValueFor("movement_slow")
+	self.tick = 3 * ( self:GetRemainingTime() / self:GetSpecialValueFor("duration_tooltip") )
 	self.slowRed = self.slow / ( self:GetRemainingTime() / self.tick )
 	self:StartIntervalThink( self.tick )
 	if IsServer() then
@@ -76,9 +76,9 @@ function modifier_queen_of_pain_shadow_strike_bh:OnCreated()
 end
 
 function modifier_queen_of_pain_shadow_strike_bh:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("duration_damage")
-	self.slow = self:GetTalentSpecialValueFor("movement_slow")
-	local newTick = 3 * ( self:GetRemainingTime() / self:GetTalentSpecialValueFor("duration_tooltip") )
+	self.damage = self:GetSpecialValueFor("duration_damage")
+	self.slow = self:GetSpecialValueFor("movement_slow")
+	local newTick = 3 * ( self:GetRemainingTime() / self:GetSpecialValueFor("duration_tooltip") )
 	
 	if math.abs( self.tick - newTick ) > 0.01 then
 		self.tick = newTick

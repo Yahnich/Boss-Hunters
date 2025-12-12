@@ -2,7 +2,7 @@ night_stalker_dark_ascension_bh = class({})
 
 function night_stalker_dark_ascension_bh:OnSpellStart()
 	local caster = self:GetCaster()
-	local dark_ascension = caster:AddNewModifier(caster, self, "modifier_night_stalker_dark_ascension_bh", {duration = self:GetTalentSpecialValueFor("duration")})
+	local dark_ascension = caster:AddNewModifier(caster, self, "modifier_night_stalker_dark_ascension_bh", {duration = self:GetSpecialValueFor("duration")})
 
 	ParticleManager:FireParticle("particles/units/heroes/hero_night_stalker/nightstalker_ulti.vpcf", PATTACH_POINT_FOLLOW, caster)
 	EmitGlobalSound("Hero_Nightstalker.Darkness.Team")
@@ -12,14 +12,14 @@ modifier_night_stalker_dark_ascension_bh = class({})
 LinkLuaModifier("modifier_night_stalker_dark_ascension_bh", "heroes/hero_night_stalker/night_stalker_dark_ascension_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_night_stalker_dark_ascension_bh:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("bonus_damage")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
 	if IsServer() then
 		GameRules:BeginNightstalkerNight( self:GetRemainingTime() )
 	end
 end
 	
 function modifier_night_stalker_dark_ascension_bh:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("bonus_damage")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
 	if IsServer() then
 		GameRules:BeginNightstalkerNight( self:GetRemainingTime() )
 	end

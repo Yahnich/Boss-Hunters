@@ -43,12 +43,12 @@ function doom_infernal_blade_ebf:InfernalBlade(target)
 	if caster:HasScepter() then
 		local startPos = target:GetAbsOrigin()
 		local direction = CalculateDirection( target, caster )
-		local length = self:GetTalentSpecialValueFor("scepter_length")
-		local width = self:GetTalentSpecialValueFor("scepter_width")
+		local length = self:GetSpecialValueFor("scepter_length")
+		local width = self:GetSpecialValueFor("scepter_width")
 		for _, enemy in ipairs( caster:FindEnemyUnitsInLine( startPos, startPos + direction * length, width ) ) do
 			if not enemy:TriggerSpellAbsorb(self) then
-				enemy:AddNewModifier(caster, self, "modifier_doom_infernal_blade_ebf_debuff", {duration = self:GetTalentSpecialValueFor("burn_duration")})
-				self:Stun(enemy, self:GetTalentSpecialValueFor("ministun_duration"), false)
+				enemy:AddNewModifier(caster, self, "modifier_doom_infernal_blade_ebf_debuff", {duration = self:GetSpecialValueFor("burn_duration")})
+				self:Stun(enemy, self:GetSpecialValueFor("ministun_duration"), false)
 				ParticleManager:FireParticle("particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf", PATTACH_POINT_FOLLOW, enemy)
 			end
 		end
@@ -56,8 +56,8 @@ function doom_infernal_blade_ebf:InfernalBlade(target)
 			ParticleManager:FireParticle("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf", PATTACH_ABSORIGIN, caster, {[0] = startPos + direction * (i-1) * width } )
 		end
 	elseif not target:TriggerSpellAbsorb(self) then
-		target:AddNewModifier(caster, self, "modifier_doom_infernal_blade_ebf_debuff", {duration = self:GetTalentSpecialValueFor("burn_duration")})
-		self:Stun(target, self:GetTalentSpecialValueFor("ministun_duration"), false)
+		target:AddNewModifier(caster, self, "modifier_doom_infernal_blade_ebf_debuff", {duration = self:GetSpecialValueFor("burn_duration")})
+		self:Stun(target, self:GetSpecialValueFor("ministun_duration"), false)
 		ParticleManager:FireParticle("particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf", PATTACH_POINT_FOLLOW, enemy)
 	end
 	EmitSoundOn("Hero_DoomBringer.InfernalBlade.Target", target)
@@ -98,8 +98,8 @@ modifier_doom_infernal_blade_ebf_debuff = class({})
 LinkLuaModifier("modifier_doom_infernal_blade_ebf_debuff", "heroes/hero_doom/doom_infernal_blade_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_doom_infernal_blade_ebf_debuff:OnCreated()
-	self.damage = self:GetParent():GetMaxHealth() * self:GetTalentSpecialValueFor("burn_damage_pct") / 100
-	self.baseDamage = self:GetTalentSpecialValueFor("burn_damage")
+	self.damage = self:GetParent():GetMaxHealth() * self:GetSpecialValueFor("burn_damage_pct") / 100
+	self.baseDamage = self:GetSpecialValueFor("burn_damage")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_doom_infernal_blade_ebf_1")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_doom_infernal_blade_ebf_2")
 	if IsServer() then

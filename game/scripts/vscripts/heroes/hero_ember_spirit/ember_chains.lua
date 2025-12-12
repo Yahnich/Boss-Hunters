@@ -17,17 +17,17 @@ function ember_chains:OnSpellStart()
 
 	EmitSoundOn("Hero_EmberSpirit.SearingChains.Cast", caster)
 
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("duration")
+	local radius = self:GetSpecialValueFor("radius")
 	local position = caster:GetAbsOrigin()
 	if caster:HasModifier("modifier_ember_fist") then
 		local fist = caster:FindModifierByName("modifier_ember_fist"):GetAbility()
 		if fist then
-			radius = radius + fist:GetTalentSpecialValueFor("radius")
+			radius = radius + fist:GetSpecialValueFor("radius")
 			position = fist:GetCursorPosition()
 		end
 	end
-	local maxTargets = self:GetTalentSpecialValueFor("unit_count")
+	local maxTargets = self:GetSpecialValueFor("unit_count")
 	local current = 0
 
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_ember_spirit/ember_spirit_searing_chains_cast.vpcf", PATTACH_POINT_FOLLOW, caster)
@@ -102,8 +102,8 @@ function modifier_ember_chains:OnCreated(table)
 	if IsServer() then
 		EmitSoundOn("Hero_EmberSpirit.SearingChains.Burn", self:GetParent())
 
-		local tick_rate = self:GetTalentSpecialValueFor("tick_rate")
-		self.damage = self:GetTalentSpecialValueFor("damage") * tick_rate
+		local tick_rate = self:GetSpecialValueFor("tick_rate")
+		self.damage = self:GetSpecialValueFor("damage") * tick_rate
 
 		self:StartIntervalThink(tick_rate)
 	end
@@ -111,8 +111,8 @@ end
 
 function modifier_ember_chains:OnRefresh(table)
 	if IsServer() then
-		local tick_rate = self:GetTalentSpecialValueFor("tick_rate")
-		self.damage = self:GetTalentSpecialValueFor("damage") * tick_rate
+		local tick_rate = self:GetSpecialValueFor("tick_rate")
+		self.damage = self:GetSpecialValueFor("damage") * tick_rate
 	end
 end
 
@@ -146,8 +146,8 @@ function modifier_ember_chains_slow:OnCreated(table)
 	self.slow = self:GetCaster():FindTalentValue("special_bonus_unique_ember_chains_2", "slow")
 	
 	if IsServer() then
-		local tick_rate = self:GetTalentSpecialValueFor("tick_rate")
-		self.damage = self:GetTalentSpecialValueFor("damage") * tick_rate
+		local tick_rate = self:GetSpecialValueFor("tick_rate")
+		self.damage = self:GetSpecialValueFor("damage") * tick_rate
 
 		self:StartIntervalThink(tick_rate)
 	end
@@ -157,8 +157,8 @@ function modifier_ember_chains_slow:OnRefresh(table)
 	self.slow = self:GetCaster():FindTalentValue("special_bonus_unique_ember_chains_2", "slow")
 	
 	if IsServer() then
-		local tick_rate = self:GetTalentSpecialValueFor("tick_rate")
-		self.damage = self:GetTalentSpecialValueFor("damage") * tick_rate
+		local tick_rate = self:GetSpecialValueFor("tick_rate")
+		self.damage = self:GetSpecialValueFor("damage") * tick_rate
 	end
 end
 

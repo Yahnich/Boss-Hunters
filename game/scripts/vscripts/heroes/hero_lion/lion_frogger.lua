@@ -9,7 +9,7 @@ function lion_frogger:IsHiddenWhenStolen()
 end
 
 function lion_frogger:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function lion_frogger:OnSpellStart()
@@ -20,9 +20,9 @@ function lion_frogger:OnSpellStart()
 		point = self:GetCursorTarget():GetAbsOrigin()
 	end
 	
-	local maxTargets = self:GetTalentSpecialValueFor("max_targets")
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local maxTargets = self:GetSpecialValueFor("max_targets")
+	local duration = self:GetSpecialValueFor("duration")
+	local radius = self:GetSpecialValueFor("radius")
 	
 	local notMinions = {}
 	
@@ -51,7 +51,7 @@ end
 function lion_frogger:Hex( target, duration )
 	local caster = self:GetCaster()
 	ParticleManager:FireParticle("particles/units/heroes/hero_lion/lion_spell_voodoo.vpcf", PATTACH_POINT, target)
-	target:AddNewModifier(caster, self, "modifier_lion_frogger", {Duration = duration or self:GetTalentSpecialValueFor("duration")})
+	target:AddNewModifier(caster, self, "modifier_lion_frogger", {Duration = duration or self:GetSpecialValueFor("duration")})
 end
 
 modifier_lion_frogger = class({})
@@ -74,7 +74,7 @@ function modifier_lion_frogger:OnIntervalThink()
 	local caster = self:GetCaster()
 	local ability = self:GetAbility()
 
-	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius") ) ) do
+	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius") ) ) do
 		if not enemy:HasModifier("modifier_lion_frogger") then
 			ParticleManager:FireParticle("particles/units/heroes/hero_lion/lion_spell_voodoo.vpcf", PATTACH_POINT, enemy)
 			enemy:AddNewModifier(caster, ability, "modifier_lion_frogger", {duration = self:GetRemainingTime(), ignoreStatusAmp = true})

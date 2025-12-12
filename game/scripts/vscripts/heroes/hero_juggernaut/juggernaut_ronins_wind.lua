@@ -7,7 +7,7 @@ function juggernaut_ronins_wind:OnSpellStart()
 		self:Refresh()
 	end
 	
-	caster:AddNewModifier( caster, self, "modifier_juggernaut_ronins_wind_movement", {duration = CalculateDistance(caster, self:GetCursorPosition()) / self:GetTalentSpecialValueFor("speed")} )
+	caster:AddNewModifier( caster, self, "modifier_juggernaut_ronins_wind_movement", {duration = CalculateDistance(caster, self:GetCursorPosition()) / self:GetSpecialValueFor("speed")} )
 	ParticleManager:FireParticle("particles/frostivus_herofx/juggernaut_omnislash_ascension.vpcf", PATTACH_POINT_FOLLOW, caster)
 	ParticleManager:FireParticle("particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_eruption.vpcf", PATTACH_ABSORIGIN, caster)
 	EmitSoundOn("Hero_Juggernaut.PreAttack", caster)
@@ -29,7 +29,7 @@ if IsServer() then
 		self.endPos = self:GetAbility():GetCursorPosition()
 		self.distance = CalculateDistance(parent, self.endPos)
 		self.direction = CalculateDirection( self.endPos, parent )
-		self.speed = self:GetTalentSpecialValueFor("speed") * FrameTime()
+		self.speed = self:GetSpecialValueFor("speed") * FrameTime()
 		self:StartMotionController()
 	end
 	
@@ -37,7 +37,7 @@ if IsServer() then
 	function modifier_juggernaut_ronins_wind_movement:OnDestroy()
 		local parent = self:GetParent()
 		local parentPos = parent:GetAbsOrigin()
-		local radius = self:GetTalentSpecialValueFor("radius")
+		local radius = self:GetSpecialValueFor("radius")
 		parent:SmoothFindClearSpace(self.endPos)
 		parent:RemoveGesture( ACT_DOTA_VICTORY )
 		self:StopMotionController()

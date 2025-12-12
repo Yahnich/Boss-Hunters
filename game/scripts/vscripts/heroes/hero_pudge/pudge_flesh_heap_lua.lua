@@ -16,16 +16,16 @@ end
 
 function modifier_pudge_flesh_heap_lua:OnRefresh()
     self.mr = self:GetSpecialValueFor("magic_resist")
-    self.bonus_str = self:GetTalentSpecialValueFor("str_bonus")
-    self.bonus_regen = self:GetTalentSpecialValueFor("health_regen")
+    self.bonus_str = self:GetSpecialValueFor("str_bonus")
+    self.bonus_regen = self:GetSpecialValueFor("health_regen")
 	
-    self.radius = self:GetTalentSpecialValueFor("radius")
-    self.minion_stacks = self:GetTalentSpecialValueFor("minion_stacks")
-    self.temp_stacks = self:GetTalentSpecialValueFor("temp_stacks")
-    self.minion_regen = self:GetTalentSpecialValueFor("minion_regen") / 100
+    self.radius = self:GetSpecialValueFor("radius")
+    self.minion_stacks = self:GetSpecialValueFor("minion_stacks")
+    self.temp_stacks = self:GetSpecialValueFor("temp_stacks")
+    self.minion_regen = self:GetSpecialValueFor("minion_regen") / 100
 	
-    self.monster_stacks = self:GetTalentSpecialValueFor("death_stacks")
-    self.boss_stacks = self:GetTalentSpecialValueFor("boss_stacks")
+    self.monster_stacks = self:GetSpecialValueFor("death_stacks")
+    self.boss_stacks = self:GetSpecialValueFor("boss_stacks")
     if IsServer() then self:GetParent():CalculateStatBonus() end
 end
 
@@ -65,8 +65,9 @@ function modifier_pudge_flesh_heap_lua:OnDeath(params)
 		else
 			-- not a minion
 		end
-		if params.unit:HasModifier("modifier_pudge_regurgitate_debuff") and caster:HasTalent("special_bonus_unique_pudge_regurgitate_2") then
-			tempStacks = tempStacks + caster:FindTalentValue("special_bonus_unique_pudge_regurgitate_2")
+		local regurgitate = params.unit:FindModifierByName("modifier_pudge_regurgitate_debuff")
+		if regurgitate and regurgitate.bonus_skin_heap then
+			tempStacks = tempStacks + regurgitate.bonus_skin_heap
 		end
 		self.permanentStacks = self.permanentStacks + permaStacks
 		self:SetStackCount( self:GetStackCount() + permaStacks + tempStacks )

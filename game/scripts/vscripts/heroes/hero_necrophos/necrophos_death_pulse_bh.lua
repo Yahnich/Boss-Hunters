@@ -5,7 +5,7 @@ function necrophos_death_pulse_bh:GetIntrinsicModifierName()
 end
 
 function necrophos_death_pulse_bh:GetCastRange( target, position )
-	return self:GetTalentSpecialValueFor("area_of_effect")
+	return self:GetSpecialValueFor("area_of_effect")
 end
 
 function necrophos_death_pulse_bh:GetCooldown(iLvl)
@@ -22,7 +22,7 @@ end
 
 function necrophos_death_pulse_bh:OnSpellStart( )
 	local caster = self:GetCaster()
-	caster:HealEvent( self:GetTalentSpecialValueFor("heal"), self, caster )
+	caster:HealEvent( self:GetSpecialValueFor("heal"), self, caster )
 	
 	self.deathPulses = self.deathPulses or {}
 	deathSeeker = false
@@ -49,10 +49,10 @@ end
 function necrophos_death_pulse_bh:DeathPulse( origin, bDisableSound, deathSeeker )
 	local caster = self:GetCaster()
 	
-	local speed = self:GetTalentSpecialValueFor("projectile_speed")
+	local speed = self:GetSpecialValueFor("projectile_speed")
 	local scepterActivated = caster:HasScepter() and caster:HasModifier("modifier_necrophos_ghost_shroud_bh")
-	local radius = TernaryOperator( 9999, scepterActivated, self:GetTalentSpecialValueFor("area_of_effect") )
-	local damage = self:GetTalentSpecialValueFor("damage")
+	local radius = TernaryOperator( 9999, scepterActivated, self:GetSpecialValueFor("area_of_effect") )
+	local damage = self:GetSpecialValueFor("damage")
 	local damage_type = TernaryOperator( DAMAGE_TYPE_PURE, scepterActivated, DAMAGE_TYPE_MAGICAL )
 	local deathSeekerTarget
 	if deathSeeker then
@@ -101,7 +101,7 @@ function necrophos_death_pulse_bh:OnProjectileHitHandle( target, position, proje
 		local projData = self.deathPulses[projectileID]
 		
 		if caster:IsSameTeam(target) then
-			target:HealEvent( self:GetTalentSpecialValueFor("heal"), self, caster )
+			target:HealEvent( self:GetSpecialValueFor("heal"), self, caster )
 		elseif not target:TriggerSpellAbsorb(self) then
 			if projData.deathSeeker then
 				target:AddNewModifier(caster, self, "modifier_necrophos_death_pulse_bh_talent", {duration = caster:FindTalentValue("special_bonus_unique_necrophos_death_pulse_2", "duration")})

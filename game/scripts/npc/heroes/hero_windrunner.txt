@@ -13,7 +13,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"windrunner_shackleshot"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -48,34 +48,14 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"575"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"2 2.5 3 3.5 3.5 3.5 3.5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"fail_duration"			"0.75 0.75 0.75 0.75 1 1.25 1.5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"30 50 70 90 100 110 120"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"targets"				"2"
+			"radius"				"575"
+			"duration"				"2 2.5 3 3.5 3.5 3.5 3.5"
+			"fail_duration"			"0.75 0.75 0.75 0.75 1 1.25 1.5"
+			"damage"				"30 50 70 90 100 110 120"
+			"targets"				"2"
 				"LinkedSpecialBonus"	"special_bonus_unique_windrunner_bolas_2"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -91,13 +71,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-30"
-			}
+			"value"						"-30"
 		}
 	}
 	//=================================================================================================================
@@ -113,13 +89,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 
@@ -136,7 +108,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"windrunner_powershot"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -168,54 +140,24 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"150 250 350 450 500 550 600"
+			"damage"				"150 250 350 450 500 550 600"
 				"LinkedSpecialBonus"	"special_bonus_unique_windrunner_powershot_bh_1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_reduction"		"20 20 20 20 17 15 11"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"minion_reduction"		"5 5 5 5 4 3 2"
-			}
+			"damage_reduction"		"20 20 20 20 17 15 11"
+			"minion_reduction"		"5 5 5 5 4 3 2"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"arrow_width"			"125"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"arrow_range"			"2600"
-			}
+			"arrow_range"			"2600"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"arrow_speed"			"3000"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"tree_width"			"75"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"vision_radius"			"400"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"vision_duration"		"3.34"
-			}
+			"tree_width"			"75"
+			"vision_radius"			"400"
+			"vision_duration"		"3.34"
 		}
 	}
 	//=================================================================================================================
@@ -231,18 +173,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cdr"						"-3"
-			}
+			"value"						"50"
+			"cdr"						"-3"
 		}
 	}
 	//=================================================================================================================
@@ -258,18 +192,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"33"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"3"
-			}
+			"value"						"33"
+			"duration"					"3"
 		}
 	}
 
@@ -285,7 +211,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"windrunner_windrun"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -313,48 +239,25 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"buff_duration"				"3 4 5 6 6 6 6"
-			}		
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"movespeed_bonus_pct"		"30 40 50 60 60 60 60"		
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"evasion"					"100"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"enemy_movespeed_bonus_pct"	"-15 -20 -25 -30 -30 -30 -30"	
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"325"
-			}
+			"buff_duration"				"3 4 5 6 6 6 6"		
+			"movespeed_bonus_pct"		"30 40 50 60 60 60 60"		
+			"evasion"					"100"
+			"enemy_movespeed_bonus_pct"	"-15 -20 -25 -30 -30 -30 -30"	
+			"radius"					"325"
 			"07"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"debuff_duration"			"2.5"
-			}
 			"08"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"scepter_charges"			"2"
-			}
 			"09"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"scepter_ms"				"70 80 90 100 100 100 100"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -370,18 +273,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"600"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"bonus_chill"				"20"
-			}
+			"value"						"600"
+			"bonus_chill"				"20"
 		}
 	}
 	//=================================================================================================================
@@ -397,18 +292,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"3"
-			}
+			"value"						"100"
+			"duration"					"3"
 		}
 	}
 	"windrunner_focusfire_bh"
@@ -424,7 +311,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"windrunner_focusfire"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -457,23 +344,14 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_as"						"500"
-			}
+			"bonus_as"						"500"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"dmg_reduction"					"-50 -40 -40 -30 -30 -20"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"duration"						"15"
-			}				
+			"duration"						"15"				
 		}
 	}
 	//=================================================================================================================
@@ -489,13 +367,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
+			"value"						"100"
 		}
 	}
 	//=================================================================================================================
@@ -511,13 +385,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	
@@ -566,28 +436,15 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"passive_cooldown"		"2.5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1"
-			}
+			"passive_cooldown"		"2.5"
+			"duration"				"1"
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"chance"				"10"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"pierce_pct"			"40"
-			}
+			"pierce_pct"			"40"
 			// "06"
 			// {
 			// 	"var_type"				"FIELD_INTEGER"

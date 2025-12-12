@@ -5,7 +5,7 @@ function slark_shadow_dance_bh:GetIntrinsicModifierName()
 end
 
 function slark_shadow_dance_bh:GetCastRange(target, position)
-	return self:GetTalentSpecialValueFor("search_radius")
+	return self:GetSpecialValueFor("search_radius")
 end
 
 function slark_shadow_dance_bh:GetCooldown( iLvl )
@@ -14,7 +14,7 @@ end
 
 function slark_shadow_dance_bh:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_slark_shadow_dance_activated", {duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_slark_shadow_dance_activated", {duration = self:GetSpecialValueFor("duration")})
 	EmitSoundOn("Hero_Slark.ShadowDance", caster)
 end
 
@@ -22,18 +22,18 @@ modifier_slark_shadow_dance_handler = class({})
 LinkLuaModifier("modifier_slark_shadow_dance_handler", "heroes/hero_slark/slark_shadow_dance_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_slark_shadow_dance_handler:OnCreated()
-	self.regen = self:GetTalentSpecialValueFor("bonus_regen_pct")
-	self.ms = self:GetTalentSpecialValueFor("bonus_movement_speed")
-	self.radius = self:GetTalentSpecialValueFor("search_radius")
+	self.regen = self:GetSpecialValueFor("bonus_regen_pct")
+	self.ms = self:GetSpecialValueFor("bonus_movement_speed")
+	self.radius = self:GetSpecialValueFor("search_radius")
 	if IsServer() then
 		self:StartIntervalThink(0.1)
 	end
 end
 
 function modifier_slark_shadow_dance_handler:OnRefresh()
-	self.regen = self:GetTalentSpecialValueFor("bonus_regen_pct")
-	self.ms = self:GetTalentSpecialValueFor("bonus_movement_speed")
-	self.radius = self:GetTalentSpecialValueFor("search_radius")
+	self.regen = self:GetSpecialValueFor("bonus_regen_pct")
+	self.ms = self:GetSpecialValueFor("bonus_movement_speed")
+	self.radius = self:GetSpecialValueFor("search_radius")
 	if IsServer() then
 		self:StartIntervalThink(0.1)
 	end

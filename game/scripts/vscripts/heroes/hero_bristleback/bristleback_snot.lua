@@ -44,7 +44,7 @@ function bristleback_snot:OnSpellStart()
 	EmitSoundOn("Hero_Bristleback.ViscousGoo.Cast", caster)
 	
 	if caster:HasScepter() then
-		local enemies = self:GetCaster():FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("scepter_radius"), {})
+		local enemies = self:GetCaster():FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("scepter_radius"), {})
 		for _,enemy in pairs(enemies) do
 			self:FireSnot(enemy)
 		end
@@ -69,7 +69,7 @@ function bristleback_snot:FireSnot(target, hSource)
 		Source = source,
 		Ability = self,	
 		EffectName = "particles/units/heroes/hero_bristleback/bristleback_viscous_nasal_goo.vpcf",
-	    iMoveSpeed = self:GetTalentSpecialValueFor("goo_speed"),
+	    iMoveSpeed = self:GetSpecialValueFor("goo_speed"),
 		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_3,
 		bDrawsOnMinimap = false,                          -- Optional
         bDodgeable = true,                                -- Optional
@@ -86,11 +86,11 @@ end
 
 function bristleback_snot:OnProjectileHit(hTarget, vLocation)
 	if hTarget ~= nil and hTarget:IsAlive() and not hTarget:TriggerSpellAbsorb( self ) then
-		local duration = TernaryOperator( self:GetTalentSpecialValueFor("minion_duration"), hTarget:IsMinion(), self:GetTalentSpecialValueFor("goo_duration") )
+		local duration = TernaryOperator( self:GetSpecialValueFor("minion_duration"), hTarget:IsMinion(), self:GetSpecialValueFor("goo_duration") )
 		EmitSoundOn("Hero_Bristleback.ViscousGoo.Target", hTarget)
 		local snot = hTarget:AddNewModifier(self:GetCaster(), self, "modifier_snot", {Duration = duration})
 		if snot then
-			local stacks = math.min( self:GetTalentSpecialValueFor("stack_limit"), snot:GetStackCount() + 1 )
+			local stacks = math.min( self:GetSpecialValueFor("stack_limit"), snot:GetStackCount() + 1 )
 		end
 	end
 end
@@ -126,12 +126,12 @@ function modifier_snot:OnCreated()
 end
 
 function modifier_snot:OnRefresh()
-	self.base_slow = self:GetTalentSpecialValueFor("base_move_slow")
-	self.slow_per_stack = self:GetTalentSpecialValueFor("move_slow_per_stack")
-	self.base_armor = self:GetTalentSpecialValueFor("base_armor")
-	self.armor_per_stack = self:GetTalentSpecialValueFor("armor_per_stack")
+	self.base_slow = self:GetSpecialValueFor("base_move_slow")
+	self.slow_per_stack = self:GetSpecialValueFor("move_slow_per_stack")
+	self.base_armor = self:GetSpecialValueFor("base_armor")
+	self.armor_per_stack = self:GetSpecialValueFor("armor_per_stack")
 	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_bristleback_snot_2")
-	if IsServer() then self:SetStackCount( math.min( self:GetStackCount() + 1, self:GetTalentSpecialValueFor("stack_limit")) ) end
+	if IsServer() then self:SetStackCount( math.min( self:GetStackCount() + 1, self:GetSpecialValueFor("stack_limit")) ) end
 end
 
 function modifier_snot:DeclareFunctions()

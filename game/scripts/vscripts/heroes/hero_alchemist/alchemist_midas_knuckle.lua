@@ -27,8 +27,8 @@ end
 
 function alchemist_midas_knuckle:MidasKnuckle(target)
 	local caster = self:GetCaster()
-	local damage = self:GetTalentSpecialValueFor("base_dmg")
-	local bonusdamage = self:GetTalentSpecialValueFor("net_worth_bonus_dmg")
+	local damage = self:GetSpecialValueFor("base_dmg")
+	local bonusdamage = self:GetSpecialValueFor("net_worth_bonus_dmg")
 	self.goldDamage = ( self.goldDamage or 0 ) + self:GetGoldCost(-1) * bonusdamage
 	local totDmg = damage + self.goldDamage
 	
@@ -36,7 +36,7 @@ function alchemist_midas_knuckle:MidasKnuckle(target)
 	
 	local goldFountain = ParticleManager:FireParticle("particles/econ/items/necrolyte/necrophos_sullen_gold/necro_sullen_pulse_enemy_explosion_gold.vpcf", PATTACH_POINT_FOLLOW, target, {[0] = "attach_hitloc", [3] = "attach_hitloc"})
 	
-	self:Stun(target, self:GetTalentSpecialValueFor("ministun"), false)
+	self:Stun(target, self:GetSpecialValueFor("ministun"), false)
 	EmitSoundOn("Hero_Alchemist.UnstableConcoction.Stun", target)
 	
 end

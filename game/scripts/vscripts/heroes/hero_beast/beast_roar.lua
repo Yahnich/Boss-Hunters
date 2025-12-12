@@ -4,14 +4,14 @@ LinkLuaModifier("modifier_dazed_generic", "libraries/modifiers/modifier_dazed_ge
 --[[
 function beast_roar:GetCastRange(vLocation, hTarget)
 	if self:GetCaster():HasScepter() then
-		return self:GetTalentSpecialValueFor("cast_range_scepter")
+		return self:GetSpecialValueFor("cast_range_scepter")
 	end
 
 end
 
 function beast_roar:GetCooldown(iLevel)
 	if self:GetCaster():HasScepter() then
-		return self:GetTalentSpecialValueFor("cast_range_scepter")
+		return self:GetSpecialValueFor("cast_range_scepter")
 	end
 	return self:GetCooldown(self:GetLevel())
 end
@@ -36,13 +36,13 @@ function beast_roar:OnSpellStart()
 
 	EmitSoundOn("Hero_Beastmaster.Primal_Roar", caster)
 	
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local pushDur = self:GetTalentSpecialValueFor("push_duration")
-	local pushDist = self:GetTalentSpecialValueFor("push_distance")
-	local stunDur = self:GetTalentSpecialValueFor("stun_duration")
-	local totDur = stunDur + self:GetTalentSpecialValueFor("slow_duration")
+	local damage = self:GetSpecialValueFor("damage")
+	local pushDur = self:GetSpecialValueFor("push_duration")
+	local pushDist = self:GetSpecialValueFor("push_distance")
+	local stunDur = self:GetSpecialValueFor("stun_duration")
+	local totDur = stunDur + self:GetSpecialValueFor("slow_duration")
 	
-	local units = caster:FindAllUnitsInLine(caster:GetAbsOrigin(), point, self:GetTalentSpecialValueFor("width"), {})
+	local units = caster:FindAllUnitsInLine(caster:GetAbsOrigin(), point, self:GetSpecialValueFor("width"), {})
 	for _, unit in pairs(units) do
 		if not unit:IsSameTeam( caster ) then
 			if unit:TriggerSpellAbsorb(self) then
@@ -64,12 +64,12 @@ end
 
 modifier_roar_slow = class({})
 function modifier_roar_slow:OnCreated()
-	self.slow = self:GetTalentSpecialValueFor("slow")
+	self.slow = self:GetSpecialValueFor("slow")
 	self.mr = nil
 	self.armor = nil
 	if self:GetCaster():HasModifier("modifier_cotw_hawk_spirit") then
-		self.mr = self:GetTalentSpecialValueFor("hawk_mr")
-		self.armor = self:GetTalentSpecialValueFor("hawk_armor")
+		self.mr = self:GetSpecialValueFor("hawk_mr")
+		self.armor = self:GetSpecialValueFor("hawk_armor")
 	end
 end
 

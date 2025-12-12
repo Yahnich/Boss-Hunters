@@ -11,7 +11,7 @@ function druid_bear_defender:IsHiddenWhenStolen()
 end
 
 function druid_bear_defender:GetCastRange(vLocation, hTarget)
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function druid_bear_defender:GetIntrinsicModifierName()
@@ -28,7 +28,7 @@ function modifier_druid_bear_defender:GetAuraDuration()
 end
 
 function modifier_druid_bear_defender:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self:GetSpecialValueFor("radius")
 end
 
 function modifier_druid_bear_defender:GetAuraEntityReject(hEntity)
@@ -73,7 +73,7 @@ end
 
 modifier_druid_bear_defender_druid = class({})
 function modifier_druid_bear_defender_druid:OnCreated(table)
-	self.damage_reduce = self:GetTalentSpecialValueFor("percent_shared")
+	self.damage_reduce = self:GetSpecialValueFor("percent_shared")
 
 	self:StartIntervalThink(0.1)
 end

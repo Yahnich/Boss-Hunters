@@ -6,7 +6,7 @@ end
 
 function sniper_take_aim_bh:OnSpellStart()	
 	local caster = self:GetCaster()
-	caster:AddNewModifier( caster, self, "modifier_sniper_take_aim_active_bh", {duration = self:GetTalentSpecialValueFor("duration")} )
+	caster:AddNewModifier( caster, self, "modifier_sniper_take_aim_active_bh", {duration = self:GetSpecialValueFor("duration")} )
 	
 	EmitSoundOn( "Hero_Sniper.TakeAim.Cast", caster)
 end
@@ -14,7 +14,7 @@ end
 modifier_sniper_take_aim_bh = class({})
 LinkLuaModifier( "modifier_sniper_take_aim_bh","heroes/hero_sniper/sniper_take_aim_bh.lua",LUA_MODIFIER_MOTION_NONE )
 function modifier_sniper_take_aim_bh:OnCreated(table)
-	self.range = self:GetTalentSpecialValueFor("bonus_attack_range")
+	self.range = self:GetSpecialValueFor("bonus_attack_range")
 end
 
 function modifier_sniper_take_aim_bh:OnRefresh(table)
@@ -48,11 +48,11 @@ modifier_sniper_take_aim_active_bh = class({})
 LinkLuaModifier( "modifier_sniper_take_aim_active_bh","heroes/hero_sniper/sniper_take_aim_bh.lua",LUA_MODIFIER_MOTION_NONE )
 
 function modifier_sniper_take_aim_active_bh:OnCreated()
-	self.chance = self:GetTalentSpecialValueFor("bonus_headshot_chance")
-	self.slow = self:GetTalentSpecialValueFor("slow")
+	self.chance = self:GetSpecialValueFor("bonus_headshot_chance")
+	self.slow = self:GetSpecialValueFor("slow")
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_sniper_take_aim_1")
-	self.talent1BonusRange = math.max( 0, self:GetTalentSpecialValueFor("bonus_attack_range") * (self:GetCaster():FindTalentValue("special_bonus_unique_sniper_take_aim_1") - 1) )
+	self.talent1BonusRange = math.max( 0, self:GetSpecialValueFor("bonus_attack_range") * (self:GetCaster():FindTalentValue("special_bonus_unique_sniper_take_aim_1") - 1) )
 	if self.talent1 and IsServer() then
 		self:StartIntervalThink(0)
 	end

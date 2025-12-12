@@ -16,9 +16,9 @@ shadow_fiend_shadowraze1 = class({})
 
 function shadow_fiend_shadowraze1:GetCastRange(vLocation, hTarget)
 	if self:GetCaster():HasTalent() then
-		return self:GetTalentSpecialValueFor("range") + self:GetTalentSpecialValueFor("radius")
+		return self:GetSpecialValueFor("range") + self:GetSpecialValueFor("radius")
 	else
-		return self:GetTalentSpecialValueFor("range")
+		return self:GetSpecialValueFor("range")
 	end
 end
 
@@ -36,8 +36,8 @@ function shadow_fiend_shadowraze1:SingleRaze()
 
 	local startPos = caster:GetAbsOrigin()
 	local direction = caster:GetForwardVector()
-	local distance = self:GetTalentSpecialValueFor("range")
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local distance = self:GetSpecialValueFor("range")
+	local radius = self:GetSpecialValueFor("radius")
 	local position = startPos + direction * distance
 	ParticleManager:FireParticle("particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf", PATTACH_POINT, caster, {[0]=position})
 
@@ -50,8 +50,8 @@ function shadow_fiend_shadowraze1:CircleRaze()
 
 	local startPos = caster:GetAbsOrigin()
 	local direction = caster:GetForwardVector()
-	local distance = self:GetTalentSpecialValueFor("range")
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local distance = self:GetSpecialValueFor("range")
+	local radius = self:GetSpecialValueFor("radius")
 	
 
 	local maxRaze = math.floor( ((2 * math.pi * distance) / radius) )
@@ -76,9 +76,9 @@ end
 function shadow_fiend_shadowraze1:HandleShadowRaze( enemies )
 	local caster = self:GetCaster()
 	
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local stack_damage = self:GetTalentSpecialValueFor("stack_damage")
-	local duration = self:GetTalentSpecialValueFor("duration")
+	local damage = self:GetSpecialValueFor("damage")
+	local stack_damage = self:GetSpecialValueFor("stack_damage")
+	local duration = self:GetSpecialValueFor("duration")
 	
 	local hasTalent1 = caster:HasTalent("special_bonus_unique_shadow_fiend_shadowraze_1")
 	local talent1Healing = caster:FindTalentValue("special_bonus_unique_shadow_fiend_shadowraze_1") / 100
@@ -147,9 +147,9 @@ function modifier_shadow_fiend_shadowraze:OnCreated()
 end
 
 function modifier_shadow_fiend_shadowraze:OnRefresh()
-	self.armor_reduction = self:GetTalentSpecialValueFor("armor_debuff")
-	self.armor_cap = self:GetTalentSpecialValueFor("armor_cap")
-	self.max = self:GetTalentSpecialValueFor("stack_max")
+	self.armor_reduction = self:GetSpecialValueFor("armor_debuff")
+	self.armor_cap = self:GetSpecialValueFor("armor_cap")
+	self.max = self:GetSpecialValueFor("stack_max")
 	if IsServer() then
 		self:IncrementStackCount()
 	end

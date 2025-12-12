@@ -1,7 +1,7 @@
 enigma_white_hole = class({})
 
 function enigma_white_hole:GetAOERadius()
-	return self:GetTalentSpecialValueFor("radius")
+	return self:GetSpecialValueFor("radius")
 end
 
 function enigma_white_hole:GetCastRange(target, position)
@@ -17,12 +17,12 @@ function enigma_white_hole:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorPosition()
 	
-	local originalHole = CreateModifierThinker(caster, self, "modifier_enigma_white_hole_thinker", {Duration = self:GetTalentSpecialValueFor("duration")}, target, caster:GetTeam(), false)
+	local originalHole = CreateModifierThinker(caster, self, "modifier_enigma_white_hole_thinker", {Duration = self:GetSpecialValueFor("duration")}, target, caster:GetTeam(), false)
 	
 	caster:EmitSound("Hero_Enigma.BlackHole.Cast.Chasm")
 	
 	if caster:HasTalent("special_bonus_unique_enigma_white_hole_1") then
-		local endHole = CreateModifierThinker(caster, self, "modifier_enigma_white_hole_thinker", {Duration = self:GetTalentSpecialValueFor("duration")}, caster:GetAbsOrigin(), caster:GetTeam(), false)
+		local endHole = CreateModifierThinker(caster, self, "modifier_enigma_white_hole_thinker", {Duration = self:GetSpecialValueFor("duration")}, caster:GetAbsOrigin(), caster:GetTeam(), false)
 		
 		endHole.travelPoint = originalHole:GetAbsOrigin()
 		originalHole.travelPoint = endHole:GetAbsOrigin()
@@ -36,9 +36,9 @@ modifier_enigma_white_hole_thinker = class({})
 LinkLuaModifier("modifier_enigma_white_hole_thinker", "heroes/hero_enigma/enigma_white_hole", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_enigma_white_hole_thinker:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.damage = self:GetTalentSpecialValueFor("damage")
-	self.push = self:GetTalentSpecialValueFor("push_speed")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.push = self:GetSpecialValueFor("push_speed")
 	if IsServer() then
 		self.caster = self:GetCaster()
 		self.parent = self:GetParent()

@@ -26,7 +26,7 @@ end
 --[[function jakiro_liquid_fire_bh:GetCastRange(Location, Target)
 	local caster = self:GetCaster()
 	-- #4 Talent: Liquid Fire Cast Range Increase
-	return caster:GetAttackRange() + self:GetTalentSpecialValueFor("extra_cast_range") + caster:FindTalentValue("special_bonus_imba_jakiro_4")
+	return caster:GetAttackRange() + self:GetSpecialValueFor("extra_cast_range") + caster:FindTalentValue("special_bonus_imba_jakiro_4")
 end]]
 
 function jakiro_liquid_fire_bh:OnAbilityPhaseStart()
@@ -288,8 +288,8 @@ function modifier_liquid_fire_debuff:OnCreated(table)
 end
 
 function modifier_liquid_fire_debuff:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("damage")
-	self.attackspeed = self:GetTalentSpecialValueFor("slow_as")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.attackspeed = self:GetSpecialValueFor("slow_as")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_jakiro_liquid_fire_bh_2")
 	self.talent2Threshold = self:GetCaster():FindTalentValue("special_bonus_unique_jakiro_liquid_fire_bh_2")
 	self.talent2Armor = self:GetCaster():FindTalentValue("special_bonus_unique_jakiro_liquid_fire_bh_2", "armor")

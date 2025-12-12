@@ -50,7 +50,7 @@ function et_earth_splitter:OnSpellStart()
 	local endPos = caster:GetAbsOrigin() + direction * self:GetTrueCastRange()
 
 	if not caster:HasModifier("modifier_elder_spirit") then
-		ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_earth_splitter.vpcf", PATTACH_POINT, caster, {[0]=startPos, [1]=endPos, [3]=Vector(0,self:GetTalentSpecialValueFor("crack_time"),0)})
+		ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_earth_splitter.vpcf", PATTACH_POINT, caster, {[0]=startPos, [1]=endPos, [3]=Vector(0,self:GetSpecialValueFor("crack_time"),0)})
 		local spirits = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE})
 		for _,spirit in pairs(spirits) do
 			if spirit:HasModifier("modifier_elder_spirit") then
@@ -66,22 +66,22 @@ function et_earth_splitter:OnSpellStart()
 		direction = CalculateDirection(point, caster:GetAbsOrigin())
 
 		endPos = caster:GetAbsOrigin() + direction * self:GetTrueCastRange()
-		ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_earth_splitter.vpcf", PATTACH_POINT, caster:GetOwner(), {[0]=startPos, [1]=endPos, [3]=Vector(0,self:GetTalentSpecialValueFor("crack_time"),0)})
+		ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_earth_splitter.vpcf", PATTACH_POINT, caster:GetOwner(), {[0]=startPos, [1]=endPos, [3]=Vector(0,self:GetSpecialValueFor("crack_time"),0)})
 	end
 
-	self:FireLinearProjectile("", direction*910, CalculateDistance(startPos, endPos), self:GetTalentSpecialValueFor("width"))
+	self:FireLinearProjectile("", direction*910, CalculateDistance(startPos, endPos), self:GetSpecialValueFor("width"))
 
-	Timers:CreateTimer(self:GetTalentSpecialValueFor("crack_time"), function()
+	Timers:CreateTimer(self:GetSpecialValueFor("crack_time"), function()
 		StopSoundOn("Hero_ElderTitan.EarthSplitter.Cast", caster)
 		EmitSoundOn("Hero_ElderTitan.EarthSplitter.Destroy", caster)
 		EmitSoundOn("Hero_ElderTitan.EarthSplitter.Destroy", caster)
 		EmitSoundOn("Hero_ElderTitan.EarthSplitter.Destroy", caster)
 		EmitSoundOn("Hero_ElderTitan.EarthSplitter.Destroy", caster)
 
-		local enemies = caster:FindEnemyUnitsInLine(startPos, endPos, self:GetTalentSpecialValueFor("width"), {})
+		local enemies = caster:FindEnemyUnitsInLine(startPos, endPos, self:GetSpecialValueFor("width"), {})
 		for _,enemy in pairs(enemies) do
 			if not enemy:TriggerSpellAbsorb(self) then
-				damage = enemy:GetMaxHealth() * self:GetTalentSpecialValueFor("damage")/100
+				damage = enemy:GetMaxHealth() * self:GetSpecialValueFor("damage")/100
 				if not caster:HasModifier("modifier_elder_spirit") then
 					if caster:FindAbilityByName("et_elder_spirit") and caster:FindAbilityByName("et_elder_spirit"):IsTrained() then
 						if caster:HasModifier("modifier_elder_spirit_check") then
@@ -112,7 +112,7 @@ end
 
 function et_earth_splitter:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
-	local damage = self:GetTalentSpecialValueFor("wave_damage")
+	local damage = self:GetSpecialValueFor("wave_damage")
 
 	if hTarget ~= nil then
 		if not caster:HasModifier("modifier_elder_spirit") then

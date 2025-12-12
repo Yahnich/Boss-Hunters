@@ -6,12 +6,12 @@ function arc_warden_tempest_mirage:GetIntrinsicModifierName()
 end
 
 function arc_warden_tempest_mirage:GetManaCost(iLvl)
-	return self:GetCaster():GetMana() * self:GetTalentSpecialValueFor("pct_cost") / 100
+	return self:GetCaster():GetMana() * self:GetSpecialValueFor("pct_cost") / 100
 end
 
 function arc_warden_tempest_mirage:OnSpellStart()
 	local caster = self:GetCaster()
-	self:DealDamage( caster, caster, caster:GetMaxHealth() * self:GetTalentSpecialValueFor("pct_cost") / 100, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_REFLECTION +DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_NON_LETHAL } )
+	self:DealDamage( caster, caster, caster:GetMaxHealth() * self:GetSpecialValueFor("pct_cost") / 100, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_REFLECTION +DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_NON_LETHAL } )
 	if caster.currentMirage and not caster.currentMirage:IsNull() then
 		caster.currentMirage:ForceKill(false)
 	end
@@ -23,7 +23,7 @@ function arc_warden_tempest_mirage:OnSpellStart()
 	if not mirage or mirage:IsNull() then
 		self.mirageIndex = CreateUnitByNameAsync("npc_dota_arc_warden_tempest_mirage", caster:GetAbsOrigin() + caster:GetForwardVector() * 128, true, caster, caster, caster:GetTeamNumber(), function( mirage )
 			local player = caster:GetPlayerID()
-			local duration = self:GetTalentSpecialValueFor("duration")
+			local duration = self:GetSpecialValueFor("duration")
 			mirage:SetControllableByPlayer(player, true)
 			mirage:SetUnitCanRespawn(true)
 			for abilitySlot=0,24 do
@@ -113,7 +113,7 @@ function arc_warden_tempest_mirage:OnSpellStart()
 		end )
 	else
 		local player = caster:GetPlayerID()
-		local duration = self:GetTalentSpecialValueFor("duration")
+		local duration = self:GetSpecialValueFor("duration")
 		mirage:SetControllableByPlayer(player, true)
 		mirage:RespawnUnit()
 		for abilitySlot=0,24 do

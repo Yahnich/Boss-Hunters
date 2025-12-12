@@ -95,7 +95,7 @@ end
 function et_earthbreaker:OnProjectileHit_ExtraData(hTarget, vLocation, table)
 	local caster = self:GetCaster()
 
-	local damage = self:GetTalentSpecialValueFor("damage")
+	local damage = self:GetSpecialValueFor("damage")
 
 	if not caster:HasModifier("modifier_elder_spirit") then
 		if caster:HasTalent("special_bonus_unique_et_earthbreaker_1") then
@@ -133,7 +133,7 @@ function et_earthbreaker:OnProjectileHit_ExtraData(hTarget, vLocation, table)
 
 		EmitSoundOn("Hero_EarthShaker.EchoSlamSmall", caster)
 
-		local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"), {})
+		local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetSpecialValueFor("radius"), {})
 		for _,enemy in pairs(enemies) do
 			local distance = CalculateDistance(caster, enemy)
 			enemy:ApplyKnockBack(caster:GetAbsOrigin(), 1.0, 1.0, -distance, 250, caster, self)

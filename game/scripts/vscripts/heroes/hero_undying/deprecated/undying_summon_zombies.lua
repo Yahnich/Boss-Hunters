@@ -17,12 +17,12 @@ end
 
 function modifier_undying_summon_zombies:OnRefresh()
 	self.damage = self:GetSpecialValueFor("damage")
-	self.min_dmg = self:GetTalentSpecialValueFor("min_dmg") 
-	self.max_dmg = self:GetTalentSpecialValueFor("max_dmg")
-	self.min_slow = self:GetTalentSpecialValueFor("min_slow")
-	self.max_slow = self:GetTalentSpecialValueFor("max_slow")
-	self.min_radius = self:GetTalentSpecialValueFor("minimum_range")
-	self.max_radius = self:GetTalentSpecialValueFor("maximum_range")
+	self.min_dmg = self:GetSpecialValueFor("min_dmg") 
+	self.max_dmg = self:GetSpecialValueFor("max_dmg")
+	self.min_slow = self:GetSpecialValueFor("min_slow")
+	self.max_slow = self:GetSpecialValueFor("max_slow")
+	self.min_radius = self:GetSpecialValueFor("minimum_range")
+	self.max_radius = self:GetSpecialValueFor("maximum_range")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_undying_summon_zombies_2")
 	self.talent2Timer = self:GetCaster():FindTalentValue("special_bonus_unique_undying_summon_zombies_2")
 	self.talentOG2Timer = self.talent2Timer

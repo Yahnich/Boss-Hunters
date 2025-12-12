@@ -12,7 +12,7 @@ function pl_phantom_rush:IsHiddenWhenStolen()
 end
 
 function pl_phantom_rush:GetCastRange( target, location)
-	return self:GetTalentSpecialValueFor("max_distance")
+	return self:GetSpecialValueFor("max_distance")
 end
 
 function pl_phantom_rush:GetCooldown( iLvl )
@@ -43,14 +43,14 @@ function modifier_pl_phantom_rush:OnOrder(params)
         
         local ability = self:GetAbility()
         local cooldown = ability:GetCooldown(ability:GetLevel())
-        local min_distance = self:GetTalentSpecialValueFor("min_distance")
-        local max_distance = self:GetTalentSpecialValueFor("max_distance")
+        local min_distance = self:GetSpecialValueFor("min_distance")
+        local max_distance = self:GetSpecialValueFor("max_distance")
         local duration = 5
         
         -- Checks if the ability is off cooldown and if the caster is attacking a target
         if target ~= null and ability:IsCooldownReady() and not ability:GetAutoCastState() and CalculateDistance then
 			if caster:HasTalent("special_bonus_unique_pl_phantom_rush_1") and CalculateDistance( caster, target) < max_distance then
-				local agiDuration = self:GetTalentSpecialValueFor("agility_duration")
+				local agiDuration = self:GetSpecialValueFor("agility_duration")
 				local blinkPos = target:GetAbsOrigin() - target:GetForwardVector() * (parent:GetAttackRange() - 25)
 				ParticleManager:FireParticle("particles/units/heroes/hero_phantom_lancer/phantom_lancer_deathflash.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = parent:GetAbsOrigin() + Vector(0,0,32)} )
 				FindClearSpaceForUnit( parent, blinkPos, true )
@@ -110,7 +110,7 @@ function modifier_pl_phantom_rush:OnAttackStart(params)
         local attacker = params.attacker
 		
         if attacker == caster then
-			local agiDuration = self:GetTalentSpecialValueFor("agility_duration")
+			local agiDuration = self:GetSpecialValueFor("agility_duration")
 			if caster:HasModifier("modifier_pl_phantom_rush_speed") then
 				caster:AddNewModifier(caster, self:GetAbility(), "modifier_pl_phantom_rush_agi", {Duration = agiDuration})
 				caster:RemoveModifierByName("modifier_pl_phantom_rush_speed")
@@ -169,7 +169,7 @@ function modifier_pl_phantom_rush_speed:OnCreated(table)
 end
 
 function modifier_pl_phantom_rush_speed:OnRefresh(table)
-    self.bonus_ms = self:GetTalentSpecialValueFor("bonus_speed")
+    self.bonus_ms = self:GetSpecialValueFor("bonus_speed")
     self:GetParent():HookInModifier("GetMoveSpeedLimitBonus", self)
 end
 
@@ -206,12 +206,12 @@ end
 modifier_pl_phantom_rush_agi = class({})
 function modifier_pl_phantom_rush_agi:OnCreated(table)
     EmitSoundOn("Hero_PhantomLancer.PhantomEdge", self:GetParent())
-    self.bonus_agility = self:GetTalentSpecialValueFor("bonus_agility")
+    self.bonus_agility = self:GetSpecialValueFor("bonus_agility")
 end
 
 function modifier_pl_phantom_rush_agi:OnRefresh(table)
     EmitSoundOn("Hero_PhantomLancer.PhantomEdge", self:GetParent())
-    self.bonus_agility = self:GetTalentSpecialValueFor("bonus_agility")
+    self.bonus_agility = self:GetSpecialValueFor("bonus_agility")
 end
 
 function modifier_pl_phantom_rush_agi:DeclareFunctions()

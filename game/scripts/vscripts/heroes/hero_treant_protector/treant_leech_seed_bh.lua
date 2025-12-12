@@ -10,7 +10,7 @@ end
 
 function treant_leech_seed_bh:ApplyLeechSeed(target, duration)
 	local caster = self:GetCaster()
-	local bDur = duration or self:GetTalentSpecialValueFor("duration")
+	local bDur = duration or self:GetSpecialValueFor("duration")
 	
 	target:AddNewModifier( caster, self, "modifier_treant_leech_seed_bh_debuff", {duration = bDur} )
 	
@@ -19,7 +19,7 @@ end
 
 function treant_leech_seed_bh:OnProjectileHit(target, position)
 	local caster = self:GetCaster()
-	local heal = caster:GetIntellect( false) * self:GetTalentSpecialValueFor("leech_heal") / 100
+	local heal = caster:GetIntellect( false) * self:GetSpecialValueFor("leech_heal") / 100
 	
 	target:HealEvent( heal, self, caster )
 end
@@ -46,21 +46,21 @@ modifier_treant_leech_seed_bh_debuff = class({})
 LinkLuaModifier("modifier_treant_leech_seed_bh_debuff", "heroes/hero_treant_protector/treant_leech_seed_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_treant_leech_seed_bh_debuff:OnCreated()
-	self.slow = self:GetTalentSpecialValueFor("movement_slow")
+	self.slow = self:GetSpecialValueFor("movement_slow")
 	if IsServer() then
-		self.radius = self:GetTalentSpecialValueFor("radius")
-		self.damage = self:GetCaster():GetStrength() * self:GetTalentSpecialValueFor("leech_damage") / 100
-		self.speed = self:GetTalentSpecialValueFor("projectile_speed")
+		self.radius = self:GetSpecialValueFor("radius")
+		self.damage = self:GetCaster():GetStrength() * self:GetSpecialValueFor("leech_damage") / 100
+		self.speed = self:GetSpecialValueFor("projectile_speed")
 		self:StartIntervalThink( self:GetCaster():GetSecondsPerAttack() )
 	end
 end
 
 function modifier_treant_leech_seed_bh_debuff:OnRefresh()
-	self.slow = self:GetTalentSpecialValueFor("movement_slow")
+	self.slow = self:GetSpecialValueFor("movement_slow")
 	if IsServer() then
-		self.radius = self:GetTalentSpecialValueFor("radius")
-		self.damage = self:GetCaster():GetStrength() * self:GetTalentSpecialValueFor("leech_damage") / 100
-		self.speed = self:GetTalentSpecialValueFor("projectile_speed")
+		self.radius = self:GetSpecialValueFor("radius")
+		self.damage = self:GetCaster():GetStrength() * self:GetSpecialValueFor("leech_damage") / 100
+		self.speed = self:GetSpecialValueFor("projectile_speed")
 		self:StartIntervalThink( self:GetCaster():GetSecondsPerAttack() )
 	end
 end

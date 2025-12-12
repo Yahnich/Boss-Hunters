@@ -30,8 +30,8 @@ function vengefulspirit_swap:OnSpellStart()
 		local threat = caster:GetThreat()
 		caster:SetThreat(target:GetThreat())
 		target:SetThreat(threat)
-		caster:AddNewModifier(caster, self, "modifier_vengefulspirit_swap", {Duration = self:GetTalentSpecialValueFor("duration")})
-		target:AddNewModifier(caster, self, "modifier_vengefulspirit_swap", {Duration = self:GetTalentSpecialValueFor("duration")})
+		caster:AddNewModifier(caster, self, "modifier_vengefulspirit_swap", {Duration = self:GetSpecialValueFor("duration")})
+		target:AddNewModifier(caster, self, "modifier_vengefulspirit_swap", {Duration = self:GetSpecialValueFor("duration")})
 		FindClearSpaceForUnit(caster, endPos, true)
 		FindClearSpaceForUnit(target, startPos, true)
 	end
@@ -57,5 +57,5 @@ function modifier_vengefulspirit_swap:DeclareFunctions()
 end
 
 function modifier_vengefulspirit_swap:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetTalentSpecialValueFor("speed")
+    return self:GetSpecialValueFor("speed")
 end

@@ -10,7 +10,7 @@ end
 
 function antimage_hex_guard:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier( caster, self, "modifier_antimage_hex_guard_talent", {duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier( caster, self, "modifier_antimage_hex_guard_talent", {duration = self:GetSpecialValueFor("duration")})
 	
 	ParticleManager:FireParticle("particles/units/heroes/hero_antimage/antimage_spellshield.vpcf", PATTACH_POINT_FOLLOW, caster, {[0] = "attach_hitloc"})
 	EmitSoundOn( "Hero_Antimage.Counterspell.Cast", caster )
@@ -73,7 +73,7 @@ function modifier_antimage_hex_guard:OnCreated()
 end
 
 function modifier_antimage_hex_guard:OnRefresh()
-	self.mr = self:GetTalentSpecialValueFor("magic_resistance")
+	self.mr = self:GetSpecialValueFor("magic_resistance")
 	
 	self.talent1 = self:GetParent():HasTalent("special_bonus_unique_antimage_hex_guard_1") 
 	self.talent1Val = self:GetParent():FindTalentValue("special_bonus_unique_antimage_hex_guard_1") 

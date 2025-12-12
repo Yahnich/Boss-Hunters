@@ -26,11 +26,11 @@ function snapfire_scatterblast_bh:OnSpellStart()
     local point = self:GetCursorPosition()
     
     local direction = CalculateDirection(point, caster:GetAbsOrigin())
-    local speed = self:GetTalentSpecialValueFor("blast_speed")
+    local speed = self:GetSpecialValueFor("blast_speed")
     local velocity = direction * speed
     local distance = self:GetTrueCastRange() --self:GetCastRange(point, caster)
-    local start_width = self:GetTalentSpecialValueFor("blast_width_initial")
-    local end_width = self:GetTalentSpecialValueFor("blast_width_end")
+    local start_width = self:GetSpecialValueFor("blast_width_initial")
+    local end_width = self:GetSpecialValueFor("blast_width_end")
 
     EmitSoundOn("Hero_Snapfire.Shotgun.Fire", self:GetCaster())
 
@@ -75,12 +75,12 @@ end
 function snapfire_scatterblast_bh:OnProjectileHit_ExtraData(hTarget, vLocation, table)
     local caster = self:GetCaster()
 
-    local damage = self:GetTalentSpecialValueFor("damage")
-    local point_blank_range = self:GetTalentSpecialValueFor("point_blank_range")
-    local point_blank_dmg_bonus_pct = self:GetTalentSpecialValueFor("point_blank_dmg_bonus_pct")/100
-    local point_blank_knock_back = self:GetTalentSpecialValueFor("point_blank_knock_back")
+    local damage = self:GetSpecialValueFor("damage")
+    local point_blank_range = self:GetSpecialValueFor("point_blank_range")
+    local point_blank_dmg_bonus_pct = self:GetSpecialValueFor("point_blank_dmg_bonus_pct")/100
+    local point_blank_knock_back = self:GetSpecialValueFor("point_blank_knock_back")
 
-    local debuff_duration = self:GetTalentSpecialValueFor("debuff_duration")
+    local debuff_duration = self:GetSpecialValueFor("debuff_duration")
 
     local talentDamage = caster:FindTalentValue("special_bonus_unique_snapfire_scatterblast_2", "damage")/100
     if hTarget ~= nil then
@@ -124,7 +124,7 @@ function modifier_snapfire_scatterblast_bh_slow:OnCreated(table)
 end
 
 function modifier_snapfire_scatterblast_bh_slow:OnRefresh(table)
-    self.slow = -self:GetTalentSpecialValueFor("slow_pct")
+    self.slow = -self:GetSpecialValueFor("slow_pct")
 
     if IsServer() then
         ParticleManager:FireParticle("particles/units/heroes/hero_snapfire/hero_snapfire_shotgun_slow.vpcf", PATTACH_ABSORIGIN, self:GetParent(), {})
@@ -165,9 +165,9 @@ function modifier_snapfire_scatterblast_bh_talent:OnCreated(table)
 
         self.chance = parent:FindTalentValue("special_bonus_unique_snapfire_scatterblast_2", "chance")
         self.distance = self:GetAbility():GetTrueCastRange()
-        self.start_width = self:GetTalentSpecialValueFor("blast_width_initial")
-        self.end_width = self:GetTalentSpecialValueFor("blast_width_end")
-        self.speed = self:GetTalentSpecialValueFor("blast_speed")
+        self.start_width = self:GetSpecialValueFor("blast_width_initial")
+        self.end_width = self:GetSpecialValueFor("blast_width_end")
+        self.speed = self:GetSpecialValueFor("blast_speed")
 
         self:StartIntervalThink(1)
     end

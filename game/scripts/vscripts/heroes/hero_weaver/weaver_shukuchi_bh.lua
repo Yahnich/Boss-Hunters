@@ -12,13 +12,13 @@ end
 
 function weaver_shukuchi_bh:OnSpellStart()
     local caster = self:GetCaster()
-    local fadeTime = self:GetTalentSpecialValueFor("fade_time")
+    local fadeTime = self:GetSpecialValueFor("fade_time")
 
     EmitSoundOn("Hero_Weaver.Shukuchi", caster)
 
     Timers:CreateTimer(fadeTime, function()
         ProjectileManager:ProjectileDodge(caster)
-        caster:AddNewModifier(caster, self, "modifier_weaver_shukuchi_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
+        caster:AddNewModifier(caster, self, "modifier_weaver_shukuchi_bh", {Duration = self:GetSpecialValueFor("duration")})
     end)
 end
 
@@ -37,7 +37,7 @@ function modifier_weaver_shukuchi_bh:OnCreated(table)
 end
 
 function modifier_weaver_shukuchi_bh:OnRefresh(table)
-    self.bonus_ms = self:GetTalentSpecialValueFor("speed")
+    self.bonus_ms = self:GetSpecialValueFor("speed")
 	self:GetParent():HookInModifier( "GetMoveSpeedLimitBonus", self )
 
     if IsServer() then 
@@ -45,8 +45,8 @@ function modifier_weaver_shukuchi_bh:OnRefresh(table)
 
         self.hitUnits = {}
 
-        self.radius = self:GetTalentSpecialValueFor("radius")
-        self.damage = self:GetTalentSpecialValueFor("damage")
+        self.radius = self:GetSpecialValueFor("radius")
+        self.damage = self:GetSpecialValueFor("damage")
 		
         self.talent2 = caster:HasTalent("special_bonus_unique_weaver_shukuchi_bh_2") 
 		self.talent2Heal = self.damage * caster:FindTalentValue("special_bonus_unique_weaver_shukuchi_bh_2") / 100

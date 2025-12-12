@@ -8,7 +8,7 @@
 		"ScriptFile"					"heroes/hero_lycan/lycan_summon_wolves_bh"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 	    "AbilityTextureName"			"lycan_summon_wolves"
-	    "MaxLevel"						"7"
+	    "MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -41,43 +41,25 @@
 	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilitySpecial"
+	    "AbilityValues"
 	    {
-	        "02"
-	        {
-	            "var_type"                  "FIELD_FLOAT"
-	            "wolf_duration"             "55.0"
-	        }
-	       "03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"wolf_bat"					"1.2"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"wolf_damage"					"28 36 52 76 108 148 196"
+	        "wolf_duration"             "55.0"
+	       "wolf_bat"					"1.2"
+			"wolf_damage"					"28 36 52 76 108 148 196"
 				"LinkedSpecialBonus"			"special_bonus_unique_lycan_summon_wolves_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"wolf_hp"						"300 350 400 450 500 550 600"
+			"wolf_hp"						"300 350 400 450 500 550 600"
 				"LinkedSpecialBonus"			"special_bonus_unique_lycan_summon_wolves_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 	        "06" // Extra variables for "SpawnUnit" to decide which level of wolves will be used
 	        {
 	            "var_type"                  "FIELD_INTEGER"
 	            "wolf_count"              	"2"
 				"LinkedSpecialBonus"		"special_bonus_unique_lycan_summon_wolves_1"
-	        }
 	        "13"
 	        {
 	            "var_type"                  "FIELD_INTEGER"
 	            "spawn_distance"            "150"   
-	        }
 	    }
 	}
 	"special_bonus_unique_lycan_summon_wolves_1" 
@@ -90,13 +72,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"4"
-			}
+			"value"					"4"
 		}
 	}
 	"special_bonus_unique_lycan_summon_wolves_2" 
@@ -109,13 +87,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"3"
-			}
+			"value"					"3"
 		}
 	}
 	
@@ -131,7 +105,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilitySound"					"Hero_Lycan.Howl"
 		"AbilityTextureName"			"lycan_howl"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -167,28 +141,15 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"howl_duration"					"8.0"		
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"dmg_reduction"					"-25 -27.5 -30 -32.5 -35 -37.5 -40"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"armor_reduction"				"-5 -6 -7 -8 -9 -10 -11"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"2000"
-			}
+			"dmg_reduction"					"-25 -27.5 -30 -32.5 -35 -37.5 -40"
+			"armor_reduction"				"-5 -6 -7 -8 -9 -10 -11"
+			"radius"						"2000"
 		}
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -203,18 +164,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"15"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value2"				"3.75"
-			}
+			"value"					"15"
+			"value2"				"3.75"
 		}
 	}
 	"special_bonus_unique_lycan_howl_2" 
@@ -227,13 +180,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	//=====================================================================================================
@@ -246,7 +195,7 @@
 		"BaseClass"             		"ability_lua"
 		"ScriptFile"					"heroes/hero_lycan/lycan_feral_impulse_bh"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityTextureName"			"lycan_feral_impulse"
 		"HasScepterUpgrade"				"1"
 		
@@ -259,30 +208,14 @@
 		}
 		
 		// Casting
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"900"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_damage"					"10 15 20 25 30 35 40"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_hp_regen"				"3 6 9 12 15 18 21"
+			"radius"						"900"
+			"bonus_damage"					"10 15 20 25 30 35 40"
+			"bonus_hp_regen"				"3 6 9 12 15 18 21"
 				"LinkedSpecialBonus"			"special_bonus_unique_lycan_feral_impulse_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"scepter_bonus_health"			"18"
-			}
+			"scepter_bonus_health"			"18"
 
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
@@ -297,13 +230,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"3"
-			}
+			"value"					"3"
 		}
 	}
 	"special_bonus_unique_lycan_feral_impulse_2" 
@@ -316,13 +245,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"30"
-			}
+			"value"					"30"
 		}
 	}
 	//=================================================================================================================
@@ -343,33 +268,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"critical_damage"			"200"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"day_critical_chance"		"30"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"night_critical_chance"		"60"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_armor"				"15"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_armor_night"		"30"
-			}
+			"critical_damage"			"200"
+			"day_critical_chance"		"30"
+			"night_critical_chance"		"60"
+			"scepter_armor"				"15"
+			"scepter_armor_night"		"30"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
@@ -387,7 +292,7 @@
 		"AbilitySound"					"Hero_Lycan.Shapeshift.Cast"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityTextureName"			"lycan_shapeshift"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -415,33 +320,13 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"25"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed"						"650"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_night_vision"		"1000"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"transformation_time"		"1.5"
-			}		
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"bat_reduction"				"-0.3"
-			}
+			"duration"					"25"
+			"speed"						"650"
+			"bonus_night_vision"		"1000"
+"transformation_time"		"1.5"		
+			"bat_reduction"				"-0.3"
 		}
 	}
 	"special_bonus_unique_lycan_shapeshift_1" 
@@ -454,13 +339,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"special_bonus_unique_lycan_shapeshift_2" 
@@ -473,13 +354,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"100"
-			}
+			"value"					"100"
 		}
 	}
 }

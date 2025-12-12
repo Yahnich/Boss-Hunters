@@ -30,10 +30,10 @@ function drow_ranger_huntress_mark:OnProjectileHit( target, position )
 	if target then
 		local caster = self:GetCaster()
 		local damageReduced = target:GetPhysicalArmorReduction() / 100
-		local bonusDamage = self:GetTalentSpecialValueFor("bonus_damage")
+		local bonusDamage = self:GetSpecialValueFor("bonus_damage")
 		local avgDamage = caster:GetAverageTrueAttackDamage( target )
 		self:DealDamage( caster, target, avgDamage * damageReduced + bonusDamage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-		target:Break(self, caster, self:GetTalentSpecialValueFor("duration") )
+		target:Break(self, caster, self:GetSpecialValueFor("duration") )
 		if caster:HasTalent("special_bonus_unique_drow_ranger_huntress_mark_2") then
 			caster:HealEvent(avgDamage + bonusDamage, self, caster)
 			for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_drow_ranger_huntress_mark_2", "radius") ) ) do
@@ -49,7 +49,7 @@ modifier_drow_ranger_huntress_mark = class({})
 LinkLuaModifier("modifier_drow_ranger_huntress_mark", "heroes/hero_drow_ranger/drow_ranger_huntress_mark", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_drow_ranger_huntress_mark:OnCreated()
-	self.chance = self:GetTalentSpecialValueFor("proc_chance")
+	self.chance = self:GetSpecialValueFor("proc_chance")
 end
 
 function modifier_drow_ranger_huntress_mark:OnRefresh()

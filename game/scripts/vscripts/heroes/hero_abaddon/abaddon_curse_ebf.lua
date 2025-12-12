@@ -8,11 +8,11 @@ LinkLuaModifier( "modifier_abaddon_curse_passive", "heroes/hero_abaddon/abaddon_
 modifier_abaddon_curse_passive = class({})
 
 function modifier_abaddon_curse_passive:OnCreated()
-	self.duration = self:GetAbility():GetTalentSpecialValueFor("buff_duration")
+	self.duration = self:GetAbility():GetSpecialValueFor("buff_duration")
 end
 
 function modifier_abaddon_curse_passive:OnRefresh()
-	self.duration = self:GetAbility():GetTalentSpecialValueFor("buff_duration")
+	self.duration = self:GetAbility():GetSpecialValueFor("buff_duration")
 end
 
 function modifier_abaddon_curse_passive:IsHidden()
@@ -42,8 +42,8 @@ LinkLuaModifier( "modifier_abaddon_curse_buff", "heroes/hero_abaddon/abaddon_cur
 modifier_abaddon_curse_buff = class({})
 
 function modifier_abaddon_curse_buff:OnCreated()
-	self.cdr = self:GetAbility():GetTalentSpecialValueFor("buff_cdr")
-	self.attackspeed = self:GetAbility():GetTalentSpecialValueFor("buff_as")
+	self.cdr = self:GetAbility():GetSpecialValueFor("buff_cdr")
+	self.attackspeed = self:GetAbility():GetSpecialValueFor("buff_as")
 end
 
 function modifier_abaddon_curse_buff:DeclareFunctions()
@@ -71,8 +71,8 @@ LinkLuaModifier( "modifier_abaddon_curse_debuff", "heroes/hero_abaddon/abaddon_c
 modifier_abaddon_curse_debuff = class({})
 
 function modifier_abaddon_curse_debuff:OnCreated()
-	self.movespeed = self:GetAbility():GetTalentSpecialValueFor("initial_slow")
-	self.trigger_count = self:GetAbility():GetTalentSpecialValueFor("trigger_count")
+	self.movespeed = self:GetAbility():GetSpecialValueFor("initial_slow")
+	self.trigger_count = self:GetAbility():GetSpecialValueFor("trigger_count")
 	if IsServer() then
 		self:IncrementStackCount()
 		self.overheadFX = ParticleManager:CreateParticle("particles/units/heroes/hero_abaddon/abaddon_curse_counter_stack.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() )
@@ -82,8 +82,8 @@ function modifier_abaddon_curse_debuff:OnCreated()
 end
 
 function modifier_abaddon_curse_debuff:OnRefresh()
-	self.movespeed = self:GetAbility():GetTalentSpecialValueFor("initial_slow")
-	self.trigger_count = self:GetAbility():GetTalentSpecialValueFor("trigger_count")
+	self.movespeed = self:GetAbility():GetSpecialValueFor("initial_slow")
+	self.trigger_count = self:GetAbility():GetSpecialValueFor("trigger_count")
 	if IsServer() then
 		self:IncrementStackCount()
 		ParticleManager:SetParticleControl( self.overheadFX, 1, Vector(self:GetStackCount(), self:GetStackCount(), self:GetStackCount() ) )
@@ -93,9 +93,9 @@ function modifier_abaddon_curse_debuff:OnRefresh()
 			local caster =  self:GetCaster()
 			local parent = self:GetParent()
 			local ability =  self:GetAbility()
-			local duration = self:GetTalentSpecialValueFor("buff_duration")
+			local duration = self:GetSpecialValueFor("buff_duration")
 			parent:AddNewModifier( caster, ability, "modifier_abaddon_curse_curse", {duration = duration})
-			for _, ally in ipairs( self:GetCaster():FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("trigger_radius") ) ) do
+			for _, ally in ipairs( self:GetCaster():FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), self:GetSpecialValueFor("trigger_radius") ) ) do
 				if ally ~= caster then ally:AddNewModifier( caster, ability, "modifier_abaddon_curse_buff", {duration = duration}) end
 			end
 			caster:AddNewModifier( caster, ability, "modifier_abaddon_curse_buff", {duration = duration})
@@ -129,8 +129,8 @@ function modifier_abaddon_curse_curse:GetEffectName()
 end
 
 function modifier_abaddon_curse_curse:OnCreated()
-	self.movespeed = self:GetAbility():GetTalentSpecialValueFor("curse_slow")
-	self.attackspeed = self:GetAbility():GetTalentSpecialValueFor("curse_as")
+	self.movespeed = self:GetAbility():GetSpecialValueFor("curse_slow")
+	self.attackspeed = self:GetAbility():GetSpecialValueFor("curse_as")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_abaddon_curse_1")
 end
 

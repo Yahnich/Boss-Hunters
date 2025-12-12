@@ -15,10 +15,10 @@ function dazzle_shadow_wave_bh:OnSpellStart()
 	local prevTarget = caster
 	
 	local delay = caster:FindTalentValue("special_bonus_unique_dazzle_shadow_wave_2", "delay")
-	local bounces = self:GetTalentSpecialValueFor("max_targets")
-	local bounceRadius = self:GetTalentSpecialValueFor("bounce_radius")
-	local radius = self:GetTalentSpecialValueFor("damage_radius")
-	local healdamage = self:GetTalentSpecialValueFor("damage")
+	local bounces = self:GetSpecialValueFor("max_targets")
+	local bounceRadius = self:GetSpecialValueFor("bounce_radius")
+	local radius = self:GetSpecialValueFor("damage_radius")
+	local healdamage = self:GetSpecialValueFor("damage")
 	
 	local hitUnits = {}
 	local talent1 = caster:HasTalent("special_bonus_unique_dazzle_shadow_wave_1")
@@ -61,8 +61,8 @@ end
 
 function dazzle_shadow_wave_bh:ApplyEffects( target, fHealDamage, fRadius )
 	local caster = self:GetCaster()
-	local healdamage = fHealDamage or self:GetTalentSpecialValueFor("damage")
-	local radius = fRadius or self:GetTalentSpecialValueFor("damage_radius")
+	local healdamage = fHealDamage or self:GetSpecialValueFor("damage")
+	local radius = fRadius or self:GetSpecialValueFor("damage_radius")
 	if target:IsSameTeam( caster ) then
 		target:HealEvent( healdamage, self, caster )
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), radius ) ) do

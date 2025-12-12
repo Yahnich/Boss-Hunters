@@ -15,7 +15,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityTextureName"			"shadow_shaman_ether_shock"
 		
 		// Talents		
@@ -41,33 +41,13 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"start_radius"				"200"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"end_radius"				"300"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"end_distance"				"500"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"targets"					"8"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"140 200 260 320 380 440 500"
-			}
+			"start_radius"				"200"
+			"end_radius"				"300"
+			"end_distance"				"500"
+			"targets"					"8"
+			"damage"					"140 200 260 320 380 440 500"
 		}
 	
 		"precache"
@@ -86,13 +66,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"0.3"
-			}
+			"value"						"0.3"
 		}
 	}
 	"special_bonus_unique_shadow_shaman_ether_lightning_2"
@@ -105,13 +81,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
-			}
+			"value"						"50"
 		}
 	}
 	"shadow_shaman_binding_shackle"
@@ -126,7 +98,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"AbilityTextureName"			"shadow_shaman_shackles"
 		
 		// Talents		
@@ -153,30 +125,14 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"tick_interval"			"0.1 0.1 0.1 0.1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"channel_time"			"2 2.5 3 3.5 4 4.5 5"
+			"tick_interval"			"0.1 0.1 0.1 0.1"
+			"channel_time"			"2 2.5 3 3.5 4 4.5 5"
 				"LinkedSpecialBonus"	"special_bonus_unique_shadow_shaman_binding_shackle_1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"total_damage"			"55"
-			}
+			"total_damage"			"55"
 			// Extra, calculated as total_damage / channel_time * tick_interval
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aftershackle_duration"	"1"
-			}
+			"aftershackle_duration"	"1"
 		}
 	
 		"precache"
@@ -196,13 +152,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	"special_bonus_unique_shadow_shaman_binding_shackle_2"
@@ -215,13 +167,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	"shadow_shaman_ignited_voodoo"
@@ -235,7 +183,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"shadow_shaman_voodoo"
 		
@@ -262,29 +210,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"movespeed"					"100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"2 2.2 2.4 2.6 2.8 3 3.2"
+			"movespeed"					"100"
+			"duration"					"2 2.2 2.4 2.6 2.8 3 3.2"
 				"LinkedSpecialBonus"		"special_bonus_unique_shadow_shaman_ignited_voodoo_2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"damage"					"100 150 200 250 300 350 400"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"radius"					"600"
-			}
+			"damage"					"100 150 200 250 300 350 400"
+			"radius"					"600"
 		}
 	
 		// Precache
@@ -308,18 +240,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"33"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"6"
-			}
+			"value"						"33"
+			"duration"					"6"
 		}
 	}
 	"special_bonus_unique_shadow_shaman_ignited_voodoo_2"
@@ -332,13 +256,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -356,7 +276,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"shadow_shaman_mass_serpent_ward"
 		"FightRecapLevel"				"2"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -382,35 +302,18 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ward_count"			"1"
+			"ward_count"			"1"
 				"LinkedSpecialBonus"	"special_bonus_unique_shadow_shaman_snake_totem_2"
-			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"50 90 130 170 210 250"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"30"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"health"				"15"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_range"			"600"
-			}
+			"duration"				"30"
+			"health"				"15"
+			"scepter_range"			"600"
 		}
 	}
 	
@@ -425,13 +328,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"600"
-			}
+			"value"						"600"
 		}
 	}
 	"special_bonus_unique_shadow_shaman_snake_totem_2"
@@ -444,13 +343,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 }

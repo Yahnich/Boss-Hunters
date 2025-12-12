@@ -27,11 +27,11 @@ function leshrac_lightning_storm_bh:Zap( target )
 	local caster = self:GetCaster()
 	local ability = self
 	local currTarget = target
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local searchRadius = self:GetTalentSpecialValueFor("radius")
-	local jumpDelay = self:GetTalentSpecialValueFor("jump_delay")
-	local jumps = self:GetTalentSpecialValueFor("jump_count")
-	local slowDur = self:GetTalentSpecialValueFor("slow_duration")
+	local damage = self:GetSpecialValueFor("damage")
+	local searchRadius = self:GetSpecialValueFor("radius")
+	local jumpDelay = self:GetSpecialValueFor("jump_delay")
+	local jumps = self:GetSpecialValueFor("jump_count")
+	local slowDur = self:GetSpecialValueFor("slow_duration")
 	local hitUnits = {}
 	Timers:CreateTimer( function()
 		if currTarget:TriggerSpellAbsorb( self ) then return end
@@ -58,11 +58,11 @@ modifier_leshrac_lightning_storm_bh = class({})
 LinkLuaModifier("modifier_leshrac_lightning_storm_bh", "heroes/hero_leshrac/leshrac_lightning_storm_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_leshrac_lightning_storm_bh:OnCreated()
-	self.slow = self:GetTalentSpecialValueFor("slow_movement_speed")
+	self.slow = self:GetSpecialValueFor("slow_movement_speed")
 end
 
 function modifier_leshrac_lightning_storm_bh:OnCreated()
-	self.slow = self:GetTalentSpecialValueFor("slow_movement_speed")
+	self.slow = self:GetSpecialValueFor("slow_movement_speed")
 end
 
 function modifier_leshrac_lightning_storm_bh:DeclareFunctions()
@@ -81,8 +81,8 @@ modifier_leshrac_lightning_storm_bh_handler = class({})
 LinkLuaModifier("modifier_leshrac_lightning_storm_bh_handler", "heroes/hero_leshrac/leshrac_lightning_storm_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_leshrac_lightning_storm_bh_handler:OnCreated()
-	self.scepterInterval = self:GetTalentSpecialValueFor("interval_scepter")
-	self.scepterRadius = self:GetTalentSpecialValueFor("radius_scepter")
+	self.scepterInterval = self:GetSpecialValueFor("interval_scepter")
+	self.scepterRadius = self:GetSpecialValueFor("radius_scepter")
 	if IsServer() then
 		self:StartIntervalThink(0)
 	end

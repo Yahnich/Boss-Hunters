@@ -32,8 +32,8 @@ function ta_trap_spring:OnSpellStart()
 																																					[2]=trap:GetAbsOrigin()})
 		EmitSoundOn("Hero_TemplarAssassin.Trap.Trigger", caster)
 		EmitSoundOn("Hero_TemplarAssassin.Trap.Explode", trap)
-		local trap_radius = self:GetTalentSpecialValueFor("trap_radius") + TernaryOperator( self:GetTalentSpecialValueFor("scepter_bonus_radius"), caster:HasScepter(), 0 )
-		local trap_duration = self:GetTalentSpecialValueFor("trap_duration")
+		local trap_radius = self:GetSpecialValueFor("trap_radius") + TernaryOperator( self:GetSpecialValueFor("scepter_bonus_radius"), caster:HasScepter(), 0 )
+		local trap_duration = self:GetSpecialValueFor("trap_duration")
 		local enemies = caster:FindEnemyUnitsInRadius(trap:GetAbsOrigin(), trap_radius, {})
 		for _, enemy in pairs(enemies) do
 			if not enemy:TriggerSpellAbsorb( self ) then

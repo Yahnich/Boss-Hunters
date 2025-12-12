@@ -83,7 +83,7 @@ function clinkz_arrows:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 	if hTarget then
 		EmitSoundOn("Hero_Clinkz.SearingArrows.Impact", enemy)
-		self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"))
+		self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"))
 		if caster:HasTalent("special_bonus_unique_clinkz_arrows_1") and not hTarget:HasModifier("modifier_clinkz_arrows_debuff") then
 			hTarget:AddNewModifier( caster, self, "modifier_clinkz_arrows_debuff", {duration = caster:FindTalentValue("special_bonus_unique_clinkz_arrows_1")})
 		end
@@ -103,7 +103,7 @@ if IsServer() then
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
 		
-		local damage = self:GetTalentSpecialValueFor("damage") * caster:FindTalentValue("special_bonus_unique_clinkz_arrows_1")
+		local damage = self:GetSpecialValueFor("damage") * caster:FindTalentValue("special_bonus_unique_clinkz_arrows_1")
 		local radius = caster:FindTalentValue("special_bonus_unique_clinkz_arrows_1", "radius")
 		
 		ParticleManager:FireParticle("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_base_attack_impact.vpcf", PATTACH_POINT_FOLLOW, target, {[1] = "attach_hitloc"})
@@ -180,7 +180,7 @@ function modifier_clinkz_arrows_line:OnCreated(table)
 		self.startPos = self:GetParent():GetAbsOrigin()
 		self.endPos = Vector(table.x, table.y, table.z)
 
-		self.damage = self:GetTalentSpecialValueFor("damage")*2
+		self.damage = self:GetSpecialValueFor("damage")*2
 
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_clinkz/clinkz_explosive_arrows_trail.vpcf", PATTACH_POINT, self:GetCaster())
 					ParticleManager:SetParticleControl(nfx, 0, self.startPos)

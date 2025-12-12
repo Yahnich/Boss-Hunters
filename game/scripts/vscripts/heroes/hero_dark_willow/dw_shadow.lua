@@ -18,7 +18,7 @@ end
 
 function dw_shadow:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_dw_shadow", {Duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_dw_shadow", {Duration = self:GetSpecialValueFor("duration")})
 end
 
 function dw_shadow:OnProjectileHitHandle(hTarget, vLocation, iProjectile)
@@ -40,18 +40,18 @@ end
 
 modifier_dw_shadow = class({})
 function modifier_dw_shadow:OnCreated(table)
-	self.attack_range_bonus = self:GetTalentSpecialValueFor("attack_range_bonus")
+	self.attack_range_bonus = self:GetSpecialValueFor("attack_range_bonus")
 	if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
 		local ability = self:GetAbility()
 
-		self.max_damage = self:GetTalentSpecialValueFor("max_damage")
+		self.max_damage = self:GetSpecialValueFor("max_damage")
     	self.damage = 0
-    	self.damageGrowth = self:GetTalentSpecialValueFor("max_damage") * 0.1 / self:GetTalentSpecialValueFor("max_delay")
+    	self.damageGrowth = self:GetSpecialValueFor("max_damage") * 0.1 / self:GetSpecialValueFor("max_delay")
 
 
-    	-- self.manaDrain = parent:GetMaxMana() * self:GetTalentSpecialValueFor("mana_drain")/100 * FrameTime()
+    	-- self.manaDrain = parent:GetMaxMana() * self:GetSpecialValueFor("mana_drain")/100 * FrameTime()
 
     	if caster:HasTalent("special_bonus_unique_dw_shadow_2") then
     		self.bonus_as = 0
@@ -64,12 +64,12 @@ function modifier_dw_shadow:OnCreated(table)
 end
 
 function modifier_dw_shadow:OnRefresh(table)
-	self.attack_range_bonus = self:GetTalentSpecialValueFor("attack_range_bonus")
+	self.attack_range_bonus = self:GetSpecialValueFor("attack_range_bonus")
     if IsServer() then
     	self:GetAbility().damage = 0
-    	self.damage = self:GetTalentSpecialValueFor("damage") * 0.1
+    	self.damage = self:GetSpecialValueFor("damage") * 0.1
 
-    	-- self.manaDrain = self:GetParent():GetMaxMana() * self:GetTalentSpecialValueFor("mana_drain")/100 * FrameTime()
+    	-- self.manaDrain = self:GetParent():GetMaxMana() * self:GetSpecialValueFor("mana_drain")/100 * FrameTime()
 		self.talent1 = caster:HasTalent("special_bonus_unique_dw_shadow_1")
     	if caster:HasTalent("special_bonus_unique_dw_shadow_2") then
     		self.bonus_as = 0
@@ -137,7 +137,7 @@ function modifier_dw_shadow:OnRemoved()
 
 		ability:SetCooldown()
 
-		parent:AddNewModifier(caster, ability, "modifier_dw_shadow_damage", {duration = self:GetTalentSpecialValueFor("linger_duration"), damage = self.damage})
+		parent:AddNewModifier(caster, ability, "modifier_dw_shadow_damage", {duration = self:GetSpecialValueFor("linger_duration"), damage = self.damage})
 
 		if caster:HasTalent("special_bonus_unique_dw_shadow_2") then
 			parent:AddNewModifier(caster, ability, "modifier_dw_shadow_bonus_as", {Duration = caster:FindTalentValue("special_bonus_unique_dw_shadow_2", "duration"), attackspeed = self.bonus_as})
@@ -177,7 +177,7 @@ modifier_dw_shadow_talent = class({})
 function modifier_dw_shadow_talent:OnCreated(kv)
 	local caster = self:GetCaster()
 	self.tick = caster:FindTalentValue("special_bonus_unique_dw_shadow_1", "tick")
-    self.max_damage = self:GetTalentSpecialValueFor("max_damage") * caster:FindTalentValue("special_bonus_unique_dw_shadow_1", "damage") / 100
+    self.max_damage = self:GetSpecialValueFor("max_damage") * caster:FindTalentValue("special_bonus_unique_dw_shadow_1", "damage") / 100
 	self.max_slow = caster:FindTalentValue("special_bonus_unique_dw_shadow_1") * (-1)
 	self:StartIntervalThink( self.tick )
 end
@@ -213,12 +213,12 @@ end
 
 modifier_dw_shadow_damage = class({})
 function modifier_dw_shadow_damage:OnCreated(kv)
-    self.bonus_ar = self:GetTalentSpecialValueFor("attack_range_bonus")
+    self.bonus_ar = self:GetSpecialValueFor("attack_range_bonus")
 	self.damage = kv.damage
 end
 
 function modifier_dw_shadow_damage:OnRefresh(kv)
-    self.bonus_ar = self:GetTalentSpecialValueFor("attack_range_bonus")
+    self.bonus_ar = self:GetSpecialValueFor("attack_range_bonus")
 	self.damage = kv.damage
 end
 

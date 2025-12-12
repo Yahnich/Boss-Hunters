@@ -18,7 +18,7 @@ function queenofpain_blink_bh:OnSpellStart()
 	
 	local startPos = caster:GetAbsOrigin()
 	local direction = CalculateDirection(position, caster)
-	local distance = math.min( math.max( self:GetTalentSpecialValueFor("min_blink_range"), CalculateDistance(position, caster) ), self:GetTalentSpecialValueFor("blink_range") )
+	local distance = math.min( math.max( self:GetSpecialValueFor("min_blink_range"), CalculateDistance(position, caster) ), self:GetSpecialValueFor("blink_range") )
 	local endPos = caster:GetAbsOrigin() + direction * distance
 	
 	EmitSoundOn("Hero_QueenOfPain.Blink_out", caster)

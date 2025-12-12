@@ -11,7 +11,7 @@ function lycan_summon_wolves_bh:OnSpellStart()
 	
 	
 	local startPos = caster:GetAbsOrigin()
-	local wolfCount = self:GetTalentSpecialValueFor("wolf_count")
+	local wolfCount = self:GetSpecialValueFor("wolf_count")
 	
 	for i = #caster.summonedWolves, 1, -1 do
 		if caster.summonedWolves[i]:IsNull() or not caster.summonedWolves[i]:UnitCanRespawn() then	
@@ -22,7 +22,7 @@ function lycan_summon_wolves_bh:OnSpellStart()
 		wolfCount = math.ceil(wolfCount / 3)
 	end
 	
-	local distance = self:GetTalentSpecialValueFor("spawn_distance")
+	local distance = self:GetSpecialValueFor("spawn_distance")
 	EmitSoundOn("Hero_Lycan.SummonWolves", caster)
 	ParticleManager:FireParticle("particles/units/heroes/hero_lycan/lycan_summon_wolves_cast.vpcf", PATTACH_POINT_FOLLOW, caster)
 	for i = 1, wolfCount do
@@ -39,14 +39,14 @@ function lycan_summon_wolves_bh:OnSpellStart()
 			self:ScaleWolf( wolf )
 			FindClearSpaceForUnit( wolf, position, true )
 			wolf:SetForwardVector(caster:GetForwardVector())
-			wolf:AddNewModifier(caster, self, "modifier_kill", {duration = self:GetTalentSpecialValueFor("wolf_duration")})
+			wolf:AddNewModifier(caster, self, "modifier_kill", {duration = self:GetSpecialValueFor("wolf_duration")})
 		end
 	end
 end
 
 function lycan_summon_wolves_bh:CreateWolf(position, duration)
 	local caster = self:GetCaster()
-	local fDur = duration or self:GetTalentSpecialValueFor("wolf_duration")
+	local fDur = duration or self:GetSpecialValueFor("wolf_duration")
 	local wolf = caster:CreateSummon("npc_dota_lycan_wolf1", position, fDur)
 	wolf:SetForwardVector(caster:GetForwardVector())
 	table.insert(caster.summonedWolves, wolf)
@@ -66,8 +66,8 @@ function lycan_summon_wolves_bh:CreateWolf(position, duration)
 end
 
 function lycan_summon_wolves_bh:ScaleWolf( wolf )
-	local wolfHP = self:GetTalentSpecialValueFor("wolf_hp")
-	local wolfDamage = self:GetTalentSpecialValueFor("wolf_damage")
+	local wolfHP = self:GetSpecialValueFor("wolf_hp")
+	local wolfDamage = self:GetSpecialValueFor("wolf_damage")
 	wolf:SetCoreHealth(wolfHP)
 	wolf:SetAverageBaseDamage(wolfDamage, 15)
 	wolf:SetModelScale(0.8 + (self:GetLevel()/2)/10)

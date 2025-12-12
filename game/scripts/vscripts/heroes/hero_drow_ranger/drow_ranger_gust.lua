@@ -9,9 +9,9 @@ function drow_ranger_gust:OnSpellStart()
 	local position = self:GetCursorPosition()
 	
 	local direction = CalculateDirection( position, caster )
-	local speed = self:GetTalentSpecialValueFor("wave_speed")
+	local speed = self:GetSpecialValueFor("wave_speed")
 	local distance = self:GetTrueCastRange()
-	local width = self:GetTalentSpecialValueFor("wave_width")
+	local width = self:GetSpecialValueFor("wave_width")
 	
 	EmitSoundOn("Hero_DrowRanger.Silence", caster)
 	self:FireLinearProjectile("particles/units/heroes/hero_drow/drow_silence_wave.vpcf", direction * speed, distance, width)
@@ -20,9 +20,9 @@ end
 function drow_ranger_gust:OnProjectileHit( target, position )
 	if target and not target:TriggerSpellAbsorb(self) then
 		local caster = self:GetCaster()
-		local knockBackDuration = self:GetTalentSpecialValueFor("knockback_duration")
-		local duration = knockBackDuration + self:GetTalentSpecialValueFor("silence_duration")
-		local distance = self:GetTalentSpecialValueFor("knockback_distance_max") * ( self:GetTrueCastRange() - (CalculateDistance( caster, target ) - caster:GetHullRadius() - target:GetHullRadius() - caster:GetCollisionPadding() - target:GetCollisionPadding()) ) / self:GetTrueCastRange()
+		local knockBackDuration = self:GetSpecialValueFor("knockback_duration")
+		local duration = knockBackDuration + self:GetSpecialValueFor("silence_duration")
+		local distance = self:GetSpecialValueFor("knockback_distance_max") * ( self:GetTrueCastRange() - (CalculateDistance( caster, target ) - caster:GetHullRadius() - target:GetHullRadius() - caster:GetCollisionPadding() - target:GetCollisionPadding()) ) / self:GetTrueCastRange()
 		
 		target:ApplyKnockBack(caster:GetAbsOrigin(), knockBackDuration, knockBackDuration, distance, 0, caster, self, true)
 		target:Silence(self, caster, duration)

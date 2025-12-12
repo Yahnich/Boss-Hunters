@@ -30,13 +30,13 @@ function modifier_shadow_fiend_necro_handle:OnDestroy()
 end
 
 function modifier_shadow_fiend_necro_handle:OnRefresh()
-	self.spell_amp = self:GetTalentSpecialValueFor("spell_amp")
-	self.damage = self:GetTalentSpecialValueFor("bonus_damage")
-	self.max = self:GetTalentSpecialValueFor("max_souls")
-	self.minion_stacks = self:GetTalentSpecialValueFor("minion_souls")
-	self.debuff_stacks = self:GetTalentSpecialValueFor("debuff_soul")
-	self.stacks = self:GetTalentSpecialValueFor("death_souls")
-	self.deathLoss = self:GetTalentSpecialValueFor("death_soul_loss") / 100
+	self.spell_amp = self:GetSpecialValueFor("spell_amp")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
+	self.max = self:GetSpecialValueFor("max_souls")
+	self.minion_stacks = self:GetSpecialValueFor("minion_souls")
+	self.debuff_stacks = self:GetSpecialValueFor("debuff_soul")
+	self.stacks = self:GetSpecialValueFor("death_souls")
+	self.deathLoss = self:GetSpecialValueFor("death_soul_loss") / 100
 end
 function modifier_shadow_fiend_necro_handle:DeclareFunctions()
     funcs = {MODIFIER_EVENT_ON_DEATH, MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE, MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE }

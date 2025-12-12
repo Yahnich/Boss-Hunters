@@ -45,13 +45,13 @@ function kunkka_xmarks_bh:OnSpellStart()
 			self.currentTargetModifier = nil
 		end
 	else
-		local duration = self:GetTalentSpecialValueFor("duration")
+		local duration = self:GetSpecialValueFor("duration")
 		
 		EmitSoundOn("Ability.XMarksTheSpot.Target", target)
 		if target ~= caster then
 			if target:TriggerSpellAbsorb( self ) then return end
 		else
-			duration = self:GetTalentSpecialValueFor("self_duration")
+			duration = self:GetSpecialValueFor("self_duration")
 		end
 		self.currentTargetModifier = target:AddNewModifier(caster, self, "modifier_kunkka_xmarks_bh", {Duration = duration})
 		caster:AddNewModifier(caster, self, "modifier_kunkka_xmarks_bh_client", {})
@@ -77,7 +77,7 @@ function modifier_kunkka_xmarks_bh:OnRemoved()
         StopSoundOn("Ability.XMark.Target_Movement", self:GetParent())
         EmitSoundOn("Ability.XMarksTheSpot.Return", self:GetParent())
         if self:GetParent() ~= self:GetCaster() then
-			self:GetParent():Daze(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("daze_duration"))
+			self:GetParent():Daze(self:GetAbility(), self:GetCaster(), self:GetSpecialValueFor("daze_duration"))
 		end
         FindClearSpaceForUnit(self:GetParent(), self.startPos, true)
 		self:GetCaster():RemoveModifierByName("modifier_kunkka_xmarks_bh_client")

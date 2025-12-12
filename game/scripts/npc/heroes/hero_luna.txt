@@ -18,7 +18,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Luna.LucentBeam.Target"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -57,37 +57,17 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"0.8"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stun_night"				"1.2"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"beam_damage"				"75 150 225 300 350 400 450"
+			"stun_duration"				"0.8"
+			"stun_night"				"1.2"
+			"beam_damage"				"75 150 225 300 350 400 450"
 				"LinkedSpecialBonus"		"special_bonus_unique_luna_lucent_beam_2"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"night_beam_damage"			"100 180 260 340 400 460 520"
+			"night_beam_damage"			"100 180 260 340 400 460 520"
 				"LinkedSpecialBonus"		"special_bonus_unique_luna_lucent_beam_2"
 				"LinkedSpecialBonusField"	"value2"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_modifier"			"25"
+			"scepter_modifier"			"25"
 				"RequiresScepter"			"1"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
@@ -104,18 +84,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"search_radius"				"475"
-			}
+			"value"						"1"
+			"search_radius"				"475"
 		}
 	}
 	//=================================================================================================================
@@ -131,23 +103,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value2"					"150"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cd"						"-2"
-			}
+			"value"						"100"
+			"value2"					"150"
+			"cd"						"-2"
 		}
 	}
 	//=================================================================================================================
@@ -163,7 +123,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilitySound"					"Hero_Luna.MoonGlaive.Impact"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -175,27 +135,15 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"range"							"500"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bounces"						"3 4 5 6 6 6 6"
+			"range"							"500"
+			"bounces"						"3 4 5 6 6 6 6"
 				"LinkedSpecialBonus"			"special_bonus_unique_luna_moon_glaive_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_reduction_percent"		"56 54 52 50 44 38 32"
+			"damage_reduction_percent"		"56 54 52 50 44 38 32"
 				"LinkedSpecialBonus"			"special_bonus_unique_luna_moon_glaive_2"
 				"LinkedSpecialBonusField"		"dmg"
-			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -212,13 +160,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -235,18 +179,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"dmg"						"-10"
-			}
+			"value"						"2"
+			"dmg"						"-10"
 		}
 	}
 	"luna_lunar_blessing_bh"
@@ -257,7 +193,7 @@
 		"ScriptFile"					"heroes/hero_luna/luna_lunar_blessing_bh"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"luna_lunar_blessing"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -276,23 +212,11 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"1200"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_primary"				"5 15 25 35 45 55 65"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage_pct"			"10 15 20 25 30 35 40"
-			}
+			"radius"					"1200"
+			"bonus_primary"				"5 15 25 35 45 55 65"
+			"bonus_damage_pct"			"10 15 20 25 30 35 40"
 		}
 	}
 	//=================================================================================================================
@@ -309,23 +233,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cd"						"60"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"20"
-			}
+			"value"						"2"
+			"cd"						"60"
+			"duration"					"20"
 		}
 	}
 	//=================================================================================================================
@@ -342,23 +254,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value2"					"2"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"5"
-			}
+			"value"						"100"
+			"value2"					"2"
+			"duration"					"5"
 		}
 	}
 	
@@ -381,7 +281,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"FightRecapLevel"				"2"
 		"AbilitySound"					"Hero_Luna.Eclipse.Cast"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -407,39 +307,25 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"beams"							"6 12 18 24 30 36"
+			"beams"							"6 12 18 24 30 36"
 				"LinkedSpecialBonus"			"special_bonus_unique_luna_eclipse_1"
 				"LinkedSpecialBonusField"		"value2"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"hit_count"						"5 5 7 7 9 9"
+			"hit_count"						"5 5 7 7 9 9"
 				"LinkedSpecialBonus"			"special_bonus_unique_luna_eclipse_1"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"beam_interval"					"0.6"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"675 675 675"
+			"radius"						"675 675 675"
 				"LinkedSpecialBonus"			"special_bonus_unique_luna_eclipse_1"
 				"LinkedSpecialBonusField"		"mult"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"night_duration"				"10"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -455,23 +341,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value2"					"4"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"mult"						"3"
-			}
+			"value"						"1"
+			"value2"					"4"
+			"mult"						"3"
 		}
 	}
 	//=================================================================================================================
@@ -487,18 +361,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-15"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow"						"-50"
-			}
+			"value"						"-15"
+			"slow"						"-50"
 		}
 	}
 	
@@ -519,7 +385,7 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/luna_nightsilver_resolve"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -544,39 +410,21 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"spear_width"			"325"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"spear_distance"		"2600"
-			}
+			"spear_distance"		"2600"
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"spear_speed"			"3000.0 3000.0 3000.0 3000.0"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spear_damage"			"100 175 250 325 400 475 550"
+			"spear_damage"			"100 175 250 325 400 475 550"
 				"LinkedSpecialBonus"	"special_bonus_unique_luna_nightsilver_resolve_1"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spear_weaken"			"-20"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"weaken_duration"		"8"
-			}
+			"spear_weaken"			"-20"
+			"weaken_duration"		"8"
 		}
 		
 		// Data driven
@@ -600,13 +448,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"200"
-			}
+			"value"						"200"
 		}
 	}
 	//=================================================================================================================
@@ -622,13 +466,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 }

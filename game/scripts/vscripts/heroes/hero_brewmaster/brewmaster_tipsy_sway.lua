@@ -10,15 +10,15 @@ end
 
 function brewmaster_tipsy_sway:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier( caster, self, "modifier_brewmaster_tipsy_sway", {duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddNewModifier( caster, self, "modifier_brewmaster_tipsy_sway", {duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_brewmaster_tipsy_sway = class({})
 LinkLuaModifier("modifier_brewmaster_tipsy_sway", "heroes/hero_brewmaster/brewmaster_tipsy_sway.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_brewmaster_tipsy_sway:OnCreated()
-	self.max = self:GetTalentSpecialValueFor("ms_buff")
-	self.min = self:GetTalentSpecialValueFor("ms_slow")
+	self.max = self:GetSpecialValueFor("ms_buff")
+	self.min = self:GetSpecialValueFor("ms_slow")
 	self.tick = 0.1
 	self.increase = (self.max - self.min) * self.tick
 	self.ms = self.min - self.increase

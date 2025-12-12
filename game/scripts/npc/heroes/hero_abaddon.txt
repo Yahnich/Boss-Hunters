@@ -14,7 +14,7 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"abaddon_death_coil"
 		"CastFilterRejectCaster" 		"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 	
 		"AbilityCastRange"				"800"
 		"AbilityCastPoint"				"0.452 0.452 0.452 0.452"
@@ -37,31 +37,18 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"projectile_speed"				"1250"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"self_heal"						"75 100 125 150 175 200 225"
+			"projectile_speed"				"1250"
+			"self_heal"						"75 100 125 150 175 200 225"
 				"LinkedSpecialBonus"			"special_bonus_unique_abaddon_death_coil_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"target_damage"					"175 250 325 400 475 550 625"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"heal_amount"					"175 250 325 400 475 550 625"
-			}
+			"heal_amount"					"175 250 325 400 475 550 625"
 		}
 	
 		"precache"
@@ -83,13 +70,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"900"
-			}
+			"value"						"900"
 		}
 	}
 	//=================================================================================================================
@@ -105,13 +88,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
+			"value"						"2"
 		}
 	}
 	//=================================================================================================================
@@ -130,7 +109,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityTextureName"			"abaddon_aphotic_shield"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -161,25 +140,16 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"15.0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"damage_absorb"					"110 140 170 200 250 300 350"
+			"damage_absorb"					"110 140 170 200 250 300 350"
 				"LinkedSpecialBonus"			"special_bonus_unique_abaddon_aphotic_barrier_3"
 				"CalculateSpellDamageTooltip"	"0"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"675"
-			}
+			"radius"						"675"
 		}
 	}
 	//=================================================================================================================
@@ -195,13 +165,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"350"
-			}
+			"value"						"350"
 		}
 	}
 	//=================================================================================================================
@@ -217,13 +183,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
+			"value"						"100"
 		}
 	}
 	//=================================================================================================================
@@ -239,18 +201,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"130"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cd"						"-2"
-			}
+			"value"						"130"
+			"cd"						"-2"
 		}
 	}
 	"abaddon_brume_weaver"
@@ -280,30 +234,23 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"heal_duration"					"10"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"heal_pct"						"20"
+			"heal_pct"						"20"
 				"LinkedSpecialBonus"			"special_bonus_unique_abaddon_brume_weaver_1"
-			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"base_heal"						"100 150 200 250 300 350 400"
 				"CalculateSpellDamageTooltip"	"0"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"buff_duration"					"10"
-			}
 		}
 	
 		"precache"
@@ -326,18 +273,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"450"
-			}
+			"value"						"100"
+			"radius"					"450"
 		}
 	}
 	//=================================================================================================================
@@ -353,13 +292,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
+			"value"						"1"
 		}
 	}
 	"abaddon_curse_ebf"
@@ -381,48 +316,31 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"trigger_count"					"4"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"trigger_radius"				"625"
-			}
+			"trigger_count"					"4"
+			"trigger_radius"				"625"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"buff_duration"					"4.5"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"buff_cdr"						"20"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"buff_as"						"80"
-			}
+			"buff_as"						"80"
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"initial_slow"					"15"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"curse_slow"					"-40"
-			}
 			"08"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"curse_as"						"-80"
-			}
 		}
 	
 		"precache"
@@ -444,13 +362,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"10"
-			}
+			"value"						"10"
 		}
 	}
 	//=================================================================================================================
@@ -467,7 +381,7 @@
 		"AbilityTextureName"			"abaddon_borrowed_time"
 		"HasScepterUpgrade"				"1"
 		"FightRecapLevel"				"2"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -494,28 +408,12 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"3 4 5 6 7 8"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration_scepter"			"4 5 6 7 8 9"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"redirect_amount_scepter"	"-45"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"redirect_range_scepter"	"1200"
-			}
+			"duration"					"3 4 5 6 7 8"
+			"duration_scepter"			"4 5 6 7 8 9"
+			"redirect_amount_scepter"	"-45"
+"redirect_range_scepter"	"1200"
 		}
 	}
 	//=================================================================================================================
@@ -531,13 +429,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"150"
-			}
+			"value"						"150"
 		}
 	}
 	//=================================================================================================================
@@ -553,13 +447,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
-			}
+			"value"						"100"
 		}
 	}
 }

@@ -12,7 +12,7 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"bane_enfeeble"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -33,33 +33,16 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"magic_resist_reduction"		"-4 -8 -12 -16 -18 -20 -22"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"status_resist_reduction"		"-15 -20 -25 -30 -32 -34 -36"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"spell_amp_reduction"			"0 0 0 0 -15 -30 -45"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"status_amp_reduction"			"0 0 0 0 -15 -30 -45"
-			}
+			"magic_resist_reduction"		"-4 -8 -12 -16 -18 -20 -22"
+			"status_resist_reduction"		"-15 -20 -25 -30 -32 -34 -36"
+			"spell_amp_reduction"			"0 0 0 0 -15 -30 -45"
+			"status_amp_reduction"			"0 0 0 0 -15 -30 -45"
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"debuff_duration"				"16.0"
-			}
 		}
 	}
 	"special_bonus_unique_bane_enfeeble_ebf_1" 
@@ -72,13 +55,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
-			}
+			"value"					"1"
 		}
 	}
 	"special_bonus_unique_bane_enfeeble_ebf_2" 
@@ -91,33 +70,19 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"3000"
-			}
+			"speed"					"3000"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"start_radius"			"200"
-			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"end_radius"			"450"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cd"					"40"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"1000"
-			}
+			"cd"					"40"
+			"range"					"1000"
 		}
 	}
 	"bane_brain_feast"
@@ -134,7 +99,7 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"bane_brain_sap"
 		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -168,25 +133,19 @@
 		"AbilityManaCost"				"100"
 	
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"heal_damage"					"100 200 300 400 500 600 700"
-			}
+			"heal_damage"					"100 200 300 400 500 600 700"
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"scepter_cooldown"				"1.5"
 				"RequiresScepter"				"1"
-			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"scepter_mana_cost"				"0.6"
 				"RequiresScepter"				"1"
-			}
 		}
 	}
 	"special_bonus_unique_bane_brain_feast_1" 
@@ -199,13 +158,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
-			}
+			"value"					"2"
 		}
 	}
 	"special_bonus_unique_bane_brain_feast_2" 
@@ -218,13 +173,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"100"
-			}
+			"value"					"100"
 		}
 	}
 	"bane_nightmare_prison"
@@ -240,7 +191,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"bane_nightmare"
 		"PiercesDisableReduction"		"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -279,31 +230,18 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"7.0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"min_duration"					"1"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage"						"20"
+			"min_duration"					"1"
+			"damage"						"20"
 				"LinkedSpecialBonus"			"special_bonus_unique_bane_nightmare_prison_2"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"burst_damage"					"100 150 200 250 350 450 550"
+			"burst_damage"					"100 150 200 250 350 450 550"
 				"LinkedSpecialBonus"			"special_bonus_unique_bane_nightmare_prison_2"
 				"LinkedSpecialBonusField"		"value2"
-			}
 		}
 	}
 	"special_bonus_unique_bane_nightmare_prison_1" 
@@ -316,18 +254,13 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"80"
-			}
+			"value"					"80"
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value2"				"100"
-			}
 		}
 	}
 	"special_bonus_unique_bane_nightmare_prison_2" 
@@ -340,23 +273,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value2"				"35"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"6"
-			}
+			"value"					"-50"
+			"value2"				"35"
+			"duration"				"6"
 		}
 	}
 	//=================================================================================================================
@@ -381,13 +302,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_amp"					"8"
-			}
+			"damage_amp"					"8"
 		}
 	}
 	"bane_fiends_grip_ebf"
@@ -405,7 +322,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"bane_fiends_grip"
-		"MaxLevel"						"6"
+		"MaxLevel"						"3"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -439,34 +356,20 @@
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"fiend_grip_tick_interval"		"1.0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"fiend_grip_mana_drain"			"5"
-			}
+			"fiend_grip_mana_drain"			"5"
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"fiend_grip_duration"			"7.0"
 				"LinkedSpecialBonus"			"special_bonus_unique_bane_fiends_grip_2"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"fiend_grip_damage"				"100 155 215 280 350 425"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"debuff_increase"				"25"
-			}
+			"fiend_grip_damage"				"100 155 215 280 350 425"
+			"debuff_increase"				"25"
 		}
 	}
 	"special_bonus_unique_bane_fiends_grip_ebf_1" 
@@ -479,13 +382,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"350"
-			}
+			"value"					"350"
 		}
 	}
 	"special_bonus_unique_bane_fiends_grip_ebf_2" 
@@ -498,13 +397,9 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-2"
-			}
+			"value"					"-2"
 		}
 	}
 }

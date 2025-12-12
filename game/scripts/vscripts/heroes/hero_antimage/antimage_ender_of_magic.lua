@@ -8,8 +8,8 @@ modifier_antimage_ender_of_magic_handler = class({})
 LinkLuaModifier( "modifier_antimage_ender_of_magic_handler", "heroes/hero_antimage/antimage_ender_of_magic", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_antimage_ender_of_magic_handler:OnCreated()
-	self.duration = self:GetTalentSpecialValueFor("duration")
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_antimage_ender_of_magic_handler:DeclareFunctions()
@@ -34,9 +34,9 @@ function modifier_antimage_ender_of_magic_buff:OnCreated()
 end
 
 function modifier_antimage_ender_of_magic_buff:OnRefresh()
-	self.as = TernaryOperator( self:GetTalentSpecialValueFor("scepter_as"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("bonus_attackspeed") )
-	self.ms = TernaryOperator( self:GetTalentSpecialValueFor("scepter_ms"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("bonus_movespeed") )
-	self.limit = TernaryOperator( self:GetTalentSpecialValueFor("scepter_stacks"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("max_stacks") )
+	self.as = TernaryOperator( self:GetSpecialValueFor("scepter_as"), self:GetCaster():HasScepter(), self:GetSpecialValueFor("bonus_attackspeed") )
+	self.ms = TernaryOperator( self:GetSpecialValueFor("scepter_ms"), self:GetCaster():HasScepter(), self:GetSpecialValueFor("bonus_movespeed") )
+	self.limit = TernaryOperator( self:GetSpecialValueFor("scepter_stacks"), self:GetCaster():HasScepter(), self:GetSpecialValueFor("max_stacks") )
 	if IsServer() then
 		self:AddIndependentStack( self:GetRemainingTime(), self.limit )
 	end

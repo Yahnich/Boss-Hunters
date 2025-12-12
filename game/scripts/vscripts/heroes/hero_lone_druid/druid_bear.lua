@@ -66,10 +66,10 @@ function druid_bear:BearStats(unit)
 			unit:RemoveAbility(ability:GetAbilityName())
 		end
 	end
-	local baseDamage = self:GetTalentSpecialValueFor("base_damage")
-	local dmgScaling = self:GetTalentSpecialValueFor("dmg_scaling")
-	local baseHealth = self:GetTalentSpecialValueFor("base_health")
-	local hpScaling = self:GetTalentSpecialValueFor("hp_scaling")
+	local baseDamage = self:GetSpecialValueFor("base_damage")
+	local dmgScaling = self:GetSpecialValueFor("dmg_scaling")
+	local baseHealth = self:GetSpecialValueFor("base_health")
+	local hpScaling = self:GetSpecialValueFor("hp_scaling")
 	local armor = 3 + caster:GetLevel() / 4
 	unit:SetThreat(0)
 	
@@ -79,9 +79,9 @@ function druid_bear:BearStats(unit)
 	local health = baseHealth + hpScaling * (caster:GetLevel() - 1)
 	if caster:HasAbility("druid_transform") then
 		local transform = caster:FindAbilityByName("druid_transform")
-		health = health + transform:GetTalentSpecialValueFor("bonus_hp")
-		bat = bat * ( 1 + transform:GetTalentSpecialValueFor("bat")/100 )
-		armor = armor + transform:GetTalentSpecialValueFor("bonus_armor")
+		health = health + transform:GetSpecialValueFor("bonus_hp")
+		bat = bat * ( 1 + transform:GetSpecialValueFor("bat")/100 )
+		armor = armor + transform:GetSpecialValueFor("bonus_armor")
 	end
 	unit:SetCoreHealth( health )
 	unit:SetBaseHealthRegen( caster:GetLevel() )
@@ -140,13 +140,13 @@ modifier_druid_bear_stats = ({})
 LinkLuaModifier("modifier_druid_bear_stats", "heroes/hero_lone_druid/druid_bear", LUA_MODIFIER_MOTION_NONE)
 function modifier_druid_bear_stats:OnCreated()
 	local caster = self:GetCaster()
-	local percent = self:GetTalentSpecialValueFor("percent")/100
+	local percent = self:GetSpecialValueFor("percent")/100
 	local HP_PER_STR = 25
 	local AS_PER_AGI = 1
 	local MP_PER_INT = 20
 	self.bonusDamage = caster:GetAgility() * percent
-	self.threshold = self:GetTalentSpecialValueFor("max_hp_threshold")
-	self.duration = self:GetTalentSpecialValueFor("invuln_duration")
+	self.threshold = self:GetSpecialValueFor("max_hp_threshold")
+	self.duration = self:GetSpecialValueFor("invuln_duration")
 	if self:GetCaster():GetPrimaryAttribute() == DOTA_ATTRIBUTE_STRENGTH  then
 		self.bonusDamage = caster:GetStrength() * percent
 	end

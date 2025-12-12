@@ -17,14 +17,14 @@ end
 modifier_ta_psi_blades = ({})
 function modifier_ta_psi_blades:OnCreated(table)
 	self.endBonusRange = 0
-	self.bonus_range = self:GetTalentSpecialValueFor("bonus_range")
-	self.bonus_range_pct = self:GetTalentSpecialValueFor("bonus_range_pct")
+	self.bonus_range = self:GetSpecialValueFor("bonus_range")
+	self.bonus_range_pct = self:GetSpecialValueFor("bonus_range_pct")
 	self:StartIntervalThink(0.1)
 end
 
 function modifier_ta_psi_blades:OnRefresh(table)
-	self.bonus_range = self:GetTalentSpecialValueFor("bonus_range")
-	self.bonus_range_pct = self:GetTalentSpecialValueFor("bonus_range_pct")
+	self.bonus_range = self:GetSpecialValueFor("bonus_range")
+	self.bonus_range_pct = self:GetSpecialValueFor("bonus_range_pct")
 end
 
 function modifier_ta_psi_blades:OnIntervalThink()
@@ -54,7 +54,7 @@ function modifier_ta_psi_blades:OnAttackLanded(params)
 				params.target:Paralyze(self, self:GetCaster(), 0.5)
 			end
 			local direction = CalculateDirection(params.target, params.attacker)
-			local enemies = params.attacker:FindEnemyUnitsInLine(params.target:GetAbsOrigin() + direction * 150, params.target:GetAbsOrigin() + direction * params.attacker:GetAttackRange(), self:GetTalentSpecialValueFor("radius"))
+			local enemies = params.attacker:FindEnemyUnitsInLine(params.target:GetAbsOrigin() + direction * 150, params.target:GetAbsOrigin() + direction * params.attacker:GetAttackRange(), self:GetSpecialValueFor("radius"))
 			for _,enemy in pairs(enemies) do
 				if enemy ~= params.target and enemy:IsAlive() then
 					local FX = ParticleManager:CreateParticle("particles/units/heroes/hero_templar_assassin/templar_assassin_psi_blade.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster())

@@ -13,7 +13,7 @@ function gyrocopter_flak_cannon_ebf:OnProjectileHit(target, position)
 	self.disableLoop = false
 	if target then
 		self:DealDamage(caster, target, caster:GetAverageTrueAttackDamage(target), {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
-		target:AddNewModifier(caster, self, "modifier_gyrocopter_flak_cannon_shred", {duration = self:GetTalentSpecialValueFor("armor_shred_duration")})
+		target:AddNewModifier(caster, self, "modifier_gyrocopter_flak_cannon_shred", {duration = self:GetSpecialValueFor("armor_shred_duration")})
 	end
 end
 
@@ -25,16 +25,16 @@ modifier_gyrocopter_flak_cannon_active = class({})
 LinkLuaModifier( "modifier_gyrocopter_flak_cannon_active", "heroes/hero_gyro/gyrocopter_flak_cannon_ebf.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_gyrocopter_flak_cannon_active:OnCreated()
-	self.attacksToProc = self:GetTalentSpecialValueFor("attacks_to_proc")
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.duration = self:GetTalentSpecialValueFor("armor_shred_duration")
+	self.attacksToProc = self:GetSpecialValueFor("attacks_to_proc")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.duration = self:GetSpecialValueFor("armor_shred_duration")
 	self:SetStackCount( self.attacksToProc )
 end
 
 function modifier_gyrocopter_flak_cannon_active:OnRefresh()
-	self.attacksToProc = self:GetTalentSpecialValueFor("attacks_to_proc")
-	self.radius = self:GetTalentSpecialValueFor("radius")
-	self.duration = self:GetTalentSpecialValueFor("armor_shred_duration")
+	self.attacksToProc = self:GetSpecialValueFor("attacks_to_proc")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.duration = self:GetSpecialValueFor("armor_shred_duration")
 end
 function modifier_gyrocopter_flak_cannon_active:DeclareFunctions()
 	funcs = {
@@ -73,11 +73,11 @@ modifier_gyrocopter_flak_cannon_shred = class({})
 LinkLuaModifier("modifier_gyrocopter_flak_cannon_shred", "heroes/hero_gyro/gyrocopter_flak_cannon_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_gyrocopter_flak_cannon_shred:OnCreated(kv)
-	self.armor_shred = self:GetTalentSpecialValueFor("armor_shred")
+	self.armor_shred = self:GetSpecialValueFor("armor_shred")
 end
 
 function modifier_gyrocopter_flak_cannon_shred:OnRefresh(kv)
-	self.armor_shred = self:GetTalentSpecialValueFor("armor_shred")
+	self.armor_shred = self:GetSpecialValueFor("armor_shred")
 end
 
 function modifier_gyrocopter_flak_cannon_shred:DeclareFunctions()	

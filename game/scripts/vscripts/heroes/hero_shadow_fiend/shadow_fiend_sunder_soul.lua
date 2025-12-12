@@ -7,9 +7,9 @@ end
 function shadow_fiend_sunder_soul:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local damage = self:GetTalentSpecialValueFor("damage")
-	local radius = self:GetTalentSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("duration")
+	local damage = self:GetSpecialValueFor("damage")
+	local radius = self:GetSpecialValueFor("radius")
 	
 	local talent1 = caster:HasTalent("special_bonus_unique_shadow_fiend_sunder_soul_1")
 	local talent3 = caster:HasTalent("special_bonus_unique_shadow_fiend_sunder_soul_3")
@@ -41,7 +41,7 @@ function modifier_shadow_fiend_sunder_soul:OnCreated()
 end
 
 function modifier_shadow_fiend_sunder_soul:OnRefresh()
-	self.damage_amp = self:GetTalentSpecialValueFor("damage_amp")
+	self.damage_amp = self:GetSpecialValueFor("damage_amp")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_shadow_fiend_sunder_soul_2")
 	self.talent2AllyAmp = self:GetCaster():FindTalentValue("special_bonus_unique_shadow_fiend_sunder_soul_2", "value2") / 100
 end
@@ -73,7 +73,7 @@ function modifier_shadow_fiend_sunder_soul_hp:OnCreated()
 end
 
 function modifier_shadow_fiend_sunder_soul_hp:OnRefresh()
-	self.hp = math.floor(self:GetTalentSpecialValueFor("damage") * self:GetCaster():FindTalentValue("special_bonus_unique_shadow_fiend_sunder_soul_1") / 100)
+	self.hp = math.floor(self:GetSpecialValueFor("damage") * self:GetCaster():FindTalentValue("special_bonus_unique_shadow_fiend_sunder_soul_1") / 100)
 	if IsServer() then
 		self:GetCaster():HealEvent( self.hp, self:GetAbility(), self:GetCaster() )
 		self:IncrementStackCount()

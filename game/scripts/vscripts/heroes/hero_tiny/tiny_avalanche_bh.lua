@@ -64,7 +64,7 @@ function tiny_avalanche_bh:OnProjectileHit_ExtraData(hTarget, vLocation, extrada
     local radius = self:GetSpecialValueFor("radius")
 
     local interval = self:GetSpecialValueFor("tick_interval")
-    local damage = self:GetTalentSpecialValueFor("damage") * self:GetSpecialValueFor("tick_interval")
+    local damage = self:GetSpecialValueFor("damage") * self:GetSpecialValueFor("tick_interval")
     self.repeat_increase = false
     local avalanche = ParticleManager:CreateParticle("particles/units/heroes/hero_tiny/tiny_avalanche.vpcf", PATTACH_CUSTOMORIGIN, nil)
     ParticleManager:SetParticleControl(avalanche, 0, vLocation + self.direction)

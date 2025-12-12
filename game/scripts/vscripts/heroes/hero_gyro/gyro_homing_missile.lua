@@ -17,7 +17,7 @@ modifier_homing_missile = class({})
  
 function modifier_homing_missile:OnCreated(table)
 	if IsServer() then
-		self:StartIntervalThink(self:GetTalentSpecialValueFor("missile_recharge_time"))
+		self:StartIntervalThink(self:GetSpecialValueFor("missile_recharge_time"))
 	end
 end
 
@@ -187,7 +187,7 @@ function modifier_homing_missile_mr:DeclareFunctions()
 end
 
 function modifier_homing_missile_mr:GetModifierMagicalResistanceBonus()
-	return self:GetTalentSpecialValueFor("magic_reduction")
+	return self:GetSpecialValueFor("magic_reduction")
 end
 
 function modifier_homing_missile_mr:IsDebuff()

@@ -12,26 +12,26 @@ end
 
 function ss_voltaic_surge:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier( caster, self, "modifier_ss_voltaic_surge_buff", {duration = self:GetTalentSpecialValueFor("buff_duration")} )
+	caster:AddNewModifier( caster, self, "modifier_ss_voltaic_surge_buff", {duration = self:GetSpecialValueFor("buff_duration")} )
 	EmitSoundOn( "Hero_Razor.Storm.Cast", caster )
 end
 
 modifier_ss_voltaic_surge_buff = class({})
 LinkLuaModifier("modifier_ss_voltaic_surge_buff", "heroes/hero_storm_spirit/ss_voltaic_surge", LUA_MODIFIER_MOTION_NONE)
 function modifier_ss_voltaic_surge_buff:OnCreated(kv)
-	self.attackspeed = self:GetTalentSpecialValueFor("buff_as")
-	self.cdr = self:GetTalentSpecialValueFor("buff_cdr")
-	self.cost = self:GetTalentSpecialValueFor("buff_cost")
-	self.duration = self:GetTalentSpecialValueFor("debuff_duration")
+	self.attackspeed = self:GetSpecialValueFor("buff_as")
+	self.cdr = self:GetSpecialValueFor("buff_cdr")
+	self.cost = self:GetSpecialValueFor("buff_cost")
+	self.duration = self:GetSpecialValueFor("debuff_duration")
 	self.comparisonTime = GameRules:GetGameTime()
 	self.totalDuration = self:GetDuration()
 end
 
 function modifier_ss_voltaic_surge_buff:OnRefresh(kv)
-	self.attackspeed = self:GetTalentSpecialValueFor("buff_as")
-	self.cdr = self:GetTalentSpecialValueFor("buff_cdr")
-	self.cost = self:GetTalentSpecialValueFor("buff_cost")
-	local bonusDuration = self:GetTalentSpecialValueFor("debuff_duration") * ( (GameRules:GetGameTime() - self.comparisonTime) / self.totalDuration )
+	self.attackspeed = self:GetSpecialValueFor("buff_as")
+	self.cdr = self:GetSpecialValueFor("buff_cdr")
+	self.cost = self:GetSpecialValueFor("buff_cost")
+	local bonusDuration = self:GetSpecialValueFor("debuff_duration") * ( (GameRules:GetGameTime() - self.comparisonTime) / self.totalDuration )
 	self.duration = self.duration + bonusDuration
 	self.comparisonTime = GameRules:GetGameTime()
 	self.totalDuration = self:GetDuration()
@@ -76,8 +76,8 @@ modifier_ss_voltaic_surge_debuff = class({})
 LinkLuaModifier("modifier_ss_voltaic_surge_debuff", "heroes/hero_storm_spirit/ss_voltaic_surge", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_ss_voltaic_surge_debuff:OnCreated(kv)
-	self.cdr = self:GetTalentSpecialValueFor("debuff_cdr") * (-1)
-	self.cost = self:GetTalentSpecialValueFor("debuff_cost") * (-1)
+	self.cdr = self:GetSpecialValueFor("debuff_cdr") * (-1)
+	self.cost = self:GetSpecialValueFor("debuff_cost") * (-1)
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_ss_voltaic_surge_1")
 	self.talent1Reduction = self:GetCaster():FindTalentValue("special_bonus_unique_ss_voltaic_surge_1")
 	if IsServer() then

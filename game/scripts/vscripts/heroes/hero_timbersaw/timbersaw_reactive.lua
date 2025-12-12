@@ -10,8 +10,8 @@ end
 function timbersaw_reactive:OnSpellStart()
 	local caster = self:GetCaster()
 	
-	local duration = self:GetTalentSpecialValueFor("stack_duration")
-	local maxStacks = self:GetTalentSpecialValueFor("stack_limit")
+	local duration = self:GetSpecialValueFor("stack_duration")
+	local maxStacks = self:GetSpecialValueFor("stack_limit")
 	for i = 1, maxStacks do
 		caster:AddNewModifier(caster, self, "modifier_timbersaw_reactive", {Duration = duration}):AddIndependentStack(duration, maxStacks)
 		if caster:HasTalent("special_bonus_unique_timbersaw_reactive_2") then
@@ -23,13 +23,13 @@ end
 modifier_timbersaw_reactive_handle = class({})
 
 function modifier_timbersaw_reactive_handle:OnCreated()
-	self.duration = self:GetTalentSpecialValueFor("stack_duration")
-	self.maxStacks = self:GetTalentSpecialValueFor("stack_limit")
+	self.duration = self:GetSpecialValueFor("stack_duration")
+	self.maxStacks = self:GetSpecialValueFor("stack_limit")
 end
 
 function modifier_timbersaw_reactive_handle:OnRefresh()
-	self.duration = self:GetTalentSpecialValueFor("stack_duration")
-	self.maxStacks = self:GetTalentSpecialValueFor("stack_limit")
+	self.duration = self:GetSpecialValueFor("stack_duration")
+	self.maxStacks = self:GetSpecialValueFor("stack_limit")
 end
 
 function modifier_timbersaw_reactive_handle:DeclareFunctions()
@@ -54,13 +54,13 @@ end
 modifier_timbersaw_reactive = class({})
 
 function modifier_timbersaw_reactive:OnCreated()
-	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
-	self.regen = self:GetTalentSpecialValueFor("bonus_hp_regen")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
+	self.regen = self:GetSpecialValueFor("bonus_hp_regen")
 end
 
 function modifier_timbersaw_reactive:OnRefresh()
-	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
-	self.regen = self:GetTalentSpecialValueFor("bonus_hp_regen")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
+	self.regen = self:GetSpecialValueFor("bonus_hp_regen")
 end
 
 function modifier_timbersaw_reactive:DeclareFunctions()

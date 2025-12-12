@@ -25,9 +25,9 @@ end
 function modifier_druid_bear_entangle:OnAttackLanded(params)
     if IsServer() then
         if not self:GetParent():PassivesDisabled() then
-            if params.attacker == self:GetParent() and RollPercentage(self:GetTalentSpecialValueFor("chance")) and params.target:IsAlive() and not params.target:IsMagicImmune() and self:GetAbility():IsCooldownReady() then
+            if params.attacker == self:GetParent() and RollPercentage(self:GetSpecialValueFor("chance")) and params.target:IsAlive() and not params.target:IsMagicImmune() and self:GetAbility():IsCooldownReady() then
                 self:GetAbility():SetCooldown()
-                params.target:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_druid_bear_entangle_enemy", {Duration = self:GetTalentSpecialValueFor("duration")})
+                params.target:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_druid_bear_entangle_enemy", {Duration = self:GetSpecialValueFor("duration")})
             end
         end
     end
@@ -40,7 +40,7 @@ end
 modifier_druid_bear_entangle_enemy = class({})
 function modifier_druid_bear_entangle_enemy:OnCreated(table)
     if IsServer() then
-		self.damage = self:GetTalentSpecialValueFor("int_damage")/100
+		self.damage = self:GetSpecialValueFor("int_damage")/100
         EmitSoundOn("LoneDruid_SpiritBear.Entangle", self:GetParent())
 
         local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle.vpcf", PATTACH_POINT, self:GetCaster()) 

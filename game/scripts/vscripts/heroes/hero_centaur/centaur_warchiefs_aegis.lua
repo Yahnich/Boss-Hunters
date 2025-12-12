@@ -6,7 +6,7 @@ end
 
 function centaur_warchiefs_aegis:ProcReturn(target, damage)
 	local caster = self:GetCaster()
-	local fDmg = damage or self:GetTalentSpecialValueFor("level_damage") * caster:GetLevel()
+	local fDmg = damage or self:GetSpecialValueFor("level_damage") * caster:GetLevel()
 	ParticleManager:FireRopeParticle("particles/units/heroes/hero_centaur/centaur_return.vpcf", PATTACH_POINT_FOLLOW, caster, target)
 	return self:DealDamage( caster, target, fDmg, {damage_flags = DOTA_DAMAGE_FLAG_REFLECTION})
 end
@@ -28,7 +28,7 @@ end
 
 function modifier_centaur_warchiefs_aegis_passive:GetAuraRadius()
 	if self:GetCaster():HasScepter() then
-		return self:GetTalentSpecialValueFor("scepter_radius")
+		return self:GetSpecialValueFor("scepter_radius")
 	else
 		return 0
 	end
@@ -54,8 +54,8 @@ function modifier_centaur_warchiefs_aegis_return:OnCreated()
 end
 
 function modifier_centaur_warchiefs_aegis_return:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("level_damage")
-	self.str_bonus = self:GetTalentSpecialValueFor("bonus_strength")
+	self.damage = self:GetSpecialValueFor("level_damage")
+	self.str_bonus = self:GetSpecialValueFor("bonus_strength")
 	self:GetParent():HookInModifier("GetModifierStrengthBonusPercentage", self)
 	self:GetParent():HookInModifier("GetModifierDamageReflectBonus", self)
 end
