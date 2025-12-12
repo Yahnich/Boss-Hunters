@@ -26,18 +26,9 @@
 		}
 		"AbilityValues"
 	    {
-	        "01"
-	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "damage_on_hit"     			"28 40 52 64 80 96 112"
-			"02"
-	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "spell_amp_red"     			"-15 -25 -35 -45 -50 -55 -60"
-	        "03"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "duration"     					"12"
+	        "damage_on_hit"     			"28 40 52 64 80 96 112"
+			"spell_amp_red"     			"-15 -25 -35 -45 -50 -55 -60"
+	        "duration"     					"12"
 	    }
 	}
 	"special_bonus_unique_antimage_magus_breaker_1" 
@@ -45,8 +36,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -56,10 +47,7 @@
 			"cost"					"50"
 			"outgoing"				"-75"
 			"incoming"				"300"
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
+			"duration"				"5"
 			"cast_range"			"900"
 			
 		}
@@ -69,8 +57,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_antimage_magus_breaker"
 		
 		// Special
@@ -120,10 +108,7 @@
 		"AbilityValues"
 		{
 			"blink_range"			"925 925 925 925 1000 1075 1150"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"min_blink_range"		"200"
+			"min_blink_range"		"200"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -132,8 +117,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_antimage_blink_handler"
 		
 		// Special
@@ -148,8 +133,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -205,8 +190,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_antimage_hex_guard"
 		
 		// Special
@@ -221,8 +206,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_antimage_hex_guard"
 		
 		// Special
@@ -250,32 +235,14 @@
 		{
 			"bonus_attackspeed"				"20"
 			"bonus_movespeed"				"5"
-			"03"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"30.0"
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"radius"						"900"
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"max_stacks"					"5"
-			"06"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"scepter_stacks"				"8"
+			"duration"						"30.0"
+			"radius"						"900"
+			"max_stacks"					"5"
+			"scepter_stacks"				"8"
 				"RequiresScepter"				"1"
-			"07"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"scepter_as"					"25"
+			"scepter_as"					"25"
 				"RequiresScepter"				"1"
-			"08"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"scepter_ms"					"10"
+			"scepter_ms"					"10"
 				"RequiresScepter"				"1"
 		}
 	}
@@ -334,18 +301,12 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"damage_cap"					"800 1200 1400 1600 1800 2000"
+			"damage_cap"					"800 1200 1400 1600 1800 2000"
 				"LinkedSpecialBonus"			"special_bonus_unique_antimage_void_of_hatred_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
 			"damage_storage"				"25"
 			"radius"						"450"
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"ministun"						"0.6"
+			"ministun"						"0.6"
 		}
 	}
 	"special_bonus_unique_antimage_void_of_hatred_1" 
@@ -353,8 +314,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_antimage_void_of_hatred_handler"
 		
 		// Special
@@ -369,8 +330,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

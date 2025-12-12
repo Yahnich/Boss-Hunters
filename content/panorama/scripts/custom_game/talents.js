@@ -342,13 +342,10 @@ function AddTalentToAbilityButton( talentContainer, talentName, talentIndex, tal
 		})
 	}
 	talent.SetPanelEvent("onmouseover", function(){
-			talent.AddClass("Highlighted")
-			let abilityTooltip = mainHud.FindChildTraverse("DOTAAbilityTooltip");
-			let talentHeaderLabel = abilityTooltip.FindChildTraverse("AbilityName");
-			let talentText = abilityTooltip.FindChildTraverse("AbilityDescriptionContainer");
-			GameUI.SetupDOTATalentNameLabel( talentHeaderLabel, talentName );
-			$.DispatchEvent("DOTAShowAbilityTooltipForEntityIndex", talent, talentName, lastRememberedHero )});
+		$.DispatchEvent("DOTAShowAbilityTooltip", talent, talentName )
+	})
 	talent.SetPanelEvent("onmouseout", function(){
-			talent.RemoveClass("Highlighted")
-			$.DispatchEvent("DOTAHideAbilityTooltip", talent);});
+		talent.RemoveClass("Highlighted")
+		$.DispatchEvent("DOTAHideAbilityTooltip", talent);
+	});
 }

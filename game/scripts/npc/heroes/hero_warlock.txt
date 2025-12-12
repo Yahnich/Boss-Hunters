@@ -54,10 +54,7 @@
 		{
 			"damage"				"100 130 160 190 220 250 280"
 			"chance"				"30"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"crit_mult"				"300"
+			"crit_mult"				"300"
 			"debuff_duration"		"3"
 			"damage_over_time"		"15 30 45 60 75 100 125"
 			"damage_amp"			"12.5 15 17.5 20 22.5 25"
@@ -72,8 +69,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -91,8 +88,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -162,8 +159,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -180,8 +177,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -241,19 +238,10 @@
 		"AbilityValues"
 		{
 			"spell_amp"				"15 25 35 45 55 65 75"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"health_regen"			"9 12 15 18 21 24 27"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"golem_health_regen"	"27 36 45 54 63 72 81"
+			"health_regen"			"9 12 15 18 21 24 27"
+			"golem_health_regen"	"27 36 45 54 63 72 81"
 			"golem_bonus_damage"	"15 25 35 45 55 65 75"
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
+			"duration"				"8"
 		}
 	}
 	//=================================================================================================================
@@ -264,8 +252,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -282,8 +270,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -429,16 +417,10 @@
 		{
 			"damage"				"250 375 500 625 750 875"
 			"stun_duration"			"1"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"stun_radius"			"600"
+			"stun_radius"			"600"
 			"golem_number"			"1"
 				"LinkedSpecialBonus"	"special_bonus_unique_warlock_demonic_summons_1"
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"golem_duration"		"60"
+			"golem_duration"		"60"
 				"LinkedSpecialBonus"	"special_bonus_unique_warlock_demonic_summons_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			"golem_damage"			"250 375 500 625 750 875"
@@ -454,8 +436,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -474,8 +456,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -516,10 +498,7 @@
 		"AbilityValues"
 		{
 			"damage"				"50 60 80 100 120 160"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"300"
+			"radius"				"300"
 		}
 	}
 
@@ -554,10 +533,7 @@
 		"AbilityValues"
 		{
 			"damage"				"30 60 90 120 150 180"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"300"
+			"radius"				"300"
 		}
 	}
 }

@@ -49,21 +49,12 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"8"
+			"duration"						"8"
 			"bonus_movement_speed"			"-14 -18 -22 -26 -30 -34 -38"
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bonus_as"						"30 45 60 75 90 105 120"
+			"bonus_as"						"30 45 60 75 90 105 120"
 				"LinkedSpecialBonus"			"special_bonus_unique_chen_penitence_bh_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"buff_duration"					"2"
+			"buff_duration"					"2"
 		}
 	}
 	//=================================================================================================================
@@ -74,8 +65,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -92,8 +83,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -149,14 +140,8 @@
 		"AbilityValues"
 		{
 			"duration"				"1.5 1.75 2 2.25 2.5 2.75 3"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"200 400 600 800 1000 1200 1400"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"minion_limit"			"2"
+			"bonus_health"			"200 400 600 800 1000 1200 1400"
+			"minion_limit"			"2"
 				"LinkedSpecialBonus"	"special_bonus_unique_chen_holy_persuasion_1"
 			"teleport_delay"		"2"
 		}
@@ -169,8 +154,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -188,8 +173,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -247,10 +232,7 @@
 			"bonus_dmg"				"12 16 20 24 28 32 36"
 			"heal_amp"				"4 8 12 16 20 24 28"
 			"duration"				"12"
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_radius"			"900"
+			"aura_radius"			"900"
 		}
 	}
 	//=================================================================================================================
@@ -261,8 +243,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_chen_divine_favor_bh"
 		
 		// Special
@@ -280,8 +262,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_chen_divine_favor_bh"
 		
 		// Special
@@ -334,10 +316,7 @@
 		"AbilityValues"
 		{
 			"damage_min"			"5"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_max"			"25"
+			"damage_max"			"25"
 		}
 	}
 	//=================================================================================================================
@@ -348,8 +327,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -366,8 +345,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -435,8 +414,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -453,8 +432,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -517,8 +496,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -535,8 +514,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -587,14 +566,8 @@
 		"AbilityValues"
 		{
 			"duration"				"40"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"tank_health"			"175"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"tank_damage"			"33"
+			"tank_health"			"175"
+			"tank_damage"			"33"
 			"dps_health"			"100"
 			"dps_damage"			"175"
 			"support_health"		"75"
@@ -622,10 +595,7 @@
 		{
 			"chance"				"50"
 			"duration"				"5.0"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"reduc"					"-25"
+			"reduc"					"-25"
 			"damage"				"25"
 		}
 	
@@ -675,14 +645,8 @@
 		"AbilityValues"
 		{
 			"duration"				"5"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"500"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"140"
+			"radius"				"500"
+			"damage"				"140"
 		}
 	
 		"precache"
@@ -723,15 +687,9 @@
 		"AbilityValues"
 		{
 			"duration"				"2.0"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"500"
+			"radius"				"500"
 			"threat_gain"			"75"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"60"
+			"damage"				"60"
 		}
 	
 		"precache"
@@ -761,10 +719,7 @@
 		{
 			"chance"				"50"
 			"duration"				"1"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"400"
+			"radius"				"400"
 			"damage"				"10"
 		}
 	
@@ -794,14 +749,8 @@
 		"AbilityValues"
 		{
 			"crit_chance"			"50"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"crit_strike"			"300"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"300"
+			"crit_strike"			"300"
+			"radius"				"300"
 		}
 	
 		"precache"
@@ -853,10 +802,7 @@
 		"AbilityValues"
 		{
 			"duration"				"1.0"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"250"
+			"damage"				"250"
 			"radius"				"500"
 		}
 	

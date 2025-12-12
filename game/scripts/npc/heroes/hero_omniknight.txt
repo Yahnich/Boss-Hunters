@@ -66,18 +66,15 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
 			"value"					"20"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"6"
+			"duration"				"6"
 		}
 	}
 	"special_bonus_unique_omniknight_purification_2" 
@@ -85,18 +82,15 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
 			"value"					"15"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"6"
+			"duration"				"6"
 		}
 	}
 	//=================================================================================================================
@@ -164,18 +158,15 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
 			"value"					"14"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value2"				"8"
+			"value2"				"8"
 		}
 	}
 	"special_bonus_unique_omniknight_heavenly_grace_2" 
@@ -183,8 +174,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -224,10 +215,7 @@
 		{
 			"aura_armor"			"3 5 7 9 10 11 12"
 				"LinkedSpecialBonus"	"special_bonus_unique_omniknight_stalwart_defender_2"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aura_slow"				"-15 -25 -35 -45 -50 -55 -60"
+			"aura_slow"				"-15 -25 -35 -45 -50 -55 -60"
 			"radius"				"350 350 350 350 450 550 650"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
@@ -238,8 +226,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_omniknight_stalwart_defender_aura"
 		
 		// Special
@@ -254,8 +242,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_omniknight_stalwart_defender_aura"
 		
 		// Special
@@ -291,10 +279,7 @@
 		"AbilityValues"
 		{
 			"damage_radius"			"260"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"conversion"			"100"
+			"conversion"			"100"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -343,8 +328,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -358,8 +343,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -430,8 +415,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -445,18 +430,15 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
 			"value"					"10"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"resist"				"80"
+			"resist"				"80"
 		}
 	}
 	
@@ -500,21 +482,12 @@
 			"bonus_health"					"100 100 100 250 250 250 400"
 				"LinkedSpecialBonus"			"special_bonus_unique_omniknight_seven_blessings_2"
 				"LinkedSpecialBonusField"		"value3"
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_mana"					"100 100 100 250 250 250 400"
+			"bonus_mana"					"100 100 100 250 250 250 400"
 				"LinkedSpecialBonus"			"special_bonus_unique_omniknight_seven_blessings_2"
 				"LinkedSpecialBonusField"		"value3"
-			"07"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_movespeed"				"10 15 20 25 30 35 40"
+			"bonus_movespeed"				"10 15 20 25 30 35 40"
 				"LinkedSpecialBonus"			"special_bonus_unique_omniknight_seven_blessings_1"
-			"08"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"600"
+			"radius"						"600"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_ATTACK"
 	}
@@ -523,8 +496,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_omniknight_seven_blessings_handler"
 		
 		// Special
@@ -539,8 +512,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_omniknight_seven_blessings_handler"
 		
 		// Special
@@ -548,14 +521,8 @@
 		"AbilityValues"
 		{
 			"value"					"2"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value2"				"5"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value3"				"200"
+			"value2"				"5"
+			"value3"				"200"
 		}
 	}
 }

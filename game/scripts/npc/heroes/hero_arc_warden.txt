@@ -49,23 +49,11 @@
 		"AbilityValues"
 		{
 			"cast_range"					"500 600 700 800 900 1000 1100"
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"4 5 6 7 8 9 10"
+			"duration"						"4 5 6 7 8 9 10"
 			"damage_per_second"				"15 30 45 60 75 90 105"
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"think_interval"				"0.5"
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"move_speed_slow_pct"			"-50 -55 -60 -65 -70 -75 -80"
-			"06"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"jump_radius"					"900"
+			"think_interval"				"0.5"
+			"move_speed_slow_pct"			"-50 -55 -60 -65 -70 -75 -80"
+			"jump_radius"					"900"
 		}
 	}
 	//=================================================================================================================
@@ -76,8 +64,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -95,8 +83,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -164,8 +152,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -182,8 +170,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -243,25 +231,13 @@
 		{
 			"radius"						"375"
 			"activation_delay"				"2.0"			
-			"03"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"50"
+			"duration"						"50"
 			"speed"							"400"
 			"damage"						"100 160 220 280 340 400 460"
 				"LinkedSpecialBonus"			"special_bonus_unique_arc_warden_spark_wrath_bh_1"
-			"06"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"think_interval"				"0.2"
-			"07"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"wraith_vision_radius"			"300"  
-			"08"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"wraith_vision_duration"		"3.34"
+			"think_interval"				"0.2"
+			"wraith_vision_radius"			"300"  
+			"wraith_vision_duration"		"3.34"
 			"09"
 			{
 				"var_type"						"FIELD_FLOAT"
@@ -276,8 +252,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -294,8 +270,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedAbilityName"				"arc_warden_spark_wrath_bh"
 		
 		// Special
@@ -333,14 +309,8 @@
 		"AbilityValues"
 		{
 			"delay"					"0.5"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_casts"			"1"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_casts"			"2"
+			"bonus_casts"			"1"
+			"scepter_casts"			"2"
 		}
 	}
 	"arc_warden_tempest_mirage"
@@ -373,10 +343,7 @@
 		{
 			"pct_cost"				"25"
 			"duration"				"25"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_casts"			"2"
+			"scepter_casts"			"2"
 		}
 	}
 	"arc_warden_primordial_current"
@@ -434,10 +401,7 @@
 			"tick_interval"			"0.1"
 			"channel_time"			"5"
 				"LinkedSpecialBonus"	"special_bonus_unique_arc_warden_primordial_current_1"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"total_damage"			"100 145 190 235 280 325"
+			"total_damage"			"100 145 190 235 280 325"
 		}
 	}
 	//=================================================================================================================
@@ -448,8 +412,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -466,8 +430,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

@@ -33,10 +33,7 @@
 			"cold_snap_freeze_cooldown"	"0.77 0.74 0.71 0.69 0.66 0.63 0.6"
 			"cold_snap_freeze_damage"	"7 14 21 28 35 42 49"
 			"ghost_walk_enemy_slow"		"-20 -25 -30 -35 -40 -45 -50"
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tornado_lift_duration"		"0.8 1.1 1.4 1.7 2 2.3 2.6"
+			"tornado_lift_duration"		"0.8 1.1 1.4 1.7 2 2.3 2.6"
 		}
 	}
 

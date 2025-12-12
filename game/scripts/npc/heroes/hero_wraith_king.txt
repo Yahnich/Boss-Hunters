@@ -51,19 +51,10 @@
 		"AbilityValues"
 		{
 			"damage"				"60 80 100 120 200 280 360"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"dot_damage"			"25 45 65 85 90 95 100"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"1000"			
+			"dot_damage"			"25 45 65 85 90 95 100"
+			"speed"					"1000"			
 			"stun_duration"			"1.1 1.1 1.1 1.1 1.4 1.7 2.0"			
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"dot_duration"			"2 2 2 2 2.6 3.2 3.8"			
+			"dot_duration"			"2 2 2 2 2.6 3.2 3.8"			
 			"slow"					"-40"			
 		}
 	}
@@ -76,8 +67,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -94,8 +85,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -159,20 +150,11 @@
 			"lifesteal"					"8 16 16 24 24 32 32"
 			"attack_damage"				"16 16 32 32 48 48 64"
 			"ranged_percentage"			"50"
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"wk_percentage"				"50"
-			"07"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"active_duration"			"5"
+			"wk_percentage"				"50"
+			"active_duration"			"5"
 				"LinkedSpecialBonus"		"special_bonus_unique_wk_vamp_2"
 				"LinkedSpecialBonusField"	"value2"
-			"08"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"active_multiplier"			"2"
+			"active_multiplier"			"2"
 				"LinkedSpecialBonus"		"special_bonus_unique_wk_vamp_2"
 		}
 	}
@@ -185,8 +167,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_wk_vamp_effect"
 		
 		// Special
@@ -206,8 +188,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_wk_vamp_effect"
 		
 		// Special
@@ -269,8 +251,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_wk_crit_passive"
 		
 		// Special
@@ -288,8 +270,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_wk_crit_passive"
 		
 		// Special
@@ -356,10 +338,7 @@
 			"skeleton_base_hp"			"170"
 			"skeleton_lvl_dmg"			"2"
 			"skeleton_lvl_hp"			"5"
-			"08"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"boss_charges"				"2"
+			"boss_charges"				"2"
 			"09"
 			{
 				"var_type"					"FIELD_INTEGER"
@@ -378,8 +357,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -397,8 +376,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -448,19 +427,10 @@
 		"AbilityValues"
 		{
 			"reincarnate_time"		"3"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow_ms"				"-75"
+			"radius"				"900"
+			"slow_ms"				"-75"
 			"slow_as"				"-75"
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
+			"duration"				"5"
 			"aura_radius"			"1200"
 		}
 	}
@@ -473,8 +443,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_wk_reincarnation"
 		
 		// Special
@@ -492,8 +462,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -510,8 +480,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_wk_reincarnation"
 		
 		// Special

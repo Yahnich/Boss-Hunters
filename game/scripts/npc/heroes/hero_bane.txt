@@ -39,10 +39,7 @@
 			"status_resist_reduction"		"-15 -20 -25 -30 -32 -34 -36"
 			"spell_amp_reduction"			"0 0 0 0 -15 -30 -45"
 			"status_amp_reduction"			"0 0 0 0 -15 -30 -45"
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"debuff_duration"				"16.0"
+			"debuff_duration"				"16.0"
 		}
 	}
 	"special_bonus_unique_bane_enfeeble_ebf_1" 
@@ -50,8 +47,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -65,22 +62,16 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
 			"speed"					"3000"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"start_radius"			"200"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"end_radius"			"450"
+			"start_radius"			"200"
+			"end_radius"			"450"
 			"cd"					"40"
 			"range"					"1000"
 		}
@@ -136,15 +127,9 @@
 		"AbilityValues"
 		{
 			"heal_damage"					"100 200 300 400 500 600 700"
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"scepter_cooldown"				"1.5"
+			"scepter_cooldown"				"1.5"
 				"RequiresScepter"				"1"
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"scepter_mana_cost"				"0.6"
+			"scepter_mana_cost"				"0.6"
 				"RequiresScepter"				"1"
 		}
 	}
@@ -153,8 +138,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -168,8 +153,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -232,10 +217,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"7.0"
+			"duration"						"7.0"
 			"min_duration"					"1"
 			"damage"						"20"
 				"LinkedSpecialBonus"			"special_bonus_unique_bane_nightmare_prison_2"
@@ -249,18 +231,15 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
 			"value"					"80"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value2"				"100"
+			"value2"				"100"
 		}
 	}
 	"special_bonus_unique_bane_nightmare_prison_2" 
@@ -268,8 +247,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -358,15 +337,9 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"fiend_grip_tick_interval"		"1.0"
+			"fiend_grip_tick_interval"		"1.0"
 			"fiend_grip_mana_drain"			"5"
-			"03"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"fiend_grip_duration"			"7.0"
+			"fiend_grip_duration"			"7.0"
 				"LinkedSpecialBonus"			"special_bonus_unique_bane_fiends_grip_2"
 			"fiend_grip_damage"				"100 155 215 280 350 425"
 			"debuff_increase"				"25"
@@ -377,8 +350,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -392,8 +365,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

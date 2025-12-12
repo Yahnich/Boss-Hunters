@@ -52,12 +52,12 @@
 			"damage"						"90 180 270 360 450 540 630"
 			"radius"						"250"
 			"speed"							"1250"
-			"04"
+			"stun_duration"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"stun_duration"					"1.4 1.5 1.6 1.7 1.7 1.7 1.7"
+				"value"							"1.4 1.5 1.6 1.7 1.7 1.7 1.7"
 				"LinkedSpecialBonus"			"special_bonus_unique_vengefulspirit_magic_barrage_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
 		}
 	}
 
@@ -66,8 +66,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -82,8 +82,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -144,21 +144,21 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"armor_reduction"				"-3 -4 -5 -6 -6 -6 -6"
+			"armor_reduction"
+			{
+				"value"				"-3 -4 -5 -6 -6 -6 -6"
 				"LinkedSpecialBonus"			"special_bonus_unique_vengefulspirit_wave_1"
 				"LinkedSpecialBonusField"		"value2"
-			"damage"						"60 80 100 120 140 160 180"
+			}
+			"damage"
+			{
+				"value"						"60 80 100 120 140 160 180"
 				"LinkedSpecialBonus"			"special_bonus_unique_vengefulspirit_wave_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			"03"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"8"
+			}
+			"duration"						"8"
 			"speed"							"2000"
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"width"							"300"			
+			"width"							"300"			
 		}
 	}
 	"special_bonus_unique_vengefulspirit_wave_1" 
@@ -166,18 +166,15 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
 			"value"					"3"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value2"				"-2"
+			"value2"				"-2"
 		}
 	}
 	"special_bonus_unique_vengefulspirit_wave_2" 
@@ -185,8 +182,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -229,13 +226,19 @@
 		{
 			"bonus_attack_range"		"100 150 150 200 200 250 250"
 			"melee_reduction"			"50"
-			"bonus_reflection"			"10 10 15 15 20 20 25"
+			"bonus_reflection"
+			{
+				"value"			"10 10 15 15 20 20 25"
 				"LinkedSpecialBonus"		"special_bonus_unique_vengefulspirit_aura_1"
+			}
 			"image_damage_in"			"70 80 90 100 100 100 100"
 			"image_damage_out"			"150 150 150 150 135 120 100"
-			"images_spawned"			"1"
+			"images_spawned"
+			{
+				"value"			"1"
 				"LinkedSpecialBonus"		"special_bonus_unique_vengefulspirit_aura_1"
 				"LinkedSpecialBonusField"	"value2"
+			}
 			"radius"					"1200"
 		}
 	}
@@ -244,8 +247,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_vengefulspirit_aura_buff"
 		
 		// Special
@@ -253,10 +256,7 @@
 		"AbilityValues"
 		{
 			"value"					"10"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value2"				"1"
+			"value2"				"1"
 		}
 	}
 
@@ -265,18 +265,15 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
 			"cd"					"16"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cost"					"100"
+			"cost"					"100"
 		}
 	}
 
@@ -323,8 +320,11 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"duration"				"3.0"
+			"duration"
+			{
+				"value"				"3.0"
 				"LinkedSpecialBonus"	"special_bonus_unique_vengefulspirit_swap_2"
+			}
 			"speed"					"100"
 		}
 	}
@@ -334,8 +334,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -350,8 +350,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -415,36 +415,26 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"phantasm_rate"					"1"
+			"phantasm_rate"
+			{
+				"value"					"1"
 				"CalculateSpellDamageTooltip"	"0"
-			"phantasm_damage"				"100 200 200 300 300 400"
+			}
+			"phantasm_damage"
+			{
+				"value"				"100 200 200 300 300 400"
 				"CalculateSpellDamageTooltip"	"0"
-			"03"
+			}
+			"duration"						"8"
+			"debuff_duration"				"12"
+			"effect_radius"					"800"
+			"spell_damage_reduction"		"25 25 35 35 45 45"
+			"attack_damage_reduction"		"25 25 35 35 45 45"
+			"scepter_stun"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"8"
-				//"LinkedSpecialBonus"			"special_bonus_unique_vengeful_spirit_1"
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"debuff_duration"				"12"
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"effect_radius"					"800"
-			"06"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"spell_damage_reduction"		"25 25 35 35 45 45"
-			"07"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"attack_damage_reduction"		"25 25 35 35 45 45"
-			"08"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"scepter_stun"					"5"
+				"value"					"5"
 				"RequiresScepter"				"1"
+			}
 		}
 	}
 
@@ -453,8 +443,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -469,8 +459,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -528,15 +518,9 @@
 		{
 			"allied_resist"			"-50 -55 -60 -65 -70 -75 -80"
 			"allied_damage"			"10 12.5 15 17.5 20 22.5 25"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"enemy_amp"				"50 55 60 65 70 75 80"
+			"enemy_amp"				"50 55 60 65 70 75 80"
 			"enemy_damage"			"-10 -12.5 -15 -17.5 -20 -22.5 -25"
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
+			"duration"				"10"
 			"scepter_cooldown"		"15"
 		}
 	}

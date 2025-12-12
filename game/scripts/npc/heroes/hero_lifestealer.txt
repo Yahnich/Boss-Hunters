@@ -60,8 +60,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -78,8 +78,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_lifestealer_hunger_handle"
 		
 		// Special
@@ -112,22 +112,13 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"max_attack_damage"				"70 100 130 160 190 210 240"
+			"max_attack_damage"				"70 100 130 160 190 210 240"
 				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_hunger_1"
 			"max_lifesteal"					"40 50 60 70 80 90 100"
 				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_hunger_2"
 				"LinkedSpecialBonusField"		"value"
-			"03"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"min_attack_damage"				"10 20 30 40 50 60 70"
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"min_lifesteal"					"1"
+			"min_attack_damage"				"10 20 30 40 50 60 70"
+			"min_lifesteal"					"1"
 				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_hunger_2"
 				"LinkedSpecialBonusField"		"value2"
 		}
@@ -140,8 +131,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_lifestealer_hunger_handle"
 		
 		// Special
@@ -159,8 +150,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_lifestealer_hunger_handle"
 		
 		// Special
@@ -210,10 +201,7 @@
 		{
 			"armor_reduction"		"-2 -3 -4 -5 -6 -7 -8"
 			"duration"				"1.5"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"attack_speed_bonus"	"20 30 40 50 60 70 80"
+			"attack_speed_bonus"	"20 30 40 50 60 70 80"
 		}
 	}
 	//=================================================================================================================
@@ -224,8 +212,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_lifestealer_ghoul_frenzy_bh_handle"
 		
 		// Special
@@ -243,8 +231,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_lifestealer_ghoul_frenzy_bh_handle"
 		
 		// Special
@@ -299,10 +287,7 @@
 		"AbilityValues"
 		{
 			"damage"				"300"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"700"
+			"radius"				"700"
 		}
 	}
 	"lifestealer_assimilate_exit"
@@ -368,17 +353,11 @@
 		{
 			"ally_bonus_hp"					"400 600 800 1600 2400 3200"
 			"aoe_damage"					"200 300 400 800 1200 1600"
-			"03"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"max_hp_regen"					"3 3.5 4 5 6 7"
+			"max_hp_regen"					"3 3.5 4 5 6 7"
 				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_infest_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
 			"radius"						"700"
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"5.0"
+			"duration"						"5.0"
 		}
 	}
 	//=================================================================================================================
@@ -389,8 +368,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -407,8 +386,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -476,10 +455,7 @@
 				"CalculateSpellDamageTooltip"	"0"
 			"heal_percent"					"35"
 				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_flesh_wounds_1"
-			"03"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"slow"							"-70"
+			"slow"							"-70"
 				"LinkedSpecialBonus"			"special_bonus_unique_lifestealer_flesh_wounds_2"
 			"duration"						"5 6 7 8 9 10 11"
 			"cast_range"					"200 300 400 500 600 700 800"
@@ -493,8 +469,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -511,8 +487,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -559,10 +535,7 @@
 		{
 			"damage"				"5 10 15 20 25 30"
 			"heal"					"100"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"5"
+			"duration"				"5"
 				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_rend_2"
 		}
 	
@@ -583,8 +556,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -601,8 +574,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

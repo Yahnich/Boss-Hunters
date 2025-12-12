@@ -74,8 +74,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -89,8 +89,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -104,8 +104,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -119,18 +119,15 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
 			"value"					"50"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value2"				"1"
+			"value2"				"1"
 		}
 	}
 	"doom_scorched_earth_ebf"
@@ -187,10 +184,7 @@
 			"bonus_movement_speed_pct"	"9 11 13 15 16 17 18"
 			"bonus_attack_speed"		"15 30 45 60 70 80 90"
 			"duration"					"15 15 15 15 16 17 18"
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"ally_pct"					"50"
+			"ally_pct"					"50"
 		}
 	}
 	"special_bonus_unique_doom_scorched_earth_ebf_1" 
@@ -198,8 +192,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_doom_scorched_earth_talent"
 		
 		// Special
@@ -207,10 +201,7 @@
 		"AbilityValues"
 		{
 			"value"					"50"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value2"				"25"
+			"value2"				"25"
 		}
 	}
 	"special_bonus_unique_doom_scorched_earth_ebf_2" 
@@ -218,8 +209,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedAbilityName"				"doom_scorched_earth_ebf"
 		
 		// Special
@@ -227,10 +218,7 @@
 		"AbilityValues"
 		{
 			"value"					"600"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"33"
+			"damage"				"33"
 		}
 	}
 	//=================================================================================================================
@@ -287,21 +275,12 @@
 			"burn_damage_pct"				"1.6 1.6 1.6 1.6 1.9 2.2 2.5"
 				"LinkedSpecialBonus"			"special_bonus_unique_doom_infernal_blade_1"
 				"CalculateSpellDamageTooltip"	"0"
-			"03"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"burn_duration"					"4"
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"ministun_duration"				"0.4"
+			"burn_duration"					"4"
+			"ministun_duration"				"0.4"
 				"LinkedSpecialBonus"			"special_bonus_unique_doom_infernal_blade_2"
 			"scepter_length"				"650"
 				"RequiresScepter"				"1"
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"scepter_width"					"125"
+			"scepter_width"					"125"
 				"RequiresScepter"				"1"
 		}
 	}
@@ -310,18 +289,15 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
 			"value"					"0.5"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value2"				"2"
+			"value2"				"2"
 		}
 	}
 	"special_bonus_unique_doom_infernal_blade_2" 
@@ -329,8 +305,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -393,10 +369,7 @@
 		"AbilityValues"
 		{
 			"duration"				"12 12 12 13 14 15"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"25 40 55 65 75 85"
+			"damage"				"25 40 55 65 75 85"
 		}
 	}
 	"special_bonus_unique_doom_apocalypse_1" 
@@ -404,8 +377,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -419,8 +392,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -434,8 +407,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

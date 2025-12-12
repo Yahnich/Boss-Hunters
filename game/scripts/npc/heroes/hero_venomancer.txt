@@ -49,28 +49,25 @@
 		"AbilityValues"
 		{
 			"duration"				"15.0"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"strike_damage"			"50 75 100 125 250 375 500"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"tick_damage"			"15 45 75 105 120 135 150"
+			"strike_damage"			"50 75 100 125 250 375 500"
+			"tick_damage"			"15 45 75 105 120 135 150"
 			"tick_interval"			"3.0"
 			"movement_slow"			"-50"
 			"radius"				"125"
 			"speed"					"1200"
-			"scepter_wards_spawned"	"2"
+			"scepter_wards_spawned"
+			{
+				"value"					"2"
 				"RequiresScepter"		"1"
+			}
 		}
 	}"special_bonus_unique_venomancer_venomous_gale_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -84,8 +81,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -136,8 +133,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_venomancer_poison_sting_handler"
 		
 		// Special
@@ -152,8 +149,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -203,19 +200,25 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
+			"duration"						"40"
+			"ward_hp"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"						"40"
-			"ward_hp"						"3"
+				"value"						"3"
 				"LinkedSpecialBonus"			"special_bonus_unique_venomancer_plague_ward_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			"ward_damage"					"13 22 31 40 43 46 50"
+			}
+			"ward_damage"
+			{
+				"value"					"13 22 31 40 43 46 50"
 				"LinkedSpecialBonus"			"special_bonus_unique_venomancer_plague_ward_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 				"CalculateSpellDamageTooltip"	"0"
-			"spawn_count"					"1"
+			}
+			"spawn_count"
+			{
+				"value"					"1"
 				"LinkedSpecialBonus"			"special_bonus_unique_venomancer_plague_ward_1"
+			}
 		}
 	}
 	"special_bonus_unique_venomancer_plague_ward_1" 
@@ -223,8 +226,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_venomancer_poison_nova_talent"
 		
 		// Special
@@ -232,14 +235,8 @@
 		"AbilityValues"
 		{
 			"value"					"1"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value2"				"1"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"minion_duration"		"5"
+			"value2"				"1"
+			"minion_duration"		"5"
 			
 		}
 	}
@@ -248,8 +245,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -314,10 +311,8 @@
 		"AbilityValues"
 		{
 			"radius"					"885"
-				"LinkedSpecialBonus"		"special_bonus_unique_venomancer_6"
 			"start_radius"				"255 255 255"
-			"duration"					"20.0"
-				"LinkedSpecialBonus"		"special_bonus_unique_venomancer_4"
+			"duration"						"20.0"
 			"damage"					"20 40 60 80 120 160"
 			"max_hp_dmg"				"2 2.75 3.5 3.5 3.5 3.5"
 			"speed"						"500 500 500"
@@ -328,8 +323,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_venomancer_poison_nova_talent"
 		
 		// Special
@@ -344,8 +339,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_venomancer_poison_nova_talent"
 		
 		// Special

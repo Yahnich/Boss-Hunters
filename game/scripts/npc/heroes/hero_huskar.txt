@@ -48,19 +48,10 @@
 		"AbilityValues"
 		{
 			"heal"					"10"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movespeed"				"20"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"attackspeed"			"50"
+			"movespeed"				"20"
+			"attackspeed"			"50"
 			"attrib_bonus_heal"		"75"
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attrib_bonus_ms"		"100"
+			"attrib_bonus_ms"		"100"
 			"attrib_bonus_as"		"80"
 			"07"
 			{
@@ -78,8 +69,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -93,8 +84,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_huskar_unleash_vitality_talent"
 		
 		// Special
@@ -151,26 +142,17 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"damage"						"100 170 240 310 380 450 520"
+			"damage"						"100 170 240 310 380 450 520"
 				"LinkedSpecialBonus"			"special_bonus_unique_huskar_fire_within_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
 			"radius"						"500"
 				"LinkedSpecialBonus"			"special_bonus_unique_huskar_fire_within_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
-			"03"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"disarm_duration"				"3.25 3.25 3.25 3.25 4.0 4.75 5.5"
+			"disarm_duration"				"3.25 3.25 3.25 3.25 4.0 4.75 5.5"
 			"knockback_distance"			"550"
 				"LinkedSpecialBonus"			"special_bonus_unique_huskar_fire_within_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"knockback_duration"			"0.6"
+			"knockback_duration"			"0.6"
 				"LinkedSpecialBonus"			"special_bonus_unique_huskar_fire_within_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_PERCENTAGE_ADD"
 		}
@@ -181,8 +163,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -197,8 +179,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -262,18 +244,15 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
 			"value"					"0"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cost"					"100"
+			"cost"					"100"
 		}
 	}
 	"special_bonus_unique_huskar_ignited_spears_2" 
@@ -281,8 +260,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_huskar_raging_berserker_effect"
 		
 		// Special
@@ -290,10 +269,7 @@
 		"AbilityValues"
 		{
 			"value"					"50"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cost"					"-100"
+			"cost"					"-100"
 		}
 	}
 	//=================================================================================================================
@@ -336,18 +312,15 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
 			"value"					"25"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"9"
+			"duration"				"9"
 		}
 	}
 	"special_bonus_unique_huskar_raging_berserker_2" 
@@ -355,8 +328,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedModifierName"			"modifier_huskar_raging_berserker_passive"
 		
 		// Special
@@ -390,10 +363,7 @@
 		"AbilityValues"
 		{
 			"chance"				"25"
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"350"
+			"radius"				"350"
 		}
 	}
 	//=================================================================================================================
@@ -490,18 +460,15 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
 			"value"					"2"
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"2"
+			"duration"				"2"
 		}
 	}
 	"special_bonus_unique_huskar_sunder_life_2" 
@@ -509,8 +476,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

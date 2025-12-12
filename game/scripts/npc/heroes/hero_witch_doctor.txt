@@ -57,22 +57,31 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"hero_duration"				"0.8"
+			"hero_duration"
+			{
+				"value"						"0.8"
 				"LinkedSpecialBonus"		"special_bonus_unique_witch_doctor_paralyzing_cask_2"
-			"creep_duration"			"3.0"
+			}
+			"creep_duration"
+			{
+				"value"			"3.0"
 				"LinkedSpecialBonus"		"special_bonus_unique_witch_doctor_paralyzing_cask_2"
 				"LinkedSpecialBonusField"	"value2"
-			"damage"					"40 80 120 160 170 180 190"
+			}
+			"damage"
+			{
+				"value"					"40 80 120 160 170 180 190"
 				"LinkedSpecialBonus"		"special_bonus_unique_witch_doctor_paralyzing_cask_1"
-			"heal"						"40 80 120 160 170 180 190"
+			}
+			"heal"
+			{
+				"value"						"40 80 120 160 170 180 190"
 				"LinkedSpecialBonus"		"special_bonus_unique_witch_doctor_paralyzing_cask_1"
+			}
 			"bounce_range"				"575"
 			"bounces"					"6 6 6 6 8 10 12"
 			"speed"						"1200"
-			"08"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"bounce_delay"				"0.3"
+			"bounce_delay"				"0.3"
 		}
 	}
 	//=================================================================================================================
@@ -83,8 +92,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -101,8 +110,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -160,20 +169,24 @@
 			{
 				"value"														"8 12 16 20 24 28 32"
 				"special_bonus_unique_witch_doctor_voodoo_restoration_1"	"-50%"
+			}
 			"radius"		
 			{
 				"value"														"500"
 				"special_bonus_unique_witch_doctor_voodoo_restoration_1"	"+100%"
+			}
 			"heal"															"16 24 32 40 40 40 40"
 			"damage"		
 			{
 				"value"														"32 48 64 80 80 80 80"
 				"special_bonus_unique_witch_doctor_voodoo_restoration_2"	"+20"
 				"CalculateSpellDamageTooltip"								"1"
+			}
 			"bonus_damage"		
 			{
 				"value"														"50 50 50 50 100 150 200"
 				"CalculateSpellDamageTooltip"								"0"
+			}
 			"tick_interval"													"0.2"
 		}
 	}
@@ -185,8 +198,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedAbilityName"				"witch_doctor_voodoo_restoration_bh"
 		
 		// Special
@@ -205,8 +218,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"LinkedAbilityName"				"witch_doctor_voodoo_restoration_bh"
 		
 		// Special
@@ -268,15 +281,18 @@
 			{
 				"value"											"7.5 7.5 7.5 7.5 10 12.5 15"
 				"CalculateSpellDamageTooltip"					"0"	
+			}
 			"burst_interval"									"4"
 			"base_damage"		
 			{
 				"value"											"10 20 30 40 50 60 70"
 				"special_bonus_unique_witch_doctor_maledict_2"	"x2"
+			}
 			"base_heal"		
 			{
 				"value"											"5 10 15 20 25 30 35"
 				"special_bonus_unique_witch_doctor_maledict_2"	"x2"
+			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -288,8 +304,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -307,8 +323,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -407,8 +423,11 @@
 			"damage"				"60 105 150 195 240 285"
 			"healing"				"30 52 75 97 120 142"
 			"base_attack_time"		"0.15"
-			"total_duration"		"6"
+			"total_duration"
+			{
+				"value"		"6"
 				"LinkedSpecialBonus"	"special_bonus_unique_witch_doctor_death_ward_2"
+			}
 		}
 	}
 	//=================================================================================================================
@@ -419,8 +438,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -437,8 +456,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
