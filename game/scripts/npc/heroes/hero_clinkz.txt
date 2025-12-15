@@ -306,7 +306,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"custom/doom_bringer_lvl_death"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------

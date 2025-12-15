@@ -11,9 +11,9 @@ end
 
 modifier_turtle_shell = class({})
 function modifier_turtle_shell:OnCreated()
-    self.blockPct = self:GetAbility():GetSpecialValueFor("damage_reduction_mult")
-    self.crit = self:GetAbility():GetSpecialValueFor("critical_chance")
-    self.heal = self:GetAbility():GetSpecialValueFor("critical_heal") / 100
+    self.blockPct = self:GetSpecialValueFor("damage_reduction_mult")
+    self.crit = self:GetSpecialValueFor("critical_chance")
+    self.heal = self:GetSpecialValueFor("critical_heal") / 100
     self.currBlock = 0
 end
 

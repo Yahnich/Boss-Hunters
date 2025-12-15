@@ -48,7 +48,7 @@ LinkLuaModifier( "modifier_brewmaster_drunken_haze_buff", "heroes/hero_brewmaste
 modifier_brewmaster_drunken_haze_buff = class({})
 
 function modifier_brewmaster_drunken_haze_buff:OnCreated()
-	self.miss = self:GetAbility():GetSpecialValueFor("scepter_evasion")
+	self.miss = self:GetSpecialValueFor("scepter_evasion")
 end
 
 function modifier_brewmaster_drunken_haze_buff:DeclareFunctions()
@@ -74,7 +74,7 @@ LinkLuaModifier( "modifier_brewmaster_drunken_haze_debuff", "heroes/hero_brewmas
 modifier_brewmaster_drunken_haze_debuff = class({})
 
 function modifier_brewmaster_drunken_haze_debuff:OnCreated()
-	self.miss = self:GetAbility():GetSpecialValueFor("miss_chance")
+	self.miss = self:GetSpecialValueFor("miss_chance")
 end
 
 function modifier_brewmaster_drunken_haze_debuff:DeclareFunctions()

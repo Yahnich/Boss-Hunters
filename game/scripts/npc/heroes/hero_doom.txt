@@ -40,10 +40,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"total_gold"						"50 100 150 200 220 240 260"
+			"total_gold"						"50 100 150 200 220 240 260"
 				"LinkedSpecialBonus"				"special_bonus_unique_doom_demons_bargain_1"
 				"LinkedSpecialBonusOperation"		"SPECIAL_BONUS_MULTIPLY"
 			"02"
@@ -51,10 +48,7 @@
 				"var_type"							"FIELD_FLOAT"
 				"regen"								"10 12.5 15 17.5 20 25 30 35"
 				"LinkedSpecialBonus"				"special_bonus_unique_doom_demons_bargain_2"
-			"03"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"duration"							"40"
+			"duration"							"40"
 			"04"
 			{
 				"var_type"							"FIELD_INTEGER"

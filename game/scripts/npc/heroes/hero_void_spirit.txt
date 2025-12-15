@@ -62,10 +62,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"impact_damage"				"90 150 210 270 330 390 450"
-			"10"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"pull_duration"				"1.2 1.4 1.6 1.8 2.0 2.2 2.4"
+			"pull_duration"				"1.2 1.4 1.6 1.8 2.0 2.2 2.4"
 			"11"
 			{
 				"var_type"					"FIELD_INTEGER"

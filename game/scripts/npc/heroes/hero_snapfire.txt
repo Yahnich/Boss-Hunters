@@ -381,10 +381,7 @@
 			"duration_tooltip"				"6.0"
 			"projectile_vision"				"500"
 			"turn_rate"						"75"
-			"09"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"burn_interval"					"0.5"
+			"burn_interval"					"0.5"
 			"10"
 			{
 				"var_type"						"FIELD_INTEGER"

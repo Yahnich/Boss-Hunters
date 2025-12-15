@@ -7,7 +7,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2227"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2227"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dusk_blade"
@@ -55,7 +55,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2228"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2228"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -78,7 +78,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2229"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2229"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dusk_blade"
@@ -119,7 +119,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2230"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2230"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -143,7 +143,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2231"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2231"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dusk_blade"
@@ -185,7 +185,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2232"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2232"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -209,7 +209,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2233"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2233"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dusk_blade"
@@ -251,7 +251,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2234"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2234"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -275,7 +275,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2235"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2235"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dusk_blade"
@@ -317,7 +317,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2236"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2236"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -342,7 +342,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2237"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2237"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dusk_blade"
@@ -385,7 +385,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2238"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2238"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -410,7 +410,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2239"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2239"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dusk_blade"
@@ -453,7 +453,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2240"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2240"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -477,7 +477,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2241"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2241"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dusk_blade"
@@ -520,7 +520,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2242"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2242"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -545,7 +545,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2243"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2243"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dusk_blade"

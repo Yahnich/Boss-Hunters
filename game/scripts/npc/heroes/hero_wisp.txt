@@ -158,10 +158,7 @@
 			"spirit_movement_rate"		"250"
 			"max_wisps"					"5"
 			"min_radius"				"100"
-			"09"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"wisp_regen_rate"			"1"
+			"wisp_regen_rate"			"1"
 			"10"
 			{
 				"var_type"					"FIELD_INTEGER"
@@ -319,7 +316,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityTextureName"			"wisp_spirits_out"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 	}
 
 	//=================================================================================================================
@@ -339,7 +336,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"custom/wisp_evil_tether"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

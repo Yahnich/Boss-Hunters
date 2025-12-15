@@ -1,13 +1,10 @@
 puck_phase_shift_ebf = class({})
 
 function puck_phase_shift_ebf:GetChannelTime()
-	self.duration = self:GetSpecialValueFor( "duration" )
-
-	if self:GetCaster():HasTalent("special_bonus_unique_puck_phase_shift_2") then
+	if self:GetSpecialValueFor( "no_channel" ) == 1 then
 		return nil
 	end
-
-	return self.duration
+	return self.self:GetSpecialValueFor( "duration" )
 end
 
 function puck_phase_shift_ebf:OnSpellStart()
@@ -25,14 +22,12 @@ modifier_puck_phase_shift_immune = class({})
 LinkLuaModifier("modifier_puck_phase_shift_immune", "heroes/hero_puck/puck_phase_shift_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_puck_phase_shift_immune:OnCreated()
-	self.regen = self:GetCaster():FindTalentValue("special_bonus_unique_puck_phase_shift_1")
-	if IsServer() then 
-		self:GetAbility():StartDelayedCooldown()
-	end
+	self:OnRefresh()
 end
 
 function modifier_puck_phase_shift_immune:OnRefresh()
-	self.regen = self:GetCaster():FindTalentValue("special_bonus_unique_puck_phase_shift_1")
+	self.regen = self:GetSpecialValueFor("max_hp_regen")
+	self.no_channel = self:GetSpecialValueFor("no_channel") == 1
 	if IsServer() then 
 		self:GetAbility():StartDelayedCooldown()
 	end
@@ -65,7 +60,7 @@ function modifier_puck_phase_shift_immune:DeclareFunctions()
 end
 
 function modifier_puck_phase_shift_immune:GetOverrideAnimation()
-	if not self:GetCaster():HasTalent("special_bonus_unique_puck_phase_shift_2") then return ACT_DOTA_VERSUS end
+	if not self.no_channel then return ACT_DOTA_VERSUS end
 end
 
 function modifier_puck_phase_shift_immune:OnAttackStart(params)

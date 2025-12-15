@@ -13,7 +13,7 @@ function relic_false_idol:OnIntervalThink()
 		local damage = math.floor( math.min( CalculateDistance( self.lastPos, self:GetParent():GetAbsOrigin() ), 1200 ) ) * self.damagePct
 		self.lastPos = self:GetParent():GetAbsOrigin()
 		if damage > 0 then
-			local flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL + DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK
+			local flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL + DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_BYPASSES_ALL_BLOCK 
 			self:GetAbility():DealDamage( self:GetParent(), self:GetParent(), damage, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = flags})
 		end
 	end

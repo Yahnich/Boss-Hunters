@@ -47,17 +47,17 @@ modifier_reaping_scythe_debuff = class({})
 
 function modifier_reaping_scythe_debuff:OnCreated()
 	if self.armor then
-		self.armor = math.min( self.armor, self:GetAbility():GetSpecialValueFor("armor_reduction") )
+		self.armor = math.min( self.armor, self:GetSpecialValueFor("armor_reduction") )
 	else
-		self.armor = self:GetAbility():GetSpecialValueFor("armor_reduction")
+		self.armor = self:GetSpecialValueFor("armor_reduction")
 	end
 end
 
 function modifier_reaping_scythe_debuff:OnRefresh()
 	if self.armor then
-		self.armor = math.min( self.armor, self:GetAbility():GetSpecialValueFor("armor_reduction") )
+		self.armor = math.min( self.armor, self:GetSpecialValueFor("armor_reduction") )
 	else
-		self.armor = self:GetAbility():GetSpecialValueFor("armor_reduction")
+		self.armor = self:GetSpecialValueFor("armor_reduction")
 	end
 end
 

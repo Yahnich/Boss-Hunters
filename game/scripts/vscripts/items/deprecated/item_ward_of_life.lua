@@ -21,17 +21,17 @@ end
 
 modifier_item_ward_of_life = class({})
 function modifier_item_ward_of_life:OnCreated()
-	self.block = self:GetAbility():GetSpecialValueFor("damage_block")
-	self.chance = self:GetAbility():GetSpecialValueFor("block_chance")
-	self.hp_regen = self:GetAbility():GetSpecialValueFor("bonus_health_regen")
-	self.hp = self:GetAbility():GetSpecialValueFor("bonus_hp")
-	self.str = self:GetAbility():GetSpecialValueFor("bonus_str")
-	self.agi = self:GetAbility():GetSpecialValueFor("bonus_agi")
-	self.int = self:GetAbility():GetSpecialValueFor("bonus_int")
+	self.block = self:GetSpecialValueFor("damage_block")
+	self.chance = self:GetSpecialValueFor("block_chance")
+	self.hp_regen = self:GetSpecialValueFor("bonus_health_regen")
+	self.hp = self:GetSpecialValueFor("bonus_hp")
+	self.str = self:GetSpecialValueFor("bonus_str")
+	self.agi = self:GetSpecialValueFor("bonus_agi")
+	self.int = self:GetSpecialValueFor("bonus_int")
 	
-	self.trigger = self:GetAbility():GetSpecialValueFor("max_hp_trigger")
-	self.duration = self:GetAbility():GetSpecialValueFor("buff_duration")
-	self.cd = self:GetAbility():GetSpecialValueFor("internal_cooldown")
+	self.trigger = self:GetSpecialValueFor("max_hp_trigger")
+	self.duration = self:GetSpecialValueFor("buff_duration")
+	self.cd = self:GetSpecialValueFor("internal_cooldown")
 end
 
 function modifier_item_ward_of_life:DeclareFunctions()

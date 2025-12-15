@@ -21,7 +21,7 @@ function modifier_boss18b_frenzy_thinker:OnCreated()
 	if IsServer() then
 		self.initHP = self:GetParent():GetHealth()
 		Timers:CreateTimer(function()
-			self:StartIntervalThink(self:GetParent():GetSecondsPerAttack())
+			self:StartIntervalThink(self:GetParent():GetSecondsPerAttack( false ))
 		end)
 	end
 end
@@ -37,7 +37,7 @@ function modifier_boss18b_frenzy_thinker:OnIntervalThink()
 	if caster:IsStunned() or caster:IsDisarmed() or caster:IsRooted() then return end
 	
 	local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), caster:GetAttackRange(), {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES} )
-	AddFOWViewer(DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), caster:GetAttackRange(), self:GetParent():GetSecondsPerAttack() + 0.1, false)
+	AddFOWViewer(DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), caster:GetAttackRange(), self:GetParent():GetSecondsPerAttack( false ) + 0.1, false)
 	for _, enemy in ipairs(enemies) do
 		caster:PerformGenericAttack(enemy, true)
 		ParticleManager:FireParticle("particles/units/heroes/hero_riki/riki_backstab.vpcf", PATTACH_POINT_FOLLOW, enemy)

@@ -22,16 +22,12 @@ end
 modifier_warlock_corruption_curse = class({})
 function modifier_warlock_corruption_curse:OnCreated(table)
 	self.damage = self:GetSpecialValueFor("damage")
+	self.damageAmp = self:GetSpecialValueFor("magic_resist_shift")
+	self.death_spread_radius = self:GetSpecialValueFor("death_spread_radius")
 	if IsServer() then 
 		EmitSoundOn("Hero_Warlock.ShadowWord", self:GetParent())
-		if self:GetCaster():HasTalent("special_bonus_unique_warlock_corruption_curse_2") then
-			if self:GetParent():IsSameTeam( self:GetCaster() ) then
-				self.damageAmp = 1 - self:GetCaster():FindTalentValue("special_bonus_unique_warlock_corruption_curse_2") / 100
-			else
-				self.damageAmp = 1 + self:GetCaster():FindTalentValue("special_bonus_unique_warlock_corruption_curse_2") / 100
-			end
-		else
-			self.damageAmp = 0
+		if self:GetParent():IsSameTeam( self:GetCaster() ) then
+			self.damageAmp = -self.damageAmp
 		end
 		self:StartIntervalThink(1) 
 	end
@@ -64,13 +60,20 @@ function modifier_warlock_corruption_curse:OnDeath(params)
 	if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
-		if params.unit == parent and ( not parent:IsMinion() or parent:IsRealHero() ) then
+		if params.unit == parent then
+			if self.death_spread_radius > 0 then
+				local enemies = caster:FindAllUnitsInRadius(parent:GetAbsOrigin(), self.death_spread_radius )
+				for _,enemy in pairs(enemies) do
+					enemy:AddNewModifier(caster, self:GetAbility(), "modifier_warlock_corruption_curse", {Duration = self:GetSpecialValueFor("duration")})
+				end
+			end
+			if not ( not parent:IsMinion() or parent:IsRealHero() ) then return end
 			local summon = caster:FindAbilityByName("warlock_summon_imp")
 			if summon then
 				local imp = summon:SummonImp( parent:GetAbsOrigin() )
 			end
-			if caster:HasTalent("special_bonus_unique_warlock_corruption_curse_1") then
-				local enemies = caster:FindAllUnitsInRadius(parent:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_warlock_corruption_curse_1"))
+			if self.death_spread_radius > 0 then
+				local enemies = caster:FindAllUnitsInRadius(parent:GetAbsOrigin(), self.death_spread_radius )
 				for _,enemy in pairs(enemies) do
 					enemy:AddNewModifier(caster, self:GetAbility(), "modifier_warlock_corruption_curse", {Duration = self:GetSpecialValueFor("duration")})
 				end

@@ -142,8 +142,8 @@ LinkLuaModifier( "modifier_frostfire_brand_debuff", "items/item_frostfire_brand.
 modifier_frostfire_brand_debuff = class({})
 
 function modifier_frostfire_brand_debuff:OnCreated()
-	self.slow = self:GetAbility():GetSpecialValueFor("slow")
-	self.blind = self:GetAbility():GetSpecialValueFor("blind")
+	self.slow = self:GetSpecialValueFor("slow")
+	self.blind = self:GetSpecialValueFor("blind")
 	if IsServer() then
 		self:StartIntervalThink(1)
 	end
@@ -154,7 +154,7 @@ function modifier_frostfire_brand_debuff:OnIntervalThink()
 	if statOwner:IsIllusion() then
 		statOwner = statOwner:GetOwnerEntity()
 	end
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetAbility():GetSpecialValueFor("base_damage") + statOwner:GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage") / 100, {damage_type = DAMAGE_TYPE_MAGICAL})
+	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetSpecialValueFor("base_damage") + statOwner:GetPrimaryStatValue() * self:GetSpecialValueFor("damage") / 100, {damage_type = DAMAGE_TYPE_MAGICAL})
 end
 
 function modifier_frostfire_brand_debuff:DeclareFunctions()

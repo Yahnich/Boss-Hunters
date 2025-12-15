@@ -4,7 +4,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2132"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2132"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_robes_of_revival"
@@ -42,7 +42,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2133"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2133"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -65,7 +65,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2134"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2134"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_robes_of_revival"
@@ -110,7 +110,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2135"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2135"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -134,7 +134,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2136"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2136"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_robes_of_revival"
@@ -179,7 +179,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2137"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2137"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -203,7 +203,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2138"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2138"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_robes_of_revival"
@@ -248,7 +248,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2139"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2139"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -272,7 +272,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2140"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2140"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_robes_of_revival"
@@ -317,7 +317,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2141"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2141"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -342,7 +342,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2142"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2142"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_robes_of_revival"
@@ -388,7 +388,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2143"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2143"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -413,7 +413,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2144"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2144"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_robes_of_revival"
@@ -459,7 +459,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2145"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2145"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -483,7 +483,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2146"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2146"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_robes_of_revival"
@@ -529,7 +529,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2147"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2147"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -554,7 +554,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2148"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2148"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_robes_of_revival"

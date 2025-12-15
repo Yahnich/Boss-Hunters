@@ -7,7 +7,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2028"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2028"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_penitent_mail"
@@ -57,7 +57,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2029"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2029"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -80,7 +80,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2030"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2030"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_penitent_mail"
@@ -130,7 +130,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2031"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2031"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -154,7 +154,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2032"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2032"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_penitent_mail"
@@ -204,7 +204,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2033"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2033"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -228,7 +228,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2034"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2034"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_penitent_mail"
@@ -278,7 +278,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2035"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2035"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -302,7 +302,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2036"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2036"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_penitent_mail"
@@ -352,7 +352,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2037"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2037"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -377,7 +377,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2038"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2038"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_penitent_mail"
@@ -428,7 +428,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2039"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2039"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -453,7 +453,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2040"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2040"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_penitent_mail"
@@ -504,7 +504,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2041"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2041"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -529,7 +529,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2042"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2042"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_penitent_mail"
@@ -580,7 +580,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2043"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2043"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -605,7 +605,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2044"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2044"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_penitent_mail"

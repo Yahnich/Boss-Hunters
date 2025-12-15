@@ -69,7 +69,7 @@ LinkLuaModifier( "modifier_luna_nightsilver_resolve_strengthen", "heroes/hero_lu
 modifier_luna_nightsilver_resolve_strengthen = class({})
 
 function modifier_luna_nightsilver_resolve_strengthen:OnCreated()
-	self.weaken = self:GetAbility():GetSpecialValueFor("spear_weaken") * (-1)
+	self.weaken = self:GetSpecialValueFor("spear_weaken") * (-1)
 end
 
 function modifier_luna_nightsilver_resolve_strengthen:DeclareFunctions()
@@ -87,7 +87,7 @@ LinkLuaModifier( "modifier_luna_nightsilver_resolve_weaken", "heroes/hero_luna/l
 modifier_luna_nightsilver_resolve_weaken = class({})
 
 function modifier_luna_nightsilver_resolve_weaken:OnCreated()
-	self.weaken = self:GetAbility():GetSpecialValueFor("spear_weaken")
+	self.weaken = self:GetSpecialValueFor("spear_weaken")
 end
 
 function modifier_luna_nightsilver_resolve_weaken:DeclareFunctions()

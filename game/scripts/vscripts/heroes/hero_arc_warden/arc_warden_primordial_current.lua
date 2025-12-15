@@ -62,8 +62,8 @@ modifier_arc_warden_primordial_current = class({})
 
 function modifier_arc_warden_primordial_current:OnCreated(kv)
 	self.duration = self:GetRemainingTime()
-	self.damage = self:GetAbility():GetSpecialValueFor("total_damage")
-	self.tick = self:GetAbility():GetSpecialValueFor("tick_interval")
+	self.damage = self:GetSpecialValueFor("total_damage")
+	self.tick = self:GetSpecialValueFor("tick_interval")
 
 	EmitSoundOn("Ability.static.loop", self:GetParent())
 

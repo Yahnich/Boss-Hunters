@@ -31,7 +31,7 @@ function modifier_juggernaut_mirror_blades:OnRefresh()
 	self.tick = self:GetSpecialValueFor("damage_tick")
 	self.dmg = self:GetSpecialValueFor("damage_reduction")
 	
-	self.ms = caster:FindTalentValue("special_bonus_unique_juggernaut_mirror_blades_2", "value2")
+	self.ms = self:GetSpecialValueFor("bonus_movement_speed")
 	
 	if IsServer() then
 		self:StartIntervalThink(self.tick)

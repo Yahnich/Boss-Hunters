@@ -97,11 +97,11 @@ end
 modifier_item_ogre_seal_totem = class(itemBaseClass)
 
 function modifier_item_ogre_seal_totem:OnCreated( kv )
-	self.bonus_strength = self:GetAbility():GetSpecialValueFor( "bonus_strength" )
-	self.bonus_hp = self:GetAbility():GetSpecialValueFor( "bonus_hp" )
-	self.hpPerStr = self:GetAbility():GetSpecialValueFor( "hp_per_str" )
-	self.regen = self:GetAbility():GetSpecialValueFor( "bonus_hp_regen" )
-	self.bonus_mana = self:GetAbility():GetSpecialValueFor( "bonus_mana" )
+	self.bonus_strength = self:GetSpecialValueFor( "bonus_strength" )
+	self.bonus_hp = self:GetSpecialValueFor( "bonus_hp" )
+	self.hpPerStr = self:GetSpecialValueFor( "hp_per_str" )
+	self.regen = self:GetSpecialValueFor( "bonus_hp_regen" )
+	self.bonus_mana = self:GetSpecialValueFor( "bonus_mana" )
 end
 
 function modifier_item_ogre_seal_totem:DeclareFunctions()

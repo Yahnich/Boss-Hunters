@@ -310,7 +310,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/rubick_spell_echo"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------

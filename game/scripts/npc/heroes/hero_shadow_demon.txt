@@ -296,7 +296,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/ms_shadow_walk"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		"precache"
 		{

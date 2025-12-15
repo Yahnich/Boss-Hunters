@@ -4,7 +4,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2210"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2210"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"
@@ -44,7 +44,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2211"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2211"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -67,7 +67,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2212"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2212"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"
@@ -106,7 +106,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2213"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2213"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -130,7 +130,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2214"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2214"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"
@@ -170,7 +170,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2215"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2215"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -194,7 +194,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2216"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2216"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"
@@ -234,7 +234,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2217"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2217"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -258,7 +258,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2218"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2218"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"
@@ -298,7 +298,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2219"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2219"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -323,7 +323,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2220"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2220"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"
@@ -364,7 +364,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2221"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2221"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -389,7 +389,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2222"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2222"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"
@@ -430,7 +430,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2223"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2223"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -454,7 +454,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2224"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2224"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"
@@ -495,7 +495,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2225"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2225"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -520,7 +520,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2226"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2226"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"

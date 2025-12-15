@@ -4,7 +4,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2548"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2548"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_battlemaster_staff"
@@ -42,7 +42,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2549"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2549"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -65,7 +65,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2550"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2550"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_battlemaster_staff"
@@ -104,7 +104,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2551"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2551"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -128,7 +128,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2552"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2552"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_battlemaster_staff"
@@ -168,7 +168,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2553"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2553"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -192,7 +192,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2554"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2554"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_battlemaster_staff"
@@ -231,7 +231,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2555"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2555"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -255,7 +255,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2556"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2556"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_battlemaster_staff"
@@ -294,7 +294,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2557"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2557"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -319,7 +319,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2558"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2558"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_battlemaster_staff"
@@ -359,7 +359,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2559"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2559"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -384,7 +384,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2560"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2560"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_battlemaster_staff"
@@ -424,7 +424,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2561"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2561"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -448,7 +448,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2562"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2562"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_battlemaster_staff"
@@ -488,7 +488,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2563"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2563"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -513,7 +513,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2564"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2564"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"BaseClass"						"item_lua"

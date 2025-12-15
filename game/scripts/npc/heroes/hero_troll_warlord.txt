@@ -164,10 +164,7 @@
 				"LinkedSpecialBonusField"	"value2"
 			"axe_spread"				"25"
 			"axe_count"					"5"
-			"09"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"scepter_cdr"				"-5"
+			"scepter_cdr"				"-5"
 				"RequiresScepter"			"1"
 		}
 	}
@@ -343,7 +340,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilitySound"					"Hero_TrollWarlord.BerserkersRage.Toggle"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		"precache"
 		{

@@ -830,35 +830,6 @@ function RoundManager:RegisterStatsForHero( hero, bWon )
 		if bWon then
 			wins = wins + 1
 		end
-		putData.scepter = {}
-		decoded.scepter = decoded.scepter or {}
-		putData.scepter.plays = (decoded.scepter.plays or 0)
-		putData.scepter.wins = (decoded.scepter.wins or 0)
-		if hero:HasScepter() then
-			putData.scepter.plays = putData.scepter.plays + 1
-			if bWon then
-				putData.scepter.wins = putData.scepter.wins + 1
-			end
-		end
-		putData.talents = {}
-		for i = 0, hero:GetAbilityCount() - 1 do
-			local ability = hero:GetAbilityByIndex( i )
-			if ability and ability:GetClassname() == "special_bonus_undefined" then
-				local talent = ability:GetAbilityName()
-				putData.talents[talent] = {}
-				local talentData = decoded.talents[talent] or {}
-				local talentPlays = (talentData.plays or 0)
-				local talentWins = (talentData.wins or 0)
-				if ability:GetLevel() > 0 then
-					talentPlays = talentPlays + 1
-					if bWon then
-						talentWins = talentWins + 1
-					end
-				end
-				putData.talents[talent].wins = talentWins
-				putData.talents[talent].plays = talentPlays
-			end
-		end
 		
 		putData.plays = (decoded.plays or 0) + 1
 		putData.wins = wins

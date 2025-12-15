@@ -36,12 +36,12 @@ LinkLuaModifier( "modifier_obsidian_destroyer_astral_isolation_int_gain", "heroe
 modifier_obsidian_destroyer_astral_isolation_int_gain = class({})
 
 function modifier_obsidian_destroyer_astral_isolation_int_gain:OnCreated()
-	self.intgain = self:GetAbility():GetSpecialValueFor("int_gain")
+	self.intgain = self:GetSpecialValueFor("int_gain")
 	if IsServer() then
 		self.buff = ParticleManager:CreateParticle("particles/obsidian_imprisonment_buff.vpcf", PATTACH_ABSORIGIN_FOLLOW , self:GetParent())
 			ParticleManager:SetParticleControl(self.buff, 0, self:GetParent():GetAbsOrigin())
 			ParticleManager:SetParticleControlEnt(self.buff, 12, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetParent():GetAbsOrigin(), true)
-		self.expireTime = self:GetAbility():GetSpecialValueFor("steal_duration")
+		self.expireTime = self:GetSpecialValueFor("steal_duration")
 		self.intTable = {}
 		table.insert(self.intTable, GameRules:GetGameTime())
 		self:StartIntervalThink(0.1)
@@ -49,7 +49,7 @@ function modifier_obsidian_destroyer_astral_isolation_int_gain:OnCreated()
 end
 
 function modifier_obsidian_destroyer_astral_isolation_int_gain:OnRefresh()
-	self.intgain = self:GetAbility():GetSpecialValueFor("int_gain")
+	self.intgain = self:GetSpecialValueFor("int_gain")
 	if IsServer() then
 		table.insert(self.intTable, GameRules:GetGameTime())
 	end

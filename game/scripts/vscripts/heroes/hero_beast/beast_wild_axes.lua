@@ -134,7 +134,7 @@ function modifier_beast_wild_axes:OnAttackStart(params)
 	if self:GetCaster():HasModifier("modifier_cotw_hawk_spirit") 
 	and params.attacker:IsSameTeam( self:GetCaster() ) 
 	and params.target == self:GetParent() then
-		params.attacker:AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_beast_wild_axes_hawk", {duration = params.attacker:GetSecondsPerAttack() + 0.1} ):SetStackCount( self.amp * self:GetStackCount() )
+		params.attacker:AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_beast_wild_axes_hawk", {duration = params.attacker:GetSecondsPerAttack( false ) + 0.1} ):SetStackCount( self.amp * self:GetStackCount() )
 	end
 end
 

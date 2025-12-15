@@ -21,10 +21,10 @@ end
 
 modifier_item_angelic_guard = class({})
 function modifier_item_angelic_guard:OnCreated()
-	self.block = self:GetAbility():GetSpecialValueFor("damage_block")
-	self.chance = self:GetAbility():GetSpecialValueFor("block_chance")
-	self.hp_regen = self:GetAbility():GetSpecialValueFor("bonus_health_regen")
-	self.spell_amp = self:GetAbility():GetSpecialValueFor("bonus_spell_amp")
+	self.block = self:GetSpecialValueFor("damage_block")
+	self.chance = self:GetSpecialValueFor("block_chance")
+	self.hp_regen = self:GetSpecialValueFor("bonus_health_regen")
+	self.spell_amp = self:GetSpecialValueFor("bonus_spell_amp")
 end
 
 function modifier_item_angelic_guard:DeclareFunctions()

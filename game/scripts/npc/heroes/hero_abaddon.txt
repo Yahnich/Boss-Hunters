@@ -292,7 +292,7 @@
 		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"		"abaddon_frostmourne"
 		"MaxLevel"					"1"
-		"InnateAbility"				"1"
+		"Innate"				"1"
 		
 		"LinkedTalents"
 		{

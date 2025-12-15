@@ -290,7 +290,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"monkey_king_mischief"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -316,7 +316,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityTextureName"			"monkey_king_tree_dance"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

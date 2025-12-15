@@ -12,9 +12,9 @@ function modifier_venomancer_poison_sting_handler:OnCreated()
 end
 
 function modifier_venomancer_poison_sting_handler:OnRefresh()
-	self.duration = self:GetAbility():GetSpecialValueFor("duration")
-	self.initial = self:GetAbility():GetSpecialValueFor("initial_stacks")
-	self.ward = self:GetAbility():GetSpecialValueFor("ward_power")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.initial = self:GetSpecialValueFor("initial_stacks")
+	self.ward = self:GetSpecialValueFor("ward_power")
 	
 	self.talent1 = self:GetParent():HasTalent("special_bonus_unique_venomancer_poison_sting_1")
 	self.talent1Val = self:GetParent():FindTalentValue("special_bonus_unique_venomancer_poison_sting_1")
@@ -87,8 +87,8 @@ function modifier_venomancer_poison_sting_cancer:OnCreated()
 end
 
 function modifier_venomancer_poison_sting_cancer:OnRefresh()
-	self.damage = self:GetAbility():GetSpecialValueFor("damage_stack")
-	self.slow = self:GetAbility():GetSpecialValueFor("ms_stack")
+	self.damage = self:GetSpecialValueFor("damage_stack")
+	self.slow = self:GetSpecialValueFor("ms_stack")
 	
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_venomancer_poison_sting_2")
 	self.talent2Val = self:GetCaster():FindTalentValue("special_bonus_unique_venomancer_poison_sting_2")

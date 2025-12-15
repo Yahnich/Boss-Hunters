@@ -271,7 +271,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"hoodwink_decoy"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -341,14 +341,8 @@
 				"LinkedSpecialBonus"		"special_bonus_unique_hoodwink_sharpshooter_1"
 			"recoil_distance"			"350"
 			"recoil_height"				"75"
-			"09"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"recoil_duration"			"0.4"
-			"10"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"max_slow_debuff_duration"	"6.0"
+			"recoil_duration"			"0.4"
+			"max_slow_debuff_duration"	"6.0"
 			"11"
 			{
 				"var_type"					"FIELD_FLOAT"

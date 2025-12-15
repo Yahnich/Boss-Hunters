@@ -7,7 +7,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2062"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2062"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_boots_of_speed"
@@ -45,7 +45,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2063"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2063"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -68,7 +68,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2064"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2064"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_boots_of_speed"
@@ -107,7 +107,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2065"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2065"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -131,7 +131,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2066"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2066"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_boots_of_speed"
@@ -170,7 +170,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2067"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2067"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -194,7 +194,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2068"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2068"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_boots_of_speed"
@@ -233,7 +233,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2069"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2069"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -257,7 +257,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2070"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2070"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_boots_of_speed"
@@ -296,7 +296,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2071"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2071"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -321,7 +321,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2072"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2072"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_boots_of_speed"
@@ -361,7 +361,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2073"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2073"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -386,7 +386,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2074"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2074"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_boots_of_speed"
@@ -426,7 +426,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2075"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2075"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -451,7 +451,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2076"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2076"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_boots_of_speed"
@@ -491,7 +491,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2077"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2077"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -516,7 +516,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2078"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2078"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_boots_of_speed"

@@ -4,7 +4,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2193"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2193"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_sanguine_mask"
@@ -41,7 +41,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2194"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2194"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -64,7 +64,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2195"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2195"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_sanguine_mask"
@@ -101,7 +101,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2196"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2196"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -125,7 +125,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2197"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2197"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_sanguine_mask"
@@ -163,7 +163,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2198"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2198"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -187,7 +187,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2199"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2199"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_sanguine_mask"
@@ -225,7 +225,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2200"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2200"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -249,7 +249,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2201"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2201"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_sanguine_mask"
@@ -287,7 +287,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2202"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2202"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -312,7 +312,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2203"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2203"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_sanguine_mask"
@@ -351,7 +351,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2204"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2204"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -376,7 +376,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2205"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2205"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_sanguine_mask"
@@ -415,7 +415,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2206"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2206"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -439,7 +439,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2207"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2207"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_sanguine_mask"
@@ -478,7 +478,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2208"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2208"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -503,7 +503,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2209"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2209"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_sanguine_mask"

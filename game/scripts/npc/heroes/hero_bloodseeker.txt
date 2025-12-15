@@ -308,14 +308,11 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/Blood_Seeker_Blood_Smell"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 	
 		"AbilityValues"
 	    {
-	        "01"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "lifesteal"				"20"
+	        "lifesteal"				"20"
 	    }
 	}
 

@@ -78,15 +78,15 @@ end
 modifier_ta_trap = class({})
 
 function modifier_ta_trap:OnCreated()
-	self.minDmg = self:GetAbility():GetSpecialValueFor("damage_min_tooltip")
-	self.minSlow = self:GetAbility():GetSpecialValueFor("movement_speed_min_tooltip")
-	self.maxDmg = self:GetAbility():GetSpecialValueFor("damage_max_tooltip")
-	self.maxSlow = self:GetAbility():GetSpecialValueFor("movement_speed_max_tooltip")
+	self.minDmg = self:GetSpecialValueFor("damage_min_tooltip")
+	self.minSlow = self:GetSpecialValueFor("movement_speed_min_tooltip")
+	self.maxDmg = self:GetSpecialValueFor("damage_max_tooltip")
+	self.maxSlow = self:GetSpecialValueFor("movement_speed_max_tooltip")
 
 	if IsServer() then	
 		self.timer = 0
-		self.maxTimer = self:GetAbility():GetSpecialValueFor("total_tick_time")
-		self.tick = self:GetAbility():GetSpecialValueFor("tick_rate")
+		self.maxTimer = self:GetSpecialValueFor("total_tick_time")
+		self.tick = self:GetSpecialValueFor("tick_rate")
 		self.dmgPerTick = ( (self.maxDmg - self.minDmg) * self.tick ) / self.maxTimer
 		self.slowPerTick = ( (self.maxSlow - self.minSlow) * self.tick ) / self.maxTimer
 		if self:GetCaster():HasScepter() then

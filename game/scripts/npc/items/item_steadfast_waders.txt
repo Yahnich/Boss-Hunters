@@ -7,7 +7,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2591"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2591"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -30,7 +30,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2592"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2592"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_steadfast_waders"
@@ -68,7 +68,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2593"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2593"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -92,7 +92,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2594"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2594"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_steadfast_waders"
@@ -131,7 +131,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2595"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2595"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -155,7 +155,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2596"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2596"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_steadfast_waders"
@@ -194,7 +194,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2597"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2597"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -218,7 +218,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2598"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2598"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_steadfast_waders"
@@ -257,7 +257,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2599"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2599"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -282,7 +282,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2600"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2600"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_steadfast_waders"
@@ -321,7 +321,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2601"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2601"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -346,7 +346,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2602"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2602"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_steadfast_waders"
@@ -383,7 +383,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2603"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2603"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -408,7 +408,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2604"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2604"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_steadfast_waders"

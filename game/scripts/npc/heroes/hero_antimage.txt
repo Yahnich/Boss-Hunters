@@ -227,7 +227,7 @@
 		"AbilityTextureName"			"custom/antimage_ender_of_magic"
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"                      "1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

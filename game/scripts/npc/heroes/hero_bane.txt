@@ -277,7 +277,7 @@
 		"AbilitySound"					"Hero_Bane.Enfeeble"
 		"AbilityTextureName"			"custom/bane_terrorize"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

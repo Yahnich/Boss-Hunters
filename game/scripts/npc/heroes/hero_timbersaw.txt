@@ -209,10 +209,7 @@
 			{
 				"var_type"							"FIELD_FLOAT"
 				"stack_duration"					"10 13 16 19 22 25 28"
-			"03"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"stack_limit"						"20"
+			"stack_limit"						"20"
 				"LinkedSpecialBonus"				"special_bonus_unique_timbersaw_reactive_1"
 		}
 	}
@@ -257,7 +254,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"shredder_return_chakram"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"							
+		"Innate"					"1"							
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

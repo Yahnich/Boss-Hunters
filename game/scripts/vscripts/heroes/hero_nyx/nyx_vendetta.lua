@@ -60,7 +60,7 @@ end
 function modifier_nyx_vendetta:OnAttackStart(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() then
-			StartAnimation(self:GetParent(), {duration=self:GetParent():GetSecondsPerAttack(), activity=ACT_DOTA_ATTACK, rate= 1.7 / self:GetParent():GetSecondsPerAttack(), translate="vendetta"})
+			StartAnimation(self:GetParent(), {duration=self:GetParent():GetSecondsPerAttack( false ), activity=ACT_DOTA_ATTACK, rate= 1.7 / self:GetParent():GetSecondsPerAttack( false ), translate="vendetta"})
 		end
 	end
 end

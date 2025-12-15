@@ -7,7 +7,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2577"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2577"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -30,7 +30,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2578"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2578"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_phantom_slippers"
@@ -69,7 +69,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2579"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2579"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -93,7 +93,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2580"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2580"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_phantom_slippers"
@@ -134,7 +134,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2581"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2581"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -158,7 +158,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2582"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2582"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_phantom_slippers"
@@ -199,7 +199,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2583"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2583"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -223,7 +223,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2584"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2584"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_phantom_slippers"
@@ -264,7 +264,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2585"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2585"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -289,7 +289,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2586"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2586"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_phantom_slippers"
@@ -331,7 +331,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2587"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2587"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -356,7 +356,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2588"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2588"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_phantom_slippers"
@@ -395,7 +395,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2589"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2589"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -420,7 +420,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2590"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2590"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_phantom_slippers"

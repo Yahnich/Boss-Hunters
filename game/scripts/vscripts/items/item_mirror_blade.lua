@@ -28,7 +28,7 @@ item_mirror_blade_9 = class(item_mirror_blade)
 modifier_item_mirror_blade = class(itemBasicBaseClass)
 LinkLuaModifier( "modifier_item_mirror_blade", "items/item_mirror_blade.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_item_mirror_blade:OnCreatedSpecific()
-	self.duration = self:GetAbility():GetSpecialValueFor("duration")
+	self.duration = self:GetSpecialValueFor("duration")
 end
 
 function modifier_item_mirror_blade:DeclareFunctions()

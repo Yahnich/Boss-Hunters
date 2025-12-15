@@ -286,7 +286,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"chen_test_of_faith"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		"HasScepterUpgrade"				"1"
 	
 		// Precache
@@ -536,7 +536,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityTextureName"			"chen_holy_persuasion"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		"HasScepterUpgrade"				"1"
 	
 		// Precache

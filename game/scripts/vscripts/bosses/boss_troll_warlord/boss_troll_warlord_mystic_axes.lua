@@ -43,7 +43,7 @@ function modifier_boss_troll_warlord_mystic_axes:OnIntervalThink()
 	end
 	local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self:GetSpecialValueFor("axe_radius"))
 	for _,enemy in pairs(enemies) do
-		self:GetAbility():DealDamage(parent, enemy, self.damage, {damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_BLOCK}, 0)
+		self:GetAbility():DealDamage(parent, enemy, self.damage, {damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_ALL_BLOCK }, 0)
 	end
 	if not caster:IsAlive() then
 		parent:Destroy()

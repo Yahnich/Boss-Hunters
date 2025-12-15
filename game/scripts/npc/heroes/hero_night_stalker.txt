@@ -203,14 +203,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"bonus_movement_speed_pct_night"	"20 25 30 35 40 45 50"
-			"02"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"bonus_attack_speed_night"			"30 60 90 120 150 180 210"
+			"bonus_movement_speed_pct_night"	"20 25 30 35 40 45 50"
+			"bonus_attack_speed_night"			"30 60 90 120 150 180 210"
 			"03"
 			{
 				"var_type"							"FIELD_FLOAT"
@@ -262,7 +256,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/night_stalker_stalkers_eyes"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 	}
 	//=================================================================================================================
 	// Night Stalker: dark_ascension

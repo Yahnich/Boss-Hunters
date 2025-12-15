@@ -263,7 +263,7 @@
 		}
 	
 	    "PiercesDisableReduction"		"1"
-	    "InnateAbility"					"1"
+	    "Innate"					"1"
 	
 	    "AbilityCastRange"				"1500"
 	

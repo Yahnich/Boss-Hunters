@@ -88,7 +88,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2519"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2519"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_cuirass_of_war"
@@ -126,7 +126,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2520"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2520"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -150,7 +150,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2521"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2521"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_cuirass_of_war"
@@ -187,7 +187,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2522"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2522"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -211,7 +211,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2523"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2523"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_cuirass_of_war"
@@ -249,7 +249,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2524"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2524"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -274,7 +274,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2525"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2525"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_cuirass_of_war"
@@ -312,7 +312,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2526"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2526"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -337,7 +337,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2527"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2527"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_cuirass_of_war"
@@ -376,7 +376,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2528"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2528"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -400,7 +400,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2529"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2529"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_cuirass_of_war"
@@ -439,7 +439,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2530"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2530"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -464,7 +464,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2531"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2531"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_cuirass_of_war"

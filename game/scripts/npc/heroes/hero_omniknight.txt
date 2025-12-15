@@ -267,7 +267,7 @@
 		"AbilityTextureName"			"custom/omniknight_lightbringer"
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

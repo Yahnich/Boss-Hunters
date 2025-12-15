@@ -1,7 +1,7 @@
 boss1b_spear_pierce = class({})
 
 function boss1b_spear_pierce:GetCooldown(nLevel)
-	return self:GetCaster():GetSecondsPerAttack()
+	return self:GetCaster():GetSecondsPerAttack( false )
 end
 
 function boss1b_spear_pierce:OnAbilityPhaseStart()

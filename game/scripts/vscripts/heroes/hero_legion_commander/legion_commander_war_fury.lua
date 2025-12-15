@@ -56,7 +56,7 @@ LinkLuaModifier( "modifier_legion_commander_war_fury_thinker", "heroes/hero_legi
 modifier_legion_commander_war_fury_thinker = class({})
 
 function modifier_legion_commander_war_fury_thinker:OnCreated( kv )
-	self.aura_radius = self:GetAbility():GetSpecialValueFor( "radius" )
+	self.aura_radius = self:GetSpecialValueFor( "radius" )
 	if IsServer() then
 		EmitSoundOn("Hero_LegionCommander.Duel",self:GetCaster())
 		self:GetCaster().warFuryAuraEntity = self:GetParent()
@@ -124,10 +124,10 @@ LinkLuaModifier( "modifier_legion_commander_war_fury_buff", "heroes/hero_legion_
 modifier_legion_commander_war_fury_buff = class({})
 
 function modifier_legion_commander_war_fury_buff:OnCreated()
-	self.bonusDamage = self:GetAbility():GetSpecialValueFor("bonus_damage_aura")
-	self.hp_regen = self:GetAbility():GetSpecialValueFor("hp_regen")
-	self.dmg_reduction = -self:GetAbility():GetSpecialValueFor("damage_resist")
-	self.ally_bonus = self:GetAbility():GetSpecialValueFor("ally_bonus") / 100
+	self.bonusDamage = self:GetSpecialValueFor("bonus_damage_aura")
+	self.hp_regen = self:GetSpecialValueFor("hp_regen")
+	self.dmg_reduction = -self:GetSpecialValueFor("damage_resist")
+	self.ally_bonus = self:GetSpecialValueFor("ally_bonus") / 100
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_legion_commander_war_fury_1")
 	if self:GetParent() ~= self:GetCaster() then
 		self.bonusDamage = self.bonusDamage * self.ally_bonus

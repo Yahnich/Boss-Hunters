@@ -7,7 +7,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"7093"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7093"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -30,7 +30,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"7094"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7094"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"BaseClass"						"item_lua"

@@ -4,7 +4,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2115"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2115"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_fortress_shield"
@@ -42,7 +42,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2116"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2116"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -65,7 +65,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2117"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2117"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_fortress_shield"
@@ -105,7 +105,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2118"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2118"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -129,7 +129,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2119"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2119"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_fortress_shield"
@@ -173,7 +173,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2120"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2120"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -197,7 +197,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2121"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2121"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_fortress_shield"
@@ -238,7 +238,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2122"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2122"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -262,7 +262,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2123"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2123"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_fortress_shield"
@@ -303,7 +303,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2124"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2124"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -328,7 +328,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2125"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2125"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_fortress_shield"
@@ -370,7 +370,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2126"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2126"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -395,7 +395,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2127"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2127"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_fortress_shield"
@@ -437,7 +437,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2128"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2128"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -461,7 +461,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2129"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2129"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_fortress_shield"
@@ -503,7 +503,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2130"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2130"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -528,7 +528,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2131"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2131"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_fortress_shield"

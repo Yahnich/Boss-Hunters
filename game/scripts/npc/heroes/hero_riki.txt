@@ -8,7 +8,7 @@
 		"ScriptFile"					"heroes/hero_riki/riki_cloak.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"riki_permanent_invisibility"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		"MaxLevel"						"1"
 		"HasScepterUpgrade"				"1"
 	

@@ -7,7 +7,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"4589"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"4589"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe_assault"
@@ -30,7 +30,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"4590"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"4590"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dark_ones_blessing"

@@ -276,7 +276,7 @@
 		"AbilityTextureName"			"earthshaker_aftershock"
 		"LevelsBetweenUpgrades"			"1"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		"HasScepterUpgrade"				"1"
 
 		// Special

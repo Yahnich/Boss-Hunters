@@ -17,8 +17,8 @@ LinkLuaModifier( "modifier_vile_archmage_runic_coil_thinker", "bosses/boss_vile_
 modifier_vile_archmage_runic_coil_thinker = class({})
 
 function modifier_vile_archmage_runic_coil_thinker:OnCreated( kv )
-	self.radius = self:GetAbility():GetSpecialValueFor( "radius" )
-	self.dmg_mult = self:GetAbility():GetSpecialValueFor( "dmg_mult" )
+	self.radius = self:GetSpecialValueFor( "radius" )
+	self.dmg_mult = self:GetSpecialValueFor( "dmg_mult" )
 end
 
 function modifier_vile_archmage_runic_coil_thinker:OnDestroy( kv )

@@ -53,7 +53,7 @@ function modifier_juggernaut_dance_of_blades:OnCreated()
 	if IsServer() then
 		caster:RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
 		self.rate = self:GetSpecialValueFor("bounce_rate")
-		self.tick = caster:GetSecondsPerAttack() / self.rate
+		self.tick = caster:GetSecondsPerAttack( false ) / self.rate
 		caster:StartGestureWithPlaybackRate(ACT_DOTA_OVERRIDE_ABILITY_4, 0.5/self.tick)
 		self:StartIntervalThink( self.tick )
 	end
@@ -78,7 +78,7 @@ end
 function modifier_juggernaut_dance_of_blades:OnIntervalThink(ignoreTarget)
 	local caster = self:GetCaster()
 	local oldTick = self.tick
-	self.tick = caster:GetSecondsPerAttack() / self.rate
+	self.tick = caster:GetSecondsPerAttack( false ) / self.rate
 	local target
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self.radius) ) do
 		if enemy ~= ignoreTarget then

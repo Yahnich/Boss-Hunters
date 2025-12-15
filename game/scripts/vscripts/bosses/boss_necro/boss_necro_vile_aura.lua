@@ -44,7 +44,7 @@ function modifier_boss_necro_vile_aura:OnIntervalThink()
 		AddFOWViewer( DOTA_TEAM_GOODGUYS, position, 256, 3, false )
 		GridNav:DestroyTreesAroundPoint( position, 256, true)
 		if not modifier or modifier:IsNull() then return end
-		if IsServer() then modifier:StartIntervalThink( modifier:GetAbility():GetSpecialValueFor("blink_rate") ) end
+		if IsServer() then modifier:StartIntervalThink( modifier:GetSpecialValueFor("blink_rate") ) end
 	end)
 end
 

@@ -63,11 +63,11 @@ LinkLuaModifier( "modifier_legionnaires_dualswords_debuff", "items/item_legionna
 modifier_legionnaires_dualswords_debuff = class({})
 
 function modifier_legionnaires_dualswords_debuff:OnCreated()
-	self.slow = self:GetAbility():GetSpecialValueFor("attack_slow")
+	self.slow = self:GetSpecialValueFor("attack_slow")
 end
 
 function modifier_legionnaires_dualswords_debuff:OnRefresh()
-	self.slow = self:GetAbility():GetSpecialValueFor("attack_slow")
+	self.slow = self:GetSpecialValueFor("attack_slow")
 end
 
 function modifier_legionnaires_dualswords_debuff:DeclareFunctions()

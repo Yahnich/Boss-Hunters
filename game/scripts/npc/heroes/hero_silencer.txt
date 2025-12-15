@@ -284,7 +284,7 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Silencer.LastWord.Target"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

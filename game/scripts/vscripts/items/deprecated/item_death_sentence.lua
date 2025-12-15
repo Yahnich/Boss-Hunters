@@ -17,11 +17,11 @@ end
 LinkLuaModifier( "modifier_item_death_sentence_passive", "items/item_death_sentence.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_item_death_sentence_passive = class(itemBaseClass)
 function modifier_item_death_sentence_passive:OnCreated()
-	self.castrange = self:GetAbility():GetSpecialValueFor("bonus_cast_range")
+	self.castrange = self:GetSpecialValueFor("bonus_cast_range")
 	self.damage = self:GetSpecialValueFor("bonus_damage")
 	self.int = self:GetSpecialValueFor("bonus_int")
 	self.agi = self:GetSpecialValueFor("bonus_agi")
-	self.targetrange = self:GetAbility():GetSpecialValueFor("target_cast_range")
+	self.targetrange = self:GetSpecialValueFor("target_cast_range")
 end
 
 function modifier_item_death_sentence_passive:DeclareFunctions()

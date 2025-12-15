@@ -254,7 +254,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"faceless_void_backtrack"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------

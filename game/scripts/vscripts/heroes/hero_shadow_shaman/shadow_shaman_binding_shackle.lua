@@ -49,8 +49,8 @@ modifier_shadow_shaman_bound_shackles = class({})
 
 function modifier_shadow_shaman_bound_shackles:OnCreated(kv)
 	self.duration = self:GetRemainingTime()
-	self.damage = self:GetAbility():GetSpecialValueFor("total_damage")
-	self.tick = self:GetAbility():GetSpecialValueFor("tick_interval")
+	self.damage = self:GetSpecialValueFor("total_damage")
+	self.tick = self:GetSpecialValueFor("tick_interval")
 	EmitSoundOn("Hero_ShadowShaman.Shackles", self:GetParent())
 	if IsServer() then
 		self:StartIntervalThink(self.tick)
@@ -73,8 +73,8 @@ end
 
 function modifier_shadow_shaman_bound_shackles:OnRefresh()
 	self.duration = self:GetRemainingTime()
-	self.damage = self:GetAbility():GetSpecialValueFor("total_damage")
-	self.tick = self:GetAbility():GetSpecialValueFor("tick_interval")
+	self.damage = self:GetSpecialValueFor("total_damage")
+	self.tick = self:GetSpecialValueFor("tick_interval")
 	EmitSoundOn("Hero_ShadowShaman.Shackles", self:GetParent())
 	if IsServer() then
 		self:GetAbility():StartDelayedCooldown()
@@ -91,7 +91,7 @@ function modifier_shadow_shaman_bound_shackles:OnDestroy()
 	if IsServer() then
 		self:GetCaster():InterruptChannel()
 		self:GetAbility():EndDelayedCooldown()
-		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_shadow_shaman_bound_shackles_post", {duration = self:GetAbility():GetSpecialValueFor("aftershackle_duration")})
+		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_shadow_shaman_bound_shackles_post", {duration = self:GetSpecialValueFor("aftershackle_duration")})
 	end
 end
 
@@ -129,8 +129,8 @@ modifier_shadow_shaman_bound_shackles_post = class({})
 
 function modifier_shadow_shaman_bound_shackles_post:OnCreated()
 	self.duration = self:GetRemainingTime()
-	self.damage = self:GetAbility():GetSpecialValueFor("total_damage")
-	self.tick = self:GetAbility():GetSpecialValueFor("tick_interval")
+	self.damage = self:GetSpecialValueFor("total_damage")
+	self.tick = self:GetSpecialValueFor("tick_interval")
 	EmitSoundOn("Hero_ShadowShaman.Shackles", self:GetParent())
 	if IsServer() then
 		self:StartIntervalThink(self.tick)

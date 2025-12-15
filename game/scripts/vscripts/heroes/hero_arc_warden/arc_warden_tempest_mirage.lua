@@ -11,7 +11,7 @@ end
 
 function arc_warden_tempest_mirage:OnSpellStart()
 	local caster = self:GetCaster()
-	self:DealDamage( caster, caster, caster:GetMaxHealth() * self:GetSpecialValueFor("pct_cost") / 100, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_REFLECTION +DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_NON_LETHAL } )
+	self:DealDamage( caster, caster, caster:GetMaxHealth() * self:GetSpecialValueFor("pct_cost") / 100, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_REFLECTION +DOTA_DAMAGE_FLAG_BYPASSES_ALL_BLOCK  + DOTA_DAMAGE_FLAG_NON_LETHAL } )
 	if caster.currentMirage and not caster.currentMirage:IsNull() then
 		caster.currentMirage:ForceKill(false)
 	end

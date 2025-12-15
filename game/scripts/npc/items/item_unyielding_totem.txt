@@ -4,7 +4,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2397"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2397"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_unyielding_totem"
@@ -49,7 +49,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2398"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2398"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -72,7 +72,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2399"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2399"														
 		"AbilityBehavior"				DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_unyielding_totem"
@@ -112,7 +112,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2400"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2400"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -136,7 +136,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2401"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2401"														
 		"AbilityBehavior"				DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_unyielding_totem"
@@ -177,7 +177,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2402"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2402"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -201,7 +201,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2403"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2403"														
 		"AbilityBehavior"				DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_unyielding_totem"
@@ -242,7 +242,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2404"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2404"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -266,7 +266,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2405"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2405"														
 		"AbilityBehavior"				DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_unyielding_totem"
@@ -306,7 +306,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2406"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2406"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -331,7 +331,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2407"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2407"														
 		"AbilityBehavior"				DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_unyielding_totem"
@@ -372,7 +372,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2408"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2408"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -397,7 +397,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2409"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2409"														
 		"AbilityBehavior"				DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_unyielding_totem"
@@ -438,7 +438,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2410"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2410"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -463,7 +463,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2411"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2411"														
 		"AbilityBehavior"				DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_unyielding_totem"
@@ -504,7 +504,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2412"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2412"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -529,7 +529,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2413"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2413"														
 		"AbilityBehavior"				DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_unyielding_totem"

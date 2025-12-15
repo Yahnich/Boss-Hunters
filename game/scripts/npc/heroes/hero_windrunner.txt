@@ -242,10 +242,7 @@
 			"radius"					"325"
 			"debuff_duration"			"2.5"
 			"scepter_charges"			"2"
-			"09"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"scepter_ms"				"70 80 90 100 100 100 100"
+			"scepter_ms"				"70 80 90 100 100 100 100"
 		}
 	}
 	//=================================================================================================================
@@ -397,7 +394,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/windrunner_skillshot"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		"precache"
 		{

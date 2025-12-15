@@ -253,7 +253,7 @@
 	    "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"  
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"treant_overgrowth"
-		"InnateAbility" 				"1"
+		"Innate" 				"1"
 		"MaxLevel"						"1"
 		"HasScepterUpgrade"				"1"
 		"PiercesDisableReduction"		"1"

@@ -295,7 +295,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilityTextureName"			"slark_essence_shift"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -372,7 +372,7 @@
 		"HasScepterUpgrade"				"1"
 		"AbilityTextureName"			"custom/slark_acrobatics"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		"AbilityCooldown"				"6"
 	}

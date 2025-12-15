@@ -4,7 +4,7 @@ function undying_tombstone_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
 	
-	if caster:HasTalent("special_bonus_unique_undying_tombstone_1") then
+	if self:GetSpecialValueFor("decay_chance") > 0 then
 		self.decay = caster:FindAbilityByName( "undying_decay_bh" )
 		if not self.decay:IsTrained() then
 			self.decay = nil
@@ -46,8 +46,8 @@ if IsServer() then
 		
 		self.tombstoneZombies = {}
 		
-		self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_undying_tombstone_2")
-		self.talent2Radius = self:GetCaster():FindTalentValue("special_bonus_unique_undying_tombstone_2")
+		self.talent2Radius = self:GetSpecialValueFor("fog_radius")
+		self.talent2 = self.talent2Radius > 0
 		
 		self:StartIntervalThink( self.spawnInterval )
 		self:OnIntervalThink( )
@@ -156,8 +156,8 @@ undying_tombstone_bh_tombstone_talent = class({})
 LinkLuaModifier( "undying_tombstone_bh_tombstone_talent", "heroes/hero_undying/undying_tombstone_bh", LUA_MODIFIER_MOTION_NONE)
 
 function undying_tombstone_bh_tombstone_talent:OnCreated()
-	self.talent2Slow = self:GetCaster():FindTalentValue( "special_bonus_unique_undying_tombstone_2", "slow" )
-	self.talent2Blind = self:GetCaster():FindTalentValue( "special_bonus_unique_undying_tombstone_2", "blind" )
+	self.talent2Slow = self:GetSpecialValueFor( "fog_slow" )
+	self.talent2Blind = self:GetSpecialValueFor( "fog_blind" )
 end
 
 function undying_tombstone_bh_tombstone_talent:DeclareFunctions()
@@ -208,8 +208,8 @@ if IsServer() then
 	function undying_tombstone_bh_zombie:OnDestroy( kv )
 		local decay = self:GetAbility().decay
 		
-		local chance = self:GetCaster():FindTalentValue("special_bonus_unique_undying_tombstone_1")
-		local radius = self:GetCaster():FindTalentValue("special_bonus_unique_undying_tombstone_1", "value2")
+		local chance = self:GetSpecialValueFor("decay_chance")
+		local radius = self:GetSpecialValueFor("decay_radius")
 		if decay and RollPercentage( chance ) then
 			decay:Decay( self:GetParent():GetAbsOrigin(), radius / 100 )
 		end

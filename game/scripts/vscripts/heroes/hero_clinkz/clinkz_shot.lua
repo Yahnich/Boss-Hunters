@@ -50,7 +50,7 @@ function modifier_clinkz_shot_caster:OnIntervalThink()
 					caster:PerformAttack(enemy, true, true, true, true, true, false, false)
 					caster.forceSearingArrows = false
 					targets = targets - 1
-					StartAnimation(caster, {duration=caster:GetSecondsPerAttack(), activity=ACT_DOTA_ATTACK, rate=1/caster:GetSecondsPerAttack()})
+					StartAnimation(caster, {duration=caster:GetSecondsPerAttack( false ), activity=ACT_DOTA_ATTACK, rate=1/caster:GetSecondsPerAttack( false )})
 					break
 				end
 				if targets > 0 then

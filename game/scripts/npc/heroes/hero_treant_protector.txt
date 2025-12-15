@@ -37,13 +37,19 @@
 		"AbilityValues"
 		{
 			"aura_radius"				"750"
-			"leech"							"30 40 50 60 70 80 90"
+			"leech"
+			{
+				"value"							"30 40 50 60 70 80 90"
 				"LinkedSpecialBonus"			"special_bonus_unique_treant_little_tree_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 				"CalculateSpellDamageTooltip"	"1"
-			"heal"							"15 20 25 30 35 40 45"
+			}
+			"heal"
+			{
+				"value"							"15 20 25 30 35 40 45"
 				"LinkedSpecialBonus"			"special_bonus_unique_treant_little_tree_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
 			"duration"					"20"
 		}
 	}
@@ -119,17 +125,17 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20 18 16 14 12 10 8"
+		"AbilityCooldown"				"20 18 16 14"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"150 175 200 225 250 275 300"
+		"AbilityManaCost"				"150 175 200 225"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"duration"						"2.0 2.5 3.0 3.5 4.0 4.5 5"	
+			"duration"						"2.0 2.5 3.0 3.5 "	
 		}
 	}
 	//=================================================================================================================
@@ -208,9 +214,9 @@
 
 		"AbilityValues"
 		{
-			"damage_count"			"4 5 6 7 8 9 10"
-			"health_regen"			"4 7 10 13 16 19 22"
-			"damage_block"			"60 65 70 75 80 85 90"
+			"damage_count"			"4 5 6 7"
+			"health_regen"			"4 7 10 13"
+			"damage_block"			"60 65 70 75"
 			"duration"				"30.0"
 
 		}
@@ -268,7 +274,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilitySound"					"Hero_Treant.LeechSeed.Cast"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"						"1"
 
 		"AbilityCastRange"				"350"
 		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
@@ -280,7 +286,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"80 95 110 125 140 155 170"
+		"AbilityManaCost"				"80"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -331,7 +337,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"225 275 325 375 425 475"
+		"AbilityManaCost"				"225 275 325 "
 		
 		"precache"
 		{
@@ -345,10 +351,16 @@
 		"AbilityValues"
 		{
 			"duration"						"20"		
-			"bonus_strength"				"35 70 95 120 145 170"
+			"bonus_strength"
+			{
+				"value"				"35 70 95 120 145 170"
 				"LinkedSpecialBonus"			"special_bonus_unique_treant_great_protector_1"			
-			"move_speed"					"-400"
+			}
+			"move_speed"
+			{
+				"value"					"-400"
 				"LinkedSpecialBonus"			"special_bonus_unique_treant_great_protector_2"	
+			}
 			"model_scale"					"25 30 35 40 45 50"	
 			"root_duration"					"2"
 			"root_chance"					"15"

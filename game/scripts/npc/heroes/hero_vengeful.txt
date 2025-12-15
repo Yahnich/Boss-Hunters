@@ -290,7 +290,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"vengefulspirit_nether_swap"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------

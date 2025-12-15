@@ -13,13 +13,13 @@ LinkLuaModifier( "modifier_lifesteal_generic", "lua_abilities/heroes/modifiers/m
 modifier_legion_commander_fearless_assault_passive = class({})
 
 function modifier_legion_commander_fearless_assault_passive:OnCreated()
-	self.procChance = self:GetAbility():GetSpecialValueFor("trigger_chance")
-	self.duration = self:GetAbility():GetSpecialValueFor("buff_duration")
+	self.procChance = self:GetSpecialValueFor("trigger_chance")
+	self.duration = self:GetSpecialValueFor("buff_duration")
 end
 
 function modifier_legion_commander_fearless_assault_passive:OnRefresh()
-	self.procChance = self:GetAbility():GetSpecialValueFor("trigger_chance")
-	self.duration = self:GetAbility():GetSpecialValueFor("buff_duration")
+	self.procChance = self:GetSpecialValueFor("trigger_chance")
+	self.duration = self:GetSpecialValueFor("buff_duration")
 end
 
 function modifier_legion_commander_fearless_assault_passive:IsHidden()

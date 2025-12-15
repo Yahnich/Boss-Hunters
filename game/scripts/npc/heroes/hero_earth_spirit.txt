@@ -144,10 +144,7 @@
 			"remnant_speed"			"1600"
 			"distance"				"800"
 			"remnant_distance"		"1600"
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"collision_radius"		"150"
+			"collision_radius"		"150"
 		}
 	
 		"precache"
@@ -284,7 +281,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityTextureName"			"earth_spirit_stone_caller"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------

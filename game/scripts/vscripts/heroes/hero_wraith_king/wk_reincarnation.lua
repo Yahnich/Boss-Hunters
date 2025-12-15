@@ -317,7 +317,7 @@ end
 
 function modifier_wk_reincarnation_wraith_form:OnRemoved()
 	if IsServer() then
-		self.ability:DealDamage(self.parent, self.parent, self.parent:GetMaxHealth(), {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY}, 0)
+		self.ability:DealDamage(self.parent, self.parent, self.parent:GetMaxHealth(), {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_BYPASSES_ALL_BLOCK  + DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY}, 0)
 	end
 end
 

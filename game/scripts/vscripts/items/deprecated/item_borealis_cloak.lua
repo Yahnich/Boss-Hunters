@@ -74,17 +74,17 @@ modifier_item_borealis_cloak_debuff = class({})
 LinkLuaModifier("modifier_item_borealis_cloak_debuff", "items/item_borealis_cloak", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_item_borealis_cloak_debuff:OnCreated()
-	self.ms = self:GetAbility():GetSpecialValueFor("debuff_ms")
-	self.as = self:GetAbility():GetSpecialValueFor("debuff_as")
+	self.ms = self:GetSpecialValueFor("debuff_ms")
+	self.as = self:GetSpecialValueFor("debuff_as")
 	if IsServer() then
-		self.damage = self:GetAbility():GetSpecialValueFor("debuff_damage")
+		self.damage = self:GetSpecialValueFor("debuff_damage")
 		self:StartIntervalThink(1)
 	end
 end
 
 function modifier_item_borealis_cloak_debuff:OnRefresh()
-	self.ms = self:GetAbility():GetSpecialValueFor("debuff_ms")
-	self.as = self:GetAbility():GetSpecialValueFor("debuff_as")
+	self.ms = self:GetSpecialValueFor("debuff_ms")
+	self.as = self:GetSpecialValueFor("debuff_as")
 end
 
 function modifier_item_borealis_cloak_debuff:OnIntervalThink()

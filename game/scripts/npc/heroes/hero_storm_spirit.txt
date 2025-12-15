@@ -311,7 +311,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"storm_spirit_overload"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		"HasScepterUpgrade"				"1"
 
 		// Time		
@@ -396,18 +396,12 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{	
-			"01"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"damage"							"8 12 16 20 24 28"		
+			"damage"							"8 12 16 20 24 28"		
 			"02"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"mana_cost_pct"						"8"		
-			"03"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"mana_cost_base"					"30"		
+			"mana_cost_base"					"30"		
 			"04"
 			{
 				"var_type"							"FIELD_INTEGER"

@@ -65,7 +65,7 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_doom_apocalypse:OnCreated( kv )
-	self.duration = self:GetAbility():GetSpecialValueFor( "duration" )
+	self.duration = self:GetSpecialValueFor( "duration" )
 	EmitSoundOn( "Hero_DoomBringer.Doom", self:GetParent())
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_doom_apocalypse_1")
 	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_doom_apocalypse_2")
@@ -167,7 +167,7 @@ LinkLuaModifier( "modifier_doom_apocalypse_talent", "heroes/hero_doom/doom_apoca
 
 function modifier_doom_apocalypse_talent:OnRefresh( kv )
 	if IsServer() then
-		self.damage = self.damage + self:GetAbility():GetSpecialValueFor( "damage" )
+		self.damage = self.damage + self:GetSpecialValueFor( "damage" )
 		self:OnIntervalThink()
 	end
 end

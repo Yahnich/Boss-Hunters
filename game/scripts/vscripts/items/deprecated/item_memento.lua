@@ -13,9 +13,9 @@ modifier_item_memento = class(itemBaseClass)
 
 function modifier_item_memento:OnCreated()
 	self.delay = self:GetSpecialValueFor("attack_delay")
-	self.chance = self:GetAbility():GetSpecialValueFor("dodge_chance")
-	self.hp_regen = self:GetAbility():GetSpecialValueFor("bonus_health_regen")
-	self.paralyze = self:GetAbility():GetSpecialValueFor("paralyze_duration")
+	self.chance = self:GetSpecialValueFor("dodge_chance")
+	self.hp_regen = self:GetSpecialValueFor("bonus_health_regen")
+	self.paralyze = self:GetSpecialValueFor("paralyze_duration")
 end
 
 function modifier_item_memento:DeclareFunctions()

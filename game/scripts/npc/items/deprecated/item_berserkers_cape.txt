@@ -7,7 +7,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"998"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"998"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -33,7 +33,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"999"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"999"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -59,7 +59,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1000"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"1000"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -85,7 +85,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1001"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"1001"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -108,7 +108,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1002"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"1002"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_berserkers_cape"
@@ -148,7 +148,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1003"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"1003"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_berserkers_cape"
@@ -188,7 +188,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1004"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"1004"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_berserkers_cape"
@@ -228,7 +228,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1005"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"1005"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_berserkers_cape"

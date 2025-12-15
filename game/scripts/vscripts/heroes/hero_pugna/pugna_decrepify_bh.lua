@@ -15,14 +15,14 @@ LinkLuaModifier( "modifier_pugna_decrepify_ally", "heroes/hero_pugna/pugna_decre
 modifier_pugna_decrepify_ally = class({})
 
 function modifier_pugna_decrepify_ally:OnCreated()
-	self.magic_damage = self:GetAbility():GetSpecialValueFor("bonus_spell_damage_pct_allies")
-	self.slow = self:GetAbility():GetSpecialValueFor("bonus_movement_speed_allies")
+	self.magic_damage = self:GetSpecialValueFor("bonus_spell_damage_pct_allies")
+	self.slow = self:GetSpecialValueFor("bonus_movement_speed_allies")
 	if IsServer() then self:GetAbility():StartDelayedCooldown() end
 end
 
 function modifier_pugna_decrepify_ally:OnRefresh()
-	self.magic_damage = self:GetAbility():GetSpecialValueFor("bonus_spell_damage_pct_allies")
-	self.slow = self:GetAbility():GetSpecialValueFor("bonus_movement_speed_allies")
+	self.magic_damage = self:GetSpecialValueFor("bonus_spell_damage_pct_allies")
+	self.slow = self:GetSpecialValueFor("bonus_movement_speed_allies")
 	if IsServer() then self:GetAbility():StartDelayedCooldown() end
 end
 
@@ -70,14 +70,14 @@ LinkLuaModifier( "modifier_pugna_decrepify_enemy", "heroes/hero_pugna/pugna_decr
 modifier_pugna_decrepify_enemy = class({})
 
 function modifier_pugna_decrepify_enemy:OnCreated()
-	self.magic_damage = self:GetAbility():GetSpecialValueFor("bonus_spell_damage_pct")
-	self.slow = self:GetAbility():GetSpecialValueFor("bonus_movement_speed")
+	self.magic_damage = self:GetSpecialValueFor("bonus_spell_damage_pct")
+	self.slow = self:GetSpecialValueFor("bonus_movement_speed")
 	if IsServer() then self:GetAbility():StartDelayedCooldown() end
 end
 
 function modifier_pugna_decrepify_enemy:OnRefresh()
-	self.magic_damage = self:GetAbility():GetSpecialValueFor("bonus_spell_damage_pct")
-	self.slow = self:GetAbility():GetSpecialValueFor("bonus_movement_speed")
+	self.magic_damage = self:GetSpecialValueFor("bonus_spell_damage_pct")
+	self.slow = self:GetSpecialValueFor("bonus_movement_speed")
 	if IsServer() then self:GetAbility():StartDelayedCooldown() end
 end
 

@@ -7,7 +7,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"7036"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7036"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -33,7 +33,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"7037"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7037"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_visionarys_cutlass"

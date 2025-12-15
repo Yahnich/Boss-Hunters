@@ -41,10 +41,10 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"speed"						"800 900 1000 1100 1200 1300 1400"
+			"speed"						"800 900 1000 1100"
 			"width"						"150"
-			"damage"					"75 150 225 300 375 450 525"
-			"damage_magnet"				"150 175 200 225 250 275 300"
+			"damage"					"75 150 225 300"
+			"damage_magnet"				"150 175 200 225"
 			"magnet_radius"				"500"
 		}
 	
@@ -133,7 +133,7 @@
 		"AbilityValues"
 		{
 			"duration"				"10"
-			"radius"				"400 450 500 550 600 650 700"
+			"radius"				"400 500 600 700"
 			"strength"				"4"
 		}
 	}
@@ -205,7 +205,7 @@
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_MAGNUS_SKEWER_START"
 
-		"AbilityCooldown"				"6 5.5 5 4.5 4 3.5 3"
+		"AbilityCooldown"				"6 5.5 5 4.5"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -215,9 +215,9 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"damage"				"70 140 210 280 350 420 490"
+			"damage"				"70 140 210 280"
 			"radius"				"150"
-			"range"					"750 900 1050 1200 1350 1500 1650"
+			"range"					"750 900 1050 1200"
 			"tree_radius"			"200"
 		}
 	}
@@ -263,7 +263,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 		"AbilityTextureName"			"magnataur_empower"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"						"1"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -328,12 +328,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"damage"				"50 125 200 275 350 425"
-			"radius"				"500 550 600 650 750 800 850"
-			"damage_magnet"			"50 75 100 125 150 175"
-			"radius_magnet"			"100 150 200 250 300 350 400"
-			"stun_duration"			"4.0"
+			"damage"					"50 125 200"
+			"radius"					"500 550 600"
+			"damage_magnet"				"50 75 100"
+			"radius_magnet"				"100 150 200"
+			"stun_duration"
+			{
+				"value"					"4.0"
 				"LinkedSpecialBonus"	"special_bonus_unique_mag_polarity_1"	
+			}
 		}
 	}
 	"special_bonus_unique_mag_polarity_1"

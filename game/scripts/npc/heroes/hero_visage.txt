@@ -230,14 +230,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"max_layers"						"4"
-			"02"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"reduction"							"-8 -12 -16 -20 -20 -20 -20 -20"
+			"max_layers"						"4"
+			"reduction"							"-8 -12 -16 -20 -20 -20 -20 -20"
 			"03"
 			{
 				"var_type"							"FIELD_FLOAT"
@@ -293,7 +287,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"			"visage_summon_familiars"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		"HasScepterUpgrade"				"1"
 
 		// Casting
@@ -376,18 +370,12 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{		
-			"01"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"damage"							"60 100 140 180 220 260"
+			"damage"							"60 100 140 180 220 260"
 			"02"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"duration"							"1.75 2 2.25 2.5 2.75 3"
-			"03"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"hp_regen"							"8 9 10 11 12 13"
+			"hp_regen"							"8 9 10 11 12 13"
 				"LinkedSpecialBonus"				"special_bonus_unique_visage_stone_1"
 			"04"
 			{

@@ -1,7 +1,7 @@
 juggernaut_momentum_strike = class({})
 
 function juggernaut_momentum_strike:GetBehavior()
-	if self:GetCaster():HasModifier("modifier_juggernaut_momentum_strike_momentum") or self:GetCaster():HasTalent("special_bonus_unique_juggernaut_momentum_strike_1") then
+	if self:GetCaster():HasModifier("modifier_juggernaut_momentum_strike_momentum") or self:GetSpecialValueFor("use_without_charges") == 1 then
 		return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
 	else
 		return DOTA_ABILITY_BEHAVIOR_PASSIVE
@@ -13,8 +13,8 @@ function juggernaut_momentum_strike:GetCastRange()
 end
 	
 function juggernaut_momentum_strike:GetCooldown()
-	if self:GetCaster():HasTalent("special_bonus_unique_juggernaut_momentum_strike_1") then
-		return  self:GetCaster():FindTalentValue("special_bonus_unique_juggernaut_momentum_strike_1", "cd")
+	if self:GetSpecialValueFor("use_without_charges") == 1 then
+		return self:GetSpecialValueFor("chargeless_cd")
 	end
 end
 
@@ -55,11 +55,9 @@ if IsServer() then
 		self.distance = CalculateDistance(parent, self.endPos)
 		self.direction = CalculateDirection( self.endPos, parent )
 		self.speed = self:GetSpecialValueFor("jump_speed") * FrameTime()
-			
 		
 		self:StartMotionController()
 	end
-	
 	
 	function modifier_juggernaut_blade_dance_movement:OnDestroy()
 		local parent = self:GetParent()
@@ -110,7 +108,6 @@ end
 function modifier_juggernaut_momentum_strike_passive:OnRefresh()
 	self.crit_damage = self:GetSpecialValueFor("critical_bonus")
 	self.crit_chance = self:GetSpecialValueFor("critical_chance")
-	self.scepter_cdr = self:GetSpecialValueFor("scepter_cdr_on_hit")
 	if IsServer() then
 		self:GetParent():HookInModifier("GetModifierCriticalDamage", self)
 	end
@@ -130,15 +127,6 @@ function modifier_juggernaut_momentum_strike_passive:GetModifierCriticalDamage(p
 			caster:AddNewModifier(caster, self:GetAbility(), "modifier_juggernaut_momentum_strike_momentum", {})
 		else
 			self:GetAbility():Refresh()
-		end
-		
-		if caster:HasScepter() then
-			for i = 0, caster:GetAbilityCount() - 1 do
-				local ability = caster:GetAbilityByIndex( i )
-				if ability and not ability:IsCooldownReady() then
-					ability:ModifyCooldown(self.scepter_cdr)
-				end
-			end
 		end
 		
 		EmitSoundOn("Hero_Juggernaut.BladeDance", caster)

@@ -157,7 +157,7 @@ end
 modifier_mag_charge_attack = class({})
 function modifier_mag_charge_attack:OnCreated(table)
 	if IsServer() then
-		self:StartIntervalThink(self:GetParent():GetSecondsPerAttack())
+		self:StartIntervalThink(self:GetParent():GetSecondsPerAttack( false ))
 	end
 end
 

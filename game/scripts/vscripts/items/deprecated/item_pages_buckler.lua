@@ -8,9 +8,9 @@ end
 modifier_item_pages_buckler = class(itemBaseClass)
 
 function modifier_item_pages_buckler:OnCreated()
-	self.block = self:GetAbility():GetSpecialValueFor("damage_block")
-	self.chance = self:GetAbility():GetSpecialValueFor("block_chance")
-	self.hp_regen = self:GetAbility():GetSpecialValueFor("bonus_health_regen")
+	self.block = self:GetSpecialValueFor("damage_block")
+	self.chance = self:GetSpecialValueFor("block_chance")
+	self.hp_regen = self:GetSpecialValueFor("bonus_health_regen")
 end
 
 function modifier_item_pages_buckler:DeclareFunctions()

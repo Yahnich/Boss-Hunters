@@ -119,15 +119,15 @@ LinkLuaModifier( "modifier_glacier_boots_debuff", "items/item_glacier_boots.lua"
 modifier_glacier_boots_debuff = class({})
 
 function modifier_glacier_boots_debuff:OnCreated()
-	self.attackslow = self:GetAbility():GetSpecialValueFor("aura_slow")
-	self.active_attackslow = self:GetAbility():GetSpecialValueFor("active_as")
-	self.active_moveslow = self:GetAbility():GetSpecialValueFor("aura_slow")
+	self.attackslow = self:GetSpecialValueFor("aura_slow")
+	self.active_attackslow = self:GetSpecialValueFor("active_as")
+	self.active_moveslow = self:GetSpecialValueFor("aura_slow")
 end
 
 function modifier_glacier_boots_debuff:OnRefresh()
-	self.attackslow = self:GetAbility():GetSpecialValueFor("aura_slow")
-	self.active_attackslow = self:GetAbility():GetSpecialValueFor("active_as")
-	self.active_moveslow = self:GetAbility():GetSpecialValueFor("aura_slow")
+	self.attackslow = self:GetSpecialValueFor("aura_slow")
+	self.active_attackslow = self:GetSpecialValueFor("active_as")
+	self.active_moveslow = self:GetSpecialValueFor("aura_slow")
 end
 
 function modifier_glacier_boots_debuff:DeclareFunctions()

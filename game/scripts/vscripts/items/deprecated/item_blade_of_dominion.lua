@@ -25,10 +25,10 @@ LinkLuaModifier( "modifier_item_blade_of_dominion_stats", "items/item_blade_of_d
 modifier_item_blade_of_dominion_stats = class({})
 
 function modifier_item_blade_of_dominion_stats:OnCreated()
-	self.block = self:GetAbility():GetSpecialValueFor("damage_block")
-	self.chance = self:GetAbility():GetSpecialValueFor("block_chance")
-	self.hp_regen = self:GetAbility():GetSpecialValueFor("bonus_health_regen")
-	self.spell_amp = self:GetAbility():GetSpecialValueFor("bonus_spell_amp")
+	self.block = self:GetSpecialValueFor("damage_block")
+	self.chance = self:GetSpecialValueFor("block_chance")
+	self.hp_regen = self:GetSpecialValueFor("bonus_health_regen")
+	self.spell_amp = self:GetSpecialValueFor("bonus_spell_amp")
 	self.radius = self:GetSpecialValueFor("radius")
 	self.maxRadius = self:GetSpecialValueFor("radius")
 	self.minRadius = self:GetSpecialValueFor("min_radius")
@@ -157,17 +157,17 @@ LinkLuaModifier( "modifier_blade_of_dominion_debuff", "items/item_blade_of_domin
 modifier_blade_of_dominion_debuff = class({})
 
 function modifier_blade_of_dominion_debuff:OnCreated()
-	self.blind = self:GetAbility():GetSpecialValueFor("blind")
+	self.blind = self:GetSpecialValueFor("blind")
 	if IsServer() then
-		self.damage = self:GetAbility():GetSpecialValueFor("damage")
+		self.damage = self:GetSpecialValueFor("damage")
 		self:StartIntervalThink(1)
 	end
 end
 
 function modifier_blade_of_dominion_debuff:OnRefresh()
-	self.blind = self:GetAbility():GetSpecialValueFor("blind")
+	self.blind = self:GetSpecialValueFor("blind")
 	if IsServer() then
-		self.damage = self:GetAbility():GetSpecialValueFor("damage")
+		self.damage = self:GetSpecialValueFor("damage")
 	end
 end
 
@@ -199,11 +199,11 @@ function modifier_blade_of_dominion_buff:OnCreated()
 end
 
 function modifier_blade_of_dominion_buff:OnRefresh()
-	self.heal = self:GetAbility():GetSpecialValueFor("heal_per_second")
-	self.pct_heal = self:GetAbility():GetSpecialValueFor("pct_heal_per_second") / 100
-	self.toDispel = self:GetAbility():GetSpecialValueFor("ticks_to_dispel")
+	self.heal = self:GetSpecialValueFor("heal_per_second")
+	self.pct_heal = self:GetSpecialValueFor("pct_heal_per_second") / 100
+	self.toDispel = self:GetSpecialValueFor("ticks_to_dispel")
 	self.ticks = self.toDispel
-	self.cost = self:GetAbility():GetSpecialValueFor("heal_mana_cost")
+	self.cost = self:GetSpecialValueFor("heal_mana_cost")
 end
 
 function modifier_blade_of_dominion_buff:OnIntervalThink()

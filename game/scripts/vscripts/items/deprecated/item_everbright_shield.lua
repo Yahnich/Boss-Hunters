@@ -23,11 +23,11 @@ end
 modifier_item_everbright_shield_off = class(itemBaseClass)
 
 function modifier_item_everbright_shield_off:OnCreated()
-	self.block = self:GetAbility():GetSpecialValueFor("damage_block")
-	self.chance = self:GetAbility():GetSpecialValueFor("block_chance")
-	self.castrange = self:GetAbility():GetSpecialValueFor("bonus_cast_range")
-	self.armor = self:GetAbility():GetSpecialValueFor("bonus_armor")
-	self.armor = self:GetAbility():GetSpecialValueFor("bonus_magic_resist")
+	self.block = self:GetSpecialValueFor("damage_block")
+	self.chance = self:GetSpecialValueFor("block_chance")
+	self.castrange = self:GetSpecialValueFor("bonus_cast_range")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
+	self.armor = self:GetSpecialValueFor("bonus_magic_resist")
 end
 
 function modifier_item_everbright_shield_off:DeclareFunctions()
@@ -66,8 +66,8 @@ end
 
 modifier_item_everbright_shield_on = class({})
 function modifier_item_everbright_shield_on:OnCreated()
-	self.magic_resist = self:GetAbility():GetSpecialValueFor("active_magic_resist")
-	self.magic_resist = self:GetAbility():GetSpecialValueFor("active_status_resist")
+	self.magic_resist = self:GetSpecialValueFor("active_magic_resist")
+	self.magic_resist = self:GetSpecialValueFor("active_status_resist")
 	if IsServer() then self:GetAbility():StartDelayedCooldown() end
 end
 

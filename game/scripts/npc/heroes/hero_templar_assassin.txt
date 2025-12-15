@@ -340,7 +340,7 @@
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"MaxLevel"						"1"
 		"AbilityTextureName"			"templar_assassin_self_trap"
-		//"InnateAbility"					"1"
+		//"Innate"					"1"
 		
 		"precache"
 		{
@@ -385,7 +385,7 @@
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"MaxLevel"						"1"
 		"AbilityTextureName"			"templar_assassin_trap"
-		//"InnateAbility"					"1"
+		//"Innate"					"1"
 		
 		
 		"precache"

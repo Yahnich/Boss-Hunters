@@ -24,7 +24,7 @@ end
 
 modifier_item_jar_of_souls_handle_heal = class({})
 function modifier_item_jar_of_souls_handle_heal:OnCreated()
-	self.regen = self:GetAbility():GetSpecialValueFor("damage_heal")
+	self.regen = self:GetSpecialValueFor("damage_heal")
 	self:GetAbility().casted = true
 end
 
@@ -52,7 +52,7 @@ end
 modifier_item_jar_of_souls_handle_damage = class({})
 function modifier_item_jar_of_souls_handle_damage:OnCreated()
 	if IsServer() then
-		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetAbility():GetSpecialValueFor("damage_heal"), {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetSpecialValueFor("damage_heal"), {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
 		self:StartIntervalThink(1.0)
 	end
 	self.disable = self:GetSpecialValueFor("disables_healing")
@@ -61,7 +61,7 @@ end
 
 function modifier_item_jar_of_souls_handle_damage:OnRefresh()
 	if IsServer() then
-		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetAbility():GetSpecialValueFor("damage_heal"), {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetSpecialValueFor("damage_heal"), {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
 	end
 	self.disable = self:GetSpecialValueFor("disables_healing")
 	self:GetAbility().casted = true
@@ -72,7 +72,7 @@ function modifier_item_jar_of_souls_handle_damage:OnDestroy()
 end
 
 function modifier_item_jar_of_souls_handle_damage:OnIntervalThink()
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetAbility():GetSpecialValueFor("damage_heal"), {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
+	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetSpecialValueFor("damage_heal"), {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
 end
 
 function modifier_item_jar_of_souls_handle_damage:GetEffectName()

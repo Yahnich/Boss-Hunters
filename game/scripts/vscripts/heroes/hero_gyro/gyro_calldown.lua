@@ -92,7 +92,7 @@ end
 
 modifier_gyro_calldown = class({})
 function modifier_gyro_calldown:OnCreated(table)
-	if IsServer() then self:StartIntervalThink(self:GetParent():GetSecondsPerAttack()) end
+	if IsServer() then self:StartIntervalThink(self:GetParent():GetSecondsPerAttack( false )) end
 end
 
 function modifier_gyro_calldown:OnIntervalThink()
@@ -102,7 +102,7 @@ function modifier_gyro_calldown:OnIntervalThink()
 			self:GetAbility():FireTrackingProjectile(self:GetParent():GetRangedProjectileName(), enemy, self:GetParent():GetProjectileSpeed(), {}, 0, true, false, 0)
 			break
 		end
-		self:StartIntervalThink(self:GetParent():GetSecondsPerAttack())
+		self:StartIntervalThink(self:GetParent():GetSecondsPerAttack( false ))
 	end
 end
 

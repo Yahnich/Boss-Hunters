@@ -36,10 +36,12 @@ function warlock_chaos_bolt:OnProjectileHit(hTarget, vLocation)
 			end
 
 			--Talent 1 Check
-			if caster:HasTalent("special_bonus_unique_warlock_chaos_bolt_1") then
-				local enemies = caster:FindEnemyUnitsInRadius(vLocation, caster:FindTalentValue("special_bonus_unique_warlock_chaos_bolt_1", "radius"))
+			local critRadius = self:GetSpecialValueFor("crit_aoe_radius")
+			if critRadius > 0 then
+				local critDamage = self:GetSpecialValueFor("crit_aoe_damage") / 100
+				local enemies = caster:FindEnemyUnitsInRadius(vLocation, critRadius)
 				for _,enemy in pairs(enemies) do
-					self:DealDamage(caster, enemy, damage*caster:FindTalentValue("special_bonus_unique_warlock_chaos_bolt_1", "damage")/100, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+					self:DealDamage(caster, enemy, damage*critDamage {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 				end
 			end
 
@@ -63,9 +65,7 @@ end
 
 modifier_warlock_chaos_bolt = class({})
 function modifier_warlock_chaos_bolt:OnCreated(table)
-	self.damage_amp = self:GetSpecialValueFor("damage_amp")
-	self.damage = self:GetSpecialValueFor("damage_over_time")
-	self.slow = self:GetCaster():FindTalentValue("special_bonus_unique_warlock_chaos_bolt_2")
+	self:OnRefresh()
 	if IsServer() then
 		self:StartIntervalThink( self:GetDuration() / self:GetSpecialValueFor("debuff_duration") * 1)
 	end
@@ -74,12 +74,11 @@ end
 function modifier_warlock_chaos_bolt:OnRefresh(table)
 	self.damage_amp = self:GetSpecialValueFor("damage_amp")
 	self.damage = self:GetSpecialValueFor("damage_over_time")
-	self.slow = self:GetCaster():FindTalentValue("special_bonus_unique_warlock_chaos_bolt_2")
+	self.slow = self:GetSpecialValueFor("slow")
 end
 
 function modifier_warlock_chaos_bolt:OnIntervalThink()
 	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-	self:StartIntervalThink( self:GetDuration() / self:GetSpecialValueFor("debuff_duration") * 1 )
 end
 
 function modifier_warlock_chaos_bolt:DeclareFunctions()

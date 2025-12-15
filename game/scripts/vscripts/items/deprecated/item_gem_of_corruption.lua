@@ -26,7 +26,7 @@ end
 function modifier_item_gem_of_corruption:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() then
-			params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_gem_of_corruption_debuff", {Duration = self:GetAbility():GetSpecialValueFor("duration")})
+			params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_gem_of_corruption_debuff", {Duration = self:GetSpecialValueFor("duration")})
 		end
 	end
 end
@@ -35,11 +35,11 @@ LinkLuaModifier( "modifier_gem_of_corruption_debuff", "items/item_gem_of_corrupt
 modifier_gem_of_corruption_debuff = class({})
 
 function modifier_gem_of_corruption_debuff:OnCreated()
-	self.armor = self:GetAbility():GetSpecialValueFor("armor_reduction")
+	self.armor = self:GetSpecialValueFor("armor_reduction")
 end
 
 function modifier_gem_of_corruption_debuff:OnRefresh()
-	self.armor = math.max(self.armor, self:GetAbility():GetSpecialValueFor("armor_reduction"))
+	self.armor = math.max(self.armor, self:GetSpecialValueFor("armor_reduction"))
 end
 
 function modifier_gem_of_corruption_debuff:DeclareFunctions()

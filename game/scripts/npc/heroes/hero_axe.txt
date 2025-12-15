@@ -279,7 +279,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/axe_steeled_temper"
 		"HasScepterUpgrade"				"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		"MaxLevel"						"1"
 	
 		// Special
@@ -404,7 +404,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/axe_steeled_temper"
 		"HasScepterUpgrade"				"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		"MaxLevel"						"1"
 	
 		// Special

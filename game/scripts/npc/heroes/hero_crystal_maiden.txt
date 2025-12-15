@@ -135,10 +135,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"chill_damage"						"2 3 4 5 6 7 8"
+			"chill_damage"						"2 3 4 5 6 7 8"
 			"02"
 			{
 				"var_type"							"FIELD_FLOAT"
@@ -285,7 +282,7 @@
 		"AbilityTextureName"			"custom/crystal_maiden_icy_veins"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -365,14 +362,8 @@
 			"chill_hit"					"5"
 			"slow_duration"				"1.0"
 			"explosion_min_dist"		"265"
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"explosion_max_dist"	"900"
-			"10"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"105 170 250 325 405 490"
+			"explosion_max_dist"	"900"
+			"damage"				"105 170 250 325 405 490"
 			"11"
 			{
 				"var_type"				"FIELD_INTEGER"

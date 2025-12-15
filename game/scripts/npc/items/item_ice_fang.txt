@@ -7,7 +7,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2166"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2166"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ice_fang"
@@ -49,7 +49,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2167"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2167"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -72,7 +72,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2168"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2168"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ice_fang"
@@ -108,7 +108,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2169"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2169"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -132,7 +132,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2170"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2170"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ice_fang"
@@ -169,7 +169,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2171"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2171"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -192,7 +192,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2172"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2172"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ice_fang"
@@ -229,7 +229,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2173"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2173"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -253,7 +253,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2174"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2174"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ice_fang"
@@ -289,7 +289,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2175"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2175"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -315,7 +315,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2176"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2176"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ice_fang"
@@ -353,7 +353,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2177"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2177"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -379,7 +379,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2178"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2178"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ice_fang"
@@ -417,7 +417,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2179"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2179"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -442,7 +442,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2180"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2180"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ice_fang"
@@ -480,7 +480,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2181"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2181"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -505,7 +505,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2182"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2182"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ice_fang"

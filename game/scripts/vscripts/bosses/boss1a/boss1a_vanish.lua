@@ -14,8 +14,8 @@ LinkLuaModifier("modifier_boss1a_vanish_fade", "bosses/boss1a/boss1a_vanish.lua"
 
 function modifier_boss1a_vanish_fade:OnDestroy()
 	if IsServer() then
-		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_boss1a_vanish_invis", {duration = self:GetAbility():GetSpecialValueFor("duration")})
-		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_invisible", {duration = self:GetAbility():GetSpecialValueFor("duration")})
+		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_boss1a_vanish_invis", {duration = self:GetSpecialValueFor("duration")})
+		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_invisible", {duration = self:GetSpecialValueFor("duration")})
 	end
 end
 
@@ -39,8 +39,8 @@ modifier_boss1a_vanish_invis = class({})
 LinkLuaModifier("modifier_boss1a_vanish_invis", "bosses/boss1a/boss1a_vanish.lua", 0)
 
 function modifier_boss1a_vanish_invis:OnCreated()
-	self.damage = self:GetAbility():GetSpecialValueFor("bonus_damage")
-	self.ms = self:GetAbility():GetSpecialValueFor("movement_speed")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
+	self.ms = self:GetSpecialValueFor("movement_speed")
 end
 
 function modifier_boss1a_vanish_invis:OnDestroy()

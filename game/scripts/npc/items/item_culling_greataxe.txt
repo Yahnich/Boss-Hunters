@@ -7,7 +7,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2045"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2045"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
 		"BaseClass"						"item_lua"
@@ -56,7 +56,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2046"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2046"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe_assault"
@@ -82,7 +82,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2047"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2047"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
 		"BaseClass"						"item_lua"
@@ -131,7 +131,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2048"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2048"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -157,7 +157,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2049"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2049"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
 		"BaseClass"						"item_lua"
@@ -206,7 +206,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2050"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2050"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -232,7 +232,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2051"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2051"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
 		"BaseClass"						"item_lua"
@@ -281,7 +281,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2052"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2052"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -307,7 +307,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2053"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2053"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
 		"BaseClass"						"item_lua"
@@ -356,7 +356,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2054"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2054"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -383,7 +383,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2055"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2055"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
 		"BaseClass"						"item_lua"
@@ -433,7 +433,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2056"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2056"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -460,7 +460,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2057"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2057"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
 		"BaseClass"						"item_lua"
@@ -510,7 +510,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2058"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2058"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -537,7 +537,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2059"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2059"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
 		"BaseClass"						"item_lua"
@@ -587,7 +587,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2060"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2060"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -614,7 +614,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2061"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2061"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
 		"BaseClass"						"item_lua"

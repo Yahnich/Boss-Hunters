@@ -45,19 +45,19 @@ end
 modifier_kotl_power_leak = class({})
 
 function modifier_kotl_power_leak:OnCreated()
-    self.damagereduction = self:GetAbility():GetSpecialValueFor("damage_reduction")
+    self.damagereduction = self:GetSpecialValueFor("damage_reduction")
     self:IncrementStackCount()
 end
 
 function modifier_kotl_power_leak:OnRefresh()
-    self.damagereduction = self:GetAbility():GetSpecialValueFor("damage_reduction")
+    self.damagereduction = self:GetSpecialValueFor("damage_reduction")
     self:IncrementStackCount()
 end
 
 function modifier_kotl_power_leak:OnRemoved()
     if IsServer() then
         EmitSoundOn("Hero_KeeperOfTheLight.ManaLeak.Stun", self:GetParent())
-        self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_stunned", {duration = self:GetAbility():GetSpecialValueFor("stun_duration")})
+        self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_stunned", {duration = self:GetSpecialValueFor("stun_duration")})
     end
 end
 

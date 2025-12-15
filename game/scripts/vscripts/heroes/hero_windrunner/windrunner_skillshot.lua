@@ -18,16 +18,16 @@ function windrunner_skillshot:GetIntrinsicModifierName()
 end
 
 function windrunner_skillshot:GetCastPoint()
-	if self:GetCaster():GetSecondsPerAttack() < 0.3 then
-		return self:GetCaster():GetSecondsPerAttack()
+	if self:GetCaster():GetSecondsPerAttack( false ) < 0.3 then
+		return self:GetCaster():GetSecondsPerAttack( false )
 	else
 		return 0.3
 	end
 end
 
 function windrunner_skillshot:GetPlaybackRateOverride()
-	if 1/self:GetCaster():GetSecondsPerAttack() > 1 then
-		return 1/self:GetCaster():GetSecondsPerAttack()
+	if 1/self:GetCaster():GetSecondsPerAttack( false ) > 1 then
+		return 1/self:GetCaster():GetSecondsPerAttack( false )
 	else
 		return 1
 	end

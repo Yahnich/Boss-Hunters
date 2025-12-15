@@ -275,7 +275,7 @@
 		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"				"DOTA_UNIT_TARGET_HERO"
 		"MaxLevel"							"1"
-		"InnateAbility"						"1"
+		"Innate"						"1"
 		
 		
 		// Special
@@ -347,10 +347,7 @@
 				"knockback_duration"	"1.4"
 			"damage_scepter"		"345 505 665 825 985 1145"
 				"RequiresScepter"		"1"
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_cd_reduction"	"50"
+			"scepter_cd_reduction"	"50"
 				"RequiresScepter"		"1"
 		}
 	}

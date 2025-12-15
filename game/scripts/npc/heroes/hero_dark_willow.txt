@@ -319,7 +319,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"dark_willow_bedlam"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		"HasScepterUpgrade"				"1"
 
 		// Casting

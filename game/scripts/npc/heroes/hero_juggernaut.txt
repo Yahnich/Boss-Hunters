@@ -32,59 +32,36 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"42 34 26 18 18 18"
+		"AbilityCooldown"				"42 34 26 18"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"120 110 100 90 80 70 60"	
+		"AbilityManaCost"				"90 80 70 60"	
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"damage_tick"					"0.2"
-			"radius"						"260"
-				"LinkedSpecialBonus"			"special_bonus_unique_juggernaut_mirror_blades_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			"damage"						"85 110 135 160 160 160 160"
-				"LinkedSpecialBonus"			"special_bonus_unique_juggernaut_mirror_blades_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			"duration"						"3 3 3 3 4 5 6"
-			"damage_reduction"				"-100"
-				"LinkedSpecialBonus"			"special_bonus_unique_juggernaut_mirror_blades_2"
+			"damage_tick"						"0.2"
+			"radius"
+			{
+				"value"							"260"
+				"special_bonus_unique_juggernaut_mirror_blades_1"	"x2"
+			}
+			"damage"
+			{
+				"value"							"85 110 135 160"
+				"special_bonus_unique_juggernaut_mirror_blades_1"	"x2"
+			}
+			"duration"							"3 4 5 6"
+			"damage_reduction"
+			{
+				"value"												"-100"
+				"special_bonus_unique_juggernaut_mirror_blades_2"	"+75"
+			}
+			"bonus_movement_speed"									{"special_bonus_unique_juggernaut_mirror_blades_2"	"100"}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
-	}
-	"special_bonus_unique_juggernaut_mirror_blades_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"2"
-		}
-	}
-	"special_bonus_unique_juggernaut_mirror_blades_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"75"
-			"value2"				"100"
-		}
 	}
 	"juggernaut_meditative_state"
 	{
@@ -122,7 +99,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60 60 60 60 50 40 30"
+		"AbilityCooldown"				"60 50 40 30"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -136,43 +113,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"buff_duration"			"25"
-			"linger_duration"		"0.5"
-			"regeneration"			"2 3 4 5 5 5 5"
+			"buff_duration"				"25"
+			"linger_duration"			"0.5"
+			"regeneration"				"2 3 4 5"
+			
+			"passive_regeneration"		{"special_bonus_unique_juggernaut_meditative_state_1"	"33"}
+			"aura_radius"				{"special_bonus_unique_juggernaut_meditative_state_2"	"500"}
+			"aura_slow"					{"special_bonus_unique_juggernaut_meditative_state_2"	"50"}
 		}
 	}
-	"special_bonus_unique_juggernaut_meditative_state_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"33"
-		}
-	}
-	"special_bonus_unique_juggernaut_meditative_state_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"500"
-			"value2"				"-50"
-		}
-	}
-	
 	"juggernaut_quickparry"
 	{
 		// General
@@ -197,49 +146,19 @@
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
 		}
 		
-		"AbilityCooldown"				"20 20 20 20 18 16 14"
-		"AbilityManaCost"				"80 70 60 50 40 30 20"
+		"AbilityCooldown"				"20 18 16 14"
+		"AbilityManaCost"				"80 70 60 50"
 	
 		"AbilityValues"
 	    {
-	        "01"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "duration"				"1.5 2 2.5 3 3 3 3"
+	        "duration"					"1.5 2 2.5 3"
+			
+			"lifesteal"					{"special_bonus_unique_juggernaut_quickparry_1"	"100"}
+			"bonus_attacks"				{"special_bonus_unique_juggernaut_quickparry_1"	"1"}
+			"stack_attack_speed"		{"special_bonus_unique_juggernaut_quickparry_2"	"25"}
+			"stack_move_speed"			{"special_bonus_unique_juggernaut_quickparry_2"	"5"}
+			"stack_duration"			{"special_bonus_unique_juggernaut_quickparry_2"	"5"}
 	    }
-	}
-	"special_bonus_unique_juggernaut_quickparry_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"100"
-			"attacks"				"1"
-		}
-	}
-	"special_bonus_unique_juggernaut_quickparry_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"as"					"25"
-			"ms"					"5"
-			"duration"				"5"
-		}
 	}
 	"juggernaut_momentum_strike"
 	{
@@ -250,7 +169,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName"			"juggernaut_blade_dance"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -267,44 +186,19 @@
 	
 		"AbilityValues"
 	    {
-	        "01"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "critical_bonus"        "200"
-	        "02"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "critical_chance"       "25"
+	        "critical_bonus"			"200"
+	        "critical_chance"
+			{
+				"value"					"25"
 				"LinkedSpecialBonus"	"special_bonus_unique_juggernaut_momentum_strike_1"
-			"03"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "jump_distance"			"500"
-			"04"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "jump_speed"   			"3000"
-			"05"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "maximum_charges"  		"3"
+			}
+			"jump_distance"				"500"
+			"jump_speed"   				"3000"
+			"maximum_charges"  			"3"
+			
+			"use_without_charges"		{"special_bonus_unique_juggernaut_momentum_strike_1"	"1"}
+			"chargeless_cd"				{"special_bonus_unique_juggernaut_momentum_strike_1"	"6"}
 	    }
-	}
-	"special_bonus_unique_juggernaut_momentum_strike_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"5"
-			"cd"					"6"
-		}
 	}
 	//=================================================================================================================
 	// Ability: Juggernaut Omni Slash
@@ -350,7 +244,6 @@
 		"AbilityValues"
 		{
 			"duration"						"0.8"
-				"RequiresScepter"				"1"
 		}
 	}
 	//=================================================================================================================
@@ -382,31 +275,34 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"350"
-		"AbilityCastPoint"				"0.3 0.3 0.3"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastRange"						"350"
+		"AbilityCastPoint"						"0.3 0.3 0.3"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_4"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"140 140 140 105 90 65"
+		"AbilityCooldown"						"105 90 65"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200 275 350 350 350 350"
+		"AbilityManaCost"						"200 275 350"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"0.0"	// damage only
+		"AbilityModifierSupportValue"			"0.0"	// damage only
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"bonus_damage"					"30 45 60 75 90 105"
+			"bonus_damage"
+			{
+				"value"							"30 45 60"
 				"CalculateSpellDamageTooltip"	"0"
-			"duration"						"3.0 3.25 3.5 3.5 3.5 3.5"
-			"radius"						"275"
-			"bounce_rate"					"1.6"
+			}
+			"duration"							"3.0 3.25 3.5"
+			"radius"							"275"
+			"bounce_rate"						"1.6"
 		}
 	}
 	"special_bonus_unique_juggernaut_dance_of_blades_1" 

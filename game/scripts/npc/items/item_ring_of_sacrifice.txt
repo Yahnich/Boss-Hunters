@@ -4,7 +4,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2346"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2346"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ring_of_sacrifice"
@@ -46,7 +46,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2347"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2347"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -69,7 +69,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2348"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2348"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ring_of_sacrifice"
@@ -111,7 +111,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2349"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2349"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -135,7 +135,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2350"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2350"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ring_of_sacrifice"
@@ -178,7 +178,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2351"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2351"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -202,7 +202,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2352"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2352"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ring_of_sacrifice"
@@ -244,7 +244,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2353"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2353"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -268,7 +268,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2354"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2354"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ring_of_sacrifice"
@@ -310,7 +310,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2355"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2355"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -335,7 +335,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2356"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2356"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ring_of_sacrifice"
@@ -378,7 +378,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2357"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2357"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -403,7 +403,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2358"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2358"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ring_of_sacrifice"
@@ -446,7 +446,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2359"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2359"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -471,7 +471,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2360"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2360"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ring_of_sacrifice"
@@ -513,7 +513,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2361"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2361"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -538,7 +538,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2362"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2362"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ring_of_sacrifice"

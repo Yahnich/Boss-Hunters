@@ -158,15 +158,9 @@
 			"jump_duration_gyroshell"	"0.75"
 			"height"				"250"
 			"height_gyroshell"		"350"
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"distance"				"225"
+			"distance"				"225"
 				"LinkedSpecialBonus"	"special_bonus_unique_pango_shield_2"
-			"10"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_strikes"		"2"
+			"scepter_strikes"		"2"
 			"11"
 			{
 				"var_type"				"FIELD_INTEGER"

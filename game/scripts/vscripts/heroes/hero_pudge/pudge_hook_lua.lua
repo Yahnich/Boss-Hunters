@@ -30,7 +30,7 @@ function pudge_hook_lua:OnSpellStart()
 	end
 	
 	local bonusHooks = self:GetSpecialValueFor("bonus_hooks")
-	if bonus_hooks > 0 then
+	if bonusHooks > 0 then
 		local angle = self:GetSpecialValueFor("bonus_hook_angle")
 		for i = 1, bonusHooks do
 			local newAngle = angle * math.ceil(i / 2) * (-1)^i

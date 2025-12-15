@@ -280,7 +280,7 @@
 		"AbilityTextureName"			"tusk_walrus_kick"
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"		
+		"Innate"					"1"		
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

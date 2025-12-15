@@ -26,7 +26,7 @@
 	"item_recipe_tempest_staff"
 	{
 		"ID"							"7107"														
-		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe_assault"
@@ -48,7 +48,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"7108"														
-		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.	
+			
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"

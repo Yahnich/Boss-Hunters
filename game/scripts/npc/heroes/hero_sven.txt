@@ -235,18 +235,9 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"warcry_armor"						"6 9 12 15 20 25 30"			
-			"02"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"warcry_movespeed"					"10 14 18 22 30 38 46"
-			"03"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"warcry_radius"						"700"
+			"warcry_armor"						"6 9 12 15 20 25 30"			
+			"warcry_movespeed"					"10 14 18 22 30 38 46"
+			"warcry_radius"						"700"
 			"04"
 			{
 				"var_type"							"FIELD_INTEGER"
@@ -295,7 +286,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"sven_great_cleave"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------

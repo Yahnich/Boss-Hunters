@@ -302,10 +302,7 @@
 			"slow_move"						"-30"
 			"slow_as"						"-30"
 			"slow_duration"					"3"
-			"09"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"cast_point"					"1.5"
+			"cast_point"					"1.5"
 		}
 
 		"precache"

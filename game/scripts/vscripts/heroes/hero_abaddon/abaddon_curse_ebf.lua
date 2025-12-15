@@ -8,11 +8,11 @@ LinkLuaModifier( "modifier_abaddon_curse_passive", "heroes/hero_abaddon/abaddon_
 modifier_abaddon_curse_passive = class({})
 
 function modifier_abaddon_curse_passive:OnCreated()
-	self.duration = self:GetAbility():GetSpecialValueFor("buff_duration")
+	self.duration = self:GetSpecialValueFor("buff_duration")
 end
 
 function modifier_abaddon_curse_passive:OnRefresh()
-	self.duration = self:GetAbility():GetSpecialValueFor("buff_duration")
+	self.duration = self:GetSpecialValueFor("buff_duration")
 end
 
 function modifier_abaddon_curse_passive:IsHidden()
@@ -42,8 +42,8 @@ LinkLuaModifier( "modifier_abaddon_curse_buff", "heroes/hero_abaddon/abaddon_cur
 modifier_abaddon_curse_buff = class({})
 
 function modifier_abaddon_curse_buff:OnCreated()
-	self.cdr = self:GetAbility():GetSpecialValueFor("buff_cdr")
-	self.attackspeed = self:GetAbility():GetSpecialValueFor("buff_as")
+	self.cdr = self:GetSpecialValueFor("buff_cdr")
+	self.attackspeed = self:GetSpecialValueFor("buff_as")
 end
 
 function modifier_abaddon_curse_buff:DeclareFunctions()
@@ -71,8 +71,8 @@ LinkLuaModifier( "modifier_abaddon_curse_debuff", "heroes/hero_abaddon/abaddon_c
 modifier_abaddon_curse_debuff = class({})
 
 function modifier_abaddon_curse_debuff:OnCreated()
-	self.movespeed = self:GetAbility():GetSpecialValueFor("initial_slow")
-	self.trigger_count = self:GetAbility():GetSpecialValueFor("trigger_count")
+	self.movespeed = self:GetSpecialValueFor("initial_slow")
+	self.trigger_count = self:GetSpecialValueFor("trigger_count")
 	if IsServer() then
 		self:IncrementStackCount()
 		self.overheadFX = ParticleManager:CreateParticle("particles/units/heroes/hero_abaddon/abaddon_curse_counter_stack.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() )
@@ -82,8 +82,8 @@ function modifier_abaddon_curse_debuff:OnCreated()
 end
 
 function modifier_abaddon_curse_debuff:OnRefresh()
-	self.movespeed = self:GetAbility():GetSpecialValueFor("initial_slow")
-	self.trigger_count = self:GetAbility():GetSpecialValueFor("trigger_count")
+	self.movespeed = self:GetSpecialValueFor("initial_slow")
+	self.trigger_count = self:GetSpecialValueFor("trigger_count")
 	if IsServer() then
 		self:IncrementStackCount()
 		ParticleManager:SetParticleControl( self.overheadFX, 1, Vector(self:GetStackCount(), self:GetStackCount(), self:GetStackCount() ) )
@@ -129,8 +129,8 @@ function modifier_abaddon_curse_curse:GetEffectName()
 end
 
 function modifier_abaddon_curse_curse:OnCreated()
-	self.movespeed = self:GetAbility():GetSpecialValueFor("curse_slow")
-	self.attackspeed = self:GetAbility():GetSpecialValueFor("curse_as")
+	self.movespeed = self:GetSpecialValueFor("curse_slow")
+	self.attackspeed = self:GetSpecialValueFor("curse_as")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_abaddon_curse_1")
 end
 

@@ -71,7 +71,7 @@ end
 
 function modifier_silencer_last_word_bh_talent:OnAttackStart(params)
 	if params.attacker:IsSameTeam( self:GetCaster() ) then
-		params.attacker:AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_silencer_last_word_bh_talent_buff", { duration = params.attacker:GetSecondsPerAttack() + 0.1 })
+		params.attacker:AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_silencer_last_word_bh_talent_buff", { duration = params.attacker:GetSecondsPerAttack( false ) + 0.1 })
 	end
 end
 

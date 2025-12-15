@@ -50,9 +50,9 @@ end
 
 if IsServer() then
 	function modifier_zeus_static_field:OnCreated()
-		self.radius = self:GetAbility():GetSpecialValueFor("radius")
-		self:GetAbility().hpdamage = self:GetAbility():GetSpecialValueFor("damage_health_pct") / 100
-		self:GetAbility().miniondamage = self:GetAbility():GetSpecialValueFor("minion_damage_pct") / 100
+		self.radius = self:GetSpecialValueFor("radius")
+		self:GetAbility().hpdamage = self:GetSpecialValueFor("damage_health_pct") / 100
+		self:GetAbility().miniondamage = self:GetSpecialValueFor("minion_damage_pct") / 100
 	end
 
 	function modifier_zeus_static_field:OnTakeDamage(params)

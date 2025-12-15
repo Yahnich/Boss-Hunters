@@ -111,7 +111,7 @@ function modifier_phenx_dive_caster:OnIntervalThink()
 		self:GetParent():PerformAttack(enemy, true, true, true, true, true, false, false)
         break
     end
-    self:StartIntervalThink(self:GetCaster():GetSecondsPerAttack())
+    self:StartIntervalThink(self:GetCaster():GetSecondsPerAttack( false ))
 end
 
 function modifier_phenx_dive_caster:CheckState()

@@ -323,7 +323,7 @@
 	    "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"tiny_craggy_exterior"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

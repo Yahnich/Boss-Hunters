@@ -289,7 +289,7 @@
 		"ScriptFile"					"heroes/hero_skywrath/skywrath_int.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		"HasScepterUpgrade"				"1"	
 		"AbilityTextureName"			"custom/skywrath_mage_int"
 		

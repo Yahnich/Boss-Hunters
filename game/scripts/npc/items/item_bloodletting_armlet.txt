@@ -4,7 +4,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2414"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2414"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_bloodletting_armlet"
@@ -47,7 +47,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2415"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2415"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -70,7 +70,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2416"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2416"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_bloodletting_armlet"
@@ -107,7 +107,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2417"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2417"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -131,7 +131,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2418"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2418"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_bloodletting_armlet"
@@ -169,7 +169,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2419"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2419"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -193,7 +193,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2420"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2420"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_bloodletting_armlet"
@@ -232,7 +232,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2421"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2421"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -256,7 +256,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2422"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2422"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_bloodletting_armlet"
@@ -294,7 +294,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2423"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2423"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -319,7 +319,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2424"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2424"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_bloodletting_armlet"
@@ -358,7 +358,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2425"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2425"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -383,7 +383,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2426"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2426"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_bloodletting_armlet"
@@ -422,7 +422,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2427"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2427"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -447,7 +447,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2428"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2428"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_bloodletting_armlet"
@@ -486,7 +486,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2429"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2429"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -511,7 +511,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2430"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2430"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_bloodletting_armlet"

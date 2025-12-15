@@ -270,7 +270,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"brewmaster_drunken_brawler"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

@@ -26,7 +26,7 @@ function modifier_boss1a_rushdown_attack_thinker:OnCreated()
 	self.ms = self:GetSpecialValueFor("rush_speed")
 	if IsServer() then 
 		self:OnIntervalThink()
-		self:StartIntervalThink(self:GetParent():GetSecondsPerAttack()) 
+		self:StartIntervalThink(self:GetParent():GetSecondsPerAttack( false )) 
 	end
 end
 

@@ -18,7 +18,7 @@ function puck_illusory_orb_ebf:OnSpellStart()
 	self.orbProjectiles = self.orbProjectiles or {}
 	
 	self:CreateOrb(velocity)
-	if caster:HasTalent("special_bonus_unique_puck_illusory_orb_1") then
+	if self:GetSpecialValueFor("mirror_projectile") == 1 then
 		self:CreateOrb(-velocity)
 	end
 	
@@ -56,10 +56,10 @@ function puck_illusory_orb_ebf:OnOrbDestroyed(projID, position)
 	local vDuration = self:GetSpecialValueFor("vision_duration")
 	
 	AddFOWViewer ( caster:GetTeam(), position, vRadius, vDuration, false)
-	if caster:HasTalent("special_bonus_unique_puck_illusory_orb_2") then
+	local dmgPct = self:GetSpecialValueFor("end_damage_pct") / 100
+	if dmgPct > 0 then
 		local orbDamage = self:GetSpecialValueFor("damage")
-		local radInc = caster:FindTalentValue("special_bonus_unique_puck_illusory_orb_2")
-		local dmgPct = caster:FindTalentValue("special_bonus_unique_puck_illusory_orb_2", "damage") / 100
+		local radInc = self:GetSpecialValueFor("end_damage_radius")
 		ParticleManager:FireParticle("particles/heroes/hero_puck/puck_illusory_orb_talentalliance_explosion.vpcf", PATTACH_WORLDORIGIN, nil, {[1] = position + Vector(0,0, 24)})
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(position, vRadius * radInc) ) do
 			local damage = orbDamage * dmgPct

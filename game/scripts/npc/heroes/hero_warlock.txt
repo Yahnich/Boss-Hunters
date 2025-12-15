@@ -52,53 +52,22 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"damage"				"100 130 160 190 220 250 280"
-			"chance"				"30"
-			"crit_mult"				"300"
-			"debuff_duration"		"3"
-			"damage_over_time"		"15 30 45 60 75 100 125"
-			"damage_amp"			"12.5 15 17.5 20 22.5 25"
+			"damage"							"100 130 160 190"
+			"chance"							"30"
+			"crit_mult"							"300"
+			"debuff_duration"					"3"
+			"damage_over_time"					"15 30 45 60"
+			"damage_amp"
+			{
+				"value"							"10 15 20 25"
 				"CalculateSpellDamageTooltip"	"0"
+			}
+			
+			"crit_aoe_damage"					{"special_bonus_unique_warlock_chaos_bolt_2" "80"}
+			"crit_aoe_radius"					{"special_bonus_unique_warlock_chaos_bolt_2" "250"}
+			"slow"								{"special_bonus_unique_warlock_chaos_bolt_2" "80"}
 		}
 	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_warlock_chaos_bolt_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"damage"					"80"
-			"radius"					"250"
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_warlock_chaos_bolt_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"-80"
-		}
-	}
-
 	"warlock_corruption_curse"
 	{
 		// General
@@ -140,54 +109,20 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"120 130 140 150 160 170 180"
+		"AbilityManaCost"				"120 130 140 150"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"damage"				"15 25 35 45 55 65 75"
-			"duration"				"12"
-			"boss_hp_mult"			"3"
+			"damage"					"15 25 35 45"
+			"duration"					"12"
+			"boss_hp_mult"				"3"
+			
+			"death_spread_radius"		{"special_bonus_unique_warlock_corruption_curse_1"	"600"}
+			"magic_resist_shift"		{"special_bonus_unique_warlock_corruption_curse_2"	"15"}
 		}
 	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_warlock_corruption_curse_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"600"
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_warlock_corruption_curse_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"15"
-		}
-	}
-
 	"warlock_sacrifice"
 	{
 		// General
@@ -231,58 +166,28 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"120 130 140 150 160 170 180"
+		"AbilityManaCost"				"120 130 140 150"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"spell_amp"				"15 25 35 45 55 65 75"
-			"health_regen"			"9 12 15 18 21 24 27"
-			"golem_health_regen"	"27 36 45 54 63 72 81"
-			"golem_bonus_damage"	"15 25 35 45 55 65 75"
-			"duration"				"8"
+			"spell_amp"				"15 25 35 45"
+			"health_regen"			"9 12 15 18"
+			"golem_health_regen"	"27 36 45 54"
+			"golem_bonus_damage"	"15 25 35 45"
+			"duration"				"16 32 48 64"
+			
+			"current_health_cost"
+			{
+				"value"				"100"
+				"special_bonus_unique_warlock_sacrifice_1" "-50"
+			}
+			"int_damage"			{"special_bonus_unique_warlock_sacrifice_2"	"100"}
+			"damage_radius"			{"special_bonus_unique_warlock_sacrifice_2"	"500"}
+			"golem_multiplier"		{"special_bonus_unique_warlock_sacrifice_2"	"3"}
 		}
 	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_warlock_sacrifice_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"0.5"
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_warlock_sacrifice_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"damage"					"100"
-			"radius"					"500"
-			"golem_mult"				"3"
-		}
-	}
-
 	"warlock_summon_imp"
 	{
 		// General
@@ -292,7 +197,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"dark_troll_warlord_raise_dead"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"						"1"
 		"HasScepterUpgrade"				"1"
 		
 		"precache"
@@ -405,68 +310,43 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"170"
+		"AbilityCooldown"				"60"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"250 375 500 625 750 875"
+		"AbilityManaCost"				"250 375 500"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"damage"				"250 375 500 625 750 875"
-			"stun_duration"			"1"
-			"stun_radius"			"600"
-			"golem_number"			"1"
-				"LinkedSpecialBonus"	"special_bonus_unique_warlock_demonic_summons_1"
-			"golem_duration"		"60"
-				"LinkedSpecialBonus"	"special_bonus_unique_warlock_demonic_summons_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			"golem_damage"			"250 375 500 625 750 875"
-			"golem_hp"				"250 375 500 625 750 875"
-			"delay"					"0.5"
+			"damage"												"250 375 500"
+			"stun_duration"											"1"
+			"stun_radius"											"600"
+			"golem_number"
+			{
+				"value"												"1"
+				"special_bonus_unique_warlock_demonic_summons_1"	"+1"
+			}
+			"golem_duration"										"60"
+			"golem_damage"
+			{
+				"value"												"250 375 500"
+				"special_bonus_unique_warlock_demonic_summons_1"	"+50%"
+			}
+			"golem_hp"
+			{
+				"value"												"2500 3750 5000"
+				"special_bonus_unique_warlock_demonic_summons_1"	"+50%"
+			}
+			"golem_magic_resist"
+			{
+				"value"												"30"
+				"special_bonus_unique_warlock_demonic_summons_1"	"+70"
+			}
+			"delay"													"0.5"
 		}
 	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_warlock_demonic_summons_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"mr"						"100"
-			"hp"						"1.5"
-			"dmg"						"1.5"
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_warlock_demonic_summons_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"0.5"
-		}
-	}
-
 	"warlock_golem_gloves"
 	{
 		// General
@@ -497,8 +377,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"damage"				"50 60 80 100 120 160"
-			"radius"				"300"
+			"damage"					"50 60 80"
+			"radius"					"300"
 		}
 	}
 
@@ -532,8 +412,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"damage"				"30 60 90 120 150 180"
-			"radius"				"300"
+			"damage"					"30 60 90"
+			"radius"					"300"
 		}
 	}
 }

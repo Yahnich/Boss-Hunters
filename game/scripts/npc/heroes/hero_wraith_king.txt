@@ -293,7 +293,7 @@
 		"AbilityTextureName"			"custom/wraith_king_summon_skeletons"
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------

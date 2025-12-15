@@ -282,7 +282,7 @@
 		"MaxLevel"						"1"
 		"AbilityTextureName"			"bristleback_bristleback"
 	
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		"AbilityCooldown"				"0.25"
 	
 	

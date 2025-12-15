@@ -70,15 +70,15 @@ LinkLuaModifier( "modifier_emission_debuff", "items/item_emission.lua" ,LUA_MODI
 modifier_emission_debuff = class({})
 
 function modifier_emission_debuff:OnCreated()
-	self.slow = self:GetAbility():GetSpecialValueFor("slow")
+	self.slow = self:GetSpecialValueFor("slow")
 	if IsServer() then
-		self.damage = self:GetAbility():GetSpecialValueFor("base_damage") + self:GetCaster():GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage") / 100
+		self.damage = self:GetSpecialValueFor("base_damage") + self:GetCaster():GetPrimaryStatValue() * self:GetSpecialValueFor("damage") / 100
 		self:StartIntervalThink(1)
 	end
 end
 
 function modifier_emission_debuff:OnRefresh()
-	self.slow = self:GetAbility():GetSpecialValueFor("slow")
+	self.slow = self:GetSpecialValueFor("slow")
 end
 
 function modifier_emission_debuff:OnIntervalThink()
@@ -86,7 +86,7 @@ function modifier_emission_debuff:OnIntervalThink()
 	if not statOwner:IsRealHero() then
 		statOwner = PlayerResource:GetSelectedHeroEntity( statOwner:GetPlayerID() )
 	end
-	self.damage = self:GetAbility():GetSpecialValueFor("base_damage") + statOwner:GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage") / 100
+	self.damage = self:GetSpecialValueFor("base_damage") + statOwner:GetPrimaryStatValue() * self:GetSpecialValueFor("damage") / 100
 	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {damage_type = DAMAGE_TYPE_MAGICAL})
 end
 

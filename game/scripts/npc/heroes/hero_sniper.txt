@@ -53,63 +53,25 @@
 		{
 			"damage"
 			{
-				"value"						"25 40 55 70 80 90 100"
-				"LinkedSpecialBonus"		"special_bonus_unique_sniper_shrapnel_bh_1"
+				"value"										"25 40 55 70"
+				"special_bonus_unique_sniper_shrapnel_1"	+50"
 			}
 			"burst_damage"
 			{
-				"value"				"20 40 60 80 160 320 480"
-				"LinkedSpecialBonus"		"special_bonus_unique_sniper_shrapnel_bh_1"
-				"LinkedSpecialBonusField"	"value2"
+				"value"										"80 120 160 200"
+				"special_bonus_unique_sniper_shrapnel_1"	+150"
 			}
-			"delay"						"1.2"
-			"duration"					"10 10 10 10 12 14 16"
-			"radius"					"450"
-			"slow_movement_speed"		"-12 -18 -24 -30 -30 -30 -30"
-			"slow_duration"				"2"
-			"AbilityCharges"			""
+			"delay"											"1.2"
+			"duration"										"10 12 14 16"
+			"radius"										"450"
+			"slow_movement_speed"							"-12 -18 -24 -30"
+			"slow_duration"									"2"
+			
+			"pure_damage"									{"special_bonus_unique_sniper_shrapnel_1"	"1"}
+			"bonus_attack_speed"							{"special_bonus_unique_sniper_shrapnel_2"	"100"}
+			"bonus_attack_speed_duration"					{"special_bonus_unique_sniper_shrapnel_2"	"7"}
 		}
 	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_sniper_shrapnel_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"50"
-			"value2"					"270"
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_sniper_shrapnel_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"100"
-			"duration"					"7"
-		}
-	}
-
 	"sniper_headshot_bh"
 	{
 		// General
@@ -145,64 +107,149 @@
 		
 		"AbilityValues"
 		{
-			"chance"					"40 40 40 40 50 60 70"
+			"chance"										"40"
 			"damage"
 			{
-				"value"					"20 50 80 110 115 120 125"
-				"LinkedSpecialBonus"		"special_bonus_unique_sniper_headshot_1"
+				"value"										"20 50 80 110"
+				"special_bonus_unique_sniper_headshot_1"	"+45"
 			}
 			"duration"
 			{
-				"value"					"0.5"
-				"LinkedSpecialBonus"		"special_bonus_unique_sniper_headshot_2"
+				"value"										"0.5"
+				"special_bonus_unique_sniper_headshot_2"	"+3"
 			}
-			"movespeed_slow"			"-100"
-			"attackspeed_slow"			"-100"
-			"blind"						"50"
+			"movespeed_slow"								"-100"
+			"attackspeed_slow"								"-100"
+			"blind"											"50"
+			
+			"splash_pct"									{"special_bonus_unique_sniper_headshot_1"	"50"}
+			"splash_radius"									{"special_bonus_unique_sniper_headshot_1"	"250"}
 		}
 	}
 
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_sniper_headshot_1"
+	"sniper_take_aim_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"LinkedModifierName"			"modifier_sniper_headshot_bh"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_sniper/sniper_take_aim_bh"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"			"sniper_take_aim"
+		"MaxLevel"						"4"
+		
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sniper_take_aim_1"	"1"
+			"special_bonus_unique_sniper_take_aim_2"	"1"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0 0 0 0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20 18 16 14 14 14 14"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"value"						"45"
-			"damage"					"50"
-			"radius"						"250"
+			"bonus_attack_range"							"100 200 300 400"
+			"duration"										"3 4 5 6"
+			"slow"
+			{
+				"value"										"-30 -20 -10 -0"
+				"special_bonus_unique_sniper_take_aim_2"	"+60"
+			}
+			"bonus_headshot_chance"							"60"
+			"invisibility"									{"special_bonus_unique_sniper_take_aim_2"	"1"}
+			"passive_multiplier"							{"special_bonus_unique_sniper_take_aim_1"	"2"}
+			"global_vision"									{"special_bonus_unique_sniper_take_aim_1"	"1"}
 		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_3"
 	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_sniper_headshot_2"
+	"sniper_assassinate_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"LinkedModifierName"			"modifier_sniper_headshot_bh"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_sniper/sniper_assassinate_bh"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"AbilityTextureName"			"sniper_assassinate"
+		"HasScepterUpgrade"				"1"
+		"MaxLevel"						"3"
 		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sniper_assassinate_1"	"1"
+			"special_bonus_unique_sniper_assassinate_2"	"1"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"2000 2250 2500"
+		"AbilityCastPoint"				"2.0"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"175 275 375"
+	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"value"						"3"
+			"AbilityCooldown"
+			{
+				"value"					"20 16 12"
+				"special_bonus_scepter"	"=15 =11 =7"
+			}				
+			"damage"					"230 365 500"
+			"speed"						"2500"
+			"range"						"3000"
+			"ministun_duration"
+			{
+				"value"					"0.5"
+				"scepter_stun_duration"	"=1.8"
+			}
+			"max_reduction"				"2"
+			
+			"bounces"					{"special_bonus_unique_sniper_assassinate_1"	"1"}
+			"bounce_radius"				{"special_bonus_unique_sniper_assassinate_1"	"1000"}
+			"disarm_duration"			{"special_bonus_unique_sniper_assassinate_2"	"5"}
+			
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+			"particle"					"particles/units/heroes/hero_sniper/sniper_assassinate.vpcf"
+			"particle"					"particles/units/heroes/hero_sniper/sniper_crosshair.vpcf"
 		}
 	}
-
+	////////////////////////////////////////////////////////////////////////
+	// DEPRECATED
+	////////////////////////////////////////////////////////////////////////
 	"sniper_rapid_fire"
 	{
 	    "BaseClass"                     "ability_lua"
@@ -299,188 +346,4 @@
 		}
 	}
 
-	"sniper_take_aim_bh"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_sniper/sniper_take_aim_bh"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityTextureName"			"sniper_take_aim"
-		"MaxLevel"						"4"
-		
-		"LinkedTalents"
-		{
-			"special_bonus_unique_sniper_take_aim_1"	"1"
-			"special_bonus_unique_sniper_take_aim_2"	"1"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0 0 0 0"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20 18 16 14 14 14 14"
-
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"bonus_attack_range"			"100 200 300 400 450 500 550"
-			"duration"						"3 3 3 3 4 5 6"
-			"slow"
-			{
-				"value"								"-45 -40 -35 -30 -20 -10 -0"
-				"LinkedSpecialBonus"			"special_bonus_unique_sniper_take_aim_2"
-			}
-			"bonus_headshot_chance"			"60"
-		}
-		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_3"
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_sniper_take_aim_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"2"
-		}
-	}
-	
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_sniper_take_aim_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"60"
-		}
-	}
-
-	"sniper_assassinate_bh"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_sniper/sniper_assassinate_bh"
-		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
-		"AbilityTextureName"			"sniper_assassinate"
-		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"3"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_sniper_assassinate_1"	"1"
-			"special_bonus_unique_sniper_assassinate_2"	"1"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"2000 2250 2500 2750 3000 3250"
-		"AbilityCastPoint"				"2.0"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20 20 20 16 12 8"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"175 275 375 400 425 450"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"damage"					"230 365 500 550 600 650"
-			"speed"						"2500"
-			"range"						"3000"
-			"ministun_duration"			"0.1"
-			"scepter_stun_duration"		"1.8"
-			"scepter_cooldown"			"15 15 15 11 7 3"
-			"max_reduction"				"2"
-			
-		}
-		
-		// Data driven
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
-			"particle"					"particles/units/heroes/hero_sniper/sniper_assassinate.vpcf"
-			"particle"					"particles/units/heroes/hero_sniper/sniper_crosshair.vpcf"
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_sniper_assassinate_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"1000"
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_sniper_assassinate_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"5"
-		}
-	}
 }

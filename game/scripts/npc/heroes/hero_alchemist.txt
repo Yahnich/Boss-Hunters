@@ -49,15 +49,21 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"radius"					"475 525 575 625 625 625 625"
-			"duration"					"16.0"
-			"damage"					"20 25 30 35 70 105 140"
+			"radius"						"475 525 575 625"
+			"duration"						"16.0"
+			"damage"
+			{
+				"value"						"20 25 30 35"
 				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_acid_spray_2"
 				"LinkedSpecialBonusField"	"value2"
-			"armor_reduction"			"-4 -5 -6 -7 -7 -7 -7"
-			"tick_rate"					"1.0"
-			"aura_linger"				"0.5"
+			}
+			"armor_reduction"				"-4 -5 -6 -7"
+			"tick_rate"						"1.0"
+			"aura_linger"
+			{
+				"value"						"0.5"
 				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_acid_spray_2"
+			}
 		}
 	}
 	"special_bonus_unique_alchemist_acid_spray_1" 
@@ -132,17 +138,23 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"brew_time"						"5.0 5.0 5.0 5.0 4.0 3.0 2.0"
+			"brew_time"						"5.0 5.0 5.0 5.0"
 			"brew_explosion"				"6.0"
 			"min_stun"						"0.25"
-			"max_stun"						"1.75 2.5 3.25 4.0 4.0 4.0 4.0"
+			"max_stun"						"1.75 2.5 3.25 4.0 "
 			"min_damage"					"50"
-			"max_damage"					"150 220 290 360 430 500 570"
+			"max_damage"
+			{
+				"value"						"150 220 290 360"
 				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_unstable_concoction_2"
 				"LinkedSpecialBonusField"		"value2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			"radius"						"250"
+			}
+			"radius"
+			{
+				"value"							"250"
 				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_unstable_concoction_2"
+			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 		"precache"
@@ -216,7 +228,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"45 40 35 30 30 30 30"
+		"AbilityCooldown"				"45 40 35 30"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -227,12 +239,18 @@
 		"AbilityValues"
 		{
 			"duration"						"10"
-			"primary_bonus"					"12 24 36 48 52 56 60"
+			"primary_bonus"
+			{
+				"value"						"12 24 36 48"
 				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_berserk_potion_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			"max_hp_heal"					"35 35 35 35 40 45 50"
+			}
+			"max_hp_heal"
+			{
+				"value"						"35 40 45 50"
 				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_berserk_potion_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
 			"projectile_speed"				"900"
 		}
 	}
@@ -275,7 +293,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"alchemist_goblins_greed"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		
@@ -288,22 +306,10 @@
 		
 		"AbilityValues"
 	    {
-			"01"
-	        {
-	            "var_type"              		"FIELD_INTEGER"
-	            "minion_gold"          			"2"
-			"02"
-	        {
-	            "var_type"            	  		"FIELD_INTEGER"
-	            "monster_gold"					"25"
-			"03"
-	        {
-	            "var_type"						"FIELD_INTEGER"
-	            "boss_gold"						"350"
-			"04"
-	        {
-	            "var_type"              		"FIELD_INTEGER"
-	            "radius"	          			"600"
+			"minion_gold"          			"2"
+			"monster_gold"					"25"
+			"boss_gold"						"350"
+			"radius"	          			"600"
 	    }
 	}
 	"special_bonus_unique_alchemist_alchemists_greed_1" 
@@ -383,17 +389,26 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"duration"						"25.0"
-			"base_attack_time"				"-0.15 -0.3 -0.45 -0.6 -0.75 -0.9"
+			"duration"							"25.0"
+			"base_attack_time"
+			{
+				"value"							"-0.15 -0.3 -0.45"
 				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_chemical_rage_2"
-			"bonus_hp"						"400 800 1200 1600 2000 2400"
-			"bonus_health_regen"			"16 32 48 64 80 96"
+			}
+			"bonus_hp"							"800 1600 2400"
+			"bonus_health_regen"
+			{
+				"value"							"16 48 80"
 				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_chemical_rage_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			"bonus_mana_regen"				"2 4 6 8 10 12"
+			}
+			"bonus_mana_regen"
+			{
+				"value"							"2 6 10"
 				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_chemical_rage_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			"bonus_movespeed"				"100"
+			}
+			"bonus_movespeed"					"100"
 		}
 	}
 	"special_bonus_unique_alchemist_chemical_rage_1" 

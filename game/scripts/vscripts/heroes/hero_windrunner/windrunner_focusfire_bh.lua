@@ -98,7 +98,7 @@ function modifier_windrunner_focusfire_bh:OnCreated(table)
 	self.dmg = self:GetSpecialValueFor("dmg_reduction")
     if IsServer() then
 		local caster = self:GetCaster()
-		self:StartIntervalThink( math.max( 0.31, ( caster:GetLastAttackTime( ) - GameRules:GetGameTime() ) + caster:GetSecondsPerAttack() ) )
+		self:StartIntervalThink( math.max( 0.31, ( caster:GetLastAttackTime( ) - GameRules:GetGameTime() ) + caster:GetSecondsPerAttack( false ) ) )
     end
 end
 
@@ -108,7 +108,7 @@ function modifier_windrunner_focusfire_bh:OnIntervalThink()
 		self:Destroy()
 		return
 	end
-    if not caster:HasActiveAbility() and ( GameRules:GetGameTime() - caster:GetLastAttackTime( ) ) >= caster:GetSecondsPerAttack() then
+    if not caster:HasActiveAbility() and ( GameRules:GetGameTime() - caster:GetLastAttackTime( ) ) >= caster:GetSecondsPerAttack( false ) then
 		self.lastAttackTarget = self:GetAbility().targetModifier:GetParent()  or self.lastAttackTarget
 		if not self.lastAttackTarget or self.lastAttackTarget:IsNull() or not self.lastAttackTarget:IsAlive() then
 			self:Destroy()
@@ -120,7 +120,7 @@ function modifier_windrunner_focusfire_bh:OnIntervalThink()
         else
             caster:RemoveGesture(ACT_DOTA_ATTACK)
         end
-		self:StartIntervalThink( self:GetCaster():GetSecondsPerAttack( ) - 0.03 )
+		self:StartIntervalThink( self:GetCaster():GetSecondsPerAttack( false  ) - 0.03 )
     else
         caster:RemoveGesture(ACT_DOTA_ATTACK)
 		self:StartIntervalThink(0)

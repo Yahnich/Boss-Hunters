@@ -247,10 +247,7 @@
 				"var_type"				"FIELD_FLOAT"
 				"spider_evasion"		"50"
 			"spider_mr"				"80"
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"squish_radius"			"150"
+			"squish_radius"			"150"
 		}
 	
 		"precache"
@@ -314,7 +311,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"broodmother_incapacitating_bite"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

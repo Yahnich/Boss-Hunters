@@ -51,7 +51,7 @@ function modifier_treant_leech_seed_bh_debuff:OnCreated()
 		self.radius = self:GetSpecialValueFor("radius")
 		self.damage = self:GetCaster():GetStrength() * self:GetSpecialValueFor("leech_damage") / 100
 		self.speed = self:GetSpecialValueFor("projectile_speed")
-		self:StartIntervalThink( self:GetCaster():GetSecondsPerAttack() )
+		self:StartIntervalThink( self:GetCaster():GetSecondsPerAttack( false ) )
 	end
 end
 
@@ -61,7 +61,7 @@ function modifier_treant_leech_seed_bh_debuff:OnRefresh()
 		self.radius = self:GetSpecialValueFor("radius")
 		self.damage = self:GetCaster():GetStrength() * self:GetSpecialValueFor("leech_damage") / 100
 		self.speed = self:GetSpecialValueFor("projectile_speed")
-		self:StartIntervalThink( self:GetCaster():GetSecondsPerAttack() )
+		self:StartIntervalThink( self:GetCaster():GetSecondsPerAttack( false ) )
 	end
 end
 

@@ -20,7 +20,7 @@ if IsServer() then
 		if not ability:IsFullyCastable() or caster:IsStunned() or caster:IsSilenced() or caster:GetCurrentActiveAbility() or caster:IsHexed() or caster:IsRooted() then return end
 		if #caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), 800 ) <= 0 then return end
 		
-		local duration = self:GetAbility():GetSpecialValueFor("duration")
+		local duration = self:GetSpecialValueFor("duration")
 		EmitSoundOn("n_black_dragon.Fireball.Target", caster)
 		ability:StartCooldown( duration * 2 )
 		

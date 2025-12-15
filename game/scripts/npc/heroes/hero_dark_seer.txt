@@ -247,10 +247,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"bonus_ms"							"25 40 55 70 85 100 115"
+			"bonus_ms"							"25 40 55 70 85 100 115"
 			"02"
 			{
 				"var_type"							"FIELD_FLOAT"
@@ -304,7 +301,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"AbilityTextureName"			"custom/Masque_of_Awaleb_Maledict_icon"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 	
 		"precache"
 		{

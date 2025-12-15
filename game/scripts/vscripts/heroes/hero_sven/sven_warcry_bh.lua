@@ -83,7 +83,7 @@ function modifier_sven_warcry_bh_talent_buff:OnCreated()
 end
 
 function modifier_sven_warcry_bh_talent_buff:OnRefresh()
-	self.armor = self:GetAbility():GetSpecialValueFor("warcry_armor") * self:GetCaster():FindTalentValue("special_bonus_unique_sven_warcry_2") / 100
+	self.armor = self:GetSpecialValueFor("warcry_armor") * self:GetCaster():FindTalentValue("special_bonus_unique_sven_warcry_2") / 100
 end
 
 function modifier_sven_warcry_bh_talent_buff:GetEffectName()
@@ -103,14 +103,14 @@ LinkLuaModifier( "modifier_sven_warcry_bh_buff", "heroes/hero_sven/sven_warcry_b
 modifier_sven_warcry_bh_buff = class({})
 
 function modifier_sven_warcry_bh_buff:OnCreated()
-	self.ms = self:GetAbility():GetSpecialValueFor("warcry_movespeed")
-	self.armor = self:GetAbility():GetSpecialValueFor("warcry_armor")
+	self.ms = self:GetSpecialValueFor("warcry_movespeed")
+	self.armor = self:GetSpecialValueFor("warcry_armor")
 	self.as = self.ms * self:GetCaster():FindTalentValue("special_bonus_unique_sven_warcry_1") / 100
 end
 
 function modifier_sven_warcry_bh_buff:OnRefresh()
-	self.ms = self:GetAbility():GetSpecialValueFor("warcry_movespeed")
-	self.armor = self:GetAbility():GetSpecialValueFor("warcry_armor")
+	self.ms = self:GetSpecialValueFor("warcry_movespeed")
+	self.armor = self:GetSpecialValueFor("warcry_armor")
 	self.as = self.ms * self:GetCaster():FindTalentValue("special_bonus_unique_sven_warcry_1") / 100
 end
 

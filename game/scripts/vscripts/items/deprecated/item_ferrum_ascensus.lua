@@ -75,11 +75,11 @@ LinkLuaModifier( "modifier_ferrum_ascensus_debuff", "items/item_ferrum_ascensus.
 modifier_ferrum_ascensus_debuff = class({})
 
 function modifier_ferrum_ascensus_debuff:OnCreated()
-	self.slow = self:GetAbility():GetSpecialValueFor("attack_slow")
+	self.slow = self:GetSpecialValueFor("attack_slow")
 end
 
 function modifier_ferrum_ascensus_debuff:OnRefresh()
-	self.slow = self:GetAbility():GetSpecialValueFor("attack_slow")
+	self.slow = self:GetSpecialValueFor("attack_slow")
 end
 
 function modifier_ferrum_ascensus_debuff:DeclareFunctions()

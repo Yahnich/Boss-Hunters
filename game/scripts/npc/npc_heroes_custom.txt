@@ -17,6 +17,22 @@
 		"Ability15"				"special_bonus_unique_abaddon_brume_weaver_2"
 		"Ability16"				"special_bonus_unique_abaddon_borrowed_time_1"
 		"Ability17"				"special_bonus_unique_abaddon_curse_1"
+		
+		"Masteries"
+		{
+			"HEALTH"{"2" "5"}
+			"MANA"{"3" "4"}
+			"MANA_REGEN"{"3" "3"}
+			"SPELL_AMP"{"3" "1"}
+			"ATTACK_DAMAGE"{"3" "3"}
+			"ARMOR"{"3" "3"}
+			"MAGIC_RESIST"{"3" "3"}
+			"AREA_DAMAGE"{"3" "1"}
+			"MOVESPEED"{"1" "3"}
+			"THREAT_AMP"{"3" "1"}
+			"THREAT_DOWN"{"3" "1"}
+			"ALL_STATS"{"3" "2"}
+		}
 			
 	}
 	//=================================================================================================================
@@ -801,6 +817,18 @@
 		"Ability15"						"special_bonus_unique_enigma_midnight_pulse_2"
 		"Ability16"						"special_bonus_unique_enigma_black_hole_1"
 		"Ability17"						"special_bonus_unique_enigma_black_hole_2"
+		
+		"Masteries"
+		{
+			"ALL_STATS"{"2" "4"}
+			"MANA_REGEN"{"2" "5"}
+			"STATUS_AMP"{"2" "5"}
+			"SPELL_AMP"{"2" "3"}
+			"ATTACK_DAMAGE"{"2" "3"}
+			"ATTACK_SPEED"{"2" "3"}
+			"ARMOR"{"1" "4"}
+			"MAGIC_RESIST"{"1" "3"}
+		}
 	}
 	"npc_dota_hero_faceless_void_ebf"
 	{
@@ -978,6 +1006,18 @@
 		"Ability15"		"special_bonus_unique_jakiro_liquid_fire_bh_2"
 		"Ability16"		"special_bonus_unique_jakiro_macropyre_bh_1"
 		"Ability17"		"special_bonus_unique_jakiro_macropyre_bh_3"
+		
+		"Masteries"
+		{
+			"INTELLIGENCE"{"3" "5"}
+			"SPELL_AMP"{"3" "5"}
+			"MANA"{"1" "5"}
+			"MANA_REGEN"{"2" "5"}
+			"HEALTH"{"3" "3"} 
+			"HEALTH_REGEN"{"3" "3"}
+			"THREAT_DOWN"{"3" "2"}
+			"STATUS_AMP"{"1" "2"}
+		}
 	}
 
 	"npc_dota_hero_juggernaut"
@@ -1185,6 +1225,7 @@
 		"Ability2"						"lina_lsa"
 		"Ability3"						"lina_fireball"
 		"Ability4"						"lina_fire_soul"
+		"Ability5"						"generic_hidden"
 		"Ability6"						"lina_laguna"
 
 		"Ability10"						"special_bonus_unique_lina_dragon_1"
@@ -1195,6 +1236,18 @@
 		"Ability15"						"special_bonus_unique_lina_fireball_2"
 		"Ability16"						"special_bonus_unique_lina_laguna_1"
 		"Ability17"						"special_bonus_unique_lina_laguna_2"
+		
+		"Masteries"
+		{
+			"INTELLIGENCE"{"3" "5"}
+			"ATTACK_DAMAGE"{"3" "5"}
+			"HEALTH"{"2" "5"}
+			"MANA"{"3" "2"}
+			"MANA_REGEN"{"3" "3"}
+			"THREAT_DOWN"{"3" "2"}
+			"MAGIC_RESIST"{"3" "2"}
+			"EVASION"{"1" "5"}
+		}
 	}
 	"npc_dota_hero_lion"
 	{
@@ -1301,12 +1354,17 @@
 		"Ability16"						"special_bonus_unique_mag_polarity_1"
 		"Ability17"						"special_bonus_unique_mag_polarity_2"
 		
-		"AttributeBaseStrength"			"32"
-		"AttributeStrengthGain"			"4"
-		"AttributeBaseIntelligence"		"19"
-		"AttributeIntelligenceGain"		"1.650000"
-		"AttributeBaseAgility"			"15"
-		"AttributeAgilityGain"			"2.500000"
+		"Masteries"
+		{
+			"MANA"{"3" "5"}
+			"MANA_REGEN"{"3" "5"}
+			"HEALTH"{"1" "3"}
+			"SPELL_AMP"{"3" "5"}
+			"ATTACK_DAMAGE"{"3" "5"}
+			"STRENGTH"{"3" "3"}
+			"ARMOR"{"1" "3"}
+			"MAGIC_RESIST"{"3" "1"}
+		}
 	}
 	//=================================================================================================================
 	// HERO: Medusa
@@ -1778,6 +1836,18 @@
 		"Ability15"						"special_bonus_unique_puck_phase_shift_2"
 		"Ability16"						"special_bonus_unique_puck_reverie_snap_1"
 		"Ability17"						"special_bonus_unique_puck_reverie_snap_2"
+		
+		"Masteries"
+		{
+			"INTELLIGENCE"{"3" "5"}
+			"SPELL_AMP"{"3" "5"}
+			"MANA"{"1" "5"}
+			"MANA_REGEN"{"2" "5"}
+			"HEALTH_REGEN"{"3" "3"}
+			"EVASION"{"1" "3"} 
+			"THREAT_DOWN"{"3" "2"}
+			"STATUS_AMP"{"1" "2"}
+		}
 	}
 	//=================================================================================================================
 	// HERO: Pudge
@@ -2488,6 +2558,18 @@
 		"Ability15"						"special_bonus_unique_treant_living_armor_2"
 		"Ability16"						"special_bonus_unique_treant_great_protector_1"
 		"Ability17"						"special_bonus_unique_treant_great_protector_2"
+		
+		"Masteries"
+		{
+			"STRENGTH"{"2" "4"}
+			"MANA"{"2" "5"}
+			"MANA_REGEN"{"3" "2"}
+			"HEALTH"{"1" "5"}
+			"ARMOR"{"3" "2"}
+			"MAGIC_RESIST"{"3" "2"}
+			"HEAL_AMP"{"3" "5"}
+			"SPELL_AMP"{"3" "5"}
+		}
 	}
 	//=================================================================================================================
 	// HERO: Troll Warlord
@@ -2627,6 +2709,19 @@
 		"Ability17"						"special_bonus_unique_vengefulspirit_aura_2"
 		"Ability14"						"special_bonus_unique_vengefulspirit_haunt_1"
 		"Ability15"						"special_bonus_unique_vengefulspirit_haunt_2"
+		
+		
+		"Masteries"
+		{
+			"ALL_STATS"{"3" "5"}
+			"AGILITY"{"2" "5"}
+			"THREAT_DOWN"{"2" "5"}
+			"SPELL_AMP"{"2" "3"}
+			"ATTACK_DAMAGE"{"2" "3"}
+			"ATTACK_SPEED"{"2" "3"}
+			"ARMOR"{"1" "4"}
+			"MAGIC_RESIST"{"1" "3"}
+		}
 	}
 	"npc_dota_hero_venomancer"
 	{
@@ -2712,6 +2807,18 @@
 		"Ability15"						"special_bonus_unique_warlock_sacrifice_2"
 		"Ability16"						"special_bonus_unique_warlock_demonic_summons_1"
 		"Ability17"						"special_bonus_unique_warlock_demonic_summons_2"
+		
+		"Masteries"
+		{
+			"ALL_STATS"{"2" "4"}
+			"MANA_REGEN"{"2" "5"}
+			"STATUS_AMP"{"3" "5"}
+			"SPELL_AMP"{"2" "3"}
+			"THREAT_DOWN"{"3" "3"}
+			"INTELLIGENCE"{"2" "3"}
+			"ARMOR"{"1" "4"}
+			"MAGIC_RESIST"{"1" "3"}
+		}
 	}
 	"npc_dota_hero_weaver"
 	{

@@ -264,7 +264,7 @@
 		"AbilityTextureName"			"custom/slardar_maw_of_the_void"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------

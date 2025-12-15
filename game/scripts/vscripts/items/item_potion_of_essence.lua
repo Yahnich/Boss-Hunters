@@ -26,7 +26,7 @@ end
 
 modifier_item_potion_of_essence_handle_heal = class({})
 function modifier_item_potion_of_essence_handle_heal:OnCreated()
-	self.regen = self:GetAbility():GetSpecialValueFor("regen")
+	self.regen = self:GetSpecialValueFor("regen")
 end
 
 function modifier_item_potion_of_essence_handle_heal:DeclareFunctions()

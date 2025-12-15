@@ -272,7 +272,7 @@
 		"ScriptFile"					"heroes/hero_tide/tide_turtle_shell.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"tidehunter_kraken_shell"
-		"InnateAbility" 				"1"
+		"Innate" 				"1"
 		"MaxLevel"						"1"
 		"HasScepterUpgrade"				"1"
 		

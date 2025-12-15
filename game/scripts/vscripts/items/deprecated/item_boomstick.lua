@@ -55,7 +55,7 @@ end
 function modifier_item_boomstick_handle:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() then
-			params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_boomstick_debuff", {Duration = self:GetAbility():GetSpecialValueFor("shred_duration")})
+			params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_boomstick_debuff", {Duration = self:GetSpecialValueFor("shred_duration")})
 		end
 	end
 end
@@ -84,11 +84,11 @@ LinkLuaModifier( "modifier_boomstick_debuff", "items/item_boomstick.lua" ,LUA_MO
 modifier_boomstick_debuff = class({})
 
 function modifier_boomstick_debuff:OnCreated()
-	self.armor = self:GetAbility():GetSpecialValueFor("armor_shred")
+	self.armor = self:GetSpecialValueFor("armor_shred")
 end
 
 function modifier_boomstick_debuff:OnRefresh()
-	self.armor = math.min(self.armor, self:GetAbility():GetSpecialValueFor("armor_shred"))
+	self.armor = math.min(self.armor, self:GetSpecialValueFor("armor_shred"))
 end
 
 function modifier_boomstick_debuff:DeclareFunctions()
@@ -103,11 +103,11 @@ LinkLuaModifier( "modifier_boomstick_active_debuff", "items/item_boomstick.lua" 
 modifier_boomstick_active_debuff = class({})
 
 function modifier_boomstick_active_debuff:OnCreated()
-	self.armor = self:GetAbility():GetSpecialValueFor("active_shred")
+	self.armor = self:GetSpecialValueFor("active_shred")
 end
 
 function modifier_boomstick_active_debuff:OnRefresh()
-	self.armor = math.min(self.armor, self:GetAbility():GetSpecialValueFor("active_shred"))
+	self.armor = math.min(self.armor, self:GetSpecialValueFor("active_shred"))
 end
 
 function modifier_boomstick_active_debuff:DeclareFunctions()

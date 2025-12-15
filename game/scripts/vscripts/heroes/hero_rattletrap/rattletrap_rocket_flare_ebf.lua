@@ -60,7 +60,7 @@ modifier_rattletrap_rocket_flare_blind = class({})
 LinkLuaModifier( "modifier_rattletrap_rocket_flare_blind", "heroes/hero_rattletrap/rattletrap_rocket_flare_ebf" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_rattletrap_rocket_flare_blind:OnCreated()
-	self.miss = self:GetAbility():GetSpecialValueFor("blind")
+	self.miss = self:GetSpecialValueFor("blind")
 end
 
 function modifier_rattletrap_rocket_flare_blind:DeclareFunctions()

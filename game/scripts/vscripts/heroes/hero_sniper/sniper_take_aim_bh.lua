@@ -51,13 +51,13 @@ function modifier_sniper_take_aim_active_bh:OnCreated()
 	self.chance = self:GetSpecialValueFor("bonus_headshot_chance")
 	self.slow = self:GetSpecialValueFor("slow")
 	
-	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_sniper_take_aim_1")
-	self.talent1BonusRange = math.max( 0, self:GetSpecialValueFor("bonus_attack_range") * (self:GetCaster():FindTalentValue("special_bonus_unique_sniper_take_aim_1") - 1) )
-	if self.talent1 and IsServer() then
+	self.talent1BonusRange = math.max( 0, self:GetSpecialValueFor("bonus_attack_range") * self:GetSpecialValueFor("passive_multiplier") - 1 )
+	
+	self.global_vision = self:GetSpecialValueFor("global_vision") == 1
+	self.invisibility = self:GetSpecialValueFor("invisibility") == 1
+	if self.global_vision and IsServer() then
 		self:StartIntervalThink(0)
 	end
-	
-	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_sniper_take_aim_2")
 end
 
 function modifier_sniper_take_aim_active_bh:OnRefresh()
@@ -74,7 +74,7 @@ function modifier_sniper_take_aim_active_bh:DeclareFunctions()
 end
 
 function modifier_sniper_take_aim_active_bh:CheckState()
-	if self.talent2 then
+	if self.invisibility  then
 		return {[MODIFIER_STATE_INVISIBLE] = true}
 	end
 end
@@ -109,5 +109,5 @@ function modifier_sniper_take_aim_active_bh:GetModifierMoveSpeedBonus_Percentage
 end
 
 function modifier_sniper_take_aim_active_bh:GetModifierInvisibilityLevel()
-	if self.talent2 then return 1 end
+	if self.invisibility then return 1 end
 end

@@ -347,7 +347,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
 		"AbilityTextureName"			"custom/witch_doctor_marasa_mirror"
 		"FightRecapLevel"				"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		"MaxLevel"						"1"
 		"HasScepterUpgrade"				"1"
 		

@@ -60,8 +60,8 @@ function modifier_venomancer_poison_nova_cancer:OnCreated()
 end
 
 function modifier_venomancer_poison_nova_cancer:OnRefresh()
-	self.damage = self:GetAbility():GetSpecialValueFor("damage")
-	self.maxHPDmg = self:GetAbility():GetSpecialValueFor("max_hp_dmg") / 100
+	self.damage = self:GetSpecialValueFor("damage")
+	self.maxHPDmg = self:GetSpecialValueFor("max_hp_dmg") / 100
 end
 
 function modifier_venomancer_poison_nova_cancer:OnIntervalThink()
@@ -85,8 +85,8 @@ modifier_venomancer_poison_nova_cancer_lesser = class(modifier_venomancer_poison
 
 function modifier_venomancer_poison_nova_cancer_lesser:OnRefresh()
 	local multiplier = self:GetCaster():FindTalentValue("special_bonus_unique_venomancer_poison_nova_2") / 100
-	self.damage = multiplier * self:GetAbility():GetSpecialValueFor("damage")
-	self.maxHPDmg = multiplier * self:GetAbility():GetSpecialValueFor("max_hp_dmg") / 100
+	self.damage = multiplier * self:GetSpecialValueFor("damage")
+	self.maxHPDmg = multiplier * self:GetSpecialValueFor("max_hp_dmg") / 100
 end
 
 LinkLuaModifier( "modifier_venomancer_poison_nova_talent","heroes/hero_venomancer/venomancer_poison_nova_ebf", LUA_MODIFIER_MOTION_NONE)

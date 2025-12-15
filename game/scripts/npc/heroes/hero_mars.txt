@@ -156,19 +156,10 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"crit_mult"							"150 190 230 270 280 290 300"
+			"crit_mult"							"150 190 230 270 280 290 300"
 				"LinkedSpecialBonus"				"special_bonus_unique_mars_gods_rebuke_lua_1"
-			"02"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"angle"								"140"
-			"03"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"distance"							"500"
+			"angle"								"140"
+			"distance"							"500"
 			"04"
 			{
 				"var_type"							"FIELD_FLOAT"
@@ -343,7 +334,7 @@
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityTextureName"		"mars_bulwark"
 		"MaxLevel"					"1"
-		"InnateAbility"				"1"
+		"Innate"				"1"
 		
 		"precache"
 		{
@@ -358,18 +349,9 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"physical_damage_reduction"			"16"
-			"02"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"dmg_reduction_lvl"					"2"
-			"03"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"physical_damage_reduction_side"	"50"
+			"physical_damage_reduction"			"16"
+			"dmg_reduction_lvl"					"2"
+			"physical_damage_reduction_side"	"50"
 			"04"
 			{
 				"var_type"							"FIELD_INTEGER"

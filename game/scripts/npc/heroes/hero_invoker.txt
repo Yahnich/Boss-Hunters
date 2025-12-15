@@ -166,7 +166,7 @@
 		"AbilityTextureName"			"invoker_cold_snap"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -225,7 +225,7 @@
 		"AbilityTextureName"			"invoker_ghost_walk"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -283,7 +283,7 @@
 		"AbilityTextureName"			"invoker_tornado"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -343,7 +343,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"invoker_emp"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -397,7 +397,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"invoker_alacrity"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

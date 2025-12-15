@@ -4,7 +4,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2149"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2149"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_reaping_scythe"
@@ -43,7 +43,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2150"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2150"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -66,7 +66,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2151"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2151"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_reaping_scythe"
@@ -103,7 +103,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2152"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2152"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -127,7 +127,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2153"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2153"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_reaping_scythe"
@@ -164,7 +164,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2154"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2154"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -188,7 +188,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2155"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2155"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_reaping_scythe"
@@ -225,7 +225,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2156"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2156"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -249,7 +249,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2157"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2157"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_reaping_scythe"
@@ -286,7 +286,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2158"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2158"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -311,7 +311,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2159"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2159"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_reaping_scythe"
@@ -349,7 +349,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2160"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2160"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -374,7 +374,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2161"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2161"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_reaping_scythe"
@@ -412,7 +412,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2162"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2162"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -436,7 +436,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2163"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2163"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_reaping_scythe"
@@ -474,7 +474,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2164"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2164"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -499,7 +499,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2165"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2165"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_reaping_scythe"

@@ -93,9 +93,9 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_spectre_dispersion_buff:OnRefresh( kv )
-    self.reflect = self:GetAbility():GetSpecialValueFor( "damage_reflection_pct" )
-	self.max_range = self:GetAbility():GetSpecialValueFor( "max_radius" )
-	self.min_range = self:GetAbility():GetSpecialValueFor( "min_radius" )
+    self.reflect = self:GetSpecialValueFor( "damage_reflection_pct" )
+	self.max_range = self:GetSpecialValueFor( "max_radius" )
+	self.min_range = self:GetSpecialValueFor( "min_radius" )
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_spectre_dispersion_1")
 	self.talent1DmgThreshold = self:GetCaster():FindTalentValue("special_bonus_unique_spectre_dispersion_1")

@@ -284,7 +284,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"	
 		"AbilityTextureName"			"custom/pugna_power_vacuum"
 		"FightRecapLevel"				"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		"MaxLevel"						"1"
 		
 		"AbilityValues"

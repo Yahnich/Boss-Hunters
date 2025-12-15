@@ -335,7 +335,7 @@
 		"SpellDispellableType"					"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"						"2"
 		"MaxLevel"								"1"
-		"InnateAbility"							"1"
+		"Innate"							"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

@@ -45,9 +45,9 @@ modifier_treant_great_protector = class({})
 --------------------------------------------------------------------------------
 
 function modifier_treant_great_protector:OnCreated( kv )
-	self.move_speed = self:GetAbility():GetSpecialValueFor( "move_speed" )
-	self.model_scale = self:GetAbility():GetSpecialValueFor( "model_scale" )
-	self.bonus_strength = self:GetAbility():GetSpecialValueFor( "bonus_strength" )
+	self.move_speed = self:GetSpecialValueFor( "move_speed" )
+	self.model_scale = self:GetSpecialValueFor( "model_scale" )
+	self.bonus_strength = self:GetSpecialValueFor( "bonus_strength" )
 	self.rootDur = self:GetSpecialValueFor("root_duration")
 	self.chance = self:GetSpecialValueFor("root_chance")
 	

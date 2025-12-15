@@ -24,6 +24,11 @@ function puck_waning_rift_ebf:WaningRift(position)
 	local radius = self:GetSpecialValueFor("radius")
 	local damage = self:GetSpecialValueFor("damage")
 	local duration = self:GetSpecialValueFor("silence_duration")
+	local disarms = self:GetSpecialValueFor("disarms") == 1
+	
+	local slow_duration = self:GetSpecialValueFor("slow_duration")
+	local slow_damage = self:GetSpecialValueFor("slow_damage")
+	local slow_duration = self:GetSpecialValueFor("slow_duration")
 	
 	ParticleManager:FireParticle("particles/units/heroes/hero_puck/puck_waning_rift.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = vPos + Vector(0,0,64), [1] = Vector(radius, 0, 0)})
 	
@@ -31,11 +36,11 @@ function puck_waning_rift_ebf:WaningRift(position)
 		if not enemy:TriggerSpellAbsorb( self ) then
 			self:DealDamage(caster, enemy, damage)
 			enemy:Silence(self, caster, duration, true)
-			if caster:HasTalent("special_bonus_unique_puck_waning_rift_1") then
+			if disarms then
 				enemy:Disarm(self, caster, duration, false)
 			end
-			if caster:HasTalent("special_bonus_unique_puck_waning_rift_2") then
-				enemy:AddNewModifier( caster, self, "modifier_puck_waning_rift_talent", {duration = caster:FindTalentValue("special_bonus_unique_puck_waning_rift_2", "duration")})
+			if slow_duration > 0 then
+				enemy:AddNewModifier( caster, self, "modifier_puck_waning_rift_talent", {duration = slow_duration})
 			end
 		end
 	end
@@ -45,13 +50,14 @@ modifier_puck_waning_rift_talent = class({})
 LinkLuaModifier("modifier_puck_waning_rift_talent", "heroes/hero_puck/puck_waning_rift_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_puck_waning_rift_talent:OnCreated(kv)
-	self.slow = self:GetCaster():FindTalentValue("special_bonus_unique_puck_waning_rift_2", "slow")
-	self.damage = self:GetSpecialValueFor("damage") * self:GetCaster():FindTalentValue("special_bonus_unique_puck_waning_rift_2") / 100
+	self.slow = -self:GetSpecialValueFor("slow")
+	self.damage_pct = self:GetSpecialValueFor("slow_damage") / 100
+	self.damage = self:GetSpecialValueFor("damage")
 	if IsServer() then self:StartIntervalThink(1) end
 end
 
 function modifier_puck_waning_rift_talent:OnIntervalThink()
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage)
+	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self.damage * self.damage_pct )
 end
 
 function modifier_puck_waning_rift_talent:GetEffectName()

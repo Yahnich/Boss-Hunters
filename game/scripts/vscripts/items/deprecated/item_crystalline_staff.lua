@@ -7,10 +7,10 @@ end
 
 modifier_item_crystalline_staff_passive = class(itemBaseClass)
 function modifier_item_crystalline_staff_passive:OnCreated()
-	self.castrange = self:GetAbility():GetSpecialValueFor("bonus_cast_range")
-	self.spellamp = self:GetAbility():GetSpecialValueFor("bonus_spell_damage")
-	self.bonusdamage = self:GetAbility():GetSpecialValueFor("bonus_damage_taken")
-	self.int = self:GetAbility():GetSpecialValueFor("bonus_intellect")
+	self.castrange = self:GetSpecialValueFor("bonus_cast_range")
+	self.spellamp = self:GetSpecialValueFor("bonus_spell_damage")
+	self.bonusdamage = self:GetSpecialValueFor("bonus_damage_taken")
+	self.int = self:GetSpecialValueFor("bonus_intellect")
 end
 
 function modifier_item_crystalline_staff_passive:DeclareFunctions()

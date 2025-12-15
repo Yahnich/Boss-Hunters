@@ -13,13 +13,9 @@ LinkLuaModifier("modifier_juggernaut_meditative_state", "heroes/hero_juggernaut/
 
 
 function modifier_juggernaut_meditative_state:OnCreated()
-	local parent = self:GetParent()
-	self.radius = parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_2")
-	self.talent2 = parent:HasTalent("special_bonus_unique_juggernaut_meditative_state_2")
-	self.auraLinger = parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_2", "linger")
-	self.linger = self:GetSpecialValueFor("linger_duration")
-	self.regen = self:GetSpecialValueFor("regeneration") * ( parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_1") / 100 )
+	self:OnRefresh()
 	if IsServer() then
+		local parent = self:GetParent()
 		parent:AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_juggernaut_meditative_state_aura", {} )
 		local fire = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf", PATTACH_POINT_FOLLOW, parent )
 		ParticleManager:SetParticleControlEnt(fire, 0, parent, PATTACH_POINT_FOLLOW, "attach_head", parent:GetAbsOrigin(), true)
@@ -31,12 +27,10 @@ function modifier_juggernaut_meditative_state:OnCreated()
 end
 
 function modifier_juggernaut_meditative_state:OnRefresh()
-	local parent = self:GetParent()
-	self.radius = parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_2")
-	self.talent2 = parent:HasTalent("special_bonus_unique_juggernaut_meditative_state_2")
-	self.auraLinger = parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_2", "linger")
+	self.radius = self:GetSpecialValueFor("aura_radius")
 	self.linger = self:GetSpecialValueFor("linger_duration")
-	self.regen = self:GetSpecialValueFor("regeneration") * ( parent:FindTalentValue("special_bonus_unique_juggernaut_meditative_state_1") / 100 )
+	self.talent2 = self.radius > 0
+	self.regen = self:GetSpecialValueFor("regeneration") * self:GetSpecialValueFor("passive_regeneration") / 100
 end
 
 function modifier_juggernaut_meditative_state:OnDestroy()
@@ -76,11 +70,7 @@ function modifier_juggernaut_meditative_state:GetModifierHealthRegenPercentage()
 end
 
 function modifier_juggernaut_meditative_state:IsAura()
-	return true
-end
-
-function modifier_juggernaut_meditative_state:GetAuraEntityReject( unit )
-	return ( unit == self:GetCaster() and self.nextCheckDisabled ) or ( not self.talent2 and unit ~= self:GetCaster() )
+	return self.radius > 0
 end
 
 function modifier_juggernaut_meditative_state:GetAuraRadius( unit )
@@ -130,7 +120,7 @@ function modifier_juggernaut_meditative_state_slow:OnCreated()
 end
 
 function modifier_juggernaut_meditative_state_slow:OnRefresh()
-	self.slow = self:GetCaster():FindTalentValue("special_bonus_unique_juggernaut_meditative_state_2", "value2")
+	self.slow = -self:GetSpecialValueFor("aura_slow")
 end
 
 function modifier_juggernaut_meditative_state_slow:DeclareFunctions()

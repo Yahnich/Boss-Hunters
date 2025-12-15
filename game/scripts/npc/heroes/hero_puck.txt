@@ -32,12 +32,12 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"14 13 12 11 10 9 8"
+		"AbilityCooldown"				"14 13 12 11"
 	
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"80 100 120 140 160 180 200 220"
+		"AbilityManaCost"				"80 100 120 140"
 		
 		"precache"
 		{
@@ -53,48 +53,17 @@
 		{
 			"radius"					"225"		
 			"max_distance"				"1950"
-				"LinkedSpecialBonus"		"special_bonus_unique_puck"
 			"orb_speed"					"651"
-				"LinkedSpecialBonus"		"special_bonus_unique_puck"
 			"orb_vision"				"900"
 			"vision_duration"			"3.34 3.34 3.34 3.34"
-			"damage"					"70 140 210 280 350 420 490"
+			"damage"					"70 140 210 280"
+			
+			"mirror_projectile"			{"special_bonus_unique_puck_illusory_orb_1"	"1"}
+			"end_damage_pct"			{"special_bonus_unique_puck_illusory_orb_2"	"75"}
+			"end_damage_radius"			{"special_bonus_unique_puck_illusory_orb_2"	"2"}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
-	
-	"special_bonus_unique_puck_illusory_orb_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"1"
-		}
-	}
-	"special_bonus_unique_puck_illusory_orb_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"2"
-			"value"					"75"
-		}
-	}
-	
 	//=================================================================================================================
 	// Puck: Ethereal Jaunt
 	//=================================================================================================================
@@ -108,7 +77,7 @@
 		"AbilitySound"					"Hero_Puck.EtherealJaunt"
 		"AbilityTextureName"			"puck_ethereal_jaunt"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -153,7 +122,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 110 120 130 140 150 160"
+		"AbilityManaCost"				"100 110 120 130"
 		
 		"precache"
 		{
@@ -167,42 +136,15 @@
 		"AbilityValues"
 		{
 			"radius"					"550"
-			"silence_duration"			"1.0 1.25 1.5 1.75 2 2.25 2.5"
-			"damage"					"100 160 220 280 340 400 460"
+			"silence_duration"			"1.0 1.25 1.5 1.75"
+			"damage"					"100 160 220 280"
+			
+			"disarms"					{"special_bonus_unique_puck_waning_rift_1"	"1"}
+			"slow_duration"				{"special_bonus_unique_puck_waning_rift_1"	"6"}
+			"slow_damage"				{"special_bonus_unique_puck_waning_rift_1"	"20"}
+			"slow"						{"special_bonus_unique_puck_waning_rift_1"	"20"}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
-	}
-	"special_bonus_unique_puck_waning_rift_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"1"
-		}
-	}
-	"special_bonus_unique_puck_waning_rift_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"20"
-			"slow"					"-20"
-			"duration"				"6"
-		}
 	}
 	//=================================================================================================================
 	// Puck: Phase Shift
@@ -229,7 +171,6 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0 0 0 0"
-		"AbilityChannelTime"			"0.5 1.0 1.50 2.0 2.5 3.0 3.5"
 		"AbilityThreat"					"-10"
 
 		// Time		
@@ -251,40 +192,13 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"duration"					"0.5 1.0 1.50 2.0 2.5 3.0 3.5"
+			"AbilityChannelTime"		"0.5 1.0 1.50 2.0"
+			"duration"					"0.5 1.0 1.50 2.0"
+			
+			"max_hp_regen"				{"special_bonus_unique_puck_phase_shift_1"	"15"}
+			"no_channel"				{"special_bonus_unique_puck_phase_shift_2"	"15"}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
-	}
-	
-	"special_bonus_unique_puck_phase_shift_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"15"
-		}
-	}
-	"special_bonus_unique_puck_phase_shift_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"1"
-		}
 	}
 	//=================================================================================================================
 	// Puck: Dream Coil
@@ -347,49 +261,16 @@
 			"coil_duration"				"6.0 6.0 6.0"
 			"coil_init_damage_tooltip"	"150 200 250 300 350 400"
 			"coil_break_radius"			"750"
-"stun_duration"				"1.5"
+			"stun_duration"				"1.5"
 			"coil_break_damage"			"150 200 250 300 350 400"
 			"coil_stun_duration"		"1.75 2.0 2.25 2.50 2.75 3.0 3.25"
 			"coil_radius"				"600"						
 			"suck_duration"				"1.0"
-			"09"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"suck_radius"				"4000"
-			"10"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"scepter_orbs"				"6"
-		}
-	}
-	"special_bonus_unique_puck_reverie_snap_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"0.75"
-		}
-	}
-	"special_bonus_unique_puck_reverie_snap_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"1"
+			"suck_radius"				"4000"
+			"scepter_orbs"				"6"
+			
+			"coil_attack_rate"			{"special_bonus_unique_puck_reverie_snap_1"	"0.75"}
+			"damage_immunity"			{"special_bonus_unique_puck_reverie_snap_2"	"1"}
 		}
 	}
 }

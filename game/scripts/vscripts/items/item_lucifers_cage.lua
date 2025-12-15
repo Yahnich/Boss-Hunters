@@ -32,7 +32,7 @@ item_lucifers_cage_9 = class(item_lucifers_cage)
 
 modifier_item_lucifers_cage_handle_heal = class({})
 function modifier_item_lucifers_cage_handle_heal:OnCreated()
-	self.heal = self:GetAbility():GetSpecialValueFor("healdamage")
+	self.heal = self:GetSpecialValueFor("healdamage")
 	if IsServer() then
 		self:GetParent():HealEvent(self.heal, self:GetAbility(), self:GetParent()) 
 		self:StartIntervalThink(1.0)
@@ -40,7 +40,7 @@ function modifier_item_lucifers_cage_handle_heal:OnCreated()
 end
 
 function modifier_item_lucifers_cage_handle_heal:OnRefresh()	
-	self.heal = math.max( self:GetAbility():GetSpecialValueFor("healdamage"), self.heal )
+	self.heal = math.max( self:GetSpecialValueFor("healdamage"), self.heal )
 	if IsServer() then
 		self:GetParent():HealEvent(self.heal, self:GetAbility(), self:GetParent()) 
 	end
@@ -60,7 +60,7 @@ end
 
 modifier_item_lucifers_cage_handle_damage = class({})
 function modifier_item_lucifers_cage_handle_damage:OnCreated()
-	self.damage = self:GetAbility():GetSpecialValueFor("healdamage")
+	self.damage = self:GetSpecialValueFor("healdamage")
 	if IsServer() then
 		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
 		self:StartIntervalThink(1.0)
@@ -68,7 +68,7 @@ function modifier_item_lucifers_cage_handle_damage:OnCreated()
 end
 
 function modifier_item_lucifers_cage_handle_damage:OnRefresh()	
-	self.damage = math.max( self:GetAbility():GetSpecialValueFor("healdamage"), self.damage )
+	self.damage = math.max( self:GetSpecialValueFor("healdamage"), self.damage )
 	if IsServer() then
 		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
 	end

@@ -54,7 +54,7 @@ end
 modifier_furion_sprout_sleep_thinker = class({})
 
 function modifier_furion_sprout_sleep_thinker:OnCreated( kv )
-	self.aura_radius = self:GetAbility():GetSpecialValueFor( "sleep_radius" )
+	self.aura_radius = self:GetSpecialValueFor( "sleep_radius" )
 end
 
 function modifier_furion_sprout_sleep_thinker:OnDestroy( kv )
@@ -129,18 +129,18 @@ end
 modifier_furion_sprout_sleep_aura = class({})
 
 function modifier_furion_sprout_sleep_aura:OnCreated()
-	self.sleepDelay = self:GetAbility():GetSpecialValueFor("sleep_delay")
-	self.sleepDuration = self:GetAbility():GetSpecialValueFor("sleep_duration")
-	self.chokeDamage = self:GetAbility():GetSpecialValueFor("damage") * self.sleepDelay
+	self.sleepDelay = self:GetSpecialValueFor("sleep_delay")
+	self.sleepDuration = self:GetSpecialValueFor("sleep_duration")
+	self.chokeDamage = self:GetSpecialValueFor("damage") * self.sleepDelay
 	if IsServer() then
 		self:StartIntervalThink(self.sleepDelay)
 	end
 end
 
 function modifier_furion_sprout_sleep_aura:OnRefresh()
-	self.sleepDelay = self:GetAbility():GetSpecialValueFor("sleep_delay")
-	self.sleepDuration = self:GetAbility():GetSpecialValueFor("sleep_duration")
-	self.chokeDamage = self:GetAbility():GetSpecialValueFor("damage") * self.sleepDelay
+	self.sleepDelay = self:GetSpecialValueFor("sleep_delay")
+	self.sleepDuration = self:GetSpecialValueFor("sleep_duration")
+	self.chokeDamage = self:GetSpecialValueFor("damage") * self.sleepDelay
 end
 
 function modifier_furion_sprout_sleep_aura:OnIntervalThink()

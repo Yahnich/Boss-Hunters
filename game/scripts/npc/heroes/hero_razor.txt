@@ -284,7 +284,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"MaxLevel"						"1"
 		"AbilityTextureName"			"custom/razor_high_voltage"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		"precache"
 		{
@@ -411,7 +411,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"MaxLevel"						"1"
 		"AbilityTextureName"			"custom/razor_high_voltage"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		"precache"
 		{

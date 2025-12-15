@@ -16,10 +16,8 @@ function modifier_sniper_headshot_bh:OnRefresh()
 	self.chance = self:GetSpecialValueFor("chance")
 	self.damage = self:GetSpecialValueFor("damage")
 	
-	local caster = self:GetCaster()
-	self.talent1 = caster:HasTalent("special_bonus_unique_sniper_headshot_1")
-	self.talent1Dmg = self.damage * caster:FindTalentValue("special_bonus_unique_sniper_headshot_1", "damage") / 100
-	self.talent1Radius = caster:FindTalentValue("special_bonus_unique_sniper_headshot_1", "radius")
+	self.talent1Dmg = self.damage *  self:GetSpecialValueFor("splash_pct") / 100
+	self.talent1Radius =  self:GetSpecialValueFor("splash_radius")
 	
 	self.recordsProc = {}
 end
@@ -37,7 +35,7 @@ function modifier_sniper_headshot_bh:OnAttackLanded( params )
 		local caster = params.attacker
 		local target = params.target
 		local ability = self:GetAbility()
-		if self.talent1 then
+		if self.talent1Radius > 0 then
 			for _, enemy in ipairs( caster:FindEnemyUnitsInCone(CalculateDirection(target, caster), target:GetAbsOrigin(), self.talent1Radius/2, self.talent1Radius ) ) do
 				ability:DealDamage( caster, enemy, self.talent1Dmg )
 			end

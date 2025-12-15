@@ -48,7 +48,7 @@ function modifier_tinker_turret:OnCreated(table)
 		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_tinker/tinker_turret_ambient.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControlEnt(self.nfx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetParent():GetAbsOrigin(), true)
 
-		self:StartIntervalThink(self:GetCaster():GetSecondsPerAttack())
+		self:StartIntervalThink(self:GetCaster():GetSecondsPerAttack( false ))
 	end
 end
 

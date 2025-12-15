@@ -23,9 +23,14 @@ function juggernaut_quickparry:QuickParry(caster, target)
 		caster:PerformAbilityAttack(target, true, self)
 		local hpDiff = hp - target:GetHealth()
 		caster:SetForwardVector( direction )
-		if caster:HasTalent("special_bonus_unique_juggernaut_quickparry_1") then
+		
+		local lifesteal = self:GetSpecialValueFor("lifesteal")
+		local bonus_attacks = self:GetSpecialValueFor("bonus_attacks")
+		if lifesteal > 0 then
 			caster:HealEvent( hpDiff, self, caster )
-			Timers:CreateTimer( 0.2, function()
+		end
+		if bonus_attacks > 0 then
+			Timers:CreateTimer( 0.1, function()
 				for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), caster:GetAttackRange() ) ) do
 					if enemy ~= target then
 						caster:StartGestureWithPlaybackRate( ACT_DOTA_ATTACK_EVENT, 5 )
@@ -36,15 +41,21 @@ function juggernaut_quickparry:QuickParry(caster, target)
 						hpDiff = hp - enemy:GetHealth()
 						caster:SetForwardVector( direction )
 						caster:HealEvent( hpDiff, self, caster )
-						break
+						
+						bonus_attacks = bonus_attacks - 1
+						if bonus_attacks > 0 then
+							return 0.1
+						end
+						return
 					end
 				end
 			end)
 		end
 	end
 	Timers:CreateTimer( 0.2, function() self.cooldown = false end)
-	if caster:HasTalent("special_bonus_unique_juggernaut_quickparry_2") then
-		caster:AddNewModifier(caster, self, "modifier_juggernaut_quickparry_talent", {duration = caster:FindTalentValue("special_bonus_unique_juggernaut_quickparry_2", "duration")})
+	local stack_duration = self:GetSpecialValueFor("stack_duration")
+	if stack_duration > 0 then
+		caster:AddNewModifier(caster, self, "modifier_juggernaut_quickparry_talent", {duration = stack_duration})
 	end
 end
 
@@ -52,13 +63,12 @@ modifier_juggernaut_quickparry = class({})
 LinkLuaModifier("modifier_juggernaut_quickparry", "heroes/hero_juggernaut/juggernaut_quickparry", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_juggernaut_quickparry:OnCreated()
-	self.chance = self:GetAbility():GetSpecialValueFor("parry_chance")
-	self.cost = self:GetAbility():GetSpecialValueFor("active_momentum_cost")
+	self:OnRefresh()
 end
 
 function modifier_juggernaut_quickparry:OnRefresh()
-	self.chance = self:GetAbility():GetSpecialValueFor("parry_chance")
-	self.cost = self:GetAbility():GetSpecialValueFor("active_momentum_cost")
+	self.chance = self:GetSpecialValueFor("parry_chance")
+	self.cost = self:GetSpecialValueFor("active_momentum_cost")
 end
 
 function modifier_juggernaut_quickparry:DeclareFunctions()
@@ -106,16 +116,13 @@ modifier_juggernaut_quickparry_talent = class({})
 LinkLuaModifier("modifier_juggernaut_quickparry_talent", "heroes/hero_juggernaut/juggernaut_quickparry", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_juggernaut_quickparry_talent:OnCreated()
-	local caster = self:GetCaster()
-	self.as = caster:FindTalentValue("special_bonus_unique_juggernaut_quickparry_2", "as")
-	self.ms = caster:FindTalentValue("special_bonus_unique_juggernaut_quickparry_2", "ms")
-	if IsServer() then self:SetStackCount(1) end
+	self:OnRefresh
 end
 
 function modifier_juggernaut_quickparry_talent:OnRefresh()
 	local caster = self:GetCaster()
-	self.as = caster:FindTalentValue("special_bonus_unique_juggernaut_quickparry_2", "as")
-	self.ms = caster:FindTalentValue("special_bonus_unique_juggernaut_quickparry_2", "ms")
+	self.as = caster:GetSpecialValueFor("stack_attack_speed")
+	self.ms = caster:GetSpecialValueFor("stack_move_speed")
 	if IsServer() then
 		self:AddIndependentStack( self:GetRemainingTime() )
 	end

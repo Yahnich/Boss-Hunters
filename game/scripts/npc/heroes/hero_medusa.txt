@@ -152,18 +152,9 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"damage"							"80 120 160 200 220 240 260"
-			"02"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"snake_scale"						"35"
-			"03"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"mana_steal"						"25"
+			"damage"							"80 120 160 200 220 240 260"
+			"snake_scale"						"35"
+			"mana_steal"						"25"
 			"04"
 			{
 				"var_type"							"FIELD_INTEGER"
@@ -336,7 +327,7 @@
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"					"medusa_mana_shield"
 		"MaxLevel"								"1"
-		"InnateAbility"							"1"
+		"Innate"							"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

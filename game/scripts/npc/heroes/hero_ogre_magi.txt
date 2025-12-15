@@ -351,7 +351,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"MaxLevel"						"1"
 		"AbilityTextureName"			"ogre_magi_multicast"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		"precache"
 		{

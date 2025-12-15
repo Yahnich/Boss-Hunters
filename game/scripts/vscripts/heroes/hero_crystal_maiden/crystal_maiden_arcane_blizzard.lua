@@ -46,11 +46,11 @@ modifier_crystal_maiden_arcane_blizzard_dummy = class({})
 
 if IsServer() then
 	function modifier_crystal_maiden_arcane_blizzard_dummy:OnCreated( kv )
-		self.aura_radius = self:GetAbility():GetSpecialValueFor( "radius" )
-		self.minDistance = self:GetAbility():GetSpecialValueFor( "explosion_min_dist" )
-		self.maxDistance = self:GetAbility():GetSpecialValueFor( "explosion_max_dist" )
-		self.radius = self:GetAbility():GetSpecialValueFor( "explosion_radius" )
-		self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
+		self.aura_radius = self:GetSpecialValueFor( "radius" )
+		self.minDistance = self:GetSpecialValueFor( "explosion_min_dist" )
+		self.maxDistance = self:GetSpecialValueFor( "explosion_max_dist" )
+		self.radius = self:GetSpecialValueFor( "explosion_radius" )
+		self.damage = self:GetSpecialValueFor( "damage" )
 		self.tick = self:GetSpecialValueFor("explosion_interval")
 		
 		self.chillInit = self:GetSpecialValueFor("chill_init")
@@ -59,7 +59,7 @@ if IsServer() then
 			self.chillInit = self:GetSpecialValueFor("scepter_chill_init")
 			self.chillHit = self:GetSpecialValueFor("scepter_chill_hit")
 		end
-		if self:GetCaster():HasScepter() then self.damage = self:GetAbility():GetSpecialValueFor( "damage_scepter" ) end
+		if self:GetCaster():HasScepter() then self.damage = self:GetSpecialValueFor( "damage_scepter" ) end
 		self.FXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_snow.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 		ParticleManager:SetParticleControl( self.FXIndex, 1, Vector( self.aura_radius, self.aura_radius, self.aura_radius) )
 

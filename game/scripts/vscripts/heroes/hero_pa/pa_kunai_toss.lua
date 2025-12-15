@@ -114,7 +114,7 @@ end
 
 function modifier_kunai_toss_slow:OnAttackStart(params)
     if self.talent2 and params.target == self:GetCaster() and params.attacker == self:GetParent() then
-		params.attacker:Blind(200, self:GetAbility(), self:GetCaster(), params.attacker:GetSecondsPerAttack() )
+		params.attacker:Blind(200, self:GetAbility(), self:GetCaster(), params.attacker:GetSecondsPerAttack( false ) )
 	end
 end
 

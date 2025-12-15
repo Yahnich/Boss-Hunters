@@ -7,7 +7,7 @@ end
 
 modifier_item_worn_cloak = class(itemBasicBaseClass)
 function modifier_item_worn_cloak:OnCreated()
-	self.magic_resist = self:GetAbility():GetSpecialValueFor("bonus_magic_resist")
+	self.magic_resist = self:GetSpecialValueFor("bonus_magic_resist")
 end
 
 function modifier_item_worn_cloak:DeclareFunctions()

@@ -24,10 +24,10 @@ modifier_item_royal_guardian = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_royal_guardian", "items/item_royal_guardian.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_royal_guardian:OnCreated()
-	self.block = self:GetAbility():GetSpecialValueFor("damage_block")
-	self.chance = self:GetAbility():GetSpecialValueFor("block_chance")
-	self.hp_regen = self:GetAbility():GetSpecialValueFor("bonus_health_regen")
-	self.armor = self:GetAbility():GetSpecialValueFor("bonus_armor")
+	self.block = self:GetSpecialValueFor("damage_block")
+	self.chance = self:GetSpecialValueFor("block_chance")
+	self.hp_regen = self:GetSpecialValueFor("bonus_health_regen")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
 end
 
 function modifier_item_royal_guardian:DeclareFunctions()

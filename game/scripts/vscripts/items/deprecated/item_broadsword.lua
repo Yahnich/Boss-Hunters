@@ -7,7 +7,7 @@ end
 
 modifier_item_broadsword = class({})
 function modifier_item_broadsword:OnCreated()
-	self.damage = self:GetAbility():GetSpecialValueFor("bonus_damage")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
 end
 
 function modifier_item_broadsword:DeclareFunctions()

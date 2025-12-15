@@ -292,7 +292,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -356,10 +356,7 @@
 			"min_damage"			"112"
 			"max_damage"			"122"
 			"heal_percent"			"25 25 25"
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"average_damage"		"116"
+			"average_damage"		"116"
 			"10"
 			{
 				"var_type"				"FIELD_FLOAT"

@@ -38,20 +38,14 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"illusion_count"					"1"
+			"illusion_count"					"1"
 			"02"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"illusion_outgoing_damage"			"40 60 80 100 100 100 100"
 				"LinkedSpecialBonus"				"special_bonus_unique_terrorblade_reflection_1"
 				"LinkedSpecialBonusOperation"		"SPECIAL_BONUS_MULTIPLY"
-			"03"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"slow"								"-25 -25 -25 -25 -50 -75 -100"
+			"slow"								"-25 -25 -25 -25 -50 -75 -100"
 			"04"
 			{
 				"var_type"							"FIELD_INTEGER"

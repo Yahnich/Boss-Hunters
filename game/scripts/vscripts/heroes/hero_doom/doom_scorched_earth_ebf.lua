@@ -72,7 +72,7 @@ modifier_doom_scorched_earth_aura = class({})
 LinkLuaModifier( "modifier_doom_scorched_earth_aura", "heroes/hero_doom/doom_scorched_earth_ebf" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_doom_scorched_earth_aura:OnCreated()
-	self.aura_radius = self:GetAbility():GetSpecialValueFor("radius")
+	self.aura_radius = self:GetSpecialValueFor("radius")
 	if IsServer() then
 		EmitSoundOn("Hero_DoomBringer.ScorchedEarthAura", self:GetParent())
 		self.FXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_doom_bringer/doom_scorched_earth.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
@@ -131,8 +131,8 @@ LinkLuaModifier( "modifier_doom_scorched_earth_buff", "heroes/hero_doom/doom_sco
 modifier_doom_scorched_earth_buff = class({})
 
 function modifier_doom_scorched_earth_buff:OnCreated()
-	self.movespeed = self:GetAbility():GetSpecialValueFor("bonus_movement_speed_pct")
-	self.attackspeed = self:GetAbility():GetSpecialValueFor("bonus_attack_speed")
+	self.movespeed = self:GetSpecialValueFor("bonus_movement_speed_pct")
+	self.attackspeed = self:GetSpecialValueFor("bonus_attack_speed")
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_doom_scorched_earth_ebf_1")
 	self.talent1Val = self:GetCaster():FindTalentValue("special_bonus_unique_doom_scorched_earth_ebf_1") / 100
 	self.talent1Minion = self:GetCaster():FindTalentValue("special_bonus_unique_doom_scorched_earth_ebf_1", "value2") / 100
@@ -144,7 +144,7 @@ function modifier_doom_scorched_earth_buff:OnCreated()
 	if not self:GetParent():IsSameTeam(self:GetCaster()) then
 		self.movespeed = self.movespeed * -1
 		self.attackspeed = self.attackspeed * -1
-		self.damage = self:GetAbility():GetSpecialValueFor("damage_per_second")
+		self.damage = self:GetSpecialValueFor("damage_per_second")
 		if IsServer() then
 			self:OnIntervalThink()
 			self:StartIntervalThink(1)

@@ -7,7 +7,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2455"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2455"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -30,7 +30,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2456"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2456"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dark_lord_headdress"
@@ -68,7 +68,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2457"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2457"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -91,7 +91,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2458"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2458"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dark_lord_headdress"
@@ -128,7 +128,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2459"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2459"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -151,7 +151,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2460"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2460"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dark_lord_headdress"
@@ -189,7 +189,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2461"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2461"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -213,7 +213,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2462"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2462"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dark_lord_headdress"
@@ -251,7 +251,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2463"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2463"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -275,7 +275,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2464"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2464"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dark_lord_headdress"
@@ -314,7 +314,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2465"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2465"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -339,7 +339,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2466"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2466"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dark_lord_headdress"

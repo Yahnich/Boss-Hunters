@@ -19,7 +19,7 @@ function puck_reverie_snap:OnSpellStart()
 			target = ProjectileManager:GetLinearProjectileLocation(orb)
 		end
 	end
-	if caster:HasTalent("special_bonus_unique_puck_reverie_snap_2") then
+	if self:GetSpecialValueFor("damage_immunity") == 1 then
 		caster:AddNewModifier(caster, self, "modifier_puck_reverie_snap_talent", {duration = self:GetSpecialValueFor("coil_duration") + self:GetSpecialValueFor("suck_duration")})
 	end
 	self:ReverieSnap(target)
@@ -109,8 +109,9 @@ if IsServer() then
 		local parent = self:GetParent()
 		local caster = self:GetCaster()
 		
-		if caster:HasTalent("special_bonus_unique_puck_reverie_snap_1") then
-			self.attackRate = caster:FindTalentValue("special_bonus_unique_puck_reverie_snap_1")
+		local attackRate = self:GetSpecialValueFor("coil_attack_rate")
+		if attackRate > 0 then
+			self.attackRate = attackRate
 			self.attackThink = 0
 		end
 		

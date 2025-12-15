@@ -162,10 +162,7 @@
 			"search_radius"					"900"
 			"delay"							"1"			
 			"illusion_duration"				"8"
-			"09"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"illusion_extended_duration"	"2"
+			"illusion_extended_duration"	"2"
 		}
 	}
 
@@ -300,7 +297,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"phantom_lancer_juxtapose"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		"HasScepterUpgrade"				"1"
 		
 		// Talents		

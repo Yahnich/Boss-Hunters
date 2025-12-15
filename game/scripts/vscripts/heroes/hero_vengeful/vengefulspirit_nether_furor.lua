@@ -26,8 +26,8 @@ LinkLuaModifier( "modifier_vengefulspirit_nether_furor_buff", "lua_abilities/her
 modifier_vengefulspirit_nether_furor_buff = class({})
 
 function modifier_vengefulspirit_nether_furor_buff:OnCreated()
-	self.dmgReduction = self:GetAbility():GetSpecialValueFor("allied_resist")
-	self.dmgIncrease = self:GetAbility():GetSpecialValueFor("allied_damage")
+	self.dmgReduction = self:GetSpecialValueFor("allied_resist")
+	self.dmgIncrease = self:GetSpecialValueFor("allied_damage")
 end
 
 function modifier_vengefulspirit_nether_furor_buff:DeclareFunctions()
@@ -54,8 +54,8 @@ LinkLuaModifier( "modifier_vengefulspirit_nether_furor_debuff", "lua_abilities/h
 modifier_vengefulspirit_nether_furor_debuff = class({})
 
 function modifier_vengefulspirit_nether_furor_debuff:OnCreated()
-	self.dmgReduction = self:GetAbility():GetSpecialValueFor("enemy_damage")
-	self.dmgIncrease = self:GetAbility():GetSpecialValueFor("enemy_amp")
+	self.dmgReduction = self:GetSpecialValueFor("enemy_damage")
+	self.dmgIncrease = self:GetSpecialValueFor("enemy_amp")
 end
 
 function modifier_vengefulspirit_nether_furor_debuff:DeclareFunctions()

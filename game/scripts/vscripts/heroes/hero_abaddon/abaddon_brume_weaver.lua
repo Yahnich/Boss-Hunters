@@ -25,15 +25,15 @@ LinkLuaModifier( "modifier_abaddon_brume_weaver_passive", "heroes/hero_abaddon/a
 modifier_abaddon_brume_weaver_passive = class({})
 
 function modifier_abaddon_brume_weaver_passive:OnCreated()
-	self.healFactor = self:GetAbility():GetSpecialValueFor("heal_pct") / 100
-	self.healDuration = self:GetAbility():GetSpecialValueFor("heal_duration")
-	self.evasion = self:GetAbility():GetSpecialValueFor("evasion")
+	self.healFactor = self:GetSpecialValueFor("heal_pct") / 100
+	self.healDuration = self:GetSpecialValueFor("heal_duration")
+	self.evasion = self:GetSpecialValueFor("evasion")
 end
 
 function modifier_abaddon_brume_weaver_passive:OnRefresh()
-	self.healFactor = self:GetAbility():GetSpecialValueFor("heal_pct") / 100
-	self.healDuration = self:GetAbility():GetSpecialValueFor("heal_duration")
-	self.evasion = self:GetAbility():GetSpecialValueFor("evasion")
+	self.healFactor = self:GetSpecialValueFor("heal_pct") / 100
+	self.healDuration = self:GetSpecialValueFor("heal_duration")
+	self.evasion = self:GetSpecialValueFor("evasion")
 end
 
 function modifier_abaddon_brume_weaver_passive:DeclareFunctions()
@@ -88,7 +88,7 @@ LinkLuaModifier( "modifier_abaddon_brume_weaver_active", "heroes/hero_abaddon/ab
 modifier_abaddon_brume_weaver_active = class({})
 
 function modifier_abaddon_brume_weaver_active:OnCreated()
-	self.restoration = self:GetAbility():GetSpecialValueFor("base_heal") / self:GetSpecialValueFor("buff_duration")
+	self.restoration = self:GetSpecialValueFor("base_heal") / self:GetSpecialValueFor("buff_duration")
 	if IsServer() and self:GetCaster():HasTalent("special_bonus_unique_abaddon_brume_weaver_1") then	
 		self.talent1Dmg = self:GetCaster():FindTalentValue("special_bonus_unique_abaddon_brume_weaver_1") / 100
 		self.talent1Radius = self:GetCaster():FindTalentValue("special_bonus_unique_abaddon_brume_weaver_1", "radius")
@@ -97,7 +97,7 @@ function modifier_abaddon_brume_weaver_active:OnCreated()
 end
 
 function modifier_abaddon_brume_weaver_active:OnRefresh()
-	self.restoration = self:GetAbility():GetSpecialValueFor("base_heal") / self:GetSpecialValueFor("buff_duration")
+	self.restoration = self:GetSpecialValueFor("base_heal") / self:GetSpecialValueFor("buff_duration")
 end
 
 function modifier_abaddon_brume_weaver_active:OnIntervalThink()

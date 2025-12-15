@@ -25,10 +25,10 @@ LinkLuaModifier( "modifier_disruptor_kinetic_charge_push", "heroes/hero_disrupto
 modifier_disruptor_kinetic_charge_push = class({})
 
 function modifier_disruptor_kinetic_charge_push:OnCreated()
-	self.aura_radius = self:GetAbility():GetSpecialValueFor("pull_radius")
-	self.slow = self:GetAbility():GetSpecialValueFor("pull_slow") * (-1)
-	self.pullTick = self:GetAbility():GetSpecialValueFor("pull_speed") * 0.03
-	self.pullRadius = self:GetAbility():GetSpecialValueFor("pull_radius")
+	self.aura_radius = self:GetSpecialValueFor("pull_radius")
+	self.slow = self:GetSpecialValueFor("pull_slow") * (-1)
+	self.pullTick = self:GetSpecialValueFor("pull_speed") * 0.03
+	self.pullRadius = self:GetSpecialValueFor("pull_radius")
 	if IsServer() then
 		self:StartIntervalThink(0.03)
 	end
@@ -104,10 +104,10 @@ LinkLuaModifier( "modifier_disruptor_kinetic_charge_pull", "heroes/hero_disrupto
 modifier_disruptor_kinetic_charge_pull = class({})
 
 function modifier_disruptor_kinetic_charge_pull:OnCreated()
-	self.aura_radius = self:GetAbility():GetSpecialValueFor("pull_radius")
-	self.slow = self:GetAbility():GetSpecialValueFor("pull_slow")
-	self.pullTick = self:GetAbility():GetSpecialValueFor("pull_speed") * 0.03
-	self.pullRadius = self:GetAbility():GetSpecialValueFor("pull_radius")
+	self.aura_radius = self:GetSpecialValueFor("pull_radius")
+	self.slow = self:GetSpecialValueFor("pull_slow")
+	self.pullTick = self:GetSpecialValueFor("pull_speed") * 0.03
+	self.pullRadius = self:GetSpecialValueFor("pull_radius")
 	if IsServer() then
 		self:StartIntervalThink(0.03)
 	end
@@ -180,7 +180,7 @@ modifier_disruptor_kinetic_charge_pull_aura = class({})
 
 function modifier_disruptor_kinetic_charge_pull_aura:OnCreated()
 	if IsServer() then
-		self.damage = self:GetAbility():GetSpecialValueFor("damage")
+		self.damage = self:GetSpecialValueFor("damage")
 		self:StartIntervalThink(0.32)
 	end
 end

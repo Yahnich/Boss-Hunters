@@ -144,10 +144,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"damage"							"100"
+			"damage"							"100"
 				
 			"02"
 			{
@@ -244,10 +241,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"damage"							"100"
+			"damage"							"100"
 				"LinkedSpecialBonus"				"special_bonus_unique_morph_str_strike_1"
 			"02"
 			{
@@ -319,7 +313,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityTextureName"			"morphling_morph_agi"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 
 	
 		"precache"
@@ -347,7 +341,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityTextureName"			"morphling_morph_str"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 
 	
 		"precache"

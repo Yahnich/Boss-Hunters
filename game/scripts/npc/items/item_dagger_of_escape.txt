@@ -7,7 +7,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2011"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2011"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dagger_of_escape"
@@ -46,7 +46,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2012"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2012"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -72,7 +72,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2013"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2013"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dagger_of_escape"
@@ -110,7 +110,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2014"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2014"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -136,7 +136,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2015"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2015"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dagger_of_escape"
@@ -176,7 +176,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2016"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2016"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -202,7 +202,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2017"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2017"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dagger_of_escape"
@@ -242,7 +242,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2018"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2018"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -268,7 +268,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2019"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2019"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dagger_of_escape"
@@ -308,7 +308,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2020"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2020"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -335,7 +335,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2021"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2021"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dagger_of_escape"
@@ -376,7 +376,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2022"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2022"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -403,7 +403,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2023"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2023"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dagger_of_escape"
@@ -444,7 +444,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2024"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2024"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -471,7 +471,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2025"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2025"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dagger_of_escape"
@@ -512,7 +512,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2026"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2026"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -539,7 +539,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2027"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2027"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dagger_of_escape"

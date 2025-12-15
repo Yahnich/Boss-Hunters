@@ -132,11 +132,11 @@ LinkLuaModifier( "modifier_incandescance_debuff", "items/item_incandescance.lua"
 modifier_incandescance_debuff = class({})
 
 function modifier_incandescance_debuff:OnCreated()
-	self.blind = self:GetAbility():GetSpecialValueFor("blind")
+	self.blind = self:GetSpecialValueFor("blind")
 end
 
 function modifier_incandescance_debuff:OnRefresh()
-	self.blind = math.max( self.blind, self:GetAbility():GetSpecialValueFor("blind") )
+	self.blind = math.max( self.blind, self:GetSpecialValueFor("blind") )
 end
 
 function modifier_incandescance_debuff:DeclareFunctions()

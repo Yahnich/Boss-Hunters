@@ -4,7 +4,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2363"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2363"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_orb_of_renewal"
@@ -50,7 +50,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2364"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2364"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -73,7 +73,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2365"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2365"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_orb_of_renewal"
@@ -120,7 +120,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2366"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2366"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -144,7 +144,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2367"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2367"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_orb_of_renewal"
@@ -190,7 +190,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2368"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2368"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -214,7 +214,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2369"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2369"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_orb_of_renewal"
@@ -260,7 +260,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2370"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2370"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -284,7 +284,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2371"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2371"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_orb_of_renewal"
@@ -330,7 +330,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2372"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2372"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -355,7 +355,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2373"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2373"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_orb_of_renewal"
@@ -402,7 +402,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2374"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2374"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -427,7 +427,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2375"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2375"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_orb_of_renewal"
@@ -474,7 +474,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2376"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2376"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -499,7 +499,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2377"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2377"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_orb_of_renewal"
@@ -545,7 +545,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2378"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2378"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -570,7 +570,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2379"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2379"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_orb_of_renewal"

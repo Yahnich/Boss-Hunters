@@ -62,11 +62,11 @@ LinkLuaModifier( "modifier_cultists_veil_debuff", "items/item_cultists_veil.lua"
 modifier_cultists_veil_debuff = class({})
 
 function modifier_cultists_veil_debuff:OnCreated()
-	self.mr = self:GetAbility():GetSpecialValueFor("bonus_spell_dmg")
+	self.mr = self:GetSpecialValueFor("bonus_spell_dmg")
 end
 
 function modifier_cultists_veil_debuff:OnRefresh()
-	self.mr = math.max(self.mr, self:GetAbility():GetSpecialValueFor("bonus_spell_dmg"))
+	self.mr = math.max(self.mr, self:GetSpecialValueFor("bonus_spell_dmg"))
 end
 
 function modifier_cultists_veil_debuff:DeclareFunctions()

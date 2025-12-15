@@ -47,7 +47,7 @@ function modifier_mars_ultimate:IsHidden() return true end
 
 function modifier_mars_ultimate:OnCreated(keys)
 	if IsServer() then
-		self.radius = self:GetAbility():GetSpecialValueFor("radius")
+		self.radius = self:GetSpecialValueFor("radius")
 
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_mars/mars_arena_of_blood_colosseum_columns.vpcf", PATTACH_WORLDORIGIN, self:GetParent())
 					ParticleManager:SetParticleControl(nfx, 0, self:GetParent():GetAbsOrigin())

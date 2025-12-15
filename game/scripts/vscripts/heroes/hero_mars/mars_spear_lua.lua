@@ -191,7 +191,7 @@ function mars_spear_lua:LaunchSpear( origin, direction, secondary )
 				else
 					EmitSoundOn("Hero_Mars.Spear.Root", self.target)
 					self.target:RemoveModifierByName("modifier_mars_spear_lua_spear")
-					self.target:AddNewModifier(caster, self, "modifier_mars_spear_lua_debuff", {Duration = self:GetAbility():GetSpecialValueFor("stun_duration")})
+					self.target:AddNewModifier(caster, self, "modifier_mars_spear_lua_debuff", {Duration = self:GetSpecialValueFor("stun_duration")})
 					self.target = nil
 					ProjectileManager:DestroyLinearProjectile(projectile)
 					return false

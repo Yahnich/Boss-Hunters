@@ -36,11 +36,11 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"22.0 20.0 18.0 16.0 16.0 16.0 16.0"
+		"AbilityCooldown"				"22.0 20.0 18.0 16.0"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"130 130 130 130 140 150 160"
+		"AbilityManaCost"				"130 140 150 160"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -50,27 +50,21 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"damage"						"75 130 185 240 320 400 480"
-				"LinkedSpecialBonus"			"special_bonus_unique_spectre_spectral_dagger_2"
+			"damage"
+			{
+				"value"						"75 130 185 240"
+				"LinkedSpecialBonus"		"special_bonus_unique_spectre_spectral_dagger_2"
+			}
 				
 			"bonus_movespeed"				"10 14 18 22 22 22 22"
 			"dagger_path_duration"			"12.0 12.0 12.0 12.0"
-			"04"	
-			{
-				"var_type"						"FIELD_FLOAT"
-				"buff_persistence"				"4.0 4.0 4.0 4.0"
+			"buff_persistence"				"4.0 4.0 4.0 4.0"
 			"dagger_radius"					"125"
 			"path_radius"					"125"
 			"vision_radius"					"200"
 			"speed"							"800"
-			"09"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"distance"						"2000"
-			"10"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"dagger_grace_period"			"1.0"
+			"distance"						"2000"
+			"dagger_grace_period"			"1.0"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
@@ -141,8 +135,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"bonus_damage"				"20 30 40 50 60 70 80"
-			"bonus_damage_solo"			"60 90 120 150 180 210 240"
+			"bonus_damage"				"20 30 40 50"
+			"bonus_damage_solo"			"60 90 120 150"
 			"radius"					"325"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
@@ -198,7 +192,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		
 		"AbilityTextureName"			"spectre_dispersion"
-		"AbilityCastRange"				"700 700 700 700 875 1050 1225"
+		"AbilityCastRange"				"700"
 		"MaxLevel"						"4"
 		
 		// Talents		
@@ -220,20 +214,14 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
+			"min_radius"							"300"
+			"max_radius"							"700"
+			"damage_reflection_pct"
 			{
-				"var_type"							"FIELD_INTEGER"
-				"min_radius"						"300 300 300 300 400 500 600"
-			"02"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"max_radius"						"700 700 700 700 875 1050 1225"
-			"03"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"damage_reflection_pct"				"8 12 16 20 22 24 26"
+				"value"								"8 12 16 20"
 				"LinkedSpecialBonus"				"special_bonus_unique_spectre_dispersion_1"
 				"CalculateSpellDamageTooltip"		"0"
+			}
 		}
 	}
 	//=================================================================================================================
@@ -287,7 +275,7 @@
 		"ScriptFile"					"heroes/hero_spectre/spectre_dimensional_interjection"
 		"AbilityTextureName"			"spectre_haunt_single"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-		"InnateAbility"					"1"
+		"Innate"						"1"
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"1"
 		
@@ -363,29 +351,20 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"150 200 200 250 250 300"
+		"AbilityManaCost"				"150 200 200"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"01"
+			"duration"
 			{
-				"var_type"									"FIELD_FLOAT"
-				"duration"									"7.0"
-				"LinkedSpecialBonus"						"special_bonus_unique_spectre_haunt_2"
-			"02"
-			{
-				"var_type"									"FIELD_INTEGER"
-				"illusion_damage_outgoing"					"40 60 60 80 80 100"
-			"03"
-			{
-				"var_type"									"FIELD_INTEGER"
-				"illusion_total_damage_incoming"			"200 200 150 150 100 100"			
-			"04"
-			{
-				"var_type"									"FIELD_FLOAT"
-				"vision"									"300"			
+				"value"									"7.0"
+				"LinkedSpecialBonus"					"special_bonus_unique_spectre_haunt_2"
+			}
+			"illusion_damage_outgoing"					"40 60 80"
+			"illusion_total_damage_incoming"			"200 150 100"			
+			"vision"									"300"			
 		}
 	}
 	//=================================================================================================================
@@ -424,103 +403,6 @@
 		{
 			"value"						"3"
 			"cd"						"-45"
-		}
-	}
-	
-	
-	//*****************************************************************************************************************
-	//*****************************************************************************************************************
-	//=================================================================================================================
-	//=================================================================================================================
-	// DEPRECATED
-	//=================================================================================================================
-	//=================================================================================================================
-	//*****************************************************************************************************************
-	//*****************************************************************************************************************
-	
-	//=================================================================================================================
-	// Spectre: Echo Scream
-	//=================================================================================================================
-	"spectre_echo_scream"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_spectre/spectre_echo_scream"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityTextureName"			"custom/spectre_echo_scream"
-		"MaxLevel"						"4"
-		"HasScepterUpgrade"				"1"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_spectre_echo_scream_1"	"1"
-			"special_bonus_unique_spectre_echo_scream_2"	"1"
-		}
-		
-		"precache"
-		{
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_spectre.vsndevts"		
-			"particle"					"particles/spectre_echo_scream.vpcf"
-		}
-		
-		"AbilityCooldown" 				"15.0"
-		"AbilityDuration" 				"5.0"
-		"AbilityCastRange"				"800"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"scream_radius"					"475"
-				"LinkedSpecialBonus"			"special_bonus_unique_spectre_echo_scream_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			"scream_slow"					"-20 -25 -30 -35 -40 -45 -50"
-			"scream_miss"					"20 25 30 35 40 45 50"
-			"scream_duration"				"5"
-			"scream_damage"					"65 110 155 200 245 290 335"
-			"scepter_scream_attacks"		"4"
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_spectre_echo_scream_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"1"
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_spectre_echo_scream_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"2"
 		}
 	}
 }

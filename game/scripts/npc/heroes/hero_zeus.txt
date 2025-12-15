@@ -306,7 +306,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"	
 		"AbilityTextureName"			"zuus_static_field"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		
 		"precache"
 		{

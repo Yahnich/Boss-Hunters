@@ -263,7 +263,7 @@
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"techies_remote_mines"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		"HasScepterUpgrade"				"1"
 	
 		// Casting
@@ -438,7 +438,7 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"   
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"custom/techies_suicide_old"
-		"InnateAbility" 				"1"
+		"Innate" 				"1"
 		"MaxLevel"						"1"
 		"HasScepterUpgrade"				"1"
 		"PiercesDisableReduction"		"1"

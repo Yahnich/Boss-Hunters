@@ -308,7 +308,7 @@
 		"ScriptFile"					"heroes/hero_nyx/nyx_burrow.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		"AbilityTextureName"			"nyx_assassin_burrow"
 	
 		// Casting

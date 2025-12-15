@@ -166,17 +166,17 @@ LinkLuaModifier( "modifier_wrathbearers_robes_debuff", "items/item_wrathbearers_
 modifier_wrathbearers_robes_debuff = class({})
 
 function modifier_wrathbearers_robes_debuff:OnCreated()
-	self.blind = self:GetAbility():GetSpecialValueFor("blind")
+	self.blind = self:GetSpecialValueFor("blind")
 	if IsServer() then
-		self.damage = self:GetAbility():GetSpecialValueFor("damage") / 100
+		self.damage = self:GetSpecialValueFor("damage") / 100
 		self:StartIntervalThink(1)
 	end
 end
 
 function modifier_wrathbearers_robes_debuff:OnRefresh()
-	self.blind = self:GetAbility():GetSpecialValueFor("blind")
+	self.blind = self:GetSpecialValueFor("blind")
 	if IsServer() then
-		self.damage = self:GetAbility():GetSpecialValueFor("damage") / 100
+		self.damage = self:GetSpecialValueFor("damage") / 100
 	end
 end
 

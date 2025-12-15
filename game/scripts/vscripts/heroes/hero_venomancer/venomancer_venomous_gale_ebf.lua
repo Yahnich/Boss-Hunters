@@ -88,9 +88,9 @@ end
 
 function modifier_venomancer_venomous_gale_cancer:OnRefresh()
 	self.tick = self:GetSpecialValueFor("tick_interval")
-	self.movespeed = self:GetAbility():GetSpecialValueFor("movement_slow")
+	self.movespeed = self:GetSpecialValueFor("movement_slow")
 	self.msReduction = self.tick * self.movespeed / self:GetRemainingTime()
-	self.tick_damage = self:GetAbility():GetSpecialValueFor("tick_damage")
+	self.tick_damage = self:GetSpecialValueFor("tick_damage")
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_venomancer_venomous_gale_1")
 	self.talent1Val = self:GetCaster():FindTalentValue("special_bonus_unique_venomancer_venomous_gale_1")

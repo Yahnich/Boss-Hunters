@@ -9,11 +9,11 @@ modifier_sven_great_cleave_bh = class({})
 
 
 function modifier_sven_great_cleave_bh:OnCreated()
-	self.cleave = self:GetAbility():GetSpecialValueFor("great_cleave_damage")
+	self.cleave = self:GetSpecialValueFor("great_cleave_damage")
 	
-	self.distance = self:GetAbility():GetSpecialValueFor("cleave_distance")
-	self.startRadius = self:GetAbility():GetSpecialValueFor("cleave_starting_width")
-	self.endRadius = self:GetAbility():GetSpecialValueFor("cleave_ending_width")
+	self.distance = self:GetSpecialValueFor("cleave_distance")
+	self.startRadius = self:GetSpecialValueFor("cleave_starting_width")
+	self.endRadius = self:GetSpecialValueFor("cleave_ending_width")
 end
 
 function modifier_sven_great_cleave_bh:DeclareFunctions()

@@ -163,14 +163,8 @@
 			"base_damage"				"3"
 			"minion_damage"				"1"
 			"threat_start"				"50"
-			"09"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"threat_atk"				"15"
-			"10"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"5"
+			"threat_atk"				"15"
+			"duration"					"5"
 			"11"
 			{
 				"var_type"					"FIELD_FLOAT"
@@ -341,7 +335,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"custom/bristleback_viscous_nasal_goo_crimson"
 		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"Innate"					"1"
 		"HasScepterUpgrade"				"1"
 
 

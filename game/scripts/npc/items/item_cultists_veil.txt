@@ -4,7 +4,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2380"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2380"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_cultists_veil"
@@ -51,7 +51,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2381"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2381"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -74,7 +74,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2382"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2382"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_cultists_veil"
@@ -121,7 +121,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2383"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2383"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -145,7 +145,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2384"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2384"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_cultists_veil"
@@ -193,7 +193,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2385"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2385"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -217,7 +217,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2386"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2386"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_cultists_veil"
@@ -264,7 +264,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2387"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2387"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -288,7 +288,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2388"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2388"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_cultists_veil"
@@ -335,7 +335,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2389"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2389"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -360,7 +360,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2390"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2390"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_cultists_veil"
@@ -408,7 +408,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2391"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2391"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -433,7 +433,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2392"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2392"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_cultists_veil"
@@ -480,7 +480,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2393"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2393"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -505,7 +505,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2394"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2394"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_cultists_veil"
@@ -552,7 +552,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2395"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2395"														
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
@@ -577,7 +577,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2396"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"2396"														
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_cultists_veil"

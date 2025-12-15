@@ -7,7 +7,7 @@ end
 
 modifier_item_spell_refinery_passive = class(itemBaseClass)
 function modifier_item_spell_refinery_passive:OnCreated()
-	self.castrange = self:GetAbility():GetSpecialValueFor("bonus_cast_range")
+	self.castrange = self:GetSpecialValueFor("bonus_cast_range")
 end
 
 function modifier_item_spell_refinery_passive:DeclareFunctions()

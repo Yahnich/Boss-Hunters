@@ -902,7 +902,7 @@ function CDOTA_BaseNPC:ConjureImage( illusionInfo, duration, caster, amount )
 			illusion:SetBaseDamageMax( self:GetBaseDamageMax() - 10 )
 			illusion:SetBaseDamageMin( self:GetBaseDamageMin() - 10 )
 			illusion:SetPhysicalArmorBaseValue( self:GetPhysicalArmorBaseValue() )
-			illusion:SetBaseAttackTime( self:GetSecondsPerAttack() )
+			illusion:SetBaseAttackTime( self:GetSecondsPerAttack( false ) )
 			illusion:SetBaseMoveSpeed( self:GetBaseMoveSpeed() )
 			illusion:SetMaximumGoldBounty( 0 )
 			illusion:SetMinimumGoldBounty( 0 )
@@ -2280,7 +2280,7 @@ end
 
 function CDOTA_BaseNPC:AttemptKill(sourceAb, attacker)
 	if not ( self:NoHealthBar() or self:IsOutOfGame() or self:IsNull() or attacker:IsNull() or sourceAb:IsNull() ) then
-		local damage = ApplyDamage({victim = self, attacker = attacker, ability = sourceAb, damage_type = DAMAGE_TYPE_PURE, damage = self:GetMaxHealth(), damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_IGNORES_MAGIC_ARMOR + DOTA_DAMAGE_FLAG_IGNORES_PHYSICAL_ARMOR})
+		local damage = ApplyDamage({victim = self, attacker = attacker, ability = sourceAb, damage_type = DAMAGE_TYPE_PURE, damage = self:GetMaxHealth(), damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_BYPASSES_ALL_BLOCK  + DOTA_DAMAGE_FLAG_IGNORES_MAGIC_ARMOR + DOTA_DAMAGE_FLAG_IGNORES_PHYSICAL_ARMOR})
 		if self:IsNull() then return end
 		return not self:IsAlive()
 	end
