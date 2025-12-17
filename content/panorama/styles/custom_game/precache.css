@@ -130,6 +130,15 @@
     background-image: url("file://{resources}/images/custom_game/icons/MASTERY_STATUS_AMP_1.png");
     background-image: url("file://{resources}/images/custom_game/icons/MASTERY_STATUS_AMP_2.png");
     background-image: url("file://{resources}/images/custom_game/icons/MASTERY_STATUS_AMP_3.png");
+    background-image: url("file://{resources}/images/custom_game/icons/MASTERY_MOVESPEED_1.png");
+    background-image: url("file://{resources}/images/custom_game/icons/MASTERY_MOVESPEED_2.png");
+    background-image: url("file://{resources}/images/custom_game/icons/MASTERY_MOVESPEED_3.png");
+    background-image: url("file://{resources}/images/custom_game/icons/MASTERY_THREAT_AMP_1.png");
+    background-image: url("file://{resources}/images/custom_game/icons/MASTERY_THREAT_AMP_2.png");
+    background-image: url("file://{resources}/images/custom_game/icons/MASTERY_THREAT_AMP_3.png");
+    background-image: url("file://{resources}/images/custom_game/icons/MASTERY_THREAT_DOWN_1.png");
+    background-image: url("file://{resources}/images/custom_game/icons/MASTERY_THREAT_DOWN_2.png");
+    background-image: url("file://{resources}/images/custom_game/icons/MASTERY_THREAT_DOWN_3.png");
 	
     background-image: url("file://{resources}/images/custom_game/relics/relic_rarity_common.png");
     background-image: url("file://{resources}/images/custom_game/relics/relic_rarity_event.png");
