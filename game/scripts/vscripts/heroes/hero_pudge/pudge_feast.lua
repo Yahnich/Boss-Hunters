@@ -17,15 +17,7 @@ function pudge_dismember:GetAOERadius()
 end
 
 function pudge_dismember:GetBehavior()
-	if self:GetSpecialValueFor("aoe_radius") > 0  then
-		if self:GetSpecialValueFor("no_target") > 0 then
-			return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_CHANNELLED + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING + DOTA_ABILITY_BEHAVIOR_AOE
-		else
-			return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_CHANNELLED + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING + DOTA_ABILITY_BEHAVIOR_AOE
-		end
-	else
-		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_CHANNELLED + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
-	end
+	return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_CHANNELLED + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING + DOTA_ABILITY_BEHAVIOR_AOE
 end
 
 function pudge_dismember:OnSpellStart()
@@ -35,20 +27,11 @@ function pudge_dismember:OnSpellStart()
 	local no_target = self:GetSpecialValueFor("no_target") > 0 
 	local duration = self:GetSpecialValueFor("AbilityChannelTime")
 	self.targets = {}
-	if aoe_radius > 0 then
-		local position = self:GetCursorPosition()
-		if no_target then
-			position = caster:GetAbsOrigin()
-			aoe_radius = aoe_radius + self:GetTrueCastRange()
-		end
-		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, aoe_radius ) ) do
-			enemy:AddNewModifier( caster, self, "modifier_pudge_dismember_channeled", {duration = duration, ignoreStatusResist = true})
-			table.insert( self.targets, enemy )
-		end
-	else
-		local target = self:GetCursorTarget()
-		target:AddNewModifier( caster, self, "modifier_pudge_dismember_channeled", {duration = duration, ignoreStatusResist = true })
-		table.insert( self.targets, target )
+	
+	local position = self:GetCursorPosition()
+	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, aoe_radius ) ) do
+		enemy:AddNewModifier( caster, self, "modifier_pudge_dismember_channeled", {duration = duration, ignoreStatusResist = true})
+		table.insert( self.targets, enemy )
 	end
 	caster:AddNewModifier( caster, self, "modifier_pudge_dismember_channeling", {duration = duration })
 end
@@ -271,6 +254,7 @@ function modifier_pudge_dismember_channeling:OnCreated(table)
 	
 	self.debuff_immunity = self:GetSpecialValueFor("debuff_immunity") > 0
 	self.launch_hooks = self:GetSpecialValueFor("launch_hooks") > 0
+	self.armor = self:GetSpecialValueFor("bonus_armor")
 	if IsServer() then
 		if self.launch_hooks then
 			self._meatHook = self:GetCaster():FindAbilityByName( "pudge_meat_hook" )
@@ -294,6 +278,14 @@ function modifier_pudge_dismember_channeling:CheckState()
 	if self.debuff_immunity then
 		return {[MODIFIER_STATE_DEBUFF_IMMUNE] = true}
 	end
+end
+
+function modifier_pudge_dismember_channeling:DeclareFunctions()
+	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
+end
+
+function modifier_pudge_dismember_channeling:GetModifierPhysicalArmorBonus()
+	return self.armor
 end
 
 function modifier_pudge_dismember_channeling:GetEffectName()
