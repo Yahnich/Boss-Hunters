@@ -216,7 +216,7 @@
 		"Ability16"				"special_bonus_unique_bane_fiends_grip_ebf_1"
 		"Ability17"				"special_bonus_unique_bane_fiends_grip_ebf_2"
 	}
-	"npc_dota_hero_batrider_ebf"
+	"npc_dota_hero_batrider"
 	{
 		"override_hero"			"npc_dota_hero_batrider"
 		"Ability1"				"batrider_napalm"
@@ -236,7 +236,7 @@
 		
 		"MovementSpeed"			"310"
 	}
-	"npc_dota_hero_beastmaster_ebf"
+	"npc_dota_hero_beastmaster"
 	{
 		"override_hero"			"npc_dota_hero_beastmaster"
 		"Ability1"				"beast_wild_axes"
@@ -260,7 +260,7 @@
 	//=================================================================================================================
 	// HERO: Bloodseeker
 	//=================================================================================================================
-	"npc_dota_hero_bloodseeker_ebf"
+	"npc_dota_hero_bloodseeker"
 	{
 		"override_hero"			"npc_dota_hero_bloodseeker"
 		"Ability1"				"bs_bloodrage"
@@ -279,7 +279,7 @@
 		"Ability17"				"special_bonus_unique_bs_rupture_2"
 		
 	}
-	"npc_dota_hero_bounty_hunter_ebf"
+	"npc_dota_hero_bounty_hunter"
 	{
 		"override_hero"			"npc_dota_hero_bounty_hunter"
 		"Ability1"				"bh_shuriken"
@@ -354,7 +354,7 @@
 			"SPELL_AMP"{"3" "3"}
 		}
 	}
-	"npc_dota_hero_broodmother_ebf"
+	"npc_dota_hero_broodmother"
 	{
 		"override_hero"					"npc_dota_hero_broodmother"
 		"Ability1"						"broodmother_spawn_spiderlings_bh"
@@ -372,7 +372,7 @@
 	    "Ability16"						"special_bonus_unique_broodmother_hunger_1"
 	    "Ability17"						"special_bonus_unique_broodmother_hunger_2"
 	}
-	"npc_dota_hero_centaur_ebf"
+	"npc_dota_hero_centaur"
 	{
 		"override_hero"					"npc_dota_hero_centaur"
 		"Ability1"						"centaur_hoof_stomp_ebf"
@@ -390,7 +390,7 @@
 		"Ability16"						"special_bonus_unique_centaur_stampede_1"
 		"Ability17"						"special_bonus_unique_centaur_stampede_2"
 	}
-	"npc_dota_hero_chaos_knight_ebf"
+	"npc_dota_hero_chaos_knight"
 	{
 		"override_hero"					"npc_dota_hero_chaos_knight"
 		"Ability1"						"chaos_knight_chaos_bolt_ebf"
@@ -423,7 +423,7 @@
 	//=================================================================================================================
 	// HERO: Chen
 	//=================================================================================================================
-	"npc_dota_hero_chen_ebf"
+	"npc_dota_hero_chen"
 	{
 		"override_hero"					"npc_dota_hero_chen"
 		"AbilityLayout"					"5"
@@ -445,7 +445,7 @@
 	//=================================================================================================================
 	// HERO: Clinkz
 	//=================================================================================================================
-	"npc_dota_hero_clinkz_ebf"
+	"npc_dota_hero_clinkz"
 	{
 		"override_hero"					"npc_dota_hero_clinkz"
 		"Ability1"						"clinkz_strafe_bh"
@@ -463,7 +463,7 @@
 		"Ability16"						"special_bonus_unique_clinkz_burning_army_1"
 		"Ability17"						"special_bonus_unique_clinkz_burning_army_2"
 	}
-	"npc_dota_hero_crystal_maiden_ebf"
+	"npc_dota_hero_crystal_maiden"
 	{
 		"override_hero"					"npc_dota_hero_crystal_maiden"
 		"Ability1"						"crystal_maiden_crystal_nova_bh"
@@ -484,7 +484,7 @@
 	//=================================================================================================================
 	// HERO: Dark Seer
 	//=================================================================================================================
-	"npc_dota_hero_dark_seer_ebf"
+	"npc_dota_hero_dark_seer"
 	{
 		"override_hero"					"npc_dota_hero_dark_seer"
 		"Ability1"						"ds_vacuum"
@@ -544,7 +544,7 @@
 	//=================================================================================================================
 	// HERO: Death Prophet
 	//=================================================================================================================
-	"npc_dota_hero_death_prophet_ebf"
+	"npc_dota_hero_death_prophet"
 	{
 		"override_hero"					"npc_dota_hero_death_prophet"
 		"Ability1"						"death_prophet_crypt_swarm_bh"
@@ -565,7 +565,7 @@
 	//=================================================================================================================
 	// HERO: Disraptor
 	//=================================================================================================================
-	"npc_dota_hero_disruptor_ebf"
+	"npc_dota_hero_disruptor"
 	{
 		"override_hero"					"npc_dota_hero_disruptor"
 		"Ability1"						"disruptor_thunder_strike_bh"
@@ -586,7 +586,7 @@
 	// =================================================================================================================
 	// HERO: Doom
 	//=================================================================================================================
-	"npc_dota_hero_doom_bringer_ebf"
+	"npc_dota_hero_doom_bringer"
 	{
 		"override_hero"					"npc_dota_hero_doom_bringer"
 		"AbilityLayout"					"4"
@@ -608,7 +608,7 @@
 		
 		"AttackRange"					"175"
 	}
-	"npc_dota_hero_earthshaker_ebf"
+	"npc_dota_hero_earthshaker"
 	{
 		"override_hero"			"npc_dota_hero_earthshaker"
 		"AbilityLayout"			"4"
@@ -653,7 +653,7 @@
 	//=================================================================================================================
 	// HERO: DK
 	//=================================================================================================================
-	"npc_dota_hero_dragon_knight_ebf"
+	"npc_dota_hero_dragon_knight"
 	{
 		"override_hero"					"npc_dota_hero_dragon_knight"
 		"Ability1"						"dragon_knight_dragonbreath"
@@ -743,7 +743,7 @@
 	//=================================================================================================================
 	// HERO: et
 	//================================================================================================================
-	"npc_dota_hero_elder_titan_ebf"
+	"npc_dota_hero_elder_titan"
 	{
 		"override_hero"					"npc_dota_hero_elder_titan"
 		"Ability1"						"et_echo_stomp"
@@ -761,7 +761,7 @@
 		"Ability16"						"special_bonus_unique_et_earth_splitter_1"
 		"Ability17"						"special_bonus_unique_et_earth_splitter_2"
 	}
-	"npc_dota_hero_ember_spirit_ebf"
+	"npc_dota_hero_ember_spirit"
 	{
 		"override_hero"					"npc_dota_hero_ember_spirit"
 		
@@ -780,7 +780,7 @@
 		"Ability16"						"special_bonus_unique_ember_remnant_jump_1"
 		"Ability17"						"special_bonus_unique_ember_remnant_1"
 	}
-	"npc_dota_hero_enchantress_ebf"
+	"npc_dota_hero_enchantress"
 	{
 		"override_hero"					"npc_dota_hero_enchantress"
 		"Ability1"						"enchantress_untouchable_bh"
@@ -799,7 +799,7 @@
 		"Ability17"						"special_bonus_unique_enchantress_impetus_bh_2"
 		
 	}
-	"npc_dota_hero_enigma_ebf"
+	"npc_dota_hero_enigma"
 	{
 		"override_hero"					"npc_dota_hero_enigma"
 		
@@ -830,7 +830,7 @@
 			"MAGIC_RESIST"{"1" "3"}
 		}
 	}
-	"npc_dota_hero_faceless_void_ebf"
+	"npc_dota_hero_faceless_void"
 	{
 		"override_hero"					"npc_dota_hero_faceless_void"
 		"Ability1"						"faceless_time_walk"
@@ -848,7 +848,7 @@
 		"Ability16"						"special_bonus_unique_faceless_chrono_1"
 		"Ability17"						"special_bonus_unique_faceless_chrono_2"
 	}
-	"npc_dota_hero_furion_ebf"
+	"npc_dota_hero_furion"
 	{
 		"override_hero"					"npc_dota_hero_furion"
 		"Ability1"						"furion_tree_jail"
@@ -869,7 +869,7 @@
 	//=================================================================================================================
 	// HERO: Grimstroke
 	//=================================================================================================================
-	"npc_dota_hero_grimstroke_ebf"
+	"npc_dota_hero_grimstroke"
 	{
 		"override_hero"					"npc_dota_hero_grimstroke"
 		"Ability1"						"grimstroke_stroke"
@@ -955,7 +955,7 @@
 	//=================================================================================================================
 	// HERO: Invoker
 	//=================================================================================================================
-	"npc_dota_hero_invoker_ebf"
+	"npc_dota_hero_invoker"
 	{
 		"override_hero"			"npc_dota_hero_invoker"
 		// "Ability1"		"invoker_q"
@@ -1051,7 +1051,7 @@
 			"AREA_DAMAGE"{"2" "3"}
 		}
 	}
-	"npc_dota_hero_keeper_of_the_light_ebf"
+	"npc_dota_hero_keeper_of_the_light"
 	{
 		"override_hero"				"npc_dota_hero_keeper_of_the_light"
 		 "Ability1"					"kotl_illuminate"
@@ -1142,7 +1142,7 @@
 	//=================================================================================================================
 	// HERO: Storm
 	//=================================================================================================================
-	"npc_dota_hero_leshrac_ebf"
+	"npc_dota_hero_leshrac"
 	{
 		"override_hero"					"npc_dota_hero_leshrac"
 		"AbilityLayout"					"5"
@@ -1218,7 +1218,7 @@
 		}
 		
 	}
-	"npc_dota_hero_lina_ebf"
+	"npc_dota_hero_lina"
 	{
 		"override_hero"					"npc_dota_hero_lina"
 		"Ability1"						"lina_dragon"
@@ -1314,7 +1314,7 @@
 	//=================================================================================================================
 	// HERO: skywrath
 	//=================================================================================================================
-	"npc_dota_hero_lycan_ebf"
+	"npc_dota_hero_lycan"
 	{
 		"override_hero"					"npc_dota_hero_lycan"
 		"Ability1"						"lycan_summon_wolves_bh"					// Ability 4
@@ -1335,7 +1335,7 @@
 	//=================================================================================================================
 	// HERO: Magnus
 	//=================================================================================================================
-	"npc_dota_hero_magnataur_ebf"
+	"npc_dota_hero_magnataur"
 	{
 		"override_hero"					"npc_dota_hero_magnataur"
 		"Ability1"						"mag_shockwave"
@@ -1369,7 +1369,7 @@
 	//=================================================================================================================
 	// HERO: Medusa
 	//=================================================================================================================
-	"npc_dota_hero_medusa_ebf"
+	"npc_dota_hero_medusa"
 	{
 		"override_hero"					"npc_dota_hero_medusa"
 		"Ability1"						"medusa_split"
@@ -1390,7 +1390,7 @@
 	//=================================================================================================================
 	// HERO: Meepo
 	//=================================================================================================================
-	"npc_dota_hero_meepo_ebf"
+	"npc_dota_hero_meepo"
 	{
 		"override_hero"					"npc_dota_hero_meepo"
 		"Ability1"						"meepo_earthbind_bh"
@@ -1411,7 +1411,7 @@
 	//=================================================================================================================
 	// HERO: Mirana
 	//=================================================================================================================
-	"npc_dota_hero_mirana_ebf"
+	"npc_dota_hero_mirana"
 	{
 		"override_hero"					"npc_dota_hero_mirana"
 		"Ability1"						"mirana_starcall"
@@ -1448,7 +1448,7 @@
 		"Ability16"						"special_bonus_unique_mk_command_1"
 		"Ability17"						"special_bonus_unique_mk_command_2"
 	}
-	"npc_dota_hero_morphling_ebf"
+	"npc_dota_hero_morphling"
 	{
 		"override_hero"					"npc_dota_hero_morphling"
 		"Ability1"						"morph_wave"
@@ -1473,7 +1473,7 @@
 		"Ability21"						""
 		"Ability22"						""
 	}
-	"npc_dota_hero_naga_siren_ebf"
+	"npc_dota_hero_naga_siren"
 	{
 		"override_hero"					"npc_dota_hero_naga_siren"
 		"AbilityLayout"					"5"
@@ -1567,7 +1567,7 @@
 	//=================================================================================================================
 	// HERO: Night Stalker
 	//=================================================================================================================
-	"npc_dota_hero_night_stalker_ebf"
+	"npc_dota_hero_night_stalker"
 	{
 		"override_hero"					"npc_dota_hero_night_stalker"
 		"Ability1"						"night_stalker_void_bh"
@@ -1585,7 +1585,7 @@
 		"Ability16"						"special_bonus_unique_night_stalker_dark_ascension_1"
 		"Ability17"						"special_bonus_unique_night_stalker_dark_ascension_2"
 	}
-	"npc_dota_hero_nyx_assassin_ebf"
+	"npc_dota_hero_nyx_assassin"
 	{
 		"override_hero"					"npc_dota_hero_nyx_assassin"
 		"Ability1"						"nyx_impale"
@@ -1614,7 +1614,7 @@
 	//=================================================================================================================
 	// HERO: outworld
 	//=================================================================================================================
-	"npc_dota_hero_obsidian_destroyer_ebf"
+	"npc_dota_hero_obsidian_destroyer"
 	{
 		"override_hero"					"npc_dota_hero_obsidian_destroyer"
 		"Ability1"						"obsidian_destroyer_arcane_missile"
@@ -1691,7 +1691,7 @@
 	    "Ability16"    		   			"special_bonus_unique_omniknight_guardian_angel_1"
 	    "Ability17"  	     			"special_bonus_unique_omniknight_guardian_angel_2"
 	}
-	"npc_dota_hero_oracle_ebf"
+	"npc_dota_hero_oracle"
 	{
 		"override_hero"			   		"npc_dota_hero_oracle"
 		"Ability1"				   		"oracle_fortunes"
@@ -1714,7 +1714,7 @@
 	//=================================================================================================================
 	// HERO: Pangolier
 	//=================================================================================================================
-	"npc_dota_hero_pango_ebf"
+	"npc_dota_hero_pango"
 	{
 		"override_hero"					"npc_dota_hero_pangolier"
 		"Ability1"						"pango_swashbuckler"
@@ -1819,7 +1819,7 @@
 		"Ability16"						"special_bonus_unique_phenx_egg_1"
 		"Ability17"						"special_bonus_unique_phenx_egg_2"
 	}
-	"npc_dota_hero_puck_ebf"
+	"npc_dota_hero_puck"
 	{
 		"override_hero"					"npc_dota_hero_puck"
 		"Ability1"						"puck_illusory_orb_ebf"
@@ -1855,20 +1855,21 @@
 	"npc_dota_hero_pudge"
 	{
 		"override_hero"					"npc_dota_hero_pudge"
-		"Ability1"						"pudge_hook_lua"
-		"Ability2"						"pudge_rot_lua"	
-		"Ability3"						"pudge_regurgitate"
-		"Ability4"						"pudge_flesh_heap_lua"
-		"Ability6"						"pudge_dismember_lua"
+		"Ability1"						"pudge_butchers_hook"
+		"Ability2"						"pudge_rotting_gas"	
+		"Ability3"						"generic_hidden"
+		"Ability4"						"pudge_graft_flesh"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"pudge_feast"
 	
-		"Ability10"						"special_bonus_unique_pudge_hook_lua_1"
-		"Ability11"						"special_bonus_unique_pudge_hook_lua_2"
-		"Ability12"						"special_bonus_unique_pudge_rot_lua_1"
-		"Ability13"						"special_bonus_unique_pudge_rot_lua_2"
-		"Ability14"						"special_bonus_unique_pudge_regurgitate_1"
-		"Ability15"						"special_bonus_unique_pudge_regurgitate_2"
-		"Ability16"						"special_bonus_unique_pudge_dismember_lua_1"
-		"Ability17"						"special_bonus_unique_pudge_dismember_lua_2"
+		"Ability10"						"special_bonus_unique_pudge_butchers_hook_1"
+		"Ability11"						"special_bonus_unique_pudge_butchers_hook_2"
+		"Ability12"						"special_bonus_unique_pudge_rotting_gas_1"
+		"Ability13"						"special_bonus_unique_pudge_rotting_gas_2"
+		"Ability14"						"special_bonus_placeholder_1"
+		"Ability15"						"special_bonus_placeholder_2"
+		"Ability16"						"special_bonus_unique_pudge_feast_1"
+		"Ability17"						"special_bonus_unique_pudge_feast_2"
 		
 		"Masteries"
 		{
@@ -1881,8 +1882,77 @@
 			"THREAT_DOWN"{"3" "2"}
 			"THREAT_AMP"{"3" "2"}
 		}
+		
+		"Facets"
+		{
+			"pudge_fresh_meat" 			{"Deprecated"		"true"}
+			"pudge_flayers_hook"		{"Deprecated"		"true"}
+			"pudge_rotten_core"			{"Deprecated"		"true"}
+			"pudge_rotten_giant" 
+			{
+				"Icon"					"meat"
+				"Color"					"Green"
+				"GradientID"			"0"
+				
+				"FacetID"				"4"
+				
+				"Talents"
+				{
+					"Talent1"
+					{
+						"TalentName"		"special_bonus_unique_pudge_meat_shield_1"
+						"ReplaceTalent"		"special_bonus_placeholder_1"
+					}
+					"Talent2"
+					{
+						"TalentName"		"special_bonus_unique_pudge_meat_shield_2"
+						"ReplaceTalent"		"special_bonus_placeholder_2"
+					}
+					
+				}
+				"Abilities"
+				{
+					"Ability1"
+					{
+						"AbilityName"		"pudge_meat_shield"
+						"AbilityIndex"		"2"
+						"AutoLevelAbility"	"false"
+					}
+				}
+			}
+			"pudge_flesh_carver"
+			{
+				"Icon"					"fist"
+				"Color"					"Red"
+				"GradientID"			"3"
+				
+				"FacetID"				"5"
+				
+				"Abilities"
+				{
+					"Ability1"
+					{
+						"AbilityName"		"pudge_regurgitate"
+						"AbilityIndex"		"2"
+						"AutoLevelAbility"	"false"
+					}
+					"Ability2"
+					{
+						"AbilityName"		"special_bonus_placeholder_1"
+						"ReplaceAbility"	"special_bonus_unique_pudge_regurgitate_1"
+						"AutoLevelAbility"	"false"
+					}
+					"Ability3"
+					{
+						"AbilityName"		"special_bonus_placeholder_2"
+						"ReplaceAbility"	"special_bonus_unique_pudge_regurgitate_2"
+						"AutoLevelAbility"	"false"
+					}
+				}
+			}
+		}
 	}
-	"npc_dota_hero_pugna_ebf"
+	"npc_dota_hero_pugna"
 	{
 		"override_hero"					"npc_dota_hero_pugna"
 		"Ability1"						"pugna_nether_blast_bh"
@@ -1927,7 +1997,7 @@
 	//=================================================================================================================
 	// HERO: Cockwerk
 	//=================================================================================================================
-	"npc_dota_hero_rattletrap_ebf"
+	"npc_dota_hero_rattletrap"
 	{
 		"override_hero"					"npc_dota_hero_rattletrap"
 
@@ -1950,7 +2020,7 @@
 	//=================================================================================================================
 	// HERO: Razor
 	//=================================================================================================================
-	"npc_dota_hero_razor_ebf"
+	"npc_dota_hero_razor"
 	{
 		"override_hero"					"npc_dota_hero_razor"
 		"Ability1"						"razor_plasma_field_bh"					// Ability 2
@@ -1972,7 +2042,7 @@
 	//=================================================================================================================
 	// HERO: Riki
 	//=================================================================================================================
-	"npc_dota_hero_riki_ebf"
+	"npc_dota_hero_riki"
 	{
 		"override_hero"			 		"npc_dota_hero_riki"
 		"Ability1"					 	"riki_smoke_bomb"
@@ -1994,7 +2064,7 @@
 	//=================================================================================================================
 	// HERO: Rubick
 	//=================================================================================================================
-	"npc_dota_hero_rubick_ebf"
+	"npc_dota_hero_rubick"
 	{
 		"override_hero"					"npc_dota_hero_rubick"
 		"Ability1"						"rubick_lift"
@@ -2037,7 +2107,7 @@
 	//=================================================================================================================
 	// HERO: Shadow Demon
 	//=================================================================================================================
-	"npc_dota_hero_shadow_demon_ebf"
+	"npc_dota_hero_shadow_demon"
 	{
 		"override_hero"					"npc_dota_hero_shadow_demon"
 		"Ability1"						"sd_disruption"
@@ -2059,7 +2129,7 @@
 	//=================================================================================================================
 	// HERO: Rhastafarian
 	//=================================================================================================================
-	"npc_dota_hero_shadow_shaman_ebf"
+	"npc_dota_hero_shadow_shaman"
 	{
 		"override_hero"					"npc_dota_hero_shadow_shaman"
 		"Ability1"						"shadow_shaman_ether_lightning"
@@ -2193,7 +2263,7 @@
 		"AttributeBaseIntelligence"		"25"
 		"AttributeIntelligenceGain"		"3.600000"
 	}
-	"npc_dota_hero_slardar_ebf"
+	"npc_dota_hero_slardar"
 	{
 		"override_hero"					"npc_dota_hero_slardar"
 		"Ability1"						"slardar_blood_in_the_water"
@@ -2348,6 +2418,24 @@
 			"MAGIC_RESIST"{"1" "3"}
 		}
 	}
+	//=================================================================================================================
+	// HERO: Spectre
+	//=================================================================================================================
+	"npc_dota_hero_largo"
+	{
+		"override_hero"					"npc_dota_hero_largo"
+		
+		"Masteries"
+		{
+			"STRENGTH"{"3" "5"}
+			"INTELLIGENCE"{"3" "3"}
+			"MANA_REGEN"{"2" "5"}
+			"SPELL_AMP"{"3" "3"}
+			"STATUS_AMP"{"1" "5"}
+			"MOVESPEED"{"3" "3"}
+			"EVASION"{"2" "3"}
+		}
+	}
 	"npc_dota_hero_spirit_breaker"
 	{
 		"override_hero"					"npc_dota_hero_spirit_breaker"
@@ -2372,7 +2460,7 @@
 	//=================================================================================================================
 	// HERO: Storm
 	//=================================================================================================================
-	"npc_dota_hero_storm_spirit_ebf"
+	"npc_dota_hero_storm_spirit"
 	{
 		"override_hero"					"npc_dota_hero_storm_spirit"
 		"Ability1"						"ss_static_remnant"
@@ -2423,7 +2511,7 @@
 	//=================================================================================================================
 	// HERO: Techies
 	//=================================================================================================================
-	"npc_dota_hero_techies_ebf"
+	"npc_dota_hero_techies"
 	{
 		"override_hero"					"npc_dota_hero_techies"
 		"ability1"						"tech_mine"
@@ -2442,7 +2530,7 @@
 		"Ability17"						"special_bonus_unique_tech_drastic_2"
 		
 	}
-	"npc_dota_hero_templar_assassin_ebf"
+	"npc_dota_hero_templar_assassin"
 	{
 		"override_hero"					"npc_dota_hero_templar_assassin"
 		"Ability1"						"ta_refract"
@@ -2464,7 +2552,7 @@
 	//=================================================================================================================
 	// HERO: Terrorblyat
 	//=================================================================================================================
-	"npc_dota_hero_terrorblade_ebf"
+	"npc_dota_hero_terrorblade"
 	{
 		"override_hero"					"npc_dota_hero_terrorblade"
 		"Ability1"						"terrorblade_reflection_bh"
@@ -2481,7 +2569,7 @@
 		"Ability16"						"special_bonus_unique_terrorblade_metamorphosis_1"
 		"Ability17"						"special_bonus_unique_terrorblade_metamorphosis_2"	
 	}
-	"npc_dota_hero_tidehunter_ebf"
+	"npc_dota_hero_tidehunter"
 	{
 		"override_hero"					"npc_dota_hero_tidehunter"
 		"Ability1"						"tide_hydro_cannon"
@@ -2499,7 +2587,7 @@
 	    "Ability16"						"special_bonus_unique_tide_the_kraken_1"
 	    "Ability17"						"special_bonus_unique_tide_the_kraken_2"
 	}
-	"npc_dota_hero_tinker_ebf"
+	"npc_dota_hero_tinker"
 	{
 		"override_hero"					"npc_dota_hero_tinker"
 		"Ability1"						"tinker_laser_ebf"
@@ -2607,7 +2695,7 @@
 			"ARMOR"{"1" "3"}
 		}
 	}
-	"npc_dota_hero_tusk_ebf"
+	"npc_dota_hero_tusk"
 	{
 		"override_hero"					"npc_dota_hero_tusk"
 		"Ability1"						"tusk_ice"
@@ -2691,7 +2779,7 @@
 			"AREA_DAMAGE"{"3" "3"}
 		}
 	}
-	"npc_dota_hero_vengefulspirit_ebf"
+	"npc_dota_hero_vengefulspirit"
 	{
 		"override_hero"					"npc_dota_hero_vengefulspirit"
 		"Ability1"						"vengefulspirit_magic_barrage"
@@ -2754,7 +2842,7 @@
 			"MAGIC_RESIST"{"1" "3"}
 		}
 	}
-	"npc_dota_hero_viper_ebf"
+	"npc_dota_hero_viper"
 	{
 		"override_hero"					"npc_dota_hero_viper"
 		"Ability1"						"viper_poison_attack_bh"
@@ -2772,7 +2860,7 @@
 		"Ability16"						"special_bonus_unique_viper_viper_strike_1"
 		"Ability17"						"special_bonus_unique_viper_viper_strike_2"
 	}
-	"npc_dota_hero_visage_ebf"
+	"npc_dota_hero_visage"
 	{
 		"override_hero"					"npc_dota_hero_visage"
 		"Ability1"						"visage_chill"
@@ -2790,7 +2878,7 @@
 		"Ability16"						"special_bonus_unique_visage_stone_1"
 		"Ability17"						"special_bonus_unique_visage_stone_2"
 	}
-	"npc_dota_hero_warlock_ebf"
+	"npc_dota_hero_warlock"
 	{
 		"override_hero"					"npc_dota_hero_warlock"
 		"Ability1"						"warlock_chaos_bolt"

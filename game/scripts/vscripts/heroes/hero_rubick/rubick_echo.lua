@@ -154,7 +154,7 @@ function rubick_echo:SpellEcho(hAbility, vLocation, hTarget)
 					 ["phenx_ray"] = true,
 					 ["phenx_spirits"] = true,
 					 ["puck_phase_shift_ebf"] = true,
-					 ["pudge_hook_lua"] = true,
+					 ["pudge_butchers_hook"] = true,
 					 ["pudge_chain_storm"] = true,
 					 ["pugna_decrepify_bh"] = true,
 					 ["pugna_lifedrain_bh"] = true,

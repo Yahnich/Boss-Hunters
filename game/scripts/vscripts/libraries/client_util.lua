@@ -1,3 +1,11 @@
+function IsEntitySafe( entity )
+	return entity and IsValidEntity( entity ) and not entity:IsNull() 
+end
+
+function IsModifierSafe( entity )
+	return entity and not entity:IsNull() 
+end
+
 function GetClientSync(key)
 	local value = CustomNetTables:GetTableValue( "syncing_purposes", key).value
 	return value

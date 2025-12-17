@@ -203,6 +203,7 @@
 #base "heroes/hero_void_spirit.txt"
 #base "heroes/hero_snapfire.txt"
 #base "heroes/hero_hoodwink.txt"
+#base "heroes/hero_largo.txt"
 
 "DOTAAbilities"
 {
@@ -235,12 +236,30 @@
 		"AbilityTextureName"	"modifier_magicimmune"
 		"MaxLevel"				"1"
 	}
+	"special_bonus_placeholder_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"special_bonus_undefined"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"			"ABILITY_TYPE_ATTRIBUTES"
+		"MaxLevel"				"1"
+	}
+	"special_bonus_placeholder_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"special_bonus_undefined"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"			"ABILITY_TYPE_ATTRIBUTES"
+		"MaxLevel"				"1"
+	}
 	"special_bonus_reincarnation_120"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_reincarnation_200"										
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"BaseClass"						"special_bonus_reincarnation_200"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		
 		// Special

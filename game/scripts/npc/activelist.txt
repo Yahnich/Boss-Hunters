@@ -125,4 +125,5 @@
 	"npc_dota_hero_windrunner"						"0"
 	"npc_dota_hero_witch_doctor"					"1"
 	"npc_dota_hero_zuus"							"0"
+	"npc_dota_hero_largo"							"1"
 }

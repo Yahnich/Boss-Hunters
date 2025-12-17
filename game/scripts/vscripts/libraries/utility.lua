@@ -9,6 +9,15 @@ HEAL_TYPE_LIFESTEAL = 2
 HEAL_FLAG_NONE = 0
 HEAL_FLAG_IGNORE_AMPLIFICATION = 1
 
+
+function IsEntitySafe( entity )
+	return entity and IsValidEntity( entity ) and not entity:IsNull() 
+end
+
+function IsModifierSafe( entity )
+	return entity and not entity:IsNull() 
+end
+
 function SendClientSync(key, value)
 	CustomNetTables:SetTableValue( "syncing_purposes",key, {value = value} )
 end
@@ -2417,6 +2426,10 @@ end
 
 function CDOTA_BaseNPC:Blind(missChance, hAbility, hCaster, duration)
 	return self:AddNewModifier(hCaster, hAbility, "modifier_blind_generic", {Duration = duration, miss = missChance})
+end
+
+function CDOTA_BaseNPC:IsFeared()
+	return self:HasModifier("modifier_fear_generic")
 end
 
 function CDOTA_BaseNPC:IsBlinded()

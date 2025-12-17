@@ -180,7 +180,7 @@ function CHoldoutGameMode:InitGameMode()
 	end
 	GameRules:SetHeroSelectionTime( HERO_SELECTION_TIME )
 	GameRules:SetShowcaseTime( 0 )
-	GameRules:SetStrategyTime( 0 )
+	GameRules:SetStrategyTime( 30 )
 	GameRules:SetPostGameTime( 30 )
 	GameRules:SetCustomGameEndDelay( 15.0 )
 	GameRules:SetCustomGameSetupAutoLaunchDelay( 0 ) -- fix valve bullshit
@@ -1079,12 +1079,6 @@ function CHoldoutGameMode:OnHeroPick (event)
 		hero:AddItemByName("item_potion_of_recovery")
 		hero:AddItemByName("item_potion_of_essence")
 		
-		for i = 0, 17 do
-			local skill = hero:GetAbilityByIndex(i)
-			if skill and skill:IsInnateAbility() then
-				skill:UpgradeAbility(true)
-			end
-		end
 		-- hero:AddExperience(GameRules.XP_PER_LEVEL[7],false,false)
 		if GameRules:GetGameDifficulty() > 2 then
 		else
@@ -1096,43 +1090,67 @@ function CHoldoutGameMode:OnHeroPick (event)
 			hero:SetBaseMagicalResistanceValue(25.1)
 		end
 		hero:SetPhysicalArmorBaseValue( hero:GetPhysicalArmorBaseValue() + hero:GetAgility() * 0.17 )
-		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage
+		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) 
 		local ID = hero:GetPlayerID()
 		if not ID then return end
 		PlayerResource:SetCustomBuybackCooldown(ID, 120)
 		local playerName = PlayerResource:GetPlayerName( ID )
-		if not IsInToolsMode() then
-			if PlayerResource:IsDeveloper(ID) then
-				
-				local messageinfo = {
-				text = "You are playing with a developer! Say hi to "..playerName.."!",
-				duration = 10
-				}
-				Notifications:TopToAll(messageinfo)
-				ParticleManager:FireParticle("particles/roles/dev/dev_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
-			elseif PlayerResource:IsManager(ID) then
-				ParticleManager:FireParticle("particles/roles/dev/com_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
-			elseif PlayerResource:IsVIP(ID) then
-				local messageinfo = {
-				text = "You are playing with a VIP! "..playerName.." is supporting the development of Epic Boss Fight!",
-				duration = 10
-				}
-				Notifications:TopToAll(messageinfo)
-				ParticleManager:FireParticle("particles/roles/dev/vip_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
-			end
-			if PlayerResource:IsKarien(ID) then
-				ParticleManager:FireParticle("particles/roles/karien_trail_spirit.vpcf", PATTACH_POINT_FOLLOW, hero)
-			end
-			if PlayerResource:IsSunrise(ID) then
-				ParticleManager:FireParticle("particles/roles/sunrise/sunrise_trail_water.vpcf", PATTACH_POINT_FOLLOW, hero)
-			end
-		end
+		
 		local gold = 200 + 150 * ( GameRules.BasePlayers - PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS) )
 		hero:SetGold( 0, true )
 		if PlayerResource:HasRandomed( ID ) then
 			gold = gold + 500
 		end
 		hero:SetGold( gold, true )
+		
+		local heroData = GetUnitKeyValuesByName(hero:GetUnitName())
+		hero._heroManaType = heroData.ManaType or "Mana"
+		
+		local facetID = hero:GetHeroFacetID()
+		local facetData
+		for _, facet in pairs(  heroData.Facets ) do
+			if tonumber(facet.FacetID or "1") == facetID then
+				if facet.Talents then
+					for _, talentData in pairs( facet.Talents ) do
+						if talentData.ReplaceTalent then
+							local abilityToReplace = hero:FindAbilityByName( talentData.ReplaceTalent )
+							local abilityToAdd = hero:AddAbility( talentData.TalentName )
+							
+							if IsEntitySafe( abilityToReplace ) and IsEntitySafe( abilityToAdd ) then
+								local abilityToReplaceIndex = abilityToReplace:GetAbilityIndex()
+								local abilityToAddIndex = abilityToAdd:GetAbilityIndex()
+								
+								hero:SwapAbilities( talentData.TalentName, talentData.ReplaceTalent, true, false )
+								hero:RemoveAbilityByHandle( abilityToReplace )
+							end
+						end
+					end
+				end
+				if facet.KeyValueOverrides then
+					if facet.KeyValueOverrides.AttributePrimary then
+						if facet.KeyValueOverrides.AttributePrimary == "DOTA_ATTRIBUTE_STRENGTH" then
+							hero:SetPrimaryAttribute(DOTA_ATTRIBUTE_STRENGTH)
+						elseif facet.KeyValueOverrides.AttributePrimary == "DOTA_ATTRIBUTE_AGILITY" then
+							hero:SetPrimaryAttribute(DOTA_ATTRIBUTE_AGILITY)
+						elseif facet.KeyValueOverrides.AttributePrimary == "DOTA_ATTRIBUTE_INTELLECT" then
+							hero:SetPrimaryAttribute(DOTA_ATTRIBUTE_INTELLECT)
+						elseif facet.KeyValueOverrides.AttributePrimary == "DOTA_ATTRIBUTE_ALL" then
+							hero:SetPrimaryAttribute(DOTA_ATTRIBUTE_ALL)
+						end
+					end
+					if facet.KeyValueOverrides.AttackCapabilities then
+						if facet.KeyValueOverrides.AttackCapabilities == "DOTA_UNIT_CAP_MELEE_ATTACK" then
+							hero:SetAttackCapability( DOTA_UNIT_CAP_MELEE_ATTACK )
+						elseif facet.KeyValueOverrides.AttackCapabilities == "DOTA_UNIT_CAP_RANGED_ATTACK" then
+							hero:SetAttackCapability( DOTA_UNIT_CAP_RANGED_ATTACK )
+						end
+					end
+					if facet.KeyValueOverrides.ArmorPhysical then
+						hero:SetPhysicalArmorBaseValue( facet.KeyValueOverrides.ArmorPhysical )
+					end
+				end
+			end
+		end
 	end)
 end
 

@@ -1,11 +1,45 @@
 "DOTAAbilities"
 {	
-	"pudge_hook_lua"
+	"pudge_graft_flesh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_pudge/pudge_graft_flesh.lua"
+		"AbilityTextureName"			"pudge_innate_graft_flesh"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"MaxLevel"						"1"
+		"Innate"						"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"bonus_strength"					"0.5 0.6 0.7 0.8"
+			"flesh_heap_range"		
+			{
+				"value"							"450"
+				"affected_by_aoe_increase"		"1"
+			}
+			
+			"minion_stacks"						"1"
+			"monster_temp_stacks"				"2"
+			"monster_stacks"					"2"
+			"boss_stacks"						"5"
+			
+			"bonus_maximum_health"				"10"
+			"bonus_base_damage"					"4"
+		}
+	}
+	"pudge_butchers_hook"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------														
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_pudge/pudge_hook_lua.lua"
+		"ScriptFile"					"heroes/hero_pudge/pudge_butchers_hook.lua"
+		"AbilityTextureName"			"pudge_meat_hook"
 
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -14,15 +48,14 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"HasScepterUpgrade"				"1"
-		"AbilityTextureName"			"pudge_meat_hook"
 		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_pudge_hook_lua_1"	"1"
-			"special_bonus_unique_pudge_hook_lua_2"	"1"
+			"special_bonus_unique_pudge_butchers_hook_1"	"1"
+			"special_bonus_unique_pudge_butchers_hook_2"	"1"
 		}
 	
 		// Precache
@@ -58,33 +91,65 @@
 		{
 			"damage"
 			{
-				"value"					"150 220 290 360"
-				"special_bonus_scepter"	"+25%"
+				"value"											"150 220 290 360"
+				"special_bonus_scepter"							"+25%"
+				"CalculateSpellDamageTooltip"					"1"
 			}
-			"distance"					"1300"
-			"speed"						"1450"
-			"width"						"100"
-			"minion_damage"				"100"
+			"hook_distance"										"1300"
+			"hook_speed"										"1600"
+			"hook_width"										"100"
+			"minion_damage"										"100"
 			
 			"AbilityCooldown"
 			{
-				"value"									"18 16 14 12"
-				"special_bonus_scepter"					"-4"
-				"special_bonus_unique_pudge_hook_lua_2"	"-4"
+				"value"											"18 16 14 12"
+				"special_bonus_scepter"							"-4"
+				"special_bonus_unique_pudge_butchers_hook_2"	"-4"
 			}
 			
-			"bonus_hooks"				{"special_bonus_unique_pudge_hook_lua_2"	"2"}
-			"bonus_hook_angle"			{"special_bonus_unique_pudge_hook_lua_2"	"45"}
-			"bonus_movespeed"			{"special_bonus_unique_pudge_hook_lua_1"	"50"}
-			"movespeed_duration"		{"special_bonus_unique_pudge_hook_lua_1"	"8"}
+			"bonus_hooks"										{"special_bonus_unique_pudge_butchers_hook_2"	"2"}
+			"bonus_hook_angle"									{"special_bonus_unique_pudge_butchers_hook_2"	"45"}
+			"bonus_movespeed"									{"special_bonus_unique_pudge_butchers_hook_1"	"50"}
+			"movespeed_duration"								{"special_bonus_unique_pudge_butchers_hook_1"	"8"}
+
+			"vision_radius"										"500 500 500 500"
+			"vision_duration"									"4.0 4.0 4.0 4.0"
+			"cooldown_reduction_pct_allied_hook"				"50"
+			"self_stun_duration_percent"						"0.5"
+			"pierces_enemies"									"1"
+			
+			// facets
+			"bonus_armor"										{"special_bonus_facet_pudge_rotten_giant"	"3 5 7 9"}
+			"bonus_mr"											{"special_bonus_facet_pudge_rotten_giant"	"5 10 15 20"}
+			"buff_linger_duration"							
+			{
+				"special_bonus_facet_pudge_rotten_giant"		"8"
+				"is_buff_duration"								"1"
+			}
+			
+			"armor_loss"										{"special_bonus_facet_pudge_flesh_carver"	"1 2 3 4"}
+			"mr_loss"											{"special_bonus_facet_pudge_flesh_carver"	"3 6 9 12"}
+			"debuff_linger_duration"						
+			{
+				"special_bonus_facet_pudge_flesh_carver"		"4"
+				"is_debuff_duration"							"1"
+			}
+			"autocast"											{"special_bonus_facet_pudge_flesh_carver"	"1"}
+			"instant_hook"										{"special_bonus_facet_pudge_flesh_carver"	"1"}
+			"distance_to_damage"
+			{
+				"special_bonus_facet_pudge_flesh_carver"		"20"
+				"CalculateSpellDamageTooltip"					"1"
+			}
 		}
 	}
-	"pudge_rot_lua"
+	"pudge_rotting_gas"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------														
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_pudge/pudge_rot_lua.lua"
+		"ScriptFile"					"heroes/hero_pudge/pudge_rotting_gas.lua"
+		"AbilityTextureName"			"pudge_rot"
 		
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -92,15 +157,14 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"custom/pudge_rot_arcana"
 		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_pudge_rot_lua_1"	"1"
-			"special_bonus_unique_pudge_rot_lua_2"	"1"
+			"special_bonus_unique_pudge_rotting_gas_1"	"1"
+			"special_bonus_unique_pudge_rotting_gas_2"	"1"
 		}
 	
 		// Precache
@@ -133,25 +197,39 @@
 		{
 			"damage"
 			{
-				"value"									"30 60 90 120"
-				"special_bonus_unique_pudge_rot_lua_2"	"+65"
+				"value"										"30 60 90 120"
+				"special_bonus_unique_pudge_rotting_gas_2"	"+65"
 			}
-			"damage_increase"							"5 10 15 20"
 			"radius"
 			{
-				"value"									"375 450 525 600"
-				"special_bonus_unique_pudge_rot_lua_2"	"+125"
+				"value"										"375 450 525 600"
+				"special_bonus_unique_pudge_rotting_gas_2"	"+125"
 			}
-			"tick_rate"									"0.25"
+			"tick_rate"										"0.25"
 			"slow"
 			{
-				"value"									"-14 -20 -26 -32"
-				"special_bonus_unique_pudge_rot_lua_2"	"-38"
+				"value"										"14 20 26 32"
+				"special_bonus_unique_pudge_rotting_gas_2"	"38"
 			}
-			"minion_stacks"								"1"
-			"heap_stacks"								"5"
-			
-			"fear_delay"								{"special_bonus_unique_pudge_rot_lua_1"	"3"}
+			"regen_reduction"								"14 20 26 32"
+			"self_damage"									"100"
+			"max_bonus_damage"
+			{
+				"special_bonus_facet_pudge_flesh_carver"	"50 60 70 80"
+				"CalculateSpellDamageTooltip"				"0"
+				"DamageTypeTooltip"							"DAMAGE_TYPE_PHYSICAL"
+			}
+			"time_for_max_stacks"							{"special_bonus_facet_pudge_flesh_carver"	"5.0"}
+			"time_for_decay"								{"special_bonus_facet_pudge_flesh_carver"	"1.0"}
+			"max_rot_power"
+			{
+				"special_bonus_facet_pudge_rotten_giant"	"20 30 40 50"
+				"CalculateSpellDamageTooltip"				"0"
+				"DamageTypeTooltip"							"DAMAGE_TYPE_MAGICAL"
+			}
+			"time_for_max_rot_stacks"						{"special_bonus_facet_pudge_rotten_giant"	"5.0"}
+			"fear_duration"									{"special_bonus_unique_pudge_rotting_gas_1"	"3"}
+			"fear_delay"									{"special_bonus_unique_pudge_rotting_gas_1"	"3"}
 		}
 	}
 	"pudge_regurgitate"
@@ -160,13 +238,13 @@
 		//-------------------------------------------------------------------------------------------------------------														
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_pudge/pudge_regurgitate.lua"
+		"AbilityTextureName"			"pudge_eject"
 
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"pudge_eject"
 		"MaxLevel"						"4"
 		
 		// Talents		
@@ -214,41 +292,100 @@
 			"bonus_skin_heap"			{"special_bonus_unique_pudge_regurgitate_1"	"1"}
 		}
 	}
-	"pudge_flesh_heap_lua"
+	"special_bonus_unique_pudge_regurgitate_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"special_bonus_undefined"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"			"ABILITY_TYPE_ATTRIBUTES"
+		"MaxLevel"				"1"
+	}
+	"special_bonus_unique_pudge_regurgitate_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"special_bonus_undefined"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"			"ABILITY_TYPE_ATTRIBUTES"
+		"MaxLevel"				"1"
+	}
+	"pudge_meat_shield"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_pudge/pudge_flesh_heap_lua.lua"
+		"ScriptFile"					"heroes/hero_pudge/pudge_meat_shield"
+		"AbilityTextureName"			"pudge_flesh_heap"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_pudge_meat_shield_1"	"1"
+			"special_bonus_unique_pudge_meat_shield_2"	"1"
+		}
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"17"
 
-		"MaxLevel"						"1"
-		"AbilityTextureName"			"custom/pudge_flesh_heap_ebf"
-		"Innate"						"1"
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"35 50 65 80"
+		
+		"precache"
+		{
+			"particle"					"particles/econ/events/ti6/phase_boots_ti6.vpcf"
+		}
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"str_bonus"					"1"
-			"health_regen"				"0.75"
-			"minion_regen"				"10"
-			"minion_stacks"				"1"
-			"death_stacks"				"1"
-			"temp_stacks"				"2"
-			"boss_stacks"				"5"
-			"radius"					"900"
-			"magic_resist"				"10"
+			"damage_block"					
+			{
+				"value"										"8 14 20 26"
+				"special_bonus_unique_pudge_meat_shield_1"	"+100%"
+				"CalculateAttributeTooltip"		"1"
+			}
+			"duration"							
+			{
+				"value"							"4 5 6 7"
+				"is_buff_duration"				"1"
+			}
+			
+			"status_resistance"					{"special_bonus_unique_pudge_meat_shield_1"			"100"}
+			"meat_shield_bonus"					{"special_bonus_unique_pudge_meat_shield_2"			"50"}
 		}
+		
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
-
-	"pudge_dismember_lua"
+	"special_bonus_unique_pudge_meat_shield_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"special_bonus_undefined"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"			"ABILITY_TYPE_ATTRIBUTES"
+		"MaxLevel"				"1"
+	}
+	"special_bonus_unique_pudge_meat_shield_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"special_bonus_undefined"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"			"ABILITY_TYPE_ATTRIBUTES"
+		"MaxLevel"				"1"
+	}
+	"pudge_feast"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_pudge/pudge_dismember_lua.lua"
+		"ScriptFile"					"heroes/hero_pudge/pudge_feast.lua"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -263,8 +400,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_pudge_dismember_lua_1"	"1"
-			"special_bonus_unique_pudge_dismember_lua_2"	"1"
+			"special_bonus_unique_pudge_feast_1"	"1"
+			"special_bonus_unique_pudge_feast_2"	"1"
 		}
 	
 		// Precache
@@ -283,91 +420,46 @@
 		"AbilityCastRange"				"250"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"				"0.3"
-	
-		"AbilityCooldown"				"45 35 25"
-	
+		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"100 130 170 220 280 350"
 			
 		"AbilityValues"
 		{
-			"damage"					"60 90 120 150 180 210"
-			"str_damage"				"30 30 30 60 90 120"
+			"AbilityCooldown"							"45 35 25"
+			
+			"damage"									"60 90 120"
+			"str_damage"								"100"
 			"duration"
 			{
-				"value"					"3.0"
-				"special_bonus_unique_pudge_dismember_lua_1" "+3"
+				"value"									"3.0"
+				"special_bonus_unique_pudge_feast_1"	"+3"
 			}
-			"heal_pct"					"100"
-			"speed"						"75"
-			"width"						"150"
+			"heal_pct"									"100"
+			"aoe_radius"								"250"
 			
-			"bonus_armor"				{"special_bonus_unique_pudge_dismember_lua_2" "50"}
-		}
-	}
-	
-	/////////////////////////////////////////
-	// DEPRECATED
-	/////////////////////////////////////////
-	"pudge_chain_storm"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------														
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_pudge/pudge_chain_storm.lua"
-
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"custom/pudge_dismember_arcana"
-		"MaxLevel"						"4"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_pudge_chain_storm_1"	"1"
-			"special_bonus_unique_pudge_chain_storm_2"	"1"
-		}
-	
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_pudge.vsndevts"
-
-			"particle"			"particles/econ/items/pudge/pudge_arcana/pudge_arcana_dismember_default.vpcf"
-		}
-			
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500"
-		"AbilityCastPoint"				"0.3"
-		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 125 150 175 200 225 250"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"damage"					"50 75 100 125 140 155 170"
-			"magic_resist"				"1.5 1.5 1.5 1.5 2 2.5 3"
-			"max_resist"				"37.5 45 52.5 60 80 100 120"
-			"duration"					"25 30 35 40 40 40 40"
-			"heap_stacks"				"1"
-			"minion_chance"				"10"
-			"heap_chance"				"25"
+			"bonus_armor"								{"special_bonus_unique_pudge_feast_2" "50"}
+			"pull_units_per_second"						"75"
+			"pull_distance_limit"						"125"
+			"animation_rate"							"1.5"
+			"AbilityChannelTime"			
+			{
+				"value"									"3.0"
+				"special_bonus_unique_pudge_feast_1"	"+3"
+			}
+			"gluttony_strength_bonus"						"5 10 15"
+			"glutton_strength_stack_duration"
+			{		
+				"special_bonus_facet_pudge_rotten_giant"	"12"	
+				"is_buff_duration"							"1"			
+			}
+			"gluttony_damage_bonus"							{"special_bonus_facet_pudge_flesh_carver"	"2.5 5 7.5"}
+			"gluttony_damage_bonus_duration"				
+			{
+				"special_bonus_facet_pudge_flesh_carver"	"8"
+				"is_buff_duration"							"1"
+			}
 		}
 	}
 }
