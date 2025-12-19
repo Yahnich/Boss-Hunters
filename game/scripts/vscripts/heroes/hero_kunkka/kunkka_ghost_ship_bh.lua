@@ -86,7 +86,7 @@ function kunkka_ghost_ship_bh:SendShip(spawn_pos, totalDistance, radius, directi
 		local travelDistance = 0
 		local position = spawn_pos
 		local torrentDistance = self:GetSpecialValueFor("torrent_travel_distance_scepter")
-		local torrent = caster:FindAbilityByName("kunkka_torrent_bh")
+		local torrent = caster:FindAbilityByName("kunkka_water_spout")
 		if torrent then
 			Timers:CreateTimer(0.1, function()
 				travelDistance = travelDistance + speed * 0.1

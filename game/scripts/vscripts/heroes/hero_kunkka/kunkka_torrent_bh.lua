@@ -1,25 +1,25 @@
-kunkka_torrent_bh = class({})
-LinkLuaModifier("modifier_kunkka_torrent_bh", "heroes/hero_kunkka/kunkka_torrent_bh", LUA_MODIFIER_MOTION_NONE)
+kunkka_water_spout = class({})
+LinkLuaModifier("modifier_kunkka_water_spout", "heroes/hero_kunkka/kunkka_water_spout", LUA_MODIFIER_MOTION_NONE)
 
-function kunkka_torrent_bh:GetAOERadius()
+function kunkka_water_spout:GetAOERadius()
 	return self:GetSpecialValueFor("radius")
 end
 
-function kunkka_torrent_bh:IsStealable()
+function kunkka_water_spout:IsStealable()
     return true
 end
 
-function kunkka_torrent_bh:IsHiddenWhenStolen()
+function kunkka_water_spout:IsHiddenWhenStolen()
     return false
 end
 
-function kunkka_torrent_bh:OnSpellStart()
+function kunkka_water_spout:OnSpellStart()
     local point = self:GetCursorPosition()
 	
 	self:CreateTorrent(point)
 end
 
-function kunkka_torrent_bh:CreateTorrent(position)
+function kunkka_water_spout:CreateTorrent(position)
 	local caster = self:GetCaster()
 	EmitSoundOnLocationWithCaster(position, "Ability.pre.Torrent", caster)
 
@@ -36,7 +36,7 @@ function kunkka_torrent_bh:CreateTorrent(position)
         for _,enemy in pairs(enemies) do
 			if not enemy:TriggerSpellAbsorb( self ) then
 				enemy:ApplyKnockBack(enemy:GetAbsOrigin(), stunDuration + 0.1, stunDuration, 0, 350, caster, self, true)
-				enemy:AddNewModifier(caster, self, "modifier_kunkka_torrent_bh", {Duration = slow})
+				enemy:AddNewModifier(caster, self, "modifier_kunkka_water_spout", {Duration = slow})
 				self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage"))
 			end
         end
@@ -47,25 +47,25 @@ function kunkka_torrent_bh:CreateTorrent(position)
     end)
 end
 
-modifier_kunkka_torrent_bh = class({})
-function modifier_kunkka_torrent_bh:IsDebuff() return true end
+modifier_kunkka_water_spout = class({})
+function modifier_kunkka_water_spout:IsDebuff() return true end
 
-function modifier_kunkka_torrent_bh:DeclareFunctions()
+function modifier_kunkka_water_spout:DeclareFunctions()
     return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
 end
 
-function modifier_kunkka_torrent_bh:GetModifierMoveSpeedBonus_Percentage()
+function modifier_kunkka_water_spout:GetModifierMoveSpeedBonus_Percentage()
     return self:GetSpecialValueFor("movespeed_bonus")
 end
 
-function modifier_kunkka_torrent_bh:GetEffectName()
+function modifier_kunkka_water_spout:GetEffectName()
     return "particles/units/heroes/hero_tidehunter/tidehunter_gush_slow.vpcf"
 end
 
-function modifier_kunkka_torrent_bh:GetStatusEffectName()
+function modifier_kunkka_water_spout:GetStatusEffectName()
     return "particles/status_fx/status_effect_gush.vpcf"
 end
 
-function modifier_kunkka_torrent_bh:StatusEffectPriority()
+function modifier_kunkka_water_spout:StatusEffectPriority()
     return 10
 end

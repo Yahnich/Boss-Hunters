@@ -3,12 +3,12 @@
 	//=================================================================================================================
 	// Torrent
 	//=================================================================================================================
-	"kunkka_torrent_bh"
+	"kunkka_water_spout"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_kunkka/kunkka_torrent_bh"
+		"ScriptFile"					"heroes/hero_kunkka/kunkka_water_spout"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -22,8 +22,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_kunkka_torrent_bh_1"	"1"
-			"special_bonus_unique_kunkka_torrent_bh_2"	"1"
+			"special_bonus_unique_kunkka_water_spout_1"	"1"
+			"special_bonus_unique_kunkka_water_spout_2"	"1"
 		}
 	
 		// Casting
@@ -54,21 +54,61 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"damage"
-			{
-				"value"										"80 155 230 305"
-				"special_bonus_unique_kunkka_torrent_bh_1"	"+120"
-			}
-			"delay"						"1.6"
+			// Default KV's
+			//---------------------------------------------------------------------------------------------------------
+			"movespeed_bonus"												"40"
+			"delay"															"1.6 1.6 1.6 1.6"
+			"damage_tick_interval"											"0.2"
 			"radius"
 			{
-				"value"										"225"
-				"special_bonus_unique_kunkka_torrent_bh_2"	"+175"
-				"affected_by_aoe_increase"					"1"
+				"value"														"250"
+				"affected_by_aoe_increase"									"1"
 			}
-			"movespeed_bonus"								"-20 -30 -40 -50"
-			"slow_duration"									"2.5 3 3.5 4"
-			"stun_duration"									"1.6"
+			"slow_duration"
+			{
+				"value"														"1 2 3 4"
+				"is_debuff_duration"										"1"
+			}
+			"stun_duration"
+			{
+				"value"														"1.4"
+				"is_debuff_duration"										"1"
+			}
+			"damage"
+			{
+				"value"														"80 160 240 320"
+				"CalculateSpellDamageTooltip"								"1"
+			}
+			"AbilityCooldown"												"16 14 12 10"
+
+			// Mariner KV's
+			//---------------------------------------------------------------------------------------------------------
+			"extra_torrents"
+			{
+				"special_bonus_facet_kunkka_mariner"						"4"
+			}
+			"extra_torrent_delay"											"4"
+
+			// Admiral KV's
+			//---------------------------------------------------------------------------------------------------------
+			"bonus_armor"													{"special_bonus_facet_kunkka_admiral"	"4 7 11 14"}
+			"bonus_armor_duration"
+			{
+				"special_bonus_facet_kunkka_admiral"						"4"
+				"is_buff_duration"											"1"
+			}	
+			"admiral_mspd_bonus"
+			{
+				"special_bonus_facet_kunkka_admiral"						"40"
+			}
+
+			// Privateer KV's
+			//---------------------------------------------------------------------------------------------------------
+			"bonus_physical_damage"
+			{
+				"special_bonus_facet_kunkka_privateer"						"50 100 150 200"
+				"CalculateSpellDamageTooltip"								"1"
+			}
 		}
 	}
 
