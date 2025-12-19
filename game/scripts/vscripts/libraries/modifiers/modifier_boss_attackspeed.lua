@@ -122,7 +122,7 @@ end
 function modifier_boss_attackspeed:OnAttackStart( params )
 	if params.attacker == self:GetParent() then
 		params.attacker:RemoveGesture( ACT_DOTA_ATTACK )
-		params.attacker:StartGestureWithPlaybackRate( ACT_DOTA_ATTACK, 1 + ( params.attacker:GetIncreasedAttackSpeed() - (1 + self:GetStackCount() * 0.25) ) )
+		params.attacker:StartGestureWithPlaybackRate( ACT_DOTA_ATTACK, 1 + ( params.attacker:GetIncreasedAttackSpeed( false ) - (1 + self:GetStackCount() * 0.25) ) )
 	end
 end
 

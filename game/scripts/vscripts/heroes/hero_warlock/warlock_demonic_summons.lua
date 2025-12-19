@@ -63,7 +63,7 @@ end
 
 function warlock_demonic_summons:CreateGolem(position, duration, golemPct)
 	local caster = self:GetCaster()
-	local golem = caster:CreateSummon("npc_dota_warlock_golem_1", position, ( duration or self:GetSpecialValueFor("golem_duration") ) )
+	local golem = caster:CreateSummon("npc_dota_warlock_golem", position, ( duration or self:GetSpecialValueFor("golem_duration") ) )
 	local golem_pct = golemPct or 1
 	golem:RemoveAbility("warlock_golem_flaming_fists")
 	golem:AddAbility("warlock_golem_gloves"):SetLevel(self:GetLevel())

@@ -28,7 +28,7 @@ function modifier_pudge_meat_shield_buff:CheckState()
 end
 
 function modifier_pudge_meat_shield_buff:DeclareFunctions()
-	return { MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK
+	return { MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
 			 MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
 			 MODIFIER_PROPERTY_STATS_STRENGTH_BONUS, MODIFIER_PROPERTY_MODEL_SCALE }
 end

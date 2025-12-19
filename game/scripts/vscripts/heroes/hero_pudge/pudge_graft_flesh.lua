@@ -6,7 +6,7 @@ end
 
 
 modifier_pudge_graft_flesh_kills = class({})
-LinkLuaModifier("modifier_pudge_graft_flesh_kills", "heroes/hero_pudge/pudge_flesh_heap_lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_pudge_graft_flesh_kills", "heroes/hero_pudge/pudge_graft_flesh", LUA_MODIFIER_MOTION_NONE)
 function modifier_pudge_graft_flesh_kills:OnCreated(table)
 	self:OnRefresh()
 	self.permanentStacks = 0

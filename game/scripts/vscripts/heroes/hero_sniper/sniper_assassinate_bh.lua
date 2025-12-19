@@ -91,13 +91,13 @@ function modifier_sniper_assassinate_bh_passive:DeclareFunctions()
 end
 
 function modifier_sniper_assassinate_bh_passive:OnAttackStart(params)
-	print( params.attacker == self:GetParent(), self:GetAbility():GetCastPoint(), params.attacker:GetAttackAnimationPoint() / params.attacker:GetIncreasedAttackSpeed(), self:GetAbility():GetAutoCastState(), self:GetAbility():IsOwnersManaEnough(), self:GetAbility():IsFullyCastable() )
-	if params.attacker == self:GetParent() and self:GetAbility():GetCastPoint() <= params.attacker:GetAttackAnimationPoint() / params.attacker:GetIncreasedAttackSpeed() and self:GetAbility():GetAutoCastState() and self:GetAbility():IsOwnersManaEnough() and self:GetAbility():IsFullyCastable() then
+	print( params.attacker == self:GetParent(), self:GetAbility():GetCastPoint(), params.attacker:GetAttackAnimationPoint() / params.attacker:GetIncreasedAttackSpeed( false ), self:GetAbility():GetAutoCastState(), self:GetAbility():IsOwnersManaEnough(), self:GetAbility():IsFullyCastable() )
+	if params.attacker == self:GetParent() and self:GetAbility():GetCastPoint() <= params.attacker:GetAttackAnimationPoint() / params.attacker:GetIncreasedAttackSpeed( false ) and self:GetAbility():GetAutoCastState() and self:GetAbility():IsOwnersManaEnough() and self:GetAbility():IsFullyCastable() then
 		params.attacker:Stop()
 		params.attacker:Interrupt()
 		params.attacker:Hold()
 		self:GetAbility():CastSpell(params.target)
-		Timers:CreateTimer( params.attacker:GetAttackAnimationPoint() / params.attacker:GetIncreasedAttackSpeed(), function()
+		Timers:CreateTimer( params.attacker:GetAttackAnimationPoint() / params.attacker:GetIncreasedAttackSpeed( false ), function()
 			params.attacker:MoveToTargetToAttack( params.target )
 		end)
 	end

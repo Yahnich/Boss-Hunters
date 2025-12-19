@@ -9,6 +9,7 @@ HEAL_TYPE_LIFESTEAL = 2
 HEAL_FLAG_NONE = 0
 HEAL_FLAG_IGNORE_AMPLIFICATION = 1
 
+DOTA_DAMAGE_FLAGS_HEALTH_LOSS = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_BYPASSES_ALL_BLOCK + DOTA_DAMAGE_FLAG_NO_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS
 
 function IsEntitySafe( entity )
 	return entity and IsValidEntity( entity ) and not entity:IsNull() 
@@ -350,6 +351,11 @@ end
 
 function CDOTA_BaseNPC:GetAttackRange()
 	return self:Script_GetAttackRange()
+end
+
+function CDOTA_BaseNPC:GetMagicalArmorValue( bExperimental, hInflictor )
+	local experimental = bExperimental or false
+	return self:Script_GetMagicalArmorValue( experimental, hInflictor )
 end
 
 function CDOTA_BaseNPC_Hero:CreateSummon(unitName, position, duration, bControllable)
@@ -2910,4 +2916,21 @@ function ProjectileManager:GetProjectileLocation( projectile )
 		position = ProjectileManager:GetLinearProjectileLocation( projectile )
 	end
 	return position
+end
+
+function CDOTABaseAbility:TriggerSpellEffect( target )
+	local params = {}
+	params.unit = self:GetCaster()
+	params.target = target
+	params.ability = self
+	for _, modifier in ipairs( params.unit:FindAllModifiers() ) do
+		if modifier.OnTriggerSpellEffect then
+			modifier:OnTriggerSpellEffect( params )
+		end
+	end
+	for _, modifier in ipairs( target:FindAllModifiers() ) do
+		if modifier.OnSpellEffectTriggered then
+			modifier:OnSpellEffectTriggered( params )
+		end
+	end
 end

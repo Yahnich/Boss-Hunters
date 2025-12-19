@@ -1,14 +1,14 @@
-kunkka_ghost_ship_bh = class({})
+kunkka_ghost_fleet = class({})
 
-function kunkka_ghost_ship_bh:IsStealable()
+function kunkka_ghost_fleet:IsStealable()
     return true
 end
 
-function kunkka_ghost_ship_bh:IsHiddenWhenStolen()
+function kunkka_ghost_fleet:IsHiddenWhenStolen()
     return false
 end
 
-function kunkka_ghost_ship_bh:OnSpellStart()
+function kunkka_ghost_fleet:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorPosition()
 
@@ -51,7 +51,7 @@ function kunkka_ghost_ship_bh:OnSpellStart()
 	end
 end
 
-function kunkka_ghost_ship_bh:SendShip(spawn_pos, totalDistance, radius, direction, crash_pos, travel_time)
+function kunkka_ghost_fleet:SendShip(spawn_pos, totalDistance, radius, direction, crash_pos, travel_time)
     local caster = self:GetCaster()
     local speed = self:GetSpecialValueFor("speed")
 
@@ -125,7 +125,7 @@ function kunkka_ghost_ship_bh:SendShip(spawn_pos, totalDistance, radius, directi
     end)
 end
 
-function kunkka_ghost_ship_bh:OnProjectileThink(vLocation)
+function kunkka_ghost_fleet:OnProjectileThink(vLocation)
     local caster = self:GetCaster()
     if self:GetSpecialValueFor("drag_enemies") == 1 then
         local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetSpecialValueFor("width"))
@@ -135,7 +135,7 @@ function kunkka_ghost_ship_bh:OnProjectileThink(vLocation)
     end
 end
 
-function kunkka_ghost_ship_bh:OnProjectileHit(target, location)
+function kunkka_ghost_fleet:OnProjectileHit(target, location)
     if target then
         if self:GetCaster():GetTeam() == target:GetTeam() then
             target:AddNewModifier(self:GetCaster(), self, "modifier_kunkka_ghostship_rum", { duration = self:GetSpecialValueFor("duration") })
@@ -152,7 +152,7 @@ function kunkka_ghost_ship_bh:OnProjectileHit(target, location)
 end
 
 modifier_kunkka_ghostship_rum = class({})
-LinkLuaModifier("modifier_kunkka_ghostship_rum", "heroes/hero_kunkka/kunkka_ghost_ship_bh.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_kunkka_ghostship_rum", "heroes/hero_kunkka/kunkka_ghost_fleet.lua", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_kunkka_ghostship_rum:GetModifierMoveSpeedBonus_Percentage()
     return self:GetSpecialValueFor("movespeed_bonus")
@@ -224,7 +224,7 @@ function modifier_kunkka_ghostship_rum:IsDebuff( )
 end
 
 modifier_kunkka_ghostship_rum_damage = class({})
-LinkLuaModifier("modifier_kunkka_ghostship_rum_damage", "heroes/hero_kunkka/kunkka_ghost_ship_bh.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_kunkka_ghostship_rum_damage", "heroes/hero_kunkka/kunkka_ghost_fleet.lua", LUA_MODIFIER_MOTION_NONE)
 function modifier_kunkka_ghostship_rum_damage:IsHidden()
     return false
 end

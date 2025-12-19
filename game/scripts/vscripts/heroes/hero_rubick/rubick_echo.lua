@@ -103,7 +103,7 @@ function rubick_echo:SpellEcho(hAbility, vLocation, hTarget)
 					 ["kotl_recall"] = true,
 					 ["kotl_spirit"] = true,
 					 ["kunkka_captains_rum"] = true,
-					 ["kunkka_xmarks_bh"] = true,
+					 ["kunkka_mark_the_spot"] = true,
 					 ["legion_commander_unbreakable_morale"] = true,
 					 ["legion_commander_war_fury"] = true,
 					 ["leshrac_pulse_nova_bh"] = true,

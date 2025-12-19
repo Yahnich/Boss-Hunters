@@ -386,15 +386,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_pudge/pudge_feast.lua"
+		"AbilityTextureName"			"pudge_dismember"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"MaxLevel"						"3"
-		"AbilityTextureName"			"pudge_dismember"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -436,6 +436,7 @@
 				"value"									"3.0"
 				"special_bonus_unique_pudge_feast_1"	"+3"
 			}
+			"tick_interval"								"0.5"
 			"heal_pct"									"100"
 			"aoe_radius"								"250"
 			
@@ -448,7 +449,7 @@
 				"value"									"3.0"
 				"special_bonus_unique_pudge_feast_1"	"+3"
 			}
-			"gluttony_strength_bonus"						"5 10 15"
+			"gluttony_strength_bonus"						{"special_bonus_facet_pudge_rotten_giant"	"5 10 15"}
 			"glutton_strength_stack_duration"
 			{		
 				"special_bonus_facet_pudge_rotten_giant"	"12"	

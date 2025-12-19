@@ -1309,7 +1309,7 @@ function CHoldoutGameMode:OnThink()
 	if GameRules:IsTemporaryNight() then timeofday = TEMPORARY_NIGHT end
 	if GameRules:IsNightstalkerNight() then timeofday = NIGHT_STALKER_NIGHT end
 	CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = timeofday} )
-	if GameRules:State_Get() >= 7 and GameRules:State_Get() <= 9 then
+	if GameRules:State_Get() >= DOTA_GAMERULES_STATE_PRE_GAME and GameRules:State_Get() <= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 		local OnPThink = function(self)
 			local playerData = {}
 			local currTime = GameRules:GetGameTime()

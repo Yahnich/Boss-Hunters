@@ -1,42 +1,41 @@
-pudge_dismember = class({})
+pudge_feast = class({})
 
-function pudge_dismember:GetConceptRecipientType()
+function pudge_feast:GetConceptRecipientType()
 	return DOTA_SPEECH_USER_ALL
 end
 
-function pudge_dismember:SpeakTrigger()
+function pudge_feast:SpeakTrigger()
 	return DOTA_ABILITY_SPEAK_CAST
 end
 	
-function pudge_dismember:GetChannelAnimation()
+function pudge_feast:GetChannelAnimation()
 	return ACT_DOTA_CHANNEL_ABILITY_4
 end
 
-function pudge_dismember:GetAOERadius()
+function pudge_feast:GetAOERadius()
 	return self:GetSpecialValueFor("aoe_radius")
 end
 
-function pudge_dismember:GetBehavior()
+function pudge_feast:GetBehavior()
 	return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_CHANNELLED + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING + DOTA_ABILITY_BEHAVIOR_AOE
 end
 
-function pudge_dismember:OnSpellStart()
+function pudge_feast:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	local aoe_radius = self:GetSpecialValueFor("aoe_radius")
-	local no_target = self:GetSpecialValueFor("no_target") > 0 
 	local duration = self:GetSpecialValueFor("AbilityChannelTime")
 	self.targets = {}
 	
 	local position = self:GetCursorPosition()
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, aoe_radius ) ) do
-		enemy:AddNewModifier( caster, self, "modifier_pudge_dismember_channeled", {duration = duration, ignoreStatusResist = true})
+		enemy:AddNewModifier( caster, self, "modifier_pudge_feast_channeled", {duration = duration, ignoreStatusResist = true})
 		table.insert( self.targets, enemy )
 	end
-	caster:AddNewModifier( caster, self, "modifier_pudge_dismember_channeling", {duration = duration })
+	caster:AddNewModifier( caster, self, "modifier_pudge_feast_channeling", {duration = duration })
 end
 
-function pudge_dismember:OnChannelThink( dt )
+function pudge_feast:OnChannelThink( dt )
 	local caster = self:GetCaster()
 	
 	local pull_distance_limit = self:GetSpecialValueFor("pull_distance_limit")
@@ -44,7 +43,7 @@ function pudge_dismember:OnChannelThink( dt )
 	
 	local pullToPoint = caster:GetAbsOrigin() + caster:GetForwardVector() * pull_distance_limit
 	for _, enemy in ipairs( self.targets ) do
-		if enemy:HasModifier( "modifier_pudge_dismember_channeled" ) then
+		if enemy:HasModifier( "modifier_pudge_feast_channeled" ) then
 			if CalculateDistance( enemy, caster ) > pull_distance_limit then
 				local direction = CalculateDirection( pullToPoint, enemy )
 				local newPosition = enemy:GetAbsOrigin() + direction * pull_units_per_second * dt
@@ -52,25 +51,30 @@ function pudge_dismember:OnChannelThink( dt )
 			end
 		else
 			local elapsedTime = GameRules:GetGameTime() - self:GetChannelStartTime()
-			enemy:AddNewModifier( caster, self, "modifier_pudge_dismember_channeled", {duration = self:GetChannelTime() - elapsedTime } )
+			enemy:AddNewModifier( caster, self, "modifier_pudge_feast_channeled", {duration = self:GetChannelTime() - elapsedTime } )
 		end
 	end
 end
 
-function pudge_dismember:OnChannelFinish()
+function pudge_feast:OnChannelFinish()
 	local caster = self:GetCaster()
 	ResolveNPCPositions( caster:GetAbsOrigin(), self:GetTrueCastRange() + self:GetSpecialValueFor("aoe_radius") + 32 )
+	
+	for _, enemy in ipairs( self.targets ) do
+		enemy:RemoveModifierByName("modifier_pudge_feast_channeled")
+	end
+	self.targets = nil
 end
 
-modifier_pudge_dismember_channeled = class({})
-LinkLuaModifier( "modifier_pudge_dismember_channeled", "heroes/hero_pudge/pudge_dismember.lua" ,LUA_MODIFIER_MOTION_NONE )
+modifier_pudge_feast_channeled = class({})
+LinkLuaModifier( "modifier_pudge_feast_channeled", "heroes/hero_pudge/pudge_feast.lua" ,LUA_MODIFIER_MOTION_NONE )
 
-function modifier_pudge_dismember_channeled:OnCreated(table)
-	self.dismember_damage = self:GetSpecialValueFor("dismember_damage")
-	self.tick_interval = self:GetRemainingTime() / self:GetSpecialValueFor("ticks")
+function modifier_pudge_feast_channeled:OnCreated(table)
+	self.dismember_damage = self:GetSpecialValueFor("damage")
+	self.str_damage = self:GetSpecialValueFor("str_damage") / 100
+	self.tick_interval = self:GetSpecialValueFor("tick_interval")
 	
 	self.glutton_strength_stack_duration = self:GetSpecialValueFor("glutton_strength_stack_duration")
-	self.gluttony_damage_bonus_duration = self:GetSpecialValueFor("gluttony_damage_bonus_duration")
 	if IsServer() then
 		EmitSoundOn("Hero_Pudge.Dismember", self:GetParent() )
 		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_dismember_chain.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster())
@@ -82,7 +86,7 @@ function modifier_pudge_dismember_channeled:OnCreated(table)
 	end
 end
 
-function modifier_pudge_dismember_channeled:OnIntervalThink()
+function modifier_pudge_feast_channeled:OnIntervalThink()
 	local caster = self:GetCaster()
 	if not self:GetCaster():IsChanneling() then
 		self:Destroy()
@@ -91,38 +95,35 @@ function modifier_pudge_dismember_channeled:OnIntervalThink()
 	local parent = self:GetParent()
 	local ability = self:GetAbility()
 	
-	local damage = self.dismember_damage * self.tick_interval
-	local damageDealt = ability:DealDamage( caster, parent, damage )
-	caster:HealEvent( damageDealt, ability, caster, {heal_type = DOTA_HEAL_TYPE_LIFESTEAL, heal_category = DOTA_LIFESTEAL_SOURCE_ABILITY} )
+	local damage = self.dismember_damage + caster:GetStrength() * self.str_damage
+	local damageDealt = ability:DealDamage( caster, parent, damage  * self.tick_interval )
+	caster:HealEvent( damageDealt, ability, caster, {heal_type = DOTA_HEAL_TYPE_LIFESTEAL} )
 	
-	if parent:IsConsideredHero() then
+	if not parent:IsMinion() then
 		EmitSoundOn("Hero_Pudge.DismemberSwings", parent)
 		ParticleManager:FireParticle("particles/units/heroes/hero_pudge/pudge_dismember.vpcf", PATTACH_POINT_FOLLOW, caster, {[0]=TernaryOperator( "attach_attack1", RollPercentage(50), "attach_attack2")})
 		
 		if self.glutton_strength_stack_duration > 0 then
-			caster:AddNewModifier( caster, ability, "modifier_pudge_dismember_rotten_giant", {duration = self.glutton_strength_stack_duration})
+			caster:AddNewModifier( caster, ability, "modifier_pudge_feast_rotten_giant", {duration = self.glutton_strength_stack_duration})
 		end
-	end
-	if self.gluttony_damage_bonus_duration > 0 then
-		caster:AddNewModifier( caster, ability, "modifier_pudge_dismember_flesh_carver", {duration = self.gluttony_damage_bonus_duration})
 	end
 end
 
-function modifier_pudge_dismember_channeled:OnRemoved()
+function modifier_pudge_feast_channeled:OnRemoved()
 	if IsServer() then
 		ParticleManager:ClearParticle(self.nfx)
 	end
 end
 
-function modifier_pudge_dismember_channeled:IsDebuff()
+function modifier_pudge_feast_channeled:IsDebuff()
 	return true
 end
 
-function modifier_pudge_dismember_channeled:IsStunDebuff()
+function modifier_pudge_feast_channeled:IsStunDebuff()
 	return true
 end
 
-function modifier_pudge_dismember_channeled:CheckState()
+function modifier_pudge_feast_channeled:CheckState()
 	local state = {
 		[MODIFIER_STATE_STUNNED] = true,
 		[MODIFIER_STATE_INVISIBLE] = false,
@@ -131,7 +132,7 @@ function modifier_pudge_dismember_channeled:CheckState()
 	return state
 end
 
-function modifier_pudge_dismember_channeled:DeclareFunctions()
+function modifier_pudge_feast_channeled:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
 	}
@@ -139,22 +140,79 @@ function modifier_pudge_dismember_channeled:DeclareFunctions()
 	return funcs
 end
 
-function modifier_pudge_dismember_channeled:GetOverrideAnimation( params )
+function modifier_pudge_feast_channeled:GetOverrideAnimation( params )
 	return ACT_DOTA_FLAIL
 end
 
-function modifier_pudge_dismember_channeled:GetEffectName()
+function modifier_pudge_feast_channeled:GetEffectName()
 	return "particles/units/heroes/hero_bloodseeker/bloodseeker_rupture.vpcf"
 end
 
-modifier_pudge_dismember_rotten_giant = class({})
-LinkLuaModifier( "modifier_pudge_dismember_rotten_giant", "heroes/hero_pudge/pudge_dismember.lua" ,LUA_MODIFIER_MOTION_NONE )
+modifier_pudge_feast_channeling = class({})
+LinkLuaModifier( "modifier_pudge_feast_channeling", "heroes/hero_pudge/pudge_feast.lua" ,LUA_MODIFIER_MOTION_NONE )
 
-function modifier_pudge_dismember_rotten_giant:OnCreated()
+function modifier_pudge_feast_channeling:OnCreated(table)
+	self.tick_interval = self:GetSpecialValueFor("tick_interval")
+	
+	self.debuff_immunity = self:GetSpecialValueFor("debuff_immunity") > 0
+	self.launch_hooks = self:GetSpecialValueFor("launch_hooks") > 0
+	self.armor = self:GetSpecialValueFor("bonus_armor")
+	
+	self.gluttony_damage_bonus_duration = self:GetSpecialValueFor("gluttony_damage_bonus_duration")
+	if IsServer() then
+		if self.launch_hooks then
+			self._meatHook = self:GetCaster():FindAbilityByName( "pudge_meat_hook" )
+		end
+		self:StartIntervalThink( self.tick_interval )
+	end
+end
+
+function modifier_pudge_feast_channeling:OnIntervalThink()
+	local caster = self:GetCaster()
+	if not self:GetCaster():IsChanneling() then
+		self:Destroy()
+		return
+	end
+	if self.gluttony_damage_bonus_duration > 0 then
+		caster:AddNewModifier( caster, ability, "modifier_pudge_feast_flesh_carver", {duration = self.gluttony_damage_bonus_duration})
+	end
+	if self.launch_hooks and self._meatHook and self._meatHook:IsTrained() then
+		self._meatHook:LaunchHook( RandomVector(1):Normalized(), false )
+	end
+end
+
+function modifier_pudge_feast_channeling:CheckState()
+	if self.debuff_immunity then
+		return {[MODIFIER_STATE_DEBUFF_IMMUNE] = true}
+	end
+end
+
+function modifier_pudge_feast_channeling:DeclareFunctions()
+	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
+end
+
+function modifier_pudge_feast_channeling:GetModifierPhysicalArmorBonus()
+	return self.armor
+end
+
+function modifier_pudge_feast_channeling:GetEffectName()
+	if self.debuff_immunity then
+		return "particles/items5_fx/minotaur_horn.vpcf"
+	end
+end
+
+function modifier_pudge_feast_channeling:IsHidden()
+	return true
+end
+
+modifier_pudge_feast_rotten_giant = class({})
+LinkLuaModifier( "modifier_pudge_feast_rotten_giant", "heroes/hero_pudge/pudge_feast.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+function modifier_pudge_feast_rotten_giant:OnCreated()
 	self:OnRefresh()
 end
 
-function modifier_pudge_dismember_rotten_giant:OnRefresh(table)
+function modifier_pudge_feast_rotten_giant:OnRefresh(table)
 	self.gluttony_strength_bonus = self:GetSpecialValueFor("gluttony_strength_bonus")
 	if IsServer() then
 		self:AddIndependentStack()
@@ -162,7 +220,7 @@ function modifier_pudge_dismember_rotten_giant:OnRefresh(table)
 	end
 end
 
-function modifier_pudge_dismember_rotten_giant:DeclareFunctions()
+function modifier_pudge_feast_rotten_giant:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS
 	}
@@ -170,14 +228,14 @@ function modifier_pudge_dismember_rotten_giant:DeclareFunctions()
 	return funcs
 end
 
-function modifier_pudge_dismember_rotten_giant:GetModifierBonusStats_Strength()
+function modifier_pudge_feast_rotten_giant:GetModifierBonusStats_Strength()
 	return self.gluttony_strength_bonus * self:GetStackCount()
 end
 
-modifier_pudge_dismember_flesh_carver = class({})
-LinkLuaModifier( "modifier_pudge_dismember_flesh_carver", "heroes/hero_pudge/pudge_dismember.lua" ,LUA_MODIFIER_MOTION_NONE )
+modifier_pudge_feast_flesh_carver = class({})
+LinkLuaModifier( "modifier_pudge_feast_flesh_carver", "heroes/hero_pudge/pudge_feast.lua" ,LUA_MODIFIER_MOTION_NONE )
 
-function modifier_pudge_dismember_flesh_carver:OnCreated()
+function modifier_pudge_feast_flesh_carver:OnCreated()
 	self:OnRefresh()
 	if IsServer() and self:GetParent() ~= self:GetCaster() then
 		self:OnIntervalThink(  )
@@ -185,7 +243,7 @@ function modifier_pudge_dismember_flesh_carver:OnCreated()
 	end
 end
 
-function modifier_pudge_dismember_flesh_carver:OnRefresh(table)
+function modifier_pudge_feast_flesh_carver:OnRefresh(table)
 	self.gluttony_damage_bonus = self:GetSpecialValueFor("gluttony_damage_bonus")
 	self.is_aura = self:GetSpecialValueFor("buff_aura") > 0
 	if IsServer() then
@@ -193,9 +251,9 @@ function modifier_pudge_dismember_flesh_carver:OnRefresh(table)
 	end
 end
 
-function modifier_pudge_dismember_flesh_carver:OnIntervalThink()
+function modifier_pudge_feast_flesh_carver:OnIntervalThink()
 	local stackCount = 0
-	local auraOrigin = self:GetCaster():FindModifierByName("modifier_pudge_dismember_flesh_carver")
+	local auraOrigin = self:GetCaster():FindModifierByName("modifier_pudge_feast_flesh_carver")
 	if auraOrigin then
 		stackCount = auraOrigin:GetStackCount()
 	end
@@ -206,7 +264,7 @@ function modifier_pudge_dismember_flesh_carver:OnIntervalThink()
 	end
 end
 
-function modifier_pudge_dismember_flesh_carver:DeclareFunctions()
+function modifier_pudge_feast_flesh_carver:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE
 	}
@@ -214,86 +272,34 @@ function modifier_pudge_dismember_flesh_carver:DeclareFunctions()
 	return funcs
 end
 
-function modifier_pudge_dismember_flesh_carver:GetModifierTotalDamageOutgoing_Percentage()
+function modifier_pudge_feast_flesh_carver:GetModifierTotalDamageOutgoing_Percentage()
 	return self.gluttony_damage_bonus * self:GetStackCount()
 end
 
-function modifier_pudge_dismember_flesh_carver:IsAura()
+function modifier_pudge_feast_flesh_carver:IsAura()
 	return self.is_aura and self:GetCaster() == self:GetParent()
 end
 
-function modifier_pudge_dismember_flesh_carver:GetAuraEntityReject( entity )
+function modifier_pudge_feast_flesh_carver:GetAuraEntityReject( entity )
 	return entity == self:GetCaster()
 end
 
-function modifier_pudge_dismember_flesh_carver:GetModifierAura()
-	return "modifier_pudge_dismember_flesh_carver"
+function modifier_pudge_feast_flesh_carver:GetModifierAura()
+	return "modifier_pudge_feast_flesh_carver"
 end
 
-function modifier_pudge_dismember_flesh_carver:GetAuraSearchTeam()
+function modifier_pudge_feast_flesh_carver:GetAuraSearchTeam()
 	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
 end
 
-function modifier_pudge_dismember_flesh_carver:GetAuraSearchType()
+function modifier_pudge_feast_flesh_carver:GetAuraSearchType()
 	return DOTA_UNIT_TARGET_HERO
 end
 
-function modifier_pudge_dismember_flesh_carver:GetAuraRadius()
+function modifier_pudge_feast_flesh_carver:GetAuraRadius()
 	return 1200
 end
 
-function modifier_pudge_dismember_flesh_carver:GetAuraDuration()
+function modifier_pudge_feast_flesh_carver:GetAuraDuration()
 	return 0.5
-end
-
-modifier_pudge_dismember_channeling = class({})
-LinkLuaModifier( "modifier_pudge_dismember_channeling", "heroes/hero_pudge/pudge_dismember.lua" ,LUA_MODIFIER_MOTION_NONE )
-
-function modifier_pudge_dismember_channeling:OnCreated(table)
-	self.tick_interval = self:GetRemainingTime() / self:GetSpecialValueFor("ticks")
-	
-	self.debuff_immunity = self:GetSpecialValueFor("debuff_immunity") > 0
-	self.launch_hooks = self:GetSpecialValueFor("launch_hooks") > 0
-	self.armor = self:GetSpecialValueFor("bonus_armor")
-	if IsServer() then
-		if self.launch_hooks then
-			self._meatHook = self:GetCaster():FindAbilityByName( "pudge_meat_hook" )
-		end
-		self:StartIntervalThink( self.tick_interval )
-	end
-end
-
-function modifier_pudge_dismember_channeling:OnIntervalThink()
-	local caster = self:GetCaster()
-	if not self:GetCaster():IsChanneling() then
-		self:Destroy()
-		return
-	end
-	if self.launch_hooks and self._meatHook and self._meatHook:IsTrained() then
-		self._meatHook:LaunchHook( RandomVector(1):Normalized(), false )
-	end
-end
-
-function modifier_pudge_dismember_channeling:CheckState()
-	if self.debuff_immunity then
-		return {[MODIFIER_STATE_DEBUFF_IMMUNE] = true}
-	end
-end
-
-function modifier_pudge_dismember_channeling:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
-end
-
-function modifier_pudge_dismember_channeling:GetModifierPhysicalArmorBonus()
-	return self.armor
-end
-
-function modifier_pudge_dismember_channeling:GetEffectName()
-	if self.debuff_immunity then
-		return "particles/items5_fx/minotaur_horn.vpcf"
-	end
-end
-
-function modifier_pudge_dismember_channeling:IsHidden()
-	return true
 end

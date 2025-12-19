@@ -98,7 +98,7 @@ function kunkka_ghostship:OnProjectileHit(hTarget)
     local rum_duration = self:GetSpecialValueFor("buff_duration")
     if hTarget ~= nil and rum_duration ~= 0 then
         local caster = self:GetCaster()
-        local rum = caster:FindAbilityByName("kunkka_admirals_rum")
+        local rum = caster:FindAbilityByName("kunkka_captains_rum")
         if rum:IsTrained() then
             rum:Drink(hTarget, caster, rum_duration)
         else return
