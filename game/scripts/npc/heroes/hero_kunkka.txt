@@ -35,6 +35,7 @@
 			"grog_damage_resist"			"20 30 40 50"
 			"grog_movespeed_bonus"			"10 15 20 25"
 			"grog_heal"						{"special_bonus_facet_kunkka_admiral"	"100 200 300 400"}
+			"fleet_rum_bonus"				{"special_bonus_facet_kunkka_privateer"	"5 10 15 20"}
 			"grog_base_damage"				{"special_bonus_facet_kunkka_privateer"	"20 30 40 50"}
 			"grog_spell_amp"				{"special_bonus_facet_kunkka_privateer"	"10 15 20 25"}
 			
@@ -255,21 +256,24 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_kunkka/kunkka_mark_the_spot"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
 		"AbilityTextureName"			"kunkka_x_marks_the_spot"
 		"MaxLevel"						"4"
 	
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_kunkka_mark_the_spot_1"	"1"
+			"special_bonus_unique_kunkka_mark_the_spot_2"	"1"
+		}
+		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"700"
 		"AbilityCastPoint"				"0.4"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"14"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -278,6 +282,8 @@
 		"precache"
 		{
 			"particle"					"particles/units/heroes/hero_kunkka/kunkka_spell_x_spot.vpcf"
+			"particle"					"particles/units/heroes/hero_kunkka/kunkka_spell_mark_the_spot_line.vpcf"
+			"particle"					"particles/units/heroes/hero_kunkka/kunkka_mark_the_spot_overhead.vpcf"
 
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts"
 		}
@@ -286,10 +292,40 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"duration"					"4"
-			"daze_duration"				"4"
-			"self_duration"				"8"
-			"range"						"700"
+			"mark_delay"
+			{
+				"value"									"2"
+				"special_bonus_facet_kunkka_admiral"	"=0.1"
+			}
+			"AbilityCastRange"
+			{
+				"value"					"300 400 500 600"
+				"special_bonus_unique_kunkka_mark_the_spot_1"	"+400"
+			}
+			"ally_max_range"
+			{
+				"value"					"550 700 850 1000"
+				"special_bonus_unique_kunkka_mark_the_spot_1"	"+400"
+			}
+			"enemy_max_range"
+			{
+				"value"					"275 350 425 500"
+				"special_bonus_unique_kunkka_mark_the_spot_1"	"+400"
+			}
+			
+			"AbilityCooldown"
+			{
+				"value"					"14 12 10 8"
+				"special_bonus_unique_kunkka_mark_the_spot_1"	"-4"
+			}
+			
+			"aoe_enemy_radius"			{"special_bonus_facet_kunkka_mariner"	"400"}
+			"evasion_bonus"				{"special_bonus_facet_kunkka_admiral"	"10 15 20 25"}
+			"evasion_duration"			{"special_bonus_facet_kunkka_admiral"	"4"}
+			"wave_damage"				{"special_bonus_facet_kunkka_privateer"	"25 45 65 85"}
+			"wave_width"				{"special_bonus_facet_kunkka_privateer"	"350"}
+			"wave_speed"				{"special_bonus_facet_kunkka_privateer"	"1200"}
+			"wave_distance"				{"special_bonus_facet_kunkka_privateer"	"1200"}
 		}
 	}
 	//=================================================================================================================
@@ -302,14 +338,13 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_kunkka/kunkka_ghost_fleet"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"kunkka_ghostship"
-		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"3"
 		
 		// Talents		
@@ -327,9 +362,6 @@
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_GHOST_SHIP"
 		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"40 35 30"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -354,12 +386,10 @@
 			"tooltip_delay"													"3.1"
 			"ghostship_distance"											"2000"
 			"ghostship_speed"												"650"
-			"ship_radius"													"200"
-			"AbilityCooldown"												"60 45 30"
+			"AbilityCooldown"												"90 80 70"
 			"damage"
 			{
-				"value"														"3500 4750 6000" 
-				"special_bonus_unique_kunkka_minor_r"						"+120%"
+				"value"														"350 475 600"
 				"CalculateSpellDamageTooltip"								"1"
 			}
 			"ghostship_width"			
@@ -370,72 +400,33 @@
 			"stun_duration"				
 			{
 				"value"														"1.2"
-				"special_bonus_facet_kunkka_mariner"						"+2.4"
+				"special_bonus_facet_kunkka_mariner"						"=3.6"
+				"special_bonus_unique_kunkka_ghost_fleet_1"					"+100%"
 				"is_debuff_duration"										"1"
 			}
-			"fleet_interval"
+			"fleet_interval"												"2.5"
+			"fleet_count"													"3"
+			"drift_radius"													"450"
+			
+			"ghost_ships"
 			{
-				"special_bonus_scepter"										""
-				"special_bonus_unique_kunkka_synergy_l"						"2.5"
+				"value"														"1"
+				"special_bonus_unique_kunkka_ghost_fleet_1"					"+2"
 			}
-
-			"fleet_count"
-			{
-				"special_bonus_scepter"										""
-				"special_bonus_unique_kunkka_synergy_l"						"4"
-			}
+			"drag_enemies"													{"special_bonus_unique_kunkka_ghost_fleet2"	"1"}
 
 			// Admiral KV's
 			//---------------------------------------------------------------------------------------------------------
-			"buff_duration"				
-			{
-				"special_bonus_facet_kunkka_admiral"						"10"
-				"is_buff_duration"											"1"
-			}
+			"captains_rum_bonus"											{"special_bonus_facet_kunkka_privateer"	"5 10 15 20"}
 
 			// Privateer KV's
 			//---------------------------------------------------------------------------------------------------------
-			"tidebringer_cleave_radius"
-			{
-				"special_bonus_facet_kunkka_privateer"					
-				{
-					"value"													"700 1100 1600"
-					"special_bonus_unique_kunkka_greater_r"					"+100%"
-				}
-			}
-			"tidebringer_bonus_damage"
-			{
-				"special_bonus_facet_kunkka_privateer"					
-				{
-					"value"													"500 1000 1500"
-					"special_bonus_unique_kunkka_greater_r"					"+100%"
-				}
-				"CalculateSpellDamageTooltip"								"1"
-			}
-			"base_damage_multiplier"
-			{
-				"special_bonus_facet_kunkka_privateer"					
-				{
-					"value"													"125"
-					"special_bonus_unique_kunkka_greater_r"					"+100%"
-				}
-			}
-			
-			"damage"											"400 500 600"
-			"distance"											"2000"
-			"width"												"425"
-			"movespeed_bonus"									"10"
-			"duration"											"10"
-			"stun_duration"
-			{
-				"value"											"1.4"
-				"special_bonus_unique_kunkka_ghost_fleet_2"	"+1"
-			}
-			"speed"												"650"
-			"absorb"											"40 45 50"
-			"torrent_travel_distance_scepter"					{"special_bonus_scepter"	"500"}
-			"bonus_ships"										{"special_bonus_unique_kunkka_ghost_fleet_1"	"2"}
-			"drag_enemies"										{"special_bonus_unique_kunkka_ghost_fleet2"	"1"}
+			"cannons_per_side"												{"special_bonus_facet_kunkka_privateer"	"3"}
+			"cannonade_interval"											{"special_bonus_facet_kunkka_privateer"	"2.5"}
+			"cannonball_daze_duration"										{"special_bonus_facet_kunkka_privateer"	"2.5"}
+			"cannonball_damage"												{"special_bonus_facet_kunkka_privateer"	"50"}
+			"cannonball_radius"												{"special_bonus_facet_kunkka_privateer"	"100"}
+			"cannonball_speed"												{"special_bonus_facet_kunkka_privateer"	"1200"}
 		}
 	}
 }

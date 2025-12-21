@@ -462,8 +462,7 @@ end
 
 function CDOTABaseAbility:DealDamage(attacker, target, damage, data, spellText)
 	--OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, OVERHEAD_ALERT_DAMAGE, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, OVERHEAD_ALERT_MANA_LOSS
-	if not self or not target or not attacker then return end
-	if self:IsNull() or target:IsNull() or attacker:IsNull() then return end
+	if not ( IsEntitySafe( self ) and IsEntitySafe( target ) and IsEntitySafe( attacker ) ) then return end
 	if not target:IsAlive() then return 0 end
 	local internalData = data or {}
 	local damageType =  internalData.damage_type or self:GetAbilityDamageType()

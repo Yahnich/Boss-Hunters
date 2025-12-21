@@ -71,5 +71,4 @@ function CDOTABaseAbility:GetVectorDirection()
 end 
 
 function CDOTABaseAbility:OnVectorCastStart(vStartLocation, vDirection)
-	print("Vector Cast")
 end

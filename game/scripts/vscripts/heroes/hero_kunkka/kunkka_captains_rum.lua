@@ -4,15 +4,23 @@ function kunkka_captains_rum:GetIntrinsicModifierName()
 	return "modifier_kunkka_captains_rum_handler"
 end
 
-function kunkka_captains_rum:ApplyGrog( target )
+function kunkka_captains_rum:ApplyGrog( params )
+	local target = params.target
 	if target:HasModifier("modifier_kunkka_captains_rum_hangover") then return end
     local duration = self:GetSpecialValueFor("grog_duration")
     local grogBonusDuration = self:GetSpecialValueFor("refresh_bonus_duration")
-	local grog = target:FindModifierByName("modifier_kunkka_captains_rum_self")
+	local grog = target:FindModifierByName("modifier_kunkka_captains_rum_admiral") or target:FindModifierByName("modifier_kunkka_captains_rum_self")
 	if grog then
 		duration = grog:GetRemainingTime() + grogBonusDuration
 	end
-	target:AddNewModifier( self:GetCaster(), self, "modifier_kunkka_captains_rum_self", {duration = duration})
+	
+	local rumBonus = self:GetSpecialValueFor("fleet_rum_bonus")
+	if params.ability:GetAbilityName() == "kunkka_ghost_fleet" and rumBonus > 0 then
+		target:RemoveModifierByName("modifier_kunkka_captains_rum_self")
+		target:AddNewModifier( self:GetCaster(), self, "modifier_kunkka_captains_rum_admiral", {duration = duration})
+	else
+		target:AddNewModifier( self:GetCaster(), self, "modifier_kunkka_captains_rum_self", {duration = duration})
+	end
 end
 
 modifier_kunkka_captains_rum_handler = class({})
@@ -26,7 +34,7 @@ function modifier_kunkka_captains_rum_handler:OnTriggerSpellEffect( params )
 	local caster = self:GetCaster()
 	if params.unit ~= caster then return end
 	if not (params.target:IsSameTeam( caster ) or self.triggers_on_enemies) then return end
-	self:GetAbility():ApplyGrog( params.target )
+	self:GetAbility():ApplyGrog( params )
 end
 
 function modifier_kunkka_captains_rum_handler:IsHidden()
@@ -66,7 +74,9 @@ end
 
 function modifier_kunkka_captains_rum_self:OnDestroy()
 	if not IsServer() then return end
-	self:GetParent():AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_kunkka_captains_rum_hangover", {damage_absorbed = self.damage_absorbed} )
+	if self:GetRemainingTime() <= 0 then -- only apply if expired naturally
+		self:GetParent():AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_kunkka_captains_rum_hangover", {damage_absorbed = self.damage_absorbed} )
+	end
 end
 
 function modifier_kunkka_captains_rum_self:DeclareFunctions()
@@ -109,6 +119,17 @@ end
 
 function modifier_kunkka_captains_rum_self:IsBuff()
     return true
+end
+
+modifier_kunkka_captains_rum_admiral = class(modifier_kunkka_captains_rum_self)
+LinkLuaModifier("modifier_kunkka_captains_rum_admiral", "heroes/hero_kunkka/kunkka_captains_rum", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_kunkka_captains_rum_admiral:OnDestroy()
+	-- no hangover
+end
+
+function modifier_kunkka_captains_rum_admiral:GetModifierIncomingDamage_Percentage( params )
+	return self.grog_damage_resist
 end
 
 modifier_kunkka_captains_rum_hangover = class({})

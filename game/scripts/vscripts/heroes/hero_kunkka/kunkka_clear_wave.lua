@@ -77,6 +77,7 @@ function modifier_kunkka_clear_wave_active:GetModifierBaseAttack_BonusDamage()
 end
 
 function modifier_kunkka_clear_wave_active:OnAttackLanded(params)
+	if params.no_attack_cooldown then return end
     local caster = self:GetCaster()
 	if caster ~= params.attacker then return end
     local ability = self:GetAbility()
@@ -101,7 +102,7 @@ function modifier_kunkka_clear_wave_active:OnAttackLanded(params)
 										ParticleManager:SetParticleControlForward(tidebringer_hit_fx, 1, caster:GetForwardVector())
 										ParticleManager:SetParticleControlEnt(tidebringer_hit_fx, 2, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
 										ParticleManager:ReleaseParticleIndex(tidebringer_hit_fx)
-			local damageDealt = ability:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+			local damageDealt = ability:DealDamage(caster, enemy, params.original_damage * self.cleave_damage, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flag = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 			if self.mini_stun_duration > 0 then
 				ability:Stun(enemy, self.mini_stun_duration)
 			end
@@ -109,7 +110,7 @@ function modifier_kunkka_clear_wave_active:OnAttackLanded(params)
 				enemy:AddNewModifier( caster, ability, "modifier_kunkka_clear_wave_armor_debuff", {duration = self.armor_reduction_duration} )
 			end
 
-			lifesteal = lifesteal + damageDealt * heal_pct
+			lifesteal = lifesteal + damageDealt * self.heal_pct
 			cdr = TernaryOperator( self.hit_cdr_creep, enemy:IsMinion(), self.hit_cdr_hero ) 
 		end
 	end

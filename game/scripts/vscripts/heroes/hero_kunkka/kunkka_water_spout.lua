@@ -50,9 +50,15 @@ function kunkka_water_spout:CreateTorrent( position, radius )
 	
 	local pull_radius = radius * self:GetSpecialValueFor("pull_radius")
 	local delay = self:GetSpecialValueFor("delay")
+	
+	local spellAbsorbedUnits = {}
 	if pull_radius > 0 then
 		for _,enemy in ipairs( caster:FindEnemyUnitsInRadius( position, pull_radius ) ) do
-			enemy:ApplyKnockBack( position, 0, delay, -math.min( pull_radius * 0.75, CalculateDistance( enemy, position ) * 0.75 ), 0, caster, self, true)
+			if not enemy:TriggerSpellAbsorb( self ) then
+				enemy:ApplyKnockBack( position, 0, delay, -math.min( pull_radius * 0.75, CalculateDistance( enemy, position ) * 0.75 ), 0, caster, self, true)
+			else
+				spellAbsorbedUnits[enemy] = true
+			end
 		end
 	end
 
@@ -62,10 +68,12 @@ function kunkka_water_spout:CreateTorrent( position, radius )
         EmitSoundOnLocationWithCaster(position, "Ability.Torrent", caster)
         ParticleManager:FireParticle("particles/units/heroes/hero_kunkka/kunkka_spell_torrent_splash.vpcf", PATTACH_POINT, caster, {[0]=position})
         for _,enemy in ipairs( caster:FindEnemyUnitsInRadius(position, radius) ) do
-			enemy:ApplyKnockBack(enemy:GetAbsOrigin(), stunDuration + 0.1, stunDuration, 0, 350, caster, self, true)
-			enemy:AddNewModifier(caster, self, "modifier_kunkka_water_spout_damage", {duration = stunDuration})
-            enemy:AddNewModifier(caster, self, "modifier_kunkka_water_spout_slow", {duration = slow})
-			self:TriggerSpellEffect( enemy )
+			if not ( spellAbsorbedUnits[enemy] or enemy:TriggerSpellAbsorb( self ) ) then
+				enemy:ApplyKnockBack(enemy:GetAbsOrigin(), stunDuration + 0.1, stunDuration, 0, 350, caster, self, true)
+				enemy:AddNewModifier(caster, self, "modifier_kunkka_water_spout_damage", {duration = stunDuration})
+				enemy:AddNewModifier(caster, self, "modifier_kunkka_water_spout_slow", {duration = slow})
+				self:TriggerSpellEffect( enemy )
+			end
         end
 		for _, ally in ipairs(caster:FindFriendlyUnitsInRadius( position, radius ) ) do
 			self:TriggerSpellEffect( ally )

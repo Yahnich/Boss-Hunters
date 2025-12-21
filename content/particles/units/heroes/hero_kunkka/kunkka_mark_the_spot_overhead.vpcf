@@ -1,0 +1,41 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf63:version{a6e6a69e-52d3-4527-8b9c-ff3bb91aca3e} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nMaxParticles = 0
+	m_nBehaviorVersion = 4
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_kunkka/kunkka_mark_the_spot_overhead_model_glow.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_kunkka/kunkka_mark_the_spot_overhead_ring.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_kunkka/kunkka_mark_the_spot_overhead_model_mod.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_kunkka/kunkka_mark_the_spot_overhead_embers.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_kunkka/kunkka_mark_the_spot_overhead_icon.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_kunkka/kunkka_mark_the_spot_overhead_burst.vpcf"
+		},
+	]
+}
