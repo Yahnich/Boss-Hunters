@@ -1,11 +1,11 @@
 "DOTAAbilities"
 {
-	"alchemist_alchemists_greed"
+	"alchemist_chymistry"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_alchemist/alchemist_alchemists_greed"
+		"ScriptFile"					"heroes/hero_alchemist/alchemist_chymistry"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"alchemist_goblins_greed"
 		"MaxLevel"						"1"
@@ -14,42 +14,41 @@
 		
 		"AbilityValues"
 	    {
-			"bonus_gold"
-			{
-				"value"										"25"
-				"special_bonus_facet_alchemist_chrysopoeia"	"+10"
-			}
-			"allied_bonus_gold"								{"special_bonus_facet_alchemist_chrysopoeia"	"10}
-			"spell_amplification"							{"special_bonus_facet_alchemist_panacea"		"1.5"}
-			"healing_provided"								{"special_bonus_facet_alchemist_panacea"		"1.5"}
-			"bonus_damage"									{"special_bonus_facet_alchemist_azoth"			"1"}
-			"attack_speed"									{"special_bonus_facet_alchemist_azoth"			"3"}
-			"gold_threshold"								"100"
+			"minion_materia"			"1"
+			"monster_materia"			"3"
+			"boss_materia"				"6"
+			"max_materia"				"30 40 50 60"
+			"materia_status_resist"		"1"
+			
+			"panacea_heal"				{"special_bonus_facet_alchemist_panacea"		"4"}
+			"panacea_damage"			{"special_bonus_facet_alchemist_panacea"		"4"}
+			"bonus_damage"				{"special_bonus_facet_alchemist_alkahest"		"1"}
+			"attack_speed"				{"special_bonus_facet_alchemist_alkahest"		"1"}
 	    }
 	}
 	//=================================================================================================================
 	// Alchemist: Acid Spray
 	//=================================================================================================================
-	"alchemist_acid_spray_bh"
+	"alchemist_acid_bomb"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_alchemist/alchemist_acid_spray_bh"
+		"ScriptFile"					"heroes/hero_alchemist/alchemist_acid_bomb"
+		"AbilityTextureName"			"alchemist_acid_spray"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityTextureName"			"alchemist_acid_spray"
 		"MaxLevel"						"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_alchemist_acid_spray_1"	"1"
-			"special_bonus_unique_alchemist_acid_spray_2"	"1"
+			"special_bonus_unique_alchemist_acid_bomb_1"	"1"
+			"special_bonus_unique_alchemist_acid_bomb_2"	"1"
 		}
 	
 		// Casting
@@ -67,8 +66,8 @@
 		
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_spray_cast.vpcf"
-			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_spray.vpcf"
+			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_bomb_cast.vpcf"
+			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_bomb.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
 		}
 		
@@ -78,105 +77,42 @@
 		{
 			"radius"
 			{
-				"value"											"400 475 550 625"
+				"value"											"375 450 500 575"
 				"affected_by_aoe_increase"						"1"
 			}
-			"duration"										
-			{
-				"value"											"12"
-				"special_bonus_facet_alchemist_chrysopoeia"		"=0"
-				"special_bonus_unique_alchemist_3"				"+5"
-			}
-			"linger_duration"										
-			{
-				"special_bonus_facet_alchemist_chrysopoeia"		"=5 =8 =11 =14"
-				"special_bonus_unique_alchemist_3"				"+5"
-			}
+			"duration"											"15"
 			"damage"
 			{
-				"value"											"20 35 50 65"
-				"special_bonus_facet_alchemist_azoth"			"=35 =50 =65 =80"
-				"special_bonus_unique_alchemist_acid_spray_2"	"+40"
+				"value"											"100 150 200 250"
+				"special_bonus_unique_alchemist_acid_bomb_2"	"+40"
 				"CalculateSpellDamageTooltip"					"1"
 			}
-			"armor_reduction"
+			"damage_per_sec"
 			{
-				"value"											"1 2 3 4"
-				"special_bonus_facet_alchemist_panacea"			"+1"
+				"value"											"20 35 50 65"
+				"special_bonus_unique_alchemist_acid_bomb_2"	"+40"
+				"CalculateSpellDamageTooltip"					"1"
 			}
+			"linger_duration"
+			{
+				"value"											"0.5"
+				"special_bonus_unique_alchemist_acid_bomb_2"	"+2"
+			}
+			"armor_reduction"									"4 5 6 7"
+			"armor_loss_per_sec"								{"special_bonus_unique_alchemist_acid_bomb_1"	"-1"}
 			"tick_rate"											"1.0"
 			
-			"infinite"
-			{
-				"special_bonus_facet_alchemist_chrysopoeia"		"1"
-			}
-			"affect_allies"
-			{
-				"special_bonus_facet_alchemist_panacea"			"1"
-			}
-			"slow_per_second"
-			{
-				"special_bonus_facet_alchemist_azoth"			"10"
-			}
-			"maximum_slow"
-			{
-				"special_bonus_facet_alchemist_azoth"			"80"
-			}
-			
-			"radius"						"475 525 575 625"
-			"duration"						"16.0"
-			"damage"
-			{
-				"value"						"20 25 30 35"
-				"LinkedSpecialBonus"		
-				"LinkedSpecialBonusField"	"value2"
-			}
-			"armor_reduction"				"-4 -5 -6 -7"
-			"tick_rate"						"1.0"
-			"aura_linger"
-			{
-				"value"						"0.5"
-				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_acid_spray_2"
-			}
+			"panacea_heal"										{"special_bonus_facet_alchemist_panacea"	"50"}
+			"panacea_armor"										{"special_bonus_facet_alchemist_panacea"	"100"}
+			"alkahest_duration"									{"special_bonus_facet_alchemist_alkahest"	"6"}
 		}
 	}
-	"special_bonus_unique_alchemist_acid_spray_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"-1"
-		}
-	}
-	"special_bonus_unique_alchemist_acid_spray_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"2"
-			"value2"				"40"
-		}
-	}
-	"alchemist_unstable_concoction_bh"
+	"alchemist_volatile_brew"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_alchemist/alchemist_unstable_concoction_bh"
+		"ScriptFile"					"heroes/hero_alchemist/alchemist_volatile_brew"
 		"AbilityTextureName"			"alchemist_unstable_concoction"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -191,8 +127,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_alchemist_unstable_concoction_1"	"1"
-			"special_bonus_unique_alchemist_unstable_concoction_2"	"1"
+			"special_bonus_unique_alchemist_volatile_brew_1"	"1"
+			"special_bonus_unique_alchemist_volatile_brew_2"	"1"
 		}
 		
 		// Casting
@@ -206,29 +142,63 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"90 100 110 120 120 120 120"
+		"AbilityManaCost"				"90 100 110 120"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"brew_time"						"5.0 5.0 5.0 5.0"
-			"brew_explosion"				"6.0"
-			"min_stun"						"0.25"
-			"max_stun"						"1.75 2.5 3.25 4.0 "
-			"min_damage"					"50"
-			"max_damage"
+			"brew_time"
 			{
-				"value"						"150 220 290 360"
-				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_unstable_concoction_2"
-				"LinkedSpecialBonusField"		"value2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"value"										"5.0"
+				"special_bonus_unique_alchemist_volatile_brew_1"	"-2.5"
+				"is_buff_duration"							"1"
+			}
+			"brew_explosion"
+			{
+				"value"										"5.5"
+				"is_buff_duration"							"1"
+			}
+			"min_stun"
+			{
+				"value"										"0.25"
+				"is_debuff_duration"						"1"
+			}
+			"max_stun"
+			{
+				"value"										"1.7 2.2 2.7 3.2"
+				"is_debuff_duration"						"1"
+			}
+			"min_damage"
+			{
+				"value"										"0"
+				"CalculateSpellDamageTooltip"				"1"
+			}
+			"max_damage"				
+			{ 
+				"value"										"180 230 310 380"
+				"special_bonus_unique_alchemist_volatile_brew_2"	"+50%"
+				"CalculateSpellDamageTooltip"				"1"
 			}
 			"radius"
 			{
-				"value"							"250"
-				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_unstable_concoction_2"
+				"value"										"350"
+				"special_bonus_unique_alchemist_volatile_brew_2"	"+50"
+				"affected_by_aoe_increase"					"1"
 			}
+			"barrier"
+			{
+				"special_bonus_facet_alchemist_panacea"		"100"
+				"CalculateSpellHealTooltip"					"1"
+			}
+			"bonus_attack_speed"							{"special_bonus_facet_alchemist_panacea"	"50 75 100 125"}
+			"buff_duration"
+			{
+				"special_bonus_facet_alchemist_panacea"		"2"
+				"is_buff_duration"							"1"
+			}
+			"bonus_physical_damage"							{"special_bonus_facet_alchemist_alkahest"	"18 24 30 36"}
+			"freezes_cooldowns"								{"special_bonus_facet_alchemist_alkahest"	"1"}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 		"precache"
@@ -238,124 +208,64 @@
 			"particle"	"particles/econ/items/necrolyte/necrophos_sullen_gold/necro_sullen_pulse_enemy_explosion_gold.vpcf"
 		}
 	}
-	"special_bonus_unique_alchemist_unstable_concoction_1" 
+	//=================================================================================================================
+	// Alchemist: Corrosive Weaponry
+	//=================================================================================================================
+	"alchemist_corrosive_arsenal"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"5"
-		}
-	}
-	"special_bonus_unique_alchemist_unstable_concoction_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"50"
-			"value2"				"2"
-		}
-	}
-	"alchemist_berserk_potion_bh"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_alchemist/alchemist_berserk_potion_bh"
-		"AbilityTextureName"			"alchemist_berserk_potion"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"MaxLevel"						"4"
-		"FightRecapLevel"				"1"
+		"ScriptFile"					"heroes/hero_alchemist/alchemist_corrosive_arsenal"
+		"AbilityTextureName"			"alchemist_corrosive_weaponry"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilitySound"					"Hero_Meepo.Geostrike"
+
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_alchemist_berserk_potion_1"	"1"
-			"special_bonus_unique_alchemist_berserk_potion_2"	"1"
+			"special_bonus_unique_alchemist_corrosive_arsenal_1"	"1"
+			"special_bonus_unique_alchemist_corrosive_arsenal_2"	"1"
 		}
 
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"800"
-		"AbilityCastPoint"				"0.2"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"45 40 35 30"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"125"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"duration"						"10"
-			"primary_bonus"
+			"max_stacks"						"10 12 14 16"
+			"debuff_duration"
 			{
-				"value"						"12 24 36 48"
-				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_berserk_potion_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"value"							"4.0"
+				"is_debuff_duration"			"1"
 			}
-			"max_hp_heal"
+			"slow_per_stack"
 			{
-				"value"						"35 40 45 50"
-				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_berserk_potion_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"value"							"1.25 1.5 1.75 2"
+				"special_bonus_unique_alchemist_corrosive_arsenal_1"	"+1"
 			}
-			"projectile_speed"				"900"
+			"stacks_per_attack"				"1"
+			"stacks_per_second"				"3"
+			
+			"dps_per_stack"					{"special_bonus_unique_alchemist_corrosive_arsenal_1"	"10"}
+			
+			"attack_damage_loss"			{"special_bonus_facet_alchemist_panacea"	"100"}
+			"bonus_lifesteal"				{"special_bonus_facet_alchemist_panacea"	"10"}
+			"attack_damage_gain"			{"special_bonus_facet_alchemist_alkahest"	"100"}
+			"status_resist_per_stack"		{"special_bonus_facet_alchemist_alkahest"	"100"}
+			
+			"alchemist_facet_bonus"			"100"
 		}
-	}
-	"special_bonus_unique_alchemist_berserk_potion_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-	}
-	"special_bonus_unique_alchemist_berserk_potion_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 	}
 	//=================================================================================================================
 	// Alchemist: Chemical Rage
 	//=================================================================================================================
-	"alchemist_chemical_rage_bh"
+	"alchemist_rage_injector"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_alchemist/alchemist_chemical_rage_bh"
+		"ScriptFile"					"heroes/hero_alchemist/alchemist_rage_injector"
+		"AbilityTextureName"			"alchemist_chemical_rage"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
-		"AbilityTextureName"			"alchemist_chemical_rage"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"3"
 		
@@ -393,21 +303,25 @@
 			"duration"												"25.0"
 			"base_attack_time"
 			{
-				"value"												"-0.15 -0.3 -0.45"
+				"value"												"-0.2 -0.3 -0.4"
 				"special_bonus_unique_alchemist_chemical_rage_2"	"-0.3"
 			}
 			"bonus_hp"												"800 1600 2400"
+			"bonus_hp_per_materia"									"25 50 75"
 			"bonus_health_regen"
 			{
 				"value"												"16 48 80"
 				"special_bonus_unique_alchemist_chemical_rage_1"	"+100%"
 			}
-			"bonus_mana_regen"
+			"bonus_health_regen_per_materia"
 			{
-				"value"												"2 6 10"
+				"value"												"0.5 0.75 1.0"
 				"special_bonus_unique_alchemist_chemical_rage_1"	"+100%"
 			}
-			"bonus_movespeed"										"100"
+			"bonus_movespeed"										"50 75 100"
+			
+			"bonus_armor_per_materia"								{"special_bonus_facet_alchemist_panacea"	"0.2"}
+			"bonus_damage_per_materia"								{"special_bonus_facet_alchemist_alkahest"	"2"}
 		}
 	}
 }

@@ -29,7 +29,7 @@ function rubick_echo:SpellEcho(hAbility, vLocation, hTarget)
 	--Otherwise its aoes that dont stack, or the ability is a bit too complex for it be echoed right
 	local no_echo = {["abaddon_borrowed_time_ebf"] = true,
 					 ["abyssal_underlord_abyssal_expulsion"] = true,
-					 ["alchemist_acid_spray_ebf"] = true,
+					 ["alchemist_acid_bomb_ebf"] = true,
 					 ["alchemist_chemical_rage_ebf"] = true,
 					 ["antimage_blink_bh"] = true,
 					 ["arc_warden_magnetic_field_bh"] = true,

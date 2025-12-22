@@ -24,9 +24,9 @@ function alchemist_berserk_potion_bh:OnProjectileHit( target, position )
 		target:AddNewModifier( caster, self, "modifier_alchemist_berserk_potion_stats", {duration = self:GetSpecialValueFor("duration")} )
 		
 		if caster:HasTalent("special_bonus_unique_alchemist_berserk_potion_1") then
-			local rage = caster:FindAbilityByName("alchemist_chemical_rage_bh")
+			local rage = caster:FindAbilityByName("alchemist_rage_injector")
 			if rage then	
-				target:AddNewModifier(caster, rage, "modifier_alchemist_chemical_rage_bh", {duration = self:GetSpecialValueFor("duration")})
+				target:AddNewModifier(caster, rage, "modifier_alchemist_rage_injector", {duration = self:GetSpecialValueFor("duration")})
 			end
 		end
 		
