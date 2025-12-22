@@ -61,22 +61,22 @@
 	//=================================================================================================================
 	"npc_dota_hero_alchemist"
 	{
-		"override_hero"			"npc_dota_hero_alchemist"
-		"Ability1"				"alchemist_acid_spray_bh"
-		"Ability2"				"alchemist_unstable_concoction_bh"	
-		"Ability3"				"alchemist_berserk_potion_bh"					// Ability 4
-		"Ability4"				"alchemist_alchemists_greed"	
-		"Ability5"				"generic_hidden"	
-		"Ability6"				"alchemist_chemical_rage_bh"
+		"override_hero"				"npc_dota_hero_alchemist"
+		"Ability1"					"alchemist_acid_spray"
+		"Ability2"					"alchemist_unstable_concoction"
+		"Ability3"					"generic_hidden"
+		"Ability4"					"alchemist_greevils_greed"
+		"Ability5"					"generic_hidden"
+		"Ability6"					"alchemist_chemical_rage"
 		
-		"Ability10"				"special_bonus_unique_alchemist_unstable_concoction_1"
-		"Ability11"				"special_bonus_unique_alchemist_unstable_concoction_2"
-		"Ability12"				"special_bonus_unique_alchemist_acid_spray_1"
-		"Ability13"				"special_bonus_unique_alchemist_acid_spray_2"
-		"Ability14"				"special_bonus_unique_alchemist_berserk_potion_1"
-		"Ability15"				"special_bonus_unique_alchemist_berserk_potion_2"
-		"Ability16"				"special_bonus_unique_alchemist_chemical_rage_1"
-		"Ability17"				"special_bonus_unique_alchemist_chemical_rage_2"
+		"Ability10"					"special_bonus_unique_alchemist_unstable_concoction_1"
+		"Ability11"					"special_bonus_unique_alchemist_unstable_concoction_2"
+		"Ability12"					"special_bonus_unique_alchemist_acid_spray_1"
+		"Ability13"					"special_bonus_unique_alchemist_acid_spray_2"
+		"Ability14"					"special_bonus_placeholder_1"
+		"Ability15"					"special_bonus_placeholder_2"
+		"Ability16"					"special_bonus_unique_alchemist_chemical_rage_1"
+		"Ability17"					"special_bonus_unique_alchemist_chemical_rage_2"
 		
 		
 		"Masteries"
@@ -93,6 +93,103 @@
 			"THREAT_AMP"{"3" "1"}
 			"THREAT_DOWN"{"3" "1"}
 			"ALL_STATS"{"3" "2"}
+		}
+		
+		"Facets"
+		{
+			"alchemist_seed_money"		{"Deprecated"		"1"}
+			"alchemist_mixologist"		{"Deprecated"		"1"}
+			"alchemist_dividends"		{"Deprecated"		"1"}
+			"alchemist_chrysopoeia"
+			{
+				"Icon"				"armor"
+				"Color"				"Yellow"
+				"GradientID"		"0"
+				
+				"Abilities"
+				{
+					"Ability1"
+					{
+						"AbilityName"		"alchemist_corrosive_weaponry"
+						"AbilityIndex"		"2"
+						"AutoLevelAbility"	"false"
+					}
+				}
+				"Talents"
+				{
+					"Talent1"
+					{
+						"TalentName"		"special_bonus_unique_alchemist_corrosive_weaponry_1"
+						"ReplaceTalent"		"special_bonus_placeholder_1"
+					}
+					"Talent2"
+					{
+						"TalentName"		"special_bonus_unique_alchemist_corrosive_weaponry_2"
+						"ReplaceTalent"		"special_bonus_placeholder_2"
+					}
+					
+				}
+			}
+			"alchemist_panacea"
+			{
+				"Icon"				"healing"
+				"Color"				"Green"
+				"GradientID"		"1"
+				
+				"Abilities"
+				{
+					"Ability1"
+					{
+						"AbilityName"		"alchemist_berserk_potion"
+						"AbilityIndex"		"2"
+						"AutoLevelAbility"	"false"
+					}
+				}
+				"Talents"
+				{
+					"Talent1"
+					{
+						"TalentName"		"special_bonus_unique_alchemist_berserk_potion_1"
+						"ReplaceTalent"		"special_bonus_placeholder_1"
+					}
+					"Talent2"
+					{
+						"TalentName"		"special_bonus_unique_alchemist_berserk_potion_2"
+						"ReplaceTalent"		"special_bonus_placeholder_2"
+					}
+					
+				}
+			}
+			"alchemist_azoth"
+			{
+				"Icon"				"damage"
+				"Color"				"Red"
+				"GradientID"		"3"
+				
+				"Abilities"
+				{
+					"Ability1"
+					{
+						"AbilityName"		"alchemist_midas_touch"
+						"AbilityIndex"		"2"
+						"AutoLevelAbility"	"false"
+					}
+				}
+				"Talents"
+				{
+					"Talent1"
+					{
+						"TalentName"		"special_bonus_unique_alchemist_midas_touch_1"
+						"ReplaceTalent"		"special_bonus_placeholder_1"
+					}
+					"Talent2"
+					{
+						"TalentName"		"special_bonus_unique_alchemist_midas_touch_2"
+						"ReplaceTalent"		"special_bonus_placeholder_2"
+					}
+					
+				}
+			}
 		}
 	}
 	"npc_dota_hero_ancient_apparition"

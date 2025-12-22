@@ -2,7 +2,6 @@
 // <key>  <value>
 // Hero   currently on/off, will be # of instances (-1 = infinite)
 //
-//Alchemist, Anti-Mage, Axe, Bristleback, Drow Ranger, Hoodwink, Huskar, Io, Juggernaut, Legion Commander, Lifestealer, Lion, Luna, Necrophos, Phantom Assassin, Phantom Lancer, Pudge, Shadow Fiend, Slark, Snapfire, Sniper, Spectre, Sven, Troll Warlord, Undying, //Ursa, Venomancer, Witch Doctor, Wraith King and Zeus.
 "whitelist"
 {
 	"npc_dota_hero_abaddon"							"1"

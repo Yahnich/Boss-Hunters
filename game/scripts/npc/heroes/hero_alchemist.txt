@@ -1,5 +1,32 @@
 "DOTAAbilities"
 {
+	"alchemist_alchemists_greed"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_alchemist/alchemist_alchemists_greed"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"alchemist_goblins_greed"
+		"MaxLevel"						"1"
+		"Innate"						"1"
+		"HasScepterUpgrade"				"1"
+		
+		"AbilityValues"
+	    {
+			"bonus_gold"
+			{
+				"value"										"25"
+				"special_bonus_facet_alchemist_chrysopoeia"	"+10"
+			}
+			"allied_bonus_gold"								{"special_bonus_facet_alchemist_chrysopoeia"	"10}
+			"spell_amplification"							{"special_bonus_facet_alchemist_panacea"		"1.5"}
+			"healing_provided"								{"special_bonus_facet_alchemist_panacea"		"1.5"}
+			"bonus_damage"									{"special_bonus_facet_alchemist_azoth"			"1"}
+			"attack_speed"									{"special_bonus_facet_alchemist_azoth"			"3"}
+			"gold_threshold"								"100"
+	    }
+	}
 	//=================================================================================================================
 	// Alchemist: Acid Spray
 	//=================================================================================================================
@@ -36,7 +63,7 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"130 140 150 160 160 160 160"
+		"AbilityManaCost"				"130 140 150 160"
 		
 		"precache"
 		{
@@ -49,12 +76,59 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
+			"radius"
+			{
+				"value"											"400 475 550 625"
+				"affected_by_aoe_increase"						"1"
+			}
+			"duration"										
+			{
+				"value"											"12"
+				"special_bonus_facet_alchemist_chrysopoeia"		"=0"
+				"special_bonus_unique_alchemist_3"				"+5"
+			}
+			"linger_duration"										
+			{
+				"special_bonus_facet_alchemist_chrysopoeia"		"=5 =8 =11 =14"
+				"special_bonus_unique_alchemist_3"				"+5"
+			}
+			"damage"
+			{
+				"value"											"20 35 50 65"
+				"special_bonus_facet_alchemist_azoth"			"=35 =50 =65 =80"
+				"special_bonus_unique_alchemist_acid_spray_2"	"+40"
+				"CalculateSpellDamageTooltip"					"1"
+			}
+			"armor_reduction"
+			{
+				"value"											"1 2 3 4"
+				"special_bonus_facet_alchemist_panacea"			"+1"
+			}
+			"tick_rate"											"1.0"
+			
+			"infinite"
+			{
+				"special_bonus_facet_alchemist_chrysopoeia"		"1"
+			}
+			"affect_allies"
+			{
+				"special_bonus_facet_alchemist_panacea"			"1"
+			}
+			"slow_per_second"
+			{
+				"special_bonus_facet_alchemist_azoth"			"10"
+			}
+			"maximum_slow"
+			{
+				"special_bonus_facet_alchemist_azoth"			"80"
+			}
+			
 			"radius"						"475 525 575 625"
 			"duration"						"16.0"
 			"damage"
 			{
 				"value"						"20 25 30 35"
-				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_acid_spray_2"
+				"LinkedSpecialBonus"		
 				"LinkedSpecialBonusField"	"value2"
 			}
 			"armor_reduction"				"-4 -5 -6 -7"
@@ -261,13 +335,6 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"1"
-		}
 	}
 	"special_bonus_unique_alchemist_berserk_potion_2" 
 	{
@@ -276,73 +343,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"2"
-		}
 	}
-	"alchemist_alchemists_greed"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_alchemist/alchemist_alchemists_greed"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"alchemist_goblins_greed"
-		"MaxLevel"						"1"
-		"Innate"					"1"
-		"HasScepterUpgrade"				"1"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			// "special_bonus_unique_alchemist_alchemists_greed_1"	"1"
-			// "special_bonus_unique_alchemist_alchemists_greed_2"	"1"
-		}
-		
-		"AbilityValues"
-	    {
-			"minion_gold"          			"2"
-			"monster_gold"					"25"
-			"boss_gold"						"350"
-			"radius"	          			"600"
-	    }
-	}
-	"special_bonus_unique_alchemist_alchemists_greed_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"3"
-		}
-	}
-	"special_bonus_unique_alchemist_alchemists_greed_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"0.5"
-		}
-	}
-	
 	//=================================================================================================================
 	// Alchemist: Chemical Rage
 	//=================================================================================================================
@@ -389,146 +390,24 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"duration"							"25.0"
+			"duration"												"25.0"
 			"base_attack_time"
 			{
-				"value"							"-0.15 -0.3 -0.45"
-				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_chemical_rage_2"
+				"value"												"-0.15 -0.3 -0.45"
+				"special_bonus_unique_alchemist_chemical_rage_2"	"-0.3"
 			}
-			"bonus_hp"							"800 1600 2400"
+			"bonus_hp"												"800 1600 2400"
 			"bonus_health_regen"
 			{
-				"value"							"16 48 80"
-				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_chemical_rage_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"value"												"16 48 80"
+				"special_bonus_unique_alchemist_chemical_rage_1"	"+100%"
 			}
 			"bonus_mana_regen"
 			{
-				"value"							"2 6 10"
-				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_chemical_rage_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"value"												"2 6 10"
+				"special_bonus_unique_alchemist_chemical_rage_1"	"+100%"
 			}
-			"bonus_movespeed"					"100"
-		}
-	}
-	"special_bonus_unique_alchemist_chemical_rage_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"2"
-		}
-	}
-	"special_bonus_unique_alchemist_chemical_rage_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"-0.3"
-		}
-	}
-	
-	//-------------------------------------------------------------------------------------------------------------
-	//-- DEPRECATED -----------------------------------------------------------------------------------------------
-	//-------------------------------------------------------------------------------------------------------------
-	"alchemist_midas_knuckle"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_alchemist/alchemist_midas_knuckle"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"custom/alchemist_midas_knuckle"
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK_STATUE"
-		"MaxLevel"						"4"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_alchemist_midas_knuckle_1"	"1"
-			"special_bonus_unique_alchemist_midas_knuckle_2"	"1"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.3"
-		"AbilityCastRange"				"150"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12 12 12 12 10.5 9 7.5"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityGoldCost"				"10 20 30 40 40 40 40"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"base_dmg"						"100 150 200 250 350 400 450"
-				"CalculateSpellDamageTooltip"	"1"
-			"net_worth_bonus_dmg"			"1"
-				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_midas_knuckle_2"
-			"gold_cost"						"10 20 30 40 40 40 40"
-"ministun"					"0.5"
-				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_midas_knuckle_1"
-		}
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
-			"particle"	"particles/econ/items/pugna/pugna_ward_golden_nether_lord/pugna_gold_ambient.vpcf"
-			"particle"	"particles/econ/items/necrolyte/necrophos_sullen_gold/necro_sullen_pulse_enemy_explosion_gold.vpcf"
-		}
-	}
-	"special_bonus_unique_alchemist_midas_knuckle_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"2"
-		}
-	}
-	"special_bonus_unique_alchemist_midas_knuckle_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"0.31"
+			"bonus_movespeed"										"100"
 		}
 	}
 }
