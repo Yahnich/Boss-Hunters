@@ -39,13 +39,17 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"projectile_speed"				"1250"
-			"self_heal"						"75 100 125 150 175 200 225"
-				"LinkedSpecialBonus"			"special_bonus_unique_abaddon_death_coil_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			"projectile_speed"								"1250"
+			"self_heal"
+			{
+				"value"										"75 100 125 150"
+				"special_bonus_unique_abaddon_death_coil_2"	"+100%"
 				"CalculateSpellDamageTooltip"	"0"
-			"target_damage"					"175 250 325 400 475 550 625"
-			"heal_amount"					"175 250 325 400 475 550 625"
+			}
+			"target_damage"									"175 250 325 400 475 550 625"
+			"heal_amount"									"175 250 325 400 475 550 625"
+			
+			"aoe_radius"									{"special_bonus_unique_abaddon_death_coil_1"	"900"}
 		}
 	
 		"precache"

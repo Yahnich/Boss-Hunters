@@ -21,18 +21,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"critical_chance"		"20"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"critical_mult"			"250"
-			}
+			"critical_chance"		"20"
+			"critical_mult"			"250"
 		}
 	}
 }

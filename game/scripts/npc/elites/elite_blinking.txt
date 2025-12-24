@@ -35,19 +35,10 @@
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1200"
-			}
-			
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"min_blink_range"		"200"
-			}
+			"blink_range"			"1200"
+			"min_blink_range"		"200"
 		}
 	}
 }

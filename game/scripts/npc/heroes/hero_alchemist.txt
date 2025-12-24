@@ -244,7 +244,7 @@
 			"stacks_per_attack"				"1"
 			"stacks_per_second"				"3"
 			
-			"dps_per_stack"					{"special_bonus_unique_alchemist_corrosive_arsenal_1"	"10"}
+			"dps_per_stack"					{"special_bonus_unique_alchemist_corrosive_arsenal_2"	"10"}
 			
 			"attack_damage_loss"			{"special_bonus_facet_alchemist_panacea"	"100"}
 			"bonus_lifesteal"				{"special_bonus_facet_alchemist_panacea"	"10"}
@@ -273,8 +273,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_alchemist_chemical_rage_1"	"1"
-			"special_bonus_unique_alchemist_chemical_rage_2"	"1"
+			"special_bonus_unique_alchemist_rage_injector_1"	"1"
+			"special_bonus_unique_alchemist_rage_injector_2"	"1"
 		}
 	
 		// Casting
@@ -304,19 +304,19 @@
 			"base_attack_time"
 			{
 				"value"												"-0.2 -0.3 -0.4"
-				"special_bonus_unique_alchemist_chemical_rage_2"	"-0.3"
+				"special_bonus_unique_alchemist_rage_injector_2"	"-0.3"
 			}
 			"bonus_hp"												"800 1600 2400"
 			"bonus_hp_per_materia"									"25 50 75"
 			"bonus_health_regen"
 			{
 				"value"												"16 48 80"
-				"special_bonus_unique_alchemist_chemical_rage_1"	"+100%"
+				"special_bonus_unique_alchemist_rage_injector_1"	"+100%"
 			}
 			"bonus_health_regen_per_materia"
 			{
 				"value"												"0.5 0.75 1.0"
-				"special_bonus_unique_alchemist_chemical_rage_1"	"+100%"
+				"special_bonus_unique_alchemist_rage_injector_1"	"+100%"
 			}
 			"bonus_movespeed"										"50 75 100"
 			

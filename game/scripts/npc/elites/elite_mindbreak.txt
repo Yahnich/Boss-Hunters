@@ -21,23 +21,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cooldown"				"12"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"silence_duration"		"5"
-			}
+			"cooldown"				"12"
+			"duration"				"1.5"
+			"silence_duration"		"5"
 		}
 	}
 }

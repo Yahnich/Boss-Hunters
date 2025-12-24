@@ -23,23 +23,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bubble_radius"			"250"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cd_increase_per_sec"	"0.5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bubble_duration"		"8"
-			}
+			"bubble_radius"			"250"
+			"cd_increase_per_sec"	"0.5"
+			"bubble_duration"		"8"
 		}
 	}
 }

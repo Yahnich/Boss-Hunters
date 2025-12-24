@@ -9,9 +9,13 @@ LinkLuaModifier("modifier_elite_elusive", "elites/elite_elusive", LUA_MODIFIER_M
 
 if IsServer() then
 	function modifier_elite_elusive:OnCreated()
+		self:OnRefresh()
+		self:StartIntervalThink( 1 )
+	end
+	
+	function modifier_elite_elusive:OnRefresh()
 		self.fadeTime = self:GetSpecialValueFor("fade_time")
 		self.searchRadius = self:GetSpecialValueFor("detection_radius")
-		self:StartIntervalThink( 1 )
 	end
 	
 	function modifier_elite_elusive:OnIntervalThink()
@@ -19,6 +23,7 @@ if IsServer() then
 		if parent:PassivesDisabled() then return end
 		self.fadeTime = self:GetSpecialValueFor("fade_time")
 		self.searchRadius = self:GetSpecialValueFor("detection_radius")
+		
 		local enemies = parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), self.searchRadius, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE} )
 		self:StartIntervalThink( 0.25 )
 		if not parent:HasModifier("modifier_elite_elusive_fade") then

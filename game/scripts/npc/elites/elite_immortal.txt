@@ -21,18 +21,10 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"health_regen"			"0.65"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"health"				"20"
-			}
+			"health_regen"			"0.65"
+			"health"				"20"
 		}
 	}
 }
