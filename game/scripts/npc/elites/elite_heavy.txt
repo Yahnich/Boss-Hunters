@@ -21,23 +21,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow"					"-50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"model_scale"			"35"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hp_damage"				"1.5"
-			}
+			"slow"					"-50"
+			"model_scale"			"35"
+			"hp_damage"				"1.5"
 		}
 	}
 }

@@ -3070,7 +3070,7 @@
 		"DOTA_Tooltip_ability_alchemist_chymistry_max_materia"													"MAXIMUM PRIMA MATERIA"
 		"DOTA_Tooltip_ability_alchemist_chymistry_materia_status_resist"										"%STATUS RESISTANCE/MATERIA"
 		"DOTA_Tooltip_ability_alchemist_chymistry_Facet_alchemist_panacea"										"Whenever an ally is buffed by one of Alchemist's Spells, if they were already buffed by another one of his Spells, they Heal %panacea_heal% for each Prima Materia Alchemist has collected. If an enemy is debuffed by one of Alchemist's Spells, if they were already debuffed by another one of his Spells, Alchemist deals %panacea_damage% Pure Damage to them."
-		"DOTA_Tooltip_ability_alchemist_chymistry_Facet_alchemist_alkahest										"Alchemist's Spells become %alkahest_potency%%% more Potent and Cool Down %alkahest_cooldown_reduction%%% faster for each Prima Materia he has collected."
+		"DOTA_Tooltip_ability_alchemist_chymistry_Facet_alchemist_alkahest"										"Alchemist's Spells become %alkahest_potency%%% more Potent and Cool Down %alkahest_cooldown_reduction%%% faster for each Prima Materia he has collected."
 		"DOTA_Tooltip_modifier_alchemist_chymistry_prima_materia"												"Prima Materia"
 		"DOTA_Tooltip_modifier_alchemist_chymistry_prima_materia_Description"									"Receiving an additional %dMODIFIER_PROPERTY_TOOLTIP%%% gold from all sources."
 
@@ -3133,7 +3133,7 @@
 		"DOTA_Tooltip_Ability_special_bonus_unique_alchemist_corrosive_arsenal_2"								"Organic Solvent"
 		"DOTA_Tooltip_Ability_special_bonus_unique_alchemist_corrosive_arsenal_2_Description"					"Corrosive Arsenal deals <b>10%</b> of Alchemist's Intelligence per stack"
 		
-		"DOTA_Tooltip_ability_alchemist_rage_injector"															"Rage Injector"
+		"DOTA_Tooltip_ability_alchemist_rage_injector"															"Rage Injection"
 		"DOTA_Tooltip_ability_alchemist_rage_injector_Description"												"Alchemist causes his Ogre to enter a chemically induced rage, reducing base attack cooldown and increasing movement speed, health and health regeneration.\nThe bonus health and regeneration is increased based on Alchemist's Prima Materia."
 		"DOTA_Tooltip_ability_alchemist_rage_injector_Lore"														"The brew Razzil gave to the Ogre during their prison bust has become a useful potion in the midst of combat."
 		"DOTA_Tooltip_ability_alchemist_rage_injector_duration"													"DURATION:"
@@ -3147,10 +3147,10 @@
 		"DOTA_Tooltip_ability_alchemist_chemical_rage_Facet_alchemist_alkahest"									"Rage Injector grants %bonus_damage_per_materia% base damage for each Prima Materia."
 		"DOTA_Tooltip_modifier_alchemist_chemical_rage_ebf"														"Chemical Rage"
 		"DOTA_Tooltip_modifier_alchemist_chemical_rage_ebf_Description"											"Gaining %dMODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT% health regen, %dMODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT%%% bonus movement speed, %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS% armor, %dMODIFIER_PROPERTY_HEALTH_BONUS% health, and %dMODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE%%% bonus damage."
-		"DOTA_Tooltip_Ability_special_bonus_unique_alchemist_chemical_rage_1"									"Taxman's Vigour"
-		"DOTA_Tooltip_Ability_special_bonus_unique_alchemist_chemical_rage_1_Description"						"Chemical Rage's health regeneration and health regeneration per materia is doubled."
-		"DOTA_Tooltip_Ability_special_bonus_unique_alchemist_chemical_rage_2"									"Bring My Baliff"
-		"DOTA_Tooltip_Ability_special_bonus_unique_alchemist_chemical_rage_2_Description"						"-0.3 Chemical Rage Base Attack Time"
+		"DOTA_Tooltip_Ability_special_bonus_unique_alchemist_rage_injector_1"									"Taxman's Vigour"
+		"DOTA_Tooltip_Ability_special_bonus_unique_alchemist_rage_injector_1_Description"						"Rage Injection's health regeneration and health regeneration per materia is doubled."
+		"DOTA_Tooltip_Ability_special_bonus_unique_alchemist_rage_injector_2"									"Bring My Baliff"
+		"DOTA_Tooltip_Ability_special_bonus_unique_alchemist_rage_injector_2_Description"						"-0.3 Rage Injection Base Attack Time"
 
 
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

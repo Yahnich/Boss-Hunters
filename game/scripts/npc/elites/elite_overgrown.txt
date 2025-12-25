@@ -19,28 +19,12 @@
 			"particle"					"particles/status_fx/status_effect_repel.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bramble_lifetime"		"10"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"root_duration"			"5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"root_radius"			"125"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bramble_rate"			"4"
-			}
+			"bramble_lifetime"		"10"
+			"root_duration"			"5"
+			"root_radius"			"125"
+			"bramble_rate"			"4"
 		}
 	}
 }

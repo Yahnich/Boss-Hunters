@@ -67,7 +67,7 @@
 		"Ability3"					"alchemist_corrosive_arsenal"
 		"Ability4"					"alchemist_chymistry"
 		"Ability5"					"generic_hidden"
-		"Ability6"					"alchemist_chemical_rage"
+		"Ability6"					"alchemist_rage_injector"
 		
 		"Ability10"					"special_bonus_unique_alchemist_volatile_brew_1"
 		"Ability11"					"special_bonus_unique_alchemist_volatile_brew_2"
@@ -75,8 +75,8 @@
 		"Ability13"					"special_bonus_unique_alchemist_acid_bomb_2"
 		"Ability14"					"special_bonus_unique_alchemist_alchemist_corrosive_arsenal_1"
 		"Ability15"					"special_bonus_unique_alchemist_alchemist_corrosive_arsenal_2"
-		"Ability16"					"special_bonus_unique_alchemist_chemical_rage_1"
-		"Ability17"					"special_bonus_unique_alchemist_chemical_rage_2"
+		"Ability16"					"special_bonus_unique_alchemist_rage_injector_1"
+		"Ability17"					"special_bonus_unique_alchemist_rage_injector_2"
 		
 		
 		"Masteries"
@@ -106,7 +106,7 @@
 				"Color"				"Yellow"
 				"GradientID"		"1"
 			}
-			"alchemist_alkahest
+			"alchemist_alkahest"
 			{
 				"Icon"				"damage"
 				"Color"				"Red"

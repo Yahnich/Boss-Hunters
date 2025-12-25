@@ -23,48 +23,16 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"225"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"snap_duration"			"1.5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow_duration"			"5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"tick_rate"				"4"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"growth_duration"		"5"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"move_slow"				"-100"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"attack_slow"			"-700"
-			}
+			"radius"				"225"
+			"damage"				"25"
+			"snap_duration"			"1.5"
+			"slow_duration"			"5"
+			"tick_rate"				"4"
+			"growth_duration"		"5"
+			"move_slow"				"-100"
+			"attack_slow"			"-700"
 		}
 	}
 }

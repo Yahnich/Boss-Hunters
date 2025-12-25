@@ -293,7 +293,7 @@ function CreateModifierThinker( modifierCaster, modifierAbility, modifierName, m
 	kv.Duration = nil
 	kv.original_duration = duration
 	kv.duration = duration
-	if duration ~= -1 and self and modifierCaster and not kv.ignoreStatusAmp then
+	if duration ~= -1 and self and IsEntitySafe( modifierCaster ) and not kv.ignoreStatusAmp then
 		local params = {caster = modifierCaster, target = self, duration = duration, ability = modifierAbility, modifier_name = modifierName}
 		duration = duration * modifierCaster:GetStatusAmplification( params )
 		kv.duration = duration
@@ -312,7 +312,7 @@ function CDOTA_BaseNPC:AddNewModifier(modifierCaster, modifierAbility, modifierN
 	kv.Duration = nil
 	kv.original_duration = duration
 	kv.duration = duration
-	if duration ~= -1 and self and modifierCaster and not kv.ignoreStatusAmp then
+	if duration ~= -1 and self and IsEntitySafe( modifierCaster ) and not kv.ignoreStatusAmp then
 		local params = {caster = modifierCaster, target = self, duration = duration, ability = modifierAbility, modifier_name = modifierName}
 		duration = duration * modifierCaster:GetStatusAmplification( params )
 		if self:GetTeam() ~= modifierCaster:GetTeam() then
@@ -1338,7 +1338,7 @@ function CDOTA_BaseNPC:GetManaCostReduction( )
 end
 
 function CDOTA_BaseNPC:GetStatusAmplification( tParams )
-	if not self or self:IsNull() then return end
+	if not self or self:IsNull() then return 0 end
 	local params = tParams or {}
 	local amp = 0
 	for _, modifier in ipairs( self:FindAllModifiers() ) do

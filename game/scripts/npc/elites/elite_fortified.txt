@@ -18,23 +18,11 @@
 			"particle"			"particles/units/heroes/hero_tidehunter/tidehunter_krakenshell_purge.vpcf"
 		}
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"              "FIELD_FLOAT"
-				"dmg_reduction"         "-80"
-			}
-			"02"
-			{
-				"var_type"              "FIELD_FLOAT"
-				"move_slow"         	"-100"
-			}
-			"03"
-			{
-				"var_type"              "FIELD_FLOAT"
-				"duration"        		"4"
-			}
+			"dmg_reduction"         "-80"
+			"move_slow"         	"-100"
+			"duration"        		"4"
 		}
 	}
 }

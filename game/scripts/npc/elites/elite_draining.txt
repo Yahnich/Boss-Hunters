@@ -15,23 +15,11 @@
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_burn"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"passive_mana_burn"		"15"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"spell_mana_burn"		"100"
-			}
+			"mana_burn"				"50"
+			"passive_mana_burn"		"15"
+			"spell_mana_burn"		"100"
 		}
 	}
 }

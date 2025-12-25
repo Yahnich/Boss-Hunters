@@ -22,18 +22,10 @@
 			"particle"					"particles/status_fx/status_effect_repel.vpcf"
 		}
 		
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"minus_armor_per_raid"	"-2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"10"
-			}
+			"minus_armor_per_raid"	"-2"
+			"duration"				"10"
 		}
 	}
 }
