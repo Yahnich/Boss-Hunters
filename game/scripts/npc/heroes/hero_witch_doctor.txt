@@ -134,7 +134,7 @@
 		"AbilityUnitDamageType"				"DAMAGE_TYPE_MAGICAL"	
 		"AbilityTextureName"				"witch_doctor_voodoo_restoration"
 		"ScriptFile"						"heroes/hero_witch_doctor/witch_doctor_voodoo_restoration_bh"
-		"MaxLevel"							"7"
+		"MaxLevel"							"4"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
@@ -405,7 +405,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"750"
-		"AbilityCastPoint"				"0.3"
+		"AbilityCastPoint"				"0.35"
 		"AbilityChannelAnimation"		"ACT_DOTA_CAST_ABILITY_4"
 		
 		// Time		
