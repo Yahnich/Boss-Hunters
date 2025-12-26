@@ -123,6 +123,7 @@
 				"value"														"80 160 240 320"
 				"special_bonus_unique_kunkka_water_spout_1"					"+50%"
 				"CalculateSpellDamageTooltip"								"1"
+				"hero_levelup"                          					"+10"
 			}
 			"AbilityCooldown"												"16 14 12 10"
 			
@@ -151,6 +152,7 @@
 			"bonus_physical_damage"
 			{
 				"special_bonus_facet_kunkka_privateer"						"50 100 150 200"
+				"hero_levelup"                          					"+6"
 				"CalculateSpellDamageTooltip"								"1"
 			}
 		}
@@ -219,7 +221,12 @@
 				"affected_by_aoe_increase"									"1"
 				"special_bonus_unique_kunkka_clear_wave_2"					"=-1"
 			}
-			"damage_bonus"													"5 50 95 140"
+			"damage_bonus"
+			{
+				"special_bonus_facet_kunkka_privateer"						"5 50 95 140"
+				"hero_levelup"                          					"+6"
+				"CalculateAttackDamageTooltip"								"1"
+			}
 			"cleave_damage"				
 			{
 				"value"														"105 120 135 150"	
@@ -389,8 +396,9 @@
 			"AbilityCooldown"												"90 80 70"
 			"damage"
 			{
-				"value"														"350 475 600"
-				"CalculateSpellDamageTooltip"								"1"
+				"value"														"295 420 545"
+				"CalculateSpellDamageTooltip"								"+11"
+				"hero_levelup"												""
 			}
 			"ghostship_width"			
 			{

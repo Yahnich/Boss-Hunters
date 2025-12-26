@@ -53,7 +53,6 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"4"
 		
 		// Talents		
@@ -98,7 +97,7 @@
 			"damage"
 			{
 				"value"											"150 220 290 360"
-				"special_bonus_scepter"							"+25%"
+				"hero_levelup"                          		"+10"
 				"CalculateSpellDamageTooltip"					"1"
 			}
 			"hook_distance"										"1300"
@@ -109,7 +108,6 @@
 			"AbilityCooldown"
 			{
 				"value"											"18 16 14 12"
-				"special_bonus_scepter"							"-4"
 				"special_bonus_unique_pudge_butchers_hook_2"	"-4"
 			}
 			
@@ -207,6 +205,7 @@
 			"damage"
 			{
 				"value"										"30 60 90 120"
+				"hero_levelup"                          	"+4"
 				"special_bonus_unique_pudge_rotting_gas_2"	"+65"
 			}
 			"radius"
@@ -359,9 +358,10 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"damage_block"					
+			"damage_block"
 			{
 				"value"										"8 14 20 26"
+				"hero_levelup"                          	"+1"
 				"special_bonus_unique_pudge_meat_shield_1"	"+100%"
 				"CalculateAttributeTooltip"		"1"
 			}
@@ -447,7 +447,13 @@
 		{
 			"AbilityCooldown"							"45 35 25"
 			
-			"damage"									"60 90 120"
+			"damage"
+			{
+				"value"										"45 75 105"
+				"hero_levelup"                          	"+3"
+				"special_bonus_unique_pudge_meat_shield_1"	"+100%"
+				"CalculateAttributeTooltip"		"1"
+			}
 			"str_damage"								"100"
 			"duration"
 			{
