@@ -111,7 +111,7 @@ function undying_soul_rip_bh:OnSpellStart()
 			ParticleManager:FireRopeParticle(ripFX, PATTACH_ABSORIGIN_FOLLOW, target, unit)
 		end
 	end
-+
+
 	local effectDuration = self:GetSpecialValueFor("buff_duration")
 	local strengthDamage = self:GetSpecialValueFor("strength_effect") / 100
 	if target:IsSameTeam(caster) then
