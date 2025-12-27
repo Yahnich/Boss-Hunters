@@ -1,14 +1,72 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Puck: Illusory Orb
+	// Puck: Trickster
 	//=================================================================================================================
-	"puck_illusory_orb_ebf"
+	"puck_trickster"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_puck/puck_illusory_orb_ebf"
+		"ScriptFile"					"heroes/hero_puck/puck_trickster.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"puck_trickster"
+		"MaxLevel"						"4"
+		"Innate"						"1"
+		"DependentOnAbility"			"puck_singularity_core"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// Default KV's
+			//---------------------------------------------------------------------------------------------------------
+			"base_restore"											
+			{
+				"value"															"30 60 90 120"
+				"hero_levelup"													"+4"
+			}
+			"percent_restore"										
+			{
+				"value"															"2"
+				"special_bonus_facet_puck_crystalhide"							"+1"
+			}
+
+			// Glimmerdrake KV's
+			//---------------------------------------------------------------------------------------------------------
+			"bonus_magic_damage"
+			{
+				"special_bonus_facet_puck_glimmerdrake"							"25 50 75 100"
+			}
+
+			// Whimsicatastrophe KV's
+			//---------------------------------------------------------------------------------------------------------
+			"bonus_debuff_duration"
+			{
+				"special_bonus_facet_puck_whimsicatastrophe"					"10 15 20 25"
+			}
+
+			// Crystalhide KV's
+			//---------------------------------------------------------------------------------------------------------
+			"evasion_trigger"
+			{
+				"special_bonus_facet_puck_crystalhide"							"1"
+			}
+			"evasion_cooldown"
+			{
+				"special_bonus_facet_puck_crystalhide"							"4"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Puck: Illusory Orb
+	//=================================================================================================================
+	"puck_faerie_orb"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_puck/puck_faerie_orb"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
@@ -16,24 +74,20 @@
 		"AbilitySound"					"Hero_Puck.Illusory_Orb"
 		"AbilityTextureName"			"puck_illusory_orb"
 		"MaxLevel"						"4"
+		"LinkedAbility"					"puck_wander"
 		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_puck_illusory_orb_1"	"1"
-			"special_bonus_unique_puck_illusory_orb_2"	"1"
-		}
-
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.1 0.1 0.1 0.1"
 		"AbilityCastRange"				"3000"
 
-		// Time		
+		// Talents
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"14 13 12 11"
-	
+		"LinkedTalents"
+		{
+			"special_bonus_unique_puck_faerie_orb_1"							"1"
+			"special_bonus_unique_puck_faerie_orb_2"							"1"
+		}
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -51,50 +105,147 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"radius"					"225"		
-			"max_distance"				"1950"
-			"orb_speed"					"651"
-			"orb_vision"				"900"
-			"vision_duration"			"3.34 3.34 3.34 3.34"
-			"damage"					"70 140 210 280"
-			
-			"mirror_projectile"			{"special_bonus_unique_puck_illusory_orb_1"	"1"}
-			"end_damage_pct"			{"special_bonus_unique_puck_illusory_orb_2"	"75"}
-			"end_damage_radius"			{"special_bonus_unique_puck_illusory_orb_2"	"2"}
+			// Default KV's
+			//---------------------------------------------------------------------------------------------------------
+			"radius"					
+			{
+				"value"															"225"
+				"affected_by_aoe_increase"										"1"
+			}		
+			"max_distance"														"3900"
+			"orb_speed"															"750"
+			"orb_vision"														"900"
+			"vision_duration"													"3.34 3.34 3.34 3.34"
+			"damage"					
+			{
+				"value"															"70 140 210 280"
+				"CalculateSpellDamageTooltip"									"1"
+				"hero_levelup"													"+10"
+			}
+
+			// Glimmerdrake KV's
+			//---------------------------------------------------------------------------------------------------------
+			"mirror_projectile"			
+			{
+				"special_bonus_facet_puck_glimmerdrake"							"1"
+			}
+
+			// Whimsicatastrophe KV's
+			//---------------------------------------------------------------------------------------------------------
+			"pulse_radius"
+			{
+				"special_bonus_facet_puck_whimsicatastrophe"		
+				{
+					"value"														"450"
+					"affected_by_aoe_increase"									"1"
+				}
+			}
+			"pulse_interval"
+			{
+				"special_bonus_facet_puck_whimsicatastrophe"					"1"
+			}
+			"incoming_dmg"
+			{
+				"special_bonus_facet_puck_whimsicatastrophe"					"10 13 16 19"
+			}
+			"debuff_duration"
+			{
+				"special_bonus_facet_puck_whimsicatastrophe"					"3"
+			}
+
+			// Crystalhide KV's
+			//---------------------------------------------------------------------------------------------------------
+			"cooldown_increase"
+			{
+				"special_bonus_facet_puck_crystalhide"							"100"
+			}
+
+			// Talent KV's
+			//---------------------------------------------------------------------------------------------------------
+			"AbilityCharges"
+			{
+				"value"															"1"
+				"special_bonus_unique_puck_faerie_orb_1"						"+2"
+			}
+			"AbilityCooldown"				
+			{
+				"value"															"14 13 12 11"
+				"special_bonus_unique_puck_faerie_orb_1"						"=0"
+			}
+			"AbilityChargeRestoreTime"											"14 13 12 11"
+
+			"end_damage_pct"			
+			{
+				"special_bonus_unique_puck_faerie_orb_2"						"75"
+			}
+			"end_damage_radius"			
+			{
+				"special_bonus_unique_puck_faerie_orb_2"						"2"
+			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
 	//=================================================================================================================
 	// Puck: Ethereal Jaunt
 	//=================================================================================================================
-	"puck_ethereal_jaunt_ebf"
+	"puck_wander"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_puck/puck_ethereal_jaunt_ebf"
+		"ScriptFile"					"heroes/hero_puck/puck_wander"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilitySound"					"Hero_Puck.EtherealJaunt"
 		"AbilityTextureName"			"puck_ethereal_jaunt"
-		"MaxLevel"						"1"
-		"Innate"					"1"
+		"MaxLevel"						"4"
+		"DependentOnAbility"			"puck_faerie_orb"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
 		"AbilityCastAnimation"			"ACT_INVALID"
+		"AbilityCooldown"				"0.5"
+
+		// Special
+		"AbilityValues"
+		{
+			// Glimmerdrake KV's
+			//---------------------------------------------------------------------------------------------------------
+			"shifts"
+			{
+				"special_bonus_facet_puck_glimmerdrake"							"1"
+			}
+			"shift_duration"
+			{
+				"special_bonus_facet_puck_glimmerdrake"							"0.5"
+			}
+
+			// Whimsicatastrophe KV's
+			//---------------------------------------------------------------------------------------------------------
+			"no_destroy"
+			{
+				"special_bonus_facet_puck_whimsicatastrophe"					"1"
+			}
+
+			// Crystalhide KV's
+			//---------------------------------------------------------------------------------------------------------
+			"heal_amount"
+			{
+				"special_bonus_facet_puck_crystalhide"							"200 300 400 500"
+			}
+		}
 	}
 
 	//=================================================================================================================
 	// Puck: Waning Rift
 	//=================================================================================================================
-	"puck_waning_rift_ebf"
+	"puck_mystical_rift"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_puck/puck_waning_rift_ebf"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ScriptFile"					"heroes/hero_puck/puck_mystical_rift"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
@@ -102,23 +253,18 @@
 		"AbilitySound"					"Hero_Puck.Waning_Rift"
 		"AbilityTextureName"			"puck_waning_rift"
 		"MaxLevel"						"4"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_puck_waning_rift_1"	"1"
-			"special_bonus_unique_puck_waning_rift_2"	"1"
-		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.1 0.1 0.1 0.1"
 
-		// Time		
+		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"7"
-
+		"LinkedTalents"
+		{
+			"special_bonus_unique_puck_mystical_rift_1"							"1"
+			"special_bonus_unique_puck_mystical_rift_2"							"1"
+		}
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -135,39 +281,80 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"radius"					"550"
-			"silence_duration"			"1.0 1.25 1.5 1.75"
-			"damage"					"100 160 220 280"
+			// Default KV's
+			//---------------------------------------------------------------------------------------------------------
+			"AbilityCooldown"								
+			{
+				"value"															"16 15 14 13"
+				"special_bonus_facet_puck_glimmerdrake"							"-5"
+			}
+			"max_distance"														"350"
+			"radius"					
+			{
+				"value"															"400"
+				"special_bonus_facet_puck_whimsicatastrophe"					"=600"
+				"affected_by_aoe_increase"										"1"
+			}
+			"silence_duration"								
+			{
+				"value"															"1.0 1.25 1.5 1.75"
+				"is_debuff_duration"											"1"
+			}
+			"damage"										
+			{
+				"value"															"100 160 220 280"
+				"CalculateSpellDamageTooltip"									"1"
+				"hero_levelup"													"+8"
+			}
 			
-			"disarms"					{"special_bonus_unique_puck_waning_rift_1"	"1"}
-			"slow_duration"				{"special_bonus_unique_puck_waning_rift_1"	"6"}
-			"slow_damage"				{"special_bonus_unique_puck_waning_rift_1"	"20"}
-			"slow"						{"special_bonus_unique_puck_waning_rift_1"	"20"}
+			// Glimmerdrake KV's
+			//---------------------------------------------------------------------------------------------------------
+			"armor_reduction"
+			{
+				"special_bonus_facet_puck_glimmerdrake"							"2 3 4 5"
+			}
+
+			// Whimsicatastrophe KV's
+			//---------------------------------------------------------------------------------------------------------
+			"purge"
+			{
+				"special_bonus_facet_puck_whimsicatastrophe"					"1"
+			}
+
+			// Crystalhide KV's
+			//---------------------------------------------------------------------------------------------------------
+			"fears"
+			{
+				"special_bonus_facet_puck_crystalhide"							"1"
+			}
+
+			// Talent KV's
+			//---------------------------------------------------------------------------------------------------------
+			"disarms"					
+			{
+				"special_bonus_unique_puck_mystical_rift_1"						"1"
+			}
+			"repeats"
+			{
+				"special_bonus_unique_puck_mystical_rift_2"						"1"
+			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
 	//=================================================================================================================
 	// Puck: Phase Shift
 	//=================================================================================================================
-	"puck_phase_shift_ebf"
+	"puck_dimension_shift"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_puck/puck_phase_shift_ebf"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"ScriptFile"					"heroes/hero_puck/puck_dimension_shift"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilitySound"					"Hero_Puck.Phase_Shift"
 		"AbilityTextureName"			"puck_phase_shift"
 		"MaxLevel"						"4"
 		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_puck_phase_shift_1"	"1"
-			"special_bonus_unique_puck_phase_shift_2"	"1"
-		}
-
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.01"
@@ -177,69 +364,110 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"4"
 
+		// Talents
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_puck_dimension_shift_1"							"1"
+			"special_bonus_unique_puck_dimension_shift_2"							"1"
+		}
+
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"0 0 0 0"
-		
+
 		"precache"
 		{
-			"particle"					"particles/status_fx/status_effect_phase_shift.vpcf"
-			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_puck.vsndevts"
+			"particle"					"particles/items_fx/black_king_bar_avatar.vpcf"
 		}
-
+		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"AbilityChannelTime"		"0.5 1.0 1.50 2.0"
-			"duration"					"0.5 1.0 1.50 2.0"
-			
-			"max_hp_regen"				{"special_bonus_unique_puck_phase_shift_1"	"15"}
-			"no_channel"				{"special_bonus_unique_puck_phase_shift_2"	"15"}
+			"AbilityChannelTime"		"1 1.75 2.5 3.25"
+			"duration"					"1 1.75 2.5 3.25"
+
+			// Glimmerdrake KV's
+			//---------------------------------------------------------------------------------------------------------
+			"attacks"
+			{
+				"special_bonus_facet_puck_glimmerdrake"								"1"
+			}
+
+			// Whimsicatastrophe KV's
+			//---------------------------------------------------------------------------------------------------------
+			"cdr"
+			{
+				"special_bonus_facet_puck_whimsicatastrophe"						"50"
+			}
+
+			// Crystalhide KV's
+			//---------------------------------------------------------------------------------------------------------
+			"immunity"
+			{
+				"special_bonus_facet_puck_crystalhide"								"1"
+			}
+
+			// Talent KV's
+			//---------------------------------------------------------------------------------------------------------
+			"hp_regen"
+			{
+				"special_bonus_unique_puck_dimension_shift_1"						"15"
+			}
+			"blooms"
+			{
+				"special_bonus_unique_puck_dimension_shift_2"						"450"
+			}
+			"int_multiplier"
+			{
+				"special_bonus_unique_puck_dimension_shift_2"						"10"
+			}
+
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
 	//=================================================================================================================
 	// Puck: Dream Coil
 	//=================================================================================================================
-	"puck_reverie_snap"
+	"puck_singularity_core"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_puck/puck_reverie_snap"
+		"ScriptFile"					"heroes/hero_puck/puck_singularity_core"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"FightRecapLevel"				"2"
-		"HasScepterUpgrade"				"1"
+		"HasScepterUpgrade"				"0"
 		"AbilitySound"					"Hero_Puck.Dream_Coil"
 		"AbilityTextureName"			"puck_dream_coil"
 		"MaxLevel"						"3"
 		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_puck_reverie_snap_1"	"1"
-			"special_bonus_unique_puck_reverie_snap_2"	"1"
-		}
-
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.1 0.1 0.1"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
+		"AbilityCastRange"				"750"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"70 65 60 55 50 45"
+		"AbilityCooldown"				"60 45 30"
+
+		// Talents
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_puck_singularity_core_1"							"1"
+			"special_bonus_unique_puck_singularity_core_2"							"1"
+		}
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 150 200 250 300 350"
+		"AbilityManaCost"				"100 200 350"
 				
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -247,30 +475,98 @@
 		
 		"precache"
 		{
-			"particle"						"particles/reverie_snap_pull.vpcf"
-			"particle"						"particles/reverie_snap_pull_rope.vpcf"
-			"particle"						"particles/units/heroes/hero_puck/puck_dreamcoil_tether.vpcf"
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_puck.vsndevts"
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
+			"particle"						"particles/units/heroes/hero_techies/techies_blast_off.vpcff"
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
 		}
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
-		{
-			"coil_duration"				"6.0 6.0 6.0"
-			"coil_init_damage_tooltip"	"150 200 250 300 350 400"
-			"coil_break_radius"			"750"
-			"stun_duration"				"1.5"
-			"coil_break_damage"			"150 200 250 300 350 400"
-			"coil_stun_duration"		"1.75 2.0 2.25 2.50 2.75 3.0 3.25"
-			"coil_radius"				"600"						
-			"suck_duration"				"1.0"
-			"suck_radius"				"4000"
-			"scepter_orbs"				"6"
+		{			
+			// Default KV's
+			//---------------------------------------------------------------------------------------------------------
+			"coil_radius"															
+			{
+				"value"																"600"
+				"special_bonus_facet_puck_crystalhide"								"+600"
+				"special_bonus_unique_puck_singularity_core_1"						"x2"
+			}
+			"coil_duration"															
+			{
+				"value"																"5.0 7.5 10.0"
+				"special_bonus_unique_puck_singularity_core_1"						"x2"
+			}
+			"coil_init_damage_tooltip"							
+			{
+				"value"																"85 185 335"
+				"CalculateSpellDamageTooltip"										"1"
+				"hero_levelup"														"+13"
+				"special_bonus_unique_puck_singularity_core_1"						"x2"
+			}
+			"coil_init_stun_duration"				
+			{
+				"value"																"1.5"
+				"special_bonus_facet_puck_whimsicatastrophe"						"=0.5"
+				"is_debuff_duration"												"1"
+				"special_bonus_unique_puck_singularity_core_1"						"x2"
+			}
+
+			"coil_break_radius"														
+			{
+				"value"																"750"
+				"special_bonus_facet_puck_crystalhide"								"+600"
+			}
+			"coil_break_damage"			
+			{
+				"value"																"85 185 335"
+				"special_bonus_facet_puck_whimsicatastrophe"						"+50%"
+				"CalculateSpellDamageTooltip"										"1"
+				"hero_levelup"														"+13"
+				"special_bonus_unique_puck_singularity_core_1"						"x2"
+			}
+			"coil_stun_duration"					
+			{
+				"value"																"1.75 2.50 3.25"
+				"special_bonus_facet_puck_whimsicatastrophe"						"=1.5"
+				"is_debuff_duration"												"1"
+				"special_bonus_unique_puck_singularity_core_1"						"x2"
+			}	
 			
-			"coil_attack_rate"			{"special_bonus_unique_puck_reverie_snap_1"	"0.75"}
-			"damage_immunity"			{"special_bonus_unique_puck_reverie_snap_2"	"1"}
+			// Glimmerdrake KV's
+			//---------------------------------------------------------------------------------------------------------
+			"auto_attack"
+			{
+				"special_bonus_facet_puck_glimmerdrake"								"1"
+			}
+
+			// Whimsicatastrophe KV's
+			//---------------------------------------------------------------------------------------------------------
+			"rapid_break"
+			{
+				"special_bonus_facet_puck_whimsicatastrophe"						"1"
+			}
+
+			// Crystalhide KV's
+			//---------------------------------------------------------------------------------------------------------
+			"no_target"
+			{
+				"special_bonus_facet_puck_crystalhide"								"1"
+			}
+			"dmg_reduction"
+			{
+				"special_bonus_facet_puck_crystalhide"								"50 60 70"
+			}
+
+			// Talent KV's
+			//---------------------------------------------------------------------------------------------------------
+			"explodes"
+			{
+				"special_bonus_unique_puck_singularity_core_2"						"1"
+			}
+			"int_multiplier"
+			{
+				"special_bonus_unique_puck_singularity_core_2"						"30"
+			}
 		}
 	}
 }

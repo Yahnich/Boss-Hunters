@@ -1864,20 +1864,21 @@
 	"npc_dota_hero_puck"
 	{
 		"override_hero"					"npc_dota_hero_puck"
-		"Ability1"						"puck_illusory_orb_ebf"
-		"Ability2"						"puck_waning_rift_ebf"
-		"Ability3"						"puck_phase_shift_ebf"
-		"Ability4"						"puck_ethereal_jaunt_ebf"
-		"Ability6"						"puck_reverie_snap"
+		"Ability1"						"puck_faerie_orb"
+		"Ability2"						"puck_mystical_rift"
+		"Ability3"						"puck_dimension_shift"
+		"Ability4"						"puck_wander"
+		"Ability5"						"puck_trickster"
+		"Ability6"						"puck_singularity_core"
 		
-		"Ability10"						"special_bonus_unique_puck_illusory_orb_1"
-		"Ability11"						"special_bonus_unique_puck_illusory_orb_2"
-		"Ability12"						"special_bonus_unique_puck_waning_rift_1"
-		"Ability13"						"special_bonus_unique_puck_waning_rift_2"
-		"Ability14"						"special_bonus_unique_puck_phase_shift_1"
-		"Ability15"						"special_bonus_unique_puck_phase_shift_2"
-		"Ability16"						"special_bonus_unique_puck_reverie_snap_1"
-		"Ability17"						"special_bonus_unique_puck_reverie_snap_2"
+		"Ability10"						"special_bonus_unique_puck_faerie_orb_1"
+		"Ability11"						"special_bonus_unique_puck_faerie_orb_2"
+		"Ability12"						"special_bonus_unique_puck_mystical_rift_1"
+		"Ability13"						"special_bonus_unique_puck_mystical_rift_2"
+		"Ability14"						"special_bonus_unique_puck_dimension_shift_1"
+		"Ability15"						"special_bonus_unique_puck_dimension_shift_2"
+		"Ability16"						"special_bonus_unique_puck_singularity_core_1"
+		"Ability17"						"special_bonus_unique_puck_singularity_core_2"
 		
 		"Masteries"
 		{
@@ -1889,6 +1890,30 @@
 			"EVASION"{"1" "3"} 
 			"THREAT_DOWN"{"3" "2"}
 			"STATUS_AMP"{"1" "2"}
+		}
+		"Facets"
+		{
+			"puck_jostling_rift"		{"Deprecated"		"1"}
+			"puck_curveball"			{"Deprecated"		"1"}
+
+			"puck_glimmerdrake"
+			{
+				"Icon"					"damage"
+				"Color"					"Red"
+				"GradientID"			"2"
+			}
+			"puck_whimsicatastrophe"
+			{
+				"Icon"					"nuke"
+				"Color"					"Blue"
+				"GradientID"			"2"
+			}
+			"puck_crystalhide"
+			{
+				"Icon"					"armor"
+				"Color"					"Green"
+				"GradientID"			"1"
+			}
 		}
 	}
 	//=================================================================================================================
