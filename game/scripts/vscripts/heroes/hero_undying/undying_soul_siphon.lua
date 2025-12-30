@@ -61,10 +61,10 @@ function undying_soul_siphon:OnSpellStart()
 	local ripFX
 	if target:IsSameTeam(caster) then
 		EmitSoundOn("Hero_Undying.SoulRip.Ally", target)
-		ripFX = "particles/units/heroes/hero_undying/undying_soul_siphon_heal.vpcf"
+		ripFX = "particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf"
 	else
 		EmitSoundOn("Hero_Undying.SoulRip.Enemy", target)
-		ripFX = "particles/units/heroes/hero_undying/undying_soul_siphon_damage.vpcf"
+		ripFX = "particles/units/heroes/hero_undying/undying_soul_rip_damage.vpcf"
 	end
 	
 	local flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_REFLECTION
