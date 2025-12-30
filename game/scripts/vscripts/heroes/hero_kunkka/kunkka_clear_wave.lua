@@ -42,6 +42,8 @@ modifier_kunkka_clear_wave_active = class({})
 LinkLuaModifier("modifier_kunkka_clear_wave_active", "heroes/hero_kunkka/kunkka_clear_wave", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_kunkka_clear_wave_active:OnCreated()
+	self.damage_bonus = self:GetSpecialValueFor("damage_bonus")
+	
 	self.cleave_damage = self:GetSpecialValueFor("cleave_damage") / 100
 	self.cleave_ending_width = self:GetSpecialValueFor("cleave_ending_width")
 	self.cleave_distance = self:GetSpecialValueFor("cleave_distance")
@@ -73,7 +75,7 @@ function modifier_kunkka_clear_wave_active:DeclareFunctions()
 end
 
 function modifier_kunkka_clear_wave_active:GetModifierBaseAttack_BonusDamage()
-    return self.damage
+    return self.damage_bonus
 end
 
 function modifier_kunkka_clear_wave_active:OnAttackLanded(params)

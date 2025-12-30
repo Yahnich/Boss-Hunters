@@ -11,9 +11,8 @@
 		"ScriptFile"					"heroes/hero_puck/puck_trickster.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"puck_trickster"
-		"MaxLevel"						"4"
+		"MaxLevel"						"1"
 		"Innate"						"1"
-		"DependentOnAbility"			"puck_singularity_core"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -23,8 +22,8 @@
 			//---------------------------------------------------------------------------------------------------------
 			"base_restore"											
 			{
-				"value"															"30 60 90 120"
-				"hero_levelup"													"+4"
+				"value"															"30"
+				"hero_levelup"													"+5"
 			}
 			"percent_restore"										
 			{
@@ -36,14 +35,16 @@
 			//---------------------------------------------------------------------------------------------------------
 			"bonus_magic_damage"
 			{
-				"special_bonus_facet_puck_glimmerdrake"							"25 50 75 100"
+				"special_bonus_facet_puck_glimmerdrake"							"25"
+				"hero_levelup"													"+4"
 			}
 
 			// Whimsicatastrophe KV's
 			//---------------------------------------------------------------------------------------------------------
 			"bonus_debuff_duration"
 			{
-				"special_bonus_facet_puck_whimsicatastrophe"					"10 15 20 25"
+				"special_bonus_facet_puck_whimsicatastrophe"					"10"
+				"hero_levelup"													"+0.75"
 			}
 
 			// Crystalhide KV's
@@ -134,11 +135,8 @@
 			//---------------------------------------------------------------------------------------------------------
 			"pulse_radius"
 			{
-				"special_bonus_facet_puck_whimsicatastrophe"		
-				{
-					"value"														"450"
-					"affected_by_aoe_increase"									"1"
-				}
+				"special_bonus_facet_puck_whimsicatastrophe"					"450"
+				"affected_by_aoe_increase"										"1"
 			}
 			"pulse_interval"
 			{
@@ -232,6 +230,7 @@
 			"heal_amount"
 			{
 				"special_bonus_facet_puck_crystalhide"							"200 300 400 500"
+				"hero_levelup"													"+12"
 			}
 		}
 	}

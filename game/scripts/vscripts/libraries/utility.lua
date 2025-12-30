@@ -293,12 +293,14 @@ function CreateModifierThinker( modifierCaster, modifierAbility, modifierName, m
 	kv.Duration = nil
 	kv.original_duration = duration
 	kv.duration = duration
+	local params = {caster = modifierCaster, target = self, duration = duration, ability = modifierAbility, modifier_name = modifierName}
 	if duration ~= -1 and self and IsEntitySafe( modifierCaster ) and not kv.ignoreStatusAmp then
-		local params = {caster = modifierCaster, target = self, duration = duration, ability = modifierAbility, modifier_name = modifierName}
 		duration = duration * modifierCaster:GetStatusAmplification( params )
-		kv.duration = duration
 	end
-	return oldCreateModifierThinker( modifierCaster,  modifierAbility, modifierName, kv, thinkerPosition, teamNumber, blockPathing )
+	kv.duration = duration
+	params.duration = duration
+	local thinker = oldCreateModifierThinker( modifierCaster,  modifierAbility, modifierName, kv, thinkerPosition, teamNumber, blockPathing )
+	return thinker
 end
 
 if not CDOTA_BaseNPC.oldAddNewModifier then
@@ -312,15 +314,31 @@ function CDOTA_BaseNPC:AddNewModifier(modifierCaster, modifierAbility, modifierN
 	kv.Duration = nil
 	kv.original_duration = duration
 	kv.duration = duration
+	local params = {caster = modifierCaster, target = self, duration = duration, ability = modifierAbility, modifier_name = modifierName}
 	if duration ~= -1 and self and IsEntitySafe( modifierCaster ) and not kv.ignoreStatusAmp then
-		local params = {caster = modifierCaster, target = self, duration = duration, ability = modifierAbility, modifier_name = modifierName}
 		duration = duration * modifierCaster:GetStatusAmplification( params )
 		if self:GetTeam() ~= modifierCaster:GetTeam() then
 			duration = duration * self:GetStatusResistance( params )
 		end
-		kv.duration = duration
 	end
-	return self:oldAddNewModifier( modifierCaster,  modifierAbility, modifierName, kv )
+	kv.duration = duration
+	params.duration = duration
+	local modifier = self:oldAddNewModifier( modifierCaster,  modifierAbility, modifierName, kv )
+	params.modifier = modifier
+	for _, modifier in ipairs( modifierCaster:FindAllModifiers() ) do
+		if modifier.OnModifierApplied then
+			modifier:OnModifierApplied( params )
+		end
+	end
+	for _, modifier in ipairs( self:FindAllModifiers() ) do
+		if modifier.OnModifierApplied then
+			modifier:OnModifierApplied( params )
+		end
+	end
+	return modifier
+end
+
+function CDOTA_BaseNPC:TriggerModifierApplication( tParams )
 end
 
 function CDOTA_BaseNPC:CreateDummy(position, duration)
@@ -1170,6 +1188,17 @@ function CDOTA_BaseNPC:ShowPopup( data )
     ParticleManager:SetParticleControl( particle, 1, Vector( presymbol, number, postsymbol ) )
     ParticleManager:SetParticleControl( particle, 2, Vector( duration, digits, 0 ) )
     ParticleManager:SetParticleControl( particle, 3, color )
+end
+
+function CDOTA_BaseNPC:FindAllModifiersByCaster( caster )
+	local modifiers = self:FindAllModifiers()
+	local returnTable = {}
+	for _,modifier in ipairs(modifiers) do
+		if modifier:GetCaster() == caster then
+			table.insert(returnTable, modifier)
+		end
+	end
+	return returnTable
 end
 
 function CDOTA_BaseNPC:FindAllModifiersByAbility(abilityname)

@@ -73,8 +73,8 @@
 		"Ability11"					"special_bonus_unique_alchemist_volatile_brew_2"
 		"Ability12"					"special_bonus_unique_alchemist_acid_bomb_1"
 		"Ability13"					"special_bonus_unique_alchemist_acid_bomb_2"
-		"Ability14"					"special_bonus_unique_alchemist_alchemist_corrosive_arsenal_1"
-		"Ability15"					"special_bonus_unique_alchemist_alchemist_corrosive_arsenal_2"
+		"Ability14"					"special_bonus_unique_alchemist_corrosive_arsenal_1"
+		"Ability15"					"special_bonus_unique_alchemist_corrosive_arsenal_2"
 		"Ability16"					"special_bonus_unique_alchemist_rage_injector_1"
 		"Ability17"					"special_bonus_unique_alchemist_rage_injector_2"
 		
@@ -85,14 +85,14 @@
 			"MANA"{"3" "4"}
 			"MANA_REGEN"{"3" "3"}
 			"SPELL_AMP"{"3" "1"}
-			"ATTACK_DAMAGE"{"3" "3"}
-			"ARMOR"{"3" "3"}
-			"MAGIC_RESIST"{"3" "3"}
-			"AREA_DAMAGE"{"3" "1"}
+			"ATTACK_DAMAGE"{"2" "3"}
+			"ARMOR"{"2" "3"}
+			"MAGIC_RESIST"{"2" "3"}
+			"AREA_DAMAGE"{"1" "1"}
 			"MOVESPEED"{"1" "3"}
 			"THREAT_AMP"{"3" "1"}
 			"THREAT_DOWN"{"3" "1"}
-			"ALL_STATS"{"3" "2"}
+			"ALL_STATS"{"1" "2"}
 		}
 		
 		"Facets"

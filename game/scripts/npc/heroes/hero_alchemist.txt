@@ -18,12 +18,29 @@
 			"monster_materia"			"3"
 			"boss_materia"				"6"
 			"max_materia"				"30 40 50 60"
-			"materia_status_resist"		"1"
+			"round_end_conversion"		"50"
+			"materia_death_loss"		"50"
+			"materia_to_gold"			"2"
+			"materia_status_amp"		"1"
 			
-			"panacea_heal"				{"special_bonus_facet_alchemist_panacea"		"4"}
-			"panacea_damage"			{"special_bonus_facet_alchemist_panacea"		"4"}
-			"bonus_damage"				{"special_bonus_facet_alchemist_alkahest"		"1"}
-			"attack_speed"				{"special_bonus_facet_alchemist_alkahest"		"1"}
+			"panacea_heal"
+			{
+				"special_bonus_facet_alchemist_panacea"
+				{
+					"value"									"4"
+					"hero_levelup"							"0.4"
+				}
+			}
+			"panacea_damage"
+			{
+				"special_bonus_facet_alchemist_panacea"
+				{
+					"value"									"4"
+					"hero_levelup"							"0.4"
+				}
+			}
+			"alkahest_potency"			{"special_bonus_facet_alchemist_alkahest"		"1"}
+			"alkahest_cdr"				{"special_bonus_facet_alchemist_alkahest"		"1"}
 	    }
 	}
 	//=================================================================================================================
@@ -36,8 +53,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_alchemist/alchemist_acid_bomb"
 		"AbilityTextureName"			"alchemist_acid_spray"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
@@ -50,31 +66,15 @@
 			"special_bonus_unique_alchemist_acid_bomb_1"	"1"
 			"special_bonus_unique_alchemist_acid_bomb_2"	"1"
 		}
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.2"
-		"AbilityCastRange"				"900"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"22.0"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"130 140 150 160"
-		
-		"precache"
-		{
-			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_bomb_cast.vpcf"
-			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_bomb.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
-		}
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
+			"AbilityCastPoint"				"0.2"
+			"AbilityCastRange"				"900"
+			"AbilityCooldown"				"22.0"
+			"AbilityManaCost"				"130 140 150 160"
 			"radius"
 			{
 				"value"											"375 450 500 575"
@@ -83,14 +83,16 @@
 			"duration"											"15"
 			"damage"
 			{
-				"value"											"100 150 200 250"
+				"value"											"50 75 100 125"
 				"special_bonus_unique_alchemist_acid_bomb_2"	"+40"
+				"hero_levelup"									"+3"
 				"CalculateSpellDamageTooltip"					"1"
 			}
 			"damage_per_sec"
 			{
 				"value"											"20 35 50 65"
 				"special_bonus_unique_alchemist_acid_bomb_2"	"+40"
+				"hero_levelup"									"+2"
 				"CalculateSpellDamageTooltip"					"1"
 			}
 			"linger_duration"
@@ -99,12 +101,16 @@
 				"special_bonus_unique_alchemist_acid_bomb_2"	"+2"
 			}
 			"armor_reduction"									"4 5 6 7"
-			"armor_loss_per_sec"								{"special_bonus_unique_alchemist_acid_bomb_1"	"-1"}
+			"armor_loss_per_sec"								{"special_bonus_unique_alchemist_acid_bomb_1"	"1"}
 			"tick_rate"											"1.0"
 			
 			"panacea_heal"										{"special_bonus_facet_alchemist_panacea"	"50"}
 			"panacea_armor"										{"special_bonus_facet_alchemist_panacea"	"100"}
-			"alkahest_duration"									{"special_bonus_facet_alchemist_alkahest"	"6"}
+			"alkahest_duration"
+			{
+				"special_bonus_facet_alchemist_alkahest"		"6"
+				"special_bonus_unique_alchemist_acid_bomb_2"	"+2"
+			}
 		}
 	}
 	//=================================================================================================================
@@ -133,83 +139,77 @@
 			"special_bonus_unique_alchemist_volatile_brew_1"	"1"
 			"special_bonus_unique_alchemist_volatile_brew_2"	"1"
 		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"775" // for visualization on hover
-		"AbilityCastPoint"				"0.0"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"90 100 110 120"
+		// precache
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
+			"particle"	"particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_projectile.vpcf"
+			"particle"	"particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_timer.vpcf"
+			"particle"	"particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_gold_lvl2.vpcf"
+		}
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
+			"AbilityCooldown"										"16"
+			"AbilityManaCost"										"90 100 110 120"
+			"AbilityCastRange"										"775"
+			"AbilityCastPoint"										"0.0"
 			"brew_time"
 			{
-				"value"										"5.0"
+				"value"												"5.0"
 				"special_bonus_unique_alchemist_volatile_brew_1"	"-2.5"
-				"is_buff_duration"							"1"
+				"is_buff_duration"									"1"
 			}
 			"brew_explosion"
 			{
-				"value"										"5.5"
-				"is_buff_duration"							"1"
+				"value"												"5.5"
+				"is_buff_duration"									"1"
 			}
 			"min_stun"
 			{
-				"value"										"0.25"
-				"is_debuff_duration"						"1"
+				"value"												"0.25"
+				"is_debuff_duration"								"1"
 			}
 			"max_stun"
 			{
-				"value"										"1.7 2.2 2.7 3.2"
-				"is_debuff_duration"						"1"
+				"value"												"1.7 2.2 2.7 3.2"
+				"is_debuff_duration"								"1"
 			}
 			"min_damage"
 			{
-				"value"										"0"
-				"CalculateSpellDamageTooltip"				"1"
+				"value"												"0"
+				"CalculateSpellDamageTooltip"						"1"
 			}
 			"max_damage"				
 			{ 
-				"value"										"180 230 310 380"
+				"value"												"180 230 310 380"
+				"hero_levelup"										"+8"
 				"special_bonus_unique_alchemist_volatile_brew_2"	"+50%"
-				"CalculateSpellDamageTooltip"				"1"
+				"CalculateSpellDamageTooltip"						"1"
 			}
 			"radius"
 			{
-				"value"										"350"
+				"value"												"350"
 				"special_bonus_unique_alchemist_volatile_brew_2"	"+50"
-				"affected_by_aoe_increase"					"1"
+				"affected_by_aoe_increase"							"1"
 			}
 			"barrier"
 			{
-				"special_bonus_facet_alchemist_panacea"		"100"
-				"CalculateSpellHealTooltip"					"1"
+				"special_bonus_facet_alchemist_panacea"				"100"
+				"CalculateSpellHealTooltip"							"1"
 			}
-			"bonus_attack_speed"							{"special_bonus_facet_alchemist_panacea"	"50 75 100 125"}
+			"bonus_attack_speed"									{"special_bonus_facet_alchemist_panacea"	"50 75 100 125"}
 			"buff_duration"
 			{
-				"special_bonus_facet_alchemist_panacea"		"2"
-				"is_buff_duration"							"1"
+				"special_bonus_facet_alchemist_panacea"				"2"
+				"is_buff_duration"									"1"
 			}
-			"bonus_physical_damage"							{"special_bonus_facet_alchemist_alkahest"	"18 24 30 36"}
-			"freezes_cooldowns"								{"special_bonus_facet_alchemist_alkahest"	"1"}
+			"bonus_physical_damage"									{"special_bonus_facet_alchemist_alkahest"	"18 24 30 36"}
+			"freezes_cooldowns"										{"special_bonus_facet_alchemist_alkahest"	"1"}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
-			"particle"	"particles/econ/items/pugna/pugna_ward_golden_nether_lord/pugna_gold_ambient.vpcf"
-			"particle"	"particles/econ/items/necrolyte/necrophos_sullen_gold/necro_sullen_pulse_enemy_explosion_gold.vpcf"
-		}
 	}
 	//=================================================================================================================
 	// Alchemist: Corrosive Weaponry
@@ -244,8 +244,8 @@
 				"value"							"1.25 1.5 1.75 2"
 				"special_bonus_unique_alchemist_corrosive_arsenal_1"	"+1"
 			}
-			"stacks_per_attack"				"1"
-			"stacks_per_second"				"3"
+			"stacks_per_attack"				"2"
+			"stacks_per_second"				"1"
 			
 			"dps_per_stack"					{"special_bonus_unique_alchemist_corrosive_arsenal_2"	"10"}
 			
@@ -309,22 +309,36 @@
 				"value"												"-0.2 -0.3 -0.4"
 				"special_bonus_unique_alchemist_rage_injector_2"	"-0.3"
 			}
-			"bonus_hp"												"800 1600 2400"
-			"bonus_hp_per_materia"									"25 50 75"
+			"bonus_hp"
+			{
+				"value"												"465 1265 2065"
+				"hero_levelup"										"+67"
+			}
+			"bonus_hp_per_materia"
+			{
+				"value"												"15 40 65"
+				"hero_levelup"										"+2"
+			}
 			"bonus_health_regen"
 			{
-				"value"												"16 48 80"
+				"value"												"47.5 77.5 107.5"
+				"hero_levelup"										"+2.5"
 				"special_bonus_unique_alchemist_rage_injector_1"	"+100%"
 			}
 			"bonus_health_regen_per_materia"
 			{
-				"value"												"0.5 0.75 1.0"
+				"value"												"0.65 0.9 1.15"
+				"hero_levelup"										"+0.02"
 				"special_bonus_unique_alchemist_rage_injector_1"	"+100%"
 			}
-			"bonus_movespeed"										"50 75 100"
+			"bonus_movespeed"										"20 30 40"
 			
 			"bonus_armor_per_materia"								{"special_bonus_facet_alchemist_panacea"	"0.2"}
-			"bonus_damage_per_materia"								{"special_bonus_facet_alchemist_alkahest"	"2"}
+			"bonus_damage_per_materia"
+			{
+				"special_bonus_facet_alchemist_alkahest"			"1"
+				"hero_levelup"										"+0.2"
+			}
 		}
 	}
 }

@@ -223,8 +223,8 @@
 			}
 			"damage_bonus"
 			{
-				"special_bonus_facet_kunkka_privateer"						"5 50 95 140"
-				"hero_levelup"                          					"+6"
+				"value"														"5 50 95 140"
+				"hero_levelup"                          					"+4"
 				"CalculateAttackDamageTooltip"								"1"
 			}
 			"cleave_damage"				
