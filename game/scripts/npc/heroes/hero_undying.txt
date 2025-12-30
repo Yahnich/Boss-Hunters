@@ -78,10 +78,10 @@
 		
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_undying/undying_devour_life.vpcf"
-			"particle"					"particles/units/heroes/hero_undying/undying_devour_life_strength_buff.vpcf"
-			"particle"					"particles/units/heroes/hero_undying/undying_devour_life_strength_xfer.vpcf"
-			"particle"					"particles/units/heroes/hero_undying/undying_devour_life_fakeprojectile_glow.vpcf"
+			"particle"					"particles/units/heroes/hero_undying/undying_decay.vpcf"
+			"particle"					"particles/units/heroes/hero_undying/undying_decay_strength_buff.vpcf"
+			"particle"					"particles/units/heroes/hero_undying/undying_decay_strength_xfer.vpcf"
+			"particle"					"particles/units/heroes/hero_undying/undying_decay_fakeprojectile_glow.vpcf"
 		}
 			
 		// Special
@@ -121,7 +121,7 @@
 		"precache"
 		{
 			"soundfile"             "sounds/weapons/hero/undying/decay_cast.vsnd"
-			"particle"              "particles/units/heroes/hero_undying/undying_devour_life.vpcf"       // Attach for core
+			"particle"              "particles/units/heroes/hero_undying/undying_decay.vpcf"       // Attach for core
 		}
 	}
 	//=================================================================================================================

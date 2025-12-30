@@ -7130,8 +7130,8 @@
 		
 		"DOTA_Tooltip_ability_undying_devour_life"																"Devour Life"
 		"DOTA_Tooltip_ability_undying_devour_life_Description"													"Damages all units in a radius and Undying's strength is increased by %str_per_boss%/%str_per_monster%/%str_per_mob% for each Boss/Monster/Minion hit. Units damaged by Devour Life lose maximum health equal to the damage dealt."
-		"DOTA_Tooltip_ability_undying_devour_life_Facet_undying_legion"											"Decay base damage increased to 120/200/280/360 and enemies killed while affected by Decay spawn a Tombstone zombie."
-		"DOTA_Tooltip_ability_undying_devour_life_Facet_undying_undying"										"Decay has 100% Lifesteal and bonus strength gained is increased by 4/2/0.5 for Bosses/Monsters/Minions."
+		"DOTA_Tooltip_ability_undying_devour_life_Facet_undying_legion"											"Decay base damage increased and non-Minions killed while affected by Decay spawn a Tombstone zombie."
+		"DOTA_Tooltip_ability_undying_devour_life_Facet_undying_undying"										"Decay has %dmg_lifesteal%%% Lifesteal and bonus strength gained is increased."
 		"DOTA_Tooltip_ability_undying_devour_life_Lore"															"The strength of the living is simply borrowed from the strength of the dead."
 		"DOTA_Tooltip_ability_undying_devour_life_radius"														"RADIUS:"
 		"DOTA_Tooltip_ability_undying_devour_life_duration"														"DURATION:"

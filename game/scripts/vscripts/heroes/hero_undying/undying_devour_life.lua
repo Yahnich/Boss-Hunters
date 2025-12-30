@@ -27,11 +27,11 @@ function undying_devour_life:Decay( position, radiusMod )
 			self:DealDamage( caster, enemy, damage )
 			local debuff = enemy:AddNewModifier( caster, self, "modifier_undying_devour_life_debuff", {} )
 			if debuff then debuff:SetStackCount( debuff:GetStackCount() + str ) end
-			ParticleManager:FireRopeParticle("particles/units/heroes/hero_undying/undying_devour_life_strength_xfer.vpcf", PATTACH_POINT_FOLLOW, enemy, caster)
+			ParticleManager:FireRopeParticle("particles/units/heroes/hero_undying/undying_decay_strength_xfer.vpcf", PATTACH_POINT_FOLLOW, enemy, caster)
 		end
 	end
 	
-	ParticleManager:FireParticle("particles/units/heroes/hero_undying/undying_devour_life.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(radius,0,0)})
+	ParticleManager:FireParticle("particles/units/heroes/hero_undying/undying_decay.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(radius,0,0)})
 	EmitSoundOnLocationWithCaster( position, "Hero_Undying.Decay.Cast", caster )
 end
 
@@ -72,7 +72,7 @@ function modifier_undying_devour_life:GetModifierAttackRangeBonus()
 end
 
 function modifier_undying_devour_life:GetEffectName()
-	return "particles/units/heroes/hero_undying/undying_devour_life_strength_buff.vpcf"
+	return "particles/units/heroes/hero_undying/undying_decay_strength_buff.vpcf"
 end
 
 function modifier_undying_devour_life:IsPurgable()
