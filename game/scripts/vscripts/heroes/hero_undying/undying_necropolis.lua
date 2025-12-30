@@ -1,11 +1,11 @@
-undying_tombstone_bh = class({})
+undying_necropolis = class({})
 
-function undying_tombstone_bh:OnSpellStart()
+function undying_necropolis:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
 	
 	if self:GetSpecialValueFor("decay_chance") > 0 then
-		self.decay = caster:FindAbilityByName( "undying_decay_bh" )
+		self.decay = caster:FindAbilityByName( "undying_devour_life" )
 		if not self.decay:IsTrained() then
 			self.decay = nil
 		end
@@ -13,30 +13,30 @@ function undying_tombstone_bh:OnSpellStart()
 	
 	local duration = self:GetSpecialValueFor("tombstone_duration")
 	local tombstone = self:GetCaster():CreateSummon("npc_dota_unit_tombstone4", position, duration, false)
-	tombstone:AddNewModifier(caster, self, "undying_tombstone_bh_tombstone", {duration = duration})
+	tombstone:AddNewModifier(caster, self, "undying_necropolis_tombstone", {duration = duration})
 	tombstone:SetCoreHealth( self:GetSpecialValueFor("tombstone_hp") )
 end
 
-function undying_tombstone_bh:SummonZombie( unit, duration )
+function undying_necropolis:SummonZombie( unit, duration )
 	local caster = self:GetCaster()
 	local fDur = duration or self:GetSpecialValueFor("tombstone_duration")
-	local zombie = caster:CreateSummon("npc_dota_unit_undying_tombstone_zombie", unit:GetAbsOrigin(), duration, false)
+	local zombie = caster:CreateSummon("npc_dota_unit_undying_necropolis_zombie", unit:GetAbsOrigin(), duration, false)
 	if RandomInt( 1, 100 ) < 50 then
 		zombie:SetOriginalModel( "models/heroes/undying/undying_minion_torso.vmdl" )
 		zombie:SetModel( "models/heroes/undying/undying_minion_torso.vmdl" )
 	end
 	zombie:CreatureLevelUp( caster:GetLevel() - 1 )
-	zombie:AddNewModifier(caster, self, "undying_tombstone_bh_zombie", {unit = unit:entindex()})
+	zombie:AddNewModifier(caster, self, "undying_necropolis_zombie", {unit = unit:entindex()})
 	zombie:SetCoreHealth( self:GetSpecialValueFor("zombie_hp") )
 	zombie:SetAverageBaseDamage( caster:GetStrength() * self:GetSpecialValueFor("zombie_atk_dmg") / 100 )
 	return zombie
 end
 
-undying_tombstone_bh_tombstone = class({})
-LinkLuaModifier( "undying_tombstone_bh_tombstone", "heroes/hero_undying/undying_tombstone_bh", LUA_MODIFIER_MOTION_NONE)
+undying_necropolis_tombstone = class({})
+LinkLuaModifier( "undying_necropolis_tombstone", "heroes/hero_undying/undying_necropolis", LUA_MODIFIER_MOTION_NONE)
 
 if IsServer() then
-	function undying_tombstone_bh_tombstone:OnCreated( )
+	function undying_necropolis_tombstone:OnCreated( )
 		self.spawnInterval = self:GetSpecialValueFor("tombstone_spawn_interval")
 		self.spawnRadius = self:GetSpecialValueFor("tombstone_spawn_radius")
 		
@@ -53,7 +53,7 @@ if IsServer() then
 		self:OnIntervalThink( )
 	end
 	
-	function undying_tombstone_bh_tombstone:OnIntervalThink()
+	function undying_necropolis_tombstone:OnIntervalThink()
 		local caster = self:GetCaster()
 		local tombstone = self:GetParent()
 		local ability = self:GetAbility()
@@ -67,7 +67,7 @@ if IsServer() then
 		tombstone:ModifyThreat( 5 * zombies, true )
 	end
 	
-	function undying_tombstone_bh_tombstone:OnDestroy()
+	function undying_necropolis_tombstone:OnDestroy()
 		for _, zombie in ipairs( self.tombstoneZombies ) do
 			if zombie and not zombie:IsNull() and zombie:IsAlive() then
 				zombie:ForceKill( false )
@@ -76,11 +76,11 @@ if IsServer() then
 	end
 end
 
-function undying_tombstone_bh_tombstone:DeclareFunctions()
+function undying_necropolis_tombstone:DeclareFunctions()
 	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
 end
 
-function undying_tombstone_bh_tombstone:GetModifierIncomingDamage_Percentage(params)
+function undying_necropolis_tombstone:GetModifierIncomingDamage_Percentage(params)
 	local parent = self:GetParent()
 	if params.inflictor then
 		return -999
@@ -97,7 +97,7 @@ function undying_tombstone_bh_tombstone:GetModifierIncomingDamage_Percentage(par
 	end
 end
 
-function undying_tombstone_bh_tombstone:GetModifierHealAmplify_Percentage( params )
+function undying_necropolis_tombstone:GetModifierHealAmplify_Percentage( params )
 	if not params.ability then
 		return -999
 	else
@@ -110,77 +110,77 @@ function undying_tombstone_bh_tombstone:GetModifierHealAmplify_Percentage( param
 end
 
 
-function undying_tombstone_bh_tombstone:IsAura()
+function undying_necropolis_tombstone:IsAura()
 	return self.talent2
 end
 
-function undying_tombstone_bh_tombstone:GetModifierAura()
-	return "undying_tombstone_bh_tombstone_talent"
+function undying_necropolis_tombstone:GetModifierAura()
+	return "undying_necropolis_tombstone_talent"
 end
 
-function undying_tombstone_bh_tombstone:GetAuraRadius()
+function undying_necropolis_tombstone:GetAuraRadius()
 	return self.talent2Radius
 end
 
-function undying_tombstone_bh_tombstone:GetAuraDuration()
+function undying_necropolis_tombstone:GetAuraDuration()
 	return 0.5
 end
 
-function undying_tombstone_bh_tombstone:GetAuraSearchTeam()    
+function undying_necropolis_tombstone:GetAuraSearchTeam()    
 	return DOTA_UNIT_TARGET_TEAM_ENEMY
 end
 
-function undying_tombstone_bh_tombstone:GetAuraSearchType()    
+function undying_necropolis_tombstone:GetAuraSearchType()    
 	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
 end
 
-function undying_tombstone_bh_tombstone:GetAuraSearchFlags()    
+function undying_necropolis_tombstone:GetAuraSearchFlags()    
 	return DOTA_UNIT_TARGET_FLAG_NONE
 end
 
-function undying_tombstone_bh_tombstone:GetEffectName()
-	if self:GetCaster():HasTalent("special_bonus_unique_undying_tombstone_2") then
+function undying_necropolis_tombstone:GetEffectName()
+	if self:GetCaster():HasTalent("special_bonus_unique_undying_necropolis_2") then
 		return "particles/econ/items/necrolyte/necro_ti9_immortal/necro_ti9_immortal_shroud.vpcf"
 	end
 end
 
-function undying_tombstone_bh_tombstone:IsHidden()
+function undying_necropolis_tombstone:IsHidden()
 	return true
 end
 
-function undying_tombstone_bh_tombstone:IsPurgable()
+function undying_necropolis_tombstone:IsPurgable()
 	return false
 end
 
-undying_tombstone_bh_tombstone_talent = class({})
-LinkLuaModifier( "undying_tombstone_bh_tombstone_talent", "heroes/hero_undying/undying_tombstone_bh", LUA_MODIFIER_MOTION_NONE)
+undying_necropolis_tombstone_talent = class({})
+LinkLuaModifier( "undying_necropolis_tombstone_talent", "heroes/hero_undying/undying_necropolis", LUA_MODIFIER_MOTION_NONE)
 
-function undying_tombstone_bh_tombstone_talent:OnCreated()
+function undying_necropolis_tombstone_talent:OnCreated()
 	self.talent2Slow = self:GetSpecialValueFor( "fog_slow" )
 	self.talent2Blind = self:GetSpecialValueFor( "fog_blind" )
 end
 
-function undying_tombstone_bh_tombstone_talent:DeclareFunctions()
+function undying_necropolis_tombstone_talent:DeclareFunctions()
 	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_MISS_PERCENTAGE }
 end
 
-function undying_tombstone_bh_tombstone_talent:GetModifierMoveSpeedBonus_Percentage(params)
+function undying_necropolis_tombstone_talent:GetModifierMoveSpeedBonus_Percentage(params)
 	return -self.talent2Slow
 end
 
-function undying_tombstone_bh_tombstone_talent:GetModifierMiss_Percentage(params)
+function undying_necropolis_tombstone_talent:GetModifierMiss_Percentage(params)
 	return self.talent2Blind
 end
 
-function undying_tombstone_bh_tombstone_talent:GetEffectName()
+function undying_necropolis_tombstone_talent:GetEffectName()
 	return "particles/econ/items/necrolyte/necro_ti9_immortal/necro_ti9_immortal_shroud_debuff.vpcf"
 end
 
-undying_tombstone_bh_zombie = class({})
-LinkLuaModifier( "undying_tombstone_bh_zombie", "heroes/hero_undying/undying_tombstone_bh", LUA_MODIFIER_MOTION_NONE)
+undying_necropolis_zombie = class({})
+LinkLuaModifier( "undying_necropolis_zombie", "heroes/hero_undying/undying_necropolis", LUA_MODIFIER_MOTION_NONE)
 
 if IsServer() then
-	function undying_tombstone_bh_zombie:OnCreated( kv )
+	function undying_necropolis_zombie:OnCreated( kv )
 		self.parent = self:GetParent()
 		self.caster = self:GetCaster()
 		
@@ -193,7 +193,7 @@ if IsServer() then
 		self:OnIntervalThink( )
 	end
 	
-	function undying_tombstone_bh_zombie:OnIntervalThink()
+	function undying_necropolis_zombie:OnIntervalThink()
 		if self.unit then
 			if not self.unit:IsNull() and self.unit:IsAlive() then
 				self.parent:MoveToTargetToAttack( self.unit )
@@ -205,7 +205,7 @@ if IsServer() then
 		end
 	end
 	
-	function undying_tombstone_bh_zombie:OnDestroy( kv )
+	function undying_necropolis_zombie:OnDestroy( kv )
 		local decay = self:GetAbility().decay
 		
 		local chance = self:GetSpecialValueFor("decay_chance")
@@ -216,11 +216,11 @@ if IsServer() then
 	end
 end
 
-function undying_tombstone_bh_zombie:DeclareFunctions()
+function undying_necropolis_zombie:DeclareFunctions()
 	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
 end
 
-function undying_tombstone_bh_zombie:GetModifierIncomingDamage_Percentage(params)
+function undying_necropolis_zombie:GetModifierIncomingDamage_Percentage(params)
 	local parent = self:GetParent()
 	if params.inflictor then
 		return -999
@@ -237,7 +237,7 @@ function undying_tombstone_bh_zombie:GetModifierIncomingDamage_Percentage(params
 	end
 end
 
-function undying_tombstone_bh_zombie:GetModifierHealAmplify_Percentage( params )
+function undying_necropolis_zombie:GetModifierHealAmplify_Percentage( params )
 	if not params.ability then
 		return -999
 	else
@@ -249,10 +249,10 @@ function undying_tombstone_bh_zombie:GetModifierHealAmplify_Percentage( params )
 	end
 end
 
-function undying_tombstone_bh_zombie:IsHidden()
+function undying_necropolis_zombie:IsHidden()
 	return true
 end
 
-function undying_tombstone_bh_zombie:IsPurgable()
+function undying_necropolis_zombie:IsPurgable()
 	return false
 end
