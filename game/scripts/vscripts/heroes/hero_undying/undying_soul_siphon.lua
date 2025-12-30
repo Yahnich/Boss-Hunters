@@ -1,21 +1,21 @@
-undying_soul_rip_bh = class({})
+undying_soul_siphon = class({})
 
-function undying_soul_rip_bh:GetCooldown(iLvl)
+function undying_soul_siphon:GetCooldown(iLvl)
 	local cd = self.BaseClass.GetCooldown(self, iLvl)
-	-- if self:GetCaster():HasTalent("special_bonus_unique_undying_soul_rip_2") then cd = cd - self:GetCaster():FindTalentValue("special_bonus_unique_undying_soul_rip_2") end
+	-- if self:GetCaster():HasTalent("special_bonus_unique_undying_soul_siphon_2") then cd = cd - self:GetCaster():FindTalentValue("special_bonus_unique_undying_soul_siphon_2") end
 	return cd
 end
 
-function undying_soul_rip_bh:OnAbilityPhaseStart()
+function undying_soul_siphon:OnAbilityPhaseStart()
 	EmitSoundOn("Hero_Undying.SoulRip.Cast", self:GetCaster() )
 	return true
 end
 
-function undying_soul_rip_bh:OnAbilityPhaseInterrupted()
+function undying_soul_siphon:OnAbilityPhaseInterrupted()
 	StopSoundOn("Hero_Undying.SoulRip.Cast", self:GetCaster() )
 end
 
-function undying_soul_rip_bh:OnSpellStart()
+function undying_soul_siphon:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
@@ -31,7 +31,7 @@ function undying_soul_rip_bh:OnSpellStart()
 	local talent1Chance = caster:GetSpecialValueFor("zombie_chance")
 	local talent1 = talent1Duration > 0
 	if talent1 then
-		self.tombstone = caster:FindAbilityByName("undying_tombstone_bh")
+		self.tombstone = caster:FindAbilityByName("undying_necropolis")
 		if not self.tombstone or self.tombstone:GetLevel() == 0 then -- disable talent if tombstone isn't leveled
 			talent1 = false
 		end
@@ -61,10 +61,10 @@ function undying_soul_rip_bh:OnSpellStart()
 	local ripFX
 	if target:IsSameTeam(caster) then
 		EmitSoundOn("Hero_Undying.SoulRip.Ally", target)
-		ripFX = "particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf"
+		ripFX = "particles/units/heroes/hero_undying/undying_soul_siphon_heal.vpcf"
 	else
 		EmitSoundOn("Hero_Undying.SoulRip.Enemy", target)
-		ripFX = "particles/units/heroes/hero_undying/undying_soul_rip_damage.vpcf"
+		ripFX = "particles/units/heroes/hero_undying/undying_soul_siphon_damage.vpcf"
 	end
 	
 	local flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_REFLECTION
@@ -117,12 +117,12 @@ function undying_soul_rip_bh:OnSpellStart()
 	if target:IsSameTeam(caster) then
 		target:HealEvent( totalValue, self, caster )
 		if effectDuration > 0 then
-			target:RemoveModifierByName("modifier_undying_soul_rip_bh_talent")
-			target:AddNewModifier(caster, self, "modifier_undying_soul_rip_bh_talent", {duration = effectDuration})
+			target:RemoveModifierByName("modifier_undying_soul_siphon_talent")
+			target:AddNewModifier(caster, self, "modifier_undying_soul_siphon_talent", {duration = effectDuration})
 		end
 	elseif not target:TriggerSpellAbsorb( self ) then 
 		if effectDuration > 0 then
-			target:AddNewModifier(caster, self, "modifier_undying_soul_rip_bh_talent", {duration = effectDuration})
+			target:AddNewModifier(caster, self, "modifier_undying_soul_siphon_talent", {duration = effectDuration})
 		end
 		if strengthDamage > 0 then
 			totalValue = totalValue + caster:GetStrength() * strengthDamage
@@ -132,14 +132,14 @@ function undying_soul_rip_bh:OnSpellStart()
 	end
 end
 
-modifier_undying_soul_rip_bh_talent = class({})
-LinkLuaModifier("modifier_undying_soul_rip_bh_talent", "heroes/hero_undying/undying_soul_rip_bh", LUA_MODIFIER_MOTION_NONE)
+modifier_undying_soul_siphon_talent = class({})
+LinkLuaModifier("modifier_undying_soul_siphon_talent", "heroes/hero_undying/undying_soul_siphon", LUA_MODIFIER_MOTION_NONE)
 
-function modifier_undying_soul_rip_bh_talent:OnCreated()
+function modifier_undying_soul_siphon_talent:OnCreated()
 	self:OnRefresh()
 end
 
-function modifier_undying_soul_rip_bh_talent:OnRefresh()
+function modifier_undying_soul_siphon_talent:OnRefresh()
 	self.as = self:GetSpecialValueFor("bonus_attack_speed")
 	self.str = self:GetCaster():GetStrength() * self:GetSpecialValueFor("strength_share") / 100
 	if not self:GetCaster():IsSameTeam( self:GetParent() ) then
@@ -150,14 +150,14 @@ function modifier_undying_soul_rip_bh_talent:OnRefresh()
 	end
 end
 
-function modifier_undying_soul_rip_bh_talent:DeclareFunctions()
+function modifier_undying_soul_siphon_talent:DeclareFunctions()
 	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_STATS_STRENGTH_BONUS }
 end
 
-function modifier_undying_soul_rip_bh_talent:GetModifierAttackSpeedBonus_Constant()
+function modifier_undying_soul_siphon_talent:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 
-function modifier_undying_soul_rip_bh_talent:GetModifierBonusStats_Strength()
+function modifier_undying_soul_siphon_talent:GetModifierBonusStats_Strength()
 	return self.str
 end
