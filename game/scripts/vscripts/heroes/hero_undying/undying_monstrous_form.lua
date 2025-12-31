@@ -94,7 +94,7 @@ function modifier_undying_monstrous_form:Bonus_ThreatGain()
 end
 
 function modifier_undying_monstrous_form:GetModifierModelChange()
-	return "models/heroes/undying/undying_monstrous_form.vmdl"
+	return "models/heroes/undying/undying_flesh_golem.vmdl"
 end
 
 function modifier_undying_monstrous_form:GetEffectName()
