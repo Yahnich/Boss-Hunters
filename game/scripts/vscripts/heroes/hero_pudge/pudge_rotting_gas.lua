@@ -43,8 +43,8 @@ function modifier_pudge_rot_debuff:OnCreated( kv )
 	self.self_damage = self:GetSpecialValueFor( "self_damage" ) / 100
 	self.max_rot_power = self:GetSpecialValueFor( "max_rot_power" ) / 100
 	
-	self.fear_duration = self:GetSpecialValueFor( "fear" )
-	self.fear_delay = self.fear_duration
+	self.fear_duration = self:GetSpecialValueFor( "fear_duration" )
+	self.fear_delay = self:GetSpecialValueFor( "fear_delay" )
 	self.rot_attack_damage = self:GetSpecialValueFor( "rot_attack_damage" )
 	
 	if IsServer() then
@@ -195,8 +195,9 @@ function modifier_pudge_rot_flesh_carver:OnCreated()
 	self.time_for_decay = self:GetSpecialValueFor("time_for_decay")
 	self.max_bonus_damage = self:GetSpecialValueFor("max_bonus_damage")
 	
-	self.rot_tick = self:GetSpecialValueFor( "tick_rate" )
+	self.rot_tick = 0.1
 	self.stacks_per_tick = math.floor(100 / self.time_for_max_stacks) * self.rot_tick
+	self.decay_per_tick = math.floor(100 / self.time_for_decay) * self.rot_tick
 	
 	if IsServer() then
 		self:StartIntervalThink( self.rot_tick )
@@ -212,7 +213,7 @@ function modifier_pudge_rot_flesh_carver:OnIntervalThink()
 		if self:GetStackCount() <= self.stacks_per_tick then
 			self:Destroy()
 		else
-			self:SetStackCount( self:GetStackCount() - self.stacks_per_tick )
+			self:SetStackCount( self:GetStackCount() - self.decay_per_tick )
 		end
 	end
 end
@@ -237,7 +238,7 @@ function modifier_pudge_rot_rotten_giant:OnCreated()
 	self.max_rot_power = self:GetSpecialValueFor("max_rot_power")
 	self.time_for_decay = self:GetSpecialValueFor("time_for_rot_decay")
 	
-	self.rot_tick = self:GetSpecialValueFor( "tick_rate" )
+	self.rot_tick = 0.1
 	self.stacks_per_tick = math.floor(100 / self.time_for_max_stacks) * self.rot_tick
 	
 	if IsServer() then
@@ -255,11 +256,11 @@ function modifier_pudge_rot_rotten_giant:OnIntervalThink()
 	end
 end
 
-function modifier_pudge_rot_flesh_carver:DeclareFunctions()
+function modifier_pudge_rot_rotten_giant:DeclareFunctions()
 	return {MODIFIER_PROPERTY_TOOLTIP}
 end
 
-function modifier_pudge_rot_flesh_carver:OnTooltip()
+function modifier_pudge_rot_rotten_giant:OnTooltip()
 	return self.max_rot_power * self:GetStackCount() / 100
 end
 

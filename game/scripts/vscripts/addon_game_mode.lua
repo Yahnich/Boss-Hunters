@@ -1116,6 +1116,8 @@ function CHoldoutGameMode:OnHeroPick (event)
 							local abilityToReplace = hero:FindAbilityByName( talentData.ReplaceTalent )
 							local abilityToAdd = hero:AddAbility( talentData.TalentName )
 							
+							print( abilityToAdd, talentData.TalentName )
+							print( abilityToReplace,talentData.ReplaceTalent )
 							if IsEntitySafe( abilityToReplace ) and IsEntitySafe( abilityToAdd ) then
 								local abilityToReplaceIndex = abilityToReplace:GetAbilityIndex()
 								local abilityToAddIndex = abilityToAdd:GetAbilityIndex()

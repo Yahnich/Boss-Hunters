@@ -169,6 +169,7 @@ function TalentManager:ProcessUniqueTalents(userid, event)
 	local talents = hero.heroTalentDataContainer.uniqueTalents
 	local talentEntity = hero:FindAbilityByName(talentName)
 	
+	print( talentEntity )
 	if talentEntity and not talentEntity:IsTrained() and hero:GetTalentPoints() > 0 then
 		-- level talent linked to all abilities
 		for ability, talentTable in pairs( talents ) do

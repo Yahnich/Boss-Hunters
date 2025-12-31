@@ -5518,8 +5518,8 @@
 
 		"DOTA_Tooltip_ability_pudge_rotting_gas"																"Rotting Gas"
 		"DOTA_Tooltip_ability_pudge_rotting_gas_Description"													"A toxic cloud that deals intense damage, slows movement and reduces health restoration--harming not only enemy units but Pudge himself.\nPudge is not affected by the movement slow unless at critical health and this damage cannot kill him."
-		"DOTA_Tooltip_ability_pudge_rot_Facet_pudge_rotten_giant"												"Rot increases in damage and radius every second, reaching its maximum after %time_for_max_rot_stacks% seconds. Rot self-damage reduced."
-		"DOTA_Tooltip_ability_pudge_rot_Facet_pudge_flesh_carver"												"While Rot is active, Pudge gains bonus attack damage every second, up to a max bonus attack damage after %time_for_max_stacks%s. Once Rot is deactivated, damage bonus rapidly decays over %time_for_decay%s."
+		"DOTA_Tooltip_ability_pudge_rotting_gas_Facet_pudge_rotten_giant"										"Rot increases in damage and radius every second, reaching its maximum after %time_for_max_rot_stacks% seconds. Rot self-damage reduced."
+		"DOTA_Tooltip_ability_pudge_rotting_gas_Facet_pudge_flesh_carver"										"While Rot is active, Pudge gains bonus attack damage every second, up to a max bonus attack damage after %time_for_max_stacks%s. Once Rot is deactivated, damage bonus rapidly decays over %time_for_decay%s."
 		"DOTA_Tooltip_ability_pudge_rotting_gas_Lore"				 											"A foul odor precedes a toxic, choking gas, emanating from the Butcher's putrid, ever-swelling mass."
 		"DOTA_Tooltip_ability_pudge_rotting_gas_damage"	 														"DAMAGE PER SECOND:"
 		"DOTA_Tooltip_ability_pudge_rotting_gas_damage_increase"	 											"DAMAGE INCREASE PER SECOND:"

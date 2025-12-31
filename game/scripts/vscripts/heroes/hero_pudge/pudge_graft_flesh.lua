@@ -80,7 +80,7 @@ function modifier_pudge_graft_flesh_kills:GetModifierBaseAttack_BonusDamage()
 end
 
 function modifier_pudge_graft_flesh_kills:GetModifierBonusStats_Strength()
-    return self.bonus_str * self:GetStackCount()
+    return self.strength_per_stack * self:GetStackCount()
 end
 
 function modifier_pudge_graft_flesh_kills:GetModifierModelScale()

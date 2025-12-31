@@ -10,7 +10,7 @@
 		"AbilityTextureName"			"alchemist_goblins_greed"
 		"MaxLevel"						"1"
 		"Innate"						"1"
-		"HasScepterUpgrade"				"1"
+		"DependentOnAbility"			"alchemist_rage_injector"
 		
 		"AbilityValues"
 	    {

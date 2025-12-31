@@ -95,7 +95,7 @@ function alchemist_volatile_brew:UnstableConcoctionEffect( target, strength )
 			ally:AddNewModifier( caster, self, "modifier_alchemist_volatile_brew_panacea", {duration = buffDuration} ):SetStackCount( math.ceil(strength * 100) )
 		end
 	else
-		enemy:AddNewModifier( caster, self, "modifier_alchemist_volatile_brew_debuff", {duration = stun} )
+		target:AddNewModifier( caster, self, "modifier_alchemist_volatile_brew_debuff", {duration = stun} )
 		self:DealDamage( caster, target, damage )
 	end
 	
@@ -123,6 +123,7 @@ function modifier_alchemist_volatile_brew_charge:OnIntervalThink()
 	if self:GetStackCount() < 100 then
 		self:SetStackCount( math.min( self:GetStackCount() + self.chargeUp, 100 ) )
 	end
+	self:GetAbility()._lastBrewTime = self:GetElapsedTime()
 	
 	local remaining = self:GetRemainingTime()
 	local seconds = math.ceil( remaining )
@@ -142,7 +143,6 @@ function modifier_alchemist_volatile_brew_charge:OnDestroy()
 		if ( self:GetRemainingTime() <= 0 or not self:GetParent():IsAlive() ) then
 			self:GetAbility():UnstableConcoctionEffect( self:GetParent(), self:GetStackCount()/100 )
 		end
-		self._lastBrewTime = self:GetElapedTime()
 	end
 end
 

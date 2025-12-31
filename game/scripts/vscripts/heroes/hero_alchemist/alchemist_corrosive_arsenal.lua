@@ -26,10 +26,11 @@ end
 
 function modifier_alchemist_corrosive_arsenal_passive:OnTakeDamage(params)
     if params.attacker ~= self:GetParent() then return end
+    if params.unit == self:GetParent() then return end
 	if params.attacker:PassivesDisabled() then return end
 	if params.inflictor and not params.attacker:HasAbility( params.inflictor:GetAbilityName() ) then return end
     
-	local debuff = params.unit:FindModifierByName("modifier_alchemist_corrosive_arsenal_debuff") or params.unit:AddNewModifier( params.attacker, self:GetAbility(), "modifier_alchemist_corrosive_arsenal_debuff", {duration = self.debuff_duration} )
+	local debuff = params.unit:FindModifierByName("modifier_alchemist_corrosive_arsenal_debuff")
 	local stacks = 0
 	if debuff then
 		stacks = debuff:GetStackCount()
@@ -37,19 +38,24 @@ function modifier_alchemist_corrosive_arsenal_passive:OnTakeDamage(params)
 	local newStacks = 0
 	if params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
 		newStacks = self.stacks_per_attack
-	elseif params.damage_category == DOTA_DAMAGE_CATEGORY_SPELL then
+	elseif params.damage_category == DOTA_DAMAGE_CATEGORY_SPELL and params.inflictor then
 		if params.inflictor:GetAbilityName() == "alchemist_acid_bomb" then
 			newStacks = self.stacks_per_second
 		elseif params.inflictor:GetAbilityName() == "alchemist_volatile_brew" then
 			newStacks = self.stacks_per_second * params.inflictor._lastBrewTime
 		end
 	end
+	if newStacks == 0 then return end
+	if not debuff then
+		debuff = params.unit:AddNewModifier( params.attacker, self:GetAbility(), "modifier_alchemist_corrosive_arsenal_debuff", {duration = self.debuff_duration} )
+	end
 	if IsModifierSafe( debuff ) then
 		debuff:SetDuration( self.debuff_duration, true )
 		debuff:SetStackCount( math.min( self.max_stacks, stacks + newStacks ) )
 	end
 	if self.gain_buff then
-		local buff = params.attacker:AddNewModifier( params.attacker, self:GetAbility(), "modifier_alchemist_corrosive_arsenal_buff", {duration = self.debuff_duration} )
+		local buff = params.unit:FindModifierByName("modifier_alchemist_corrosive_arsenal_buff") or params.attacker:AddNewModifier( params.attacker, self:GetAbility(), "modifier_alchemist_corrosive_arsenal_buff", {duration = self.debuff_duration} )
+		buff:SetDuration( self.debuff_duration, true )
 		buff:SetStackCount( math.min( self.max_stacks, buff:GetStackCount() + newStacks ) )
 	end
 end
@@ -83,7 +89,7 @@ function modifier_alchemist_corrosive_arsenal_debuff:OnRefresh()
     self.bonus_lifesteal = self:GetSpecialValueFor("bonus_lifesteal")
     self.status_resist_per_stack = self.slow_per_stack * self:GetSpecialValueFor("status_resist_per_stack") / 100
 	
-	if self.dps_per_stack > 0 then
+	if IsServer() and self.dps_per_stack > 0 then
 		self:StartIntervalThink( 1 )
 	end
 end

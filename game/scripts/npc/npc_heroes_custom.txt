@@ -1995,24 +1995,26 @@
 				
 				"FacetID"				"5"
 				
+				"Talents"
+				{
+					"Talent1"
+					{
+						"TalentName"		"special_bonus_unique_pudge_regurgitate_1"
+						"ReplaceTalent"		"special_bonus_placeholder_1"
+					}
+					"Talent2"
+					{
+						"TalentName"		"special_bonus_unique_pudge_regurgitate_2"
+						"ReplaceTalent"		"special_bonus_placeholder_2"
+					}
+					
+				}
 				"Abilities"
 				{
 					"Ability1"
 					{
 						"AbilityName"		"pudge_regurgitate"
 						"AbilityIndex"		"2"
-						"AutoLevelAbility"	"false"
-					}
-					"Ability2"
-					{
-						"AbilityName"		"special_bonus_placeholder_1"
-						"ReplaceAbility"	"special_bonus_unique_pudge_regurgitate_1"
-						"AutoLevelAbility"	"false"
-					}
-					"Ability3"
-					{
-						"AbilityName"		"special_bonus_placeholder_2"
-						"ReplaceAbility"	"special_bonus_unique_pudge_regurgitate_2"
 						"AutoLevelAbility"	"false"
 					}
 				}

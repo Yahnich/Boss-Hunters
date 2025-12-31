@@ -54,6 +54,7 @@
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts"
+			"particle"					"particles/units/heroes/hero_rattletrap/rattletrap_rocket_flare.vpcf"
 		}
 		
 		// Casting

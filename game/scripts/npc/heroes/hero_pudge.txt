@@ -236,6 +236,7 @@
 				"DamageTypeTooltip"							"DAMAGE_TYPE_MAGICAL"
 			}
 			"time_for_max_rot_stacks"						{"special_bonus_facet_pudge_rotten_giant"	"5.0"}
+			
 			"fear_duration"									{"special_bonus_unique_pudge_rotting_gas_1"	"3"}
 			"fear_delay"									{"special_bonus_unique_pudge_rotting_gas_1"	"3"}
 		}
