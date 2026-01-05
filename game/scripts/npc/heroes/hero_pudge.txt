@@ -20,7 +20,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"bonus_strength"					"0.5 0.6 0.7 0.8"
+			"bonus_strength"					"0.5"
 			"flesh_heap_range"		
 			{
 				"value"							"450"
@@ -29,11 +29,11 @@
 			
 			"minion_stacks"						"1"
 			"monster_temp_stacks"				"2"
-			"monster_stacks"					"2"
-			"boss_stacks"						"5"
+			"monster_stacks"					"1"
+			"boss_stacks"						"6"
 			
 			"bonus_maximum_health"				"10"
-			"bonus_base_damage"					"4"
+			"bonus_base_damage"					"1"
 		}
 	}
 	//=================================================================================================================
