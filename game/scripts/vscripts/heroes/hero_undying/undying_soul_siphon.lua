@@ -42,22 +42,27 @@ function undying_soul_siphon:OnSpellStart()
 	local alliedUnits = {}
 	local alliedHeroes = {}
 	
-	for _, unit in ipairs( units ) do
-		if unit:IsSameTeam(caster) then
-			if unit:IsRealHero() then
-				table.insert( alliedHeroes, unit )
+	local prioritizeAllies = self:GetSpecialValueFor("prioritize_allies") == 1
+	
+	if prioritizeAllies then
+		
+	else
+		for _, unit in ipairs( units ) do
+			if unit:IsSameTeam(caster) then
+				if unit:IsRealHero() then
+					table.insert( alliedHeroes, unit )
+				else
+					table.insert( alliedUnits, unit )
+				end
 			else
-				table.insert( alliedUnits, unit )
-			end
-		else
-			if unit:IsMinion() then
-				table.insert( enemyUnits, unit )
-			else
-				table.insert( enemyHeroes, unit )
+				if unit:IsMinion() then
+					table.insert( enemyUnits, unit )
+				else
+					table.insert( enemyHeroes, unit )
+				end
 			end
 		end
 	end
-	
 	local ripFX
 	if target:IsSameTeam(caster) then
 		EmitSoundOn("Hero_Undying.SoulRip.Ally", target)

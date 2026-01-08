@@ -355,6 +355,14 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sniper_hunker_down_1"					"1"
+			"special_bonus_unique_sniper_hunker_down_2"					"1"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"0"
 		"AbilityCastPoint"				"0 0 0 0"
 
