@@ -60,7 +60,7 @@ function sniper_killer_shot:OnProjectileHitHandle(target, vLocation, projectile)
 		local bonusDamagePct = self:GetSpecialValueFor("attack_factor")
 		caster:PerformGenericAttack(target, true, {bonusDamagePct = bonusDamagePct, ability = self})
 
-		if not target:IsAlive() then
+		if not target:IsAlive() and target:IsBoss() then
 			if aspd ~= 0 then
 				if not caster:FindModifierByName("modifier_sniper_killer_shot_bargain") then
 					caster:AddNewModifier(caster, self, "modifier_sniper_killer_shot_bargain", {})
@@ -71,7 +71,7 @@ function sniper_killer_shot:OnProjectileHitHandle(target, vLocation, projectile)
 			end
 			caster:RefreshAllCooldowns(false)
 		else
-			if aspd ~= 0 and target:HasModifier("modifier_sniper_assassinate") then
+			if aspd ~= 0 and target:HasModifier("modifier_sniper_assassinate") and target:IsBoss() then
 				target:AddNewModifier(caster, self, "modifier_sniper_killer_shot_assist", {duration = assist_duration})
 			end
 		end
