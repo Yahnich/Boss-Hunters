@@ -2462,6 +2462,8 @@
 				"Icon"				"damage"
 				"Color"				"Yellow"
 				"GradientID"		"2"
+				
+				"FacetID"			"3"
 
 				"Talents"
 				{
@@ -2510,6 +2512,8 @@
 				"Color"				"red"
 				"GradientID"		"1"
 
+				"FacetID"			"4"
+				
 				"Talents"
 				{
 					"Talent1"

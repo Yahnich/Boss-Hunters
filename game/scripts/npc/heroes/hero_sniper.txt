@@ -262,6 +262,11 @@
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sniper_critical_aim_1"					"1"
+			"special_bonus_unique_sniper_critical_aim_2"					"1"
+		}
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -333,6 +338,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"			"sniper_take_aim"
 		"MaxLevel"						"4"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sniper_hunker_down_1"					"1"
+			"special_bonus_unique_sniper_hunker_down_2"					"1"
+		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
