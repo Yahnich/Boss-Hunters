@@ -8,15 +8,16 @@ modifier_undying_deathlust = class({})
 LinkLuaModifier("modifier_undying_deathlust", "heroes/hero_undying/undying_deathlust", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_undying_deathlust:OnCreated()
+	self:OnRefresh()
+end
+
+function modifier_undying_deathlust:OnRefresh()
 	self.hpThreshold = self:GetSpecialValueFor("health_threshold_pct")
-	self.attackSpeed = self:GetSpecialValueFor("bonus_attack_speed")
-	self.moveSpeed = self:GetSpecialValueFor("bonus_move_speed")
-	
-	self.attackSpeedLvlup = self:GetSpecialValueFor("bonus_as_lvlup")
-	self.moveSpeedLvlup = self:GetSpecialValueFor("bonus_ms_lvlup")
-	
 	self.delay = self:GetSpecialValueFor("linger_duration")
 	self.duration = self:GetSpecialValueFor("duration")
+	self.undying_stacks = self:GetSpecialValueFor("undying_stacks")
+	
+	self.max_threshold = self:GetSpecialValueFor("max_threshold")
 end
 
 function modifier_undying_deathlust:OnIntervalThink()
@@ -25,40 +26,38 @@ function modifier_undying_deathlust:OnIntervalThink()
 end
 
 function modifier_undying_deathlust:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT  }
+	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
 
 function modifier_undying_deathlust:OnAttackLanded( params )
-	if params.attacker == self:GetParent() then
-		Timers:CreateTimer( function()
-			if params.target:GetHealthPercent() <= self.hpThreshold then
-				self:StartIntervalThink( self.delay )
-				self:SetDuration( self.delay, true )
-			end
-		end)
-		local debuff = params.target:FindModifierByNameAndCaster( "modifier_undying_deathlust_debuff", params.attacker )
-		if not debuff then
-			params.target:AddNewModifier( params.attacker, self:GetAbility(), "modifier_undying_deathlust_debuff", {duration = self.duration} )
-		else
-			debuff:SetDuration( self.duration, true )
+	local caster = self:GetCaster()
+	if params.attacker:GetPlayerOwnerID() ~= caster:GetPlayerOwnerID() then return end
+	local ability = self:GetAbility()
+	if params.target:GetHealthPercent() <= self.hpThreshold then
+		local buff = params.attacker:FindModifierByNameAndCaster( "modifier_undying_deathlust_buff", caster )
+		local oldStrength = buff:GetStackCount()
+		local strength = 100
+		if self.max_threshold > 0 then
+			local strength =  math.min( 100, ( 100-params.target:GetHealthPercent() ) * (100/(100-self.max_threshold)) )
+		end
+		if oldStrength <= strength then
+			params.attackert:AddNewModifier( caster, ability, "modifier_undying_deathlust_buff", {duration = self.duration} ):SetStackCount( strength )
 		end
 	end
-end
-
-function modifier_undying_deathlust:GetModifierMoveSpeedBonus_Percentage()
-	if self:GetDuration() > 0 then
-		return self.moveSpeed + self:GetParent():GetLevel() * self.moveSpeedLvlup
-	end
-end
-
-function modifier_undying_deathlust:GetModifierAttackSpeedBonus_Constant()
-	if self:GetDuration() > 0 then
-		return self.attackSpeed + self:GetParent():GetLevel() * self.attackSpeedLvlup
+	local debuff = params.target:FindModifierByNameAndCaster( "modifier_undying_deathlust_debuff", params.attacker )
+	if not debuff then
+		local strength = 1
+		if params.attacker == self:GetCaster() then
+			strength = self.undying_stacks
+		end
+		params.target:AddNewModifier( caster, ability, "modifier_undying_deathlust_debuff", {duration = self.duration} ):SetStackCount( strength )
+	else
+		debuff:SetDuration( self.duration, true )
 	end
 end
 
 function modifier_undying_deathlust:IsHidden()
-	return self:GetDuration() < 0
+	return true
 end
 
 function modifier_undying_deathlust:IsPurgable()
@@ -73,20 +72,48 @@ function modifier_undying_deathlust:DestroyOnExpire()
 	return false
 end
 
+modifier_undying_deathlust_buff = class({})
+LinkLuaModifier("modifier_undying_deathlust_buff", "heroes/hero_undying/undying_deathlust", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_undying_deathlust:OnCreated()
+	self:OnRefresh()
+end
+
+function modifier_undying_deathlust_buff:OnRefresh()
+	self.attackSpeed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.moveSpeed = self:GetSpecialValueFor("bonus_move_speed")
+end
+
+function modifier_undying_deathlust_buff:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT  }
+end
+
+function modifier_undying_deathlust_buff:GetModifierMoveSpeedBonus_Percentage()
+	return self.moveSpeed * self:GetStackCount() / 100
+end
+
+function modifier_undying_deathlust_buff:GetModifierAttackSpeedBonus_Constant()
+	return self.attackSpeed * self:GetStackCount() / 100
+end
 
 modifier_undying_deathlust_debuff = class({})
 LinkLuaModifier("modifier_undying_deathlust_debuff", "heroes/hero_undying/undying_deathlust", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_undying_deathlust_debuff:OnCreated()
 	self.slow = self:GetSpecialValueFor("slow")
+	self.attackslow = self:GetSpecialValueFor("slow") * self:GetSpecialValueFor("attack_slow")
 end
 
 function modifier_undying_deathlust_debuff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE }
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT  }
 end
 
 function modifier_undying_deathlust_debuff:GetModifierMoveSpeedBonus_Percentage()
-	return self.slow
+	return -self.slow * self:GetStackCount()
+end
+
+function modifier_undying_deathlust_debuff:GetModifierAttackSpeedBonus_Constant()
+	return -self.attackslow * self:GetStackCount()
 end
 
 function modifier_undying_deathlust_debuff:GetEffectName()

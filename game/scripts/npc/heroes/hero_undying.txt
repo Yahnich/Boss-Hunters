@@ -18,9 +18,13 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"slow"					"-7"
+			"slow"					"7"
 			"duration"				"2.5"
-			"health_threshold_pct"	"40"
+			"health_threshold_pct"
+			{
+				"value"									"40"
+				"special_bonus_facet_undying_legion"	"=100"
+			}
 			"linger_duration"		"1.5"
 			
 			"bonus_move_speed"
@@ -95,10 +99,10 @@
 		{
 			"radius"
 			{
-				"value"									"325"
+				"value"											"325"
 				"special_bonus_unique_undying_devour_life_1"	"+75"
 			}
-			"duration"									"45"
+			"duration"											"45"
 			"damage"
 			{
 				"value"											"80 140 200 260"
@@ -110,14 +114,14 @@
 			"str_per_monster"									"3"
 			"str_per_mob"
 			{
-				"value"									"1"
-				"special_bonus_facet_undying_undying"	"=1.5"
+				"value"											"1"
+				"special_bonus_facet_undying_undying"			"=1.5"
 			}
 			
-			"zombie_on_death"							{"special_bonus_facet_undying_legion"	"1"}
-			"dmg_lifesteal"								{"special_bonus_facet_undying_undying"	"100"}
-			"attack_damage_per_stack"					{"special_bonus_unique_undying_devour_life_2"	"6"}
-			"attack_range_per_stack"					{"special_bonus_unique_undying_devour_life_2"	"2"}
+			"zombie_on_death"									{"special_bonus_facet_undying_legion"	"1"}
+			"dmg_lifesteal"										{"special_bonus_facet_undying_undying"	"100"}
+			"attack_damage_per_stack"							{"special_bonus_unique_undying_devour_life_2"	"6"}
+			"attack_range_per_stack"							{"special_bonus_unique_undying_devour_life_2"	"2"}
 				
 		}
 		
@@ -176,19 +180,19 @@
 		{
 			"enemy_hp_loss"
 			{
-				"value"							"30 50 70 90"
+				"value"							"28 52 76 100"
 				"hero_levelup"					"+2.5"
 				"CalculateSpellDamageTooltip"	"1"
 			}
 			"health_per_unit"
 			{
-				"value"							"15 25 35 45"
+				"value"							"14 26 38 50"
 				"hero_levelup"					"+1.25"
 				"CalculateSpellDamageTooltip"	"1"
 			}
 			"mob_bonus_dmg"						"100"
 			"range"								"1300"
-			"unit_maximum"						"20"
+			"unit_maximum"						"10"
 			
 			"zombie_duration"					{"special_bonus_unique_undying_soul_siphon_1"	"15"}
 			"zombie_chance"						{"special_bonus_unique_undying_soul_siphon_1"	"20"}
@@ -196,6 +200,7 @@
 			"bonus_attack_speed"				{"special_bonus_unique_undying_soul_siphon_2"	"100"}
 			"buff_duration"						{"special_bonus_unique_undying_soul_siphon_2"	"12"}
 			
+			"prioritize_allies"					{"special_bonus_facet_undying_legion"	"1"}
 			"bonus_attack_speed_loss"			{"special_bonus_facet_undying_legion"	"30 50 70 90"}
 			"attack_speed_duration"				{"special_bonus_facet_undying_legion"	"10"}
 			

@@ -7137,8 +7137,8 @@
 		"DOTA_Tooltip_ability_undying_deathlust_slow"															"%MOVEMENT SPEED SLOW:"
 		"DOTA_Tooltip_ability_undying_deathlust_bonus_move_speed"												"%DEATHLUST MOVESPEED BONUS:"
 		"DOTA_Tooltip_ability_undying_deathlust_bonus_attack_speed"												"DEATHLUST ATTACK SPEED BONUS:"
-		"DOTA_Tooltip_modifier_undying_deathlust"																"Deathlust - Buff"
-		"DOTA_Tooltip_modifier_undying_deathlust_Description"													"Attack speed and movement speed increased."
+		"DOTA_Tooltip_modifier_undying_deathlust_buff"															"Deathlust - Buff"
+		"DOTA_Tooltip_modifier_undying_deathlust_buff_Description"												"+%d% attack speed and +%d%%% movement speed."
 		"DOTA_Tooltip_modifier_undying_deathlust_debuff"														"Deathlust - Debuff"
 		"DOTA_Tooltip_modifier_undying_deathlust_debuff_Description"											"Movement speed reduced."
 		

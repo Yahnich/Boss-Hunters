@@ -16,19 +16,26 @@ function undying_devour_life:Decay( position, radiusMod )
 	local duration = self:GetSpecialValueFor("duration")
 	local bossStr = self:GetSpecialValueFor("str_per_boss")
 	local monsterStr = self:GetSpecialValueFor("str_per_monster")
-	local mobStr = self:GetSpecialValueFor("str_per_mob")
 	
+	local dmg_lifesteal = self:GetSpecialValueFor("dmg_lifesteal") / 100
+	
+	local lifesteal = 0
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius) ) do
 		if not enemy:TriggerSpellAbsorb( self ) then
-			local str = TernaryOperator( mobStr, enemy:IsMinion(), TernaryOperator( bossStr, enemy:IsBoss(), monsterStr ) ) / mobStr
+			local str = TernaryOperator( 1, enemy:IsMinion(), TernaryOperator( bossStr, enemy:IsBoss(), monsterStr ) )
 			for i = 1, str do
 				caster:AddNewModifier(caster, self, "modifier_undying_devour_life", {duration = duration})
 			end
-			self:DealDamage( caster, enemy, damage )
+			local damage = self:DealDamage( caster, enemy, damage )
+			lifesteal = lifesteal + damage * dmg_lifesteal * TernaryOperator( 0.2, enemy:IsMinion(), 1 )
 			local debuff = enemy:AddNewModifier( caster, self, "modifier_undying_devour_life_debuff", {} )
-			if debuff then debuff:SetStackCount( debuff:GetStackCount() + str ) end
+			if debuff then debuff:SetStackCount( debuff:GetStackCount() + math.floor( damage / 10 ) ) end
+
 			ParticleManager:FireRopeParticle("particles/units/heroes/hero_undying/undying_decay_strength_xfer.vpcf", PATTACH_POINT_FOLLOW, enemy, caster)
 		end
+	end
+	if lifesteal > 0 then
+		caster:HealEvent( lifesteal, self, caster, {heal_type = HEAL_TYPE_HEAL} )
 	end
 	
 	ParticleManager:FireParticle("particles/units/heroes/hero_undying/undying_decay.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(radius,0,0)})
@@ -82,10 +89,20 @@ end
 modifier_undying_devour_life_debuff = class({})
 LinkLuaModifier("modifier_undying_devour_life_debuff", "heroes/hero_undying/undying_devour_life", LUA_MODIFIER_MOTION_NONE)
 
+function modifier_undying_devour_life_debuff:OnDestroy()
+	if IsClient() then return end
+	if self:GetParent():IsAlive() then return end
+	if self:GetSpecialValueFor("zombie_on_death") <= 0 then return end
+	local tombstone = self:GetCaster():FindAbilityByName("undying_necropolis")
+	if not (tombstone and tombstone:IsTrained()) then return end
+	local zombie = tombstone:SummonZombie()
+	zombie:SetAbsOrigin( self:GetParent():GetAbsOrigin() + RandomVector( 125 ) )
+end
+
 function modifier_undying_devour_life_debuff:DeclareFunctions()
 	return {MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS}
 end
 
 function modifier_undying_devour_life_debuff:GetModifierExtraHealthBonus()
-	return self:GetStackCount() * -25
+	return  -10 * self:GetStackCount()
 end
