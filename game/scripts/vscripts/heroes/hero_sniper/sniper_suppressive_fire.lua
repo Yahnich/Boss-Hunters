@@ -1,55 +1,55 @@
-sniper_rapid_fire = sniper_rapid_fire or class({})
+sniper_suppressive_fire = class({})
 
-function sniper_rapid_fire:GetChannelTime()
+function sniper_suppressive_fire:GetChannelTime()
 	return self:GetSpecialValueFor("channel")
 end
 
-function sniper_rapid_fire:OnChannelFinish(bInterrupted)
+function sniper_suppressive_fire:OnChannelFinish(bInterrupted)
 	self:GetCaster():FadeGesture(ACT_DOTA_ATTACK)
-	self:GetCaster():RemoveModifierByName("modifier_sniper_rapid_fire")
+	self:GetCaster():RemoveModifierByName("modifier_sniper_suppressive_fire")
 end
 
-function sniper_rapid_fire:OnAbilityPhaseStart()
+function sniper_suppressive_fire:OnAbilityPhaseStart()
 	EmitSoundOn("Ability.AssassinateLoad", self:GetCaster())
 	return true
 end
 
-function sniper_rapid_fire:OnSpellStart()
+function sniper_suppressive_fire:OnSpellStart()
 	local caster = self:GetCaster()
 
-	caster:AddNewModifier(caster, self, "modifier_sniper_rapid_fire", {Duration = self:GetSpecialValueFor("channel") + 0.4})
+	caster:AddNewModifier(caster, self, "modifier_sniper_suppressive_fire", {Duration = self:GetSpecialValueFor("channel") + 0.4})
 end
 
-function sniper_rapid_fire:OnProjectileThink(vLocation)
+function sniper_suppressive_fire:OnProjectileThink(vLocation)
 	GridNav:DestroyTreesAroundPoint(vLocation, self:GetSpecialValueFor("width"), false)
 end
 
-function sniper_rapid_fire:OnProjectileHitHandle(hTarget, vLocation, iProjectileHandle)
+function sniper_suppressive_fire:OnProjectileHitHandle(hTarget, vLocation, iProjectileHandle)
 	local caster = self:GetCaster()
 
 	if hTarget then
-		local modifier = caster:AddNewModifier( caster, self, "modifier_sniper_rapid_fire_dmg", {} )
+		local modifier = caster:AddNewModifier( caster, self, "modifier_sniper_suppressive_fire_dmg", {} )
 		caster:PerformAttack(hTarget, true, true, true, false, false, false, false)
 		ProjectileManager:DestroyLinearProjectile(iProjectileHandle)
 		modifier:Destroy()
 	end
 end
 
-modifier_sniper_rapid_fire = class({})
-LinkLuaModifier( "modifier_sniper_rapid_fire", "heroes/hero_sniper/sniper_rapid_fire.lua", LUA_MODIFIER_MOTION_NONE )
+modifier_sniper_suppressive_fire = class({})
+LinkLuaModifier( "modifier_sniper_suppressive_fire", "heroes/hero_sniper/sniper_suppressive_fire.lua", LUA_MODIFIER_MOTION_NONE )
 
-function modifier_sniper_rapid_fire:OnCreated(table)
+function modifier_sniper_suppressive_fire:OnCreated(table)
 	self:OnRefresh()
 	if IsServer() then
 		self:StartIntervalThink(FrameTime())
 	end
 end
 
-function modifier_sniper_rapid_fire:OnRefresh()
+function modifier_sniper_suppressive_fire:OnRefresh()
 	--
 end
 
-function modifier_sniper_rapid_fire:OnIntervalThink()
+function modifier_sniper_suppressive_fire:OnIntervalThink()
 	local caster = self:GetCaster()
 	local fDir = caster:GetForwardVector()
 	local rndAng = math.rad(RandomInt(-self:GetSpecialValueFor("spread_rad")/2, self:GetSpecialValueFor("spread_rad")/2))
@@ -68,21 +68,21 @@ function modifier_sniper_rapid_fire:OnIntervalThink()
 	self:StartIntervalThink(self:GetSpecialValueFor("firerate"))
 end
 
-function modifier_sniper_rapid_fire:IsHidden()
+function modifier_sniper_suppressive_fire:IsHidden()
 	return true
 end
 
-modifier_sniper_rapid_fire_dmg = class({})
-LinkLuaModifier( "modifier_sniper_rapid_fire_dmg", "heroes/hero_sniper/sniper_rapid_fire.lua", LUA_MODIFIER_MOTION_NONE )
+modifier_sniper_suppressive_fire_dmg = class({})
+LinkLuaModifier( "modifier_sniper_suppressive_fire_dmg", "heroes/hero_sniper/sniper_suppressive_fire.lua", LUA_MODIFIER_MOTION_NONE )
 
-function modifier_sniper_rapid_fire_dmg:DeclareFunctions()
+function modifier_sniper_suppressive_fire_dmg:DeclareFunctions()
 	return {MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE}
 end
 
-function modifier_sniper_rapid_fire_dmg:GetModifierDamageOutgoing_Percentage()
+function modifier_sniper_suppressive_fire_dmg:GetModifierDamageOutgoing_Percentage()
 	if IsServer() then return self:GetSpecialValueFor("damage_reduction") end
 end
 
-function modifier_sniper_rapid_fire_dmg:IsHidden()
+function modifier_sniper_suppressive_fire_dmg:IsHidden()
 	return true
 end
