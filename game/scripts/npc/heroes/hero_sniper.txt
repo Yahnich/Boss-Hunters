@@ -264,8 +264,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_sniper_critical_aim_1"					"1"
-			"special_bonus_unique_sniper_critical_aim_2"					"1"
+			"special_bonus_unique_sniper_critical_aim_1"						"1"
+			"special_bonus_unique_sniper_critical_aim_2"						"1"
 		}
 		
 		// Special
@@ -285,6 +285,8 @@
 			"damage"
 			{
 				"value"															"20 50 80 110"
+				"special_bonus_unique_sniper_critical_aim_1"					"+45"
+				"hero_levelup"													"+4"
 				"CalculateSpellDamageTooltip"									"0"
 				"CalculateAttackDamageTooltip"									"1"
 			}
@@ -292,6 +294,27 @@
 			{
 				"value"															"40"
 				"affected_by_chance_increase"									"1"
+			}
+			"slow_duration"
+			{
+				"value"															"0.2 0.3 0.4 0.5"
+				"special_bonus_unique_sniper_critical_aim_2"					"+3"
+				"is_debuff_duration"											"1"
+			}
+			"knockback_distance"												
+			{
+				"special_bonus_unique_sniper_critical_aim_1"					"50"
+			}
+			"knockback_duration"												
+			{
+				"special_bonus_unique_sniper_critical_aim_1"					"0.033"
+			}
+
+			// Deadeye KV's
+			//---------------------------------------------------------------------------------------------------------
+			"assassinate_damage"
+			{
+				"special_bonus_facet_sniper_deadeye"							"10 15 20 25"
 			}
 
 			// Gunslinger KV's
@@ -309,19 +332,10 @@
 				"special_bonus_facet_sniper_gunslinger"							"80"
 				"affected_by_chance_increase"									"1"
 			}
-			"knockback_distance"												""
-			"slow"																""
-			"slow_duration"
-			{
-				"value"															"0.2 0.3 0.4 0.5"
-				"special_bonus_unique_sniper_3"									"+0.25"
-				"is_debuff_duration"											"1"
-			}
 
-			"assassinate_damage"
-			{
-				"special_bonus_facet_sniper_deadeye"							"10 15 20 25"
-			}
+			// Unused KV's
+			//---------------------------------------------------------------------------------------------------------
+			"slow"																""
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -352,10 +366,16 @@
 		"AbilityCastRange"				"0"
 		"AbilityCastPoint"				"0 0 0 0"
 
+		// Talents
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sniper_hunker_down_1"							"1"
+			"special_bonus_unique_sniper_hunker_down_2"							"1"
+		}
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"20 18 16 14 14 14 14"
-
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -365,17 +385,70 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"bonus_attack_range"												"100 200 300 400"
-			"duration"															"3 4 5 6"
-			"slow"
+			// Default KV's
+			//---------------------------------------------------------------------------------------------------------
+			"bonus_attack_range"												
 			{
-				"value"															"-30 -20 -10 -0"
-				"special_bonus_unique_sniper_take_aim_2"						"+60"
+				"value"															"100 200 300 400"
+				"special_bonus_facet_sniper_deadeye"							"x2"
 			}
 			"bonus_headshot_chance"												"60"
-			"invisibility"									{"special_bonus_unique_sniper_take_aim_2"	"1"}
-			"passive_multiplier"							{"special_bonus_unique_sniper_take_aim_1"	"2"}
-			"global_vision"									{"special_bonus_unique_sniper_take_aim_1"	"1"}
+			"duration"															
+			{
+				"value"															"3 4 5 6"
+				"is_buff_duration"												"1"
+			}
+
+			// Deadeye KV's
+			//---------------------------------------------------------------------------------------------------------
+			"true_strike"
+			{
+				"special_bonus_facet_sniper_deadeye"							"1"
+			}
+			"slow"																
+			{
+				"special_bonus_facet_sniper_deadeye"							"-45 -40 -35 -30"
+			}
+
+			// Gunslinger KV's
+			//---------------------------------------------------------------------------------------------------------
+			"invisibility"														
+			{
+				"special_bonus_facet_sniper_gunslinger"							"1"
+			}
+			"ms_bonus"																
+			{
+				"special_bonus_facet_sniper_gunslinger"							"30 35 40 45"
+			}
+			"armor"
+			{
+				"special_bonus_facet_sniper_gunslinger"							"5 8 11 14"
+			}
+			
+			// Talent KV's
+			//---------------------------------------------------------------------------------------------------------
+			"crit_chance"														
+			{
+				"special_bonus_unique_sniper_hunker_down_1"						"30"
+			}
+			"crit_damage"														
+			{
+				"special_bonus_unique_sniper_hunker_down_1"						"130"
+			}
+			"hp_regen"														
+			{
+				"special_bonus_unique_sniper_hunker_down_2"						"2"
+			}
+			"heal_interval"														
+			{
+				"special_bonus_unique_sniper_hunker_down_2"						"1"
+			}
+
+			// Unused KV's
+			//---------------------------------------------------------------------------------------------------------
+			"passive_multiplier"												""
+			"global_vision"														""
+
 		}
 		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -390,7 +463,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_sniper/sniper_killer_shot"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
@@ -416,7 +489,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"													"20 16 12"
+		"AbilityCooldown"				"20 16 12"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -431,24 +504,27 @@
 				"value"															"230 365 500"
 				"hero_levelup"													"+11"
 			}
-			"speed"																
-			{
-				"value"															"2500"
-				"special_bonus_unique_sniper_killer_shot_2"						"x2"
-			}
+			"speed"																"2500"
 			"range"																"3000"
 			"ministun_duration"													"0.5"
-			"assist_duration"													"3"
-			
-			"cast_point_reduction"
+			"attack_factor"														"100 200 300"
+
+			"incoming_dmg"
 			{
-				"special_bonus_unique_sniper_killer_shot_1"						"25"
+				"special_bonus_unique_sniper_killer_shot_1"						"15"
 			}
-			"damage_increase"
+			"debuff_duration"
+			{
+				"special_bonus_unique_sniper_killer_shot_1"						"7"
+			}
+			"aspd"
 			{
 				"special_bonus_unique_sniper_killer_shot_2"						"25"
 			}
-			"stack_cap"															"8"
+			"assist_duration"
+			{
+				"special_bonus_unique_sniper_killer_shot_2"						"3"
+			}
 		}
 		
 		// Data driven
@@ -499,6 +575,11 @@
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_sniper_suppressive_fire_1"					"1"
+			"special_bonus_unique_sniper_suppressive_fire_2"					"1"
+		}
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -525,27 +606,31 @@
 		
 	    "AbilityValues"
 	    {
-	    	"channel"     														"1"
-	        "firerate"     														"0.05"
-			"spread_rad"
+	    	"channel"     														
 			{
-				"value"	     													"60"
-	            "LinkedSpecialBonus"											"special_bonus_unique_sniper_rapid_fire_2"
+				"value"															"1"
+				"special_bonus_unique_sniper_suppressive_fire_1"				"=2.5"
+			}
+	        "firerate"     														
+			{
+				"value"															"0.05"
+				"special_bonus_unique_sniper_suppressive_fire_2"				"=0.1"
+			}
+			"spread_rad"														
+			{
+				"value"															"60"
+				"special_bonus_unique_sniper_suppressive_fire_2"				"=15"
 			}
 	        "range"     														"1000"
 	        "width"     														"50"
 	        "damage_reduction"
 			{
-				"value"	     													"-80 -65 -50"
-	            "LinkedSpecialBonus"											"special_bonus_unique_sniper_rapid_fire_1"
+				"value"	     													"-40 -30 -20"
 				"CalculateSpellDamageTooltip"									"0"
 			}
 	    }
 	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_sniper_rapid_fire_1"
+	"special_bonus_unique_sniper_suppressive_fire_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -554,10 +639,7 @@
 		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
 		"MaxLevel"						"1"
 	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_sniper_rapid_fire_2"
+	"special_bonus_unique_sniper_suppressive_fire_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -566,5 +648,4 @@
 		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
 		"MaxLevel"						"1"
 	}
-
 }

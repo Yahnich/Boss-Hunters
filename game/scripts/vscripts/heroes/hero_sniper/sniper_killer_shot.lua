@@ -5,20 +5,7 @@ function sniper_killer_shot:Spawn()
 end
 
 function sniper_killer_shot:GetCastPoint()
-	if not IsServer() then return end
-	local caster = self:GetCaster()
-	local reduction = self:GetSpecialValueFor("cast_point_reduction") / 100
-
-	if reduction ~= 0 then
-		local buff = caster:FindModifierByName("modifier_sniper_killer_shot_unique_1")
-		local actual_reduction = buff:GetStackCount() * reduction
-
-		if actual_reduction ~= 0 then
-			return self:GetSpecialValueFor("AbilityCastPoint") / (1 + actual_reduction)
-		end
-	else
-		return self:GetSpecialValueFor("AbilityCastPoint")
-	end
+	return self:GetSpecialValueFor("AbilityCastPoint")
 end
 
 function sniper_killer_shot:OnAbilityPhaseStart()
@@ -51,62 +38,46 @@ function sniper_killer_shot:OnSpellStart()
 	end
 end
 
-function sniper_killer_shot:LaunchAssassinate( target, power, source, ability)
+function sniper_killer_shot:LaunchAssassinate( target, power, source)
 	self.projectileTable = self.projectileTable or {}
-	local projectile = ability:FireTrackingProjectile("particles/units/heroes/hero_sniper/sniper_assassinate.vpcf", target, self:GetSpecialValueFor("speed"), {source = source or self:GetCaster()}, TernaryOperator( DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, source ~= nil, DOTA_PROJECTILE_ATTACHMENT_HITLOCATION ), false, true, 100)
+	local projectile = self:FireTrackingProjectile("particles/units/heroes/hero_sniper/sniper_assassinate.vpcf", target, self:GetSpecialValueFor("speed"), {source = source or self:GetCaster()}, TernaryOperator( DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, source ~= nil, DOTA_PROJECTILE_ATTACHMENT_HITLOCATION ), false, true, 100)
 	self.projectileTable[projectile] = {impact_power = power or 1}
-	return projectile, ability
+	return projectile
 end
 
-function sniper_killer_shot:OnProjectileHitHandle(target, vLocation, projectile, ability)
-	if not IsServer() then return end
+function sniper_killer_shot:OnProjectileHitHandle(target, vLocation, projectile)
 	local caster = self:GetCaster()
-	local stack_cap = self:GetSpecialValueFor("stack_cap")
-
-	local buff
-
-	local cast_point_reduction = self:GetSpecialValueFor("cast_point_reduction")
-	if cast_point_reduction ~= 0 then
-		buff = caster:FindModifierByName("modifier_sniper_killer_shot_unique_1")
-	end
-
-	local damage_increase = self:GetSpecialValueFor("damage_increase") / 100
-	local damage
-	if damage_increase ~= 0 then
-		buff = caster:FindModifierByName("modifier_sniper_killer_shot_unique_2")
-		local actual_increase
-		if buff:GetStackCount() >= 1 then
-			actual_increase = buff:GetStackCount() * damage_increase
-		else
-			actual_increase = 1
-		end
-
-		if caster:HasModifier("modifier_sniper_killer_shot_unique_2") then
-			damage = self:GetSpecialValueFor("damage") * (1 + actual_increase)
-		end
-	else
-		damage = self:GetSpecialValueFor("damage")
-	end
-
+	local aspd = self:GetSpecialValueFor("aspd")
+	local debuff_duration = self:GetSpecialValueFor("debuff_duration")
+	local assist_duration = self:GetSpecialValueFor("assist_duration")
 
 	if target and not target:TriggerSpellAbsorb( ability ) then
 		local impact_power = self.projectileTable[projectile].impact_power
 		EmitSoundOn("Hero_Sniper.AssassinateDamage", caster)
 		self:Stun(target, self:GetSpecialValueFor("ministun_duration") * impact_power )
-		self:DealDamage(caster, target, damage * impact_power )
+		self:DealDamage(caster, target, self:GetSpecialValueFor("damage") * impact_power )
 	
 		local bonusDamagePct = self:GetSpecialValueFor("attack_factor")
-		caster:PerformGenericAttack(target, true, {bonusDamagePct = bonusDamagePct, ability = ability})
+		caster:PerformGenericAttack(target, true, {bonusDamagePct = bonusDamagePct, ability = self})
 
-		if not target:IsAlive() then
-			caster:RefreshAllCooldowns( false )
-			if buff and buff:GetStackCount() < stack_cap then
-				buff:IncrementStackCount()
+		if not target:IsAlive() and target:IsBoss() then
+			if aspd ~= 0 then
+				if not caster:FindModifierByName("modifier_sniper_killer_shot_bargain") then
+					caster:AddNewModifier(caster, self, "modifier_sniper_killer_shot_bargain", {})
+					caster:FindModifierByName("modifier_sniper_killer_shot_bargain"):SetStackCount(1)
+				end
+			else
+				caster:FindModifierByName("modifier_sniper_killer_shot_bargain"):IncrementStackCount()
 			end
+			caster:RefreshAllCooldowns(false)
 		else
-			if ability == self then
-				target:AddNewModifier(caster, ability, "modifier_sniper_killer_shot_assist", {duration = self:GetSpecialValueFor("assist_duration")})
+			if aspd ~= 0 and target:HasModifier("modifier_sniper_assassinate") and target:IsBoss() then
+				target:AddNewModifier(caster, self, "modifier_sniper_killer_shot_assist", {duration = assist_duration})
 			end
+		end
+
+		if debuff_duration ~= 0 then
+			target:AddNewModifier(caster, self, "modifier_sniper_killer_shot_sleeper", {duration = debuff_duration})
 		end
 		target:RemoveModifierByName("modifier_sniper_assassinate")
 		self.projectileTable[projectile] = nil
@@ -133,33 +104,80 @@ function modifier_sniper_killer_shot_assist:OnDestroy()
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
 
-	local buff = caster:FindModifierByName("modifier_sniper_killer_shot_unique_1") or caster:FindModifierByName("modifier_sniper_killer_shot_unique_2")
+	local buff = caster:FindModifierByName("modifier_sniper_killer_shot_bargain")
 
 	if not parent:IsAlive() then
-		if buff and buff:GetStackCount() < self.stack_cap then
+		if not buff then
+			buff:SetStackCount(1)
+		else
 			buff:IncrementStackCount()
 		end
 	end
 end
 
-modifier_sniper_killer_shot_unique_1 = class({})
-LinkLuaModifier("modifier_sniper_killer_shot_unique_1", "heroes/hero_sniper/sniper_killer_shot", LUA_MODIFIER_MOTION_NONE)
+modifier_sniper_killer_shot_sleeper = class({})
+LinkLuaModifier("modifier_sniper_killer_shot_sleeper", "heroes/hero_sniper/sniper_killer_shot", LUA_MODIFIER_MOTION_NONE)
 
-function modifier_sniper_killer_shot_unique_1:IsBuff()
+function modifier_sniper_killer_shot_sleeper:IsDebuff()
 	return true
 end
 
-function modifier_sniper_killer_shot_unique_1:IsPurgable()
+function modifier_sniper_killer_shot_sleeper:IsPurgable()
 	return false
 end
 
-modifier_sniper_killer_shot_unique_2 = class({})
-LinkLuaModifier("modifier_sniper_killer_shot_unique_2", "heroes/hero_sniper/sniper_killer_shot", LUA_MODIFIER_MOTION_NONE)
+function modifier_sniper_killer_shot_sleeper:OnCreated()
+	self:OnRefresh()
+	if IsServer() then
+		self:GetParent():SetRenderColor(226, 232, 107)
+	end
+end
 
-function modifier_sniper_killer_shot_unique_2:IsBuff()
+function modifier_sniper_killer_shot_sleeper:OnRefresh()
+	self.incoming_dmg = self:GetSpecialValueFor("incoming_dmg")
+end
+
+function modifier_sniper_killer_shot_sleeper:DeclareFunctions()
+	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+end
+
+function modifier_sniper_killer_shot_sleeper:GetModifierIncomingDamage_Percentage()
+	return self.incoming_dmg
+end
+
+function modifier_sniper_killer_shot_sleeper:GetStatusEffectName()
+	return "particles/units/heroes/hero_venomancer/venomancer_poison_debuff.vpcf"
+end
+
+function modifier_sniper_killer_shot_sleeper:OnDestroy()
+	if IsServer() then
+		self:GetParent():SetRenderColor(255,255,255)
+	end
+end
+
+modifier_sniper_killer_shot_bargain = class({})
+LinkLuaModifier("modifier_sniper_killer_shot_bargain", "heroes/hero_sniper/sniper_killer_shot", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_sniper_killer_shot_bargain:IsBuff()
 	return true
 end
 
-function modifier_sniper_killer_shot_unique_2:IsPurgable()
+function modifier_sniper_killer_shot_bargain:IsPurgable()
 	return false
+end
+
+function modifier_sniper_killer_shot_bargain:OnCreated()
+	self:OnRefresh()
+end
+
+function modifier_sniper_killer_shot_bargain:OnRefresh()
+	self.aspd = self:GetSpecialValueFor("aspd")
+end
+
+function modifier_sniper_killer_shot_bargain:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+end
+
+function modifier_sniper_killer_shot_bargain:GetModifierAttackSpeedBonus_Constant()
+	return self.aspd * self:GetStackCount()
 end

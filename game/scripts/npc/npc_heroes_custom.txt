@@ -2511,6 +2511,7 @@
 				"Icon"				"fist"
 				"Color"				"red"
 				"GradientID"		"1"
+				"FacetID"			"4"
 
 				"FacetID"			"4"
 				
@@ -2528,12 +2529,12 @@
 					}
 					"Talent3"
 					{
-						"TalentName"			"special_bonus_unique_sniper_rapid_fire_1"
+						"TalentName"			"special_bonus_unique_sniper_suppressive_fire_1"
 						"ReplaceTalent"			"special_bonus_placeholder_3"
 					}
 					"Talent4"
 					{
-						"TalentName"			"special_bonus_unique_sniper_rapid_fire_2"
+						"TalentName"			"special_bonus_unique_sniper_suppressive_fire_2"
 						"ReplaceTalent"			"special_bonus_placeholder_4"
 					}
 				}

@@ -39,14 +39,9 @@ modifier_sniper_suppressive_fire = class({})
 LinkLuaModifier( "modifier_sniper_suppressive_fire", "heroes/hero_sniper/sniper_suppressive_fire.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_sniper_suppressive_fire:OnCreated(table)
-	self:OnRefresh()
 	if IsServer() then
 		self:StartIntervalThink(FrameTime())
 	end
-end
-
-function modifier_sniper_suppressive_fire:OnRefresh()
-	--
 end
 
 function modifier_sniper_suppressive_fire:OnIntervalThink()
