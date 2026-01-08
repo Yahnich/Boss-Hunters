@@ -1,51 +1,51 @@
-sniper_take_aim_bh = class({})
+sniper_hunker_down = class({})
 
-function sniper_take_aim_bh:GetIntrinsicModifierName()
-	return "modifier_sniper_take_aim_bh"
+function sniper_hunker_down:GetIntrinsicModifierName()
+	return "modifier_sniper_hunker_down"
 end
 
-function sniper_take_aim_bh:OnSpellStart()	
+function sniper_hunker_down:OnSpellStart()	
 	local caster = self:GetCaster()
 	caster:AddNewModifier( caster, self, "modifier_sniper_take_aim_active_bh", {duration = self:GetSpecialValueFor("duration")} )
 	
 	EmitSoundOn( "Hero_Sniper.TakeAim.Cast", caster)
 end
 
-modifier_sniper_take_aim_bh = class({})
-LinkLuaModifier( "modifier_sniper_take_aim_bh","heroes/hero_sniper/sniper_take_aim_bh.lua",LUA_MODIFIER_MOTION_NONE )
-function modifier_sniper_take_aim_bh:OnCreated(table)
+modifier_sniper_hunker_down = class({})
+LinkLuaModifier( "modifier_sniper_hunker_down","heroes/hero_sniper/sniper_hunker_down.lua",LUA_MODIFIER_MOTION_NONE )
+function modifier_sniper_hunker_down:OnCreated(table)
 	self.range = self:GetSpecialValueFor("bonus_attack_range")
 end
 
-function modifier_sniper_take_aim_bh:OnRefresh(table)
+function modifier_sniper_hunker_down:OnRefresh(table)
 	self:OnCreated()
 end
 
-function modifier_sniper_take_aim_bh:DeclareFunctions()
+function modifier_sniper_hunker_down:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS
 	}
 	return funcs
 end
 
-function modifier_sniper_take_aim_bh:GetModifierAttackRangeBonus()
+function modifier_sniper_hunker_down:GetModifierAttackRangeBonus()
 	return self.range
 end
 
-function modifier_sniper_take_aim_bh:IsPurgeException()
+function modifier_sniper_hunker_down:IsPurgeException()
 	return false
 end
 
-function modifier_sniper_take_aim_bh:IsPurgable()
+function modifier_sniper_hunker_down:IsPurgable()
 	return false
 end
 
-function modifier_sniper_take_aim_bh:IsHidden()
+function modifier_sniper_hunker_down:IsHidden()
 	return true
 end
 
 modifier_sniper_take_aim_active_bh = class({})
-LinkLuaModifier( "modifier_sniper_take_aim_active_bh","heroes/hero_sniper/sniper_take_aim_bh.lua",LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_sniper_take_aim_active_bh","heroes/hero_sniper/sniper_hunker_down.lua",LUA_MODIFIER_MOTION_NONE )
 
 function modifier_sniper_take_aim_active_bh:OnCreated()
 	self.chance = self:GetSpecialValueFor("bonus_headshot_chance")
