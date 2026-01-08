@@ -2424,21 +2424,21 @@
 	"npc_dota_hero_sniper"
 	{
 		"override_hero"					"npc_dota_hero_sniper"
-		"Ability1"						"sniper_shrapnel_bh"
-		"Ability2"						"sniper_headshot_bh"
-		"Ability3"						"sniper_take_aim_bh"
+		"Ability1"						"generic_hidden"
+		"Ability2"						"sniper_critical_aim"
+		"Ability3"						"sniper_hunker_down"
 		"Ability4"						"generic_hidden"
-		"Ability5"						"generic_hidden"
-		"Ability6"						"sniper_assassinate_bh"
+		"Ability5"						"sniper_rangefinder"
+		"Ability6"						"generic_hidden"
 
-		"Ability10"						"special_bonus_unique_sniper_shrapnel_1"
-		"Ability11"						"special_bonus_unique_sniper_shrapnel_2"
-		"Ability12"						"special_bonus_unique_sniper_headshot_1"
-		"Ability13"						"special_bonus_unique_sniper_headshot_2"
-		"Ability14"						"special_bonus_unique_sniper_take_aim_1"
-		"Ability15"						"special_bonus_unique_sniper_take_aim_2"
-		"Ability16"						"special_bonus_unique_sniper_assassinate_1"
-		"Ability17"						"special_bonus_unique_sniper_assassinate_2"
+		"Ability10"						"special_bonus_placeholder_1"
+		"Ability11"						"special_bonus_placeholder_2"
+		"Ability12"						"special_bonus_unique_sniper_critical_aim_1"
+		"Ability13"						"special_bonus_unique_sniper_critical_aim_2"
+		"Ability14"						"special_bonus_unique_sniper_hunker_down_1"
+		"Ability15"						"special_bonus_unique_sniper_hunker_down_2"
+		"Ability16"						"special_bonus_placeholder_3"
+		"Ability17"						"special_bonus_placeholder_4"
 		
 		"Masteries"
 		{
@@ -2450,6 +2450,106 @@
 			"MANA_REGEN"{"1" "3"}
 			"SPELL_AMP"{"2" "3"}
 			"AREA_DAMAGE"{"2" "3"}
+		}
+
+		"Facets"
+		{
+			"sniper_ghillie_suit"			{"Deprecated"		"1"}
+			"sniper_scattershot"			{"Deprecated"		"1"}
+
+			"sniper_deadeye"
+			{
+				"Icon"				"damage"
+				"Color"				"Yellow"
+				"GradientID"		"2"
+
+				"Talents"
+				{
+					"Talent1"
+					{
+						"TalentName"			"special_bonus_unique_sniper_death_from_above_1"
+						"ReplaceTalent"			"special_bonus_placeholder_1"
+					}
+					"Talent2"
+					{
+						"TalentName"			"special_bonus_unique_sniper_death_from_above_2"
+						"ReplaceTalent"			"special_bonus_placeholder_2"
+					}
+					"Talent3"
+					{
+						"TalentName"			"special_bonus_unique_sniper_killer_shot_1"
+						"ReplaceTalent"			"special_bonus_placeholder_3"
+					}
+					"Talent4"
+					{
+						"TalentName"			"special_bonus_unique_sniper_killer_shot_2"
+						"ReplaceTalent"			"special_bonus_placeholder_4"
+					}
+				}
+
+				"Abilities"
+				{
+					"Ability1"
+					{
+						"AbilityName"		"sniper_death_from_above"
+						"AbilityIndex"		"0"
+						"AutoLevelAbility"	"false"
+					}
+					"Ability2"
+					{
+						"AbilityName"		"sniper_killer_shot"
+						"AbilityIndex"		"5"
+						"AutoLevelAbility"	"false"
+					}
+				}
+			}
+
+			"sniper_gunslinger"
+			{
+				"Icon"				"fist"
+				"Color"				"red"
+				"GradientID"		"1"
+
+				"Talents"
+				{
+					"Talent1"
+					{
+						"TalentName"			"special_bonus_unique_sniper_explosive_arsenal_1"
+						"ReplaceTalent"			"special_bonus_placeholder_1"
+					}
+					"Talent2"
+					{
+						"TalentName"			"special_bonus_unique_sniper_explosive_arsenal_2"
+						"ReplaceTalent"			"special_bonus_placeholder_2"
+					}
+					"Talent3"
+					{
+						"TalentName"			"special_bonus_unique_sniper_rapid_fire_1"
+						"ReplaceTalent"			"special_bonus_placeholder_3"
+					}
+					"Talent4"
+					{
+						"TalentName"			"special_bonus_unique_sniper_rapid_fire_2"
+						"ReplaceTalent"			"special_bonus_placeholder_4"
+					}
+				}
+
+				"Abilities"
+				{
+					"Ability1"
+					{
+						"AbilityName"		"sniper_explosive_arsenal"
+						"AbilityIndex"		"0"
+						"AutoLevelAbility"	"false"
+					}
+					"Ability2"
+					{
+						"AbilityName"		"sniper_suppressive_fire"
+						"AbilityIndex"		"5"
+						"AutoLevelAbility"	"false"
+					}	
+				}
+			}
 		}
 	}
 	//=================================================================================================================

@@ -254,6 +254,24 @@
 		"AbilityType"			"ABILITY_TYPE_ATTRIBUTES"
 		"MaxLevel"				"1"
 	}
+	"special_bonus_placeholder_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"special_bonus_undefined"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"			"ABILITY_TYPE_ATTRIBUTES"
+		"MaxLevel"				"1"
+	}
+	"special_bonus_placeholder_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"special_bonus_undefined"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"			"ABILITY_TYPE_ATTRIBUTES"
+		"MaxLevel"				"1"
+	}
 	"special_bonus_reincarnation_120"
 	{
 		// General
