@@ -5,14 +5,12 @@ function sniper_critical_aim:GetIntrinsicModifierName()
 end
 
 modifier_sniper_critical_aim_handler = class({})
-LinkLuaModifier( "modifier_sniper_critical_aim_handler","heroes/hero_sniper/sniper_critical_aim.lua",LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_sniper_critical_aim_handler","heroes/hero_sniper/sniper_critical_aim",LUA_MODIFIER_MOTION_NONE )
 function modifier_sniper_critical_aim_handler:OnCreated()
 	self:OnRefresh()
 end
 
 function modifier_sniper_critical_aim_handler:OnRefresh()
-	self.duration = self:GetSpecialValueFor("slow_duration")
-	self.damage = self:GetSpecialValueFor("damage")
 	self.proc_chance = self:GetSpecialValueFor("proc_chance")
 	self.proc_chance_min_range = self:GetSpecialValueFor("proc_chance_min_range")
 	self.proc_chance_max_range = self:GetSpecialValueFor("proc_chance_max_range")
@@ -42,16 +40,25 @@ function modifier_sniper_critical_aim_handler:OnAttackLanded( params )
 		local caster = params.attacker
 		local target = params.target
 		local ability = self:GetAbility()
+
+		local duration = self:GetSpecialValueFor("slow_duration")
+		local knockback_distance = self:GetSpecialValueFor("knockback_distance")
+		local knockback_duration = self:GetSpecialValueFor("knockback_duration")
+		local knockback_direction = CalculateDirection(caster:GetAbsOrigin(), target:GetAbsOrigin())
+		local assassinate_ability = caster:FindAbilityByName("sniper_killer_shot")
 		
 		for i = 1, self.recordsProc[params.record] do
 			Timers:CreateTimer( 0.1*(i-1), function() EmitSoundOn( "Hero_Sniper.MKG_impact", target ) end )
 		end
-		if self:GetParent():IsRealHero() then
-			if self.assassinate_damage > 0 and not params.attacker:GetAttackData( params.record ).abilityIndex and ( self.recordsProc[params.record] > 1 or target:HasModifier("modifier_sniper_critical_aim_root") ) then
-				self.assassinate:LaunchAssassinate( params.target, self.assassinate_damage / 100, caster, ability)
+		if self:GetParent():IsRealHero() and assassinate_ability:IsTrained() then
+			if self.assassinate_damage > 0 and caster:HasModifier("modifier_sniper_hunker_down") or target:HasModifier("modifier_sniper_critical_aim_root") then
+				self.assassinate:LaunchAssassinate( params.target, self.assassinate_damage / 100)
 			end
 		end
-		target:AddNewModifier(caster, self:GetAbility(), "modifier_sniper_critical_aim_root", {Duration = self.duration * self.recordsProc[params.record]})
+		target:AddNewModifier(caster, self:GetAbility(), "modifier_sniper_critical_aim_root", {Duration = duration * self.recordsProc[params.record]})
+		if knockback_distance ~= 0 then
+			target:ApplyKnockBack(target:GetAbsOrigin() + knockback_direction, 0, knockback_duration, knockback_distance, 0, caster, self, false)
+		end
 		self.recordsProc[params.record] = nil
 	end
 end
@@ -61,8 +68,7 @@ function modifier_sniper_critical_aim_handler:GetModifierPreAttack_BonusDamage(p
 		local caster = params.attacker
 		local target = params.target
 		
-		local damage = self.damage
-		local duration = self.duration
+		local damage = self:GetSpecialValueFor("damage")
 		local chance = self:GetSpecialValueFor("proc_chance")
 		local maxChance = self:GetSpecialValueFor("proc_chance_max_chance")
 		if maxChance > 0 then
@@ -74,7 +80,7 @@ function modifier_sniper_critical_aim_handler:GetModifierPreAttack_BonusDamage(p
 		local power = 0
 		while chance > 0 do
 			if caster:RollPRNG( chance ) then
-				damage = damage + self.damage
+				damage = damage + damage
 				power = power + 1
 			end
 			chance = chance - 100

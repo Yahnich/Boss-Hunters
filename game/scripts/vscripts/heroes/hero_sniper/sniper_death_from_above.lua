@@ -24,7 +24,7 @@ function sniper_death_from_above:OnSpellStart()
 		CreateModifierThinker(caster, self, "modifier_sniper_death_from_above", {Duration = duration}, point, caster:GetTeam(), false)
 	end)
 	
-	local buffDuration = self:GetSpecialValueFor("attack_speed_bonus_duration")
+	local buffDuration = self:GetSpecialValueFor("bonus_attack_speed_duration")
 	if buffDuration > 0 then
 		caster:AddNewModifier(caster, self, "modifier_sniper_death_from_above_talent", { duration = buffDuration } )
 	end
