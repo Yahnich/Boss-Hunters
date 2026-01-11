@@ -22,7 +22,7 @@ function undying_soul_siphon:OnSpellStart()
 	local radius = self:GetSpecialValueFor("range")
 	local hploss = self:GetSpecialValueFor("enemy_hp_loss")
 	local healPUnit = self:GetSpecialValueFor("health_per_unit")
-	local heroBonus = 1 + self:GetSpecialValueFor("mob_bonus_dmg") / 100
+	local heroBonus = self:GetSpecialValueFor("mob_bonus_dmg") / 100
 	
 	local units = caster:FindAllUnitsInRadius( caster:GetAbsOrigin(), radius )
 	local maxUnits = self:GetSpecialValueFor("unit_maximum")
@@ -43,26 +43,23 @@ function undying_soul_siphon:OnSpellStart()
 	local alliedHeroes = {}
 	
 	local prioritizeAllies = self:GetSpecialValueFor("prioritize_allies") == 1
-	
-	if prioritizeAllies then
-		
-	else
-		for _, unit in ipairs( units ) do
-			if unit:IsSameTeam(caster) then
-				if unit:IsRealHero() then
-					table.insert( alliedHeroes, unit )
-				else
-					table.insert( alliedUnits, unit )
-				end
+
+	for _, unit in ipairs( units ) do
+		if unit:IsSameTeam(caster) then
+			if unit:IsRealHero() then
+				table.insert( alliedHeroes, unit )
 			else
-				if unit:IsMinion() then
-					table.insert( enemyUnits, unit )
-				else
-					table.insert( enemyHeroes, unit )
-				end
+				table.insert( alliedUnits, unit )
+			end
+		else
+			if unit:IsMinion() then
+				table.insert( enemyUnits, unit )
+			else
+				table.insert( enemyHeroes, unit )
 			end
 		end
 	end
+	
 	local ripFX
 	if target:IsSameTeam(caster) then
 		EmitSoundOn("Hero_Undying.SoulRip.Ally", target)
@@ -72,21 +69,46 @@ function undying_soul_siphon:OnSpellStart()
 		ripFX = "particles/units/heroes/hero_undying/undying_soul_rip_damage.vpcf"
 	end
 	
-	local flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_REFLECTION
+	local flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NON_LETHAL
 	local totalValue = 0
-	-- check all enemy non-minions
-	for _, unit in ipairs( enemyHeroes ) do
-		self:DealDamage( caster, unit, hploss, {damage_type = DAMAGE_TYPE_PURE, damage_flags = flags})
-		totalValue = totalValue + healPUnit * heroBonus
-		maxUnits = maxUnits - 1
-		ParticleManager:FireRopeParticle(ripFX, PATTACH_ABSORIGIN_FOLLOW, target, unit)
-		if talent1 then
-			self.tombstone:SummonZombie( unit, talent1Duration )
+	
+	local attackSpeedDuration = self:GetSpecialValueFor("attack_speed_duration")
+	if prioritizeAllies then
+		for _, unit in ipairs( alliedHeroes ) do
+			if maxUnits <= 0 then break end
+			local self:DealDamage( caster, unit, healPUnit, {damage_type = DAMAGE_TYPE_PURE, damage_flags = flags})
+			totalValue = totalValue + healPUnit * heroBonus
+			maxUnits = maxUnits - 1
+			ParticleManager:FireRopeParticle(ripFX, PATTACH_ABSORIGIN_FOLLOW, target, unit)
+			if attackSpeedDuration > 0 then
+				target:AddNewModifier(caster, self, "modifier_undying_soul_siphon_legion", {duration = attackSpeedDuration})
+			end
 		end
-	end
-	-- check all enemy minions
-	if maxUnits > 0 then
+		-- check all allied non-heroes
+		for _, unit in ipairs( alliedUnits ) do
+			if maxUnits <= 0 then break end
+			self:DealDamage( caster, unit, healPUnit, {damage_type = DAMAGE_TYPE_PURE, damage_flags = flags})
+			totalValue = totalValue + healPUnit
+			maxUnits = maxUnits - 1
+			ParticleManager:FireRopeParticle(ripFX, PATTACH_ABSORIGIN_FOLLOW, target, unit)
+			if attackSpeedDuration > 0 then
+				target:AddNewModifier(caster, self, "modifier_undying_soul_siphon_legion", {duration = attackSpeedDuration})
+			end
+		end
+		-- check all enemy non-minions
+		for _, unit in ipairs( enemyHeroes ) do
+			if maxUnits <= 0 then break end
+			self:DealDamage( caster, unit, hploss, {damage_type = DAMAGE_TYPE_PURE, damage_flags = flags})
+			totalValue = totalValue + healPUnit * heroBonus
+			maxUnits = maxUnits - 1
+			ParticleManager:FireRopeParticle(ripFX, PATTACH_ABSORIGIN_FOLLOW, target, unit)
+			if talent1 then
+				self.tombstone:SummonZombie( unit, talent1Duration )
+			end
+		end
+		-- check all enemy minions
 		for _, unit in ipairs( enemyUnits ) do
+			if maxUnits <= 0 then break end
 			self:DealDamage( caster, unit, hploss, {damage_type = DAMAGE_TYPE_PURE, damage_flags = flags})
 			totalValue = totalValue + healPUnit
 			maxUnits = maxUnits - 1
@@ -95,42 +117,66 @@ function undying_soul_siphon:OnSpellStart()
 				self.tombstone:SummonZombie( unit, talent1Duration )
 			end
 		end
-	end
-	
-	flags = flags + DOTA_DAMAGE_FLAG_NON_LETHAL
-	-- check all allied heroes
-	if maxUnits > 0 then
-		for _, unit in ipairs( alliedHeroes ) do
-			self:DealDamage( caster, unit, healPUnit, {damage_type = DAMAGE_TYPE_PURE, damage_flags = flags})
+	else
+		-- check all enemy non-minions
+		for _, unit in ipairs( enemyHeroes ) do
+			if maxUnits <= 0 then break end
+			self:DealDamage( caster, unit, hploss, {damage_type = DAMAGE_TYPE_PURE, damage_flags = flags})
 			totalValue = totalValue + healPUnit * heroBonus
 			maxUnits = maxUnits - 1
 			ParticleManager:FireRopeParticle(ripFX, PATTACH_ABSORIGIN_FOLLOW, target, unit)
+			if talent1 then
+				self.tombstone:SummonZombie( unit, talent1Duration )
+			end
 		end
-	end
-	-- check all allied non-heroes
-	if maxUnits > 0 then
+		-- check all enemy minions
+		for _, unit in ipairs( enemyUnits ) do
+			if maxUnits <= 0 then break end
+			self:DealDamage( caster, unit, hploss, {damage_type = DAMAGE_TYPE_PURE, damage_flags = flags})
+			totalValue = totalValue + healPUnit
+			maxUnits = maxUnits - 1
+			ParticleManager:FireRopeParticle(ripFX, PATTACH_ABSORIGIN_FOLLOW, target, unit)
+			if talent1 and self:RollPRNG( talent1Chance ) then
+				self.tombstone:SummonZombie( unit, talent1Duration )
+			end
+		end
+		for _, unit in ipairs( alliedHeroes ) do
+			if maxUnits <= 0 then break end
+			local self:DealDamage( caster, unit, healPUnit, {damage_type = DAMAGE_TYPE_PURE, damage_flags = flags})
+			totalValue = totalValue + healPUnit * heroBonus
+			maxUnits = maxUnits - 1
+			ParticleManager:FireRopeParticle(ripFX, PATTACH_ABSORIGIN_FOLLOW, target, unit)
+			if attackSpeedDuration > 0 then
+				target:AddNewModifier(caster, self, "modifier_undying_soul_siphon_legion", {duration = attackSpeedDuration})
+			end
+		end
+		-- check all allied non-heroes
 		for _, unit in ipairs( alliedUnits ) do
+			if maxUnits <= 0 then break end
 			self:DealDamage( caster, unit, healPUnit, {damage_type = DAMAGE_TYPE_PURE, damage_flags = flags})
 			totalValue = totalValue + healPUnit
 			maxUnits = maxUnits - 1
 			ParticleManager:FireRopeParticle(ripFX, PATTACH_ABSORIGIN_FOLLOW, target, unit)
+			if attackSpeedDuration > 0 then
+				target:AddNewModifier(caster, self, "modifier_undying_soul_siphon_legion", {duration = attackSpeedDuration})
+			end
 		end
 	end
-
 	local effectDuration = self:GetSpecialValueFor("buff_duration")
+	local strengthDuration = self:GetSpecialValueFor("strength_duration")
 	local strengthDamage = self:GetSpecialValueFor("strength_effect") / 100
 	if target:IsSameTeam(caster) then
 		target:HealEvent( totalValue, self, caster )
-		if effectDuration > 0 then
-			target:RemoveModifierByName("modifier_undying_soul_siphon_talent")
-			target:AddNewModifier(caster, self, "modifier_undying_soul_siphon_talent", {duration = effectDuration})
+		
+		if strengthDuration > 0 then
+			target:AddNewModifier(caster, self, "modifier_undying_soul_siphon_undying", {duration = strengthDuration})
 		end
 	elseif not target:TriggerSpellAbsorb( self ) then 
 		if effectDuration > 0 then
 			target:AddNewModifier(caster, self, "modifier_undying_soul_siphon_talent", {duration = effectDuration})
 		end
-		if strengthDamage > 0 then
-			totalValue = totalValue + caster:GetStrength() * strengthDamage
+		if strengthDuration > 0 then
+			target:AddNewModifier(caster, self, "modifier_undying_soul_siphon_undying", {duration = strengthDuration})
 		end
 		
 		self:DealDamage( caster, target, totalValue )
@@ -146,6 +192,24 @@ end
 
 function modifier_undying_soul_siphon_talent:OnRefresh()
 	self.as = self:GetSpecialValueFor("bonus_attack_speed")
+end
+
+function modifier_undying_soul_siphon_talent:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
+end
+
+function modifier_undying_soul_siphon_talent:GetModifierAttackSpeedBonus_Constant()
+	return self.as
+end
+
+modifier_undying_soul_siphon_undying = class({})
+LinkLuaModifier("modifier_undying_soul_siphon_undying", "heroes/hero_undying/undying_soul_siphon", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_undying_soul_siphon_undying:OnCreated()
+	self:OnRefresh()
+end
+
+function modifier_undying_soul_siphon_undying:OnRefresh()
 	self.str = self:GetCaster():GetStrength() * self:GetSpecialValueFor("strength_share") / 100
 	if not self:GetCaster():IsSameTeam( self:GetParent() ) then
 		self.str = 0
@@ -155,14 +219,29 @@ function modifier_undying_soul_siphon_talent:OnRefresh()
 	end
 end
 
-function modifier_undying_soul_siphon_talent:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_STATS_STRENGTH_BONUS }
+function modifier_undying_soul_siphon_undying:DeclareFunctions()
+	return { MODIFIER_PROPERTY_STATS_STRENGTH_BONUS }
 end
 
-function modifier_undying_soul_siphon_talent:GetModifierAttackSpeedBonus_Constant()
-	return self.as
-end
-
-function modifier_undying_soul_siphon_talent:GetModifierBonusStats_Strength()
+function modifier_undying_soul_siphon_undying:GetModifierBonusStats_Strength()
 	return self.str
+end
+
+modifier_undying_soul_siphon_legion = class({})
+LinkLuaModifier("modifier_undying_soul_siphon_legion", "heroes/hero_undying/undying_soul_siphon", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_undying_soul_siphon_legion:OnCreated()
+	self:OnRefresh()
+end
+
+function modifier_undying_soul_siphon_legion:OnRefresh()
+	self.as = self:GetSpecialValueFor("bonus_attack_speed_loss")
+end
+
+function modifier_undying_soul_siphon_legion:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
+end
+
+function modifier_undying_soul_siphon_legion:GetModifierAttackSpeedBonus_Constant()
+	return self.as
 end

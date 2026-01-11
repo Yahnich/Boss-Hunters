@@ -122,7 +122,6 @@
 			"dmg_lifesteal"										{"special_bonus_facet_undying_undying"	"100"}
 			"attack_damage_per_stack"							{"special_bonus_unique_undying_devour_life_2"	"6"}
 			"attack_range_per_stack"							{"special_bonus_unique_undying_devour_life_2"	"2"}
-				
 		}
 		
 		// Data driven

@@ -7258,6 +7258,8 @@
 		"DOTA_Tooltip_modifier_undying_monstrous_form_Description"												"Gaining strength, movement speed and dealing damage with attacks or Decay applies a debuff that increases the target's damage taken."
 		"DOTA_Tooltip_modifier_undying_monstrous_form_debuff"													"Flesh Golem - Debuff"
 		"DOTA_Tooltip_modifier_undying_monstrous_form_debuff_Description"										"Taking %dMODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE%%% more damage."
+		"DOTA_Tooltip_modifier_undying_monstrous_form_flesh_golem"												"Flesh Golem - Summon"
+		"DOTA_Tooltip_modifier_undying_monstrous_form_flesh_golem_Description"									"Zombie converted to Golem."
 		
 		// DEPRECATED
 		"DOTA_Tooltip_ability_undying_summon_zombies"															"Vampiric Zombies"

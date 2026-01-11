@@ -22,8 +22,9 @@ function modifier_undying_monstrous_form:OnRefresh()
 	local caster = self:GetCaster()
 	self.bonus_strength = self:GetSpecialValueFor("bonus_strength")
 	self.bonus_ms = self:GetSpecialValueFor("bonus_ms")
-	self.damage_amp = self:GetSpecialValueFor("damage_amp")
 	self.duration = self:GetSpecialValueFor("debuff_duration")
+	
+	self.flesh_golems = self:GetSpecialValueFor("golem_multiplier") > 0
 	
 	self.talent1Armor = caster:GetSpecialValueFor("bonus_armor")
 	self.talent1MR = caster:GetSpecialValueFor("bonus_magic_resist")
@@ -35,11 +36,6 @@ function modifier_undying_monstrous_form:OnRefresh()
 		if not self.tombstone or self.tombstone:GetLevel() == 0 then -- disable talent if tombstone isn't leveled
 			self.talent3 = false
 		end
-	end
-	
-	self.decay = caster:FindAbilityByName("undying_devour_life")
-	if not self.decay or self.decay:GetLevel() == 0 then -- disable talent if tombstone isn't leveled
-		self.decay = false
 	end
 	
 	self:GetCaster():HookInModifier("GetModifierStrengthBonusPercentage", self)
@@ -63,14 +59,13 @@ end
 
 function modifier_undying_monstrous_form:OnTakeDamage(params)
 	local countsAsAttack = ( params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK ) or HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_PROPERTY_FIRE )
-	if params.attacker == self:GetParent() and ( countsAsAttack or params.inflictor == self.decay ) then
-		if countsAsAttack then
-			if self.talent3Duration > 0 then
-				self.tombstone:SummonZombie( params.unit, self.talent3Duration )
-			end
+	if params.attacker ~= self:GetParent() then return end
+	if countsAsAttack then
+		if self.talent3Duration > 0 then
+			self.tombstone:SummonZombie( params.unit, self.talent3Duration )
 		end
-		params.unit:AddNewModifier( params.attacker, self:GetAbility(), "modifier_undying_monstrous_form_debuff", {duration = self.duration} )
 	end
+	params.unit:AddNewModifier( params.attacker, self:GetAbility(), "modifier_undying_monstrous_form_debuff", {duration = self.duration} 
 end
 
 function modifier_undying_monstrous_form:GetModifierStrengthBonusPercentage()
@@ -97,13 +92,66 @@ function modifier_undying_monstrous_form:GetModifierModelChange()
 	return "models/heroes/undying/undying_flesh_golem.vmdl"
 end
 
+function modifier_undying_monstrous_form:IsAura()
+	return self.flesh_golems
+end
+
+function modifier_undying_monstrous_form:GetModifierAura()
+	return "modifier_undying_monstrous_form_flesh_golem"
+end
+
+function undying_necropolis_tombstone:GetAuraRadius()
+	return 1200
+end
+
+function undying_necropolis_tombstone:GetAuraDuration()
+	return 0.5
+end
+
+function undying_necropolis_tombstone:GetAuraSearchTeam()    
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+
+function undying_necropolis_tombstone:GetAuraSearchType()    
+	return DOTA_UNIT_TARGET_BASIC
+end
+
+function undying_necropolis_tombstone:GetAuraEntityReject( unit )    
+	return unit:GetUnitName() ~= "npc_dota_unit_undying_zombie"
+end
+
 function modifier_undying_monstrous_form:GetEffectName()
 	return "particles/units/heroes/hero_undying/undying_fg_aura.vpcf"
 end
 
+modifier_undying_monstrous_form_flesh_golem = class({})
+LinkLuaModifier("modifier_undying_monstrous_form_flesh_golem", "heroes/hero_undying/undying_monstrous_form", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_undying_monstrous_form_flesh_golem:OnCreated()
+	self.bonus_hp = self:GetParent():GetMaxHealth() * self:GetSpecialValueFor("golem_multiplier") - 1
+	self.bonus_damage = (self:GetSpecialValueFor("golem_multiplier") - 1) * 100
+end
+
+function modifier_undying_monstrous_form_flesh_golem:DeclareFunctions()
+	return {MODIFIER_PROPERTY_HEALTH_BONUS,
+			MODIFIER_PROPERTY_BONUSDAMAGEOUTGOING_PERCENTAGE,
+			MODIFIER_PROPERTY_MODEL_SCALE }
+end
+
+function modifier_undying_monstrous_form_flesh_golem:GetModifierHealthBonus()
+	return self.bonus_hp
+end
+
+function modifier_undying_monstrous_form_flesh_golem:GetModifierBonusDamageOutgoing_Percentage()
+	return self.bonus_damage
+end
+
+function modifier_undying_monstrous_form_flesh_golem:GetModifierModelScale()
+	return self.bonus_damage
+end
+
 modifier_undying_monstrous_form_debuff = class({})
 LinkLuaModifier("modifier_undying_monstrous_form_debuff", "heroes/hero_undying/undying_monstrous_form", LUA_MODIFIER_MOTION_NONE)
-
 
 function modifier_undying_monstrous_form_debuff:OnCreated()
 	self:OnRefresh()
@@ -111,14 +159,18 @@ end
 
 function modifier_undying_monstrous_form_debuff:OnRefresh()
 	self.damage_amp = self:GetSpecialValueFor("damage_amp")
+	self.damage_red = -self.damage_amp * self:GetSpecialValueFor("damage_reduction") / 100
 end
 
-
 function modifier_undying_monstrous_form_debuff:DeclareFunctions()
-	return { MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE ,
-			}
+	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE ,
+			MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE }
 end
 
 function modifier_undying_monstrous_form_debuff:GetModifierIncomingDamage_Percentage()
 	return self.damage_amp
+end
+
+function modifier_undying_monstrous_form_debuff:GetModifierTotalDamageOutgoing_Percentage()
+	return self.damage_red
 end
