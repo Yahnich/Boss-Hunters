@@ -7,7 +7,7 @@
 	{
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_sniper/sniper_rangefinder"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"sniper_rangefinder"
 		"MaxLevel"						"4"		
 		"Innate"						"1"
@@ -108,10 +108,7 @@
 				"value"											"20"
 				"special_bonus_unique_sniper_2" 				"-15"
 			}
-			"AbilityCharges"
-			{
-				"value"											"3"
-			}
+			"AbilityCharges"									"3"
 			
 			// Talent KV's
 			//---------------------------------------------------------------------------------------------------------
