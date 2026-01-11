@@ -1,14 +1,95 @@
 "DOTAAbilities"
 {	
 	//=================================================================================================================
-	// Ability: Juggernaut Blade Fury
+	// Ability: Juggernaut Blade Dance (Innate)
 	//=================================================================================================================
-	"juggernaut_mirror_blades"
+	"juggernaut_decisive_judgement"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_mirror_blades"
+		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_decisive_judgement"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"juggernaut_bladeform"
+		"MaxLevel"						"1"
+		"Innate"						"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// Default KV's
+			//---------------------------------------------------------------------------------------------------------
+			"crit_chance"															
+			{
+				"value"																"20"
+				"hero_levelup"														"+1"
+			}
+			"crit_damage"															"200"
+
+			// Sohei KV's
+			//---------------------------------------------------------------------------------------------------------
+			"bladeform_agi_bonus"
+			{
+				"special_bonus_facet_juggernaut_sohei"
+				{
+					"value"															"2"
+					"special_bonus_unique_juggernaut_minor_r"						"+0.5"
+				}
+			}
+			"bladeform_stack_max"
+			{
+				"special_bonus_facet_juggernaut_sohei"					
+				{	
+					"value"															"10"
+					"special_bonus_unique_juggernaut_greater_l"						"+5"
+				}
+			}
+			"bladeform_duration"
+			{
+				"special_bonus_facet_juggernaut_sohei"								"10"
+				"is_buff_duration"													"1"
+			}
+
+			// Ronin KV's
+			//---------------------------------------------------------------------------------------------------------
+			"endurance_restore_bonus"
+			{
+				"special_bonus_facet_juggernaut_ronin"					
+				{
+					"value"															"5"
+					"special_bonus_unique_juggernaut_minor_r"						"+5"
+				}
+			}
+			"endurance_stack_max"
+			{
+				"special_bonus_facet_juggernaut_ronin"					
+				{
+					"value"															"10"
+					"special_bonus_unique_juggernaut_greater_l"						"+10"
+				}
+			}
+			"endurance_duration"
+			{
+				"special_bonus_facet_juggernaut_ronin"								"10"
+				"is_buff_duration"													"1"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Juggernaut Blade Fury
+	//=================================================================================================================
+	"juggernaut_whirling_dervish"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_whirling_dervish"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
@@ -21,8 +102,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_juggernaut_mirror_blades_1"	"1"
-			"special_bonus_unique_juggernaut_mirror_blades_2"	"1"
+			"special_bonus_unique_juggernaut_whirling_dervish_1"			"1"
+			"special_bonus_unique_juggernaut_whirling_dervish_2"			"1"
 		}
 	
 		// Casting
@@ -42,27 +123,57 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"damage_tick"						"0.2"
+			// Default KV's
+			//---------------------------------------------------------------------------------------------------------
+			"duration"																"3 4 5 6"
+			"damage_tick"															
+			{
+				"value"																"0.2"
+				"special_bonus_unique_juggernaut_whirling_dervish_1"				"=0.1"
+			}
 			"radius"
 			{
-				"value"							"260"
-				"special_bonus_unique_juggernaut_mirror_blades_1"	"x2"
+				"value"																"260"
+				"special_bonus_facet_juggernaut_ronin"								"+100"	
 			}
 			"damage"
 			{
-				"value"							"85 110 135 160"
-				"special_bonus_unique_juggernaut_mirror_blades_1"	"x2"
+				"value"																"85 110 135 160"
+				"hero_levelup"														"+3"
+				"CalculateSpellDamageTooltip"										"1"
 			}
-			"duration"							"3 4 5 6"
+
 			"damage_reduction"
 			{
-				"value"												"-100"
-				"special_bonus_unique_juggernaut_mirror_blades_2"	"+75"
+				"value"																"100"
+				"special_bonus_facet_juggernaut_sohei"								"=30 =25 =20 =15"
+				"CalculateAttackDamageTooltip"										"1"
 			}
-			"bonus_movement_speed"									{"special_bonus_unique_juggernaut_mirror_blades_2"	"100"}
+
+			// Ronin KV's
+			//---------------------------------------------------------------------------------------------------------
+			"mspd_slow"			
+			{
+				"special_bonus_facet_juggernaut_ronin"								"15 25 35 45" 
+			}
+			"aspd_slow"
+			{
+				"special_bonus_facet_juggernaut_ronin"								"30 50 70 90"
+			}
+
+			// Talent KV's
+			//---------------------------------------------------------------------------------------------------------
+			"applies_modifiers"
+			{
+				"special_bonus_unique_juggernaut_whirling_dervish_2"				"1"
+			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
+
+	//=================================================================================================================
+	// Ability: Juggernaut Meditative State
+	//=================================================================================================================
 	"juggernaut_meditative_state"
 	{
 		// General
@@ -93,6 +204,7 @@
 			"particle"  		"particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf"
 			"particle"			"particles/units/heroes/hero_treant/treant_leech_seed_heal_puffs.vpcf"
 			"particle"			"particles/juggernaut_ronin_slice_buff.vpcf"
+			"particle"			"particles/econ/items/venomancer/veno_2022_immortal_tail/veno_2022_immortal_poison_nova_shockwave_pulse.vpcf"
 		}
 		
 		"AbilityCastPoint"				"0"
@@ -113,21 +225,177 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
+			// Default KV's
+			//---------------------------------------------------------------------------------------------------------
 			"buff_duration"				"25"
 			"linger_duration"			"0.5"
 			"regeneration"				"2 3 4 5"
+			"particle_radius"			"500"
 			
+			
+			// Sohei KV's
+			//---------------------------------------------------------------------------------------------------------
+			"pulse_interval"
+			{
+				"special_bonus_facet_juggernaut_sohei"									"3"
+			}
+			"pulse_aoe"
+			{
+				"special_bonus_facet_juggernaut_sohei"									"500"
+			}
+			"aspd"
+			{
+				"special_bonus_facet_juggernaut_sohei"									"30 60 90 120"
+			}
+			"extra_buff_duration"
+			{
+				"special_bonus_facet_juggernaut_sohei"									"3.5"
+			}
+
+			// Ronin KV's
+			//---------------------------------------------------------------------------------------------------------
+			"armor"
+			{
+				"special_bonus_facet_juggernaut_ronin"									"3 5 7 9"
+			}
+			"mres"
+			{
+				"special_bonus_facet_juggernaut_ronin"									"8 12 16 20"
+			}
+			
+
+			// Talent KV's
+			//---------------------------------------------------------------------------------------------------------
+			"positive_aura"
+			{
+				"special_bonus_unique_juggernaut_meditative_state_1"					"500"
+			}
+			"negative_damage"
+			{
+				"special_bonus_unique_juggernaut_meditative_state_2"					"2"
+			}
+			"negative_aura"
+			{
+				"special_bonus_unique_juggernaut_meditative_state_2"					"500"
+			}
+
 			"passive_regeneration"		{"special_bonus_unique_juggernaut_meditative_state_1"	"33"}
 			"aura_radius"				{"special_bonus_unique_juggernaut_meditative_state_2"	"500"}
 			"aura_slow"					{"special_bonus_unique_juggernaut_meditative_state_2"	"50"}
 		}
 	}
-	"juggernaut_quickparry"
+
+	//=================================================================================================================
+	// Ability: Juggernaut Breathless Lunge
+	//=================================================================================================================
+	"juggernaut_breathless_lunge"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_quickparry"
+		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_breathless_lunge"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName"			"juggernaut_blade_dance"
+		"MaxLevel"						"4"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_juggernaut_breathless_lunge_1"						"1"
+			"special_bonus_unique_juggernaut_breathless_lunge_2"						"1"
+		}
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.233"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+		
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"					"particles/econ/items/juggernaut/bladekeeper_omnislash/_dc_juggernaut_omni_slash_trail.vpcf"
+			"particle"					"particles/units/heroes/hero_ringmaster/ringmaster_dagger_target_bleed_splurt.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_juggernaut,vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+	    {
+			// Default KV's
+			//---------------------------------------------------------------------------------------------------------
+			"AbilityCooldown"															"0"
+			"AbilityChargeRestoreTime"													
+			{
+				"value"																	"16 14 12 10"
+				"special_bonus_unique_juggernaut_breathless_lunge_1"					"-4"
+			}
+			"AbilityCharges"															"1 1 2 3"
+
+			"jump_distance"																
+			{
+				"value"																	"500"
+				"special_bonus_unique_juggernaut_breathless_lunge_2"					"=250"
+			}
+			"jump_speed"																"3000"
+			"aspd"																		"50"
+			"buff_duration"																"1.5"
+
+			// Talent KV's
+			//---------------------------------------------------------------------------------------------------------
+			"disarms"																	
+			{
+				"special_bonus_unique_juggernaut_breathless_lunge_1"					"1"
+			}
+			"disarm_duration"
+			{
+				"special_bonus_unique_juggernaut_breathless_lunge_1"					"3"
+			}
+
+			"bleed"																		
+			{
+				"special_bonus_unique_juggernaut_breathless_lunge_2"					"0.5"
+			}
+			"bleed_duration"															
+			{
+				"special_bonus_unique_juggernaut_breathless_lunge_2"					"3"
+			}
+	    }
+	}
+	"special_bonus_unique_juggernaut_breathless_lunge_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"MaxLevel"						"1"
+	}
+	"special_bonus_unique_juggernaut_breathless_lunge_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"MaxLevel"						"1"
+	}
+
+	//=================================================================================================================
+	// Ability: Juggernaut Swift Retribution
+	//=================================================================================================================
+	"juggernaut_swift_retribution"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_swift_retribution"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName"			"custom/juggernaut_quickparry"
@@ -137,78 +405,86 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_juggernaut_quickparry_1"	"1"
-			"special_bonus_unique_juggernaut_quickparry_2"	"1"
+			"special_bonus_unique_juggernaut_swift_retribution_1"	"1"
+			"special_bonus_unique_juggernaut_swift_retribution_2"	"1"
 		}
 		
+		// Precache
+		//---------------------------------------------------------------------------------------------------------
 		"precache"
 		{
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
 		}
 		
+		// Cast
+		//---------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"20 18 16 14"
+
+		// Cost
+		//---------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"80 70 60 50"
 	
+		// Special
+		//---------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 	    {
+			// Default KV's
+			//---------------------------------------------------------------------------------------------------------
 	        "duration"					"1.5 2 2.5 3"
 			
-			"lifesteal"					{"special_bonus_unique_juggernaut_quickparry_1"	"100"}
-			"bonus_attacks"				{"special_bonus_unique_juggernaut_quickparry_1"	"1"}
-			"stack_attack_speed"		{"special_bonus_unique_juggernaut_quickparry_2"	"25"}
-			"stack_move_speed"			{"special_bonus_unique_juggernaut_quickparry_2"	"5"}
-			"stack_duration"			{"special_bonus_unique_juggernaut_quickparry_2"	"5"}
+			// Talent KV's
+			//---------------------------------------------------------------------------------------------------------
+			"lifesteal"					
+			{
+				"special_bonus_unique_juggernaut_swift_retribution_1"					"100"
+			}
+			"bonus_attacks"				
+			{
+				"special_bonus_unique_juggernaut_swift_retribution_1"					"1"
+			}
+			"stack_attack_speed"		
+			{
+				"special_bonus_unique_juggernaut_swift_retribution_2"					"25"
+			}
+			"stack_move_speed"			
+			{
+				"special_bonus_unique_juggernaut_swift_retribution_2"					"5"
+			}
+			"stack_duration"			
+			{
+				"special_bonus_unique_juggernaut_swift_retribution_2"					"5"
+			}
 	    }
 	}
-	"juggernaut_momentum_strike"
+	"special_bonus_unique_juggernaut_swift_retribution_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_momentum_strike"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-		"AbilityTextureName"			"juggernaut_blade_dance"
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
 		"MaxLevel"						"1"
-		"Innate"					"1"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_juggernaut_momentum_strike_1"	"1"
-		}
-		
-		"precache"
-		{
-			"particle"					"particles/econ/items/juggernaut/bladekeeper_omnislash/dc_juggernaut_omni_slash_rope.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_juggernaut,vsndevts"
-		}
-	
-		"AbilityValues"
-	    {
-	        "critical_bonus"			"200"
-	        "critical_chance"
-			{
-				"value"					"25"
-				"LinkedSpecialBonus"	"special_bonus_unique_juggernaut_momentum_strike_1"
-			}
-			"jump_distance"				"500"
-			"jump_speed"   				"3000"
-			"maximum_charges"  			"3"
-			
-			"use_without_charges"		{"special_bonus_unique_juggernaut_momentum_strike_1"	"1"}
-			"chargeless_cd"				{"special_bonus_unique_juggernaut_momentum_strike_1"	"6"}
-	    }
 	}
+	"special_bonus_unique_juggernaut_swift_retribution_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"MaxLevel"						"1"
+	}
+
 	//=================================================================================================================
-	// Ability: Juggernaut Omni Slash
+	// Ability: Juggernaut Swift Slash
 	//=================================================================================================================
 	"juggernaut_hidden_blade"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_hidden_blade"
+		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_windless_cuts"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -217,9 +493,10 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
 		"AbilityTextureName"			"juggernaut_swift_slash"
 		"FightRecapLevel"				"2"
-		"MaxLevel"						"1"
-		"IsGrantedByScepter"			"1"
-		"HasScepterUpgrade"				"1"
+		"MaxLevel"						"3"
+		"IsGrantedByScepter"			"0"
+		"HasScepterUpgrade"				"0"
+		"DepenedentOnAbility"			"juggernaut_windless_cuts"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -243,18 +520,26 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"duration"						"0.8"
+			"attack_rate_multiplier"													"1.5"
+			"bonus_damage"																"0"
+			"bonus_attack_speed"														"40 60 80"
+			"duration"
+			{
+				"value"																	"1 1.5 2"
+				"is_buff_duration"														"1"
+			}
+			"omni_slash_radius"															"425"
 		}
 	}
 	//=================================================================================================================
 	// Ability: Juggernaut Omni Slash
 	//=================================================================================================================
-	"juggernaut_dance_of_blades"
+	"juggernaut_windless_cuts"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_dance_of_blades"
+		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_windless_cuts"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -265,12 +550,14 @@
 		"AbilityTextureName"			"juggernaut_omni_slash"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"3"
+		"LinkedAbility"					"juggernaut_hidden_blade"
 		
 		// Talents		
 		//-------------------------------------------------------------------------------------------------------------
 		"LinkedTalents"
 		{
-			"special_bonus_unique_juggernaut_dance_of_blades_1"	"1"
+			"special_bonus_unique_juggernaut_windless_cuts_1"							"1"
+			"special_bonus_unique_juggernaut_windless_cuts_2"							"1"
 		}
 		
 		// Casting
@@ -295,31 +582,65 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
+			// Default KV's
+			//---------------------------------------------------------------------------------------------------------
+			"attack_rate_multiplier"													"1.5"
 			"bonus_damage"
 			{
-				"value"							"30 45 60"
-				"CalculateSpellDamageTooltip"	"0"
+				"value"																	"15 45 75"
+				"hero_levelup"															"+3"
+				"CalculateAttackDamageTooltip"											"1"
 			}
-			"duration"							"3.0 3.25 3.5"
-			"radius"							"275"
-			"bounce_rate"						"1.6"
+			"bonus_attack_speed"														"40 60 80"
+			"duration"
+			{
+				"value"																	"3 3.5 4"
+				"special_bonus_facet_juggernaut_ronin"									"+1 1.5 2"
+				"is_buff_duration"														"1"
+			}
+			"omni_slash_radius"															"425"
+			"hidden_blade_tooltip_duration"												"1 1.5 2"
+
+			// Ronin KV's
+			//---------------------------------------------------------------------------------------------------------
+			"endless"
+			{
+				"special_bonus_facet_juggernaut_ronin"									"1"
+			}
+			"outgoing_reduction"
+			{
+				"special_bonus_facet_juggernaut_ronin"									"8"
+			}
+
+			// Talent KV's
+			//---------------------------------------------------------------------------------------------------------
+			"second_wind"
+			{
+				"special_bonus_unique_juggernaut_windless_cuts_1"						"1"
+			}
+			"refresh_outgoing_increase"
+			{
+				"special_bonus_unique_juggernaut_windless_cuts_1"						"20"
+			}
+			"last_gasp"	
+			{
+				"special_bonus_unique_juggernaut_windless_cuts_2"						"2"
+			}
+			"last_gasp_cooldown"
+			{
+				"special_bonus_unique_juggernaut_windless_cuts_2"						"30"
+			}
+			"last_gasp_threshold"
+			{
+				"special_bonus_unique_juggernaut_windless_cuts_2"						"25"
+			}
+
+			// Unused KV's
+			//---------------------------------------------------------------------------------------------------------
+			"dispel"																""
 		}
 	}
-	"special_bonus_unique_juggernaut_dance_of_blades_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"					"100"
-		}
-	}
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////// DEPRECATED ////////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

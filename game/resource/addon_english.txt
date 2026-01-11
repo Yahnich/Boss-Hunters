@@ -4386,6 +4386,7 @@
 		"DOTA_Tooltip_Facet_puck_crystalhide"																	"Crystalhide"
 		"DOTA_Tooltip_Facet_puck_crystalhide_Description"														"Puck toughens himself with Crystals, strengthening his defenses while weakening his enemies."
 
+		// Trickster
 		"DOTA_Tooltip_ability_puck_trickster"																	"Trickster"
 		"DOTA_Tooltip_ability_puck_trickster_Description"														"Puck heals and restores %base_restore% + %percent_restore%%% of his Max Health and Mana everytime he disjoints an attack or ability."
 		"DOTA_Tooltip_ability_puck_trickster_base_restore"														"BASE RESTORE:"
@@ -4396,7 +4397,8 @@
 		"DOTA_Tooltip_ability_puck_trickster_bonus_debuff_duration"												"%BONUS DEBUFF DURATION:"
 		"DOTA_Tooltip_ability_puck_trickster_Facet_puck_crystalhide"											"Maximum health healed increased to %percent_restore%%% and now triggers when attacks are evaded. This has a %evasion_cooldown% second cooldown."
 		"DOTA_Tooltip_ability_puck_trickster_evasion_cooldown"													"EVASION COOLDOWN:"
-
+		
+		// Faerie Orb
 		"DOTA_Tooltip_ability_puck_faerie_orb"																	"Faerie Orb"
 		"DOTA_Tooltip_ability_puck_faerie_orb_Description"														"Puck launches a magic orb that floats in a straight path, damaging enemy units along the way. At any point, Puck may teleport to the orb's location using Ethereal Jaunt."
 		"DOTA_Tooltip_ability_puck_faerie_orb_Lore"																"The playful Faerie Dragon delights in confusing others, vanishing and reappearing where unexpected."
@@ -4411,14 +4413,15 @@
 		"DOTA_Tooltip_ability_puck_faerie_orb_Facet_puck_crystalhide"											"Cools down %cooldown_increase%%% faster if Puck has taken damage in the last second."
 		"DOTA_Tooltip_ability_puck_faerie_orb_cooldown_increase"												"%COOLDOWN ACCELERATION:"
 
-		"DOTA_Tooltip_ability_special_bonus_unique_puck_faerie_orb_1"											"Recursive Orb"
-		"DOTA_Tooltip_ability_special_bonus_unique_puck_faerie_orb_1_Description"								"Grants Faerie Orb 2 additional charges."
-		"DOTA_Tooltip_ability_special_bonus_unique_puck_faerie_orb_2"											"Aetherworks Globe"
-		"DOTA_Tooltip_ability_special_bonus_unique_puck_faerie_orb_2_Description"								"Faerie Orb deals 75% damage in double the projectile radius upon expiring."
-
 		"DOTA_Tooltip_modifier_puck_faerie_orb_debuff"															"Faerie orb - Whimsicatastrophe"
 		"DOTA_Tooltip_modifier_puck_faerie_orb_debuff_Description"												"Taking %dMODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE%%% more damage."
 
+		"DOTA_Tooltip_ability_special_bonus_unique_puck_faerie_orb_1"											"Recursive Orb"
+		"DOTA_Tooltip_ability_special_bonus_unique_puck_faerie_orb_1_Description"								"Grants Faerie Orb <b>2</b> additional charges."
+		"DOTA_Tooltip_ability_special_bonus_unique_puck_faerie_orb_2"											"Aetherworks Globe"
+		"DOTA_Tooltip_ability_special_bonus_unique_puck_faerie_orb_2_Description"								"Faerie Orb deals <b>75%</b> damage in double the projectile radius upon expiring."
+
+		// Wander
 		"DOTA_Tooltip_ability_puck_wander"																		"Wander"
 		"DOTA_Tooltip_ability_puck_wander_Description"															"Teleports Puck to the flying Faerie Orb closest to the targeted position."
 		"DOTA_Tooltip_ability_puck_wander_Facet_puck_glimmerdrake"												"Replicates Dimension Shift for %shift_duration% seconds."
@@ -4429,6 +4432,7 @@
 		"DOTA_Tooltip_ability_puck_wander_Lore"																	"Those who see Puck mysteriously disappear often wonder where he wanders off to."
 		"DOTA_Tooltip_ability_puck_wander_Note0"																"Can be cast while in Dimension Shift, even if rooted."
 		
+		// Mystical Rift
 		"DOTA_Tooltip_ability_puck_mystical_rift"																"Mystical Rift"
 		"DOTA_Tooltip_ability_puck_mystical_rift_Description"													"Puck teleports to the target location and releases a burst of mystical dust that deals damage and silences enemy units nearby."
 		"DOTA_Tooltip_ability_puck_mystical_rift_Lore"															"With a mischievous grin, Puck spreads its enchanted powder which disrupts magical flow."
@@ -4442,14 +4446,15 @@
 		"DOTA_Tooltip_ability_puck_mystical_rift_Facet_puck_crystalhide"										"Toggleable. Hypnotizes units affected by Mystical Rift by default, Fears them instead if toggled on."
 		"DOTA_Tooltip_ability_puck_mystical_rift_Note0"															"Casting while rooted will not teleport Puck."
 		
+		"DOTA_Tooltip_modifier_puck_mystical_rift_glimmerdrake"													"Mystical Rift - Glimmerdrake"
+		"DOTA_Tooltip_modifier_puck_mystical_rift_glimmerdrake_Description"										"Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%."
+
 		"DOTA_Tooltip_ability_special_bonus_unique_puck_mystical_rift_1"										"Eroding Rift"
 		"DOTA_Tooltip_ability_special_bonus_unique_puck_mystical_rift_1_Description"							"Mystical Rift Disarms."
 		"DOTA_Tooltip_ability_special_bonus_unique_puck_mystical_rift_2"										"Faerie's Dust"
-		"DOTA_Tooltip_ability_special_bonus_unique_puck_mystical_rift_2_Description"							"Mystical Rift repeats after 1 second."
-
-		"DOTA_Tooltip_modifier_puck_mystical_rift_glimmerdrake"													"Mystical Rift - Glimmerdrake"
-		"DOTA_Tooltip_modifier_puck_mystical_rift_glimmerdrake_Description"										"Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%."
+		"DOTA_Tooltip_ability_special_bonus_unique_puck_mystical_rift_2_Description"							"Mystical Rift repeats after <b>1</b> second."
 		
+		// Dimension Shift
 		"DOTA_Tooltip_ability_puck_dimension_shift"																"Dimension Shift"
 		"DOTA_Tooltip_ability_puck_dimension_shift_Description"													"Puck briefly shifts into another dimension where it is immune from harm."
 		"DOTA_Tooltip_ability_puck_dimension_shift_Lore"														"With a quip and flash, Puck returns to the alien dimension from whence it came."
@@ -4463,10 +4468,11 @@
 		"DOTA_Tooltip_ability_puck_dimension_shift_Facet_puck_crystalhide"										"Puck is no longer Invulnerable and Out of the Game while Dimension Shifting. Instead, he become Immune to all damage and Debuff Immune for the duration. Exiting Dimension Shift applies a Strong Dispel."
 
 		"DOTA_Tooltip_ability_special_bonus_unique_puck_dimension_shift_1"										"Chrysalis"
-		"DOTA_Tooltip_ability_special_bonus_unique_puck_dimension_shift_1_Description"							"Dimension Shift heals Puck for 15% of his Max HP every second."
+		"DOTA_Tooltip_ability_special_bonus_unique_puck_dimension_shift_1_Description"							"Dimension Shift heals Puck for <b>15%</b> of his Max HP every second."
 		"DOTA_Tooltip_ability_special_bonus_unique_puck_dimension_shift_2"										"Blossom"
-		"DOTA_Tooltip_ability_special_bonus_unique_puck_dimension_shift_2_Description"							"While shifting, Puck deals 10% of his Intelligence as damage to enemies in a 450 radius around him."
+		"DOTA_Tooltip_ability_special_bonus_unique_puck_dimension_shift_2_Description"							"While shifting, Puck deals <b>10%</b> of his Intelligence as damage to enemies in a <b>450</b> radius around him."
 
+		// Singularity Core
 		"DOTA_Tooltip_ability_puck_singularity_core"															"Singularity Core"
 		"DOTA_Tooltip_ability_puck_singularity_core_Description"												"Creates a core of volatile magic that latches onto enemies, damaging and leashing them. If the enemy stretches the tether by moving too far away, it snaps, stunning and dealing additional damage."
 		"DOTA_Tooltip_ability_puck_singularity_core_Lore"														"Even a young faerie dragon is capable of impressive feats of trickery."
@@ -4481,16 +4487,15 @@
 		"DOTA_Tooltip_ability_puck_singularity_core_Facet_puck_crystalhide"										"Singularity Core is now a No-Target ability with a %coil_radius% radius. When cast, Singularity Core is centered on Puck. Tethered units deals %dmg_reduction%%% less damage for the duration."
 		"DOTA_Tooltip_ability_puck_singularity_core_dmg_reduction"												"%DAMAGE REDUCTION:"
 
-		"DOTA_Tooltip_ability_special_bonus_unique_puck_singularity_core_1"										"Core: Meltdown"
-		"DOTA_Tooltip_ability_special_bonus_unique_puck_singularity_core_1_Description"							"All of Singularity Core's values, except Break Radius, are doubled."
-		"DOTA_Tooltip_ability_special_bonus_unique_puck_singularity_core_2"										"Singularity: Finale"
-		"DOTA_Tooltip_ability_special_bonus_unique_puck_singularity_core_2_Description"							"The Singularity Core explodes on expiry, dealing damage based on 30% of Puck's total Intelligence to every enemy in its radius."
-
 		"DOTA_Tooltip_modifier_puck_singularity_core_leash"														"Tethered"
 		"DOTA_Tooltip_modifier_puck_singularity_core_leash_Description"											"Tethered to the Singularity Core."
 		"DOTA_Tooltip_modifier_puck_singularity_core_break"														"Tether - Broken"
 		"DOTA_Tooltip_modifier_puck_singularity_core_break_Description"											"Stunned."
-
+		
+		"DOTA_Tooltip_ability_special_bonus_unique_puck_singularity_core_1"										"Core: Meltdown"
+		"DOTA_Tooltip_ability_special_bonus_unique_puck_singularity_core_1_Description"							"All of Singularity Core's values, except Break Radius, are doubled."
+		"DOTA_Tooltip_ability_special_bonus_unique_puck_singularity_core_2"										"Singularity: Finale"
+		"DOTA_Tooltip_ability_special_bonus_unique_puck_singularity_core_2_Description"							"The Singularity Core explodes on expiry, dealing damage based on <b>30%</b> of Puck's total Intelligence to every enemy in its radius."
 
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// Outworld Devourer
@@ -5596,7 +5601,154 @@
 		"DOTA_Tooltip_Ability_special_bonus_unique_pudge_feast_2_Description"									"Gain 50 armor while channeling Feast and Famine."	
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		// Juggernaut		
+		// Juggernaut	
+		"DOTA_Tooltip_Facet_juggernaut_sohei"																	"Sōhei"
+		"DOTA_Tooltip_Facet_juggernaut_sohei_Description"														"The Juggernaut walks the path of the Sōhei, becoming a disciplined damage dealer." 
+		"DOTA_Tooltip_Facet_juggernaut_ronin"																	"Rōnin"
+		"DOTA_Tooltip_Facet_juggernaut_ronin_Description"														"The Juggernaut walks the path of the Rōnin, becoming an agile tank."
+
+		// Decisive Judgement
+		"DOTA_Tooltip_ability_juggernaut_decisive_judgement"													"Decisive Judgement"
+		"DOTA_Tooltip_ability_juggernaut_decisive_judgement_Description"										"Grants the Juggernaut a %crit_chance%%% chance to critically strike for %crit_damage%%% damage."
+		"DOTA_Tooltip_ability_juggernaut_decisive_judgement_crit_chance"										"%CRIT CHANCE:"
+		"DOTA_Tooltip_ability_juggernaut_decisive_judgement_crit_damage"										"%CRIT DAMAGE:"
+		"DOTA_Tooltip_ability_juggernaut_decisive_judgement_Facet_juggernaut_sohei"								"Each time Decisive Judgement deals critical damage, the Juggernaut gains a stack of Bladeform. Each stack of Bladeform grants %bladeform_agi_bonus%%% bonus base Agility that lasts for %bladeform_duration% seconds for a maximum of %bladeform_stack_max% stacks."
+		"DOTA_Tooltip_ability_juggernaut_decisive_judgement_bladeform_agi_bonus"								"%BLADEFORM AGI BONUS PER STACK:"
+		"DOTA_Tooltip_ability_juggernaut_decisive_judgement_bladeform_duration"									"BLADEFORM STACK DURATION:"
+		"DOTA_Tooltip_ability_juggernaut_decisive_judgement_bladeform_stack_max"								"BLADEFORM STACK CAP:"
+		"DOTA_Tooltip_ability_juggernaut_decisive_judgement_Facet_juggernaut_ronin"								"Each time Blade Dance deals critical damage, the Juggernaut gains a stack of Rōnin's Endurance. Each stack of Rōnin's Endurance grants %endurance_restore_bonus%%% bonus Restoration Amplification that lasts for %endurance_duration% seconds for a maximum of %endurance_stack_max% stacks."
+		"DOTA_Tooltip_ability_juggernaut_decisive_judgement_endurance_restore_bonus"							"%ENDURANCE RESTORE BONUS:"
+		"DOTA_Tooltip_ability_juggernaut_decisive_judgement_endurance_duration"									"ENDURANCE STACK DURATION:"
+		"DOTA_Tooltip_ability_juggernaut_decisive_judgement_endurance_stack_max"								"ENDURANCE STACK CAP:"
+		"DOTA_Tooltip_modifier_juggernaut_decisive_judgement_bladeform"											"Sōhei's Bladeform"
+		"DOTA_Tooltip_modifier_juggernaut_decisive_judgement_bladeform_Description"								"Base Agility increased by %dMODIFIER_PROPERTY_TOOLTIP%%% per stack."
+		"DOTA_Tooltip_modifier_juggernaut_decisive_judgement_endurance"											"Rōnin's Endurance"
+		"DOTA_Tooltip_modifier_juggernaut_decisive_judgement_endurance_Description"								"Restoration Amplification increased by %dMODIFIER_PROPERTY_TOOLTIP%%% per stack."	
+	
+		// Whirling Dervish
+		"DOTA_Tooltip_ability_juggernaut_whirling_dervish"														"Whirling Dervish"
+		"DOTA_Tooltip_ability_juggernaut_whirling_dervish_Description"											"Causes a bladestorm of destructive force around Juggernaut and dispelling him, then dealing damage to nearby enemy units and rendering Juggernaut spell immune. Juggernaut is Hard Dispelled once Whirling Dervish ends.\nDISPEL ON CAST: Basic Dispel\nDISPEL ON END: Hard Dispel"
+		"DOTA_Tooltip_ability_juggernaut_whirling_dervish_Lore"													"Yurnero's renowned katana techniques are feared by warriors and sorcerors alike."
+		"DOTA_Tooltip_ability_juggernaut_whirling_dervish_Note0"												"Windless Cuts and Hidden Blade are disabled during Whirling Dervish."
+		"DOTA_Tooltip_ability_juggernaut_whirling_dervish_radius"												"RADIUS:"
+		"DOTA_Tooltip_ability_juggernaut_whirling_dervish_damage"												"DAMAGE PER SECOND:"
+		"DOTA_Tooltip_ability_juggernaut_whirling_dervish_duration"												"DURATION:"
+		"DOTA_Tooltip_ability_juggernaut_whirling_dervish_Facet_juggernaut_sohei"								"Juggernaut can attack during Whirling Dervish but his damage is reduced by %damage_reduction%%%."
+		"DOTA_Tooltip_ability_juggernaut_whirling_dervish_damage_reduction"										"%ATTACK DAMAGE REDUCTION:"
+		"DOTA_Tooltip_ability_juggernaut_whirling_dervish_Facet_juggernaut_ronin"								"Damage radius is increased to %radius% and enemies hit have their movement speed slowed by %mspd_slow%%% and attack speed by %aspd_slow%."
+		"DOTA_Tooltip_ability_juggernaut_whirling_dervish_mspd_slow"											"%MOVESPEED SLOW:"
+		"DOTA_Tooltip_ability_juggernaut_whirling_dervish_aspd_slow"											"ATTACK SPEED SLOW:"
+
+		"DOTA_Tooltip_modifier_juggernaut_whirling_dervish_handler"												"Whirling Dervish:"
+		"DOTA_Tooltip_modifier_juggernaut_whirling_dervish_handler_Description"									"Magic immune and dealing damage to nearby enemies"
+		"DOTA_Tooltip_modifier_juggernaut_whirling_dervish_ronin_aura"											"Whirling Dervish - Rōnin"
+		"DOTA_Tooltip_modifier_juggernaut_whirling_dervish_ronin_aura_Description"								"Movement Speed slowed by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%, Attack Speed by %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%."
+
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_whirling_dervish_1"								"Cleaving Whirlwind"
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_whirling_dervish_1_Description"					"Tick rate is reduced."
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_whirling_dervish_2"								"Vermillion Storm"
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_whirling_dervish_2_Description"					"Whirling Dervish can proc Attack Modifiers per tick."
+		
+		// Meditative State
+		"DOTA_Tooltip_ability_juggernaut_meditative_state"														"Meditative State"
+		"DOTA_Tooltip_ability_juggernaut_meditative_state_Description"											"Juggernaut buffs himself, granting him bonus health regeneration based on his maximum health for 25 seconds, while he is standing still. The buff lingers for %linger_duration% while moving, losing its effect until you stand still again."
+		"DOTA_Tooltip_ability_juggernaut_meditative_state_Lore"													"Of the rituals learned at the Isle of Masks, tending wounds with a bit of voodoo magic has proven to be quite useful."
+		"DOTA_Tooltip_ability_juggernaut_meditative_state_buff_duration"										"BUFF DURATION:"
+		"DOTA_Tooltip_ability_juggernaut_meditative_state_linger_duration"										"LINGER DURATION:"
+		"DOTA_Tooltip_ability_juggernaut_meditative_state_regeneration"											"%MAX HP REGENERATION:"
+		"DOTA_Tooltip_ability_juggernaut_meditative_state_Facet_juggernaut_sohei"								"While Meditative State is active, you pulse every %pulse_interval% seconds, providing %aspd% Bonus Attack Speed for %buff_duration% seconds to all allied units hit in a %pulse_aoe% radius."
+		"DOTA_Tooltip_ability_juggernaut_meditative_state_pulse_interval"										"PULSE INTERVAL:"
+		"DOTA_Tooltip_ability_juggernaut_meditative_state_pulse_aoe"											"PULSE RADIUS:"
+		"DOTA_Tooltip_ability_juggernaut_meditative_state_aspd"													"ATTACK SPEED BONUS:"
+		"DOTA_Tooltip_ability_juggernaut_meditative_state_extra_buff_duration"									"BUFF DURATION:"
+		"DOTA_Tooltip_ability_juggernaut_meditative_state_Facet_juggernaut_ronin"								"You gain %armor% Bonus Armor and %mres%%% Magic Resistance while Meditative Stance is active."
+		"DOTA_Tooltip_ability_juggernaut_meditative_state_armor"												"BONUS ARMOR:"
+		"DOTA_Tooltip_ability_juggernaut_meditative_state_mres"													"%BONUS MAGIC RESISTANCE:"
+
+		"DOTA_Tooltip_modifier_juggernaut_meditative_state"														"Meditative State"
+		"DOTA_Tooltip_modifier_juggernaut_meditative_state_Description"											"Regenerating health while standing still."
+		"DOTA_Tooltip_modifier_juggernaut_meditative_state_regen"												"Meditation"
+		"DOTA_Tooltip_modifier_juggernaut_meditative_state_regen_Description"									"Regenerating %dMODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE%%% of Max Health."
+		"DOTA_Tooltip_modifier_juggernaut_meditative_state_sohei_buff"											"Meditative State - Sōhei"
+		"DOTA_Tooltip_modifier_juggernaut_meditative_state_sohei_buff_Description"								"Gaining %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT% Attack Speed."
+		"DOTA_Tooltip_modifier_juggernaut_meditative_state_ronin_buff"											"Meditative State - Rōnin"
+		"DOTA_Tooltip_modifier_juggernaut_meditative_state_ronin_buff_Description"								"Gaining %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS% Armor and %dMODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS%%% Magic Resistance."
+
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_meditative_state_1"								"Deva State"
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_meditative_state_1_Description"					"Meditative State now applies to allies in a 250 radius around Juggernaut on cast."
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_meditative_state_2"								"Asura State"
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_meditative_state_2_Description"					"Meditative State is now a negative aura that affects enemies in a 500 radius around Juggernaut, dealing damage to them based on Jugg's Max HP."
+		
+		// Swift Retribution
+		"DOTA_Tooltip_ability_juggernaut_swift_retribution"														"Swift Retribution"
+		"DOTA_Tooltip_ability_juggernaut_swift_retribution_Description"											"Juggernaut focuses for the duration. While focusing, whenever he is attacked, he will block all damage from the attack and whenever he is affected by a spell effect, he negates it.\nEvery attack blocked or spell negated, Juggernaut will counterattack if the unit is within his attack range.\nThe counter-attack has a 0.2 second internal cooldown."
+		"DOTA_Tooltip_ability_juggernaut_swift_retribution_Lore"												"For a hero who has lost everything twice over, he fights as if victory is a foregone conclusion."
+		"DOTA_Tooltip_ability_juggernaut_swift_retribution_duration"											"DURATION:"
+
+		"DOTA_Tooltip_modifier_juggernaut_swift_retribution"													"Swift Retribution"
+		"DOTA_Tooltip_modifier_juggernaut_swift_retribution_Description"										"Deflecting all attacks and spells, counterattacking if possible."
+		"DOTA_Tooltip_modifier_juggernaut_swift_retribution_talent"												"Swordplay of the Isle of Masks"
+		"DOTA_Tooltip_modifier_juggernaut_swift_retribution_talent_Description"									"Gaining %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT% Attack Speed and %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%% Movement Speed per stack."
+
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_swift_retribution_1"								"To Claim Their Bones"
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_swift_retribution_1_Description"					"Swift Retribution has <b>100%</b> lifesteal and you attack a second enemy unit, if any, within your attack range immediately afterwards."
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_swift_retribution_2"								"Yield My Flesh"
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_swift_retribution_2_Description"					"When Swift Retribution deflects an attack or spell, Juggernaut gains <b>25</b> attack speed and <b>5%</b> movement speed for <b>5</b> seconds. Stacks independently."
+
+		// Breathless Lunge
+		"DOTA_Tooltip_ability_juggernaut_breathless_lunge"														"Breathless Lunge"
+		"DOTA_Tooltip_ability_juggernaut_breathless_lunge_Description"											"Juggernaut lunges to the targeted spot, disjointing projectiles and gaining %aspd% Attack Speed after the dash.\nEvery unit he passes through are attacked."
+		"DOTA_Tooltip_ability_juggernaut_breathless_lunge_Note0"												""
+		"DOTA_Tooltip_ability_juggernaut_breathless_lunge_jump_distance"										"LUNGE DISTANCE:"
+		"DOTA_Tooltip_ability_juggernaut_breathless_lunge_jump_speed"											"LUNGE SPEED:"
+		"DOTA_Tooltip_ability_juggernaut_breathless_lunge_aspd"													"ATTACK SPEED:"
+		"DOTA_Tooltip_ability_juggernaut_breathless_lunge_buff_duration"										"BUFF DURATION:"
+
+		"DOTA_Tooltip_modifier_juggernaut_breathless_lunge_buff"												"Breathless Lunge"
+		"DOTA_Tooltip_modifier_juggernaut_breathless_lunge_buff_Description"									"Gaining %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT% Attack Speed."
+		"DOTA_Tooltip_modifier_juggernaut_breathless_lunge_bleed"												"Wakizashi"
+		"DOTA_Tooltip_modifier_juggernaut_breathless_lunge_bleed_Description"									"Taking 0.5%%% of Max HP as Bleed Damage every second."
+
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_breathless_lunge_1"								"Degenbrecher"
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_breathless_lunge_1_Description"					"Charge Cooldown reduced and enemies hit are disarmed for <b>3</b> seconds."
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_breathless_lunge_2"								"Wakizashi"
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_breathless_lunge_2_Description"					"Lunge Distance halved but enemies hit will bleed out for <b>3</b> seconds, taking <b>0.5%</b> of their Max HP as physical damage every second. This effect stacks."
+
+		// Hidden Blade
+		"DOTA_Tooltip_ability_juggernaut_hidden_blade"															"Hidden Blade"
+		"DOTA_Tooltip_ability_juggernaut_hidden_blade_Description"												"Juggernaut performs a quick Windless Cuts."
+		"DOTA_Tooltip_ability_juggernaut_hidden_blade_Lore"														"'I will carry on the rites of the Faceless Ones.'"
+		"DOTA_Tooltip_ability_juggernaut_hidden_blade_Note1"													"Can target Spell Immune units."
+		"DOTA_Tooltip_ability_juggernaut_hidden_blade_duration"													"DURATION:"
+		
+		// Windless Cuts
+		"DOTA_Tooltip_ability_juggernaut_windless_cuts"															"Windless Cuts"
+		"DOTA_Tooltip_ability_juggernaut_windless_cuts_Description"												"Juggernaut leaps towards the target enemy units, and then slashes the target and other nearby enemy units at an increased attack rate with bonus damage.\nWindless Cuts looks for units within Juggernaut's attack range + %omni_slash_radius%.\nJuggernaut is invulnerable for the duration."
+		"DOTA_Tooltip_ability_juggernaut_windless_cuts_Lore"													"'The fruits of discipline; with practice comes strength.'"
+		"DOTA_Tooltip_ability_juggernaut_windless_cuts_Note0"													"You can use items during Windless Cuts."
+		"DOTA_Tooltip_ability_juggernaut_windless_cuts_Note1"													"Can target Spell Immune units."
+		"DOTA_Tooltip_ability_juggernaut_windless_cuts_bonus_damage"											"SLASH BONUS DAMAGE:"
+		"DOTA_Tooltip_ability_juggernaut_windless_cuts_bonus_attack_speed"										"SLASH BONUS ATTACK SPEED:"
+		"DOTA_Tooltip_ability_juggernaut_windless_cuts_duration"												"DURATION:"
+		"DOTA_Tooltip_ability_juggernaut_windless_cuts_attack_rate_multiplier"									"ATTACK RATE MULTIPLIER:"
+		"DOTA_Tooltip_ability_juggernaut_windless_cuts_omni_slash_radius"										"SLASH JUMP RADIUS:"
+		"DOTA_Tooltip_ability_juggernaut_windless_cuts_Facet_juggernaut_sohei"									"Juggernaut gains the Hidden Blade sub-ability. When activated, Juggernaut performs a %hidden_blade_tooltip_duration% second Windless Cuts without bonus damage."
+		"DOTA_Tooltip_ability_juggernaut_windless_cuts_Facet_juggernaut_ronin"									"Windless Cuts duration increased to %duration%. Windless Cuts cannot end early; if there are no more viable units in radius, Juggernaut becomes invulnerable and hasted until a unit is found."
+
+		"DOTA_Tooltip_modifier_juggernaut_windless_cuts"														"Windless Cuts"
+		"DOTA_Tooltip_modifier_juggernaut_windless_cuts_Description"											"Invulnerable and leaping to targets to attack."
+		"DOTA_Tooltip_modifier_juggernaut_windless_cuts_ronin"													"Windless Cuts - 
+		"DOTA_Tooltip_modifier_juggernaut_windless_cuts_ronin_Description"
+		"DOTA_Tooltip_modifier_juggernaut_windless_cuts_last_gasp"												"Last Gasp"	
+		"DOTA_Tooltip_modifier_juggernaut_windless_cuts_last_gasp_Description"									"Windless Cuts automatically activates when HP drops below %dMODIFIER_PROPERTY_TOOLTIP%%%."
+		"DOTA_Tooltip_modifier_juggernaut_windless_cuts_last_gasp_cd"											"Last Gasp - Cooldown"
+
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_windless_cuts_1"									"Second Wind"
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_windless_cuts_1_Description"						"Windless Cuts activates again a second time after its duration ends and Juggernaut gains a <b>20%</b> Outgoing Damage Increase."
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_windless_cuts_2"									"Last Gasp"
+		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_windless_cuts_2_Description"						"If Juggernaut's HP drops below <b>20%</b>, Windless Cuts activates regardless of its current cooldown. This effect has a <b>30</b> second cooldown."
+
+		// Deprecated
 		"DOTA_Tooltip_ability_juggernaut_ronins_wind"															"Ronin's Wind"
 		"DOTA_Tooltip_ability_juggernaut_ronins_wind_Description"												"The Juggernaut dashes towards the targeted location.\nIf possible, Ronin's Wind will consume one charge of Momentum, refreshing the ability and removing the cast point."
 		"DOTA_Tooltip_ability_juggernaut_ronins_wind_Lore"														"None can stand against the notorious Faceless Isles Fujin-Ryu"
@@ -5605,52 +5757,7 @@
 		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_ronins_wind_1_Description"						"Juggernaut auto-attacks all units while dashing. These attacks do not grants Momentum."
 		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_ronins_wind_2"									"Zen Master"
 		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_ronins_wind_2_Description"						"Ronin's Wind heals Juggernaut for 10% of his max health when used."
-		
-		"DOTA_Tooltip_ability_juggernaut_mirror_blades"															"Whirling Dervish"
-		"DOTA_Tooltip_ability_juggernaut_mirror_blades_Description"												"Causes a bladestorm of destructive force around Juggernaut and dispelling him, then dealing damage to nearby enemy units and rendering Juggernaut spell immune.\nYou can attack during Whirling Dervish, but enemies affected by Whirling Derivsh do not take damage from your regular attacks.\nDISPEL TYPE: Basic Dispel"
-		"DOTA_Tooltip_ability_juggernaut_mirror_blades_Lore"													"Yurnero's renowned katana techniques are feared by warriors and sorcerors alike."
-		"DOTA_Tooltip_ability_juggernaut_mirror_blades_Note0"													"Ability attacks such as from Omnislash and Patient Defense deal full damage."
-		"DOTA_Tooltip_ability_juggernaut_mirror_blades_radius"													"RADIUS:"
-		"DOTA_Tooltip_ability_juggernaut_mirror_blades_damage"													"DAMAGE PER SECOND:"
-		"DOTA_Tooltip_ability_juggernaut_mirror_blades_duration"												"DURATION:"
-		"DOTA_Tooltip_ability_juggernaut_mirror_blades_damage_reduction"										"%ATTACK DAMAGE REDUCTION:"
-		"DOTA_Tooltip_ability_modifier_juggernaut_mirror_blades"												"Whirling Dervish:"
-		"DOTA_Tooltip_ability_modifier_juggernaut_mirror_blades_Description"									"Magic immune and dealing damage to nearby enemies"
-		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_mirror_blades_1"									"Reap the Crop"
-		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_mirror_blades_1_Description"						"Mirror Blades damage per second and radius doubled."
-		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_mirror_blades_2"									"The Still Blade Awakens"
-		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_mirror_blades_2_Description"						"Juggernaut's movement speed is increased by <b>100%</b> during Whirling Dervish and his attacks deal <b>75%</b> damage during Whirling Dervish."
-		
-		"DOTA_Tooltip_ability_juggernaut_meditative_state"														"Meditative State"
-		"DOTA_Tooltip_ability_juggernaut_meditative_state_Description"											"Juggernaut buffs himself, granting him bonus health regeneration based on his maximum health for 25 seconds, while he is standing still. The buff lingers for %linger_duration% while moving, losing its effect until you stand still again."
-		"DOTA_Tooltip_ability_juggernaut_meditative_state_Lore"													"Of the rituals learned at the Isle of Masks, tending wounds with a bit of voodoo magic has proven to be quite useful."
-		"DOTA_Tooltip_ability_juggernaut_meditative_state_buff_duration"										"BUFF DURATION:"
-		"DOTA_Tooltip_ability_juggernaut_meditative_state_linger_duration"										"LINGER DURATION:"
-		"DOTA_Tooltip_ability_juggernaut_meditative_state_regeneration"											"%MAX HP REGENERATION:"
-		"DOTA_Tooltip_modifier_juggernaut_meditative_state"														"Meditative State"
-		"DOTA_Tooltip_modifier_juggernaut_meditative_state_Description"											"Regenerating health while standing still."
-		"DOTA_Tooltip_modifier_juggernaut_meditative_state_aura"												"Meditative State - Regeneration"
-		"DOTA_Tooltip_modifier_juggernaut_meditative_state_aura_Description"									"Regenerating health."
-		"DOTA_Tooltip_modifier_juggernaut_meditative_state_slow"												"Ronin's Sanctuary"
-		"DOTA_Tooltip_modifier_juggernaut_meditative_state_slow_Description"									"Attack and movement speed slowed."
-		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_meditative_state_2"								"Ronin's Sanctuary"
-		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_meditative_state_2_Description"					"Meditative State emits a <b>500</b>-radius aura that slows enemy movement speed and attack speed by <b>50</b>."
-		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_meditative_state_1"								"Zen Master"
-		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_meditative_state_1_Description"					"Meditative State provides an additional <b>33%</b> of its health regeneration that cannot be disabled."
-		
-		"DOTA_Tooltip_ability_juggernaut_quickparry"															"Patient Defense"
-		"DOTA_Tooltip_ability_juggernaut_quickparry_Description"												"Juggernaut focuses for the duration. While focusing, whenever he is attacked, he will block all damage from the attack and whenever he is affected by a spell effect, he negates it.\nEvery attack blocked or spell negated, Juggernaut will counterattack if the unit is within his attack range.\nThe counter-attack has a 0.2 second internal cooldown."
-		"DOTA_Tooltip_ability_juggernaut_quickparry_Lore"														"For a hero who has lost everything twice over, he fights as if victory is a foregone conclusion."
-		"DOTA_Tooltip_ability_juggernaut_quickparry_duration"													"DURATION:"
-		"DOTA_Tooltip_modifier_juggernaut_quickparry"															"Patient Defense"
-		"DOTA_Tooltip_modifier_juggernaut_quickparry_Description"												"Deflecting all attacks and spells, counterattacking if possible."
-		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_quickparry_1"										"Melody of Iron and Blood"
-		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_quickparry_1_Description"							"Patient Defense parries have <b>100%</b> lifesteal and you attack a second enemy unit, if any, within your attack range immediately afterwards."
-		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_quickparry_2"										"The Singing Sword"
-		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_quickparry_2_Description"							"When Patient Defense deflects an attack or spell, Juggernaut gains <b>25</b> attack speed and <b>5%</b> movement speed for <b>5</b> seconds. Stacks independently."
-		"DOTA_Tooltip_modifier_juggernaut_quickparry_talent"													"The Singing Sword"
-		"DOTA_Tooltip_modifier_juggernaut_quickparry_talent_Description"										"Gaining attack speed and movement speed per stack."
-	
+
 		"DOTA_Tooltip_ability_juggernaut_momentum_strike"														"Blade Dance"
 		"DOTA_Tooltip_ability_juggernaut_momentum_strike_scepter_description"									"Whenever Blade Dance performs a critical hit, all of Juggernaut's abilities have their cooldowns reduced by 1 second."
 		"DOTA_Tooltip_ability_juggernaut_momentum_strike_Description"											"Has a chance to deal critical damage, upon inflicting a critical hit will grants a stack of Blade Dance\nWhile you have charges of Blade Dance, the ability becomes a point-targeted ability.\nWhenever you activate Blade Dance, you leap towards the targeted position.\nYou can have a maximum of %maximum_charges% charges"
@@ -5667,24 +5774,6 @@
 		"DOTA_Tooltip_modifier_juggernaut_momentum_strike_momentum"												"Blade Dance"
 		"DOTA_Tooltip_modifier_juggernaut_momentum_strike_momentum_Description"									"You can leap to a target position."
 		
-		"DOTA_Tooltip_ability_juggernaut_hidden_blade"															"Hidden Blade"
-		"DOTA_Tooltip_ability_juggernaut_hidden_blade_Description"												"Juggernaut performs a quick Omnislash."
-		"DOTA_Tooltip_ability_juggernaut_hidden_blade_Lore"														"'I will carry on the rites of the Faceless Ones.'"
-		"DOTA_Tooltip_ability_juggernaut_hidden_blade_Note1"													"Can target Spell Immune units."
-		"DOTA_Tooltip_ability_juggernaut_hidden_blade_duration"													"DURATION:"
-		
-		"DOTA_Tooltip_ability_juggernaut_dance_of_blades"														"Omnislash"
-		"DOTA_Tooltip_ability_juggernaut_dance_of_blades_Description"											"Juggernaut leaps towards the target enemy units, and then slashes the target and other nearby enemy units at an increased attack rate with bonus damage.\nOmnislash looks for units within Juggernaut's attack range + %radius%.\nJuggernaut is invulnerable for the duration."
-		"DOTA_Tooltip_ability_juggernaut_dance_of_blades_Lore"													"'The fruits of discipline; with practice comes strength.'"
-		"DOTA_Tooltip_ability_juggernaut_dance_of_blades_Note0"													"You can use items during Tameshigiri."
-		"DOTA_Tooltip_ability_juggernaut_dance_of_blades_Note1"													"Can target Spell Immune units."
-		"DOTA_Tooltip_ability_juggernaut_dance_of_blades_bonus_damage"											"SLASH BONUS DAMAGE:"
-		"DOTA_Tooltip_ability_juggernaut_dance_of_blades_duration"												"DURATION:"
-		"DOTA_Tooltip_ability_juggernaut_dance_of_blades_bounce_rate"											"ATTACK RATE DIVISOR:"
-		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_dance_of_blades_1"								"Perfected Form"
-		"DOTA_Tooltip_Ability_special_bonus_unique_juggernaut_dance_of_blades_1_Description"					"Omnislash attacks a second, different target within the search radius each jump and the buff duration is frozen if there are no more enemies nearby until a new target is acquired."
-		"DOTA_Tooltip_modifier_juggernaut_dance_of_blades"														"Omnislash"
-		"DOTA_Tooltip_modifier_juggernaut_dance_of_blades_Description"											"Invulnerable and leaping to targets to attack."
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// Shadow Fiend
@@ -6177,6 +6266,7 @@
 		"DOTA_Tooltip_Facet_sniper_gunslinger"																	"Gunslinger"	
 		"DOTA_Tooltip_Facet_sniper_gunslinger_Description"														"Sniper specializes into close-range gunnery, allowing him to handle facing down multiple enemies at close-range."
 
+		// Rangefinder
 		"DOTA_Tooltip_ability_sniper_rangefinder"																"Rangefinder"
 		"DOTA_Tooltip_ability_sniper_rangefinder_Description"													"Grants Sniper flat attack range bonus."
 		"DOTA_Tooltip_ability_sniper_rangefinder_Facet_sniper_deadeye"											"Attack Range Bonus scales."
@@ -6184,6 +6274,7 @@
 		"DOTA_Tooltip_ability_sniper_rangefinder_Facet_sniper_gunslinger"										"Reduces Sniper's Base Attack Time."
 		"DOTA_Tooltip_ability_sniper_rangefinder_bonus_attack_time"												"BONUS BASE ATTACK TIME:"
 
+		// Explosive Arsenal
 		"DOTA_Tooltip_ability_sniper_explosive_arsenal"															"Explosive Armanents"
 		"DOTA_Tooltip_ability_sniper_explosive_arsenal_Description"												"Launches a grenade at the area-targeted location that damages enemy units, and applies knockback to both Sniper and all affected enemy units within the radius.\nCan be toggled to disable knockback."
 		"DOTA_Tooltip_ability_sniper_explosive_arsenal_Lore"													"ATTN: IN CASE OF DANGER PULL PIN"
@@ -6191,14 +6282,16 @@
 		"DOTA_Tooltip_ability_sniper_explosive_arsenal_radius"													"RADIUS:"
 		"DOTA_Tooltip_ability_sniper_explosive_arsenal_slow"													"%MOVESPEED SLOW:"
 		"DOTA_Tooltip_ability_sniper_explosive_arsenal_debuff_duration"											"DEBUFF DURATION:"
+
 		"DOTA_Tooltip_modifier_sniper_grenade_debuff"															"Explosive Arsenal"
 		"DOTA_Tooltip_modifier_sniper_grenade_debuff_Description"												"Slowed for %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
 
 		"DOTA_Tooltip_ability_special_bonus_unique_sniper_explosive_arsenal_1"									"Flashbang"
-		"DOTA_Tooltip_ability_special_bonus_unique_sniper_explosive_arsenal_1_Description"						"Explosive Arsenal includes a Flashbang, blinding enemies and causing them to miss 100% of their attacks."
+		"DOTA_Tooltip_ability_special_bonus_unique_sniper_explosive_arsenal_1_Description"						"Explosive Arsenal includes a Flashbang, blinding enemies and causing them to miss <b>100%</b> of their attacks."
 		"DOTA_Tooltip_ability_special_bonus_unique_sniper_explosive_arsenal_2"									"Anti-Tank Grenade"
-		"DOTA_Tooltip_ability_special_bonus_unique_sniper_explosive_arsenal_2_Description"						"Explosive Arsenal is improved into an Anti-Tank Grenade, reducing enemy armor by 7."
+		"DOTA_Tooltip_ability_special_bonus_unique_sniper_explosive_arsenal_2_Description"						"Explosive Arsenal is improved into an Anti-Tank Grenade, reducing enemy armor by <b>7</b>."
 
+		// Death From Above
 		"DOTA_Tooltip_ability_sniper_death_from_above"															"Death From Above"
 		"DOTA_Tooltip_ability_sniper_death_from_above_Description"												"Fire a ball of shrapnel that showers the target area in explosive pellets, revealing the surrounding area.\nEnemies are subject to damage and slowed movement speed.\nDestroys Trees."
 		"DOTA_Tooltip_ability_sniper_death_from_above_Lore"														"Kardel's modular rifle also fires incendiary rounds, useful for assaulting entrenched locations."
@@ -6220,6 +6313,7 @@
 		"DOTA_Tooltip_ability_special_bonus_unique_sniper_death_from_above_2"									"Belt-Fed Chamber"
 		"DOTA_Tooltip_ability_special_bonus_unique_sniper_death_from_above_2_Description"						"Casting Death From Above grants a <b>100</b> attack speed bonus for <b>7</b> seconds."
 
+		// Critical Aim
 		"DOTA_Tooltip_ability_sniper_critical_aim"																"Critical Aim"
 		"DOTA_Tooltip_ability_sniper_critical_aim_Description"													"Sniper increases his accuracy, giving him a chance to deal additional damage and briefly root.\nHeadshot damage is added directly to attack damage."
 		"DOTA_Tooltip_ability_sniper_critical_aim_Lore"															"Taking potshots at steepstalkers in his childhood has been thoroughly refined into perfect leads on enemy combatants."
@@ -6232,11 +6326,13 @@
 
 		"DOTA_Tooltip_modifier_sniper_critical_aim_root"														"Weakness Spotted"
 		"DOTA_Tooltip_modifier_sniper_critical_aim_root_Description"											"Rooted."
+
 		"DOTA_Tooltip_ability_special_bonus_unique_sniper_critical_aim_1"										"Mach-Speed Bullets"
 		"DOTA_Tooltip_ability_special_bonus_unique_sniper_critical_aim_1_Description"							"Weakness Spotted damage increased by <b>45</b> and procs knock enemies <b>50</b> units backward."
 		"DOTA_Tooltip_ability_special_bonus_unique_sniper_critical_aim_2"										"Powder Shrapnel"
 		"DOTA_Tooltip_ability_special_bonus_unique_sniper_critical_aim_2_Description"							"Weakness Spotted's root lasts for an additional <b>3</b> seconds."
 				
+		// Hunker Down		
 		"DOTA_Tooltip_ability_sniper_hunker_down"																"Hunker Down"
 		"DOTA_Tooltip_ability_sniper_hunker_down_Description"													"Extends the attack range of Sniper's rifle. Can be activated to increase Headshot chance by %bonus_headshot_chance%%%."
 		"DOTA_Tooltip_ability_sniper_hunker_down_Lore"															"Kardel always takes it upon himself to stay as far from harm as he can while still performing his role - taking perfect aim."
@@ -6250,11 +6346,13 @@
 
 		"DOTA_Tooltip_modifier_sniper_hunker_down"																"Hunker Down"
 		"DOTA_Tooltip_modifier_sniper_hunker_down_Description"													"Increased Headshot chance and slowed."
-		"DOTA_Tooltip_ability_special_bonus_unique_sniper_hunker_down_1"										"Firepower Upgrade"
-		"DOTA_Tooltip_ability_special_bonus_unique_sniper_hunker_down_1_Description"							"Sniper gains 30% Crit Chance and 130% Crit Damage."
-		"DOTA_Tooltip_ability_special_bonus_unique_sniper_hunker_down_2"										"Cozy Camper"
-		"DOTA_Tooltip_ability_special_bonus_unique_sniper_hunker_down_2_Description"							"Sniper heals 2% of his Max HP every second."
 
+		"DOTA_Tooltip_ability_special_bonus_unique_sniper_hunker_down_1"										"Firepower Upgrade"
+		"DOTA_Tooltip_ability_special_bonus_unique_sniper_hunker_down_1_Description"							"Sniper gains <b>30%</b> Crit Chance and <b>130%</b> Crit Damage."
+		"DOTA_Tooltip_ability_special_bonus_unique_sniper_hunker_down_2"										"Cozy Camper"
+		"DOTA_Tooltip_ability_special_bonus_unique_sniper_hunker_down_2_Description"							"Sniper heals <b>2%</b> of his Max HP every second."
+
+		// Suppressive Fire
 		"DOTA_Tooltip_ability_sniper_suppressive_fire"															"Suppressive Fire"
 		"DOTA_Tooltip_ability_sniper_suppressive_fire_Description"												"After a brief duration, rapidly fires bullets in a cone at the target direction over %channel% seconds, with each hit dealing %damage_reduction%%% of Sniper's attack damage.\nApplies on-hit effects and destroys trees."
 		"DOTA_Tooltip_ability_sniper_suppressive_fire_Lore"														"No Full Auto in a building!"
@@ -6266,10 +6364,11 @@
 		"DOTA_Tooltip_ability_sniper_suppressive_fire_damage_reduction"											"%ATTACK DAMAGE REDUCTION:"
 
 		"DOTA_Tooltip_ability_special_bonus_unique_sniper_suppressive_fire_1"									"Extended Magazine"
-		"DOTA_Tooltip_ability_special_bonus_unique_sniper_suppressive_fire_1_Description"						"Channel time increased to 2.5 seconds."
+		"DOTA_Tooltip_ability_special_bonus_unique_sniper_suppressive_fire_1_Description"						"Channel time increased to <b>2.5</b> seconds."
 		"DOTA_Tooltip_ability_special_bonus_unique_sniper_suppressive_fire_2"									"Trigger Discipline"
-		"DOTA_Tooltip_ability_special_bonus_unique_sniper_suppressive_fire_2_Description"						"Spread reduced to 15 but Fire Rate increased to 0.1."
+		"DOTA_Tooltip_ability_special_bonus_unique_sniper_suppressive_fire_2_Description"						"Spread reduced to <b>15</b> but Fire Rate increased to <b>0.1</b>."
 
+		// Killer Shot
 		"DOTA_Tooltip_ability_sniper_killer_shot"																"Killer Shot"
 		"DOTA_Tooltip_ability_sniper_killer_shot_Description"													"Lock onto an enemy unit and, after a short duration, fire a devastating shot that performs an ability attack with bonus damage at long range and mini-stuns. Killing an enemy with Killer Shot refreshes all of Sniper's cooldowns."
 		"DOTA_Tooltip_ability_sniper_killer_shot_Lore"															"In order to fulfill the prophecy and return to his home town, Kardel must make another shot as perfect as the one on the day of his ancient test."
@@ -6282,10 +6381,11 @@
 		"DOTA_Tooltip_modifier_sniper_killer_shot_sleeper_Description"											"Taking %dMODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE%%% Incoming Damage."
 		"DOTA_Tooltip_modifier_sniper_killer_shot_bargain"														"Focus"
 		"DOTA_Tooltip_modifier_sniper_killer_shot_bargain_Description"											"Gaining %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT% Attack Speed."
+
 		"DOTA_Tooltip_ability_special_bonus_unique_sniper_killer_shot_1"										"Sydney Sleeper"
-		"DOTA_Tooltip_ability_special_bonus_unique_sniper_killer_shot_1_Description"							"Killer Shot applies a debuff on the target that causes it to take 15% more damage over for 7 seconds."
+		"DOTA_Tooltip_ability_special_bonus_unique_sniper_killer_shot_1_Description"							"Killer Shot applies a debuff on the target that causes it to take <b>15%</b> more damage over for <b>7</b> seconds."
 		"DOTA_Tooltip_ability_special_bonus_unique_sniper_killer_shot_2"										"Bazaar's Bargain"
-		"DOTA_Tooltip_ability_special_bonus_unique_sniper_killer_shot_2_Description"							"Kills or Assists on Boss units with Killer Shot grants Sniper an infinitely stacking Attack Speed buff that gives 25 Attack Speed per stack. Buff is removed on death."
+		"DOTA_Tooltip_ability_special_bonus_unique_sniper_killer_shot_2_Description"							"Kills or Assists on Boss units with Killer Shot grants Sniper an infinitely stacking Attack Speed buff that gives <b>25</b> Attack Speed per stack. Buff is removed on death."
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// Faceless Void
