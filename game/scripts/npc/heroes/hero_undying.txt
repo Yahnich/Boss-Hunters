@@ -30,14 +30,14 @@
 			"bonus_move_speed"
 			{
 				"value"				"30"
-				"hero_levelup"		"1"
 				"special_bonus_facet_undying_legion"	"+60%"
+				"hero_levelup"		"1"
 			}
 			"bonus_attack_speed"
 			{
 				"value"				"50"
-				"hero_levelup"		"3"
 				"special_bonus_facet_undying_legion"	"+60%"
+				"hero_levelup"		"3"
 			}
 			
 			"undying_stacks"		"2"
@@ -59,7 +59,7 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"               "2"
-		"AbilityTextureName"			"undying_devour_life"
+		"AbilityTextureName"			"undying_decay"
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"4"
 		
@@ -74,7 +74,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"650"
-		"AbilityCastAnimation"			"ACT_DOTA_undying_devour_life"
+		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_DECAY"
 		"AbilityCastPoint"            	 "0.3"
 		
 		// Time     
@@ -112,6 +112,16 @@
 			}
 			"str_per_boss"										"6"
 			"str_per_monster"									"3"
+			"str_per_boss_tooltip"
+			{
+				"value"											"6"
+				"special_bonus_facet_undying_undying"			"=1.5"
+			}
+			"str_per_monster_tooltip"
+			{
+				"value"											"3"
+				"special_bonus_facet_undying_undying"			"x1.5"
+			}
 			"str_per_mob"
 			{
 				"value"											"1"
@@ -145,7 +155,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"			"undying_soul_siphon"
+		"AbilityTextureName"			"undying_soul_rip"
 		"MaxLevel"						"4"
 		
 		// Talents		
@@ -167,7 +177,7 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"18 14 10 6"
-		"AbilityCastAnimation"			"ACT_DOTA_undying_soul_siphon"
+		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_SOUL_RIP"
 		"AbilityManaCost"				"80 90 100 110"		
 		
 		"AbilityCastRange"				"750"
@@ -203,7 +213,7 @@
 			"bonus_attack_speed_loss"			{"special_bonus_facet_undying_legion"	"30 50 70 90"}
 			"attack_speed_duration"				{"special_bonus_facet_undying_legion"	"10"}
 			
-			"strength_share"					{"special_bonus_facet_undying_undying"	"10"}
+			"strength_share"					{"special_bonus_facet_undying_undying"	"20"}
 			"strength_duration"					{"special_bonus_facet_undying_undying"	"18"}
 		}
 	}
@@ -217,7 +227,7 @@
 	    "BaseClass"             		"ability_lua"
 		"ScriptFile"					"heroes/hero_undying/undying_necropolis"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-	    "AbilityTextureName"			"undying_necropolis"
+	    "AbilityTextureName"			"undying_tombstone"
 		"AbilityCastAnimation"			"ACT_DOTA_undying_necropolis"
 	    "MaxLevel"						"4"
 		
@@ -297,7 +307,7 @@
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"AbilityTextureName"			"undying_monstrous_form"
+		"AbilityTextureName"			"undying_flesh_golem"
 		"FightRecapLevel"				"2"
 		"AbilitySound"					"Hero_Undying.FleshGolem"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"

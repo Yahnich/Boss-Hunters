@@ -28,6 +28,7 @@ function undying_devour_life:Decay( position, radiusMod )
 			end
 			local damage = self:DealDamage( caster, enemy, damage )
 			lifesteal = lifesteal + damage * dmg_lifesteal * TernaryOperator( 0.2, enemy:IsMinion(), 1 )
+			
 			local debuff = enemy:AddNewModifier( caster, self, "modifier_undying_devour_life_debuff", {} )
 			if debuff then debuff:SetStackCount( debuff:GetStackCount() + math.floor( damage / 10 ) ) end
 
@@ -95,6 +96,7 @@ function modifier_undying_devour_life_debuff:OnDestroy()
 	if self:GetSpecialValueFor("zombie_on_death") <= 0 then return end
 	local tombstone = self:GetCaster():FindAbilityByName("undying_necropolis")
 	if not (tombstone and tombstone:IsTrained()) then return end
+	
 	local zombie = tombstone:SummonZombie()
 	zombie:SetAbsOrigin( self:GetParent():GetAbsOrigin() + RandomVector( 125 ) )
 end

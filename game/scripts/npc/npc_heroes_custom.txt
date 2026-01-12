@@ -2991,6 +2991,25 @@
 			"STATUS_AMP"{"2" "3"}
 			"MANA_REGEN"{"3" "5"}
 		}
+		
+		"Facets"
+		{
+			"undying_rotting_mitts"{"Deprecated" "1"}
+			"undying_ripped"{"Deprecated" "1"}
+			"undying_legion" 
+			{
+				"Icon"				"summons"
+				"Color"				"Green"
+				"GradientID"		"4"
+			}			
+			"undying_undying" 
+			{
+				"Icon"				"strength"
+				"Color"				"Red"
+				"GradientID"		"1"
+			}
+
+		}
 	}
 	//=================================================================================================================
 	// HERO: ursa

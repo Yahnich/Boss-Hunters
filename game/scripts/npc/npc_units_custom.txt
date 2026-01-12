@@ -12309,8 +12309,7 @@
 		// Abilities
 		//----------------------------------------------------------------
 		
-		"Ability1"					"undying_deathlust"			// Ability 1.
-		"Ability2"					"neutral_spell_immunity"			// Ability 2.
+		"Ability1"					"neutral_spell_immunity"			// Ability 1.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.

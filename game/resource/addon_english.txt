@@ -5737,8 +5737,8 @@
 
 		"DOTA_Tooltip_modifier_juggernaut_windless_cuts"														"Windless Cuts"
 		"DOTA_Tooltip_modifier_juggernaut_windless_cuts_Description"											"Invulnerable and leaping to targets to attack."
-		"DOTA_Tooltip_modifier_juggernaut_windless_cuts_ronin"													"Windless Cuts - 
-		"DOTA_Tooltip_modifier_juggernaut_windless_cuts_ronin_Description"
+		"DOTA_Tooltip_modifier_juggernaut_windless_cuts_ronin"													"Windless Cuts - Active"
+		"DOTA_Tooltip_modifier_juggernaut_windless_cuts_ronin_Description"										"Slashing and dashing."
 		"DOTA_Tooltip_modifier_juggernaut_windless_cuts_last_gasp"												"Last Gasp"	
 		"DOTA_Tooltip_modifier_juggernaut_windless_cuts_last_gasp_Description"									"Windless Cuts automatically activates when HP drops below %dMODIFIER_PROPERTY_TOOLTIP%%%."
 		"DOTA_Tooltip_modifier_juggernaut_windless_cuts_last_gasp_cd"											"Last Gasp - Cooldown"
@@ -7278,12 +7278,12 @@
 		"DOTA_Tooltip_ability_undying_deathlust_bonus_move_speed"												"%DEATHLUST MOVESPEED BONUS:"
 		"DOTA_Tooltip_ability_undying_deathlust_bonus_attack_speed"												"DEATHLUST ATTACK SPEED BONUS:"
 		"DOTA_Tooltip_modifier_undying_deathlust_buff"															"Deathlust - Buff"
-		"DOTA_Tooltip_modifier_undying_deathlust_buff_Description"												"+%d% attack speed and +%d%%% movement speed."
+		"DOTA_Tooltip_modifier_undying_deathlust_buff_Description"												"+%dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT% attack speed and +%dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%% movement speed."
 		"DOTA_Tooltip_modifier_undying_deathlust_debuff"														"Deathlust - Debuff"
 		"DOTA_Tooltip_modifier_undying_deathlust_debuff_Description"											"Movement speed reduced."
 		
 		"DOTA_Tooltip_ability_undying_devour_life"																"Devour Life"
-		"DOTA_Tooltip_ability_undying_devour_life_Description"													"Damages all units in a radius and Undying's strength is increased by %str_per_boss%/%str_per_monster%/%str_per_mob% for each Boss/Monster/Minion hit. Units damaged by Devour Life lose maximum health equal to the damage dealt."
+		"DOTA_Tooltip_ability_undying_devour_life_Description"													"Damages all units in a radius and Undying's strength is increased by %str_per_boss_tooltip%/%str_per_monster_tooltip%/%str_per_mob% for each Boss/Monster/Minion hit. Units damaged by Devour Life lose maximum health equal to the damage dealt."
 		"DOTA_Tooltip_ability_undying_devour_life_Facet_undying_legion"											"Decay base damage increased and non-Minions killed while affected by Decay spawn a Tombstone zombie."
 		"DOTA_Tooltip_ability_undying_devour_life_Facet_undying_undying"										"Decay has %dmg_lifesteal%%% Lifesteal and bonus strength gained is increased."
 		"DOTA_Tooltip_ability_undying_devour_life_Lore"															"The strength of the living is simply borrowed from the strength of the dead."
@@ -7299,7 +7299,7 @@
 		"DOTA_Tooltip_modifier_undying_devour_life_talent"														"Sweltering Mass"
 		"DOTA_Tooltip_modifier_undying_devour_life_talent_Description"											"Gaining %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% strength and %dMODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE% bonus attack damage."
 		"DOTA_Tooltip_modifier_undying_devour_life_debuff"														"Devour Life - Debuff"
-		"DOTA_Tooltip_modifier_undying_devour_life_debuff_Description"											"Maximum health permanently reduced."
+		"DOTA_Tooltip_modifier_undying_devour_life_debuff_Description"											"Maximum health permanently reduced by %dMODIFIER_PROPERTY_EXTRA_HEALTH_BONUS%."
 		
 		"DOTA_Tooltip_ability_undying_soul_siphon"																"Soul Siphon"
 		"DOTA_Tooltip_ability_undying_soul_siphon_Description"													"Undying rips health away from all nearby units and uses it to heal an ally, or damage an enemy. Enemies lose double the health.\nIf the stolen health came from a real hero or a non-minion, then the health gain from that unit is doubled.\nRips health from a maximum of %unit_maximum% units, prioritizing enemy non-minions, then enemy minions, then allied non-heroes and lastly allied heroes."
@@ -7316,7 +7316,11 @@
 		"DOTA_Tooltip_Ability_special_bonus_unique_undying_soul_siphon_2"										"The Pumping Heart"
 		"DOTA_Tooltip_Ability_special_bonus_unique_undying_soul_siphon_2_Description"							"Soul Siphon increases the target's attack speed by <b>100</b>. When targeting enemy units, their attack speed is slowed instead. Lasts <b>12</b> seconds."
 		"DOTA_Tooltip_modifier_undying_soul_siphon_talent"														"Pumping Heart"
-		"DOTA_Tooltip_modifier_undying_soul_siphon_talent_Description"											"Attack speed slowed/increased by %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT% and strength increased by %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS%."
+		"DOTA_Tooltip_modifier_undying_soul_siphon_talent_Description"											"Attack speed slowed/increased by %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%."
+		"DOTA_Tooltip_modifier_undying_soul_siphon_legion"														"Soul Siphon - Legion"
+		"DOTA_Tooltip_modifier_undying_soul_siphon_legion_Description"											"Your sacrifice rewards you with %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT% attack speed."
+		"DOTA_Tooltip_modifier_undying_soul_siphon_undying"														"Soul Siphon - Undying"
+		"DOTA_Tooltip_modifier_undying_soul_siphon_undying_Description"											"Your strength is increased by %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS%, based off of Undying's Strength."
 		
 		"DOTA_Tooltip_ability_undying_necropolis"																"Necropolis"
 		"DOTA_Tooltip_ability_undying_necropolis_Description"													"Summons a tombstone at the target point. Zombies will frequently spawn next to every enemy unit in the area around the Tombstone, and attack them.\nThe tombstone takes %tombstone_boss_dmg%/%tombstone_monster_dmg%/%tombstone_minion_dmg% damage from bosses/monsters/minions.\nThe zombies take %zombie_boss_dmg% (%zombie_dmg%) damage from (non-)bosses."
@@ -7333,6 +7337,8 @@
 		"DOTA_Tooltip_Ability_special_bonus_unique_undying_necropolis_1_Description"							"When a Necropolis Zombie dies, there is a <b>25%</b> chance they Devour Life on their location. This Decay is <b>50%</b> smaller."
 		"DOTA_Tooltip_Ability_special_bonus_unique_undying_necropolis_2"										"Miasmatic Cemetary"
 		"DOTA_Tooltip_Ability_special_bonus_unique_undying_necropolis_2_Description"							"Necropolis emanates a poisonous fog in a <b>600</b> radius. This poisonous fog slows by <b>20%</b> and blinds enemies within it, causing them to miss <b>50%</b> of their attacks."
+		"DOTA_Ability_modifier_undying_necropolis_undying"														"Necropolis - Undying"
+		"DOTA_Ability_modifier_undying_necropolis_undying_Description"											"You are protected by the Necropolis as long as you remain within it."
 		
 		"DOTA_Tooltip_ability_undying_monstrous_form"															"Monstrous Form"
 		"DOTA_Tooltip_ability_undying_monstrous_form_Description"												"Undying transforms into a horrifying flesh golem. Gains a percentage increase to strength, bonus movement speed and his attacks and Decay apply a debuff that increases damage taken by enemies that lasts %debuff_duration% seconds."
