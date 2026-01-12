@@ -449,23 +449,49 @@ function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability, flBonusDama
 	end
 end
 
-function CDOTA_BaseNPC:PerformGenericAttack(target, immediate, flBonusDamage, bDamagePct, bNeverMiss)
+function CDOTA_BaseNPC:PerformGenericAttack(target, immediate, tAttackData )
+	if not IsEntitySafe( self ) then return end
+	if not IsEntitySafe( target ) then return end
 	local neverMiss = false
-	if bNeverMiss == true then neverMiss = true end
-	if flBonusDamage then
-		if bDamagePct then
-			if type(bDamagePct) ~= 'number' then
-				bDamagePct = flBonusDamage
-			end
-			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus_pct", {damage = bDamagePct})
-		end
-		if flBonusDamage and (not bDamagePct or type(bDamagePct) == 'number') then
-			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus", {damage = flBonusDamage})
-		end
+	
+	local attackData = tAttackData or {}
+	local neverMiss = attackData.neverMiss
+	local bonusDamage = attackData.bonusDamage
+	local bonusDamagePct = attackData.bonusDamagePct
+	local suppressCleave = attackData.suppressCleave or false
+	local procAttackEffects = attackData.procAttackEffects
+	if procAttackEffects == nil then procAttackEffects = true end
+	if neverMiss == nil then neverMiss = true end
+	local abilityIndex
+	if attackData.ability then
+		abilityIndex = attackData.ability:entindex()
 	end
-	self:PerformAttack(target, true, true, true, false, not immediate, false, neverMiss)
+	
+	self.autoAttackFromAbilityState = {} -- basically the same as setting it to true
+	self.autoAttackFromAbilityState.abilityIndex = abilityIndex
+	
+	self:AddNewModifier(caster, nil, "modifier_attack_tracker", {})
+	self._suppressCleave = false
+	if suppressCleave then
+		self._suppressCleave = suppressCleave
+		self:AddNewModifier(caster, nil, "modifier_generic_suppress_cleave", {})
+	end
+	if bNeverMiss == true then neverMiss = true end
+	if bonusDamagePct and bonusDamagePct ~= 0 then
+		self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus_pct", {damage = bonusDamagePct})
+		-- adjust flat bonus damage to account for reduced pct
+		bonusDamage = math.floor( (bonusDamage or 0) / (1+(bonusDamagePct-100)/100) )
+	end
+	if bonusDamage and bonusDamage ~= 0 then
+		self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus", {damage = bonusDamage})
+	end 
+	
+	self:PerformAttack(target, procAttackEffects, procAttackEffects, true, false, not immediate, false, neverMiss)
 	self:RemoveModifierByName("modifier_generic_attack_bonus")
 	self:RemoveModifierByName("modifier_generic_attack_bonus_pct")
+	self:RemoveModifierByName("modifier_generic_suppress_cleave")
+	self._suppressCleave = false
+	self.autoAttackFromAbilityState.abilityIndex = nil
 end
 
 function CDOTA_Modifier_Lua:AttachEffect(pID)
