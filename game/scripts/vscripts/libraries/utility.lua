@@ -470,20 +470,20 @@ function CDOTA_BaseNPC:PerformGenericAttack(target, immediate, tAttackData )
 	self.autoAttackFromAbilityState = {} -- basically the same as setting it to true
 	self.autoAttackFromAbilityState.abilityIndex = abilityIndex
 	
-	self:AddNewModifier(caster, nil, "modifier_attack_tracker", {})
+	self:AddNewModifier(self, nil, "modifier_attack_tracker", {})
 	self._suppressCleave = false
 	if suppressCleave then
 		self._suppressCleave = suppressCleave
-		self:AddNewModifier(caster, nil, "modifier_generic_suppress_cleave", {})
+		self:AddNewModifier(self, nil, "modifier_generic_suppress_cleave", {})
 	end
 	if bNeverMiss == true then neverMiss = true end
 	if bonusDamagePct and bonusDamagePct ~= 0 then
-		self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus_pct", {damage = bonusDamagePct})
+		self:AddNewModifier(self, nil, "modifier_generic_attack_bonus_pct", {damage = bonusDamagePct})
 		-- adjust flat bonus damage to account for reduced pct
 		bonusDamage = math.floor( (bonusDamage or 0) / (1+(bonusDamagePct-100)/100) )
 	end
 	if bonusDamage and bonusDamage ~= 0 then
-		self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus", {damage = bonusDamage})
+		self:AddNewModifier(self, nil, "modifier_generic_attack_bonus", {damage = bonusDamage})
 	end 
 	
 	self:PerformAttack(target, procAttackEffects, procAttackEffects, true, false, not immediate, false, neverMiss)

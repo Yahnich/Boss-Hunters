@@ -110,9 +110,9 @@ function modifier_venomancer_poison_nova_talent:OnRefresh()
 	self.talent2 = self:GetParent():HasTalent("special_bonus_unique_venomancer_poison_nova_2")
 	self.talent2Val = self:GetParent():FindTalentValue("special_bonus_unique_venomancer_poison_nova_2")
 	
-	self.wTalent1 = self:GetParent():HasTalent("special_bonus_unique_venomancer_plague_ward_1")
-	self.wTalent1Val = self:GetParent():FindTalentValue("special_bonus_unique_venomancer_plague_ward_1", "value2")
-	self.wTalent1Dur = self:GetParent():FindTalentValue("special_bonus_unique_venomancer_plague_ward_1", "minion_duration")
+	self.wTalent1 = self:GetParent():HasTalent("special_bonus_unique_venomancer_living_growth_1")
+	self.wTalent1Val = self:GetParent():FindTalentValue("special_bonus_unique_venomancer_living_growth_1", "value2")
+	self.wTalent1Dur = self:GetParent():FindTalentValue("special_bonus_unique_venomancer_living_growth_1", "minion_duration")
 	
 	if self:GetParent():IsRealHero() then 
 		self:GetParent():HookInModifier( "GetReincarnationDelay", self )
@@ -143,13 +143,13 @@ function modifier_venomancer_poison_nova_talent:OnDeathCompleted( params )
 		self:GetCaster():SetCursorCastTarget(params.unit)
 		self:GetAbility():OnSpellStart(false)
 		self:SetStackCount(1)
-	elseif self.talent2 and params.unit:GetUnitName() == "npc_dota_venomancer_plague_ward_1" then
+	elseif self.talent2 and params.unit:GetUnitName() == "npc_dota_venomancer_living_growth_1" then
 		self:GetCaster():SetCursorCastTarget(params.unit)
 		self:GetAbility():OnSpellStart(true)
 	elseif self.wTalent1 
-	and ( params.unit:HasModifier("modifier_venomancer_venomous_gale_cancer") 
+	and ( params.unit:HasModifier("modifier_venomancer_spit_venom_cancer") 
 	or params.unit:HasModifier("modifier_venomancer_poison_nova_cancer") ) then
-		local ward = self:GetCaster():FindAbilityByName("venomancer_plague_ward_ebf")
+		local ward = self:GetCaster():FindAbilityByName("venomancer_living_growth_ebf")
 		if ward then
 			local duration = TernaryOperator( self.wTalent1Dur, params.unit:IsMinion(), nil )
 			for i = 1, self.wTalent1Val do

@@ -1,7 +1,7 @@
 drow_ranger_multishot_bh = class({})
 
 function drow_ranger_multishot_bh:GetBehavior()
-	local behavior = DOTA_ABILITY_BEHAVIOR_DIRECTIONAL + DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
+	local behavior = DOTA_ABILITY_BEHAVIOR_CHANNELLED + DOTA_ABILITY_BEHAVIOR_DIRECTIONAL + DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
 	if self:GetCaster():HasTalent("special_bonus_unique_drow_ranger_multishot_2") then
 		 behavior =  behavior + DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING
 	end
@@ -30,10 +30,12 @@ end
 
 function drow_ranger_multishot_bh:OnVectorCastStart()
 	self:InitializeMultishot()
+	print("!")
 end
 
 function drow_ranger_multishot_bh:OnSpellStart()
 	self:InitializeMultishot()
+	print("?")
 end
 
 function drow_ranger_multishot_bh:InitializeMultishot()
