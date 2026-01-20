@@ -29,7 +29,7 @@ function sniper_explosive_arsenal:OnProjectileHitHandle(target, position)
 
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
 			EmitSoundOn( "Hero_Sniper.ConcussiveGrenade.Target", enemy)
-            if self:GetAutoCastState() then
+            if not self:GetAutoCastState() then
 			    enemy:ApplyKnockBack(position, knockbackDuration, knockbackDuration, knockbackDistance, knockbackHeight, caster, self)
             end
 			enemy:AddNewModifier( caster, self, "modifier_sniper_grenade_debuff", {duration = debuffDuration} )
@@ -40,7 +40,7 @@ function sniper_explosive_arsenal:OnProjectileHitHandle(target, position)
 		end
 		if CalculateDistance( caster, position ) < radius then
 			EmitSoundOn( "Hero_Sniper.ConcussiveGrenade.Target", caster)
-            if self:GetAutoCastState() then
+            if not self:GetAutoCastState() then
 			    caster:ApplyKnockBack(position, 0, knockbackDuration, knockbackDistance, knockbackHeight, caster, self)
             end
 		end

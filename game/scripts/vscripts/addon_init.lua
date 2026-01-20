@@ -86,6 +86,7 @@ LinkLuaModifier( "modifier_talent_all_stats", "libraries/modifiers/talents/modif
 LinkLuaModifier( "modifier_typing_tag", "libraries/modifiers/tags/modifier_typing_tag.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_illusion_tag", "libraries/modifiers/illusions/modifier_illusion_tag.lua", LUA_MODIFIER_MOTION_NONE)
 
+require("libraries/keywords")
 if IsClient() then -- Load clientside utility lib
 	print("client-side has been initialized")
 	require("libraries/client_util")

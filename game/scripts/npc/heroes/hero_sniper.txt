@@ -9,22 +9,32 @@
 		"ScriptFile"					"heroes/hero_sniper/sniper_rangefinder"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"sniper_rangefinder"
-		"MaxLevel"						"4"		
+		"MaxLevel"						"1"		
 		"Innate"						"1"
-		"DependentOnAbility"			"sniper_assassinate"
-		"IsBreakable"					"0"
+		"IsBreakable"					"1"
 
 		"AbilityValues"
 		{
 			"bonus_range"				
 			{
-				"value"														"50"
-				"special_bonus_facet_sniper_deadeye"						"=100 =200 =300 =400"
+				"special_bonus_facet_sniper_deadeye"
+				{	
+					"value"									"=100"
+					"hero_levelup"							"+15"
+				}
 			}
 			"bonus_attack_time"
 			{
-				"special_bonus_facet_sniper_gunslinger"						"1.5 1.4 1.3 1.2"
-			}	
+				"special_bonus_facet_sniper_gunslinger"		"1.5"
+			}
+			"bonus_attack_speed"
+			{
+				"special_bonus_facet_sniper_gunslinger"
+				{	
+					"value"									"20"
+					"hero_levelup"							"+5"
+				}
+			}
 		}
 	}
 
@@ -37,11 +47,11 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_sniper/sniper_explosive_arsenal"
+		"AbilityTextureName"			"sniper_concussive_grenade"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"AbilityTextureName"			"sniper_concussive_grenade"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"				"1"
@@ -77,8 +87,8 @@
 			//---------------------------------------------------------------------------------------------------------
 			"damage"
 			{
-				"value"											"20 30 40 50"
-				"hero_levelup"									"+1"
+				"value"											"50 100 150 200"
+				"hero_levelup"									"+6"
 				"CalculateSpellDamageTooltip"					"1"
 			}
 			"AbilityCastRange"									"600"

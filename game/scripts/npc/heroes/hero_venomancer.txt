@@ -98,7 +98,7 @@
 			"AbilityCooldown"
 			{
 				"value"												"21 20 19 18"
-				"special_bonus_unique_venomancer_venomous_gale_2"	"-5"
+				"special_bonus_unique_venomancer_venomous_gale_2"	"-7"
 			}
 			"AbilityCastRange"										"800"
 			"explosion_damage"		
@@ -141,24 +141,17 @@
 				"is_debuff_duration"							"1"
 			}
 			"damage"											"1"
-			"movement_speed"
-			{
-				"value"											"8 10 12 14"
-				"special_bonus_unique_venomancer_2"				"+8"
-			}
-			"attack_speed"
-			{
-				"special_bonus_facet_venomancer_toxicologist"	"=8 =10 =12 =14"
-				"special_bonus_unique_venomancer_2"				"+8"
-			}
+			"movement_speed"									"8 10 12 14"
+			"attack_speed"										{"special_bonus_facet_venomancer_toxicologist"	"=8 =10 =12 =14"}
 			"bonus_poison_slow"									{"special_bonus_facet_venomancer_toxicologist"	"1"}
 			"kills_refresh_cds"									{"special_bonus_facet_venomancer_plague_bringer"	"1"}
-			"hp_regen_reduction"								{"special_bonus_unique_venomancer_poisonsting_regen_reduction"	"+20"}
 			"summon_power"
 			{
 				"value"											"50"
 				"special_bonus_facet_venomancer_plague_bringer"	"=100"
 			}
+			"retribution"										{"special_bonus_unique_venomancer_venomous_1"	"1"}
+			"poison_spread"										{"special_bonus_unique_venomancer_venomous_2"	"325"}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -194,33 +187,33 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"AbilityManaCost"				"24 26 28 30"
+			"AbilityManaCost"										"24 26 28 30"
 			"AbilityCooldown"
 			{
-				"value"											"5.0"
-				"special_bonus_unique_venomancer_8"				"-1"
+				"value"												"5.0"
+				"special_bonus_unique_venomancer_living_growth_1"	"-2"
 			}
-			"duration"											"40.0"
+			"duration"												"40.0"
 			"ward_hp_tooltip"
 			{
-				"value"											"1500 3000 4500 6000"
-				"special_bonus_unique_venomancer"				"x2.5"
-				"CalculateAttributeTooltip"						"1"
+				"value"												"1500 3000 4500 6000"
+				"special_bonus_unique_venomancer_living_growth_2"	"x2.5"
+				"CalculateAttributeTooltip"							"1"
 			}
 			"ward_damage_tooltip"
 			{
-				"value"											"260 400 630 980"
-				"special_bonus_unique_venomancer"				"x2.5"
-				"CalculateAttributeTooltip"						"1"
+				"value"												"260 400 630 980"
+				"special_bonus_unique_venomancer_living_growth_2"	"x2.5"
+				"CalculateAttributeTooltip"							"1"
 			}
 			
-			"cast_on_allies"									{"special_bonus_facet_venomancer_toxicologist" "1"}
-			"provides_barrier"									{"special_bonus_facet_venomancer_toxicologist" "100"}
-			"explodes_on_death"									{"special_bonus_facet_venomancer_plague_bringer" "50"}
+			"cast_on_allies"										{"special_bonus_facet_venomancer_toxicologist" "1"}
+			"provides_barrier"										{"special_bonus_facet_venomancer_toxicologist" "100"}
+			"explodes_on_death"										{"special_bonus_facet_venomancer_plague_bringer" "50"}
 			"explosion_radius"
 			{
-				"special_bonus_facet_venomancer_plague_bringer" "450"
-				"affected_by_aoe_increase"						"1"
+				"special_bonus_facet_venomancer_plague_bringer"		"450"
+				"affected_by_aoe_increase"							"1"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
@@ -294,7 +287,9 @@
 			"poison_damage_on_expire"							"100"
 			"healing_on_expire"									{"special_bonus_facet_venomancer_toxicologist"	"100"}
 			
-			"health_damage"							""
+			"resurrect_delay"									{"special_bonus_unique_venomancer_pandemic_1"	"5"}
+			"death_replicate"									{"special_bonus_unique_venomancer_pandemic_1"	"1"}
+			"summoned_units_pandemic"							{"special_bonus_unique_venomancer_pandemic_2"	"25"}
 		}
 	}
 }
