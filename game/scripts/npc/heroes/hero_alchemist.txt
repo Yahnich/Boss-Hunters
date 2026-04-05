@@ -10,37 +10,40 @@
 		"AbilityTextureName"			"alchemist_goblins_greed"
 		"MaxLevel"						"1"
 		"Innate"						"1"
-		"DependentOnAbility"			"alchemist_rage_injector"
 		
 		"AbilityValues"
 	    {
 			"minion_materia"			"1"
 			"monster_materia"			"3"
 			"boss_materia"				"6"
-			"max_materia"				"30 40 50 60"
+			"max_materia"
+			{
+				"value"									"29"
+				"hero_levelup"							"1"
+			}
 			"round_end_conversion"		"50"
 			"materia_death_loss"		"50"
 			"materia_to_gold"			"2"
 			"materia_status_amp"		"1"
 			
-			"panacea_heal"
-			{
-				"special_bonus_facet_alchemist_panacea"
-				{
-					"value"									"4"
-					"hero_levelup"							"0.4"
-				}
-			}
-			"panacea_damage"
-			{
-				"special_bonus_facet_alchemist_panacea"
-				{
-					"value"									"4"
-					"hero_levelup"							"0.4"
-				}
-			}
-			"alkahest_potency"			{"special_bonus_facet_alchemist_alkahest"		"1"}
-			"alkahest_cdr"				{"special_bonus_facet_alchemist_alkahest"		"1"}
+			// "panacea_heal"
+			// {
+				// "special_bonus_facet_alchemist_panacea"
+				// {
+					// "value"									"4"
+					// "hero_levelup"							"0.4"
+				// }
+			// }
+			// "panacea_damage"
+			// {
+				// "special_bonus_facet_alchemist_panacea"
+				// {
+					// "value"									"4"
+					// "hero_levelup"							"0.4"
+				// }
+			// }
+			// "alkahest_potency"			{"special_bonus_facet_alchemist_alkahest"		"1"}
+			// "alkahest_cdr"				{"special_bonus_facet_alchemist_alkahest"		"1"}
 	    }
 	}
 	//=================================================================================================================
@@ -57,15 +60,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"MaxLevel"						"4"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_alchemist_acid_bomb_1"	"1"
-			"special_bonus_unique_alchemist_acid_bomb_2"	"1"
-		}
+		"MaxLevel"						"2"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -84,32 +79,39 @@
 			"damage"
 			{
 				"value"											"50 75 100 125"
-				"special_bonus_unique_alchemist_acid_bomb_2"	"+40"
 				"hero_levelup"									"+3"
 				"CalculateSpellDamageTooltip"					"1"
 			}
 			"damage_per_sec"
 			{
 				"value"											"20 35 50 65"
-				"special_bonus_unique_alchemist_acid_bomb_2"	"+40"
 				"hero_levelup"									"+2"
 				"CalculateSpellDamageTooltip"					"1"
 			}
-			"linger_duration"
-			{
-				"value"											"0.5"
-				"special_bonus_unique_alchemist_acid_bomb_2"	"+2"
-			}
-			"armor_reduction"									"4 5 6 7"
-			"armor_loss_per_sec"								{"special_bonus_unique_alchemist_acid_bomb_1"	"1"}
+			"linger_duration"									"0.5"
+			"armor_reduction"									"4"
 			"tick_rate"											"1.0"
-			
-			"panacea_heal"										{"special_bonus_facet_alchemist_panacea"	"50"}
-			"panacea_armor"										{"special_bonus_facet_alchemist_panacea"	"100"}
-			"alkahest_duration"
+		}
+		"AbilityPerks"
+		{
+			"special_bonus_unique_alchemist_acid_bomb_1"
 			{
-				"special_bonus_facet_alchemist_alkahest"		"6"
-				"special_bonus_unique_alchemist_acid_bomb_2"	"+2"
+				"armor_loss_per_sec"						"=1"
+			}
+			"special_bonus_unique_alchemist_acid_bomb_2"
+			{
+				"damage"									"+40"
+				"damage_per_sec"							"+40"
+				"linger_duration"							"+2"
+			}
+			"special_bonus_unique_alchemist_acid_bomb_panacea"
+			{
+				"panacea_heal"								"=50"
+				"panacea_armor"								"=100"
+			}
+			"special_bonus_unique_alchemist_acid_bomb_alkahest"
+			{
+				"alkahest_duration"							"=6"
 			}
 		}
 	}
@@ -130,15 +132,8 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK_STATUE"
-		"MaxLevel"						"4"
+		"MaxLevel"						"2"
 		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_alchemist_volatile_brew_1"	"1"
-			"special_bonus_unique_alchemist_volatile_brew_2"	"1"
-		}
 		// precache
 		"precache"
 		{
@@ -159,7 +154,6 @@
 			"brew_time"
 			{
 				"value"												"5.0"
-				"special_bonus_unique_alchemist_volatile_brew_1"	"-2.5"
 				"is_buff_duration"									"1"
 			}
 			"brew_explosion"
@@ -177,16 +171,11 @@
 				"value"												"1.7 2.2 2.7 3.2"
 				"is_debuff_duration"								"1"
 			}
-			"min_damage"
-			{
-				"value"												"0"
-				"CalculateSpellDamageTooltip"						"1"
-			}
+			"min_damage"											{"CalculateSpellDamageTooltip"	"1"}
 			"max_damage"				
 			{ 
 				"value"												"180 230 310 380"
 				"hero_levelup"										"+8"
-				"special_bonus_unique_alchemist_volatile_brew_2"	"+50%"
 				"CalculateSpellDamageTooltip"						"1"
 			}
 			"radius"
@@ -195,19 +184,42 @@
 				"special_bonus_unique_alchemist_volatile_brew_2"	"+50"
 				"affected_by_aoe_increase"							"1"
 			}
-			"barrier"
+		}
+		"AbilityPerks"
+		{
+			"special_bonus_unique_alchemist_volatile_brew_1"
 			{
-				"special_bonus_facet_alchemist_panacea"				"100"
-				"CalculateSpellHealTooltip"							"1"
+				"brew_time"											"-2.5"
 			}
-			"bonus_attack_speed"									{"special_bonus_facet_alchemist_panacea"	"50 75 100 125"}
-			"buff_duration"
+			"special_bonus_unique_alchemist_volatile_brew_2"
 			{
-				"special_bonus_facet_alchemist_panacea"				"2"
-				"is_buff_duration"									"1"
+				"radius"											"+50"
+				"max_damage"										"+50%"
+				"min_damage"
+				{ 
+					"value"											"100"
+					"hero_levelup"									"+4"
+				}
 			}
-			"bonus_physical_damage"									{"special_bonus_facet_alchemist_alkahest"	"18 24 30 36"}
-			"freezes_cooldowns"										{"special_bonus_facet_alchemist_alkahest"	"1"}
+			"special_bonus_unique_alchemist_volatile_brew_panacea"
+			{
+				"barrier"
+				{
+					"value"											"100"
+					"CalculateSpellHealTooltip"						"1"
+				}
+				"bonus_attack_speed"								"+50"
+				"buff_duration"
+				{
+					"value"											"2"
+					"is_buff_duration"								"1"
+				}
+			}
+			"special_bonus_unique_alchemist_volatile_brew_alkahest"
+			{
+				"bonus_physical_damage"								"18"
+				"freezes_cooldowns"									"1"
+			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
@@ -222,18 +234,17 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilitySound"					"Hero_Meepo.Geostrike"
+		"MaxLevel"						"2"
 
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
-		
-		"LinkedTalents"
-		{
-			"special_bonus_unique_alchemist_corrosive_arsenal_1"	"1"
-			"special_bonus_unique_alchemist_corrosive_arsenal_2"	"1"
-		}
-
+	
 		"AbilityValues"
 		{
-			"max_stacks"						"10 12 14 16"
+			"max_stacks"
+			{
+				"value"							"10"
+				"special_bonus_minor_perk"		"+2"
+			}
 			"debuff_duration"
 			{
 				"value"							"4.0"
@@ -241,20 +252,28 @@
 			}
 			"slow_per_stack"
 			{
-				"value"							"1.25 1.5 1.75 2"
-				"special_bonus_unique_alchemist_corrosive_arsenal_1"	"+1"
+				"value"							"1.0"
+				"special_bonus_minor_perk"		"+0.5"
 			}
-			"stacks_per_attack"				"2"
-			"stacks_per_second"				"1"
-			
-			"dps_per_stack"					{"special_bonus_unique_alchemist_corrosive_arsenal_2"	"10"}
-			
-			"attack_damage_loss"			{"special_bonus_facet_alchemist_panacea"	"100"}
-			"bonus_lifesteal"				{"special_bonus_facet_alchemist_panacea"	"10"}
-			"attack_damage_gain"			{"special_bonus_facet_alchemist_alkahest"	"100"}
-			"status_resist_per_stack"		{"special_bonus_facet_alchemist_alkahest"	"100"}
-			
-			"alchemist_facet_bonus"			"100"
+			"stacks_per_attack"					"2"
+			"stacks_per_second"					"1"
+		}	
+		"AbilityPerks"
+		{
+			"special_bonus_unique_alchemist_corrosive_arsenal_2"
+			{
+				"dps_per_stack"										"10"
+			}
+			"special_bonus_unique_alchemist_corrosive_arsenal_panacea"
+			{
+				"attack_damage_loss"								"100"
+				"bonus_lifesteal"									"10"
+			}
+			"special_bonus_unique_alchemist_corrosive_arsenal_alkahest"
+			{
+				"attack_damage_gain"								"100"
+				"status_resist_per_stack"							"100"
+			}
 		}
 	}
 	//=================================================================================================================
@@ -270,27 +289,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"FightRecapLevel"				"2"
-		"MaxLevel"						"3"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_alchemist_rage_injector_1"	"1"
-			"special_bonus_unique_alchemist_rage_injector_2"	"1"
-		}
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"45.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50 100 150 200 250 300"
+		"MaxLevel"						"2"
 		
 		"precache"
 		{
@@ -303,11 +302,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
+			"AbilityCastPoint"										"0.0"
+			"AbilityCooldown"										"45.0"
+			"AbilityManaCost"										"50 100 150"
+			
 			"duration"												"25.0"
 			"base_attack_time"
 			{
-				"value"												"-0.2 -0.3 -0.4"
-				"special_bonus_unique_alchemist_rage_injector_2"	"-0.3"
+				"value"												"-0.2"
+				"special_bonus_minor_perk"							"-0.1"
 			}
 			"bonus_hp"
 			{
@@ -323,21 +326,32 @@
 			{
 				"value"												"47.5 77.5 107.5"
 				"hero_levelup"										"+2.5"
-				"special_bonus_unique_alchemist_rage_injector_1"	"+100%"
 			}
 			"bonus_health_regen_per_materia"
 			{
 				"value"												"0.65 0.9 1.15"
 				"hero_levelup"										"+0.02"
-				"special_bonus_unique_alchemist_rage_injector_1"	"+100%"
 			}
-			"bonus_movespeed"										"20 30 40"
-			
-			"bonus_armor_per_materia"								{"special_bonus_facet_alchemist_panacea"	"0.2"}
-			"bonus_damage_per_materia"
+			"bonus_movespeed"										"20 30 40"								"+0.2"
+		}
+		"AbilityPerks"
+		{
+			"special_bonus_unique_alchemist_rage_injector_1"
 			{
-				"special_bonus_facet_alchemist_alkahest"			"1"
-				"hero_levelup"										"+0.2"
+				"bonus_health_regen"								"+100%"
+				"bonus_health_regen_per_materia"					"+100%"
+			}
+			"special_bonus_unique_alchemist_rage_injector_panacea"
+			{
+				"bonus_armor_per_materia"							"0.2"
+			}
+			"special_bonus_unique_alchemist_rage_injector_alkahest"
+			{
+				"bonus_damage_per_materia"
+				{
+					"value"											"1"
+					"hero_levelup"									"+0.2"
+				}
 			}
 		}
 	}

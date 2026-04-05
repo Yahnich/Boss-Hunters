@@ -27,7 +27,7 @@ function venomancer_living_growth:CreateWard( target, duration)
 		position = target:GetAbsOrigin()
 	end
 	
-	local ward = caster:CreateSummon("npc_dota_venomancer_living_growth_1", position or caster:GetAbsOrigin(), fDur)
+	local ward = caster:CreateSummon("npc_dota_venomancer_plague_ward_1", position or caster:GetAbsOrigin(), fDur)
 	ward:SetCoreHealth(hp)
 	ward:SetBaseHealthRegen(0)
 	ward:SetModelScale( 0.8 + (self:GetLevel()-1) * 0.1 )

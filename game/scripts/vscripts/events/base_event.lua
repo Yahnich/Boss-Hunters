@@ -96,7 +96,7 @@ function BaseEvent:constructor(zoneName, eventType, eventName, eventReward, misc
 		-- Precaching really doesn't like it when you change context
 		if functionName ~= 'PrecacheUnits' then
 			self[functionName] = function( self, optArg1, optArg2, optArg3  )
-									status, err, ret = xpcall(functionMethod, debug.traceback, self, optArg1, optArg2, optArg3 ) -- optArg1 to 3 should just be nil and ignored if empty
+									status, err, ret = xpcall(functionMethod, function() end, self, optArg1, optArg2, optArg3 ) -- optArg1 to 3 should just be nil and ignored if empty
 									if not status  and not self.gameHasBeenBroken then
 										SendErrorReport(err)
 									end

@@ -62,12 +62,12 @@
 	"npc_dota_hero_alchemist"
 	{
 		"override_hero"				"npc_dota_hero_alchemist"
-		"Ability1"					"alchemist_acid_bomb"
-		"Ability2"					"alchemist_volatile_brew"
-		"Ability3"					"alchemist_corrosive_arsenal"
+		"Ability1"					"generic_basic_1"
+		"Ability2"					"generic_basic_2"
+		"Ability3"					"generic_basic_3"
 		"Ability4"					"alchemist_chymistry"
 		"Ability5"					"generic_hidden"
-		"Ability6"					"alchemist_rage_injector"
+		"Ability6"					"generic_ultimate"
 		
 		"Ability10"					"special_bonus_unique_alchemist_volatile_brew_1"
 		"Ability11"					"special_bonus_unique_alchemist_volatile_brew_2"
@@ -78,6 +78,13 @@
 		"Ability16"					"special_bonus_unique_alchemist_rage_injector_1"
 		"Ability17"					"special_bonus_unique_alchemist_rage_injector_2"
 		
+		"AbilityPool"
+		{
+			"alchemist_acid_bomb"					"BASIC"
+			"alchemist_volatile_brew"				"BASIC"
+			"alchemist_corrosive_arsenal"			"BASIC"
+			"alchemist_rage_injector"				"ULTIMATE"
+		}
 		
 		"Masteries"
 		{
@@ -93,25 +100,6 @@
 			"THREAT_AMP"{"3" "1"}
 			"THREAT_DOWN"{"3" "1"}
 			"ALL_STATS"{"1" "2"}
-		}
-		
-		"Facets"
-		{
-			"alchemist_seed_money"		{"Deprecated"		"1"}
-			"alchemist_mixologist"		{"Deprecated"		"1"}
-			"alchemist_dividends"		{"Deprecated"		"1"}
-			"alchemist_panacea"
-			{
-				"Icon"				"healing"
-				"Color"				"Yellow"
-				"GradientID"		"1"
-			}
-			"alchemist_alkahest"
-			{
-				"Icon"				"damage"
-				"Color"				"Red"
-				"GradientID"		"3"
-			}
 		}
 	}
 	"npc_dota_hero_ancient_apparition"
@@ -1166,12 +1154,12 @@
 	"npc_dota_hero_kunkka"
 	{
 		"override_hero"					"npc_dota_hero_kunkka"
-		"Ability1"						"kunkka_water_spout"
-		"Ability2"						"kunkka_clear_wave"
-		"Ability3"						"kunkka_mark_the_spot"
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
 		"Ability4"						"kunkka_captains_rum"
 		"Ability5"						"generic_hidden"
-		"Ability6"						"kunkka_ghost_fleet"
+		"Ability6"						"generic_ultimate"
 
 		"Ability10"				   		"special_bonus_unique_kunkka_water_spout_1"
 		"Ability11"				   		"special_bonus_unique_kunkka_water_spout_2"
@@ -1181,6 +1169,14 @@
 		"Ability15"				   		"special_bonus_unique_kunkka_mark_the_spot_2"
 		"Ability16"				   		"special_bonus_unique_kunkka_ghost_fleet_1"
 		"Ability17"				   		"special_bonus_unique_kunkka_ghost_fleet_2"	
+		
+		"AbilityPool"
+		{
+			"kunkka_water_spout"					"BASIC"
+			"kunkka_clear_wave"						"BASIC"
+			"kunkka_mark_the_spot"					"BASIC"
+			"kunkka_ghost_fleet"					"ULTIMATE"
+		}
 
 		"Masteries"
 		{

@@ -241,6 +241,7 @@
 		
 		"precache"
 		{
+			"particle"					"particles/units/heroes/hero_venomancer/venomancer_noxious_plague_projectile.vpcf"
 			"particle"					"particles/units/heroes/hero_venomancer/venomancer_noxious_plague_spread.vpcf"
 			"particle"					"particles/units/heroes/hero_venomancer/venomancer_noxious_plague_slow.vpcf"
 			"particle"					"particles/units/heroes/hero_venomancer/venomancer_poison_debuff_nova.vpcf"

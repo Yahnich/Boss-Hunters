@@ -78,7 +78,7 @@ function AITimers:Think()
 	local nextTickCallbacks = MergeTables({}, AITimers.nextTickCallbacks)
 	AITimers.nextTickCallbacks = {}
 	for _, cb in ipairs(nextTickCallbacks) do
-		local status, result = xpcall(cb, debug.traceback)
+		local status, result = pcall(cb, function() end)
 		if not status then
 			AITimers:HandleEventError(result)
 		end
@@ -115,9 +115,9 @@ function AITimers:ExecuteTimers(timerList, now)
 		-- Run the callback
 		local status, timerResult
 		if currentTimer.context then
-			status, timerResult = xpcall(function() return currentTimer.callback(currentTimer.context, currentTimer) end, debug.traceback)
+			status, timerResult = xpcall(function() return currentTimer.callback(currentTimer.context, currentTimer) end, function() end)
 		else
-			status, timerResult = xpcall(function() return currentTimer.callback(currentTimer) end, debug.traceback)
+			status, timerResult = xpcall(function() return currentTimer.callback(currentTimer) end, function() end)
 		end
 
 		AITimers.runningTimer = nil

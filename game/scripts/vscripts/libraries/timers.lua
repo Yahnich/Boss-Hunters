@@ -116,11 +116,11 @@ function Timers:Think()
       local status, nextCall
       if v.context then
         status, nextCall = pcall(function() return v.callback(v.context, v) end, function (msg)
-                                    return msg..'\n'..debug.traceback()..'\n'
+                                    return msg
                                   end)
       else
         status, nextCall = pcall(function() return v.callback(v) end, function (msg)
-                                    return msg..'\n'..debug.traceback()..'\n'
+                                    return msg
                                   end)
       end
 

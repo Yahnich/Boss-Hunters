@@ -432,7 +432,7 @@ function RoundManager:StartPrepTime(fPrep, forceSet)
 			end)
 		end
 	end
-	status, err, ret = xpcall(PrepCatch, debug.traceback, self, fPrep )
+	status, err, ret = xpcall(PrepCatch, function() end, self, fPrep )
 	if not status  and not self.gameHasBeenBroken then
 		SendErrorReport(err, self)
 	end
@@ -456,7 +456,7 @@ function RoundManager:EndPrepTime(bReset)
 			RoundManager:StartEvent()
 		end
 	end
-	status, err, ret = xpcall(EndPrepCatch, debug.traceback, self, bReset )
+	status, err, ret = xpcall(EndPrepCatch, function() end, self, bReset )
 	if not status and not self.gameHasBeenBroken then
 		SendErrorReport(err, self)
 	end
@@ -501,7 +501,7 @@ function RoundManager:StartEvent()
 			return false
 		end
 	end
-	status, err, ret = xpcall(StartEventCatch, debug.traceback, self )
+	status, err, ret = xpcall(StartEventCatch, function() end, self )
 	if not status  and not self.gameHasBeenBroken then
 		SendErrorReport(err, self)
 	end
@@ -577,7 +577,7 @@ function RoundManager:EndEvent(bWonRound)
 		-- end
 		self:StartPrepTime(fTime)
 	end
-	status, err, ret = xpcall(EndEventCatch, debug.traceback, self, bWonRound )
+	status, err, ret = xpcall(EndEventCatch, function() end, self, bWonRound )
 	if not status  and not self.gameHasBeenBroken then
 		SendErrorReport(err, self)
 	end
@@ -653,7 +653,7 @@ function RoundManager:RaidIsFinished()
 			FindClearSpaceForUnit(unit, position, true)
 		end
 	end
-	status, err, ret = xpcall(RaidFinishCatch, debug.traceback, self)
+	status, err, ret = xpcall(RaidFinishCatch, function() end, self)
 	if not status  and not self.gameHasBeenBroken then
 		SendErrorReport(err, self)
 	end
@@ -681,7 +681,7 @@ function RoundManager:ZoneIsFinished()
 			table.remove(POSSIBLE_ZONES, 1)
 		end
 	end
-	status, err, ret = xpcall(ZoneFinishCatch, debug.traceback, self)
+	status, err, ret = xpcall(ZoneFinishCatch, function() end, self)
 	if not status  and not self.gameHasBeenBroken then
 		SendErrorReport(err, self)
 	end
@@ -756,7 +756,7 @@ function RoundManager:GameIsFinished(bWon)
 			-- statCollection:submitRound(true)
 		end
 	end
-	status, err, ret = xpcall(GameFinishCatch, debug.traceback, self)
+	status, err, ret = xpcall(GameFinishCatch, function() end, self)
 	if not status  and not self.gameHasBeenBroken then
 		SendErrorReport(err, self)
 	end

@@ -14,6 +14,8 @@ end
 function modifier_venomancer_venomous_handler:OnRefresh()
 	self.duration = self:GetAbility():GetSpecialValueFor("duration")
 	self.summon_power = self:GetAbility():GetSpecialValueFor("summon_power") / 100
+	
+	self.retribution = self:GetAbility():GetSpecialValueFor("retribution") == 1
 end
 
 function modifier_venomancer_venomous_handler:IsHidden()
@@ -27,12 +29,16 @@ end
 function modifier_venomancer_venomous_handler:OnAttackLanded(params)
 	if IsServer() then
 		local caster = self:GetCaster()
+		local ability = self:GetAbility()
 		if params.attacker:GetPlayerOwnerID() == caster:GetPlayerOwnerID() then
-			local duration = self.duration * TernaryOperator( 1, params.attacker == caster, self.summon_power )
 			local modifier = params.target:FindModifierByName("modifier_venomancer_venomous_cancer")
-			local ability = self:GetAbility()
 			if not modifier or modifier:GetRemainingTime() < duration then
-				params.target:AddNewModifier(caster, ability, "modifier_venomancer_venomous_cancer", {duration = duration})
+				params.target:AddNewModifier(caster, ability, "modifier_venomancer_venomous_cancer", {duration = self.duration * TernaryOperator( 1, params.attacker == caster, self.summon_power )})
+			end
+		elseif self.retribution and params.target == caster then
+			local modifier = params.attacker:FindModifierByName("modifier_venomancer_venomous_cancer")
+			if not modifier or modifier:GetRemainingTime() < duration then
+				params.attacker:AddNewModifier(caster, ability, "modifier_venomancer_venomous_cancer", {duration = self.duration})
 			end
 		end
 	end
@@ -54,12 +60,22 @@ function modifier_venomancer_venomous_cancer:OnRefresh()
 	self.damage = self:GetSpecialValueFor("damage")
 	self.bonus_poison_slow = -self:GetSpecialValueFor("bonus_poison_slow")
 	self.kills_refresh_cds = -self:GetSpecialValueFor("kills_refresh_cds") == 1
-	self.hp_regen_reduction = self:GetSpecialValueFor("hp_regen_reduction")
+	
+	self.poison_spread = -self:GetSpecialValueFor("poison_spread")
 end
 
 function modifier_venomancer_venomous_cancer:OnIntervalThink()
 	local parent = self:GetParent()
-	parent:AddPoison( self:GetCaster(), self.damage )
+	local caster = self:GetCaster()
+	parent:AddPoison( caster, self.damage )
+	
+	if self.poison_spread > 0 then
+		for _, unit in ipairs( caster:FindEnemyUnitsInRadius( parent:GetAbOrigin(), self.poison_spread ) ) do
+			if unit:GetPoison() < parent:GetPoison() then
+				unit:AddPoison( caster, self.damage )
+			end
+		end
+	end
 	
 	if self.bonus_poison_slow ~= 0 then
 		self:SetStackCount( parent:GetPoison() )

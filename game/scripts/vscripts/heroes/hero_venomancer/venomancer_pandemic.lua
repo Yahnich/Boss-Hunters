@@ -1,10 +1,14 @@
 venomancer_pandemic = class({})
 
+function venomancer_pandemic:GetIntrinsicModifierName()
+	return "modifier_venomancer_pandemic_passive"
+end
+
 function venomancer_pandemic:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	self:FireTrackingProjectile("particles/units/heroes/hero_venomancer/venomancer_pandemic_projectile.vpcf", target, self:GetSpecialValueFor("projectile_speed"))
+	self:FireTrackingProjectile("particles/units/heroes/hero_venomancer/venomancer_noxious_plague_projectile.vpcf", target, self:GetSpecialValueFor("projectile_speed"))
 end
 
 --------------------------------------------------------------------------------
@@ -59,7 +63,7 @@ function modifier_venomancer_pandemic_cancer:OnDestroy()
 			ally:HealEvent( healToApply, ability, caster )
 		end
 	end
-	ParticleManager:FireParticle("particles/units/heroes/hero_venomancer/venomancer_pandemic_spread.vpcf", PATTACH_POINT_FOLLOW, parent, {[1] = Vector(self.debuff_radius, 1, self.debuff_radius)})
+	ParticleManager:FireParticle("particles/units/heroes/hero_venomancer/venomancer_noxious_plague_spread.vpcf", PATTACH_POINT_FOLLOW, parent, {[1] = Vector(self.debuff_radius, 1, self.debuff_radius)})
 end
 
 function modifier_venomancer_pandemic_cancer:OnIntervalThink()
@@ -133,4 +137,72 @@ end
 
 function modifier_venomancer_pandemic_cancer:GetEffectName()
 	return "particles/units/heroes/hero_venomancer/venomancer_pandemic_slow.vpcf"
+end
+
+LinkLuaModifier( "modifier_venomancer_pandemic_passive", "heroes/hero_venomancer/venomancer_pandemic", LUA_MODIFIER_MOTION_NONE )
+modifier_venomancer_pandemic_passive = class({})
+function modifier_venomancer_pandemic_passive:OnRefresh()
+	self.resurrect_delay = self:GetSpecialValueFor("resurrect_delay")
+	self.death_replicate = self:GetSpecialValueFor("death_replicate") == 1
+	self.summoned_units_pandemic = self:GetSpecialValueFor("summoned_units_pandemic") / 100
+
+	if self:GetParent():IsRealHero() and self.resurrect_delay  > 0 then 
+		self:GetParent():HookInModifier( "GetReincarnationDelay", self )
+		if IsServer() then
+			self.funcID = EventManager:SubscribeListener("boss_hunters_event_finished", function(args) self:OnEventFinished(args) end)
+		end
+	end
+end
+
+function modifier_venomancer_pandemic_passive:OnEventFinished(args)
+	if self and not self:IsNull() then
+		self:SetStackCount(0)
+	end
+end
+
+function modifier_venomancer_pandemic_passive:OnDestroy()
+	if IsServer() and self.funcID then
+		EventManager:UnsubscribeListener("boss_hunters_event_finished", self.funcID )
+	end
+end
+
+function modifier_venomancer_pandemic_passive:DeclareFunctions()
+	return {MODIFIER_EVENT_ON_TAKEDAMAGE_KILLCREDIT}
+end
+
+function modifier_venomancer_pandemic_passive:OnTakeDamageKillCredit( params )
+	if params.damage < params.target:GetHealth() then return end
+	local caster = self:GetCaster()
+	local ability = self:GetAbility()
+	Timers:CreateTimer( function()
+		if params.target:IsAlive() then return end
+		if self.death_replicate and params.target == self:GetParent() and params.target:IsRealHero() then
+			caster:SetCursorCastTarget(params.target)
+			ability:OnSpellStart(false)
+			self:SetStackCount(1)
+		elseif self.talent2 and params.target:GetPlayerOwnerID() == caster:GetPlayerOwnerID() then
+			caster:SetCursorCastTarget(params.target)
+			ability:OnSpellStart(true)
+		end
+	end)
+end
+
+function modifier_venomancer_pandemic_passive:GetReincarnationDelay()
+	return self.resurrect_delay
+end
+
+function modifier_venomancer_pandemic_passive:IsHidden()
+	return self:GetStackCount() == 1 or not self:GetParent():IsRealHero()
+end
+
+function modifier_venomancer_pandemic_passive:RemoveOnDeath()
+	return false
+end
+
+function modifier_venomancer_pandemic_passive:IsPermanent()
+	return true
+end
+
+function modifier_venomancer_pandemic_passive:IsPurgable()
+	return false
 end

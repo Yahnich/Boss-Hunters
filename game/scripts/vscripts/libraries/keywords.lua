@@ -1,5 +1,5 @@
-BASE_BURN_DAMAGE = 50
-BASE_POISON_DAMAGE = 50
+BASE_BURN_DAMAGE = 5
+BASE_POISON_DAMAGE = 5
 
 modifier_keyword_debuff_burn = class({})
 LinkLuaModifier( "modifier_keyword_debuff_burn", "libraries/keywords.lua", LUA_MODIFIER_MOTION_NONE )
@@ -59,7 +59,7 @@ function modifier_keyword_debuff_burn:OnIntervalThink()
 	for unit, damage in pairs( damageTable ) do
 		unit._dummyBurnAbility = unit._dummyBurnAbility or unit:FindAbilityByName("ability_capture") or unit:AddAbility("ability_capture")
 		unit._dummyBurnAbility._isBurnDamage = true
-		unit._dummyBurnAbility:DealDamage( unit, parent, damage * unit:GetHeroPowerAmplification( ), {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE )
+		unit._dummyBurnAbility:DealDamage( unit, parent, math.floor( damage + 0.5*(unit:GetLevel()-1) ), {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE )
 		unit._dummyBurnAbility._isBurnDamage = false
 	end
 	for i = 1, math.ceil(#self._burnQueue * 0.20) do
@@ -200,8 +200,8 @@ function modifier_keyword_debuff_poison:OnIntervalThink()
 		local unit = EntIndexToHScript( unitIndex )
 		local dummyAbility = unit:GetAbilityByIndex(0)
 		dummyAbility._isPoisonDamage = true
-		local damage = stacks * 50
-		dummyAbility:DealDamage( unit, parent, damage * unit:GetHeroPowerAmplification( ), {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE )
+		local damage = stacks * BASE_POISON_DAMAGE
+		dummyAbility:DealDamage( unit, parent, math.floor( damage + 0.5*(unit:GetLevel()-1) ), {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE )
 		dummyAbility._isPoisonDamage = false
 	end
 	

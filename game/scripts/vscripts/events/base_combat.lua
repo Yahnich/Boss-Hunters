@@ -36,7 +36,7 @@ local function OnEntityKilled(self, event)
 			end
 		end
 	end
-	status, err, ret = xpcall(EntityKillCatch, debug.traceback, self, event )
+	status, err, ret = xpcall(EntityKillCatch, function() end, self, event )
 	if not status  and not self.gameHasBeenBroken then
 		SendErrorReport(err)
 	end

@@ -10,7 +10,7 @@ function venomancer_spit_venom:OnSpellStart()
 	EmitSoundOn( "Hero_Venomancer.VenomousGale", self:GetCaster() )
 
 	local direction = CalculateDirection( target, caster )
-	self:FireLinearProjectile( "particles/units/heroes/hero_venomancer/venomancer_spit_venom.vpcf", direction * speed, distance, width )
+	self:FireLinearProjectile( "particles/units/heroes/hero_venomancer/venomancer_venomous_gale.vpcf", direction * speed, distance, width )
 end
 
 --------------------------------------------------------------------------------
@@ -39,7 +39,7 @@ function venomancer_spit_venom:OnProjectileHit( target, position )
 			end
 		end
 		
-		local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_venomancer/venomancer_spit_venom_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, target )
+		local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_venomancer/venomancer_venomous_gale_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, target )
 		ParticleManager:SetParticleControlForward( nFXIndex, 1, CalculateDirection( target, position ) )
 		ParticleManager:ReleaseParticleIndex( nFXIndex )
 		

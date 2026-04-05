@@ -104,7 +104,7 @@ function ItemManager:TryRemoveRuneInSlot(userid, event)
 			unit:CalculateStatBonus()
 			unit:CalculateGenericBonuses()
 		end
-		status, err, ret = xpcall(ItemCatch, debug.traceback, self, userid, event )
+		status, err, ret = xpcall(ItemCatch, function() end, self, userid, event )
 		if not status  and not self.gameHasBeenBroken then
 			SendErrorReport(err, self)
 		elseif status then
@@ -202,7 +202,7 @@ function ItemManager:TryEnterRuneInSlot(userid, event)
 				unit:CalculateStatBonus()
 				unit:CalculateGenericBonuses()
 			end
-		status, err, ret = xpcall(ItemCatch, debug.traceback, self, userid, event )
+		status, err, ret = xpcall(ItemCatch, function() end, self, userid, event )
 		if not status  and not self.gameHasBeenBroken then
 			SendErrorReport(err, self)
 		end
