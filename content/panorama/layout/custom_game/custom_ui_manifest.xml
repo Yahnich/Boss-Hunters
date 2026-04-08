@@ -12,6 +12,7 @@
 		<CustomUIElement type="Hud" 				layoutfile="file://{resources}/layout/custom_game/quests.xml" />
 		<CustomUIElement type="EndScreen" 			layoutfile="file://{resources}/layout/custom_game/multiteam_end_screen.xml" />
 		<CustomUIElement type="FlyoutScoreboard"	layoutfile="file://{resources}/layout/custom_game/scoreboard.xml" />
+		<CustomUIElement type="Hud" 				layoutfile="file://{resources}/layout/custom_game/abilities.xml" />
 		
 		<CustomUIElement type="HudTopBar"			layoutfile="file://{resources}/layout/custom_game/hero_information_top.xml" />
 		<CustomUIElement type="HudTopBar"			layoutfile="file://{resources}/layout/custom_game/general_top.xml" />

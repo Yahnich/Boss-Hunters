@@ -35,6 +35,7 @@ require( "libraries/clientserver" )
 require( "libraries/vector_targeting" )
 require("libraries/animations")
 require("talentmanager")
+require("abilitymanager")
 require("itemmanager")
 require("relicmanager")
 require("roundmanager")
@@ -487,6 +488,7 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetPlayerHeroAvailabilityFiltered( true )
 	
 	TalentManager:StartTalentManager()
+	AbilityManager:StartAbilityManager()
 	ItemManager:StartItemManager()
 	RelicManager:Initialize()
 	
@@ -677,7 +679,6 @@ function CHoldoutGameMode:FilterOrders( filterTable )
 				hero.runeSlotSnapShot[i] = itemData
 			end
 		end
-		PrintAll( hero.runeSlotSnapShot )
 		Timers:CreateTimer(  function()
 			for i=0, 5, 1 do
 				local item = hero:GetItemInSlot(i)
@@ -733,9 +734,22 @@ function CHoldoutGameMode:FilterOrders( filterTable )
 		return false
 	end
 	if filterTable["order_type"] == DOTA_UNIT_ORDER_TRAIN_ABILITY then
-		local talent = EntIndexToHScript( filterTable["entindex_ability"] )
-		if talent and string.match( talent:GetAbilityName(), "special_bonus" ) and hero:GetLevel() < (hero.talentsSkilled + 1) * 10 then
+		local ability = EntIndexToHScript( filterTable["entindex_ability"] )
+		if ability and string.match( ability:GetAbilityName(), "special_bonus" ) and hero:GetLevel() < (hero.talentsSkilled + 1) * 10 then
 			return false
+		end
+		if string.match( ability:GetAbilityName(), "generic_basic" ) 
+		or string.match( ability:GetAbilityName(), "generic_ultimate" ) then
+			local player = PlayerResource:GetPlayer( filterTable.issuer_player_id_const )
+			local abilityType = ability:GetAbilityType()
+			if player then
+				local abilityPool = AbilityManager:GetCurrentAbilityPool( hero, abilityType )
+				CustomGameEventManager:Send_ServerToPlayer(player, "dota_player_display_ability_selection", {entindex = hero:entindex(), 
+																											 PlayerID = filterTable.issuer_player_id_const,
+																											 abilityPool = abilityPool,
+																											 replacedAbility = ability:GetAbilityName() } )
+				return false
+			end
 		end
 	end
 	return VectorTarget:OrderFilter(filterTable)
@@ -1075,6 +1089,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 		hero.hasBeenInitialized = true
 		
 		TalentManager:RegisterPlayer(hero)
+		AbilityManager:RegisterPlayer(hero)
 		RelicManager:RegisterPlayer( hero:GetPlayerID() )
 		hero:AddItemByName("item_potion_of_recovery")
 		hero:AddItemByName("item_potion_of_essence")

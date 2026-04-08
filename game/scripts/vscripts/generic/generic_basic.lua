@@ -1,9 +1,7 @@
 generic_basic = class({})
 
-function generic_basic:Spawn()
-	CustomGameEventManager:RegisterListener('dota_player_talent_info_request', Context_Wrap( TalentManager, 'ParseInformationRequest'))
-end
+generic_basic_1 = class(generic_basic)
+generic_basic_2 = class(generic_basic)
+generic_basic_3 = class(generic_basic)
 
-function generic_basic:OnUpgrade()
-	
-end
+generic_ultimate = class(generic_basic)

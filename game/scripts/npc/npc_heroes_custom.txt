@@ -3,11 +3,20 @@
 	"npc_dota_hero_abaddon"
 	{
 		"override_hero"			"npc_dota_hero_abaddon"
-		"Ability1"				"abaddon_death_coil_ebf"
-		"Ability2"				"abaddon_aphotic_barrier"
-		"Ability3"				"abaddon_brume_weaver"
-		"Ability4"				"abaddon_curse_ebf"
-		"Ability6"				"abaddon_borrowed_time_ebf"
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
+		"Ability4"						"abaddon_curse_ebf"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"generic_ultimate"
+		
+		"AbilityPool"
+		{
+			"abaddon_death_coil_ebf"	"BASIC"
+			"abaddon_aphotic_barrier"		"BASIC"
+			"abaddon_brume_weaver"		"BASIC"
+			"abaddon_borrowed_time_ebf"		"ULTIMATE"
+		}
 		
 		"Ability10"				"special_bonus_unique_abaddon_death_coil_1"
 		"Ability11"				"special_bonus_unique_abaddon_death_coil_2"
@@ -83,6 +92,7 @@
 			"alchemist_acid_bomb"					"BASIC"
 			"alchemist_volatile_brew"				"BASIC"
 			"alchemist_corrosive_arsenal"			"BASIC"
+			"alchemist_haste_potion"				"BASIC"
 			"alchemist_rage_injector"				"ULTIMATE"
 		}
 		
@@ -684,12 +694,21 @@
 	"npc_dota_hero_drow_ranger"
 	{
 		"override_hero"					"npc_dota_hero_drow_ranger"
-		"AbilityLayout"					"5"
-		"Ability1"						"drow_ranger_multishot_bh"
-		"Ability2"						"drow_ranger_gust"
-		"Ability3"						"drow_ranger_huntress_mark"
-		"Ability5"						"drow_ranger_glacier_arrows"
-		"Ability6"						"drow_ranger_marksmanship_bh"
+		
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
+		"Ability4"						"drow_ranger_glacier_arrows"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"generic_ultimate"
+		
+		"AbilityPool"
+		{
+			"drow_ranger_multishot_bh"			"BASIC"
+			"drow_ranger_gust"					"BASIC"
+			"drow_ranger_huntress_mark"			"BASIC"
+			"drow_ranger_marksmanship_bh"		"ULTIMATE"
+		}
 		
 		"Ability10"						"special_bonus_unique_drow_ranger_multishot_1"
 		"Ability11"						"special_bonus_unique_drow_ranger_multishot_2"
@@ -809,12 +828,20 @@
 	"npc_dota_hero_enigma"
 	{
 		"override_hero"					"npc_dota_hero_enigma"
-		
-		"Ability1"						"enigma_malefice_bh"
-		"Ability2"						"enigma_white_hole"
-		"Ability3"						"enigma_midnight_pulse_bh"
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
 		"Ability4"						"enigma_shattered_mass"
-		"Ability6"						"enigma_black_hole_bh"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"generic_ultimate"
+		
+		"AbilityPool"
+		{
+			"enigma_malefice_bh"	"BASIC"
+			"enigma_white_hole"		"BASIC"
+			"enigma_midnight_pulse_bh"		"BASIC"
+			"enigma_black_hole_bh"		"ULTIMATE"
+		}
 		
 		"Ability10"						"special_bonus_unique_enigma_malefice_1"
 		"Ability11"						"special_bonus_unique_enigma_malefice_2"
@@ -998,12 +1025,20 @@
 	"npc_dota_hero_jakiro"
 	{
 		"override_hero"			"npc_dota_hero_jakiro"
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
+		"Ability4"						"jakiro_elemental_convergence"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"generic_ultimate"
 		
-		"Ability1"		"jakiro_dual_breath_bh"
-		"Ability2"		"jakiro_ice_path_bh"
-		"Ability3"		"jakiro_liquid_fire_bh"
-		"Ability4"		"jakiro_elemental_convergence"
-		"Ability6"		"jakiro_macropyre_bh"
+		"AbilityPool"
+		{
+			"jakiro_dual_breath_bh"	"BASIC"
+			"jakiro_ice_path_bh"		"BASIC"
+			"jakiro_liquid_fire_bh"		"BASIC"
+			"jakiro_macropyre_bh"		"ULTIMATE"
+		}
 
 		"Ability10"		"special_bonus_unique_jakiro_dual_breath_bh_1"
 		"Ability11"		"special_bonus_unique_jakiro_elemental_convergence_1"
@@ -1030,12 +1065,21 @@
 	"npc_dota_hero_juggernaut"
 	{
 		"override_hero"			"npc_dota_hero_juggernaut"
-		"Ability1"				"juggernaut_whirling_dervish"
-		"Ability2"				"juggernaut_meditative_state"
-		"Ability3"				"generic_hidden"
-		"Ability4"				"generic_hidden"
-		"Ability5"				"juggernaut_decisive_judgement"
-		"Ability6"				"juggernaut_windless_cuts"
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
+		"Ability4"						"juggernaut_decisive_judgement"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"generic_ultimate"
+		
+		"AbilityPool"
+		{
+			"juggernaut_whirling_dervish"			"BASIC"
+			"juggernaut_meditative_state"			"BASIC"
+			"juggernaut_breathless_lunge"			"BASIC"
+			"juggernaut_swift_retribution"			"BASIC"
+			"juggernaut_windless_cuts"				"ULTIMATE"
+		}
 		
 		"Ability10"				"special_bonus_unique_juggernaut_whirling_dervish_1"
 		"Ability11"				"special_bonus_unique_juggernaut_whirling_dervish_2"
@@ -1170,13 +1214,6 @@
 		"Ability16"				   		"special_bonus_unique_kunkka_ghost_fleet_1"
 		"Ability17"				   		"special_bonus_unique_kunkka_ghost_fleet_2"	
 		
-		"AbilityPool"
-		{
-			"kunkka_water_spout"					"BASIC"
-			"kunkka_clear_wave"						"BASIC"
-			"kunkka_mark_the_spot"					"BASIC"
-			"kunkka_ghost_fleet"					"ULTIMATE"
-		}
 
 		"Masteries"
 		{
@@ -1188,30 +1225,6 @@
 			"ATTACK_DAMAGE"				{"3" "5"}
 			"SPELL_AMP"					{"1" "3"}
 			"STATUS_AMP"				{"1" "3"}
-		}
-		"Facets"
-		{
-			"kunkka_high_tide"			{"Deprecated"	"1"}
-			"kunkka_grog"				{"Deprecated"	"1"}
-
-			"kunkka_mariner"
-			{
-				"Icon"					"nuke"
-				"Color"					"Blue"
-				"GradientID"			"3"
-			}
-			"kunkka_admiral"
-			{
-				"Icon"					"armor"
-				"Color"					"Yellow"
-				"GradientID"			"2"
-			}
-			"kunkka_privateer"
-			{
-				"Icon"					"damage"
-				"Color"					"Red"
-				"GradientID"			"1"
-			}
 		}
 	}
 	//=================================================================================================================
@@ -1330,12 +1343,20 @@
 	"npc_dota_hero_lina"
 	{
 		"override_hero"					"npc_dota_hero_lina"
-		"Ability1"						"lina_dragon"
-		"Ability2"						"lina_lsa"
-		"Ability3"						"lina_fireball"
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
 		"Ability4"						"lina_fire_soul"
 		"Ability5"						"generic_hidden"
-		"Ability6"						"lina_laguna"
+		"Ability6"						"generic_ultimate"
+		
+		"AbilityPool"
+		{
+			"lina_dragon"	"BASIC"
+			"lina_lsa"		"BASIC"
+			"lina_fireball"		"BASIC"
+			"lina_laguna"		"ULTIMATE"
+		}
 
 		"Ability10"						"special_bonus_unique_lina_dragon_1"
 		"Ability11"						"special_bonus_unique_lina_dragon_2"
@@ -1447,12 +1468,20 @@
 	"npc_dota_hero_magnataur"
 	{
 		"override_hero"					"npc_dota_hero_magnataur"
-		"Ability1"						"mag_shockwave"
-		"Ability2"						"mag_magnet"					
-		"Ability3"						"mag_charge"
-		"Ability4"						"mag_empower"	
-		"Ability5"						"mag_polarity_2"					
-		"Ability6"						"mag_polarity"
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
+		"Ability4"						"mag_empower"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"generic_ultimate"
+		
+		"AbilityPool"
+		{
+			"mag_shockwave"	"BASIC"
+			"mag_charge"		"BASIC"
+			"mag_magnet"		"BASIC"
+			"mag_polarity"		"ULTIMATE"
+		}
 		
 		"Ability10"						"special_bonus_unique_mag_shockwave_1"
 		"Ability11"						"special_bonus_unique_mag_shockwave_2"
@@ -1931,12 +1960,20 @@
 	"npc_dota_hero_puck"
 	{
 		"override_hero"					"npc_dota_hero_puck"
-		"Ability1"						"puck_faerie_orb"
-		"Ability2"						"puck_mystical_rift"
-		"Ability3"						"puck_dimension_shift"
-		"Ability4"						"puck_wander"
-		"Ability5"						"puck_trickster"
-		"Ability6"						"puck_singularity_core"
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
+		"Ability4"						"puck_trickster"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"generic_ultimate"
+		
+		"AbilityPool"
+		{
+			"puck_faerie_orb"	"BASIC"
+			"puck_mystical_rift"		"BASIC"
+			"puck_dimension_shift"		"BASIC"
+			"puck_singularity_core"		"ULTIMATE"
+		}
 		
 		"Ability10"						"special_bonus_unique_puck_faerie_orb_1"
 		"Ability11"						"special_bonus_unique_puck_faerie_orb_2"
@@ -1958,30 +1995,6 @@
 			"THREAT_DOWN"{"3" "2"}
 			"STATUS_AMP"{"1" "2"}
 		}
-		"Facets"
-		{
-			"puck_jostling_rift"		{"Deprecated"		"1"}
-			"puck_curveball"			{"Deprecated"		"1"}
-
-			"puck_glimmerdrake"
-			{
-				"Icon"					"damage"
-				"Color"					"Red"
-				"GradientID"			"2"
-			}
-			"puck_whimsicatastrophe"
-			{
-				"Icon"					"nuke"
-				"Color"					"Blue"
-				"GradientID"			"2"
-			}
-			"puck_crystalhide"
-			{
-				"Icon"					"armor"
-				"Color"					"Green"
-				"GradientID"			"1"
-			}
-		}
 	}
 	//=================================================================================================================
 	// HERO: Pudge
@@ -1989,12 +2002,22 @@
 	"npc_dota_hero_pudge"
 	{
 		"override_hero"					"npc_dota_hero_pudge"
-		"Ability1"						"pudge_butchers_hook"
-		"Ability2"						"pudge_rotting_gas"	
-		"Ability3"						"generic_hidden"
+		
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
 		"Ability4"						"pudge_graft_flesh"
 		"Ability5"						"generic_hidden"
-		"Ability6"						"pudge_feast"
+		"Ability6"						"generic_ultimate"
+		
+		"AbilityPool"
+		{
+			"pudge_butchers_hook"					"BASIC"
+			"pudge_rotting_gas"						"BASIC"
+			"pudge_meat_shield"						"BASIC"
+			"pudge_regurgitate"						"BASIC"
+			"pudge_feast"							"ULTIMATE"
+		}
 	
 		"Ability10"						"special_bonus_unique_pudge_butchers_hook_1"
 		"Ability11"						"special_bonus_unique_pudge_butchers_hook_2"
@@ -2015,77 +2038,6 @@
 			"SPELL_AMP"{"3" "5"} 
 			"THREAT_DOWN"{"3" "2"}
 			"THREAT_AMP"{"3" "2"}
-		}
-		
-		"Facets"
-		{
-			"pudge_fresh_meat" 			{"Deprecated"		"true"}
-			"pudge_flayers_hook"		{"Deprecated"		"true"}
-			"pudge_rotten_core"			{"Deprecated"		"true"}
-			"pudge_rotten_giant" 
-			{
-				"Icon"					"meat"
-				"Color"					"Green"
-				"GradientID"			"0"
-				
-				"FacetID"				"4"
-				
-				"Talents"
-				{
-					"Talent1"
-					{
-						"TalentName"		"special_bonus_unique_pudge_meat_shield_1"
-						"ReplaceTalent"		"special_bonus_placeholder_1"
-					}
-					"Talent2"
-					{
-						"TalentName"		"special_bonus_unique_pudge_meat_shield_2"
-						"ReplaceTalent"		"special_bonus_placeholder_2"
-					}
-					
-				}
-				"Abilities"
-				{
-					"Ability1"
-					{
-						"AbilityName"		"pudge_meat_shield"
-						"AbilityIndex"		"2"
-						"AutoLevelAbility"	"false"
-					}
-				}
-			}
-			"pudge_flesh_carver"
-			{
-				"Icon"					"fist"
-				"Color"					"Red"
-				"GradientID"			"3"
-				
-				"FacetID"				"5"
-				
-				"Talents"
-				{
-					"Talent1"
-					{
-						"TalentName"		"special_bonus_unique_pudge_regurgitate_1"
-						"ReplaceTalent"		"special_bonus_placeholder_1"
-					}
-					"Talent2"
-					{
-						"TalentName"		"special_bonus_unique_pudge_regurgitate_2"
-						"ReplaceTalent"		"special_bonus_placeholder_2"
-					}
-					
-				}
-				"Abilities"
-				{
-					"Ability1"
-					{
-						"AbilityName"		"pudge_regurgitate"
-						"AbilityIndex"		"2"
-						"AutoLevelAbility"	"false"
-					}
-				}
-			}
 		}
 	}
 	"npc_dota_hero_pugna"
@@ -2491,13 +2443,23 @@
 	"npc_dota_hero_sniper"
 	{
 		"override_hero"					"npc_dota_hero_sniper"
-		"Ability1"						"generic_hidden"
-		"Ability2"						"sniper_critical_aim"
-		"Ability3"						"sniper_hunker_down"
-		"Ability4"						"generic_hidden"
-		"Ability5"						"sniper_rangefinder"
-		"Ability6"						"generic_hidden"
-
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
+		"Ability4"						"juggernaut_decisive_judgement"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"generic_ultimate"
+		
+		"AbilityPool"
+		{
+			"sniper_death_from_above"	"BASIC"
+			"sniper_explosive_arsenal"	"BASIC"
+			"sniper_critical_aim"		"BASIC"
+			"sniper_hunker_down"		"BASIC"
+			"sniper_killer_shot"		"ULTIMATE"
+			"sniper_suppressive_fire"	"ULTIMATE"
+		}
+		
 		"Ability10"						"special_bonus_placeholder_1"
 		"Ability11"						"special_bonus_placeholder_2"
 		"Ability12"						"special_bonus_unique_sniper_critical_aim_1"
@@ -2518,111 +2480,6 @@
 			"SPELL_AMP"{"2" "3"}
 			"AREA_DAMAGE"{"2" "3"}
 		}
-
-		"Facets"
-		{
-			"sniper_ghillie_suit"			{"Deprecated"		"1"}
-			"sniper_scattershot"			{"Deprecated"		"1"}
-
-			"sniper_deadeye"
-			{
-				"Icon"				"damage"
-				"Color"				"Yellow"
-				"GradientID"		"2"
-				
-				"FacetID"			"3"
-
-				"Talents"
-				{
-					"Talent1"
-					{
-						"TalentName"			"special_bonus_unique_sniper_death_from_above_1"
-						"ReplaceTalent"			"special_bonus_placeholder_1"
-					}
-					"Talent2"
-					{
-						"TalentName"			"special_bonus_unique_sniper_death_from_above_2"
-						"ReplaceTalent"			"special_bonus_placeholder_2"
-					}
-					"Talent3"
-					{
-						"TalentName"			"special_bonus_unique_sniper_killer_shot_1"
-						"ReplaceTalent"			"special_bonus_placeholder_3"
-					}
-					"Talent4"
-					{
-						"TalentName"			"special_bonus_unique_sniper_killer_shot_2"
-						"ReplaceTalent"			"special_bonus_placeholder_4"
-					}
-				}
-
-				"Abilities"
-				{
-					"Ability1"
-					{
-						"AbilityName"		"sniper_death_from_above"
-						"AbilityIndex"		"0"
-						"AutoLevelAbility"	"false"
-					}
-					"Ability2"
-					{
-						"AbilityName"		"sniper_killer_shot"
-						"AbilityIndex"		"5"
-						"AutoLevelAbility"	"false"
-					}
-				}
-			}
-
-			"sniper_gunslinger"
-			{
-				"Icon"				"fist"
-				"Color"				"red"
-				"GradientID"		"1"
-				"FacetID"			"4"
-
-				"FacetID"			"4"
-				
-				"Talents"
-				{
-					"Talent1"
-					{
-						"TalentName"			"special_bonus_unique_sniper_explosive_arsenal_1"
-						"ReplaceTalent"			"special_bonus_placeholder_1"
-					}
-					"Talent2"
-					{
-						"TalentName"			"special_bonus_unique_sniper_explosive_arsenal_2"
-						"ReplaceTalent"			"special_bonus_placeholder_2"
-					}
-					"Talent3"
-					{
-						"TalentName"			"special_bonus_unique_sniper_suppressive_fire_1"
-						"ReplaceTalent"			"special_bonus_placeholder_3"
-					}
-					"Talent4"
-					{
-						"TalentName"			"special_bonus_unique_sniper_suppressive_fire_2"
-						"ReplaceTalent"			"special_bonus_placeholder_4"
-					}
-				}
-
-				"Abilities"
-				{
-					"Ability1"
-					{
-						"AbilityName"		"sniper_explosive_arsenal"
-						"AbilityIndex"		"0"
-						"AutoLevelAbility"	"false"
-					}
-					"Ability2"
-					{
-						"AbilityName"		"sniper_suppressive_fire"
-						"AbilityIndex"		"5"
-						"AutoLevelAbility"	"false"
-					}	
-				}
-			}
-		}
 	}
 	//=================================================================================================================
 	// HERO: Spectre
@@ -2630,13 +2487,20 @@
 	"npc_dota_hero_spectre"
 	{
 		"override_hero"					"npc_dota_hero_spectre"
-		"AbilityLayout"					"4"
-		"Ability1"						"spectre_spectral_dagger_bh"					// Ability 1
-		"Ability2"						"spectre_desolate_bh"		// Ability 2
-		"Ability3"						"spectre_dispersion_bh"		
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
 		"Ability4"						"spectre_dimensional_interjection"
-		"Ability5"						"spectre_reality_bh"
-		"Ability6"						"spectre_haunt_bh"						// Ability 3
+		"Ability5"						"generic_hidden"
+		"Ability6"						"generic_ultimate"
+		
+		"AbilityPool"
+		{
+			"spectre_spectral_dagger_bh"	"BASIC"
+			"spectre_desolate_bh"		"BASIC"
+			"spectre_dispersion_bh"		"BASIC"
+			"spectre_reality_bh"		"ULTIMATE"
+		}
 		
 		"Ability10"						"special_bonus_unique_spectre_spectral_dagger_1"
 		"Ability11"						"special_bonus_unique_spectre_spectral_dagger_2"
@@ -2665,6 +2529,23 @@
 	"npc_dota_hero_largo"
 	{
 		"override_hero"					"npc_dota_hero_largo"
+		
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
+		"Ability4"						"largo_encore"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"generic_ultimate"
+		
+		"Ability15"						"special_bonus_unique_largo_1"
+		"Ability16"						"special_bonus_unique_largo_2"
+		"Ability17"						"special_bonus_unique_largo_3"
+		"Ability18"						"special_bonus_unique_largo_4"
+		"Ability19"						"special_bonus_unique_largo_5"
+		"Ability20"						"special_bonus_unique_largo_6"
+		"Ability21"						"special_bonus_unique_largo_7"
+		"Ability22"						"special_bonus_unique_largo_8"
+
 		
 		"Masteries"
 		{
@@ -2872,12 +2753,20 @@
 	{
 		"override_hero"					"npc_dota_hero_treant"
 		
-		"Ability1"						"treant_little_tree"
-		"Ability2"						"treant_overgrowth_bh"
-		"Ability3"						"treant_living_armor_bh"
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
 		"Ability4"						"treant_leech_seed_bh"
 		"Ability5"						"generic_hidden"
-		"Ability6"						"treant_great_protector"
+		"Ability6"						"generic_ultimate"
+		
+		"AbilityPool"
+		{
+			"treant_little_tree"					"BASIC"
+			"treant_overgrowth_bh"					"BASIC"
+			"treant_living_armor_bh"				"BASIC"
+			"treant_great_protector"				"ULTIMATE"
+		}
 	
 		"Ability10"						"special_bonus_unique_treant_little_tree_1"
 		"Ability11"						"special_bonus_unique_treant_little_tree_2"
@@ -2960,12 +2849,21 @@
 	"npc_dota_hero_undying"
 	{	
 		"override_hero"					"npc_dota_hero_undying"
-		"Ability1"						"undying_devour_life"					// Ability 4
-		"Ability2"						"undying_soul_siphon"				// Ability 4
-		"Ability3"						"undying_necropolis"					// Ability 4
+		
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
 		"Ability4"						"undying_deathlust"
 		"Ability5"						"generic_hidden"
-		"ability6"						"undying_monstrous_form"
+		"Ability6"						"generic_ultimate"
+		
+		"AbilityPool"
+		{
+			"undying_devour_life"					"BASIC"
+			"undying_soul_siphon"					"BASIC"
+			"undying_necropolis"				"BASIC"
+			"undying_monstrous_form"				"ULTIMATE"
+		}
 		
 		"Ability10"						"special_bonus_unique_undying_devour_life_1"
 		"Ability11"						"special_bonus_unique_undying_devour_life_2"
@@ -2987,25 +2885,6 @@
 			"STATUS_AMP"{"2" "3"}
 			"MANA_REGEN"{"3" "5"}
 		}
-		
-		"Facets"
-		{
-			"undying_rotting_mitts"{"Deprecated" "1"}
-			"undying_ripped"{"Deprecated" "1"}
-			"undying_legion" 
-			{
-				"Icon"				"summons"
-				"Color"				"Green"
-				"GradientID"		"4"
-			}			
-			"undying_undying" 
-			{
-				"Icon"				"strength"
-				"Color"				"Red"
-				"GradientID"		"1"
-			}
-
-		}
 	}
 	//=================================================================================================================
 	// HERO: ursa
@@ -3013,10 +2892,20 @@
 	"npc_dota_hero_ursa"
 	{
 		"override_hero"					"npc_dota_hero_ursa"
-		"Ability1"						"ursa_earthshock_bh"
-		"Ability2"						"ursa_overpower_bh"
-		"Ability3"						"ursa_fury_swipes_bh"
-		"Ability6"						"ursa_enrage_bh"
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
+		"Ability4"						"ursa_maul"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"generic_ultimate"
+		
+		"AbilityPool"
+		{
+			"ursa_earthshock_bh"		"BASIC"
+			"ursa_overpower_bh"			"BASIC"
+			"ursa_fury_swipes_bh"		"BASIC"
+			"ursa_enrage_bh"			"ULTIMATE"	
+		}
 		
 		"Ability10"						"special_bonus_unique_ursa_earthshock_1"
 		"Ability11"						"special_bonus_unique_ursa_earthshock_2"  
@@ -3042,12 +2931,20 @@
 	"npc_dota_hero_vengefulspirit"
 	{
 		"override_hero"					"npc_dota_hero_vengefulspirit"
-		"Ability1"						"vengefulspirit_magic_barrage"
-		"Ability2"						"vengefulspirit_wave"
-		"Ability3"						"vengefulspirit_aura"
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
 		"Ability4"						"vengefulspirit_swap"
 		"Ability5"						"generic_hidden"
-		"Ability6"						"vengefulspirit_haunt"
+		"Ability6"						"generic_ultimate"
+		
+		"AbilityPool"
+		{
+			"vengefulspirit_magic_barrage"	"BASIC"
+			"vengefulspirit_wave"		"BASIC"
+			"vengefulspirit_aura"		"BASIC"
+			"vengefulspirit_haunt"		"ULTIMATE"
+		}
 		
 		"Ability10"						"special_bonus_unique_vengefulspirit_magic_barrage_1"
 		"Ability11"						"special_bonus_unique_vengefulspirit_magic_barrage_2"  
@@ -3074,12 +2971,20 @@
 	"npc_dota_hero_venomancer"
 	{
 		"override_hero"					"npc_dota_hero_venomancer"
-		"Ability1"						"venomancer_spit_venom"
-		"Ability2"						"venomancer_venomous"
-		"Ability3"						"venomancer_living_growth"
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
 		"Ability4"						"venomancer_necrotoxins"
-		"Ability5"						"venomancer_generic_hidden"
-		"Ability6"						"venomancer_pandemic"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"generic_ultimate"
+		
+		"AbilityPool"
+		{
+			"venomancer_spit_venom"	"BASIC"
+			"venomancer_venomous"		"BASIC"
+			"venomancer_living_growth"		"BASIC"
+			"venomancer_pandemic"		"ULTIMATE"
+		}
 		
 		"Ability10"						"special_bonus_unique_venomancer_spit_venom_1"
 		"Ability11"						"special_bonus_unique_venomancer_spit_venom_2"
@@ -3100,28 +3005,6 @@
 			"ATTACK_SPEED"{"2" "3"}
 			"ARMOR"{"1" "4"}
 			"MAGIC_RESIST"{"1" "3"}
-		}
-		
-		"Facets"
-		{
-			"venomancer_patient_zero" 		{"Deprecated"		"true"}
-			"venomancer_plague_carrier"		{"Deprecated"		"true"}
-			"venomancer_toxicologist"
-			{
-				"Icon"						"snot"
-				"Color"						"Green"
-				"GradientID"				"0"
-				
-				"FacetID"					"3"
-			}
-			"venomancer_plague_bringer"
-			{
-				"Icon"						"summons"
-				"Color"						"Yellow"
-				"GradientID"				"0"
-				
-				"FacetID"					"4"
-			}
 		}
 	}
 	"npc_dota_hero_viper"
@@ -3163,11 +3046,20 @@
 	"npc_dota_hero_warlock"
 	{
 		"override_hero"					"npc_dota_hero_warlock"
-		"Ability1"						"warlock_chaos_bolt"
-		"Ability2"						"warlock_corruption_curse"
-		"Ability3"						"warlock_sacrifice"
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
 		"Ability4"						"warlock_summon_imp"
-		"Ability6"						"warlock_demonic_summons"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"generic_ultimate"
+		
+		"AbilityPool"
+		{
+			"warlock_chaos_bolt"	"BASIC"
+			"warlock_corruption_curse"		"BASIC"
+			"warlock_sacrifice"		"BASIC"
+			"warlock_demonic_summons"		"ULTIMATE"
+		}
 		
 		"Ability10"						"special_bonus_unique_warlock_chaos_bolt_1"
 		"Ability11"						"special_bonus_unique_warlock_chaos_bolt_2"
@@ -3280,11 +3172,20 @@
 	"npc_dota_hero_witch_doctor"
 	{
 		"override_hero"					"npc_dota_hero_witch_doctor"
-		"Ability1"						"witch_doctor_paralyzing_cask_bh"
-		"Ability2"						"witch_doctor_voodoo_restoration_bh"
-		"Ability3"						"witch_doctor_maledict_bh"
+		"Ability1"						"generic_basic_1"
+		"Ability2"						"generic_basic_2"
+		"Ability3"						"generic_basic_3"
 		"Ability4"						"witch_doctor_marasa_mirror"
-		"Ability6"						"witch_doctor_death_ward_bh"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"generic_ultimate"
+		
+		"AbilityPool"
+		{
+			"witch_doctor_paralyzing_cask_bh"	"BASIC"
+			"witch_doctor_voodoo_restoration_bh"		"BASIC"
+			"witch_doctor_maledict_bh"		"BASIC"
+			"witch_doctor_death_ward_bh"		"ULTIMATE"
+		}
 		
 		"Ability10"						"special_bonus_unique_witch_doctor_paralyzing_cask_1"
 		"Ability11"						"special_bonus_unique_witch_doctor_paralyzing_cask_2"

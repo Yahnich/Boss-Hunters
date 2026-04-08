@@ -242,7 +242,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_lua"
 		"ScriptFile"			"generic/generic_basic"
-		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"	"empty"
 		"MaxLevel"				"1"
 	}
@@ -252,7 +252,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_lua"
 		"ScriptFile"			"generic/generic_basic"
-		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"	"empty"
 		"MaxLevel"				"1"
 	}
@@ -262,7 +262,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_lua"
 		"ScriptFile"			"generic/generic_basic"
-		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"	"empty"
 		"MaxLevel"				"1"
 	}
@@ -272,7 +272,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_lua"
 		"ScriptFile"			"generic/generic_basic"
-		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"			"ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"	"empty_ultimate"
 		"MaxLevel"				"1"

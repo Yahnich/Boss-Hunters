@@ -60,56 +60,67 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"MaxLevel"						"2"
+		"MaxLevel"						"4"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"AbilityCastPoint"				"0.2"
-			"AbilityCastRange"				"900"
-			"AbilityCooldown"				"22.0"
-			"AbilityManaCost"				"130 140 150 160"
+			"AbilityCastPoint"								"0.2"
+			"AbilityCastRange"								"900"
+			"AbilityCooldown"								"22.0"
+			"AbilityManaCost"								"130"
 			"radius"
 			{
-				"value"											"375 450 500 575"
-				"affected_by_aoe_increase"						"1"
+				"value"										"375"
+				"special_bonus_minor_perk"					"+125"
+				"affected_by_aoe_increase"					"1"
 			}
-			"duration"											"15"
+			"duration"
+			{
+				"value"										"15"
+				"special_bonus_minor_perk"					"+5"
+			}
 			"damage"
 			{
-				"value"											"50 75 100 125"
-				"hero_levelup"									"+3"
-				"CalculateSpellDamageTooltip"					"1"
+				"value"										"45"
+				"hero_levelup"								"+5"
+				"special_bonus_minor_perk"					"+50%"
+				"CalculateSpellDamageTooltip"				"1"
 			}
 			"damage_per_sec"
 			{
-				"value"											"20 35 50 65"
-				"hero_levelup"									"+2"
-				"CalculateSpellDamageTooltip"					"1"
+				"value"										"17"
+				"hero_levelup"								"+3"
+				"special_bonus_minor_perk"					"+50%"
+				"CalculateSpellDamageTooltip"				"1"
 			}
-			"linger_duration"									"0.5"
-			"armor_reduction"									"4"
-			"tick_rate"											"1.0"
+			"linger_duration"								"0.5"
+			"armor_reduction"
+			{
+				"value"										"3"
+				"special_bonus_minor_perk"					"+1"
+			}
+			"tick_rate"										"1.0"
 		}
 		"AbilityPerks"
 		{
-			"special_bonus_unique_alchemist_acid_bomb_1"
+			"special_bonus_major_armor_loss"
 			{
 				"armor_loss_per_sec"						"=1"
 			}
-			"special_bonus_unique_alchemist_acid_bomb_2"
+			"special_bonus_major_big_boom"
 			{
 				"damage"									"+40"
 				"damage_per_sec"							"+40"
 				"linger_duration"							"+2"
 			}
-			"special_bonus_unique_alchemist_acid_bomb_panacea"
+			"special_bonus_major_defensive_solution"
 			{
 				"panacea_heal"								"=50"
 				"panacea_armor"								"=100"
 			}
-			"special_bonus_unique_alchemist_acid_bomb_alkahest"
+			"special_bonus_major_sticky_infusion"
 			{
 				"alkahest_duration"							"=6"
 			}
@@ -132,7 +143,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK_STATUE"
-		"MaxLevel"						"2"
+		"MaxLevel"						"4"
 		
 		// precache
 		"precache"
@@ -148,7 +159,7 @@
 		"AbilityValues"
 		{
 			"AbilityCooldown"										"16"
-			"AbilityManaCost"										"90 100 110 120"
+			"AbilityManaCost"										"90"
 			"AbilityCastRange"										"775"
 			"AbilityCastPoint"										"0.0"
 			"brew_time"
@@ -168,20 +179,21 @@
 			}
 			"max_stun"
 			{
-				"value"												"1.7 2.2 2.7 3.2"
+				"value"												"1.7"
+				"special_bonus_minor_perk"							"+0.75"
 				"is_debuff_duration"								"1"
 			}
 			"min_damage"											{"CalculateSpellDamageTooltip"	"1"}
 			"max_damage"				
 			{ 
-				"value"												"180 230 310 380"
-				"hero_levelup"										"+8"
+				"value"												"165"
+				"hero_levelup"										"+15"
+				"special_bonus_minor_perk"							"+50%"
 				"CalculateSpellDamageTooltip"						"1"
 			}
 			"radius"
 			{
 				"value"												"350"
-				"special_bonus_unique_alchemist_volatile_brew_2"	"+50"
 				"affected_by_aoe_increase"							"1"
 			}
 		}
@@ -234,7 +246,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilitySound"					"Hero_Meepo.Geostrike"
-		"MaxLevel"						"2"
+		"MaxLevel"						"4"
 
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 	
@@ -277,6 +289,49 @@
 		}
 	}
 	//=================================================================================================================
+	// Alchemist: Corrosive Weaponry
+	//=================================================================================================================
+	"alchemist_haste_potion"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_alchemist/alchemist_haste_potion"
+		"AbilityTextureName"			"alchemist_berserk_potion"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"MaxLevel"						"4"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"35"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+	
+		"AbilityValues"
+		{
+			"duration"					"15"
+			"attack_speed"				"50"
+			"hp_regen"					"40"
+			"projectile_speed"			"900"
+			"move_speed"				"30"
+		}	
+		"AbilityPerks"
+		{
+			
+		}
+	}
+	//=================================================================================================================
 	// Alchemist: Chemical Rage
 	//=================================================================================================================
 	"alchemist_rage_injector"
@@ -289,7 +344,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
 		"FightRecapLevel"				"2"
-		"MaxLevel"						"2"
+		"MaxLevel"						"3"
 		
 		"precache"
 		{
@@ -332,7 +387,7 @@
 				"value"												"0.65 0.9 1.15"
 				"hero_levelup"										"+0.02"
 			}
-			"bonus_movespeed"										"20 30 40"								"+0.2"
+			"bonus_movespeed"										"20 30 40"
 		}
 		"AbilityPerks"
 		{
