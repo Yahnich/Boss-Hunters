@@ -10,9 +10,17 @@
 		<snippet name="AbilityIconContainer">
 			<DOTAAbilityImage hittest="true" class="AbilityIcon"/>
 		</snippet>
+		<snippet name="PerkContainer">
+			<Panel hittest="true" class="Perk">
+				<DOTAAbilityImage hittest="true" class="PerkAbilityIcon"/>
+				<Label hittest="true" class="PerkLabel" text="Major Perk"/> 
+			</Panel>
+		</snippet>
 	</snippets>
 	<Panel class="AbilityRoot" hittest="false">
 		<Panel id="AbilityIconRoot" class="AbilityIconRoot" hittest="false">
+		</Panel>
+		<Panel id="PerksRoot" class="PerksRoot" hittest="false">
 		</Panel>
 	</Panel>
 </root>

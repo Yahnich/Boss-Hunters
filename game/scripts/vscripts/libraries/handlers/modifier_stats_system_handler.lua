@@ -2,6 +2,7 @@ modifier_stats_system_handler = class({})
 
 function modifier_stats_system_handler:OnCreated()
 	self.statsInfo = {}
+	self.perkInfo = {}
 	if self:GetParent() ~= self:GetCaster() then
 		self:GetParent().unitOwnerEntity = self:GetCaster()
 	end
@@ -97,6 +98,7 @@ end
 function modifier_stats_system_handler:OnRefresh(iStacks)
 	if IsServer() then
 		self:UpdateStatValues()
+		self:UpdatePerkValues()
 		self:SendBuffRefreshToClients()
 		self:GetParent():CalculateStatBonus(true)
 	end
@@ -152,6 +154,71 @@ function modifier_stats_system_handler:UpdateStatValues()
 	end
 end
 
+local SET_BONUS = 1
+local ADD_BONUS = 2
+local PCT_BONUS = 3
+local MUL_BONUS = 4
+
+function modifier_stats_system_handler:UpdatePerkValues()
+	local caster = self:GetCaster()
+	local selectedAbility = caster._currentlyLoadedPerksAbility
+	
+	if selectedAbility then
+		local entindex = selectedAbility:entindex()
+		self.perkInfo[entindex] = {}
+		if selectedAbility._abilityValueMajorPerk then
+			for perkName, active in pairs( selectedAbility._abilityValueMajorPerk ) do
+				if active then
+					local perkData = selectedAbility:GetMajorPerkData( perkName )
+					for specialKey, keyData in pairs( perkData ) do
+						self.perkInfo[entindex][specialKey] = self.perkInfo[entindex][specialKey] or {}
+						local bonus = 0
+						local step = ADD_BONUS
+						if keyData.perkSettingType == "=" then
+							step = SET_BONUS
+							self.perkInfo[entindex][specialKey][step] = bonus
+						elseif keyData.perkSettingType == "+" or keyData.perkSettingType == "-" then
+							bonus = tonumber( keyData.perkSettingType .. keyData.perkValue )
+							if keyData.perkSettingFunction == "%" then
+								step = PCT_BONUS
+							end
+							self.perkInfo[entindex][specialKey][step] = (self.perkInfo[entindex][specialKey][step] or 0) + bonus
+						elseif keyData.perkSettingType == "x" or keyData.perkSettingType == "/" then
+							bonus = tonumber( keyData.perkValue )
+							if keyData.perkSettingType == "/" then
+								bonus = 1 / tonumber( keyData.perkValue )
+							end
+							self.perkInfo[entindex][specialKey][step] = (self.perkInfo[entindex][specialKey][step] or 1) * bonus
+						end
+					end
+				end
+			end
+		end
+		if selectedAbility._abilityValueMinorPerkLevel then
+			for perkName, level in pairs( selectedAbility._abilityValueMinorPerkLevel ) do
+				if level > 0 then
+					local perkData = selectedAbility:GetMinorPerkData( perkName )
+					self.perkInfo[entindex][perkName] = self.perkInfo[entindex][perkName] or {}
+					local bonus = 0
+					local step = ADD_BONUS
+					bonus = tonumber( perkData.perkSettingType .. perkData.perkValue ) * level
+					if perkData.perkSettingFunction == "%" then
+						step = PCT_BONUS
+					end
+					self.perkInfo[entindex][perkName][step] = (self.perkInfo[entindex][perkName][step] or 0) + bonus
+				end
+			end
+		end
+		for specialKey, steps in pairs( self.perkInfo[entindex] ) do
+			for i = 1, MUL_BONUS do -- ensure all values are available in array
+				local step = steps[i]
+				if not step then steps[i] = 'X' end -- distinguish from 0 setters
+			end
+		end
+	else -- update all
+	end
+end
+
 function modifier_stats_system_handler:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
@@ -163,8 +230,6 @@ function modifier_stats_system_handler:DeclareFunctions()
 		MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-		-- MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
-		-- MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
@@ -174,18 +239,52 @@ function modifier_stats_system_handler:DeclareFunctions()
 		MODIFIER_PROPERTY_EVASION_CONSTANT,
 		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
-		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
 		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
 		MODIFIER_PROPERTY_IGNORE_MOVESPEED_LIMIT,
 		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
 		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
-		MODIFIER_PROPERTY_REINCARNATION
+		MODIFIER_PROPERTY_REINCARNATION,
+		MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL,
+		MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL_VALUE,
 	}
 	return funcs
+end
+
+
+function modifier_stats_system_handler:GetModifierOverrideAbilitySpecial( params )
+	if self._inquiringLevelSpecialValue then return end
+	local entindex = params.ability:entindex()
+	if not self.perkInfo[entindex]  then return end
+	if not self.perkInfo[entindex][params.ability_special_value] then return end
+	return 1
+end
+
+function modifier_stats_system_handler:GetModifierOverrideAbilitySpecialValue( params )
+	if self._inquiringLevelSpecialValue then return end
+	local entindex = params.ability:entindex()
+	local perkBonusData = self.perkInfo[entindex][params.ability_special_value]
+	self._inquiringLevelSpecialValue = true
+	local flBaseValue = params.ability:GetLevelSpecialValueFor( params.ability_special_value, params.ability_special_level )
+	self._inquiringLevelSpecialValue = false
+	local newValue = flBaseValue
+	for step, bonus in ipairs( perkBonusData ) do
+		if bonus ~= 'X' then
+			if step == SET_BONUS then
+				newValue = bonus
+			elseif step == ADD_BONUS then
+				newValue = newValue + bonus
+			elseif step == PCT_BONUS then
+				newValue = newValue * (1 + (bonus/100))
+			elseif step == MUL_BONUS then
+				newValue = newValue * bonus
+			end
+		end
+	end
+	if newValue > 0 then
+		return newValue
+	end
 end
 
 function modifier_stats_system_handler:GetModifierBaseAttack_BonusDamage()
@@ -648,7 +747,8 @@ end
 function modifier_stats_system_handler:AddCustomTransmitterData( )
 	return
 	{
-		statsInfo = self.statsInfo
+		statsInfo = self.statsInfo,
+		perkInfo = self.perkInfo
 	}
 end
 
@@ -656,6 +756,7 @@ end
 
 function modifier_stats_system_handler:HandleCustomTransmitterData( data )
 	self.statsInfo = table.copy( data.statsInfo )
+	self.perkInfo = table.copy( data.perkInfo )
 end
 
 function modifier_stats_system_handler:IsHidden()

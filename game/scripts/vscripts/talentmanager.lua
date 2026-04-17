@@ -36,7 +36,11 @@ function TalentManager:LoadTalentData()
 	for roleType, perkValues in pairs( workKV ) do
 		self.talentKV[roleType] = {}
 		for perkName, perkValue in pairs( perkValues ) do
-			self.talentKV[roleType][perkName] = string.split( perkValue, " " )
+			self.talentKV[roleType][tonumber(perkName)] = {}
+			local perkBonuses = string.split( perkValue, " " )
+			for _, perkBonus in ipairs( perkBonuses ) do
+				table.insert( self.talentKV[roleType][tonumber(perkName)], tonumber(perkBonus) )
+			end
 		end
 	end
 end
@@ -59,7 +63,7 @@ function TalentManager:GetTalentDataForType( talentType, talentTier )
 	if self.talentKV == nil then
 		self:LoadTalentData()
 	end
-	return self.talentKV [talentType][tostring(talentTier)]
+	return self.talentKV[talentType][talentTier]
 end
 
 function TalentManager:ParseInformationRequest(userid, request)
@@ -86,7 +90,7 @@ end
 
 function TalentManager:RegisterPlayer(hero, bRespec)
 	local masteryTable = GameRules.UnitKV[hero:GetUnitName()]["Masteries"]
-	masteryTable["INF_STATS"] = {["1"] = "1"}
+	masteryTable["INF_STATS"] = {[1] = 1}
 	
 	local talents = {}
 	talents.heroMasteries = {}
@@ -99,6 +103,7 @@ function TalentManager:RegisterPlayer(hero, bRespec)
 		for masteryTier, masteryMax in pairs( masteryData ) do
 			talents.heroMasteries[masteryType].talentTier = tonumber(masteryTier)
 			talents.heroMasteries[masteryType].maxTier = tonumber(masteryMax)
+			print( masteryTier, masteryMax, masteryType, self.talentKV[masteryType], self.talentKV[masteryType][masteryTier] )
 			for j = 1, masteryMax do
 				table.insert( talents.heroMasteries[masteryType].talentProgression, self.talentKV[masteryType][masteryTier][j] )
 			end

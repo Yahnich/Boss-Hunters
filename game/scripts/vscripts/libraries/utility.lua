@@ -54,20 +54,20 @@ end
 function PrintAll(t)
 	if type(t) == "table" then
 		for k,v in pairs(t) do
-			print(k,v)
+			print(type(k), k, type(v), v)
 			if type(v) == "table" then
 				for m,n in pairs(v) do
-					print('--', m,n)
+					print('--', type(m), m, type(n), n)
 					if type(n) == "table" then
 						for h,j in pairs(n) do
-							print('----', h,j)
+							print('----', type(h), h, type(j), j)
 						end
 					end
 				end
 			end
 		end
 	else
-		print( t )
+		print( type(t), t )
 	end
 end
 
@@ -109,6 +109,9 @@ function table.copy(t1)
 			local vCopy = table.copy(v)
 			copy[kCopy] = vCopy
 		end
+		return copy
+	elseif type( t1 ) == "string" then
+		local copy = tonumber( t1 ) or t1
 		return copy
 	else
 		local copy = t1
@@ -238,11 +241,11 @@ function toboolean(thing)
 	if type(thing) == "number" then
 		if thing == 1 then return true
 		elseif thing == 0 then return false
-		else error("number type not 1 or 0") end
+		else return nil end
 	elseif type(thing) == "string" then
 		if thing == "true" or thing == "1" then return true
 		elseif thing == "false" or thing == "0" then return false
-		else error("string type not true or false") end
+		else return nil end
 	else -- tables and bools
 		return thing
 	end
@@ -2986,5 +2989,13 @@ function CDOTABaseAbility:TriggerSpellEffect( target )
 		if modifier.OnSpellEffectTriggered then
 			modifier:OnSpellEffectTriggered( params )
 		end
+	end
+end
+
+function CDOTA_BaseNPC:RefreshStats()
+	local stats = self:FindModifierByName("modifier_stats_system_handler")
+	if stats then
+		stats:ForceRefresh()
+		stats:SendBuffRefreshToClients()
 	end
 end

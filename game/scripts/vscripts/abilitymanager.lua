@@ -15,6 +15,7 @@ function AbilityManager:StartAbilityManager()
 	AbilityManager = self
 	if IsServer() then
 		CustomGameEventManager:RegisterListener('send_player_selected_ability', Context_Wrap( AbilityManager, 'ProcessHeroAbilities'))
+		CustomGameEventManager:RegisterListener('send_player_selected_perk', Context_Wrap( AbilityManager, 'ProcessHeroPerkSelection'))
 		CustomGameEventManager:RegisterListener('dota_player_ability_info_request', Context_Wrap( AbilityManager, 'SendAbilityData'))
 	end
 	print( "talent manager values initialized", IsServer() )
@@ -36,6 +37,8 @@ function AbilityManager:RegisterPlayer(hero)
 			print(abilityName .. "invalid data found:", abilityData )
 		end
 	end
+	AbilityManager:AddAbilityToPool( hero, "generic_empty", ABILITY_TYPE_BASIC )
+	AbilityManager:AddAbilityToPool( hero, "generic_empty", ABILITY_TYPE_ULTIMATE )
 end
 
 function AbilityManager:AddAbilityToPool( hero, abilityName, abilityType )
@@ -73,6 +76,10 @@ function AbilityManager:ProcessHeroAbilities( userid, event )
 	local hero = EntIndexToHScript( event.entindex )
 	local player = PlayerResource:GetPlayer( event.pID )
 	
+	CustomGameEventManager:Send_ServerToPlayer(player, "dota_player_remove_ability_selection", {})
+	if event.abilityName == "generic_empty" then
+		return
+	end
 	local abilityPlaceHolder = hero:FindAbilityByName( event.abilityToReplace )
 	if abilityPlaceHolder then
 		AbilityManager:RemoveAbilityFromPool( hero, event.abilityName, abilityPlaceHolder:GetAbilityType() )
@@ -80,11 +87,118 @@ function AbilityManager:ProcessHeroAbilities( userid, event )
 		hero:UpgradeAbility( chosenAbility )
 		hero:SwapAbilities( event.abilityName, event.abilityToReplace, true, false )
 		hero:RemoveAbilityByHandle( abilityPlaceHolder )
+		
+		AbilityManager:ProcessAbilityPerks( chosenAbility, hero )
 	else
 		print("placeholder not found", event.abilityToReplace )
 	end
-	CustomGameEventManager:Send_ServerToPlayer(player, "dota_player_remove_ability_selection", {})
 end
 
 function AbilityManager:SendAbilityData( userid, event )
+end
+
+function AbilityManager:ProcessHeroPerkSelection( userid, event )
+	local hero = EntIndexToHScript( event.entindex )
+	local player = PlayerResource:GetPlayer( event.pID )
+	local ability = EntIndexToHScript( event.ability )
+	
+	if toboolean(event.perkType) then -- major
+		ability._abilityValueMajorPerk = ability._abilityValueMajorPerk or {}
+		ability._abilityValueMajorPerk[event.perkName] = true
+	else
+		ability._abilityValueMinorPerkLevel = ability._abilityValueMinorPerkLevel or {}
+		ability._abilityValueMinorPerkLevel[event.perkName] = (ability._abilityValueMinorPerkLevel[event.perkName] or 0) + 1
+	end
+	
+	hero:UpgradeAbility( ability )
+	
+	hero:RefreshStats()
+	
+	hero._currentlyLoadedPerks = nil
+	hero._currentlyLoadedPerksAbility = nil
+	CustomGameEventManager:Send_ServerToPlayer(player, "dota_player_remove_perk_selection", {})
+end
+
+function AbilityManager:ProcessAbilityPerks( ability, hero )
+	local abilityData = GetAbilityKeyValuesByName( ability:GetAbilityName() )
+	ability._perks = {}
+	-- set up minor perks
+	local abilityValues = abilityData.AbilityValues
+	ability._minorPerks = {}
+	for abilityKey, abilityValue in pairs( abilityValues ) do
+		if type( abilityValue ) == "table" then
+			if abilityValue.special_bonus_minor_perk then
+				local perkValue = abilityValue.special_bonus_minor_perk
+				ability._minorPerks[abilityKey] = {}
+				ability._minorPerks[abilityKey].perkValue = string.match( perkValue, "%d+" )
+				local setType = string.sub( perkValue, 1)
+				if string.match( setType, "%d+" ) then setType = "+" end -- default is addition
+				ability._minorPerks[abilityKey].perkSettingType = setType
+				local setFunc = string.sub( perkValue, -1)
+				if string.match( setFunc, "%d+" ) then setFunc = " " end -- default is no function
+				ability._minorPerks[abilityKey].perkSettingFunction	= setFunc
+				
+			end
+		end
+	end
+	-- set up major perks
+	local abilityPerks = abilityData.AbilityPerks
+	ability._majorPerks = {}
+	for perkName, perkData in pairs( abilityPerks ) do
+		ability._majorPerks[perkName] = {}
+		for specialKey, specialValue in pairs( perkData ) do
+			ability._majorPerks[perkName][specialKey] = {}
+			ability._majorPerks[perkName][specialKey].perkValue = string.match( specialValue, "%d+" )
+			local setType = string.sub( specialValue, 1)
+			if string.match( setType, "%d+" ) then setType = "+" end -- default is addition
+			ability._majorPerks[perkName][specialKey].perkSettingType = setType
+			local setFunc = string.sub( specialValue, -1)
+			if string.match( setFunc, "%d+" ) then setFunc = " " end -- default is no function
+			ability._majorPerks[perkName][specialKey].perkSettingFunction = setFunc
+		end
+	end
+end
+
+function CDOTABaseAbility:GetMinorPerkData( perkName )
+	return self._minorPerks[perkName]
+end
+
+function CDOTABaseAbility:GetMajorPerkData( perkName )
+	return self._majorPerks[perkName]
+end
+
+function AbilityManager:GetCurrentMajorPerksForAbility( ability )
+	local perks = {}
+	for perkName, perkData in pairs( ability._majorPerks ) do
+		local perk = table.copy( perkData )
+		perk.perkName = perkName
+		table.insert( perks, perk )
+	end
+	return perks
+end
+
+function AbilityManager:GetCurrentMinorPerksForAbility( ability )
+	local perks = {}
+	local potentialPerks = {}
+	for perkName, perkData in pairs( ability._minorPerks ) do
+		local perk = {}
+		perk.perkName = perkName
+		perk.perkValue = perkData.perkSettingType .. tostring( perkData.perkValue ) .. perkData.perkSettingFunction
+		table.insert( potentialPerks, perk )
+	end
+	local perksToSelect = math.max( 1, math.floor( #potentialPerks * 0.67 ) )
+	while perksToSelect > 0 do
+		local selectedID = RandomInt(1, #potentialPerks)
+		local perk = potentialPerks[selectedID]
+		
+		table.remove( potentialPerks, selectedID )
+		table.insert( perks, perk )
+		
+		perksToSelect = perksToSelect - 1
+	end
+	return perks
+end
+
+function AbilityManager:GetLoadedPerksForHero( hero )
+	return hero._currentlyLoadedPerks
 end

@@ -22,6 +22,9 @@ function MergeTables( t1, t2 )
 end
 
 function table.copy(t1)
+	if t1 == nil then
+		return t1
+	end
 	if type(t1) == 'table' then
 		local copy = {}
 		for k,v in pairs(t1) do
@@ -29,6 +32,9 @@ function table.copy(t1)
 			local vCopy = table.copy(v)
 			copy[kCopy] = vCopy
 		end
+		return copy
+	elseif type( t1 ) == "string" then
+		local copy = tonumber( t1 ) or t1
 		return copy
 	else
 		local copy = t1
@@ -120,20 +126,20 @@ end
 function PrintAll(t)
 	if type(t) == "table" then
 		for k,v in pairs(t) do
-			print(k,v)
+			print(type(k), k, type(v), v)
 			if type(v) == "table" then
 				for m,n in pairs(v) do
-					print('--', m,n)
+					print('--', type(m), m, type(n), n)
 					if type(n) == "table" then
 						for h,j in pairs(n) do
-							print('----', h,j)
+							print('----', type(h), h, type(j), j)
 						end
 					end
 				end
 			end
 		end
 	else
-		print( t )
+		print( type(t), t )
 	end
 end
 

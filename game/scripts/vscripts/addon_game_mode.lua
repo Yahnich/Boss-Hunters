@@ -735,12 +735,12 @@ function CHoldoutGameMode:FilterOrders( filterTable )
 	end
 	if filterTable["order_type"] == DOTA_UNIT_ORDER_TRAIN_ABILITY then
 		local ability = EntIndexToHScript( filterTable["entindex_ability"] )
+		local player = PlayerResource:GetPlayer( filterTable.issuer_player_id_const )
 		if ability and string.match( ability:GetAbilityName(), "special_bonus" ) and hero:GetLevel() < (hero.talentsSkilled + 1) * 10 then
 			return false
 		end
 		if string.match( ability:GetAbilityName(), "generic_basic" ) 
 		or string.match( ability:GetAbilityName(), "generic_ultimate" ) then
-			local player = PlayerResource:GetPlayer( filterTable.issuer_player_id_const )
 			local abilityType = ability:GetAbilityType()
 			if player then
 				local abilityPool = AbilityManager:GetCurrentAbilityPool( hero, abilityType )
@@ -748,8 +748,35 @@ function CHoldoutGameMode:FilterOrders( filterTable )
 																											 PlayerID = filterTable.issuer_player_id_const,
 																											 abilityPool = abilityPool,
 																											 replacedAbility = ability:GetAbilityName() } )
+				CustomGameEventManager:Send_ServerToPlayer(player, "dota_player_remove_perk_selection", {})
 				return false
 			end
+		else -- non-generic ability
+			local perkAbility = ability:GetCaster()._currentlyLoadedPerksAbility or ability
+			local majorPerk = perkAbility:GetLevel() + 1 >= perkAbility:GetMaxLevel()
+			local perks = AbilityManager:GetLoadedPerksForHero( hero ) or TernaryOperator( AbilityManager:GetCurrentMajorPerksForAbility( perkAbility ), majorPerk, AbilityManager:GetCurrentMinorPerksForAbility( perkAbility ) )
+			if #perks >= 1 then -- check to see if hero is reworked and has perks
+				ability:GetCaster()._currentlyLoadedPerks = perks
+				ability:GetCaster()._currentlyLoadedPerksAbility = perkAbility
+				local perkBonuses = {}
+				if majorPerk then
+					for _, perk in ipairs( perks ) do
+						local perkData = ability:GetMajorPerkData( perk.perkName )
+						for specialKey, specialData in pairs( perkData ) do
+							perkBonuses[specialKey] = tostring(specialData.perkValue) .. specialData.perkSettingFunction
+						end
+					end
+					
+				end
+				CustomGameEventManager:Send_ServerToPlayer(player, "dota_player_display_perk_selection", {entindex = hero:entindex(), 
+																										  PlayerID = filterTable.issuer_player_id_const,
+																										  perks = perks,
+																										  ability = ability:GetCaster()._currentlyLoadedPerksAbility:entindex(),
+																										  perkBonuses = perkBonuses,
+																										  major = majorPerk} )
+				CustomGameEventManager:Send_ServerToPlayer(player, "dota_player_remove_ability_selection", {})
+			end
+			return false
 		end
 	end
 	return VectorTarget:OrderFilter(filterTable)
