@@ -7719,17 +7719,17 @@
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// Enigma
 		"DOTA_Tooltip_ability_enigma_malefice_bh"																"Malefice"
-		"DOTA_Tooltip_ability_enigma_malefice_bh_Description"													"Focuses Enigma's power on a target, causing it to take damage and become repeatedly stunned for multiple instances.  An instance strikes every 2 seconds."
+		"DOTA_Tooltip_ability_enigma_malefice_bh_Description"													"Focuses Enigma's power on a target, causing it to take damage and become repeatedly stunned for multiple instances."
 		"DOTA_Tooltip_ability_enigma_malefice_bh_Lore"															"Strange gravities pull at the core of those who would oppose you, holding them in place."
 		"DOTA_Tooltip_ability_enigma_malefice_bh_stun_duration"													"STUN DURATION:"
 		"DOTA_Tooltip_ability_enigma_malefice_bh_damage"														"DAMAGE PER HIT:"
-		"DOTA_Tooltip_ability_enigma_malefice_bh_tooltip_stuns"													"INSTANCES:"
+		"DOTA_Tooltip_ability_enigma_malefice_bh_tick_rate"														"STUN INTERVAL:"
 		"DOTA_Tooltip_modifier_enigma_malefice_bh"																"Malefice"
 		"DOTA_Tooltip_modifier_enigma_malefice_bh_Description"													"Periodically being stunned and damaged."
-		"DOTA_Tooltip_Ability_special_bonus_unique_enigma_malefice_1"											"Gravitational Wave"
-		"DOTA_Tooltip_Ability_special_bonus_unique_enigma_malefice_1_Description"								"Malefice damages and stuns all enemies within 325 radius of the original target every tick."
-		"DOTA_Tooltip_Ability_special_bonus_unique_enigma_malefice_2"											"Enter Aetherium"
-		"DOTA_Tooltip_Ability_special_bonus_unique_enigma_malefice_2_Description"								"Malefice duration increased by 10 seconds, but also increases the cooldown by 10 seconds."
+		"DOTA_Tooltip_Perk_special_bonus_unique_enigma_malefice_1"												"Gravitational Wave"
+		"DOTA_Tooltip_Perk_special_bonus_unique_enigma_malefice_1_Description"									"Malefice damages and stuns all enemies within 325 radius of the original target every tick."
+		"DOTA_Tooltip_Perk_special_bonus_unique_enigma_malefice_2"												"Enter Aetherium"
+		"DOTA_Tooltip_Perk_special_bonus_unique_enigma_malefice_2_Description"									"Malefice duration increased by 10 seconds, but also increases the cooldown by 10 seconds."
 		
 		"DOTA_Tooltip_ability_enigma_white_hole"																"White Hole"
 		"DOTA_Tooltip_ability_enigma_white_hole_Description"													"Enigma creates a region nobody can enter, pushing enemies away. The closer the enemy gets to the center the stronger they get pushed."

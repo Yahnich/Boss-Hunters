@@ -17,22 +17,16 @@ modifier_enigma_malefice_bh = class({})
 LinkLuaModifier("modifier_enigma_malefice_bh", "heroes/hero_enigma/enigma_malefice_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_enigma_malefice_bh:OnCreated()
-	self.damage = self:GetSpecialValueFor("damage")
-	self.tick = self:GetSpecialValueFor("tick_rate") * (self:GetRemainingTime() / self:GetSpecialValueFor("duration"))
-	self.stun = self:GetSpecialValueFor("stun_duration")
-	if IsServer() then
-		self.tRadius = self:GetCaster():FindTalentValue("special_bonus_unique_enigma_malefice_1")
-		self:Malefice()
-		self:StartIntervalThink( self.tick )
-	end
+	self:OnRefresh()
 end
 
 function modifier_enigma_malefice_bh:OnRefresh()
 	self.damage = self:GetSpecialValueFor("damage")
 	self.tick = self:GetSpecialValueFor("tick_rate") * (self:GetRemainingTime() / self:GetSpecialValueFor("duration"))
 	self.stun = self:GetSpecialValueFor("stun_duration")
+	self.tRadius = self:GetSpecialValueFor("aoe_radius")
 	if IsServer() then
-		self.tRadius = self:GetCaster():FindTalentValue("special_bonus_unique_enigma_malefice_1")
+		
 		self:Malefice()
 		self:StartIntervalThink( self.tick )
 	end
