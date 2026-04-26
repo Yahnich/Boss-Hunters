@@ -710,14 +710,14 @@
 			"drow_ranger_marksmanship_bh"		"ULTIMATE"
 		}
 		
-		"Ability10"						"special_bonus_unique_drow_ranger_multishot_1"
-		"Ability11"						"special_bonus_unique_drow_ranger_multishot_2"
-		"Ability12"						"special_bonus_unique_drow_ranger_gust_1"
-		"Ability13"						"special_bonus_unique_drow_ranger_gust_2"
-		"Ability14"						"special_bonus_unique_drow_ranger_huntress_mark_1"
-		"Ability15"						"special_bonus_unique_drow_ranger_huntress_mark_2"
-		"Ability16"						"special_bonus_unique_drow_ranger_marksmanship_1"
-		"Ability17"						"special_bonus_unique_drow_ranger_marksmanship_2"
+		"Ability10"						"special_bonus_unique_drow_ranger_huntress_mark_1"
+		"Ability11"						"special_bonus_unique_drow_ranger_huntress_mark_2"
+		"Ability12"						"special_bonus_unique_drow_ranger_frozen_breath_1"
+		"Ability13"						"special_bonus_unique_drow_ranger_frozen_breath_2"
+		"Ability14"						"special_bonus_unique_drow_ranger_volley_of_arrows_1"
+		"Ability15"						"special_bonus_unique_drow_ranger_volley_of_arrows_2"
+		"Ability16"						"special_bonus_unique_drow_ranger_rangers_expertise_1"
+		"Ability17"						"special_bonus_unique_drow_ranger_rangers_expertise_1"
 		
 		"Masteries"
 		{
@@ -730,9 +730,30 @@
 			"THREAT_DOWN"{"3" "2"}
 			"STATUS_AMP"{"2" "2"}
 		}
+
+		"Facets"
+		{
+			"drow_ranger_high_ground"			{"Deprecated"		"1"}
+			"drow_ranger_sidestep" 				{"Deprecated"		"1"}
+			
+			"drow_ranger_ice"
+			{
+				"Icon"						"snowflake"
+				"Color"						"Blue"
+				"GradientID"				"2"
+				"FacetID"					"3"
+			}
+			"drow_ranger_archery"
+			{
+				"Icon"						"multi_arrow"
+				"Color"						"Gray"
+				"GradientID"				"1"
+				"FacetID"					"4"
+			}
+		}
 	}
 	//=================================================================================================================
-	// HERO: Darowu Rangeru
+	// HERO: Lemmywinks
 	//=================================================================================================================
 	"npc_dota_hero_hoodwink"
 	{
