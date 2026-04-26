@@ -34,7 +34,7 @@ function modifier_abaddon_nebulous_passive:OnCreatedate()
 end
 
 function modifier_abaddon_nebulous_passive:OnRefresh()
-	self.health_threshold = self:GetSpecialValueFor("health_threshold")
+	self.health_threshold = self:GetSpecialValueFor("health_threshold") / 100
 end
 
 function modifier_abaddon_nebulous_passive:DeclareFunctions()
@@ -49,7 +49,7 @@ function modifier_abaddon_nebulous_passive:OnTakeDamage(params)
 	if not params.unit:IsRealHero() then return end
 	if params.unit ~= self:GetParent() then return end
 	if not self:GetAbility():IsCooldownReady() then return end
-	if (self:GetHealth() - params.damage) <= self:GetParent():GetMaxHealth() * self.health_threshold then
+	if (params.unit:GetHealth() - params.damage) <= params.unit:GetMaxHealth() * self.health_threshold then
 		self:GetAbility():Activate()
 	end
 end

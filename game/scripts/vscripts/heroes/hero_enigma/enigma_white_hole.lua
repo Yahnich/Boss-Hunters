@@ -47,7 +47,7 @@ function modifier_enigma_white_hole_thinker:OnCreated()
 		local bhFX = ParticleManager:CreateParticle( "particles/enigma_white_hole.vpcf", PATTACH_ABSORIGIN, self:GetParent() )
 		self:GetParent():EmitSound("Hero_Enigma.Black_Hole")
 		self:AddEffect(bhFX)
-		self.talent = self.caster:HasTalent("special_bonus_unique_enigma_white_hole_1")
+		self.talent = self:GetSpecialValueFor("internal_cooldown") > 0
 		self:StartIntervalThink(0)
 	end
 end
@@ -58,7 +58,7 @@ function modifier_enigma_white_hole_thinker:OnIntervalThink()
 	local position = self.parent:GetAbsOrigin()
 	if self.talent and CalculateDistance( self.caster, self.parent ) < self.radius * 0.1 and not self.caster:HasModifier("modifier_enigma_white_hole_talent_cd") then
 		FindClearSpaceForUnit( self.caster, self.parent.travelPoint, true)
-		self.caster:AddNewModifier( self.caster, self, "modifier_enigma_white_hole_talent_cd", {duration = self.caster:FindTalentValue("special_bonus_unique_enigma_white_hole_1")})
+		self.caster:AddNewModifier( self.caster, self, "modifier_enigma_white_hole_talent_cd", {duration = self:GetSpecialValueFor("internal_cooldown")})
 	end
 	
 	for _, enemy in ipairs( self.caster:FindEnemyUnitsInRadius( position, self.radius ) ) do

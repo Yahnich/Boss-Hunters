@@ -36,8 +36,8 @@ function abaddon_brume_spiral:OnSpellStart()
 	if self:GetSpecialValueFor("heal_self_damage") > 0 then
 		caster:HealEvent(self_damage, self, caster)
 	end
-	
-	self:CreateMistCoil( target, caster, damageDealt, {bounces = bounces, bonusDamage = damageDealt} )
+	print( bounces )
+	self:CreateMistCoil( target, caster, {bounces = bounces, bonusDamage = damageDealt} )
 end
 
 function abaddon_brume_spiral:CreateMistCoil(target, source, bonusData )
@@ -49,17 +49,18 @@ end
 
 function abaddon_brume_spiral:OnProjectileHitHandle(target, position, projectile )
 	if not target then return end
+	if not self._projectiles[projectile] then return end
 	local projectileData = table.copy( self._projectiles[projectile] )
-	self._projectiles[projectile] = nil
-	if not projectileData then return end
 	local caster = self:GetCaster()
+	
+	self._projectiles[projectile] = nil
 	
 	target:EmitSound("Hero_Abaddon.DeathCoil.Target")
 	
 	local bonusDamage = projectileData.bonusDamage
 	local damage = self:GetSpecialValueFor( "target_damage") + bonusDamage
 	local heal = self:GetSpecialValueFor( "heal_amount" )
-
+	PrintAll( projectileData )
 	-- If the target and caster are on a different team, do Damage. Heal otherwise
 	if target:IsSameTeam( caster ) then
 		target:HealEvent(heal, self, caster)

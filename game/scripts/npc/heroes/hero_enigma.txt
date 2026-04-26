@@ -86,14 +86,6 @@
 		"AbilityTextureName"			"custom/enigma_whitehole"
 		"MaxLevel"						"4"
 		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_enigma_white_hole_1"	"1"
-			"special_bonus_unique_enigma_white_hole_2"	"1"
-		}
-		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -102,75 +94,48 @@
 			"soundfile"		"sounds/weapons/hero/enigma/black_hole_loop.vsnd"
 			"soundfile"		"sounds/weapons/hero/enigma/black_hole_stop.vsnd"
 		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"350"
-		"AbilityCastPoint"				"0.3 0.3 0.3"
-		"AoERadius" 					"800"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30 28 26 24"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"180"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"radius"				"500"
-			"duration"				"5.0"
-			"tick_rate"				"0.1"
+			"AbilityCastRange"				"350"
+			"AbilityCastPoint"				"0.3 0.3 0.3"
+			"AbilityCooldown"
+			{
+				"value"						"30 28 26 24"
+				"special_bonus_minor_perk"	"-4"
+			}
+			"AbilityManaCost"				"180"
+			"radius"
+			{
+				"value"						"500"
+				"special_bonus_minor_perk"	"+250"
+				"affected_by_aoe_increase"	"1"
+			}
+			"duration"
+			{
+				"value"						"5.0"
+				"special_bonus_minor_perk"	"+3.0"
+			}
+			"tick_rate"						"0.1"
 			"damage"
 			{
-				"value"				"35 50 65 80"
-				"LinkedSpecialBonus"	"special_bonus_unique_enigma_white_hole_2"
+				"value"						"28"
+				"hero_levelup"				"+7"
+				"special_bonus_minor_perk"	"+50%"
 			}
-			"push_speed"
+			"push_speed"					"125"
+		}
+		"AbilityPerks"
+		{
+			"special_bonus_unique_enigma_white_hole_1"
 			{
-				"value"			"125"
-				"LinkedSpecialBonus"	"special_bonus_unique_enigma_white_hole_2"
+				"internal_cooldown"			"1.5"
+				"AbilityCastRange"			"x3"
 			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_enigma_white_hole_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"1.5"
-			"value2"					"3"
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_enigma_white_hole_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"75"
+			"special_bonus_unique_enigma_white_hole_2"
+			{
+				"damage"					"+75"
+				"push_speed"				"+75"
+			}
 		}
 	}
 	//=================================================================================================================
@@ -189,28 +154,7 @@
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Enigma.Midnight_Pulse"
 		"MaxLevel"						"4"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_enigma_midnight_pulse_1"	"1"
-			"special_bonus_unique_enigma_midnight_pulse_2"	"1"
-		}
 
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"350"
-		"AbilityCastPoint"				"0.1"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"46 44 42 40"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"110 150 190 230"
-		
 		"precache"
 		{
 			"particle"					"particles/units/heroes/hero_enigma/enigma_midnight_pulse.vpcf"
@@ -221,52 +165,49 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"radius"						"550"
+			"AbilityCastRange"
+			{
+				"value"							"350"
+				"special_bonus_minor_perk"		"+200"
+			}
+			"AbilityCastPoint"					"0.1"
+			"AbilityCooldown"
+			{
+				"value"							"46 44 42 40"
+				"special_bonus_minor_perk"		"-8"
+			}
+			"AbilityManaCost"					"110"
+			"radius"
+			{
+				"value"							"550"
+				"special_bonus_minor_perk"		"+250"
+				"affected_by_aoe_increase"		"1"
+			}
 			"damage_percent"
 			{
-				"value"				"1"
+				"value"							"4"
+				"special_bonus_minor_perk"		"+2"
 				"CalculateSpellDamageTooltip"	"0"
 			}
-			"duration"						"9 10 11 12"
-			"tick_rate"						"1"
+			"duration"
+			{
+				"value"							"9"
+				"special_bonus_minor_perk"		"+2"
+			}
+			"tick_rate"							"1"
+		}
+		"AbilityPerks"
+		{
+			"special_bonus_unique_enigma_midnight_pulse_1"
+			{
+				"slow"							"-30"
+			}
+			"special_bonus_unique_enigma_midnight_pulse_2"
+			{
+				"heal"							"0.5"
+			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_enigma_midnight_pulse_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"-30"
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_enigma_midnight_pulse_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"0.5"
-		}
 	}
 	//=================================================================================================================
 	// Enigma: Demonic Conversion
@@ -351,58 +292,37 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"damage"						"50 100 150"
+			"damage"
+			{
+				"value"						"2"
+				"hero_levelup"				"+8"
+				"special_bonus_minor_perk"	"+50%"
+			}
 			"radius"
 			{
 				"value"						"420"
-				"LinkedSpecialBonus"			"special_bonus_unique_enigma_black_hole_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"special_bonus_minor_perk"	"+120"
 			}
-			"pull_speed"					"100"
+			"pull_speed"
+			{
+				"value"						"100"
+				"special_bonus_minor_perk"	"+100"
+			}
 			"tick_rate"						"0.1 0.1 0.1"
 			"vision_radius"					"800 800 800"
 			"animation_rate"				"0.2"
-			"channel_time"
+			"channel_time"					"4"
+		}
+		"AbilityPerks"
+		{
+			"special_bonus_unique_enigma_black_hole_1"
 			{
-				"value"					"4"
-				"LinkedSpecialBonus"			"special_bonus_unique_enigma_black_hole_1"
+				"channel_time"							"+4"
 			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_enigma_black_hole_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"4"
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_enigma_black_hole_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"3"
+			"special_bonus_unique_enigma_black_hole_2"
+			{
+				"radius"							"x3"
+			}
 		}
 	}
 }

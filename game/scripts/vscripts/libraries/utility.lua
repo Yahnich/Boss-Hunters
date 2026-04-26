@@ -1643,8 +1643,8 @@ function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer, data) -- for future s
 				end
 			end
 		end
+		flAmount = math.min( params2.amount, self:GetHealthDeficit() )
 	end
-	flAmount = math.min( params2.amount, self:GetHealthDeficit() )
 	if flAmount > 0 then
 		local hp = self:GetHealth()
 		self:Heal(flAmount, sourceAb)

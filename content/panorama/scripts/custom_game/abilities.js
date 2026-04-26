@@ -2,7 +2,7 @@
 const mainHud = $.GetContextPanel().GetParent().GetParent().GetParent()
 const DOTAHud = mainHud.FindChildTraverse("HUDElements")
 const lowerHud = DOTAHud.FindChildTraverse("lower_hud")
-var talentHud = lowerHud.FindChildTraverse("center_with_stats").FindChildTraverse("center_block");
+var talentHud = lowerHud.FindChildTraverse("center_with_stats").FindChildTraverse("center_block"); 
 var levelUp = lowerHud.FindChildTraverse("level_stats_frame")
 
 var localID = Players.GetLocalPlayer()
@@ -110,6 +110,10 @@ function DisplayPerkSelection( eventData ){
 				$.Msg( perkData )
 				if (perkData.perkName == "AbilityCooldown"){
 					perkDescription = "Cooldown"
+				} else if (perkData.perkName == "AbilityCastRange"){
+					perkDescription = "Cast Range"
+				} else if (perkData.perkName == "AbilityManaCost"){
+					perkDescription = "Mana Cost"
 				} else {
 					perkDescription = $.Localize("#DOTA_Tooltip_ability_" + abilityName + "_" + perkData.perkName)
 					perkDescription = perkDescription.toLowerCase()

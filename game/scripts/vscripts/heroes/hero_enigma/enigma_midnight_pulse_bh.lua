@@ -20,9 +20,10 @@ LinkLuaModifier("modifier_enigma_midnight_pulse_bh_thinker", "heroes/hero_enigma
 
 function modifier_enigma_midnight_pulse_bh_thinker:OnCreated()
 	self.radius = self:GetSpecialValueFor("radius")
+	self.slow = self:GetSpecialValueFor("slow")
 	self.damage = self:GetSpecialValueFor("damage_percent") / 100
 	
-	self.heal = self.damage * self:GetCaster():FindTalentValue("special_bonus_unique_enigma_midnight_pulse_2")
+	self.heal = self.damage * self:GetSpecialValueFor("heal")
 	if IsServer() then 
 		self:StartIntervalThink(1)
 		local nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_enigma/enigma_midnight_pulse.vpcf", PATTACH_ABSORIGIN, self:GetParent() )
@@ -43,7 +44,7 @@ function modifier_enigma_midnight_pulse_bh_thinker:OnIntervalThink()
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), self.radius ) ) do
 		ability:DealDamage( caster, enemy, enemy:GetMaxHealth() * self.damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 	end
-	if caster:HasTalent("special_bonus_unique_enigma_midnight_pulse_2") then
+	if self.heal > 0 then
 		for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), self.radius ) ) do
 			ally:HealEvent( ally:GetMaxHealth() * self.heal, ability, caster )
 		end
@@ -51,7 +52,7 @@ function modifier_enigma_midnight_pulse_bh_thinker:OnIntervalThink()
 end
 
 function modifier_enigma_midnight_pulse_bh_thinker:IsAura()
-	return self:GetCaster():HasTalent("special_bonus_unique_enigma_midnight_pulse_1")
+	return self.slow > 0
 end
 
 function modifier_enigma_midnight_pulse_bh_thinker:GetModifierAura()
@@ -82,7 +83,7 @@ modifier_enigma_midnight_pulse_bh_talent = class({})
 LinkLuaModifier("modifier_enigma_midnight_pulse_bh_talent", "heroes/hero_enigma/enigma_midnight_pulse_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_enigma_midnight_pulse_bh_talent:OnCreated()
-	self.slow = self:GetCaster():FindTalentValue("special_bonus_unique_enigma_midnight_pulse_1")
+	self.slow = self:GetSpecialValueFor("slow")
 end
 
 function modifier_enigma_midnight_pulse_bh_talent:DeclareFunctions()

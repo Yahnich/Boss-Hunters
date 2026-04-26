@@ -14,6 +14,7 @@ ROUND_END_DELAY = 3
 ELITE_ABILITIES_TO_GIVE = 1
 
 function SendErrorReport(err, context)
+	if not err then return end
 	Notifications:BottomToAll({text="An error has occurred! Please screenshot this: "..err, duration=15.0})
 	print(err)
 	if context then context.gameHasBeenBroken = true end

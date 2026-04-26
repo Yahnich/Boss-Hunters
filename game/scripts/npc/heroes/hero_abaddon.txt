@@ -25,7 +25,7 @@
 				"value"						"87"
 				"hero_levelup"				"-2"
 			}
-			"health_threshold"				"40"
+			"health_threshold"				"20"
 		}
 	
 		"precache"
@@ -76,15 +76,15 @@
 			}
 			"target_damage"
 			{
-				"value"										"60"
-				"hero_levelup"								"35"
+				"value"										"80"
+				"hero_levelup"								"15"
 				"special_bonus_minor_perk"					"+50%"
 				"CalculateSpellDamageTooltip"				"1"
 			}
 			"heal_amount"
 			{
-				"value"										"60"
-				"hero_levelup"								"35"
+				"value"										"80"
+				"hero_levelup"								"15"
 				"special_bonus_minor_perk"					"+50%"
 				"CalculateSpellHealTooltip"					"1"
 			}
@@ -264,20 +264,6 @@
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"3"
 		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_abaddon_borrowed_time_1"	"1"
-		}
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
-		
 		"precache"
 		{
 			"particle"					"particles/econ/events/fall_2021/radiance_owner_fall_2021.vpcf"
@@ -297,6 +283,7 @@
 				"value"								"5"
 				"hero_levelup"						"+5"
 				"special_bonus_minor_perk"			"+50%"
+				"CalculateSpellDamageTooltip"		"1"
 			}
 			"immolate_aoe"
 			{
@@ -305,6 +292,13 @@
 				"affected_by_aoe_increase"			"1"
 			}
 			"immolate_tick"							"1"
+		}
+		"AbilityPerks"
+		{
+			"special_bonus_major_cloak_of_fog"
+			{
+				"damage_resistance"					"35"
+			}
 		}
 	}
 	

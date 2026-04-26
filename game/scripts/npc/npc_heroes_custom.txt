@@ -731,27 +731,6 @@
 			"THREAT_DOWN"{"3" "2"}
 			"STATUS_AMP"{"2" "2"}
 		}
-
-		"Facets"
-		{
-			"drow_ranger_high_ground"			{"Deprecated"		"1"}
-			"drow_ranger_sidestep" 				{"Deprecated"		"1"}
-			
-			"drow_ranger_ice"
-			{
-				"Icon"						"snowflake"
-				"Color"						"Blue"
-				"GradientID"				"2"
-				"FacetID"					"3"
-			}
-			"drow_ranger_archery"
-			{
-				"Icon"						"multi_arrow"
-				"Color"						"Gray"
-				"GradientID"				"1"
-				"FacetID"					"4"
-			}
-		}
 	}
 	//=================================================================================================================
 	// HERO: Lemmywinks
@@ -1086,7 +1065,7 @@
 
 	"npc_dota_hero_juggernaut"
 	{
-		"override_hero"			"npc_dota_hero_juggernaut"
+		"override_hero"					"npc_dota_hero_juggernaut"
 		"Ability1"						"generic_basic_1"
 		"Ability2"						"generic_basic_2"
 		"Ability3"						"generic_basic_3"
@@ -1103,14 +1082,14 @@
 			"juggernaut_windless_cuts"				"ULTIMATE"
 		}
 		
-		"Ability10"				"special_bonus_unique_juggernaut_whirling_dervish_1"
-		"Ability11"				"special_bonus_unique_juggernaut_whirling_dervish_2"
-		"Ability12"				"special_bonus_unique_juggernaut_meditative_state_1"
-		"Ability13"				"special_bonus_unique_juggernaut_meditative_state_2"
-		"Ability14"				"special_bonus_placeholder_1"
-		"Ability15"				"special_bonus_placeholder_2"
-		"Ability16"				"special_bonus_unique_juggernaut_windless_cuts_1"
-		"Ability17"				"special_bonus_unique_juggernaut_windless_cuts_2"
+		"Ability10"					"special_bonus_placeholder_1"
+		"Ability11"					"special_bonus_placeholder_2"
+		"Ability12"					"special_bonus_placeholder_3"
+		"Ability13"					"special_bonus_placeholder_4"
+		"Ability14"					"special_bonus_placeholder_5"
+		"Ability15"					"special_bonus_placeholder_6"
+		"Ability16"					"special_bonus_placeholder_7"
+		"Ability17"					"special_bonus_placeholder_8"
 		
 		"Masteries"
 		{
@@ -1122,77 +1101,6 @@
 			"SPELL_AMP"{"3" "3"}
 			"STATUS_AMP"{"1" "2"}
 			"AREA_DAMAGE"{"2" "3"}
-		}
-
-		"Facets"
-		{
-			"juggernaut_bladestorm"		{"Deprecated"		"1"}
-			"juggernaut_agigain"		{"Deprecated"		"1"}
-
-			"juggernaut_sohei"
-			{
-				"Icon"						"spinning"
-				"Color"						"Yellow"
-				"GradientID"				"1"
-				"FacetID"					"3"
-				"Talents"
-				{
-					"Talent1"
-					{
-						"TalentName"		"special_bonus_unique_juggernaut_breathless_lunge_1"
-						"ReplaceTalent"		"special_bonus_placeholder_1"
-					}
-					"Talent2"
-					{
-						"TalentName"		"special_bonus_unique_juggernaut_breathless_lunge_2"
-						"ReplaceTalent"		"special_bonus_placeholder_2"
-					}
-				}
-				"Abilities"
-				{
-					"Ability1"
-					{
-						"AbilityName"		"juggernaut_breathless_lunge"
-						"AbilityIndex"		"2"
-						"AutoLevelAbility"	"false"
-					}
-					"Ability2"
-					{
-						"AbilityName"		"juggernaut_hidden_blade"
-						"AbilityIndex"		"3"
-						"AutoLevelAbility"	"false"
-					}
-				}
-			}
-			"juggernaut_ronin"
-			{
-				"Icon"						"armor"
-				"Color"						"Green"
-				"GradientID"				"2"
-				"FacetID"					"4"
-				"Talents"
-				{
-					"Talent1"
-					{
-						"TalentName"		"special_bonus_unique_juggernaut_swift_retribution_1"
-						"ReplaceTalent"		"special_bonus_placeholder_1"
-					}
-					"Talent2"
-					{
-						"TalentName"		"special_bonus_unique_juggernaut_swift_retribution_2"
-						"ReplaceTalent"		"special_bonus_placeholder_2"
-					}
-				}
-				"Abilities"
-				{
-					"Ability1"
-					{
-						"AbilityName"		"juggernaut_swift_retribution"
-						"AbilityIndex"		"2"
-						"AutoLevelAbility"	"false"
-					}
-				}
-			}
 		}
 	}
 	"npc_dota_hero_keeper_of_the_light"
@@ -1227,14 +1135,23 @@
 		"Ability5"						"generic_hidden"
 		"Ability6"						"generic_ultimate"
 
-		"Ability10"				   		"special_bonus_unique_kunkka_water_spout_1"
-		"Ability11"				   		"special_bonus_unique_kunkka_water_spout_2"
-		"Ability12"				   		"special_bonus_unique_kunkka_clear_wave_1"
-		"Ability13"				   		"special_bonus_unique_kunkka_clear_wave_2"
-		"Ability14"				   		"special_bonus_unique_kunkka_mark_the_spot_1"
-		"Ability15"				   		"special_bonus_unique_kunkka_mark_the_spot_2"
-		"Ability16"				   		"special_bonus_unique_kunkka_ghost_fleet_1"
-		"Ability17"				   		"special_bonus_unique_kunkka_ghost_fleet_2"	
+		"AbilityPool"
+		{
+			"kunkka_water_spout"			"BASIC"
+			"kunkka_clear_wave"				"BASIC"
+			"kunkka_mark_the_spot"			"BASIC"
+			"kunkka_high_tide"				"BASIC"
+			"kunkka_ghost_fleet"			"ULTIMATE"
+		}
+		
+		"Ability10"					"special_bonus_placeholder_1"
+		"Ability11"					"special_bonus_placeholder_2"
+		"Ability12"					"special_bonus_placeholder_3"
+		"Ability13"					"special_bonus_placeholder_4"
+		"Ability14"					"special_bonus_placeholder_5"
+		"Ability15"					"special_bonus_placeholder_6"
+		"Ability16"					"special_bonus_placeholder_7"
+		"Ability17"					"special_bonus_placeholder_8"
 		
 
 		"Masteries"
