@@ -12,6 +12,7 @@ function modifier_alchemist_chymistry_passive:OnCreated()
 	if IsServer() then
 		self.funcID = EventManager:SubscribeListener("boss_hunters_event_finished", function(args) self:OnEventFinished(args) end)
 	end
+	self:GetCaster().GetPrimaMateria = function() return self:GetStackCount() end
 end
 
 function modifier_alchemist_chymistry_passive:OnRefresh()
@@ -30,6 +31,7 @@ function modifier_alchemist_chymistry_passive:OnDestroy()
 	if IsServer() then
 		EventManager:UnsubscribeListener("boss_hunters_event_finished", self.funcID)
 	end
+	self:GetCaster().GetPrimaMateria = function() return 0 end
 end
 
 function modifier_alchemist_chymistry_passive:DeclareFunctions()

@@ -34,7 +34,7 @@ function modifier_abaddon_nebulous_passive:OnCreatedate()
 end
 
 function modifier_abaddon_nebulous_passive:OnRefresh()
-	self.health_threshold = self:GetSp("health_threshold")
+	self.health_threshold = self:GetSpecialValueFor("health_threshold")
 end
 
 function modifier_abaddon_nebulous_passive:DeclareFunctions()
@@ -62,23 +62,18 @@ modifier_abaddon_nebulous_active = class({})
 LinkLuaModifier("modifier_abaddon_nebulous_active", "heroes/hero_abaddon/abaddon_nebulous", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_abaddon_nebulous_active:OnCreated()
-	self.aura_radius = self:GetSpecialValueFor("redirect_range_scepter")
-	self.ms = self:GetCaster():FindTalentValue("special_bonus_unique_abaddon_borrowed_time_2")
-	if IsServer() then
-		self:GetAbility():StartDelayedCooldown()
-	end
+	self:OnRefresh()
 end
 
 function modifier_abaddon_nebulous_active:OnRefresh()
-	self.aura_radius = self:GetSpecialValueFor("redirect_range_scepter")
 	if IsServer() then
-		self:GetAbility():StartDelayedCooldown()
+		self:GetAbility():SetFrozenCooldown( true )
 	end
 end
 
 function modifier_abaddon_nebulous_active:OnRemoved()
 	if IsServer() then
-		self:GetAbility():EndDelayedCooldown()
+		self:GetAbility():SetFrozenCooldown( false )
 	end
 end
 

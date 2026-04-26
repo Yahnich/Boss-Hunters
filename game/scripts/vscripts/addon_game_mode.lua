@@ -607,7 +607,6 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	if not status  and not self.gameHasBeenBroken then
 		SendErrorReport(err, self)
 	end
-	print("modifier properly added", 
 	return true
 end
 

@@ -1,52 +1,52 @@
-abaddon_curse_ebf = class({})
+abaddon_hoarblade = class({})
 
-function abaddon_curse_ebf:GetIntrinsicModifierName()
-	return "modifier_abaddon_curse_passive"
+function abaddon_hoarblade:GetIntrinsicModifierName()
+	return "modifier_abaddon_hoarblade_passive"
 end
 
-LinkLuaModifier( "modifier_abaddon_curse_passive", "heroes/hero_abaddon/abaddon_curse_ebf", LUA_MODIFIER_MOTION_NONE )
-modifier_abaddon_curse_passive = class({})
+LinkLuaModifier( "modifier_abaddon_hoarblade_passive", "heroes/hero_abaddon/abaddon_hoarblade", LUA_MODIFIER_MOTION_NONE )
+modifier_abaddon_hoarblade_passive = class({})
 
-function modifier_abaddon_curse_passive:OnCreated()
+function modifier_abaddon_hoarblade_passive:OnCreated()
 	self.duration = self:GetSpecialValueFor("buff_duration")
 end
 
-function modifier_abaddon_curse_passive:OnRefresh()
+function modifier_abaddon_hoarblade_passive:OnRefresh()
 	self.duration = self:GetSpecialValueFor("buff_duration")
 end
 
-function modifier_abaddon_curse_passive:IsHidden()
+function modifier_abaddon_hoarblade_passive:IsHidden()
 	return true
 end
 
-function modifier_abaddon_curse_passive:DeclareFunctions()
+function modifier_abaddon_hoarblade_passive:DeclareFunctions()
 	funcs = {
 				MODIFIER_EVENT_ON_TAKEDAMAGE
 			}
 	return funcs
 end
 
-function modifier_abaddon_curse_passive:OnTakeDamage(params)
+function modifier_abaddon_hoarblade_passive:OnTakeDamage(params)
 	if IsServer() then
 		if params.unit == self:GetParent() then return end
-		if params.attacker == self:GetParent() and not params.unit:HasModifier("modifier_abaddon_curse_curse") 
+		if params.attacker == self:GetParent() and not params.unit:HasModifier("modifier_abaddon_hoarblade_curse") 
 		and ( ( params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK and not params.inflictor) 
 		or ( params.inflictor and params.attacker:HasAbility( params.inflictor:GetName() ) ) )
 		and not HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION ) then
-			params.unit:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_abaddon_curse_debuff", {duration = self.duration} )
+			params.unit:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_abaddon_hoarblade_debuff", {duration = self.duration} )
 		end
 	end
 end
 
-LinkLuaModifier( "modifier_abaddon_curse_buff", "heroes/hero_abaddon/abaddon_curse_ebf", LUA_MODIFIER_MOTION_NONE )
-modifier_abaddon_curse_buff = class({})
+LinkLuaModifier( "modifier_abaddon_hoarblade_buff", "heroes/hero_abaddon/abaddon_hoarblade", LUA_MODIFIER_MOTION_NONE )
+modifier_abaddon_hoarblade_buff = class({})
 
-function modifier_abaddon_curse_buff:OnCreated()
+function modifier_abaddon_hoarblade_buff:OnCreated()
 	self.cdr = self:GetSpecialValueFor("buff_cdr")
 	self.attackspeed = self:GetSpecialValueFor("buff_as")
 end
 
-function modifier_abaddon_curse_buff:DeclareFunctions()
+function modifier_abaddon_hoarblade_buff:DeclareFunctions()
 	funcs = {
 				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
@@ -55,22 +55,22 @@ function modifier_abaddon_curse_buff:DeclareFunctions()
 	return funcs
 end
 
-function modifier_abaddon_curse_buff:GetModifierPercentageCooldown()
+function modifier_abaddon_hoarblade_buff:GetModifierPercentageCooldown()
 	return self.cdr
 end
 
-function modifier_abaddon_curse_buff:GetModifierAttackSpeedBonus_Constant()
+function modifier_abaddon_hoarblade_buff:GetModifierAttackSpeedBonus_Constant()
 	return self.attackspeed
 end
 
-function modifier_abaddon_curse_buff:GetEffectName()
+function modifier_abaddon_hoarblade_buff:GetEffectName()
 	return "particles/units/heroes/hero_abaddon/abaddon_frost_buff.vpcf"
 end
 
-LinkLuaModifier( "modifier_abaddon_curse_debuff", "heroes/hero_abaddon/abaddon_curse_ebf", LUA_MODIFIER_MOTION_NONE )
-modifier_abaddon_curse_debuff = class({})
+LinkLuaModifier( "modifier_abaddon_hoarblade_debuff", "heroes/hero_abaddon/abaddon_hoarblade", LUA_MODIFIER_MOTION_NONE )
+modifier_abaddon_hoarblade_debuff = class({})
 
-function modifier_abaddon_curse_debuff:OnCreated()
+function modifier_abaddon_hoarblade_debuff:OnCreated()
 	self.movespeed = self:GetSpecialValueFor("initial_slow")
 	self.trigger_count = self:GetSpecialValueFor("trigger_count")
 	if IsServer() then
@@ -81,7 +81,7 @@ function modifier_abaddon_curse_debuff:OnCreated()
 	end
 end
 
-function modifier_abaddon_curse_debuff:OnRefresh()
+function modifier_abaddon_hoarblade_debuff:OnRefresh()
 	self.movespeed = self:GetSpecialValueFor("initial_slow")
 	self.trigger_count = self:GetSpecialValueFor("trigger_count")
 	if IsServer() then
@@ -94,18 +94,18 @@ function modifier_abaddon_curse_debuff:OnRefresh()
 			local parent = self:GetParent()
 			local ability =  self:GetAbility()
 			local duration = self:GetSpecialValueFor("buff_duration")
-			parent:AddNewModifier( caster, ability, "modifier_abaddon_curse_curse", {duration = duration})
+			parent:AddNewModifier( caster, ability, "modifier_abaddon_hoarblade_curse", {duration = duration})
 			for _, ally in ipairs( self:GetCaster():FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), self:GetSpecialValueFor("trigger_radius") ) ) do
-				if ally ~= caster then ally:AddNewModifier( caster, ability, "modifier_abaddon_curse_buff", {duration = duration}) end
+				if ally ~= caster then ally:AddNewModifier( caster, ability, "modifier_abaddon_hoarblade_buff", {duration = duration}) end
 			end
-			caster:AddNewModifier( caster, ability, "modifier_abaddon_curse_buff", {duration = duration})
+			caster:AddNewModifier( caster, ability, "modifier_abaddon_hoarblade_buff", {duration = duration})
 			
 			ParticleManager:FireParticle("particles/abaddon_brume_proc.vpcf", PATTACH_POINT_FOLLOW, parent)
 		end
 	end
 end
 
-function modifier_abaddon_curse_debuff:DeclareFunctions()
+function modifier_abaddon_hoarblade_debuff:DeclareFunctions()
 	funcs = {
 				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 				
@@ -113,34 +113,34 @@ function modifier_abaddon_curse_debuff:DeclareFunctions()
 	return funcs
 end
 
-function modifier_abaddon_curse_debuff:GetModifierMoveSpeedBonus_Percentage()
+function modifier_abaddon_hoarblade_debuff:GetModifierMoveSpeedBonus_Percentage()
 	return self.movespeed
 end
 
-function modifier_abaddon_curse_debuff:GetEffectName()
+function modifier_abaddon_hoarblade_debuff:GetEffectName()
 	return "particles/units/heroes/hero_abaddon/abaddon_frost_slow.vpcf"
 end
 
-LinkLuaModifier( "modifier_abaddon_curse_curse", "heroes/hero_abaddon/abaddon_curse_ebf", LUA_MODIFIER_MOTION_NONE )
-modifier_abaddon_curse_curse = class({})
+LinkLuaModifier( "modifier_abaddon_hoarblade_curse", "heroes/hero_abaddon/abaddon_hoarblade", LUA_MODIFIER_MOTION_NONE )
+modifier_abaddon_hoarblade_curse = class({})
 
-function modifier_abaddon_curse_curse:GetEffectName()
+function modifier_abaddon_hoarblade_curse:GetEffectName()
 	return "particles/units/heroes/hero_abaddon/abaddon_frost_slow.vpcf"
 end
 
-function modifier_abaddon_curse_curse:OnCreated()
+function modifier_abaddon_hoarblade_curse:OnCreated()
 	self.movespeed = self:GetSpecialValueFor("curse_slow")
 	self.attackspeed = self:GetSpecialValueFor("curse_as")
-	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_abaddon_curse_1")
+	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_abaddon_hoarblade_1")
 end
 
-function modifier_abaddon_curse_curse:CheckState()
+function modifier_abaddon_hoarblade_curse:CheckState()
 	if self.talent1 then
 		return {[MODIFIER_STATE_SILENCED] = true}
 	end
 end
 
-function modifier_abaddon_curse_curse:DeclareFunctions()
+function modifier_abaddon_hoarblade_curse:DeclareFunctions()
 	funcs = {
 				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
@@ -148,14 +148,14 @@ function modifier_abaddon_curse_curse:DeclareFunctions()
 	return funcs
 end
 
-function modifier_abaddon_curse_curse:GetModifierMoveSpeedBonus_Percentage()
+function modifier_abaddon_hoarblade_curse:GetModifierMoveSpeedBonus_Percentage()
 	return self.movespeed
 end
 
-function modifier_abaddon_curse_curse:GetModifierAttackSpeedBonus_Constant()
+function modifier_abaddon_hoarblade_curse:GetModifierAttackSpeedBonus_Constant()
 	return self.attackspeed
 end
 
-function modifier_abaddon_curse_curse:GetEffectName()
+function modifier_abaddon_hoarblade_curse:GetEffectName()
 	return "particles/units/heroes/hero_abaddon/abaddon_curse_frostmourne_debuff.vpcf"
 end

@@ -19,11 +19,11 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"duration"						"6"
+			"duration"						"5"
 			"AbilityCooldown"
 			{
-				"value"						"90"
-				"hero_levelup"				"-1"
+				"value"						"87"
+				"hero_levelup"				"-2"
 			}
 			"health_threshold"				"40"
 		}
@@ -39,12 +39,12 @@
 	//=================================================================================================================
 	// Abaddon: Death Coil
 	//=================================================================================================================
-	"abaddon_death_coil_ebf"
+	"abaddon_brume_spiral"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_abaddon/abaddon_death_coil_ebf"
+		"ScriptFile"					"heroes/hero_abaddon/abaddon_brume_spiral"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -91,13 +91,14 @@
 		}
 		"AbilityPerks"
 		{
-			"special_bonus_major_aoe_coil"
+			"special_bonus_major_roiling_mist"
 			{
 				"aoe_radius"								"=900"
+				"bounces"									"=1"
 			}
-			"special_bonus_major_aoe_coil"
+			"special_bonus_major_fog_born"
 			{
-				"aoe_radius"								"=900"
+				"heal_self_damage"							"=1"
 			}
 		}
 	
@@ -110,36 +111,23 @@
 	//=================================================================================================================
 	// Abaddon: Aphotic Shield
 	//=================================================================================================================
-	"abaddon_aphotic_barrier"
+	"abaddon_stygian_ward"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_abaddon/abaddon_aphotic_barrier"
+		"ScriptFile"					"heroes/hero_abaddon/abaddon_stygian_ward"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityTextureName"			"abaddon_aphotic_shield"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
 		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_abaddon_aphotic_barrier_3" "1"
-			"special_bonus_unique_abaddon_aphotic_barrier_2"	"1"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-	
 		"precache"
 		{
 			"particle"					"particles/units/heroes/hero_abaddon/abaddon_aphotic_shield.vpcf"
@@ -150,48 +138,108 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"AbilityCastRange"				"500"
-			"AbilityCastPoint"				"0.3"
-			"AbilityCooldown"				"12 10 8 6 6 6 6"
-			"duration"						"15.0"
-			"damage_absorb"					"110 140 170 200 250 300 350"
-				"LinkedSpecialBonus"			"special_bonus_unique_abaddon_aphotic_barrier_3"
-				"CalculateSpellDamageTooltip"	"0"
-			"radius"						"675"
+			"AbilityCastRange"
+			{
+				"value"								"500"
+				"special_bonus_minor_perk"			"+150"
+			}
+			"AbilityCastPoint"						"0.3"
+			"AbilityManaCost"
+			{
+				"value"								"100"
+				"special_bonus_minor_perk"			"-30"
+			}
+			"AbilityCooldown"
+			{
+				"value"								"12"
+				"special_bonus_minor_perk"			"-3"
+			}
+			"duration"								"15.0"
+			"damage_absorb"
+			{
+				"value"								"75"
+				"special_bonus_minor_perk"			"+50%"
+				"hero_levelup"						"15"
+				"CalculateSpellDamageTooltip"		"0"
+			}
+			"radius"
+			{
+				"value"								"675"
+				"affected_by_aoe_increase"			"1"
+			}
+		}
+		"AbilityPerks"
+		{
+			"special_bonus_major_aphotic_nebulae"
+			{
+				"aoe_radius"								"=325"
+			}
+			"special_bonus_major_family_ties"
+			{
+				"damage_reflect"							"=75"
+			}
+			"special_bonus_major_our_house_endures"
+			{
+				"AbilityCooldown"							"-4"
+				"damage_absorb"								"x1.5"
+				"no_target"									"=1"
+			}
 		}
 	}
 	//=================================================================================================================
 	// Abaddon: Curse of Avernus
 	//=================================================================================================================
-	"abaddon_curse_ebf"
+	"abaddon_hoarblade"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"					"ability_lua"
-		"ScriptFile"				"heroes/hero_abaddon/abaddon_curse_ebf"
+		"ScriptFile"				"heroes/hero_abaddon/abaddon_hoarblade"
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"		"abaddon_frostmourne"
-		"MaxLevel"					"1"
-		"Innate"				"1"
-		
-		"LinkedTalents"
-		{
-			"special_bonus_unique_abaddon_curse_1"	"1"
-		}
+		"MaxLevel"					"4"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"trigger_count"					"4"
-			"trigger_radius"				"625"
-			"buff_duration"					"4.5"
-			"buff_cdr"						"20"
-			"buff_as"						"80"
-			"initial_slow"					"15"
-			"curse_slow"					"-40"
-			"curse_as"						"-80"
+			"trigger_count"								"4"
+			"trigger_radius"
+			{
+				"value"									"625"
+				"affected_by_aoe_increase"				"1"
+			}
+			"buff_duration"
+			{
+				"value"									"4.5"
+				"special_bonus_minor_perk"				"+1.5"
+			}
+			"buff_cdr"
+			{
+				"value"									"20"
+				"special_bonus_minor_perk"				"+10"
+			}
+			"buff_as"
+			{
+				"value"									"80"
+				"special_bonus_minor_perk"				"+40"
+			}
+			"initial_slow"
+			{
+				"value"									"15"
+				"special_bonus_minor_perk"				"+15"
+			}
+			"curse_slow"								"-40"
+			"curse_as"									"-80"
+		}
+		
+		"AbilityPerks"
+		{
+			"special_bonus_major_billowing_blade"
+			{
+				"silences"									"=1"
+			}
 		}
 	
 		"precache"
@@ -203,15 +251,15 @@
 	//=================================================================================================================
 	// Abaddon: Borrowed Time
 	//=================================================================================================================
-	"abaddon_borrowed_time_ebf"
+	"abaddon_mist_reaver"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_abaddon/abaddon_borrowed_time_ebf"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+		"ScriptFile"					"heroes/hero_abaddon/abaddon_mist_reaver"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
-		"AbilityTextureName"			"abaddon_borrowed_time"
+		"AbilityTextureName"			"abaddon_withering_mist"
 		"HasScepterUpgrade"				"1"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"3"
@@ -225,7 +273,6 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"80.0"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -233,20 +280,31 @@
 		
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_abaddon/abaddon_borrowed_time.vpcf"
-			"particle"					"particles/status_fx/status_effect_abaddon_borrowed_time.vpcf"
-			"particle"					"particles/units/heroes/hero_abaddon/abaddon_borrowed_time_heal.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+			"particle"					"particles/econ/events/fall_2021/radiance_owner_fall_2021.vpcf"
 		}
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"duration"					"3 4 5 6 7 8"
-			"duration_scepter"			"4 5 6 7 8 9"
-			"redirect_amount_scepter"	"-45"
-			"redirect_range_scepter"	"1200"
+			"AbilityCooldown"
+			{
+				"value"								"12.0"
+				"special_bonus_minor_perk"			"-6"
+			}
+			"immolate_damage"
+			{
+				"value"								"5"
+				"hero_levelup"						"+5"
+				"special_bonus_minor_perk"			"+50%"
+			}
+			"immolate_aoe"
+			{
+				"value"								"400"
+				"special_bonus_minor_perk"			"+200"
+				"affected_by_aoe_increase"			"1"
+			}
+			"immolate_tick"							"1"
 		}
 	}
 	

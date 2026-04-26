@@ -1,50 +1,43 @@
-abaddon_aphotic_barrier = class({})
+abaddon_stygian_ward = class({})
 
-function abaddon_aphotic_barrier:IsStealable()
+function abaddon_stygian_ward:IsStealable()
 	return true
 end
 
-function abaddon_aphotic_barrier:IsHiddenWhenStolen()
+function abaddon_stygian_ward:IsHiddenWhenStolen()
 	return false
 end
 
-function abaddon_aphotic_barrier:GetCooldown(iLvl)
-	local cd = self.BaseClass.GetCooldown(self, iLvl)
-	if self:GetCaster():HasTalent("special_bonus_unique_abaddon_aphotic_barrier_3") then cd = cd + self:GetCaster():FindTalentValue("special_bonus_unique_abaddon_aphotic_barrier_3", "cd") end
-	return cd
-end
-
-function abaddon_aphotic_barrier:GetBehavior(iLvl)
-	if self:GetCaster():HasTalent("special_bonus_unique_abaddon_aphotic_barrier_3") then
+function abaddon_stygian_ward:GetBehavior(iLvl)
+	if self:GetSpecialValueFor("no_target") == 1 then
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
 	end
 	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
 end
 
-
-function abaddon_aphotic_barrier:OnSpellStart()
+function abaddon_stygian_ward:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget() or caster
 	target:Dispel(caster, true)
-	target:RemoveModifierByName("modifier_abaddon_aphotic_barrier")
-	if caster:HasTalent("special_bonus_unique_abaddon_aphotic_barrier_1") then
-		local targets = caster:FindFriendlyUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_abaddon_aphotic_barrier_1") )
+	target:RemoveModifierByName("modifier_abaddon_stygian_ward")
+	if caster:HasTalent("special_bonus_unique_abaddon_stygian_ward_1") then
+		local targets = caster:FindFriendlyUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_abaddon_stygian_ward_1") )
 		for _, hitTarget in ipairs( targets ) do
-			hitTarget:AddNewModifier(caster, self, "modifier_abaddon_aphotic_barrier", {duration = self:GetSpecialValueFor("duration")})
+			hitTarget:AddNewModifier(caster, self, "modifier_abaddon_stygian_ward", {duration = self:GetSpecialValueFor("duration")})
 		end
 	else
-		target:AddNewModifier(caster, self, "modifier_abaddon_aphotic_barrier", {duration = self:GetSpecialValueFor("duration")})
+		target:AddNewModifier(caster, self, "modifier_abaddon_stygian_ward", {duration = self:GetSpecialValueFor("duration")})
 	end
 end
 
 
-modifier_abaddon_aphotic_barrier = class({})
-LinkLuaModifier("modifier_abaddon_aphotic_barrier", "heroes/hero_abaddon/abaddon_aphotic_barrier", LUA_MODIFIER_MOTION_NONE)
+modifier_abaddon_stygian_ward = class({})
+LinkLuaModifier("modifier_abaddon_stygian_ward", "heroes/hero_abaddon/abaddon_stygian_ward", LUA_MODIFIER_MOTION_NONE)
 
-function modifier_abaddon_aphotic_barrier:OnCreated()
+function modifier_abaddon_stygian_ward:OnCreated()
 	self.absorb = self:GetSpecialValueFor("damage_absorb")
 	self.radius = self:GetSpecialValueFor("radius")
-	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_abaddon_aphotic_barrier_2")
+	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_abaddon_stygian_ward_2")
 	if IsServer() then
 		local nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_abaddon/abaddon_aphotic_shield.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		local sRadius = self:GetParent():GetModelRadius() * 0.6 + 25
@@ -58,7 +51,7 @@ function modifier_abaddon_aphotic_barrier:OnCreated()
 	end
 end
 
-function modifier_abaddon_aphotic_barrier:OnDestroy()
+function modifier_abaddon_stygian_ward:OnDestroy()
 	if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
@@ -74,11 +67,11 @@ function modifier_abaddon_aphotic_barrier:OnDestroy()
 	end
 end
 
-function modifier_abaddon_aphotic_barrier:DeclareFunctions()
+function modifier_abaddon_stygian_ward:DeclareFunctions()
 	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE, MODIFIER_PROPERTY_TOOLTIP}
 end
 
-function modifier_abaddon_aphotic_barrier:GetModifierIncomingDamage_Percentage(params)
+function modifier_abaddon_stygian_ward:GetModifierIncomingDamage_Percentage(params)
 	if not self:GetParent():HasModifier("modifier_abaddon_borrowed_time_active") and params.damage > 0 then
 		if self.absorb > params.damage then
 			if self.talent2 and not HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION ) then
@@ -98,6 +91,6 @@ function modifier_abaddon_aphotic_barrier:GetModifierIncomingDamage_Percentage(p
 	end
 end
 
-function modifier_abaddon_aphotic_barrier:OnTooltip()
+function modifier_abaddon_stygian_ward:OnTooltip()
 	return self.absorb
 end

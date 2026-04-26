@@ -11,14 +11,14 @@ end
 function alchemist_spark_of_genius:OnSpellStart()
 	local caster = self:GetCaster()
 	EmitSoundOn("Hero_Alchemist.ChemicalRage.Cast", caster)
-	caster:AddNewModifier(caster, self, "modifier_alchemist_spark_of_genius", {duration = self:GetSpecialValueFor("duration")})
+	local spark = caster:AddNewModifier(caster, self, "modifier_alchemist_spark_of_genius", {duration = self:GetSpecialValueFor("duration")})
+	spark:SetStackCount( caster:GetPrimaMateria() )
 end
 
 modifier_alchemist_spark_of_genius = class({})
 LinkLuaModifier("modifier_alchemist_spark_of_genius", "heroes/hero_alchemist/alchemist_spark_of_genius", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_alchemist_spark_of_genius:OnCreated()
-	self:GetParent():HookInModifier("GetModifierAoEBonusConstantStacking", self)
 	self:OnRefresh()
 end
 
@@ -26,6 +26,26 @@ function modifier_alchemist_spark_of_genius:OnRefresh()
 	self.status_amp = self:GetSpecialValueFor("status_amp")
 	self.spell_amp = self:GetSpecialValueFor("spell_amp")
 	self.bonus_radius = self:GetSpecialValueFor("bonus_radius")
+	
+	self.bonus_cd_per_materia = -self:GetSpecialValueFor("bonus_cd_per_materia") / 100
+	
+	self.missing_health_heal = self:GetSpecialValueFor("missing_health_heal") / 100
+	self.current_health_damage = self:GetSpecialValueFor("current_health_damage") / 100
+	self.transmutation_radius = self:GetSpecialValueFor("transmutation_radius")
+	
+	if self.bonus_cd_per_materia > 0 then
+		self:StartIntervalThink( 0.33 )
+	end
+end
+
+function modifier_alchemist_spark_of_genius:OnIntervalThink()
+	local parent = self:GetParent()
+	for i = 0, parent:GetAbilityCount() - 1 do
+		local ability = parent:GetAbilityByIndex( i )
+		if ability and not ability:IsCooldownReady() then
+			ability:ModifyCooldown( 0.33 * self.bonus_cd_per_materia )
+		end
+	end
 end
 
 function modifier_alchemist_rage_injector:OnDestroy()
@@ -35,12 +55,30 @@ end
 function modifier_alchemist_spark_of_genius:DeclareFunctions()
 	return {MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
 			MODIFIER_PROPERTY_TOOLTIP,
-			MODIFIER_PROPERTY_AOE_BONUS_CONSTANT_STACKING}
+			MODIFIER_PROPERTY_AOE_BONUS_CONSTANT_STACKING,
+			MODIFIER_EVENT_ON_ABILITY_FULLY_CAST }
 end
 
+function modifier_alchemist_spark_of_genius:OnAbilityFullyCast(params)
+	if self.transmutation_radius <= 0 then return end
+	if params.unit ~= self:GetParent() then return end
+	if params.ability:IsItem() then return end
+	if params.ability:GetCooldown(-1) <= 0.2 then return end
+	local ability = self:GetAbility()
+	local caster = self:GetCaster()
+	for _, unit in ipairs( caster:FindAllUnitsInRadius( params.unit:GetAbsOrigin(), self.transmutation_radius ) ) do
+		if unit:IsSameTeam( caster ) then
+			local heal = unit:GetHealthDeficit() * self.missing_health_heal
+			unit:HealEvent( heal, ability, caster )
+		else
+			local damage = unit:GetCurrentHealth() * self.current_health_damage
+			ability:DealDamage( casrer, unit, damage )
+		end
+	end
+end
 
 function modifier_alchemist_spark_of_genius:GetModifierSpellAmplify_Percentage()
-	return self.spell_amp
+	return self.spell_amp * (1+  self:GetStackCount()/100)
 end
 
 function modifier_alchemist_spark_of_genius:GetModifierStatusAmplify_Percentage()
@@ -48,7 +86,7 @@ function modifier_alchemist_spark_of_genius:GetModifierStatusAmplify_Percentage(
 end
 
 function modifier_alchemist_spark_of_genius:GetModifierAoEBonusConstantStacking()
-	return self.bonus_radius
+	return self.bonus_radius * (1+  self:GetStackCount()/100)
 end
 
 function modifier_alchemist_spark_of_genius:OnTooltip()

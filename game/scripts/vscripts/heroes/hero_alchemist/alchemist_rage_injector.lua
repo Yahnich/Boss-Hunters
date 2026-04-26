@@ -11,7 +11,8 @@ end
 function alchemist_rage_injector:OnSpellStart()
 	local caster = self:GetCaster()
 	EmitSoundOn("Hero_Alchemist.ChemicalRage.Cast", caster)
-	caster:AddNewModifier(caster, self, "modifier_alchemist_rage_injector", {duration = self:GetSpecialValueFor("duration")})
+	local rage = caster:AddNewModifier(caster, self, "modifier_alchemist_rage_injector", {duration = self:GetSpecialValueFor("duration")})
+	rage:SetStackCount( caster:GetPrimaMateria() )
 end
 
 modifier_alchemist_rage_injector = class({})
@@ -61,11 +62,11 @@ function modifier_alchemist_rage_injector:GetBaseAttackTime_Bonus()
 end
 
 function modifier_alchemist_rage_injector:GetModifierExtraHealthBonus()
-	return self.bonus_hp + self.bonus_hp_per_materia * self:GetParent():GetModifierStackCount( "modifier_alchemist_chymistry_passive", self:GetCaster() )
+	return self.bonus_hp * (1 + self:GetStackCount() / 100)
 end
 
 function modifier_alchemist_rage_injector:GetModifierConstantHealthRegen()
-	return self.bonus_health_regen + self.bonus_health_regen_per_materia * self:GetParent():GetModifierStackCount( "modifier_alchemist_chymistry_passive", self:GetCaster() )
+	return self.bonus_health_regen * (1 + self:GetStackCount() / 100)
 end
 
 function modifier_alchemist_rage_injector:GetModifierMoveSpeedBonus_Constant()
@@ -73,11 +74,11 @@ function modifier_alchemist_rage_injector:GetModifierMoveSpeedBonus_Constant()
 end
 
 function modifier_alchemist_rage_injector:GetModifierPhysicalArmorBonus()
-	return self.bonus_armor_per_materia * self:GetParent():GetModifierStackCount( "modifier_alchemist_chymistry_passive", self:GetCaster() )
+	return self.bonus_armor_per_materia * self:GetStackCount()
 end
 
 function modifier_alchemist_rage_injector:GetModifierBaseAttack_BonusDamage()
-	return self.bonus_damage_per_materia * self:GetParent():GetModifierStackCount( "modifier_alchemist_chymistry_passive", self:GetCaster() )
+	return self.bonus_damage_per_materia * self:GetStackCount()
 end
 
 function modifier_alchemist_rage_injector:GetActivityTranslationModifiers()
