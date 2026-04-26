@@ -28,6 +28,7 @@ function modifier_stats_system_handler:OnCreated()
 	self.modifierFunctions["GetModifierAgilityBonusPercentage"] = {}
 	self.modifierFunctions["GetModifierIntellectBonusPercentage"] = {}
 	self.modifierFunctions["GetReincarnationDelay"] = {}
+	self.modifierFunctions["GetModifierAoEBonusConstantStacking"] = {}
 	if IsServer() then
 		-- find all non-hooked functions on creation (mostly for illusions, but in case we missed any)
 		for _, modifier in ipairs( self:GetParent():FindAllModifiers() ) do
@@ -87,6 +88,9 @@ function modifier_stats_system_handler:OnCreated()
 			end
 			if modifier.GetReincarnationDelay then
 				self.modifierFunctions["GetReincarnationDelay"][modifier] = modifier:GetPriority() or 1
+			end
+			if modifier.GetModifierAoEBonusConstantStacking then
+				self.modifierFunctions["GetModifierAoEBonusConstantStacking"][modifier] = modifier:GetPriority() or 1
 			end
 		end
 		self:UpdateStatValues()
@@ -174,17 +178,18 @@ function modifier_stats_system_handler:UpdatePerkValues()
 						self.perkInfo[entindex][specialKey] = self.perkInfo[entindex][specialKey] or {}
 						local bonus = 0
 						local step = ADD_BONUS
+						local levelBonus = (keyData.perkLevelValue or 0) * caster:GetLevel()
 						if keyData.perkSettingType == "=" then
 							step = SET_BONUS
-							self.perkInfo[entindex][specialKey][step] = bonus
+							self.perkInfo[entindex][specialKey][step] = bonus + levelBonus
 						elseif keyData.perkSettingType == "+" or keyData.perkSettingType == "-" then
-							bonus = tonumber( keyData.perkSettingType .. keyData.perkValue )
+							bonus = tonumber( keyData.perkSettingType .. keyData.perkValue ) + levelBonus
 							if keyData.perkSettingFunction == "%" then
 								step = PCT_BONUS
 							end
 							self.perkInfo[entindex][specialKey][step] = (self.perkInfo[entindex][specialKey][step] or 0) + bonus
 						elseif keyData.perkSettingType == "x" or keyData.perkSettingType == "/" then
-							bonus = tonumber( keyData.perkValue )
+							bonus = tonumber( keyData.perkValue ) + levelBonus
 							if keyData.perkSettingType == "/" then
 								bonus = 1 / tonumber( keyData.perkValue )
 							end
@@ -255,8 +260,44 @@ end
 
 function modifier_stats_system_handler:GetModifierOverrideAbilitySpecial( params )
 	if self._inquiringLevelSpecialValue then return end
+	if params.ability._processValuesForScaling == nil then
+		params.ability._processValuesForScaling = {}
+	end
+	local special_value = params.ability_special_value:gsub("%#", "")
+	if params.ability._processValuesForScaling[special_value] == nil then
+		local abilityValues = GetAbilityKeyValuesByName(params.ability:GetAbilityName()).AbilityValues
+		params.ability._processValuesForScaling[special_value] = {}
+		params.ability._processValuesForScaling[special_value].affected_by_aoe_increase = false
+		params.ability._processValuesForScaling[special_value].affected_by_crit_increase = false
+		params.ability._processValuesForScaling[special_value].affected_by_chance_increase = false
+		params.ability._processValuesForScaling[special_value].affected_by_lvl_increase = false
+		if abilityValues and abilityValues[special_value] then
+			if type(abilityValues[special_value]) == "table" then -- check for adjustments
+				if toboolean(abilityValues[special_value].affected_by_chance_increase) then
+					params.ability._processValuesForScaling[special_value].affected_by_chance_increase = true
+				end
+				if toboolean(abilityValues[special_value].affected_by_crit_increase) then
+					params.ability._processValuesForScaling[special_value].affected_by_crit_increase = true
+				end
+				if toboolean(abilityValues[special_value].is_buff_duration) then
+					params.ability._processValuesForScaling[special_value].is_buff_duration = true
+				end
+				if toboolean(abilityValues[special_value].is_debuff_duration) then
+					params.ability._processValuesForScaling[special_value].is_debuff_duration = true
+				end
+			end
+		end
+	end
+	if params.ability._processValuesForScaling[special_value]
+	and (params.ability._processValuesForScaling[special_value].affected_by_crit_increase
+	or params.ability._processValuesForScaling[special_value].affected_by_chance_increase
+	or params.ability._processValuesForScaling[special_value].is_buff_duration
+	or params.ability._processValuesForScaling[special_value].is_debuff_duration) then
+		return 1
+	end
+	
 	local entindex = params.ability:entindex()
-	if not self.perkInfo[entindex]  then return end
+	if not self.perkInfo[entindex] then return end
 	if not self.perkInfo[entindex][params.ability_special_value] then return end
 	return 1
 end
@@ -264,24 +305,46 @@ end
 function modifier_stats_system_handler:GetModifierOverrideAbilitySpecialValue( params )
 	if self._inquiringLevelSpecialValue then return end
 	local entindex = params.ability:entindex()
-	local perkBonusData = self.perkInfo[entindex][params.ability_special_value]
 	self._inquiringLevelSpecialValue = true
 	local flBaseValue = params.ability:GetLevelSpecialValueFor( params.ability_special_value, params.ability_special_level )
-	self._inquiringLevelSpecialValue = false
 	local newValue = flBaseValue
-	for step, bonus in ipairs( perkBonusData ) do
-		if bonus ~= 'X' then
-			if step == SET_BONUS then
-				newValue = bonus
-			elseif step == ADD_BONUS then
-				newValue = newValue + bonus
-			elseif step == PCT_BONUS then
-				newValue = newValue * (1 + (bonus/100))
-			elseif step == MUL_BONUS then
-				newValue = newValue * bonus
+	self._inquiringLevelSpecialValue = false
+	local abilityPerkData = self.perkInfo[entindex]
+	if abilityPerkData then
+		local perkBonusData = self.perkInfo[entindex][params.ability_special_value]
+		if perkBonusData then
+			for step, bonus in ipairs( perkBonusData ) do
+				if bonus ~= 'X' then
+					if step == SET_BONUS then
+						newValue = bonus
+					elseif step == ADD_BONUS then
+						newValue = newValue + bonus
+					elseif step == PCT_BONUS then
+						newValue = newValue * (1 + (bonus/100))
+					elseif step == MUL_BONUS then
+						newValue = newValue * bonus
+					end
+				end
 			end
 		end
 	end
+	if newValue <= 0 then
+		return
+	end
+	local special_value = params.ability_special_value:gsub("%#", "")
+	-- if params.ability._processValuesForScaling[special_value].affected_by_aoe_increase  then
+		-- local aoe_bonus = 0
+		-- for modifier, priority in pairs( self.modifierFunctions["GetModifierAoEBonusConstantStacking"] ) do
+			-- if IsModifierSafe( modifier ) then
+				-- if modifier.GetModifierAoEBonusConstantStacking and modifier:GetModifierAoEBonusConstantStacking() then
+					-- aoe_bonus = aoe_bonus + modifier:GetModifierAoEBonusConstantStacking()
+				-- end
+			-- else
+				-- self.modifierFunctions["GetModifierAoEBonusConstantStacking"][modifier] = nil
+			-- end
+		-- end
+		-- newValue = math.floor(newValue+aoe_bonus+0.5)
+	-- end
 	if newValue > 0 then
 		return newValue
 	end

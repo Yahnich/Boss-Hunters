@@ -1621,19 +1621,21 @@ function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer, data) -- for future s
 	end
 	local flOriginalAmount = flAmount
 	flAmount = math.max( flAmount * healFactorAllied * healFactorSelf, 0 )
-	local params2 = {original_amount = flOriginalAmount, amount = flAmount, source = sourceAb, unit = healer, target = self, heal_type = hData.heal_type}
-	local units = self:FindAllUnitsInRadius(self:GetAbsOrigin(), -1)
-	for _, unit in ipairs(units) do
-		if unit.FindAllModifiers then
-			for _, modifier in ipairs( unit:FindAllModifiers() ) do
-				if modifier.OnHealed then
-					modifier:OnHealed(params2)
-				end
-				if modifier.OnHeal then
-					modifier:OnHeal(params2)
-				end
-				if modifier.OnHealRedirect then
-					modifier:OnHealRedirect(params2)
+	if hData.heal_type == HEAL_TYPE_HEAL then
+		local params2 = {original_amount = flOriginalAmount, amount = flAmount, source = sourceAb, unit = healer, target = self, heal_type = hData.heal_type}
+		local units = self:FindAllUnitsInRadius(self:GetAbsOrigin(), -1)
+		for _, unit in ipairs(units) do
+			if unit.FindAllModifiers then
+				for _, modifier in ipairs( unit:FindAllModifiers() ) do
+					if modifier.OnHealed then
+						modifier:OnHealed(params2)
+					end
+					if modifier.OnHeal then
+						modifier:OnHeal(params2)
+					end
+					if modifier.OnHealRedirect then
+						modifier:OnHealRedirect(params2)
+					end
 				end
 			end
 		end

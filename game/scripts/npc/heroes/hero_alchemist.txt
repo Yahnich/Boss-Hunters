@@ -207,11 +207,11 @@
 		}
 		"AbilityPerks"
 		{
-			"special_bonus_unique_alchemist_volatile_brew_1"
+			"special_bonus_major_stabilized_concoctons"
 			{
 				"brew_time"											"-2.5"
 			}
-			"special_bonus_unique_alchemist_volatile_brew_2"
+			"special_bonus_major_aurum_assault"
 			{
 				"radius"											"+50"
 				"max_damage"										"+50%"
@@ -221,23 +221,13 @@
 					"hero_levelup"									"+4"
 				}
 			}
-			"special_bonus_unique_alchemist_volatile_brew_panacea"
+			"special_bonus_major_midas_goop"
 			{
-				"barrier"
-				{
-					"value"											"100"
-					"CalculateSpellHealTooltip"						"1"
+				"bonus_physical_damage"
+				{ 
+					"value"											"18"
+					"hero_levelup"									"+2"
 				}
-				"bonus_attack_speed"								"+50"
-				"buff_duration"
-				{
-					"value"											"2"
-					"is_buff_duration"								"1"
-				}
-			}
-			"special_bonus_unique_alchemist_volatile_brew_alkahest"
-			{
-				"bonus_physical_damage"								"18"
 				"freezes_cooldowns"									"1"
 			}
 		}
@@ -280,16 +270,16 @@
 		}	
 		"AbilityPerks"
 		{
-			"special_bonus_unique_alchemist_corrosive_arsenal_2"
+			"special_bonus_major_organic_solvent"
 			{
 				"dps_per_stack"										"10"
 			}
-			"special_bonus_unique_alchemist_corrosive_arsenal_panacea"
+			"special_bonus_major_neurotoxic_dosage"
 			{
 				"attack_damage_loss"								"100"
 				"bonus_lifesteal"									"10"
 			}
-			"special_bonus_unique_alchemist_corrosive_arsenal_alkahest"
+			"special_bonus_major_rabid_payload"
 			{
 				"attack_damage_gain"								"100"
 				"status_resist_per_stack"							"100"
@@ -416,13 +406,13 @@
 				"hero_levelup"										"+110"
 				"special_bonus_minor_perk"							"+50%"
 			}
-			"bonus_hp_per_materia"									"1.5"
 			"bonus_health_regen"
 			{
 				"value"												"20"
 				"hero_levelup"										"+5"
+				"special_bonus_minor_perk"							"+50%"
 			}
-			"bonus_health_regen_per_materia"						"1.5"
+			"materia_bonus"											"1.5"
 			"bonus_movespeed"
 			{
 				"value"												"20"
@@ -431,22 +421,79 @@
 		}
 		"AbilityPerks"
 		{
-			"special_bonus_unique_alchemist_rage_injector_1"
+			"special_bonus_major_taxmans_vigor"
 			{
-				"bonus_health_regen"								"+100%"
-				"bonus_health_regen_per_materia"					"+100%"
+				"bonus_armor_per_materia"							"0.4"
 			}
-			"special_bonus_unique_alchemist_rage_injector_panacea"
+			"special_bonus_major_bring_my_baliff"
 			{
-				"bonus_armor_per_materia"							"0.2"
+				"bonus_damage_per_materia"							"1"
 			}
-			"special_bonus_unique_alchemist_rage_injector_alkahest"
+		}
+	}
+	//=================================================================================================================
+	// Alchemist: Chemical Rage
+	//=================================================================================================================
+	"alchemist_spark_of_genius"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_alchemist/alchemist_spark_of_genius"
+		"AbilityTextureName"			"alchemist_spark_of_genius"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_alchemist/alchemist_chemical_rage.vpcf"
+			"particle"					"particles/units/heroes/hero_alchemist/alchemist_chemical_rage_hero_effect.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
+		}
+	
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"AbilityCastPoint"										"0.0"
+			"AbilityCooldown"
 			{
-				"bonus_damage_per_materia"
-				{
-					"value"											"1"
-					"hero_levelup"									"+0.2"
-				}
+				"value"												"45.0"
+				"special_bonus_minor_perk"							"-5"
+			}
+			"AbilityManaCost"										"50"
+			
+			"duration"												"25.0"
+			"status_amp"
+			{
+				"value"												"20"
+				"special_bonus_minor_perk"							"+10"
+			}
+			"spell_amp"
+			{
+				"value"												"20"
+				"special_bonus_minor_perk"							"+10"
+			}
+			"bonus_radius"
+			{
+				"value"												"75"
+				"special_bonus_minor_perk"							"+25"
+			}
+			"materia_bonus"											"1"
+		}
+		"AbilityPerks"
+		{
+			"special_bonus_major_shoulders_of_giants"
+			{
+				"bonus_cd_per_materia"								"1"
+			}
+			"special_bonus_major_razzils_alchemic_transmutation"
+			{
+				"missing_health_heal"								"10"
+				"current_health_damage"								"4"
+				"transmutation_radius"								"900"
 			}
 		}
 	}

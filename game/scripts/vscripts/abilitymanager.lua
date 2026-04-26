@@ -130,8 +130,8 @@ function AbilityManager:ProcessAbilityPerks( ability, hero )
 			if abilityValue.special_bonus_minor_perk then
 				local perkValue = abilityValue.special_bonus_minor_perk
 				ability._minorPerks[abilityKey] = {}
-				ability._minorPerks[abilityKey].perkValue = string.match( perkValue, "%d+" )
-				local setType = string.sub( perkValue, 1)
+				ability._minorPerks[abilityKey].perkValue = string.match( perkValue, "(%d*%.?%d+)" )
+				local setType = string.sub( perkValue, 1, 1)
 				if string.match( setType, "%d+" ) then setType = "+" end -- default is addition
 				ability._minorPerks[abilityKey].perkSettingType = setType
 				local setFunc = string.sub( perkValue, -1)
@@ -147,12 +147,19 @@ function AbilityManager:ProcessAbilityPerks( ability, hero )
 	for perkName, perkData in pairs( abilityPerks ) do
 		ability._majorPerks[perkName] = {}
 		for specialKey, specialValue in pairs( perkData ) do
+			local actualSpecialValue = specialValue
+			local levelValue = 0
+			if type(specialValue) == "table" then
+				actualSpecialValue = specialValue.value
+				levelValue = tonumber(specialValue.hero_levelup)
+			end
 			ability._majorPerks[perkName][specialKey] = {}
-			ability._majorPerks[perkName][specialKey].perkValue = string.match( specialValue, "%d+" )
-			local setType = string.sub( specialValue, 1)
+			ability._majorPerks[perkName][specialKey].perkValue = string.match( actualSpecialValue, "(%d*%.?%d+)" )
+			ability._majorPerks[perkName][specialKey].perkLevelupValue = levelValue
+			local setType = string.sub( actualSpecialValue, 1, 1)
 			if string.match( setType, "%d+" ) then setType = "+" end -- default is addition
 			ability._majorPerks[perkName][specialKey].perkSettingType = setType
-			local setFunc = string.sub( specialValue, -1)
+			local setFunc = string.sub( actualSpecialValue, -1)
 			if string.match( setFunc, "%d+" ) then setFunc = " " end -- default is no function
 			ability._majorPerks[perkName][specialKey].perkSettingFunction = setFunc
 		end

@@ -107,10 +107,16 @@ function DisplayPerkSelection( eventData ){
 			abilityIcon.abilityname = abilityName
 			let abilityLabel = perkPanel.GetChild(1);
 			if( !eventData.major ){
-				perkDescription = $.Localize("#DOTA_Tooltip_ability_" + abilityName + "_" + perkData.perkName)
-				perkDescription = perkDescription.toLowerCase()
-				perkDescription = perkDescription.replace(":", "")
+				$.Msg( perkData )
+				if (perkData.perkName == "AbilityCooldown"){
+					perkDescription = "Cooldown"
+				} else {
+					perkDescription = $.Localize("#DOTA_Tooltip_ability_" + abilityName + "_" + perkData.perkName)
+					perkDescription = perkDescription.toLowerCase()
+					perkDescription = perkDescription.replace(":", "")
+				}
 				perkDescription = perkData.perkValue + " " + titleCase(perkDescription)
+				
 				abilityLabel.text = perkDescription 
 			} else {
 				abilityLabel.text = perkTitle
@@ -139,13 +145,14 @@ function DisplayPerkSelection( eventData ){
 					GameEvents.SendCustomGameEventToServer( "send_player_selected_perk", { pID : localID, entindex : eventData.entindex,  ability: eventData.ability, perkName : perkData.perkName, perkType : eventData.major} ) 
 				} else {
 					let perkText = baseText + perkTitle
-								   + ' > '
-								   + perkDescription
+								 + " (%%#DOTA_Tooltip_ability_" + abilityName + "%%)"
+								 + ' > '
+								 + perkDescription
 					if(!eventData.major){
 						perkText = baseText + perkDescription
+						perkText += " (%%#DOTA_Tooltip_ability_" + abilityName + "%%)"
 					}
-					perkText += " (%%#DOTA_Tooltip_ability_" + abilityName + "%%)"
-					GameEvents.SendCustomGameEventToServer( "server_dota_push_to_chat", {PlayerID : localID, textData : perkText, isTeam : true, abilityID : Entities.GetAbilityByName( lastRememberedHero, abilityName )} )
+					GameEvents.SendCustomGameEventToServer( "server_dota_push_to_chat", {PlayerID : localID, textData : perkText, isTeam : true} )
 				}
 			})
 		}

@@ -603,10 +603,11 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 		filterTable["duration"] = duration
 		return true
 	end
-	status, err, ret = xpcall(FilterModifiers, debug.traceback, self, fPrep )
+	status, err, ret = pcall(FilterModifiers, self)
 	if not status  and not self.gameHasBeenBroken then
 		SendErrorReport(err, self)
 	end
+	print("modifier properly added", 
 	return true
 end
 
