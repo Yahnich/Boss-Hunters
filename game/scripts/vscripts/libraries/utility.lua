@@ -1422,6 +1422,10 @@ function CDOTA_BaseNPC:GetStatusResistance( tParams )
 	return math.max(0.10, (1 - resistance/100)) * math.max(0.10, (1 - stackResist/100))
 end
 
+function CDOTA_BaseNPC:GetMaxHealthDamageResistance()
+	return 1 / TernaryOperator( HeroList:GetActiveHeroCount(), self:IsBoss(), 1 )
+end
+
 function CDOTABaseAbility:IsDelayedCooldown()
 	return self.delayedCooldownTimer ~= nil
 end

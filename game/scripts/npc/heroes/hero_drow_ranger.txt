@@ -1,205 +1,61 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Drow Ranger: Multishot
+	// Drow Ranger: Cold Blooded (Innate)
 	//=================================================================================================================
-	"drow_ranger_multishot_bh"
+	"drow_ranger_cold_blooded"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_drow_ranger/drow_ranger_multishot_bh"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"drow_ranger_multishot"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"4"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_drow_ranger_multishot_1"	"1"
-			"special_bonus_unique_drow_ranger_multishot_2"	"1"
-		}
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0"
-		"AbilityChannelTime"			"1.75"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"26 24 22 20 18 16 14"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50 60 70 80 90 100 110"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"arrow_count"
-			{
-				"value"					"12"
-				"LinkedSpecialBonus"			"special_bonus_unique_drow_ranger_multishot_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"arrows_per_salvo"
-			{
-				"value"				"4"
-				"LinkedSpecialBonus"			"special_bonus_unique_drow_ranger_multishot_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"salvos"						"3"
-			"arrow_damage_pct"
-			{
-				"value"				"95 110 125 140 155 170 185"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"arrow_width"					"90"
-			"arrow_speed"					"1200"
-			"arrow_range_multiplier"		"2"
-			"arrow_angle"
-			{
-				"value"					"50"
-				"LinkedSpecialBonus"			"special_bonus_unique_drow_ranger_multishot_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"channel_duration"				"1.75"
-		}
-		"AbilityCastAnimation"		"ACT_DOTA_CHANNEL_ABILITY_3"
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_drow_ranger_multishot_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"ScriptFile"					"heroes/hero_drow_ranger/drow_ranger_cold_blooded"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"2"
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_drow_ranger_multishot_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"600"
-		}
-	}
-	//=================================================================================================================
-	// Ability: Drow Ranger	Leaping Shots
-	//=================================================================================================================
-	"drow_ranger_gust"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_drow_ranger/drow_ranger_gust"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"drow_ranger_wave_of_silence"
-		"AbilitySound"					"Hero_DrowRanger.Silence"
-		"MaxLevel"						"4"
-		
-		// Talents		
-		//-------------------------------------------------------------------------------------------------------------
-		"LinkedTalents"
-		{
-			"special_bonus_unique_drow_ranger_gust_1"	"1"
-			"special_bonus_unique_drow_ranger_gust_2"	"1"
-		}
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"900"
-		"AbilityCastPoint"				"0.25"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16 15 14 13 13 13 13"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"90 90 90 90 80 70 60"
+		"MaxLevel"						"1"
+		"Innate"						"1"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"wave_speed"				"2000.0"
-			"wave_width"				"250"
-			"silence_duration"			"3 3 3 3 4 5 6"
-			"knockback_distance_max"	"450"
-			"knockback_duration"		"0.6 0.7 0.8 0.9 0.9 0.9 0.9"
-			"knockback_height"			"0"
-		}
-		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_2"
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_drow_ranger_gust_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"50"
-			"duration"					"1.5"
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_drow_ranger_gust_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"1"
+			// Default KV's
+			//---------------------------------------------------------------------------------------------------------
+			"attack_chill"															"5"
+			"ability_chill"															"20"
+			"chill_duration"														"1.5"
+			"frozen_cap"															"100"
+			"restore_aoe"															"900"
+			"hp_restore"															"10"
+			"mp_restore"															"5"
+
+			// Ice KV's
+			//---------------------------------------------------------------------------------------------------------
+			"cooldown_reduction"
+			{
+				"special_bonus_facet_drow_ranger_ice"								"20"
+			}
+
+			// Archery KV's
+			//---------------------------------------------------------------------------------------------------------
+			"bonus_agi"
+			{
+				"special_bonus_facet_drow_ranger_archery"							"12"
+			}
+			"bonus_agi_melee"
+			{
+				"special_bonus_facet_drow_ranger_archery"							"6"
+			}
+			"frozen_multiplier"
+			{
+				"special_bonus_facet_drow_ranger_archery"							"2"
+			}
+			"buff_duration"
+			{
+				"special_bonus_facet_drow_ranger_archery"							"3"
+			}
 		}
 	}
 	//=================================================================================================================
-	// Ability: Drow Ranger's Trueshot Aura
+	// Drow Ranger: Huntress Mark
 	//=================================================================================================================
 	"drow_ranger_huntress_mark"
 	{
@@ -229,9 +85,10 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"25"
 		"AbilityManaCost"				"50"
 
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
 		"precache"
 		{
 			"particle"					"particles/units/heroes/hero_drow/drow_aura_buff.vpcf"
@@ -241,113 +98,359 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
+			// Default KV's
+			//---------------------------------------------------------------------------------------------------------
+			"AbilityCooldown"														"25"
+			"duration"																
+			{
+				"value"																"-1"
+				"special_bonus_unique_drow_ranger_huntress_mark_1"					"=10"
+			}
+			"break_duration"														"2"
 			"proc_chance"
 			{
-				"value"					"25 30 35 35 35 35 35"
-				"LinkedSpecialBonus"			"special_bonus_unique_drow_ranger_huntress_mark_1"
+				"value"																"25 30 35 40"
+				"special_bonus_unique_drow_ranger_huntress_mark_1"					"+35"
 			}
 			"bonus_damage"
 			{
-				"value"					"60 70 80 120 160 200 240"
-				"CalculateSpellDamageTooltip"	"0"
+				"value"																"60 80 160 240"
+				"hero_levelup"														"+8"
+				"CalculateAttackDamageTooltip"										"1"
 			}
-			"duration"						"2"
+
+			// Ice KV's
+			//---------------------------------------------------------------------------------------------------------
+			"extra_chill"
+			{
+				"special_bonus_facet_drow_ranger_ice"								"10"
+			}
+			"extra_chill_tooltip"
+			{
+				"special_bonus_facet_drow_ranger_ice"								"20"
+			}
+			"extra_chill_duration"
+			{
+				"special_bonus_facet_drow_ranger_ice"								"1.5"
+			}
+			"bonus_chill_damage"
+			{
+				"special_bonus_facet_drow_ranger_ice"								"5 10 15 20"
+				"CalculateSpellDamageTooltip"										"1"
+			}
+			"freeze_explosion_radius"
+			{
+				"special_bonus_facet_drow_ranger_ice"								"450"
+				"affected_by_aoe_increase"											"1"
+			}
+			"freeze_explosion_damage"
+			{
+				"special_bonus_facet_drow_ranger_ice"								"75 150 225 300"
+				"CalculateSpellDamageTooltip"										"1"
+			}
+			
+			// Archery KV's
+			//---------------------------------------------------------------------------------------------------------
+			"disarm"
+			{
+				"special_bonus_facet_drow_ranger_archery"							"1"
+			}
+					
+			// Talent KV's
+			//---------------------------------------------------------------------------------------------------------
+			"infallible"
+			{
+				"special_bonus_unique_drow_ranger_huntress_mark_1"					"1"
+			}
+			"heal_radius"
+			{
+				"special_bonus_unique_drow_ranger_huntress_mark_2"					"900"
+				"affected_by_aoe_increase"											"1"
+			}
+			"heal_pct"
+			{
+				"special_bonus_unique_drow_ranger_huntress_mark_2"					"100"
+			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
 	//=================================================================================================================
-	// Ability: Special Bonus
+	// Drow Ranger: Frozen Breath
 	//=================================================================================================================
-	"special_bonus_unique_drow_ranger_huntress_mark_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"35"
-			"duration"					"10"
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_drow_ranger_huntress_mark_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-		{
-			"value"						"100"
-			"radius"					"900"
-		}
-	}
-	//=================================================================================================================
-	// Ability: Drow Ranger	Frost Arrows
-	//=================================================================================================================
-	"drow_ranger_glacier_arrows"
+	"drow_ranger_frozen_breath"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_drow_ranger/drow_ranger_glacier_arrows"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"ScriptFile"					"heroes/hero_drow_ranger/drow_ranger_frozen_breath"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"AbilitySound"					"Hero_DrowRanger.FrostArrows"
-		"MaxLevel"						"1"
-		"Innate"						"1"
-		"IsOrb"							"1"
-		"AbilityTextureName"			"drow_ranger_frost_arrows"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"drow_ranger_wave_of_silence"
+		"AbilitySound"					"Hero_DrowRanger.Silence"
+		"MaxLevel"						"4"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_drow_ranger_frozen_breath_1"						"1"
+			"special_bonus_unique_drow_ranger_frozen_breath_2"						"1"
+		}
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"625"
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastRange"				"900"
+		"AbilityCastPoint"				"0.25"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"0.0 0.0 0.0 0.0"
-		"AbilityDuration"				"1.5 1.5 1.5 1.5"
-
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"0 0 0 0"
+		"AbilityCooldown"				"16 15 14 13 13 13 13"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"10"
+		"AbilityManaCost"				"90 90 90 90 80 70 60"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// Default KV's
+			//---------------------------------------------------------------------------------------------------------
+			"wave_speed"															"2000.0"
+			"wave_width"															"250"
+			"silence_duration"														"3 4 5 6"
+			"knockback_distance_max"												"450"
+			"knockback_duration"													"0.6 0.7 0.8 0.9"
+			"knockback_height"														"0"
+
+			// Ice KV's
+			//---------------------------------------------------------------------------------------------------------
+			"freeze_duration"
+			{
+				"special_bonus_facet_drow_ranger_ice"								"1.5"
+			}
+			"damage_per_chill"
+			{
+				"special_bonus_facet_drow_ranger_ice"								"1 2 3 4"
+			}
+
+			// Archery KV's
+			//---------------------------------------------------------------------------------------------------------
+			"mspd"
+			{
+				"special_bonus_facet_drow_ranger_archery"							"15 20 25 30"
+			}
+			"aspd"
+			{
+				"special_bonus_facet_drow_ranger_archery"							"30 40 50 60"
+			}
+			"buff_duration"
+			{
+				"special_bonus_facet_drow_ranger_archery"							"6"
+			}
+			
+			// Talent KV's
+			//---------------------------------------------------------------------------------------------------------
+			"miss_chance"
+			{
+				"special_bonus_unique_drow_ranger_frozen_breath_1"					"50"
+			}
+			"miss_duration"
+			{
+				"special_bonus_unique_drow_ranger_frozen_breath_1"					"1.5"
+			}
+			"attacks"
+			{
+				"special_bonus_unique_drow_ranger_frozen_breath_2"					"1"
+			}
+		}
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_2"
+	}
+	//=================================================================================================================
+	// Drow Ranger: Volley of Arrows
+	//=================================================================================================================
+	"drow_ranger_volley_of_arrows"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_drow_ranger/drow_ranger_volley_of_arrows"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"drow_ranger_multishot"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_drow_ranger_volley_of_arrows_1"	"1"
+			"special_bonus_unique_drow_ranger_volley_of_arrows_2"	"1"
+		}
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"					"particles/frostivus_gameplay/drow_linear_arrow.vpcf"
+		}
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"26 22 18 14"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50 70 90 110"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// Default KV's
+			//---------------------------------------------------------------------------------------------------------
+			"arrow_count"
+			{
+				"value"																"12"
+				"special_bonus_facet_drow_ranger_archery"							"=42"
+				"special_bonus_unique_drow_ranger_volley_of_arrows_1"				"x2"
+			}
+			"arrows_per_salvo"
+			{
+				"value"																"4"
+				"special_bonus_facet_drow_ranger_archery"							"=14"
+				"special_bonus_unique_drow_ranger_volley_of_arrows_1"				"x2"
+			}
+			"salvos"																"3"
+			"arrow_damage_pct"
+			{
+				"value"																"95 125 155 185"
+				"CalculateSpellDamageTooltip"										"0"
+			}
+			"arrow_width"															"90"
+			"arrow_speed"															"1200"
+			"arrow_range_multiplier"												"2"
+			"arrow_angle"
+			{
+				"value"																"50"
+				"special_bonus_facet_drow_ranger_archery"							"=180"
+				"special_bonus_unique_drow_ranger_volley_of_arrows_1"				"x2"
+			}
+			"channel_duration"														"1.75"
+
+			// Ice KV's
+			//---------------------------------------------------------------------------------------------------------
+			"impact_damage"
+			{
+				"special_bonus_facet_drow_ranger_ice"								"25 35 45 55"
+			}
+			"impact_radius"
+			{
+				"special_bonus_facet_drow_ranger_ice"								"325"
+			}
+
+			// Talent KV's
+			//---------------------------------------------------------------------------------------------------------
+			"vector_cast_range"
+			{
+				"special_bonus_unique_drow_ranger_volley_of_arrows_2"				"900"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CHANNEL_ABILITY_3"
+	}
+	//=================================================================================================================
+	// Drow Ranger: Ranger's Expertise
+	//=================================================================================================================
+	"drow_ranger_rangers_expertise"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_drow_ranger/drow_ranger_rangers_expertise"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityCastRange"				"400"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"MaxLevel"						"3"
+		"AbilityTextureName"			"drow_ranger_marksmanship"
+		"HasScepterUpgrade"				"1"
+		
+		// Talents		
+		//-------------------------------------------------------------------------------------------------------------
+		"LinkedTalents"
+		{
+			"special_bonus_unique_drow_ranger_rangers_expertise_1"	"1"
+			"special_bonus_unique_drow_ranger_rangers_expertise_2"	"1"
+		}
 		
 		"precache"
 		{
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts"
-			"particle"					"particles/units/heroes/hero_drow/drow_frost_arrow.vpcf"
+			"particle"					"particles/units/heroes/hero_drow/drow_marksmanship.vpcf"
 		}
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 		{
-			"base_chill"					"15"
-			"stack_chill"					"1"
-			"duration"						"1.5"
+			// Default KV's
+			//---------------------------------------------------------------------------------------------------------
+			"huntress_mark_cd"														"10 15 20"
+			"frozen_breath_damage"													"20 40 60"
+			"volley_extra_salvos"													"1 2 3"
+			"volley_extra_arrows"													"4 8 12"
+
+			// Ice KV's
+			//---------------------------------------------------------------------------------------------------------
+			"chill_buff_radius"
+			{
+				"special_bonus_facet_drow_ranger_ice"								"900"
+			}
+			"minion_bonus"
+			{
+				"special_bonus_facet_drow_ranger_ice"								"1"
+			}
+			"monster_bonus"
+			{
+				"special_bonus_facet_drow_ranger_ice"								"5"
+			}
+			"boss_bonus"
+			{
+				"special_bonus_facet_drow_ranger_ice"								"20"
+			}
+
+			// Archery KV's
+			//---------------------------------------------------------------------------------------------------------
+			"split_count"
+			{
+				"special_bonus_facet_drow_ranger_archery"							"2"
+			}
+			"split_range"
+			{
+				"special_bonus_facet_drow_ranger_archery"							"375"
+			}
+			"split_damage_reduction"
+			{
+				"special_bonus_facet_drow_ranger_archery"							"35"
+			}
+
+			// Talent KV's
+			//---------------------------------------------------------------------------------------------------------
 		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////// DEPRECATED ////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//=================================================================================================================
 	// Ability: Drow Ranger's Marksmanship
 	//=================================================================================================================
@@ -439,5 +542,60 @@
 		{
 			"value"						"1200"
 		}
+	}
+	//=================================================================================================================
+	// Ability: Drow Ranger	Frost Arrows
+	//=================================================================================================================
+	"drow_ranger_glacier_arrows"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_drow_ranger/drow_ranger_glacier_arrows"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilitySound"					"Hero_DrowRanger.FrostArrows"
+		"MaxLevel"						"1"
+		"Innate"						"1"
+		"IsOrb"							"1"
+		"AbilityTextureName"			"drow_ranger_frost_arrows"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"625"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.0 0.0 0.0 0.0"
+		"AbilityDuration"				"1.5 1.5 1.5 1.5"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"0 0 0 0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"10"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts"
+			"particle"					"particles/units/heroes/hero_drow/drow_frost_arrow.vpcf"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"base_chill"					"15"
+			"stack_chill"					"1"
+			"duration"						"1.5"
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
 }
